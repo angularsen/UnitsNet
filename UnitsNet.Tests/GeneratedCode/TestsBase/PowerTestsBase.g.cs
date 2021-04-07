@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of Power.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class PowerTestsBase
+    public abstract partial class PowerTestsBase : QuantityTestsBase
     {
         protected abstract double BoilerHorsepowerInOneWatt { get; }
         protected abstract double BritishThermalUnitsPerHourInOneWatt { get; }
@@ -101,9 +102,31 @@ namespace UnitsNet.Tests
         {
             var quantity = new Power();
             Assert.Equal(0, quantity.Value);
+            Assert.Equal(0m, ((IDecimalQuantity)quantity).Value);
             Assert.Equal(PowerUnit.Watt, quantity.Unit);
         }
 
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Power(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new Power(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (Power) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
+        }
 
         [Fact]
         public void Power_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
@@ -120,10 +143,8 @@ namespace UnitsNet.Tests
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
-#pragma warning disable 618
             Assert.Equal(units, quantityInfo.Units);
             Assert.Equal(unitNames, quantityInfo.UnitNames);
-#pragma warning restore 618
         }
 
         [Fact]
@@ -294,6 +315,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new Power(value: 1, unit: Power.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var watt = Power.FromWatts(1);
@@ -397,6 +435,13 @@ namespace UnitsNet.Tests
             var wattQuantity = watt.ToUnit(PowerUnit.Watt);
             AssertEx.EqualTolerance(WattsInOneWatt, (double)wattQuantity.Value, WattsTolerance);
             Assert.Equal(PowerUnit.Watt, wattQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = Power.FromWatts(1).ToBaseUnit();
+            Assert.Equal(Power.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -504,22 +549,39 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsIsImplemented()
+        public void Equals_SameType_IsImplemented()
         {
             var a = Power.FromWatts(1);
             var b = Power.FromWatts(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
-            Assert.False(a.Equals(null));
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_QuantityAsObject_IsImplemented()
+        {
+            object a = Power.FromWatts(1);
+            object b = Power.FromWatts(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+            Assert.False(a.Equals((object)null));
+        }
+
+        [Fact]
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = Power.FromWatts(1);
             Assert.True(v.Equals(Power.FromWatts(1), WattsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Power.Zero, WattsTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = Power.FromWatts(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Power.FromWatts(1), -1, ComparisonType.Relative));
         }
 
         [Fact]
@@ -658,6 +720,192 @@ namespace UnitsNet.Tests
             Assert.Equal("0.12 W", new Power(0.123456m, PowerUnit.Watt).ToString("s2", culture));
             Assert.Equal("0.123 W", new Power(0.123456m, PowerUnit.Watt).ToString("s3", culture));
             Assert.Equal("0.1235 W", new Power(0.123456m, PowerUnit.Watt).ToString("s4", culture));
+        }
+
+
+        [Fact]
+        public void ToString_NullFormat_ThrowsArgumentNullException()
+        {
+            var quantity = Power.FromWatts(1.0);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
+        }
+
+        [Fact]
+        public void ToString_NullArgs_ThrowsArgumentNullException()
+        {
+            var quantity = Power.FromWatts(1.0);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, "g", null));
+        }
+
+        [Fact]
+        public void ToString_NullProvider_EqualsCurrentUICulture()
+        {
+            var quantity = Power.FromWatts(1.0);
+            Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
+        }
+
+
+        [Fact]
+        public void Convert_ToBool_ThrowsInvalidCastException()
+        {
+            var quantity = Power.FromWatts(1.0);
+            Assert.Throws<InvalidCastException>(() => Convert.ToBoolean(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToByte_EqualsValueAsSameType()
+        {
+            var quantity = Power.FromWatts(1.0);
+           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToChar_ThrowsInvalidCastException()
+        {
+            var quantity = Power.FromWatts(1.0);
+            Assert.Throws<InvalidCastException>(() => Convert.ToChar(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToDateTime_ThrowsInvalidCastException()
+        {
+            var quantity = Power.FromWatts(1.0);
+            Assert.Throws<InvalidCastException>(() => Convert.ToDateTime(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToDecimal_EqualsValueAsSameType()
+        {
+            var quantity = Power.FromWatts(1.0);
+            Assert.Equal((decimal)quantity.Value, Convert.ToDecimal(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToDouble_EqualsValueAsSameType()
+        {
+            var quantity = Power.FromWatts(1.0);
+            Assert.Equal((double)quantity.Value, Convert.ToDouble(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToInt16_EqualsValueAsSameType()
+        {
+            var quantity = Power.FromWatts(1.0);
+            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToInt32_EqualsValueAsSameType()
+        {
+            var quantity = Power.FromWatts(1.0);
+            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToInt64_EqualsValueAsSameType()
+        {
+            var quantity = Power.FromWatts(1.0);
+            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToSByte_EqualsValueAsSameType()
+        {
+            var quantity = Power.FromWatts(1.0);
+            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToSingle_EqualsValueAsSameType()
+        {
+            var quantity = Power.FromWatts(1.0);
+            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToString_EqualsToString()
+        {
+            var quantity = Power.FromWatts(1.0);
+            Assert.Equal(quantity.ToString(), Convert.ToString(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToUInt16_EqualsValueAsSameType()
+        {
+            var quantity = Power.FromWatts(1.0);
+            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToUInt32_EqualsValueAsSameType()
+        {
+            var quantity = Power.FromWatts(1.0);
+            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToUInt64_EqualsValueAsSameType()
+        {
+            var quantity = Power.FromWatts(1.0);
+            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = Power.FromWatts(1.0);
+            Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(Power)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = Power.FromWatts(1.0);
+            Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(PowerUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = Power.FromWatts(1.0);
+            Assert.Equal(QuantityType.Power, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = Power.FromWatts(1.0);
+            Assert.Equal(Power.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = Power.FromWatts(1.0);
+            Assert.Equal(Power.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = Power.FromWatts(1.0);
+            Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void GetHashCode_Equals()
+        {
+            var quantity = Power.FromWatts(1.0);
+            Assert.Equal(new {Power.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+        }
+
+        [Theory]
+        [InlineData(1.0)]
+        [InlineData(-1.0)]
+        public void NegationOperator_ReturnsQuantity_WithNegatedValue(double value)
+        {
+            var quantity = Power.FromWatts(value);
+            Assert.Equal(Power.FromWatts(-value), -quantity);
         }
     }
 }

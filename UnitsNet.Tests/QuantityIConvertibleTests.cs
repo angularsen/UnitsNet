@@ -145,6 +145,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Length.QuantityType, lengthAsIConvertible.ToType(typeof(QuantityType), null));
             Assert.Equal(Length.QuantityType, Convert.ChangeType(length, typeof(QuantityType)));
 
+            // QuantityInfo
+            Assert.Equal(Length.Info, lengthAsIConvertible.ToType(typeof(QuantityInfo), null));
+            Assert.Equal(Length.Info, Convert.ChangeType(length, typeof(QuantityInfo)));
+
             // BaseDimensions
             Assert.Equal(Length.BaseDimensions, lengthAsIConvertible.ToType(typeof(BaseDimensions), null));
             Assert.Equal(Length.BaseDimensions, Convert.ChangeType(length, typeof(BaseDimensions)));

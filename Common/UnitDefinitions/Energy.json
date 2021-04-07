@@ -57,10 +57,20 @@
       "PluralName": "ElectronVolts",
       "FromUnitToBaseFunc": "x*1.602176565e-19",
       "FromBaseToUnitFunc": "x/1.602176565e-19",
+      "Prefixes": [
+        "Kilo",
+        "Mega",
+        "Giga",
+        "Tera"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "eV" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "эВ" ]
         }
       ]
     },
@@ -102,6 +112,23 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "Вт/ч" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "WattDay",
+      "PluralName": "WattDays",
+      "FromUnitToBaseFunc": "x*24*3600d",
+      "FromBaseToUnitFunc": "x/(24*3600d)",
+      "Prefixes": [ "Kilo", "Mega", "Giga", "Tera" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Wd" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Вт/д" ]
         }
       ]
     },
@@ -159,6 +186,18 @@
           "Culture": "ru-RU",
           "Abbreviations": [ "Английский терм" ],
           "AbbreviationsForPrefixes": { "Deca": "Английский декатерм" }
+        }
+      ]
+    },
+    {
+      "SingularName": "HorsepowerHour",
+      "PluralName": "HorsepowerHours",
+      "FromUnitToBaseFunc": "x*2.6845195377e6",
+      "FromBaseToUnitFunc": "x/2.6845195377e6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "hp·h" ]
         }
       ]
     }

@@ -181,6 +181,11 @@ namespace UnitsNet
         public double KiloPonds => As(ForceUnit.KiloPond);
 
         /// <summary>
+        ///     Get Force in KilopoundsForce.
+        /// </summary>
+        public double KilopoundsForce => As(ForceUnit.KilopoundForce);
+
+        /// <summary>
         ///     Get Force in Meganewtons.
         /// </summary>
         public double Meganewtons => As(ForceUnit.Meganewton);
@@ -214,6 +219,11 @@ namespace UnitsNet
         ///     Get Force in PoundsForce.
         /// </summary>
         public double PoundsForce => As(ForceUnit.PoundForce);
+
+        /// <summary>
+        ///     Get Force in ShortTonsForce.
+        /// </summary>
+        public double ShortTonsForce => As(ForceUnit.ShortTonForce);
 
         /// <summary>
         ///     Get Force in TonnesForce.
@@ -301,6 +311,16 @@ namespace UnitsNet
             return new Force(value, ForceUnit.KiloPond);
         }
         /// <summary>
+        ///     Get Force from KilopoundsForce.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Force FromKilopoundsForce(double kilopoundsforce)
+        {
+            double value = (double) kilopoundsforce;
+            return new Force(value, ForceUnit.KilopoundForce);
+        }
+        /// <summary>
         ///     Get Force from Meganewtons.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -369,6 +389,16 @@ namespace UnitsNet
         {
             double value = (double) poundsforce;
             return new Force(value, ForceUnit.PoundForce);
+        }
+        /// <summary>
+        ///     Get Force from ShortTonsForce.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Force FromShortTonsForce(double shorttonsforce)
+        {
+            double value = (double) shorttonsforce;
+            return new Force(value, ForceUnit.ShortTonForce);
         }
         /// <summary>
         ///     Get Force from TonnesForce.
@@ -676,6 +706,7 @@ namespace UnitsNet
                 case ForceUnit.KilogramForce: return _value*9.80665002864;
                 case ForceUnit.Kilonewton: return (_value) * 1e3d;
                 case ForceUnit.KiloPond: return _value*9.80665002864;
+                case ForceUnit.KilopoundForce: return _value*4448.2216152605095551842641431421;
                 case ForceUnit.Meganewton: return (_value) * 1e6d;
                 case ForceUnit.Micronewton: return (_value) * 1e-6d;
                 case ForceUnit.Millinewton: return (_value) * 1e-3d;
@@ -683,6 +714,7 @@ namespace UnitsNet
                 case ForceUnit.OunceForce: return _value*2.780138509537812e-1;
                 case ForceUnit.Poundal: return _value*0.13825502798973041652092282466083;
                 case ForceUnit.PoundForce: return _value*4.4482216152605095551842641431421;
+                case ForceUnit.ShortTonForce: return _value*8.896443230521e3;
                 case ForceUnit.TonneForce: return _value*9.80665002864e3;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -703,6 +735,7 @@ namespace UnitsNet
                 case ForceUnit.KilogramForce: return baseUnitValue/9.80665002864;
                 case ForceUnit.Kilonewton: return (baseUnitValue) / 1e3d;
                 case ForceUnit.KiloPond: return baseUnitValue/9.80665002864;
+                case ForceUnit.KilopoundForce: return baseUnitValue/4448.2216152605095551842641431421;
                 case ForceUnit.Meganewton: return (baseUnitValue) / 1e6d;
                 case ForceUnit.Micronewton: return (baseUnitValue) / 1e-6d;
                 case ForceUnit.Millinewton: return (baseUnitValue) / 1e-3d;
@@ -710,6 +743,7 @@ namespace UnitsNet
                 case ForceUnit.OunceForce: return baseUnitValue/2.780138509537812e-1;
                 case ForceUnit.Poundal: return baseUnitValue/0.13825502798973041652092282466083;
                 case ForceUnit.PoundForce: return baseUnitValue/4.4482216152605095551842641431421;
+                case ForceUnit.ShortTonForce: return baseUnitValue/8.896443230521e3;
                 case ForceUnit.TonneForce: return baseUnitValue/9.80665002864e3;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");

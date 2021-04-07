@@ -7,6 +7,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ElectricPotentialTests : ElectricPotentialTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
         protected override double MicrovoltsInOneVolt => 1e6;
 
         protected override double MillivoltsInOneVolt => 1e3;
@@ -39,6 +40,13 @@ namespace UnitsNet.Tests.CustomCode
         {
             ElectricCurrent current = ElectricPotential.FromVolts(potential) / ElectricResistance.FromOhms(resistance);
             Assert.Equal(expected, current.Amperes);
+        }
+
+        [Fact]
+        public void ElectricPotentialMultipliedByElectricCurrentEqualsPower()
+        {
+            Power p = ElectricPotential.FromVolts(10) * ElectricCurrent.FromAmperes(2);
+            Assert.Equal(20, p.Watts);
         }
     }
 }

@@ -24,6 +24,8 @@ using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
+#nullable enable
+
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -48,15 +50,16 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, -2, 0, 0, 0);
 
-            Info = new QuantityInfo<ElectricResistanceUnit>(QuantityType.ElectricResistance,
+            Info = new QuantityInfo<ElectricResistanceUnit>("ElectricResistance",
                 new UnitInfo<ElectricResistanceUnit>[] {
                     new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Gigaohm, BaseUnits.Undefined),
                     new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Kiloohm, BaseUnits.Undefined),
                     new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Megaohm, BaseUnits.Undefined),
+                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Microohm, BaseUnits.Undefined),
                     new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Milliohm, BaseUnits.Undefined),
                     new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Ohm, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricResistance);
         }
 
         /// <summary>
@@ -84,7 +87,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public ElectricResistance(double value, UnitSystem unitSystem)
         {
-            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -111,16 +114,19 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of ElectricResistance
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static ElectricResistance MaxValue { get; } = new ElectricResistance(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricResistance
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static ElectricResistance MinValue { get; } = new ElectricResistance(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.ElectricResistance;
 
         /// <summary>
@@ -183,6 +189,11 @@ namespace UnitsNet
         public double Megaohms => As(ElectricResistanceUnit.Megaohm);
 
         /// <summary>
+        ///     Get ElectricResistance in Microohms.
+        /// </summary>
+        public double Microohms => As(ElectricResistanceUnit.Microohm);
+
+        /// <summary>
         ///     Get ElectricResistance in Milliohms.
         /// </summary>
         public double Milliohms => As(ElectricResistanceUnit.Milliohm);
@@ -212,7 +223,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static string GetAbbreviation(ElectricResistanceUnit unit, [CanBeNull] IFormatProvider provider)
+        public static string GetAbbreviation(ElectricResistanceUnit unit, IFormatProvider? provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
@@ -247,6 +258,15 @@ namespace UnitsNet
         {
             double value = (double) megaohms;
             return new ElectricResistance(value, ElectricResistanceUnit.Megaohm);
+        }
+        /// <summary>
+        ///     Get ElectricResistance from Microohms.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricResistance FromMicroohms(QuantityValue microohms)
+        {
+            double value = (double) microohms;
+            return new ElectricResistance(value, ElectricResistanceUnit.Microohm);
         }
         /// <summary>
         ///     Get ElectricResistance from Milliohms.
@@ -332,7 +352,7 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static ElectricResistance Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static ElectricResistance Parse(string str, IFormatProvider? provider)
         {
             return QuantityParser.Default.Parse<ElectricResistance, ElectricResistanceUnit>(
                 str,
@@ -348,7 +368,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out ElectricResistance result)
+        public static bool TryParse(string? str, out ElectricResistance result)
         {
             return TryParse(str, null, out result);
         }
@@ -363,7 +383,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out ElectricResistance result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out ElectricResistance result)
         {
             return QuantityParser.Default.TryParse<ElectricResistance, ElectricResistanceUnit>(
                 str,
@@ -396,7 +416,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static ElectricResistanceUnit ParseUnit(string str, [CanBeNull] IFormatProvider provider)
+        public static ElectricResistanceUnit ParseUnit(string str, IFormatProvider? provider)
         {
             return UnitParser.Default.Parse<ElectricResistanceUnit>(str, provider);
         }
@@ -417,7 +437,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider provider, out ElectricResistanceUnit unit)
+        public static bool TryParseUnit(string str, IFormatProvider? provider, out ElectricResistanceUnit unit)
         {
             return UnitParser.Default.TryParse<ElectricResistanceUnit>(str, provider, out unit);
         }
@@ -599,7 +619,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricResistance.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -622,7 +642,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -665,7 +685,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public ElectricResistance ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -698,6 +718,7 @@ namespace UnitsNet
                 case ElectricResistanceUnit.Gigaohm: return (_value) * 1e9d;
                 case ElectricResistanceUnit.Kiloohm: return (_value) * 1e3d;
                 case ElectricResistanceUnit.Megaohm: return (_value) * 1e6d;
+                case ElectricResistanceUnit.Microohm: return (_value) * 1e-6d;
                 case ElectricResistanceUnit.Milliohm: return (_value) * 1e-3d;
                 case ElectricResistanceUnit.Ohm: return _value;
                 default:
@@ -728,6 +749,7 @@ namespace UnitsNet
                 case ElectricResistanceUnit.Gigaohm: return (baseUnitValue) / 1e9d;
                 case ElectricResistanceUnit.Kiloohm: return (baseUnitValue) / 1e3d;
                 case ElectricResistanceUnit.Megaohm: return (baseUnitValue) / 1e6d;
+                case ElectricResistanceUnit.Microohm: return (baseUnitValue) / 1e-6d;
                 case ElectricResistanceUnit.Milliohm: return (baseUnitValue) / 1e-3d;
                 case ElectricResistanceUnit.Ohm: return baseUnitValue;
                 default:
@@ -753,7 +775,7 @@ namespace UnitsNet
         /// </summary>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public string ToString([CanBeNull] IFormatProvider provider)
+        public string ToString(IFormatProvider? provider)
         {
             return ToString("g", provider);
         }
@@ -765,7 +787,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
-        public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
+        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
         {
             var value = Convert.ToDouble(Value);
             var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
@@ -780,7 +802,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
-        public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
+        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
@@ -808,11 +830,11 @@ namespace UnitsNet
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
         /// </summary>
         /// <param name="format">The format string.</param>
-        /// <param name="formatProvider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>The string representation.</returns>
-        public string ToString(string format, IFormatProvider formatProvider)
+        public string ToString(string format, IFormatProvider? provider)
         {
-            return QuantityFormatter.Format<ElectricResistanceUnit>(this, format, formatProvider);
+            return QuantityFormatter.Format<ElectricResistanceUnit>(this, format, provider);
         }
 
         #endregion
@@ -892,6 +914,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return ElectricResistance.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return ElectricResistance.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return ElectricResistance.BaseDimensions;
             else

@@ -1,4 +1,4 @@
-using CodeGen.Helpers;
+﻿using CodeGen.Helpers;
 using CodeGen.JsonTypes;
 
 namespace CodeGen.Generators.UnitsNetWrcGen

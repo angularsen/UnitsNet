@@ -8,6 +8,8 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class BrakeSpecificFuelConsumptionTests : BrakeSpecificFuelConsumptionTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
+
         protected override double GramsPerKiloWattHourInOneKilogramPerJoule => 3600000000;
 
         protected override double KilogramsPerJouleInOneKilogramPerJoule => 1.0;

@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
@@ -13,7 +14,7 @@ namespace UnitsNet.Tests
     public class QuantityTest
     {
         // Exclude Undefined value
-        private static readonly int QuantityCount = Enum.GetValues(typeof(QuantityType)).Length - 1;
+        private static readonly int QuantityCount = Quantity.ByName.Count;
 
         [Theory]
         [InlineData(double.NaN)]
@@ -45,21 +46,18 @@ namespace UnitsNet.Tests
         [Fact]
         public void GetInfo_GivenLength_ReturnsQuantityInfoForLength()
         {
-            var knownLengthUnits = new Enum[] {LengthUnit.Meter, LengthUnit.Centimeter, LengthUnit.Kilometer};
-            var knownLengthUnitNames = new[] {"Meter", "Centimeter", "Kilometer"};
+            var knownLengthUnits = new Enum[] { LengthUnit.Meter, LengthUnit.Centimeter, LengthUnit.Kilometer };
+            var knownLengthUnitNames = new[] { "Meter", "Centimeter", "Kilometer" };
             var lengthUnitCount = Enum.GetValues(typeof(LengthUnit)).Length - 1; // Exclude LengthUnit.Undefined
 
             QuantityInfo quantityInfo = Quantity.GetInfo(QuantityType.Length);
-
             Assert.Equal("Length", quantityInfo.Name);
             Assert.Equal(QuantityType.Length, quantityInfo.QuantityType);
             // Obsolete members
-#pragma warning disable 618
             Assert.Superset(knownLengthUnitNames.ToHashSet(), quantityInfo.UnitNames.ToHashSet());
             Assert.Superset(knownLengthUnits.ToHashSet(), quantityInfo.Units.ToHashSet());
             Assert.Equal(lengthUnitCount, quantityInfo.UnitNames.Length);
             Assert.Equal(lengthUnitCount, quantityInfo.Units.Length);
-#pragma warning restore 618
             Assert.Equal(typeof(LengthUnit), quantityInfo.UnitType);
             Assert.Equal(typeof(Length), quantityInfo.ValueType);
             Assert.Equal(Length.Zero, quantityInfo.Zero);
@@ -68,21 +66,18 @@ namespace UnitsNet.Tests
         [Fact]
         public void GetInfo_GivenMass_ReturnsQuantityInfoForMass()
         {
-            var knownMassUnits = new Enum[] {MassUnit.Kilogram, MassUnit.Gram, MassUnit.Tonne};
-            var knownMassUnitNames = new[] {"Kilogram", "Gram", "Tonne"};
+            var knownMassUnits = new Enum[] { MassUnit.Kilogram, MassUnit.Gram, MassUnit.Tonne };
+            var knownMassUnitNames = new[] { "Kilogram", "Gram", "Tonne" };
             var massUnitCount = Enum.GetValues(typeof(MassUnit)).Length - 1; // Exclude MassUnit.Undefined
 
             QuantityInfo quantityInfo = Quantity.GetInfo(QuantityType.Mass);
-
             Assert.Equal("Mass", quantityInfo.Name);
-            Assert.Equal(QuantityType.Mass, quantityInfo.QuantityType);
             // Obsolete members
-#pragma warning disable 618
+            Assert.Equal(QuantityType.Mass, quantityInfo.QuantityType);
             Assert.Superset(knownMassUnitNames.ToHashSet(), quantityInfo.UnitNames.ToHashSet());
             Assert.Superset(knownMassUnits.ToHashSet(), quantityInfo.Units.ToHashSet());
             Assert.Equal(massUnitCount, quantityInfo.UnitNames.Length);
             Assert.Equal(massUnitCount, quantityInfo.Units.Length);
-#pragma warning restore 618
             Assert.Equal(typeof(MassUnit), quantityInfo.UnitType);
             Assert.Equal(typeof(Mass), quantityInfo.ValueType);
             Assert.Equal(Mass.Zero, quantityInfo.Zero);
@@ -97,7 +92,6 @@ namespace UnitsNet.Tests
                 Quantity.GetInfo(QuantityType.Force),
                 Quantity.GetInfo(QuantityType.Mass)
             };
-
             var infos = Quantity.Infos;
 
             Assert.Superset(knownQuantityInfos.ToHashSet(), infos.ToHashSet());
@@ -172,12 +166,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void Types_ReturnsKnownQuantityTypes()
         {
-            var knownQuantities = new[] {QuantityType.Length, QuantityType.Force, QuantityType.Mass};
+            var knownQuantities = new List<QuantityInfo> { Length.Info, Force.Info, Mass.Info };
 
-            var types = Quantity.Types;
+            ICollection<QuantityInfo> types = Quantity.ByName.Values;
 
             Assert.Superset(knownQuantities.ToHashSet(), types.ToHashSet());
-            Assert.Equal(QuantityCount, types.Length);
         }
 
         [Fact]

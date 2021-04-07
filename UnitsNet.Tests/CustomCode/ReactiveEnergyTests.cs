@@ -27,6 +27,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ReactiveEnergyTests : ReactiveEnergyTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
         protected override double VoltampereReactiveHoursInOneVoltampereReactiveHour => 1;
 
         protected override double KilovoltampereReactiveHoursInOneVoltampereReactiveHour => 1E-3;

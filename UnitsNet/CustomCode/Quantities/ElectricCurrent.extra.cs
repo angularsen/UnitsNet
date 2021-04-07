@@ -11,5 +11,18 @@ namespace UnitsNet
         {
             return ElectricPotential.FromVolts(resistance.Ohms * current.Amperes);
         }
+
+        /// <summary>Calculate <see cref="Power"/> from <see cref="ElectricPotential"/> multiplied by <see cref="ElectricCurrent"/>.</summary>
+        /// <remarks>Electric power is defined as P = U * I.</remarks>
+        public static Power operator *(ElectricCurrent current, ElectricPotential potential)
+        {
+            return Power.FromWatts(potential.Volts * current.Amperes);
+        }
+
+        /// <summary>Calculate <see cref="ElectricCharge"/> from <see cref="ElectricCurrent"/> multiplied by <see cref="Duration"/>.</summary>
+        public static ElectricCharge operator *(ElectricCurrent current, Duration time)
+        {
+            return ElectricCharge.FromAmpereHours(current.Amperes * time.Hours);
+        }
     }
 }

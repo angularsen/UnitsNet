@@ -24,6 +24,8 @@ using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
+#nullable enable
+
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -48,10 +50,11 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(3, 0, 0, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<VolumeUnit>(QuantityType.Volume,
+            Info = new QuantityInfo<VolumeUnit>("Volume",
                 new UnitInfo<VolumeUnit>[] {
                     new UnitInfo<VolumeUnit>(VolumeUnit.AcreFoot, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.AuTablespoon, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.BoardFoot, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.Centiliter, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.CubicCentimeter, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.CubicDecimeter, BaseUnits.Undefined),
@@ -59,15 +62,18 @@ namespace UnitsNet
                     new UnitInfo<VolumeUnit>(VolumeUnit.CubicHectometer, new BaseUnits(length: LengthUnit.Hectometer)),
                     new UnitInfo<VolumeUnit>(VolumeUnit.CubicInch, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.CubicKilometer, BaseUnits.Undefined),
-                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.CubicMeter, new BaseUnits(length: LengthUnit.Meter)),
                     new UnitInfo<VolumeUnit>(VolumeUnit.CubicMicrometer, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.CubicMile, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.CubicMillimeter, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.CubicYard, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.DecausGallon, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.Deciliter, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.DeciusGallon, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.HectocubicFoot, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.HectocubicMeter, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.Hectoliter, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.HectousGallon, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.ImperialBeerBarrel, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.ImperialGallon, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.ImperialOunce, BaseUnits.Undefined),
@@ -98,7 +104,7 @@ namespace UnitsNet
                     new UnitInfo<VolumeUnit>(VolumeUnit.UsTablespoon, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.UsTeaspoon, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Volume);
         }
 
         /// <summary>
@@ -126,7 +132,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Volume(double value, UnitSystem unitSystem)
         {
-            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -153,16 +159,19 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of Volume
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static Volume MaxValue { get; } = new Volume(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Volume
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static Volume MinValue { get; } = new Volume(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.Volume;
 
         /// <summary>
@@ -218,6 +227,11 @@ namespace UnitsNet
         ///     Get Volume in AuTablespoons.
         /// </summary>
         public double AuTablespoons => As(VolumeUnit.AuTablespoon);
+
+        /// <summary>
+        ///     Get Volume in BoardFeet.
+        /// </summary>
+        public double BoardFeet => As(VolumeUnit.BoardFoot);
 
         /// <summary>
         ///     Get Volume in Centiliters.
@@ -280,9 +294,19 @@ namespace UnitsNet
         public double CubicYards => As(VolumeUnit.CubicYard);
 
         /// <summary>
+        ///     Get Volume in DecausGallons.
+        /// </summary>
+        public double DecausGallons => As(VolumeUnit.DecausGallon);
+
+        /// <summary>
         ///     Get Volume in Deciliters.
         /// </summary>
         public double Deciliters => As(VolumeUnit.Deciliter);
+
+        /// <summary>
+        ///     Get Volume in DeciusGallons.
+        /// </summary>
+        public double DeciusGallons => As(VolumeUnit.DeciusGallon);
 
         /// <summary>
         ///     Get Volume in HectocubicFeet.
@@ -298,6 +322,11 @@ namespace UnitsNet
         ///     Get Volume in Hectoliters.
         /// </summary>
         public double Hectoliters => As(VolumeUnit.Hectoliter);
+
+        /// <summary>
+        ///     Get Volume in HectousGallons.
+        /// </summary>
+        public double HectousGallons => As(VolumeUnit.HectousGallon);
 
         /// <summary>
         ///     Get Volume in ImperialBeerBarrels.
@@ -464,7 +493,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static string GetAbbreviation(VolumeUnit unit, [CanBeNull] IFormatProvider provider)
+        public static string GetAbbreviation(VolumeUnit unit, IFormatProvider? provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
@@ -490,6 +519,15 @@ namespace UnitsNet
         {
             double value = (double) autablespoons;
             return new Volume(value, VolumeUnit.AuTablespoon);
+        }
+        /// <summary>
+        ///     Get Volume from BoardFeet.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromBoardFeet(QuantityValue boardfeet)
+        {
+            double value = (double) boardfeet;
+            return new Volume(value, VolumeUnit.BoardFoot);
         }
         /// <summary>
         ///     Get Volume from Centiliters.
@@ -600,6 +638,15 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.CubicYard);
         }
         /// <summary>
+        ///     Get Volume from DecausGallons.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromDecausGallons(QuantityValue decausgallons)
+        {
+            double value = (double) decausgallons;
+            return new Volume(value, VolumeUnit.DecausGallon);
+        }
+        /// <summary>
         ///     Get Volume from Deciliters.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -607,6 +654,15 @@ namespace UnitsNet
         {
             double value = (double) deciliters;
             return new Volume(value, VolumeUnit.Deciliter);
+        }
+        /// <summary>
+        ///     Get Volume from DeciusGallons.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromDeciusGallons(QuantityValue deciusgallons)
+        {
+            double value = (double) deciusgallons;
+            return new Volume(value, VolumeUnit.DeciusGallon);
         }
         /// <summary>
         ///     Get Volume from HectocubicFeet.
@@ -634,6 +690,15 @@ namespace UnitsNet
         {
             double value = (double) hectoliters;
             return new Volume(value, VolumeUnit.Hectoliter);
+        }
+        /// <summary>
+        ///     Get Volume from HectousGallons.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromHectousGallons(QuantityValue hectousgallons)
+        {
+            double value = (double) hectousgallons;
+            return new Volume(value, VolumeUnit.HectousGallon);
         }
         /// <summary>
         ///     Get Volume from ImperialBeerBarrels.
@@ -962,7 +1027,7 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static Volume Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static Volume Parse(string str, IFormatProvider? provider)
         {
             return QuantityParser.Default.Parse<Volume, VolumeUnit>(
                 str,
@@ -978,7 +1043,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out Volume result)
+        public static bool TryParse(string? str, out Volume result)
         {
             return TryParse(str, null, out result);
         }
@@ -993,7 +1058,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Volume result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out Volume result)
         {
             return QuantityParser.Default.TryParse<Volume, VolumeUnit>(
                 str,
@@ -1026,7 +1091,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static VolumeUnit ParseUnit(string str, [CanBeNull] IFormatProvider provider)
+        public static VolumeUnit ParseUnit(string str, IFormatProvider? provider)
         {
             return UnitParser.Default.Parse<VolumeUnit>(str, provider);
         }
@@ -1047,7 +1112,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider provider, out VolumeUnit unit)
+        public static bool TryParseUnit(string str, IFormatProvider? provider, out VolumeUnit unit)
         {
             return UnitParser.Default.TryParse<VolumeUnit>(str, provider, out unit);
         }
@@ -1229,7 +1294,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Volume.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1252,7 +1317,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -1295,7 +1360,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public Volume ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -1327,6 +1392,7 @@ namespace UnitsNet
             {
                 case VolumeUnit.AcreFoot: return _value/0.000810714;
                 case VolumeUnit.AuTablespoon: return _value*2e-5;
+                case VolumeUnit.BoardFoot: return _value*2.3597372158e-3;
                 case VolumeUnit.Centiliter: return (_value/1e3) * 1e-2d;
                 case VolumeUnit.CubicCentimeter: return _value/1e6;
                 case VolumeUnit.CubicDecimeter: return _value/1e3;
@@ -1339,10 +1405,13 @@ namespace UnitsNet
                 case VolumeUnit.CubicMile: return _value*4.16818182544058e9;
                 case VolumeUnit.CubicMillimeter: return _value/1e9;
                 case VolumeUnit.CubicYard: return _value*0.764554858;
+                case VolumeUnit.DecausGallon: return (_value*0.00378541) * 1e1d;
                 case VolumeUnit.Deciliter: return (_value/1e3) * 1e-1d;
+                case VolumeUnit.DeciusGallon: return (_value*0.00378541) * 1e-1d;
                 case VolumeUnit.HectocubicFoot: return (_value*0.0283168) * 1e2d;
                 case VolumeUnit.HectocubicMeter: return (_value) * 1e2d;
                 case VolumeUnit.Hectoliter: return (_value/1e3) * 1e2d;
+                case VolumeUnit.HectousGallon: return (_value*0.00378541) * 1e2d;
                 case VolumeUnit.ImperialBeerBarrel: return _value*0.16365924;
                 case VolumeUnit.ImperialGallon: return _value*0.00454609000000181429905810072407;
                 case VolumeUnit.ImperialOunce: return _value*2.8413062499962901241875439064617e-5;
@@ -1399,6 +1468,7 @@ namespace UnitsNet
             {
                 case VolumeUnit.AcreFoot: return baseUnitValue*0.000810714;
                 case VolumeUnit.AuTablespoon: return baseUnitValue/2e-5;
+                case VolumeUnit.BoardFoot: return baseUnitValue/2.3597372158e-3;
                 case VolumeUnit.Centiliter: return (baseUnitValue*1e3) / 1e-2d;
                 case VolumeUnit.CubicCentimeter: return baseUnitValue*1e6;
                 case VolumeUnit.CubicDecimeter: return baseUnitValue*1e3;
@@ -1411,10 +1481,13 @@ namespace UnitsNet
                 case VolumeUnit.CubicMile: return baseUnitValue/4.16818182544058e9;
                 case VolumeUnit.CubicMillimeter: return baseUnitValue*1e9;
                 case VolumeUnit.CubicYard: return baseUnitValue/0.764554858;
+                case VolumeUnit.DecausGallon: return (baseUnitValue/0.00378541) / 1e1d;
                 case VolumeUnit.Deciliter: return (baseUnitValue*1e3) / 1e-1d;
+                case VolumeUnit.DeciusGallon: return (baseUnitValue/0.00378541) / 1e-1d;
                 case VolumeUnit.HectocubicFoot: return (baseUnitValue/0.0283168) / 1e2d;
                 case VolumeUnit.HectocubicMeter: return (baseUnitValue) / 1e2d;
                 case VolumeUnit.Hectoliter: return (baseUnitValue*1e3) / 1e2d;
+                case VolumeUnit.HectousGallon: return (baseUnitValue/0.00378541) / 1e2d;
                 case VolumeUnit.ImperialBeerBarrel: return baseUnitValue/0.16365924;
                 case VolumeUnit.ImperialGallon: return baseUnitValue/0.00454609000000181429905810072407;
                 case VolumeUnit.ImperialOunce: return baseUnitValue/2.8413062499962901241875439064617e-5;
@@ -1467,7 +1540,7 @@ namespace UnitsNet
         /// </summary>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public string ToString([CanBeNull] IFormatProvider provider)
+        public string ToString(IFormatProvider? provider)
         {
             return ToString("g", provider);
         }
@@ -1479,7 +1552,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
-        public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
+        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
         {
             var value = Convert.ToDouble(Value);
             var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
@@ -1494,7 +1567,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
-        public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
+        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
@@ -1522,11 +1595,11 @@ namespace UnitsNet
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
         /// </summary>
         /// <param name="format">The format string.</param>
-        /// <param name="formatProvider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>The string representation.</returns>
-        public string ToString(string format, IFormatProvider formatProvider)
+        public string ToString(string format, IFormatProvider? provider)
         {
-            return QuantityFormatter.Format<VolumeUnit>(this, format, formatProvider);
+            return QuantityFormatter.Format<VolumeUnit>(this, format, provider);
         }
 
         #endregion
@@ -1606,6 +1679,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return Volume.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Volume.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Volume.BaseDimensions;
             else

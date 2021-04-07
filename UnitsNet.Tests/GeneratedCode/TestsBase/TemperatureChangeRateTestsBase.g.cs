@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of TemperatureChangeRate.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class TemperatureChangeRateTestsBase
+    public abstract partial class TemperatureChangeRateTestsBase : QuantityTestsBase
     {
         protected abstract double CentidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
         protected abstract double DecadegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
@@ -91,7 +92,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new TemperatureChangeRate(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new TemperatureChangeRate(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new TemperatureChangeRate(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (TemperatureChangeRate) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -109,10 +125,8 @@ namespace UnitsNet.Tests
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
-#pragma warning disable 618
             Assert.Equal(units, quantityInfo.Units);
             Assert.Equal(unitNames, quantityInfo.UnitNames);
-#pragma warning restore 618
         }
 
         [Fact]
@@ -206,6 +220,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new TemperatureChangeRate(value: 1, unit: TemperatureChangeRate.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var degreecelsiuspersecond = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
@@ -249,6 +280,13 @@ namespace UnitsNet.Tests
             var nanodegreecelsiuspersecondQuantity = degreecelsiuspersecond.ToUnit(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond);
             AssertEx.EqualTolerance(NanodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, (double)nanodegreecelsiuspersecondQuantity.Value, NanodegreesCelsiusPerSecondTolerance);
             Assert.Equal(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, nanodegreecelsiuspersecondQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1).ToBaseUnit();
+            Assert.Equal(TemperatureChangeRate.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -341,22 +379,39 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsIsImplemented()
+        public void Equals_SameType_IsImplemented()
         {
             var a = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
             var b = TemperatureChangeRate.FromDegreesCelsiusPerSecond(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
-            Assert.False(a.Equals(null));
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_QuantityAsObject_IsImplemented()
+        {
+            object a = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
+            object b = TemperatureChangeRate.FromDegreesCelsiusPerSecond(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+            Assert.False(a.Equals((object)null));
+        }
+
+        [Fact]
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
             Assert.True(v.Equals(TemperatureChangeRate.FromDegreesCelsiusPerSecond(1), DegreesCelsiusPerSecondTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(TemperatureChangeRate.Zero, DegreesCelsiusPerSecondTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(TemperatureChangeRate.FromDegreesCelsiusPerSecond(1), -1, ComparisonType.Relative));
         }
 
         [Fact]
@@ -465,6 +520,192 @@ namespace UnitsNet.Tests
             Assert.Equal("0.12 °C/s", new TemperatureChangeRate(0.123456, TemperatureChangeRateUnit.DegreeCelsiusPerSecond).ToString("s2", culture));
             Assert.Equal("0.123 °C/s", new TemperatureChangeRate(0.123456, TemperatureChangeRateUnit.DegreeCelsiusPerSecond).ToString("s3", culture));
             Assert.Equal("0.1235 °C/s", new TemperatureChangeRate(0.123456, TemperatureChangeRateUnit.DegreeCelsiusPerSecond).ToString("s4", culture));
+        }
+
+
+        [Fact]
+        public void ToString_NullFormat_ThrowsArgumentNullException()
+        {
+            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
+        }
+
+        [Fact]
+        public void ToString_NullArgs_ThrowsArgumentNullException()
+        {
+            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, "g", null));
+        }
+
+        [Fact]
+        public void ToString_NullProvider_EqualsCurrentUICulture()
+        {
+            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
+            Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
+        }
+
+
+        [Fact]
+        public void Convert_ToBool_ThrowsInvalidCastException()
+        {
+            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
+            Assert.Throws<InvalidCastException>(() => Convert.ToBoolean(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToByte_EqualsValueAsSameType()
+        {
+            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
+           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToChar_ThrowsInvalidCastException()
+        {
+            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
+            Assert.Throws<InvalidCastException>(() => Convert.ToChar(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToDateTime_ThrowsInvalidCastException()
+        {
+            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
+            Assert.Throws<InvalidCastException>(() => Convert.ToDateTime(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToDecimal_EqualsValueAsSameType()
+        {
+            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
+            Assert.Equal((decimal)quantity.Value, Convert.ToDecimal(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToDouble_EqualsValueAsSameType()
+        {
+            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
+            Assert.Equal((double)quantity.Value, Convert.ToDouble(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToInt16_EqualsValueAsSameType()
+        {
+            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
+            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToInt32_EqualsValueAsSameType()
+        {
+            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
+            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToInt64_EqualsValueAsSameType()
+        {
+            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
+            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToSByte_EqualsValueAsSameType()
+        {
+            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
+            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToSingle_EqualsValueAsSameType()
+        {
+            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
+            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToString_EqualsToString()
+        {
+            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
+            Assert.Equal(quantity.ToString(), Convert.ToString(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToUInt16_EqualsValueAsSameType()
+        {
+            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
+            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToUInt32_EqualsValueAsSameType()
+        {
+            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
+            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToUInt64_EqualsValueAsSameType()
+        {
+            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
+            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
+            Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(TemperatureChangeRate)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
+            Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(TemperatureChangeRateUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
+            Assert.Equal(QuantityType.TemperatureChangeRate, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
+            Assert.Equal(TemperatureChangeRate.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
+            Assert.Equal(TemperatureChangeRate.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
+            Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void GetHashCode_Equals()
+        {
+            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
+            Assert.Equal(new {TemperatureChangeRate.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+        }
+
+        [Theory]
+        [InlineData(1.0)]
+        [InlineData(-1.0)]
+        public void NegationOperator_ReturnsQuantity_WithNegatedValue(double value)
+        {
+            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(value);
+            Assert.Equal(TemperatureChangeRate.FromDegreesCelsiusPerSecond(-value), -quantity);
         }
     }
 }

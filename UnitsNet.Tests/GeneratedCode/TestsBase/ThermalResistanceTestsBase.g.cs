@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of ThermalResistance.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class ThermalResistanceTestsBase
+    public abstract partial class ThermalResistanceTestsBase : QuantityTestsBase
     {
         protected abstract double HourSquareFeetDegreesFahrenheitPerBtuInOneSquareMeterKelvinPerKilowatt { get; }
         protected abstract double SquareCentimeterHourDegreesCelsiusPerKilocalorieInOneSquareMeterKelvinPerKilowatt { get; }
@@ -81,7 +82,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new ThermalResistance(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new ThermalResistance(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new ThermalResistance(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (ThermalResistance) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -99,10 +115,8 @@ namespace UnitsNet.Tests
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
-#pragma warning disable 618
             Assert.Equal(units, quantityInfo.Units);
             Assert.Equal(unitNames, quantityInfo.UnitNames);
-#pragma warning restore 618
         }
 
         [Fact]
@@ -166,6 +180,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new ThermalResistance(value: 1, unit: ThermalResistance.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var squaremeterkelvinperkilowatt = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1);
@@ -189,6 +220,13 @@ namespace UnitsNet.Tests
             var squaremeterkelvinperkilowattQuantity = squaremeterkelvinperkilowatt.ToUnit(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt);
             AssertEx.EqualTolerance(SquareMeterKelvinsPerKilowattInOneSquareMeterKelvinPerKilowatt, (double)squaremeterkelvinperkilowattQuantity.Value, SquareMeterKelvinsPerKilowattTolerance);
             Assert.Equal(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, squaremeterkelvinperkilowattQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1).ToBaseUnit();
+            Assert.Equal(ThermalResistance.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -276,22 +314,39 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsIsImplemented()
+        public void Equals_SameType_IsImplemented()
         {
             var a = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1);
             var b = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
-            Assert.False(a.Equals(null));
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_QuantityAsObject_IsImplemented()
+        {
+            object a = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1);
+            object b = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+            Assert.False(a.Equals((object)null));
+        }
+
+        [Fact]
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1);
             Assert.True(v.Equals(ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1), SquareMeterKelvinsPerKilowattTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ThermalResistance.Zero, SquareMeterKelvinsPerKilowattTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1), -1, ComparisonType.Relative));
         }
 
         [Fact]
@@ -390,6 +445,192 @@ namespace UnitsNet.Tests
             Assert.Equal("0.12 m²K/kW", new ThermalResistance(0.123456, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt).ToString("s2", culture));
             Assert.Equal("0.123 m²K/kW", new ThermalResistance(0.123456, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt).ToString("s3", culture));
             Assert.Equal("0.1235 m²K/kW", new ThermalResistance(0.123456, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt).ToString("s4", culture));
+        }
+
+
+        [Fact]
+        public void ToString_NullFormat_ThrowsArgumentNullException()
+        {
+            var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
+        }
+
+        [Fact]
+        public void ToString_NullArgs_ThrowsArgumentNullException()
+        {
+            var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, "g", null));
+        }
+
+        [Fact]
+        public void ToString_NullProvider_EqualsCurrentUICulture()
+        {
+            var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
+            Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
+        }
+
+
+        [Fact]
+        public void Convert_ToBool_ThrowsInvalidCastException()
+        {
+            var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
+            Assert.Throws<InvalidCastException>(() => Convert.ToBoolean(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToByte_EqualsValueAsSameType()
+        {
+            var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
+           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToChar_ThrowsInvalidCastException()
+        {
+            var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
+            Assert.Throws<InvalidCastException>(() => Convert.ToChar(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToDateTime_ThrowsInvalidCastException()
+        {
+            var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
+            Assert.Throws<InvalidCastException>(() => Convert.ToDateTime(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToDecimal_EqualsValueAsSameType()
+        {
+            var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
+            Assert.Equal((decimal)quantity.Value, Convert.ToDecimal(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToDouble_EqualsValueAsSameType()
+        {
+            var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
+            Assert.Equal((double)quantity.Value, Convert.ToDouble(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToInt16_EqualsValueAsSameType()
+        {
+            var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
+            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToInt32_EqualsValueAsSameType()
+        {
+            var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
+            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToInt64_EqualsValueAsSameType()
+        {
+            var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
+            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToSByte_EqualsValueAsSameType()
+        {
+            var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
+            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToSingle_EqualsValueAsSameType()
+        {
+            var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
+            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToString_EqualsToString()
+        {
+            var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
+            Assert.Equal(quantity.ToString(), Convert.ToString(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToUInt16_EqualsValueAsSameType()
+        {
+            var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
+            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToUInt32_EqualsValueAsSameType()
+        {
+            var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
+            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToUInt64_EqualsValueAsSameType()
+        {
+            var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
+            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
+            Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(ThermalResistance)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
+            Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ThermalResistanceUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
+            Assert.Equal(QuantityType.ThermalResistance, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
+            Assert.Equal(ThermalResistance.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
+            Assert.Equal(ThermalResistance.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
+            Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void GetHashCode_Equals()
+        {
+            var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
+            Assert.Equal(new {ThermalResistance.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+        }
+
+        [Theory]
+        [InlineData(1.0)]
+        [InlineData(-1.0)]
+        public void NegationOperator_ReturnsQuantity_WithNegatedValue(double value)
+        {
+            var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(value);
+            Assert.Equal(ThermalResistance.FromSquareMeterKelvinsPerKilowatt(-value), -quantity);
         }
     }
 }

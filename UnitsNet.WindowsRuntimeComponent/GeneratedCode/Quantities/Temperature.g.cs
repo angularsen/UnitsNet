@@ -196,6 +196,11 @@ namespace UnitsNet
         public double Kelvins => As(TemperatureUnit.Kelvin);
 
         /// <summary>
+        ///     Get Temperature in MillidegreesCelsius.
+        /// </summary>
+        public double MillidegreesCelsius => As(TemperatureUnit.MillidegreeCelsius);
+
+        /// <summary>
         ///     Get Temperature in SolarTemperatures.
         /// </summary>
         public double SolarTemperatures => As(TemperatureUnit.SolarTemperature);
@@ -309,6 +314,16 @@ namespace UnitsNet
         {
             double value = (double) kelvins;
             return new Temperature(value, TemperatureUnit.Kelvin);
+        }
+        /// <summary>
+        ///     Get Temperature from MillidegreesCelsius.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Temperature FromMillidegreesCelsius(double millidegreescelsius)
+        {
+            double value = (double) millidegreescelsius;
+            return new Temperature(value, TemperatureUnit.MillidegreeCelsius);
         }
         /// <summary>
         ///     Get Temperature from SolarTemperatures.
@@ -619,6 +634,7 @@ namespace UnitsNet
                 case TemperatureUnit.DegreeReaumur: return _value*5/4 + 273.15;
                 case TemperatureUnit.DegreeRoemer: return _value*40/21 + 273.15 - 7.5*40d/21;
                 case TemperatureUnit.Kelvin: return _value;
+                case TemperatureUnit.MillidegreeCelsius: return _value / 1000 + 273.15;
                 case TemperatureUnit.SolarTemperature: return _value * 5778;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -642,6 +658,7 @@ namespace UnitsNet
                 case TemperatureUnit.DegreeReaumur: return (baseUnitValue - 273.15)*4/5;
                 case TemperatureUnit.DegreeRoemer: return (baseUnitValue - (273.15 - 7.5*40d/21))*21/40;
                 case TemperatureUnit.Kelvin: return baseUnitValue;
+                case TemperatureUnit.MillidegreeCelsius: return (baseUnitValue - 273.15) * 1000;
                 case TemperatureUnit.SolarTemperature: return baseUnitValue / 5778;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");

@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,11 +35,12 @@ namespace UnitsNet.Tests
     /// Test of ElectricResistance.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class ElectricResistanceTestsBase
+    public abstract partial class ElectricResistanceTestsBase : QuantityTestsBase
     {
         protected abstract double GigaohmsInOneOhm { get; }
         protected abstract double KiloohmsInOneOhm { get; }
         protected abstract double MegaohmsInOneOhm { get; }
+        protected abstract double MicroohmsInOneOhm { get; }
         protected abstract double MilliohmsInOneOhm { get; }
         protected abstract double OhmsInOneOhm { get; }
 
@@ -46,6 +48,7 @@ namespace UnitsNet.Tests
         protected virtual double GigaohmsTolerance { get { return 1e-5; } }
         protected virtual double KiloohmsTolerance { get { return 1e-5; } }
         protected virtual double MegaohmsTolerance { get { return 1e-5; } }
+        protected virtual double MicroohmsTolerance { get { return 1e-5; } }
         protected virtual double MilliohmsTolerance { get { return 1e-5; } }
         protected virtual double OhmsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
@@ -81,7 +84,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new ElectricResistance(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new ElectricResistance(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new ElectricResistance(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (ElectricResistance) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -99,10 +117,8 @@ namespace UnitsNet.Tests
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
-#pragma warning disable 618
             Assert.Equal(units, quantityInfo.Units);
             Assert.Equal(unitNames, quantityInfo.UnitNames);
-#pragma warning restore 618
         }
 
         [Fact]
@@ -112,6 +128,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(GigaohmsInOneOhm, ohm.Gigaohms, GigaohmsTolerance);
             AssertEx.EqualTolerance(KiloohmsInOneOhm, ohm.Kiloohms, KiloohmsTolerance);
             AssertEx.EqualTolerance(MegaohmsInOneOhm, ohm.Megaohms, MegaohmsTolerance);
+            AssertEx.EqualTolerance(MicroohmsInOneOhm, ohm.Microohms, MicroohmsTolerance);
             AssertEx.EqualTolerance(MilliohmsInOneOhm, ohm.Milliohms, MilliohmsTolerance);
             AssertEx.EqualTolerance(OhmsInOneOhm, ohm.Ohms, OhmsTolerance);
         }
@@ -131,13 +148,17 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity02.Megaohms, MegaohmsTolerance);
             Assert.Equal(ElectricResistanceUnit.Megaohm, quantity02.Unit);
 
-            var quantity03 = ElectricResistance.From(1, ElectricResistanceUnit.Milliohm);
-            AssertEx.EqualTolerance(1, quantity03.Milliohms, MilliohmsTolerance);
-            Assert.Equal(ElectricResistanceUnit.Milliohm, quantity03.Unit);
+            var quantity03 = ElectricResistance.From(1, ElectricResistanceUnit.Microohm);
+            AssertEx.EqualTolerance(1, quantity03.Microohms, MicroohmsTolerance);
+            Assert.Equal(ElectricResistanceUnit.Microohm, quantity03.Unit);
 
-            var quantity04 = ElectricResistance.From(1, ElectricResistanceUnit.Ohm);
-            AssertEx.EqualTolerance(1, quantity04.Ohms, OhmsTolerance);
-            Assert.Equal(ElectricResistanceUnit.Ohm, quantity04.Unit);
+            var quantity04 = ElectricResistance.From(1, ElectricResistanceUnit.Milliohm);
+            AssertEx.EqualTolerance(1, quantity04.Milliohms, MilliohmsTolerance);
+            Assert.Equal(ElectricResistanceUnit.Milliohm, quantity04.Unit);
+
+            var quantity05 = ElectricResistance.From(1, ElectricResistanceUnit.Ohm);
+            AssertEx.EqualTolerance(1, quantity05.Ohms, OhmsTolerance);
+            Assert.Equal(ElectricResistanceUnit.Ohm, quantity05.Unit);
 
         }
 
@@ -161,8 +182,26 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(GigaohmsInOneOhm, ohm.As(ElectricResistanceUnit.Gigaohm), GigaohmsTolerance);
             AssertEx.EqualTolerance(KiloohmsInOneOhm, ohm.As(ElectricResistanceUnit.Kiloohm), KiloohmsTolerance);
             AssertEx.EqualTolerance(MegaohmsInOneOhm, ohm.As(ElectricResistanceUnit.Megaohm), MegaohmsTolerance);
+            AssertEx.EqualTolerance(MicroohmsInOneOhm, ohm.As(ElectricResistanceUnit.Microohm), MicroohmsTolerance);
             AssertEx.EqualTolerance(MilliohmsInOneOhm, ohm.As(ElectricResistanceUnit.Milliohm), MilliohmsTolerance);
             AssertEx.EqualTolerance(OhmsInOneOhm, ohm.As(ElectricResistanceUnit.Ohm), OhmsTolerance);
+        }
+
+        [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new ElectricResistance(value: 1, unit: ElectricResistance.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
         }
 
         [Fact]
@@ -182,6 +221,10 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MegaohmsInOneOhm, (double)megaohmQuantity.Value, MegaohmsTolerance);
             Assert.Equal(ElectricResistanceUnit.Megaohm, megaohmQuantity.Unit);
 
+            var microohmQuantity = ohm.ToUnit(ElectricResistanceUnit.Microohm);
+            AssertEx.EqualTolerance(MicroohmsInOneOhm, (double)microohmQuantity.Value, MicroohmsTolerance);
+            Assert.Equal(ElectricResistanceUnit.Microohm, microohmQuantity.Unit);
+
             var milliohmQuantity = ohm.ToUnit(ElectricResistanceUnit.Milliohm);
             AssertEx.EqualTolerance(MilliohmsInOneOhm, (double)milliohmQuantity.Value, MilliohmsTolerance);
             Assert.Equal(ElectricResistanceUnit.Milliohm, milliohmQuantity.Unit);
@@ -192,12 +235,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = ElectricResistance.FromOhms(1).ToBaseUnit();
+            Assert.Equal(ElectricResistance.BaseUnit, quantityInBaseUnit.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             ElectricResistance ohm = ElectricResistance.FromOhms(1);
             AssertEx.EqualTolerance(1, ElectricResistance.FromGigaohms(ohm.Gigaohms).Ohms, GigaohmsTolerance);
             AssertEx.EqualTolerance(1, ElectricResistance.FromKiloohms(ohm.Kiloohms).Ohms, KiloohmsTolerance);
             AssertEx.EqualTolerance(1, ElectricResistance.FromMegaohms(ohm.Megaohms).Ohms, MegaohmsTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistance.FromMicroohms(ohm.Microohms).Ohms, MicroohmsTolerance);
             AssertEx.EqualTolerance(1, ElectricResistance.FromMilliohms(ohm.Milliohms).Ohms, MilliohmsTolerance);
             AssertEx.EqualTolerance(1, ElectricResistance.FromOhms(ohm.Ohms).Ohms, OhmsTolerance);
         }
@@ -276,22 +327,39 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsIsImplemented()
+        public void Equals_SameType_IsImplemented()
         {
             var a = ElectricResistance.FromOhms(1);
             var b = ElectricResistance.FromOhms(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
-            Assert.False(a.Equals(null));
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_QuantityAsObject_IsImplemented()
+        {
+            object a = ElectricResistance.FromOhms(1);
+            object b = ElectricResistance.FromOhms(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+            Assert.False(a.Equals((object)null));
+        }
+
+        [Fact]
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = ElectricResistance.FromOhms(1);
             Assert.True(v.Equals(ElectricResistance.FromOhms(1), OhmsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ElectricResistance.Zero, OhmsTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = ElectricResistance.FromOhms(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(ElectricResistance.FromOhms(1), -1, ComparisonType.Relative));
         }
 
         [Fact]
@@ -342,6 +410,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 GΩ", new ElectricResistance(1, ElectricResistanceUnit.Gigaohm).ToString());
                 Assert.Equal("1 kΩ", new ElectricResistance(1, ElectricResistanceUnit.Kiloohm).ToString());
                 Assert.Equal("1 MΩ", new ElectricResistance(1, ElectricResistanceUnit.Megaohm).ToString());
+                Assert.Equal("1 µΩ", new ElectricResistance(1, ElectricResistanceUnit.Microohm).ToString());
                 Assert.Equal("1 mΩ", new ElectricResistance(1, ElectricResistanceUnit.Milliohm).ToString());
                 Assert.Equal("1 Ω", new ElectricResistance(1, ElectricResistanceUnit.Ohm).ToString());
             }
@@ -360,6 +429,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 GΩ", new ElectricResistance(1, ElectricResistanceUnit.Gigaohm).ToString(swedishCulture));
             Assert.Equal("1 kΩ", new ElectricResistance(1, ElectricResistanceUnit.Kiloohm).ToString(swedishCulture));
             Assert.Equal("1 MΩ", new ElectricResistance(1, ElectricResistanceUnit.Megaohm).ToString(swedishCulture));
+            Assert.Equal("1 µΩ", new ElectricResistance(1, ElectricResistanceUnit.Microohm).ToString(swedishCulture));
             Assert.Equal("1 mΩ", new ElectricResistance(1, ElectricResistanceUnit.Milliohm).ToString(swedishCulture));
             Assert.Equal("1 Ω", new ElectricResistance(1, ElectricResistanceUnit.Ohm).ToString(swedishCulture));
         }
@@ -390,6 +460,192 @@ namespace UnitsNet.Tests
             Assert.Equal("0.12 Ω", new ElectricResistance(0.123456, ElectricResistanceUnit.Ohm).ToString("s2", culture));
             Assert.Equal("0.123 Ω", new ElectricResistance(0.123456, ElectricResistanceUnit.Ohm).ToString("s3", culture));
             Assert.Equal("0.1235 Ω", new ElectricResistance(0.123456, ElectricResistanceUnit.Ohm).ToString("s4", culture));
+        }
+
+
+        [Fact]
+        public void ToString_NullFormat_ThrowsArgumentNullException()
+        {
+            var quantity = ElectricResistance.FromOhms(1.0);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
+        }
+
+        [Fact]
+        public void ToString_NullArgs_ThrowsArgumentNullException()
+        {
+            var quantity = ElectricResistance.FromOhms(1.0);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, "g", null));
+        }
+
+        [Fact]
+        public void ToString_NullProvider_EqualsCurrentUICulture()
+        {
+            var quantity = ElectricResistance.FromOhms(1.0);
+            Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
+        }
+
+
+        [Fact]
+        public void Convert_ToBool_ThrowsInvalidCastException()
+        {
+            var quantity = ElectricResistance.FromOhms(1.0);
+            Assert.Throws<InvalidCastException>(() => Convert.ToBoolean(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToByte_EqualsValueAsSameType()
+        {
+            var quantity = ElectricResistance.FromOhms(1.0);
+           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToChar_ThrowsInvalidCastException()
+        {
+            var quantity = ElectricResistance.FromOhms(1.0);
+            Assert.Throws<InvalidCastException>(() => Convert.ToChar(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToDateTime_ThrowsInvalidCastException()
+        {
+            var quantity = ElectricResistance.FromOhms(1.0);
+            Assert.Throws<InvalidCastException>(() => Convert.ToDateTime(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToDecimal_EqualsValueAsSameType()
+        {
+            var quantity = ElectricResistance.FromOhms(1.0);
+            Assert.Equal((decimal)quantity.Value, Convert.ToDecimal(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToDouble_EqualsValueAsSameType()
+        {
+            var quantity = ElectricResistance.FromOhms(1.0);
+            Assert.Equal((double)quantity.Value, Convert.ToDouble(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToInt16_EqualsValueAsSameType()
+        {
+            var quantity = ElectricResistance.FromOhms(1.0);
+            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToInt32_EqualsValueAsSameType()
+        {
+            var quantity = ElectricResistance.FromOhms(1.0);
+            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToInt64_EqualsValueAsSameType()
+        {
+            var quantity = ElectricResistance.FromOhms(1.0);
+            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToSByte_EqualsValueAsSameType()
+        {
+            var quantity = ElectricResistance.FromOhms(1.0);
+            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToSingle_EqualsValueAsSameType()
+        {
+            var quantity = ElectricResistance.FromOhms(1.0);
+            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToString_EqualsToString()
+        {
+            var quantity = ElectricResistance.FromOhms(1.0);
+            Assert.Equal(quantity.ToString(), Convert.ToString(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToUInt16_EqualsValueAsSameType()
+        {
+            var quantity = ElectricResistance.FromOhms(1.0);
+            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToUInt32_EqualsValueAsSameType()
+        {
+            var quantity = ElectricResistance.FromOhms(1.0);
+            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToUInt64_EqualsValueAsSameType()
+        {
+            var quantity = ElectricResistance.FromOhms(1.0);
+            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = ElectricResistance.FromOhms(1.0);
+            Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(ElectricResistance)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = ElectricResistance.FromOhms(1.0);
+            Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ElectricResistanceUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = ElectricResistance.FromOhms(1.0);
+            Assert.Equal(QuantityType.ElectricResistance, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = ElectricResistance.FromOhms(1.0);
+            Assert.Equal(ElectricResistance.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = ElectricResistance.FromOhms(1.0);
+            Assert.Equal(ElectricResistance.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = ElectricResistance.FromOhms(1.0);
+            Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void GetHashCode_Equals()
+        {
+            var quantity = ElectricResistance.FromOhms(1.0);
+            Assert.Equal(new {ElectricResistance.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+        }
+
+        [Theory]
+        [InlineData(1.0)]
+        [InlineData(-1.0)]
+        public void NegationOperator_ReturnsQuantity_WithNegatedValue(double value)
+        {
+            var quantity = ElectricResistance.FromOhms(value);
+            Assert.Equal(ElectricResistance.FromOhms(-value), -quantity);
         }
     }
 }

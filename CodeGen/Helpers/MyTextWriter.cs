@@ -16,6 +16,7 @@ namespace CodeGen.Helpers
         {
             IndentString = indentString;
             IndentLevel = initialIndentLevel;
+            _currentIndentationString = GetIndent(0);
         }
 
         public string IndentString { get; }
@@ -89,9 +90,9 @@ namespace CodeGen.Helpers
         /// </summary>
         /// <param name="indentLevel">The level of indentation to prepend to the text.</param>
         /// <param name="text">The text to write.</param>
-        public void WLIfText(int indentLevel, string text)
+        public void WLIfText(int indentLevel, string? text)
         {
-            if (string.IsNullOrWhiteSpace(text)) return;
+            if (text == null || string.IsNullOrWhiteSpace(text)) return;
             WL(indentLevel, text);
         }
 
@@ -102,8 +103,7 @@ namespace CodeGen.Helpers
         /// <param name="text">The text to write.</param>
         public void WLCondition(bool condition, string text)
         {
-            if (condition)
-                WL(text);
+            if (condition) WL(text);
         }
     }
 }

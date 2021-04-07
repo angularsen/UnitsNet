@@ -24,6 +24,8 @@ using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
+#nullable enable
+
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -48,12 +50,22 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-2, 1, -1, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<MassFluxUnit>(QuantityType.MassFlux,
+            Info = new QuantityInfo<MassFluxUnit>("MassFlux",
                 new UnitInfo<MassFluxUnit>[] {
+                    new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerHourPerSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerHourPerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerHourPerSquareMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerSecondPerSquareCentimeter, BaseUnits.Undefined),
                     new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerSecondPerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerSecondPerSquareMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerHourPerSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerHourPerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerHourPerSquareMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareCentimeter, BaseUnits.Undefined),
                     new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.MassFlux);
         }
 
         /// <summary>
@@ -81,7 +93,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public MassFlux(double value, UnitSystem unitSystem)
         {
-            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -108,16 +120,19 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of MassFlux
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static MassFlux MaxValue { get; } = new MassFlux(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of MassFlux
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static MassFlux MinValue { get; } = new MassFlux(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.MassFlux;
 
         /// <summary>
@@ -165,14 +180,64 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get MassFlux in GramsPerHourPerSquareCentimeter.
+        /// </summary>
+        public double GramsPerHourPerSquareCentimeter => As(MassFluxUnit.GramPerHourPerSquareCentimeter);
+
+        /// <summary>
+        ///     Get MassFlux in GramsPerHourPerSquareMeter.
+        /// </summary>
+        public double GramsPerHourPerSquareMeter => As(MassFluxUnit.GramPerHourPerSquareMeter);
+
+        /// <summary>
+        ///     Get MassFlux in GramsPerHourPerSquareMillimeter.
+        /// </summary>
+        public double GramsPerHourPerSquareMillimeter => As(MassFluxUnit.GramPerHourPerSquareMillimeter);
+
+        /// <summary>
+        ///     Get MassFlux in GramsPerSecondPerSquareCentimeter.
+        /// </summary>
+        public double GramsPerSecondPerSquareCentimeter => As(MassFluxUnit.GramPerSecondPerSquareCentimeter);
+
+        /// <summary>
         ///     Get MassFlux in GramsPerSecondPerSquareMeter.
         /// </summary>
         public double GramsPerSecondPerSquareMeter => As(MassFluxUnit.GramPerSecondPerSquareMeter);
 
         /// <summary>
+        ///     Get MassFlux in GramsPerSecondPerSquareMillimeter.
+        /// </summary>
+        public double GramsPerSecondPerSquareMillimeter => As(MassFluxUnit.GramPerSecondPerSquareMillimeter);
+
+        /// <summary>
+        ///     Get MassFlux in KilogramsPerHourPerSquareCentimeter.
+        /// </summary>
+        public double KilogramsPerHourPerSquareCentimeter => As(MassFluxUnit.KilogramPerHourPerSquareCentimeter);
+
+        /// <summary>
+        ///     Get MassFlux in KilogramsPerHourPerSquareMeter.
+        /// </summary>
+        public double KilogramsPerHourPerSquareMeter => As(MassFluxUnit.KilogramPerHourPerSquareMeter);
+
+        /// <summary>
+        ///     Get MassFlux in KilogramsPerHourPerSquareMillimeter.
+        /// </summary>
+        public double KilogramsPerHourPerSquareMillimeter => As(MassFluxUnit.KilogramPerHourPerSquareMillimeter);
+
+        /// <summary>
+        ///     Get MassFlux in KilogramsPerSecondPerSquareCentimeter.
+        /// </summary>
+        public double KilogramsPerSecondPerSquareCentimeter => As(MassFluxUnit.KilogramPerSecondPerSquareCentimeter);
+
+        /// <summary>
         ///     Get MassFlux in KilogramsPerSecondPerSquareMeter.
         /// </summary>
         public double KilogramsPerSecondPerSquareMeter => As(MassFluxUnit.KilogramPerSecondPerSquareMeter);
+
+        /// <summary>
+        ///     Get MassFlux in KilogramsPerSecondPerSquareMillimeter.
+        /// </summary>
+        public double KilogramsPerSecondPerSquareMillimeter => As(MassFluxUnit.KilogramPerSecondPerSquareMillimeter);
 
         #endregion
 
@@ -194,7 +259,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static string GetAbbreviation(MassFluxUnit unit, [CanBeNull] IFormatProvider provider)
+        public static string GetAbbreviation(MassFluxUnit unit, IFormatProvider? provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
@@ -203,6 +268,42 @@ namespace UnitsNet
 
         #region Static Factory Methods
 
+        /// <summary>
+        ///     Get MassFlux from GramsPerHourPerSquareCentimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassFlux FromGramsPerHourPerSquareCentimeter(QuantityValue gramsperhourpersquarecentimeter)
+        {
+            double value = (double) gramsperhourpersquarecentimeter;
+            return new MassFlux(value, MassFluxUnit.GramPerHourPerSquareCentimeter);
+        }
+        /// <summary>
+        ///     Get MassFlux from GramsPerHourPerSquareMeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassFlux FromGramsPerHourPerSquareMeter(QuantityValue gramsperhourpersquaremeter)
+        {
+            double value = (double) gramsperhourpersquaremeter;
+            return new MassFlux(value, MassFluxUnit.GramPerHourPerSquareMeter);
+        }
+        /// <summary>
+        ///     Get MassFlux from GramsPerHourPerSquareMillimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassFlux FromGramsPerHourPerSquareMillimeter(QuantityValue gramsperhourpersquaremillimeter)
+        {
+            double value = (double) gramsperhourpersquaremillimeter;
+            return new MassFlux(value, MassFluxUnit.GramPerHourPerSquareMillimeter);
+        }
+        /// <summary>
+        ///     Get MassFlux from GramsPerSecondPerSquareCentimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassFlux FromGramsPerSecondPerSquareCentimeter(QuantityValue gramspersecondpersquarecentimeter)
+        {
+            double value = (double) gramspersecondpersquarecentimeter;
+            return new MassFlux(value, MassFluxUnit.GramPerSecondPerSquareCentimeter);
+        }
         /// <summary>
         ///     Get MassFlux from GramsPerSecondPerSquareMeter.
         /// </summary>
@@ -213,6 +314,51 @@ namespace UnitsNet
             return new MassFlux(value, MassFluxUnit.GramPerSecondPerSquareMeter);
         }
         /// <summary>
+        ///     Get MassFlux from GramsPerSecondPerSquareMillimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassFlux FromGramsPerSecondPerSquareMillimeter(QuantityValue gramspersecondpersquaremillimeter)
+        {
+            double value = (double) gramspersecondpersquaremillimeter;
+            return new MassFlux(value, MassFluxUnit.GramPerSecondPerSquareMillimeter);
+        }
+        /// <summary>
+        ///     Get MassFlux from KilogramsPerHourPerSquareCentimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassFlux FromKilogramsPerHourPerSquareCentimeter(QuantityValue kilogramsperhourpersquarecentimeter)
+        {
+            double value = (double) kilogramsperhourpersquarecentimeter;
+            return new MassFlux(value, MassFluxUnit.KilogramPerHourPerSquareCentimeter);
+        }
+        /// <summary>
+        ///     Get MassFlux from KilogramsPerHourPerSquareMeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassFlux FromKilogramsPerHourPerSquareMeter(QuantityValue kilogramsperhourpersquaremeter)
+        {
+            double value = (double) kilogramsperhourpersquaremeter;
+            return new MassFlux(value, MassFluxUnit.KilogramPerHourPerSquareMeter);
+        }
+        /// <summary>
+        ///     Get MassFlux from KilogramsPerHourPerSquareMillimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassFlux FromKilogramsPerHourPerSquareMillimeter(QuantityValue kilogramsperhourpersquaremillimeter)
+        {
+            double value = (double) kilogramsperhourpersquaremillimeter;
+            return new MassFlux(value, MassFluxUnit.KilogramPerHourPerSquareMillimeter);
+        }
+        /// <summary>
+        ///     Get MassFlux from KilogramsPerSecondPerSquareCentimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassFlux FromKilogramsPerSecondPerSquareCentimeter(QuantityValue kilogramspersecondpersquarecentimeter)
+        {
+            double value = (double) kilogramspersecondpersquarecentimeter;
+            return new MassFlux(value, MassFluxUnit.KilogramPerSecondPerSquareCentimeter);
+        }
+        /// <summary>
         ///     Get MassFlux from KilogramsPerSecondPerSquareMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -220,6 +366,15 @@ namespace UnitsNet
         {
             double value = (double) kilogramspersecondpersquaremeter;
             return new MassFlux(value, MassFluxUnit.KilogramPerSecondPerSquareMeter);
+        }
+        /// <summary>
+        ///     Get MassFlux from KilogramsPerSecondPerSquareMillimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassFlux FromKilogramsPerSecondPerSquareMillimeter(QuantityValue kilogramspersecondpersquaremillimeter)
+        {
+            double value = (double) kilogramspersecondpersquaremillimeter;
+            return new MassFlux(value, MassFluxUnit.KilogramPerSecondPerSquareMillimeter);
         }
 
         /// <summary>
@@ -287,7 +442,7 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static MassFlux Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static MassFlux Parse(string str, IFormatProvider? provider)
         {
             return QuantityParser.Default.Parse<MassFlux, MassFluxUnit>(
                 str,
@@ -303,7 +458,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out MassFlux result)
+        public static bool TryParse(string? str, out MassFlux result)
         {
             return TryParse(str, null, out result);
         }
@@ -318,7 +473,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out MassFlux result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out MassFlux result)
         {
             return QuantityParser.Default.TryParse<MassFlux, MassFluxUnit>(
                 str,
@@ -351,7 +506,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static MassFluxUnit ParseUnit(string str, [CanBeNull] IFormatProvider provider)
+        public static MassFluxUnit ParseUnit(string str, IFormatProvider? provider)
         {
             return UnitParser.Default.Parse<MassFluxUnit>(str, provider);
         }
@@ -372,7 +527,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider provider, out MassFluxUnit unit)
+        public static bool TryParseUnit(string str, IFormatProvider? provider, out MassFluxUnit unit)
         {
             return UnitParser.Default.TryParse<MassFluxUnit>(str, provider, out unit);
         }
@@ -554,7 +709,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current MassFlux.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -577,7 +732,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -620,7 +775,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public MassFlux ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -650,8 +805,18 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case MassFluxUnit.GramPerHourPerSquareCentimeter: return _value/3.6e2;
+                case MassFluxUnit.GramPerHourPerSquareMeter: return _value/3.6e6;
+                case MassFluxUnit.GramPerHourPerSquareMillimeter: return _value/3.6e0;
+                case MassFluxUnit.GramPerSecondPerSquareCentimeter: return _value/1e-1;
                 case MassFluxUnit.GramPerSecondPerSquareMeter: return _value/1e3;
+                case MassFluxUnit.GramPerSecondPerSquareMillimeter: return _value/1e-3;
+                case MassFluxUnit.KilogramPerHourPerSquareCentimeter: return (_value/3.6e2) * 1e3d;
+                case MassFluxUnit.KilogramPerHourPerSquareMeter: return (_value/3.6e6) * 1e3d;
+                case MassFluxUnit.KilogramPerHourPerSquareMillimeter: return (_value/3.6e0) * 1e3d;
+                case MassFluxUnit.KilogramPerSecondPerSquareCentimeter: return (_value/1e-1) * 1e3d;
                 case MassFluxUnit.KilogramPerSecondPerSquareMeter: return (_value/1e3) * 1e3d;
+                case MassFluxUnit.KilogramPerSecondPerSquareMillimeter: return (_value/1e-3) * 1e3d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -677,8 +842,18 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case MassFluxUnit.GramPerHourPerSquareCentimeter: return baseUnitValue*3.6e2;
+                case MassFluxUnit.GramPerHourPerSquareMeter: return baseUnitValue*3.6e6;
+                case MassFluxUnit.GramPerHourPerSquareMillimeter: return baseUnitValue*3.6e0;
+                case MassFluxUnit.GramPerSecondPerSquareCentimeter: return baseUnitValue*1e-1;
                 case MassFluxUnit.GramPerSecondPerSquareMeter: return baseUnitValue*1e3;
+                case MassFluxUnit.GramPerSecondPerSquareMillimeter: return baseUnitValue*1e-3;
+                case MassFluxUnit.KilogramPerHourPerSquareCentimeter: return (baseUnitValue*3.6e2) / 1e3d;
+                case MassFluxUnit.KilogramPerHourPerSquareMeter: return (baseUnitValue*3.6e6) / 1e3d;
+                case MassFluxUnit.KilogramPerHourPerSquareMillimeter: return (baseUnitValue*3.6e0) / 1e3d;
+                case MassFluxUnit.KilogramPerSecondPerSquareCentimeter: return (baseUnitValue*1e-1) / 1e3d;
                 case MassFluxUnit.KilogramPerSecondPerSquareMeter: return (baseUnitValue*1e3) / 1e3d;
+                case MassFluxUnit.KilogramPerSecondPerSquareMillimeter: return (baseUnitValue*1e-3) / 1e3d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
@@ -702,7 +877,7 @@ namespace UnitsNet
         /// </summary>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public string ToString([CanBeNull] IFormatProvider provider)
+        public string ToString(IFormatProvider? provider)
         {
             return ToString("g", provider);
         }
@@ -714,7 +889,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
-        public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
+        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
         {
             var value = Convert.ToDouble(Value);
             var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
@@ -729,7 +904,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
-        public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
+        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
@@ -757,11 +932,11 @@ namespace UnitsNet
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
         /// </summary>
         /// <param name="format">The format string.</param>
-        /// <param name="formatProvider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>The string representation.</returns>
-        public string ToString(string format, IFormatProvider formatProvider)
+        public string ToString(string format, IFormatProvider? provider)
         {
-            return QuantityFormatter.Format<MassFluxUnit>(this, format, formatProvider);
+            return QuantityFormatter.Format<MassFluxUnit>(this, format, provider);
         }
 
         #endregion
@@ -841,6 +1016,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return MassFlux.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return MassFlux.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return MassFlux.BaseDimensions;
             else

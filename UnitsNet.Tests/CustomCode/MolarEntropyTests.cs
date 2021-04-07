@@ -27,6 +27,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class MolarEntropyTests : MolarEntropyTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
         protected override double JoulesPerMoleKelvinInOneJoulePerMoleKelvin => 1e0;
         protected override double KilojoulesPerMoleKelvinInOneJoulePerMoleKelvin => 1e-3;
         protected override double MegajoulesPerMoleKelvinInOneJoulePerMoleKelvin => 1e-6;

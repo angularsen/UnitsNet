@@ -82,6 +82,18 @@
           "Abbreviations": [ "lbf·s/ft²" ]
         }
       ]
+    },
+    {
+      "SingularName": "PoundPerFootSecond",
+      "PluralName": "PoundsPerFootSecond",
+      "FromUnitToBaseFunc": "x * 1.4881639",
+      "FromBaseToUnitFunc": "x / 1.4881639",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lb/ft·s" ]
+        }
+      ]
     }
   ]
 }

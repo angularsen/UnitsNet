@@ -1,4 +1,4 @@
-using CodeGen.JsonTypes;
+﻿using CodeGen.JsonTypes;
 
 namespace CodeGen.Generators.UnitsNetGen
 {

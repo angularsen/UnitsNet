@@ -27,6 +27,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class MolarEnergyTests : MolarEnergyTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
         protected override double JoulesPerMoleInOneJoulePerMole => 1e0;
         protected override double KilojoulesPerMoleInOneJoulePerMole => 1e-3;
         protected override double MegajoulesPerMoleInOneJoulePerMole => 1e-6;

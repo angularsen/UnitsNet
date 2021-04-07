@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,14 +35,16 @@ namespace UnitsNet.Tests
     /// Test of MagneticField.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class MagneticFieldTestsBase
+    public abstract partial class MagneticFieldTestsBase : QuantityTestsBase
     {
+        protected abstract double GaussesInOneTesla { get; }
         protected abstract double MicroteslasInOneTesla { get; }
         protected abstract double MilliteslasInOneTesla { get; }
         protected abstract double NanoteslasInOneTesla { get; }
         protected abstract double TeslasInOneTesla { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double GaussesTolerance { get { return 1e-5; } }
         protected virtual double MicroteslasTolerance { get { return 1e-5; } }
         protected virtual double MilliteslasTolerance { get { return 1e-5; } }
         protected virtual double NanoteslasTolerance { get { return 1e-5; } }
@@ -79,7 +82,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new MagneticField(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new MagneticField(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new MagneticField(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (MagneticField) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -97,16 +115,15 @@ namespace UnitsNet.Tests
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
-#pragma warning disable 618
             Assert.Equal(units, quantityInfo.Units);
             Assert.Equal(unitNames, quantityInfo.UnitNames);
-#pragma warning restore 618
         }
 
         [Fact]
         public void TeslaToMagneticFieldUnits()
         {
             MagneticField tesla = MagneticField.FromTeslas(1);
+            AssertEx.EqualTolerance(GaussesInOneTesla, tesla.Gausses, GaussesTolerance);
             AssertEx.EqualTolerance(MicroteslasInOneTesla, tesla.Microteslas, MicroteslasTolerance);
             AssertEx.EqualTolerance(MilliteslasInOneTesla, tesla.Milliteslas, MilliteslasTolerance);
             AssertEx.EqualTolerance(NanoteslasInOneTesla, tesla.Nanoteslas, NanoteslasTolerance);
@@ -116,21 +133,25 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = MagneticField.From(1, MagneticFieldUnit.Microtesla);
-            AssertEx.EqualTolerance(1, quantity00.Microteslas, MicroteslasTolerance);
-            Assert.Equal(MagneticFieldUnit.Microtesla, quantity00.Unit);
+            var quantity00 = MagneticField.From(1, MagneticFieldUnit.Gauss);
+            AssertEx.EqualTolerance(1, quantity00.Gausses, GaussesTolerance);
+            Assert.Equal(MagneticFieldUnit.Gauss, quantity00.Unit);
 
-            var quantity01 = MagneticField.From(1, MagneticFieldUnit.Millitesla);
-            AssertEx.EqualTolerance(1, quantity01.Milliteslas, MilliteslasTolerance);
-            Assert.Equal(MagneticFieldUnit.Millitesla, quantity01.Unit);
+            var quantity01 = MagneticField.From(1, MagneticFieldUnit.Microtesla);
+            AssertEx.EqualTolerance(1, quantity01.Microteslas, MicroteslasTolerance);
+            Assert.Equal(MagneticFieldUnit.Microtesla, quantity01.Unit);
 
-            var quantity02 = MagneticField.From(1, MagneticFieldUnit.Nanotesla);
-            AssertEx.EqualTolerance(1, quantity02.Nanoteslas, NanoteslasTolerance);
-            Assert.Equal(MagneticFieldUnit.Nanotesla, quantity02.Unit);
+            var quantity02 = MagneticField.From(1, MagneticFieldUnit.Millitesla);
+            AssertEx.EqualTolerance(1, quantity02.Milliteslas, MilliteslasTolerance);
+            Assert.Equal(MagneticFieldUnit.Millitesla, quantity02.Unit);
 
-            var quantity03 = MagneticField.From(1, MagneticFieldUnit.Tesla);
-            AssertEx.EqualTolerance(1, quantity03.Teslas, TeslasTolerance);
-            Assert.Equal(MagneticFieldUnit.Tesla, quantity03.Unit);
+            var quantity03 = MagneticField.From(1, MagneticFieldUnit.Nanotesla);
+            AssertEx.EqualTolerance(1, quantity03.Nanoteslas, NanoteslasTolerance);
+            Assert.Equal(MagneticFieldUnit.Nanotesla, quantity03.Unit);
+
+            var quantity04 = MagneticField.From(1, MagneticFieldUnit.Tesla);
+            AssertEx.EqualTolerance(1, quantity04.Teslas, TeslasTolerance);
+            Assert.Equal(MagneticFieldUnit.Tesla, quantity04.Unit);
 
         }
 
@@ -151,6 +172,7 @@ namespace UnitsNet.Tests
         public void As()
         {
             var tesla = MagneticField.FromTeslas(1);
+            AssertEx.EqualTolerance(GaussesInOneTesla, tesla.As(MagneticFieldUnit.Gauss), GaussesTolerance);
             AssertEx.EqualTolerance(MicroteslasInOneTesla, tesla.As(MagneticFieldUnit.Microtesla), MicroteslasTolerance);
             AssertEx.EqualTolerance(MilliteslasInOneTesla, tesla.As(MagneticFieldUnit.Millitesla), MilliteslasTolerance);
             AssertEx.EqualTolerance(NanoteslasInOneTesla, tesla.As(MagneticFieldUnit.Nanotesla), NanoteslasTolerance);
@@ -158,9 +180,30 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new MagneticField(value: 1, unit: MagneticField.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var tesla = MagneticField.FromTeslas(1);
+
+            var gaussQuantity = tesla.ToUnit(MagneticFieldUnit.Gauss);
+            AssertEx.EqualTolerance(GaussesInOneTesla, (double)gaussQuantity.Value, GaussesTolerance);
+            Assert.Equal(MagneticFieldUnit.Gauss, gaussQuantity.Unit);
 
             var microteslaQuantity = tesla.ToUnit(MagneticFieldUnit.Microtesla);
             AssertEx.EqualTolerance(MicroteslasInOneTesla, (double)microteslaQuantity.Value, MicroteslasTolerance);
@@ -180,9 +223,17 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = MagneticField.FromTeslas(1).ToBaseUnit();
+            Assert.Equal(MagneticField.BaseUnit, quantityInBaseUnit.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             MagneticField tesla = MagneticField.FromTeslas(1);
+            AssertEx.EqualTolerance(1, MagneticField.FromGausses(tesla.Gausses).Teslas, GaussesTolerance);
             AssertEx.EqualTolerance(1, MagneticField.FromMicroteslas(tesla.Microteslas).Teslas, MicroteslasTolerance);
             AssertEx.EqualTolerance(1, MagneticField.FromMilliteslas(tesla.Milliteslas).Teslas, MilliteslasTolerance);
             AssertEx.EqualTolerance(1, MagneticField.FromNanoteslas(tesla.Nanoteslas).Teslas, NanoteslasTolerance);
@@ -263,22 +314,39 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsIsImplemented()
+        public void Equals_SameType_IsImplemented()
         {
             var a = MagneticField.FromTeslas(1);
             var b = MagneticField.FromTeslas(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
-            Assert.False(a.Equals(null));
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_QuantityAsObject_IsImplemented()
+        {
+            object a = MagneticField.FromTeslas(1);
+            object b = MagneticField.FromTeslas(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+            Assert.False(a.Equals((object)null));
+        }
+
+        [Fact]
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = MagneticField.FromTeslas(1);
             Assert.True(v.Equals(MagneticField.FromTeslas(1), TeslasTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(MagneticField.Zero, TeslasTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = MagneticField.FromTeslas(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(MagneticField.FromTeslas(1), -1, ComparisonType.Relative));
         }
 
         [Fact]
@@ -326,6 +394,7 @@ namespace UnitsNet.Tests
             var prevCulture = Thread.CurrentThread.CurrentUICulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             try {
+                Assert.Equal("1 G", new MagneticField(1, MagneticFieldUnit.Gauss).ToString());
                 Assert.Equal("1 µT", new MagneticField(1, MagneticFieldUnit.Microtesla).ToString());
                 Assert.Equal("1 mT", new MagneticField(1, MagneticFieldUnit.Millitesla).ToString());
                 Assert.Equal("1 nT", new MagneticField(1, MagneticFieldUnit.Nanotesla).ToString());
@@ -343,6 +412,7 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
+            Assert.Equal("1 G", new MagneticField(1, MagneticFieldUnit.Gauss).ToString(swedishCulture));
             Assert.Equal("1 µT", new MagneticField(1, MagneticFieldUnit.Microtesla).ToString(swedishCulture));
             Assert.Equal("1 mT", new MagneticField(1, MagneticFieldUnit.Millitesla).ToString(swedishCulture));
             Assert.Equal("1 nT", new MagneticField(1, MagneticFieldUnit.Nanotesla).ToString(swedishCulture));
@@ -375,6 +445,192 @@ namespace UnitsNet.Tests
             Assert.Equal("0.12 T", new MagneticField(0.123456, MagneticFieldUnit.Tesla).ToString("s2", culture));
             Assert.Equal("0.123 T", new MagneticField(0.123456, MagneticFieldUnit.Tesla).ToString("s3", culture));
             Assert.Equal("0.1235 T", new MagneticField(0.123456, MagneticFieldUnit.Tesla).ToString("s4", culture));
+        }
+
+
+        [Fact]
+        public void ToString_NullFormat_ThrowsArgumentNullException()
+        {
+            var quantity = MagneticField.FromTeslas(1.0);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
+        }
+
+        [Fact]
+        public void ToString_NullArgs_ThrowsArgumentNullException()
+        {
+            var quantity = MagneticField.FromTeslas(1.0);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, "g", null));
+        }
+
+        [Fact]
+        public void ToString_NullProvider_EqualsCurrentUICulture()
+        {
+            var quantity = MagneticField.FromTeslas(1.0);
+            Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
+        }
+
+
+        [Fact]
+        public void Convert_ToBool_ThrowsInvalidCastException()
+        {
+            var quantity = MagneticField.FromTeslas(1.0);
+            Assert.Throws<InvalidCastException>(() => Convert.ToBoolean(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToByte_EqualsValueAsSameType()
+        {
+            var quantity = MagneticField.FromTeslas(1.0);
+           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToChar_ThrowsInvalidCastException()
+        {
+            var quantity = MagneticField.FromTeslas(1.0);
+            Assert.Throws<InvalidCastException>(() => Convert.ToChar(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToDateTime_ThrowsInvalidCastException()
+        {
+            var quantity = MagneticField.FromTeslas(1.0);
+            Assert.Throws<InvalidCastException>(() => Convert.ToDateTime(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToDecimal_EqualsValueAsSameType()
+        {
+            var quantity = MagneticField.FromTeslas(1.0);
+            Assert.Equal((decimal)quantity.Value, Convert.ToDecimal(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToDouble_EqualsValueAsSameType()
+        {
+            var quantity = MagneticField.FromTeslas(1.0);
+            Assert.Equal((double)quantity.Value, Convert.ToDouble(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToInt16_EqualsValueAsSameType()
+        {
+            var quantity = MagneticField.FromTeslas(1.0);
+            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToInt32_EqualsValueAsSameType()
+        {
+            var quantity = MagneticField.FromTeslas(1.0);
+            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToInt64_EqualsValueAsSameType()
+        {
+            var quantity = MagneticField.FromTeslas(1.0);
+            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToSByte_EqualsValueAsSameType()
+        {
+            var quantity = MagneticField.FromTeslas(1.0);
+            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToSingle_EqualsValueAsSameType()
+        {
+            var quantity = MagneticField.FromTeslas(1.0);
+            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToString_EqualsToString()
+        {
+            var quantity = MagneticField.FromTeslas(1.0);
+            Assert.Equal(quantity.ToString(), Convert.ToString(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToUInt16_EqualsValueAsSameType()
+        {
+            var quantity = MagneticField.FromTeslas(1.0);
+            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToUInt32_EqualsValueAsSameType()
+        {
+            var quantity = MagneticField.FromTeslas(1.0);
+            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToUInt64_EqualsValueAsSameType()
+        {
+            var quantity = MagneticField.FromTeslas(1.0);
+            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = MagneticField.FromTeslas(1.0);
+            Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(MagneticField)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = MagneticField.FromTeslas(1.0);
+            Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(MagneticFieldUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = MagneticField.FromTeslas(1.0);
+            Assert.Equal(QuantityType.MagneticField, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = MagneticField.FromTeslas(1.0);
+            Assert.Equal(MagneticField.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = MagneticField.FromTeslas(1.0);
+            Assert.Equal(MagneticField.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = MagneticField.FromTeslas(1.0);
+            Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void GetHashCode_Equals()
+        {
+            var quantity = MagneticField.FromTeslas(1.0);
+            Assert.Equal(new {MagneticField.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+        }
+
+        [Theory]
+        [InlineData(1.0)]
+        [InlineData(-1.0)]
+        public void NegationOperator_ReturnsQuantity_WithNegatedValue(double value)
+        {
+            var quantity = MagneticField.FromTeslas(value);
+            Assert.Equal(MagneticField.FromTeslas(-value), -quantity);
         }
     }
 }

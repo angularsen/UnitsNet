@@ -125,6 +125,9 @@ namespace UnitsNet
                 case ElectricPotentialAcUnit electricPotentialAcUnit:
                     quantity = ElectricPotentialAc.From(value, electricPotentialAcUnit);
                     return true;
+                case ElectricPotentialChangeRateUnit electricPotentialChangeRateUnit:
+                    quantity = ElectricPotentialChangeRate.From(value, electricPotentialChangeRateUnit);
+                    return true;
                 case ElectricPotentialDcUnit electricPotentialDcUnit:
                     quantity = ElectricPotentialDc.From(value, electricPotentialDcUnit);
                     return true;
@@ -190,6 +193,9 @@ namespace UnitsNet
                     return true;
                 case LinearDensityUnit linearDensityUnit:
                     quantity = LinearDensity.From(value, linearDensityUnit);
+                    return true;
+                case LinearPowerDensityUnit linearPowerDensityUnit:
+                    quantity = LinearPowerDensity.From(value, linearPowerDensityUnit);
                     return true;
                 case LuminosityUnit luminosityUnit:
                     quantity = Luminosity.From(value, luminosityUnit);
@@ -272,6 +278,9 @@ namespace UnitsNet
                 case ReactivePowerUnit reactivePowerUnit:
                     quantity = ReactivePower.From(value, reactivePowerUnit);
                     return true;
+                case RelativeHumidityUnit relativeHumidityUnit:
+                    quantity = RelativeHumidity.From(value, relativeHumidityUnit);
+                    return true;
                 case RotationalAccelerationUnit rotationalAccelerationUnit:
                     quantity = RotationalAcceleration.From(value, rotationalAccelerationUnit);
                     return true;
@@ -283,6 +292,9 @@ namespace UnitsNet
                     return true;
                 case RotationalStiffnessPerLengthUnit rotationalStiffnessPerLengthUnit:
                     quantity = RotationalStiffnessPerLength.From(value, rotationalStiffnessPerLengthUnit);
+                    return true;
+                case ScalarUnit scalarUnit:
+                    quantity = Scalar.From(value, scalarUnit);
                     return true;
                 case SolidAngleUnit solidAngleUnit:
                     quantity = SolidAngle.From(value, solidAngleUnit);
@@ -301,6 +313,9 @@ namespace UnitsNet
                     return true;
                 case SpeedUnit speedUnit:
                     quantity = Speed.From(value, speedUnit);
+                    return true;
+                case StandardVolumeFlowUnit standardVolumeFlowUnit:
+                    quantity = StandardVolumeFlow.From(value, standardVolumeFlowUnit);
                     return true;
                 case TemperatureUnit temperatureUnit:
                     quantity = Temperature.From(value, temperatureUnit);
@@ -323,6 +338,9 @@ namespace UnitsNet
                 case TorquePerLengthUnit torquePerLengthUnit:
                     quantity = TorquePerLength.From(value, torquePerLengthUnit);
                     return true;
+                case TurbidityUnit turbidityUnit:
+                    quantity = Turbidity.From(value, turbidityUnit);
+                    return true;
                 case VitaminAUnit vitaminAUnit:
                     quantity = VitaminA.From(value, vitaminAUnit);
                     return true;
@@ -337,6 +355,9 @@ namespace UnitsNet
                     return true;
                 case VolumePerLengthUnit volumePerLengthUnit:
                     quantity = VolumePerLength.From(value, volumePerLengthUnit);
+                    return true;
+                case WarpingMomentOfInertiaUnit warpingMomentOfInertiaUnit:
+                    quantity = WarpingMomentOfInertia.From(value, warpingMomentOfInertiaUnit);
                     return true;
                 default:
                 {
@@ -472,6 +493,9 @@ namespace UnitsNet
             if (quantityType == typeof(ElectricPotentialAc))
                 return parser.TryParse<ElectricPotentialAc, ElectricPotentialAcUnit>(quantityString, formatProvider, ElectricPotentialAc.From, out quantity);
 
+            if (quantityType == typeof(ElectricPotentialChangeRate))
+                return parser.TryParse<ElectricPotentialChangeRate, ElectricPotentialChangeRateUnit>(quantityString, formatProvider, ElectricPotentialChangeRate.From, out quantity);
+
             if (quantityType == typeof(ElectricPotentialDc))
                 return parser.TryParse<ElectricPotentialDc, ElectricPotentialDcUnit>(quantityString, formatProvider, ElectricPotentialDc.From, out quantity);
 
@@ -537,6 +561,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(LinearDensity))
                 return parser.TryParse<LinearDensity, LinearDensityUnit>(quantityString, formatProvider, LinearDensity.From, out quantity);
+
+            if (quantityType == typeof(LinearPowerDensity))
+                return parser.TryParse<LinearPowerDensity, LinearPowerDensityUnit>(quantityString, formatProvider, LinearPowerDensity.From, out quantity);
 
             if (quantityType == typeof(Luminosity))
                 return parser.TryParse<Luminosity, LuminosityUnit>(quantityString, formatProvider, Luminosity.From, out quantity);
@@ -619,6 +646,9 @@ namespace UnitsNet
             if (quantityType == typeof(ReactivePower))
                 return parser.TryParse<ReactivePower, ReactivePowerUnit>(quantityString, formatProvider, ReactivePower.From, out quantity);
 
+            if (quantityType == typeof(RelativeHumidity))
+                return parser.TryParse<RelativeHumidity, RelativeHumidityUnit>(quantityString, formatProvider, RelativeHumidity.From, out quantity);
+
             if (quantityType == typeof(RotationalAcceleration))
                 return parser.TryParse<RotationalAcceleration, RotationalAccelerationUnit>(quantityString, formatProvider, RotationalAcceleration.From, out quantity);
 
@@ -630,6 +660,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(RotationalStiffnessPerLength))
                 return parser.TryParse<RotationalStiffnessPerLength, RotationalStiffnessPerLengthUnit>(quantityString, formatProvider, RotationalStiffnessPerLength.From, out quantity);
+
+            if (quantityType == typeof(Scalar))
+                return parser.TryParse<Scalar, ScalarUnit>(quantityString, formatProvider, Scalar.From, out quantity);
 
             if (quantityType == typeof(SolidAngle))
                 return parser.TryParse<SolidAngle, SolidAngleUnit>(quantityString, formatProvider, SolidAngle.From, out quantity);
@@ -648,6 +681,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(Speed))
                 return parser.TryParse<Speed, SpeedUnit>(quantityString, formatProvider, Speed.From, out quantity);
+
+            if (quantityType == typeof(StandardVolumeFlow))
+                return parser.TryParse<StandardVolumeFlow, StandardVolumeFlowUnit>(quantityString, formatProvider, StandardVolumeFlow.From, out quantity);
 
             if (quantityType == typeof(Temperature))
                 return parser.TryParse<Temperature, TemperatureUnit>(quantityString, formatProvider, Temperature.From, out quantity);
@@ -670,6 +706,9 @@ namespace UnitsNet
             if (quantityType == typeof(TorquePerLength))
                 return parser.TryParse<TorquePerLength, TorquePerLengthUnit>(quantityString, formatProvider, TorquePerLength.From, out quantity);
 
+            if (quantityType == typeof(Turbidity))
+                return parser.TryParse<Turbidity, TurbidityUnit>(quantityString, formatProvider, Turbidity.From, out quantity);
+
             if (quantityType == typeof(VitaminA))
                 return parser.TryParse<VitaminA, VitaminAUnit>(quantityString, formatProvider, VitaminA.From, out quantity);
 
@@ -684,6 +723,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(VolumePerLength))
                 return parser.TryParse<VolumePerLength, VolumePerLengthUnit>(quantityString, formatProvider, VolumePerLength.From, out quantity);
+
+            if (quantityType == typeof(WarpingMomentOfInertia))
+                return parser.TryParse<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit>(quantityString, formatProvider, WarpingMomentOfInertia.From, out quantity);
 
             throw new ArgumentException(
                 $"Type {quantityType} is not a known quantity type. Did you pass in a third-party quantity type defined outside UnitsNet library?");

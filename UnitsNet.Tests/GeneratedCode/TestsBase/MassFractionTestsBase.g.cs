@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,7 +35,7 @@ namespace UnitsNet.Tests
     /// Test of MassFraction.
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
-    public abstract partial class MassFractionTestsBase
+    public abstract partial class MassFractionTestsBase : QuantityTestsBase
     {
         protected abstract double CentigramsPerGramInOneDecimalFraction { get; }
         protected abstract double CentigramsPerKilogramInOneDecimalFraction { get; }
@@ -119,7 +120,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new MassFraction(value: 1.0, unitSystem: null));
+            Assert.Throws<ArgumentNullException>(() => new MassFraction(value: 1, unitSystem: null));
+        }
+
+        [Fact]
+        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            Func<object> TestCode = () => new MassFraction(value: 1, unitSystem: UnitSystem.SI);
+            if (SupportsSIUnitSystem)
+            {
+                var quantity = (MassFraction) TestCode();
+                Assert.Equal(1, quantity.Value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(TestCode);
+            }
         }
 
         [Fact]
@@ -137,10 +153,8 @@ namespace UnitsNet.Tests
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
-#pragma warning disable 618
             Assert.Equal(units, quantityInfo.Units);
             Assert.Equal(unitNames, quantityInfo.UnitNames);
-#pragma warning restore 618
         }
 
         [Fact]
@@ -318,6 +332,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var quantity = new MassFraction(value: 1, unit: MassFraction.BaseUnit);
+            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+
+            if (SupportsSIUnitSystem)
+            {
+                var value = (double) AsWithSIUnitSystem();
+                Assert.Equal(1, value);
+            }
+            else
+            {
+                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
+            }
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var decimalfraction = MassFraction.FromDecimalFractions(1);
@@ -417,6 +448,13 @@ namespace UnitsNet.Tests
             var percentQuantity = decimalfraction.ToUnit(MassFractionUnit.Percent);
             AssertEx.EqualTolerance(PercentInOneDecimalFraction, (double)percentQuantity.Value, PercentTolerance);
             Assert.Equal(MassFractionUnit.Percent, percentQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        {
+            var quantityInBaseUnit = MassFraction.FromDecimalFractions(1).ToBaseUnit();
+            Assert.Equal(MassFraction.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
@@ -523,22 +561,39 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualsIsImplemented()
+        public void Equals_SameType_IsImplemented()
         {
             var a = MassFraction.FromDecimalFractions(1);
             var b = MassFraction.FromDecimalFractions(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
-            Assert.False(a.Equals(null));
         }
 
         [Fact]
-        public void EqualsRelativeToleranceIsImplemented()
+        public void Equals_QuantityAsObject_IsImplemented()
+        {
+            object a = MassFraction.FromDecimalFractions(1);
+            object b = MassFraction.FromDecimalFractions(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+            Assert.False(a.Equals((object)null));
+        }
+
+        [Fact]
+        public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = MassFraction.FromDecimalFractions(1);
             Assert.True(v.Equals(MassFraction.FromDecimalFractions(1), DecimalFractionsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(MassFraction.Zero, DecimalFractionsTolerance, ComparisonType.Relative));
+        }
+
+        [Fact]
+        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var v = MassFraction.FromDecimalFractions(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(MassFraction.FromDecimalFractions(1), -1, ComparisonType.Relative));
         }
 
         [Fact]
@@ -592,7 +647,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 dag/kg", new MassFraction(1, MassFractionUnit.DecagramPerKilogram).ToString());
                 Assert.Equal("1 dg/g", new MassFraction(1, MassFractionUnit.DecigramPerGram).ToString());
                 Assert.Equal("1 dg/kg", new MassFraction(1, MassFractionUnit.DecigramPerKilogram).ToString());
-                Assert.Equal("1 ", new MassFraction(1, MassFractionUnit.DecimalFraction).ToString());
+                Assert.Equal("1", new MassFraction(1, MassFractionUnit.DecimalFraction).ToString());
                 Assert.Equal("1 g/g", new MassFraction(1, MassFractionUnit.GramPerGram).ToString());
                 Assert.Equal("1 g/kg", new MassFraction(1, MassFractionUnit.GramPerKilogram).ToString());
                 Assert.Equal("1 hg/g", new MassFraction(1, MassFractionUnit.HectogramPerGram).ToString());
@@ -629,7 +684,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 dag/kg", new MassFraction(1, MassFractionUnit.DecagramPerKilogram).ToString(swedishCulture));
             Assert.Equal("1 dg/g", new MassFraction(1, MassFractionUnit.DecigramPerGram).ToString(swedishCulture));
             Assert.Equal("1 dg/kg", new MassFraction(1, MassFractionUnit.DecigramPerKilogram).ToString(swedishCulture));
-            Assert.Equal("1 ", new MassFraction(1, MassFractionUnit.DecimalFraction).ToString(swedishCulture));
+            Assert.Equal("1", new MassFraction(1, MassFractionUnit.DecimalFraction).ToString(swedishCulture));
             Assert.Equal("1 g/g", new MassFraction(1, MassFractionUnit.GramPerGram).ToString(swedishCulture));
             Assert.Equal("1 g/kg", new MassFraction(1, MassFractionUnit.GramPerKilogram).ToString(swedishCulture));
             Assert.Equal("1 hg/g", new MassFraction(1, MassFractionUnit.HectogramPerGram).ToString(swedishCulture));
@@ -656,10 +711,10 @@ namespace UnitsNet.Tests
             try
             {
                 CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 ", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s1"));
-                Assert.Equal("0.12 ", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s2"));
-                Assert.Equal("0.123 ", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s3"));
-                Assert.Equal("0.1235 ", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s4"));
+                Assert.Equal("0.1", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s1"));
+                Assert.Equal("0.12", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s2"));
+                Assert.Equal("0.123", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s3"));
+                Assert.Equal("0.1235", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s4"));
             }
             finally
             {
@@ -671,10 +726,196 @@ namespace UnitsNet.Tests
         public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
         {
             var culture = CultureInfo.InvariantCulture;
-            Assert.Equal("0.1 ", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s1", culture));
-            Assert.Equal("0.12 ", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s2", culture));
-            Assert.Equal("0.123 ", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s3", culture));
-            Assert.Equal("0.1235 ", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s4", culture));
+            Assert.Equal("0.1", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s1", culture));
+            Assert.Equal("0.12", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s2", culture));
+            Assert.Equal("0.123", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s3", culture));
+            Assert.Equal("0.1235", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s4", culture));
+        }
+
+
+        [Fact]
+        public void ToString_NullFormat_ThrowsArgumentNullException()
+        {
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
+        }
+
+        [Fact]
+        public void ToString_NullArgs_ThrowsArgumentNullException()
+        {
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, "g", null));
+        }
+
+        [Fact]
+        public void ToString_NullProvider_EqualsCurrentUICulture()
+        {
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
+        }
+
+
+        [Fact]
+        public void Convert_ToBool_ThrowsInvalidCastException()
+        {
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Throws<InvalidCastException>(() => Convert.ToBoolean(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToByte_EqualsValueAsSameType()
+        {
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToChar_ThrowsInvalidCastException()
+        {
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Throws<InvalidCastException>(() => Convert.ToChar(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToDateTime_ThrowsInvalidCastException()
+        {
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Throws<InvalidCastException>(() => Convert.ToDateTime(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToDecimal_EqualsValueAsSameType()
+        {
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Equal((decimal)quantity.Value, Convert.ToDecimal(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToDouble_EqualsValueAsSameType()
+        {
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Equal((double)quantity.Value, Convert.ToDouble(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToInt16_EqualsValueAsSameType()
+        {
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToInt32_EqualsValueAsSameType()
+        {
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToInt64_EqualsValueAsSameType()
+        {
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToSByte_EqualsValueAsSameType()
+        {
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToSingle_EqualsValueAsSameType()
+        {
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToString_EqualsToString()
+        {
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Equal(quantity.ToString(), Convert.ToString(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToUInt16_EqualsValueAsSameType()
+        {
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToUInt32_EqualsValueAsSameType()
+        {
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
+        }
+
+        [Fact]
+        public void Convert_ToUInt64_EqualsValueAsSameType()
+        {
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_SelfType_EqualsSelf()
+        {
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(MassFraction)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_UnitType_EqualsUnit()
+        {
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(MassFractionUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Equal(QuantityType.MassFraction, Convert.ChangeType(quantity, typeof(QuantityType)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
+        {
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Equal(MassFraction.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
+        {
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Equal(MassFraction.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
+        {
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
+        }
+
+        [Fact]
+        public void GetHashCode_Equals()
+        {
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Equal(new {MassFraction.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+        }
+
+        [Theory]
+        [InlineData(1.0)]
+        [InlineData(-1.0)]
+        public void NegationOperator_ReturnsQuantity_WithNegatedValue(double value)
+        {
+            var quantity = MassFraction.FromDecimalFractions(value);
+            Assert.Equal(MassFraction.FromDecimalFractions(-value), -quantity);
         }
     }
 }

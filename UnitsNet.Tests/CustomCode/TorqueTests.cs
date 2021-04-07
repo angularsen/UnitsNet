@@ -7,6 +7,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class TorqueTests : TorqueTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
         protected override double KilogramForceCentimetersInOneNewtonMeter => 10.1971621;
 
         protected override double KilogramForceMetersInOneNewtonMeter => 0.101971621;
@@ -48,6 +49,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double TonneForceMetersInOneNewtonMeter => 1.01972e-4;
 
         protected override double TonneForceMillimetersInOneNewtonMeter => 1.01972e-1;
+
+        protected override double PoundalFeetInOneNewtonMeter => 23.730360404231938;
 
         [Fact]
         public void TorqueDividedByForceEqualsLength()

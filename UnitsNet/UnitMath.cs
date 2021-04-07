@@ -9,6 +9,17 @@ namespace UnitsNet
     /// </summary>
     public static class UnitMath
     {
+        /// <summary>Returns the absolute value of a <typeparamref name="TQuantity" />.</summary>
+        /// <param name="value">
+        ///     A quantity with a value that is greater than or equal to <see cref="F:System.Double.MinValue" />,
+        ///     but less than or equal to <see cref="F:System.Double.MaxValue" />.
+        /// </param>
+        /// <returns>A quantity with a value, such that 0 ≤ value ≤ <see cref="F:System.Double.MaxValue" />.</returns>
+        public static TQuantity Abs<TQuantity>(this TQuantity value) where TQuantity : IQuantity
+        {
+            return value.Value >= 0 ? value : (TQuantity) Quantity.From(-value.Value, value.Unit);
+        }
+
         /// <summary>Computes the sum of a sequence of <typeparamref name="TQuantity" /> values.</summary>
         /// <param name="source">A sequence of <typeparamref name="TQuantity" /> values to calculate the sum of.</param>
         /// <param name="unitType">The desired unit type for the resulting quantity</param>
@@ -45,6 +56,16 @@ namespace UnitsNet
             where TQuantity : IQuantity
         {
             return source.Select(selector).Sum(unitType);
+        }
+
+        /// <summary>Returns the smaller of two <typeparamref name="TQuantity" /> values.</summary>
+        /// <typeparam name="TQuantity">The type of quantities to compare.</typeparam>
+        /// <param name="val1">The first of two <typeparamref name="TQuantity" /> values to compare.</param>
+        /// <param name="val2">The second of two <typeparamref name="TQuantity" /> values to compare.</param>
+        /// <returns>Parameter <paramref name="val1" /> or <paramref name="val2" />, whichever is smaller.</returns>
+        public static TQuantity Min<TQuantity>(TQuantity val1, TQuantity val2) where TQuantity : IComparable, IQuantity
+        {
+            return val1.CompareTo(val2) == 1 ? val2 : val1;
         }
 
         /// <summary>Computes the min of a sequence of <typeparamref name="TQuantity" /> values.</summary>
@@ -85,6 +106,16 @@ namespace UnitsNet
             where TQuantity : IQuantity
         {
             return source.Select(selector).Min(unitType);
+        }
+
+        /// <summary>Returns the larger of two <typeparamref name="TQuantity" /> values.</summary>
+        /// <typeparam name="TQuantity">The type of quantities to compare.</typeparam>
+        /// <param name="val1">The first of two <typeparamref name="TQuantity" /> values to compare.</param>
+        /// <param name="val2">The second of two <typeparamref name="TQuantity" /> values to compare.</param>
+        /// <returns>Parameter <paramref name="val1" /> or <paramref name="val2" />, whichever is larger.</returns>
+        public static TQuantity Max<TQuantity>(TQuantity val1, TQuantity val2) where TQuantity : IComparable, IQuantity
+        {
+            return val1.CompareTo(val2) == -1 ? val2 : val1;
         }
 
         /// <summary>Computes the max of a sequence of <typeparamref name="TQuantity" /> values.</summary>

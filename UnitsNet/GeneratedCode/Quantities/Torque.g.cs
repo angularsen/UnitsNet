@@ -24,6 +24,8 @@ using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
+#nullable enable
+
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -48,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<TorqueUnit>(QuantityType.Torque,
+            Info = new QuantityInfo<TorqueUnit>("Torque",
                 new UnitInfo<TorqueUnit>[] {
                     new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceCentimeter, BaseUnits.Undefined),
                     new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceMeter, BaseUnits.Undefined),
@@ -66,13 +68,14 @@ namespace UnitsNet
                     new UnitInfo<TorqueUnit>(TorqueUnit.NewtonCentimeter, BaseUnits.Undefined),
                     new UnitInfo<TorqueUnit>(TorqueUnit.NewtonMeter, BaseUnits.Undefined),
                     new UnitInfo<TorqueUnit>(TorqueUnit.NewtonMillimeter, BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.PoundalFoot, BaseUnits.Undefined),
                     new UnitInfo<TorqueUnit>(TorqueUnit.PoundForceFoot, BaseUnits.Undefined),
                     new UnitInfo<TorqueUnit>(TorqueUnit.PoundForceInch, BaseUnits.Undefined),
                     new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceCentimeter, BaseUnits.Undefined),
                     new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceMeter, BaseUnits.Undefined),
                     new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceMillimeter, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Torque);
         }
 
         /// <summary>
@@ -100,7 +103,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Torque(double value, UnitSystem unitSystem)
         {
-            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -127,16 +130,19 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of Torque
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static Torque MaxValue { get; } = new Torque(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Torque
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static Torque MinValue { get; } = new Torque(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.Torque;
 
         /// <summary>
@@ -264,6 +270,11 @@ namespace UnitsNet
         public double NewtonMillimeters => As(TorqueUnit.NewtonMillimeter);
 
         /// <summary>
+        ///     Get Torque in PoundalFeet.
+        /// </summary>
+        public double PoundalFeet => As(TorqueUnit.PoundalFoot);
+
+        /// <summary>
         ///     Get Torque in PoundForceFeet.
         /// </summary>
         public double PoundForceFeet => As(TorqueUnit.PoundForceFoot);
@@ -308,7 +319,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static string GetAbbreviation(TorqueUnit unit, [CanBeNull] IFormatProvider provider)
+        public static string GetAbbreviation(TorqueUnit unit, IFormatProvider? provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
@@ -462,6 +473,15 @@ namespace UnitsNet
             return new Torque(value, TorqueUnit.NewtonMillimeter);
         }
         /// <summary>
+        ///     Get Torque from PoundalFeet.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Torque FromPoundalFeet(QuantityValue poundalfeet)
+        {
+            double value = (double) poundalfeet;
+            return new Torque(value, TorqueUnit.PoundalFoot);
+        }
+        /// <summary>
         ///     Get Torque from PoundForceFeet.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -572,7 +592,7 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static Torque Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static Torque Parse(string str, IFormatProvider? provider)
         {
             return QuantityParser.Default.Parse<Torque, TorqueUnit>(
                 str,
@@ -588,7 +608,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out Torque result)
+        public static bool TryParse(string? str, out Torque result)
         {
             return TryParse(str, null, out result);
         }
@@ -603,7 +623,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Torque result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out Torque result)
         {
             return QuantityParser.Default.TryParse<Torque, TorqueUnit>(
                 str,
@@ -636,7 +656,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static TorqueUnit ParseUnit(string str, [CanBeNull] IFormatProvider provider)
+        public static TorqueUnit ParseUnit(string str, IFormatProvider? provider)
         {
             return UnitParser.Default.Parse<TorqueUnit>(str, provider);
         }
@@ -657,7 +677,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider provider, out TorqueUnit unit)
+        public static bool TryParseUnit(string str, IFormatProvider? provider, out TorqueUnit unit)
         {
             return UnitParser.Default.TryParse<TorqueUnit>(str, provider, out unit);
         }
@@ -839,7 +859,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Torque.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -862,7 +882,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -905,7 +925,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public Torque ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -951,6 +971,7 @@ namespace UnitsNet
                 case TorqueUnit.NewtonCentimeter: return _value*0.01;
                 case TorqueUnit.NewtonMeter: return _value;
                 case TorqueUnit.NewtonMillimeter: return _value*0.001;
+                case TorqueUnit.PoundalFoot: return _value*4.21401100938048e-2;
                 case TorqueUnit.PoundForceFoot: return _value*1.3558179483314;
                 case TorqueUnit.PoundForceInch: return _value*1.129848290276167e-1;
                 case TorqueUnit.TonneForceCentimeter: return _value*98.0665019960652;
@@ -997,6 +1018,7 @@ namespace UnitsNet
                 case TorqueUnit.NewtonCentimeter: return baseUnitValue*100;
                 case TorqueUnit.NewtonMeter: return baseUnitValue;
                 case TorqueUnit.NewtonMillimeter: return baseUnitValue*1000;
+                case TorqueUnit.PoundalFoot: return baseUnitValue/4.21401100938048e-2;
                 case TorqueUnit.PoundForceFoot: return baseUnitValue/1.3558179483314;
                 case TorqueUnit.PoundForceInch: return baseUnitValue/1.129848290276167e-1;
                 case TorqueUnit.TonneForceCentimeter: return baseUnitValue*0.0101971619222242;
@@ -1025,7 +1047,7 @@ namespace UnitsNet
         /// </summary>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public string ToString([CanBeNull] IFormatProvider provider)
+        public string ToString(IFormatProvider? provider)
         {
             return ToString("g", provider);
         }
@@ -1037,7 +1059,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
-        public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
+        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
         {
             var value = Convert.ToDouble(Value);
             var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
@@ -1052,7 +1074,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
-        public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
+        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
@@ -1080,11 +1102,11 @@ namespace UnitsNet
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
         /// </summary>
         /// <param name="format">The format string.</param>
-        /// <param name="formatProvider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>The string representation.</returns>
-        public string ToString(string format, IFormatProvider formatProvider)
+        public string ToString(string format, IFormatProvider? provider)
         {
-            return QuantityFormatter.Format<TorqueUnit>(this, format, formatProvider);
+            return QuantityFormatter.Format<TorqueUnit>(this, format, provider);
         }
 
         #endregion
@@ -1164,6 +1186,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return Torque.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Torque.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Torque.BaseDimensions;
             else

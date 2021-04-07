@@ -26,9 +26,20 @@ namespace UnitsNet.Units
     public enum LinearDensityUnit
     {
         Undefined = 0,
+        GramPerCentimeter,
         GramPerMeter,
+        GramPerMillimeter,
+        KilogramPerCentimeter,
         KilogramPerMeter,
+        KilogramPerMillimeter,
+        MicrogramPerCentimeter,
+        MicrogramPerMeter,
+        MicrogramPerMillimeter,
+        MilligramPerCentimeter,
+        MilligramPerMeter,
+        MilligramPerMillimeter,
         PoundPerFoot,
+        PoundPerInch,
     }
 
     #pragma warning restore 1591

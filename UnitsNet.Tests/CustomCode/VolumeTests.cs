@@ -8,6 +8,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class VolumeTests : VolumeTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
         protected override double CentilitersInOneCubicMeter => 1E5;
 
         protected override double CubicCentimetersInOneCubicMeter => 1E6;
@@ -32,11 +33,16 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double CubicYardsInOneCubicMeter => 1.30795062;
 
+        protected override double DecausGallonsInOneCubicMeter => 2.6417217e+1;
+
         protected override double DecilitersInOneCubicMeter => 1E4;
+        protected override double DeciusGallonsInOneCubicMeter => 2.6417217e+3;
         protected override double HectocubicFeetInOneCubicMeter => 3.531472e-1;
         protected override double HectocubicMetersInOneCubicMeter => 0.01;
 
         protected override double HectolitersInOneCubicMeter => 1E1;
+
+        protected override double HectousGallonsInOneCubicMeter => 2.6417217;
 
         protected override double ImperialGallonsInOneCubicMeter => 219.96924;
 
@@ -94,7 +100,9 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double ImperialPintsInOneCubicMeter => 1.7597539863927023e3;
 
-        [ Fact]
+        protected override double BoardFeetInOneCubicMeter => 423.7760007;
+
+        [Fact]
         public void VolumeDividedByAreaEqualsLength()
         {
             Length length = Volume.FromCubicMeters(15)/Area.FromSquareMeters(5);

@@ -1,7 +1,6 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
 using UnitsNet.Tests.CustomQuantities;
 using UnitsNet.Units;
 using Xunit;
@@ -96,7 +95,7 @@ namespace UnitsNet.Tests
         [InlineData(1, HowMuchUnit.Some, HowMuchUnit.Some, 1)]
         [InlineData(1, HowMuchUnit.Some, HowMuchUnit.ATon, 2)]
         [InlineData(1, HowMuchUnit.Some, HowMuchUnit.AShitTon, 10)]
-        public void ConversionForUnitsOfCustomQuantity(double fromValue, Enum fromUnit, Enum toUnit, double expectedValue)
+        public void ConversionForUnitsOfCustomQuantity(double fromValue, HowMuchUnit fromUnit, HowMuchUnit toUnit, double expectedValue)
         {
             // Intentionally don't map conversion Some->Some, it is not necessary
             var unitConverter = new UnitConverter();

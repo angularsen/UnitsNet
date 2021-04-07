@@ -59,7 +59,7 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "мин" ]
+          "Abbreviations": [ "нед" ]
         }
       ]
     },
@@ -78,7 +78,7 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "д" ]
+          "Abbreviations": [ "сут","д" ]
         }
       ]
     },
@@ -97,7 +97,7 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "ч" ]
+          "Abbreviations": [ "ч", "час" ]
         }
       ]
     },
@@ -136,7 +136,7 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "с", "сек" ]
+          "Abbreviations": [ "сек", "с" ]
         }
       ]
     }

@@ -97,5 +97,11 @@ namespace UnitsNet
         {
             return Volume.FromCubicMeters(volumeFlow.CubicMetersPerSecond * duration.Seconds);
         }
+
+        /// <summary>Calculate <see cref="ElectricCharge"/> from <see cref="Duration"/> multiplied by <see cref="ElectricCurrent"/>.</summary>
+        public static ElectricCharge operator *(Duration time, ElectricCurrent current)
+        {
+            return ElectricCharge.FromAmpereHours(current.Amperes * time.Hours);
+        }
     }
 }

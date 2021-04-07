@@ -9,6 +9,8 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class DurationTests : DurationTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
+
         protected override double DaysInOneSecond => 1.15741e-5;
 
         protected override double HoursInOneSecond => 0.0002777784;
@@ -180,6 +182,13 @@ namespace UnitsNet.Tests.CustomCode
             var cultureInfo = culture == null ? null : new CultureInfo(culture);
 
             AssertEx.EqualTolerance(expectedSeconds, Duration.Parse(textValue, cultureInfo).Seconds, SecondsTolerance);
+        }
+
+        [Fact]
+        public void DurationMultipliedByElectricCurrentEqualsElectricCharge()
+        {
+            ElectricCharge ah = Duration.FromHours(5) * ElectricCurrent.FromAmperes(4);
+            Assert.Equal(20, ah.AmpereHours);
         }
     }
 }

@@ -8,6 +8,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class AreaTests : AreaTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
 
         protected override double SquareKilometersInOneSquareMeter => 1E-6;
 
@@ -49,6 +50,13 @@ namespace UnitsNet.Tests.CustomCode
         {
             MassFlow massFlow = Area.FromSquareMeters(20) * MassFlux.FromKilogramsPerSecondPerSquareMeter(2);
             Assert.Equal(massFlow, MassFlow.FromKilogramsPerSecond(40));
+        }
+
+        [Fact]
+        public void AreaTimesDensityEqualsLinearDensity()
+        {
+            LinearDensity linearDensity = Area.FromSquareCentimeters(2) * Density.FromGramsPerCubicCentimeter(10);
+            Assert.Equal(LinearDensity.FromGramsPerCentimeter(20), linearDensity);
         }
 
         [Theory]

@@ -1,0 +1,5 @@
+# See default values: https://docs.codecov.io/docs/codecov-yaml#default-yaml
+coverage:
+  precision: 1      # Default: 2
+  round: up         # Default: down
+  range: "80...100" # Default: 70...100

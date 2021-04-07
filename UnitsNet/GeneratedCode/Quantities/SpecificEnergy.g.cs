@@ -24,6 +24,8 @@ using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
+#nullable enable
+
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -51,19 +53,35 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 0, -2, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<SpecificEnergyUnit>(QuantityType.SpecificEnergy,
+            Info = new QuantityInfo<SpecificEnergyUnit>("SpecificEnergy",
                 new UnitInfo<SpecificEnergyUnit>[] {
                     new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.BtuPerPound, BaseUnits.Undefined),
                     new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.CaloriePerGram, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.GigawattDayPerKilogram, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.GigawattDayPerShortTon, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.GigawattDayPerTonne, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.GigawattHourPerKilogram, BaseUnits.Undefined),
                     new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.JoulePerKilogram, BaseUnits.Undefined),
                     new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.KilocaloriePerGram, BaseUnits.Undefined),
                     new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.KilojoulePerKilogram, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.KilowattDayPerKilogram, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.KilowattDayPerShortTon, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.KilowattDayPerTonne, BaseUnits.Undefined),
                     new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.KilowattHourPerKilogram, BaseUnits.Undefined),
                     new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.MegajoulePerKilogram, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.MegawattDayPerKilogram, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.MegawattDayPerShortTon, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.MegawattDayPerTonne, BaseUnits.Undefined),
                     new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.MegawattHourPerKilogram, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.TerawattDayPerKilogram, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.TerawattDayPerShortTon, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.TerawattDayPerTonne, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattDayPerKilogram, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattDayPerShortTon, BaseUnits.Undefined),
+                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattDayPerTonne, BaseUnits.Undefined),
                     new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattHourPerKilogram, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.SpecificEnergy);
         }
 
         /// <summary>
@@ -91,7 +109,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public SpecificEnergy(double value, UnitSystem unitSystem)
         {
-            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -118,16 +136,19 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of SpecificEnergy
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static SpecificEnergy MaxValue { get; } = new SpecificEnergy(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of SpecificEnergy
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static SpecificEnergy MinValue { get; } = new SpecificEnergy(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.SpecificEnergy;
 
         /// <summary>
@@ -185,6 +206,26 @@ namespace UnitsNet
         public double CaloriesPerGram => As(SpecificEnergyUnit.CaloriePerGram);
 
         /// <summary>
+        ///     Get SpecificEnergy in GigawattDaysPerKilogram.
+        /// </summary>
+        public double GigawattDaysPerKilogram => As(SpecificEnergyUnit.GigawattDayPerKilogram);
+
+        /// <summary>
+        ///     Get SpecificEnergy in GigawattDaysPerShortTon.
+        /// </summary>
+        public double GigawattDaysPerShortTon => As(SpecificEnergyUnit.GigawattDayPerShortTon);
+
+        /// <summary>
+        ///     Get SpecificEnergy in GigawattDaysPerTonne.
+        /// </summary>
+        public double GigawattDaysPerTonne => As(SpecificEnergyUnit.GigawattDayPerTonne);
+
+        /// <summary>
+        ///     Get SpecificEnergy in GigawattHoursPerKilogram.
+        /// </summary>
+        public double GigawattHoursPerKilogram => As(SpecificEnergyUnit.GigawattHourPerKilogram);
+
+        /// <summary>
         ///     Get SpecificEnergy in JoulesPerKilogram.
         /// </summary>
         public double JoulesPerKilogram => As(SpecificEnergyUnit.JoulePerKilogram);
@@ -200,6 +241,21 @@ namespace UnitsNet
         public double KilojoulesPerKilogram => As(SpecificEnergyUnit.KilojoulePerKilogram);
 
         /// <summary>
+        ///     Get SpecificEnergy in KilowattDaysPerKilogram.
+        /// </summary>
+        public double KilowattDaysPerKilogram => As(SpecificEnergyUnit.KilowattDayPerKilogram);
+
+        /// <summary>
+        ///     Get SpecificEnergy in KilowattDaysPerShortTon.
+        /// </summary>
+        public double KilowattDaysPerShortTon => As(SpecificEnergyUnit.KilowattDayPerShortTon);
+
+        /// <summary>
+        ///     Get SpecificEnergy in KilowattDaysPerTonne.
+        /// </summary>
+        public double KilowattDaysPerTonne => As(SpecificEnergyUnit.KilowattDayPerTonne);
+
+        /// <summary>
         ///     Get SpecificEnergy in KilowattHoursPerKilogram.
         /// </summary>
         public double KilowattHoursPerKilogram => As(SpecificEnergyUnit.KilowattHourPerKilogram);
@@ -210,9 +266,54 @@ namespace UnitsNet
         public double MegajoulesPerKilogram => As(SpecificEnergyUnit.MegajoulePerKilogram);
 
         /// <summary>
+        ///     Get SpecificEnergy in MegawattDaysPerKilogram.
+        /// </summary>
+        public double MegawattDaysPerKilogram => As(SpecificEnergyUnit.MegawattDayPerKilogram);
+
+        /// <summary>
+        ///     Get SpecificEnergy in MegawattDaysPerShortTon.
+        /// </summary>
+        public double MegawattDaysPerShortTon => As(SpecificEnergyUnit.MegawattDayPerShortTon);
+
+        /// <summary>
+        ///     Get SpecificEnergy in MegawattDaysPerTonne.
+        /// </summary>
+        public double MegawattDaysPerTonne => As(SpecificEnergyUnit.MegawattDayPerTonne);
+
+        /// <summary>
         ///     Get SpecificEnergy in MegawattHoursPerKilogram.
         /// </summary>
         public double MegawattHoursPerKilogram => As(SpecificEnergyUnit.MegawattHourPerKilogram);
+
+        /// <summary>
+        ///     Get SpecificEnergy in TerawattDaysPerKilogram.
+        /// </summary>
+        public double TerawattDaysPerKilogram => As(SpecificEnergyUnit.TerawattDayPerKilogram);
+
+        /// <summary>
+        ///     Get SpecificEnergy in TerawattDaysPerShortTon.
+        /// </summary>
+        public double TerawattDaysPerShortTon => As(SpecificEnergyUnit.TerawattDayPerShortTon);
+
+        /// <summary>
+        ///     Get SpecificEnergy in TerawattDaysPerTonne.
+        /// </summary>
+        public double TerawattDaysPerTonne => As(SpecificEnergyUnit.TerawattDayPerTonne);
+
+        /// <summary>
+        ///     Get SpecificEnergy in WattDaysPerKilogram.
+        /// </summary>
+        public double WattDaysPerKilogram => As(SpecificEnergyUnit.WattDayPerKilogram);
+
+        /// <summary>
+        ///     Get SpecificEnergy in WattDaysPerShortTon.
+        /// </summary>
+        public double WattDaysPerShortTon => As(SpecificEnergyUnit.WattDayPerShortTon);
+
+        /// <summary>
+        ///     Get SpecificEnergy in WattDaysPerTonne.
+        /// </summary>
+        public double WattDaysPerTonne => As(SpecificEnergyUnit.WattDayPerTonne);
 
         /// <summary>
         ///     Get SpecificEnergy in WattHoursPerKilogram.
@@ -239,7 +340,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static string GetAbbreviation(SpecificEnergyUnit unit, [CanBeNull] IFormatProvider provider)
+        public static string GetAbbreviation(SpecificEnergyUnit unit, IFormatProvider? provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
@@ -265,6 +366,42 @@ namespace UnitsNet
         {
             double value = (double) caloriespergram;
             return new SpecificEnergy(value, SpecificEnergyUnit.CaloriePerGram);
+        }
+        /// <summary>
+        ///     Get SpecificEnergy from GigawattDaysPerKilogram.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificEnergy FromGigawattDaysPerKilogram(QuantityValue gigawattdaysperkilogram)
+        {
+            double value = (double) gigawattdaysperkilogram;
+            return new SpecificEnergy(value, SpecificEnergyUnit.GigawattDayPerKilogram);
+        }
+        /// <summary>
+        ///     Get SpecificEnergy from GigawattDaysPerShortTon.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificEnergy FromGigawattDaysPerShortTon(QuantityValue gigawattdayspershortton)
+        {
+            double value = (double) gigawattdayspershortton;
+            return new SpecificEnergy(value, SpecificEnergyUnit.GigawattDayPerShortTon);
+        }
+        /// <summary>
+        ///     Get SpecificEnergy from GigawattDaysPerTonne.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificEnergy FromGigawattDaysPerTonne(QuantityValue gigawattdayspertonne)
+        {
+            double value = (double) gigawattdayspertonne;
+            return new SpecificEnergy(value, SpecificEnergyUnit.GigawattDayPerTonne);
+        }
+        /// <summary>
+        ///     Get SpecificEnergy from GigawattHoursPerKilogram.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificEnergy FromGigawattHoursPerKilogram(QuantityValue gigawatthoursperkilogram)
+        {
+            double value = (double) gigawatthoursperkilogram;
+            return new SpecificEnergy(value, SpecificEnergyUnit.GigawattHourPerKilogram);
         }
         /// <summary>
         ///     Get SpecificEnergy from JoulesPerKilogram.
@@ -294,6 +431,33 @@ namespace UnitsNet
             return new SpecificEnergy(value, SpecificEnergyUnit.KilojoulePerKilogram);
         }
         /// <summary>
+        ///     Get SpecificEnergy from KilowattDaysPerKilogram.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificEnergy FromKilowattDaysPerKilogram(QuantityValue kilowattdaysperkilogram)
+        {
+            double value = (double) kilowattdaysperkilogram;
+            return new SpecificEnergy(value, SpecificEnergyUnit.KilowattDayPerKilogram);
+        }
+        /// <summary>
+        ///     Get SpecificEnergy from KilowattDaysPerShortTon.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificEnergy FromKilowattDaysPerShortTon(QuantityValue kilowattdayspershortton)
+        {
+            double value = (double) kilowattdayspershortton;
+            return new SpecificEnergy(value, SpecificEnergyUnit.KilowattDayPerShortTon);
+        }
+        /// <summary>
+        ///     Get SpecificEnergy from KilowattDaysPerTonne.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificEnergy FromKilowattDaysPerTonne(QuantityValue kilowattdayspertonne)
+        {
+            double value = (double) kilowattdayspertonne;
+            return new SpecificEnergy(value, SpecificEnergyUnit.KilowattDayPerTonne);
+        }
+        /// <summary>
         ///     Get SpecificEnergy from KilowattHoursPerKilogram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -312,6 +476,33 @@ namespace UnitsNet
             return new SpecificEnergy(value, SpecificEnergyUnit.MegajoulePerKilogram);
         }
         /// <summary>
+        ///     Get SpecificEnergy from MegawattDaysPerKilogram.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificEnergy FromMegawattDaysPerKilogram(QuantityValue megawattdaysperkilogram)
+        {
+            double value = (double) megawattdaysperkilogram;
+            return new SpecificEnergy(value, SpecificEnergyUnit.MegawattDayPerKilogram);
+        }
+        /// <summary>
+        ///     Get SpecificEnergy from MegawattDaysPerShortTon.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificEnergy FromMegawattDaysPerShortTon(QuantityValue megawattdayspershortton)
+        {
+            double value = (double) megawattdayspershortton;
+            return new SpecificEnergy(value, SpecificEnergyUnit.MegawattDayPerShortTon);
+        }
+        /// <summary>
+        ///     Get SpecificEnergy from MegawattDaysPerTonne.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificEnergy FromMegawattDaysPerTonne(QuantityValue megawattdayspertonne)
+        {
+            double value = (double) megawattdayspertonne;
+            return new SpecificEnergy(value, SpecificEnergyUnit.MegawattDayPerTonne);
+        }
+        /// <summary>
         ///     Get SpecificEnergy from MegawattHoursPerKilogram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -319,6 +510,60 @@ namespace UnitsNet
         {
             double value = (double) megawatthoursperkilogram;
             return new SpecificEnergy(value, SpecificEnergyUnit.MegawattHourPerKilogram);
+        }
+        /// <summary>
+        ///     Get SpecificEnergy from TerawattDaysPerKilogram.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificEnergy FromTerawattDaysPerKilogram(QuantityValue terawattdaysperkilogram)
+        {
+            double value = (double) terawattdaysperkilogram;
+            return new SpecificEnergy(value, SpecificEnergyUnit.TerawattDayPerKilogram);
+        }
+        /// <summary>
+        ///     Get SpecificEnergy from TerawattDaysPerShortTon.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificEnergy FromTerawattDaysPerShortTon(QuantityValue terawattdayspershortton)
+        {
+            double value = (double) terawattdayspershortton;
+            return new SpecificEnergy(value, SpecificEnergyUnit.TerawattDayPerShortTon);
+        }
+        /// <summary>
+        ///     Get SpecificEnergy from TerawattDaysPerTonne.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificEnergy FromTerawattDaysPerTonne(QuantityValue terawattdayspertonne)
+        {
+            double value = (double) terawattdayspertonne;
+            return new SpecificEnergy(value, SpecificEnergyUnit.TerawattDayPerTonne);
+        }
+        /// <summary>
+        ///     Get SpecificEnergy from WattDaysPerKilogram.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificEnergy FromWattDaysPerKilogram(QuantityValue wattdaysperkilogram)
+        {
+            double value = (double) wattdaysperkilogram;
+            return new SpecificEnergy(value, SpecificEnergyUnit.WattDayPerKilogram);
+        }
+        /// <summary>
+        ///     Get SpecificEnergy from WattDaysPerShortTon.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificEnergy FromWattDaysPerShortTon(QuantityValue wattdayspershortton)
+        {
+            double value = (double) wattdayspershortton;
+            return new SpecificEnergy(value, SpecificEnergyUnit.WattDayPerShortTon);
+        }
+        /// <summary>
+        ///     Get SpecificEnergy from WattDaysPerTonne.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificEnergy FromWattDaysPerTonne(QuantityValue wattdayspertonne)
+        {
+            double value = (double) wattdayspertonne;
+            return new SpecificEnergy(value, SpecificEnergyUnit.WattDayPerTonne);
         }
         /// <summary>
         ///     Get SpecificEnergy from WattHoursPerKilogram.
@@ -395,7 +640,7 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static SpecificEnergy Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static SpecificEnergy Parse(string str, IFormatProvider? provider)
         {
             return QuantityParser.Default.Parse<SpecificEnergy, SpecificEnergyUnit>(
                 str,
@@ -411,7 +656,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out SpecificEnergy result)
+        public static bool TryParse(string? str, out SpecificEnergy result)
         {
             return TryParse(str, null, out result);
         }
@@ -426,7 +671,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out SpecificEnergy result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out SpecificEnergy result)
         {
             return QuantityParser.Default.TryParse<SpecificEnergy, SpecificEnergyUnit>(
                 str,
@@ -459,7 +704,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static SpecificEnergyUnit ParseUnit(string str, [CanBeNull] IFormatProvider provider)
+        public static SpecificEnergyUnit ParseUnit(string str, IFormatProvider? provider)
         {
             return UnitParser.Default.Parse<SpecificEnergyUnit>(str, provider);
         }
@@ -480,7 +725,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider provider, out SpecificEnergyUnit unit)
+        public static bool TryParseUnit(string str, IFormatProvider? provider, out SpecificEnergyUnit unit)
         {
             return UnitParser.Default.TryParse<SpecificEnergyUnit>(str, provider, out unit);
         }
@@ -662,7 +907,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current SpecificEnergy.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -685,7 +930,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -728,7 +973,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public SpecificEnergy ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -760,12 +1005,28 @@ namespace UnitsNet
             {
                 case SpecificEnergyUnit.BtuPerPound: return _value*2326.000075362;
                 case SpecificEnergyUnit.CaloriePerGram: return _value*4.184e3;
+                case SpecificEnergyUnit.GigawattDayPerKilogram: return (_value*(24*3.6e3)) * 1e9d;
+                case SpecificEnergyUnit.GigawattDayPerShortTon: return (_value*((24*3.6e3)/9.0718474e2)) * 1e9d;
+                case SpecificEnergyUnit.GigawattDayPerTonne: return (_value*((24*3.6e3)/1e3)) * 1e9d;
+                case SpecificEnergyUnit.GigawattHourPerKilogram: return (_value*3.6e3) * 1e9d;
                 case SpecificEnergyUnit.JoulePerKilogram: return _value;
                 case SpecificEnergyUnit.KilocaloriePerGram: return (_value*4.184e3) * 1e3d;
                 case SpecificEnergyUnit.KilojoulePerKilogram: return (_value) * 1e3d;
+                case SpecificEnergyUnit.KilowattDayPerKilogram: return (_value*(24*3.6e3)) * 1e3d;
+                case SpecificEnergyUnit.KilowattDayPerShortTon: return (_value*((24*3.6e3)/9.0718474e2)) * 1e3d;
+                case SpecificEnergyUnit.KilowattDayPerTonne: return (_value*((24*3.6e3)/1e3)) * 1e3d;
                 case SpecificEnergyUnit.KilowattHourPerKilogram: return (_value*3.6e3) * 1e3d;
                 case SpecificEnergyUnit.MegajoulePerKilogram: return (_value) * 1e6d;
+                case SpecificEnergyUnit.MegawattDayPerKilogram: return (_value*(24*3.6e3)) * 1e6d;
+                case SpecificEnergyUnit.MegawattDayPerShortTon: return (_value*((24*3.6e3)/9.0718474e2)) * 1e6d;
+                case SpecificEnergyUnit.MegawattDayPerTonne: return (_value*((24*3.6e3)/1e3)) * 1e6d;
                 case SpecificEnergyUnit.MegawattHourPerKilogram: return (_value*3.6e3) * 1e6d;
+                case SpecificEnergyUnit.TerawattDayPerKilogram: return (_value*(24*3.6e3)) * 1e12d;
+                case SpecificEnergyUnit.TerawattDayPerShortTon: return (_value*((24*3.6e3)/9.0718474e2)) * 1e12d;
+                case SpecificEnergyUnit.TerawattDayPerTonne: return (_value*((24*3.6e3)/1e3)) * 1e12d;
+                case SpecificEnergyUnit.WattDayPerKilogram: return _value*(24*3.6e3);
+                case SpecificEnergyUnit.WattDayPerShortTon: return _value*((24*3.6e3)/9.0718474e2);
+                case SpecificEnergyUnit.WattDayPerTonne: return _value*((24*3.6e3)/1e3);
                 case SpecificEnergyUnit.WattHourPerKilogram: return _value*3.6e3;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -794,12 +1055,28 @@ namespace UnitsNet
             {
                 case SpecificEnergyUnit.BtuPerPound: return baseUnitValue/2326.000075362;
                 case SpecificEnergyUnit.CaloriePerGram: return baseUnitValue/4.184e3;
+                case SpecificEnergyUnit.GigawattDayPerKilogram: return (baseUnitValue/(24*3.6e3)) / 1e9d;
+                case SpecificEnergyUnit.GigawattDayPerShortTon: return (baseUnitValue/((24*3.6e3)/9.0718474e2)) / 1e9d;
+                case SpecificEnergyUnit.GigawattDayPerTonne: return (baseUnitValue/((24*3.6e3)/1e3)) / 1e9d;
+                case SpecificEnergyUnit.GigawattHourPerKilogram: return (baseUnitValue/3.6e3) / 1e9d;
                 case SpecificEnergyUnit.JoulePerKilogram: return baseUnitValue;
                 case SpecificEnergyUnit.KilocaloriePerGram: return (baseUnitValue/4.184e3) / 1e3d;
                 case SpecificEnergyUnit.KilojoulePerKilogram: return (baseUnitValue) / 1e3d;
+                case SpecificEnergyUnit.KilowattDayPerKilogram: return (baseUnitValue/(24*3.6e3)) / 1e3d;
+                case SpecificEnergyUnit.KilowattDayPerShortTon: return (baseUnitValue/((24*3.6e3)/9.0718474e2)) / 1e3d;
+                case SpecificEnergyUnit.KilowattDayPerTonne: return (baseUnitValue/((24*3.6e3)/1e3)) / 1e3d;
                 case SpecificEnergyUnit.KilowattHourPerKilogram: return (baseUnitValue/3.6e3) / 1e3d;
                 case SpecificEnergyUnit.MegajoulePerKilogram: return (baseUnitValue) / 1e6d;
+                case SpecificEnergyUnit.MegawattDayPerKilogram: return (baseUnitValue/(24*3.6e3)) / 1e6d;
+                case SpecificEnergyUnit.MegawattDayPerShortTon: return (baseUnitValue/((24*3.6e3)/9.0718474e2)) / 1e6d;
+                case SpecificEnergyUnit.MegawattDayPerTonne: return (baseUnitValue/((24*3.6e3)/1e3)) / 1e6d;
                 case SpecificEnergyUnit.MegawattHourPerKilogram: return (baseUnitValue/3.6e3) / 1e6d;
+                case SpecificEnergyUnit.TerawattDayPerKilogram: return (baseUnitValue/(24*3.6e3)) / 1e12d;
+                case SpecificEnergyUnit.TerawattDayPerShortTon: return (baseUnitValue/((24*3.6e3)/9.0718474e2)) / 1e12d;
+                case SpecificEnergyUnit.TerawattDayPerTonne: return (baseUnitValue/((24*3.6e3)/1e3)) / 1e12d;
+                case SpecificEnergyUnit.WattDayPerKilogram: return baseUnitValue/(24*3.6e3);
+                case SpecificEnergyUnit.WattDayPerShortTon: return baseUnitValue/((24*3.6e3)/9.0718474e2);
+                case SpecificEnergyUnit.WattDayPerTonne: return baseUnitValue/((24*3.6e3)/1e3);
                 case SpecificEnergyUnit.WattHourPerKilogram: return baseUnitValue/3.6e3;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
@@ -824,7 +1101,7 @@ namespace UnitsNet
         /// </summary>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public string ToString([CanBeNull] IFormatProvider provider)
+        public string ToString(IFormatProvider? provider)
         {
             return ToString("g", provider);
         }
@@ -836,7 +1113,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
-        public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
+        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
         {
             var value = Convert.ToDouble(Value);
             var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
@@ -851,7 +1128,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
-        public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
+        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
@@ -879,11 +1156,11 @@ namespace UnitsNet
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
         /// </summary>
         /// <param name="format">The format string.</param>
-        /// <param name="formatProvider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>The string representation.</returns>
-        public string ToString(string format, IFormatProvider formatProvider)
+        public string ToString(string format, IFormatProvider? provider)
         {
-            return QuantityFormatter.Format<SpecificEnergyUnit>(this, format, formatProvider);
+            return QuantityFormatter.Format<SpecificEnergyUnit>(this, format, provider);
         }
 
         #endregion
@@ -963,6 +1240,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return SpecificEnergy.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return SpecificEnergy.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return SpecificEnergy.BaseDimensions;
             else

@@ -31,6 +31,7 @@ namespace UnitsNet.Units
         KilogramForce,
         Kilonewton,
         KiloPond,
+        KilopoundForce,
         Meganewton,
         Micronewton,
         Millinewton,
@@ -38,6 +39,12 @@ namespace UnitsNet.Units
         OunceForce,
         Poundal,
         PoundForce,
+
+        /// <summary>
+        ///     The short ton-force is a unit of force equal to 2,000 pounds-force (907.18474 kgf), that is most commonly used in the United States – known there simply as the ton or US ton.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Ton-force#Short_ton-force</remarks>
+        ShortTonForce,
         TonneForce,
     }
 

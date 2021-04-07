@@ -27,12 +27,14 @@ namespace UnitsNet.Units
     {
         Undefined = 0,
         BeatPerMinute,
+        BUnit,
         CyclePerHour,
         CyclePerMinute,
         Gigahertz,
         Hertz,
         Kilohertz,
         Megahertz,
+        PerSecond,
         RadianPerSecond,
         Terahertz,
     }

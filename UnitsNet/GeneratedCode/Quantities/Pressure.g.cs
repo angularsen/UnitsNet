@@ -24,6 +24,8 @@ using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
+#nullable enable
+
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -48,7 +50,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-1, 1, -2, 0, 0, 0, 0);
 
-            Info = new QuantityInfo<PressureUnit>(QuantityType.Pressure,
+            Info = new QuantityInfo<PressureUnit>("Pressure",
                 new UnitInfo<PressureUnit>[] {
                     new UnitInfo<PressureUnit>(PressureUnit.Atmosphere, BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.Bar, BaseUnits.Undefined),
@@ -56,6 +58,7 @@ namespace UnitsNet
                     new UnitInfo<PressureUnit>(PressureUnit.Decapascal, BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.Decibar, BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.DynePerSquareCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.FootOfElevation, BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.FootOfHead, BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.Gigapascal, BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.Hectopascal, BaseUnits.Undefined),
@@ -74,6 +77,7 @@ namespace UnitsNet
                     new UnitInfo<PressureUnit>(PressureUnit.Megabar, BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.MeganewtonPerSquareMeter, BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.Megapascal, BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.MeterOfElevation, BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.MeterOfHead, BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.Microbar, BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.Micropascal, BaseUnits.Undefined),
@@ -93,7 +97,7 @@ namespace UnitsNet
                     new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareMillimeter, BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.Torr, BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Pressure);
         }
 
         /// <summary>
@@ -121,7 +125,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Pressure(double value, UnitSystem unitSystem)
         {
-            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -148,16 +152,19 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of Pressure
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static Pressure MaxValue { get; } = new Pressure(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Pressure
         /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
         public static Pressure MinValue { get; } = new Pressure(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.Pressure;
 
         /// <summary>
@@ -233,6 +240,11 @@ namespace UnitsNet
         ///     Get Pressure in DynesPerSquareCentimeter.
         /// </summary>
         public double DynesPerSquareCentimeter => As(PressureUnit.DynePerSquareCentimeter);
+
+        /// <summary>
+        ///     Get Pressure in FeetOfElevation.
+        /// </summary>
+        public double FeetOfElevation => As(PressureUnit.FootOfElevation);
 
         /// <summary>
         ///     Get Pressure in FeetOfHead.
@@ -323,6 +335,11 @@ namespace UnitsNet
         ///     Get Pressure in Megapascals.
         /// </summary>
         public double Megapascals => As(PressureUnit.Megapascal);
+
+        /// <summary>
+        ///     Get Pressure in MetersOfElevation.
+        /// </summary>
+        public double MetersOfElevation => As(PressureUnit.MeterOfElevation);
 
         /// <summary>
         ///     Get Pressure in MetersOfHead.
@@ -434,7 +451,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static string GetAbbreviation(PressureUnit unit, [CanBeNull] IFormatProvider provider)
+        public static string GetAbbreviation(PressureUnit unit, IFormatProvider? provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
@@ -496,6 +513,15 @@ namespace UnitsNet
         {
             double value = (double) dynespersquarecentimeter;
             return new Pressure(value, PressureUnit.DynePerSquareCentimeter);
+        }
+        /// <summary>
+        ///     Get Pressure from FeetOfElevation.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Pressure FromFeetOfElevation(QuantityValue feetofelevation)
+        {
+            double value = (double) feetofelevation;
+            return new Pressure(value, PressureUnit.FootOfElevation);
         }
         /// <summary>
         ///     Get Pressure from FeetOfHead.
@@ -658,6 +684,15 @@ namespace UnitsNet
         {
             double value = (double) megapascals;
             return new Pressure(value, PressureUnit.Megapascal);
+        }
+        /// <summary>
+        ///     Get Pressure from MetersOfElevation.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Pressure FromMetersOfElevation(QuantityValue metersofelevation)
+        {
+            double value = (double) metersofelevation;
+            return new Pressure(value, PressureUnit.MeterOfElevation);
         }
         /// <summary>
         ///     Get Pressure from MetersOfHead.
@@ -887,7 +922,7 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static Pressure Parse(string str, [CanBeNull] IFormatProvider provider)
+        public static Pressure Parse(string str, IFormatProvider? provider)
         {
             return QuantityParser.Default.Parse<Pressure, PressureUnit>(
                 str,
@@ -903,7 +938,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out Pressure result)
+        public static bool TryParse(string? str, out Pressure result)
         {
             return TryParse(str, null, out result);
         }
@@ -918,7 +953,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Pressure result)
+        public static bool TryParse(string? str, IFormatProvider? provider, out Pressure result)
         {
             return QuantityParser.Default.TryParse<Pressure, PressureUnit>(
                 str,
@@ -951,7 +986,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static PressureUnit ParseUnit(string str, [CanBeNull] IFormatProvider provider)
+        public static PressureUnit ParseUnit(string str, IFormatProvider? provider)
         {
             return UnitParser.Default.Parse<PressureUnit>(str, provider);
         }
@@ -972,7 +1007,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider provider, out PressureUnit unit)
+        public static bool TryParseUnit(string str, IFormatProvider? provider, out PressureUnit unit)
         {
             return UnitParser.Default.TryParse<PressureUnit>(str, provider, out unit);
         }
@@ -1154,7 +1189,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Pressure.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1177,7 +1212,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -1220,7 +1255,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public Pressure ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem == null)
+            if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
@@ -1256,6 +1291,7 @@ namespace UnitsNet
                 case PressureUnit.Decapascal: return (_value) * 1e1d;
                 case PressureUnit.Decibar: return (_value*1e5) * 1e-1d;
                 case PressureUnit.DynePerSquareCentimeter: return _value*1.0e-1;
+                case PressureUnit.FootOfElevation: return Math.Pow(1.0 - (_value / 145366.45), 5.2553026003237266401799415610351) * 101325.0;
                 case PressureUnit.FootOfHead: return _value*2989.0669;
                 case PressureUnit.Gigapascal: return (_value) * 1e9d;
                 case PressureUnit.Hectopascal: return (_value) * 1e2d;
@@ -1274,6 +1310,7 @@ namespace UnitsNet
                 case PressureUnit.Megabar: return (_value*1e5) * 1e6d;
                 case PressureUnit.MeganewtonPerSquareMeter: return (_value) * 1e6d;
                 case PressureUnit.Megapascal: return (_value) * 1e6d;
+                case PressureUnit.MeterOfElevation: return Math.Pow(1.0 - (_value / 44307.69396), 5.2553026003237266401799415610351) * 101325.0;
                 case PressureUnit.MeterOfHead: return _value*9804.139432;
                 case PressureUnit.Microbar: return (_value*1e5) * 1e-6d;
                 case PressureUnit.Micropascal: return (_value) * 1e-6d;
@@ -1323,6 +1360,7 @@ namespace UnitsNet
                 case PressureUnit.Decapascal: return (baseUnitValue) / 1e1d;
                 case PressureUnit.Decibar: return (baseUnitValue/1e5) / 1e-1d;
                 case PressureUnit.DynePerSquareCentimeter: return baseUnitValue/1.0e-1;
+                case PressureUnit.FootOfElevation: return (1.0 - Math.Pow(baseUnitValue / 101325.0, 0.190284)) * 145366.45;
                 case PressureUnit.FootOfHead: return baseUnitValue*0.000334552565551;
                 case PressureUnit.Gigapascal: return (baseUnitValue) / 1e9d;
                 case PressureUnit.Hectopascal: return (baseUnitValue) / 1e2d;
@@ -1341,6 +1379,7 @@ namespace UnitsNet
                 case PressureUnit.Megabar: return (baseUnitValue/1e5) / 1e6d;
                 case PressureUnit.MeganewtonPerSquareMeter: return (baseUnitValue) / 1e6d;
                 case PressureUnit.Megapascal: return (baseUnitValue) / 1e6d;
+                case PressureUnit.MeterOfElevation: return (1.0 - Math.Pow(baseUnitValue / 101325.0, 0.190284)) * 44307.69396;
                 case PressureUnit.MeterOfHead: return baseUnitValue*0.0001019977334;
                 case PressureUnit.Microbar: return (baseUnitValue/1e5) / 1e-6d;
                 case PressureUnit.Micropascal: return (baseUnitValue) / 1e-6d;
@@ -1382,7 +1421,7 @@ namespace UnitsNet
         /// </summary>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        public string ToString([CanBeNull] IFormatProvider provider)
+        public string ToString(IFormatProvider? provider)
         {
             return ToString("g", provider);
         }
@@ -1394,7 +1433,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
-        public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
+        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
         {
             var value = Convert.ToDouble(Value);
             var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
@@ -1409,7 +1448,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
-        public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
+        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
@@ -1437,11 +1476,11 @@ namespace UnitsNet
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
         /// </summary>
         /// <param name="format">The format string.</param>
-        /// <param name="formatProvider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>The string representation.</returns>
-        public string ToString(string format, IFormatProvider formatProvider)
+        public string ToString(string format, IFormatProvider? provider)
         {
-            return QuantityFormatter.Format<PressureUnit>(this, format, formatProvider);
+            return QuantityFormatter.Format<PressureUnit>(this, format, provider);
         }
 
         #endregion
@@ -1521,6 +1560,8 @@ namespace UnitsNet
                 return Unit;
             else if(conversionType == typeof(QuantityType))
                 return Pressure.QuantityType;
+            else if(conversionType == typeof(QuantityInfo))
+                return Pressure.Info;
             else if(conversionType == typeof(BaseDimensions))
                 return Pressure.BaseDimensions;
             else

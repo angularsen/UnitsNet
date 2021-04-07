@@ -27,6 +27,8 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class AreaDensityTests : AreaDensityTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
+
         protected override double KilogramsPerSquareMeterInOneKilogramPerSquareMeter => 1;
     }
 }

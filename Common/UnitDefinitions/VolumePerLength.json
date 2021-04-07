@@ -3,7 +3,7 @@
   "BaseUnit": "CubicMeterPerMeter",
   "XmlDoc": "Volume, typically of fluid, that a container can hold within a unit of length.",
   "BaseDimensions": {
-    "L": 3
+    "L": 2
   },
   "Units": [
     {
@@ -35,6 +35,32 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "l/m" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "LiterPerKilometer",
+      "PluralName": "LitersPerKilometer",
+      "FromUnitToBaseFunc": "x/1e6",
+      "FromBaseToUnitFunc": "x*1e6",
+      "Prefixes": [],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "l/km" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "LiterPerMillimeter",
+      "PluralName": "LitersPerMillimeter",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "l/mm" ]
         }
       ]
     },

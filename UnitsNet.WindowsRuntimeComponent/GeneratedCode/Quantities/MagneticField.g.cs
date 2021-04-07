@@ -159,6 +159,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get MagneticField in Gausses.
+        /// </summary>
+        public double Gausses => As(MagneticFieldUnit.Gauss);
+
+        /// <summary>
         ///     Get MagneticField in Microteslas.
         /// </summary>
         public double Microteslas => As(MagneticFieldUnit.Microtesla);
@@ -208,6 +213,16 @@ namespace UnitsNet
 
         #region Static Factory Methods
 
+        /// <summary>
+        ///     Get MagneticField from Gausses.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MagneticField FromGausses(double gausses)
+        {
+            double value = (double) gausses;
+            return new MagneticField(value, MagneticFieldUnit.Gauss);
+        }
         /// <summary>
         ///     Get MagneticField from Microteslas.
         /// </summary>
@@ -539,6 +554,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case MagneticFieldUnit.Gauss: return _value/1e4;
                 case MagneticFieldUnit.Microtesla: return (_value) * 1e-6d;
                 case MagneticFieldUnit.Millitesla: return (_value) * 1e-3d;
                 case MagneticFieldUnit.Nanotesla: return (_value) * 1e-9d;
@@ -557,6 +573,7 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case MagneticFieldUnit.Gauss: return baseUnitValue*1e4;
                 case MagneticFieldUnit.Microtesla: return (baseUnitValue) / 1e-6d;
                 case MagneticFieldUnit.Millitesla: return (baseUnitValue) / 1e-3d;
                 case MagneticFieldUnit.Nanotesla: return (baseUnitValue) / 1e-9d;

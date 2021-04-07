@@ -21,6 +21,10 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "m/s²" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "м/с²" ]
         }
       ]
     },
@@ -37,6 +41,10 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "in/s²" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "дюйм/с²" ]
         }
       ]
     },
@@ -53,6 +61,10 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "ft/s²" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "фут/с²" ]
         }
       ]
     },
@@ -69,6 +81,10 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "kn/s" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "узел/с" ]
         }
       ]
     },
@@ -85,6 +101,10 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "kn/min" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "узел/мин" ]
         }
       ]
     },
@@ -101,6 +121,10 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "kn/h" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "узел/час" ]
         }
       ]
     },
@@ -113,9 +137,14 @@
       },
       "FromUnitToBaseFunc": "x*9.80665",
       "FromBaseToUnitFunc": "x/9.80665",
+      "Prefixes": [ "Milli"],
       "Localization": [
         {
           "Culture": "en-US",
+          "Abbreviations": [ "g" ]
+        },
+        {
+          "Culture": "ru-RU",
           "Abbreviations": [ "g" ]
         }
       ]

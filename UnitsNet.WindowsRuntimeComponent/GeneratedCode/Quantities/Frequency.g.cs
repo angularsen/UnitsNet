@@ -161,6 +161,11 @@ namespace UnitsNet
         public double BeatsPerMinute => As(FrequencyUnit.BeatPerMinute);
 
         /// <summary>
+        ///     Get Frequency in BUnits.
+        /// </summary>
+        public double BUnits => As(FrequencyUnit.BUnit);
+
+        /// <summary>
         ///     Get Frequency in CyclesPerHour.
         /// </summary>
         public double CyclesPerHour => As(FrequencyUnit.CyclePerHour);
@@ -189,6 +194,11 @@ namespace UnitsNet
         ///     Get Frequency in Megahertz.
         /// </summary>
         public double Megahertz => As(FrequencyUnit.Megahertz);
+
+        /// <summary>
+        ///     Get Frequency in PerSecond.
+        /// </summary>
+        public double PerSecond => As(FrequencyUnit.PerSecond);
 
         /// <summary>
         ///     Get Frequency in RadiansPerSecond.
@@ -239,6 +249,16 @@ namespace UnitsNet
         {
             double value = (double) beatsperminute;
             return new Frequency(value, FrequencyUnit.BeatPerMinute);
+        }
+        /// <summary>
+        ///     Get Frequency from BUnits.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Frequency FromBUnits(double bunits)
+        {
+            double value = (double) bunits;
+            return new Frequency(value, FrequencyUnit.BUnit);
         }
         /// <summary>
         ///     Get Frequency from CyclesPerHour.
@@ -299,6 +319,16 @@ namespace UnitsNet
         {
             double value = (double) megahertz;
             return new Frequency(value, FrequencyUnit.Megahertz);
+        }
+        /// <summary>
+        ///     Get Frequency from PerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Frequency FromPerSecond(double persecond)
+        {
+            double value = (double) persecond;
+            return new Frequency(value, FrequencyUnit.PerSecond);
         }
         /// <summary>
         ///     Get Frequency from RadiansPerSecond.
@@ -612,12 +642,14 @@ namespace UnitsNet
             switch(Unit)
             {
                 case FrequencyUnit.BeatPerMinute: return _value/60;
+                case FrequencyUnit.BUnit: return Math.Sqrt(_value * 1e3);
                 case FrequencyUnit.CyclePerHour: return _value/3600;
                 case FrequencyUnit.CyclePerMinute: return _value/60;
                 case FrequencyUnit.Gigahertz: return (_value) * 1e9d;
                 case FrequencyUnit.Hertz: return _value;
                 case FrequencyUnit.Kilohertz: return (_value) * 1e3d;
                 case FrequencyUnit.Megahertz: return (_value) * 1e6d;
+                case FrequencyUnit.PerSecond: return _value;
                 case FrequencyUnit.RadianPerSecond: return _value/6.2831853072;
                 case FrequencyUnit.Terahertz: return (_value) * 1e12d;
                 default:
@@ -635,12 +667,14 @@ namespace UnitsNet
             switch(unit)
             {
                 case FrequencyUnit.BeatPerMinute: return baseUnitValue*60;
+                case FrequencyUnit.BUnit: return baseUnitValue * baseUnitValue * 1e-3;
                 case FrequencyUnit.CyclePerHour: return baseUnitValue*3600;
                 case FrequencyUnit.CyclePerMinute: return baseUnitValue*60;
                 case FrequencyUnit.Gigahertz: return (baseUnitValue) / 1e9d;
                 case FrequencyUnit.Hertz: return baseUnitValue;
                 case FrequencyUnit.Kilohertz: return (baseUnitValue) / 1e3d;
                 case FrequencyUnit.Megahertz: return (baseUnitValue) / 1e6d;
+                case FrequencyUnit.PerSecond: return baseUnitValue;
                 case FrequencyUnit.RadianPerSecond: return baseUnitValue*6.2831853072;
                 case FrequencyUnit.Terahertz: return (baseUnitValue) / 1e12d;
                 default:

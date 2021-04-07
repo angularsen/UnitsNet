@@ -10,6 +10,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class PressureTests : PressureTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
         protected override double AtmospheresInOnePascal => 9.8692 * 1E-6;
 
         protected override double BarsInOnePascal => 1E-5;
@@ -92,6 +93,10 @@ namespace UnitsNet.Tests.CustomCode
         protected override double PoundsPerInchSecondSquaredInOnePascal => 5.599741459495891e-2;
 
         protected override double MillipascalsInOnePascal => 1e3;
+
+        protected override double MetersOfElevationInOnePascal => 39364.9129730686;
+
+        protected override double FeetOfElevationInOnePascal => 129149.976945763;
 
         [Fact]
         public void Absolute_WithAbsolutePressureReference_IsEqual()

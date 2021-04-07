@@ -92,5 +92,19 @@ namespace UnitsNet
         {
             return Area.FromSquareMeters( power.Watts / heatFlux.WattsPerSquareMeter );
         }
+
+        /// <summary>Calculate <see cref="ElectricCurrent"/> from <see cref="Power"/> divided by <see cref="ElectricPotential"/>.</summary>
+        /// <remarks>Electric power is defined as P = U * I, so I = P / U.</remarks>
+        public static ElectricCurrent operator /(Power power, ElectricPotential potential)
+        {
+            return ElectricCurrent.FromAmperes(power.Watts / potential.Volts);
+        }
+
+        /// <summary>Calculate <see cref="ElectricPotential"/> from <see cref="Power"/> divided by <see cref="ElectricCurrent"/>.</summary>
+        /// <remarks>Electric power is defined as P = U * I, so I = P / U.</remarks>
+        public static ElectricPotential operator /(Power power, ElectricCurrent current)
+        {
+            return ElectricPotential.FromVolts(power.Watts / current.Amperes);
+        }
     }
 }

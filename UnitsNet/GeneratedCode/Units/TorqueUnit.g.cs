@@ -42,6 +42,7 @@ namespace UnitsNet.Units
         NewtonCentimeter,
         NewtonMeter,
         NewtonMillimeter,
+        PoundalFoot,
         PoundForceFoot,
         PoundForceInch,
         TonneForceCentimeter,
