@@ -14,7 +14,7 @@
       "PluralName": "Teslas",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-	    "Prefixes": [ "Nano", "Micro", "Milli" ],
+      "Prefixes": [ "Nano", "Micro", "Milli" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -27,6 +27,7 @@
       "PluralName": "Gausses",
       "FromUnitToBaseFunc": "x/1e4",
       "FromBaseToUnitFunc": "x*1e4",
+      "Prefixes": [ "Milli" ],
       "Localization": [
         {
           "Culture": "en-US",
