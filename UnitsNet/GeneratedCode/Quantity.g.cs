@@ -113,6 +113,7 @@ namespace UnitsNet
             { "PowerRatio", PowerRatio.Info },
             { "Pressure", Pressure.Info },
             { "PressureChangeRate", PressureChangeRate.Info },
+            { "Radioactivity", Radioactivity.Info },
             { "Ratio", Ratio.Info },
             { "RatioChangeRate", RatioChangeRate.Info },
             { "ReactiveEnergy", ReactiveEnergy.Info },
@@ -225,6 +226,7 @@ namespace UnitsNet
             { "PowerRatio", QuantityType.PowerRatio },
             { "Pressure", QuantityType.Pressure },
             { "PressureChangeRate", QuantityType.PressureChangeRate },
+            { "Radioactivity", QuantityType.Radioactivity },
             { "Ratio", QuantityType.Ratio },
             { "RatioChangeRate", QuantityType.RatioChangeRate },
             { "ReactiveEnergy", QuantityType.ReactiveEnergy },
@@ -419,6 +421,8 @@ namespace UnitsNet
                     return Pressure.From(value, Pressure.BaseUnit);
                 case QuantityType.PressureChangeRate:
                     return PressureChangeRate.From(value, PressureChangeRate.BaseUnit);
+                case QuantityType.Radioactivity:
+                    return Radioactivity.From(value, Radioactivity.BaseUnit);
                 case QuantityType.Ratio:
                     return Ratio.From(value, Ratio.BaseUnit);
                 case QuantityType.RatioChangeRate:
@@ -646,6 +650,8 @@ namespace UnitsNet
                     return Pressure.From(value, Pressure.BaseUnit);
                 case "PressureChangeRate":
                     return PressureChangeRate.From(value, PressureChangeRate.BaseUnit);
+                case "Radioactivity":
+                    return Radioactivity.From(value, Radioactivity.BaseUnit);
                 case "Ratio":
                     return Ratio.From(value, Ratio.BaseUnit);
                 case "RatioChangeRate":
@@ -949,6 +955,9 @@ namespace UnitsNet
                 case PressureChangeRateUnit pressureChangeRateUnit:
                     quantity = PressureChangeRate.From(value, pressureChangeRateUnit);
                     return true;
+                case RadioactivityUnit radioactivityUnit:
+                    quantity = Radioactivity.From(value, radioactivityUnit);
+                    return true;
                 case RatioUnit ratioUnit:
                     quantity = Ratio.From(value, ratioUnit);
                     return true;
@@ -1219,6 +1228,8 @@ namespace UnitsNet
                     return parser.TryParse<Pressure, PressureUnit>(quantityString, formatProvider, Pressure.From, out quantity);
                 case Type _ when quantityType == typeof(PressureChangeRate):
                     return parser.TryParse<PressureChangeRate, PressureChangeRateUnit>(quantityString, formatProvider, PressureChangeRate.From, out quantity);
+                case Type _ when quantityType == typeof(Radioactivity):
+                    return parser.TryParse<Radioactivity, RadioactivityUnit>(quantityString, formatProvider, Radioactivity.From, out quantity);
                 case Type _ when quantityType == typeof(Ratio):
                     return parser.TryParse<Ratio, RatioUnit>(quantityString, formatProvider, Ratio.From, out quantity);
                 case Type _ when quantityType == typeof(RatioChangeRate):

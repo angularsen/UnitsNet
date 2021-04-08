@@ -1,0 +1,51 @@
+{
+  "Name": "Radioactivity",
+  "BaseUnit": "Becquerel",
+  "XmlDoc": "Radioactivity is the measure of how radioactive a sample is. The SI unit is the Becquerel (Bq), the non-SI unit is the Curie (Ci)",
+  "BaseDimensions": {
+    "T": -1
+  },
+  "Units": [
+    {
+      "SingularName": "Becquerel",
+      "PluralName": "Becquerels",
+      "BaseUnits": {
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Kilo", "Mega", "Giga", "Tera" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Bq" ]
+        },
+        {
+          "Culture": "en-AU",
+          "Abbreviations": [ "Bq" ]
+        }
+        
+      ]
+    },
+    {
+      "SingularName": "Curie",
+      "PluralName": "Curies",
+      "BaseUnits": {
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "x*3.7e10",
+      "FromBaseToUnitFunc": "x/3.7e10",
+      "Prefixes": [ "micro", "milli" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Ci" ]
+        },
+        {
+          "Culture": "en-AU",
+          "Abbreviations": [ "Ci" ]
+        }
+      ]
+    }
+  ]
+}

@@ -104,6 +104,7 @@ namespace UnitsNet
         PowerRatio,
         Pressure,
         PressureChangeRate,
+        Radioactivity,
         Ratio,
         RatioChangeRate,
         ReactiveEnergy,
