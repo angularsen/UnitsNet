@@ -37,6 +37,14 @@ namespace UnitsNet.Tests
             Assert.Equal(PressureChangeRate.FromKilopascalsPerSecond(2), 2.KilopascalsPerSecond());
 
         [Fact]
+        public void NumberToKilopoundsForcePerSquareInchPerMinuteTest() =>
+            Assert.Equal(PressureChangeRate.FromKilopoundsForcePerSquareInchPerMinute(2), 2.KilopoundsForcePerSquareInchPerMinute());
+
+        [Fact]
+        public void NumberToKilopoundsForcePerSquareInchPerSecondTest() =>
+            Assert.Equal(PressureChangeRate.FromKilopoundsForcePerSquareInchPerSecond(2), 2.KilopoundsForcePerSquareInchPerSecond());
+
+        [Fact]
         public void NumberToMegapascalsPerMinuteTest() =>
             Assert.Equal(PressureChangeRate.FromMegapascalsPerMinute(2), 2.MegapascalsPerMinute());
 
@@ -45,12 +53,28 @@ namespace UnitsNet.Tests
             Assert.Equal(PressureChangeRate.FromMegapascalsPerSecond(2), 2.MegapascalsPerSecond());
 
         [Fact]
+        public void NumberToMegapoundsForcePerSquareInchPerMinuteTest() =>
+            Assert.Equal(PressureChangeRate.FromMegapoundsForcePerSquareInchPerMinute(2), 2.MegapoundsForcePerSquareInchPerMinute());
+
+        [Fact]
+        public void NumberToMegapoundsForcePerSquareInchPerSecondTest() =>
+            Assert.Equal(PressureChangeRate.FromMegapoundsForcePerSquareInchPerSecond(2), 2.MegapoundsForcePerSquareInchPerSecond());
+
+        [Fact]
         public void NumberToPascalsPerMinuteTest() =>
             Assert.Equal(PressureChangeRate.FromPascalsPerMinute(2), 2.PascalsPerMinute());
 
         [Fact]
         public void NumberToPascalsPerSecondTest() =>
             Assert.Equal(PressureChangeRate.FromPascalsPerSecond(2), 2.PascalsPerSecond());
+
+        [Fact]
+        public void NumberToPoundsForcePerSquareInchPerMinuteTest() =>
+            Assert.Equal(PressureChangeRate.FromPoundsForcePerSquareInchPerMinute(2), 2.PoundsForcePerSquareInchPerMinute());
+
+        [Fact]
+        public void NumberToPoundsForcePerSquareInchPerSecondTest() =>
+            Assert.Equal(PressureChangeRate.FromPoundsForcePerSquareInchPerSecond(2), 2.PoundsForcePerSquareInchPerSecond());
 
     }
 }

@@ -33,6 +33,34 @@
           "Abbreviations": [ "N/s" ]
         }
       ]
+    },
+	{
+      "SingularName": "PoundForcePerMinute",
+      "PluralName": "PoundsForcePerMinute",
+      "FromUnitToBaseFunc": "x*4.4482216152605095551842641431421/60",
+      "FromBaseToUnitFunc": "x/4.4482216152605095551842641431421*60",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf/min" ],
+          "AbbreviationsForPrefixes": { "Kilo": [ "kipf/min", "kip/min", "k/min" ] }
+        }
+      ]
+    },
+	{
+      "SingularName": "PoundForcePerSecond",
+      "PluralName": "PoundsForcePerSecond",
+      "FromUnitToBaseFunc": "x*4.4482216152605095551842641431421",
+      "FromBaseToUnitFunc": "x/4.4482216152605095551842641431421",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf/s" ],
+          "AbbreviationsForPrefixes": { "Kilo": [ "kipf/s", "kip/s", "k/s" ] }
+        }
+      ]
     }
   ]
 }

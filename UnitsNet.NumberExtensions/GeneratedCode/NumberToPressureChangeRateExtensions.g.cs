@@ -40,6 +40,14 @@ namespace UnitsNet.NumberExtensions.NumberToPressureChangeRate
         public static PressureChangeRate KilopascalsPerSecond<T>(this T value) =>
             PressureChangeRate.FromKilopascalsPerSecond(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="PressureChangeRate.FromKilopoundsForcePerSquareInchPerMinute(UnitsNet.QuantityValue)" />
+        public static PressureChangeRate KilopoundsForcePerSquareInchPerMinute<T>(this T value) =>
+            PressureChangeRate.FromKilopoundsForcePerSquareInchPerMinute(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="PressureChangeRate.FromKilopoundsForcePerSquareInchPerSecond(UnitsNet.QuantityValue)" />
+        public static PressureChangeRate KilopoundsForcePerSquareInchPerSecond<T>(this T value) =>
+            PressureChangeRate.FromKilopoundsForcePerSquareInchPerSecond(Convert.ToDouble(value));
+
         /// <inheritdoc cref="PressureChangeRate.FromMegapascalsPerMinute(UnitsNet.QuantityValue)" />
         public static PressureChangeRate MegapascalsPerMinute<T>(this T value) =>
             PressureChangeRate.FromMegapascalsPerMinute(Convert.ToDouble(value));
@@ -48,6 +56,14 @@ namespace UnitsNet.NumberExtensions.NumberToPressureChangeRate
         public static PressureChangeRate MegapascalsPerSecond<T>(this T value) =>
             PressureChangeRate.FromMegapascalsPerSecond(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="PressureChangeRate.FromMegapoundsForcePerSquareInchPerMinute(UnitsNet.QuantityValue)" />
+        public static PressureChangeRate MegapoundsForcePerSquareInchPerMinute<T>(this T value) =>
+            PressureChangeRate.FromMegapoundsForcePerSquareInchPerMinute(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="PressureChangeRate.FromMegapoundsForcePerSquareInchPerSecond(UnitsNet.QuantityValue)" />
+        public static PressureChangeRate MegapoundsForcePerSquareInchPerSecond<T>(this T value) =>
+            PressureChangeRate.FromMegapoundsForcePerSquareInchPerSecond(Convert.ToDouble(value));
+
         /// <inheritdoc cref="PressureChangeRate.FromPascalsPerMinute(UnitsNet.QuantityValue)" />
         public static PressureChangeRate PascalsPerMinute<T>(this T value) =>
             PressureChangeRate.FromPascalsPerMinute(Convert.ToDouble(value));
@@ -55,6 +71,14 @@ namespace UnitsNet.NumberExtensions.NumberToPressureChangeRate
         /// <inheritdoc cref="PressureChangeRate.FromPascalsPerSecond(UnitsNet.QuantityValue)" />
         public static PressureChangeRate PascalsPerSecond<T>(this T value) =>
             PressureChangeRate.FromPascalsPerSecond(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="PressureChangeRate.FromPoundsForcePerSquareInchPerMinute(UnitsNet.QuantityValue)" />
+        public static PressureChangeRate PoundsForcePerSquareInchPerMinute<T>(this T value) =>
+            PressureChangeRate.FromPoundsForcePerSquareInchPerMinute(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="PressureChangeRate.FromPoundsForcePerSquareInchPerSecond(UnitsNet.QuantityValue)" />
+        public static PressureChangeRate PoundsForcePerSquareInchPerSecond<T>(this T value) =>
+            PressureChangeRate.FromPoundsForcePerSquareInchPerSecond(Convert.ToDouble(value));
 
     }
 }

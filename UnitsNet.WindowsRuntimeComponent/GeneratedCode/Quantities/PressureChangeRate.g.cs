@@ -171,6 +171,16 @@ namespace UnitsNet
         public double KilopascalsPerSecond => As(PressureChangeRateUnit.KilopascalPerSecond);
 
         /// <summary>
+        ///     Get PressureChangeRate in KilopoundsForcePerSquareInchPerMinute.
+        /// </summary>
+        public double KilopoundsForcePerSquareInchPerMinute => As(PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute);
+
+        /// <summary>
+        ///     Get PressureChangeRate in KilopoundsForcePerSquareInchPerSecond.
+        /// </summary>
+        public double KilopoundsForcePerSquareInchPerSecond => As(PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond);
+
+        /// <summary>
         ///     Get PressureChangeRate in MegapascalsPerMinute.
         /// </summary>
         public double MegapascalsPerMinute => As(PressureChangeRateUnit.MegapascalPerMinute);
@@ -181,6 +191,16 @@ namespace UnitsNet
         public double MegapascalsPerSecond => As(PressureChangeRateUnit.MegapascalPerSecond);
 
         /// <summary>
+        ///     Get PressureChangeRate in MegapoundsForcePerSquareInchPerMinute.
+        /// </summary>
+        public double MegapoundsForcePerSquareInchPerMinute => As(PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute);
+
+        /// <summary>
+        ///     Get PressureChangeRate in MegapoundsForcePerSquareInchPerSecond.
+        /// </summary>
+        public double MegapoundsForcePerSquareInchPerSecond => As(PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond);
+
+        /// <summary>
         ///     Get PressureChangeRate in PascalsPerMinute.
         /// </summary>
         public double PascalsPerMinute => As(PressureChangeRateUnit.PascalPerMinute);
@@ -189,6 +209,16 @@ namespace UnitsNet
         ///     Get PressureChangeRate in PascalsPerSecond.
         /// </summary>
         public double PascalsPerSecond => As(PressureChangeRateUnit.PascalPerSecond);
+
+        /// <summary>
+        ///     Get PressureChangeRate in PoundsForcePerSquareInchPerMinute.
+        /// </summary>
+        public double PoundsForcePerSquareInchPerMinute => As(PressureChangeRateUnit.PoundForcePerSquareInchPerMinute);
+
+        /// <summary>
+        ///     Get PressureChangeRate in PoundsForcePerSquareInchPerSecond.
+        /// </summary>
+        public double PoundsForcePerSquareInchPerSecond => As(PressureChangeRateUnit.PoundForcePerSquareInchPerSecond);
 
         #endregion
 
@@ -251,6 +281,26 @@ namespace UnitsNet
             return new PressureChangeRate(value, PressureChangeRateUnit.KilopascalPerSecond);
         }
         /// <summary>
+        ///     Get PressureChangeRate from KilopoundsForcePerSquareInchPerMinute.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static PressureChangeRate FromKilopoundsForcePerSquareInchPerMinute(double kilopoundsforcepersquareinchperminute)
+        {
+            double value = (double) kilopoundsforcepersquareinchperminute;
+            return new PressureChangeRate(value, PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute);
+        }
+        /// <summary>
+        ///     Get PressureChangeRate from KilopoundsForcePerSquareInchPerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static PressureChangeRate FromKilopoundsForcePerSquareInchPerSecond(double kilopoundsforcepersquareinchpersecond)
+        {
+            double value = (double) kilopoundsforcepersquareinchpersecond;
+            return new PressureChangeRate(value, PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond);
+        }
+        /// <summary>
         ///     Get PressureChangeRate from MegapascalsPerMinute.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -271,6 +321,26 @@ namespace UnitsNet
             return new PressureChangeRate(value, PressureChangeRateUnit.MegapascalPerSecond);
         }
         /// <summary>
+        ///     Get PressureChangeRate from MegapoundsForcePerSquareInchPerMinute.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static PressureChangeRate FromMegapoundsForcePerSquareInchPerMinute(double megapoundsforcepersquareinchperminute)
+        {
+            double value = (double) megapoundsforcepersquareinchperminute;
+            return new PressureChangeRate(value, PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute);
+        }
+        /// <summary>
+        ///     Get PressureChangeRate from MegapoundsForcePerSquareInchPerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static PressureChangeRate FromMegapoundsForcePerSquareInchPerSecond(double megapoundsforcepersquareinchpersecond)
+        {
+            double value = (double) megapoundsforcepersquareinchpersecond;
+            return new PressureChangeRate(value, PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond);
+        }
+        /// <summary>
         ///     Get PressureChangeRate from PascalsPerMinute.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -289,6 +359,26 @@ namespace UnitsNet
         {
             double value = (double) pascalspersecond;
             return new PressureChangeRate(value, PressureChangeRateUnit.PascalPerSecond);
+        }
+        /// <summary>
+        ///     Get PressureChangeRate from PoundsForcePerSquareInchPerMinute.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static PressureChangeRate FromPoundsForcePerSquareInchPerMinute(double poundsforcepersquareinchperminute)
+        {
+            double value = (double) poundsforcepersquareinchperminute;
+            return new PressureChangeRate(value, PressureChangeRateUnit.PoundForcePerSquareInchPerMinute);
+        }
+        /// <summary>
+        ///     Get PressureChangeRate from PoundsForcePerSquareInchPerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static PressureChangeRate FromPoundsForcePerSquareInchPerSecond(double poundsforcepersquareinchpersecond)
+        {
+            double value = (double) poundsforcepersquareinchpersecond;
+            return new PressureChangeRate(value, PressureChangeRateUnit.PoundForcePerSquareInchPerSecond);
         }
 
         /// <summary>
@@ -584,10 +674,16 @@ namespace UnitsNet
                 case PressureChangeRateUnit.AtmospherePerSecond: return _value * 1.01325*1e5;
                 case PressureChangeRateUnit.KilopascalPerMinute: return (_value/60) * 1e3d;
                 case PressureChangeRateUnit.KilopascalPerSecond: return (_value) * 1e3d;
+                case PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute: return (_value*6.894757293168361e3/60) * 1e3d;
+                case PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond: return (_value*6.894757293168361e3) * 1e3d;
                 case PressureChangeRateUnit.MegapascalPerMinute: return (_value/60) * 1e6d;
                 case PressureChangeRateUnit.MegapascalPerSecond: return (_value) * 1e6d;
+                case PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute: return (_value*6.894757293168361e3/60) * 1e6d;
+                case PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond: return (_value*6.894757293168361e3) * 1e6d;
                 case PressureChangeRateUnit.PascalPerMinute: return _value/60;
                 case PressureChangeRateUnit.PascalPerSecond: return _value;
+                case PressureChangeRateUnit.PoundForcePerSquareInchPerMinute: return _value*6.894757293168361e3/60;
+                case PressureChangeRateUnit.PoundForcePerSquareInchPerSecond: return _value*6.894757293168361e3;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -605,10 +701,16 @@ namespace UnitsNet
                 case PressureChangeRateUnit.AtmospherePerSecond: return baseUnitValue / (1.01325*1e5);
                 case PressureChangeRateUnit.KilopascalPerMinute: return (baseUnitValue*60) / 1e3d;
                 case PressureChangeRateUnit.KilopascalPerSecond: return (baseUnitValue) / 1e3d;
+                case PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute: return (baseUnitValue/6.894757293168361e3*60) / 1e3d;
+                case PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond: return (baseUnitValue/6.894757293168361e3) / 1e3d;
                 case PressureChangeRateUnit.MegapascalPerMinute: return (baseUnitValue*60) / 1e6d;
                 case PressureChangeRateUnit.MegapascalPerSecond: return (baseUnitValue) / 1e6d;
+                case PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute: return (baseUnitValue/6.894757293168361e3*60) / 1e6d;
+                case PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond: return (baseUnitValue/6.894757293168361e3) / 1e6d;
                 case PressureChangeRateUnit.PascalPerMinute: return baseUnitValue*60;
                 case PressureChangeRateUnit.PascalPerSecond: return baseUnitValue;
+                case PressureChangeRateUnit.PoundForcePerSquareInchPerMinute: return baseUnitValue/6.894757293168361e3*60;
+                case PressureChangeRateUnit.PoundForcePerSquareInchPerSecond: return baseUnitValue/6.894757293168361e3;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
