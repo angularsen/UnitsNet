@@ -204,12 +204,12 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "psi", "lb/in²" ],
-          "AbbreviationsForPrefixes": { "Kilo": ["kipf/in²", "ksi" ]}
+          "AbbreviationsForPrefixes": { "Kilo": [ "ksi", "kipf/in²" ]}
         },
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "psi", "lb/in²" ],
-          "AbbreviationsForPrefixes": { "Kilo": ["kipf/in²", "ksi" ]}
+          "AbbreviationsForPrefixes": { "Kilo": [ "ksi", "kipf/in²" ]}
         }
       ]
     },

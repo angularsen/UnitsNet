@@ -922,7 +922,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 kN/mm²", new Pressure(1, PressureUnit.KilonewtonPerSquareMillimeter).ToString());
                 Assert.Equal("1 kPa", new Pressure(1, PressureUnit.Kilopascal).ToString());
                 Assert.Equal("1 kipf/ft²", new Pressure(1, PressureUnit.KilopoundForcePerSquareFoot).ToString());
-                Assert.Equal("1 kipf/in²", new Pressure(1, PressureUnit.KilopoundForcePerSquareInch).ToString());
+                Assert.Equal("1 ksi", new Pressure(1, PressureUnit.KilopoundForcePerSquareInch).ToString());
                 Assert.Equal("1 Mbar", new Pressure(1, PressureUnit.Megabar).ToString());
                 Assert.Equal("1 MN/m²", new Pressure(1, PressureUnit.MeganewtonPerSquareMeter).ToString());
                 Assert.Equal("1 MPa", new Pressure(1, PressureUnit.Megapascal).ToString());
@@ -979,7 +979,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 kN/mm²", new Pressure(1, PressureUnit.KilonewtonPerSquareMillimeter).ToString(swedishCulture));
             Assert.Equal("1 kPa", new Pressure(1, PressureUnit.Kilopascal).ToString(swedishCulture));
             Assert.Equal("1 kipf/ft²", new Pressure(1, PressureUnit.KilopoundForcePerSquareFoot).ToString(swedishCulture));
-            Assert.Equal("1 kipf/in²", new Pressure(1, PressureUnit.KilopoundForcePerSquareInch).ToString(swedishCulture));
+            Assert.Equal("1 ksi", new Pressure(1, PressureUnit.KilopoundForcePerSquareInch).ToString(swedishCulture));
             Assert.Equal("1 Mbar", new Pressure(1, PressureUnit.Megabar).ToString(swedishCulture));
             Assert.Equal("1 MN/m²", new Pressure(1, PressureUnit.MeganewtonPerSquareMeter).ToString(swedishCulture));
             Assert.Equal("1 MPa", new Pressure(1, PressureUnit.Megapascal).ToString(swedishCulture));

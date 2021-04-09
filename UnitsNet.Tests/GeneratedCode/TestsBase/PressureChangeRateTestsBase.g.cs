@@ -501,8 +501,8 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 atm/s", new PressureChangeRate(1, PressureChangeRateUnit.AtmospherePerSecond).ToString());
                 Assert.Equal("1 kPa/min", new PressureChangeRate(1, PressureChangeRateUnit.KilopascalPerMinute).ToString());
                 Assert.Equal("1 kPa/s", new PressureChangeRate(1, PressureChangeRateUnit.KilopascalPerSecond).ToString());
-                Assert.Equal("1 kipf/in²/min", new PressureChangeRate(1, PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute).ToString());
-                Assert.Equal("1 kipf/in²/s", new PressureChangeRate(1, PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond).ToString());
+                Assert.Equal("1 ksi/min", new PressureChangeRate(1, PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute).ToString());
+                Assert.Equal("1 ksi/s", new PressureChangeRate(1, PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond).ToString());
                 Assert.Equal("1 MPa/min", new PressureChangeRate(1, PressureChangeRateUnit.MegapascalPerMinute).ToString());
                 Assert.Equal("1 MPa/s", new PressureChangeRate(1, PressureChangeRateUnit.MegapascalPerSecond).ToString());
                 Assert.Equal("1 Mpsi/min", new PressureChangeRate(1, PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute).ToString());
@@ -527,8 +527,8 @@ namespace UnitsNet.Tests
             Assert.Equal("1 atm/s", new PressureChangeRate(1, PressureChangeRateUnit.AtmospherePerSecond).ToString(swedishCulture));
             Assert.Equal("1 kPa/min", new PressureChangeRate(1, PressureChangeRateUnit.KilopascalPerMinute).ToString(swedishCulture));
             Assert.Equal("1 kPa/s", new PressureChangeRate(1, PressureChangeRateUnit.KilopascalPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 kipf/in²/min", new PressureChangeRate(1, PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute).ToString(swedishCulture));
-            Assert.Equal("1 kipf/in²/s", new PressureChangeRate(1, PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 ksi/min", new PressureChangeRate(1, PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 ksi/s", new PressureChangeRate(1, PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond).ToString(swedishCulture));
             Assert.Equal("1 MPa/min", new PressureChangeRate(1, PressureChangeRateUnit.MegapascalPerMinute).ToString(swedishCulture));
             Assert.Equal("1 MPa/s", new PressureChangeRate(1, PressureChangeRateUnit.MegapascalPerSecond).ToString(swedishCulture));
             Assert.Equal("1 Mpsi/min", new PressureChangeRate(1, PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute).ToString(swedishCulture));
