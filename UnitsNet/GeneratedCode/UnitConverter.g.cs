@@ -1103,6 +1103,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Gauss, MagneticField.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MagneticField>(MagneticField.BaseUnit, MagneticFieldUnit.Microtesla, q => q.ToUnit(MagneticFieldUnit.Microtesla));
             unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Microtesla, MagneticField.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<MagneticField>(MagneticField.BaseUnit, MagneticFieldUnit.Milligauss, q => q.ToUnit(MagneticFieldUnit.Milligauss));
+            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Milligauss, MagneticField.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MagneticField>(MagneticField.BaseUnit, MagneticFieldUnit.Millitesla, q => q.ToUnit(MagneticFieldUnit.Millitesla));
             unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Millitesla, MagneticField.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MagneticField>(MagneticField.BaseUnit, MagneticFieldUnit.Nanotesla, q => q.ToUnit(MagneticFieldUnit.Nanotesla));

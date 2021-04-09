@@ -28,6 +28,7 @@ namespace UnitsNet.Units
         Undefined = 0,
         Gauss,
         Microtesla,
+        Milligauss,
         Millitesla,
         Nanotesla,
         Tesla,
