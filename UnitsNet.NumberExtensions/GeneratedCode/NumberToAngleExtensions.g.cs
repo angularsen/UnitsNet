@@ -84,5 +84,9 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
         public static Angle Revolutions<T>(this T value) =>
             Angle.FromRevolutions(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Angle.FromTilt(UnitsNet.QuantityValue)" />
+        public static Angle Tilt<T>(this T value) =>
+            Angle.FromTilt(Convert.ToDouble(value));
+
     }
 }

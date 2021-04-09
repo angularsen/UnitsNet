@@ -40,6 +40,7 @@ namespace UnitsNet.Units
         Nanoradian,
         Radian,
         Revolution,
+        Tilt,
     }
 
     #pragma warning restore 1591

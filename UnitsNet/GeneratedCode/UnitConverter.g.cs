@@ -122,6 +122,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Angle>(AngleUnit.Radian, Angle.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Angle>(Angle.BaseUnit, AngleUnit.Revolution, q => q.ToUnit(AngleUnit.Revolution));
             unitConverter.SetConversionFunction<Angle>(AngleUnit.Revolution, Angle.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<Angle>(Angle.BaseUnit, AngleUnit.Tilt, q => q.ToUnit(AngleUnit.Tilt));
+            unitConverter.SetConversionFunction<Angle>(AngleUnit.Tilt, Angle.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergy.BaseUnit, ApparentEnergyUnit.KilovoltampereHour, q => q.ToUnit(ApparentEnergyUnit.KilovoltampereHour));
             unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.KilovoltampereHour, ApparentEnergy.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergy.BaseUnit, ApparentEnergyUnit.MegavoltampereHour, q => q.ToUnit(ApparentEnergyUnit.MegavoltampereHour));

@@ -102,6 +102,7 @@ namespace UnitsNet
                 ("ru-RU", typeof(AngleUnit), (int)AngleUnit.Radian, new string[]{"рад"}),
                 ("en-US", typeof(AngleUnit), (int)AngleUnit.Revolution, new string[]{"r"}),
                 ("ru-RU", typeof(AngleUnit), (int)AngleUnit.Revolution, new string[]{"r"}),
+                ("en-US", typeof(AngleUnit), (int)AngleUnit.Tilt, new string[]{"sin(θ)"}),
                 ("en-US", typeof(ApparentEnergyUnit), (int)ApparentEnergyUnit.KilovoltampereHour, new string[]{"kVAh"}),
                 ("en-US", typeof(ApparentEnergyUnit), (int)ApparentEnergyUnit.MegavoltampereHour, new string[]{"MVAh"}),
                 ("en-US", typeof(ApparentEnergyUnit), (int)ApparentEnergyUnit.VoltampereHour, new string[]{"VAh"}),
