@@ -32,11 +32,15 @@ namespace UnitsNet.Units
         DecinewtonPerSecond,
         KilonewtonPerMinute,
         KilonewtonPerSecond,
+        KilopoundForcePerMinute,
+        KilopoundForcePerSecond,
         MicronewtonPerSecond,
         MillinewtonPerSecond,
         NanonewtonPerSecond,
         NewtonPerMinute,
         NewtonPerSecond,
+        PoundForcePerMinute,
+        PoundForcePerSecond,
     }
 
     #pragma warning restore 1591

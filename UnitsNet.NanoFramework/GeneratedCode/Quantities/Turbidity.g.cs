@@ -24,9 +24,12 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     The change in ratio per unit of time.
+    ///     Turbidity is the cloudiness or haziness of a fluid caused by large numbers of individual particles that are generally invisible to the naked eye, similar to smoke in air. The measurement of turbidity is a key test of water quality.
     /// </summary>
-    public struct  RatioChangeRate
+    /// <remarks>
+    ///     https://en.wikipedia.org/wiki/Turbidity
+    /// </remarks>
+    public struct  Turbidity
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -36,7 +39,7 @@ namespace UnitsNet
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        private readonly RatioChangeRateUnit _unit;
+        private readonly TurbidityUnit _unit;
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -44,14 +47,14 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        public RatioChangeRateUnit Unit => _unit;
+        public TurbidityUnit Unit => _unit;
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public RatioChangeRate(double value, RatioChangeRateUnit unit)
+        public Turbidity(double value, TurbidityUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -60,59 +63,48 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static RatioChangeRateUnit BaseUnit { get; } = RatioChangeRateUnit.DecimalFractionPerSecond;
+        public static TurbidityUnit BaseUnit { get; } = TurbidityUnit.NTU;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static RatioChangeRate MaxValue { get; } = new RatioChangeRate(double.MaxValue, BaseUnit);
+        public static Turbidity MaxValue { get; } = new Turbidity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static RatioChangeRate MinValue { get; } = new RatioChangeRate(double.MinValue, BaseUnit);
+        public static Turbidity MinValue { get; } = new Turbidity(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static RatioChangeRate Zero { get; } = new RatioChangeRate(0, BaseUnit);
+        public static Turbidity Zero { get; } = new Turbidity(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>
-        ///     Get RatioChangeRate in DecimalFractionsPerSecond.
+        ///     Get Turbidity in NTU.
         /// </summary>
-        public double DecimalFractionsPerSecond => As(RatioChangeRateUnit.DecimalFractionPerSecond);
-
-        /// <summary>
-        ///     Get RatioChangeRate in PercentsPerSecond.
-        /// </summary>
-        public double PercentsPerSecond => As(RatioChangeRateUnit.PercentPerSecond);
+        public double NTU => As(TurbidityUnit.NTU);
 
         #endregion
 
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get RatioChangeRate from DecimalFractionsPerSecond.
+        ///     Get Turbidity from NTU.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RatioChangeRate FromDecimalFractionsPerSecond(double decimalfractionspersecond) => new RatioChangeRate(decimalfractionspersecond, RatioChangeRateUnit.DecimalFractionPerSecond);
-
-        /// <summary>
-        ///     Get RatioChangeRate from PercentsPerSecond.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RatioChangeRate FromPercentsPerSecond(double percentspersecond) => new RatioChangeRate(percentspersecond, RatioChangeRateUnit.PercentPerSecond);
+        public static Turbidity FromNTU(double ntu) => new Turbidity(ntu, TurbidityUnit.NTU);
 
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="RatioChangeRateUnit" /> to <see cref="RatioChangeRate" />.
+        ///     Dynamically convert from value and unit enum <see cref="TurbidityUnit" /> to <see cref="Turbidity" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>RatioChangeRate unit value.</returns>
-        public static RatioChangeRate From(double value, RatioChangeRateUnit fromUnit)
+        /// <returns>Turbidity unit value.</returns>
+        public static Turbidity From(double value, TurbidityUnit fromUnit)
         {
-            return new RatioChangeRate(value, fromUnit);
+            return new Turbidity(value, fromUnit);
         }
 
         #endregion
@@ -123,17 +115,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(RatioChangeRateUnit unit) => GetValueAs(unit);        
+        public double As(TurbidityUnit unit) => GetValueAs(unit);        
 
         /// <summary>
         ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A Duration with the specified unit.</returns>
-        public RatioChangeRate ToUnit(RatioChangeRateUnit unit)
+        public Turbidity ToUnit(TurbidityUnit unit)
         {
                 
             var convertedValue = GetValueAs(unit);
-            return new RatioChangeRate(convertedValue, unit);
+            return new Turbidity(convertedValue, unit);
         }
 
 
@@ -146,14 +138,13 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case RatioChangeRateUnit.DecimalFractionPerSecond: return _value;
-                case RatioChangeRateUnit.PercentPerSecond: return _value/1e2;
+                case TurbidityUnit.NTU: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double GetValueAs(RatioChangeRateUnit unit)
+        private double GetValueAs(TurbidityUnit unit)
         {
             if(Unit == unit)
                 return _value;
@@ -162,8 +153,7 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case RatioChangeRateUnit.DecimalFractionPerSecond: return baseUnitValue;
-                case RatioChangeRateUnit.PercentPerSecond: return baseUnitValue*1e2;
+                case TurbidityUnit.NTU: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

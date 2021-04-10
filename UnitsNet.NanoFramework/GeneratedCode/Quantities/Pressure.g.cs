@@ -108,6 +108,11 @@ namespace UnitsNet
         public double DynesPerSquareCentimeter => As(PressureUnit.DynePerSquareCentimeter);
 
         /// <summary>
+        ///     Get Pressure in FeetOfElevation.
+        /// </summary>
+        public double FeetOfElevation => As(PressureUnit.FootOfElevation);
+
+        /// <summary>
         ///     Get Pressure in FeetOfHead.
         /// </summary>
         public double FeetOfHead => As(PressureUnit.FootOfHead);
@@ -196,6 +201,11 @@ namespace UnitsNet
         ///     Get Pressure in Megapascals.
         /// </summary>
         public double Megapascals => As(PressureUnit.Megapascal);
+
+        /// <summary>
+        ///     Get Pressure in MetersOfElevation.
+        /// </summary>
+        public double MetersOfElevation => As(PressureUnit.MeterOfElevation);
 
         /// <summary>
         ///     Get Pressure in MetersOfHead.
@@ -328,6 +338,12 @@ namespace UnitsNet
         public static Pressure FromDynesPerSquareCentimeter(double dynespersquarecentimeter) => new Pressure(dynespersquarecentimeter, PressureUnit.DynePerSquareCentimeter);
 
         /// <summary>
+        ///     Get Pressure from FeetOfElevation.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Pressure FromFeetOfElevation(double feetofelevation) => new Pressure(feetofelevation, PressureUnit.FootOfElevation);
+
+        /// <summary>
         ///     Get Pressure from FeetOfHead.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -434,6 +450,12 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromMegapascals(double megapascals) => new Pressure(megapascals, PressureUnit.Megapascal);
+
+        /// <summary>
+        ///     Get Pressure from MetersOfElevation.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Pressure FromMetersOfElevation(double metersofelevation) => new Pressure(metersofelevation, PressureUnit.MeterOfElevation);
 
         /// <summary>
         ///     Get Pressure from MetersOfHead.
@@ -592,6 +614,7 @@ namespace UnitsNet
                 case PressureUnit.Decapascal: return (_value) * 1e1d;
                 case PressureUnit.Decibar: return (_value*1e5) * 1e-1d;
                 case PressureUnit.DynePerSquareCentimeter: return _value*1.0e-1;
+                case PressureUnit.FootOfElevation: return Math.Pow(1.0 - (_value / 145366.45), 5.2553026003237266401799415610351) * 101325.0;
                 case PressureUnit.FootOfHead: return _value*2989.0669;
                 case PressureUnit.Gigapascal: return (_value) * 1e9d;
                 case PressureUnit.Hectopascal: return (_value) * 1e2d;
@@ -610,6 +633,7 @@ namespace UnitsNet
                 case PressureUnit.Megabar: return (_value*1e5) * 1e6d;
                 case PressureUnit.MeganewtonPerSquareMeter: return (_value) * 1e6d;
                 case PressureUnit.Megapascal: return (_value) * 1e6d;
+                case PressureUnit.MeterOfElevation: return Math.Pow(1.0 - (_value / 44307.69396), 5.2553026003237266401799415610351) * 101325.0;
                 case PressureUnit.MeterOfHead: return _value*9804.139432;
                 case PressureUnit.Microbar: return (_value*1e5) * 1e-6d;
                 case PressureUnit.Micropascal: return (_value) * 1e-6d;
@@ -648,6 +672,7 @@ namespace UnitsNet
                 case PressureUnit.Decapascal: return (baseUnitValue) / 1e1d;
                 case PressureUnit.Decibar: return (baseUnitValue/1e5) / 1e-1d;
                 case PressureUnit.DynePerSquareCentimeter: return baseUnitValue/1.0e-1;
+                case PressureUnit.FootOfElevation: return (1.0 - Math.Pow(baseUnitValue / 101325.0, 0.190284)) * 145366.45;
                 case PressureUnit.FootOfHead: return baseUnitValue*0.000334552565551;
                 case PressureUnit.Gigapascal: return (baseUnitValue) / 1e9d;
                 case PressureUnit.Hectopascal: return (baseUnitValue) / 1e2d;
@@ -666,6 +691,7 @@ namespace UnitsNet
                 case PressureUnit.Megabar: return (baseUnitValue/1e5) / 1e6d;
                 case PressureUnit.MeganewtonPerSquareMeter: return (baseUnitValue) / 1e6d;
                 case PressureUnit.Megapascal: return (baseUnitValue) / 1e6d;
+                case PressureUnit.MeterOfElevation: return (1.0 - Math.Pow(baseUnitValue / 101325.0, 0.190284)) * 44307.69396;
                 case PressureUnit.MeterOfHead: return baseUnitValue*0.0001019977334;
                 case PressureUnit.Microbar: return (baseUnitValue/1e5) / 1e-6d;
                 case PressureUnit.Micropascal: return (baseUnitValue) / 1e-6d;

@@ -24,12 +24,9 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     A magnetic field is a force field that is created by moving electric charges (electric currents) and magnetic dipoles, and exerts a force on other nearby moving charges and magnetic dipoles.
+    ///     A geometric property of an area that is used to determine the warping stress.
     /// </summary>
-    /// <remarks>
-    ///     https://en.wikipedia.org/wiki/Magnetic_field
-    /// </remarks>
-    public struct  MagneticField
+    public struct  WarpingMomentOfInertia
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -39,7 +36,7 @@ namespace UnitsNet
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        private readonly MagneticFieldUnit _unit;
+        private readonly WarpingMomentOfInertiaUnit _unit;
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -47,14 +44,14 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        public MagneticFieldUnit Unit => _unit;
+        public WarpingMomentOfInertiaUnit Unit => _unit;
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public MagneticField(double value, MagneticFieldUnit unit)
+        public WarpingMomentOfInertia(double value, WarpingMomentOfInertiaUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -63,103 +60,103 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static MagneticFieldUnit BaseUnit { get; } = MagneticFieldUnit.Tesla;
+        public static WarpingMomentOfInertiaUnit BaseUnit { get; } = WarpingMomentOfInertiaUnit.MeterToTheSixth;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static MagneticField MaxValue { get; } = new MagneticField(double.MaxValue, BaseUnit);
+        public static WarpingMomentOfInertia MaxValue { get; } = new WarpingMomentOfInertia(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static MagneticField MinValue { get; } = new MagneticField(double.MinValue, BaseUnit);
+        public static WarpingMomentOfInertia MinValue { get; } = new WarpingMomentOfInertia(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static MagneticField Zero { get; } = new MagneticField(0, BaseUnit);
+        public static WarpingMomentOfInertia Zero { get; } = new WarpingMomentOfInertia(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>
-        ///     Get MagneticField in Gausses.
+        ///     Get WarpingMomentOfInertia in CentimetersToTheSixth.
         /// </summary>
-        public double Gausses => As(MagneticFieldUnit.Gauss);
+        public double CentimetersToTheSixth => As(WarpingMomentOfInertiaUnit.CentimeterToTheSixth);
 
         /// <summary>
-        ///     Get MagneticField in Microteslas.
+        ///     Get WarpingMomentOfInertia in DecimetersToTheSixth.
         /// </summary>
-        public double Microteslas => As(MagneticFieldUnit.Microtesla);
+        public double DecimetersToTheSixth => As(WarpingMomentOfInertiaUnit.DecimeterToTheSixth);
 
         /// <summary>
-        ///     Get MagneticField in Milligausses.
+        ///     Get WarpingMomentOfInertia in FeetToTheSixth.
         /// </summary>
-        public double Milligausses => As(MagneticFieldUnit.Milligauss);
+        public double FeetToTheSixth => As(WarpingMomentOfInertiaUnit.FootToTheSixth);
 
         /// <summary>
-        ///     Get MagneticField in Milliteslas.
+        ///     Get WarpingMomentOfInertia in InchesToTheSixth.
         /// </summary>
-        public double Milliteslas => As(MagneticFieldUnit.Millitesla);
+        public double InchesToTheSixth => As(WarpingMomentOfInertiaUnit.InchToTheSixth);
 
         /// <summary>
-        ///     Get MagneticField in Nanoteslas.
+        ///     Get WarpingMomentOfInertia in MetersToTheSixth.
         /// </summary>
-        public double Nanoteslas => As(MagneticFieldUnit.Nanotesla);
+        public double MetersToTheSixth => As(WarpingMomentOfInertiaUnit.MeterToTheSixth);
 
         /// <summary>
-        ///     Get MagneticField in Teslas.
+        ///     Get WarpingMomentOfInertia in MillimetersToTheSixth.
         /// </summary>
-        public double Teslas => As(MagneticFieldUnit.Tesla);
+        public double MillimetersToTheSixth => As(WarpingMomentOfInertiaUnit.MillimeterToTheSixth);
 
         #endregion
 
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get MagneticField from Gausses.
+        ///     Get WarpingMomentOfInertia from CentimetersToTheSixth.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MagneticField FromGausses(double gausses) => new MagneticField(gausses, MagneticFieldUnit.Gauss);
+        public static WarpingMomentOfInertia FromCentimetersToTheSixth(double centimeterstothesixth) => new WarpingMomentOfInertia(centimeterstothesixth, WarpingMomentOfInertiaUnit.CentimeterToTheSixth);
 
         /// <summary>
-        ///     Get MagneticField from Microteslas.
+        ///     Get WarpingMomentOfInertia from DecimetersToTheSixth.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MagneticField FromMicroteslas(double microteslas) => new MagneticField(microteslas, MagneticFieldUnit.Microtesla);
+        public static WarpingMomentOfInertia FromDecimetersToTheSixth(double decimeterstothesixth) => new WarpingMomentOfInertia(decimeterstothesixth, WarpingMomentOfInertiaUnit.DecimeterToTheSixth);
 
         /// <summary>
-        ///     Get MagneticField from Milligausses.
+        ///     Get WarpingMomentOfInertia from FeetToTheSixth.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MagneticField FromMilligausses(double milligausses) => new MagneticField(milligausses, MagneticFieldUnit.Milligauss);
+        public static WarpingMomentOfInertia FromFeetToTheSixth(double feettothesixth) => new WarpingMomentOfInertia(feettothesixth, WarpingMomentOfInertiaUnit.FootToTheSixth);
 
         /// <summary>
-        ///     Get MagneticField from Milliteslas.
+        ///     Get WarpingMomentOfInertia from InchesToTheSixth.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MagneticField FromMilliteslas(double milliteslas) => new MagneticField(milliteslas, MagneticFieldUnit.Millitesla);
+        public static WarpingMomentOfInertia FromInchesToTheSixth(double inchestothesixth) => new WarpingMomentOfInertia(inchestothesixth, WarpingMomentOfInertiaUnit.InchToTheSixth);
 
         /// <summary>
-        ///     Get MagneticField from Nanoteslas.
+        ///     Get WarpingMomentOfInertia from MetersToTheSixth.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MagneticField FromNanoteslas(double nanoteslas) => new MagneticField(nanoteslas, MagneticFieldUnit.Nanotesla);
+        public static WarpingMomentOfInertia FromMetersToTheSixth(double meterstothesixth) => new WarpingMomentOfInertia(meterstothesixth, WarpingMomentOfInertiaUnit.MeterToTheSixth);
 
         /// <summary>
-        ///     Get MagneticField from Teslas.
+        ///     Get WarpingMomentOfInertia from MillimetersToTheSixth.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MagneticField FromTeslas(double teslas) => new MagneticField(teslas, MagneticFieldUnit.Tesla);
+        public static WarpingMomentOfInertia FromMillimetersToTheSixth(double millimeterstothesixth) => new WarpingMomentOfInertia(millimeterstothesixth, WarpingMomentOfInertiaUnit.MillimeterToTheSixth);
 
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="MagneticFieldUnit" /> to <see cref="MagneticField" />.
+        ///     Dynamically convert from value and unit enum <see cref="WarpingMomentOfInertiaUnit" /> to <see cref="WarpingMomentOfInertia" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>MagneticField unit value.</returns>
-        public static MagneticField From(double value, MagneticFieldUnit fromUnit)
+        /// <returns>WarpingMomentOfInertia unit value.</returns>
+        public static WarpingMomentOfInertia From(double value, WarpingMomentOfInertiaUnit fromUnit)
         {
-            return new MagneticField(value, fromUnit);
+            return new WarpingMomentOfInertia(value, fromUnit);
         }
 
         #endregion
@@ -170,17 +167,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(MagneticFieldUnit unit) => GetValueAs(unit);        
+        public double As(WarpingMomentOfInertiaUnit unit) => GetValueAs(unit);        
 
         /// <summary>
         ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A Duration with the specified unit.</returns>
-        public MagneticField ToUnit(MagneticFieldUnit unit)
+        public WarpingMomentOfInertia ToUnit(WarpingMomentOfInertiaUnit unit)
         {
                 
             var convertedValue = GetValueAs(unit);
-            return new MagneticField(convertedValue, unit);
+            return new WarpingMomentOfInertia(convertedValue, unit);
         }
 
 
@@ -193,18 +190,18 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case MagneticFieldUnit.Gauss: return _value/1e4;
-                case MagneticFieldUnit.Microtesla: return (_value) * 1e-6d;
-                case MagneticFieldUnit.Milligauss: return (_value/1e4) * 1e-3d;
-                case MagneticFieldUnit.Millitesla: return (_value) * 1e-3d;
-                case MagneticFieldUnit.Nanotesla: return (_value) * 1e-9d;
-                case MagneticFieldUnit.Tesla: return _value;
+                case WarpingMomentOfInertiaUnit.CentimeterToTheSixth: return _value/1e12;
+                case WarpingMomentOfInertiaUnit.DecimeterToTheSixth: return _value/1e6;
+                case WarpingMomentOfInertiaUnit.FootToTheSixth: return _value*Math.Pow(0.3048, 6);
+                case WarpingMomentOfInertiaUnit.InchToTheSixth: return _value*Math.Pow(2.54e-2, 6);
+                case WarpingMomentOfInertiaUnit.MeterToTheSixth: return _value;
+                case WarpingMomentOfInertiaUnit.MillimeterToTheSixth: return _value/1e18;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double GetValueAs(MagneticFieldUnit unit)
+        private double GetValueAs(WarpingMomentOfInertiaUnit unit)
         {
             if(Unit == unit)
                 return _value;
@@ -213,12 +210,12 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case MagneticFieldUnit.Gauss: return baseUnitValue*1e4;
-                case MagneticFieldUnit.Microtesla: return (baseUnitValue) / 1e-6d;
-                case MagneticFieldUnit.Milligauss: return (baseUnitValue*1e4) / 1e-3d;
-                case MagneticFieldUnit.Millitesla: return (baseUnitValue) / 1e-3d;
-                case MagneticFieldUnit.Nanotesla: return (baseUnitValue) / 1e-9d;
-                case MagneticFieldUnit.Tesla: return baseUnitValue;
+                case WarpingMomentOfInertiaUnit.CentimeterToTheSixth: return baseUnitValue*1e12;
+                case WarpingMomentOfInertiaUnit.DecimeterToTheSixth: return baseUnitValue*1e6;
+                case WarpingMomentOfInertiaUnit.FootToTheSixth: return baseUnitValue/Math.Pow(0.3048, 6);
+                case WarpingMomentOfInertiaUnit.InchToTheSixth: return baseUnitValue/Math.Pow(2.54e-2, 6);
+                case WarpingMomentOfInertiaUnit.MeterToTheSixth: return baseUnitValue;
+                case WarpingMomentOfInertiaUnit.MillimeterToTheSixth: return baseUnitValue*1e18;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

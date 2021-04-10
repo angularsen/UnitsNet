@@ -24,9 +24,9 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     The change in ratio per unit of time.
+    ///     A way of representing a number of items.
     /// </summary>
-    public struct  RatioChangeRate
+    public struct  Scalar
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -36,7 +36,7 @@ namespace UnitsNet
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        private readonly RatioChangeRateUnit _unit;
+        private readonly ScalarUnit _unit;
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -44,14 +44,14 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        public RatioChangeRateUnit Unit => _unit;
+        public ScalarUnit Unit => _unit;
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public RatioChangeRate(double value, RatioChangeRateUnit unit)
+        public Scalar(double value, ScalarUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -60,59 +60,48 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static RatioChangeRateUnit BaseUnit { get; } = RatioChangeRateUnit.DecimalFractionPerSecond;
+        public static ScalarUnit BaseUnit { get; } = ScalarUnit.Amount;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static RatioChangeRate MaxValue { get; } = new RatioChangeRate(double.MaxValue, BaseUnit);
+        public static Scalar MaxValue { get; } = new Scalar(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static RatioChangeRate MinValue { get; } = new RatioChangeRate(double.MinValue, BaseUnit);
+        public static Scalar MinValue { get; } = new Scalar(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static RatioChangeRate Zero { get; } = new RatioChangeRate(0, BaseUnit);
+        public static Scalar Zero { get; } = new Scalar(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>
-        ///     Get RatioChangeRate in DecimalFractionsPerSecond.
+        ///     Get Scalar in Amount.
         /// </summary>
-        public double DecimalFractionsPerSecond => As(RatioChangeRateUnit.DecimalFractionPerSecond);
-
-        /// <summary>
-        ///     Get RatioChangeRate in PercentsPerSecond.
-        /// </summary>
-        public double PercentsPerSecond => As(RatioChangeRateUnit.PercentPerSecond);
+        public double Amount => As(ScalarUnit.Amount);
 
         #endregion
 
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get RatioChangeRate from DecimalFractionsPerSecond.
+        ///     Get Scalar from Amount.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RatioChangeRate FromDecimalFractionsPerSecond(double decimalfractionspersecond) => new RatioChangeRate(decimalfractionspersecond, RatioChangeRateUnit.DecimalFractionPerSecond);
-
-        /// <summary>
-        ///     Get RatioChangeRate from PercentsPerSecond.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RatioChangeRate FromPercentsPerSecond(double percentspersecond) => new RatioChangeRate(percentspersecond, RatioChangeRateUnit.PercentPerSecond);
+        public static Scalar FromAmount(double amount) => new Scalar(amount, ScalarUnit.Amount);
 
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="RatioChangeRateUnit" /> to <see cref="RatioChangeRate" />.
+        ///     Dynamically convert from value and unit enum <see cref="ScalarUnit" /> to <see cref="Scalar" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>RatioChangeRate unit value.</returns>
-        public static RatioChangeRate From(double value, RatioChangeRateUnit fromUnit)
+        /// <returns>Scalar unit value.</returns>
+        public static Scalar From(double value, ScalarUnit fromUnit)
         {
-            return new RatioChangeRate(value, fromUnit);
+            return new Scalar(value, fromUnit);
         }
 
         #endregion
@@ -123,17 +112,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(RatioChangeRateUnit unit) => GetValueAs(unit);        
+        public double As(ScalarUnit unit) => GetValueAs(unit);        
 
         /// <summary>
         ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A Duration with the specified unit.</returns>
-        public RatioChangeRate ToUnit(RatioChangeRateUnit unit)
+        public Scalar ToUnit(ScalarUnit unit)
         {
                 
             var convertedValue = GetValueAs(unit);
-            return new RatioChangeRate(convertedValue, unit);
+            return new Scalar(convertedValue, unit);
         }
 
 
@@ -146,14 +135,13 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case RatioChangeRateUnit.DecimalFractionPerSecond: return _value;
-                case RatioChangeRateUnit.PercentPerSecond: return _value/1e2;
+                case ScalarUnit.Amount: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double GetValueAs(RatioChangeRateUnit unit)
+        private double GetValueAs(ScalarUnit unit)
         {
             if(Unit == unit)
                 return _value;
@@ -162,8 +150,7 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case RatioChangeRateUnit.DecimalFractionPerSecond: return baseUnitValue;
-                case RatioChangeRateUnit.PercentPerSecond: return baseUnitValue*1e2;
+                case ScalarUnit.Amount: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

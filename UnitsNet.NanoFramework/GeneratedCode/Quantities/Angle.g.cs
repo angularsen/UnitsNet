@@ -147,6 +147,11 @@ namespace UnitsNet
         /// </summary>
         public double Revolutions => As(AngleUnit.Revolution);
 
+        /// <summary>
+        ///     Get Angle in Tilt.
+        /// </summary>
+        public double Tilt => As(AngleUnit.Tilt);
+
         #endregion
 
         #region Static Factory Methods
@@ -235,6 +240,12 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromRevolutions(double revolutions) => new Angle(revolutions, AngleUnit.Revolution);
 
+        /// <summary>
+        ///     Get Angle from Tilt.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Angle FromTilt(double tilt) => new Angle(tilt, AngleUnit.Tilt);
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AngleUnit" /> to <see cref="Angle" />.
@@ -292,6 +303,7 @@ namespace UnitsNet
                 case AngleUnit.Nanoradian: return (_value*180/3.1415926535897931) * 1e-9d;
                 case AngleUnit.Radian: return _value*180/3.1415926535897931;
                 case AngleUnit.Revolution: return _value*360;
+                case AngleUnit.Tilt: return Math.Asin(_value)*180/3.1415926535897931;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -320,6 +332,7 @@ namespace UnitsNet
                 case AngleUnit.Nanoradian: return (baseUnitValue/180*3.1415926535897931) / 1e-9d;
                 case AngleUnit.Radian: return baseUnitValue/180*3.1415926535897931;
                 case AngleUnit.Revolution: return baseUnitValue/360;
+                case AngleUnit.Tilt: return Math.Sin(baseUnitValue/180*3.1415926535897931);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

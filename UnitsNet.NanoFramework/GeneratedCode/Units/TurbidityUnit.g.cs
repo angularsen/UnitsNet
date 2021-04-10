@@ -23,22 +23,10 @@ namespace UnitsNet.Units
     // Disable missing XML comment warnings for the generated unit enums.
     #pragma warning disable 1591
 
-    public enum PressureChangeRateUnit
+    public enum TurbidityUnit
     {
         Undefined = 0,
-        AtmospherePerSecond,
-        KilopascalPerMinute,
-        KilopascalPerSecond,
-        KilopoundForcePerSquareInchPerMinute,
-        KilopoundForcePerSquareInchPerSecond,
-        MegapascalPerMinute,
-        MegapascalPerSecond,
-        MegapoundForcePerSquareInchPerMinute,
-        MegapoundForcePerSquareInchPerSecond,
-        PascalPerMinute,
-        PascalPerSecond,
-        PoundForcePerSquareInchPerMinute,
-        PoundForcePerSquareInchPerSecond,
+        NTU,
     }
 
     #pragma warning restore 1591
