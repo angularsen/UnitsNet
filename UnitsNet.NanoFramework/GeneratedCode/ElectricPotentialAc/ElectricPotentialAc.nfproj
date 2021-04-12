@@ -8,7 +8,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectTypeGuids>{11A8DD76-328B-46DF-9F39-F559912D0360};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{C5DAE9EE-4843-47C5-933B-7521069C3A7C}</ProjectGuid>
+    <ProjectGuid>{0d01ca5a-2bba-4296-a141-73e69bc31f75}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <FileAlignment>512</FileAlignment>
@@ -18,7 +18,7 @@
   </PropertyGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
   <ItemGroup>
-    <Compile Include="..\Quantities/ElectricPotentialAc.g.cs" />
+    <Compile Include="..\Quantities\ElectricPotentialAc.g.cs" />
     <Compile Include="..\Units\ElectricPotentialAcUnit.g.cs" />
     <Compile Include="..\Properties\AssemblyInfo.cs" />
   </ItemGroup>

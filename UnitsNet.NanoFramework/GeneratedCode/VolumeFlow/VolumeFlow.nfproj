@@ -8,7 +8,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectTypeGuids>{11A8DD76-328B-46DF-9F39-F559912D0360};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{490BC037-71AF-4C5D-A00F-6DDF4A58B587}</ProjectGuid>
+    <ProjectGuid>{4db74f6e-e646-4a10-b469-4062fed490e7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <FileAlignment>512</FileAlignment>
@@ -18,7 +18,7 @@
   </PropertyGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
   <ItemGroup>
-    <Compile Include="..\Quantities/VolumeFlow.g.cs" />
+    <Compile Include="..\Quantities\VolumeFlow.g.cs" />
     <Compile Include="..\Units\VolumeFlowUnit.g.cs" />
     <Compile Include="..\Properties\AssemblyInfo.cs" />
   </ItemGroup>

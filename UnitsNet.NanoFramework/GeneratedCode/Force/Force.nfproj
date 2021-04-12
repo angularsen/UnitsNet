@@ -8,7 +8,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectTypeGuids>{11A8DD76-328B-46DF-9F39-F559912D0360};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{34587A88-524B-4118-B076-A78334D4B7BF}</ProjectGuid>
+    <ProjectGuid>{6a276fd4-0414-4143-9784-5c06e636639e}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <FileAlignment>512</FileAlignment>
@@ -18,7 +18,7 @@
   </PropertyGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
   <ItemGroup>
-    <Compile Include="..\Quantities/Force.g.cs" />
+    <Compile Include="..\Quantities\Force.g.cs" />
     <Compile Include="..\Units\ForceUnit.g.cs" />
     <Compile Include="..\Properties\AssemblyInfo.cs" />
   </ItemGroup>

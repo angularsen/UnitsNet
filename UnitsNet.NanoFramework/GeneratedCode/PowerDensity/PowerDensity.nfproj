@@ -8,7 +8,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectTypeGuids>{11A8DD76-328B-46DF-9F39-F559912D0360};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{438DF0CF-C00C-43DB-9736-4DADF045FC61}</ProjectGuid>
+    <ProjectGuid>{ef3051fa-20dc-4fd4-9137-5d6796a493fe}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <FileAlignment>512</FileAlignment>
@@ -18,7 +18,7 @@
   </PropertyGroup>
   <Import Project="$(NanoFrameworkProjectSystemPath)NFProjectSystem.props" Condition="Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')" />
   <ItemGroup>
-    <Compile Include="..\Quantities/PowerDensity.g.cs" />
+    <Compile Include="..\Quantities\PowerDensity.g.cs" />
     <Compile Include="..\Units\PowerDensityUnit.g.cs" />
     <Compile Include="..\Properties\AssemblyInfo.cs" />
   </ItemGroup>
