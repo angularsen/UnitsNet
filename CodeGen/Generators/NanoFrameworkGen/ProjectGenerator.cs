@@ -28,7 +28,7 @@ namespace CodeGen.Generators.NanoFrameworkGen
     <Configuration Condition="" '$(Configuration)' == '' "">Debug</Configuration>
     <Platform Condition="" '$(Platform)' == '' "">AnyCPU</Platform>
     <ProjectTypeGuids>{{11A8DD76-328B-46DF-9F39-F559912D0360}};{{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}}</ProjectTypeGuids>
-    <ProjectGuid>95a66373-b01a-4c19-8e0d-c37ba27c1fd9</ProjectGuid>
+    <ProjectGuid>{Guid.NewGuid()}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <FileAlignment>512</FileAlignment>
@@ -38,14 +38,16 @@ namespace CodeGen.Generators.NanoFrameworkGen
   </PropertyGroup>
   <Import Project=""$(NanoFrameworkProjectSystemPath)NFProjectSystem.props"" Condition=""Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')"" />
   <ItemGroup>
-    <Compile Include=""Quantities/{_quantity.Name}.g.cs"" />
-    <Compile Include=""Units/{_quantity.Name}Unit.g.cs"" />
-    <Compile Include=""Properties\AssemblyInfo.cs"" />
+    <Compile Include=""..\Quantities\{_quantity.Name}.g.cs"" />
+    <Compile Include=""..\Units\{_quantity.Name}Unit.g.cs"" />
+    <Compile Include=""..\Properties\AssemblyInfo.cs"" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include=""mscorlib"">
-      <HintPath>packages\nanoFramework.CoreLibrary.1.7.3\lib\mscorlib.dll</HintPath>
-    </Reference>
+    <Reference Include=""mscorlib, Version=1.10.3.0, Culture=neutral, PublicKeyToken=c07d481e9758c731"">
+      <HintPath>..\packages\nanoFramework.CoreLibrary.1.10.3-preview.7\lib\mscorlib.dll</HintPath>
+      <Private>True</Private>
+      <SpecificVersion>True</SpecificVersion>
+    </Reference>  
   </ItemGroup>
   <ItemGroup>
     <None Include=""packages.config"" />

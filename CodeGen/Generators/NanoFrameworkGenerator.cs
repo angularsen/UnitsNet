@@ -40,9 +40,6 @@ namespace CodeGen.Generators
 
             Log.Information($"Directory NanoFramework creation(OK)");
 
-            GeneratePackage(Path.Combine(outputDir, "packages.config"));
-            Log.Information($"Package(OK)");
-
             GenerateProperties(Path.Combine(outputProperties, "AssemblyInfo.cs"));
             Log.Information($"Property(OK)");
 
@@ -56,15 +53,22 @@ namespace CodeGen.Generators
                     continue;
                 }
 
+                Log.Information($"Creating .NET nanoFramework project for {quantity.Name}");
+
+                var projectPath = Path.Combine(outputDir, quantity.Name);
+
+                GeneratePackage(Path.Combine(projectPath, "packages.config"));
+                Log.Information($"Package(OK)");
+
                 var sb = new StringBuilder($"{quantity.Name}:".PadRight(AlignPad));
                 GenerateUnitType(sb, quantity, Path.Combine(outputUnits, $"{quantity.Name}Unit.g.cs"));
                 GenerateQuantity(sb, quantity, Path.Combine(outputQuantitites, $"{quantity.Name}.g.cs"));
-                GenerateProject(sb, quantity, Path.Combine(outputDir, $"{quantity.Name}.nfproj"));
+                GenerateProject(sb, quantity, Path.Combine(projectPath, $"{quantity.Name}.nfproj"));
                 Log.Information(sb.ToString());
                 numberQuantity++;
             }
 
-            GenerateSolution(quantities, Path.Combine(outputDir, "UnitsNet.nanoFrmawork.sln"));
+            GenerateSolution(quantities, outputDir);
             Log.Information("UnitsNet.nanoFrmawork.sln generated");
             Log.Information($"Total quantities generated: {numberQuantity}");
         }
@@ -108,9 +112,12 @@ namespace CodeGen.Generators
             sb.Append("project(OK) ");
         }
 
-        private static void GenerateSolution(Quantity[] quantities, string filePath)
+        private static void GenerateSolution(Quantity[] quantities, string outputDir)
         {
-            var content = new SolutionGenerator(quantities).Generate();
+            var content = new SolutionGenerator(quantities, outputDir).Generate();
+
+            var filePath = Path.Combine(outputDir, "UnitsNet.nanoFramework.sln");
+
             File.WriteAllText(filePath, content, Encoding.UTF8);
         }
     }
