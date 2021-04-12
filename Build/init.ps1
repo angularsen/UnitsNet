@@ -27,7 +27,7 @@ $webClient.DownloadFile("http://vsixgallery.com/feed/author/nanoframework", $vsi
 
 $extensionUrl = $feedDetails.feed.entry[1].content.src
 $vsixPath = Join-Path -Path $tempDir -ChildPath "nf-extension.zip"
-$extensionVersion = $feedDetails.feed.entry[$idVS2019].Vsix.Version
+$extensionVersion = $feedDetails.feed.entry[0].Vsix.Version
 $webClient.DownloadFile($extensionUrl,$vsixPath)
 Expand-Archive -LiteralPath $vsixPath -DestinationPath $tempDir\nf-extension\ | Write-Host
 
