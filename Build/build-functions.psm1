@@ -56,16 +56,14 @@ function Start-Build([boolean] $IncludeWindowsRuntimeComponent = $false, [boolea
 
   if (-not $IncludeNanoFramework)
   {
-    write-host -foreground yellow "Skipping NanoFramework build."
+    write-host -foreground yellow "Skipping .NET nanoFramework build."
   }
   else
   {
     $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$testReportDir\UnitsNet.NanoFramework.msbuild.log"
     $appVeyorLoggerArg = if (Test-Path "$appVeyorLoggerDll") { "/logger:$appVeyorLoggerDll" } else { "" }
 
-    # TODO FIX ME, `dotnet build` and `msbuild` both returns `error MSB4057: The target "Build" does not exist in the project.`
-    dotnet build --configuration Release "$root\UnitsNet.NanoFramework.sln" $fileLoggerArg $appVeyorLoggerArg
-    # & "$msbuild" "$root\UnitsNet.NanoFramework.sln" /verbosity:minimal /p:Configuration=Release $fileLoggerArg $appVeyorLoggerArg
+    & "$msbuild" "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln" /verbosity:minimal /p:Configuration=Release $fileLoggerArg $appVeyorLoggerArg
     if ($lastexitcode -ne 0) { exit 1 }
   }
 
