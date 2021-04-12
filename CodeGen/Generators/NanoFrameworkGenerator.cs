@@ -6,6 +6,13 @@ using System.Text;
 using CodeGen.Generators.NanoFrameworkGen;
 using CodeGen.JsonTypes;
 using Serilog;
+using NuGet.Common;
+using NuGet.Protocol;
+using NuGet.Protocol.Core.Types;
+using NuGet.Versioning;
+using System.Threading;
+using CodeGen.Helpers;
+using System.Linq;
 
 namespace CodeGen.Generators
 {
@@ -16,6 +23,23 @@ namespace CodeGen.Generators
     internal static class NanoFrameworkGenerator
     {
         private const int AlignPad = 35;
+
+        static internal string MscorlibVersion = "";
+        static internal string MscorlibNuGetVersion = "";
+        static internal string MathVersion = "";
+        static internal string MathNuGetVersion = "";
+
+        /// <summary>
+        /// These projects require inclusion of Math NuGet package.
+        /// </summary>
+        internal static readonly List<string> ProjectsRequiringMath = new()
+        {
+            "Angle",
+            "Frequency",
+            "Pressure",
+            "Turbidity",
+            "WarpingMomentOfInertia"
+        };
 
         /// <summary>
         /// Create the root folder NanoFramewok
@@ -28,6 +52,46 @@ namespace CodeGen.Generators
         /// <param name="quantities">The quantities to create</param>
         public static void Generate(string rootDir, Quantity[] quantities)
         {
+            // get latest version of .NET nanoFramework mscorlib
+            NuGet.Common.ILogger logger = NullLogger.Instance;
+            CancellationToken cancellationToken = CancellationToken.None;
+
+            SourceCacheContext cache = new SourceCacheContext();
+            SourceRepository repository = Repository.Factory.GetCoreV3("https://api.nuget.org/v3/index.json");
+            FindPackageByIdResource resource = repository.GetResourceAsync<FindPackageByIdResource>().Result;
+
+            // mscorlib
+            IEnumerable<NuGetVersion> packageVersions = resource.GetAllVersionsAsync(
+                "nanoFramework.CoreLibrary",
+                cache,
+                logger,
+                cancellationToken).Result;
+
+            // NuGet package Version
+            // including preview
+            var mscorlibPackage = packageVersions.Where(v => v.IsPrerelease).OrderByDescending(v => v.Version).First();
+            // stable only
+            //var mscorlibPackage = packageVersions.OrderByDescending(v => v.Version).First();
+
+            MscorlibVersion = mscorlibPackage.Version.ToString();
+            MscorlibNuGetVersion = mscorlibPackage.ToNormalizedString();
+
+            // Math
+            packageVersions = resource.GetAllVersionsAsync(
+                "nanoFramework.System.Math",
+                cache,
+                logger,
+                cancellationToken).Result;
+
+            // NuGet package Version
+            // including preview
+            var mathPackage = packageVersions.Where(v => v.IsPrerelease).OrderByDescending(v => v.Version).First();
+            // stable only
+            //var mathPackage = MathNuGetVersion = packageVersions.OrderByDescending(v => v.Version).First();
+
+            MathVersion = mathPackage.Version.ToString();
+            MathNuGetVersion = mathPackage.ToNormalizedString();
+
             var outputDir = Path.Combine(rootDir, "UnitsNet.NanoFramework", "GeneratedCode");
             var outputQuantitites = Path.Combine(outputDir, "Quantities");
             var outputUnits = Path.Combine(outputDir, "Units");
@@ -57,13 +121,14 @@ namespace CodeGen.Generators
 
                 var projectPath = Path.Combine(outputDir, quantity.Name);
 
-                GeneratePackage(Path.Combine(projectPath, "packages.config"));
+                GeneratePackage(projectPath, quantity.Name);
+
                 Log.Information($"Package(OK)");
 
                 var sb = new StringBuilder($"{quantity.Name}:".PadRight(AlignPad));
                 GenerateUnitType(sb, quantity, Path.Combine(outputUnits, $"{quantity.Name}Unit.g.cs"));
                 GenerateQuantity(sb, quantity, Path.Combine(outputQuantitites, $"{quantity.Name}.g.cs"));
-                GenerateProject(sb, quantity, Path.Combine(projectPath, $"{quantity.Name}.nfproj"));
+                GenerateProject(sb, quantity, projectPath);
                 Log.Information(sb.ToString());
                 numberQuantity++;
             }
@@ -73,9 +138,11 @@ namespace CodeGen.Generators
             Log.Information($"Total quantities generated: {numberQuantity}");
         }
 
-        private static void GeneratePackage(string filePath)
+        private static void GeneratePackage(string projectPath, string quantityName)
         {
-            var content = new PackageGenerator().Generate();
+            string filePath = Path.Combine(projectPath, "packages.config");
+
+            var content = Generate(quantityName);
             File.WriteAllText(filePath, content, Encoding.UTF8);
         }
 
@@ -105,9 +172,11 @@ namespace CodeGen.Generators
             sb.Append("quantity(OK) ");
         }
 
-        private static void GenerateProject(StringBuilder sb, Quantity quantity, string filePath)
+        private static void GenerateProject(StringBuilder sb, Quantity quantity, string projectPath)
         {
-            var content = new ProjectGenerator(quantity, @"$(MSBuildToolsPath)..\..\..\nanoFramework\v1.0\").Generate();
+            var filePath = Path.Combine(projectPath, $"{quantity.Name}.nfproj");
+
+            var content = new ProjectGenerator(quantity).Generate();
             File.WriteAllText(filePath, content, Encoding.UTF8);
             sb.Append("project(OK) ");
         }
@@ -119,6 +188,27 @@ namespace CodeGen.Generators
             var filePath = Path.Combine(outputDir, "UnitsNet.nanoFramework.sln");
 
             File.WriteAllText(filePath, content, Encoding.UTF8);
+        }
+
+        private static string Generate(string quantityName)
+        {
+            MyTextWriter Writer = new MyTextWriter();
+
+            Writer.WL($@"
+<?xml version=""1.0"" encoding=""utf-8""?>
+<packages>
+  <package id=""nanoFramework.CoreLibrary"" version=""{MscorlibNuGetVersion}"" targetFramework=""netnanoframework10"" />");
+
+
+            if (NanoFrameworkGenerator.ProjectsRequiringMath.Contains(quantityName))
+            {
+                Writer.WL($@"
+  <package id=""nanoFramework.System.Math"" version=""{MathNuGetVersion}"" targetFramework=""netnanoframework10"" />");
+            }
+
+            Writer.WL($@"</packages>");
+
+            return Writer.ToString();
         }
     }
 }

@@ -8,27 +8,25 @@ namespace CodeGen.Generators.NanoFrameworkGen
     class ProjectGenerator: GeneratorBase
     {
         private readonly Quantity _quantity;
-        private readonly string _nanoFrameworkPath;
 
-        public ProjectGenerator(Quantity quantity, string nanoFrameworkPath)
+        public ProjectGenerator(Quantity quantity)
         {
             _quantity = quantity ?? throw new ArgumentNullException(nameof(quantity));
-            _nanoFrameworkPath = nanoFrameworkPath;
         }
 
         public override string Generate()
         {
-            Writer.W($@"<?xml version=""1.0"" encoding=""utf-8""?>
+            Writer.WL($@"<?xml version=""1.0"" encoding=""utf-8""?>
 <Project ToolsVersion=""15.0"" DefaultTargets=""Build"" xmlns=""http://schemas.microsoft.com/developer/msbuild/2003"">
   <PropertyGroup Label=""Globals"">
-    <NanoFrameworkProjectSystemPath>{_nanoFrameworkPath}</NanoFrameworkProjectSystemPath>
+    <NanoFrameworkProjectSystemPath>$(MSBuildToolsPath)..\..\..\nanoFramework\v1.0\</NanoFrameworkProjectSystemPath>
   </PropertyGroup>
   <Import Project=""$(NanoFrameworkProjectSystemPath)NFProjectSystem.Default.props"" Condition=""Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.Default.props')"" />
   <PropertyGroup>
     <Configuration Condition="" '$(Configuration)' == '' "">Debug</Configuration>
     <Platform Condition="" '$(Platform)' == '' "">AnyCPU</Platform>
     <ProjectTypeGuids>{{11A8DD76-328B-46DF-9F39-F559912D0360}};{{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}}</ProjectTypeGuids>
-    <ProjectGuid>{Guid.NewGuid()}</ProjectGuid>
+    <ProjectGuid>{{{Guid.NewGuid()}}}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <FileAlignment>512</FileAlignment>
@@ -43,11 +41,23 @@ namespace CodeGen.Generators.NanoFrameworkGen
     <Compile Include=""..\Properties\AssemblyInfo.cs"" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include=""mscorlib, Version=1.10.3.0, Culture=neutral, PublicKeyToken=c07d481e9758c731"">
-      <HintPath>..\packages\nanoFramework.CoreLibrary.1.10.3-preview.7\lib\mscorlib.dll</HintPath>
+    <Reference Include=""mscorlib, Version={NanoFrameworkGenerator.MscorlibVersion}, Culture=neutral, PublicKeyToken=c07d481e9758c731"">
+      <HintPath>..\packages\nanoFramework.CoreLibrary.{NanoFrameworkGenerator.MscorlibNuGetVersion}\lib\mscorlib.dll</HintPath>
       <Private>True</Private>
       <SpecificVersion>True</SpecificVersion>
-    </Reference>  
+    </Reference>");
+
+    if(NanoFrameworkGenerator.ProjectsRequiringMath.Contains(_quantity.Name))
+    {
+                Writer.WL($@"
+    <Reference Include=""System.Math, Version={NanoFrameworkGenerator.MathVersion}, Culture=neutral, PublicKeyToken=c07d481e9758c731"">
+      <HintPath>..\packages\nanoFramework.System.Math.{NanoFrameworkGenerator.MathNuGetVersion}\lib\System.Math.dll</HintPath>
+      <Private>True</Private>
+      <SpecificVersion>True</SpecificVersion>
+    </Reference>");
+    }
+
+            Writer.WL(@"
   </ItemGroup>
   <ItemGroup>
     <None Include=""packages.config"" />
