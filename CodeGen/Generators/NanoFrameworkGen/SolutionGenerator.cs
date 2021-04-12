@@ -29,8 +29,6 @@ namespace CodeGen.Generators.NanoFrameworkGen
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1");
 
-            var outputDir = Path.Combine(_outputDir, "UnitsNet.NanoFramework", "GeneratedCode");
-
             foreach (var quantity in _quantities)
             {
                 // Skip decimal based units, they are not supported by nanoFramework
@@ -40,22 +38,22 @@ MinimumVisualStudioVersion = 10.0.40219.1");
                 }
 
                 // need to grab the project GUID from the project file
-                using var projectFileReader = new StreamReader(Path.Combine(outputDir, quantity.Name));
+                using var projectFileReader = new StreamReader(Path.Combine(_outputDir, quantity.Name) + $"\\{quantity.Name}.nfproj");
                 string projectFileContent = projectFileReader.ReadToEnd();
 
                 var pattern = @"(?<=<ProjectGuid>)(.*)(?=<)";
                 var projectGuid = Regex.Matches(projectFileContent, pattern, RegexOptions.IgnoreCase);
 
-                var guid = Guid.NewGuid();
+                var guid = projectGuid[0];
                 Writer.WL($@"
-Project(""{{{_globalGuid}}}"") = ""{quantity.Name}"", ""{quantity.Name}\{quantity.Name}.nfproj"", ""{{{projectGuid}}}""
+Project(""{{{_globalGuid}}}"") = ""{quantity.Name}"", ""{quantity.Name}\{quantity.Name}.nfproj"", ""{{{guid}}}""
 EndProject");
-                sb.Append($"{{{guid.ToString()}}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU\r\n");
-                sb.Append($"{{{guid.ToString()}}}.Debug|Any CPU.Build.0 = Debug|Any CPU\r\n");
-                sb.Append($"{{{guid.ToString()}}}.Debug|Any CPU.Deploy.0 = Debug|Any CPU\r\n");
-                sb.Append($"{{{guid.ToString()}}}.Release|Any CPU.ActiveCfg = Release|Any CPU\r\n");
-                sb.Append($"{{{guid.ToString()}}}.Release|Any CPU.Build.0 = Release|Any CPU\r\n");
-                sb.Append($"{{{guid.ToString()}}}.Release|Any CPU.Deploy.0 = Release|Any CPU\r\n");
+                sb.Append($"{{{guid}}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU\r\n");
+                sb.Append($"{{{guid}}}.Debug|Any CPU.Build.0 = Debug|Any CPU\r\n");
+                sb.Append($"{{{guid}}}.Debug|Any CPU.Deploy.0 = Debug|Any CPU\r\n");
+                sb.Append($"{{{guid}}}.Release|Any CPU.ActiveCfg = Release|Any CPU\r\n");
+                sb.Append($"{{{guid}}}.Release|Any CPU.Build.0 = Release|Any CPU\r\n");
+                sb.Append($"{{{guid}}}.Release|Any CPU.Deploy.0 = Release|Any CPU\r\n");
             }
 
             Writer.WL(@"Global
@@ -72,7 +70,7 @@ EndProject");
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {{{Guid.NewGuid().ToString()}}}
+		SolutionGuid = {{{Guid.NewGuid()}}}
 	EndGlobalSection
 EndGlobal
 ");
