@@ -17,5 +17,9 @@ namespace UnitsNet.Tests.CustomCode
         protected override double PartsPerTrillionInOneDecimalFraction => 1e12;
 
         protected override double PercentInOneDecimalFraction => 100;
+
+        protected override double MicrostrainsInOneDecimalFraction => 1e6;
+
+        protected override double StrainsInOneDecimalFraction => 1;
     }
 }

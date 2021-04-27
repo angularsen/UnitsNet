@@ -109,7 +109,7 @@ namespace UnitsNet.Tests
             Assertion(3, PowerRatioUnit.DecibelWatt, Quantity.From(3, PowerRatioUnit.DecibelWatt));
             Assertion(3, PressureUnit.Torr, Quantity.From(3, PressureUnit.Torr));
             Assertion(3, PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, Quantity.From(3, PressureChangeRateUnit.PoundForcePerSquareInchPerSecond));
-            Assertion(3, RatioUnit.Percent, Quantity.From(3, RatioUnit.Percent));
+            Assertion(3, RatioUnit.Strain, Quantity.From(3, RatioUnit.Strain));
             Assertion(3, RatioChangeRateUnit.PercentPerSecond, Quantity.From(3, RatioChangeRateUnit.PercentPerSecond));
             Assertion(3, ReactiveEnergyUnit.VoltampereReactiveHour, Quantity.From(3, ReactiveEnergyUnit.VoltampereReactiveHour));
             Assertion(3, ReactivePowerUnit.VoltampereReactive, Quantity.From(3, ReactivePowerUnit.VoltampereReactive));

@@ -74,6 +74,24 @@
           "Abbreviations": [ "ppt" ]
         }
       ]
+    },
+    {
+      "SingularName": "Strain",
+      "PluralName": "Strains",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Micro" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ε" ]
+        },
+        {
+          "Culture": "fr-FR",
+          "Abbreviations": [ "def" ]
+        }
+      ]
     }
+
   ]
 }

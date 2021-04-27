@@ -32,6 +32,10 @@ namespace UnitsNet.NumberExtensions.NumberToRatio
         public static Ratio DecimalFractions<T>(this T value) =>
             Ratio.FromDecimalFractions(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Ratio.FromMicrostrains(UnitsNet.QuantityValue)" />
+        public static Ratio Microstrains<T>(this T value) =>
+            Ratio.FromMicrostrains(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Ratio.FromPartsPerBillion(UnitsNet.QuantityValue)" />
         public static Ratio PartsPerBillion<T>(this T value) =>
             Ratio.FromPartsPerBillion(Convert.ToDouble(value));
@@ -51,6 +55,10 @@ namespace UnitsNet.NumberExtensions.NumberToRatio
         /// <inheritdoc cref="Ratio.FromPercent(UnitsNet.QuantityValue)" />
         public static Ratio Percent<T>(this T value) =>
             Ratio.FromPercent(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Ratio.FromStrains(UnitsNet.QuantityValue)" />
+        public static Ratio Strains<T>(this T value) =>
+            Ratio.FromStrains(Convert.ToDouble(value));
 
     }
 }

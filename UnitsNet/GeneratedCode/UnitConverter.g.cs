@@ -1756,6 +1756,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRate.BaseUnit, PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, q => q.ToUnit(PressureChangeRateUnit.PoundForcePerSquareInchPerSecond));
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, PressureChangeRate.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Ratio>(Ratio.BaseUnit, Ratio.BaseUnit, q => q);
+            unitConverter.SetConversionFunction<Ratio>(Ratio.BaseUnit, RatioUnit.Microstrain, q => q.ToUnit(RatioUnit.Microstrain));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.Microstrain, Ratio.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Ratio>(Ratio.BaseUnit, RatioUnit.PartPerBillion, q => q.ToUnit(RatioUnit.PartPerBillion));
             unitConverter.SetConversionFunction<Ratio>(RatioUnit.PartPerBillion, Ratio.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Ratio>(Ratio.BaseUnit, RatioUnit.PartPerMillion, q => q.ToUnit(RatioUnit.PartPerMillion));
@@ -1766,6 +1768,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Ratio>(RatioUnit.PartPerTrillion, Ratio.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Ratio>(Ratio.BaseUnit, RatioUnit.Percent, q => q.ToUnit(RatioUnit.Percent));
             unitConverter.SetConversionFunction<Ratio>(RatioUnit.Percent, Ratio.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<Ratio>(Ratio.BaseUnit, RatioUnit.Strain, q => q.ToUnit(RatioUnit.Strain));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.Strain, Ratio.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<RatioChangeRate>(RatioChangeRate.BaseUnit, RatioChangeRate.BaseUnit, q => q);
             unitConverter.SetConversionFunction<RatioChangeRate>(RatioChangeRate.BaseUnit, RatioChangeRateUnit.PercentPerSecond, q => q.ToUnit(RatioChangeRateUnit.PercentPerSecond));
             unitConverter.SetConversionFunction<RatioChangeRate>(RatioChangeRateUnit.PercentPerSecond, RatioChangeRate.BaseUnit, q => q.ToBaseUnit());

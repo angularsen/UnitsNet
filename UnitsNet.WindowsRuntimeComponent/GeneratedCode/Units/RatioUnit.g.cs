@@ -27,11 +27,13 @@ namespace UnitsNet.Units
     {
         Undefined = 0,
         DecimalFraction,
+        Microstrain,
         PartPerBillion,
         PartPerMillion,
         PartPerThousand,
         PartPerTrillion,
         Percent,
+        Strain,
     }
 
     #pragma warning restore 1591

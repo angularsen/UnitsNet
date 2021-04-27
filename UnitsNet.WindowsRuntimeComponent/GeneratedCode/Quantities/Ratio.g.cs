@@ -161,6 +161,11 @@ namespace UnitsNet
         public double DecimalFractions => As(RatioUnit.DecimalFraction);
 
         /// <summary>
+        ///     Get Ratio in Microstrains.
+        /// </summary>
+        public double Microstrains => As(RatioUnit.Microstrain);
+
+        /// <summary>
         ///     Get Ratio in PartsPerBillion.
         /// </summary>
         public double PartsPerBillion => As(RatioUnit.PartPerBillion);
@@ -184,6 +189,11 @@ namespace UnitsNet
         ///     Get Ratio in Percent.
         /// </summary>
         public double Percent => As(RatioUnit.Percent);
+
+        /// <summary>
+        ///     Get Ratio in Strains.
+        /// </summary>
+        public double Strains => As(RatioUnit.Strain);
 
         #endregion
 
@@ -224,6 +234,16 @@ namespace UnitsNet
         {
             double value = (double) decimalfractions;
             return new Ratio(value, RatioUnit.DecimalFraction);
+        }
+        /// <summary>
+        ///     Get Ratio from Microstrains.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Ratio FromMicrostrains(double microstrains)
+        {
+            double value = (double) microstrains;
+            return new Ratio(value, RatioUnit.Microstrain);
         }
         /// <summary>
         ///     Get Ratio from PartsPerBillion.
@@ -274,6 +294,16 @@ namespace UnitsNet
         {
             double value = (double) percent;
             return new Ratio(value, RatioUnit.Percent);
+        }
+        /// <summary>
+        ///     Get Ratio from Strains.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Ratio FromStrains(double strains)
+        {
+            double value = (double) strains;
+            return new Ratio(value, RatioUnit.Strain);
         }
 
         /// <summary>
@@ -567,11 +597,13 @@ namespace UnitsNet
             switch(Unit)
             {
                 case RatioUnit.DecimalFraction: return _value;
+                case RatioUnit.Microstrain: return (_value) * 1e-6d;
                 case RatioUnit.PartPerBillion: return _value/1e9;
                 case RatioUnit.PartPerMillion: return _value/1e6;
                 case RatioUnit.PartPerThousand: return _value/1e3;
                 case RatioUnit.PartPerTrillion: return _value/1e12;
                 case RatioUnit.Percent: return _value/1e2;
+                case RatioUnit.Strain: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -587,11 +619,13 @@ namespace UnitsNet
             switch(unit)
             {
                 case RatioUnit.DecimalFraction: return baseUnitValue;
+                case RatioUnit.Microstrain: return (baseUnitValue) / 1e-6d;
                 case RatioUnit.PartPerBillion: return baseUnitValue*1e9;
                 case RatioUnit.PartPerMillion: return baseUnitValue*1e6;
                 case RatioUnit.PartPerThousand: return baseUnitValue*1e3;
                 case RatioUnit.PartPerTrillion: return baseUnitValue*1e12;
                 case RatioUnit.Percent: return baseUnitValue*1e2;
+                case RatioUnit.Strain: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

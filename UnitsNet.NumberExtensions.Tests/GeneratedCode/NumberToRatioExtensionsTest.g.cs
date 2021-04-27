@@ -29,6 +29,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Ratio.FromDecimalFractions(2), 2.DecimalFractions());
 
         [Fact]
+        public void NumberToMicrostrainsTest() =>
+            Assert.Equal(Ratio.FromMicrostrains(2), 2.Microstrains());
+
+        [Fact]
         public void NumberToPartsPerBillionTest() =>
             Assert.Equal(Ratio.FromPartsPerBillion(2), 2.PartsPerBillion());
 
@@ -47,6 +51,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToPercentTest() =>
             Assert.Equal(Ratio.FromPercent(2), 2.Percent());
+
+        [Fact]
+        public void NumberToStrainsTest() =>
+            Assert.Equal(Ratio.FromStrains(2), 2.Strains());
 
     }
 }
