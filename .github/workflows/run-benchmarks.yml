@@ -27,9 +27,9 @@ on:
         required: false
         default: --disableLogFile     
       comparison-baseline:
-        description: 'Compare against a previous result (expecting a link to *-report-full.json'
+        description: 'Compare against a previous result (expecting a link to *-report-full.json)'
         required: true
-        default: 'https://angularsen.github.io/UnitsNet-Benchmarks/benchmarks/netcoreapp50/results/UnitsNet.Benchmark.UnitsNetBenchmarks-report-full.json'              
+        default: 'https://angularsen.github.io/UnitsNet/benchmarks/netcoreapp50/results/UnitsNet.Benchmark.UnitsNetBenchmarks-report-full.json'              
       comparison-threshold:
         description: 'The (comparison) threshold for Statistical Test. Examples: 5%, 10ms, 100ns, 1s'
         required: false
