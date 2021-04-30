@@ -1,4 +1,4 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -20,8 +20,15 @@ namespace CodeGen.JsonTypes
         /// <exception cref="NotSupportedException">Unit abbreviations must be a string or an array of strings.</exception>
         public bool TryGetAbbreviationsForPrefix(Prefix prefix, out string[] unitAbbreviations)
         {
+            JToken value;
             if (AbbreviationsForPrefixes == null ||
-                !AbbreviationsForPrefixes.TryGetValue(prefix.ToString(), out var value))
+                !AbbreviationsForPrefixes.TryGetValue(prefix.ToString(), out value))
+            {
+                unitAbbreviations = default;
+                return false;
+            }
+
+            if (value == null)
             {
                 unitAbbreviations = default;
                 return false;
