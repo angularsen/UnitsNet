@@ -26,12 +26,16 @@ namespace UnitsNet.Units
     public enum KinematicViscosityUnit
     {
         Undefined = 0,
+        Centipoise,
         Centistokes,
         Decistokes,
+        KilopascalDay,
         Kilostokes,
         Microstokes,
+        MillipascalSecond,
         Millistokes,
         Nanostokes,
+        PascalSecond,
         SquareMeterPerSecond,
         Stokes,
     }

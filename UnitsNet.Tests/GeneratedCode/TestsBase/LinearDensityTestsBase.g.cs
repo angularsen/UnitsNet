@@ -37,20 +37,20 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class LinearDensityTestsBase : QuantityTestsBase
     {
-        protected abstract double GramsPerCentimeterInOneKilogramPerMeter { get; }
-        protected abstract double GramsPerMeterInOneKilogramPerMeter { get; }
-        protected abstract double GramsPerMillimeterInOneKilogramPerMeter { get; }
-        protected abstract double KilogramsPerCentimeterInOneKilogramPerMeter { get; }
-        protected abstract double KilogramsPerMeterInOneKilogramPerMeter { get; }
-        protected abstract double KilogramsPerMillimeterInOneKilogramPerMeter { get; }
-        protected abstract double MicrogramsPerCentimeterInOneKilogramPerMeter { get; }
-        protected abstract double MicrogramsPerMeterInOneKilogramPerMeter { get; }
-        protected abstract double MicrogramsPerMillimeterInOneKilogramPerMeter { get; }
-        protected abstract double MilligramsPerCentimeterInOneKilogramPerMeter { get; }
-        protected abstract double MilligramsPerMeterInOneKilogramPerMeter { get; }
-        protected abstract double MilligramsPerMillimeterInOneKilogramPerMeter { get; }
-        protected abstract double PoundsPerFootInOneKilogramPerMeter { get; }
-        protected abstract double PoundsPerInchInOneKilogramPerMeter { get; }
+        protected virtual double GramsPerCentimeterInOneKilogramPerMeter { get; }
+        protected virtual double GramsPerMeterInOneKilogramPerMeter { get; }
+        protected virtual double GramsPerMillimeterInOneKilogramPerMeter { get; }
+        protected virtual double KilogramsPerCentimeterInOneKilogramPerMeter { get; }
+        protected virtual double KilogramsPerMeterInOneKilogramPerMeter { get; }
+        protected virtual double KilogramsPerMillimeterInOneKilogramPerMeter { get; }
+        protected virtual double MicrogramsPerCentimeterInOneKilogramPerMeter { get; }
+        protected virtual double MicrogramsPerMeterInOneKilogramPerMeter { get; }
+        protected virtual double MicrogramsPerMillimeterInOneKilogramPerMeter { get; }
+        protected virtual double MilligramsPerCentimeterInOneKilogramPerMeter { get; }
+        protected virtual double MilligramsPerMeterInOneKilogramPerMeter { get; }
+        protected virtual double MilligramsPerMillimeterInOneKilogramPerMeter { get; }
+        protected virtual double PoundsPerFootInOneKilogramPerMeter { get; }
+        protected virtual double PoundsPerInchInOneKilogramPerMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double GramsPerCentimeterTolerance { get { return 1e-5; } }

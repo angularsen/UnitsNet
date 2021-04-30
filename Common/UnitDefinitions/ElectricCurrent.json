@@ -9,16 +9,68 @@
     {
       "SingularName": "Ampere",
       "PluralName": "Amperes",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
       "BaseUnits": {
         "I": "Ampere"
       },
-      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Kilo", "Mega" ],
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [
+        "Pico",
+        "Nano",
+        "Micro",
+        "Milli",
+        "Centi",
+        "Kilo",
+        "Mega"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "A" ]
+          "Abbreviations": [
+            "A"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramPerMole",
+      "PluralName": "GramsPerMole",
+      "FromUnitToBaseFunc": "x * 0.001",
+      "FromBaseToUnitFunc": "x / 0.001",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "g/mol"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilogramPerMole",
+      "PluralName": "KilogramsPerMole",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "kg/mol"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerMole",
+      "PluralName": "PoundsPerMole",
+      "FromUnitToBaseFunc": "x * 0.45359237",
+      "FromBaseToUnitFunc": "x / 0.45359237",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "lb/mol"
+          ]
         }
       ]
     }

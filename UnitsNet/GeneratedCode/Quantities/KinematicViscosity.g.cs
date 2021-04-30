@@ -17,19 +17,20 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Globalization;
-using System.Linq;
-using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
-
 #nullable enable
 
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using JetBrains.Annotations;
+    using UnitsNet.InternalHelpers;
+    using UnitsNet.Units;
+    
+
     /// <inheritdoc />
     /// <summary>
     ///     The viscosity of a fluid is a measure of its resistance to gradual deformation by shear stress or tensile stress.
@@ -55,12 +56,16 @@ namespace UnitsNet
 
             Info = new QuantityInfo<KinematicViscosityUnit>("KinematicViscosity",
                 new UnitInfo<KinematicViscosityUnit>[] {
+                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Centipoise, BaseUnits.Undefined),
                     new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Centistokes, BaseUnits.Undefined),
                     new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Decistokes, BaseUnits.Undefined),
+                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.KilopascalDay, BaseUnits.Undefined),
                     new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Kilostokes, BaseUnits.Undefined),
                     new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Microstokes, BaseUnits.Undefined),
+                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.MillipascalSecond, BaseUnits.Undefined),
                     new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Millistokes, BaseUnits.Undefined),
                     new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Nanostokes, BaseUnits.Undefined),
+                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.PascalSecond, BaseUnits.Undefined),
                     new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.SquareMeterPerSecond, BaseUnits.Undefined),
                     new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Stokes, BaseUnits.Undefined),
                 },
@@ -179,6 +184,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get KinematicViscosity in Centipoises.
+        /// </summary>
+        public double Centipoises => As(KinematicViscosityUnit.Centipoise);
+
+        /// <summary>
         ///     Get KinematicViscosity in Centistokes.
         /// </summary>
         public double Centistokes => As(KinematicViscosityUnit.Centistokes);
@@ -187,6 +197,11 @@ namespace UnitsNet
         ///     Get KinematicViscosity in Decistokes.
         /// </summary>
         public double Decistokes => As(KinematicViscosityUnit.Decistokes);
+
+        /// <summary>
+        ///     Get KinematicViscosity in KilopascalDays.
+        /// </summary>
+        public double KilopascalDays => As(KinematicViscosityUnit.KilopascalDay);
 
         /// <summary>
         ///     Get KinematicViscosity in Kilostokes.
@@ -199,6 +214,11 @@ namespace UnitsNet
         public double Microstokes => As(KinematicViscosityUnit.Microstokes);
 
         /// <summary>
+        ///     Get KinematicViscosity in MillipascalSeconds.
+        /// </summary>
+        public double MillipascalSeconds => As(KinematicViscosityUnit.MillipascalSecond);
+
+        /// <summary>
         ///     Get KinematicViscosity in Millistokes.
         /// </summary>
         public double Millistokes => As(KinematicViscosityUnit.Millistokes);
@@ -207,6 +227,11 @@ namespace UnitsNet
         ///     Get KinematicViscosity in Nanostokes.
         /// </summary>
         public double Nanostokes => As(KinematicViscosityUnit.Nanostokes);
+
+        /// <summary>
+        ///     Get KinematicViscosity in PascalSeconds.
+        /// </summary>
+        public double PascalSeconds => As(KinematicViscosityUnit.PascalSecond);
 
         /// <summary>
         ///     Get KinematicViscosity in SquareMetersPerSecond.
@@ -248,6 +273,15 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
+        ///     Get KinematicViscosity from Centipoises.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static KinematicViscosity FromCentipoises(QuantityValue centipoises)
+        {
+            double value = (double) centipoises;
+            return new KinematicViscosity(value, KinematicViscosityUnit.Centipoise);
+        }
+        /// <summary>
         ///     Get KinematicViscosity from Centistokes.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -264,6 +298,15 @@ namespace UnitsNet
         {
             double value = (double) decistokes;
             return new KinematicViscosity(value, KinematicViscosityUnit.Decistokes);
+        }
+        /// <summary>
+        ///     Get KinematicViscosity from KilopascalDays.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static KinematicViscosity FromKilopascalDays(QuantityValue kilopascaldays)
+        {
+            double value = (double) kilopascaldays;
+            return new KinematicViscosity(value, KinematicViscosityUnit.KilopascalDay);
         }
         /// <summary>
         ///     Get KinematicViscosity from Kilostokes.
@@ -284,6 +327,15 @@ namespace UnitsNet
             return new KinematicViscosity(value, KinematicViscosityUnit.Microstokes);
         }
         /// <summary>
+        ///     Get KinematicViscosity from MillipascalSeconds.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static KinematicViscosity FromMillipascalSeconds(QuantityValue millipascalseconds)
+        {
+            double value = (double) millipascalseconds;
+            return new KinematicViscosity(value, KinematicViscosityUnit.MillipascalSecond);
+        }
+        /// <summary>
         ///     Get KinematicViscosity from Millistokes.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -300,6 +352,15 @@ namespace UnitsNet
         {
             double value = (double) nanostokes;
             return new KinematicViscosity(value, KinematicViscosityUnit.Nanostokes);
+        }
+        /// <summary>
+        ///     Get KinematicViscosity from PascalSeconds.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static KinematicViscosity FromPascalSeconds(QuantityValue pascalseconds)
+        {
+            double value = (double) pascalseconds;
+            return new KinematicViscosity(value, KinematicViscosityUnit.PascalSecond);
         }
         /// <summary>
         ///     Get KinematicViscosity from SquareMetersPerSecond.
@@ -748,12 +809,16 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case KinematicViscosityUnit.Centipoise: return _value * 0.001;
                 case KinematicViscosityUnit.Centistokes: return (_value/1e4) * 1e-2d;
                 case KinematicViscosityUnit.Decistokes: return (_value/1e4) * 1e-1d;
+                case KinematicViscosityUnit.KilopascalDay: return _value * 86400000;
                 case KinematicViscosityUnit.Kilostokes: return (_value/1e4) * 1e3d;
                 case KinematicViscosityUnit.Microstokes: return (_value/1e4) * 1e-6d;
+                case KinematicViscosityUnit.MillipascalSecond: return _value * 0.001;
                 case KinematicViscosityUnit.Millistokes: return (_value/1e4) * 1e-3d;
                 case KinematicViscosityUnit.Nanostokes: return (_value/1e4) * 1e-9d;
+                case KinematicViscosityUnit.PascalSecond: return _value;
                 case KinematicViscosityUnit.SquareMeterPerSecond: return _value;
                 case KinematicViscosityUnit.Stokes: return _value/1e4;
                 default:
@@ -781,12 +846,16 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case KinematicViscosityUnit.Centipoise: return baseUnitValue / 0.001;
                 case KinematicViscosityUnit.Centistokes: return (baseUnitValue*1e4) / 1e-2d;
                 case KinematicViscosityUnit.Decistokes: return (baseUnitValue*1e4) / 1e-1d;
+                case KinematicViscosityUnit.KilopascalDay: return baseUnitValue / 86400000;
                 case KinematicViscosityUnit.Kilostokes: return (baseUnitValue*1e4) / 1e3d;
                 case KinematicViscosityUnit.Microstokes: return (baseUnitValue*1e4) / 1e-6d;
+                case KinematicViscosityUnit.MillipascalSecond: return baseUnitValue / 0.001;
                 case KinematicViscosityUnit.Millistokes: return (baseUnitValue*1e4) / 1e-3d;
                 case KinematicViscosityUnit.Nanostokes: return (baseUnitValue*1e4) / 1e-9d;
+                case KinematicViscosityUnit.PascalSecond: return baseUnitValue;
                 case KinematicViscosityUnit.SquareMeterPerSecond: return baseUnitValue;
                 case KinematicViscosityUnit.Stokes: return baseUnitValue*1e4;
                 default:

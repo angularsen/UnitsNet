@@ -28,12 +28,16 @@ namespace UnitsNet.Units
         Undefined = 0,
         CentimolesPerLiter,
         DecimolesPerLiter,
+        KilomolePerCubicFoot,
+        KilomolePerCubicMeter,
         MicromolesPerLiter,
         MillimolesPerLiter,
+        MolePerCubicFoot,
         MolesPerCubicMeter,
         MolesPerLiter,
         NanomolesPerLiter,
         PicomolesPerLiter,
+        PoundMolePerCubicFoot,
     }
 
     #pragma warning restore 1591

@@ -17,19 +17,20 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Globalization;
-using System.Linq;
-using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
-
 #nullable enable
 
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using JetBrains.Annotations;
+    using UnitsNet.InternalHelpers;
+    using UnitsNet.Units;
+    
+
     /// <inheritdoc />
     /// <summary>
     ///     Vitamin A: 1 IU is the biological equivalent of 0.3 µg retinol, or of 0.6 µg beta-carotene.

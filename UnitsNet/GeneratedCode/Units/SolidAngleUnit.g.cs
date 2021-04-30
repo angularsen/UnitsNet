@@ -26,6 +26,7 @@ namespace UnitsNet.Units
     public enum SolidAngleUnit
     {
         Undefined = 0,
+        SquareDegree,
         Steradian,
     }
 

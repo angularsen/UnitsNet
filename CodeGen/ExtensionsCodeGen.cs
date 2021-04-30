@@ -28,7 +28,6 @@ namespace UnitsNet.CodeGen
         public string SourceFolderPath { get; set; }
         public bool GenerateStaticQuantityFactory => StaticQuantityFactory != null;
         public bool UseNullableReferenceTypes { get; set; } = false;
-        public bool ClearFoldersFirst { get; set; } = true; // TODO
         public bool LogVerbose { get; set; } = false;
         public GenerateOptions Quantities { get; set; }
         public GenerateOptions Units { get; set; }

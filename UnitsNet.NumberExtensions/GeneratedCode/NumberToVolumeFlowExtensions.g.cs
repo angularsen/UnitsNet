@@ -44,6 +44,18 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
         public static VolumeFlow AcreFeetPerSecond<T>(this T value) =>
             VolumeFlow.FromAcreFeetPerSecond(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="VolumeFlow.FromBarrelsPerDay(UnitsNet.QuantityValue)" />
+        public static VolumeFlow BarrelsPerDay<T>(this T value) =>
+            VolumeFlow.FromBarrelsPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromBarrelsPerHour(UnitsNet.QuantityValue)" />
+        public static VolumeFlow BarrelsPerHour<T>(this T value) =>
+            VolumeFlow.FromBarrelsPerHour(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromBarrelsPerMinute(UnitsNet.QuantityValue)" />
+        public static VolumeFlow BarrelsPerMinute<T>(this T value) =>
+            VolumeFlow.FromBarrelsPerMinute(Convert.ToDouble(value));
+
         /// <inheritdoc cref="VolumeFlow.FromCentilitersPerDay(UnitsNet.QuantityValue)" />
         public static VolumeFlow CentilitersPerDay<T>(this T value) =>
             VolumeFlow.FromCentilitersPerDay(Convert.ToDouble(value));
@@ -60,9 +72,17 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
         public static VolumeFlow CubicCentimetersPerMinute<T>(this T value) =>
             VolumeFlow.FromCubicCentimetersPerMinute(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="VolumeFlow.FromCubicCentimetersPerSecond(UnitsNet.QuantityValue)" />
+        public static VolumeFlow CubicCentimetersPerSecond<T>(this T value) =>
+            VolumeFlow.FromCubicCentimetersPerSecond(Convert.ToDouble(value));
+
         /// <inheritdoc cref="VolumeFlow.FromCubicDecimetersPerMinute(UnitsNet.QuantityValue)" />
         public static VolumeFlow CubicDecimetersPerMinute<T>(this T value) =>
             VolumeFlow.FromCubicDecimetersPerMinute(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerDay(UnitsNet.QuantityValue)" />
+        public static VolumeFlow CubicFeetPerDay<T>(this T value) =>
+            VolumeFlow.FromCubicFeetPerDay(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerHour(UnitsNet.QuantityValue)" />
         public static VolumeFlow CubicFeetPerHour<T>(this T value) =>
@@ -75,6 +95,10 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
         /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerSecond(UnitsNet.QuantityValue)" />
         public static VolumeFlow CubicFeetPerSecond<T>(this T value) =>
             VolumeFlow.FromCubicFeetPerSecond(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromCubicInchesPerSecond(UnitsNet.QuantityValue)" />
+        public static VolumeFlow CubicInchesPerSecond<T>(this T value) =>
+            VolumeFlow.FromCubicInchesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerDay(UnitsNet.QuantityValue)" />
         public static VolumeFlow CubicMetersPerDay<T>(this T value) =>
@@ -123,6 +147,10 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
         /// <inheritdoc cref="VolumeFlow.FromDecilitersPerSecond(UnitsNet.QuantityValue)" />
         public static VolumeFlow DecilitersPerSecond<T>(this T value) =>
             VolumeFlow.FromDecilitersPerSecond(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromGallonsPerMinute(UnitsNet.QuantityValue)" />
+        public static VolumeFlow GallonsPerMinute<T>(this T value) =>
+            VolumeFlow.FromGallonsPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VolumeFlow.FromKilolitersPerDay(UnitsNet.QuantityValue)" />
         public static VolumeFlow KilolitersPerDay<T>(this T value) =>
@@ -188,6 +216,18 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
         public static VolumeFlow MillilitersPerSecond<T>(this T value) =>
             VolumeFlow.FromMillilitersPerSecond(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="VolumeFlow.FromMillionCubicFeetPerDay(UnitsNet.QuantityValue)" />
+        public static VolumeFlow MillionCubicFeetPerDay<T>(this T value) =>
+            VolumeFlow.FromMillionCubicFeetPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromMillionCubicMetersPerDay(UnitsNet.QuantityValue)" />
+        public static VolumeFlow MillionCubicMetersPerDay<T>(this T value) =>
+            VolumeFlow.FromMillionCubicMetersPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromMillionStandardCubicFeetsPerDay(UnitsNet.QuantityValue)" />
+        public static VolumeFlow MillionStandardCubicFeetsPerDay<T>(this T value) =>
+            VolumeFlow.FromMillionStandardCubicFeetsPerDay(Convert.ToDouble(value));
+
         /// <inheritdoc cref="VolumeFlow.FromMillionUsGallonsPerDay(UnitsNet.QuantityValue)" />
         public static VolumeFlow MillionUsGallonsPerDay<T>(this T value) =>
             VolumeFlow.FromMillionUsGallonsPerDay(Convert.ToDouble(value));
@@ -219,6 +259,26 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
         /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerSecond(UnitsNet.QuantityValue)" />
         public static VolumeFlow OilBarrelsPerSecond<T>(this T value) =>
             VolumeFlow.FromOilBarrelsPerSecond(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromReservoirBarrelsPerDay(UnitsNet.QuantityValue)" />
+        public static VolumeFlow ReservoirBarrelsPerDay<T>(this T value) =>
+            VolumeFlow.FromReservoirBarrelsPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromThousandBarrelsPerDay(UnitsNet.QuantityValue)" />
+        public static VolumeFlow ThousandBarrelsPerDay<T>(this T value) =>
+            VolumeFlow.FromThousandBarrelsPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromThousandCubicFeetPerDay(UnitsNet.QuantityValue)" />
+        public static VolumeFlow ThousandCubicFeetPerDay<T>(this T value) =>
+            VolumeFlow.FromThousandCubicFeetPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromThousandReservoirBarrelsPerDay(UnitsNet.QuantityValue)" />
+        public static VolumeFlow ThousandReservoirBarrelsPerDay<T>(this T value) =>
+            VolumeFlow.FromThousandReservoirBarrelsPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromThousandStandardCubicFeetsPerDay(UnitsNet.QuantityValue)" />
+        public static VolumeFlow ThousandStandardCubicFeetsPerDay<T>(this T value) =>
+            VolumeFlow.FromThousandStandardCubicFeetsPerDay(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerDay(UnitsNet.QuantityValue)" />
         public static VolumeFlow UkGallonsPerDay<T>(this T value) =>

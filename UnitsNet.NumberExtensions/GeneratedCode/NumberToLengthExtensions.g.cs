@@ -32,6 +32,38 @@ namespace UnitsNet.NumberExtensions.NumberToLength
         public static Length AstronomicalUnits<T>(this T value) =>
             Length.FromAstronomicalUnits(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Length.FromBillionCubicFeetsPerAcre(UnitsNet.QuantityValue)" />
+        public static Length BillionCubicFeetsPerAcre<T>(this T value) =>
+            Length.FromBillionCubicFeetsPerAcre(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromBillionCubicFeetsPerHundredAcres(UnitsNet.QuantityValue)" />
+        public static Length BillionCubicFeetsPerHundredAcres<T>(this T value) =>
+            Length.FromBillionCubicFeetsPerHundredAcres(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromBillionCubicFeetsPerSection(UnitsNet.QuantityValue)" />
+        public static Length BillionCubicFeetsPerSection<T>(this T value) =>
+            Length.FromBillionCubicFeetsPerSection(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromBritishChainSearsOne9TwoTwos(UnitsNet.QuantityValue)" />
+        public static Length BritishChainSearsOne9TwoTwos<T>(this T value) =>
+            Length.FromBritishChainSearsOne9TwoTwos(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromBritishChainSearsOne9TwoTwoTruncateds(UnitsNet.QuantityValue)" />
+        public static Length BritishChainSearsOne9TwoTwoTruncateds<T>(this T value) =>
+            Length.FromBritishChainSearsOne9TwoTwoTruncateds(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromBritishFootSearsOne9TwoTwos(UnitsNet.QuantityValue)" />
+        public static Length BritishFootSearsOne9TwoTwos<T>(this T value) =>
+            Length.FromBritishFootSearsOne9TwoTwos(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromBritishYardSearsOne9TwoTwos(UnitsNet.QuantityValue)" />
+        public static Length BritishYardSearsOne9TwoTwos<T>(this T value) =>
+            Length.FromBritishYardSearsOne9TwoTwos(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromBritishYardSearsOne9TwoTwoTruncateds(UnitsNet.QuantityValue)" />
+        public static Length BritishYardSearsOne9TwoTwoTruncateds<T>(this T value) =>
+            Length.FromBritishYardSearsOne9TwoTwoTruncateds(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Length.FromCentimeters(UnitsNet.QuantityValue)" />
         public static Length Centimeters<T>(this T value) =>
             Length.FromCentimeters(Convert.ToDouble(value));
@@ -39,6 +71,26 @@ namespace UnitsNet.NumberExtensions.NumberToLength
         /// <inheritdoc cref="Length.FromChains(UnitsNet.QuantityValue)" />
         public static Length Chains<T>(this T value) =>
             Length.FromChains(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromClarkesFeet(UnitsNet.QuantityValue)" />
+        public static Length ClarkesFeet<T>(this T value) =>
+            Length.FromClarkesFeet(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromClarkesLinks(UnitsNet.QuantityValue)" />
+        public static Length ClarkesLinks<T>(this T value) =>
+            Length.FromClarkesLinks(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromClarkesYards(UnitsNet.QuantityValue)" />
+        public static Length ClarkesYards<T>(this T value) =>
+            Length.FromClarkesYards(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromCubicFeetPerSquareFoot(UnitsNet.QuantityValue)" />
+        public static Length CubicFeetPerSquareFoot<T>(this T value) =>
+            Length.FromCubicFeetPerSquareFoot(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromCubicMetersPerSquareMeter(UnitsNet.QuantityValue)" />
+        public static Length CubicMetersPerSquareMeter<T>(this T value) =>
+            Length.FromCubicMetersPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Length.FromDecimeters(UnitsNet.QuantityValue)" />
         public static Length Decimeters<T>(this T value) =>
@@ -60,6 +112,14 @@ namespace UnitsNet.NumberExtensions.NumberToLength
         public static Length Feet<T>(this T value) =>
             Length.FromFeet(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Length.FromGermanLegalMeters(UnitsNet.QuantityValue)" />
+        public static Length GermanLegalMeters<T>(this T value) =>
+            Length.FromGermanLegalMeters(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromGoldCoastFeet(UnitsNet.QuantityValue)" />
+        public static Length GoldCoastFeet<T>(this T value) =>
+            Length.FromGoldCoastFeet(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Length.FromHands(UnitsNet.QuantityValue)" />
         public static Length Hands<T>(this T value) =>
             Length.FromHands(Convert.ToDouble(value));
@@ -71,6 +131,14 @@ namespace UnitsNet.NumberExtensions.NumberToLength
         /// <inheritdoc cref="Length.FromInches(UnitsNet.QuantityValue)" />
         public static Length Inches<T>(this T value) =>
             Length.FromInches(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromInchBy3Twos(UnitsNet.QuantityValue)" />
+        public static Length InchBy3Twos<T>(this T value) =>
+            Length.FromInchBy3Twos(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromIndianYards(UnitsNet.QuantityValue)" />
+        public static Length IndianYards<T>(this T value) =>
+            Length.FromIndianYards(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Length.FromKilolightYears(UnitsNet.QuantityValue)" />
         public static Length KilolightYears<T>(this T value) =>
@@ -87,6 +155,10 @@ namespace UnitsNet.NumberExtensions.NumberToLength
         /// <inheritdoc cref="Length.FromLightYears(UnitsNet.QuantityValue)" />
         public static Length LightYears<T>(this T value) =>
             Length.FromLightYears(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromLinks(UnitsNet.QuantityValue)" />
+        public static Length Links<T>(this T value) =>
+            Length.FromLinks(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Length.FromMegalightYears(UnitsNet.QuantityValue)" />
         public static Length MegalightYears<T>(this T value) =>
@@ -120,6 +192,30 @@ namespace UnitsNet.NumberExtensions.NumberToLength
         public static Length Millimeters<T>(this T value) =>
             Length.FromMillimeters(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Length.FromMillionBarrelsPerAcre(UnitsNet.QuantityValue)" />
+        public static Length MillionBarrelsPerAcre<T>(this T value) =>
+            Length.FromMillionBarrelsPerAcre(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromMillionBarrelsPerSection(UnitsNet.QuantityValue)" />
+        public static Length MillionBarrelsPerSection<T>(this T value) =>
+            Length.FromMillionBarrelsPerSection(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromMillionBarrelsPerSquareKilometer(UnitsNet.QuantityValue)" />
+        public static Length MillionBarrelsPerSquareKilometer<T>(this T value) =>
+            Length.FromMillionBarrelsPerSquareKilometer(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromMillionCubicFeetsPerAcre(UnitsNet.QuantityValue)" />
+        public static Length MillionCubicFeetsPerAcre<T>(this T value) =>
+            Length.FromMillionCubicFeetsPerAcre(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromMillionCubicFeetsPerSection(UnitsNet.QuantityValue)" />
+        public static Length MillionCubicFeetsPerSection<T>(this T value) =>
+            Length.FromMillionCubicFeetsPerSection(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromMillionCubicFeetsPerSquareKilometer(UnitsNet.QuantityValue)" />
+        public static Length MillionCubicFeetsPerSquareKilometer<T>(this T value) =>
+            Length.FromMillionCubicFeetsPerSquareKilometer(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Length.FromNanometers(UnitsNet.QuantityValue)" />
         public static Length Nanometers<T>(this T value) =>
             Length.FromNanometers(Convert.ToDouble(value));
@@ -147,6 +243,22 @@ namespace UnitsNet.NumberExtensions.NumberToLength
         /// <inheritdoc cref="Length.FromSolarRadiuses(UnitsNet.QuantityValue)" />
         public static Length SolarRadiuses<T>(this T value) =>
             Length.FromSolarRadiuses(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromThousandBarrelsPerAcre(UnitsNet.QuantityValue)" />
+        public static Length ThousandBarrelsPerAcre<T>(this T value) =>
+            Length.FromThousandBarrelsPerAcre(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromThousandBarrelsPerSquareKilometer(UnitsNet.QuantityValue)" />
+        public static Length ThousandBarrelsPerSquareKilometer<T>(this T value) =>
+            Length.FromThousandBarrelsPerSquareKilometer(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromThousandCubicFeetsPerAcre(UnitsNet.QuantityValue)" />
+        public static Length ThousandCubicFeetsPerAcre<T>(this T value) =>
+            Length.FromThousandCubicFeetsPerAcre(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromThousandCubicFeetsPerSquareKilometer(UnitsNet.QuantityValue)" />
+        public static Length ThousandCubicFeetsPerSquareKilometer<T>(this T value) =>
+            Length.FromThousandCubicFeetsPerSquareKilometer(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Length.FromTwips(UnitsNet.QuantityValue)" />
         public static Length Twips<T>(this T value) =>

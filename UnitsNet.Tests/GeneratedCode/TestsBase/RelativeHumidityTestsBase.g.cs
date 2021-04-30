@@ -37,7 +37,7 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class RelativeHumidityTestsBase : QuantityTestsBase
     {
-        protected abstract double PercentInOnePercent { get; }
+        protected virtual double PercentInOnePercent { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double PercentTolerance { get { return 1e-5; } }

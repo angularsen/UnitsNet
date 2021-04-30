@@ -33,6 +33,18 @@ namespace UnitsNet.Tests
             Assert.Equal(Volume.FromAuTablespoons(2), 2.AuTablespoons());
 
         [Fact]
+        public void NumberToBarrelsTest() =>
+            Assert.Equal(Volume.FromBarrels(2), 2.Barrels());
+
+        [Fact]
+        public void NumberToBillionCubicFeetsTest() =>
+            Assert.Equal(Volume.FromBillionCubicFeets(2), 2.BillionCubicFeets());
+
+        [Fact]
+        public void NumberToBillionCubicMetersTest() =>
+            Assert.Equal(Volume.FromBillionCubicMeters(2), 2.BillionCubicMeters());
+
+        [Fact]
         public void NumberToBoardFeetTest() =>
             Assert.Equal(Volume.FromBoardFeet(2), 2.BoardFeet());
 
@@ -185,8 +197,84 @@ namespace UnitsNet.Tests
             Assert.Equal(Volume.FromMilliliters(2), 2.Milliliters());
 
         [Fact]
+        public void NumberToMillionBarrelsTest() =>
+            Assert.Equal(Volume.FromMillionBarrels(2), 2.MillionBarrels());
+
+        [Fact]
+        public void NumberToMillionCubicFeetsTest() =>
+            Assert.Equal(Volume.FromMillionCubicFeets(2), 2.MillionCubicFeets());
+
+        [Fact]
+        public void NumberToMillionCubicMetersTest() =>
+            Assert.Equal(Volume.FromMillionCubicMeters(2), 2.MillionCubicMeters());
+
+        [Fact]
+        public void NumberToMillionReservoirBarrelsTest() =>
+            Assert.Equal(Volume.FromMillionReservoirBarrels(2), 2.MillionReservoirBarrels());
+
+        [Fact]
+        public void NumberToMillionStandardCubicFeetsTest() =>
+            Assert.Equal(Volume.FromMillionStandardCubicFeets(2), 2.MillionStandardCubicFeets());
+
+        [Fact]
+        public void NumberToMillionUkGallonsTest() =>
+            Assert.Equal(Volume.FromMillionUkGallons(2), 2.MillionUkGallons());
+
+        [Fact]
+        public void NumberToMillionUsGallonsTest() =>
+            Assert.Equal(Volume.FromMillionUsGallons(2), 2.MillionUsGallons());
+
+        [Fact]
         public void NumberToOilBarrelsTest() =>
             Assert.Equal(Volume.FromOilBarrels(2), 2.OilBarrels());
+
+        [Fact]
+        public void NumberToReservoirBarrelsTest() =>
+            Assert.Equal(Volume.FromReservoirBarrels(2), 2.ReservoirBarrels());
+
+        [Fact]
+        public void NumberToReservoirCubicFeetTest() =>
+            Assert.Equal(Volume.FromReservoirCubicFeet(2), 2.ReservoirCubicFeet());
+
+        [Fact]
+        public void NumberToStandardCubicFeetTest() =>
+            Assert.Equal(Volume.FromStandardCubicFeet(2), 2.StandardCubicFeet());
+
+        [Fact]
+        public void NumberToStockTankBarrelsTest() =>
+            Assert.Equal(Volume.FromStockTankBarrels(2), 2.StockTankBarrels());
+
+        [Fact]
+        public void NumberToThousandBarrelsTest() =>
+            Assert.Equal(Volume.FromThousandBarrels(2), 2.ThousandBarrels());
+
+        [Fact]
+        public void NumberToThousandCubicFeetsTest() =>
+            Assert.Equal(Volume.FromThousandCubicFeets(2), 2.ThousandCubicFeets());
+
+        [Fact]
+        public void NumberToThousandReservoirBarrelsTest() =>
+            Assert.Equal(Volume.FromThousandReservoirBarrels(2), 2.ThousandReservoirBarrels());
+
+        [Fact]
+        public void NumberToThousandStandardCubicFeetsTest() =>
+            Assert.Equal(Volume.FromThousandStandardCubicFeets(2), 2.ThousandStandardCubicFeets());
+
+        [Fact]
+        public void NumberToThousandUkGallonsTest() =>
+            Assert.Equal(Volume.FromThousandUkGallons(2), 2.ThousandUkGallons());
+
+        [Fact]
+        public void NumberToThousandUsGallonsTest() =>
+            Assert.Equal(Volume.FromThousandUsGallons(2), 2.ThousandUsGallons());
+
+        [Fact]
+        public void NumberToTrillionCubicFeetTest() =>
+            Assert.Equal(Volume.FromTrillionCubicFeet(2), 2.TrillionCubicFeet());
+
+        [Fact]
+        public void NumberToUkGallonsTest() =>
+            Assert.Equal(Volume.FromUkGallons(2), 2.UkGallons());
 
         [Fact]
         public void NumberToUkTablespoonsTest() =>

@@ -17,19 +17,20 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Globalization;
-using System.Linq;
-using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
-
 #nullable enable
 
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using JetBrains.Annotations;
+    using UnitsNet.InternalHelpers;
+    using UnitsNet.Units;
+    
+
     /// <inheritdoc />
     /// <summary>
     ///     In physics, a force is any influence that causes an object to undergo a certain change, either concerning its movement, direction, or geometrical construction. In other words, a force can cause an object with mass to change its velocity (which includes to begin moving from a state of rest), i.e., to accelerate, or a flexible object to deform, or both. Force can also be described by intuitive concepts such as a push or a pull. A force has both magnitude and direction, making it a vector quantity. It is measured in the SI unit of newtons and represented by the symbol F.
@@ -53,7 +54,12 @@ namespace UnitsNet
             Info = new QuantityInfo<ForceUnit>("Force",
                 new UnitInfo<ForceUnit>[] {
                     new UnitInfo<ForceUnit>(ForceUnit.Decanewton, BaseUnits.Undefined),
+                    new UnitInfo<ForceUnit>(ForceUnit.Dekanewton, BaseUnits.Undefined),
                     new UnitInfo<ForceUnit>(ForceUnit.Dyn, new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram, time: DurationUnit.Second)),
+                    new UnitInfo<ForceUnit>(ForceUnit.Dyne, BaseUnits.Undefined),
+                    new UnitInfo<ForceUnit>(ForceUnit.GramForce, BaseUnits.Undefined),
+                    new UnitInfo<ForceUnit>(ForceUnit.Kilodekanewton, BaseUnits.Undefined),
+                    new UnitInfo<ForceUnit>(ForceUnit.Kilodyne, BaseUnits.Undefined),
                     new UnitInfo<ForceUnit>(ForceUnit.KilogramForce, BaseUnits.Undefined),
                     new UnitInfo<ForceUnit>(ForceUnit.Kilonewton, BaseUnits.Undefined),
                     new UnitInfo<ForceUnit>(ForceUnit.KiloPond, BaseUnits.Undefined),
@@ -188,9 +194,34 @@ namespace UnitsNet
         public double Decanewtons => As(ForceUnit.Decanewton);
 
         /// <summary>
+        ///     Get Force in Dekanewtons.
+        /// </summary>
+        public double Dekanewtons => As(ForceUnit.Dekanewton);
+
+        /// <summary>
         ///     Get Force in Dyne.
         /// </summary>
         public double Dyne => As(ForceUnit.Dyn);
+
+        /// <summary>
+        ///     Get Force in Dynes.
+        /// </summary>
+        public double Dynes => As(ForceUnit.Dyne);
+
+        /// <summary>
+        ///     Get Force in GramForces.
+        /// </summary>
+        public double GramForces => As(ForceUnit.GramForce);
+
+        /// <summary>
+        ///     Get Force in Kilodekanewtons.
+        /// </summary>
+        public double Kilodekanewtons => As(ForceUnit.Kilodekanewton);
+
+        /// <summary>
+        ///     Get Force in Kilodynes.
+        /// </summary>
+        public double Kilodynes => As(ForceUnit.Kilodyne);
 
         /// <summary>
         ///     Get Force in KilogramsForce.
@@ -296,6 +327,15 @@ namespace UnitsNet
             return new Force(value, ForceUnit.Decanewton);
         }
         /// <summary>
+        ///     Get Force from Dekanewtons.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Force FromDekanewtons(QuantityValue dekanewtons)
+        {
+            double value = (double) dekanewtons;
+            return new Force(value, ForceUnit.Dekanewton);
+        }
+        /// <summary>
         ///     Get Force from Dyne.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -303,6 +343,42 @@ namespace UnitsNet
         {
             double value = (double) dyne;
             return new Force(value, ForceUnit.Dyn);
+        }
+        /// <summary>
+        ///     Get Force from Dynes.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Force FromDynes(QuantityValue dynes)
+        {
+            double value = (double) dynes;
+            return new Force(value, ForceUnit.Dyne);
+        }
+        /// <summary>
+        ///     Get Force from GramForces.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Force FromGramForces(QuantityValue gramforces)
+        {
+            double value = (double) gramforces;
+            return new Force(value, ForceUnit.GramForce);
+        }
+        /// <summary>
+        ///     Get Force from Kilodekanewtons.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Force FromKilodekanewtons(QuantityValue kilodekanewtons)
+        {
+            double value = (double) kilodekanewtons;
+            return new Force(value, ForceUnit.Kilodekanewton);
+        }
+        /// <summary>
+        ///     Get Force from Kilodynes.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Force FromKilodynes(QuantityValue kilodynes)
+        {
+            double value = (double) kilodynes;
+            return new Force(value, ForceUnit.Kilodyne);
         }
         /// <summary>
         ///     Get Force from KilogramsForce.
@@ -851,7 +927,12 @@ namespace UnitsNet
             switch(Unit)
             {
                 case ForceUnit.Decanewton: return (_value) * 1e1d;
+                case ForceUnit.Dekanewton: return _value * 10;
                 case ForceUnit.Dyn: return _value/1e5;
+                case ForceUnit.Dyne: return _value * 1E-05;
+                case ForceUnit.GramForce: return _value * 0.00980665;
+                case ForceUnit.Kilodekanewton: return _value * 10000;
+                case ForceUnit.Kilodyne: return _value * 1E-02;
                 case ForceUnit.KilogramForce: return _value*9.80665002864;
                 case ForceUnit.Kilonewton: return (_value) * 1e3d;
                 case ForceUnit.KiloPond: return _value*9.80665002864;
@@ -891,7 +972,12 @@ namespace UnitsNet
             switch(unit)
             {
                 case ForceUnit.Decanewton: return (baseUnitValue) / 1e1d;
+                case ForceUnit.Dekanewton: return baseUnitValue / 10;
                 case ForceUnit.Dyn: return baseUnitValue*1e5;
+                case ForceUnit.Dyne: return baseUnitValue / 1E-05;
+                case ForceUnit.GramForce: return baseUnitValue / 0.00980665;
+                case ForceUnit.Kilodekanewton: return baseUnitValue / 10000;
+                case ForceUnit.Kilodyne: return baseUnitValue / 1E-02;
                 case ForceUnit.KilogramForce: return baseUnitValue/9.80665002864;
                 case ForceUnit.Kilonewton: return (baseUnitValue) / 1e3d;
                 case ForceUnit.KiloPond: return baseUnitValue/9.80665002864;

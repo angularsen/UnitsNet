@@ -37,10 +37,10 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class AmplitudeRatioTestsBase : QuantityTestsBase
     {
-        protected abstract double DecibelMicrovoltsInOneDecibelVolt { get; }
-        protected abstract double DecibelMillivoltsInOneDecibelVolt { get; }
-        protected abstract double DecibelsUnloadedInOneDecibelVolt { get; }
-        protected abstract double DecibelVoltsInOneDecibelVolt { get; }
+        protected virtual double DecibelMicrovoltsInOneDecibelVolt { get; }
+        protected virtual double DecibelMillivoltsInOneDecibelVolt { get; }
+        protected virtual double DecibelsUnloadedInOneDecibelVolt { get; }
+        protected virtual double DecibelVoltsInOneDecibelVolt { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double DecibelMicrovoltsTolerance { get { return 1e-5; } }

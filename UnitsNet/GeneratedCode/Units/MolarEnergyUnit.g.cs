@@ -26,7 +26,15 @@ namespace UnitsNet.Units
     public enum MolarEnergyUnit
     {
         Undefined = 0,
+        BritishThermalUnitPerMole,
+        BritishThermalUnitPerPoundMole,
+        BritishThermalUnitThermochemicalPerMole,
+        BritishThermalUnitThermochemicalPerPoundMole,
+        CaloriePerMole,
+        CalorieThermochemicalPerMole,
         JoulePerMole,
+        KilocaloriePerMole,
+        KilocalorieThermochemicalPerMole,
         KilojoulePerMole,
         MegajoulePerMole,
     }

@@ -17,19 +17,20 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Globalization;
-using System.Linq;
-using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
-
 #nullable enable
 
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using JetBrains.Annotations;
+    using UnitsNet.InternalHelpers;
+    using UnitsNet.Units;
+    
+
     /// <inheritdoc />
     /// <summary>
     ///     Rotational speed (sometimes called speed of revolution) is the number of complete rotations, revolutions, cycles, or turns per time unit. Rotational speed is a cyclic frequency, measured in radians per second or in hertz in the SI System by scientists, or in revolutions per minute (rpm or min-1) or revolutions per second in everyday life. The symbol for rotational speed is ω (the Greek lowercase letter "omega").
@@ -65,6 +66,8 @@ namespace UnitsNet
                     new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.RadianPerSecond, BaseUnits.Undefined),
                     new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.RevolutionPerMinute, BaseUnits.Undefined),
                     new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.RevolutionPerSecond, BaseUnits.Undefined),
+                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.RotationPerMinute, BaseUnits.Undefined),
+                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.RotationPerSecond, BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.RotationalSpeed);
         }
@@ -245,6 +248,16 @@ namespace UnitsNet
         /// </summary>
         public double RevolutionsPerSecond => As(RotationalSpeedUnit.RevolutionPerSecond);
 
+        /// <summary>
+        ///     Get RotationalSpeed in RotationsPerMinute.
+        /// </summary>
+        public double RotationsPerMinute => As(RotationalSpeedUnit.RotationPerMinute);
+
+        /// <summary>
+        ///     Get RotationalSpeed in RotationsPerSecond.
+        /// </summary>
+        public double RotationsPerSecond => As(RotationalSpeedUnit.RotationPerSecond);
+
         #endregion
 
         #region Static Methods
@@ -390,6 +403,24 @@ namespace UnitsNet
         {
             double value = (double) revolutionspersecond;
             return new RotationalSpeed(value, RotationalSpeedUnit.RevolutionPerSecond);
+        }
+        /// <summary>
+        ///     Get RotationalSpeed from RotationsPerMinute.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static RotationalSpeed FromRotationsPerMinute(QuantityValue rotationsperminute)
+        {
+            double value = (double) rotationsperminute;
+            return new RotationalSpeed(value, RotationalSpeedUnit.RotationPerMinute);
+        }
+        /// <summary>
+        ///     Get RotationalSpeed from RotationsPerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static RotationalSpeed FromRotationsPerSecond(QuantityValue rotationspersecond)
+        {
+            double value = (double) rotationspersecond;
+            return new RotationalSpeed(value, RotationalSpeedUnit.RotationPerSecond);
         }
 
         /// <summary>
@@ -833,6 +864,8 @@ namespace UnitsNet
                 case RotationalSpeedUnit.RadianPerSecond: return _value;
                 case RotationalSpeedUnit.RevolutionPerMinute: return (_value*6.2831853072)/60;
                 case RotationalSpeedUnit.RevolutionPerSecond: return _value*6.2831853072;
+                case RotationalSpeedUnit.RotationPerMinute: return _value * 0.10471975511966;
+                case RotationalSpeedUnit.RotationPerSecond: return _value * 6.28318530717959;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -871,6 +904,8 @@ namespace UnitsNet
                 case RotationalSpeedUnit.RadianPerSecond: return baseUnitValue;
                 case RotationalSpeedUnit.RevolutionPerMinute: return (baseUnitValue/6.2831853072)*60;
                 case RotationalSpeedUnit.RevolutionPerSecond: return baseUnitValue/6.2831853072;
+                case RotationalSpeedUnit.RotationPerMinute: return baseUnitValue / 0.10471975511966;
+                case RotationalSpeedUnit.RotationPerSecond: return baseUnitValue / 6.28318530717959;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

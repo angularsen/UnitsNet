@@ -17,11 +17,15 @@
       },
       "FromUnitToBaseFunc": "x/1e-6",
       "FromBaseToUnitFunc": "x*1e-6",
-      "Prefixes": [ "Kilo" ],
+      "Prefixes": [
+        "Kilo"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "g/mm³" ]
+          "Abbreviations": [
+            "g/mm³"
+          ]
         }
       ]
     },
@@ -34,11 +38,15 @@
       },
       "FromUnitToBaseFunc": "x/1e-3",
       "FromBaseToUnitFunc": "x*1e-3",
-      "Prefixes": [ "Kilo" ],
+      "Prefixes": [
+        "Kilo"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "g/cm³" ]
+          "Abbreviations": [
+            "g/cm³"
+          ]
         }
       ]
     },
@@ -51,15 +59,23 @@
       },
       "FromUnitToBaseFunc": "x/1e3",
       "FromBaseToUnitFunc": "x*1e3",
-      "Prefixes": [ "Kilo", "Milli", "Micro" ],
+      "Prefixes": [
+        "Kilo",
+        "Milli",
+        "Micro"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "g/m³" ]
+          "Abbreviations": [
+            "g/m³"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "г/м³" ]
+          "Abbreviations": [
+            "г/м³"
+          ]
         }
       ]
     },
@@ -72,12 +88,18 @@
       },
       "FromUnitToBaseFunc": "x/3.6127298147753e-5",
       "FromBaseToUnitFunc": "x*3.6127298147753e-5",
-      "Prefixes": [ "Kilo" ],
+      "Prefixes": [
+        "Kilo"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb/in³" ],
-          "AbbreviationsForPrefixes": { "Kilo": "kip/in³" }
+          "Abbreviations": [
+            "lb/in³"
+          ],
+          "AbbreviationsForPrefixes": {
+            "Kilo": "kip/in³"
+          }
         }
       ]
     },
@@ -90,12 +112,18 @@
       },
       "FromUnitToBaseFunc": "x/0.062427961",
       "FromBaseToUnitFunc": "x*0.062427961",
-      "Prefixes": [ "Kilo" ],
+      "Prefixes": [
+        "Kilo"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb/ft³" ],
-          "AbbreviationsForPrefixes": { "Kilo": "kip/ft³" }
+          "Abbreviations": [
+            "lb/ft³"
+          ],
+          "AbbreviationsForPrefixes": {
+            "Kilo": "kip/ft³"
+          }
         }
       ]
     },
@@ -111,7 +139,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "t/mm³" ]
+          "Abbreviations": [
+            "t/mm³"
+          ]
         }
       ]
     },
@@ -127,7 +157,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "t/cm³" ]
+          "Abbreviations": [
+            "t/cm³"
+          ]
         }
       ]
     },
@@ -143,7 +175,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "t/m³" ]
+          "Abbreviations": [
+            "t/m³"
+          ]
         }
       ]
     },
@@ -159,7 +193,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "slug/ft³" ]
+          "Abbreviations": [
+            "slug/ft³"
+          ]
         }
       ]
     },
@@ -168,11 +204,20 @@
       "PluralName": "GramsPerLiter",
       "FromUnitToBaseFunc": "x/1",
       "FromBaseToUnitFunc": "x*1",
-      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
+      "Prefixes": [
+        "Pico",
+        "Nano",
+        "Micro",
+        "Milli",
+        "Centi",
+        "Deci"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "g/L" ]
+          "Abbreviations": [
+            "g/L"
+          ]
         }
       ]
     },
@@ -181,11 +226,20 @@
       "PluralName": "GramsPerDeciLiter",
       "FromUnitToBaseFunc": "x/1e-1",
       "FromBaseToUnitFunc": "x*1e-1",
-      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
+      "Prefixes": [
+        "Pico",
+        "Nano",
+        "Micro",
+        "Milli",
+        "Centi",
+        "Deci"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "g/dl" ]
+          "Abbreviations": [
+            "g/dl"
+          ]
         }
       ]
     },
@@ -194,11 +248,20 @@
       "PluralName": "GramsPerMilliliter",
       "FromUnitToBaseFunc": "x/1e-3",
       "FromBaseToUnitFunc": "x*1e-3",
-      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
+      "Prefixes": [
+        "Pico",
+        "Nano",
+        "Micro",
+        "Milli",
+        "Centi",
+        "Deci"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "g/ml" ]
+          "Abbreviations": [
+            "g/ml"
+          ]
         }
       ]
     },
@@ -210,7 +273,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ppg (U.S.)" ]
+          "Abbreviations": [
+            "ppg (U.S.)"
+          ]
         }
       ]
     },
@@ -222,7 +287,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ppg (imp.)" ]
+          "Abbreviations": [
+            "ppg (imp.)"
+          ]
         }
       ]
     },
@@ -238,7 +305,235 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kg/l" ]
+          "Abbreviations": [
+            "kg/l"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BarPerMeterEq",
+      "PluralName": "BarsPerMeterEq",
+      "FromUnitToBaseFunc": "x * 100000 / 9.80665",
+      "FromBaseToUnitFunc": "x / 100000 * 9.80665",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "bar/m eq."
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreeApi",
+      "PluralName": "DegreeApis",
+      "FromUnitToBaseFunc": "x * (0 + 141360.481) / (x * 1 + 131.5)",
+      "FromBaseToUnitFunc": "(x * 0 - 141360.481) / (x * 1 + 131.5)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "dAPI"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilogramPerSquareCentimeterPerFoot",
+      "PluralName": "KilogramsPerSquareCentimeterPerFoot",
+      "FromUnitToBaseFunc": "x / 3.048E-05",
+      "FromBaseToUnitFunc": "x * 3.048E-05",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "kg/(cm2.ft)"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilogramPerSquareCentimeterPerMeter",
+      "PluralName": "KilogramsPerSquareCentimeterPerMeter",
+      "FromUnitToBaseFunc": "x / 0.0001",
+      "FromBaseToUnitFunc": "x * 0.0001",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "kg/(cm2.m)"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilopascalPerFootEq",
+      "PluralName": "KilopascalsPerFootEq",
+      "FromUnitToBaseFunc": "x * 1000 / 2.98906692",
+      "FromBaseToUnitFunc": "x / 1000 * 2.98906692",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "kPa/ft eq."
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilopascalPerMeterEq",
+      "PluralName": "KilopascalsPerMeterEq",
+      "FromUnitToBaseFunc": "x * 1000 / 9.80665",
+      "FromBaseToUnitFunc": "x / 1000 * 9.80665",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "kPa/m eq."
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerBarrel",
+      "PluralName": "PoundsPerBarrel",
+      "FromUnitToBaseFunc": "x * 0.45359237 / 0.158987294928",
+      "FromBaseToUnitFunc": "x / 0.45359237 * 0.158987294928",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "lb/bbl"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerGallon",
+      "PluralName": "PoundsPerGallon",
+      "FromUnitToBaseFunc": "x * 0.45359237 / 0.003785411784",
+      "FromBaseToUnitFunc": "x / 0.45359237 * 0.003785411784",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "lb/gal"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PascalPerMeterEq",
+      "PluralName": "PascalsPerMeterEq",
+      "FromUnitToBaseFunc": "x / 9.80665",
+      "FromBaseToUnitFunc": "x * 9.80665",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "Pa/m eq."
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundForcePerSquareInchPerFoot",
+      "PluralName": "PoundForcesPerSquareInchPerFoot",
+      "FromUnitToBaseFunc": "x * 6894.75729316836 / 2.98906692",
+      "FromBaseToUnitFunc": "x / 6894.75729316836 * 2.98906692",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "psi/ft eq."
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundForcePerSquareInchPerThousandFoot",
+      "PluralName": "PoundForcesPerSquareInchPerThousandFoot",
+      "FromUnitToBaseFunc": "x * 6.89475729316836 / 2.98906692",
+      "FromBaseToUnitFunc": "x / 6.89475729316836 * 2.98906692",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "psi/kft eq."
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundForcePerSquareInchPerMeter",
+      "PluralName": "PoundForcesPerSquareInchPerMeter",
+      "FromUnitToBaseFunc": "x * 6894.75729316836 / 9.80665",
+      "FromBaseToUnitFunc": "x / 6894.75729316836 * 9.80665",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "psi/m eq."
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SpecificGravity",
+      "PluralName": "SpecificGravitys",
+      "FromUnitToBaseFunc": "x * 1000",
+      "FromBaseToUnitFunc": "x / 1000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "sg",
+            "SG"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SpecificGravityToAir",
+      "PluralName": "SpecificGravityToAirs",
+      "FromUnitToBaseFunc": "x * 1.2232",
+      "FromBaseToUnitFunc": "x / 1.2232",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "SG(air=1)",
+            "SGair"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SpecificGravityApiDef",
+      "PluralName": "SpecificGravityApiDefs",
+      "FromUnitToBaseFunc": "x * 999.014",
+      "FromBaseToUnitFunc": "x / 999.014",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "SGapi"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "TonPerCubicMeter",
+      "PluralName": "TonsPerCubicMeter",
+      "FromUnitToBaseFunc": "x * 1000",
+      "FromBaseToUnitFunc": "x / 1000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "ton/m3"
+          ]
         }
       ]
     }

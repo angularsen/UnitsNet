@@ -17,15 +17,21 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "km²" ]
+          "Abbreviations": [
+            "km²"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "км²" ]
+          "Abbreviations": [
+            "км²"
+          ]
         },
         {
           "Culture": "zh-CN",
-          "Abbreviations": [ "平方公里" ]
+          "Abbreviations": [
+            "平方公里"
+          ]
         }
       ]
     },
@@ -40,15 +46,21 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "m²" ]
+          "Abbreviations": [
+            "m²"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "м²" ]
+          "Abbreviations": [
+            "м²"
+          ]
         },
         {
           "Culture": "zh-CN",
-          "Abbreviations": [ "平方米" ]
+          "Abbreviations": [
+            "平方米"
+          ]
         }
       ]
     },
@@ -63,15 +75,21 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "dm²" ]
+          "Abbreviations": [
+            "dm²"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "дм²" ]
+          "Abbreviations": [
+            "дм²"
+          ]
         },
         {
           "Culture": "zh-CN",
-          "Abbreviations": [ "平方分米" ]
+          "Abbreviations": [
+            "平方分米"
+          ]
         }
       ]
     },
@@ -86,15 +104,21 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "cm²" ]
+          "Abbreviations": [
+            "cm²"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "см²" ]
+          "Abbreviations": [
+            "см²"
+          ]
         },
         {
           "Culture": "zh-CN",
-          "Abbreviations": [ "平方厘米" ]
+          "Abbreviations": [
+            "平方厘米"
+          ]
         }
       ]
     },
@@ -109,15 +133,21 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "mm²" ]
+          "Abbreviations": [
+            "mm²"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "мм²" ]
+          "Abbreviations": [
+            "мм²"
+          ]
         },
         {
           "Culture": "zh-CN",
-          "Abbreviations": [ "平方毫米" ]
+          "Abbreviations": [
+            "平方毫米"
+          ]
         }
       ]
     },
@@ -132,15 +162,21 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "µm²" ]
+          "Abbreviations": [
+            "µm²"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "мкм²" ]
+          "Abbreviations": [
+            "мкм²"
+          ]
         },
         {
           "Culture": "zh-CN",
-          "Abbreviations": [ "平方微米" ]
+          "Abbreviations": [
+            "平方微米"
+          ]
         }
       ]
     },
@@ -155,15 +191,21 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "mi²" ]
+          "Abbreviations": [
+            "mi²"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "миля²" ]
+          "Abbreviations": [
+            "миля²"
+          ]
         },
         {
           "Culture": "zh-CN",
-          "Abbreviations": [ "平方英里" ]
+          "Abbreviations": [
+            "平方英里"
+          ]
         }
       ]
     },
@@ -178,15 +220,21 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "yd²" ]
+          "Abbreviations": [
+            "yd²"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "ярд²" ]
+          "Abbreviations": [
+            "ярд²"
+          ]
         },
         {
           "Culture": "zh-CN",
-          "Abbreviations": [ "平方码" ]
+          "Abbreviations": [
+            "平方码"
+          ]
         }
       ]
     },
@@ -201,15 +249,21 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ft²" ]
+          "Abbreviations": [
+            "ft²"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "фут²" ]
+          "Abbreviations": [
+            "фут²"
+          ]
         },
         {
           "Culture": "zh-CN",
-          "Abbreviations": [ "平方英尺" ]
+          "Abbreviations": [
+            "平方英尺"
+          ]
         }
       ]
     },
@@ -224,11 +278,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ft² (US)" ]
+          "Abbreviations": [
+            "ft² (US)"
+          ]
         },
-		{
+        {
           "Culture": "ru-RU",
-          "Abbreviations": [ "фут² (US)" ]
+          "Abbreviations": [
+            "фут² (US)"
+          ]
         }
       ]
     },
@@ -243,15 +301,21 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "in²" ]
+          "Abbreviations": [
+            "in²"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "дюйм²" ]
+          "Abbreviations": [
+            "дюйм²"
+          ]
         },
         {
           "Culture": "zh-CN",
-          "Abbreviations": [ "平方英寸" ]
+          "Abbreviations": [
+            "平方英寸"
+          ]
         }
       ]
     },
@@ -263,15 +327,21 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ac" ]
+          "Abbreviations": [
+            "ac"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "акр" ]
+          "Abbreviations": [
+            "акр"
+          ]
         },
         {
           "Culture": "zh-CN",
-          "Abbreviations": [ "英亩" ]
+          "Abbreviations": [
+            "英亩"
+          ]
         }
       ]
     },
@@ -283,15 +353,21 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ha" ]
+          "Abbreviations": [
+            "ha"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "га" ]
+          "Abbreviations": [
+            "га"
+          ]
         },
         {
           "Culture": "zh-CN",
-          "Abbreviations": [ "英亩" ]
+          "Abbreviations": [
+            "英亩"
+          ]
         }
       ]
     },
@@ -303,15 +379,36 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "nmi²" ]
+          "Abbreviations": [
+            "nmi²"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "морск.миля²" ]
+          "Abbreviations": [
+            "морск.миля²"
+          ]
         },
         {
           "Culture": "zh-CN",
-          "Abbreviations": [ "平方海里" ]
+          "Abbreviations": [
+            "平方海里"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Section",
+      "PluralName": "Sections",
+      "FromUnitToBaseFunc": "x * 2589988.110336",
+      "FromBaseToUnitFunc": "x / 2589988.110336",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "Section",
+            "section"
+          ]
         }
       ]
     }

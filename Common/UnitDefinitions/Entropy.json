@@ -14,11 +14,16 @@
       "PluralName": "JoulesPerKelvin",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": [
+        "Kilo",
+        "Mega"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "J/K" ]
+          "Abbreviations": [
+            "J/K"
+          ]
         }
       ]
     },
@@ -27,11 +32,15 @@
       "PluralName": "CaloriesPerKelvin",
       "FromUnitToBaseFunc": "x*4.184",
       "FromBaseToUnitFunc": "x/4.184",
-      "Prefixes": [ "Kilo" ],
+      "Prefixes": [
+        "Kilo"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "cal/K" ]
+          "Abbreviations": [
+            "cal/K"
+          ]
         }
       ]
     },
@@ -40,11 +49,29 @@
       "PluralName": "JoulesPerDegreeCelsius",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Kilo" ],
+      "Prefixes": [
+        "Kilo"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "J/C" ]
+          "Abbreviations": [
+            "J/C"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BritishThermalUnitPerDegreeRankin",
+      "PluralName": "BritishThermalUnitsPerDegreeRankin",
+      "FromUnitToBaseFunc": "x * 1055.05585262 / 0.555555555555556",
+      "FromBaseToUnitFunc": "x / 1055.05585262 * 0.555555555555556",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "Btu/°R"
+          ]
         }
       ]
     }

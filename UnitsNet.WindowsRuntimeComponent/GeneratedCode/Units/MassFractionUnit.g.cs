@@ -45,11 +45,13 @@ namespace UnitsNet.Units
         MilligramPerKilogram,
         NanogramPerGram,
         NanogramPerKilogram,
+        One,
         PartPerBillion,
         PartPerMillion,
         PartPerThousand,
         PartPerTrillion,
         Percent,
+        PoundPerPound,
     }
 
     #pragma warning restore 1591

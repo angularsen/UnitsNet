@@ -30,6 +30,7 @@ namespace UnitsNet.Units
         Megavolt,
         Microvolt,
         Millivolt,
+        Nanovolt,
         Volt,
     }
 

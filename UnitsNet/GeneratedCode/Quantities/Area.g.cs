@@ -17,19 +17,20 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Globalization;
-using System.Linq;
-using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
-
 #nullable enable
 
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using JetBrains.Annotations;
+    using UnitsNet.InternalHelpers;
+    using UnitsNet.Units;
+    
+
     /// <inheritdoc />
     /// <summary>
     ///     Area is a quantity that expresses the extent of a two-dimensional surface or shape, or planar lamina, in the plane. Area can be understood as the amount of material with a given thickness that would be necessary to fashion a model of the shape, or the amount of paint necessary to cover the surface with a single coat.[1] It is the two-dimensional analog of the length of a curve (a one-dimensional concept) or the volume of a solid (a three-dimensional concept).
@@ -54,6 +55,7 @@ namespace UnitsNet
                 new UnitInfo<AreaUnit>[] {
                     new UnitInfo<AreaUnit>(AreaUnit.Acre, BaseUnits.Undefined),
                     new UnitInfo<AreaUnit>(AreaUnit.Hectare, BaseUnits.Undefined),
+                    new UnitInfo<AreaUnit>(AreaUnit.Section, BaseUnits.Undefined),
                     new UnitInfo<AreaUnit>(AreaUnit.SquareCentimeter, new BaseUnits(length: LengthUnit.Centimeter)),
                     new UnitInfo<AreaUnit>(AreaUnit.SquareDecimeter, new BaseUnits(length: LengthUnit.Decimeter)),
                     new UnitInfo<AreaUnit>(AreaUnit.SquareFoot, new BaseUnits(length: LengthUnit.Foot)),
@@ -192,6 +194,11 @@ namespace UnitsNet
         public double Hectares => As(AreaUnit.Hectare);
 
         /// <summary>
+        ///     Get Area in Sections.
+        /// </summary>
+        public double Sections => As(AreaUnit.Section);
+
+        /// <summary>
         ///     Get Area in SquareCentimeters.
         /// </summary>
         public double SquareCentimeters => As(AreaUnit.SquareCentimeter);
@@ -297,6 +304,15 @@ namespace UnitsNet
         {
             double value = (double) hectares;
             return new Area(value, AreaUnit.Hectare);
+        }
+        /// <summary>
+        ///     Get Area from Sections.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Area FromSections(QuantityValue sections)
+        {
+            double value = (double) sections;
+            return new Area(value, AreaUnit.Section);
         }
         /// <summary>
         ///     Get Area from SquareCentimeters.
@@ -837,6 +853,7 @@ namespace UnitsNet
             {
                 case AreaUnit.Acre: return _value*4046.85642;
                 case AreaUnit.Hectare: return _value*1e4;
+                case AreaUnit.Section: return _value * 2589988.110336;
                 case AreaUnit.SquareCentimeter: return _value*1e-4;
                 case AreaUnit.SquareDecimeter: return _value*1e-2;
                 case AreaUnit.SquareFoot: return _value*0.092903;
@@ -876,6 +893,7 @@ namespace UnitsNet
             {
                 case AreaUnit.Acre: return baseUnitValue/4046.85642;
                 case AreaUnit.Hectare: return baseUnitValue/1e4;
+                case AreaUnit.Section: return baseUnitValue / 2589988.110336;
                 case AreaUnit.SquareCentimeter: return baseUnitValue/1e-4;
                 case AreaUnit.SquareDecimeter: return baseUnitValue/1e-2;
                 case AreaUnit.SquareFoot: return baseUnitValue/0.092903;

@@ -36,6 +36,18 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
         public static Volume AuTablespoons<T>(this T value) =>
             Volume.FromAuTablespoons(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Volume.FromBarrels(UnitsNet.QuantityValue)" />
+        public static Volume Barrels<T>(this T value) =>
+            Volume.FromBarrels(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromBillionCubicFeets(UnitsNet.QuantityValue)" />
+        public static Volume BillionCubicFeets<T>(this T value) =>
+            Volume.FromBillionCubicFeets(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromBillionCubicMeters(UnitsNet.QuantityValue)" />
+        public static Volume BillionCubicMeters<T>(this T value) =>
+            Volume.FromBillionCubicMeters(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Volume.FromBoardFeet(UnitsNet.QuantityValue)" />
         public static Volume BoardFeet<T>(this T value) =>
             Volume.FromBoardFeet(Convert.ToDouble(value));
@@ -188,9 +200,85 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
         public static Volume Milliliters<T>(this T value) =>
             Volume.FromMilliliters(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Volume.FromMillionBarrels(UnitsNet.QuantityValue)" />
+        public static Volume MillionBarrels<T>(this T value) =>
+            Volume.FromMillionBarrels(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromMillionCubicFeets(UnitsNet.QuantityValue)" />
+        public static Volume MillionCubicFeets<T>(this T value) =>
+            Volume.FromMillionCubicFeets(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromMillionCubicMeters(UnitsNet.QuantityValue)" />
+        public static Volume MillionCubicMeters<T>(this T value) =>
+            Volume.FromMillionCubicMeters(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromMillionReservoirBarrels(UnitsNet.QuantityValue)" />
+        public static Volume MillionReservoirBarrels<T>(this T value) =>
+            Volume.FromMillionReservoirBarrels(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromMillionStandardCubicFeets(UnitsNet.QuantityValue)" />
+        public static Volume MillionStandardCubicFeets<T>(this T value) =>
+            Volume.FromMillionStandardCubicFeets(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromMillionUkGallons(UnitsNet.QuantityValue)" />
+        public static Volume MillionUkGallons<T>(this T value) =>
+            Volume.FromMillionUkGallons(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromMillionUsGallons(UnitsNet.QuantityValue)" />
+        public static Volume MillionUsGallons<T>(this T value) =>
+            Volume.FromMillionUsGallons(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Volume.FromOilBarrels(UnitsNet.QuantityValue)" />
         public static Volume OilBarrels<T>(this T value) =>
             Volume.FromOilBarrels(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromReservoirBarrels(UnitsNet.QuantityValue)" />
+        public static Volume ReservoirBarrels<T>(this T value) =>
+            Volume.FromReservoirBarrels(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromReservoirCubicFeet(UnitsNet.QuantityValue)" />
+        public static Volume ReservoirCubicFeet<T>(this T value) =>
+            Volume.FromReservoirCubicFeet(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromStandardCubicFeet(UnitsNet.QuantityValue)" />
+        public static Volume StandardCubicFeet<T>(this T value) =>
+            Volume.FromStandardCubicFeet(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromStockTankBarrels(UnitsNet.QuantityValue)" />
+        public static Volume StockTankBarrels<T>(this T value) =>
+            Volume.FromStockTankBarrels(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromThousandBarrels(UnitsNet.QuantityValue)" />
+        public static Volume ThousandBarrels<T>(this T value) =>
+            Volume.FromThousandBarrels(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromThousandCubicFeets(UnitsNet.QuantityValue)" />
+        public static Volume ThousandCubicFeets<T>(this T value) =>
+            Volume.FromThousandCubicFeets(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromThousandReservoirBarrels(UnitsNet.QuantityValue)" />
+        public static Volume ThousandReservoirBarrels<T>(this T value) =>
+            Volume.FromThousandReservoirBarrels(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromThousandStandardCubicFeets(UnitsNet.QuantityValue)" />
+        public static Volume ThousandStandardCubicFeets<T>(this T value) =>
+            Volume.FromThousandStandardCubicFeets(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromThousandUkGallons(UnitsNet.QuantityValue)" />
+        public static Volume ThousandUkGallons<T>(this T value) =>
+            Volume.FromThousandUkGallons(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromThousandUsGallons(UnitsNet.QuantityValue)" />
+        public static Volume ThousandUsGallons<T>(this T value) =>
+            Volume.FromThousandUsGallons(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromTrillionCubicFeet(UnitsNet.QuantityValue)" />
+        public static Volume TrillionCubicFeet<T>(this T value) =>
+            Volume.FromTrillionCubicFeet(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromUkGallons(UnitsNet.QuantityValue)" />
+        public static Volume UkGallons<T>(this T value) =>
+            Volume.FromUkGallons(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Volume.FromUkTablespoons(UnitsNet.QuantityValue)" />
         public static Volume UkTablespoons<T>(this T value) =>

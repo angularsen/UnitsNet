@@ -101,6 +101,10 @@ namespace UnitsNet.Tests
             Assert.Equal(MassFraction.FromNanogramsPerKilogram(2), 2.NanogramsPerKilogram());
 
         [Fact]
+        public void NumberToOnesTest() =>
+            Assert.Equal(MassFraction.FromOnes(2), 2.Ones());
+
+        [Fact]
         public void NumberToPartsPerBillionTest() =>
             Assert.Equal(MassFraction.FromPartsPerBillion(2), 2.PartsPerBillion());
 
@@ -119,6 +123,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToPercentTest() =>
             Assert.Equal(MassFraction.FromPercent(2), 2.Percent());
+
+        [Fact]
+        public void NumberToPoundsPerPoundTest() =>
+            Assert.Equal(MassFraction.FromPoundsPerPound(2), 2.PoundsPerPound());
 
     }
 }

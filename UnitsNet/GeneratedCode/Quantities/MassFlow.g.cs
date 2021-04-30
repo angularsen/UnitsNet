@@ -17,19 +17,20 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Globalization;
-using System.Linq;
-using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
-
 #nullable enable
 
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using JetBrains.Annotations;
+    using UnitsNet.InternalHelpers;
+    using UnitsNet.Units;
+    
+
     /// <inheritdoc />
     /// <summary>
     ///     Mass flow is the ratio of the mass change to the time during which the change occurred (value of mass changes per unit time).
@@ -85,6 +86,8 @@ namespace UnitsNet
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.ShortTonPerHour, BaseUnits.Undefined),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerDay, BaseUnits.Undefined),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerHour, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.UkTonnePerDay, BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.UsTonnePerDay, BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.MassFlow);
         }
@@ -364,6 +367,16 @@ namespace UnitsNet
         ///     Get MassFlow in TonnesPerHour.
         /// </summary>
         public double TonnesPerHour => As(MassFlowUnit.TonnePerHour);
+
+        /// <summary>
+        ///     Get MassFlow in UkTonnesPerDay.
+        /// </summary>
+        public double UkTonnesPerDay => As(MassFlowUnit.UkTonnePerDay);
+
+        /// <summary>
+        ///     Get MassFlow in UsTonnesPerDay.
+        /// </summary>
+        public double UsTonnesPerDay => As(MassFlowUnit.UsTonnePerDay);
 
         #endregion
 
@@ -690,6 +703,24 @@ namespace UnitsNet
         {
             double value = (double) tonnesperhour;
             return new MassFlow(value, MassFlowUnit.TonnePerHour);
+        }
+        /// <summary>
+        ///     Get MassFlow from UkTonnesPerDay.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassFlow FromUkTonnesPerDay(QuantityValue uktonnesperday)
+        {
+            double value = (double) uktonnesperday;
+            return new MassFlow(value, MassFlowUnit.UkTonnePerDay);
+        }
+        /// <summary>
+        ///     Get MassFlow from UsTonnesPerDay.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassFlow FromUsTonnesPerDay(QuantityValue ustonnesperday)
+        {
+            double value = (double) ustonnesperday;
+            return new MassFlow(value, MassFlowUnit.UsTonnePerDay);
         }
 
         /// <summary>
@@ -1153,6 +1184,8 @@ namespace UnitsNet
                 case MassFlowUnit.ShortTonPerHour: return _value*251.9957611;
                 case MassFlowUnit.TonnePerDay: return _value/0.0864000;
                 case MassFlowUnit.TonnePerHour: return 1000*_value/3.6;
+                case MassFlowUnit.UkTonnePerDay: return _value * 1016.0469088 / 86400;
+                case MassFlowUnit.UsTonnePerDay: return _value * 907.18474 / 86400;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -1211,6 +1244,8 @@ namespace UnitsNet
                 case MassFlowUnit.ShortTonPerHour: return baseUnitValue/251.9957611;
                 case MassFlowUnit.TonnePerDay: return baseUnitValue*0.0864000;
                 case MassFlowUnit.TonnePerHour: return baseUnitValue*3.6/1000;
+                case MassFlowUnit.UkTonnePerDay: return baseUnitValue / 1016.0469088 * 86400;
+                case MassFlowUnit.UsTonnePerDay: return baseUnitValue / 907.18474 * 86400;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

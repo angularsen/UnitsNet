@@ -36,6 +36,14 @@ namespace UnitsNet.NumberExtensions.NumberToMolarity
         public static Molarity DecimolesPerLiter<T>(this T value) =>
             Molarity.FromDecimolesPerLiter(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Molarity.FromKilomolesPerCubicFoot(UnitsNet.QuantityValue)" />
+        public static Molarity KilomolesPerCubicFoot<T>(this T value) =>
+            Molarity.FromKilomolesPerCubicFoot(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Molarity.FromKilomolesPerCubicMeter(UnitsNet.QuantityValue)" />
+        public static Molarity KilomolesPerCubicMeter<T>(this T value) =>
+            Molarity.FromKilomolesPerCubicMeter(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity MicromolesPerLiter<T>(this T value) =>
             Molarity.FromMicromolesPerLiter(Convert.ToDouble(value));
@@ -43,6 +51,10 @@ namespace UnitsNet.NumberExtensions.NumberToMolarity
         /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity MillimolesPerLiter<T>(this T value) =>
             Molarity.FromMillimolesPerLiter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Molarity.FromMolesPerCubicFoot(UnitsNet.QuantityValue)" />
+        public static Molarity MolesPerCubicFoot<T>(this T value) =>
+            Molarity.FromMolesPerCubicFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(UnitsNet.QuantityValue)" />
         public static Molarity MolesPerCubicMeter<T>(this T value) =>
@@ -59,6 +71,10 @@ namespace UnitsNet.NumberExtensions.NumberToMolarity
         /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity PicomolesPerLiter<T>(this T value) =>
             Molarity.FromPicomolesPerLiter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Molarity.FromPoundMolesPerCubicFoot(UnitsNet.QuantityValue)" />
+        public static Molarity PoundMolesPerCubicFoot<T>(this T value) =>
+            Molarity.FromPoundMolesPerCubicFoot(Convert.ToDouble(value));
 
     }
 }

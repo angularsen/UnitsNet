@@ -27,8 +27,10 @@ namespace UnitsNet.Units
     {
         Undefined = 0,
         Gigaohm,
+        Kilohm,
         Kiloohm,
         Megaohm,
+        Megohm,
         Microohm,
         Milliohm,
         Ohm,

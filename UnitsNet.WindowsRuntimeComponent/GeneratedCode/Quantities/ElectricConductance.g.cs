@@ -159,9 +159,19 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get ElectricConductance in Mhos.
+        /// </summary>
+        public double Mhos => As(ElectricConductanceUnit.Mho);
+
+        /// <summary>
         ///     Get ElectricConductance in Microsiemens.
         /// </summary>
         public double Microsiemens => As(ElectricConductanceUnit.Microsiemens);
+
+        /// <summary>
+        ///     Get ElectricConductance in Millimhos.
+        /// </summary>
+        public double Millimhos => As(ElectricConductanceUnit.Millimho);
 
         /// <summary>
         ///     Get ElectricConductance in Millisiemens.
@@ -204,6 +214,16 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
+        ///     Get ElectricConductance from Mhos.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ElectricConductance FromMhos(double mhos)
+        {
+            double value = (double) mhos;
+            return new ElectricConductance(value, ElectricConductanceUnit.Mho);
+        }
+        /// <summary>
         ///     Get ElectricConductance from Microsiemens.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -212,6 +232,16 @@ namespace UnitsNet
         {
             double value = (double) microsiemens;
             return new ElectricConductance(value, ElectricConductanceUnit.Microsiemens);
+        }
+        /// <summary>
+        ///     Get ElectricConductance from Millimhos.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ElectricConductance FromMillimhos(double millimhos)
+        {
+            double value = (double) millimhos;
+            return new ElectricConductance(value, ElectricConductanceUnit.Millimho);
         }
         /// <summary>
         ///     Get ElectricConductance from Millisiemens.
@@ -524,7 +554,9 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case ElectricConductanceUnit.Mho: return _value;
                 case ElectricConductanceUnit.Microsiemens: return (_value) * 1e-6d;
+                case ElectricConductanceUnit.Millimho: return _value * 0.001;
                 case ElectricConductanceUnit.Millisiemens: return (_value) * 1e-3d;
                 case ElectricConductanceUnit.Siemens: return _value;
                 default:
@@ -541,7 +573,9 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case ElectricConductanceUnit.Mho: return baseUnitValue;
                 case ElectricConductanceUnit.Microsiemens: return (baseUnitValue) / 1e-6d;
+                case ElectricConductanceUnit.Millimho: return baseUnitValue / 0.001;
                 case ElectricConductanceUnit.Millisiemens: return (baseUnitValue) / 1e-3d;
                 case ElectricConductanceUnit.Siemens: return baseUnitValue;
                 default:

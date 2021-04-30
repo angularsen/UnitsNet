@@ -37,27 +37,27 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class TorquePerLengthTestsBase : QuantityTestsBase
     {
-        protected abstract double KilogramForceCentimetersPerMeterInOneNewtonMeterPerMeter { get; }
-        protected abstract double KilogramForceMetersPerMeterInOneNewtonMeterPerMeter { get; }
-        protected abstract double KilogramForceMillimetersPerMeterInOneNewtonMeterPerMeter { get; }
-        protected abstract double KilonewtonCentimetersPerMeterInOneNewtonMeterPerMeter { get; }
-        protected abstract double KilonewtonMetersPerMeterInOneNewtonMeterPerMeter { get; }
-        protected abstract double KilonewtonMillimetersPerMeterInOneNewtonMeterPerMeter { get; }
-        protected abstract double KilopoundForceFeetPerFootInOneNewtonMeterPerMeter { get; }
-        protected abstract double KilopoundForceInchesPerFootInOneNewtonMeterPerMeter { get; }
-        protected abstract double MeganewtonCentimetersPerMeterInOneNewtonMeterPerMeter { get; }
-        protected abstract double MeganewtonMetersPerMeterInOneNewtonMeterPerMeter { get; }
-        protected abstract double MeganewtonMillimetersPerMeterInOneNewtonMeterPerMeter { get; }
-        protected abstract double MegapoundForceFeetPerFootInOneNewtonMeterPerMeter { get; }
-        protected abstract double MegapoundForceInchesPerFootInOneNewtonMeterPerMeter { get; }
-        protected abstract double NewtonCentimetersPerMeterInOneNewtonMeterPerMeter { get; }
-        protected abstract double NewtonMetersPerMeterInOneNewtonMeterPerMeter { get; }
-        protected abstract double NewtonMillimetersPerMeterInOneNewtonMeterPerMeter { get; }
-        protected abstract double PoundForceFeetPerFootInOneNewtonMeterPerMeter { get; }
-        protected abstract double PoundForceInchesPerFootInOneNewtonMeterPerMeter { get; }
-        protected abstract double TonneForceCentimetersPerMeterInOneNewtonMeterPerMeter { get; }
-        protected abstract double TonneForceMetersPerMeterInOneNewtonMeterPerMeter { get; }
-        protected abstract double TonneForceMillimetersPerMeterInOneNewtonMeterPerMeter { get; }
+        protected virtual double KilogramForceCentimetersPerMeterInOneNewtonMeterPerMeter { get; }
+        protected virtual double KilogramForceMetersPerMeterInOneNewtonMeterPerMeter { get; }
+        protected virtual double KilogramForceMillimetersPerMeterInOneNewtonMeterPerMeter { get; }
+        protected virtual double KilonewtonCentimetersPerMeterInOneNewtonMeterPerMeter { get; }
+        protected virtual double KilonewtonMetersPerMeterInOneNewtonMeterPerMeter { get; }
+        protected virtual double KilonewtonMillimetersPerMeterInOneNewtonMeterPerMeter { get; }
+        protected virtual double KilopoundForceFeetPerFootInOneNewtonMeterPerMeter { get; }
+        protected virtual double KilopoundForceInchesPerFootInOneNewtonMeterPerMeter { get; }
+        protected virtual double MeganewtonCentimetersPerMeterInOneNewtonMeterPerMeter { get; }
+        protected virtual double MeganewtonMetersPerMeterInOneNewtonMeterPerMeter { get; }
+        protected virtual double MeganewtonMillimetersPerMeterInOneNewtonMeterPerMeter { get; }
+        protected virtual double MegapoundForceFeetPerFootInOneNewtonMeterPerMeter { get; }
+        protected virtual double MegapoundForceInchesPerFootInOneNewtonMeterPerMeter { get; }
+        protected virtual double NewtonCentimetersPerMeterInOneNewtonMeterPerMeter { get; }
+        protected virtual double NewtonMetersPerMeterInOneNewtonMeterPerMeter { get; }
+        protected virtual double NewtonMillimetersPerMeterInOneNewtonMeterPerMeter { get; }
+        protected virtual double PoundForceFeetPerFootInOneNewtonMeterPerMeter { get; }
+        protected virtual double PoundForceInchesPerFootInOneNewtonMeterPerMeter { get; }
+        protected virtual double TonneForceCentimetersPerMeterInOneNewtonMeterPerMeter { get; }
+        protected virtual double TonneForceMetersPerMeterInOneNewtonMeterPerMeter { get; }
+        protected virtual double TonneForceMillimetersPerMeterInOneNewtonMeterPerMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double KilogramForceCentimetersPerMeterTolerance { get { return 1e-5; } }

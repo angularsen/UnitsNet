@@ -33,6 +33,34 @@ namespace UnitsNet.Tests
             Assert.Equal(Acceleration.FromDecimetersPerSecondSquared(2), 2.DecimetersPerSecondSquared());
 
         [Fact]
+        public void NumberToFeetPerMillisecondPerMicrosecondTest() =>
+            Assert.Equal(Acceleration.FromFeetPerMillisecondPerMicrosecond(2), 2.FeetPerMillisecondPerMicrosecond());
+
+        [Fact]
+        public void NumberToFeetPerMillisecondPerMillisecondTest() =>
+            Assert.Equal(Acceleration.FromFeetPerMillisecondPerMillisecond(2), 2.FeetPerMillisecondPerMillisecond());
+
+        [Fact]
+        public void NumberToFeetPerMillisecondPerSecondTest() =>
+            Assert.Equal(Acceleration.FromFeetPerMillisecondPerSecond(2), 2.FeetPerMillisecondPerSecond());
+
+        [Fact]
+        public void NumberToFeetPerMillisecondSquaredTest() =>
+            Assert.Equal(Acceleration.FromFeetPerMillisecondSquared(2), 2.FeetPerMillisecondSquared());
+
+        [Fact]
+        public void NumberToFeetPerSecondPerMicrosecondTest() =>
+            Assert.Equal(Acceleration.FromFeetPerSecondPerMicrosecond(2), 2.FeetPerSecondPerMicrosecond());
+
+        [Fact]
+        public void NumberToFeetPerSecondPerMillisecondTest() =>
+            Assert.Equal(Acceleration.FromFeetPerSecondPerMillisecond(2), 2.FeetPerSecondPerMillisecond());
+
+        [Fact]
+        public void NumberToFeetPerSecondPerSecondTest() =>
+            Assert.Equal(Acceleration.FromFeetPerSecondPerSecond(2), 2.FeetPerSecondPerSecond());
+
+        [Fact]
         public void NumberToFeetPerSecondSquaredTest() =>
             Assert.Equal(Acceleration.FromFeetPerSecondSquared(2), 2.FeetPerSecondSquared());
 
@@ -55,6 +83,34 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToKnotsPerSecondTest() =>
             Assert.Equal(Acceleration.FromKnotsPerSecond(2), 2.KnotsPerSecond());
+
+        [Fact]
+        public void NumberToMetersPerMillisecondPerMicrosecondTest() =>
+            Assert.Equal(Acceleration.FromMetersPerMillisecondPerMicrosecond(2), 2.MetersPerMillisecondPerMicrosecond());
+
+        [Fact]
+        public void NumberToMetersPerMillisecondPerMillisecondTest() =>
+            Assert.Equal(Acceleration.FromMetersPerMillisecondPerMillisecond(2), 2.MetersPerMillisecondPerMillisecond());
+
+        [Fact]
+        public void NumberToMetersPerMillisecondPerSecondTest() =>
+            Assert.Equal(Acceleration.FromMetersPerMillisecondPerSecond(2), 2.MetersPerMillisecondPerSecond());
+
+        [Fact]
+        public void NumberToMetersPerMillisecondSquaredTest() =>
+            Assert.Equal(Acceleration.FromMetersPerMillisecondSquared(2), 2.MetersPerMillisecondSquared());
+
+        [Fact]
+        public void NumberToMetersPerSecondPerMicrosecondTest() =>
+            Assert.Equal(Acceleration.FromMetersPerSecondPerMicrosecond(2), 2.MetersPerSecondPerMicrosecond());
+
+        [Fact]
+        public void NumberToMetersPerSecondPerMillisecondTest() =>
+            Assert.Equal(Acceleration.FromMetersPerSecondPerMillisecond(2), 2.MetersPerSecondPerMillisecond());
+
+        [Fact]
+        public void NumberToMetersPerSecondPerSecondTest() =>
+            Assert.Equal(Acceleration.FromMetersPerSecondPerSecond(2), 2.MetersPerSecondPerSecond());
 
         [Fact]
         public void NumberToMetersPerSecondSquaredTest() =>

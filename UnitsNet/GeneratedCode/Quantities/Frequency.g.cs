@@ -17,19 +17,20 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Globalization;
-using System.Linq;
-using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
-
 #nullable enable
 
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using JetBrains.Annotations;
+    using UnitsNet.InternalHelpers;
+    using UnitsNet.Units;
+    
+
     /// <inheritdoc />
     /// <summary>
     ///     The number of occurrences of a repeating event per unit time.
@@ -59,6 +60,8 @@ namespace UnitsNet
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.Hertz, BaseUnits.Undefined),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.Kilohertz, BaseUnits.Undefined),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.Megahertz, BaseUnits.Undefined),
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.PerMicrosecond, BaseUnits.Undefined),
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.PerMillisecond, BaseUnits.Undefined),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.PerSecond, BaseUnits.Undefined),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.RadianPerSecond, BaseUnits.Undefined),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.Terahertz, BaseUnits.Undefined),
@@ -213,6 +216,16 @@ namespace UnitsNet
         public double Megahertz => As(FrequencyUnit.Megahertz);
 
         /// <summary>
+        ///     Get Frequency in PerMicroseconds.
+        /// </summary>
+        public double PerMicroseconds => As(FrequencyUnit.PerMicrosecond);
+
+        /// <summary>
+        ///     Get Frequency in PerMilliseconds.
+        /// </summary>
+        public double PerMilliseconds => As(FrequencyUnit.PerMillisecond);
+
+        /// <summary>
         ///     Get Frequency in PerSecond.
         /// </summary>
         public double PerSecond => As(FrequencyUnit.PerSecond);
@@ -318,6 +331,24 @@ namespace UnitsNet
         {
             double value = (double) megahertz;
             return new Frequency(value, FrequencyUnit.Megahertz);
+        }
+        /// <summary>
+        ///     Get Frequency from PerMicroseconds.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Frequency FromPerMicroseconds(QuantityValue permicroseconds)
+        {
+            double value = (double) permicroseconds;
+            return new Frequency(value, FrequencyUnit.PerMicrosecond);
+        }
+        /// <summary>
+        ///     Get Frequency from PerMilliseconds.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Frequency FromPerMilliseconds(QuantityValue permilliseconds)
+        {
+            double value = (double) permilliseconds;
+            return new Frequency(value, FrequencyUnit.PerMillisecond);
         }
         /// <summary>
         ///     Get Frequency from PerSecond.
@@ -782,6 +813,8 @@ namespace UnitsNet
                 case FrequencyUnit.Hertz: return _value;
                 case FrequencyUnit.Kilohertz: return (_value) * 1e3d;
                 case FrequencyUnit.Megahertz: return (_value) * 1e6d;
+                case FrequencyUnit.PerMicrosecond: return _value / 1E-06;
+                case FrequencyUnit.PerMillisecond: return _value / 0.001;
                 case FrequencyUnit.PerSecond: return _value;
                 case FrequencyUnit.RadianPerSecond: return _value/6.2831853072;
                 case FrequencyUnit.Terahertz: return (_value) * 1e12d;
@@ -817,6 +850,8 @@ namespace UnitsNet
                 case FrequencyUnit.Hertz: return baseUnitValue;
                 case FrequencyUnit.Kilohertz: return (baseUnitValue) / 1e3d;
                 case FrequencyUnit.Megahertz: return (baseUnitValue) / 1e6d;
+                case FrequencyUnit.PerMicrosecond: return baseUnitValue * 1E-06;
+                case FrequencyUnit.PerMillisecond: return baseUnitValue * 0.001;
                 case FrequencyUnit.PerSecond: return baseUnitValue;
                 case FrequencyUnit.RadianPerSecond: return baseUnitValue*6.2831853072;
                 case FrequencyUnit.Terahertz: return (baseUnitValue) / 1e12d;

@@ -84,6 +84,10 @@ namespace UnitsNet.NumberExtensions.NumberToMass
         public static Mass Megatonnes<T>(this T value) =>
             Mass.FromMegatonnes(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Mass.FromMetricTons(UnitsNet.QuantityValue)" />
+        public static Mass MetricTons<T>(this T value) =>
+            Mass.FromMetricTons(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Mass.FromMicrograms(UnitsNet.QuantityValue)" />
         public static Mass Micrograms<T>(this T value) =>
             Mass.FromMicrograms(Convert.ToDouble(value));
@@ -127,6 +131,14 @@ namespace UnitsNet.NumberExtensions.NumberToMass
         /// <inheritdoc cref="Mass.FromTonnes(UnitsNet.QuantityValue)" />
         public static Mass Tonnes<T>(this T value) =>
             Mass.FromTonnes(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Mass.FromUkTonnes(UnitsNet.QuantityValue)" />
+        public static Mass UkTonnes<T>(this T value) =>
+            Mass.FromUkTonnes(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Mass.FromUsTonnes(UnitsNet.QuantityValue)" />
+        public static Mass UsTonnes<T>(this T value) =>
+            Mass.FromUsTonnes(Convert.ToDouble(value));
 
     }
 }

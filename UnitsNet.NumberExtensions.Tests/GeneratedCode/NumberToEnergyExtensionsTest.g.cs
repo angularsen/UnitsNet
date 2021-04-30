@@ -29,8 +29,20 @@ namespace UnitsNet.Tests
             Assert.Equal(Energy.FromBritishThermalUnits(2), 2.BritishThermalUnits());
 
         [Fact]
+        public void NumberToBritishThermalUnitThermochemicalsTest() =>
+            Assert.Equal(Energy.FromBritishThermalUnitThermochemicals(2), 2.BritishThermalUnitThermochemicals());
+
+        [Fact]
         public void NumberToCaloriesTest() =>
             Assert.Equal(Energy.FromCalories(2), 2.Calories());
+
+        [Fact]
+        public void NumberToCalorieThermochemicalsTest() =>
+            Assert.Equal(Energy.FromCalorieThermochemicals(2), 2.CalorieThermochemicals());
+
+        [Fact]
+        public void NumberToDecanewtonMetersTest() =>
+            Assert.Equal(Energy.FromDecanewtonMeters(2), 2.DecanewtonMeters());
 
         [Fact]
         public void NumberToDecathermsEcTest() =>
@@ -93,12 +105,28 @@ namespace UnitsNet.Tests
             Assert.Equal(Energy.FromKilocalories(2), 2.Kilocalories());
 
         [Fact]
+        public void NumberToKilocalorieThermochemicalsTest() =>
+            Assert.Equal(Energy.FromKilocalorieThermochemicals(2), 2.KilocalorieThermochemicals());
+
+        [Fact]
+        public void NumberToKilodecanewtonMetersTest() =>
+            Assert.Equal(Energy.FromKilodecanewtonMeters(2), 2.KilodecanewtonMeters());
+
+        [Fact]
         public void NumberToKiloelectronVoltsTest() =>
             Assert.Equal(Energy.FromKiloelectronVolts(2), 2.KiloelectronVolts());
 
         [Fact]
         public void NumberToKilojoulesTest() =>
             Assert.Equal(Energy.FromKilojoules(2), 2.Kilojoules());
+
+        [Fact]
+        public void NumberToKilonewtonMetersTest() =>
+            Assert.Equal(Energy.FromKilonewtonMeters(2), 2.KilonewtonMeters());
+
+        [Fact]
+        public void NumberToKilopoundForceFeetTest() =>
+            Assert.Equal(Energy.FromKilopoundForceFeet(2), 2.KilopoundForceFeet());
 
         [Fact]
         public void NumberToKilowattDaysTest() =>
@@ -135,6 +163,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToMillijoulesTest() =>
             Assert.Equal(Energy.FromMillijoules(2), 2.Millijoules());
+
+        [Fact]
+        public void NumberToNewtonMetersTest() =>
+            Assert.Equal(Energy.FromNewtonMeters(2), 2.NewtonMeters());
+
+        [Fact]
+        public void NumberToPoundForceFeetTest() =>
+            Assert.Equal(Energy.FromPoundForceFeet(2), 2.PoundForceFeet());
 
         [Fact]
         public void NumberToTeraelectronVoltsTest() =>

@@ -16,11 +16,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "m²/s" ]
+          "Abbreviations": [
+            "m²/s"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "м²/с" ]
+          "Abbreviations": [
+            "м²/с"
+          ]
         }
       ]
     },
@@ -29,15 +33,85 @@
       "PluralName": "Stokes",
       "FromUnitToBaseFunc": "x/1e4",
       "FromBaseToUnitFunc": "x*1e4",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
+      "Prefixes": [
+        "Nano",
+        "Micro",
+        "Milli",
+        "Centi",
+        "Deci",
+        "Kilo"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "St" ]
+          "Abbreviations": [
+            "St"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Ст" ]
+          "Abbreviations": [
+            "Ст"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Centipoise",
+      "PluralName": "Centipoises",
+      "FromUnitToBaseFunc": "x * 0.001",
+      "FromBaseToUnitFunc": "x / 0.001",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "cP"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilopascalDay",
+      "PluralName": "KilopascalDays",
+      "FromUnitToBaseFunc": "x * 86400000",
+      "FromBaseToUnitFunc": "x / 86400000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "kPa-day",
+            "kPa.d"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillipascalSecond",
+      "PluralName": "MillipascalSeconds",
+      "FromUnitToBaseFunc": "x * 0.001",
+      "FromBaseToUnitFunc": "x / 0.001",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "mPa-s",
+            "mPa.s"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PascalSecond",
+      "PluralName": "PascalSeconds",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "Pa-s",
+            "Pa.s"
+          ]
         }
       ]
     }

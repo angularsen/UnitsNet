@@ -37,16 +37,16 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class TemperatureChangeRateTestsBase : QuantityTestsBase
     {
-        protected abstract double CentidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
-        protected abstract double DecadegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
-        protected abstract double DecidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
-        protected abstract double DegreesCelsiusPerMinuteInOneDegreeCelsiusPerSecond { get; }
-        protected abstract double DegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
-        protected abstract double HectodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
-        protected abstract double KilodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
-        protected abstract double MicrodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
-        protected abstract double MillidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
-        protected abstract double NanodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
+        protected virtual double CentidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
+        protected virtual double DecadegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
+        protected virtual double DecidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
+        protected virtual double DegreesCelsiusPerMinuteInOneDegreeCelsiusPerSecond { get; }
+        protected virtual double DegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
+        protected virtual double HectodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
+        protected virtual double KilodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
+        protected virtual double MicrodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
+        protected virtual double MillidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
+        protected virtual double NanodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CentidegreesCelsiusPerSecondTolerance { get { return 1e-5; } }

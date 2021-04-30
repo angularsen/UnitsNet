@@ -33,8 +33,20 @@ namespace UnitsNet.Tests
             Assert.Equal(Pressure.FromBars(2), 2.Bars());
 
         [Fact]
+        public void NumberToBarAbsolutesTest() =>
+            Assert.Equal(Pressure.FromBarAbsolutes(2), 2.BarAbsolutes());
+
+        [Fact]
+        public void NumberToBarGaugesTest() =>
+            Assert.Equal(Pressure.FromBarGauges(2), 2.BarGauges());
+
+        [Fact]
         public void NumberToCentibarsTest() =>
             Assert.Equal(Pressure.FromCentibars(2), 2.Centibars());
+
+        [Fact]
+        public void NumberToCentimeterWater4CsTest() =>
+            Assert.Equal(Pressure.FromCentimeterWater4Cs(2), 2.CentimeterWater4Cs());
 
         [Fact]
         public void NumberToDecapascalsTest() =>
@@ -55,6 +67,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToGigapascalsTest() =>
             Assert.Equal(Pressure.FromGigapascals(2), 2.Gigapascals());
+
+        [Fact]
+        public void NumberToGramForcesPerHundredSquareCentimeterTest() =>
+            Assert.Equal(Pressure.FromGramForcesPerHundredSquareCentimeter(2), 2.GramForcesPerHundredSquareCentimeter());
 
         [Fact]
         public void NumberToHectopascalsTest() =>
@@ -121,6 +137,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Pressure.FromMegapascals(2), 2.Megapascals());
 
         [Fact]
+        public void NumberToMegapoundForcesPerSquareInchTest() =>
+            Assert.Equal(Pressure.FromMegapoundForcesPerSquareInch(2), 2.MegapoundForcesPerSquareInch());
+
+        [Fact]
         public void NumberToMetersOfHeadTest() =>
             Assert.Equal(Pressure.FromMetersOfHead(2), 2.MetersOfHead());
 
@@ -135,6 +155,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToMillibarsTest() =>
             Assert.Equal(Pressure.FromMillibars(2), 2.Millibars());
+
+        [Fact]
+        public void NumberToMillimeterMercury0CsTest() =>
+            Assert.Equal(Pressure.FromMillimeterMercury0Cs(2), 2.MillimeterMercury0Cs());
 
         [Fact]
         public void NumberToMillimetersOfMercuryTest() =>
@@ -161,6 +185,14 @@ namespace UnitsNet.Tests
             Assert.Equal(Pressure.FromPascals(2), 2.Pascals());
 
         [Fact]
+        public void NumberToPoundForcesPerHundredSquareFootTest() =>
+            Assert.Equal(Pressure.FromPoundForcesPerHundredSquareFoot(2), 2.PoundForcesPerHundredSquareFoot());
+
+        [Fact]
+        public void NumberToPoundForcesPerSquareFeetTest() =>
+            Assert.Equal(Pressure.FromPoundForcesPerSquareFeet(2), 2.PoundForcesPerSquareFeet());
+
+        [Fact]
         public void NumberToPoundsForcePerSquareFootTest() =>
             Assert.Equal(Pressure.FromPoundsForcePerSquareFoot(2), 2.PoundsForcePerSquareFoot());
 
@@ -169,12 +201,24 @@ namespace UnitsNet.Tests
             Assert.Equal(Pressure.FromPoundsForcePerSquareInch(2), 2.PoundsForcePerSquareInch());
 
         [Fact]
+        public void NumberToPoundForcesPerSquareInchAbsoluteTest() =>
+            Assert.Equal(Pressure.FromPoundForcesPerSquareInchAbsolute(2), 2.PoundForcesPerSquareInchAbsolute());
+
+        [Fact]
+        public void NumberToPoundForcesPerSquareInchGaugeTest() =>
+            Assert.Equal(Pressure.FromPoundForcesPerSquareInchGauge(2), 2.PoundForcesPerSquareInchGauge());
+
+        [Fact]
         public void NumberToPoundsPerInchSecondSquaredTest() =>
             Assert.Equal(Pressure.FromPoundsPerInchSecondSquared(2), 2.PoundsPerInchSecondSquared());
 
         [Fact]
         public void NumberToTechnicalAtmospheresTest() =>
             Assert.Equal(Pressure.FromTechnicalAtmospheres(2), 2.TechnicalAtmospheres());
+
+        [Fact]
+        public void NumberToThousandPoundForcesPerSquareInchTest() =>
+            Assert.Equal(Pressure.FromThousandPoundForcesPerSquareInch(2), 2.ThousandPoundForcesPerSquareInch());
 
         [Fact]
         public void NumberToTonnesForcePerSquareCentimeterTest() =>

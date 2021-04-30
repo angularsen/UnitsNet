@@ -26,6 +26,7 @@ namespace UnitsNet.Units
     public enum EntropyUnit
     {
         Undefined = 0,
+        BritishThermalUnitPerDegreeRankin,
         CaloriePerKelvin,
         JoulePerDegreeCelsius,
         JoulePerKelvin,

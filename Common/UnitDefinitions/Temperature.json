@@ -18,7 +18,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "K" ]
+          "Abbreviations": [
+            "K"
+          ]
         }
       ]
     },
@@ -33,7 +35,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "°C" ]
+          "Abbreviations": [
+            "°C"
+          ]
         }
       ]
     },
@@ -48,7 +52,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "m°C" ]
+          "Abbreviations": [
+            "m°C"
+          ]
         }
       ]
     },
@@ -63,7 +69,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "°De" ]
+          "Abbreviations": [
+            "°De"
+          ]
         }
       ]
     },
@@ -78,7 +86,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "°F" ]
+          "Abbreviations": [
+            "°F"
+          ]
         }
       ]
     },
@@ -93,7 +103,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "°N" ]
+          "Abbreviations": [
+            "°N"
+          ]
         }
       ]
     },
@@ -108,7 +120,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "°R" ]
+          "Abbreviations": [
+            "°R"
+          ]
         }
       ]
     },
@@ -123,7 +137,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "°Ré" ]
+          "Abbreviations": [
+            "°Ré"
+          ]
         }
       ]
     },
@@ -138,7 +154,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "°Rø" ]
+          "Abbreviations": [
+            "°Rø"
+          ]
         }
       ]
     },
@@ -150,7 +168,41 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "T⊙" ]
+          "Abbreviations": [
+            "T⊙"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DeltaDegreeCelsius",
+      "PluralName": "DeltaDegreeCelsius",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "ddegC",
+            "dC",
+            "d°C"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DeltaDegreeFahrenheit",
+      "PluralName": "DeltaDegreeFahrenheits",
+      "FromUnitToBaseFunc": "x * 0.555555555555556",
+      "FromBaseToUnitFunc": "x / 0.555555555555556",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "ddegF",
+            "dF",
+            "d°F"
+          ]
         }
       ]
     }

@@ -28,6 +28,10 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
     /// </summary>
     public static class NumberToTorqueExtensions
     {
+        /// <inheritdoc cref="Torque.FromJoules(UnitsNet.QuantityValue)" />
+        public static Torque Joules<T>(this T value) =>
+            Torque.FromJoules(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Torque.FromKilogramForceCentimeters(UnitsNet.QuantityValue)" />
         public static Torque KilogramForceCentimeters<T>(this T value) =>
             Torque.FromKilogramForceCentimeters(Convert.ToDouble(value));

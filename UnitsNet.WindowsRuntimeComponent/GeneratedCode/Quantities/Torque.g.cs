@@ -156,6 +156,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get Torque in Joules.
+        /// </summary>
+        public double Joules => As(TorqueUnit.Joule);
+
+        /// <summary>
         ///     Get Torque in KilogramForceCentimeters.
         /// </summary>
         public double KilogramForceCentimeters => As(TorqueUnit.KilogramForceCentimeter);
@@ -295,6 +300,16 @@ namespace UnitsNet
 
         #region Static Factory Methods
 
+        /// <summary>
+        ///     Get Torque from Joules.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Torque FromJoules(double joules)
+        {
+            double value = (double) joules;
+            return new Torque(value, TorqueUnit.Joule);
+        }
         /// <summary>
         ///     Get Torque from KilogramForceCentimeters.
         /// </summary>
@@ -806,6 +821,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case TorqueUnit.Joule: return _value;
                 case TorqueUnit.KilogramForceCentimeter: return _value*0.0980665019960652;
                 case TorqueUnit.KilogramForceMeter: return _value*9.80665019960652;
                 case TorqueUnit.KilogramForceMillimeter: return _value*0.00980665019960652;
@@ -842,6 +858,7 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case TorqueUnit.Joule: return baseUnitValue;
                 case TorqueUnit.KilogramForceCentimeter: return baseUnitValue*10.1971619222242;
                 case TorqueUnit.KilogramForceMeter: return baseUnitValue*0.101971619222242;
                 case TorqueUnit.KilogramForceMillimeter: return baseUnitValue*101.971619222242;

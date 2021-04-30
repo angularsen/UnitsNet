@@ -156,9 +156,24 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get Speed in CentimetersPerDay.
+        /// </summary>
+        public double CentimetersPerDay => As(SpeedUnit.CentimeterPerDay);
+
+        /// <summary>
         ///     Get Speed in CentimetersPerHour.
         /// </summary>
         public double CentimetersPerHour => As(SpeedUnit.CentimeterPerHour);
+
+        /// <summary>
+        ///     Get Speed in CentimetersPerMicrosecond.
+        /// </summary>
+        public double CentimetersPerMicrosecond => As(SpeedUnit.CentimeterPerMicrosecond);
+
+        /// <summary>
+        ///     Get Speed in CentimetersPerMillisecond.
+        /// </summary>
+        public double CentimetersPerMillisecond => As(SpeedUnit.CentimeterPerMillisecond);
 
         /// <summary>
         ///     Get Speed in CentimetersPerMinutes.
@@ -171,6 +186,26 @@ namespace UnitsNet
         public double CentimetersPerSecond => As(SpeedUnit.CentimeterPerSecond);
 
         /// <summary>
+        ///     Get Speed in CentimetersPerYear.
+        /// </summary>
+        public double CentimetersPerYear => As(SpeedUnit.CentimeterPerYear);
+
+        /// <summary>
+        ///     Get Speed in DaysPerFootEq.
+        /// </summary>
+        public double DaysPerFootEq => As(SpeedUnit.DayPerFootEq);
+
+        /// <summary>
+        ///     Get Speed in DaysPerKilometerEq.
+        /// </summary>
+        public double DaysPerKilometerEq => As(SpeedUnit.DayPerKilometerEq);
+
+        /// <summary>
+        ///     Get Speed in DaysPerMeterEq.
+        /// </summary>
+        public double DaysPerMeterEq => As(SpeedUnit.DayPerMeterEq);
+
+        /// <summary>
         ///     Get Speed in DecimetersPerMinutes.
         /// </summary>
         public double DecimetersPerMinutes => As(SpeedUnit.DecimeterPerMinute);
@@ -181,9 +216,24 @@ namespace UnitsNet
         public double DecimetersPerSecond => As(SpeedUnit.DecimeterPerSecond);
 
         /// <summary>
+        ///     Get Speed in FeetPerDay.
+        /// </summary>
+        public double FeetPerDay => As(SpeedUnit.FootPerDay);
+
+        /// <summary>
         ///     Get Speed in FeetPerHour.
         /// </summary>
         public double FeetPerHour => As(SpeedUnit.FootPerHour);
+
+        /// <summary>
+        ///     Get Speed in FeetPerMicrosecond.
+        /// </summary>
+        public double FeetPerMicrosecond => As(SpeedUnit.FootPerMicrosecond);
+
+        /// <summary>
+        ///     Get Speed in FeetPerMillisecond.
+        /// </summary>
+        public double FeetPerMillisecond => As(SpeedUnit.FootPerMillisecond);
 
         /// <summary>
         ///     Get Speed in FeetPerMinute.
@@ -194,6 +244,11 @@ namespace UnitsNet
         ///     Get Speed in FeetPerSecond.
         /// </summary>
         public double FeetPerSecond => As(SpeedUnit.FootPerSecond);
+
+        /// <summary>
+        ///     Get Speed in FeetPerYear.
+        /// </summary>
+        public double FeetPerYear => As(SpeedUnit.FootPerYear);
 
         /// <summary>
         ///     Get Speed in InchesPerHour.
@@ -226,14 +281,34 @@ namespace UnitsNet
         public double KilometersPerSecond => As(SpeedUnit.KilometerPerSecond);
 
         /// <summary>
+        ///     Get Speed in KmsPerHour.
+        /// </summary>
+        public double KmsPerHour => As(SpeedUnit.KmPerHour);
+
+        /// <summary>
         ///     Get Speed in Knots.
         /// </summary>
         public double Knots => As(SpeedUnit.Knot);
 
         /// <summary>
+        ///     Get Speed in MetersPerDay.
+        /// </summary>
+        public double MetersPerDay => As(SpeedUnit.MeterPerDay);
+
+        /// <summary>
         ///     Get Speed in MetersPerHour.
         /// </summary>
         public double MetersPerHour => As(SpeedUnit.MeterPerHour);
+
+        /// <summary>
+        ///     Get Speed in MetersPerMicrosecond.
+        /// </summary>
+        public double MetersPerMicrosecond => As(SpeedUnit.MeterPerMicrosecond);
+
+        /// <summary>
+        ///     Get Speed in MetersPerMillisecond.
+        /// </summary>
+        public double MetersPerMillisecond => As(SpeedUnit.MeterPerMillisecond);
 
         /// <summary>
         ///     Get Speed in MetersPerMinutes.
@@ -246,6 +321,11 @@ namespace UnitsNet
         public double MetersPerSecond => As(SpeedUnit.MeterPerSecond);
 
         /// <summary>
+        ///     Get Speed in MetersPerYear.
+        /// </summary>
+        public double MetersPerYear => As(SpeedUnit.MeterPerYear);
+
+        /// <summary>
         ///     Get Speed in MicrometersPerMinutes.
         /// </summary>
         public double MicrometersPerMinutes => As(SpeedUnit.MicrometerPerMinute);
@@ -254,6 +334,21 @@ namespace UnitsNet
         ///     Get Speed in MicrometersPerSecond.
         /// </summary>
         public double MicrometersPerSecond => As(SpeedUnit.MicrometerPerSecond);
+
+        /// <summary>
+        ///     Get Speed in MicrosecondsPerCentimeterEq.
+        /// </summary>
+        public double MicrosecondsPerCentimeterEq => As(SpeedUnit.MicrosecondPerCentimeterEq);
+
+        /// <summary>
+        ///     Get Speed in MicrosecondsPerFootEq.
+        /// </summary>
+        public double MicrosecondsPerFootEq => As(SpeedUnit.MicrosecondPerFootEq);
+
+        /// <summary>
+        ///     Get Speed in MicrosecondsPerMeterEq.
+        /// </summary>
+        public double MicrosecondsPerMeterEq => As(SpeedUnit.MicrosecondPerMeterEq);
 
         /// <summary>
         ///     Get Speed in MilesPerHour.
@@ -276,6 +371,21 @@ namespace UnitsNet
         public double MillimetersPerSecond => As(SpeedUnit.MillimeterPerSecond);
 
         /// <summary>
+        ///     Get Speed in MillisecondsPerCentimeterEq.
+        /// </summary>
+        public double MillisecondsPerCentimeterEq => As(SpeedUnit.MillisecondPerCentimeterEq);
+
+        /// <summary>
+        ///     Get Speed in MillisecondsPerFootEq.
+        /// </summary>
+        public double MillisecondsPerFootEq => As(SpeedUnit.MillisecondPerFootEq);
+
+        /// <summary>
+        ///     Get Speed in MillisecondsPerMeterEq.
+        /// </summary>
+        public double MillisecondsPerMeterEq => As(SpeedUnit.MillisecondPerMeterEq);
+
+        /// <summary>
         ///     Get Speed in NanometersPerMinutes.
         /// </summary>
         public double NanometersPerMinutes => As(SpeedUnit.NanometerPerMinute);
@@ -284,6 +394,21 @@ namespace UnitsNet
         ///     Get Speed in NanometersPerSecond.
         /// </summary>
         public double NanometersPerSecond => As(SpeedUnit.NanometerPerSecond);
+
+        /// <summary>
+        ///     Get Speed in SecondsPerCentimeterEq.
+        /// </summary>
+        public double SecondsPerCentimeterEq => As(SpeedUnit.SecondPerCentimeterEq);
+
+        /// <summary>
+        ///     Get Speed in SecondsPerFootEq.
+        /// </summary>
+        public double SecondsPerFootEq => As(SpeedUnit.SecondPerFootEq);
+
+        /// <summary>
+        ///     Get Speed in SecondsPerMeterEq.
+        /// </summary>
+        public double SecondsPerMeterEq => As(SpeedUnit.SecondPerMeterEq);
 
         /// <summary>
         ///     Get Speed in UsSurveyFeetPerHour.
@@ -346,6 +471,16 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
+        ///     Get Speed from CentimetersPerDay.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromCentimetersPerDay(double centimetersperday)
+        {
+            double value = (double) centimetersperday;
+            return new Speed(value, SpeedUnit.CentimeterPerDay);
+        }
+        /// <summary>
         ///     Get Speed from CentimetersPerHour.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -354,6 +489,26 @@ namespace UnitsNet
         {
             double value = (double) centimetersperhour;
             return new Speed(value, SpeedUnit.CentimeterPerHour);
+        }
+        /// <summary>
+        ///     Get Speed from CentimetersPerMicrosecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromCentimetersPerMicrosecond(double centimeterspermicrosecond)
+        {
+            double value = (double) centimeterspermicrosecond;
+            return new Speed(value, SpeedUnit.CentimeterPerMicrosecond);
+        }
+        /// <summary>
+        ///     Get Speed from CentimetersPerMillisecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromCentimetersPerMillisecond(double centimeterspermillisecond)
+        {
+            double value = (double) centimeterspermillisecond;
+            return new Speed(value, SpeedUnit.CentimeterPerMillisecond);
         }
         /// <summary>
         ///     Get Speed from CentimetersPerMinutes.
@@ -376,6 +531,46 @@ namespace UnitsNet
             return new Speed(value, SpeedUnit.CentimeterPerSecond);
         }
         /// <summary>
+        ///     Get Speed from CentimetersPerYear.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromCentimetersPerYear(double centimetersperyear)
+        {
+            double value = (double) centimetersperyear;
+            return new Speed(value, SpeedUnit.CentimeterPerYear);
+        }
+        /// <summary>
+        ///     Get Speed from DaysPerFootEq.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromDaysPerFootEq(double daysperfooteq)
+        {
+            double value = (double) daysperfooteq;
+            return new Speed(value, SpeedUnit.DayPerFootEq);
+        }
+        /// <summary>
+        ///     Get Speed from DaysPerKilometerEq.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromDaysPerKilometerEq(double daysperkilometereq)
+        {
+            double value = (double) daysperkilometereq;
+            return new Speed(value, SpeedUnit.DayPerKilometerEq);
+        }
+        /// <summary>
+        ///     Get Speed from DaysPerMeterEq.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromDaysPerMeterEq(double dayspermetereq)
+        {
+            double value = (double) dayspermetereq;
+            return new Speed(value, SpeedUnit.DayPerMeterEq);
+        }
+        /// <summary>
         ///     Get Speed from DecimetersPerMinutes.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -396,6 +591,16 @@ namespace UnitsNet
             return new Speed(value, SpeedUnit.DecimeterPerSecond);
         }
         /// <summary>
+        ///     Get Speed from FeetPerDay.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromFeetPerDay(double feetperday)
+        {
+            double value = (double) feetperday;
+            return new Speed(value, SpeedUnit.FootPerDay);
+        }
+        /// <summary>
         ///     Get Speed from FeetPerHour.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -404,6 +609,26 @@ namespace UnitsNet
         {
             double value = (double) feetperhour;
             return new Speed(value, SpeedUnit.FootPerHour);
+        }
+        /// <summary>
+        ///     Get Speed from FeetPerMicrosecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromFeetPerMicrosecond(double feetpermicrosecond)
+        {
+            double value = (double) feetpermicrosecond;
+            return new Speed(value, SpeedUnit.FootPerMicrosecond);
+        }
+        /// <summary>
+        ///     Get Speed from FeetPerMillisecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromFeetPerMillisecond(double feetpermillisecond)
+        {
+            double value = (double) feetpermillisecond;
+            return new Speed(value, SpeedUnit.FootPerMillisecond);
         }
         /// <summary>
         ///     Get Speed from FeetPerMinute.
@@ -424,6 +649,16 @@ namespace UnitsNet
         {
             double value = (double) feetpersecond;
             return new Speed(value, SpeedUnit.FootPerSecond);
+        }
+        /// <summary>
+        ///     Get Speed from FeetPerYear.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromFeetPerYear(double feetperyear)
+        {
+            double value = (double) feetperyear;
+            return new Speed(value, SpeedUnit.FootPerYear);
         }
         /// <summary>
         ///     Get Speed from InchesPerHour.
@@ -486,6 +721,16 @@ namespace UnitsNet
             return new Speed(value, SpeedUnit.KilometerPerSecond);
         }
         /// <summary>
+        ///     Get Speed from KmsPerHour.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromKmsPerHour(double kmsperhour)
+        {
+            double value = (double) kmsperhour;
+            return new Speed(value, SpeedUnit.KmPerHour);
+        }
+        /// <summary>
         ///     Get Speed from Knots.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -496,6 +741,16 @@ namespace UnitsNet
             return new Speed(value, SpeedUnit.Knot);
         }
         /// <summary>
+        ///     Get Speed from MetersPerDay.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromMetersPerDay(double metersperday)
+        {
+            double value = (double) metersperday;
+            return new Speed(value, SpeedUnit.MeterPerDay);
+        }
+        /// <summary>
         ///     Get Speed from MetersPerHour.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -504,6 +759,26 @@ namespace UnitsNet
         {
             double value = (double) metersperhour;
             return new Speed(value, SpeedUnit.MeterPerHour);
+        }
+        /// <summary>
+        ///     Get Speed from MetersPerMicrosecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromMetersPerMicrosecond(double meterspermicrosecond)
+        {
+            double value = (double) meterspermicrosecond;
+            return new Speed(value, SpeedUnit.MeterPerMicrosecond);
+        }
+        /// <summary>
+        ///     Get Speed from MetersPerMillisecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromMetersPerMillisecond(double meterspermillisecond)
+        {
+            double value = (double) meterspermillisecond;
+            return new Speed(value, SpeedUnit.MeterPerMillisecond);
         }
         /// <summary>
         ///     Get Speed from MetersPerMinutes.
@@ -526,6 +801,16 @@ namespace UnitsNet
             return new Speed(value, SpeedUnit.MeterPerSecond);
         }
         /// <summary>
+        ///     Get Speed from MetersPerYear.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromMetersPerYear(double metersperyear)
+        {
+            double value = (double) metersperyear;
+            return new Speed(value, SpeedUnit.MeterPerYear);
+        }
+        /// <summary>
         ///     Get Speed from MicrometersPerMinutes.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -544,6 +829,36 @@ namespace UnitsNet
         {
             double value = (double) micrometerspersecond;
             return new Speed(value, SpeedUnit.MicrometerPerSecond);
+        }
+        /// <summary>
+        ///     Get Speed from MicrosecondsPerCentimeterEq.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromMicrosecondsPerCentimeterEq(double microsecondspercentimetereq)
+        {
+            double value = (double) microsecondspercentimetereq;
+            return new Speed(value, SpeedUnit.MicrosecondPerCentimeterEq);
+        }
+        /// <summary>
+        ///     Get Speed from MicrosecondsPerFootEq.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromMicrosecondsPerFootEq(double microsecondsperfooteq)
+        {
+            double value = (double) microsecondsperfooteq;
+            return new Speed(value, SpeedUnit.MicrosecondPerFootEq);
+        }
+        /// <summary>
+        ///     Get Speed from MicrosecondsPerMeterEq.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromMicrosecondsPerMeterEq(double microsecondspermetereq)
+        {
+            double value = (double) microsecondspermetereq;
+            return new Speed(value, SpeedUnit.MicrosecondPerMeterEq);
         }
         /// <summary>
         ///     Get Speed from MilesPerHour.
@@ -586,6 +901,36 @@ namespace UnitsNet
             return new Speed(value, SpeedUnit.MillimeterPerSecond);
         }
         /// <summary>
+        ///     Get Speed from MillisecondsPerCentimeterEq.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromMillisecondsPerCentimeterEq(double millisecondspercentimetereq)
+        {
+            double value = (double) millisecondspercentimetereq;
+            return new Speed(value, SpeedUnit.MillisecondPerCentimeterEq);
+        }
+        /// <summary>
+        ///     Get Speed from MillisecondsPerFootEq.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromMillisecondsPerFootEq(double millisecondsperfooteq)
+        {
+            double value = (double) millisecondsperfooteq;
+            return new Speed(value, SpeedUnit.MillisecondPerFootEq);
+        }
+        /// <summary>
+        ///     Get Speed from MillisecondsPerMeterEq.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromMillisecondsPerMeterEq(double millisecondspermetereq)
+        {
+            double value = (double) millisecondspermetereq;
+            return new Speed(value, SpeedUnit.MillisecondPerMeterEq);
+        }
+        /// <summary>
         ///     Get Speed from NanometersPerMinutes.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -604,6 +949,36 @@ namespace UnitsNet
         {
             double value = (double) nanometerspersecond;
             return new Speed(value, SpeedUnit.NanometerPerSecond);
+        }
+        /// <summary>
+        ///     Get Speed from SecondsPerCentimeterEq.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromSecondsPerCentimeterEq(double secondspercentimetereq)
+        {
+            double value = (double) secondspercentimetereq;
+            return new Speed(value, SpeedUnit.SecondPerCentimeterEq);
+        }
+        /// <summary>
+        ///     Get Speed from SecondsPerFootEq.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromSecondsPerFootEq(double secondsperfooteq)
+        {
+            double value = (double) secondsperfooteq;
+            return new Speed(value, SpeedUnit.SecondPerFootEq);
+        }
+        /// <summary>
+        ///     Get Speed from SecondsPerMeterEq.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromSecondsPerMeterEq(double secondspermetereq)
+        {
+            double value = (double) secondspermetereq;
+            return new Speed(value, SpeedUnit.SecondPerMeterEq);
         }
         /// <summary>
         ///     Get Speed from UsSurveyFeetPerHour.
@@ -956,32 +1331,57 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case SpeedUnit.CentimeterPerDay: return _value * 0.01 / 86400;
                 case SpeedUnit.CentimeterPerHour: return (_value/3600) * 1e-2d;
+                case SpeedUnit.CentimeterPerMicrosecond: return _value * 0.01 / 1E-06;
+                case SpeedUnit.CentimeterPerMillisecond: return _value * 0.01 / 0.001;
                 case SpeedUnit.CentimeterPerMinute: return (_value/60) * 1e-2d;
                 case SpeedUnit.CentimeterPerSecond: return (_value) * 1e-2d;
+                case SpeedUnit.CentimeterPerYear: return _value * 0.01 / 31557600;
+                case SpeedUnit.DayPerFootEq: return _value * (0 + 0.3048) / (_value * 86400 + 0);
+                case SpeedUnit.DayPerKilometerEq: return _value * (0 + 1000) / (_value * 86400 + 0);
+                case SpeedUnit.DayPerMeterEq: return _value * (0 + 1) / (_value * 86400 + 0);
                 case SpeedUnit.DecimeterPerMinute: return (_value/60) * 1e-1d;
                 case SpeedUnit.DecimeterPerSecond: return (_value) * 1e-1d;
+                case SpeedUnit.FootPerDay: return _value * 0.3048 / 86400;
                 case SpeedUnit.FootPerHour: return _value*0.3048/3600;
+                case SpeedUnit.FootPerMicrosecond: return _value * 0.3048 / 1E-06;
+                case SpeedUnit.FootPerMillisecond: return _value * 0.3048 / 0.001;
                 case SpeedUnit.FootPerMinute: return _value*0.3048/60;
                 case SpeedUnit.FootPerSecond: return _value*0.3048;
+                case SpeedUnit.FootPerYear: return _value * 0.3048 / 31557600;
                 case SpeedUnit.InchPerHour: return (_value/3600)*2.54e-2;
                 case SpeedUnit.InchPerMinute: return (_value/60)*2.54e-2;
                 case SpeedUnit.InchPerSecond: return _value*2.54e-2;
                 case SpeedUnit.KilometerPerHour: return (_value/3600) * 1e3d;
                 case SpeedUnit.KilometerPerMinute: return (_value/60) * 1e3d;
                 case SpeedUnit.KilometerPerSecond: return (_value) * 1e3d;
+                case SpeedUnit.KmPerHour: return _value * 1000 / 3600;
                 case SpeedUnit.Knot: return _value*0.514444;
+                case SpeedUnit.MeterPerDay: return _value / 86400;
                 case SpeedUnit.MeterPerHour: return _value/3600;
+                case SpeedUnit.MeterPerMicrosecond: return _value / 1E-06;
+                case SpeedUnit.MeterPerMillisecond: return _value / 0.001;
                 case SpeedUnit.MeterPerMinute: return _value/60;
                 case SpeedUnit.MeterPerSecond: return _value;
+                case SpeedUnit.MeterPerYear: return _value / 31557600;
                 case SpeedUnit.MicrometerPerMinute: return (_value/60) * 1e-6d;
                 case SpeedUnit.MicrometerPerSecond: return (_value) * 1e-6d;
+                case SpeedUnit.MicrosecondPerCentimeterEq: return _value * (0 + 0.01) / (_value * 1E-06 + 0);
+                case SpeedUnit.MicrosecondPerFootEq: return _value * (0 + 0.3048) / (_value * 1E-06 + 0);
+                case SpeedUnit.MicrosecondPerMeterEq: return _value * (0 + 1) / (_value * 1E-06 + 0);
                 case SpeedUnit.MilePerHour: return _value*0.44704;
                 case SpeedUnit.MillimeterPerHour: return (_value/3600) * 1e-3d;
                 case SpeedUnit.MillimeterPerMinute: return (_value/60) * 1e-3d;
                 case SpeedUnit.MillimeterPerSecond: return (_value) * 1e-3d;
+                case SpeedUnit.MillisecondPerCentimeterEq: return _value * (0 + 0.01) / (_value * 0.001 + 0);
+                case SpeedUnit.MillisecondPerFootEq: return _value * (0 + 0.3048) / (_value * 0.001 + 0);
+                case SpeedUnit.MillisecondPerMeterEq: return _value * (0 + 1) / (_value * 0.001 + 0);
                 case SpeedUnit.NanometerPerMinute: return (_value/60) * 1e-9d;
                 case SpeedUnit.NanometerPerSecond: return (_value) * 1e-9d;
+                case SpeedUnit.SecondPerCentimeterEq: return _value * (0 + 0.01) / (_value * 1 + 0);
+                case SpeedUnit.SecondPerFootEq: return _value * (0 + 0.3048) / (_value * 1 + 0);
+                case SpeedUnit.SecondPerMeterEq: return _value * (0 + 1) / (_value * 1 + 0);
                 case SpeedUnit.UsSurveyFootPerHour: return (_value*1200/3937)/3600;
                 case SpeedUnit.UsSurveyFootPerMinute: return (_value*1200/3937)/60;
                 case SpeedUnit.UsSurveyFootPerSecond: return _value*1200/3937;
@@ -1002,32 +1402,57 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case SpeedUnit.CentimeterPerDay: return baseUnitValue / 0.01 * 86400;
                 case SpeedUnit.CentimeterPerHour: return (baseUnitValue*3600) / 1e-2d;
+                case SpeedUnit.CentimeterPerMicrosecond: return baseUnitValue / 0.01 * 1E-06;
+                case SpeedUnit.CentimeterPerMillisecond: return baseUnitValue / 0.01 * 0.001;
                 case SpeedUnit.CentimeterPerMinute: return (baseUnitValue*60) / 1e-2d;
                 case SpeedUnit.CentimeterPerSecond: return (baseUnitValue) / 1e-2d;
+                case SpeedUnit.CentimeterPerYear: return baseUnitValue / 0.01 * 31557600;
+                case SpeedUnit.DayPerFootEq: return (baseUnitValue * 0 - 0.3048) / (baseUnitValue * 86400 + 0);
+                case SpeedUnit.DayPerKilometerEq: return (baseUnitValue * 0 - 1000) / (baseUnitValue * 86400 + 0);
+                case SpeedUnit.DayPerMeterEq: return (baseUnitValue * 0 - 1) / (baseUnitValue * 86400 + 0);
                 case SpeedUnit.DecimeterPerMinute: return (baseUnitValue*60) / 1e-1d;
                 case SpeedUnit.DecimeterPerSecond: return (baseUnitValue) / 1e-1d;
+                case SpeedUnit.FootPerDay: return baseUnitValue / 0.3048 * 86400;
                 case SpeedUnit.FootPerHour: return baseUnitValue/0.3048*3600;
+                case SpeedUnit.FootPerMicrosecond: return baseUnitValue / 0.3048 * 1E-06;
+                case SpeedUnit.FootPerMillisecond: return baseUnitValue / 0.3048 * 0.001;
                 case SpeedUnit.FootPerMinute: return baseUnitValue/0.3048*60;
                 case SpeedUnit.FootPerSecond: return baseUnitValue/0.3048;
+                case SpeedUnit.FootPerYear: return baseUnitValue / 0.3048 * 31557600;
                 case SpeedUnit.InchPerHour: return (baseUnitValue/2.54e-2)*3600;
                 case SpeedUnit.InchPerMinute: return (baseUnitValue/2.54e-2)*60;
                 case SpeedUnit.InchPerSecond: return baseUnitValue/2.54e-2;
                 case SpeedUnit.KilometerPerHour: return (baseUnitValue*3600) / 1e3d;
                 case SpeedUnit.KilometerPerMinute: return (baseUnitValue*60) / 1e3d;
                 case SpeedUnit.KilometerPerSecond: return (baseUnitValue) / 1e3d;
+                case SpeedUnit.KmPerHour: return baseUnitValue / 1000 * 3600;
                 case SpeedUnit.Knot: return baseUnitValue/0.514444;
+                case SpeedUnit.MeterPerDay: return baseUnitValue * 86400;
                 case SpeedUnit.MeterPerHour: return baseUnitValue*3600;
+                case SpeedUnit.MeterPerMicrosecond: return baseUnitValue * 1E-06;
+                case SpeedUnit.MeterPerMillisecond: return baseUnitValue * 0.001;
                 case SpeedUnit.MeterPerMinute: return baseUnitValue*60;
                 case SpeedUnit.MeterPerSecond: return baseUnitValue;
+                case SpeedUnit.MeterPerYear: return baseUnitValue * 31557600;
                 case SpeedUnit.MicrometerPerMinute: return (baseUnitValue*60) / 1e-6d;
                 case SpeedUnit.MicrometerPerSecond: return (baseUnitValue) / 1e-6d;
+                case SpeedUnit.MicrosecondPerCentimeterEq: return (baseUnitValue * 0 - 0.01) / (baseUnitValue * 1E-06 + 0);
+                case SpeedUnit.MicrosecondPerFootEq: return (baseUnitValue * 0 - 0.3048) / (baseUnitValue * 1E-06 + 0);
+                case SpeedUnit.MicrosecondPerMeterEq: return (baseUnitValue * 0 - 1) / (baseUnitValue * 1E-06 + 0);
                 case SpeedUnit.MilePerHour: return baseUnitValue/0.44704;
                 case SpeedUnit.MillimeterPerHour: return (baseUnitValue*3600) / 1e-3d;
                 case SpeedUnit.MillimeterPerMinute: return (baseUnitValue*60) / 1e-3d;
                 case SpeedUnit.MillimeterPerSecond: return (baseUnitValue) / 1e-3d;
+                case SpeedUnit.MillisecondPerCentimeterEq: return (baseUnitValue * 0 - 0.01) / (baseUnitValue * 0.001 + 0);
+                case SpeedUnit.MillisecondPerFootEq: return (baseUnitValue * 0 - 0.3048) / (baseUnitValue * 0.001 + 0);
+                case SpeedUnit.MillisecondPerMeterEq: return (baseUnitValue * 0 - 1) / (baseUnitValue * 0.001 + 0);
                 case SpeedUnit.NanometerPerMinute: return (baseUnitValue*60) / 1e-9d;
                 case SpeedUnit.NanometerPerSecond: return (baseUnitValue) / 1e-9d;
+                case SpeedUnit.SecondPerCentimeterEq: return (baseUnitValue * 0 - 0.01) / (baseUnitValue * 1 + 0);
+                case SpeedUnit.SecondPerFootEq: return (baseUnitValue * 0 - 0.3048) / (baseUnitValue * 1 + 0);
+                case SpeedUnit.SecondPerMeterEq: return (baseUnitValue * 0 - 1) / (baseUnitValue * 1 + 0);
                 case SpeedUnit.UsSurveyFootPerHour: return (baseUnitValue*3937/1200)*3600;
                 case SpeedUnit.UsSurveyFootPerMinute: return (baseUnitValue*3937/1200)*60;
                 case SpeedUnit.UsSurveyFootPerSecond: return baseUnitValue*3937/1200;

@@ -17,19 +17,20 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Globalization;
-using System.Linq;
-using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
-
 #nullable enable
 
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using JetBrains.Annotations;
+    using UnitsNet.InternalHelpers;
+    using UnitsNet.Units;
+    
+
     /// <inheritdoc />
     /// <summary>
     ///     A temperature is a numerical measure of hot or cold. Its measurement is by detection of heat radiation or particle velocity or kinetic energy, or by the bulk behavior of a thermometric material. It may be calibrated in any of various temperature scales, Celsius, Fahrenheit, Kelvin, etc. The fundamental physical definition of temperature is provided by thermodynamics.
@@ -59,6 +60,8 @@ namespace UnitsNet
                     new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeRankine, new BaseUnits(temperature: TemperatureUnit.DegreeRankine)),
                     new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeReaumur, new BaseUnits(temperature: TemperatureUnit.DegreeReaumur)),
                     new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeRoemer, new BaseUnits(temperature: TemperatureUnit.DegreeRoemer)),
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DeltaDegreeCelsius, BaseUnits.Undefined),
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DeltaDegreeFahrenheit, BaseUnits.Undefined),
                     new UnitInfo<TemperatureUnit>(TemperatureUnit.Kelvin, new BaseUnits(temperature: TemperatureUnit.Kelvin)),
                     new UnitInfo<TemperatureUnit>(TemperatureUnit.MillidegreeCelsius, new BaseUnits(temperature: TemperatureUnit.DegreeCelsius)),
                     new UnitInfo<TemperatureUnit>(TemperatureUnit.SolarTemperature, BaseUnits.Undefined),
@@ -213,6 +216,16 @@ namespace UnitsNet
         public double DegreesRoemer => As(TemperatureUnit.DegreeRoemer);
 
         /// <summary>
+        ///     Get Temperature in DeltaDegreeCelsius.
+        /// </summary>
+        public double DeltaDegreeCelsius => As(TemperatureUnit.DeltaDegreeCelsius);
+
+        /// <summary>
+        ///     Get Temperature in DeltaDegreeFahrenheits.
+        /// </summary>
+        public double DeltaDegreeFahrenheits => As(TemperatureUnit.DeltaDegreeFahrenheit);
+
+        /// <summary>
         ///     Get Temperature in Kelvins.
         /// </summary>
         public double Kelvins => As(TemperatureUnit.Kelvin);
@@ -318,6 +331,24 @@ namespace UnitsNet
         {
             double value = (double) degreesroemer;
             return new Temperature(value, TemperatureUnit.DegreeRoemer);
+        }
+        /// <summary>
+        ///     Get Temperature from DeltaDegreeCelsius.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Temperature FromDeltaDegreeCelsius(QuantityValue deltadegreecelsius)
+        {
+            double value = (double) deltadegreecelsius;
+            return new Temperature(value, TemperatureUnit.DeltaDegreeCelsius);
+        }
+        /// <summary>
+        ///     Get Temperature from DeltaDegreeFahrenheits.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Temperature FromDeltaDegreeFahrenheits(QuantityValue deltadegreefahrenheits)
+        {
+            double value = (double) deltadegreefahrenheits;
+            return new Temperature(value, TemperatureUnit.DeltaDegreeFahrenheit);
         }
         /// <summary>
         ///     Get Temperature from Kelvins.
@@ -736,6 +767,8 @@ namespace UnitsNet
                 case TemperatureUnit.DegreeRankine: return _value*5/9;
                 case TemperatureUnit.DegreeReaumur: return _value*5/4 + 273.15;
                 case TemperatureUnit.DegreeRoemer: return _value*40/21 + 273.15 - 7.5*40d/21;
+                case TemperatureUnit.DeltaDegreeCelsius: return _value;
+                case TemperatureUnit.DeltaDegreeFahrenheit: return _value * 0.555555555555556;
                 case TemperatureUnit.Kelvin: return _value;
                 case TemperatureUnit.MillidegreeCelsius: return _value / 1000 + 273.15;
                 case TemperatureUnit.SolarTemperature: return _value * 5778;
@@ -771,6 +804,8 @@ namespace UnitsNet
                 case TemperatureUnit.DegreeRankine: return baseUnitValue*9/5;
                 case TemperatureUnit.DegreeReaumur: return (baseUnitValue - 273.15)*4/5;
                 case TemperatureUnit.DegreeRoemer: return (baseUnitValue - (273.15 - 7.5*40d/21))*21/40;
+                case TemperatureUnit.DeltaDegreeCelsius: return baseUnitValue;
+                case TemperatureUnit.DeltaDegreeFahrenheit: return baseUnitValue / 0.555555555555556;
                 case TemperatureUnit.Kelvin: return baseUnitValue;
                 case TemperatureUnit.MillidegreeCelsius: return (baseUnitValue - 273.15) * 1000;
                 case TemperatureUnit.SolarTemperature: return baseUnitValue / 5778;

@@ -37,26 +37,26 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class VolumeConcentrationTestsBase : QuantityTestsBase
     {
-        protected abstract double CentilitersPerLiterInOneDecimalFraction { get; }
-        protected abstract double CentilitersPerMililiterInOneDecimalFraction { get; }
-        protected abstract double DecilitersPerLiterInOneDecimalFraction { get; }
-        protected abstract double DecilitersPerMililiterInOneDecimalFraction { get; }
-        protected abstract double DecimalFractionsInOneDecimalFraction { get; }
-        protected abstract double LitersPerLiterInOneDecimalFraction { get; }
-        protected abstract double LitersPerMililiterInOneDecimalFraction { get; }
-        protected abstract double MicrolitersPerLiterInOneDecimalFraction { get; }
-        protected abstract double MicrolitersPerMililiterInOneDecimalFraction { get; }
-        protected abstract double MillilitersPerLiterInOneDecimalFraction { get; }
-        protected abstract double MillilitersPerMililiterInOneDecimalFraction { get; }
-        protected abstract double NanolitersPerLiterInOneDecimalFraction { get; }
-        protected abstract double NanolitersPerMililiterInOneDecimalFraction { get; }
-        protected abstract double PartsPerBillionInOneDecimalFraction { get; }
-        protected abstract double PartsPerMillionInOneDecimalFraction { get; }
-        protected abstract double PartsPerThousandInOneDecimalFraction { get; }
-        protected abstract double PartsPerTrillionInOneDecimalFraction { get; }
-        protected abstract double PercentInOneDecimalFraction { get; }
-        protected abstract double PicolitersPerLiterInOneDecimalFraction { get; }
-        protected abstract double PicolitersPerMililiterInOneDecimalFraction { get; }
+        protected virtual double CentilitersPerLiterInOneDecimalFraction { get; }
+        protected virtual double CentilitersPerMililiterInOneDecimalFraction { get; }
+        protected virtual double DecilitersPerLiterInOneDecimalFraction { get; }
+        protected virtual double DecilitersPerMililiterInOneDecimalFraction { get; }
+        protected virtual double DecimalFractionsInOneDecimalFraction { get; }
+        protected virtual double LitersPerLiterInOneDecimalFraction { get; }
+        protected virtual double LitersPerMililiterInOneDecimalFraction { get; }
+        protected virtual double MicrolitersPerLiterInOneDecimalFraction { get; }
+        protected virtual double MicrolitersPerMililiterInOneDecimalFraction { get; }
+        protected virtual double MillilitersPerLiterInOneDecimalFraction { get; }
+        protected virtual double MillilitersPerMililiterInOneDecimalFraction { get; }
+        protected virtual double NanolitersPerLiterInOneDecimalFraction { get; }
+        protected virtual double NanolitersPerMililiterInOneDecimalFraction { get; }
+        protected virtual double PartsPerBillionInOneDecimalFraction { get; }
+        protected virtual double PartsPerMillionInOneDecimalFraction { get; }
+        protected virtual double PartsPerThousandInOneDecimalFraction { get; }
+        protected virtual double PartsPerTrillionInOneDecimalFraction { get; }
+        protected virtual double PercentInOneDecimalFraction { get; }
+        protected virtual double PicolitersPerLiterInOneDecimalFraction { get; }
+        protected virtual double PicolitersPerMililiterInOneDecimalFraction { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CentilitersPerLiterTolerance { get { return 1e-5; } }

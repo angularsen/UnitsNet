@@ -18,15 +18,27 @@
       },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Micro", "Milli", "Deca", "Hecto", "Kilo", "Mega", "Giga" ],
+      "Prefixes": [
+        "Micro",
+        "Milli",
+        "Deca",
+        "Hecto",
+        "Kilo",
+        "Mega",
+        "Giga"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "Pa" ]
+          "Abbreviations": [
+            "Pa"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Па" ]
+          "Abbreviations": [
+            "Па"
+          ]
         }
       ]
     },
@@ -38,11 +50,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "atm" ]
+          "Abbreviations": [
+            "atm"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "атм" ]
+          "Abbreviations": [
+            "атм"
+          ]
         }
       ]
     },
@@ -51,15 +67,26 @@
       "PluralName": "Bars",
       "FromUnitToBaseFunc": "x*1e5",
       "FromBaseToUnitFunc": "x/1e5",
-      "Prefixes": [ "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega" ],
+      "Prefixes": [
+        "Micro",
+        "Milli",
+        "Centi",
+        "Deci",
+        "Kilo",
+        "Mega"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "bar" ]
+          "Abbreviations": [
+            "bar"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "бар" ]
+          "Abbreviations": [
+            "бар"
+          ]
         }
       ]
     },
@@ -71,11 +98,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kgf/m²" ]
+          "Abbreviations": [
+            "kgf/m²"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "кгс/м²" ]
+          "Abbreviations": [
+            "кгс/м²"
+          ]
         }
       ]
     },
@@ -87,11 +118,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kgf/cm²" ]
+          "Abbreviations": [
+            "kgf/cm²"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "кгс/см²" ]
+          "Abbreviations": [
+            "кгс/см²"
+          ]
         }
       ]
     },
@@ -103,11 +138,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kgf/mm²" ]
+          "Abbreviations": [
+            "kgf/mm²"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "кгс/мм²" ]
+          "Abbreviations": [
+            "кгс/мм²"
+          ]
         }
       ]
     },
@@ -116,15 +155,22 @@
       "PluralName": "NewtonsPerSquareMeter",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": [
+        "Kilo",
+        "Mega"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "N/m²" ]
+          "Abbreviations": [
+            "N/m²"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Н/м²" ]
+          "Abbreviations": [
+            "Н/м²"
+          ]
         }
       ]
     },
@@ -133,15 +179,21 @@
       "PluralName": "NewtonsPerSquareCentimeter",
       "FromUnitToBaseFunc": "x*1e4",
       "FromBaseToUnitFunc": "x/1e4",
-      "Prefixes": [ "Kilo" ],
+      "Prefixes": [
+        "Kilo"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "N/cm²" ]
+          "Abbreviations": [
+            "N/cm²"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Н/см²" ]
+          "Abbreviations": [
+            "Н/см²"
+          ]
         }
       ]
     },
@@ -150,15 +202,21 @@
       "PluralName": "NewtonsPerSquareMillimeter",
       "FromUnitToBaseFunc": "x*1e6",
       "FromBaseToUnitFunc": "x/1e6",
-      "Prefixes": [ "Kilo" ],
+      "Prefixes": [
+        "Kilo"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "N/mm²" ]
+          "Abbreviations": [
+            "N/mm²"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Н/мм²" ]
+          "Abbreviations": [
+            "Н/мм²"
+          ]
         }
       ]
     },
@@ -170,11 +228,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "at" ]
+          "Abbreviations": [
+            "at"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "ат" ]
+          "Abbreviations": [
+            "ат"
+          ]
         }
       ]
     },
@@ -186,11 +248,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "torr" ]
+          "Abbreviations": [
+            "torr"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "торр" ]
+          "Abbreviations": [
+            "торр"
+          ]
         }
       ]
     },
@@ -199,17 +265,29 @@
       "PluralName": "PoundsForcePerSquareInch",
       "FromUnitToBaseFunc": "x*6.894757293168361e3",
       "FromBaseToUnitFunc": "x/6.894757293168361e3",
-      "Prefixes": [ "Kilo" ],
+      "Prefixes": [
+        "Kilo"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "psi", "lb/in²" ],
-          "AbbreviationsForPrefixes": { "Kilo": "kipf/in²" }
+          "Abbreviations": [
+            "psi",
+            "lb/in²"
+          ],
+          "AbbreviationsForPrefixes": {
+            "Kilo": "kipf/in²"
+          }
         },
-		{
+        {
           "Culture": "ru-RU",
-          "Abbreviations": [ "psi", "lb/in²" ],
-          "AbbreviationsForPrefixes": { "Kilo": "kipf/in²" }
+          "Abbreviations": [
+            "psi",
+            "lb/in²"
+          ],
+          "AbbreviationsForPrefixes": {
+            "Kilo": "kipf/in²"
+          }
         }
       ]
     },
@@ -218,12 +296,18 @@
       "PluralName": "PoundsForcePerSquareFoot",
       "FromUnitToBaseFunc": "x*4.788025898033584e1",
       "FromBaseToUnitFunc": "x/4.788025898033584e1",
-      "Prefixes": [ "Kilo" ],
+      "Prefixes": [
+        "Kilo"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb/ft²" ],
-          "AbbreviationsForPrefixes": { "Kilo": "kipf/ft²" }
+          "Abbreviations": [
+            "lb/ft²"
+          ],
+          "AbbreviationsForPrefixes": {
+            "Kilo": "kipf/ft²"
+          }
         }
       ]
     },
@@ -235,7 +319,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "tf/mm²" ]
+          "Abbreviations": [
+            "tf/mm²"
+          ]
         }
       ]
     },
@@ -247,7 +333,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "tf/m²" ]
+          "Abbreviations": [
+            "tf/m²"
+          ]
         }
       ]
     },
@@ -259,7 +347,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "m of head" ]
+          "Abbreviations": [
+            "m of head"
+          ]
         }
       ]
     },
@@ -271,7 +361,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "tf/cm²" ]
+          "Abbreviations": [
+            "tf/cm²"
+          ]
         }
       ]
     },
@@ -283,7 +375,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ft of head" ]
+          "Abbreviations": [
+            "ft of head"
+          ]
         }
       ]
     },
@@ -295,11 +389,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "mmHg" ]
+          "Abbreviations": [
+            "mmHg"
+          ]
         },
-		{
+        {
           "Culture": "ru-RU",
-          "Abbreviations": [ "мм рт.ст." ]
+          "Abbreviations": [
+            "мм рт.ст."
+          ]
         }
       ]
     },
@@ -311,7 +409,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "inHg" ]
+          "Abbreviations": [
+            "inHg"
+          ]
         }
       ]
     },
@@ -323,7 +423,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "dyn/cm²" ]
+          "Abbreviations": [
+            "dyn/cm²"
+          ]
         }
       ]
     },
@@ -335,7 +437,10 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lbm/(in·s²)", "lb/(in·s²)" ]
+          "Abbreviations": [
+            "lbm/(in·s²)",
+            "lb/(in·s²)"
+          ]
         }
       ]
     },
@@ -347,7 +452,164 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "wc" ]
+          "Abbreviations": [
+            "wc"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BarAbsolute",
+      "PluralName": "BarAbsolutes",
+      "FromUnitToBaseFunc": "x * 100000",
+      "FromBaseToUnitFunc": "x / 100000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "bara"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BarGauge",
+      "PluralName": "BarGauges",
+      "FromUnitToBaseFunc": "x * 100000 + 101325 / 100000",
+      "FromBaseToUnitFunc": "(x * 100000 - 101325) / 100000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "barg"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CentimeterWater4C",
+      "PluralName": "CentimeterWater4Cs",
+      "FromUnitToBaseFunc": "x * 98.0665",
+      "FromBaseToUnitFunc": "x / 98.0665",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "cmH2O"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramForcePerHundredSquareCentimeter",
+      "PluralName": "GramForcesPerHundredSquareCentimeter",
+      "FromUnitToBaseFunc": "x * 9.80665 / 10",
+      "FromBaseToUnitFunc": "x / 9.80665 * 10",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "g/100cm2",
+            "gf/100cm2"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "ThousandPoundForcePerSquareInch",
+      "PluralName": "ThousandPoundForcesPerSquareInch",
+      "FromUnitToBaseFunc": "x * 6894757.29316836",
+      "FromBaseToUnitFunc": "x / 6894757.29316836",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "kpsi"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundForcePerHundredSquareFoot",
+      "PluralName": "PoundForcesPerHundredSquareFoot",
+      "FromUnitToBaseFunc": "x * 4.4482216152605 / 9.290304",
+      "FromBaseToUnitFunc": "x / 4.4482216152605 * 9.290304",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "lbf/100ft2"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillimeterMercury0C",
+      "PluralName": "MillimeterMercury0Cs",
+      "FromUnitToBaseFunc": "x * 133.322387415",
+      "FromBaseToUnitFunc": "x / 133.322387415",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "mmHg"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MegapoundForcePerSquareInch",
+      "PluralName": "MegapoundForcesPerSquareInch",
+      "FromUnitToBaseFunc": "x * 6894757293.16836",
+      "FromBaseToUnitFunc": "x / 6894757293.16836",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "Mpsi"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundForcePerSquareFeet",
+      "PluralName": "PoundForcesPerSquareFeet",
+      "FromUnitToBaseFunc": "x * 47.8802589803359",
+      "FromBaseToUnitFunc": "x / 47.8802589803359",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "psf"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundForcePerSquareInchAbsolute",
+      "PluralName": "PoundForcesPerSquareInchAbsolute",
+      "FromUnitToBaseFunc": "x * 6894.75729316836",
+      "FromBaseToUnitFunc": "x / 6894.75729316836",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "psia"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundForcePerSquareInchGauge",
+      "PluralName": "PoundForcesPerSquareInchGauge",
+      "FromUnitToBaseFunc": "x * 6894.75729316836 + 101325 / 6894.75729316836",
+      "FromBaseToUnitFunc": "(x * 6894.75729316836 - 101325) / 6894.75729316836",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "psig"
+          ]
         }
       ]
     }

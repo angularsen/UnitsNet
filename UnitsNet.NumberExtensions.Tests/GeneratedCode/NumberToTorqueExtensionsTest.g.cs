@@ -25,6 +25,10 @@ namespace UnitsNet.Tests
     public class NumberToTorqueExtensionsTests
     {
         [Fact]
+        public void NumberToJoulesTest() =>
+            Assert.Equal(Torque.FromJoules(2), 2.Joules());
+
+        [Fact]
         public void NumberToKilogramForceCentimetersTest() =>
             Assert.Equal(Torque.FromKilogramForceCentimeters(2), 2.KilogramForceCentimeters());
 

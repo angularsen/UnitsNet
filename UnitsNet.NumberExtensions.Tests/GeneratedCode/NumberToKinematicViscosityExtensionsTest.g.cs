@@ -25,12 +25,20 @@ namespace UnitsNet.Tests
     public class NumberToKinematicViscosityExtensionsTests
     {
         [Fact]
+        public void NumberToCentipoisesTest() =>
+            Assert.Equal(KinematicViscosity.FromCentipoises(2), 2.Centipoises());
+
+        [Fact]
         public void NumberToCentistokesTest() =>
             Assert.Equal(KinematicViscosity.FromCentistokes(2), 2.Centistokes());
 
         [Fact]
         public void NumberToDecistokesTest() =>
             Assert.Equal(KinematicViscosity.FromDecistokes(2), 2.Decistokes());
+
+        [Fact]
+        public void NumberToKilopascalDaysTest() =>
+            Assert.Equal(KinematicViscosity.FromKilopascalDays(2), 2.KilopascalDays());
 
         [Fact]
         public void NumberToKilostokesTest() =>
@@ -41,12 +49,20 @@ namespace UnitsNet.Tests
             Assert.Equal(KinematicViscosity.FromMicrostokes(2), 2.Microstokes());
 
         [Fact]
+        public void NumberToMillipascalSecondsTest() =>
+            Assert.Equal(KinematicViscosity.FromMillipascalSeconds(2), 2.MillipascalSeconds());
+
+        [Fact]
         public void NumberToMillistokesTest() =>
             Assert.Equal(KinematicViscosity.FromMillistokes(2), 2.Millistokes());
 
         [Fact]
         public void NumberToNanostokesTest() =>
             Assert.Equal(KinematicViscosity.FromNanostokes(2), 2.Nanostokes());
+
+        [Fact]
+        public void NumberToPascalSecondsTest() =>
+            Assert.Equal(KinematicViscosity.FromPascalSeconds(2), 2.PascalSeconds());
 
         [Fact]
         public void NumberToSquareMetersPerSecondTest() =>

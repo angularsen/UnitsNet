@@ -15,11 +15,20 @@
       "PluralName": "OhmMeters",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Kilo", "Mega" ],
+      "Prefixes": [
+        "Pico",
+        "Nano",
+        "Micro",
+        "Milli",
+        "Kilo",
+        "Mega"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "Ω·m" ]
+          "Abbreviations": [
+            "Ω·m"
+          ]
         }
       ]
     },
@@ -28,11 +37,54 @@
       "PluralName": "OhmsCentimeter",
       "FromUnitToBaseFunc": "x/100",
       "FromBaseToUnitFunc": "x*100",
-      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Kilo", "Mega" ],
+      "Prefixes": [
+        "Pico",
+        "Nano",
+        "Micro",
+        "Milli",
+        "Kilo",
+        "Mega"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "Ω·cm" ]
+          "Abbreviations": [
+            "Ω·cm"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "OhmFoot",
+      "PluralName": "OhmFeet",
+      "FromUnitToBaseFunc": "x * 0.3048",
+      "FromBaseToUnitFunc": "x / 0.3048",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "ohmf",
+            "ohmft",
+            "ohm.ft"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "OhmInch",
+      "PluralName": "OhmInches",
+      "FromUnitToBaseFunc": "x * 0.0254",
+      "FromBaseToUnitFunc": "x / 0.0254",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "ohm.inch",
+            "ohmi",
+            "ohmin",
+            "ohminch",
+            "ohm.in"
+          ]
         }
       ]
     }

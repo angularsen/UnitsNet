@@ -37,7 +37,7 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ScalarTestsBase : QuantityTestsBase
     {
-        protected abstract double AmountInOneAmount { get; }
+        protected virtual double AmountInOneAmount { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double AmountTolerance { get { return 1e-5; } }

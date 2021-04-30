@@ -37,10 +37,10 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ElectricInductanceTestsBase : QuantityTestsBase
     {
-        protected abstract double HenriesInOneHenry { get; }
-        protected abstract double MicrohenriesInOneHenry { get; }
-        protected abstract double MillihenriesInOneHenry { get; }
-        protected abstract double NanohenriesInOneHenry { get; }
+        protected virtual double HenriesInOneHenry { get; }
+        protected virtual double MicrohenriesInOneHenry { get; }
+        protected virtual double MillihenriesInOneHenry { get; }
+        protected virtual double NanohenriesInOneHenry { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double HenriesTolerance { get { return 1e-5; } }

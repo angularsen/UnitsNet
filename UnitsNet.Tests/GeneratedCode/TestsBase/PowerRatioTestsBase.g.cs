@@ -37,8 +37,8 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class PowerRatioTestsBase : QuantityTestsBase
     {
-        protected abstract double DecibelMilliwattsInOneDecibelWatt { get; }
-        protected abstract double DecibelWattsInOneDecibelWatt { get; }
+        protected virtual double DecibelMilliwattsInOneDecibelWatt { get; }
+        protected virtual double DecibelWattsInOneDecibelWatt { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double DecibelMilliwattsTolerance { get { return 1e-5; } }

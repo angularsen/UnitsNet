@@ -37,32 +37,32 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class BitRateTestsBase : QuantityTestsBase
     {
-        protected abstract double BitsPerSecondInOneBitPerSecond { get; }
-        protected abstract double BytesPerSecondInOneBitPerSecond { get; }
-        protected abstract double ExabitsPerSecondInOneBitPerSecond { get; }
-        protected abstract double ExabytesPerSecondInOneBitPerSecond { get; }
-        protected abstract double ExbibitsPerSecondInOneBitPerSecond { get; }
-        protected abstract double ExbibytesPerSecondInOneBitPerSecond { get; }
-        protected abstract double GibibitsPerSecondInOneBitPerSecond { get; }
-        protected abstract double GibibytesPerSecondInOneBitPerSecond { get; }
-        protected abstract double GigabitsPerSecondInOneBitPerSecond { get; }
-        protected abstract double GigabytesPerSecondInOneBitPerSecond { get; }
-        protected abstract double KibibitsPerSecondInOneBitPerSecond { get; }
-        protected abstract double KibibytesPerSecondInOneBitPerSecond { get; }
-        protected abstract double KilobitsPerSecondInOneBitPerSecond { get; }
-        protected abstract double KilobytesPerSecondInOneBitPerSecond { get; }
-        protected abstract double MebibitsPerSecondInOneBitPerSecond { get; }
-        protected abstract double MebibytesPerSecondInOneBitPerSecond { get; }
-        protected abstract double MegabitsPerSecondInOneBitPerSecond { get; }
-        protected abstract double MegabytesPerSecondInOneBitPerSecond { get; }
-        protected abstract double PebibitsPerSecondInOneBitPerSecond { get; }
-        protected abstract double PebibytesPerSecondInOneBitPerSecond { get; }
-        protected abstract double PetabitsPerSecondInOneBitPerSecond { get; }
-        protected abstract double PetabytesPerSecondInOneBitPerSecond { get; }
-        protected abstract double TebibitsPerSecondInOneBitPerSecond { get; }
-        protected abstract double TebibytesPerSecondInOneBitPerSecond { get; }
-        protected abstract double TerabitsPerSecondInOneBitPerSecond { get; }
-        protected abstract double TerabytesPerSecondInOneBitPerSecond { get; }
+        protected virtual double BitsPerSecondInOneBitPerSecond { get; }
+        protected virtual double BytesPerSecondInOneBitPerSecond { get; }
+        protected virtual double ExabitsPerSecondInOneBitPerSecond { get; }
+        protected virtual double ExabytesPerSecondInOneBitPerSecond { get; }
+        protected virtual double ExbibitsPerSecondInOneBitPerSecond { get; }
+        protected virtual double ExbibytesPerSecondInOneBitPerSecond { get; }
+        protected virtual double GibibitsPerSecondInOneBitPerSecond { get; }
+        protected virtual double GibibytesPerSecondInOneBitPerSecond { get; }
+        protected virtual double GigabitsPerSecondInOneBitPerSecond { get; }
+        protected virtual double GigabytesPerSecondInOneBitPerSecond { get; }
+        protected virtual double KibibitsPerSecondInOneBitPerSecond { get; }
+        protected virtual double KibibytesPerSecondInOneBitPerSecond { get; }
+        protected virtual double KilobitsPerSecondInOneBitPerSecond { get; }
+        protected virtual double KilobytesPerSecondInOneBitPerSecond { get; }
+        protected virtual double MebibitsPerSecondInOneBitPerSecond { get; }
+        protected virtual double MebibytesPerSecondInOneBitPerSecond { get; }
+        protected virtual double MegabitsPerSecondInOneBitPerSecond { get; }
+        protected virtual double MegabytesPerSecondInOneBitPerSecond { get; }
+        protected virtual double PebibitsPerSecondInOneBitPerSecond { get; }
+        protected virtual double PebibytesPerSecondInOneBitPerSecond { get; }
+        protected virtual double PetabitsPerSecondInOneBitPerSecond { get; }
+        protected virtual double PetabytesPerSecondInOneBitPerSecond { get; }
+        protected virtual double TebibitsPerSecondInOneBitPerSecond { get; }
+        protected virtual double TebibytesPerSecondInOneBitPerSecond { get; }
+        protected virtual double TerabitsPerSecondInOneBitPerSecond { get; }
+        protected virtual double TerabytesPerSecondInOneBitPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double BitsPerSecondTolerance { get { return 1e-5; } }

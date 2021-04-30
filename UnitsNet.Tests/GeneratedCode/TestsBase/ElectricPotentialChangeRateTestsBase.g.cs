@@ -37,26 +37,26 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ElectricPotentialChangeRateTestsBase : QuantityTestsBase
     {
-        protected abstract double KilovoltsPerHoursInOneVoltPerSecond { get; }
-        protected abstract double KilovoltsPerMicrosecondsInOneVoltPerSecond { get; }
-        protected abstract double KilovoltsPerMinutesInOneVoltPerSecond { get; }
-        protected abstract double KilovoltsPerSecondsInOneVoltPerSecond { get; }
-        protected abstract double MegavoltsPerHoursInOneVoltPerSecond { get; }
-        protected abstract double MegavoltsPerMicrosecondsInOneVoltPerSecond { get; }
-        protected abstract double MegavoltsPerMinutesInOneVoltPerSecond { get; }
-        protected abstract double MegavoltsPerSecondsInOneVoltPerSecond { get; }
-        protected abstract double MicrovoltsPerHoursInOneVoltPerSecond { get; }
-        protected abstract double MicrovoltsPerMicrosecondsInOneVoltPerSecond { get; }
-        protected abstract double MicrovoltsPerMinutesInOneVoltPerSecond { get; }
-        protected abstract double MicrovoltsPerSecondsInOneVoltPerSecond { get; }
-        protected abstract double MillivoltsPerHoursInOneVoltPerSecond { get; }
-        protected abstract double MillivoltsPerMicrosecondsInOneVoltPerSecond { get; }
-        protected abstract double MillivoltsPerMinutesInOneVoltPerSecond { get; }
-        protected abstract double MillivoltsPerSecondsInOneVoltPerSecond { get; }
-        protected abstract double VoltsPerHoursInOneVoltPerSecond { get; }
-        protected abstract double VoltsPerMicrosecondsInOneVoltPerSecond { get; }
-        protected abstract double VoltsPerMinutesInOneVoltPerSecond { get; }
-        protected abstract double VoltsPerSecondsInOneVoltPerSecond { get; }
+        protected virtual double KilovoltsPerHoursInOneVoltPerSecond { get; }
+        protected virtual double KilovoltsPerMicrosecondsInOneVoltPerSecond { get; }
+        protected virtual double KilovoltsPerMinutesInOneVoltPerSecond { get; }
+        protected virtual double KilovoltsPerSecondsInOneVoltPerSecond { get; }
+        protected virtual double MegavoltsPerHoursInOneVoltPerSecond { get; }
+        protected virtual double MegavoltsPerMicrosecondsInOneVoltPerSecond { get; }
+        protected virtual double MegavoltsPerMinutesInOneVoltPerSecond { get; }
+        protected virtual double MegavoltsPerSecondsInOneVoltPerSecond { get; }
+        protected virtual double MicrovoltsPerHoursInOneVoltPerSecond { get; }
+        protected virtual double MicrovoltsPerMicrosecondsInOneVoltPerSecond { get; }
+        protected virtual double MicrovoltsPerMinutesInOneVoltPerSecond { get; }
+        protected virtual double MicrovoltsPerSecondsInOneVoltPerSecond { get; }
+        protected virtual double MillivoltsPerHoursInOneVoltPerSecond { get; }
+        protected virtual double MillivoltsPerMicrosecondsInOneVoltPerSecond { get; }
+        protected virtual double MillivoltsPerMinutesInOneVoltPerSecond { get; }
+        protected virtual double MillivoltsPerSecondsInOneVoltPerSecond { get; }
+        protected virtual double VoltsPerHoursInOneVoltPerSecond { get; }
+        protected virtual double VoltsPerMicrosecondsInOneVoltPerSecond { get; }
+        protected virtual double VoltsPerMinutesInOneVoltPerSecond { get; }
+        protected virtual double VoltsPerSecondsInOneVoltPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double KilovoltsPerHoursTolerance { get { return 1e-5; } }

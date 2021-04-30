@@ -17,19 +17,20 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Globalization;
-using System.Linq;
-using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
-
 #nullable enable
 
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using JetBrains.Annotations;
+    using UnitsNet.InternalHelpers;
+    using UnitsNet.Units;
+    
+
     /// <inheritdoc />
     /// <summary>
     ///     Electrical resistivity (also known as resistivity, specific electrical resistance, or volume resistivity) is a fundamental property that quantifies how strongly a given material opposes the flow of electric current.
@@ -66,6 +67,8 @@ namespace UnitsNet
                     new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.NanoohmCentimeter, BaseUnits.Undefined),
                     new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.NanoohmMeter, BaseUnits.Undefined),
                     new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.OhmCentimeter, BaseUnits.Undefined),
+                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.OhmFoot, BaseUnits.Undefined),
+                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.OhmInch, BaseUnits.Undefined),
                     new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.OhmMeter, BaseUnits.Undefined),
                     new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.PicoohmCentimeter, BaseUnits.Undefined),
                     new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.PicoohmMeter, BaseUnits.Undefined),
@@ -240,6 +243,16 @@ namespace UnitsNet
         public double OhmsCentimeter => As(ElectricResistivityUnit.OhmCentimeter);
 
         /// <summary>
+        ///     Get ElectricResistivity in OhmFeet.
+        /// </summary>
+        public double OhmFeet => As(ElectricResistivityUnit.OhmFoot);
+
+        /// <summary>
+        ///     Get ElectricResistivity in OhmInches.
+        /// </summary>
+        public double OhmInches => As(ElectricResistivityUnit.OhmInch);
+
+        /// <summary>
         ///     Get ElectricResistivity in OhmMeters.
         /// </summary>
         public double OhmMeters => As(ElectricResistivityUnit.OhmMeter);
@@ -381,6 +394,24 @@ namespace UnitsNet
         {
             double value = (double) ohmscentimeter;
             return new ElectricResistivity(value, ElectricResistivityUnit.OhmCentimeter);
+        }
+        /// <summary>
+        ///     Get ElectricResistivity from OhmFeet.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricResistivity FromOhmFeet(QuantityValue ohmfeet)
+        {
+            double value = (double) ohmfeet;
+            return new ElectricResistivity(value, ElectricResistivityUnit.OhmFoot);
+        }
+        /// <summary>
+        ///     Get ElectricResistivity from OhmInches.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricResistivity FromOhmInches(QuantityValue ohminches)
+        {
+            double value = (double) ohminches;
+            return new ElectricResistivity(value, ElectricResistivityUnit.OhmInch);
         }
         /// <summary>
         ///     Get ElectricResistivity from OhmMeters.
@@ -849,6 +880,8 @@ namespace UnitsNet
                 case ElectricResistivityUnit.NanoohmCentimeter: return (_value/100) * 1e-9d;
                 case ElectricResistivityUnit.NanoohmMeter: return (_value) * 1e-9d;
                 case ElectricResistivityUnit.OhmCentimeter: return _value/100;
+                case ElectricResistivityUnit.OhmFoot: return _value * 0.3048;
+                case ElectricResistivityUnit.OhmInch: return _value * 0.0254;
                 case ElectricResistivityUnit.OhmMeter: return _value;
                 case ElectricResistivityUnit.PicoohmCentimeter: return (_value/100) * 1e-12d;
                 case ElectricResistivityUnit.PicoohmMeter: return (_value) * 1e-12d;
@@ -888,6 +921,8 @@ namespace UnitsNet
                 case ElectricResistivityUnit.NanoohmCentimeter: return (baseUnitValue*100) / 1e-9d;
                 case ElectricResistivityUnit.NanoohmMeter: return (baseUnitValue) / 1e-9d;
                 case ElectricResistivityUnit.OhmCentimeter: return baseUnitValue*100;
+                case ElectricResistivityUnit.OhmFoot: return baseUnitValue / 0.3048;
+                case ElectricResistivityUnit.OhmInch: return baseUnitValue / 0.0254;
                 case ElectricResistivityUnit.OhmMeter: return baseUnitValue;
                 case ElectricResistivityUnit.PicoohmCentimeter: return (baseUnitValue*100) / 1e-12d;
                 case ElectricResistivityUnit.PicoohmMeter: return (baseUnitValue) / 1e-12d;

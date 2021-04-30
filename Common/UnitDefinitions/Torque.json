@@ -13,11 +13,16 @@
       "PluralName": "NewtonMillimeters",
       "FromUnitToBaseFunc": "x*0.001",
       "FromBaseToUnitFunc": "x*1000",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": [
+        "Kilo",
+        "Mega"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "N·mm" ]
+          "Abbreviations": [
+            "N·mm"
+          ]
         }
       ]
     },
@@ -26,11 +31,16 @@
       "PluralName": "NewtonCentimeters",
       "FromUnitToBaseFunc": "x*0.01",
       "FromBaseToUnitFunc": "x*100",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": [
+        "Kilo",
+        "Mega"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "N·cm" ]
+          "Abbreviations": [
+            "N·cm"
+          ]
         }
       ]
     },
@@ -39,15 +49,22 @@
       "PluralName": "NewtonMeters",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": [
+        "Kilo",
+        "Mega"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "N·m" ]
+          "Abbreviations": [
+            "N·m"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Н·м" ]
+          "Abbreviations": [
+            "Н·м"
+          ]
         }
       ]
     },
@@ -59,7 +76,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "pdl·ft" ]
+          "Abbreviations": [
+            "pdl·ft"
+          ]
         }
       ]
     },
@@ -68,12 +87,19 @@
       "PluralName": "PoundForceInches",
       "FromUnitToBaseFunc": "x*1.129848290276167e-1",
       "FromBaseToUnitFunc": "x/1.129848290276167e-1",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": [
+        "Kilo",
+        "Mega"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lbf·in" ],
-          "AbbreviationsForPrefixes": { "Kilo": "kipf·in" }
+          "Abbreviations": [
+            "lbf·in"
+          ],
+          "AbbreviationsForPrefixes": {
+            "Kilo": "kipf·in"
+          }
         }
       ]
     },
@@ -82,12 +108,19 @@
       "PluralName": "PoundForceFeet",
       "FromUnitToBaseFunc": "x*1.3558179483314",
       "FromBaseToUnitFunc": "x/1.3558179483314",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": [
+        "Kilo",
+        "Mega"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lbf·ft" ],
-          "AbbreviationsForPrefixes": { "Kilo": "kipf·ft" }
+          "Abbreviations": [
+            "lbf·ft"
+          ],
+          "AbbreviationsForPrefixes": {
+            "Kilo": "kipf·ft"
+          }
         }
       ]
     },
@@ -99,7 +132,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kgf·mm" ]
+          "Abbreviations": [
+            "kgf·mm"
+          ]
         }
       ]
     },
@@ -111,7 +146,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kgf·cm" ]
+          "Abbreviations": [
+            "kgf·cm"
+          ]
         }
       ]
     },
@@ -123,7 +160,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kgf·m" ]
+          "Abbreviations": [
+            "kgf·m"
+          ]
         }
       ]
     },
@@ -135,7 +174,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "tf·mm" ]
+          "Abbreviations": [
+            "tf·mm"
+          ]
         }
       ]
     },
@@ -147,7 +188,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "tf·cm" ]
+          "Abbreviations": [
+            "tf·cm"
+          ]
         }
       ]
     },
@@ -159,7 +202,23 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "tf·m" ]
+          "Abbreviations": [
+            "tf·m"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Joule",
+      "PluralName": "Joules",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "J"
+          ]
         }
       ]
     }

@@ -156,6 +156,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get SpecificVolume in CubicCentimetersPerGram.
+        /// </summary>
+        public double CubicCentimetersPerGram => As(SpecificVolumeUnit.CubicCentimeterPerGram);
+
+        /// <summary>
         ///     Get SpecificVolume in CubicFeetPerPound.
         /// </summary>
         public double CubicFeetPerPound => As(SpecificVolumeUnit.CubicFootPerPound);
@@ -166,9 +171,24 @@ namespace UnitsNet
         public double CubicMetersPerKilogram => As(SpecificVolumeUnit.CubicMeterPerKilogram);
 
         /// <summary>
+        ///     Get SpecificVolume in CubicMetersPerTonne.
+        /// </summary>
+        public double CubicMetersPerTonne => As(SpecificVolumeUnit.CubicMeterPerTonne);
+
+        /// <summary>
         ///     Get SpecificVolume in MillicubicMetersPerKilogram.
         /// </summary>
         public double MillicubicMetersPerKilogram => As(SpecificVolumeUnit.MillicubicMeterPerKilogram);
+
+        /// <summary>
+        ///     Get SpecificVolume in StandardCubicFeetPerLongTonne.
+        /// </summary>
+        public double StandardCubicFeetPerLongTonne => As(SpecificVolumeUnit.StandardCubicFootPerLongTonne);
+
+        /// <summary>
+        ///     Get SpecificVolume in StandardCubicFeetPerTonne.
+        /// </summary>
+        public double StandardCubicFeetPerTonne => As(SpecificVolumeUnit.StandardCubicFootPerTonne);
 
         #endregion
 
@@ -201,6 +221,16 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
+        ///     Get SpecificVolume from CubicCentimetersPerGram.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static SpecificVolume FromCubicCentimetersPerGram(double cubiccentimeterspergram)
+        {
+            double value = (double) cubiccentimeterspergram;
+            return new SpecificVolume(value, SpecificVolumeUnit.CubicCentimeterPerGram);
+        }
+        /// <summary>
         ///     Get SpecificVolume from CubicFeetPerPound.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -221,6 +251,16 @@ namespace UnitsNet
             return new SpecificVolume(value, SpecificVolumeUnit.CubicMeterPerKilogram);
         }
         /// <summary>
+        ///     Get SpecificVolume from CubicMetersPerTonne.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static SpecificVolume FromCubicMetersPerTonne(double cubicmeterspertonne)
+        {
+            double value = (double) cubicmeterspertonne;
+            return new SpecificVolume(value, SpecificVolumeUnit.CubicMeterPerTonne);
+        }
+        /// <summary>
         ///     Get SpecificVolume from MillicubicMetersPerKilogram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -229,6 +269,26 @@ namespace UnitsNet
         {
             double value = (double) millicubicmetersperkilogram;
             return new SpecificVolume(value, SpecificVolumeUnit.MillicubicMeterPerKilogram);
+        }
+        /// <summary>
+        ///     Get SpecificVolume from StandardCubicFeetPerLongTonne.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static SpecificVolume FromStandardCubicFeetPerLongTonne(double standardcubicfeetperlongtonne)
+        {
+            double value = (double) standardcubicfeetperlongtonne;
+            return new SpecificVolume(value, SpecificVolumeUnit.StandardCubicFootPerLongTonne);
+        }
+        /// <summary>
+        ///     Get SpecificVolume from StandardCubicFeetPerTonne.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static SpecificVolume FromStandardCubicFeetPerTonne(double standardcubicfeetpertonne)
+        {
+            double value = (double) standardcubicfeetpertonne;
+            return new SpecificVolume(value, SpecificVolumeUnit.StandardCubicFootPerTonne);
         }
 
         /// <summary>
@@ -521,9 +581,13 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case SpecificVolumeUnit.CubicCentimeterPerGram: return _value * 1E-06 / 0.001;
                 case SpecificVolumeUnit.CubicFootPerPound: return _value/16.01846353;
                 case SpecificVolumeUnit.CubicMeterPerKilogram: return _value;
+                case SpecificVolumeUnit.CubicMeterPerTonne: return _value / 1000;
                 case SpecificVolumeUnit.MillicubicMeterPerKilogram: return (_value) * 1e-3d;
+                case SpecificVolumeUnit.StandardCubicFootPerLongTonne: return _value * 0.028316846592 / 1016.0469088;
+                case SpecificVolumeUnit.StandardCubicFootPerTonne: return _value * 0.028316846592 / 1000;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -538,9 +602,13 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case SpecificVolumeUnit.CubicCentimeterPerGram: return baseUnitValue / 1E-06 * 0.001;
                 case SpecificVolumeUnit.CubicFootPerPound: return baseUnitValue*16.01846353;
                 case SpecificVolumeUnit.CubicMeterPerKilogram: return baseUnitValue;
+                case SpecificVolumeUnit.CubicMeterPerTonne: return baseUnitValue * 1000;
                 case SpecificVolumeUnit.MillicubicMeterPerKilogram: return (baseUnitValue) / 1e-3d;
+                case SpecificVolumeUnit.StandardCubicFootPerLongTonne: return baseUnitValue / 0.028316846592 * 1016.0469088;
+                case SpecificVolumeUnit.StandardCubicFootPerTonne: return baseUnitValue / 0.028316846592 * 1000;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

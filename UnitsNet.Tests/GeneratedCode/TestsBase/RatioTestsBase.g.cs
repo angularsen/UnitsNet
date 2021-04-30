@@ -37,15 +37,17 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class RatioTestsBase : QuantityTestsBase
     {
-        protected abstract double DecimalFractionsInOneDecimalFraction { get; }
-        protected abstract double PartsPerBillionInOneDecimalFraction { get; }
-        protected abstract double PartsPerMillionInOneDecimalFraction { get; }
-        protected abstract double PartsPerThousandInOneDecimalFraction { get; }
-        protected abstract double PartsPerTrillionInOneDecimalFraction { get; }
-        protected abstract double PercentInOneDecimalFraction { get; }
+        protected virtual double DecimalFractionsInOneDecimalFraction { get; }
+        protected virtual double OnesInOneDecimalFraction { get; }
+        protected virtual double PartsPerBillionInOneDecimalFraction { get; }
+        protected virtual double PartsPerMillionInOneDecimalFraction { get; }
+        protected virtual double PartsPerThousandInOneDecimalFraction { get; }
+        protected virtual double PartsPerTrillionInOneDecimalFraction { get; }
+        protected virtual double PercentInOneDecimalFraction { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double DecimalFractionsTolerance { get { return 1e-5; } }
+        protected virtual double OnesTolerance { get { return 1e-5; } }
         protected virtual double PartsPerBillionTolerance { get { return 1e-5; } }
         protected virtual double PartsPerMillionTolerance { get { return 1e-5; } }
         protected virtual double PartsPerThousandTolerance { get { return 1e-5; } }
@@ -126,6 +128,7 @@ namespace UnitsNet.Tests
         {
             Ratio decimalfraction = Ratio.FromDecimalFractions(1);
             AssertEx.EqualTolerance(DecimalFractionsInOneDecimalFraction, decimalfraction.DecimalFractions, DecimalFractionsTolerance);
+            AssertEx.EqualTolerance(OnesInOneDecimalFraction, decimalfraction.Ones, OnesTolerance);
             AssertEx.EqualTolerance(PartsPerBillionInOneDecimalFraction, decimalfraction.PartsPerBillion, PartsPerBillionTolerance);
             AssertEx.EqualTolerance(PartsPerMillionInOneDecimalFraction, decimalfraction.PartsPerMillion, PartsPerMillionTolerance);
             AssertEx.EqualTolerance(PartsPerThousandInOneDecimalFraction, decimalfraction.PartsPerThousand, PartsPerThousandTolerance);
@@ -140,25 +143,29 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity00.DecimalFractions, DecimalFractionsTolerance);
             Assert.Equal(RatioUnit.DecimalFraction, quantity00.Unit);
 
-            var quantity01 = Ratio.From(1, RatioUnit.PartPerBillion);
-            AssertEx.EqualTolerance(1, quantity01.PartsPerBillion, PartsPerBillionTolerance);
-            Assert.Equal(RatioUnit.PartPerBillion, quantity01.Unit);
+            var quantity01 = Ratio.From(1, RatioUnit.One);
+            AssertEx.EqualTolerance(1, quantity01.Ones, OnesTolerance);
+            Assert.Equal(RatioUnit.One, quantity01.Unit);
 
-            var quantity02 = Ratio.From(1, RatioUnit.PartPerMillion);
-            AssertEx.EqualTolerance(1, quantity02.PartsPerMillion, PartsPerMillionTolerance);
-            Assert.Equal(RatioUnit.PartPerMillion, quantity02.Unit);
+            var quantity02 = Ratio.From(1, RatioUnit.PartPerBillion);
+            AssertEx.EqualTolerance(1, quantity02.PartsPerBillion, PartsPerBillionTolerance);
+            Assert.Equal(RatioUnit.PartPerBillion, quantity02.Unit);
 
-            var quantity03 = Ratio.From(1, RatioUnit.PartPerThousand);
-            AssertEx.EqualTolerance(1, quantity03.PartsPerThousand, PartsPerThousandTolerance);
-            Assert.Equal(RatioUnit.PartPerThousand, quantity03.Unit);
+            var quantity03 = Ratio.From(1, RatioUnit.PartPerMillion);
+            AssertEx.EqualTolerance(1, quantity03.PartsPerMillion, PartsPerMillionTolerance);
+            Assert.Equal(RatioUnit.PartPerMillion, quantity03.Unit);
 
-            var quantity04 = Ratio.From(1, RatioUnit.PartPerTrillion);
-            AssertEx.EqualTolerance(1, quantity04.PartsPerTrillion, PartsPerTrillionTolerance);
-            Assert.Equal(RatioUnit.PartPerTrillion, quantity04.Unit);
+            var quantity04 = Ratio.From(1, RatioUnit.PartPerThousand);
+            AssertEx.EqualTolerance(1, quantity04.PartsPerThousand, PartsPerThousandTolerance);
+            Assert.Equal(RatioUnit.PartPerThousand, quantity04.Unit);
 
-            var quantity05 = Ratio.From(1, RatioUnit.Percent);
-            AssertEx.EqualTolerance(1, quantity05.Percent, PercentTolerance);
-            Assert.Equal(RatioUnit.Percent, quantity05.Unit);
+            var quantity05 = Ratio.From(1, RatioUnit.PartPerTrillion);
+            AssertEx.EqualTolerance(1, quantity05.PartsPerTrillion, PartsPerTrillionTolerance);
+            Assert.Equal(RatioUnit.PartPerTrillion, quantity05.Unit);
+
+            var quantity06 = Ratio.From(1, RatioUnit.Percent);
+            AssertEx.EqualTolerance(1, quantity06.Percent, PercentTolerance);
+            Assert.Equal(RatioUnit.Percent, quantity06.Unit);
 
         }
 
@@ -180,6 +187,7 @@ namespace UnitsNet.Tests
         {
             var decimalfraction = Ratio.FromDecimalFractions(1);
             AssertEx.EqualTolerance(DecimalFractionsInOneDecimalFraction, decimalfraction.As(RatioUnit.DecimalFraction), DecimalFractionsTolerance);
+            AssertEx.EqualTolerance(OnesInOneDecimalFraction, decimalfraction.As(RatioUnit.One), OnesTolerance);
             AssertEx.EqualTolerance(PartsPerBillionInOneDecimalFraction, decimalfraction.As(RatioUnit.PartPerBillion), PartsPerBillionTolerance);
             AssertEx.EqualTolerance(PartsPerMillionInOneDecimalFraction, decimalfraction.As(RatioUnit.PartPerMillion), PartsPerMillionTolerance);
             AssertEx.EqualTolerance(PartsPerThousandInOneDecimalFraction, decimalfraction.As(RatioUnit.PartPerThousand), PartsPerThousandTolerance);
@@ -212,6 +220,10 @@ namespace UnitsNet.Tests
             var decimalfractionQuantity = decimalfraction.ToUnit(RatioUnit.DecimalFraction);
             AssertEx.EqualTolerance(DecimalFractionsInOneDecimalFraction, (double)decimalfractionQuantity.Value, DecimalFractionsTolerance);
             Assert.Equal(RatioUnit.DecimalFraction, decimalfractionQuantity.Unit);
+
+            var oneQuantity = decimalfraction.ToUnit(RatioUnit.One);
+            AssertEx.EqualTolerance(OnesInOneDecimalFraction, (double)oneQuantity.Value, OnesTolerance);
+            Assert.Equal(RatioUnit.One, oneQuantity.Unit);
 
             var partperbillionQuantity = decimalfraction.ToUnit(RatioUnit.PartPerBillion);
             AssertEx.EqualTolerance(PartsPerBillionInOneDecimalFraction, (double)partperbillionQuantity.Value, PartsPerBillionTolerance);
@@ -246,6 +258,7 @@ namespace UnitsNet.Tests
         {
             Ratio decimalfraction = Ratio.FromDecimalFractions(1);
             AssertEx.EqualTolerance(1, Ratio.FromDecimalFractions(decimalfraction.DecimalFractions).DecimalFractions, DecimalFractionsTolerance);
+            AssertEx.EqualTolerance(1, Ratio.FromOnes(decimalfraction.Ones).DecimalFractions, OnesTolerance);
             AssertEx.EqualTolerance(1, Ratio.FromPartsPerBillion(decimalfraction.PartsPerBillion).DecimalFractions, PartsPerBillionTolerance);
             AssertEx.EqualTolerance(1, Ratio.FromPartsPerMillion(decimalfraction.PartsPerMillion).DecimalFractions, PartsPerMillionTolerance);
             AssertEx.EqualTolerance(1, Ratio.FromPartsPerThousand(decimalfraction.PartsPerThousand).DecimalFractions, PartsPerThousandTolerance);
@@ -408,6 +421,7 @@ namespace UnitsNet.Tests
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 ", new Ratio(1, RatioUnit.DecimalFraction).ToString());
+                Assert.Equal("1 -", new Ratio(1, RatioUnit.One).ToString());
                 Assert.Equal("1 ppb", new Ratio(1, RatioUnit.PartPerBillion).ToString());
                 Assert.Equal("1 ppm", new Ratio(1, RatioUnit.PartPerMillion).ToString());
                 Assert.Equal("1 ‰", new Ratio(1, RatioUnit.PartPerThousand).ToString());
@@ -427,6 +441,7 @@ namespace UnitsNet.Tests
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
             Assert.Equal("1 ", new Ratio(1, RatioUnit.DecimalFraction).ToString(swedishCulture));
+            Assert.Equal("1 -", new Ratio(1, RatioUnit.One).ToString(swedishCulture));
             Assert.Equal("1 ppb", new Ratio(1, RatioUnit.PartPerBillion).ToString(swedishCulture));
             Assert.Equal("1 ppm", new Ratio(1, RatioUnit.PartPerMillion).ToString(swedishCulture));
             Assert.Equal("1 ‰", new Ratio(1, RatioUnit.PartPerThousand).ToString(swedishCulture));

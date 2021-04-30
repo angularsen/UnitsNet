@@ -169,6 +169,16 @@ namespace UnitsNet
         public double DecimolesPerLiter => As(MolarityUnit.DecimolesPerLiter);
 
         /// <summary>
+        ///     Get Molarity in KilomolesPerCubicFoot.
+        /// </summary>
+        public double KilomolesPerCubicFoot => As(MolarityUnit.KilomolePerCubicFoot);
+
+        /// <summary>
+        ///     Get Molarity in KilomolesPerCubicMeter.
+        /// </summary>
+        public double KilomolesPerCubicMeter => As(MolarityUnit.KilomolePerCubicMeter);
+
+        /// <summary>
         ///     Get Molarity in MicromolesPerLiter.
         /// </summary>
         public double MicromolesPerLiter => As(MolarityUnit.MicromolesPerLiter);
@@ -177,6 +187,11 @@ namespace UnitsNet
         ///     Get Molarity in MillimolesPerLiter.
         /// </summary>
         public double MillimolesPerLiter => As(MolarityUnit.MillimolesPerLiter);
+
+        /// <summary>
+        ///     Get Molarity in MolesPerCubicFoot.
+        /// </summary>
+        public double MolesPerCubicFoot => As(MolarityUnit.MolePerCubicFoot);
 
         /// <summary>
         ///     Get Molarity in MolesPerCubicMeter.
@@ -197,6 +212,11 @@ namespace UnitsNet
         ///     Get Molarity in PicomolesPerLiter.
         /// </summary>
         public double PicomolesPerLiter => As(MolarityUnit.PicomolesPerLiter);
+
+        /// <summary>
+        ///     Get Molarity in PoundMolesPerCubicFoot.
+        /// </summary>
+        public double PoundMolesPerCubicFoot => As(MolarityUnit.PoundMolePerCubicFoot);
 
         #endregion
 
@@ -249,6 +269,26 @@ namespace UnitsNet
             return new Molarity(value, MolarityUnit.DecimolesPerLiter);
         }
         /// <summary>
+        ///     Get Molarity from KilomolesPerCubicFoot.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Molarity FromKilomolesPerCubicFoot(double kilomolespercubicfoot)
+        {
+            double value = (double) kilomolespercubicfoot;
+            return new Molarity(value, MolarityUnit.KilomolePerCubicFoot);
+        }
+        /// <summary>
+        ///     Get Molarity from KilomolesPerCubicMeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Molarity FromKilomolesPerCubicMeter(double kilomolespercubicmeter)
+        {
+            double value = (double) kilomolespercubicmeter;
+            return new Molarity(value, MolarityUnit.KilomolePerCubicMeter);
+        }
+        /// <summary>
         ///     Get Molarity from MicromolesPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -267,6 +307,16 @@ namespace UnitsNet
         {
             double value = (double) millimolesperliter;
             return new Molarity(value, MolarityUnit.MillimolesPerLiter);
+        }
+        /// <summary>
+        ///     Get Molarity from MolesPerCubicFoot.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Molarity FromMolesPerCubicFoot(double molespercubicfoot)
+        {
+            double value = (double) molespercubicfoot;
+            return new Molarity(value, MolarityUnit.MolePerCubicFoot);
         }
         /// <summary>
         ///     Get Molarity from MolesPerCubicMeter.
@@ -307,6 +357,16 @@ namespace UnitsNet
         {
             double value = (double) picomolesperliter;
             return new Molarity(value, MolarityUnit.PicomolesPerLiter);
+        }
+        /// <summary>
+        ///     Get Molarity from PoundMolesPerCubicFoot.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Molarity FromPoundMolesPerCubicFoot(double poundmolespercubicfoot)
+        {
+            double value = (double) poundmolespercubicfoot;
+            return new Molarity(value, MolarityUnit.PoundMolePerCubicFoot);
         }
 
         /// <summary>
@@ -601,12 +661,16 @@ namespace UnitsNet
             {
                 case MolarityUnit.CentimolesPerLiter: return (_value/1e-3) * 1e-2d;
                 case MolarityUnit.DecimolesPerLiter: return (_value/1e-3) * 1e-1d;
+                case MolarityUnit.KilomolePerCubicFoot: return _value * 1000 / 0.028316846592;
+                case MolarityUnit.KilomolePerCubicMeter: return _value * 1000;
                 case MolarityUnit.MicromolesPerLiter: return (_value/1e-3) * 1e-6d;
                 case MolarityUnit.MillimolesPerLiter: return (_value/1e-3) * 1e-3d;
+                case MolarityUnit.MolePerCubicFoot: return _value / 0.028316846592;
                 case MolarityUnit.MolesPerCubicMeter: return _value;
                 case MolarityUnit.MolesPerLiter: return _value/1e-3;
                 case MolarityUnit.NanomolesPerLiter: return (_value/1e-3) * 1e-9d;
                 case MolarityUnit.PicomolesPerLiter: return (_value/1e-3) * 1e-12d;
+                case MolarityUnit.PoundMolePerCubicFoot: return _value * 453.59237 / 0.028316846592;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -623,12 +687,16 @@ namespace UnitsNet
             {
                 case MolarityUnit.CentimolesPerLiter: return (baseUnitValue*1e-3) / 1e-2d;
                 case MolarityUnit.DecimolesPerLiter: return (baseUnitValue*1e-3) / 1e-1d;
+                case MolarityUnit.KilomolePerCubicFoot: return baseUnitValue / 1000 * 0.028316846592;
+                case MolarityUnit.KilomolePerCubicMeter: return baseUnitValue / 1000;
                 case MolarityUnit.MicromolesPerLiter: return (baseUnitValue*1e-3) / 1e-6d;
                 case MolarityUnit.MillimolesPerLiter: return (baseUnitValue*1e-3) / 1e-3d;
+                case MolarityUnit.MolePerCubicFoot: return baseUnitValue * 0.028316846592;
                 case MolarityUnit.MolesPerCubicMeter: return baseUnitValue;
                 case MolarityUnit.MolesPerLiter: return baseUnitValue*1e-3;
                 case MolarityUnit.NanomolesPerLiter: return (baseUnitValue*1e-3) / 1e-9d;
                 case MolarityUnit.PicomolesPerLiter: return (baseUnitValue*1e-3) / 1e-12d;
+                case MolarityUnit.PoundMolePerCubicFoot: return baseUnitValue / 453.59237 * 0.028316846592;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

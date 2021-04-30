@@ -37,9 +37,9 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class HeatTransferCoefficientTestsBase : QuantityTestsBase
     {
-        protected abstract double BtusPerSquareFootDegreeFahrenheitInOneWattPerSquareMeterKelvin { get; }
-        protected abstract double WattsPerSquareMeterCelsiusInOneWattPerSquareMeterKelvin { get; }
-        protected abstract double WattsPerSquareMeterKelvinInOneWattPerSquareMeterKelvin { get; }
+        protected virtual double BtusPerSquareFootDegreeFahrenheitInOneWattPerSquareMeterKelvin { get; }
+        protected virtual double WattsPerSquareMeterCelsiusInOneWattPerSquareMeterKelvin { get; }
+        protected virtual double WattsPerSquareMeterKelvinInOneWattPerSquareMeterKelvin { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double BtusPerSquareFootDegreeFahrenheitTolerance { get { return 1e-5; } }

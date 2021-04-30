@@ -37,10 +37,10 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ApparentPowerTestsBase : QuantityTestsBase
     {
-        protected abstract double GigavoltamperesInOneVoltampere { get; }
-        protected abstract double KilovoltamperesInOneVoltampere { get; }
-        protected abstract double MegavoltamperesInOneVoltampere { get; }
-        protected abstract double VoltamperesInOneVoltampere { get; }
+        protected virtual double GigavoltamperesInOneVoltampere { get; }
+        protected virtual double KilovoltamperesInOneVoltampere { get; }
+        protected virtual double MegavoltamperesInOneVoltampere { get; }
+        protected virtual double VoltamperesInOneVoltampere { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double GigavoltamperesTolerance { get { return 1e-5; } }

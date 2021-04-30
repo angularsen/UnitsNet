@@ -156,9 +156,24 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get AreaDensity in KilogramsPerSquareFoot.
+        /// </summary>
+        public double KilogramsPerSquareFoot => As(AreaDensityUnit.KilogramPerSquareFoot);
+
+        /// <summary>
         ///     Get AreaDensity in KilogramsPerSquareMeter.
         /// </summary>
         public double KilogramsPerSquareMeter => As(AreaDensityUnit.KilogramPerSquareMeter);
+
+        /// <summary>
+        ///     Get AreaDensity in PoundsPerSquareFoot.
+        /// </summary>
+        public double PoundsPerSquareFoot => As(AreaDensityUnit.PoundPerSquareFoot);
+
+        /// <summary>
+        ///     Get AreaDensity in PoundsPerSquareMeter.
+        /// </summary>
+        public double PoundsPerSquareMeter => As(AreaDensityUnit.PoundPerSquareMeter);
 
         #endregion
 
@@ -191,6 +206,16 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
+        ///     Get AreaDensity from KilogramsPerSquareFoot.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static AreaDensity FromKilogramsPerSquareFoot(double kilogramspersquarefoot)
+        {
+            double value = (double) kilogramspersquarefoot;
+            return new AreaDensity(value, AreaDensityUnit.KilogramPerSquareFoot);
+        }
+        /// <summary>
         ///     Get AreaDensity from KilogramsPerSquareMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -199,6 +224,26 @@ namespace UnitsNet
         {
             double value = (double) kilogramspersquaremeter;
             return new AreaDensity(value, AreaDensityUnit.KilogramPerSquareMeter);
+        }
+        /// <summary>
+        ///     Get AreaDensity from PoundsPerSquareFoot.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static AreaDensity FromPoundsPerSquareFoot(double poundspersquarefoot)
+        {
+            double value = (double) poundspersquarefoot;
+            return new AreaDensity(value, AreaDensityUnit.PoundPerSquareFoot);
+        }
+        /// <summary>
+        ///     Get AreaDensity from PoundsPerSquareMeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static AreaDensity FromPoundsPerSquareMeter(double poundspersquaremeter)
+        {
+            double value = (double) poundspersquaremeter;
+            return new AreaDensity(value, AreaDensityUnit.PoundPerSquareMeter);
         }
 
         /// <summary>
@@ -491,7 +536,10 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case AreaDensityUnit.KilogramPerSquareFoot: return _value / 0.09290304;
                 case AreaDensityUnit.KilogramPerSquareMeter: return _value;
+                case AreaDensityUnit.PoundPerSquareFoot: return _value * 0.45359237 / 0.09290304;
+                case AreaDensityUnit.PoundPerSquareMeter: return _value * 0.45359237;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -506,7 +554,10 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case AreaDensityUnit.KilogramPerSquareFoot: return baseUnitValue * 0.09290304;
                 case AreaDensityUnit.KilogramPerSquareMeter: return baseUnitValue;
+                case AreaDensityUnit.PoundPerSquareFoot: return baseUnitValue / 0.45359237 * 0.09290304;
+                case AreaDensityUnit.PoundPerSquareMeter: return baseUnitValue / 0.45359237;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

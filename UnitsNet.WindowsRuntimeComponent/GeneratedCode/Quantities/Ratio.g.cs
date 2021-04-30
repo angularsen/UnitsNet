@@ -161,6 +161,11 @@ namespace UnitsNet
         public double DecimalFractions => As(RatioUnit.DecimalFraction);
 
         /// <summary>
+        ///     Get Ratio in Ones.
+        /// </summary>
+        public double Ones => As(RatioUnit.One);
+
+        /// <summary>
         ///     Get Ratio in PartsPerBillion.
         /// </summary>
         public double PartsPerBillion => As(RatioUnit.PartPerBillion);
@@ -224,6 +229,16 @@ namespace UnitsNet
         {
             double value = (double) decimalfractions;
             return new Ratio(value, RatioUnit.DecimalFraction);
+        }
+        /// <summary>
+        ///     Get Ratio from Ones.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Ratio FromOnes(double ones)
+        {
+            double value = (double) ones;
+            return new Ratio(value, RatioUnit.One);
         }
         /// <summary>
         ///     Get Ratio from PartsPerBillion.
@@ -567,6 +582,7 @@ namespace UnitsNet
             switch(Unit)
             {
                 case RatioUnit.DecimalFraction: return _value;
+                case RatioUnit.One: return _value;
                 case RatioUnit.PartPerBillion: return _value/1e9;
                 case RatioUnit.PartPerMillion: return _value/1e6;
                 case RatioUnit.PartPerThousand: return _value/1e3;
@@ -587,6 +603,7 @@ namespace UnitsNet
             switch(unit)
             {
                 case RatioUnit.DecimalFraction: return baseUnitValue;
+                case RatioUnit.One: return baseUnitValue;
                 case RatioUnit.PartPerBillion: return baseUnitValue*1e9;
                 case RatioUnit.PartPerMillion: return baseUnitValue*1e6;
                 case RatioUnit.PartPerThousand: return baseUnitValue*1e3;

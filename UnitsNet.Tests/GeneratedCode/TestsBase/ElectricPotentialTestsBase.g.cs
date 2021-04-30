@@ -37,17 +37,19 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ElectricPotentialTestsBase : QuantityTestsBase
     {
-        protected abstract double KilovoltsInOneVolt { get; }
-        protected abstract double MegavoltsInOneVolt { get; }
-        protected abstract double MicrovoltsInOneVolt { get; }
-        protected abstract double MillivoltsInOneVolt { get; }
-        protected abstract double VoltsInOneVolt { get; }
+        protected virtual double KilovoltsInOneVolt { get; }
+        protected virtual double MegavoltsInOneVolt { get; }
+        protected virtual double MicrovoltsInOneVolt { get; }
+        protected virtual double MillivoltsInOneVolt { get; }
+        protected virtual double NanovoltsInOneVolt { get; }
+        protected virtual double VoltsInOneVolt { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double KilovoltsTolerance { get { return 1e-5; } }
         protected virtual double MegavoltsTolerance { get { return 1e-5; } }
         protected virtual double MicrovoltsTolerance { get { return 1e-5; } }
         protected virtual double MillivoltsTolerance { get { return 1e-5; } }
+        protected virtual double NanovoltsTolerance { get { return 1e-5; } }
         protected virtual double VoltsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
@@ -127,6 +129,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MegavoltsInOneVolt, volt.Megavolts, MegavoltsTolerance);
             AssertEx.EqualTolerance(MicrovoltsInOneVolt, volt.Microvolts, MicrovoltsTolerance);
             AssertEx.EqualTolerance(MillivoltsInOneVolt, volt.Millivolts, MillivoltsTolerance);
+            AssertEx.EqualTolerance(NanovoltsInOneVolt, volt.Nanovolts, NanovoltsTolerance);
             AssertEx.EqualTolerance(VoltsInOneVolt, volt.Volts, VoltsTolerance);
         }
 
@@ -149,9 +152,13 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity03.Millivolts, MillivoltsTolerance);
             Assert.Equal(ElectricPotentialUnit.Millivolt, quantity03.Unit);
 
-            var quantity04 = ElectricPotential.From(1, ElectricPotentialUnit.Volt);
-            AssertEx.EqualTolerance(1, quantity04.Volts, VoltsTolerance);
-            Assert.Equal(ElectricPotentialUnit.Volt, quantity04.Unit);
+            var quantity04 = ElectricPotential.From(1, ElectricPotentialUnit.Nanovolt);
+            AssertEx.EqualTolerance(1, quantity04.Nanovolts, NanovoltsTolerance);
+            Assert.Equal(ElectricPotentialUnit.Nanovolt, quantity04.Unit);
+
+            var quantity05 = ElectricPotential.From(1, ElectricPotentialUnit.Volt);
+            AssertEx.EqualTolerance(1, quantity05.Volts, VoltsTolerance);
+            Assert.Equal(ElectricPotentialUnit.Volt, quantity05.Unit);
 
         }
 
@@ -176,6 +183,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MegavoltsInOneVolt, volt.As(ElectricPotentialUnit.Megavolt), MegavoltsTolerance);
             AssertEx.EqualTolerance(MicrovoltsInOneVolt, volt.As(ElectricPotentialUnit.Microvolt), MicrovoltsTolerance);
             AssertEx.EqualTolerance(MillivoltsInOneVolt, volt.As(ElectricPotentialUnit.Millivolt), MillivoltsTolerance);
+            AssertEx.EqualTolerance(NanovoltsInOneVolt, volt.As(ElectricPotentialUnit.Nanovolt), NanovoltsTolerance);
             AssertEx.EqualTolerance(VoltsInOneVolt, volt.As(ElectricPotentialUnit.Volt), VoltsTolerance);
         }
 
@@ -217,6 +225,10 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MillivoltsInOneVolt, (double)millivoltQuantity.Value, MillivoltsTolerance);
             Assert.Equal(ElectricPotentialUnit.Millivolt, millivoltQuantity.Unit);
 
+            var nanovoltQuantity = volt.ToUnit(ElectricPotentialUnit.Nanovolt);
+            AssertEx.EqualTolerance(NanovoltsInOneVolt, (double)nanovoltQuantity.Value, NanovoltsTolerance);
+            Assert.Equal(ElectricPotentialUnit.Nanovolt, nanovoltQuantity.Unit);
+
             var voltQuantity = volt.ToUnit(ElectricPotentialUnit.Volt);
             AssertEx.EqualTolerance(VoltsInOneVolt, (double)voltQuantity.Value, VoltsTolerance);
             Assert.Equal(ElectricPotentialUnit.Volt, voltQuantity.Unit);
@@ -237,6 +249,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, ElectricPotential.FromMegavolts(volt.Megavolts).Volts, MegavoltsTolerance);
             AssertEx.EqualTolerance(1, ElectricPotential.FromMicrovolts(volt.Microvolts).Volts, MicrovoltsTolerance);
             AssertEx.EqualTolerance(1, ElectricPotential.FromMillivolts(volt.Millivolts).Volts, MillivoltsTolerance);
+            AssertEx.EqualTolerance(1, ElectricPotential.FromNanovolts(volt.Nanovolts).Volts, NanovoltsTolerance);
             AssertEx.EqualTolerance(1, ElectricPotential.FromVolts(volt.Volts).Volts, VoltsTolerance);
         }
 
@@ -398,6 +411,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 MV", new ElectricPotential(1, ElectricPotentialUnit.Megavolt).ToString());
                 Assert.Equal("1 µV", new ElectricPotential(1, ElectricPotentialUnit.Microvolt).ToString());
                 Assert.Equal("1 mV", new ElectricPotential(1, ElectricPotentialUnit.Millivolt).ToString());
+                Assert.Equal("1 nV", new ElectricPotential(1, ElectricPotentialUnit.Nanovolt).ToString());
                 Assert.Equal("1 V", new ElectricPotential(1, ElectricPotentialUnit.Volt).ToString());
             }
             finally
@@ -416,6 +430,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 MV", new ElectricPotential(1, ElectricPotentialUnit.Megavolt).ToString(swedishCulture));
             Assert.Equal("1 µV", new ElectricPotential(1, ElectricPotentialUnit.Microvolt).ToString(swedishCulture));
             Assert.Equal("1 mV", new ElectricPotential(1, ElectricPotentialUnit.Millivolt).ToString(swedishCulture));
+            Assert.Equal("1 nV", new ElectricPotential(1, ElectricPotentialUnit.Nanovolt).ToString(swedishCulture));
             Assert.Equal("1 V", new ElectricPotential(1, ElectricPotentialUnit.Volt).ToString(swedishCulture));
         }
 

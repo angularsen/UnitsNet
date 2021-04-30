@@ -26,6 +26,7 @@ namespace UnitsNet.Units
     public enum MolarEntropyUnit
     {
         Undefined = 0,
+        BritishThermalUnitPerPoundMoleDegreeRankin,
         JoulePerMoleKelvin,
         KilojoulePerMoleKelvin,
         MegajoulePerMoleKelvin,

@@ -37,10 +37,22 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class PermeabilityTestsBase : QuantityTestsBase
     {
-        protected abstract double HenriesPerMeterInOneHenryPerMeter { get; }
+        protected virtual double DarciesInOneHenryPerMeter { get; }
+        protected virtual double HenriesPerMeterInOneHenryPerMeter { get; }
+        protected virtual double MicrodarciesInOneHenryPerMeter { get; }
+        protected virtual double MillidarciesInOneHenryPerMeter { get; }
+        protected virtual double NanodarciesInOneHenryPerMeter { get; }
+        protected virtual double SquareMetersInOneHenryPerMeter { get; }
+        protected virtual double SquareMicrometersInOneHenryPerMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double DarciesTolerance { get { return 1e-5; } }
         protected virtual double HenriesPerMeterTolerance { get { return 1e-5; } }
+        protected virtual double MicrodarciesTolerance { get { return 1e-5; } }
+        protected virtual double MillidarciesTolerance { get { return 1e-5; } }
+        protected virtual double NanodarciesTolerance { get { return 1e-5; } }
+        protected virtual double SquareMetersTolerance { get { return 1e-5; } }
+        protected virtual double SquareMicrometersTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
@@ -115,15 +127,45 @@ namespace UnitsNet.Tests
         public void HenryPerMeterToPermeabilityUnits()
         {
             Permeability henrypermeter = Permeability.FromHenriesPerMeter(1);
+            AssertEx.EqualTolerance(DarciesInOneHenryPerMeter, henrypermeter.Darcies, DarciesTolerance);
             AssertEx.EqualTolerance(HenriesPerMeterInOneHenryPerMeter, henrypermeter.HenriesPerMeter, HenriesPerMeterTolerance);
+            AssertEx.EqualTolerance(MicrodarciesInOneHenryPerMeter, henrypermeter.Microdarcies, MicrodarciesTolerance);
+            AssertEx.EqualTolerance(MillidarciesInOneHenryPerMeter, henrypermeter.Millidarcies, MillidarciesTolerance);
+            AssertEx.EqualTolerance(NanodarciesInOneHenryPerMeter, henrypermeter.Nanodarcies, NanodarciesTolerance);
+            AssertEx.EqualTolerance(SquareMetersInOneHenryPerMeter, henrypermeter.SquareMeters, SquareMetersTolerance);
+            AssertEx.EqualTolerance(SquareMicrometersInOneHenryPerMeter, henrypermeter.SquareMicrometers, SquareMicrometersTolerance);
         }
 
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Permeability.From(1, PermeabilityUnit.HenryPerMeter);
-            AssertEx.EqualTolerance(1, quantity00.HenriesPerMeter, HenriesPerMeterTolerance);
-            Assert.Equal(PermeabilityUnit.HenryPerMeter, quantity00.Unit);
+            var quantity00 = Permeability.From(1, PermeabilityUnit.Darcy);
+            AssertEx.EqualTolerance(1, quantity00.Darcies, DarciesTolerance);
+            Assert.Equal(PermeabilityUnit.Darcy, quantity00.Unit);
+
+            var quantity01 = Permeability.From(1, PermeabilityUnit.HenryPerMeter);
+            AssertEx.EqualTolerance(1, quantity01.HenriesPerMeter, HenriesPerMeterTolerance);
+            Assert.Equal(PermeabilityUnit.HenryPerMeter, quantity01.Unit);
+
+            var quantity02 = Permeability.From(1, PermeabilityUnit.Microdarcy);
+            AssertEx.EqualTolerance(1, quantity02.Microdarcies, MicrodarciesTolerance);
+            Assert.Equal(PermeabilityUnit.Microdarcy, quantity02.Unit);
+
+            var quantity03 = Permeability.From(1, PermeabilityUnit.Millidarcy);
+            AssertEx.EqualTolerance(1, quantity03.Millidarcies, MillidarciesTolerance);
+            Assert.Equal(PermeabilityUnit.Millidarcy, quantity03.Unit);
+
+            var quantity04 = Permeability.From(1, PermeabilityUnit.Nanodarcy);
+            AssertEx.EqualTolerance(1, quantity04.Nanodarcies, NanodarciesTolerance);
+            Assert.Equal(PermeabilityUnit.Nanodarcy, quantity04.Unit);
+
+            var quantity05 = Permeability.From(1, PermeabilityUnit.SquareMeter);
+            AssertEx.EqualTolerance(1, quantity05.SquareMeters, SquareMetersTolerance);
+            Assert.Equal(PermeabilityUnit.SquareMeter, quantity05.Unit);
+
+            var quantity06 = Permeability.From(1, PermeabilityUnit.SquareMicrometer);
+            AssertEx.EqualTolerance(1, quantity06.SquareMicrometers, SquareMicrometersTolerance);
+            Assert.Equal(PermeabilityUnit.SquareMicrometer, quantity06.Unit);
 
         }
 
@@ -144,7 +186,13 @@ namespace UnitsNet.Tests
         public void As()
         {
             var henrypermeter = Permeability.FromHenriesPerMeter(1);
+            AssertEx.EqualTolerance(DarciesInOneHenryPerMeter, henrypermeter.As(PermeabilityUnit.Darcy), DarciesTolerance);
             AssertEx.EqualTolerance(HenriesPerMeterInOneHenryPerMeter, henrypermeter.As(PermeabilityUnit.HenryPerMeter), HenriesPerMeterTolerance);
+            AssertEx.EqualTolerance(MicrodarciesInOneHenryPerMeter, henrypermeter.As(PermeabilityUnit.Microdarcy), MicrodarciesTolerance);
+            AssertEx.EqualTolerance(MillidarciesInOneHenryPerMeter, henrypermeter.As(PermeabilityUnit.Millidarcy), MillidarciesTolerance);
+            AssertEx.EqualTolerance(NanodarciesInOneHenryPerMeter, henrypermeter.As(PermeabilityUnit.Nanodarcy), NanodarciesTolerance);
+            AssertEx.EqualTolerance(SquareMetersInOneHenryPerMeter, henrypermeter.As(PermeabilityUnit.SquareMeter), SquareMetersTolerance);
+            AssertEx.EqualTolerance(SquareMicrometersInOneHenryPerMeter, henrypermeter.As(PermeabilityUnit.SquareMicrometer), SquareMicrometersTolerance);
         }
 
         [Fact]
@@ -169,9 +217,33 @@ namespace UnitsNet.Tests
         {
             var henrypermeter = Permeability.FromHenriesPerMeter(1);
 
+            var darcyQuantity = henrypermeter.ToUnit(PermeabilityUnit.Darcy);
+            AssertEx.EqualTolerance(DarciesInOneHenryPerMeter, (double)darcyQuantity.Value, DarciesTolerance);
+            Assert.Equal(PermeabilityUnit.Darcy, darcyQuantity.Unit);
+
             var henrypermeterQuantity = henrypermeter.ToUnit(PermeabilityUnit.HenryPerMeter);
             AssertEx.EqualTolerance(HenriesPerMeterInOneHenryPerMeter, (double)henrypermeterQuantity.Value, HenriesPerMeterTolerance);
             Assert.Equal(PermeabilityUnit.HenryPerMeter, henrypermeterQuantity.Unit);
+
+            var microdarcyQuantity = henrypermeter.ToUnit(PermeabilityUnit.Microdarcy);
+            AssertEx.EqualTolerance(MicrodarciesInOneHenryPerMeter, (double)microdarcyQuantity.Value, MicrodarciesTolerance);
+            Assert.Equal(PermeabilityUnit.Microdarcy, microdarcyQuantity.Unit);
+
+            var millidarcyQuantity = henrypermeter.ToUnit(PermeabilityUnit.Millidarcy);
+            AssertEx.EqualTolerance(MillidarciesInOneHenryPerMeter, (double)millidarcyQuantity.Value, MillidarciesTolerance);
+            Assert.Equal(PermeabilityUnit.Millidarcy, millidarcyQuantity.Unit);
+
+            var nanodarcyQuantity = henrypermeter.ToUnit(PermeabilityUnit.Nanodarcy);
+            AssertEx.EqualTolerance(NanodarciesInOneHenryPerMeter, (double)nanodarcyQuantity.Value, NanodarciesTolerance);
+            Assert.Equal(PermeabilityUnit.Nanodarcy, nanodarcyQuantity.Unit);
+
+            var squaremeterQuantity = henrypermeter.ToUnit(PermeabilityUnit.SquareMeter);
+            AssertEx.EqualTolerance(SquareMetersInOneHenryPerMeter, (double)squaremeterQuantity.Value, SquareMetersTolerance);
+            Assert.Equal(PermeabilityUnit.SquareMeter, squaremeterQuantity.Unit);
+
+            var squaremicrometerQuantity = henrypermeter.ToUnit(PermeabilityUnit.SquareMicrometer);
+            AssertEx.EqualTolerance(SquareMicrometersInOneHenryPerMeter, (double)squaremicrometerQuantity.Value, SquareMicrometersTolerance);
+            Assert.Equal(PermeabilityUnit.SquareMicrometer, squaremicrometerQuantity.Unit);
         }
 
         [Fact]
@@ -185,7 +257,13 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             Permeability henrypermeter = Permeability.FromHenriesPerMeter(1);
+            AssertEx.EqualTolerance(1, Permeability.FromDarcies(henrypermeter.Darcies).HenriesPerMeter, DarciesTolerance);
             AssertEx.EqualTolerance(1, Permeability.FromHenriesPerMeter(henrypermeter.HenriesPerMeter).HenriesPerMeter, HenriesPerMeterTolerance);
+            AssertEx.EqualTolerance(1, Permeability.FromMicrodarcies(henrypermeter.Microdarcies).HenriesPerMeter, MicrodarciesTolerance);
+            AssertEx.EqualTolerance(1, Permeability.FromMillidarcies(henrypermeter.Millidarcies).HenriesPerMeter, MillidarciesTolerance);
+            AssertEx.EqualTolerance(1, Permeability.FromNanodarcies(henrypermeter.Nanodarcies).HenriesPerMeter, NanodarciesTolerance);
+            AssertEx.EqualTolerance(1, Permeability.FromSquareMeters(henrypermeter.SquareMeters).HenriesPerMeter, SquareMetersTolerance);
+            AssertEx.EqualTolerance(1, Permeability.FromSquareMicrometers(henrypermeter.SquareMicrometers).HenriesPerMeter, SquareMicrometersTolerance);
         }
 
         [Fact]
@@ -342,7 +420,13 @@ namespace UnitsNet.Tests
             var prevCulture = Thread.CurrentThread.CurrentUICulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             try {
+                Assert.Equal("1 D", new Permeability(1, PermeabilityUnit.Darcy).ToString());
                 Assert.Equal("1 H/m", new Permeability(1, PermeabilityUnit.HenryPerMeter).ToString());
+                Assert.Equal("1 uD", new Permeability(1, PermeabilityUnit.Microdarcy).ToString());
+                Assert.Equal("1 MDARCY", new Permeability(1, PermeabilityUnit.Millidarcy).ToString());
+                Assert.Equal("1 nD", new Permeability(1, PermeabilityUnit.Nanodarcy).ToString());
+                Assert.Equal("1 m2", new Permeability(1, PermeabilityUnit.SquareMeter).ToString());
+                Assert.Equal("1 µm2", new Permeability(1, PermeabilityUnit.SquareMicrometer).ToString());
             }
             finally
             {
@@ -356,7 +440,13 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
+            Assert.Equal("1 D", new Permeability(1, PermeabilityUnit.Darcy).ToString(swedishCulture));
             Assert.Equal("1 H/m", new Permeability(1, PermeabilityUnit.HenryPerMeter).ToString(swedishCulture));
+            Assert.Equal("1 uD", new Permeability(1, PermeabilityUnit.Microdarcy).ToString(swedishCulture));
+            Assert.Equal("1 MDARCY", new Permeability(1, PermeabilityUnit.Millidarcy).ToString(swedishCulture));
+            Assert.Equal("1 nD", new Permeability(1, PermeabilityUnit.Nanodarcy).ToString(swedishCulture));
+            Assert.Equal("1 m2", new Permeability(1, PermeabilityUnit.SquareMeter).ToString(swedishCulture));
+            Assert.Equal("1 µm2", new Permeability(1, PermeabilityUnit.SquareMicrometer).ToString(swedishCulture));
         }
 
         [Fact]

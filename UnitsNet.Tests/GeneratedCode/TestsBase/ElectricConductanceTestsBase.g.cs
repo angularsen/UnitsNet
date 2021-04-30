@@ -37,12 +37,16 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ElectricConductanceTestsBase : QuantityTestsBase
     {
-        protected abstract double MicrosiemensInOneSiemens { get; }
-        protected abstract double MillisiemensInOneSiemens { get; }
-        protected abstract double SiemensInOneSiemens { get; }
+        protected virtual double MhosInOneSiemens { get; }
+        protected virtual double MicrosiemensInOneSiemens { get; }
+        protected virtual double MillimhosInOneSiemens { get; }
+        protected virtual double MillisiemensInOneSiemens { get; }
+        protected virtual double SiemensInOneSiemens { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double MhosTolerance { get { return 1e-5; } }
         protected virtual double MicrosiemensTolerance { get { return 1e-5; } }
+        protected virtual double MillimhosTolerance { get { return 1e-5; } }
         protected virtual double MillisiemensTolerance { get { return 1e-5; } }
         protected virtual double SiemensTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
@@ -119,7 +123,9 @@ namespace UnitsNet.Tests
         public void SiemensToElectricConductanceUnits()
         {
             ElectricConductance siemens = ElectricConductance.FromSiemens(1);
+            AssertEx.EqualTolerance(MhosInOneSiemens, siemens.Mhos, MhosTolerance);
             AssertEx.EqualTolerance(MicrosiemensInOneSiemens, siemens.Microsiemens, MicrosiemensTolerance);
+            AssertEx.EqualTolerance(MillimhosInOneSiemens, siemens.Millimhos, MillimhosTolerance);
             AssertEx.EqualTolerance(MillisiemensInOneSiemens, siemens.Millisiemens, MillisiemensTolerance);
             AssertEx.EqualTolerance(SiemensInOneSiemens, siemens.Siemens, SiemensTolerance);
         }
@@ -127,17 +133,25 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricConductance.From(1, ElectricConductanceUnit.Microsiemens);
-            AssertEx.EqualTolerance(1, quantity00.Microsiemens, MicrosiemensTolerance);
-            Assert.Equal(ElectricConductanceUnit.Microsiemens, quantity00.Unit);
+            var quantity00 = ElectricConductance.From(1, ElectricConductanceUnit.Mho);
+            AssertEx.EqualTolerance(1, quantity00.Mhos, MhosTolerance);
+            Assert.Equal(ElectricConductanceUnit.Mho, quantity00.Unit);
 
-            var quantity01 = ElectricConductance.From(1, ElectricConductanceUnit.Millisiemens);
-            AssertEx.EqualTolerance(1, quantity01.Millisiemens, MillisiemensTolerance);
-            Assert.Equal(ElectricConductanceUnit.Millisiemens, quantity01.Unit);
+            var quantity01 = ElectricConductance.From(1, ElectricConductanceUnit.Microsiemens);
+            AssertEx.EqualTolerance(1, quantity01.Microsiemens, MicrosiemensTolerance);
+            Assert.Equal(ElectricConductanceUnit.Microsiemens, quantity01.Unit);
 
-            var quantity02 = ElectricConductance.From(1, ElectricConductanceUnit.Siemens);
-            AssertEx.EqualTolerance(1, quantity02.Siemens, SiemensTolerance);
-            Assert.Equal(ElectricConductanceUnit.Siemens, quantity02.Unit);
+            var quantity02 = ElectricConductance.From(1, ElectricConductanceUnit.Millimho);
+            AssertEx.EqualTolerance(1, quantity02.Millimhos, MillimhosTolerance);
+            Assert.Equal(ElectricConductanceUnit.Millimho, quantity02.Unit);
+
+            var quantity03 = ElectricConductance.From(1, ElectricConductanceUnit.Millisiemens);
+            AssertEx.EqualTolerance(1, quantity03.Millisiemens, MillisiemensTolerance);
+            Assert.Equal(ElectricConductanceUnit.Millisiemens, quantity03.Unit);
+
+            var quantity04 = ElectricConductance.From(1, ElectricConductanceUnit.Siemens);
+            AssertEx.EqualTolerance(1, quantity04.Siemens, SiemensTolerance);
+            Assert.Equal(ElectricConductanceUnit.Siemens, quantity04.Unit);
 
         }
 
@@ -158,7 +172,9 @@ namespace UnitsNet.Tests
         public void As()
         {
             var siemens = ElectricConductance.FromSiemens(1);
+            AssertEx.EqualTolerance(MhosInOneSiemens, siemens.As(ElectricConductanceUnit.Mho), MhosTolerance);
             AssertEx.EqualTolerance(MicrosiemensInOneSiemens, siemens.As(ElectricConductanceUnit.Microsiemens), MicrosiemensTolerance);
+            AssertEx.EqualTolerance(MillimhosInOneSiemens, siemens.As(ElectricConductanceUnit.Millimho), MillimhosTolerance);
             AssertEx.EqualTolerance(MillisiemensInOneSiemens, siemens.As(ElectricConductanceUnit.Millisiemens), MillisiemensTolerance);
             AssertEx.EqualTolerance(SiemensInOneSiemens, siemens.As(ElectricConductanceUnit.Siemens), SiemensTolerance);
         }
@@ -185,9 +201,17 @@ namespace UnitsNet.Tests
         {
             var siemens = ElectricConductance.FromSiemens(1);
 
+            var mhoQuantity = siemens.ToUnit(ElectricConductanceUnit.Mho);
+            AssertEx.EqualTolerance(MhosInOneSiemens, (double)mhoQuantity.Value, MhosTolerance);
+            Assert.Equal(ElectricConductanceUnit.Mho, mhoQuantity.Unit);
+
             var microsiemensQuantity = siemens.ToUnit(ElectricConductanceUnit.Microsiemens);
             AssertEx.EqualTolerance(MicrosiemensInOneSiemens, (double)microsiemensQuantity.Value, MicrosiemensTolerance);
             Assert.Equal(ElectricConductanceUnit.Microsiemens, microsiemensQuantity.Unit);
+
+            var millimhoQuantity = siemens.ToUnit(ElectricConductanceUnit.Millimho);
+            AssertEx.EqualTolerance(MillimhosInOneSiemens, (double)millimhoQuantity.Value, MillimhosTolerance);
+            Assert.Equal(ElectricConductanceUnit.Millimho, millimhoQuantity.Unit);
 
             var millisiemensQuantity = siemens.ToUnit(ElectricConductanceUnit.Millisiemens);
             AssertEx.EqualTolerance(MillisiemensInOneSiemens, (double)millisiemensQuantity.Value, MillisiemensTolerance);
@@ -209,7 +233,9 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             ElectricConductance siemens = ElectricConductance.FromSiemens(1);
+            AssertEx.EqualTolerance(1, ElectricConductance.FromMhos(siemens.Mhos).Siemens, MhosTolerance);
             AssertEx.EqualTolerance(1, ElectricConductance.FromMicrosiemens(siemens.Microsiemens).Siemens, MicrosiemensTolerance);
+            AssertEx.EqualTolerance(1, ElectricConductance.FromMillimhos(siemens.Millimhos).Siemens, MillimhosTolerance);
             AssertEx.EqualTolerance(1, ElectricConductance.FromMillisiemens(siemens.Millisiemens).Siemens, MillisiemensTolerance);
             AssertEx.EqualTolerance(1, ElectricConductance.FromSiemens(siemens.Siemens).Siemens, SiemensTolerance);
         }
@@ -368,7 +394,9 @@ namespace UnitsNet.Tests
             var prevCulture = Thread.CurrentThread.CurrentUICulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             try {
+                Assert.Equal("1 mho", new ElectricConductance(1, ElectricConductanceUnit.Mho).ToString());
                 Assert.Equal("1 µS", new ElectricConductance(1, ElectricConductanceUnit.Microsiemens).ToString());
+                Assert.Equal("1 mmho", new ElectricConductance(1, ElectricConductanceUnit.Millimho).ToString());
                 Assert.Equal("1 mS", new ElectricConductance(1, ElectricConductanceUnit.Millisiemens).ToString());
                 Assert.Equal("1 S", new ElectricConductance(1, ElectricConductanceUnit.Siemens).ToString());
             }
@@ -384,7 +412,9 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
+            Assert.Equal("1 mho", new ElectricConductance(1, ElectricConductanceUnit.Mho).ToString(swedishCulture));
             Assert.Equal("1 µS", new ElectricConductance(1, ElectricConductanceUnit.Microsiemens).ToString(swedishCulture));
+            Assert.Equal("1 mmho", new ElectricConductance(1, ElectricConductanceUnit.Millimho).ToString(swedishCulture));
             Assert.Equal("1 mS", new ElectricConductance(1, ElectricConductanceUnit.Millisiemens).ToString(swedishCulture));
             Assert.Equal("1 S", new ElectricConductance(1, ElectricConductanceUnit.Siemens).ToString(swedishCulture));
         }

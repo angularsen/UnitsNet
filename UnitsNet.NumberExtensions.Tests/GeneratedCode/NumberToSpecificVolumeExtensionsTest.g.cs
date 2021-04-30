@@ -25,6 +25,10 @@ namespace UnitsNet.Tests
     public class NumberToSpecificVolumeExtensionsTests
     {
         [Fact]
+        public void NumberToCubicCentimetersPerGramTest() =>
+            Assert.Equal(SpecificVolume.FromCubicCentimetersPerGram(2), 2.CubicCentimetersPerGram());
+
+        [Fact]
         public void NumberToCubicFeetPerPoundTest() =>
             Assert.Equal(SpecificVolume.FromCubicFeetPerPound(2), 2.CubicFeetPerPound());
 
@@ -33,8 +37,20 @@ namespace UnitsNet.Tests
             Assert.Equal(SpecificVolume.FromCubicMetersPerKilogram(2), 2.CubicMetersPerKilogram());
 
         [Fact]
+        public void NumberToCubicMetersPerTonneTest() =>
+            Assert.Equal(SpecificVolume.FromCubicMetersPerTonne(2), 2.CubicMetersPerTonne());
+
+        [Fact]
         public void NumberToMillicubicMetersPerKilogramTest() =>
             Assert.Equal(SpecificVolume.FromMillicubicMetersPerKilogram(2), 2.MillicubicMetersPerKilogram());
+
+        [Fact]
+        public void NumberToStandardCubicFeetPerLongTonneTest() =>
+            Assert.Equal(SpecificVolume.FromStandardCubicFeetPerLongTonne(2), 2.StandardCubicFeetPerLongTonne());
+
+        [Fact]
+        public void NumberToStandardCubicFeetPerTonneTest() =>
+            Assert.Equal(SpecificVolume.FromStandardCubicFeetPerTonne(2), 2.StandardCubicFeetPerTonne());
 
     }
 }

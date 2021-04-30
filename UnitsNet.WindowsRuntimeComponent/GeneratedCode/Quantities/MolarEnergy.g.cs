@@ -156,9 +156,49 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get MolarEnergy in BritishThermalUnitsPerMole.
+        /// </summary>
+        public double BritishThermalUnitsPerMole => As(MolarEnergyUnit.BritishThermalUnitPerMole);
+
+        /// <summary>
+        ///     Get MolarEnergy in BritishThermalUnitsPerPoundMole.
+        /// </summary>
+        public double BritishThermalUnitsPerPoundMole => As(MolarEnergyUnit.BritishThermalUnitPerPoundMole);
+
+        /// <summary>
+        ///     Get MolarEnergy in BritishThermalUnitThermochemicalsPerMole.
+        /// </summary>
+        public double BritishThermalUnitThermochemicalsPerMole => As(MolarEnergyUnit.BritishThermalUnitThermochemicalPerMole);
+
+        /// <summary>
+        ///     Get MolarEnergy in BritishThermalUnitThermochemicalsPerPoundMole.
+        /// </summary>
+        public double BritishThermalUnitThermochemicalsPerPoundMole => As(MolarEnergyUnit.BritishThermalUnitThermochemicalPerPoundMole);
+
+        /// <summary>
+        ///     Get MolarEnergy in CaloriesPerMole.
+        /// </summary>
+        public double CaloriesPerMole => As(MolarEnergyUnit.CaloriePerMole);
+
+        /// <summary>
+        ///     Get MolarEnergy in CalorieThermochemicalsPerMole.
+        /// </summary>
+        public double CalorieThermochemicalsPerMole => As(MolarEnergyUnit.CalorieThermochemicalPerMole);
+
+        /// <summary>
         ///     Get MolarEnergy in JoulesPerMole.
         /// </summary>
         public double JoulesPerMole => As(MolarEnergyUnit.JoulePerMole);
+
+        /// <summary>
+        ///     Get MolarEnergy in KilocaloriesPerMole.
+        /// </summary>
+        public double KilocaloriesPerMole => As(MolarEnergyUnit.KilocaloriePerMole);
+
+        /// <summary>
+        ///     Get MolarEnergy in KilocalorieThermochemicalsPerMole.
+        /// </summary>
+        public double KilocalorieThermochemicalsPerMole => As(MolarEnergyUnit.KilocalorieThermochemicalPerMole);
 
         /// <summary>
         ///     Get MolarEnergy in KilojoulesPerMole.
@@ -201,6 +241,66 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
+        ///     Get MolarEnergy from BritishThermalUnitsPerMole.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MolarEnergy FromBritishThermalUnitsPerMole(double britishthermalunitspermole)
+        {
+            double value = (double) britishthermalunitspermole;
+            return new MolarEnergy(value, MolarEnergyUnit.BritishThermalUnitPerMole);
+        }
+        /// <summary>
+        ///     Get MolarEnergy from BritishThermalUnitsPerPoundMole.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MolarEnergy FromBritishThermalUnitsPerPoundMole(double britishthermalunitsperpoundmole)
+        {
+            double value = (double) britishthermalunitsperpoundmole;
+            return new MolarEnergy(value, MolarEnergyUnit.BritishThermalUnitPerPoundMole);
+        }
+        /// <summary>
+        ///     Get MolarEnergy from BritishThermalUnitThermochemicalsPerMole.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MolarEnergy FromBritishThermalUnitThermochemicalsPerMole(double britishthermalunitthermochemicalspermole)
+        {
+            double value = (double) britishthermalunitthermochemicalspermole;
+            return new MolarEnergy(value, MolarEnergyUnit.BritishThermalUnitThermochemicalPerMole);
+        }
+        /// <summary>
+        ///     Get MolarEnergy from BritishThermalUnitThermochemicalsPerPoundMole.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MolarEnergy FromBritishThermalUnitThermochemicalsPerPoundMole(double britishthermalunitthermochemicalsperpoundmole)
+        {
+            double value = (double) britishthermalunitthermochemicalsperpoundmole;
+            return new MolarEnergy(value, MolarEnergyUnit.BritishThermalUnitThermochemicalPerPoundMole);
+        }
+        /// <summary>
+        ///     Get MolarEnergy from CaloriesPerMole.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MolarEnergy FromCaloriesPerMole(double caloriespermole)
+        {
+            double value = (double) caloriespermole;
+            return new MolarEnergy(value, MolarEnergyUnit.CaloriePerMole);
+        }
+        /// <summary>
+        ///     Get MolarEnergy from CalorieThermochemicalsPerMole.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MolarEnergy FromCalorieThermochemicalsPerMole(double caloriethermochemicalspermole)
+        {
+            double value = (double) caloriethermochemicalspermole;
+            return new MolarEnergy(value, MolarEnergyUnit.CalorieThermochemicalPerMole);
+        }
+        /// <summary>
         ///     Get MolarEnergy from JoulesPerMole.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -209,6 +309,26 @@ namespace UnitsNet
         {
             double value = (double) joulespermole;
             return new MolarEnergy(value, MolarEnergyUnit.JoulePerMole);
+        }
+        /// <summary>
+        ///     Get MolarEnergy from KilocaloriesPerMole.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MolarEnergy FromKilocaloriesPerMole(double kilocaloriespermole)
+        {
+            double value = (double) kilocaloriespermole;
+            return new MolarEnergy(value, MolarEnergyUnit.KilocaloriePerMole);
+        }
+        /// <summary>
+        ///     Get MolarEnergy from KilocalorieThermochemicalsPerMole.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MolarEnergy FromKilocalorieThermochemicalsPerMole(double kilocaloriethermochemicalspermole)
+        {
+            double value = (double) kilocaloriethermochemicalspermole;
+            return new MolarEnergy(value, MolarEnergyUnit.KilocalorieThermochemicalPerMole);
         }
         /// <summary>
         ///     Get MolarEnergy from KilojoulesPerMole.
@@ -521,7 +641,15 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case MolarEnergyUnit.BritishThermalUnitPerMole: return _value * 1055.05585262;
+                case MolarEnergyUnit.BritishThermalUnitPerPoundMole: return _value * 1055.05585262 / 453.59237;
+                case MolarEnergyUnit.BritishThermalUnitThermochemicalPerMole: return _value * 1054.35026444;
+                case MolarEnergyUnit.BritishThermalUnitThermochemicalPerPoundMole: return _value * 1054.35026444 / 453.59237;
+                case MolarEnergyUnit.CaloriePerMole: return _value * 4.1868;
+                case MolarEnergyUnit.CalorieThermochemicalPerMole: return _value * 4.184;
                 case MolarEnergyUnit.JoulePerMole: return _value;
+                case MolarEnergyUnit.KilocaloriePerMole: return _value * 4186.8;
+                case MolarEnergyUnit.KilocalorieThermochemicalPerMole: return _value * 4184;
                 case MolarEnergyUnit.KilojoulePerMole: return (_value) * 1e3d;
                 case MolarEnergyUnit.MegajoulePerMole: return (_value) * 1e6d;
                 default:
@@ -538,7 +666,15 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case MolarEnergyUnit.BritishThermalUnitPerMole: return baseUnitValue / 1055.05585262;
+                case MolarEnergyUnit.BritishThermalUnitPerPoundMole: return baseUnitValue / 1055.05585262 * 453.59237;
+                case MolarEnergyUnit.BritishThermalUnitThermochemicalPerMole: return baseUnitValue / 1054.35026444;
+                case MolarEnergyUnit.BritishThermalUnitThermochemicalPerPoundMole: return baseUnitValue / 1054.35026444 * 453.59237;
+                case MolarEnergyUnit.CaloriePerMole: return baseUnitValue / 4.1868;
+                case MolarEnergyUnit.CalorieThermochemicalPerMole: return baseUnitValue / 4.184;
                 case MolarEnergyUnit.JoulePerMole: return baseUnitValue;
+                case MolarEnergyUnit.KilocaloriePerMole: return baseUnitValue / 4186.8;
+                case MolarEnergyUnit.KilocalorieThermochemicalPerMole: return baseUnitValue / 4184;
                 case MolarEnergyUnit.KilojoulePerMole: return (baseUnitValue) / 1e3d;
                 case MolarEnergyUnit.MegajoulePerMole: return (baseUnitValue) / 1e6d;
                 default:

@@ -29,6 +29,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Ratio.FromDecimalFractions(2), 2.DecimalFractions());
 
         [Fact]
+        public void NumberToOnesTest() =>
+            Assert.Equal(Ratio.FromOnes(2), 2.Ones());
+
+        [Fact]
         public void NumberToPartsPerBillionTest() =>
             Assert.Equal(Ratio.FromPartsPerBillion(2), 2.PartsPerBillion());
 

@@ -37,31 +37,34 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class MassTestsBase : QuantityTestsBase
     {
-        protected abstract double CentigramsInOneKilogram { get; }
-        protected abstract double DecagramsInOneKilogram { get; }
-        protected abstract double DecigramsInOneKilogram { get; }
-        protected abstract double EarthMassesInOneKilogram { get; }
-        protected abstract double GrainsInOneKilogram { get; }
-        protected abstract double GramsInOneKilogram { get; }
-        protected abstract double HectogramsInOneKilogram { get; }
-        protected abstract double KilogramsInOneKilogram { get; }
-        protected abstract double KilopoundsInOneKilogram { get; }
-        protected abstract double KilotonnesInOneKilogram { get; }
-        protected abstract double LongHundredweightInOneKilogram { get; }
-        protected abstract double LongTonsInOneKilogram { get; }
-        protected abstract double MegapoundsInOneKilogram { get; }
-        protected abstract double MegatonnesInOneKilogram { get; }
-        protected abstract double MicrogramsInOneKilogram { get; }
-        protected abstract double MilligramsInOneKilogram { get; }
-        protected abstract double NanogramsInOneKilogram { get; }
-        protected abstract double OuncesInOneKilogram { get; }
-        protected abstract double PoundsInOneKilogram { get; }
-        protected abstract double ShortHundredweightInOneKilogram { get; }
-        protected abstract double ShortTonsInOneKilogram { get; }
-        protected abstract double SlugsInOneKilogram { get; }
-        protected abstract double SolarMassesInOneKilogram { get; }
-        protected abstract double StoneInOneKilogram { get; }
-        protected abstract double TonnesInOneKilogram { get; }
+        protected virtual double CentigramsInOneKilogram { get; }
+        protected virtual double DecagramsInOneKilogram { get; }
+        protected virtual double DecigramsInOneKilogram { get; }
+        protected virtual double EarthMassesInOneKilogram { get; }
+        protected virtual double GrainsInOneKilogram { get; }
+        protected virtual double GramsInOneKilogram { get; }
+        protected virtual double HectogramsInOneKilogram { get; }
+        protected virtual double KilogramsInOneKilogram { get; }
+        protected virtual double KilopoundsInOneKilogram { get; }
+        protected virtual double KilotonnesInOneKilogram { get; }
+        protected virtual double LongHundredweightInOneKilogram { get; }
+        protected virtual double LongTonsInOneKilogram { get; }
+        protected virtual double MegapoundsInOneKilogram { get; }
+        protected virtual double MegatonnesInOneKilogram { get; }
+        protected virtual double MetricTonsInOneKilogram { get; }
+        protected virtual double MicrogramsInOneKilogram { get; }
+        protected virtual double MilligramsInOneKilogram { get; }
+        protected virtual double NanogramsInOneKilogram { get; }
+        protected virtual double OuncesInOneKilogram { get; }
+        protected virtual double PoundsInOneKilogram { get; }
+        protected virtual double ShortHundredweightInOneKilogram { get; }
+        protected virtual double ShortTonsInOneKilogram { get; }
+        protected virtual double SlugsInOneKilogram { get; }
+        protected virtual double SolarMassesInOneKilogram { get; }
+        protected virtual double StoneInOneKilogram { get; }
+        protected virtual double TonnesInOneKilogram { get; }
+        protected virtual double UkTonnesInOneKilogram { get; }
+        protected virtual double UsTonnesInOneKilogram { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CentigramsTolerance { get { return 1e-5; } }
@@ -78,6 +81,7 @@ namespace UnitsNet.Tests
         protected virtual double LongTonsTolerance { get { return 1e-5; } }
         protected virtual double MegapoundsTolerance { get { return 1e-5; } }
         protected virtual double MegatonnesTolerance { get { return 1e-5; } }
+        protected virtual double MetricTonsTolerance { get { return 1e-5; } }
         protected virtual double MicrogramsTolerance { get { return 1e-5; } }
         protected virtual double MilligramsTolerance { get { return 1e-5; } }
         protected virtual double NanogramsTolerance { get { return 1e-5; } }
@@ -89,6 +93,8 @@ namespace UnitsNet.Tests
         protected virtual double SolarMassesTolerance { get { return 1e-5; } }
         protected virtual double StoneTolerance { get { return 1e-5; } }
         protected virtual double TonnesTolerance { get { return 1e-5; } }
+        protected virtual double UkTonnesTolerance { get { return 1e-5; } }
+        protected virtual double UsTonnesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
@@ -177,6 +183,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(LongTonsInOneKilogram, kilogram.LongTons, LongTonsTolerance);
             AssertEx.EqualTolerance(MegapoundsInOneKilogram, kilogram.Megapounds, MegapoundsTolerance);
             AssertEx.EqualTolerance(MegatonnesInOneKilogram, kilogram.Megatonnes, MegatonnesTolerance);
+            AssertEx.EqualTolerance(MetricTonsInOneKilogram, kilogram.MetricTons, MetricTonsTolerance);
             AssertEx.EqualTolerance(MicrogramsInOneKilogram, kilogram.Micrograms, MicrogramsTolerance);
             AssertEx.EqualTolerance(MilligramsInOneKilogram, kilogram.Milligrams, MilligramsTolerance);
             AssertEx.EqualTolerance(NanogramsInOneKilogram, kilogram.Nanograms, NanogramsTolerance);
@@ -188,6 +195,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(SolarMassesInOneKilogram, kilogram.SolarMasses, SolarMassesTolerance);
             AssertEx.EqualTolerance(StoneInOneKilogram, kilogram.Stone, StoneTolerance);
             AssertEx.EqualTolerance(TonnesInOneKilogram, kilogram.Tonnes, TonnesTolerance);
+            AssertEx.EqualTolerance(UkTonnesInOneKilogram, kilogram.UkTonnes, UkTonnesTolerance);
+            AssertEx.EqualTolerance(UsTonnesInOneKilogram, kilogram.UsTonnes, UsTonnesTolerance);
         }
 
         [Fact]
@@ -249,49 +258,61 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity13.Megatonnes, MegatonnesTolerance);
             Assert.Equal(MassUnit.Megatonne, quantity13.Unit);
 
-            var quantity14 = Mass.From(1, MassUnit.Microgram);
-            AssertEx.EqualTolerance(1, quantity14.Micrograms, MicrogramsTolerance);
-            Assert.Equal(MassUnit.Microgram, quantity14.Unit);
+            var quantity14 = Mass.From(1, MassUnit.MetricTon);
+            AssertEx.EqualTolerance(1, quantity14.MetricTons, MetricTonsTolerance);
+            Assert.Equal(MassUnit.MetricTon, quantity14.Unit);
 
-            var quantity15 = Mass.From(1, MassUnit.Milligram);
-            AssertEx.EqualTolerance(1, quantity15.Milligrams, MilligramsTolerance);
-            Assert.Equal(MassUnit.Milligram, quantity15.Unit);
+            var quantity15 = Mass.From(1, MassUnit.Microgram);
+            AssertEx.EqualTolerance(1, quantity15.Micrograms, MicrogramsTolerance);
+            Assert.Equal(MassUnit.Microgram, quantity15.Unit);
 
-            var quantity16 = Mass.From(1, MassUnit.Nanogram);
-            AssertEx.EqualTolerance(1, quantity16.Nanograms, NanogramsTolerance);
-            Assert.Equal(MassUnit.Nanogram, quantity16.Unit);
+            var quantity16 = Mass.From(1, MassUnit.Milligram);
+            AssertEx.EqualTolerance(1, quantity16.Milligrams, MilligramsTolerance);
+            Assert.Equal(MassUnit.Milligram, quantity16.Unit);
 
-            var quantity17 = Mass.From(1, MassUnit.Ounce);
-            AssertEx.EqualTolerance(1, quantity17.Ounces, OuncesTolerance);
-            Assert.Equal(MassUnit.Ounce, quantity17.Unit);
+            var quantity17 = Mass.From(1, MassUnit.Nanogram);
+            AssertEx.EqualTolerance(1, quantity17.Nanograms, NanogramsTolerance);
+            Assert.Equal(MassUnit.Nanogram, quantity17.Unit);
 
-            var quantity18 = Mass.From(1, MassUnit.Pound);
-            AssertEx.EqualTolerance(1, quantity18.Pounds, PoundsTolerance);
-            Assert.Equal(MassUnit.Pound, quantity18.Unit);
+            var quantity18 = Mass.From(1, MassUnit.Ounce);
+            AssertEx.EqualTolerance(1, quantity18.Ounces, OuncesTolerance);
+            Assert.Equal(MassUnit.Ounce, quantity18.Unit);
 
-            var quantity19 = Mass.From(1, MassUnit.ShortHundredweight);
-            AssertEx.EqualTolerance(1, quantity19.ShortHundredweight, ShortHundredweightTolerance);
-            Assert.Equal(MassUnit.ShortHundredweight, quantity19.Unit);
+            var quantity19 = Mass.From(1, MassUnit.Pound);
+            AssertEx.EqualTolerance(1, quantity19.Pounds, PoundsTolerance);
+            Assert.Equal(MassUnit.Pound, quantity19.Unit);
 
-            var quantity20 = Mass.From(1, MassUnit.ShortTon);
-            AssertEx.EqualTolerance(1, quantity20.ShortTons, ShortTonsTolerance);
-            Assert.Equal(MassUnit.ShortTon, quantity20.Unit);
+            var quantity20 = Mass.From(1, MassUnit.ShortHundredweight);
+            AssertEx.EqualTolerance(1, quantity20.ShortHundredweight, ShortHundredweightTolerance);
+            Assert.Equal(MassUnit.ShortHundredweight, quantity20.Unit);
 
-            var quantity21 = Mass.From(1, MassUnit.Slug);
-            AssertEx.EqualTolerance(1, quantity21.Slugs, SlugsTolerance);
-            Assert.Equal(MassUnit.Slug, quantity21.Unit);
+            var quantity21 = Mass.From(1, MassUnit.ShortTon);
+            AssertEx.EqualTolerance(1, quantity21.ShortTons, ShortTonsTolerance);
+            Assert.Equal(MassUnit.ShortTon, quantity21.Unit);
 
-            var quantity22 = Mass.From(1, MassUnit.SolarMass);
-            AssertEx.EqualTolerance(1, quantity22.SolarMasses, SolarMassesTolerance);
-            Assert.Equal(MassUnit.SolarMass, quantity22.Unit);
+            var quantity22 = Mass.From(1, MassUnit.Slug);
+            AssertEx.EqualTolerance(1, quantity22.Slugs, SlugsTolerance);
+            Assert.Equal(MassUnit.Slug, quantity22.Unit);
 
-            var quantity23 = Mass.From(1, MassUnit.Stone);
-            AssertEx.EqualTolerance(1, quantity23.Stone, StoneTolerance);
-            Assert.Equal(MassUnit.Stone, quantity23.Unit);
+            var quantity23 = Mass.From(1, MassUnit.SolarMass);
+            AssertEx.EqualTolerance(1, quantity23.SolarMasses, SolarMassesTolerance);
+            Assert.Equal(MassUnit.SolarMass, quantity23.Unit);
 
-            var quantity24 = Mass.From(1, MassUnit.Tonne);
-            AssertEx.EqualTolerance(1, quantity24.Tonnes, TonnesTolerance);
-            Assert.Equal(MassUnit.Tonne, quantity24.Unit);
+            var quantity24 = Mass.From(1, MassUnit.Stone);
+            AssertEx.EqualTolerance(1, quantity24.Stone, StoneTolerance);
+            Assert.Equal(MassUnit.Stone, quantity24.Unit);
+
+            var quantity25 = Mass.From(1, MassUnit.Tonne);
+            AssertEx.EqualTolerance(1, quantity25.Tonnes, TonnesTolerance);
+            Assert.Equal(MassUnit.Tonne, quantity25.Unit);
+
+            var quantity26 = Mass.From(1, MassUnit.UkTonne);
+            AssertEx.EqualTolerance(1, quantity26.UkTonnes, UkTonnesTolerance);
+            Assert.Equal(MassUnit.UkTonne, quantity26.Unit);
+
+            var quantity27 = Mass.From(1, MassUnit.UsTonne);
+            AssertEx.EqualTolerance(1, quantity27.UsTonnes, UsTonnesTolerance);
+            Assert.Equal(MassUnit.UsTonne, quantity27.Unit);
 
         }
 
@@ -326,6 +347,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(LongTonsInOneKilogram, kilogram.As(MassUnit.LongTon), LongTonsTolerance);
             AssertEx.EqualTolerance(MegapoundsInOneKilogram, kilogram.As(MassUnit.Megapound), MegapoundsTolerance);
             AssertEx.EqualTolerance(MegatonnesInOneKilogram, kilogram.As(MassUnit.Megatonne), MegatonnesTolerance);
+            AssertEx.EqualTolerance(MetricTonsInOneKilogram, kilogram.As(MassUnit.MetricTon), MetricTonsTolerance);
             AssertEx.EqualTolerance(MicrogramsInOneKilogram, kilogram.As(MassUnit.Microgram), MicrogramsTolerance);
             AssertEx.EqualTolerance(MilligramsInOneKilogram, kilogram.As(MassUnit.Milligram), MilligramsTolerance);
             AssertEx.EqualTolerance(NanogramsInOneKilogram, kilogram.As(MassUnit.Nanogram), NanogramsTolerance);
@@ -337,6 +359,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(SolarMassesInOneKilogram, kilogram.As(MassUnit.SolarMass), SolarMassesTolerance);
             AssertEx.EqualTolerance(StoneInOneKilogram, kilogram.As(MassUnit.Stone), StoneTolerance);
             AssertEx.EqualTolerance(TonnesInOneKilogram, kilogram.As(MassUnit.Tonne), TonnesTolerance);
+            AssertEx.EqualTolerance(UkTonnesInOneKilogram, kilogram.As(MassUnit.UkTonne), UkTonnesTolerance);
+            AssertEx.EqualTolerance(UsTonnesInOneKilogram, kilogram.As(MassUnit.UsTonne), UsTonnesTolerance);
         }
 
         [Fact]
@@ -417,6 +441,10 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MegatonnesInOneKilogram, (double)megatonneQuantity.Value, MegatonnesTolerance);
             Assert.Equal(MassUnit.Megatonne, megatonneQuantity.Unit);
 
+            var metrictonQuantity = kilogram.ToUnit(MassUnit.MetricTon);
+            AssertEx.EqualTolerance(MetricTonsInOneKilogram, (double)metrictonQuantity.Value, MetricTonsTolerance);
+            Assert.Equal(MassUnit.MetricTon, metrictonQuantity.Unit);
+
             var microgramQuantity = kilogram.ToUnit(MassUnit.Microgram);
             AssertEx.EqualTolerance(MicrogramsInOneKilogram, (double)microgramQuantity.Value, MicrogramsTolerance);
             Assert.Equal(MassUnit.Microgram, microgramQuantity.Unit);
@@ -460,6 +488,14 @@ namespace UnitsNet.Tests
             var tonneQuantity = kilogram.ToUnit(MassUnit.Tonne);
             AssertEx.EqualTolerance(TonnesInOneKilogram, (double)tonneQuantity.Value, TonnesTolerance);
             Assert.Equal(MassUnit.Tonne, tonneQuantity.Unit);
+
+            var uktonneQuantity = kilogram.ToUnit(MassUnit.UkTonne);
+            AssertEx.EqualTolerance(UkTonnesInOneKilogram, (double)uktonneQuantity.Value, UkTonnesTolerance);
+            Assert.Equal(MassUnit.UkTonne, uktonneQuantity.Unit);
+
+            var ustonneQuantity = kilogram.ToUnit(MassUnit.UsTonne);
+            AssertEx.EqualTolerance(UsTonnesInOneKilogram, (double)ustonneQuantity.Value, UsTonnesTolerance);
+            Assert.Equal(MassUnit.UsTonne, ustonneQuantity.Unit);
         }
 
         [Fact]
@@ -487,6 +523,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Mass.FromLongTons(kilogram.LongTons).Kilograms, LongTonsTolerance);
             AssertEx.EqualTolerance(1, Mass.FromMegapounds(kilogram.Megapounds).Kilograms, MegapoundsTolerance);
             AssertEx.EqualTolerance(1, Mass.FromMegatonnes(kilogram.Megatonnes).Kilograms, MegatonnesTolerance);
+            AssertEx.EqualTolerance(1, Mass.FromMetricTons(kilogram.MetricTons).Kilograms, MetricTonsTolerance);
             AssertEx.EqualTolerance(1, Mass.FromMicrograms(kilogram.Micrograms).Kilograms, MicrogramsTolerance);
             AssertEx.EqualTolerance(1, Mass.FromMilligrams(kilogram.Milligrams).Kilograms, MilligramsTolerance);
             AssertEx.EqualTolerance(1, Mass.FromNanograms(kilogram.Nanograms).Kilograms, NanogramsTolerance);
@@ -498,6 +535,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Mass.FromSolarMasses(kilogram.SolarMasses).Kilograms, SolarMassesTolerance);
             AssertEx.EqualTolerance(1, Mass.FromStone(kilogram.Stone).Kilograms, StoneTolerance);
             AssertEx.EqualTolerance(1, Mass.FromTonnes(kilogram.Tonnes).Kilograms, TonnesTolerance);
+            AssertEx.EqualTolerance(1, Mass.FromUkTonnes(kilogram.UkTonnes).Kilograms, UkTonnesTolerance);
+            AssertEx.EqualTolerance(1, Mass.FromUsTonnes(kilogram.UsTonnes).Kilograms, UsTonnesTolerance);
         }
 
         [Fact]
@@ -668,6 +707,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 long tn", new Mass(1, MassUnit.LongTon).ToString());
                 Assert.Equal("1 Mlb", new Mass(1, MassUnit.Megapound).ToString());
                 Assert.Equal("1 Mt", new Mass(1, MassUnit.Megatonne).ToString());
+                Assert.Equal("1 ton", new Mass(1, MassUnit.MetricTon).ToString());
                 Assert.Equal("1 µg", new Mass(1, MassUnit.Microgram).ToString());
                 Assert.Equal("1 mg", new Mass(1, MassUnit.Milligram).ToString());
                 Assert.Equal("1 ng", new Mass(1, MassUnit.Nanogram).ToString());
@@ -679,6 +719,8 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 M⊙", new Mass(1, MassUnit.SolarMass).ToString());
                 Assert.Equal("1 st", new Mass(1, MassUnit.Stone).ToString());
                 Assert.Equal("1 t", new Mass(1, MassUnit.Tonne).ToString());
+                Assert.Equal("1 long-ton", new Mass(1, MassUnit.UkTonne).ToString());
+                Assert.Equal("1 USton", new Mass(1, MassUnit.UsTonne).ToString());
             }
             finally
             {
@@ -706,6 +748,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 long tn", new Mass(1, MassUnit.LongTon).ToString(swedishCulture));
             Assert.Equal("1 Mlb", new Mass(1, MassUnit.Megapound).ToString(swedishCulture));
             Assert.Equal("1 Mt", new Mass(1, MassUnit.Megatonne).ToString(swedishCulture));
+            Assert.Equal("1 ton", new Mass(1, MassUnit.MetricTon).ToString(swedishCulture));
             Assert.Equal("1 µg", new Mass(1, MassUnit.Microgram).ToString(swedishCulture));
             Assert.Equal("1 mg", new Mass(1, MassUnit.Milligram).ToString(swedishCulture));
             Assert.Equal("1 ng", new Mass(1, MassUnit.Nanogram).ToString(swedishCulture));
@@ -717,6 +760,8 @@ namespace UnitsNet.Tests
             Assert.Equal("1 M⊙", new Mass(1, MassUnit.SolarMass).ToString(swedishCulture));
             Assert.Equal("1 st", new Mass(1, MassUnit.Stone).ToString(swedishCulture));
             Assert.Equal("1 t", new Mass(1, MassUnit.Tonne).ToString(swedishCulture));
+            Assert.Equal("1 long-ton", new Mass(1, MassUnit.UkTonne).ToString(swedishCulture));
+            Assert.Equal("1 USton", new Mass(1, MassUnit.UsTonne).ToString(swedishCulture));
         }
 
         [Fact]

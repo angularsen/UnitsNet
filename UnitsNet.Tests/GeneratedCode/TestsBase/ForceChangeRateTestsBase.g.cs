@@ -37,17 +37,17 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ForceChangeRateTestsBase : QuantityTestsBase
     {
-        protected abstract double CentinewtonsPerSecondInOneNewtonPerSecond { get; }
-        protected abstract double DecanewtonsPerMinuteInOneNewtonPerSecond { get; }
-        protected abstract double DecanewtonsPerSecondInOneNewtonPerSecond { get; }
-        protected abstract double DecinewtonsPerSecondInOneNewtonPerSecond { get; }
-        protected abstract double KilonewtonsPerMinuteInOneNewtonPerSecond { get; }
-        protected abstract double KilonewtonsPerSecondInOneNewtonPerSecond { get; }
-        protected abstract double MicronewtonsPerSecondInOneNewtonPerSecond { get; }
-        protected abstract double MillinewtonsPerSecondInOneNewtonPerSecond { get; }
-        protected abstract double NanonewtonsPerSecondInOneNewtonPerSecond { get; }
-        protected abstract double NewtonsPerMinuteInOneNewtonPerSecond { get; }
-        protected abstract double NewtonsPerSecondInOneNewtonPerSecond { get; }
+        protected virtual double CentinewtonsPerSecondInOneNewtonPerSecond { get; }
+        protected virtual double DecanewtonsPerMinuteInOneNewtonPerSecond { get; }
+        protected virtual double DecanewtonsPerSecondInOneNewtonPerSecond { get; }
+        protected virtual double DecinewtonsPerSecondInOneNewtonPerSecond { get; }
+        protected virtual double KilonewtonsPerMinuteInOneNewtonPerSecond { get; }
+        protected virtual double KilonewtonsPerSecondInOneNewtonPerSecond { get; }
+        protected virtual double MicronewtonsPerSecondInOneNewtonPerSecond { get; }
+        protected virtual double MillinewtonsPerSecondInOneNewtonPerSecond { get; }
+        protected virtual double NanonewtonsPerSecondInOneNewtonPerSecond { get; }
+        protected virtual double NewtonsPerMinuteInOneNewtonPerSecond { get; }
+        protected virtual double NewtonsPerSecondInOneNewtonPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CentinewtonsPerSecondTolerance { get { return 1e-5; } }

@@ -20,15 +20,38 @@
       },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Micro", "Milli", "Kilo", "Mega" ],
+      "Prefixes": [
+        "Micro",
+        "Milli",
+        "Kilo",
+        "Mega"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "V" ]
+          "Abbreviations": [
+            "V"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "В" ]
+          "Abbreviations": [
+            "В"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Nanovolt",
+      "PluralName": "Nanovolts",
+      "FromUnitToBaseFunc": "x * 1E-09",
+      "FromBaseToUnitFunc": "x / 1E-09",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "nV"
+          ]
         }
       ]
     }

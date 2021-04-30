@@ -160,5 +160,13 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
         public static MassFlow TonnesPerHour<T>(this T value) =>
             MassFlow.FromTonnesPerHour(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="MassFlow.FromUkTonnesPerDay(UnitsNet.QuantityValue)" />
+        public static MassFlow UkTonnesPerDay<T>(this T value) =>
+            MassFlow.FromUkTonnesPerDay(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MassFlow.FromUsTonnesPerDay(UnitsNet.QuantityValue)" />
+        public static MassFlow UsTonnesPerDay<T>(this T value) =>
+            MassFlow.FromUsTonnesPerDay(Convert.ToDouble(value));
+
     }
 }

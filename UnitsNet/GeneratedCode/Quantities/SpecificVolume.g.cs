@@ -17,19 +17,20 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Globalization;
-using System.Linq;
-using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
-
 #nullable enable
 
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using JetBrains.Annotations;
+    using UnitsNet.InternalHelpers;
+    using UnitsNet.Units;
+    
+
     /// <inheritdoc />
     /// <summary>
     ///     In thermodynamics, the specific volume of a substance is the ratio of the substance's volume to its mass. It is the reciprocal of density and an intrinsic property of matter as well.
@@ -52,9 +53,13 @@ namespace UnitsNet
 
             Info = new QuantityInfo<SpecificVolumeUnit>("SpecificVolume",
                 new UnitInfo<SpecificVolumeUnit>[] {
+                    new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.CubicCentimeterPerGram, BaseUnits.Undefined),
                     new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.CubicFootPerPound, BaseUnits.Undefined),
                     new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.CubicMeterPerKilogram, BaseUnits.Undefined),
+                    new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.CubicMeterPerTonne, BaseUnits.Undefined),
                     new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.MillicubicMeterPerKilogram, BaseUnits.Undefined),
+                    new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.StandardCubicFootPerLongTonne, BaseUnits.Undefined),
+                    new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.StandardCubicFootPerTonne, BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.SpecificVolume);
         }
@@ -171,6 +176,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get SpecificVolume in CubicCentimetersPerGram.
+        /// </summary>
+        public double CubicCentimetersPerGram => As(SpecificVolumeUnit.CubicCentimeterPerGram);
+
+        /// <summary>
         ///     Get SpecificVolume in CubicFeetPerPound.
         /// </summary>
         public double CubicFeetPerPound => As(SpecificVolumeUnit.CubicFootPerPound);
@@ -181,9 +191,24 @@ namespace UnitsNet
         public double CubicMetersPerKilogram => As(SpecificVolumeUnit.CubicMeterPerKilogram);
 
         /// <summary>
+        ///     Get SpecificVolume in CubicMetersPerTonne.
+        /// </summary>
+        public double CubicMetersPerTonne => As(SpecificVolumeUnit.CubicMeterPerTonne);
+
+        /// <summary>
         ///     Get SpecificVolume in MillicubicMetersPerKilogram.
         /// </summary>
         public double MillicubicMetersPerKilogram => As(SpecificVolumeUnit.MillicubicMeterPerKilogram);
+
+        /// <summary>
+        ///     Get SpecificVolume in StandardCubicFeetPerLongTonne.
+        /// </summary>
+        public double StandardCubicFeetPerLongTonne => As(SpecificVolumeUnit.StandardCubicFootPerLongTonne);
+
+        /// <summary>
+        ///     Get SpecificVolume in StandardCubicFeetPerTonne.
+        /// </summary>
+        public double StandardCubicFeetPerTonne => As(SpecificVolumeUnit.StandardCubicFootPerTonne);
 
         #endregion
 
@@ -215,6 +240,15 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
+        ///     Get SpecificVolume from CubicCentimetersPerGram.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificVolume FromCubicCentimetersPerGram(QuantityValue cubiccentimeterspergram)
+        {
+            double value = (double) cubiccentimeterspergram;
+            return new SpecificVolume(value, SpecificVolumeUnit.CubicCentimeterPerGram);
+        }
+        /// <summary>
         ///     Get SpecificVolume from CubicFeetPerPound.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -233,6 +267,15 @@ namespace UnitsNet
             return new SpecificVolume(value, SpecificVolumeUnit.CubicMeterPerKilogram);
         }
         /// <summary>
+        ///     Get SpecificVolume from CubicMetersPerTonne.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificVolume FromCubicMetersPerTonne(QuantityValue cubicmeterspertonne)
+        {
+            double value = (double) cubicmeterspertonne;
+            return new SpecificVolume(value, SpecificVolumeUnit.CubicMeterPerTonne);
+        }
+        /// <summary>
         ///     Get SpecificVolume from MillicubicMetersPerKilogram.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -240,6 +283,24 @@ namespace UnitsNet
         {
             double value = (double) millicubicmetersperkilogram;
             return new SpecificVolume(value, SpecificVolumeUnit.MillicubicMeterPerKilogram);
+        }
+        /// <summary>
+        ///     Get SpecificVolume from StandardCubicFeetPerLongTonne.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificVolume FromStandardCubicFeetPerLongTonne(QuantityValue standardcubicfeetperlongtonne)
+        {
+            double value = (double) standardcubicfeetperlongtonne;
+            return new SpecificVolume(value, SpecificVolumeUnit.StandardCubicFootPerLongTonne);
+        }
+        /// <summary>
+        ///     Get SpecificVolume from StandardCubicFeetPerTonne.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificVolume FromStandardCubicFeetPerTonne(QuantityValue standardcubicfeetpertonne)
+        {
+            double value = (double) standardcubicfeetpertonne;
+            return new SpecificVolume(value, SpecificVolumeUnit.StandardCubicFootPerTonne);
         }
 
         /// <summary>
@@ -670,9 +731,13 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case SpecificVolumeUnit.CubicCentimeterPerGram: return _value * 1E-06 / 0.001;
                 case SpecificVolumeUnit.CubicFootPerPound: return _value/16.01846353;
                 case SpecificVolumeUnit.CubicMeterPerKilogram: return _value;
+                case SpecificVolumeUnit.CubicMeterPerTonne: return _value / 1000;
                 case SpecificVolumeUnit.MillicubicMeterPerKilogram: return (_value) * 1e-3d;
+                case SpecificVolumeUnit.StandardCubicFootPerLongTonne: return _value * 0.028316846592 / 1016.0469088;
+                case SpecificVolumeUnit.StandardCubicFootPerTonne: return _value * 0.028316846592 / 1000;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -698,9 +763,13 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case SpecificVolumeUnit.CubicCentimeterPerGram: return baseUnitValue / 1E-06 * 0.001;
                 case SpecificVolumeUnit.CubicFootPerPound: return baseUnitValue*16.01846353;
                 case SpecificVolumeUnit.CubicMeterPerKilogram: return baseUnitValue;
+                case SpecificVolumeUnit.CubicMeterPerTonne: return baseUnitValue * 1000;
                 case SpecificVolumeUnit.MillicubicMeterPerKilogram: return (baseUnitValue) / 1e-3d;
+                case SpecificVolumeUnit.StandardCubicFootPerLongTonne: return baseUnitValue / 0.028316846592 * 1016.0469088;
+                case SpecificVolumeUnit.StandardCubicFootPerTonne: return baseUnitValue / 0.028316846592 * 1000;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

@@ -37,7 +37,7 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ElectricFieldTestsBase : QuantityTestsBase
     {
-        protected abstract double VoltsPerMeterInOneVoltPerMeter { get; }
+        protected virtual double VoltsPerMeterInOneVoltPerMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double VoltsPerMeterTolerance { get { return 1e-5; } }

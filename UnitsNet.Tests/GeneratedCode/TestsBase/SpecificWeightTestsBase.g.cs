@@ -37,23 +37,23 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class SpecificWeightTestsBase : QuantityTestsBase
     {
-        protected abstract double KilogramsForcePerCubicCentimeterInOneNewtonPerCubicMeter { get; }
-        protected abstract double KilogramsForcePerCubicMeterInOneNewtonPerCubicMeter { get; }
-        protected abstract double KilogramsForcePerCubicMillimeterInOneNewtonPerCubicMeter { get; }
-        protected abstract double KilonewtonsPerCubicCentimeterInOneNewtonPerCubicMeter { get; }
-        protected abstract double KilonewtonsPerCubicMeterInOneNewtonPerCubicMeter { get; }
-        protected abstract double KilonewtonsPerCubicMillimeterInOneNewtonPerCubicMeter { get; }
-        protected abstract double KilopoundsForcePerCubicFootInOneNewtonPerCubicMeter { get; }
-        protected abstract double KilopoundsForcePerCubicInchInOneNewtonPerCubicMeter { get; }
-        protected abstract double MeganewtonsPerCubicMeterInOneNewtonPerCubicMeter { get; }
-        protected abstract double NewtonsPerCubicCentimeterInOneNewtonPerCubicMeter { get; }
-        protected abstract double NewtonsPerCubicMeterInOneNewtonPerCubicMeter { get; }
-        protected abstract double NewtonsPerCubicMillimeterInOneNewtonPerCubicMeter { get; }
-        protected abstract double PoundsForcePerCubicFootInOneNewtonPerCubicMeter { get; }
-        protected abstract double PoundsForcePerCubicInchInOneNewtonPerCubicMeter { get; }
-        protected abstract double TonnesForcePerCubicCentimeterInOneNewtonPerCubicMeter { get; }
-        protected abstract double TonnesForcePerCubicMeterInOneNewtonPerCubicMeter { get; }
-        protected abstract double TonnesForcePerCubicMillimeterInOneNewtonPerCubicMeter { get; }
+        protected virtual double KilogramsForcePerCubicCentimeterInOneNewtonPerCubicMeter { get; }
+        protected virtual double KilogramsForcePerCubicMeterInOneNewtonPerCubicMeter { get; }
+        protected virtual double KilogramsForcePerCubicMillimeterInOneNewtonPerCubicMeter { get; }
+        protected virtual double KilonewtonsPerCubicCentimeterInOneNewtonPerCubicMeter { get; }
+        protected virtual double KilonewtonsPerCubicMeterInOneNewtonPerCubicMeter { get; }
+        protected virtual double KilonewtonsPerCubicMillimeterInOneNewtonPerCubicMeter { get; }
+        protected virtual double KilopoundsForcePerCubicFootInOneNewtonPerCubicMeter { get; }
+        protected virtual double KilopoundsForcePerCubicInchInOneNewtonPerCubicMeter { get; }
+        protected virtual double MeganewtonsPerCubicMeterInOneNewtonPerCubicMeter { get; }
+        protected virtual double NewtonsPerCubicCentimeterInOneNewtonPerCubicMeter { get; }
+        protected virtual double NewtonsPerCubicMeterInOneNewtonPerCubicMeter { get; }
+        protected virtual double NewtonsPerCubicMillimeterInOneNewtonPerCubicMeter { get; }
+        protected virtual double PoundsForcePerCubicFootInOneNewtonPerCubicMeter { get; }
+        protected virtual double PoundsForcePerCubicInchInOneNewtonPerCubicMeter { get; }
+        protected virtual double TonnesForcePerCubicCentimeterInOneNewtonPerCubicMeter { get; }
+        protected virtual double TonnesForcePerCubicMeterInOneNewtonPerCubicMeter { get; }
+        protected virtual double TonnesForcePerCubicMillimeterInOneNewtonPerCubicMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double KilogramsForcePerCubicCentimeterTolerance { get { return 1e-5; } }

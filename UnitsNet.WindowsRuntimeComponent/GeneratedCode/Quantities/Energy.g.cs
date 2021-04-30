@@ -161,9 +161,24 @@ namespace UnitsNet
         public double BritishThermalUnits => As(EnergyUnit.BritishThermalUnit);
 
         /// <summary>
+        ///     Get Energy in BritishThermalUnitThermochemicals.
+        /// </summary>
+        public double BritishThermalUnitThermochemicals => As(EnergyUnit.BritishThermalUnitThermochemical);
+
+        /// <summary>
         ///     Get Energy in Calories.
         /// </summary>
         public double Calories => As(EnergyUnit.Calorie);
+
+        /// <summary>
+        ///     Get Energy in CalorieThermochemicals.
+        /// </summary>
+        public double CalorieThermochemicals => As(EnergyUnit.CalorieThermochemical);
+
+        /// <summary>
+        ///     Get Energy in DecanewtonMeters.
+        /// </summary>
+        public double DecanewtonMeters => As(EnergyUnit.DecanewtonMeter);
 
         /// <summary>
         ///     Get Energy in DecathermsEc.
@@ -241,6 +256,16 @@ namespace UnitsNet
         public double Kilocalories => As(EnergyUnit.Kilocalorie);
 
         /// <summary>
+        ///     Get Energy in KilocalorieThermochemicals.
+        /// </summary>
+        public double KilocalorieThermochemicals => As(EnergyUnit.KilocalorieThermochemical);
+
+        /// <summary>
+        ///     Get Energy in KilodecanewtonMeters.
+        /// </summary>
+        public double KilodecanewtonMeters => As(EnergyUnit.KilodecanewtonMeter);
+
+        /// <summary>
         ///     Get Energy in KiloelectronVolts.
         /// </summary>
         public double KiloelectronVolts => As(EnergyUnit.KiloelectronVolt);
@@ -249,6 +274,16 @@ namespace UnitsNet
         ///     Get Energy in Kilojoules.
         /// </summary>
         public double Kilojoules => As(EnergyUnit.Kilojoule);
+
+        /// <summary>
+        ///     Get Energy in KilonewtonMeters.
+        /// </summary>
+        public double KilonewtonMeters => As(EnergyUnit.KilonewtonMeter);
+
+        /// <summary>
+        ///     Get Energy in KilopoundForceFeet.
+        /// </summary>
+        public double KilopoundForceFeet => As(EnergyUnit.KilopoundForceFoot);
 
         /// <summary>
         ///     Get Energy in KilowattDays.
@@ -294,6 +329,16 @@ namespace UnitsNet
         ///     Get Energy in Millijoules.
         /// </summary>
         public double Millijoules => As(EnergyUnit.Millijoule);
+
+        /// <summary>
+        ///     Get Energy in NewtonMeters.
+        /// </summary>
+        public double NewtonMeters => As(EnergyUnit.NewtonMeter);
+
+        /// <summary>
+        ///     Get Energy in PoundForceFeet.
+        /// </summary>
+        public double PoundForceFeet => As(EnergyUnit.PoundForceFoot);
 
         /// <summary>
         ///     Get Energy in TeraelectronVolts.
@@ -376,6 +421,16 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.BritishThermalUnit);
         }
         /// <summary>
+        ///     Get Energy from BritishThermalUnitThermochemicals.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromBritishThermalUnitThermochemicals(double britishthermalunitthermochemicals)
+        {
+            double value = (double) britishthermalunitthermochemicals;
+            return new Energy(value, EnergyUnit.BritishThermalUnitThermochemical);
+        }
+        /// <summary>
         ///     Get Energy from Calories.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -384,6 +439,26 @@ namespace UnitsNet
         {
             double value = (double) calories;
             return new Energy(value, EnergyUnit.Calorie);
+        }
+        /// <summary>
+        ///     Get Energy from CalorieThermochemicals.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromCalorieThermochemicals(double caloriethermochemicals)
+        {
+            double value = (double) caloriethermochemicals;
+            return new Energy(value, EnergyUnit.CalorieThermochemical);
+        }
+        /// <summary>
+        ///     Get Energy from DecanewtonMeters.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromDecanewtonMeters(double decanewtonmeters)
+        {
+            double value = (double) decanewtonmeters;
+            return new Energy(value, EnergyUnit.DecanewtonMeter);
         }
         /// <summary>
         ///     Get Energy from DecathermsEc.
@@ -536,6 +611,26 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.Kilocalorie);
         }
         /// <summary>
+        ///     Get Energy from KilocalorieThermochemicals.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromKilocalorieThermochemicals(double kilocaloriethermochemicals)
+        {
+            double value = (double) kilocaloriethermochemicals;
+            return new Energy(value, EnergyUnit.KilocalorieThermochemical);
+        }
+        /// <summary>
+        ///     Get Energy from KilodecanewtonMeters.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromKilodecanewtonMeters(double kilodecanewtonmeters)
+        {
+            double value = (double) kilodecanewtonmeters;
+            return new Energy(value, EnergyUnit.KilodecanewtonMeter);
+        }
+        /// <summary>
         ///     Get Energy from KiloelectronVolts.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -554,6 +649,26 @@ namespace UnitsNet
         {
             double value = (double) kilojoules;
             return new Energy(value, EnergyUnit.Kilojoule);
+        }
+        /// <summary>
+        ///     Get Energy from KilonewtonMeters.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromKilonewtonMeters(double kilonewtonmeters)
+        {
+            double value = (double) kilonewtonmeters;
+            return new Energy(value, EnergyUnit.KilonewtonMeter);
+        }
+        /// <summary>
+        ///     Get Energy from KilopoundForceFeet.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromKilopoundForceFeet(double kilopoundforcefeet)
+        {
+            double value = (double) kilopoundforcefeet;
+            return new Energy(value, EnergyUnit.KilopoundForceFoot);
         }
         /// <summary>
         ///     Get Energy from KilowattDays.
@@ -644,6 +759,26 @@ namespace UnitsNet
         {
             double value = (double) millijoules;
             return new Energy(value, EnergyUnit.Millijoule);
+        }
+        /// <summary>
+        ///     Get Energy from NewtonMeters.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromNewtonMeters(double newtonmeters)
+        {
+            double value = (double) newtonmeters;
+            return new Energy(value, EnergyUnit.NewtonMeter);
+        }
+        /// <summary>
+        ///     Get Energy from PoundForceFeet.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromPoundForceFeet(double poundforcefeet)
+        {
+            double value = (double) poundforcefeet;
+            return new Energy(value, EnergyUnit.PoundForceFoot);
         }
         /// <summary>
         ///     Get Energy from TeraelectronVolts.
@@ -1017,7 +1152,10 @@ namespace UnitsNet
             switch(Unit)
             {
                 case EnergyUnit.BritishThermalUnit: return _value*1055.05585262;
+                case EnergyUnit.BritishThermalUnitThermochemical: return _value * 1054.35026444;
                 case EnergyUnit.Calorie: return _value*4.184;
+                case EnergyUnit.CalorieThermochemical: return _value * 4.184;
+                case EnergyUnit.DecanewtonMeter: return _value * 10;
                 case EnergyUnit.DecathermEc: return (_value*1.05505585262e8) * 1e1d;
                 case EnergyUnit.DecathermImperial: return (_value*1.05505585257348e8) * 1e1d;
                 case EnergyUnit.DecathermUs: return (_value*1.054804e8) * 1e1d;
@@ -1033,8 +1171,12 @@ namespace UnitsNet
                 case EnergyUnit.Joule: return _value;
                 case EnergyUnit.KilobritishThermalUnit: return (_value*1055.05585262) * 1e3d;
                 case EnergyUnit.Kilocalorie: return (_value*4.184) * 1e3d;
+                case EnergyUnit.KilocalorieThermochemical: return _value * 4184;
+                case EnergyUnit.KilodecanewtonMeter: return _value * 10000;
                 case EnergyUnit.KiloelectronVolt: return (_value*1.602176565e-19) * 1e3d;
                 case EnergyUnit.Kilojoule: return (_value) * 1e3d;
+                case EnergyUnit.KilonewtonMeter: return _value * 1000;
+                case EnergyUnit.KilopoundForceFoot: return _value * 1355.8179483314;
                 case EnergyUnit.KilowattDay: return (_value*24*3600d) * 1e3d;
                 case EnergyUnit.KilowattHour: return (_value*3600d) * 1e3d;
                 case EnergyUnit.MegabritishThermalUnit: return (_value*1055.05585262) * 1e6d;
@@ -1044,6 +1186,8 @@ namespace UnitsNet
                 case EnergyUnit.MegawattDay: return (_value*24*3600d) * 1e6d;
                 case EnergyUnit.MegawattHour: return (_value*3600d) * 1e6d;
                 case EnergyUnit.Millijoule: return (_value) * 1e-3d;
+                case EnergyUnit.NewtonMeter: return _value;
+                case EnergyUnit.PoundForceFoot: return _value * 1.3558179483314;
                 case EnergyUnit.TeraelectronVolt: return (_value*1.602176565e-19) * 1e12d;
                 case EnergyUnit.TerawattDay: return (_value*24*3600d) * 1e12d;
                 case EnergyUnit.TerawattHour: return (_value*3600d) * 1e12d;
@@ -1067,7 +1211,10 @@ namespace UnitsNet
             switch(unit)
             {
                 case EnergyUnit.BritishThermalUnit: return baseUnitValue/1055.05585262;
+                case EnergyUnit.BritishThermalUnitThermochemical: return baseUnitValue / 1054.35026444;
                 case EnergyUnit.Calorie: return baseUnitValue/4.184;
+                case EnergyUnit.CalorieThermochemical: return baseUnitValue / 4.184;
+                case EnergyUnit.DecanewtonMeter: return baseUnitValue / 10;
                 case EnergyUnit.DecathermEc: return (baseUnitValue/1.05505585262e8) / 1e1d;
                 case EnergyUnit.DecathermImperial: return (baseUnitValue/1.05505585257348e8) / 1e1d;
                 case EnergyUnit.DecathermUs: return (baseUnitValue/1.054804e8) / 1e1d;
@@ -1083,8 +1230,12 @@ namespace UnitsNet
                 case EnergyUnit.Joule: return baseUnitValue;
                 case EnergyUnit.KilobritishThermalUnit: return (baseUnitValue/1055.05585262) / 1e3d;
                 case EnergyUnit.Kilocalorie: return (baseUnitValue/4.184) / 1e3d;
+                case EnergyUnit.KilocalorieThermochemical: return baseUnitValue / 4184;
+                case EnergyUnit.KilodecanewtonMeter: return baseUnitValue / 10000;
                 case EnergyUnit.KiloelectronVolt: return (baseUnitValue/1.602176565e-19) / 1e3d;
                 case EnergyUnit.Kilojoule: return (baseUnitValue) / 1e3d;
+                case EnergyUnit.KilonewtonMeter: return baseUnitValue / 1000;
+                case EnergyUnit.KilopoundForceFoot: return baseUnitValue / 1355.8179483314;
                 case EnergyUnit.KilowattDay: return (baseUnitValue/(24*3600d)) / 1e3d;
                 case EnergyUnit.KilowattHour: return (baseUnitValue/3600d) / 1e3d;
                 case EnergyUnit.MegabritishThermalUnit: return (baseUnitValue/1055.05585262) / 1e6d;
@@ -1094,6 +1245,8 @@ namespace UnitsNet
                 case EnergyUnit.MegawattDay: return (baseUnitValue/(24*3600d)) / 1e6d;
                 case EnergyUnit.MegawattHour: return (baseUnitValue/3600d) / 1e6d;
                 case EnergyUnit.Millijoule: return (baseUnitValue) / 1e-3d;
+                case EnergyUnit.NewtonMeter: return baseUnitValue;
+                case EnergyUnit.PoundForceFoot: return baseUnitValue / 1.3558179483314;
                 case EnergyUnit.TeraelectronVolt: return (baseUnitValue/1.602176565e-19) / 1e12d;
                 case EnergyUnit.TerawattDay: return (baseUnitValue/(24*3600d)) / 1e12d;
                 case EnergyUnit.TerawattHour: return (baseUnitValue/3600d) / 1e12d;

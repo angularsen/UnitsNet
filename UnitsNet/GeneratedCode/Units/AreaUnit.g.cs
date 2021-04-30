@@ -28,6 +28,7 @@ namespace UnitsNet.Units
         Undefined = 0,
         Acre,
         Hectare,
+        Section,
         SquareCentimeter,
         SquareDecimeter,
         SquareFoot,

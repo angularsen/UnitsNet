@@ -17,19 +17,20 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Globalization;
-using System.Linq;
-using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
-
 #nullable enable
 
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using JetBrains.Annotations;
+    using UnitsNet.InternalHelpers;
+    using UnitsNet.Units;
+    
+
     /// <inheritdoc />
     /// <summary>
     ///     In electromagnetism, permeability is the measure of the ability of a material to support the formation of a magnetic field within itself.
@@ -55,7 +56,13 @@ namespace UnitsNet
 
             Info = new QuantityInfo<PermeabilityUnit>("Permeability",
                 new UnitInfo<PermeabilityUnit>[] {
+                    new UnitInfo<PermeabilityUnit>(PermeabilityUnit.Darcy, BaseUnits.Undefined),
                     new UnitInfo<PermeabilityUnit>(PermeabilityUnit.HenryPerMeter, BaseUnits.Undefined),
+                    new UnitInfo<PermeabilityUnit>(PermeabilityUnit.Microdarcy, BaseUnits.Undefined),
+                    new UnitInfo<PermeabilityUnit>(PermeabilityUnit.Millidarcy, BaseUnits.Undefined),
+                    new UnitInfo<PermeabilityUnit>(PermeabilityUnit.Nanodarcy, BaseUnits.Undefined),
+                    new UnitInfo<PermeabilityUnit>(PermeabilityUnit.SquareMeter, BaseUnits.Undefined),
+                    new UnitInfo<PermeabilityUnit>(PermeabilityUnit.SquareMicrometer, BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Permeability);
         }
@@ -172,9 +179,39 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get Permeability in Darcies.
+        /// </summary>
+        public double Darcies => As(PermeabilityUnit.Darcy);
+
+        /// <summary>
         ///     Get Permeability in HenriesPerMeter.
         /// </summary>
         public double HenriesPerMeter => As(PermeabilityUnit.HenryPerMeter);
+
+        /// <summary>
+        ///     Get Permeability in Microdarcies.
+        /// </summary>
+        public double Microdarcies => As(PermeabilityUnit.Microdarcy);
+
+        /// <summary>
+        ///     Get Permeability in Millidarcies.
+        /// </summary>
+        public double Millidarcies => As(PermeabilityUnit.Millidarcy);
+
+        /// <summary>
+        ///     Get Permeability in Nanodarcies.
+        /// </summary>
+        public double Nanodarcies => As(PermeabilityUnit.Nanodarcy);
+
+        /// <summary>
+        ///     Get Permeability in SquareMeters.
+        /// </summary>
+        public double SquareMeters => As(PermeabilityUnit.SquareMeter);
+
+        /// <summary>
+        ///     Get Permeability in SquareMicrometers.
+        /// </summary>
+        public double SquareMicrometers => As(PermeabilityUnit.SquareMicrometer);
 
         #endregion
 
@@ -206,6 +243,15 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
+        ///     Get Permeability from Darcies.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Permeability FromDarcies(QuantityValue darcies)
+        {
+            double value = (double) darcies;
+            return new Permeability(value, PermeabilityUnit.Darcy);
+        }
+        /// <summary>
         ///     Get Permeability from HenriesPerMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -213,6 +259,51 @@ namespace UnitsNet
         {
             double value = (double) henriespermeter;
             return new Permeability(value, PermeabilityUnit.HenryPerMeter);
+        }
+        /// <summary>
+        ///     Get Permeability from Microdarcies.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Permeability FromMicrodarcies(QuantityValue microdarcies)
+        {
+            double value = (double) microdarcies;
+            return new Permeability(value, PermeabilityUnit.Microdarcy);
+        }
+        /// <summary>
+        ///     Get Permeability from Millidarcies.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Permeability FromMillidarcies(QuantityValue millidarcies)
+        {
+            double value = (double) millidarcies;
+            return new Permeability(value, PermeabilityUnit.Millidarcy);
+        }
+        /// <summary>
+        ///     Get Permeability from Nanodarcies.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Permeability FromNanodarcies(QuantityValue nanodarcies)
+        {
+            double value = (double) nanodarcies;
+            return new Permeability(value, PermeabilityUnit.Nanodarcy);
+        }
+        /// <summary>
+        ///     Get Permeability from SquareMeters.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Permeability FromSquareMeters(QuantityValue squaremeters)
+        {
+            double value = (double) squaremeters;
+            return new Permeability(value, PermeabilityUnit.SquareMeter);
+        }
+        /// <summary>
+        ///     Get Permeability from SquareMicrometers.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Permeability FromSquareMicrometers(QuantityValue squaremicrometers)
+        {
+            double value = (double) squaremicrometers;
+            return new Permeability(value, PermeabilityUnit.SquareMicrometer);
         }
 
         /// <summary>
@@ -643,7 +734,13 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case PermeabilityUnit.Darcy: return _value * 9.86923266716013E-13;
                 case PermeabilityUnit.HenryPerMeter: return _value;
+                case PermeabilityUnit.Microdarcy: return _value * 9.86923266716013E-19;
+                case PermeabilityUnit.Millidarcy: return _value * 9.86923266716013E-16;
+                case PermeabilityUnit.Nanodarcy: return _value * 9.86923266716013E-22;
+                case PermeabilityUnit.SquareMeter: return _value;
+                case PermeabilityUnit.SquareMicrometer: return _value * 1E-12;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -669,7 +766,13 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case PermeabilityUnit.Darcy: return baseUnitValue / 9.86923266716013E-13;
                 case PermeabilityUnit.HenryPerMeter: return baseUnitValue;
+                case PermeabilityUnit.Microdarcy: return baseUnitValue / 9.86923266716013E-19;
+                case PermeabilityUnit.Millidarcy: return baseUnitValue / 9.86923266716013E-16;
+                case PermeabilityUnit.Nanodarcy: return baseUnitValue / 9.86923266716013E-22;
+                case PermeabilityUnit.SquareMeter: return baseUnitValue;
+                case PermeabilityUnit.SquareMicrometer: return baseUnitValue / 1E-12;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

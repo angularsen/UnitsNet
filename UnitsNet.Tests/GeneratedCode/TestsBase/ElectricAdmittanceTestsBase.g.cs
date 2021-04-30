@@ -37,10 +37,10 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ElectricAdmittanceTestsBase : QuantityTestsBase
     {
-        protected abstract double MicrosiemensInOneSiemens { get; }
-        protected abstract double MillisiemensInOneSiemens { get; }
-        protected abstract double NanosiemensInOneSiemens { get; }
-        protected abstract double SiemensInOneSiemens { get; }
+        protected virtual double MicrosiemensInOneSiemens { get; }
+        protected virtual double MillisiemensInOneSiemens { get; }
+        protected virtual double NanosiemensInOneSiemens { get; }
+        protected virtual double SiemensInOneSiemens { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double MicrosiemensTolerance { get { return 1e-5; } }

@@ -37,9 +37,9 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ElectricCurrentDensityTestsBase : QuantityTestsBase
     {
-        protected abstract double AmperesPerSquareFootInOneAmperePerSquareMeter { get; }
-        protected abstract double AmperesPerSquareInchInOneAmperePerSquareMeter { get; }
-        protected abstract double AmperesPerSquareMeterInOneAmperePerSquareMeter { get; }
+        protected virtual double AmperesPerSquareFootInOneAmperePerSquareMeter { get; }
+        protected virtual double AmperesPerSquareInchInOneAmperePerSquareMeter { get; }
+        protected virtual double AmperesPerSquareMeterInOneAmperePerSquareMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double AmperesPerSquareFootTolerance { get { return 1e-5; } }

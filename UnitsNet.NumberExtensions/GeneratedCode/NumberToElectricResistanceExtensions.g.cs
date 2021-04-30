@@ -32,6 +32,10 @@ namespace UnitsNet.NumberExtensions.NumberToElectricResistance
         public static ElectricResistance Gigaohms<T>(this T value) =>
             ElectricResistance.FromGigaohms(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="ElectricResistance.FromKilohms(UnitsNet.QuantityValue)" />
+        public static ElectricResistance Kilohms<T>(this T value) =>
+            ElectricResistance.FromKilohms(Convert.ToDouble(value));
+
         /// <inheritdoc cref="ElectricResistance.FromKiloohms(UnitsNet.QuantityValue)" />
         public static ElectricResistance Kiloohms<T>(this T value) =>
             ElectricResistance.FromKiloohms(Convert.ToDouble(value));
@@ -39,6 +43,10 @@ namespace UnitsNet.NumberExtensions.NumberToElectricResistance
         /// <inheritdoc cref="ElectricResistance.FromMegaohms(UnitsNet.QuantityValue)" />
         public static ElectricResistance Megaohms<T>(this T value) =>
             ElectricResistance.FromMegaohms(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricResistance.FromMegohms(UnitsNet.QuantityValue)" />
+        public static ElectricResistance Megohms<T>(this T value) =>
+            ElectricResistance.FromMegohms(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricResistance.FromMicroohms(UnitsNet.QuantityValue)" />
         public static ElectricResistance Microohms<T>(this T value) =>

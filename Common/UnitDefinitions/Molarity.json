@@ -21,7 +21,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "mol/m³" ]
+          "Abbreviations": [
+            "mol/m³"
+          ]
         }
       ]
     },
@@ -34,11 +36,77 @@
       },
       "FromUnitToBaseFunc": "x/1e-3",
       "FromBaseToUnitFunc": "x*1e-3",
-      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
+      "Prefixes": [
+        "Pico",
+        "Nano",
+        "Micro",
+        "Milli",
+        "Centi",
+        "Deci"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "mol/L", "M"]
+          "Abbreviations": [
+            "mol/L",
+            "M"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilomolePerCubicFoot",
+      "PluralName": "KilomolesPerCubicFoot",
+      "FromUnitToBaseFunc": "x * 1000 / 0.028316846592",
+      "FromBaseToUnitFunc": "x / 1000 * 0.028316846592",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "kmol/ft3"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilomolePerCubicMeter",
+      "PluralName": "KilomolesPerCubicMeter",
+      "FromUnitToBaseFunc": "x * 1000",
+      "FromBaseToUnitFunc": "x / 1000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "kmol/m3"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundMolePerCubicFoot",
+      "PluralName": "PoundMolesPerCubicFoot",
+      "FromUnitToBaseFunc": "x * 453.59237 / 0.028316846592",
+      "FromBaseToUnitFunc": "x / 453.59237 * 0.028316846592",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "lbmol/ft3"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MolePerCubicFoot",
+      "PluralName": "MolesPerCubicFoot",
+      "FromUnitToBaseFunc": "x / 0.028316846592",
+      "FromBaseToUnitFunc": "x * 0.028316846592",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "mol/ft3"
+          ]
         }
       ]
     }

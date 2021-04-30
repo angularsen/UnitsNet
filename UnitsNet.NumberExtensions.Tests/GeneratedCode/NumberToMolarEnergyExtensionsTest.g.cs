@@ -25,8 +25,40 @@ namespace UnitsNet.Tests
     public class NumberToMolarEnergyExtensionsTests
     {
         [Fact]
+        public void NumberToBritishThermalUnitsPerMoleTest() =>
+            Assert.Equal(MolarEnergy.FromBritishThermalUnitsPerMole(2), 2.BritishThermalUnitsPerMole());
+
+        [Fact]
+        public void NumberToBritishThermalUnitsPerPoundMoleTest() =>
+            Assert.Equal(MolarEnergy.FromBritishThermalUnitsPerPoundMole(2), 2.BritishThermalUnitsPerPoundMole());
+
+        [Fact]
+        public void NumberToBritishThermalUnitThermochemicalsPerMoleTest() =>
+            Assert.Equal(MolarEnergy.FromBritishThermalUnitThermochemicalsPerMole(2), 2.BritishThermalUnitThermochemicalsPerMole());
+
+        [Fact]
+        public void NumberToBritishThermalUnitThermochemicalsPerPoundMoleTest() =>
+            Assert.Equal(MolarEnergy.FromBritishThermalUnitThermochemicalsPerPoundMole(2), 2.BritishThermalUnitThermochemicalsPerPoundMole());
+
+        [Fact]
+        public void NumberToCaloriesPerMoleTest() =>
+            Assert.Equal(MolarEnergy.FromCaloriesPerMole(2), 2.CaloriesPerMole());
+
+        [Fact]
+        public void NumberToCalorieThermochemicalsPerMoleTest() =>
+            Assert.Equal(MolarEnergy.FromCalorieThermochemicalsPerMole(2), 2.CalorieThermochemicalsPerMole());
+
+        [Fact]
         public void NumberToJoulesPerMoleTest() =>
             Assert.Equal(MolarEnergy.FromJoulesPerMole(2), 2.JoulesPerMole());
+
+        [Fact]
+        public void NumberToKilocaloriesPerMoleTest() =>
+            Assert.Equal(MolarEnergy.FromKilocaloriesPerMole(2), 2.KilocaloriesPerMole());
+
+        [Fact]
+        public void NumberToKilocalorieThermochemicalsPerMoleTest() =>
+            Assert.Equal(MolarEnergy.FromKilocalorieThermochemicalsPerMole(2), 2.KilocalorieThermochemicalsPerMole());
 
         [Fact]
         public void NumberToKilojoulesPerMoleTest() =>

@@ -156,6 +156,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get MolarEntropy in BritishThermalUnitsPerPoundMoleDegreeRankin.
+        /// </summary>
+        public double BritishThermalUnitsPerPoundMoleDegreeRankin => As(MolarEntropyUnit.BritishThermalUnitPerPoundMoleDegreeRankin);
+
+        /// <summary>
         ///     Get MolarEntropy in JoulesPerMoleKelvin.
         /// </summary>
         public double JoulesPerMoleKelvin => As(MolarEntropyUnit.JoulePerMoleKelvin);
@@ -200,6 +205,16 @@ namespace UnitsNet
 
         #region Static Factory Methods
 
+        /// <summary>
+        ///     Get MolarEntropy from BritishThermalUnitsPerPoundMoleDegreeRankin.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MolarEntropy FromBritishThermalUnitsPerPoundMoleDegreeRankin(double britishthermalunitsperpoundmoledegreerankin)
+        {
+            double value = (double) britishthermalunitsperpoundmoledegreerankin;
+            return new MolarEntropy(value, MolarEntropyUnit.BritishThermalUnitPerPoundMoleDegreeRankin);
+        }
         /// <summary>
         ///     Get MolarEntropy from JoulesPerMoleKelvin.
         /// </summary>
@@ -521,6 +536,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case MolarEntropyUnit.BritishThermalUnitPerPoundMoleDegreeRankin: return _value * 1055.05585262 / 251.995761111111;
                 case MolarEntropyUnit.JoulePerMoleKelvin: return _value;
                 case MolarEntropyUnit.KilojoulePerMoleKelvin: return (_value) * 1e3d;
                 case MolarEntropyUnit.MegajoulePerMoleKelvin: return (_value) * 1e6d;
@@ -538,6 +554,7 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case MolarEntropyUnit.BritishThermalUnitPerPoundMoleDegreeRankin: return baseUnitValue / 1055.05585262 * 251.995761111111;
                 case MolarEntropyUnit.JoulePerMoleKelvin: return baseUnitValue;
                 case MolarEntropyUnit.KilojoulePerMoleKelvin: return (baseUnitValue) / 1e3d;
                 case MolarEntropyUnit.MegajoulePerMoleKelvin: return (baseUnitValue) / 1e6d;

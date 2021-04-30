@@ -156,6 +156,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get Entropy in BritishThermalUnitsPerDegreeRankin.
+        /// </summary>
+        public double BritishThermalUnitsPerDegreeRankin => As(EntropyUnit.BritishThermalUnitPerDegreeRankin);
+
+        /// <summary>
         ///     Get Entropy in CaloriesPerKelvin.
         /// </summary>
         public double CaloriesPerKelvin => As(EntropyUnit.CaloriePerKelvin);
@@ -220,6 +225,16 @@ namespace UnitsNet
 
         #region Static Factory Methods
 
+        /// <summary>
+        ///     Get Entropy from BritishThermalUnitsPerDegreeRankin.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Entropy FromBritishThermalUnitsPerDegreeRankin(double britishthermalunitsperdegreerankin)
+        {
+            double value = (double) britishthermalunitsperdegreerankin;
+            return new Entropy(value, EntropyUnit.BritishThermalUnitPerDegreeRankin);
+        }
         /// <summary>
         ///     Get Entropy from CaloriesPerKelvin.
         /// </summary>
@@ -581,6 +596,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case EntropyUnit.BritishThermalUnitPerDegreeRankin: return _value * 1055.05585262 / 0.555555555555556;
                 case EntropyUnit.CaloriePerKelvin: return _value*4.184;
                 case EntropyUnit.JoulePerDegreeCelsius: return _value;
                 case EntropyUnit.JoulePerKelvin: return _value;
@@ -602,6 +618,7 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case EntropyUnit.BritishThermalUnitPerDegreeRankin: return baseUnitValue / 1055.05585262 * 0.555555555555556;
                 case EntropyUnit.CaloriePerKelvin: return baseUnitValue/4.184;
                 case EntropyUnit.JoulePerDegreeCelsius: return baseUnitValue;
                 case EntropyUnit.JoulePerKelvin: return baseUnitValue;

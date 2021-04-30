@@ -29,12 +29,20 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricResistance.FromGigaohms(2), 2.Gigaohms());
 
         [Fact]
+        public void NumberToKilohmsTest() =>
+            Assert.Equal(ElectricResistance.FromKilohms(2), 2.Kilohms());
+
+        [Fact]
         public void NumberToKiloohmsTest() =>
             Assert.Equal(ElectricResistance.FromKiloohms(2), 2.Kiloohms());
 
         [Fact]
         public void NumberToMegaohmsTest() =>
             Assert.Equal(ElectricResistance.FromMegaohms(2), 2.Megaohms());
+
+        [Fact]
+        public void NumberToMegohmsTest() =>
+            Assert.Equal(ElectricResistance.FromMegohms(2), 2.Megohms());
 
         [Fact]
         public void NumberToMicroohmsTest() =>

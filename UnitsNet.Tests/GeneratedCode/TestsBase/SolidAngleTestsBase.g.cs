@@ -37,9 +37,11 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class SolidAngleTestsBase : QuantityTestsBase
     {
-        protected abstract double SteradiansInOneSteradian { get; }
+        protected virtual double SquareDegreesInOneSteradian { get; }
+        protected virtual double SteradiansInOneSteradian { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double SquareDegreesTolerance { get { return 1e-5; } }
         protected virtual double SteradiansTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
@@ -115,15 +117,20 @@ namespace UnitsNet.Tests
         public void SteradianToSolidAngleUnits()
         {
             SolidAngle steradian = SolidAngle.FromSteradians(1);
+            AssertEx.EqualTolerance(SquareDegreesInOneSteradian, steradian.SquareDegrees, SquareDegreesTolerance);
             AssertEx.EqualTolerance(SteradiansInOneSteradian, steradian.Steradians, SteradiansTolerance);
         }
 
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = SolidAngle.From(1, SolidAngleUnit.Steradian);
-            AssertEx.EqualTolerance(1, quantity00.Steradians, SteradiansTolerance);
-            Assert.Equal(SolidAngleUnit.Steradian, quantity00.Unit);
+            var quantity00 = SolidAngle.From(1, SolidAngleUnit.SquareDegree);
+            AssertEx.EqualTolerance(1, quantity00.SquareDegrees, SquareDegreesTolerance);
+            Assert.Equal(SolidAngleUnit.SquareDegree, quantity00.Unit);
+
+            var quantity01 = SolidAngle.From(1, SolidAngleUnit.Steradian);
+            AssertEx.EqualTolerance(1, quantity01.Steradians, SteradiansTolerance);
+            Assert.Equal(SolidAngleUnit.Steradian, quantity01.Unit);
 
         }
 
@@ -144,6 +151,7 @@ namespace UnitsNet.Tests
         public void As()
         {
             var steradian = SolidAngle.FromSteradians(1);
+            AssertEx.EqualTolerance(SquareDegreesInOneSteradian, steradian.As(SolidAngleUnit.SquareDegree), SquareDegreesTolerance);
             AssertEx.EqualTolerance(SteradiansInOneSteradian, steradian.As(SolidAngleUnit.Steradian), SteradiansTolerance);
         }
 
@@ -169,6 +177,10 @@ namespace UnitsNet.Tests
         {
             var steradian = SolidAngle.FromSteradians(1);
 
+            var squaredegreeQuantity = steradian.ToUnit(SolidAngleUnit.SquareDegree);
+            AssertEx.EqualTolerance(SquareDegreesInOneSteradian, (double)squaredegreeQuantity.Value, SquareDegreesTolerance);
+            Assert.Equal(SolidAngleUnit.SquareDegree, squaredegreeQuantity.Unit);
+
             var steradianQuantity = steradian.ToUnit(SolidAngleUnit.Steradian);
             AssertEx.EqualTolerance(SteradiansInOneSteradian, (double)steradianQuantity.Value, SteradiansTolerance);
             Assert.Equal(SolidAngleUnit.Steradian, steradianQuantity.Unit);
@@ -185,6 +197,7 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             SolidAngle steradian = SolidAngle.FromSteradians(1);
+            AssertEx.EqualTolerance(1, SolidAngle.FromSquareDegrees(steradian.SquareDegrees).Steradians, SquareDegreesTolerance);
             AssertEx.EqualTolerance(1, SolidAngle.FromSteradians(steradian.Steradians).Steradians, SteradiansTolerance);
         }
 
@@ -342,6 +355,7 @@ namespace UnitsNet.Tests
             var prevCulture = Thread.CurrentThread.CurrentUICulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             try {
+                Assert.Equal("1 deg2", new SolidAngle(1, SolidAngleUnit.SquareDegree).ToString());
                 Assert.Equal("1 sr", new SolidAngle(1, SolidAngleUnit.Steradian).ToString());
             }
             finally
@@ -356,6 +370,7 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
+            Assert.Equal("1 deg2", new SolidAngle(1, SolidAngleUnit.SquareDegree).ToString(swedishCulture));
             Assert.Equal("1 sr", new SolidAngle(1, SolidAngleUnit.Steradian).ToString(swedishCulture));
         }
 

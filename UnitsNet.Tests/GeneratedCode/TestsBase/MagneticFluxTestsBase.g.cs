@@ -37,7 +37,7 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class MagneticFluxTestsBase : QuantityTestsBase
     {
-        protected abstract double WebersInOneWeber { get; }
+        protected virtual double WebersInOneWeber { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double WebersTolerance { get { return 1e-5; } }

@@ -25,8 +25,16 @@ namespace UnitsNet.Tests
     public class NumberToElectricConductanceExtensionsTests
     {
         [Fact]
+        public void NumberToMhosTest() =>
+            Assert.Equal(ElectricConductance.FromMhos(2), 2.Mhos());
+
+        [Fact]
         public void NumberToMicrosiemensTest() =>
             Assert.Equal(ElectricConductance.FromMicrosiemens(2), 2.Microsiemens());
+
+        [Fact]
+        public void NumberToMillimhosTest() =>
+            Assert.Equal(ElectricConductance.FromMillimhos(2), 2.Millimhos());
 
         [Fact]
         public void NumberToMillisiemensTest() =>

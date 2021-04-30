@@ -12,11 +12,23 @@
       "PluralName": "GramsPerSecond",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo" ],
+      "Prefixes": [
+        "Nano",
+        "Micro",
+        "Milli",
+        "Centi",
+        "Deci",
+        "Deca",
+        "Hecto",
+        "Kilo"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "g/s", "g/S" ]
+          "Abbreviations": [
+            "g/s",
+            "g/S"
+          ]
         }
       ]
     },
@@ -25,11 +37,23 @@
       "PluralName": "GramsPerDay",
       "FromUnitToBaseFunc": "x/86400",
       "FromBaseToUnitFunc": "x*86400",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo", "Mega" ],
+      "Prefixes": [
+        "Nano",
+        "Micro",
+        "Milli",
+        "Centi",
+        "Deci",
+        "Deca",
+        "Hecto",
+        "Kilo",
+        "Mega"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "g/d" ]
+          "Abbreviations": [
+            "g/d"
+          ]
         }
       ]
     },
@@ -41,7 +65,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "g/h" ]
+          "Abbreviations": [
+            "g/h"
+          ]
         }
       ]
     },
@@ -53,11 +79,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kg/h" ]
+          "Abbreviations": [
+            "kg/h"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "кг/ч" ]
+          "Abbreviations": [
+            "кг/ч"
+          ]
         }
       ]
     },
@@ -69,11 +99,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kg/min" ]
+          "Abbreviations": [
+            "kg/min"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "кг/мин" ]
+          "Abbreviations": [
+            "кг/мин"
+          ]
         }
       ]
     },
@@ -85,7 +119,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "t/h" ]
+          "Abbreviations": [
+            "t/h"
+          ]
         }
       ]
     },
@@ -94,11 +130,15 @@
       "PluralName": "PoundsPerDay",
       "FromUnitToBaseFunc": "x/190.47936",
       "FromBaseToUnitFunc": "x*190.47936",
-      "Prefixes": [ "Mega" ],
+      "Prefixes": [
+        "Mega"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb/d" ]
+          "Abbreviations": [
+            "lb/d"
+          ]
         }
       ]
     },
@@ -107,11 +147,15 @@
       "PluralName": "PoundsPerHour",
       "FromUnitToBaseFunc": "x/7.93664",
       "FromBaseToUnitFunc": "x*7.93664",
-      "Prefixes": [ "Mega" ],
+      "Prefixes": [
+        "Mega"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb/h" ]
+          "Abbreviations": [
+            "lb/h"
+          ]
         }
       ]
     },
@@ -120,11 +164,15 @@
       "PluralName": "PoundsPerMinute",
       "FromUnitToBaseFunc": "x/0.132277",
       "FromBaseToUnitFunc": "x*0.132277",
-      "Prefixes": [ "Mega" ],
+      "Prefixes": [
+        "Mega"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb/min" ]
+          "Abbreviations": [
+            "lb/min"
+          ]
         }
       ]
     },
@@ -133,11 +181,15 @@
       "PluralName": "PoundsPerSecond",
       "FromUnitToBaseFunc": "x * 453.59237",
       "FromBaseToUnitFunc": "x / 453.59237",
-      "Prefixes": [ "Mega" ],
+      "Prefixes": [
+        "Mega"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb/s" ]
+          "Abbreviations": [
+            "lb/s"
+          ]
         }
       ]
     },
@@ -149,7 +201,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "t/d" ]
+          "Abbreviations": [
+            "t/d"
+          ]
         }
       ]
     },
@@ -161,7 +215,39 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "short tn/h" ]
+          "Abbreviations": [
+            "short tn/h"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "UkTonnePerDay",
+      "PluralName": "UkTonnesPerDay",
+      "FromUnitToBaseFunc": "x * 1016.0469088 / 86400",
+      "FromBaseToUnitFunc": "x / 1016.0469088 * 86400",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "UKton/day",
+            "UKton/d"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "UsTonnePerDay",
+      "PluralName": "UsTonnesPerDay",
+      "FromUnitToBaseFunc": "x * 907.18474 / 86400",
+      "FromBaseToUnitFunc": "x / 907.18474 * 86400",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "USton/day",
+            "USton/d"
+          ]
         }
       ]
     }

@@ -24,7 +24,6 @@ namespace UnitsNet
             if (TryFrom(value, unit, out IQuantity? quantity))
                 return quantity!;
 
-            // TODO: refer to specific quantity factory
             throw new ArgumentException(
                 $"Unit value {unit} of type {unit.GetType()} is not a known unit enum type. Expected types like UnitsNet.Units.LengthUnit. Did you pass in a third-party enum type defined outside UnitsNet library?");
         }

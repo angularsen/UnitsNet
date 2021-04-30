@@ -37,7 +37,7 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ElectricChargeDensityTestsBase : QuantityTestsBase
     {
-        protected abstract double CoulombsPerCubicMeterInOneCoulombPerCubicMeter { get; }
+        protected virtual double CoulombsPerCubicMeterInOneCoulombPerCubicMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CoulombsPerCubicMeterTolerance { get { return 1e-5; } }

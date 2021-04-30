@@ -37,11 +37,11 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ElectricPotentialAcTestsBase : QuantityTestsBase
     {
-        protected abstract double KilovoltsAcInOneVoltAc { get; }
-        protected abstract double MegavoltsAcInOneVoltAc { get; }
-        protected abstract double MicrovoltsAcInOneVoltAc { get; }
-        protected abstract double MillivoltsAcInOneVoltAc { get; }
-        protected abstract double VoltsAcInOneVoltAc { get; }
+        protected virtual double KilovoltsAcInOneVoltAc { get; }
+        protected virtual double MegavoltsAcInOneVoltAc { get; }
+        protected virtual double MicrovoltsAcInOneVoltAc { get; }
+        protected virtual double MillivoltsAcInOneVoltAc { get; }
+        protected virtual double VoltsAcInOneVoltAc { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double KilovoltsAcTolerance { get { return 1e-5; } }

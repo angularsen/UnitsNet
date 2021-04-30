@@ -28,9 +28,41 @@ namespace UnitsNet.NumberExtensions.NumberToMolarEnergy
     /// </summary>
     public static class NumberToMolarEnergyExtensions
     {
+        /// <inheritdoc cref="MolarEnergy.FromBritishThermalUnitsPerMole(UnitsNet.QuantityValue)" />
+        public static MolarEnergy BritishThermalUnitsPerMole<T>(this T value) =>
+            MolarEnergy.FromBritishThermalUnitsPerMole(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MolarEnergy.FromBritishThermalUnitsPerPoundMole(UnitsNet.QuantityValue)" />
+        public static MolarEnergy BritishThermalUnitsPerPoundMole<T>(this T value) =>
+            MolarEnergy.FromBritishThermalUnitsPerPoundMole(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MolarEnergy.FromBritishThermalUnitThermochemicalsPerMole(UnitsNet.QuantityValue)" />
+        public static MolarEnergy BritishThermalUnitThermochemicalsPerMole<T>(this T value) =>
+            MolarEnergy.FromBritishThermalUnitThermochemicalsPerMole(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MolarEnergy.FromBritishThermalUnitThermochemicalsPerPoundMole(UnitsNet.QuantityValue)" />
+        public static MolarEnergy BritishThermalUnitThermochemicalsPerPoundMole<T>(this T value) =>
+            MolarEnergy.FromBritishThermalUnitThermochemicalsPerPoundMole(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MolarEnergy.FromCaloriesPerMole(UnitsNet.QuantityValue)" />
+        public static MolarEnergy CaloriesPerMole<T>(this T value) =>
+            MolarEnergy.FromCaloriesPerMole(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MolarEnergy.FromCalorieThermochemicalsPerMole(UnitsNet.QuantityValue)" />
+        public static MolarEnergy CalorieThermochemicalsPerMole<T>(this T value) =>
+            MolarEnergy.FromCalorieThermochemicalsPerMole(Convert.ToDouble(value));
+
         /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy JoulesPerMole<T>(this T value) =>
             MolarEnergy.FromJoulesPerMole(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MolarEnergy.FromKilocaloriesPerMole(UnitsNet.QuantityValue)" />
+        public static MolarEnergy KilocaloriesPerMole<T>(this T value) =>
+            MolarEnergy.FromKilocaloriesPerMole(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MolarEnergy.FromKilocalorieThermochemicalsPerMole(UnitsNet.QuantityValue)" />
+        public static MolarEnergy KilocalorieThermochemicalsPerMole<T>(this T value) =>
+            MolarEnergy.FromKilocalorieThermochemicalsPerMole(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy KilojoulesPerMole<T>(this T value) =>

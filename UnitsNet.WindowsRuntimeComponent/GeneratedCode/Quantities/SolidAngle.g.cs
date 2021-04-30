@@ -159,6 +159,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get SolidAngle in SquareDegrees.
+        /// </summary>
+        public double SquareDegrees => As(SolidAngleUnit.SquareDegree);
+
+        /// <summary>
         ///     Get SolidAngle in Steradians.
         /// </summary>
         public double Steradians => As(SolidAngleUnit.Steradian);
@@ -193,6 +198,16 @@ namespace UnitsNet
 
         #region Static Factory Methods
 
+        /// <summary>
+        ///     Get SolidAngle from SquareDegrees.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static SolidAngle FromSquareDegrees(double squaredegrees)
+        {
+            double value = (double) squaredegrees;
+            return new SolidAngle(value, SolidAngleUnit.SquareDegree);
+        }
         /// <summary>
         ///     Get SolidAngle from Steradians.
         /// </summary>
@@ -494,6 +509,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case SolidAngleUnit.SquareDegree: return _value * 0.000304617419786709;
                 case SolidAngleUnit.Steradian: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -509,6 +525,7 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case SolidAngleUnit.SquareDegree: return baseUnitValue / 0.000304617419786709;
                 case SolidAngleUnit.Steradian: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");

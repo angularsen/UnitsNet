@@ -37,6 +37,8 @@ namespace UnitsNet.Units
         NanoohmCentimeter,
         NanoohmMeter,
         OhmCentimeter,
+        OhmFoot,
+        OhmInch,
         OhmMeter,
         PicoohmCentimeter,
         PicoohmMeter,

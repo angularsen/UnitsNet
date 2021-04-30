@@ -37,7 +37,7 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class LuminousIntensityTestsBase : QuantityTestsBase
     {
-        protected abstract double CandelaInOneCandela { get; }
+        protected virtual double CandelaInOneCandela { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CandelaTolerance { get { return 1e-5; } }

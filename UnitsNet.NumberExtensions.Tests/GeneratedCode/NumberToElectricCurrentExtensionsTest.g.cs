@@ -33,8 +33,16 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricCurrent.FromCentiamperes(2), 2.Centiamperes());
 
         [Fact]
+        public void NumberToGramsPerMoleTest() =>
+            Assert.Equal(ElectricCurrent.FromGramsPerMole(2), 2.GramsPerMole());
+
+        [Fact]
         public void NumberToKiloamperesTest() =>
             Assert.Equal(ElectricCurrent.FromKiloamperes(2), 2.Kiloamperes());
+
+        [Fact]
+        public void NumberToKilogramsPerMoleTest() =>
+            Assert.Equal(ElectricCurrent.FromKilogramsPerMole(2), 2.KilogramsPerMole());
 
         [Fact]
         public void NumberToMegaamperesTest() =>
@@ -55,6 +63,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToPicoamperesTest() =>
             Assert.Equal(ElectricCurrent.FromPicoamperes(2), 2.Picoamperes());
+
+        [Fact]
+        public void NumberToPoundsPerMoleTest() =>
+            Assert.Equal(ElectricCurrent.FromPoundsPerMole(2), 2.PoundsPerMole());
 
     }
 }

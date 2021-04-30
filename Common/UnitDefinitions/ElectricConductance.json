@@ -15,11 +15,44 @@
       "PluralName": "Siemens",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Milli", "Micro" ],
+      "Prefixes": [
+        "Milli",
+        "Micro"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "S" ]
+          "Abbreviations": [
+            "S"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Mho",
+      "PluralName": "Mhos",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "mho"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Millimho",
+      "PluralName": "Millimhos",
+      "FromUnitToBaseFunc": "x * 0.001",
+      "FromBaseToUnitFunc": "x / 0.001",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "mmho"
+          ]
         }
       ]
     }

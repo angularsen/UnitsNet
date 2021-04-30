@@ -28,6 +28,10 @@ namespace UnitsNet.NumberExtensions.NumberToSolidAngle
     /// </summary>
     public static class NumberToSolidAngleExtensions
     {
+        /// <inheritdoc cref="SolidAngle.FromSquareDegrees(UnitsNet.QuantityValue)" />
+        public static SolidAngle SquareDegrees<T>(this T value) =>
+            SolidAngle.FromSquareDegrees(Convert.ToDouble(value));
+
         /// <inheritdoc cref="SolidAngle.FromSteradians(UnitsNet.QuantityValue)" />
         public static SolidAngle Steradians<T>(this T value) =>
             SolidAngle.FromSteradians(Convert.ToDouble(value));

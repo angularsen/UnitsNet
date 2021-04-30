@@ -17,19 +17,20 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Globalization;
-using System.Linq;
-using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
-
 #nullable enable
 
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using JetBrains.Annotations;
+    using UnitsNet.InternalHelpers;
+    using UnitsNet.Units;
+    
+
     /// <inheritdoc />
     /// <summary>
     ///     Time is a dimension in which events can be ordered from the past through the present into the future, and also the measure of durations of events and the intervals between them.
@@ -55,12 +56,15 @@ namespace UnitsNet
                     new UnitInfo<DurationUnit>(DurationUnit.Day, new BaseUnits(time: DurationUnit.Day)),
                     new UnitInfo<DurationUnit>(DurationUnit.Hour, new BaseUnits(time: DurationUnit.Hour)),
                     new UnitInfo<DurationUnit>(DurationUnit.Microsecond, BaseUnits.Undefined),
+                    new UnitInfo<DurationUnit>(DurationUnit.MillionYears, BaseUnits.Undefined),
                     new UnitInfo<DurationUnit>(DurationUnit.Millisecond, BaseUnits.Undefined),
                     new UnitInfo<DurationUnit>(DurationUnit.Minute, new BaseUnits(time: DurationUnit.Minute)),
+                    new UnitInfo<DurationUnit>(DurationUnit.Month, BaseUnits.Undefined),
                     new UnitInfo<DurationUnit>(DurationUnit.Month30, new BaseUnits(time: DurationUnit.Month30)),
                     new UnitInfo<DurationUnit>(DurationUnit.Nanosecond, BaseUnits.Undefined),
                     new UnitInfo<DurationUnit>(DurationUnit.Second, new BaseUnits(time: DurationUnit.Second)),
                     new UnitInfo<DurationUnit>(DurationUnit.Week, new BaseUnits(time: DurationUnit.Week)),
+                    new UnitInfo<DurationUnit>(DurationUnit.Year, BaseUnits.Undefined),
                     new UnitInfo<DurationUnit>(DurationUnit.Year365, new BaseUnits(time: DurationUnit.Year365)),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Duration);
@@ -193,6 +197,11 @@ namespace UnitsNet
         public double Microseconds => As(DurationUnit.Microsecond);
 
         /// <summary>
+        ///     Get Duration in MillionYears.
+        /// </summary>
+        public double MillionYears => As(DurationUnit.MillionYears);
+
+        /// <summary>
         ///     Get Duration in Milliseconds.
         /// </summary>
         public double Milliseconds => As(DurationUnit.Millisecond);
@@ -201,6 +210,11 @@ namespace UnitsNet
         ///     Get Duration in Minutes.
         /// </summary>
         public double Minutes => As(DurationUnit.Minute);
+
+        /// <summary>
+        ///     Get Duration in Months.
+        /// </summary>
+        public double Months => As(DurationUnit.Month);
 
         /// <summary>
         ///     Get Duration in Months30.
@@ -221,6 +235,11 @@ namespace UnitsNet
         ///     Get Duration in Weeks.
         /// </summary>
         public double Weeks => As(DurationUnit.Week);
+
+        /// <summary>
+        ///     Get Duration in Years.
+        /// </summary>
+        public double Years => As(DurationUnit.Year);
 
         /// <summary>
         ///     Get Duration in Years365.
@@ -284,6 +303,15 @@ namespace UnitsNet
             return new Duration(value, DurationUnit.Microsecond);
         }
         /// <summary>
+        ///     Get Duration from MillionYears.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Duration FromMillionYears(QuantityValue millionyears)
+        {
+            double value = (double) millionyears;
+            return new Duration(value, DurationUnit.MillionYears);
+        }
+        /// <summary>
         ///     Get Duration from Milliseconds.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -300,6 +328,15 @@ namespace UnitsNet
         {
             double value = (double) minutes;
             return new Duration(value, DurationUnit.Minute);
+        }
+        /// <summary>
+        ///     Get Duration from Months.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Duration FromMonths(QuantityValue months)
+        {
+            double value = (double) months;
+            return new Duration(value, DurationUnit.Month);
         }
         /// <summary>
         ///     Get Duration from Months30.
@@ -336,6 +373,15 @@ namespace UnitsNet
         {
             double value = (double) weeks;
             return new Duration(value, DurationUnit.Week);
+        }
+        /// <summary>
+        ///     Get Duration from Years.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Duration FromYears(QuantityValue years)
+        {
+            double value = (double) years;
+            return new Duration(value, DurationUnit.Year);
         }
         /// <summary>
         ///     Get Duration from Years365.
@@ -778,12 +824,15 @@ namespace UnitsNet
                 case DurationUnit.Day: return _value*24*3600;
                 case DurationUnit.Hour: return _value*3600;
                 case DurationUnit.Microsecond: return (_value) * 1e-6d;
+                case DurationUnit.MillionYears: return _value * 31557600000000;
                 case DurationUnit.Millisecond: return (_value) * 1e-3d;
                 case DurationUnit.Minute: return _value*60;
+                case DurationUnit.Month: return _value * 2629800;
                 case DurationUnit.Month30: return _value*30*24*3600;
                 case DurationUnit.Nanosecond: return (_value) * 1e-9d;
                 case DurationUnit.Second: return _value;
                 case DurationUnit.Week: return _value*7*24*3600;
+                case DurationUnit.Year: return _value * 31557600;
                 case DurationUnit.Year365: return _value*365*24*3600;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -813,12 +862,15 @@ namespace UnitsNet
                 case DurationUnit.Day: return baseUnitValue/(24*3600);
                 case DurationUnit.Hour: return baseUnitValue/3600;
                 case DurationUnit.Microsecond: return (baseUnitValue) / 1e-6d;
+                case DurationUnit.MillionYears: return baseUnitValue / 31557600000000;
                 case DurationUnit.Millisecond: return (baseUnitValue) / 1e-3d;
                 case DurationUnit.Minute: return baseUnitValue/60;
+                case DurationUnit.Month: return baseUnitValue / 2629800;
                 case DurationUnit.Month30: return baseUnitValue/(30*24*3600);
                 case DurationUnit.Nanosecond: return (baseUnitValue) / 1e-9d;
                 case DurationUnit.Second: return baseUnitValue;
                 case DurationUnit.Week: return baseUnitValue/(7*24*3600);
+                case DurationUnit.Year: return baseUnitValue / 31557600;
                 case DurationUnit.Year365: return baseUnitValue/(365*24*3600);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");

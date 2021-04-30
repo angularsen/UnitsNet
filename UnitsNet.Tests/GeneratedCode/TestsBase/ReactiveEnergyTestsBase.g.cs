@@ -37,9 +37,9 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ReactiveEnergyTestsBase : QuantityTestsBase
     {
-        protected abstract double KilovoltampereReactiveHoursInOneVoltampereReactiveHour { get; }
-        protected abstract double MegavoltampereReactiveHoursInOneVoltampereReactiveHour { get; }
-        protected abstract double VoltampereReactiveHoursInOneVoltampereReactiveHour { get; }
+        protected virtual double KilovoltampereReactiveHoursInOneVoltampereReactiveHour { get; }
+        protected virtual double MegavoltampereReactiveHoursInOneVoltampereReactiveHour { get; }
+        protected virtual double VoltampereReactiveHoursInOneVoltampereReactiveHour { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double KilovoltampereReactiveHoursTolerance { get { return 1e-5; } }

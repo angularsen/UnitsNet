@@ -37,32 +37,32 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class InformationTestsBase : QuantityTestsBase
     {
-        protected abstract double BitsInOneBit { get; }
-        protected abstract double BytesInOneBit { get; }
-        protected abstract double ExabitsInOneBit { get; }
-        protected abstract double ExabytesInOneBit { get; }
-        protected abstract double ExbibitsInOneBit { get; }
-        protected abstract double ExbibytesInOneBit { get; }
-        protected abstract double GibibitsInOneBit { get; }
-        protected abstract double GibibytesInOneBit { get; }
-        protected abstract double GigabitsInOneBit { get; }
-        protected abstract double GigabytesInOneBit { get; }
-        protected abstract double KibibitsInOneBit { get; }
-        protected abstract double KibibytesInOneBit { get; }
-        protected abstract double KilobitsInOneBit { get; }
-        protected abstract double KilobytesInOneBit { get; }
-        protected abstract double MebibitsInOneBit { get; }
-        protected abstract double MebibytesInOneBit { get; }
-        protected abstract double MegabitsInOneBit { get; }
-        protected abstract double MegabytesInOneBit { get; }
-        protected abstract double PebibitsInOneBit { get; }
-        protected abstract double PebibytesInOneBit { get; }
-        protected abstract double PetabitsInOneBit { get; }
-        protected abstract double PetabytesInOneBit { get; }
-        protected abstract double TebibitsInOneBit { get; }
-        protected abstract double TebibytesInOneBit { get; }
-        protected abstract double TerabitsInOneBit { get; }
-        protected abstract double TerabytesInOneBit { get; }
+        protected virtual double BitsInOneBit { get; }
+        protected virtual double BytesInOneBit { get; }
+        protected virtual double ExabitsInOneBit { get; }
+        protected virtual double ExabytesInOneBit { get; }
+        protected virtual double ExbibitsInOneBit { get; }
+        protected virtual double ExbibytesInOneBit { get; }
+        protected virtual double GibibitsInOneBit { get; }
+        protected virtual double GibibytesInOneBit { get; }
+        protected virtual double GigabitsInOneBit { get; }
+        protected virtual double GigabytesInOneBit { get; }
+        protected virtual double KibibitsInOneBit { get; }
+        protected virtual double KibibytesInOneBit { get; }
+        protected virtual double KilobitsInOneBit { get; }
+        protected virtual double KilobytesInOneBit { get; }
+        protected virtual double MebibitsInOneBit { get; }
+        protected virtual double MebibytesInOneBit { get; }
+        protected virtual double MegabitsInOneBit { get; }
+        protected virtual double MegabytesInOneBit { get; }
+        protected virtual double PebibitsInOneBit { get; }
+        protected virtual double PebibytesInOneBit { get; }
+        protected virtual double PetabitsInOneBit { get; }
+        protected virtual double PetabytesInOneBit { get; }
+        protected virtual double TebibitsInOneBit { get; }
+        protected virtual double TebibytesInOneBit { get; }
+        protected virtual double TerabitsInOneBit { get; }
+        protected virtual double TerabytesInOneBit { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double BitsTolerance { get { return 1e-5; } }

@@ -69,6 +69,14 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricResistivity.FromOhmsCentimeter(2), 2.OhmsCentimeter());
 
         [Fact]
+        public void NumberToOhmFeetTest() =>
+            Assert.Equal(ElectricResistivity.FromOhmFeet(2), 2.OhmFeet());
+
+        [Fact]
+        public void NumberToOhmInchesTest() =>
+            Assert.Equal(ElectricResistivity.FromOhmInches(2), 2.OhmInches());
+
+        [Fact]
         public void NumberToOhmMetersTest() =>
             Assert.Equal(ElectricResistivity.FromOhmMeters(2), 2.OhmMeters());
 

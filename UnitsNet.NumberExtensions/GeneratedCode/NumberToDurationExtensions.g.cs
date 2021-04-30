@@ -40,6 +40,10 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
         public static Duration Microseconds<T>(this T value) =>
             Duration.FromMicroseconds(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Duration.FromMillionYears(UnitsNet.QuantityValue)" />
+        public static Duration MillionYears<T>(this T value) =>
+            Duration.FromMillionYears(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Duration.FromMilliseconds(UnitsNet.QuantityValue)" />
         public static Duration Milliseconds<T>(this T value) =>
             Duration.FromMilliseconds(Convert.ToDouble(value));
@@ -47,6 +51,10 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
         /// <inheritdoc cref="Duration.FromMinutes(UnitsNet.QuantityValue)" />
         public static Duration Minutes<T>(this T value) =>
             Duration.FromMinutes(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Duration.FromMonths(UnitsNet.QuantityValue)" />
+        public static Duration Months<T>(this T value) =>
+            Duration.FromMonths(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Duration.FromMonths30(UnitsNet.QuantityValue)" />
         public static Duration Months30<T>(this T value) =>
@@ -63,6 +71,10 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
         /// <inheritdoc cref="Duration.FromWeeks(UnitsNet.QuantityValue)" />
         public static Duration Weeks<T>(this T value) =>
             Duration.FromWeeks(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Duration.FromYears(UnitsNet.QuantityValue)" />
+        public static Duration Years<T>(this T value) =>
+            Duration.FromYears(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Duration.FromYears365(UnitsNet.QuantityValue)" />
         public static Duration Years365<T>(this T value) =>

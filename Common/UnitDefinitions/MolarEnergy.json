@@ -14,11 +14,131 @@
       "PluralName": "JoulesPerMole",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": [
+        "Kilo",
+        "Mega"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "J/mol" ]
+          "Abbreviations": [
+            "J/mol"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BritishThermalUnitPerPoundMole",
+      "PluralName": "BritishThermalUnitsPerPoundMole",
+      "FromUnitToBaseFunc": "x * 1055.05585262 / 453.59237",
+      "FromBaseToUnitFunc": "x / 1055.05585262 * 453.59237",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "Btu/lbmol"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BritishThermalUnitPerMole",
+      "PluralName": "BritishThermalUnitsPerMole",
+      "FromUnitToBaseFunc": "x * 1055.05585262",
+      "FromBaseToUnitFunc": "x / 1055.05585262",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "BTU/mol",
+            "Btu/mol"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BritishThermalUnitThermochemicalPerPoundMole",
+      "PluralName": "BritishThermalUnitThermochemicalsPerPoundMole",
+      "FromUnitToBaseFunc": "x * 1054.35026444 / 453.59237",
+      "FromBaseToUnitFunc": "x / 1054.35026444 * 453.59237",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "Btu_th/lbmol"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BritishThermalUnitThermochemicalPerMole",
+      "PluralName": "BritishThermalUnitThermochemicalsPerMole",
+      "FromUnitToBaseFunc": "x * 1054.35026444",
+      "FromBaseToUnitFunc": "x / 1054.35026444",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "Btu_th/mol"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CaloriePerMole",
+      "PluralName": "CaloriesPerMole",
+      "FromUnitToBaseFunc": "x * 4.1868",
+      "FromBaseToUnitFunc": "x / 4.1868",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "Cal/mol",
+            "cal/mol"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CalorieThermochemicalPerMole",
+      "PluralName": "CalorieThermochemicalsPerMole",
+      "FromUnitToBaseFunc": "x * 4.184",
+      "FromBaseToUnitFunc": "x / 4.184",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "cal_th/mol"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilocaloriePerMole",
+      "PluralName": "KilocaloriesPerMole",
+      "FromUnitToBaseFunc": "x * 4186.8",
+      "FromBaseToUnitFunc": "x / 4186.8",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "kCal/mol",
+            "kcal/mol"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilocalorieThermochemicalPerMole",
+      "PluralName": "KilocalorieThermochemicalsPerMole",
+      "FromUnitToBaseFunc": "x * 4184",
+      "FromBaseToUnitFunc": "x / 4184",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "kcal_th/mol"
+          ]
         }
       ]
     }

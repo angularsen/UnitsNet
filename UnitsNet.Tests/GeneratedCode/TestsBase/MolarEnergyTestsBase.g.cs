@@ -37,12 +37,28 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class MolarEnergyTestsBase : QuantityTestsBase
     {
-        protected abstract double JoulesPerMoleInOneJoulePerMole { get; }
-        protected abstract double KilojoulesPerMoleInOneJoulePerMole { get; }
-        protected abstract double MegajoulesPerMoleInOneJoulePerMole { get; }
+        protected virtual double BritishThermalUnitsPerMoleInOneJoulePerMole { get; }
+        protected virtual double BritishThermalUnitsPerPoundMoleInOneJoulePerMole { get; }
+        protected virtual double BritishThermalUnitThermochemicalsPerMoleInOneJoulePerMole { get; }
+        protected virtual double BritishThermalUnitThermochemicalsPerPoundMoleInOneJoulePerMole { get; }
+        protected virtual double CaloriesPerMoleInOneJoulePerMole { get; }
+        protected virtual double CalorieThermochemicalsPerMoleInOneJoulePerMole { get; }
+        protected virtual double JoulesPerMoleInOneJoulePerMole { get; }
+        protected virtual double KilocaloriesPerMoleInOneJoulePerMole { get; }
+        protected virtual double KilocalorieThermochemicalsPerMoleInOneJoulePerMole { get; }
+        protected virtual double KilojoulesPerMoleInOneJoulePerMole { get; }
+        protected virtual double MegajoulesPerMoleInOneJoulePerMole { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double BritishThermalUnitsPerMoleTolerance { get { return 1e-5; } }
+        protected virtual double BritishThermalUnitsPerPoundMoleTolerance { get { return 1e-5; } }
+        protected virtual double BritishThermalUnitThermochemicalsPerMoleTolerance { get { return 1e-5; } }
+        protected virtual double BritishThermalUnitThermochemicalsPerPoundMoleTolerance { get { return 1e-5; } }
+        protected virtual double CaloriesPerMoleTolerance { get { return 1e-5; } }
+        protected virtual double CalorieThermochemicalsPerMoleTolerance { get { return 1e-5; } }
         protected virtual double JoulesPerMoleTolerance { get { return 1e-5; } }
+        protected virtual double KilocaloriesPerMoleTolerance { get { return 1e-5; } }
+        protected virtual double KilocalorieThermochemicalsPerMoleTolerance { get { return 1e-5; } }
         protected virtual double KilojoulesPerMoleTolerance { get { return 1e-5; } }
         protected virtual double MegajoulesPerMoleTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
@@ -119,7 +135,15 @@ namespace UnitsNet.Tests
         public void JoulePerMoleToMolarEnergyUnits()
         {
             MolarEnergy joulepermole = MolarEnergy.FromJoulesPerMole(1);
+            AssertEx.EqualTolerance(BritishThermalUnitsPerMoleInOneJoulePerMole, joulepermole.BritishThermalUnitsPerMole, BritishThermalUnitsPerMoleTolerance);
+            AssertEx.EqualTolerance(BritishThermalUnitsPerPoundMoleInOneJoulePerMole, joulepermole.BritishThermalUnitsPerPoundMole, BritishThermalUnitsPerPoundMoleTolerance);
+            AssertEx.EqualTolerance(BritishThermalUnitThermochemicalsPerMoleInOneJoulePerMole, joulepermole.BritishThermalUnitThermochemicalsPerMole, BritishThermalUnitThermochemicalsPerMoleTolerance);
+            AssertEx.EqualTolerance(BritishThermalUnitThermochemicalsPerPoundMoleInOneJoulePerMole, joulepermole.BritishThermalUnitThermochemicalsPerPoundMole, BritishThermalUnitThermochemicalsPerPoundMoleTolerance);
+            AssertEx.EqualTolerance(CaloriesPerMoleInOneJoulePerMole, joulepermole.CaloriesPerMole, CaloriesPerMoleTolerance);
+            AssertEx.EqualTolerance(CalorieThermochemicalsPerMoleInOneJoulePerMole, joulepermole.CalorieThermochemicalsPerMole, CalorieThermochemicalsPerMoleTolerance);
             AssertEx.EqualTolerance(JoulesPerMoleInOneJoulePerMole, joulepermole.JoulesPerMole, JoulesPerMoleTolerance);
+            AssertEx.EqualTolerance(KilocaloriesPerMoleInOneJoulePerMole, joulepermole.KilocaloriesPerMole, KilocaloriesPerMoleTolerance);
+            AssertEx.EqualTolerance(KilocalorieThermochemicalsPerMoleInOneJoulePerMole, joulepermole.KilocalorieThermochemicalsPerMole, KilocalorieThermochemicalsPerMoleTolerance);
             AssertEx.EqualTolerance(KilojoulesPerMoleInOneJoulePerMole, joulepermole.KilojoulesPerMole, KilojoulesPerMoleTolerance);
             AssertEx.EqualTolerance(MegajoulesPerMoleInOneJoulePerMole, joulepermole.MegajoulesPerMole, MegajoulesPerMoleTolerance);
         }
@@ -127,17 +151,49 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = MolarEnergy.From(1, MolarEnergyUnit.JoulePerMole);
-            AssertEx.EqualTolerance(1, quantity00.JoulesPerMole, JoulesPerMoleTolerance);
-            Assert.Equal(MolarEnergyUnit.JoulePerMole, quantity00.Unit);
+            var quantity00 = MolarEnergy.From(1, MolarEnergyUnit.BritishThermalUnitPerMole);
+            AssertEx.EqualTolerance(1, quantity00.BritishThermalUnitsPerMole, BritishThermalUnitsPerMoleTolerance);
+            Assert.Equal(MolarEnergyUnit.BritishThermalUnitPerMole, quantity00.Unit);
 
-            var quantity01 = MolarEnergy.From(1, MolarEnergyUnit.KilojoulePerMole);
-            AssertEx.EqualTolerance(1, quantity01.KilojoulesPerMole, KilojoulesPerMoleTolerance);
-            Assert.Equal(MolarEnergyUnit.KilojoulePerMole, quantity01.Unit);
+            var quantity01 = MolarEnergy.From(1, MolarEnergyUnit.BritishThermalUnitPerPoundMole);
+            AssertEx.EqualTolerance(1, quantity01.BritishThermalUnitsPerPoundMole, BritishThermalUnitsPerPoundMoleTolerance);
+            Assert.Equal(MolarEnergyUnit.BritishThermalUnitPerPoundMole, quantity01.Unit);
 
-            var quantity02 = MolarEnergy.From(1, MolarEnergyUnit.MegajoulePerMole);
-            AssertEx.EqualTolerance(1, quantity02.MegajoulesPerMole, MegajoulesPerMoleTolerance);
-            Assert.Equal(MolarEnergyUnit.MegajoulePerMole, quantity02.Unit);
+            var quantity02 = MolarEnergy.From(1, MolarEnergyUnit.BritishThermalUnitThermochemicalPerMole);
+            AssertEx.EqualTolerance(1, quantity02.BritishThermalUnitThermochemicalsPerMole, BritishThermalUnitThermochemicalsPerMoleTolerance);
+            Assert.Equal(MolarEnergyUnit.BritishThermalUnitThermochemicalPerMole, quantity02.Unit);
+
+            var quantity03 = MolarEnergy.From(1, MolarEnergyUnit.BritishThermalUnitThermochemicalPerPoundMole);
+            AssertEx.EqualTolerance(1, quantity03.BritishThermalUnitThermochemicalsPerPoundMole, BritishThermalUnitThermochemicalsPerPoundMoleTolerance);
+            Assert.Equal(MolarEnergyUnit.BritishThermalUnitThermochemicalPerPoundMole, quantity03.Unit);
+
+            var quantity04 = MolarEnergy.From(1, MolarEnergyUnit.CaloriePerMole);
+            AssertEx.EqualTolerance(1, quantity04.CaloriesPerMole, CaloriesPerMoleTolerance);
+            Assert.Equal(MolarEnergyUnit.CaloriePerMole, quantity04.Unit);
+
+            var quantity05 = MolarEnergy.From(1, MolarEnergyUnit.CalorieThermochemicalPerMole);
+            AssertEx.EqualTolerance(1, quantity05.CalorieThermochemicalsPerMole, CalorieThermochemicalsPerMoleTolerance);
+            Assert.Equal(MolarEnergyUnit.CalorieThermochemicalPerMole, quantity05.Unit);
+
+            var quantity06 = MolarEnergy.From(1, MolarEnergyUnit.JoulePerMole);
+            AssertEx.EqualTolerance(1, quantity06.JoulesPerMole, JoulesPerMoleTolerance);
+            Assert.Equal(MolarEnergyUnit.JoulePerMole, quantity06.Unit);
+
+            var quantity07 = MolarEnergy.From(1, MolarEnergyUnit.KilocaloriePerMole);
+            AssertEx.EqualTolerance(1, quantity07.KilocaloriesPerMole, KilocaloriesPerMoleTolerance);
+            Assert.Equal(MolarEnergyUnit.KilocaloriePerMole, quantity07.Unit);
+
+            var quantity08 = MolarEnergy.From(1, MolarEnergyUnit.KilocalorieThermochemicalPerMole);
+            AssertEx.EqualTolerance(1, quantity08.KilocalorieThermochemicalsPerMole, KilocalorieThermochemicalsPerMoleTolerance);
+            Assert.Equal(MolarEnergyUnit.KilocalorieThermochemicalPerMole, quantity08.Unit);
+
+            var quantity09 = MolarEnergy.From(1, MolarEnergyUnit.KilojoulePerMole);
+            AssertEx.EqualTolerance(1, quantity09.KilojoulesPerMole, KilojoulesPerMoleTolerance);
+            Assert.Equal(MolarEnergyUnit.KilojoulePerMole, quantity09.Unit);
+
+            var quantity10 = MolarEnergy.From(1, MolarEnergyUnit.MegajoulePerMole);
+            AssertEx.EqualTolerance(1, quantity10.MegajoulesPerMole, MegajoulesPerMoleTolerance);
+            Assert.Equal(MolarEnergyUnit.MegajoulePerMole, quantity10.Unit);
 
         }
 
@@ -158,7 +214,15 @@ namespace UnitsNet.Tests
         public void As()
         {
             var joulepermole = MolarEnergy.FromJoulesPerMole(1);
+            AssertEx.EqualTolerance(BritishThermalUnitsPerMoleInOneJoulePerMole, joulepermole.As(MolarEnergyUnit.BritishThermalUnitPerMole), BritishThermalUnitsPerMoleTolerance);
+            AssertEx.EqualTolerance(BritishThermalUnitsPerPoundMoleInOneJoulePerMole, joulepermole.As(MolarEnergyUnit.BritishThermalUnitPerPoundMole), BritishThermalUnitsPerPoundMoleTolerance);
+            AssertEx.EqualTolerance(BritishThermalUnitThermochemicalsPerMoleInOneJoulePerMole, joulepermole.As(MolarEnergyUnit.BritishThermalUnitThermochemicalPerMole), BritishThermalUnitThermochemicalsPerMoleTolerance);
+            AssertEx.EqualTolerance(BritishThermalUnitThermochemicalsPerPoundMoleInOneJoulePerMole, joulepermole.As(MolarEnergyUnit.BritishThermalUnitThermochemicalPerPoundMole), BritishThermalUnitThermochemicalsPerPoundMoleTolerance);
+            AssertEx.EqualTolerance(CaloriesPerMoleInOneJoulePerMole, joulepermole.As(MolarEnergyUnit.CaloriePerMole), CaloriesPerMoleTolerance);
+            AssertEx.EqualTolerance(CalorieThermochemicalsPerMoleInOneJoulePerMole, joulepermole.As(MolarEnergyUnit.CalorieThermochemicalPerMole), CalorieThermochemicalsPerMoleTolerance);
             AssertEx.EqualTolerance(JoulesPerMoleInOneJoulePerMole, joulepermole.As(MolarEnergyUnit.JoulePerMole), JoulesPerMoleTolerance);
+            AssertEx.EqualTolerance(KilocaloriesPerMoleInOneJoulePerMole, joulepermole.As(MolarEnergyUnit.KilocaloriePerMole), KilocaloriesPerMoleTolerance);
+            AssertEx.EqualTolerance(KilocalorieThermochemicalsPerMoleInOneJoulePerMole, joulepermole.As(MolarEnergyUnit.KilocalorieThermochemicalPerMole), KilocalorieThermochemicalsPerMoleTolerance);
             AssertEx.EqualTolerance(KilojoulesPerMoleInOneJoulePerMole, joulepermole.As(MolarEnergyUnit.KilojoulePerMole), KilojoulesPerMoleTolerance);
             AssertEx.EqualTolerance(MegajoulesPerMoleInOneJoulePerMole, joulepermole.As(MolarEnergyUnit.MegajoulePerMole), MegajoulesPerMoleTolerance);
         }
@@ -185,9 +249,41 @@ namespace UnitsNet.Tests
         {
             var joulepermole = MolarEnergy.FromJoulesPerMole(1);
 
+            var britishthermalunitpermoleQuantity = joulepermole.ToUnit(MolarEnergyUnit.BritishThermalUnitPerMole);
+            AssertEx.EqualTolerance(BritishThermalUnitsPerMoleInOneJoulePerMole, (double)britishthermalunitpermoleQuantity.Value, BritishThermalUnitsPerMoleTolerance);
+            Assert.Equal(MolarEnergyUnit.BritishThermalUnitPerMole, britishthermalunitpermoleQuantity.Unit);
+
+            var britishthermalunitperpoundmoleQuantity = joulepermole.ToUnit(MolarEnergyUnit.BritishThermalUnitPerPoundMole);
+            AssertEx.EqualTolerance(BritishThermalUnitsPerPoundMoleInOneJoulePerMole, (double)britishthermalunitperpoundmoleQuantity.Value, BritishThermalUnitsPerPoundMoleTolerance);
+            Assert.Equal(MolarEnergyUnit.BritishThermalUnitPerPoundMole, britishthermalunitperpoundmoleQuantity.Unit);
+
+            var britishthermalunitthermochemicalpermoleQuantity = joulepermole.ToUnit(MolarEnergyUnit.BritishThermalUnitThermochemicalPerMole);
+            AssertEx.EqualTolerance(BritishThermalUnitThermochemicalsPerMoleInOneJoulePerMole, (double)britishthermalunitthermochemicalpermoleQuantity.Value, BritishThermalUnitThermochemicalsPerMoleTolerance);
+            Assert.Equal(MolarEnergyUnit.BritishThermalUnitThermochemicalPerMole, britishthermalunitthermochemicalpermoleQuantity.Unit);
+
+            var britishthermalunitthermochemicalperpoundmoleQuantity = joulepermole.ToUnit(MolarEnergyUnit.BritishThermalUnitThermochemicalPerPoundMole);
+            AssertEx.EqualTolerance(BritishThermalUnitThermochemicalsPerPoundMoleInOneJoulePerMole, (double)britishthermalunitthermochemicalperpoundmoleQuantity.Value, BritishThermalUnitThermochemicalsPerPoundMoleTolerance);
+            Assert.Equal(MolarEnergyUnit.BritishThermalUnitThermochemicalPerPoundMole, britishthermalunitthermochemicalperpoundmoleQuantity.Unit);
+
+            var caloriepermoleQuantity = joulepermole.ToUnit(MolarEnergyUnit.CaloriePerMole);
+            AssertEx.EqualTolerance(CaloriesPerMoleInOneJoulePerMole, (double)caloriepermoleQuantity.Value, CaloriesPerMoleTolerance);
+            Assert.Equal(MolarEnergyUnit.CaloriePerMole, caloriepermoleQuantity.Unit);
+
+            var caloriethermochemicalpermoleQuantity = joulepermole.ToUnit(MolarEnergyUnit.CalorieThermochemicalPerMole);
+            AssertEx.EqualTolerance(CalorieThermochemicalsPerMoleInOneJoulePerMole, (double)caloriethermochemicalpermoleQuantity.Value, CalorieThermochemicalsPerMoleTolerance);
+            Assert.Equal(MolarEnergyUnit.CalorieThermochemicalPerMole, caloriethermochemicalpermoleQuantity.Unit);
+
             var joulepermoleQuantity = joulepermole.ToUnit(MolarEnergyUnit.JoulePerMole);
             AssertEx.EqualTolerance(JoulesPerMoleInOneJoulePerMole, (double)joulepermoleQuantity.Value, JoulesPerMoleTolerance);
             Assert.Equal(MolarEnergyUnit.JoulePerMole, joulepermoleQuantity.Unit);
+
+            var kilocaloriepermoleQuantity = joulepermole.ToUnit(MolarEnergyUnit.KilocaloriePerMole);
+            AssertEx.EqualTolerance(KilocaloriesPerMoleInOneJoulePerMole, (double)kilocaloriepermoleQuantity.Value, KilocaloriesPerMoleTolerance);
+            Assert.Equal(MolarEnergyUnit.KilocaloriePerMole, kilocaloriepermoleQuantity.Unit);
+
+            var kilocaloriethermochemicalpermoleQuantity = joulepermole.ToUnit(MolarEnergyUnit.KilocalorieThermochemicalPerMole);
+            AssertEx.EqualTolerance(KilocalorieThermochemicalsPerMoleInOneJoulePerMole, (double)kilocaloriethermochemicalpermoleQuantity.Value, KilocalorieThermochemicalsPerMoleTolerance);
+            Assert.Equal(MolarEnergyUnit.KilocalorieThermochemicalPerMole, kilocaloriethermochemicalpermoleQuantity.Unit);
 
             var kilojoulepermoleQuantity = joulepermole.ToUnit(MolarEnergyUnit.KilojoulePerMole);
             AssertEx.EqualTolerance(KilojoulesPerMoleInOneJoulePerMole, (double)kilojoulepermoleQuantity.Value, KilojoulesPerMoleTolerance);
@@ -209,7 +305,15 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             MolarEnergy joulepermole = MolarEnergy.FromJoulesPerMole(1);
+            AssertEx.EqualTolerance(1, MolarEnergy.FromBritishThermalUnitsPerMole(joulepermole.BritishThermalUnitsPerMole).JoulesPerMole, BritishThermalUnitsPerMoleTolerance);
+            AssertEx.EqualTolerance(1, MolarEnergy.FromBritishThermalUnitsPerPoundMole(joulepermole.BritishThermalUnitsPerPoundMole).JoulesPerMole, BritishThermalUnitsPerPoundMoleTolerance);
+            AssertEx.EqualTolerance(1, MolarEnergy.FromBritishThermalUnitThermochemicalsPerMole(joulepermole.BritishThermalUnitThermochemicalsPerMole).JoulesPerMole, BritishThermalUnitThermochemicalsPerMoleTolerance);
+            AssertEx.EqualTolerance(1, MolarEnergy.FromBritishThermalUnitThermochemicalsPerPoundMole(joulepermole.BritishThermalUnitThermochemicalsPerPoundMole).JoulesPerMole, BritishThermalUnitThermochemicalsPerPoundMoleTolerance);
+            AssertEx.EqualTolerance(1, MolarEnergy.FromCaloriesPerMole(joulepermole.CaloriesPerMole).JoulesPerMole, CaloriesPerMoleTolerance);
+            AssertEx.EqualTolerance(1, MolarEnergy.FromCalorieThermochemicalsPerMole(joulepermole.CalorieThermochemicalsPerMole).JoulesPerMole, CalorieThermochemicalsPerMoleTolerance);
             AssertEx.EqualTolerance(1, MolarEnergy.FromJoulesPerMole(joulepermole.JoulesPerMole).JoulesPerMole, JoulesPerMoleTolerance);
+            AssertEx.EqualTolerance(1, MolarEnergy.FromKilocaloriesPerMole(joulepermole.KilocaloriesPerMole).JoulesPerMole, KilocaloriesPerMoleTolerance);
+            AssertEx.EqualTolerance(1, MolarEnergy.FromKilocalorieThermochemicalsPerMole(joulepermole.KilocalorieThermochemicalsPerMole).JoulesPerMole, KilocalorieThermochemicalsPerMoleTolerance);
             AssertEx.EqualTolerance(1, MolarEnergy.FromKilojoulesPerMole(joulepermole.KilojoulesPerMole).JoulesPerMole, KilojoulesPerMoleTolerance);
             AssertEx.EqualTolerance(1, MolarEnergy.FromMegajoulesPerMole(joulepermole.MegajoulesPerMole).JoulesPerMole, MegajoulesPerMoleTolerance);
         }
@@ -368,7 +472,15 @@ namespace UnitsNet.Tests
             var prevCulture = Thread.CurrentThread.CurrentUICulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             try {
+                Assert.Equal("1 BTU/mol", new MolarEnergy(1, MolarEnergyUnit.BritishThermalUnitPerMole).ToString());
+                Assert.Equal("1 Btu/lbmol", new MolarEnergy(1, MolarEnergyUnit.BritishThermalUnitPerPoundMole).ToString());
+                Assert.Equal("1 Btu_th/mol", new MolarEnergy(1, MolarEnergyUnit.BritishThermalUnitThermochemicalPerMole).ToString());
+                Assert.Equal("1 Btu_th/lbmol", new MolarEnergy(1, MolarEnergyUnit.BritishThermalUnitThermochemicalPerPoundMole).ToString());
+                Assert.Equal("1 Cal/mol", new MolarEnergy(1, MolarEnergyUnit.CaloriePerMole).ToString());
+                Assert.Equal("1 cal_th/mol", new MolarEnergy(1, MolarEnergyUnit.CalorieThermochemicalPerMole).ToString());
                 Assert.Equal("1 J/mol", new MolarEnergy(1, MolarEnergyUnit.JoulePerMole).ToString());
+                Assert.Equal("1 kCal/mol", new MolarEnergy(1, MolarEnergyUnit.KilocaloriePerMole).ToString());
+                Assert.Equal("1 kcal_th/mol", new MolarEnergy(1, MolarEnergyUnit.KilocalorieThermochemicalPerMole).ToString());
                 Assert.Equal("1 kJ/mol", new MolarEnergy(1, MolarEnergyUnit.KilojoulePerMole).ToString());
                 Assert.Equal("1 MJ/mol", new MolarEnergy(1, MolarEnergyUnit.MegajoulePerMole).ToString());
             }
@@ -384,7 +496,15 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
+            Assert.Equal("1 BTU/mol", new MolarEnergy(1, MolarEnergyUnit.BritishThermalUnitPerMole).ToString(swedishCulture));
+            Assert.Equal("1 Btu/lbmol", new MolarEnergy(1, MolarEnergyUnit.BritishThermalUnitPerPoundMole).ToString(swedishCulture));
+            Assert.Equal("1 Btu_th/mol", new MolarEnergy(1, MolarEnergyUnit.BritishThermalUnitThermochemicalPerMole).ToString(swedishCulture));
+            Assert.Equal("1 Btu_th/lbmol", new MolarEnergy(1, MolarEnergyUnit.BritishThermalUnitThermochemicalPerPoundMole).ToString(swedishCulture));
+            Assert.Equal("1 Cal/mol", new MolarEnergy(1, MolarEnergyUnit.CaloriePerMole).ToString(swedishCulture));
+            Assert.Equal("1 cal_th/mol", new MolarEnergy(1, MolarEnergyUnit.CalorieThermochemicalPerMole).ToString(swedishCulture));
             Assert.Equal("1 J/mol", new MolarEnergy(1, MolarEnergyUnit.JoulePerMole).ToString(swedishCulture));
+            Assert.Equal("1 kCal/mol", new MolarEnergy(1, MolarEnergyUnit.KilocaloriePerMole).ToString(swedishCulture));
+            Assert.Equal("1 kcal_th/mol", new MolarEnergy(1, MolarEnergyUnit.KilocalorieThermochemicalPerMole).ToString(swedishCulture));
             Assert.Equal("1 kJ/mol", new MolarEnergy(1, MolarEnergyUnit.KilojoulePerMole).ToString(swedishCulture));
             Assert.Equal("1 MJ/mol", new MolarEnergy(1, MolarEnergyUnit.MegajoulePerMole).ToString(swedishCulture));
         }

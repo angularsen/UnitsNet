@@ -37,10 +37,16 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class AreaDensityTestsBase : QuantityTestsBase
     {
-        protected abstract double KilogramsPerSquareMeterInOneKilogramPerSquareMeter { get; }
+        protected virtual double KilogramsPerSquareFootInOneKilogramPerSquareMeter { get; }
+        protected virtual double KilogramsPerSquareMeterInOneKilogramPerSquareMeter { get; }
+        protected virtual double PoundsPerSquareFootInOneKilogramPerSquareMeter { get; }
+        protected virtual double PoundsPerSquareMeterInOneKilogramPerSquareMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double KilogramsPerSquareFootTolerance { get { return 1e-5; } }
         protected virtual double KilogramsPerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double PoundsPerSquareFootTolerance { get { return 1e-5; } }
+        protected virtual double PoundsPerSquareMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
@@ -115,15 +121,30 @@ namespace UnitsNet.Tests
         public void KilogramPerSquareMeterToAreaDensityUnits()
         {
             AreaDensity kilogrampersquaremeter = AreaDensity.FromKilogramsPerSquareMeter(1);
+            AssertEx.EqualTolerance(KilogramsPerSquareFootInOneKilogramPerSquareMeter, kilogrampersquaremeter.KilogramsPerSquareFoot, KilogramsPerSquareFootTolerance);
             AssertEx.EqualTolerance(KilogramsPerSquareMeterInOneKilogramPerSquareMeter, kilogrampersquaremeter.KilogramsPerSquareMeter, KilogramsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(PoundsPerSquareFootInOneKilogramPerSquareMeter, kilogrampersquaremeter.PoundsPerSquareFoot, PoundsPerSquareFootTolerance);
+            AssertEx.EqualTolerance(PoundsPerSquareMeterInOneKilogramPerSquareMeter, kilogrampersquaremeter.PoundsPerSquareMeter, PoundsPerSquareMeterTolerance);
         }
 
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = AreaDensity.From(1, AreaDensityUnit.KilogramPerSquareMeter);
-            AssertEx.EqualTolerance(1, quantity00.KilogramsPerSquareMeter, KilogramsPerSquareMeterTolerance);
-            Assert.Equal(AreaDensityUnit.KilogramPerSquareMeter, quantity00.Unit);
+            var quantity00 = AreaDensity.From(1, AreaDensityUnit.KilogramPerSquareFoot);
+            AssertEx.EqualTolerance(1, quantity00.KilogramsPerSquareFoot, KilogramsPerSquareFootTolerance);
+            Assert.Equal(AreaDensityUnit.KilogramPerSquareFoot, quantity00.Unit);
+
+            var quantity01 = AreaDensity.From(1, AreaDensityUnit.KilogramPerSquareMeter);
+            AssertEx.EqualTolerance(1, quantity01.KilogramsPerSquareMeter, KilogramsPerSquareMeterTolerance);
+            Assert.Equal(AreaDensityUnit.KilogramPerSquareMeter, quantity01.Unit);
+
+            var quantity02 = AreaDensity.From(1, AreaDensityUnit.PoundPerSquareFoot);
+            AssertEx.EqualTolerance(1, quantity02.PoundsPerSquareFoot, PoundsPerSquareFootTolerance);
+            Assert.Equal(AreaDensityUnit.PoundPerSquareFoot, quantity02.Unit);
+
+            var quantity03 = AreaDensity.From(1, AreaDensityUnit.PoundPerSquareMeter);
+            AssertEx.EqualTolerance(1, quantity03.PoundsPerSquareMeter, PoundsPerSquareMeterTolerance);
+            Assert.Equal(AreaDensityUnit.PoundPerSquareMeter, quantity03.Unit);
 
         }
 
@@ -144,7 +165,10 @@ namespace UnitsNet.Tests
         public void As()
         {
             var kilogrampersquaremeter = AreaDensity.FromKilogramsPerSquareMeter(1);
+            AssertEx.EqualTolerance(KilogramsPerSquareFootInOneKilogramPerSquareMeter, kilogrampersquaremeter.As(AreaDensityUnit.KilogramPerSquareFoot), KilogramsPerSquareFootTolerance);
             AssertEx.EqualTolerance(KilogramsPerSquareMeterInOneKilogramPerSquareMeter, kilogrampersquaremeter.As(AreaDensityUnit.KilogramPerSquareMeter), KilogramsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(PoundsPerSquareFootInOneKilogramPerSquareMeter, kilogrampersquaremeter.As(AreaDensityUnit.PoundPerSquareFoot), PoundsPerSquareFootTolerance);
+            AssertEx.EqualTolerance(PoundsPerSquareMeterInOneKilogramPerSquareMeter, kilogrampersquaremeter.As(AreaDensityUnit.PoundPerSquareMeter), PoundsPerSquareMeterTolerance);
         }
 
         [Fact]
@@ -169,9 +193,21 @@ namespace UnitsNet.Tests
         {
             var kilogrampersquaremeter = AreaDensity.FromKilogramsPerSquareMeter(1);
 
+            var kilogrampersquarefootQuantity = kilogrampersquaremeter.ToUnit(AreaDensityUnit.KilogramPerSquareFoot);
+            AssertEx.EqualTolerance(KilogramsPerSquareFootInOneKilogramPerSquareMeter, (double)kilogrampersquarefootQuantity.Value, KilogramsPerSquareFootTolerance);
+            Assert.Equal(AreaDensityUnit.KilogramPerSquareFoot, kilogrampersquarefootQuantity.Unit);
+
             var kilogrampersquaremeterQuantity = kilogrampersquaremeter.ToUnit(AreaDensityUnit.KilogramPerSquareMeter);
             AssertEx.EqualTolerance(KilogramsPerSquareMeterInOneKilogramPerSquareMeter, (double)kilogrampersquaremeterQuantity.Value, KilogramsPerSquareMeterTolerance);
             Assert.Equal(AreaDensityUnit.KilogramPerSquareMeter, kilogrampersquaremeterQuantity.Unit);
+
+            var poundpersquarefootQuantity = kilogrampersquaremeter.ToUnit(AreaDensityUnit.PoundPerSquareFoot);
+            AssertEx.EqualTolerance(PoundsPerSquareFootInOneKilogramPerSquareMeter, (double)poundpersquarefootQuantity.Value, PoundsPerSquareFootTolerance);
+            Assert.Equal(AreaDensityUnit.PoundPerSquareFoot, poundpersquarefootQuantity.Unit);
+
+            var poundpersquaremeterQuantity = kilogrampersquaremeter.ToUnit(AreaDensityUnit.PoundPerSquareMeter);
+            AssertEx.EqualTolerance(PoundsPerSquareMeterInOneKilogramPerSquareMeter, (double)poundpersquaremeterQuantity.Value, PoundsPerSquareMeterTolerance);
+            Assert.Equal(AreaDensityUnit.PoundPerSquareMeter, poundpersquaremeterQuantity.Unit);
         }
 
         [Fact]
@@ -185,7 +221,10 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             AreaDensity kilogrampersquaremeter = AreaDensity.FromKilogramsPerSquareMeter(1);
+            AssertEx.EqualTolerance(1, AreaDensity.FromKilogramsPerSquareFoot(kilogrampersquaremeter.KilogramsPerSquareFoot).KilogramsPerSquareMeter, KilogramsPerSquareFootTolerance);
             AssertEx.EqualTolerance(1, AreaDensity.FromKilogramsPerSquareMeter(kilogrampersquaremeter.KilogramsPerSquareMeter).KilogramsPerSquareMeter, KilogramsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(1, AreaDensity.FromPoundsPerSquareFoot(kilogrampersquaremeter.PoundsPerSquareFoot).KilogramsPerSquareMeter, PoundsPerSquareFootTolerance);
+            AssertEx.EqualTolerance(1, AreaDensity.FromPoundsPerSquareMeter(kilogrampersquaremeter.PoundsPerSquareMeter).KilogramsPerSquareMeter, PoundsPerSquareMeterTolerance);
         }
 
         [Fact]
@@ -342,7 +381,10 @@ namespace UnitsNet.Tests
             var prevCulture = Thread.CurrentThread.CurrentUICulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             try {
+                Assert.Equal("1 kg/ft2", new AreaDensity(1, AreaDensityUnit.KilogramPerSquareFoot).ToString());
                 Assert.Equal("1 kg/m²", new AreaDensity(1, AreaDensityUnit.KilogramPerSquareMeter).ToString());
+                Assert.Equal("1 lbm/ft2", new AreaDensity(1, AreaDensityUnit.PoundPerSquareFoot).ToString());
+                Assert.Equal("1 lbm/m2", new AreaDensity(1, AreaDensityUnit.PoundPerSquareMeter).ToString());
             }
             finally
             {
@@ -356,7 +398,10 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
+            Assert.Equal("1 kg/ft2", new AreaDensity(1, AreaDensityUnit.KilogramPerSquareFoot).ToString(swedishCulture));
             Assert.Equal("1 kg/m²", new AreaDensity(1, AreaDensityUnit.KilogramPerSquareMeter).ToString(swedishCulture));
+            Assert.Equal("1 lbm/ft2", new AreaDensity(1, AreaDensityUnit.PoundPerSquareFoot).ToString(swedishCulture));
+            Assert.Equal("1 lbm/m2", new AreaDensity(1, AreaDensityUnit.PoundPerSquareMeter).ToString(swedishCulture));
         }
 
         [Fact]

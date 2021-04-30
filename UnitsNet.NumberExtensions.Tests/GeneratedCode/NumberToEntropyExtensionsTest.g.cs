@@ -25,6 +25,10 @@ namespace UnitsNet.Tests
     public class NumberToEntropyExtensionsTests
     {
         [Fact]
+        public void NumberToBritishThermalUnitsPerDegreeRankinTest() =>
+            Assert.Equal(Entropy.FromBritishThermalUnitsPerDegreeRankin(2), 2.BritishThermalUnitsPerDegreeRankin());
+
+        [Fact]
         public void NumberToCaloriesPerKelvinTest() =>
             Assert.Equal(Entropy.FromCaloriesPerKelvin(2), 2.CaloriesPerKelvin());
 

@@ -36,6 +36,10 @@ namespace UnitsNet.NumberExtensions.NumberToArea
         public static Area Hectares<T>(this T value) =>
             Area.FromHectares(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Area.FromSections(UnitsNet.QuantityValue)" />
+        public static Area Sections<T>(this T value) =>
+            Area.FromSections(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Area.FromSquareCentimeters(UnitsNet.QuantityValue)" />
         public static Area SquareCentimeters<T>(this T value) =>
             Area.FromSquareCentimeters(Convert.ToDouble(value));

@@ -29,12 +29,15 @@ namespace UnitsNet.Units
         Day,
         Hour,
         Microsecond,
+        MillionYears,
         Millisecond,
         Minute,
+        Month,
         Month30,
         Nanosecond,
         Second,
         Week,
+        Year,
         Year365,
     }
 

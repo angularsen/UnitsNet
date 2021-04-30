@@ -32,9 +32,29 @@ namespace UnitsNet.NumberExtensions.NumberToForce
         public static Force Decanewtons<T>(this T value) =>
             Force.FromDecanewtons(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Force.FromDekanewtons(UnitsNet.QuantityValue)" />
+        public static Force Dekanewtons<T>(this T value) =>
+            Force.FromDekanewtons(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Force.FromDyne(UnitsNet.QuantityValue)" />
         public static Force Dyne<T>(this T value) =>
             Force.FromDyne(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Force.FromDynes(UnitsNet.QuantityValue)" />
+        public static Force Dynes<T>(this T value) =>
+            Force.FromDynes(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Force.FromGramForces(UnitsNet.QuantityValue)" />
+        public static Force GramForces<T>(this T value) =>
+            Force.FromGramForces(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Force.FromKilodekanewtons(UnitsNet.QuantityValue)" />
+        public static Force Kilodekanewtons<T>(this T value) =>
+            Force.FromKilodekanewtons(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Force.FromKilodynes(UnitsNet.QuantityValue)" />
+        public static Force Kilodynes<T>(this T value) =>
+            Force.FromKilodynes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Force.FromKilogramsForce(UnitsNet.QuantityValue)" />
         public static Force KilogramsForce<T>(this T value) =>

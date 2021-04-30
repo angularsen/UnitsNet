@@ -29,6 +29,14 @@ namespace UnitsNet.Tests
             Assert.Equal(PressureChangeRate.FromAtmospheresPerSecond(2), 2.AtmospheresPerSecond());
 
         [Fact]
+        public void NumberToBarsPerMinuteTest() =>
+            Assert.Equal(PressureChangeRate.FromBarsPerMinute(2), 2.BarsPerMinute());
+
+        [Fact]
+        public void NumberToBarsPerSecondTest() =>
+            Assert.Equal(PressureChangeRate.FromBarsPerSecond(2), 2.BarsPerSecond());
+
+        [Fact]
         public void NumberToKilopascalsPerMinuteTest() =>
             Assert.Equal(PressureChangeRate.FromKilopascalsPerMinute(2), 2.KilopascalsPerMinute());
 
@@ -51,6 +59,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToPascalsPerSecondTest() =>
             Assert.Equal(PressureChangeRate.FromPascalsPerSecond(2), 2.PascalsPerSecond());
+
+        [Fact]
+        public void NumberToPoundForcesPerSquareInchPerMinuteTest() =>
+            Assert.Equal(PressureChangeRate.FromPoundForcesPerSquareInchPerMinute(2), 2.PoundForcesPerSquareInchPerMinute());
+
+        [Fact]
+        public void NumberToPoundForcesPerSquareInchPerSecondTest() =>
+            Assert.Equal(PressureChangeRate.FromPoundForcesPerSquareInchPerSecond(2), 2.PoundForcesPerSquareInchPerSecond());
 
     }
 }

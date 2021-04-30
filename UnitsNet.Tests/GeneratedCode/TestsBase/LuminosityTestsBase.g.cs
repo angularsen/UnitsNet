@@ -37,20 +37,20 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class LuminosityTestsBase : QuantityTestsBase
     {
-        protected abstract double DecawattsInOneWatt { get; }
-        protected abstract double DeciwattsInOneWatt { get; }
-        protected abstract double FemtowattsInOneWatt { get; }
-        protected abstract double GigawattsInOneWatt { get; }
-        protected abstract double KilowattsInOneWatt { get; }
-        protected abstract double MegawattsInOneWatt { get; }
-        protected abstract double MicrowattsInOneWatt { get; }
-        protected abstract double MilliwattsInOneWatt { get; }
-        protected abstract double NanowattsInOneWatt { get; }
-        protected abstract double PetawattsInOneWatt { get; }
-        protected abstract double PicowattsInOneWatt { get; }
-        protected abstract double SolarLuminositiesInOneWatt { get; }
-        protected abstract double TerawattsInOneWatt { get; }
-        protected abstract double WattsInOneWatt { get; }
+        protected virtual double DecawattsInOneWatt { get; }
+        protected virtual double DeciwattsInOneWatt { get; }
+        protected virtual double FemtowattsInOneWatt { get; }
+        protected virtual double GigawattsInOneWatt { get; }
+        protected virtual double KilowattsInOneWatt { get; }
+        protected virtual double MegawattsInOneWatt { get; }
+        protected virtual double MicrowattsInOneWatt { get; }
+        protected virtual double MilliwattsInOneWatt { get; }
+        protected virtual double NanowattsInOneWatt { get; }
+        protected virtual double PetawattsInOneWatt { get; }
+        protected virtual double PicowattsInOneWatt { get; }
+        protected virtual double SolarLuminositiesInOneWatt { get; }
+        protected virtual double TerawattsInOneWatt { get; }
+        protected virtual double WattsInOneWatt { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double DecawattsTolerance { get { return 1e-5; } }

@@ -15,11 +15,30 @@
       "PluralName": "JoulesPerMoleKelvin",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": [
+        "Kilo",
+        "Mega"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "J/(mol*K)" ]
+          "Abbreviations": [
+            "J/(mol*K)"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BritishThermalUnitPerPoundMoleDegreeRankin",
+      "PluralName": "BritishThermalUnitsPerPoundMoleDegreeRankin",
+      "FromUnitToBaseFunc": "x * 1055.05585262 / 251.995761111111",
+      "FromBaseToUnitFunc": "x / 1055.05585262 * 251.995761111111",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "Btu/(lbmol.°R)"
+          ]
         }
       ]
     }

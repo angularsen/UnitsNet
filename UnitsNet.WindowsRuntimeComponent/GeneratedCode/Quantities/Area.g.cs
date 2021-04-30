@@ -166,6 +166,11 @@ namespace UnitsNet
         public double Hectares => As(AreaUnit.Hectare);
 
         /// <summary>
+        ///     Get Area in Sections.
+        /// </summary>
+        public double Sections => As(AreaUnit.Section);
+
+        /// <summary>
         ///     Get Area in SquareCentimeters.
         /// </summary>
         public double SquareCentimeters => As(AreaUnit.SquareCentimeter);
@@ -274,6 +279,16 @@ namespace UnitsNet
         {
             double value = (double) hectares;
             return new Area(value, AreaUnit.Hectare);
+        }
+        /// <summary>
+        ///     Get Area from Sections.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Area FromSections(double sections)
+        {
+            double value = (double) sections;
+            return new Area(value, AreaUnit.Section);
         }
         /// <summary>
         ///     Get Area from SquareCentimeters.
@@ -688,6 +703,7 @@ namespace UnitsNet
             {
                 case AreaUnit.Acre: return _value*4046.85642;
                 case AreaUnit.Hectare: return _value*1e4;
+                case AreaUnit.Section: return _value * 2589988.110336;
                 case AreaUnit.SquareCentimeter: return _value*1e-4;
                 case AreaUnit.SquareDecimeter: return _value*1e-2;
                 case AreaUnit.SquareFoot: return _value*0.092903;
@@ -716,6 +732,7 @@ namespace UnitsNet
             {
                 case AreaUnit.Acre: return baseUnitValue/4046.85642;
                 case AreaUnit.Hectare: return baseUnitValue/1e4;
+                case AreaUnit.Section: return baseUnitValue / 2589988.110336;
                 case AreaUnit.SquareCentimeter: return baseUnitValue/1e-4;
                 case AreaUnit.SquareDecimeter: return baseUnitValue/1e-2;
                 case AreaUnit.SquareFoot: return baseUnitValue/0.092903;

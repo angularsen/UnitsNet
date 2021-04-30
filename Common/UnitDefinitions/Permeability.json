@@ -18,7 +18,95 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "H/m" ]
+          "Abbreviations": [
+            "H/m"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Darcy",
+      "PluralName": "Darcies",
+      "FromUnitToBaseFunc": "x * 9.86923266716013E-13",
+      "FromBaseToUnitFunc": "x / 9.86923266716013E-13",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "D"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SquareMeter",
+      "PluralName": "SquareMeters",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "m2"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Millidarcy",
+      "PluralName": "Millidarcies",
+      "FromUnitToBaseFunc": "x * 9.86923266716013E-16",
+      "FromBaseToUnitFunc": "x / 9.86923266716013E-16",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "MDARCY",
+            "mD"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Nanodarcy",
+      "PluralName": "Nanodarcies",
+      "FromUnitToBaseFunc": "x * 9.86923266716013E-22",
+      "FromBaseToUnitFunc": "x / 9.86923266716013E-22",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "nD"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Microdarcy",
+      "PluralName": "Microdarcies",
+      "FromUnitToBaseFunc": "x * 9.86923266716013E-19",
+      "FromBaseToUnitFunc": "x / 9.86923266716013E-19",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "uD",
+            "µD"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SquareMicrometer",
+      "PluralName": "SquareMicrometers",
+      "FromUnitToBaseFunc": "x * 1E-12",
+      "FromBaseToUnitFunc": "x / 1E-12",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "µm2"
+          ]
         }
       ]
     }

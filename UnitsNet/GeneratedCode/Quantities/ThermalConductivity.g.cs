@@ -17,19 +17,20 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Globalization;
-using System.Linq;
-using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
-
 #nullable enable
 
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using JetBrains.Annotations;
+    using UnitsNet.InternalHelpers;
+    using UnitsNet.Units;
+    
+
     /// <inheritdoc />
     /// <summary>
     ///     Thermal conductivity is the property of a material to conduct heat.
@@ -55,6 +56,7 @@ namespace UnitsNet
 
             Info = new QuantityInfo<ThermalConductivityUnit>("ThermalConductivity",
                 new UnitInfo<ThermalConductivityUnit>[] {
+                    new UnitInfo<ThermalConductivityUnit>(ThermalConductivityUnit.BritishThermalUnitPerDayFootDegreeRankin, BaseUnits.Undefined),
                     new UnitInfo<ThermalConductivityUnit>(ThermalConductivityUnit.BtuPerHourFootFahrenheit, BaseUnits.Undefined),
                     new UnitInfo<ThermalConductivityUnit>(ThermalConductivityUnit.WattPerMeterKelvin, BaseUnits.Undefined),
                 },
@@ -173,6 +175,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get ThermalConductivity in BritishThermalUnitsPerDayFootDegreeRankin.
+        /// </summary>
+        public double BritishThermalUnitsPerDayFootDegreeRankin => As(ThermalConductivityUnit.BritishThermalUnitPerDayFootDegreeRankin);
+
+        /// <summary>
         ///     Get ThermalConductivity in BtusPerHourFootFahrenheit.
         /// </summary>
         public double BtusPerHourFootFahrenheit => As(ThermalConductivityUnit.BtuPerHourFootFahrenheit);
@@ -211,6 +218,15 @@ namespace UnitsNet
 
         #region Static Factory Methods
 
+        /// <summary>
+        ///     Get ThermalConductivity from BritishThermalUnitsPerDayFootDegreeRankin.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ThermalConductivity FromBritishThermalUnitsPerDayFootDegreeRankin(QuantityValue britishthermalunitsperdayfootdegreerankin)
+        {
+            double value = (double) britishthermalunitsperdayfootdegreerankin;
+            return new ThermalConductivity(value, ThermalConductivityUnit.BritishThermalUnitPerDayFootDegreeRankin);
+        }
         /// <summary>
         ///     Get ThermalConductivity from BtusPerHourFootFahrenheit.
         /// </summary>
@@ -658,6 +674,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case ThermalConductivityUnit.BritishThermalUnitPerDayFootDegreeRankin: return _value * 1055.05585262 / 14630.4;
                 case ThermalConductivityUnit.BtuPerHourFootFahrenheit: return _value*1.73073467;
                 case ThermalConductivityUnit.WattPerMeterKelvin: return _value;
                 default:
@@ -685,6 +702,7 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case ThermalConductivityUnit.BritishThermalUnitPerDayFootDegreeRankin: return baseUnitValue / 1055.05585262 * 14630.4;
                 case ThermalConductivityUnit.BtuPerHourFootFahrenheit: return baseUnitValue/1.73073467;
                 case ThermalConductivityUnit.WattPerMeterKelvin: return baseUnitValue;
                 default:

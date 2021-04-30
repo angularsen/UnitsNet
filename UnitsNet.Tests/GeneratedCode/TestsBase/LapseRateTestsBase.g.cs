@@ -37,7 +37,7 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class LapseRateTestsBase : QuantityTestsBase
     {
-        protected abstract double DegreesCelciusPerKilometerInOneDegreeCelsiusPerKilometer { get; }
+        protected virtual double DegreesCelciusPerKilometerInOneDegreeCelsiusPerKilometer { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double DegreesCelciusPerKilometerTolerance { get { return 1e-5; } }

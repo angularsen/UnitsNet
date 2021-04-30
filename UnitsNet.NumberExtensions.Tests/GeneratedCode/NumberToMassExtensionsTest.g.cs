@@ -81,6 +81,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Mass.FromMegatonnes(2), 2.Megatonnes());
 
         [Fact]
+        public void NumberToMetricTonsTest() =>
+            Assert.Equal(Mass.FromMetricTons(2), 2.MetricTons());
+
+        [Fact]
         public void NumberToMicrogramsTest() =>
             Assert.Equal(Mass.FromMicrograms(2), 2.Micrograms());
 
@@ -123,6 +127,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToTonnesTest() =>
             Assert.Equal(Mass.FromTonnes(2), 2.Tonnes());
+
+        [Fact]
+        public void NumberToUkTonnesTest() =>
+            Assert.Equal(Mass.FromUkTonnes(2), 2.UkTonnes());
+
+        [Fact]
+        public void NumberToUsTonnesTest() =>
+            Assert.Equal(Mass.FromUsTonnes(2), 2.UsTonnes());
 
     }
 }

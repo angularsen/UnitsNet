@@ -176,6 +176,11 @@ namespace UnitsNet
         public double Millivolts => As(ElectricPotentialUnit.Millivolt);
 
         /// <summary>
+        ///     Get ElectricPotential in Nanovolts.
+        /// </summary>
+        public double Nanovolts => As(ElectricPotentialUnit.Nanovolt);
+
+        /// <summary>
         ///     Get ElectricPotential in Volts.
         /// </summary>
         public double Volts => As(ElectricPotentialUnit.Volt);
@@ -249,6 +254,16 @@ namespace UnitsNet
         {
             double value = (double) millivolts;
             return new ElectricPotential(value, ElectricPotentialUnit.Millivolt);
+        }
+        /// <summary>
+        ///     Get ElectricPotential from Nanovolts.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ElectricPotential FromNanovolts(double nanovolts)
+        {
+            double value = (double) nanovolts;
+            return new ElectricPotential(value, ElectricPotentialUnit.Nanovolt);
         }
         /// <summary>
         ///     Get ElectricPotential from Volts.
@@ -555,6 +570,7 @@ namespace UnitsNet
                 case ElectricPotentialUnit.Megavolt: return (_value) * 1e6d;
                 case ElectricPotentialUnit.Microvolt: return (_value) * 1e-6d;
                 case ElectricPotentialUnit.Millivolt: return (_value) * 1e-3d;
+                case ElectricPotentialUnit.Nanovolt: return _value * 1E-09;
                 case ElectricPotentialUnit.Volt: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -574,6 +590,7 @@ namespace UnitsNet
                 case ElectricPotentialUnit.Megavolt: return (baseUnitValue) / 1e6d;
                 case ElectricPotentialUnit.Microvolt: return (baseUnitValue) / 1e-6d;
                 case ElectricPotentialUnit.Millivolt: return (baseUnitValue) / 1e-3d;
+                case ElectricPotentialUnit.Nanovolt: return baseUnitValue / 1E-09;
                 case ElectricPotentialUnit.Volt: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");

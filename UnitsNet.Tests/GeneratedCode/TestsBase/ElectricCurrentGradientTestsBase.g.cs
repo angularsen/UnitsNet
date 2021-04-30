@@ -37,10 +37,10 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ElectricCurrentGradientTestsBase : QuantityTestsBase
     {
-        protected abstract double AmperesPerMicrosecondInOneAmperePerSecond { get; }
-        protected abstract double AmperesPerMillisecondInOneAmperePerSecond { get; }
-        protected abstract double AmperesPerNanosecondInOneAmperePerSecond { get; }
-        protected abstract double AmperesPerSecondInOneAmperePerSecond { get; }
+        protected virtual double AmperesPerMicrosecondInOneAmperePerSecond { get; }
+        protected virtual double AmperesPerMillisecondInOneAmperePerSecond { get; }
+        protected virtual double AmperesPerNanosecondInOneAmperePerSecond { get; }
+        protected virtual double AmperesPerSecondInOneAmperePerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double AmperesPerMicrosecondTolerance { get { return 1e-5; } }

@@ -17,19 +17,20 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Globalization;
-using System.Linq;
-using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
-
 #nullable enable
 
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using JetBrains.Annotations;
+    using UnitsNet.InternalHelpers;
+    using UnitsNet.Units;
+    
+
     /// <inheritdoc />
     /// <summary>
     ///     Entropy is an important concept in the branch of science known as thermodynamics. The idea of "irreversibility" is central to the understanding of entropy.  It is often said that entropy is an expression of the disorder, or randomness of a system, or of our lack of information about it. Entropy is an extensive property. It has the dimension of energy divided by temperature, which has a unit of joules per kelvin (J/K) in the International System of Units
@@ -52,6 +53,7 @@ namespace UnitsNet
 
             Info = new QuantityInfo<EntropyUnit>("Entropy",
                 new UnitInfo<EntropyUnit>[] {
+                    new UnitInfo<EntropyUnit>(EntropyUnit.BritishThermalUnitPerDegreeRankin, BaseUnits.Undefined),
                     new UnitInfo<EntropyUnit>(EntropyUnit.CaloriePerKelvin, BaseUnits.Undefined),
                     new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerDegreeCelsius, BaseUnits.Undefined),
                     new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerKelvin, BaseUnits.Undefined),
@@ -175,6 +177,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get Entropy in BritishThermalUnitsPerDegreeRankin.
+        /// </summary>
+        public double BritishThermalUnitsPerDegreeRankin => As(EntropyUnit.BritishThermalUnitPerDegreeRankin);
+
+        /// <summary>
         ///     Get Entropy in CaloriesPerKelvin.
         /// </summary>
         public double CaloriesPerKelvin => As(EntropyUnit.CaloriePerKelvin);
@@ -238,6 +245,15 @@ namespace UnitsNet
 
         #region Static Factory Methods
 
+        /// <summary>
+        ///     Get Entropy from BritishThermalUnitsPerDegreeRankin.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Entropy FromBritishThermalUnitsPerDegreeRankin(QuantityValue britishthermalunitsperdegreerankin)
+        {
+            double value = (double) britishthermalunitsperdegreerankin;
+            return new Entropy(value, EntropyUnit.BritishThermalUnitPerDegreeRankin);
+        }
         /// <summary>
         ///     Get Entropy from CaloriesPerKelvin.
         /// </summary>
@@ -730,6 +746,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case EntropyUnit.BritishThermalUnitPerDegreeRankin: return _value * 1055.05585262 / 0.555555555555556;
                 case EntropyUnit.CaloriePerKelvin: return _value*4.184;
                 case EntropyUnit.JoulePerDegreeCelsius: return _value;
                 case EntropyUnit.JoulePerKelvin: return _value;
@@ -762,6 +779,7 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case EntropyUnit.BritishThermalUnitPerDegreeRankin: return baseUnitValue / 1055.05585262 * 0.555555555555556;
                 case EntropyUnit.CaloriePerKelvin: return baseUnitValue/4.184;
                 case EntropyUnit.JoulePerDegreeCelsius: return baseUnitValue;
                 case EntropyUnit.JoulePerKelvin: return baseUnitValue;

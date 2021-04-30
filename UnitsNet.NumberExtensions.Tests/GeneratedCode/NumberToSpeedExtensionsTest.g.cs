@@ -25,8 +25,20 @@ namespace UnitsNet.Tests
     public class NumberToSpeedExtensionsTests
     {
         [Fact]
+        public void NumberToCentimetersPerDayTest() =>
+            Assert.Equal(Speed.FromCentimetersPerDay(2), 2.CentimetersPerDay());
+
+        [Fact]
         public void NumberToCentimetersPerHourTest() =>
             Assert.Equal(Speed.FromCentimetersPerHour(2), 2.CentimetersPerHour());
+
+        [Fact]
+        public void NumberToCentimetersPerMicrosecondTest() =>
+            Assert.Equal(Speed.FromCentimetersPerMicrosecond(2), 2.CentimetersPerMicrosecond());
+
+        [Fact]
+        public void NumberToCentimetersPerMillisecondTest() =>
+            Assert.Equal(Speed.FromCentimetersPerMillisecond(2), 2.CentimetersPerMillisecond());
 
         [Fact]
         public void NumberToCentimetersPerMinutesTest() =>
@@ -37,6 +49,22 @@ namespace UnitsNet.Tests
             Assert.Equal(Speed.FromCentimetersPerSecond(2), 2.CentimetersPerSecond());
 
         [Fact]
+        public void NumberToCentimetersPerYearTest() =>
+            Assert.Equal(Speed.FromCentimetersPerYear(2), 2.CentimetersPerYear());
+
+        [Fact]
+        public void NumberToDaysPerFootEqTest() =>
+            Assert.Equal(Speed.FromDaysPerFootEq(2), 2.DaysPerFootEq());
+
+        [Fact]
+        public void NumberToDaysPerKilometerEqTest() =>
+            Assert.Equal(Speed.FromDaysPerKilometerEq(2), 2.DaysPerKilometerEq());
+
+        [Fact]
+        public void NumberToDaysPerMeterEqTest() =>
+            Assert.Equal(Speed.FromDaysPerMeterEq(2), 2.DaysPerMeterEq());
+
+        [Fact]
         public void NumberToDecimetersPerMinutesTest() =>
             Assert.Equal(Speed.FromDecimetersPerMinutes(2), 2.DecimetersPerMinutes());
 
@@ -45,8 +73,20 @@ namespace UnitsNet.Tests
             Assert.Equal(Speed.FromDecimetersPerSecond(2), 2.DecimetersPerSecond());
 
         [Fact]
+        public void NumberToFeetPerDayTest() =>
+            Assert.Equal(Speed.FromFeetPerDay(2), 2.FeetPerDay());
+
+        [Fact]
         public void NumberToFeetPerHourTest() =>
             Assert.Equal(Speed.FromFeetPerHour(2), 2.FeetPerHour());
+
+        [Fact]
+        public void NumberToFeetPerMicrosecondTest() =>
+            Assert.Equal(Speed.FromFeetPerMicrosecond(2), 2.FeetPerMicrosecond());
+
+        [Fact]
+        public void NumberToFeetPerMillisecondTest() =>
+            Assert.Equal(Speed.FromFeetPerMillisecond(2), 2.FeetPerMillisecond());
 
         [Fact]
         public void NumberToFeetPerMinuteTest() =>
@@ -55,6 +95,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToFeetPerSecondTest() =>
             Assert.Equal(Speed.FromFeetPerSecond(2), 2.FeetPerSecond());
+
+        [Fact]
+        public void NumberToFeetPerYearTest() =>
+            Assert.Equal(Speed.FromFeetPerYear(2), 2.FeetPerYear());
 
         [Fact]
         public void NumberToInchesPerHourTest() =>
@@ -81,12 +125,28 @@ namespace UnitsNet.Tests
             Assert.Equal(Speed.FromKilometersPerSecond(2), 2.KilometersPerSecond());
 
         [Fact]
+        public void NumberToKmsPerHourTest() =>
+            Assert.Equal(Speed.FromKmsPerHour(2), 2.KmsPerHour());
+
+        [Fact]
         public void NumberToKnotsTest() =>
             Assert.Equal(Speed.FromKnots(2), 2.Knots());
 
         [Fact]
+        public void NumberToMetersPerDayTest() =>
+            Assert.Equal(Speed.FromMetersPerDay(2), 2.MetersPerDay());
+
+        [Fact]
         public void NumberToMetersPerHourTest() =>
             Assert.Equal(Speed.FromMetersPerHour(2), 2.MetersPerHour());
+
+        [Fact]
+        public void NumberToMetersPerMicrosecondTest() =>
+            Assert.Equal(Speed.FromMetersPerMicrosecond(2), 2.MetersPerMicrosecond());
+
+        [Fact]
+        public void NumberToMetersPerMillisecondTest() =>
+            Assert.Equal(Speed.FromMetersPerMillisecond(2), 2.MetersPerMillisecond());
 
         [Fact]
         public void NumberToMetersPerMinutesTest() =>
@@ -97,12 +157,28 @@ namespace UnitsNet.Tests
             Assert.Equal(Speed.FromMetersPerSecond(2), 2.MetersPerSecond());
 
         [Fact]
+        public void NumberToMetersPerYearTest() =>
+            Assert.Equal(Speed.FromMetersPerYear(2), 2.MetersPerYear());
+
+        [Fact]
         public void NumberToMicrometersPerMinutesTest() =>
             Assert.Equal(Speed.FromMicrometersPerMinutes(2), 2.MicrometersPerMinutes());
 
         [Fact]
         public void NumberToMicrometersPerSecondTest() =>
             Assert.Equal(Speed.FromMicrometersPerSecond(2), 2.MicrometersPerSecond());
+
+        [Fact]
+        public void NumberToMicrosecondsPerCentimeterEqTest() =>
+            Assert.Equal(Speed.FromMicrosecondsPerCentimeterEq(2), 2.MicrosecondsPerCentimeterEq());
+
+        [Fact]
+        public void NumberToMicrosecondsPerFootEqTest() =>
+            Assert.Equal(Speed.FromMicrosecondsPerFootEq(2), 2.MicrosecondsPerFootEq());
+
+        [Fact]
+        public void NumberToMicrosecondsPerMeterEqTest() =>
+            Assert.Equal(Speed.FromMicrosecondsPerMeterEq(2), 2.MicrosecondsPerMeterEq());
 
         [Fact]
         public void NumberToMilesPerHourTest() =>
@@ -121,12 +197,36 @@ namespace UnitsNet.Tests
             Assert.Equal(Speed.FromMillimetersPerSecond(2), 2.MillimetersPerSecond());
 
         [Fact]
+        public void NumberToMillisecondsPerCentimeterEqTest() =>
+            Assert.Equal(Speed.FromMillisecondsPerCentimeterEq(2), 2.MillisecondsPerCentimeterEq());
+
+        [Fact]
+        public void NumberToMillisecondsPerFootEqTest() =>
+            Assert.Equal(Speed.FromMillisecondsPerFootEq(2), 2.MillisecondsPerFootEq());
+
+        [Fact]
+        public void NumberToMillisecondsPerMeterEqTest() =>
+            Assert.Equal(Speed.FromMillisecondsPerMeterEq(2), 2.MillisecondsPerMeterEq());
+
+        [Fact]
         public void NumberToNanometersPerMinutesTest() =>
             Assert.Equal(Speed.FromNanometersPerMinutes(2), 2.NanometersPerMinutes());
 
         [Fact]
         public void NumberToNanometersPerSecondTest() =>
             Assert.Equal(Speed.FromNanometersPerSecond(2), 2.NanometersPerSecond());
+
+        [Fact]
+        public void NumberToSecondsPerCentimeterEqTest() =>
+            Assert.Equal(Speed.FromSecondsPerCentimeterEq(2), 2.SecondsPerCentimeterEq());
+
+        [Fact]
+        public void NumberToSecondsPerFootEqTest() =>
+            Assert.Equal(Speed.FromSecondsPerFootEq(2), 2.SecondsPerFootEq());
+
+        [Fact]
+        public void NumberToSecondsPerMeterEqTest() =>
+            Assert.Equal(Speed.FromSecondsPerMeterEq(2), 2.SecondsPerMeterEq());
 
         [Fact]
         public void NumberToUsSurveyFeetPerHourTest() =>

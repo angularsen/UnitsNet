@@ -32,9 +32,21 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
         public static Energy BritishThermalUnits<T>(this T value) =>
             Energy.FromBritishThermalUnits(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Energy.FromBritishThermalUnitThermochemicals(UnitsNet.QuantityValue)" />
+        public static Energy BritishThermalUnitThermochemicals<T>(this T value) =>
+            Energy.FromBritishThermalUnitThermochemicals(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Energy.FromCalories(UnitsNet.QuantityValue)" />
         public static Energy Calories<T>(this T value) =>
             Energy.FromCalories(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Energy.FromCalorieThermochemicals(UnitsNet.QuantityValue)" />
+        public static Energy CalorieThermochemicals<T>(this T value) =>
+            Energy.FromCalorieThermochemicals(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Energy.FromDecanewtonMeters(UnitsNet.QuantityValue)" />
+        public static Energy DecanewtonMeters<T>(this T value) =>
+            Energy.FromDecanewtonMeters(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromDecathermsEc(UnitsNet.QuantityValue)" />
         public static Energy DecathermsEc<T>(this T value) =>
@@ -96,6 +108,14 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
         public static Energy Kilocalories<T>(this T value) =>
             Energy.FromKilocalories(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Energy.FromKilocalorieThermochemicals(UnitsNet.QuantityValue)" />
+        public static Energy KilocalorieThermochemicals<T>(this T value) =>
+            Energy.FromKilocalorieThermochemicals(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Energy.FromKilodecanewtonMeters(UnitsNet.QuantityValue)" />
+        public static Energy KilodecanewtonMeters<T>(this T value) =>
+            Energy.FromKilodecanewtonMeters(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Energy.FromKiloelectronVolts(UnitsNet.QuantityValue)" />
         public static Energy KiloelectronVolts<T>(this T value) =>
             Energy.FromKiloelectronVolts(Convert.ToDouble(value));
@@ -103,6 +123,14 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
         /// <inheritdoc cref="Energy.FromKilojoules(UnitsNet.QuantityValue)" />
         public static Energy Kilojoules<T>(this T value) =>
             Energy.FromKilojoules(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Energy.FromKilonewtonMeters(UnitsNet.QuantityValue)" />
+        public static Energy KilonewtonMeters<T>(this T value) =>
+            Energy.FromKilonewtonMeters(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Energy.FromKilopoundForceFeet(UnitsNet.QuantityValue)" />
+        public static Energy KilopoundForceFeet<T>(this T value) =>
+            Energy.FromKilopoundForceFeet(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromKilowattDays(UnitsNet.QuantityValue)" />
         public static Energy KilowattDays<T>(this T value) =>
@@ -139,6 +167,14 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
         /// <inheritdoc cref="Energy.FromMillijoules(UnitsNet.QuantityValue)" />
         public static Energy Millijoules<T>(this T value) =>
             Energy.FromMillijoules(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Energy.FromNewtonMeters(UnitsNet.QuantityValue)" />
+        public static Energy NewtonMeters<T>(this T value) =>
+            Energy.FromNewtonMeters(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Energy.FromPoundForceFeet(UnitsNet.QuantityValue)" />
+        public static Energy PoundForceFeet<T>(this T value) =>
+            Energy.FromPoundForceFeet(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromTeraelectronVolts(UnitsNet.QuantityValue)" />
         public static Energy TeraelectronVolts<T>(this T value) =>

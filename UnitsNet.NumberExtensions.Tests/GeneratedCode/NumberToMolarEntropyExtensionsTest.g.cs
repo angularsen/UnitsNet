@@ -25,6 +25,10 @@ namespace UnitsNet.Tests
     public class NumberToMolarEntropyExtensionsTests
     {
         [Fact]
+        public void NumberToBritishThermalUnitsPerPoundMoleDegreeRankinTest() =>
+            Assert.Equal(MolarEntropy.FromBritishThermalUnitsPerPoundMoleDegreeRankin(2), 2.BritishThermalUnitsPerPoundMoleDegreeRankin());
+
+        [Fact]
         public void NumberToJoulesPerMoleKelvinTest() =>
             Assert.Equal(MolarEntropy.FromJoulesPerMoleKelvin(2), 2.JoulesPerMoleKelvin());
 

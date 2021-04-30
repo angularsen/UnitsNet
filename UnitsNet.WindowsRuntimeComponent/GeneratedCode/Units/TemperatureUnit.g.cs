@@ -33,6 +33,8 @@ namespace UnitsNet.Units
         DegreeRankine,
         DegreeReaumur,
         DegreeRoemer,
+        DeltaDegreeCelsius,
+        DeltaDegreeFahrenheit,
         Kelvin,
         MillidegreeCelsius,
         SolarTemperature,

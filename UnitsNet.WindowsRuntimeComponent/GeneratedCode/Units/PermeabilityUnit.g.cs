@@ -26,7 +26,13 @@ namespace UnitsNet.Units
     public enum PermeabilityUnit
     {
         Undefined = 0,
+        Darcy,
         HenryPerMeter,
+        Microdarcy,
+        Millidarcy,
+        Nanodarcy,
+        SquareMeter,
+        SquareMicrometer,
     }
 
     #pragma warning restore 1591

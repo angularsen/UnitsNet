@@ -28,6 +28,10 @@ namespace UnitsNet.NumberExtensions.NumberToMolarEntropy
     /// </summary>
     public static class NumberToMolarEntropyExtensions
     {
+        /// <inheritdoc cref="MolarEntropy.FromBritishThermalUnitsPerPoundMoleDegreeRankin(UnitsNet.QuantityValue)" />
+        public static MolarEntropy BritishThermalUnitsPerPoundMoleDegreeRankin<T>(this T value) =>
+            MolarEntropy.FromBritishThermalUnitsPerPoundMoleDegreeRankin(Convert.ToDouble(value));
+
         /// <inheritdoc cref="MolarEntropy.FromJoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
         public static MolarEntropy JoulesPerMoleKelvin<T>(this T value) =>
             MolarEntropy.FromJoulesPerMoleKelvin(Convert.ToDouble(value));

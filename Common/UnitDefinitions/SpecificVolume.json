@@ -12,11 +12,15 @@
       "PluralName": "CubicMetersPerKilogram",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Milli" ],
+      "Prefixes": [
+        "Milli"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "m³/kg" ]
+          "Abbreviations": [
+            "m³/kg"
+          ]
         }
       ]
     },
@@ -29,7 +33,65 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ft³/lb" ]
+          "Abbreviations": [
+            "ft³/lb"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CubicCentimeterPerGram",
+      "PluralName": "CubicCentimetersPerGram",
+      "FromUnitToBaseFunc": "x * 1E-06 / 0.001",
+      "FromBaseToUnitFunc": "x / 1E-06 * 0.001",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "cm3/g"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CubicMeterPerTonne",
+      "PluralName": "CubicMetersPerTonne",
+      "FromUnitToBaseFunc": "x / 1000",
+      "FromBaseToUnitFunc": "x * 1000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "m3/ton"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "StandardCubicFootPerLongTonne",
+      "PluralName": "StandardCubicFeetPerLongTonne",
+      "FromUnitToBaseFunc": "x * 0.028316846592 / 1016.0469088",
+      "FromBaseToUnitFunc": "x / 0.028316846592 * 1016.0469088",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "scf/long-ton"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "StandardCubicFootPerTonne",
+      "PluralName": "StandardCubicFeetPerTonne",
+      "FromUnitToBaseFunc": "x * 0.028316846592 / 1000",
+      "FromBaseToUnitFunc": "x / 0.028316846592 * 1000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "scf/ton"
+          ]
         }
       ]
     }

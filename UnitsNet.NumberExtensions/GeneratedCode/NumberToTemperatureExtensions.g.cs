@@ -56,6 +56,14 @@ namespace UnitsNet.NumberExtensions.NumberToTemperature
         public static Temperature DegreesRoemer<T>(this T value) =>
             Temperature.FromDegreesRoemer(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Temperature.FromDeltaDegreeCelsius(UnitsNet.QuantityValue)" />
+        public static Temperature DeltaDegreeCelsius<T>(this T value) =>
+            Temperature.FromDeltaDegreeCelsius(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Temperature.FromDeltaDegreeFahrenheits(UnitsNet.QuantityValue)" />
+        public static Temperature DeltaDegreeFahrenheits<T>(this T value) =>
+            Temperature.FromDeltaDegreeFahrenheits(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Temperature.FromKelvins(UnitsNet.QuantityValue)" />
         public static Temperature Kelvins<T>(this T value) =>
             Temperature.FromKelvins(Convert.ToDouble(value));

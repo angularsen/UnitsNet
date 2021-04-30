@@ -37,21 +37,21 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class AmountOfSubstanceTestsBase : QuantityTestsBase
     {
-        protected abstract double CentimolesInOneMole { get; }
-        protected abstract double CentipoundMolesInOneMole { get; }
-        protected abstract double DecimolesInOneMole { get; }
-        protected abstract double DecipoundMolesInOneMole { get; }
-        protected abstract double KilomolesInOneMole { get; }
-        protected abstract double KilopoundMolesInOneMole { get; }
-        protected abstract double MegamolesInOneMole { get; }
-        protected abstract double MicromolesInOneMole { get; }
-        protected abstract double MicropoundMolesInOneMole { get; }
-        protected abstract double MillimolesInOneMole { get; }
-        protected abstract double MillipoundMolesInOneMole { get; }
-        protected abstract double MolesInOneMole { get; }
-        protected abstract double NanomolesInOneMole { get; }
-        protected abstract double NanopoundMolesInOneMole { get; }
-        protected abstract double PoundMolesInOneMole { get; }
+        protected virtual double CentimolesInOneMole { get; }
+        protected virtual double CentipoundMolesInOneMole { get; }
+        protected virtual double DecimolesInOneMole { get; }
+        protected virtual double DecipoundMolesInOneMole { get; }
+        protected virtual double KilomolesInOneMole { get; }
+        protected virtual double KilopoundMolesInOneMole { get; }
+        protected virtual double MegamolesInOneMole { get; }
+        protected virtual double MicromolesInOneMole { get; }
+        protected virtual double MicropoundMolesInOneMole { get; }
+        protected virtual double MillimolesInOneMole { get; }
+        protected virtual double MillipoundMolesInOneMole { get; }
+        protected virtual double MolesInOneMole { get; }
+        protected virtual double NanomolesInOneMole { get; }
+        protected virtual double NanopoundMolesInOneMole { get; }
+        protected virtual double PoundMolesInOneMole { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CentimolesTolerance { get { return 1e-5; } }

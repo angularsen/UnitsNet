@@ -27,7 +27,12 @@ namespace UnitsNet.Units
     {
         Undefined = 0,
         Decanewton,
+        Dekanewton,
         Dyn,
+        Dyne,
+        GramForce,
+        Kilodekanewton,
+        Kilodyne,
         KilogramForce,
         Kilonewton,
         KiloPond,

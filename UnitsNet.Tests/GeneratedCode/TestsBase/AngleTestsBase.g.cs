@@ -37,20 +37,20 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class AngleTestsBase : QuantityTestsBase
     {
-        protected abstract double ArcminutesInOneDegree { get; }
-        protected abstract double ArcsecondsInOneDegree { get; }
-        protected abstract double CentiradiansInOneDegree { get; }
-        protected abstract double DeciradiansInOneDegree { get; }
-        protected abstract double DegreesInOneDegree { get; }
-        protected abstract double GradiansInOneDegree { get; }
-        protected abstract double MicrodegreesInOneDegree { get; }
-        protected abstract double MicroradiansInOneDegree { get; }
-        protected abstract double MillidegreesInOneDegree { get; }
-        protected abstract double MilliradiansInOneDegree { get; }
-        protected abstract double NanodegreesInOneDegree { get; }
-        protected abstract double NanoradiansInOneDegree { get; }
-        protected abstract double RadiansInOneDegree { get; }
-        protected abstract double RevolutionsInOneDegree { get; }
+        protected virtual double ArcminutesInOneDegree { get; }
+        protected virtual double ArcsecondsInOneDegree { get; }
+        protected virtual double CentiradiansInOneDegree { get; }
+        protected virtual double DeciradiansInOneDegree { get; }
+        protected virtual double DegreesInOneDegree { get; }
+        protected virtual double GradiansInOneDegree { get; }
+        protected virtual double MicrodegreesInOneDegree { get; }
+        protected virtual double MicroradiansInOneDegree { get; }
+        protected virtual double MillidegreesInOneDegree { get; }
+        protected virtual double MilliradiansInOneDegree { get; }
+        protected virtual double NanodegreesInOneDegree { get; }
+        protected virtual double NanoradiansInOneDegree { get; }
+        protected virtual double RadiansInOneDegree { get; }
+        protected virtual double RevolutionsInOneDegree { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double ArcminutesTolerance { get { return 1e-5; } }

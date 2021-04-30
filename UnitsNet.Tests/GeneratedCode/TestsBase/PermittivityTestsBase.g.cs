@@ -37,7 +37,7 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class PermittivityTestsBase : QuantityTestsBase
     {
-        protected abstract double FaradsPerMeterInOneFaradPerMeter { get; }
+        protected virtual double FaradsPerMeterInOneFaradPerMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double FaradsPerMeterTolerance { get { return 1e-5; } }

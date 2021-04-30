@@ -29,8 +29,28 @@ namespace UnitsNet.Tests
             Assert.Equal(Force.FromDecanewtons(2), 2.Decanewtons());
 
         [Fact]
+        public void NumberToDekanewtonsTest() =>
+            Assert.Equal(Force.FromDekanewtons(2), 2.Dekanewtons());
+
+        [Fact]
         public void NumberToDyneTest() =>
             Assert.Equal(Force.FromDyne(2), 2.Dyne());
+
+        [Fact]
+        public void NumberToDynesTest() =>
+            Assert.Equal(Force.FromDynes(2), 2.Dynes());
+
+        [Fact]
+        public void NumberToGramForcesTest() =>
+            Assert.Equal(Force.FromGramForces(2), 2.GramForces());
+
+        [Fact]
+        public void NumberToKilodekanewtonsTest() =>
+            Assert.Equal(Force.FromKilodekanewtons(2), 2.Kilodekanewtons());
+
+        [Fact]
+        public void NumberToKilodynesTest() =>
+            Assert.Equal(Force.FromKilodynes(2), 2.Kilodynes());
 
         [Fact]
         public void NumberToKilogramsForceTest() =>

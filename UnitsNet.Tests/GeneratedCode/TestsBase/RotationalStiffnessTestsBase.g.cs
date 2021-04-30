@@ -37,39 +37,39 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class RotationalStiffnessTestsBase : QuantityTestsBase
     {
-        protected abstract double CentinewtonMetersPerDegreeInOneNewtonMeterPerRadian { get; }
-        protected abstract double CentinewtonMillimetersPerDegreeInOneNewtonMeterPerRadian { get; }
-        protected abstract double CentinewtonMillimetersPerRadianInOneNewtonMeterPerRadian { get; }
-        protected abstract double DecanewtonMetersPerDegreeInOneNewtonMeterPerRadian { get; }
-        protected abstract double DecanewtonMillimetersPerDegreeInOneNewtonMeterPerRadian { get; }
-        protected abstract double DecanewtonMillimetersPerRadianInOneNewtonMeterPerRadian { get; }
-        protected abstract double DecinewtonMetersPerDegreeInOneNewtonMeterPerRadian { get; }
-        protected abstract double DecinewtonMillimetersPerDegreeInOneNewtonMeterPerRadian { get; }
-        protected abstract double DecinewtonMillimetersPerRadianInOneNewtonMeterPerRadian { get; }
-        protected abstract double KilonewtonMetersPerDegreeInOneNewtonMeterPerRadian { get; }
-        protected abstract double KilonewtonMetersPerRadianInOneNewtonMeterPerRadian { get; }
-        protected abstract double KilonewtonMillimetersPerDegreeInOneNewtonMeterPerRadian { get; }
-        protected abstract double KilonewtonMillimetersPerRadianInOneNewtonMeterPerRadian { get; }
-        protected abstract double KilopoundForceFeetPerDegreesInOneNewtonMeterPerRadian { get; }
-        protected abstract double MeganewtonMetersPerDegreeInOneNewtonMeterPerRadian { get; }
-        protected abstract double MeganewtonMetersPerRadianInOneNewtonMeterPerRadian { get; }
-        protected abstract double MeganewtonMillimetersPerDegreeInOneNewtonMeterPerRadian { get; }
-        protected abstract double MeganewtonMillimetersPerRadianInOneNewtonMeterPerRadian { get; }
-        protected abstract double MicronewtonMetersPerDegreeInOneNewtonMeterPerRadian { get; }
-        protected abstract double MicronewtonMillimetersPerDegreeInOneNewtonMeterPerRadian { get; }
-        protected abstract double MicronewtonMillimetersPerRadianInOneNewtonMeterPerRadian { get; }
-        protected abstract double MillinewtonMetersPerDegreeInOneNewtonMeterPerRadian { get; }
-        protected abstract double MillinewtonMillimetersPerDegreeInOneNewtonMeterPerRadian { get; }
-        protected abstract double MillinewtonMillimetersPerRadianInOneNewtonMeterPerRadian { get; }
-        protected abstract double NanonewtonMetersPerDegreeInOneNewtonMeterPerRadian { get; }
-        protected abstract double NanonewtonMillimetersPerDegreeInOneNewtonMeterPerRadian { get; }
-        protected abstract double NanonewtonMillimetersPerRadianInOneNewtonMeterPerRadian { get; }
-        protected abstract double NewtonMetersPerDegreeInOneNewtonMeterPerRadian { get; }
-        protected abstract double NewtonMetersPerRadianInOneNewtonMeterPerRadian { get; }
-        protected abstract double NewtonMillimetersPerDegreeInOneNewtonMeterPerRadian { get; }
-        protected abstract double NewtonMillimetersPerRadianInOneNewtonMeterPerRadian { get; }
-        protected abstract double PoundForceFeetPerRadianInOneNewtonMeterPerRadian { get; }
-        protected abstract double PoundForceFeetPerDegreesInOneNewtonMeterPerRadian { get; }
+        protected virtual double CentinewtonMetersPerDegreeInOneNewtonMeterPerRadian { get; }
+        protected virtual double CentinewtonMillimetersPerDegreeInOneNewtonMeterPerRadian { get; }
+        protected virtual double CentinewtonMillimetersPerRadianInOneNewtonMeterPerRadian { get; }
+        protected virtual double DecanewtonMetersPerDegreeInOneNewtonMeterPerRadian { get; }
+        protected virtual double DecanewtonMillimetersPerDegreeInOneNewtonMeterPerRadian { get; }
+        protected virtual double DecanewtonMillimetersPerRadianInOneNewtonMeterPerRadian { get; }
+        protected virtual double DecinewtonMetersPerDegreeInOneNewtonMeterPerRadian { get; }
+        protected virtual double DecinewtonMillimetersPerDegreeInOneNewtonMeterPerRadian { get; }
+        protected virtual double DecinewtonMillimetersPerRadianInOneNewtonMeterPerRadian { get; }
+        protected virtual double KilonewtonMetersPerDegreeInOneNewtonMeterPerRadian { get; }
+        protected virtual double KilonewtonMetersPerRadianInOneNewtonMeterPerRadian { get; }
+        protected virtual double KilonewtonMillimetersPerDegreeInOneNewtonMeterPerRadian { get; }
+        protected virtual double KilonewtonMillimetersPerRadianInOneNewtonMeterPerRadian { get; }
+        protected virtual double KilopoundForceFeetPerDegreesInOneNewtonMeterPerRadian { get; }
+        protected virtual double MeganewtonMetersPerDegreeInOneNewtonMeterPerRadian { get; }
+        protected virtual double MeganewtonMetersPerRadianInOneNewtonMeterPerRadian { get; }
+        protected virtual double MeganewtonMillimetersPerDegreeInOneNewtonMeterPerRadian { get; }
+        protected virtual double MeganewtonMillimetersPerRadianInOneNewtonMeterPerRadian { get; }
+        protected virtual double MicronewtonMetersPerDegreeInOneNewtonMeterPerRadian { get; }
+        protected virtual double MicronewtonMillimetersPerDegreeInOneNewtonMeterPerRadian { get; }
+        protected virtual double MicronewtonMillimetersPerRadianInOneNewtonMeterPerRadian { get; }
+        protected virtual double MillinewtonMetersPerDegreeInOneNewtonMeterPerRadian { get; }
+        protected virtual double MillinewtonMillimetersPerDegreeInOneNewtonMeterPerRadian { get; }
+        protected virtual double MillinewtonMillimetersPerRadianInOneNewtonMeterPerRadian { get; }
+        protected virtual double NanonewtonMetersPerDegreeInOneNewtonMeterPerRadian { get; }
+        protected virtual double NanonewtonMillimetersPerDegreeInOneNewtonMeterPerRadian { get; }
+        protected virtual double NanonewtonMillimetersPerRadianInOneNewtonMeterPerRadian { get; }
+        protected virtual double NewtonMetersPerDegreeInOneNewtonMeterPerRadian { get; }
+        protected virtual double NewtonMetersPerRadianInOneNewtonMeterPerRadian { get; }
+        protected virtual double NewtonMillimetersPerDegreeInOneNewtonMeterPerRadian { get; }
+        protected virtual double NewtonMillimetersPerRadianInOneNewtonMeterPerRadian { get; }
+        protected virtual double PoundForceFeetPerRadianInOneNewtonMeterPerRadian { get; }
+        protected virtual double PoundForceFeetPerDegreesInOneNewtonMeterPerRadian { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CentinewtonMetersPerDegreeTolerance { get { return 1e-5; } }

@@ -37,14 +37,22 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class SpecificVolumeTestsBase : QuantityTestsBase
     {
-        protected abstract double CubicFeetPerPoundInOneCubicMeterPerKilogram { get; }
-        protected abstract double CubicMetersPerKilogramInOneCubicMeterPerKilogram { get; }
-        protected abstract double MillicubicMetersPerKilogramInOneCubicMeterPerKilogram { get; }
+        protected virtual double CubicCentimetersPerGramInOneCubicMeterPerKilogram { get; }
+        protected virtual double CubicFeetPerPoundInOneCubicMeterPerKilogram { get; }
+        protected virtual double CubicMetersPerKilogramInOneCubicMeterPerKilogram { get; }
+        protected virtual double CubicMetersPerTonneInOneCubicMeterPerKilogram { get; }
+        protected virtual double MillicubicMetersPerKilogramInOneCubicMeterPerKilogram { get; }
+        protected virtual double StandardCubicFeetPerLongTonneInOneCubicMeterPerKilogram { get; }
+        protected virtual double StandardCubicFeetPerTonneInOneCubicMeterPerKilogram { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double CubicCentimetersPerGramTolerance { get { return 1e-5; } }
         protected virtual double CubicFeetPerPoundTolerance { get { return 1e-5; } }
         protected virtual double CubicMetersPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double CubicMetersPerTonneTolerance { get { return 1e-5; } }
         protected virtual double MillicubicMetersPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double StandardCubicFeetPerLongTonneTolerance { get { return 1e-5; } }
+        protected virtual double StandardCubicFeetPerTonneTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
@@ -119,25 +127,45 @@ namespace UnitsNet.Tests
         public void CubicMeterPerKilogramToSpecificVolumeUnits()
         {
             SpecificVolume cubicmeterperkilogram = SpecificVolume.FromCubicMetersPerKilogram(1);
+            AssertEx.EqualTolerance(CubicCentimetersPerGramInOneCubicMeterPerKilogram, cubicmeterperkilogram.CubicCentimetersPerGram, CubicCentimetersPerGramTolerance);
             AssertEx.EqualTolerance(CubicFeetPerPoundInOneCubicMeterPerKilogram, cubicmeterperkilogram.CubicFeetPerPound, CubicFeetPerPoundTolerance);
             AssertEx.EqualTolerance(CubicMetersPerKilogramInOneCubicMeterPerKilogram, cubicmeterperkilogram.CubicMetersPerKilogram, CubicMetersPerKilogramTolerance);
+            AssertEx.EqualTolerance(CubicMetersPerTonneInOneCubicMeterPerKilogram, cubicmeterperkilogram.CubicMetersPerTonne, CubicMetersPerTonneTolerance);
             AssertEx.EqualTolerance(MillicubicMetersPerKilogramInOneCubicMeterPerKilogram, cubicmeterperkilogram.MillicubicMetersPerKilogram, MillicubicMetersPerKilogramTolerance);
+            AssertEx.EqualTolerance(StandardCubicFeetPerLongTonneInOneCubicMeterPerKilogram, cubicmeterperkilogram.StandardCubicFeetPerLongTonne, StandardCubicFeetPerLongTonneTolerance);
+            AssertEx.EqualTolerance(StandardCubicFeetPerTonneInOneCubicMeterPerKilogram, cubicmeterperkilogram.StandardCubicFeetPerTonne, StandardCubicFeetPerTonneTolerance);
         }
 
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = SpecificVolume.From(1, SpecificVolumeUnit.CubicFootPerPound);
-            AssertEx.EqualTolerance(1, quantity00.CubicFeetPerPound, CubicFeetPerPoundTolerance);
-            Assert.Equal(SpecificVolumeUnit.CubicFootPerPound, quantity00.Unit);
+            var quantity00 = SpecificVolume.From(1, SpecificVolumeUnit.CubicCentimeterPerGram);
+            AssertEx.EqualTolerance(1, quantity00.CubicCentimetersPerGram, CubicCentimetersPerGramTolerance);
+            Assert.Equal(SpecificVolumeUnit.CubicCentimeterPerGram, quantity00.Unit);
 
-            var quantity01 = SpecificVolume.From(1, SpecificVolumeUnit.CubicMeterPerKilogram);
-            AssertEx.EqualTolerance(1, quantity01.CubicMetersPerKilogram, CubicMetersPerKilogramTolerance);
-            Assert.Equal(SpecificVolumeUnit.CubicMeterPerKilogram, quantity01.Unit);
+            var quantity01 = SpecificVolume.From(1, SpecificVolumeUnit.CubicFootPerPound);
+            AssertEx.EqualTolerance(1, quantity01.CubicFeetPerPound, CubicFeetPerPoundTolerance);
+            Assert.Equal(SpecificVolumeUnit.CubicFootPerPound, quantity01.Unit);
 
-            var quantity02 = SpecificVolume.From(1, SpecificVolumeUnit.MillicubicMeterPerKilogram);
-            AssertEx.EqualTolerance(1, quantity02.MillicubicMetersPerKilogram, MillicubicMetersPerKilogramTolerance);
-            Assert.Equal(SpecificVolumeUnit.MillicubicMeterPerKilogram, quantity02.Unit);
+            var quantity02 = SpecificVolume.From(1, SpecificVolumeUnit.CubicMeterPerKilogram);
+            AssertEx.EqualTolerance(1, quantity02.CubicMetersPerKilogram, CubicMetersPerKilogramTolerance);
+            Assert.Equal(SpecificVolumeUnit.CubicMeterPerKilogram, quantity02.Unit);
+
+            var quantity03 = SpecificVolume.From(1, SpecificVolumeUnit.CubicMeterPerTonne);
+            AssertEx.EqualTolerance(1, quantity03.CubicMetersPerTonne, CubicMetersPerTonneTolerance);
+            Assert.Equal(SpecificVolumeUnit.CubicMeterPerTonne, quantity03.Unit);
+
+            var quantity04 = SpecificVolume.From(1, SpecificVolumeUnit.MillicubicMeterPerKilogram);
+            AssertEx.EqualTolerance(1, quantity04.MillicubicMetersPerKilogram, MillicubicMetersPerKilogramTolerance);
+            Assert.Equal(SpecificVolumeUnit.MillicubicMeterPerKilogram, quantity04.Unit);
+
+            var quantity05 = SpecificVolume.From(1, SpecificVolumeUnit.StandardCubicFootPerLongTonne);
+            AssertEx.EqualTolerance(1, quantity05.StandardCubicFeetPerLongTonne, StandardCubicFeetPerLongTonneTolerance);
+            Assert.Equal(SpecificVolumeUnit.StandardCubicFootPerLongTonne, quantity05.Unit);
+
+            var quantity06 = SpecificVolume.From(1, SpecificVolumeUnit.StandardCubicFootPerTonne);
+            AssertEx.EqualTolerance(1, quantity06.StandardCubicFeetPerTonne, StandardCubicFeetPerTonneTolerance);
+            Assert.Equal(SpecificVolumeUnit.StandardCubicFootPerTonne, quantity06.Unit);
 
         }
 
@@ -158,9 +186,13 @@ namespace UnitsNet.Tests
         public void As()
         {
             var cubicmeterperkilogram = SpecificVolume.FromCubicMetersPerKilogram(1);
+            AssertEx.EqualTolerance(CubicCentimetersPerGramInOneCubicMeterPerKilogram, cubicmeterperkilogram.As(SpecificVolumeUnit.CubicCentimeterPerGram), CubicCentimetersPerGramTolerance);
             AssertEx.EqualTolerance(CubicFeetPerPoundInOneCubicMeterPerKilogram, cubicmeterperkilogram.As(SpecificVolumeUnit.CubicFootPerPound), CubicFeetPerPoundTolerance);
             AssertEx.EqualTolerance(CubicMetersPerKilogramInOneCubicMeterPerKilogram, cubicmeterperkilogram.As(SpecificVolumeUnit.CubicMeterPerKilogram), CubicMetersPerKilogramTolerance);
+            AssertEx.EqualTolerance(CubicMetersPerTonneInOneCubicMeterPerKilogram, cubicmeterperkilogram.As(SpecificVolumeUnit.CubicMeterPerTonne), CubicMetersPerTonneTolerance);
             AssertEx.EqualTolerance(MillicubicMetersPerKilogramInOneCubicMeterPerKilogram, cubicmeterperkilogram.As(SpecificVolumeUnit.MillicubicMeterPerKilogram), MillicubicMetersPerKilogramTolerance);
+            AssertEx.EqualTolerance(StandardCubicFeetPerLongTonneInOneCubicMeterPerKilogram, cubicmeterperkilogram.As(SpecificVolumeUnit.StandardCubicFootPerLongTonne), StandardCubicFeetPerLongTonneTolerance);
+            AssertEx.EqualTolerance(StandardCubicFeetPerTonneInOneCubicMeterPerKilogram, cubicmeterperkilogram.As(SpecificVolumeUnit.StandardCubicFootPerTonne), StandardCubicFeetPerTonneTolerance);
         }
 
         [Fact]
@@ -185,6 +217,10 @@ namespace UnitsNet.Tests
         {
             var cubicmeterperkilogram = SpecificVolume.FromCubicMetersPerKilogram(1);
 
+            var cubiccentimeterpergramQuantity = cubicmeterperkilogram.ToUnit(SpecificVolumeUnit.CubicCentimeterPerGram);
+            AssertEx.EqualTolerance(CubicCentimetersPerGramInOneCubicMeterPerKilogram, (double)cubiccentimeterpergramQuantity.Value, CubicCentimetersPerGramTolerance);
+            Assert.Equal(SpecificVolumeUnit.CubicCentimeterPerGram, cubiccentimeterpergramQuantity.Unit);
+
             var cubicfootperpoundQuantity = cubicmeterperkilogram.ToUnit(SpecificVolumeUnit.CubicFootPerPound);
             AssertEx.EqualTolerance(CubicFeetPerPoundInOneCubicMeterPerKilogram, (double)cubicfootperpoundQuantity.Value, CubicFeetPerPoundTolerance);
             Assert.Equal(SpecificVolumeUnit.CubicFootPerPound, cubicfootperpoundQuantity.Unit);
@@ -193,9 +229,21 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(CubicMetersPerKilogramInOneCubicMeterPerKilogram, (double)cubicmeterperkilogramQuantity.Value, CubicMetersPerKilogramTolerance);
             Assert.Equal(SpecificVolumeUnit.CubicMeterPerKilogram, cubicmeterperkilogramQuantity.Unit);
 
+            var cubicmeterpertonneQuantity = cubicmeterperkilogram.ToUnit(SpecificVolumeUnit.CubicMeterPerTonne);
+            AssertEx.EqualTolerance(CubicMetersPerTonneInOneCubicMeterPerKilogram, (double)cubicmeterpertonneQuantity.Value, CubicMetersPerTonneTolerance);
+            Assert.Equal(SpecificVolumeUnit.CubicMeterPerTonne, cubicmeterpertonneQuantity.Unit);
+
             var millicubicmeterperkilogramQuantity = cubicmeterperkilogram.ToUnit(SpecificVolumeUnit.MillicubicMeterPerKilogram);
             AssertEx.EqualTolerance(MillicubicMetersPerKilogramInOneCubicMeterPerKilogram, (double)millicubicmeterperkilogramQuantity.Value, MillicubicMetersPerKilogramTolerance);
             Assert.Equal(SpecificVolumeUnit.MillicubicMeterPerKilogram, millicubicmeterperkilogramQuantity.Unit);
+
+            var standardcubicfootperlongtonneQuantity = cubicmeterperkilogram.ToUnit(SpecificVolumeUnit.StandardCubicFootPerLongTonne);
+            AssertEx.EqualTolerance(StandardCubicFeetPerLongTonneInOneCubicMeterPerKilogram, (double)standardcubicfootperlongtonneQuantity.Value, StandardCubicFeetPerLongTonneTolerance);
+            Assert.Equal(SpecificVolumeUnit.StandardCubicFootPerLongTonne, standardcubicfootperlongtonneQuantity.Unit);
+
+            var standardcubicfootpertonneQuantity = cubicmeterperkilogram.ToUnit(SpecificVolumeUnit.StandardCubicFootPerTonne);
+            AssertEx.EqualTolerance(StandardCubicFeetPerTonneInOneCubicMeterPerKilogram, (double)standardcubicfootpertonneQuantity.Value, StandardCubicFeetPerTonneTolerance);
+            Assert.Equal(SpecificVolumeUnit.StandardCubicFootPerTonne, standardcubicfootpertonneQuantity.Unit);
         }
 
         [Fact]
@@ -209,9 +257,13 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             SpecificVolume cubicmeterperkilogram = SpecificVolume.FromCubicMetersPerKilogram(1);
+            AssertEx.EqualTolerance(1, SpecificVolume.FromCubicCentimetersPerGram(cubicmeterperkilogram.CubicCentimetersPerGram).CubicMetersPerKilogram, CubicCentimetersPerGramTolerance);
             AssertEx.EqualTolerance(1, SpecificVolume.FromCubicFeetPerPound(cubicmeterperkilogram.CubicFeetPerPound).CubicMetersPerKilogram, CubicFeetPerPoundTolerance);
             AssertEx.EqualTolerance(1, SpecificVolume.FromCubicMetersPerKilogram(cubicmeterperkilogram.CubicMetersPerKilogram).CubicMetersPerKilogram, CubicMetersPerKilogramTolerance);
+            AssertEx.EqualTolerance(1, SpecificVolume.FromCubicMetersPerTonne(cubicmeterperkilogram.CubicMetersPerTonne).CubicMetersPerKilogram, CubicMetersPerTonneTolerance);
             AssertEx.EqualTolerance(1, SpecificVolume.FromMillicubicMetersPerKilogram(cubicmeterperkilogram.MillicubicMetersPerKilogram).CubicMetersPerKilogram, MillicubicMetersPerKilogramTolerance);
+            AssertEx.EqualTolerance(1, SpecificVolume.FromStandardCubicFeetPerLongTonne(cubicmeterperkilogram.StandardCubicFeetPerLongTonne).CubicMetersPerKilogram, StandardCubicFeetPerLongTonneTolerance);
+            AssertEx.EqualTolerance(1, SpecificVolume.FromStandardCubicFeetPerTonne(cubicmeterperkilogram.StandardCubicFeetPerTonne).CubicMetersPerKilogram, StandardCubicFeetPerTonneTolerance);
         }
 
         [Fact]
@@ -368,9 +420,13 @@ namespace UnitsNet.Tests
             var prevCulture = Thread.CurrentThread.CurrentUICulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             try {
+                Assert.Equal("1 cm3/g", new SpecificVolume(1, SpecificVolumeUnit.CubicCentimeterPerGram).ToString());
                 Assert.Equal("1 ft³/lb", new SpecificVolume(1, SpecificVolumeUnit.CubicFootPerPound).ToString());
                 Assert.Equal("1 m³/kg", new SpecificVolume(1, SpecificVolumeUnit.CubicMeterPerKilogram).ToString());
+                Assert.Equal("1 m3/ton", new SpecificVolume(1, SpecificVolumeUnit.CubicMeterPerTonne).ToString());
                 Assert.Equal("1 mm³/kg", new SpecificVolume(1, SpecificVolumeUnit.MillicubicMeterPerKilogram).ToString());
+                Assert.Equal("1 scf/long-ton", new SpecificVolume(1, SpecificVolumeUnit.StandardCubicFootPerLongTonne).ToString());
+                Assert.Equal("1 scf/ton", new SpecificVolume(1, SpecificVolumeUnit.StandardCubicFootPerTonne).ToString());
             }
             finally
             {
@@ -384,9 +440,13 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
+            Assert.Equal("1 cm3/g", new SpecificVolume(1, SpecificVolumeUnit.CubicCentimeterPerGram).ToString(swedishCulture));
             Assert.Equal("1 ft³/lb", new SpecificVolume(1, SpecificVolumeUnit.CubicFootPerPound).ToString(swedishCulture));
             Assert.Equal("1 m³/kg", new SpecificVolume(1, SpecificVolumeUnit.CubicMeterPerKilogram).ToString(swedishCulture));
+            Assert.Equal("1 m3/ton", new SpecificVolume(1, SpecificVolumeUnit.CubicMeterPerTonne).ToString(swedishCulture));
             Assert.Equal("1 mm³/kg", new SpecificVolume(1, SpecificVolumeUnit.MillicubicMeterPerKilogram).ToString(swedishCulture));
+            Assert.Equal("1 scf/long-ton", new SpecificVolume(1, SpecificVolumeUnit.StandardCubicFootPerLongTonne).ToString(swedishCulture));
+            Assert.Equal("1 scf/ton", new SpecificVolume(1, SpecificVolumeUnit.StandardCubicFootPerTonne).ToString(swedishCulture));
         }
 
         [Fact]

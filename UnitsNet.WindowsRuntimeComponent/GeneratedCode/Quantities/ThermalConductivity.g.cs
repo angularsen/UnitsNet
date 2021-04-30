@@ -159,6 +159,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get ThermalConductivity in BritishThermalUnitsPerDayFootDegreeRankin.
+        /// </summary>
+        public double BritishThermalUnitsPerDayFootDegreeRankin => As(ThermalConductivityUnit.BritishThermalUnitPerDayFootDegreeRankin);
+
+        /// <summary>
         ///     Get ThermalConductivity in BtusPerHourFootFahrenheit.
         /// </summary>
         public double BtusPerHourFootFahrenheit => As(ThermalConductivityUnit.BtuPerHourFootFahrenheit);
@@ -198,6 +203,16 @@ namespace UnitsNet
 
         #region Static Factory Methods
 
+        /// <summary>
+        ///     Get ThermalConductivity from BritishThermalUnitsPerDayFootDegreeRankin.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ThermalConductivity FromBritishThermalUnitsPerDayFootDegreeRankin(double britishthermalunitsperdayfootdegreerankin)
+        {
+            double value = (double) britishthermalunitsperdayfootdegreerankin;
+            return new ThermalConductivity(value, ThermalConductivityUnit.BritishThermalUnitPerDayFootDegreeRankin);
+        }
         /// <summary>
         ///     Get ThermalConductivity from BtusPerHourFootFahrenheit.
         /// </summary>
@@ -509,6 +524,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case ThermalConductivityUnit.BritishThermalUnitPerDayFootDegreeRankin: return _value * 1055.05585262 / 14630.4;
                 case ThermalConductivityUnit.BtuPerHourFootFahrenheit: return _value*1.73073467;
                 case ThermalConductivityUnit.WattPerMeterKelvin: return _value;
                 default:
@@ -525,6 +541,7 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case ThermalConductivityUnit.BritishThermalUnitPerDayFootDegreeRankin: return baseUnitValue / 1055.05585262 * 14630.4;
                 case ThermalConductivityUnit.BtuPerHourFootFahrenheit: return baseUnitValue/1.73073467;
                 case ThermalConductivityUnit.WattPerMeterKelvin: return baseUnitValue;
                 default:

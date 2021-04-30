@@ -11,15 +11,25 @@
       "PluralName": "RadiansPerSecond",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci" ],
+      "Prefixes": [
+        "Nano",
+        "Micro",
+        "Milli",
+        "Centi",
+        "Deci"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "rad/s" ]
+          "Abbreviations": [
+            "rad/s"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "рад/с" ]
+          "Abbreviations": [
+            "рад/с"
+          ]
         }
       ]
     },
@@ -28,15 +38,24 @@
       "PluralName": "DegreesPerSecond",
       "FromUnitToBaseFunc": "(Math.PI/180)*x",
       "FromBaseToUnitFunc": "(180/Math.PI)*x",
-      "Prefixes": [ "Nano", "Micro", "Milli" ],
+      "Prefixes": [
+        "Nano",
+        "Micro",
+        "Milli"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "°/s", "deg/s" ]
+          "Abbreviations": [
+            "°/s",
+            "deg/s"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "°/с" ]
+          "Abbreviations": [
+            "°/с"
+          ]
         }
       ]
     },
@@ -48,7 +67,10 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "°/min", "deg/min" ]
+          "Abbreviations": [
+            "°/min",
+            "deg/min"
+          ]
         }
       ]
     },
@@ -60,11 +82,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "r/s" ]
+          "Abbreviations": [
+            "r/s"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "об/с" ]
+          "Abbreviations": [
+            "об/с"
+          ]
         }
       ]
     },
@@ -76,11 +102,44 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "rpm", "r/min" ]
+          "Abbreviations": [
+            "rpm",
+            "r/min"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "об/мин" ]
+          "Abbreviations": [
+            "об/мин"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "RotationPerMinute",
+      "PluralName": "RotationsPerMinute",
+      "FromUnitToBaseFunc": "x * 0.10471975511966",
+      "FromBaseToUnitFunc": "x / 0.10471975511966",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "rpm"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "RotationPerSecond",
+      "PluralName": "RotationsPerSecond",
+      "FromUnitToBaseFunc": "x * 6.28318530717959",
+      "FromBaseToUnitFunc": "x / 6.28318530717959",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "rps"
+          ]
         }
       ]
     }

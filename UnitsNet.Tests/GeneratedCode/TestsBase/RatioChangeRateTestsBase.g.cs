@@ -37,8 +37,8 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class RatioChangeRateTestsBase : QuantityTestsBase
     {
-        protected abstract double DecimalFractionsPerSecondInOneDecimalFractionPerSecond { get; }
-        protected abstract double PercentsPerSecondInOneDecimalFractionPerSecond { get; }
+        protected virtual double DecimalFractionsPerSecondInOneDecimalFractionPerSecond { get; }
+        protected virtual double PercentsPerSecondInOneDecimalFractionPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double DecimalFractionsPerSecondTolerance { get { return 1e-5; } }

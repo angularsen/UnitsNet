@@ -37,20 +37,20 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class IrradianceTestsBase : QuantityTestsBase
     {
-        protected abstract double KilowattsPerSquareCentimeterInOneWattPerSquareMeter { get; }
-        protected abstract double KilowattsPerSquareMeterInOneWattPerSquareMeter { get; }
-        protected abstract double MegawattsPerSquareCentimeterInOneWattPerSquareMeter { get; }
-        protected abstract double MegawattsPerSquareMeterInOneWattPerSquareMeter { get; }
-        protected abstract double MicrowattsPerSquareCentimeterInOneWattPerSquareMeter { get; }
-        protected abstract double MicrowattsPerSquareMeterInOneWattPerSquareMeter { get; }
-        protected abstract double MilliwattsPerSquareCentimeterInOneWattPerSquareMeter { get; }
-        protected abstract double MilliwattsPerSquareMeterInOneWattPerSquareMeter { get; }
-        protected abstract double NanowattsPerSquareCentimeterInOneWattPerSquareMeter { get; }
-        protected abstract double NanowattsPerSquareMeterInOneWattPerSquareMeter { get; }
-        protected abstract double PicowattsPerSquareCentimeterInOneWattPerSquareMeter { get; }
-        protected abstract double PicowattsPerSquareMeterInOneWattPerSquareMeter { get; }
-        protected abstract double WattsPerSquareCentimeterInOneWattPerSquareMeter { get; }
-        protected abstract double WattsPerSquareMeterInOneWattPerSquareMeter { get; }
+        protected virtual double KilowattsPerSquareCentimeterInOneWattPerSquareMeter { get; }
+        protected virtual double KilowattsPerSquareMeterInOneWattPerSquareMeter { get; }
+        protected virtual double MegawattsPerSquareCentimeterInOneWattPerSquareMeter { get; }
+        protected virtual double MegawattsPerSquareMeterInOneWattPerSquareMeter { get; }
+        protected virtual double MicrowattsPerSquareCentimeterInOneWattPerSquareMeter { get; }
+        protected virtual double MicrowattsPerSquareMeterInOneWattPerSquareMeter { get; }
+        protected virtual double MilliwattsPerSquareCentimeterInOneWattPerSquareMeter { get; }
+        protected virtual double MilliwattsPerSquareMeterInOneWattPerSquareMeter { get; }
+        protected virtual double NanowattsPerSquareCentimeterInOneWattPerSquareMeter { get; }
+        protected virtual double NanowattsPerSquareMeterInOneWattPerSquareMeter { get; }
+        protected virtual double PicowattsPerSquareCentimeterInOneWattPerSquareMeter { get; }
+        protected virtual double PicowattsPerSquareMeterInOneWattPerSquareMeter { get; }
+        protected virtual double WattsPerSquareCentimeterInOneWattPerSquareMeter { get; }
+        protected virtual double WattsPerSquareMeterInOneWattPerSquareMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double KilowattsPerSquareCentimeterTolerance { get { return 1e-5; } }

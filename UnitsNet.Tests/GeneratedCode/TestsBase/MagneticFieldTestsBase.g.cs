@@ -37,11 +37,11 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class MagneticFieldTestsBase : QuantityTestsBase
     {
-        protected abstract double GaussesInOneTesla { get; }
-        protected abstract double MicroteslasInOneTesla { get; }
-        protected abstract double MilliteslasInOneTesla { get; }
-        protected abstract double NanoteslasInOneTesla { get; }
-        protected abstract double TeslasInOneTesla { get; }
+        protected virtual double GaussesInOneTesla { get; }
+        protected virtual double MicroteslasInOneTesla { get; }
+        protected virtual double MilliteslasInOneTesla { get; }
+        protected virtual double NanoteslasInOneTesla { get; }
+        protected virtual double TeslasInOneTesla { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double GaussesTolerance { get { return 1e-5; } }

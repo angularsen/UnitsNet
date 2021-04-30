@@ -17,19 +17,20 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Globalization;
-using System.Linq;
-using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
-
 #nullable enable
 
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using JetBrains.Annotations;
+    using UnitsNet.InternalHelpers;
+    using UnitsNet.Units;
+    
+
     /// <inheritdoc />
     /// <summary>
     ///     In geometry, a solid angle is the two-dimensional angle in three-dimensional space that an object subtends at a point.
@@ -55,6 +56,7 @@ namespace UnitsNet
 
             Info = new QuantityInfo<SolidAngleUnit>("SolidAngle",
                 new UnitInfo<SolidAngleUnit>[] {
+                    new UnitInfo<SolidAngleUnit>(SolidAngleUnit.SquareDegree, BaseUnits.Undefined),
                     new UnitInfo<SolidAngleUnit>(SolidAngleUnit.Steradian, BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.SolidAngle);
@@ -172,6 +174,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get SolidAngle in SquareDegrees.
+        /// </summary>
+        public double SquareDegrees => As(SolidAngleUnit.SquareDegree);
+
+        /// <summary>
         ///     Get SolidAngle in Steradians.
         /// </summary>
         public double Steradians => As(SolidAngleUnit.Steradian);
@@ -205,6 +212,15 @@ namespace UnitsNet
 
         #region Static Factory Methods
 
+        /// <summary>
+        ///     Get SolidAngle from SquareDegrees.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SolidAngle FromSquareDegrees(QuantityValue squaredegrees)
+        {
+            double value = (double) squaredegrees;
+            return new SolidAngle(value, SolidAngleUnit.SquareDegree);
+        }
         /// <summary>
         ///     Get SolidAngle from Steradians.
         /// </summary>
@@ -643,6 +659,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case SolidAngleUnit.SquareDegree: return _value * 0.000304617419786709;
                 case SolidAngleUnit.Steradian: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -669,6 +686,7 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case SolidAngleUnit.SquareDegree: return baseUnitValue / 0.000304617419786709;
                 case SolidAngleUnit.Steradian: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");

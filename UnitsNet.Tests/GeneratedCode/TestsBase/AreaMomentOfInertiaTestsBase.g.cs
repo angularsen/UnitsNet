@@ -37,12 +37,12 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class AreaMomentOfInertiaTestsBase : QuantityTestsBase
     {
-        protected abstract double CentimetersToTheFourthInOneMeterToTheFourth { get; }
-        protected abstract double DecimetersToTheFourthInOneMeterToTheFourth { get; }
-        protected abstract double FeetToTheFourthInOneMeterToTheFourth { get; }
-        protected abstract double InchesToTheFourthInOneMeterToTheFourth { get; }
-        protected abstract double MetersToTheFourthInOneMeterToTheFourth { get; }
-        protected abstract double MillimetersToTheFourthInOneMeterToTheFourth { get; }
+        protected virtual double CentimetersToTheFourthInOneMeterToTheFourth { get; }
+        protected virtual double DecimetersToTheFourthInOneMeterToTheFourth { get; }
+        protected virtual double FeetToTheFourthInOneMeterToTheFourth { get; }
+        protected virtual double InchesToTheFourthInOneMeterToTheFourth { get; }
+        protected virtual double MetersToTheFourthInOneMeterToTheFourth { get; }
+        protected virtual double MillimetersToTheFourthInOneMeterToTheFourth { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CentimetersToTheFourthTolerance { get { return 1e-5; } }

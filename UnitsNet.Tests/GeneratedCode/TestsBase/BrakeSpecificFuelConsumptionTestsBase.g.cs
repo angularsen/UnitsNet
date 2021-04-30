@@ -37,9 +37,9 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class BrakeSpecificFuelConsumptionTestsBase : QuantityTestsBase
     {
-        protected abstract double GramsPerKiloWattHourInOneKilogramPerJoule { get; }
-        protected abstract double KilogramsPerJouleInOneKilogramPerJoule { get; }
-        protected abstract double PoundsPerMechanicalHorsepowerHourInOneKilogramPerJoule { get; }
+        protected virtual double GramsPerKiloWattHourInOneKilogramPerJoule { get; }
+        protected virtual double KilogramsPerJouleInOneKilogramPerJoule { get; }
+        protected virtual double PoundsPerMechanicalHorsepowerHourInOneKilogramPerJoule { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double GramsPerKiloWattHourTolerance { get { return 1e-5; } }

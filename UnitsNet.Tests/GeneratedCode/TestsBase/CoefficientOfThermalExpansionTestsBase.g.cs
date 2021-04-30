@@ -37,9 +37,9 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class CoefficientOfThermalExpansionTestsBase : QuantityTestsBase
     {
-        protected abstract double InverseDegreeCelsiusInOneInverseKelvin { get; }
-        protected abstract double InverseDegreeFahrenheitInOneInverseKelvin { get; }
-        protected abstract double InverseKelvinInOneInverseKelvin { get; }
+        protected virtual double InverseDegreeCelsiusInOneInverseKelvin { get; }
+        protected virtual double InverseDegreeFahrenheitInOneInverseKelvin { get; }
+        protected virtual double InverseKelvinInOneInverseKelvin { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double InverseDegreeCelsiusTolerance { get { return 1e-5; } }

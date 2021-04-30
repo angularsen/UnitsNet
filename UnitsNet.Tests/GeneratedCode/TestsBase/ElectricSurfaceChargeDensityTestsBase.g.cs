@@ -37,9 +37,9 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ElectricSurfaceChargeDensityTestsBase : QuantityTestsBase
     {
-        protected abstract double CoulombsPerSquareCentimeterInOneCoulombPerSquareMeter { get; }
-        protected abstract double CoulombsPerSquareInchInOneCoulombPerSquareMeter { get; }
-        protected abstract double CoulombsPerSquareMeterInOneCoulombPerSquareMeter { get; }
+        protected virtual double CoulombsPerSquareCentimeterInOneCoulombPerSquareMeter { get; }
+        protected virtual double CoulombsPerSquareInchInOneCoulombPerSquareMeter { get; }
+        protected virtual double CoulombsPerSquareMeterInOneCoulombPerSquareMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CoulombsPerSquareCentimeterTolerance { get { return 1e-5; } }

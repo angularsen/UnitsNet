@@ -37,24 +37,24 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class HeatFluxTestsBase : QuantityTestsBase
     {
-        protected abstract double BtusPerHourSquareFootInOneWattPerSquareMeter { get; }
-        protected abstract double BtusPerMinuteSquareFootInOneWattPerSquareMeter { get; }
-        protected abstract double BtusPerSecondSquareFootInOneWattPerSquareMeter { get; }
-        protected abstract double BtusPerSecondSquareInchInOneWattPerSquareMeter { get; }
-        protected abstract double CaloriesPerSecondSquareCentimeterInOneWattPerSquareMeter { get; }
-        protected abstract double CentiwattsPerSquareMeterInOneWattPerSquareMeter { get; }
-        protected abstract double DeciwattsPerSquareMeterInOneWattPerSquareMeter { get; }
-        protected abstract double KilocaloriesPerHourSquareMeterInOneWattPerSquareMeter { get; }
-        protected abstract double KilocaloriesPerSecondSquareCentimeterInOneWattPerSquareMeter { get; }
-        protected abstract double KilowattsPerSquareMeterInOneWattPerSquareMeter { get; }
-        protected abstract double MicrowattsPerSquareMeterInOneWattPerSquareMeter { get; }
-        protected abstract double MilliwattsPerSquareMeterInOneWattPerSquareMeter { get; }
-        protected abstract double NanowattsPerSquareMeterInOneWattPerSquareMeter { get; }
-        protected abstract double PoundsForcePerFootSecondInOneWattPerSquareMeter { get; }
-        protected abstract double PoundsPerSecondCubedInOneWattPerSquareMeter { get; }
-        protected abstract double WattsPerSquareFootInOneWattPerSquareMeter { get; }
-        protected abstract double WattsPerSquareInchInOneWattPerSquareMeter { get; }
-        protected abstract double WattsPerSquareMeterInOneWattPerSquareMeter { get; }
+        protected virtual double BtusPerHourSquareFootInOneWattPerSquareMeter { get; }
+        protected virtual double BtusPerMinuteSquareFootInOneWattPerSquareMeter { get; }
+        protected virtual double BtusPerSecondSquareFootInOneWattPerSquareMeter { get; }
+        protected virtual double BtusPerSecondSquareInchInOneWattPerSquareMeter { get; }
+        protected virtual double CaloriesPerSecondSquareCentimeterInOneWattPerSquareMeter { get; }
+        protected virtual double CentiwattsPerSquareMeterInOneWattPerSquareMeter { get; }
+        protected virtual double DeciwattsPerSquareMeterInOneWattPerSquareMeter { get; }
+        protected virtual double KilocaloriesPerHourSquareMeterInOneWattPerSquareMeter { get; }
+        protected virtual double KilocaloriesPerSecondSquareCentimeterInOneWattPerSquareMeter { get; }
+        protected virtual double KilowattsPerSquareMeterInOneWattPerSquareMeter { get; }
+        protected virtual double MicrowattsPerSquareMeterInOneWattPerSquareMeter { get; }
+        protected virtual double MilliwattsPerSquareMeterInOneWattPerSquareMeter { get; }
+        protected virtual double NanowattsPerSquareMeterInOneWattPerSquareMeter { get; }
+        protected virtual double PoundsForcePerFootSecondInOneWattPerSquareMeter { get; }
+        protected virtual double PoundsPerSecondCubedInOneWattPerSquareMeter { get; }
+        protected virtual double WattsPerSquareFootInOneWattPerSquareMeter { get; }
+        protected virtual double WattsPerSquareInchInOneWattPerSquareMeter { get; }
+        protected virtual double WattsPerSquareMeterInOneWattPerSquareMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double BtusPerHourSquareFootTolerance { get { return 1e-5; } }

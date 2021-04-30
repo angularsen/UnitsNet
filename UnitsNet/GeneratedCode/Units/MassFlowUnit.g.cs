@@ -59,6 +59,8 @@ namespace UnitsNet.Units
         ShortTonPerHour,
         TonnePerDay,
         TonnePerHour,
+        UkTonnePerDay,
+        UsTonnePerDay,
     }
 
     #pragma warning restore 1591

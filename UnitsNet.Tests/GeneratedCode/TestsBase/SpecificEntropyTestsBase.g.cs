@@ -37,15 +37,15 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class SpecificEntropyTestsBase : QuantityTestsBase
     {
-        protected abstract double BtusPerPoundFahrenheitInOneJoulePerKilogramKelvin { get; }
-        protected abstract double CaloriesPerGramKelvinInOneJoulePerKilogramKelvin { get; }
-        protected abstract double JoulesPerKilogramDegreeCelsiusInOneJoulePerKilogramKelvin { get; }
-        protected abstract double JoulesPerKilogramKelvinInOneJoulePerKilogramKelvin { get; }
-        protected abstract double KilocaloriesPerGramKelvinInOneJoulePerKilogramKelvin { get; }
-        protected abstract double KilojoulesPerKilogramDegreeCelsiusInOneJoulePerKilogramKelvin { get; }
-        protected abstract double KilojoulesPerKilogramKelvinInOneJoulePerKilogramKelvin { get; }
-        protected abstract double MegajoulesPerKilogramDegreeCelsiusInOneJoulePerKilogramKelvin { get; }
-        protected abstract double MegajoulesPerKilogramKelvinInOneJoulePerKilogramKelvin { get; }
+        protected virtual double BtusPerPoundFahrenheitInOneJoulePerKilogramKelvin { get; }
+        protected virtual double CaloriesPerGramKelvinInOneJoulePerKilogramKelvin { get; }
+        protected virtual double JoulesPerKilogramDegreeCelsiusInOneJoulePerKilogramKelvin { get; }
+        protected virtual double JoulesPerKilogramKelvinInOneJoulePerKilogramKelvin { get; }
+        protected virtual double KilocaloriesPerGramKelvinInOneJoulePerKilogramKelvin { get; }
+        protected virtual double KilojoulesPerKilogramDegreeCelsiusInOneJoulePerKilogramKelvin { get; }
+        protected virtual double KilojoulesPerKilogramKelvinInOneJoulePerKilogramKelvin { get; }
+        protected virtual double MegajoulesPerKilogramDegreeCelsiusInOneJoulePerKilogramKelvin { get; }
+        protected virtual double MegajoulesPerKilogramKelvinInOneJoulePerKilogramKelvin { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double BtusPerPoundFahrenheitTolerance { get { return 1e-5; } }

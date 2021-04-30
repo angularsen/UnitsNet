@@ -104,6 +104,10 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
         public static MassFraction NanogramsPerKilogram<T>(this T value) =>
             MassFraction.FromNanogramsPerKilogram(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="MassFraction.FromOnes(UnitsNet.QuantityValue)" />
+        public static MassFraction Ones<T>(this T value) =>
+            MassFraction.FromOnes(Convert.ToDouble(value));
+
         /// <inheritdoc cref="MassFraction.FromPartsPerBillion(UnitsNet.QuantityValue)" />
         public static MassFraction PartsPerBillion<T>(this T value) =>
             MassFraction.FromPartsPerBillion(Convert.ToDouble(value));
@@ -123,6 +127,10 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
         /// <inheritdoc cref="MassFraction.FromPercent(UnitsNet.QuantityValue)" />
         public static MassFraction Percent<T>(this T value) =>
             MassFraction.FromPercent(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MassFraction.FromPoundsPerPound(UnitsNet.QuantityValue)" />
+        public static MassFraction PoundsPerPound<T>(this T value) =>
+            MassFraction.FromPoundsPerPound(Convert.ToDouble(value));
 
     }
 }

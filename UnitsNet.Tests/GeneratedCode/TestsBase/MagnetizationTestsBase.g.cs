@@ -37,7 +37,7 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class MagnetizationTestsBase : QuantityTestsBase
     {
-        protected abstract double AmperesPerMeterInOneAmperePerMeter { get; }
+        protected virtual double AmperesPerMeterInOneAmperePerMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double AmperesPerMeterTolerance { get { return 1e-5; } }

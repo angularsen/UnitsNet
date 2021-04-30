@@ -37,7 +37,7 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class LuminousFluxTestsBase : QuantityTestsBase
     {
-        protected abstract double LumensInOneLumen { get; }
+        protected virtual double LumensInOneLumen { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double LumensTolerance { get { return 1e-5; } }

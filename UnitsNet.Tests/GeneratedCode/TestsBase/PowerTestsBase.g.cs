@@ -37,31 +37,31 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class PowerTestsBase : QuantityTestsBase
     {
-        protected abstract double BoilerHorsepowerInOneWatt { get; }
-        protected abstract double BritishThermalUnitsPerHourInOneWatt { get; }
-        protected abstract double DecawattsInOneWatt { get; }
-        protected abstract double DeciwattsInOneWatt { get; }
-        protected abstract double ElectricalHorsepowerInOneWatt { get; }
-        protected abstract double FemtowattsInOneWatt { get; }
-        protected abstract double GigajoulesPerHourInOneWatt { get; }
-        protected abstract double GigawattsInOneWatt { get; }
-        protected abstract double HydraulicHorsepowerInOneWatt { get; }
-        protected abstract double JoulesPerHourInOneWatt { get; }
-        protected abstract double KilobritishThermalUnitsPerHourInOneWatt { get; }
-        protected abstract double KilojoulesPerHourInOneWatt { get; }
-        protected abstract double KilowattsInOneWatt { get; }
-        protected abstract double MechanicalHorsepowerInOneWatt { get; }
-        protected abstract double MegajoulesPerHourInOneWatt { get; }
-        protected abstract double MegawattsInOneWatt { get; }
-        protected abstract double MetricHorsepowerInOneWatt { get; }
-        protected abstract double MicrowattsInOneWatt { get; }
-        protected abstract double MillijoulesPerHourInOneWatt { get; }
-        protected abstract double MilliwattsInOneWatt { get; }
-        protected abstract double NanowattsInOneWatt { get; }
-        protected abstract double PetawattsInOneWatt { get; }
-        protected abstract double PicowattsInOneWatt { get; }
-        protected abstract double TerawattsInOneWatt { get; }
-        protected abstract double WattsInOneWatt { get; }
+        protected virtual double BoilerHorsepowerInOneWatt { get; }
+        protected virtual double BritishThermalUnitsPerHourInOneWatt { get; }
+        protected virtual double DecawattsInOneWatt { get; }
+        protected virtual double DeciwattsInOneWatt { get; }
+        protected virtual double ElectricalHorsepowerInOneWatt { get; }
+        protected virtual double FemtowattsInOneWatt { get; }
+        protected virtual double GigajoulesPerHourInOneWatt { get; }
+        protected virtual double GigawattsInOneWatt { get; }
+        protected virtual double HydraulicHorsepowerInOneWatt { get; }
+        protected virtual double JoulesPerHourInOneWatt { get; }
+        protected virtual double KilobritishThermalUnitsPerHourInOneWatt { get; }
+        protected virtual double KilojoulesPerHourInOneWatt { get; }
+        protected virtual double KilowattsInOneWatt { get; }
+        protected virtual double MechanicalHorsepowerInOneWatt { get; }
+        protected virtual double MegajoulesPerHourInOneWatt { get; }
+        protected virtual double MegawattsInOneWatt { get; }
+        protected virtual double MetricHorsepowerInOneWatt { get; }
+        protected virtual double MicrowattsInOneWatt { get; }
+        protected virtual double MillijoulesPerHourInOneWatt { get; }
+        protected virtual double MilliwattsInOneWatt { get; }
+        protected virtual double NanowattsInOneWatt { get; }
+        protected virtual double PetawattsInOneWatt { get; }
+        protected virtual double PicowattsInOneWatt { get; }
+        protected virtual double TerawattsInOneWatt { get; }
+        protected virtual double WattsInOneWatt { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double BoilerHorsepowerTolerance { get { return 1e-5; } }

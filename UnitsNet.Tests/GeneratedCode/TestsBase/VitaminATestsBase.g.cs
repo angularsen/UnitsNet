@@ -37,7 +37,7 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class VitaminATestsBase : QuantityTestsBase
     {
-        protected abstract double InternationalUnitsInOneInternationalUnit { get; }
+        protected virtual double InternationalUnitsInOneInternationalUnit { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double InternationalUnitsTolerance { get { return 1e-5; } }

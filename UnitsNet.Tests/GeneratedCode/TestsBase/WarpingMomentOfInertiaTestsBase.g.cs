@@ -37,12 +37,12 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class WarpingMomentOfInertiaTestsBase : QuantityTestsBase
     {
-        protected abstract double CentimetersToTheSixthInOneMeterToTheSixth { get; }
-        protected abstract double DecimetersToTheSixthInOneMeterToTheSixth { get; }
-        protected abstract double FeetToTheSixthInOneMeterToTheSixth { get; }
-        protected abstract double InchesToTheSixthInOneMeterToTheSixth { get; }
-        protected abstract double MetersToTheSixthInOneMeterToTheSixth { get; }
-        protected abstract double MillimetersToTheSixthInOneMeterToTheSixth { get; }
+        protected virtual double CentimetersToTheSixthInOneMeterToTheSixth { get; }
+        protected virtual double DecimetersToTheSixthInOneMeterToTheSixth { get; }
+        protected virtual double FeetToTheSixthInOneMeterToTheSixth { get; }
+        protected virtual double InchesToTheSixthInOneMeterToTheSixth { get; }
+        protected virtual double MetersToTheSixthInOneMeterToTheSixth { get; }
+        protected virtual double MillimetersToTheSixthInOneMeterToTheSixth { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CentimetersToTheSixthTolerance { get { return 1e-5; } }

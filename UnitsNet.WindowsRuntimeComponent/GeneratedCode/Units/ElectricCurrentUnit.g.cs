@@ -28,12 +28,15 @@ namespace UnitsNet.Units
         Undefined = 0,
         Ampere,
         Centiampere,
+        GramPerMole,
         Kiloampere,
+        KilogramPerMole,
         Megaampere,
         Microampere,
         Milliampere,
         Nanoampere,
         Picoampere,
+        PoundPerMole,
     }
 
     #pragma warning restore 1591

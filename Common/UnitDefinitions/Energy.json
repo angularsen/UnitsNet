@@ -18,11 +18,18 @@
       },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Milli", "Kilo", "Mega", "Giga" ],
+      "Prefixes": [
+        "Milli",
+        "Kilo",
+        "Mega",
+        "Giga"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "J" ]
+          "Abbreviations": [
+            "J"
+          ]
         }
       ]
     },
@@ -31,11 +38,16 @@
       "PluralName": "Calories",
       "FromUnitToBaseFunc": "x*4.184",
       "FromBaseToUnitFunc": "x/4.184",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": [
+        "Kilo",
+        "Mega"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "cal" ]
+          "Abbreviations": [
+            "cal"
+          ]
         }
       ]
     },
@@ -44,11 +56,17 @@
       "PluralName": "BritishThermalUnits",
       "FromUnitToBaseFunc": "x*1055.05585262",
       "FromBaseToUnitFunc": "x/1055.05585262",
-      "Prefixes": [ "Kilo", "Mega", "Giga" ],
+      "Prefixes": [
+        "Kilo",
+        "Mega",
+        "Giga"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "BTU" ]
+          "Abbreviations": [
+            "BTU"
+          ]
         }
       ]
     },
@@ -66,11 +84,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "eV" ]
+          "Abbreviations": [
+            "eV"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "эВ" ]
+          "Abbreviations": [
+            "эВ"
+          ]
         }
       ]
     },
@@ -82,7 +104,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ft·lb" ]
+          "Abbreviations": [
+            "ft·lb"
+          ]
         }
       ]
     },
@@ -94,7 +118,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "erg" ]
+          "Abbreviations": [
+            "erg"
+          ]
         }
       ]
     },
@@ -103,15 +129,24 @@
       "PluralName": "WattHours",
       "FromUnitToBaseFunc": "x*3600d",
       "FromBaseToUnitFunc": "x/3600d",
-      "Prefixes": [ "Kilo", "Mega", "Giga", "Tera" ],
+      "Prefixes": [
+        "Kilo",
+        "Mega",
+        "Giga",
+        "Tera"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "Wh" ]
+          "Abbreviations": [
+            "Wh"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Вт/ч" ]
+          "Abbreviations": [
+            "Вт/ч"
+          ]
         }
       ]
     },
@@ -120,15 +155,24 @@
       "PluralName": "WattDays",
       "FromUnitToBaseFunc": "x*24*3600d",
       "FromBaseToUnitFunc": "x/(24*3600d)",
-      "Prefixes": [ "Kilo", "Mega", "Giga", "Tera" ],
+      "Prefixes": [
+        "Kilo",
+        "Mega",
+        "Giga",
+        "Tera"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "Wd" ]
+          "Abbreviations": [
+            "Wd"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Вт/д" ]
+          "Abbreviations": [
+            "Вт/д"
+          ]
         }
       ]
     },
@@ -137,17 +181,27 @@
       "PluralName": "ThermsEc",
       "FromUnitToBaseFunc": "x*1.05505585262e8",
       "FromBaseToUnitFunc": "x/1.05505585262e8",
-      "Prefixes": [ "Deca" ],
+      "Prefixes": [
+        "Deca"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "th (E.C.)" ],
-          "AbbreviationsForPrefixes": { "Deca": "Dth (E.C.)" }
+          "Abbreviations": [
+            "th (E.C.)"
+          ],
+          "AbbreviationsForPrefixes": {
+            "Deca": "Dth (E.C.)"
+          }
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Европейский терм" ],
-          "AbbreviationsForPrefixes": { "Deca": "Европейский декатерм" }
+          "Abbreviations": [
+            "Европейский терм"
+          ],
+          "AbbreviationsForPrefixes": {
+            "Deca": "Европейский декатерм"
+          }
         }
       ]
     },
@@ -156,17 +210,27 @@
       "PluralName": "ThermsUs",
       "FromUnitToBaseFunc": "x*1.054804e8",
       "FromBaseToUnitFunc": "x/1.054804e8",
-      "Prefixes": [ "Deca" ],
+      "Prefixes": [
+        "Deca"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "th (U.S.)" ],
-          "AbbreviationsForPrefixes": { "Deca": "Dth (U.S.)" }
+          "Abbreviations": [
+            "th (U.S.)"
+          ],
+          "AbbreviationsForPrefixes": {
+            "Deca": "Dth (U.S.)"
+          }
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Американский терм" ],
-          "AbbreviationsForPrefixes": { "Deca": "Американский декатерм" }
+          "Abbreviations": [
+            "Американский терм"
+          ],
+          "AbbreviationsForPrefixes": {
+            "Deca": "Американский декатерм"
+          }
         }
       ]
     },
@@ -175,17 +239,27 @@
       "PluralName": "ThermsImperial",
       "FromUnitToBaseFunc": "x*1.05505585257348e8",
       "FromBaseToUnitFunc": "x/1.05505585257348e8",
-      "Prefixes": [ "Deca" ],
+      "Prefixes": [
+        "Deca"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "th (imp.)" ],
-          "AbbreviationsForPrefixes": { "Deca": "Dth (imp.)" }
+          "Abbreviations": [
+            "th (imp.)"
+          ],
+          "AbbreviationsForPrefixes": {
+            "Deca": "Dth (imp.)"
+          }
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Английский терм" ],
-          "AbbreviationsForPrefixes": { "Deca": "Английский декатерм" }
+          "Abbreviations": [
+            "Английский терм"
+          ],
+          "AbbreviationsForPrefixes": {
+            "Deca": "Английский декатерм"
+          }
         }
       ]
     },
@@ -197,7 +271,138 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "hp·h" ]
+          "Abbreviations": [
+            "hp·h"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BritishThermalUnitThermochemical",
+      "PluralName": "BritishThermalUnitThermochemicals",
+      "FromUnitToBaseFunc": "x * 1054.35026444",
+      "FromBaseToUnitFunc": "x / 1054.35026444",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "Btu_th"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CalorieThermochemical",
+      "PluralName": "CalorieThermochemicals",
+      "FromUnitToBaseFunc": "x * 4.184",
+      "FromBaseToUnitFunc": "x / 4.184",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "cal_th"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DecanewtonMeter",
+      "PluralName": "DecanewtonMeters",
+      "FromUnitToBaseFunc": "x * 10",
+      "FromBaseToUnitFunc": "x / 10",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "daN.m"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilocalorieThermochemical",
+      "PluralName": "KilocalorieThermochemicals",
+      "FromUnitToBaseFunc": "x * 4184",
+      "FromBaseToUnitFunc": "x / 4184",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "kcal_th"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilodecanewtonMeter",
+      "PluralName": "KilodecanewtonMeters",
+      "FromUnitToBaseFunc": "x * 10000",
+      "FromBaseToUnitFunc": "x / 10000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "kdaN.m"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilopoundForceFoot",
+      "PluralName": "KilopoundForceFeet",
+      "FromUnitToBaseFunc": "x * 1355.8179483314",
+      "FromBaseToUnitFunc": "x / 1355.8179483314",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "kft.lbf",
+            "kft.lbs",
+            "klbf.ft"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilonewtonMeter",
+      "PluralName": "KilonewtonMeters",
+      "FromUnitToBaseFunc": "x * 1000",
+      "FromBaseToUnitFunc": "x / 1000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "kN.m"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundForceFoot",
+      "PluralName": "PoundForceFeet",
+      "FromUnitToBaseFunc": "x * 1.3558179483314",
+      "FromBaseToUnitFunc": "x / 1.3558179483314",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "ft.lbs",
+            "lbf.ft"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "NewtonMeter",
+      "PluralName": "NewtonMeters",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "N.m"
+          ]
         }
       ]
     }

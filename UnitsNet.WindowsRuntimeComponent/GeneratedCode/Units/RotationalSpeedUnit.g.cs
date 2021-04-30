@@ -39,6 +39,8 @@ namespace UnitsNet.Units
         RadianPerSecond,
         RevolutionPerMinute,
         RevolutionPerSecond,
+        RotationPerMinute,
+        RotationPerSecond,
     }
 
     #pragma warning restore 1591

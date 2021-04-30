@@ -72,6 +72,14 @@ namespace UnitsNet.NumberExtensions.NumberToElectricResistivity
         public static ElectricResistivity OhmsCentimeter<T>(this T value) =>
             ElectricResistivity.FromOhmsCentimeter(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="ElectricResistivity.FromOhmFeet(UnitsNet.QuantityValue)" />
+        public static ElectricResistivity OhmFeet<T>(this T value) =>
+            ElectricResistivity.FromOhmFeet(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricResistivity.FromOhmInches(UnitsNet.QuantityValue)" />
+        public static ElectricResistivity OhmInches<T>(this T value) =>
+            ElectricResistivity.FromOhmInches(Convert.ToDouble(value));
+
         /// <inheritdoc cref="ElectricResistivity.FromOhmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity OhmMeters<T>(this T value) =>
             ElectricResistivity.FromOhmMeters(Convert.ToDouble(value));

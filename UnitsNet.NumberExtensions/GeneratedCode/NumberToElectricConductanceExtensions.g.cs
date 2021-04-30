@@ -28,9 +28,17 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductance
     /// </summary>
     public static class NumberToElectricConductanceExtensions
     {
+        /// <inheritdoc cref="ElectricConductance.FromMhos(UnitsNet.QuantityValue)" />
+        public static ElectricConductance Mhos<T>(this T value) =>
+            ElectricConductance.FromMhos(Convert.ToDouble(value));
+
         /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance Microsiemens<T>(this T value) =>
             ElectricConductance.FromMicrosiemens(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricConductance.FromMillimhos(UnitsNet.QuantityValue)" />
+        public static ElectricConductance Millimhos<T>(this T value) =>
+            ElectricConductance.FromMillimhos(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricConductance.FromMillisiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance Millisiemens<T>(this T value) =>

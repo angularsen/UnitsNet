@@ -37,13 +37,13 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class CapacitanceTestsBase : QuantityTestsBase
     {
-        protected abstract double FaradsInOneFarad { get; }
-        protected abstract double KilofaradsInOneFarad { get; }
-        protected abstract double MegafaradsInOneFarad { get; }
-        protected abstract double MicrofaradsInOneFarad { get; }
-        protected abstract double MillifaradsInOneFarad { get; }
-        protected abstract double NanofaradsInOneFarad { get; }
-        protected abstract double PicofaradsInOneFarad { get; }
+        protected virtual double FaradsInOneFarad { get; }
+        protected virtual double KilofaradsInOneFarad { get; }
+        protected virtual double MegafaradsInOneFarad { get; }
+        protected virtual double MicrofaradsInOneFarad { get; }
+        protected virtual double MillifaradsInOneFarad { get; }
+        protected virtual double NanofaradsInOneFarad { get; }
+        protected virtual double PicofaradsInOneFarad { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double FaradsTolerance { get { return 1e-5; } }

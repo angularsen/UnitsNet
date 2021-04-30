@@ -37,31 +37,31 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class SpecificEnergyTestsBase : QuantityTestsBase
     {
-        protected abstract double BtuPerPoundInOneJoulePerKilogram { get; }
-        protected abstract double CaloriesPerGramInOneJoulePerKilogram { get; }
-        protected abstract double GigawattDaysPerKilogramInOneJoulePerKilogram { get; }
-        protected abstract double GigawattDaysPerShortTonInOneJoulePerKilogram { get; }
-        protected abstract double GigawattDaysPerTonneInOneJoulePerKilogram { get; }
-        protected abstract double GigawattHoursPerKilogramInOneJoulePerKilogram { get; }
-        protected abstract double JoulesPerKilogramInOneJoulePerKilogram { get; }
-        protected abstract double KilocaloriesPerGramInOneJoulePerKilogram { get; }
-        protected abstract double KilojoulesPerKilogramInOneJoulePerKilogram { get; }
-        protected abstract double KilowattDaysPerKilogramInOneJoulePerKilogram { get; }
-        protected abstract double KilowattDaysPerShortTonInOneJoulePerKilogram { get; }
-        protected abstract double KilowattDaysPerTonneInOneJoulePerKilogram { get; }
-        protected abstract double KilowattHoursPerKilogramInOneJoulePerKilogram { get; }
-        protected abstract double MegajoulesPerKilogramInOneJoulePerKilogram { get; }
-        protected abstract double MegawattDaysPerKilogramInOneJoulePerKilogram { get; }
-        protected abstract double MegawattDaysPerShortTonInOneJoulePerKilogram { get; }
-        protected abstract double MegawattDaysPerTonneInOneJoulePerKilogram { get; }
-        protected abstract double MegawattHoursPerKilogramInOneJoulePerKilogram { get; }
-        protected abstract double TerawattDaysPerKilogramInOneJoulePerKilogram { get; }
-        protected abstract double TerawattDaysPerShortTonInOneJoulePerKilogram { get; }
-        protected abstract double TerawattDaysPerTonneInOneJoulePerKilogram { get; }
-        protected abstract double WattDaysPerKilogramInOneJoulePerKilogram { get; }
-        protected abstract double WattDaysPerShortTonInOneJoulePerKilogram { get; }
-        protected abstract double WattDaysPerTonneInOneJoulePerKilogram { get; }
-        protected abstract double WattHoursPerKilogramInOneJoulePerKilogram { get; }
+        protected virtual double BtuPerPoundInOneJoulePerKilogram { get; }
+        protected virtual double CaloriesPerGramInOneJoulePerKilogram { get; }
+        protected virtual double GigawattDaysPerKilogramInOneJoulePerKilogram { get; }
+        protected virtual double GigawattDaysPerShortTonInOneJoulePerKilogram { get; }
+        protected virtual double GigawattDaysPerTonneInOneJoulePerKilogram { get; }
+        protected virtual double GigawattHoursPerKilogramInOneJoulePerKilogram { get; }
+        protected virtual double JoulesPerKilogramInOneJoulePerKilogram { get; }
+        protected virtual double KilocaloriesPerGramInOneJoulePerKilogram { get; }
+        protected virtual double KilojoulesPerKilogramInOneJoulePerKilogram { get; }
+        protected virtual double KilowattDaysPerKilogramInOneJoulePerKilogram { get; }
+        protected virtual double KilowattDaysPerShortTonInOneJoulePerKilogram { get; }
+        protected virtual double KilowattDaysPerTonneInOneJoulePerKilogram { get; }
+        protected virtual double KilowattHoursPerKilogramInOneJoulePerKilogram { get; }
+        protected virtual double MegajoulesPerKilogramInOneJoulePerKilogram { get; }
+        protected virtual double MegawattDaysPerKilogramInOneJoulePerKilogram { get; }
+        protected virtual double MegawattDaysPerShortTonInOneJoulePerKilogram { get; }
+        protected virtual double MegawattDaysPerTonneInOneJoulePerKilogram { get; }
+        protected virtual double MegawattHoursPerKilogramInOneJoulePerKilogram { get; }
+        protected virtual double TerawattDaysPerKilogramInOneJoulePerKilogram { get; }
+        protected virtual double TerawattDaysPerShortTonInOneJoulePerKilogram { get; }
+        protected virtual double TerawattDaysPerTonneInOneJoulePerKilogram { get; }
+        protected virtual double WattDaysPerKilogramInOneJoulePerKilogram { get; }
+        protected virtual double WattDaysPerShortTonInOneJoulePerKilogram { get; }
+        protected virtual double WattDaysPerTonneInOneJoulePerKilogram { get; }
+        protected virtual double WattHoursPerKilogramInOneJoulePerKilogram { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double BtuPerPoundTolerance { get { return 1e-5; } }

@@ -17,19 +17,20 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Globalization;
-using System.Linq;
-using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
-
 #nullable enable
 
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using JetBrains.Annotations;
+    using UnitsNet.InternalHelpers;
+    using UnitsNet.Units;
+    
+
     /// <inheritdoc />
     /// <summary>
     ///     Many different units of length have been used around the world. The main units in modern use are U.S. customary units in the United States and the Metric system elsewhere. British Imperial units are still used for some purposes in the United Kingdom and some other countries. The metric system is sub-divided into SI and non-SI units.
@@ -53,20 +54,38 @@ namespace UnitsNet
             Info = new QuantityInfo<LengthUnit>("Length",
                 new UnitInfo<LengthUnit>[] {
                     new UnitInfo<LengthUnit>(LengthUnit.AstronomicalUnit, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.BillionCubicFeetPerAcre, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.BillionCubicFeetPerHundredAcres, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.BillionCubicFeetPerSection, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.BritishChainSearsOne9TwoTwo, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.BritishChainSearsOne9TwoTwoTruncated, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.BritishFootSearsOne9TwoTwo, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.BritishYardSearsOne9TwoTwo, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.BritishYardSearsOne9TwoTwoTruncated, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Centimeter, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Chain, new BaseUnits(length: LengthUnit.Chain)),
+                    new UnitInfo<LengthUnit>(LengthUnit.ClarkesFoot, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.ClarkesLink, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.ClarkesYard, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.CubicFootPerSquareFoot, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.CubicMeterPerSquareMeter, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Decimeter, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.DtpPica, new BaseUnits(length: LengthUnit.DtpPica)),
                     new UnitInfo<LengthUnit>(LengthUnit.DtpPoint, new BaseUnits(length: LengthUnit.DtpPoint)),
                     new UnitInfo<LengthUnit>(LengthUnit.Fathom, new BaseUnits(length: LengthUnit.Fathom)),
                     new UnitInfo<LengthUnit>(LengthUnit.Foot, new BaseUnits(length: LengthUnit.Foot)),
+                    new UnitInfo<LengthUnit>(LengthUnit.GermanLegalMeter, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.GoldCoastFoot, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Hand, new BaseUnits(length: LengthUnit.Hand)),
                     new UnitInfo<LengthUnit>(LengthUnit.Hectometer, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Inch, new BaseUnits(length: LengthUnit.Inch)),
+                    new UnitInfo<LengthUnit>(LengthUnit.InchBy3Two, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.IndianYard, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.KilolightYear, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Kilometer, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Kiloparsec, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.LightYear, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.Link, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.MegalightYear, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Megaparsec, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Meter, new BaseUnits(length: LengthUnit.Meter)),
@@ -75,6 +94,12 @@ namespace UnitsNet
                     new UnitInfo<LengthUnit>(LengthUnit.Mil, new BaseUnits(length: LengthUnit.Mil)),
                     new UnitInfo<LengthUnit>(LengthUnit.Mile, new BaseUnits(length: LengthUnit.Mile)),
                     new UnitInfo<LengthUnit>(LengthUnit.Millimeter, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.MillionBarrelsPerAcre, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.MillionBarrelsPerSection, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.MillionBarrelsPerSquareKilometer, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.MillionCubicFeetPerAcre, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.MillionCubicFeetPerSection, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.MillionCubicFeetPerSquareKilometer, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Nanometer, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.NauticalMile, new BaseUnits(length: LengthUnit.NauticalMile)),
                     new UnitInfo<LengthUnit>(LengthUnit.Parsec, BaseUnits.Undefined),
@@ -82,6 +107,10 @@ namespace UnitsNet
                     new UnitInfo<LengthUnit>(LengthUnit.PrinterPoint, new BaseUnits(length: LengthUnit.PrinterPoint)),
                     new UnitInfo<LengthUnit>(LengthUnit.Shackle, new BaseUnits(length: LengthUnit.Shackle)),
                     new UnitInfo<LengthUnit>(LengthUnit.SolarRadius, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.ThousandBarrelsPerAcre, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.ThousandBarrelsPerSquareKilometer, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.ThousandCubicFeetPerAcre, BaseUnits.Undefined),
+                    new UnitInfo<LengthUnit>(LengthUnit.ThousandCubicFeetPerSquareKilometer, BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Twip, new BaseUnits(length: LengthUnit.Twip)),
                     new UnitInfo<LengthUnit>(LengthUnit.UsSurveyFoot, new BaseUnits(length: LengthUnit.UsSurveyFoot)),
                     new UnitInfo<LengthUnit>(LengthUnit.Yard, new BaseUnits(length: LengthUnit.Yard)),
@@ -206,6 +235,46 @@ namespace UnitsNet
         public double AstronomicalUnits => As(LengthUnit.AstronomicalUnit);
 
         /// <summary>
+        ///     Get Length in BillionCubicFeetsPerAcre.
+        /// </summary>
+        public double BillionCubicFeetsPerAcre => As(LengthUnit.BillionCubicFeetPerAcre);
+
+        /// <summary>
+        ///     Get Length in BillionCubicFeetsPerHundredAcres.
+        /// </summary>
+        public double BillionCubicFeetsPerHundredAcres => As(LengthUnit.BillionCubicFeetPerHundredAcres);
+
+        /// <summary>
+        ///     Get Length in BillionCubicFeetsPerSection.
+        /// </summary>
+        public double BillionCubicFeetsPerSection => As(LengthUnit.BillionCubicFeetPerSection);
+
+        /// <summary>
+        ///     Get Length in BritishChainSearsOne9TwoTwos.
+        /// </summary>
+        public double BritishChainSearsOne9TwoTwos => As(LengthUnit.BritishChainSearsOne9TwoTwo);
+
+        /// <summary>
+        ///     Get Length in BritishChainSearsOne9TwoTwoTruncateds.
+        /// </summary>
+        public double BritishChainSearsOne9TwoTwoTruncateds => As(LengthUnit.BritishChainSearsOne9TwoTwoTruncated);
+
+        /// <summary>
+        ///     Get Length in BritishFootSearsOne9TwoTwos.
+        /// </summary>
+        public double BritishFootSearsOne9TwoTwos => As(LengthUnit.BritishFootSearsOne9TwoTwo);
+
+        /// <summary>
+        ///     Get Length in BritishYardSearsOne9TwoTwos.
+        /// </summary>
+        public double BritishYardSearsOne9TwoTwos => As(LengthUnit.BritishYardSearsOne9TwoTwo);
+
+        /// <summary>
+        ///     Get Length in BritishYardSearsOne9TwoTwoTruncateds.
+        /// </summary>
+        public double BritishYardSearsOne9TwoTwoTruncateds => As(LengthUnit.BritishYardSearsOne9TwoTwoTruncated);
+
+        /// <summary>
         ///     Get Length in Centimeters.
         /// </summary>
         public double Centimeters => As(LengthUnit.Centimeter);
@@ -214,6 +283,31 @@ namespace UnitsNet
         ///     Get Length in Chains.
         /// </summary>
         public double Chains => As(LengthUnit.Chain);
+
+        /// <summary>
+        ///     Get Length in ClarkesFeet.
+        /// </summary>
+        public double ClarkesFeet => As(LengthUnit.ClarkesFoot);
+
+        /// <summary>
+        ///     Get Length in ClarkesLinks.
+        /// </summary>
+        public double ClarkesLinks => As(LengthUnit.ClarkesLink);
+
+        /// <summary>
+        ///     Get Length in ClarkesYards.
+        /// </summary>
+        public double ClarkesYards => As(LengthUnit.ClarkesYard);
+
+        /// <summary>
+        ///     Get Length in CubicFeetPerSquareFoot.
+        /// </summary>
+        public double CubicFeetPerSquareFoot => As(LengthUnit.CubicFootPerSquareFoot);
+
+        /// <summary>
+        ///     Get Length in CubicMetersPerSquareMeter.
+        /// </summary>
+        public double CubicMetersPerSquareMeter => As(LengthUnit.CubicMeterPerSquareMeter);
 
         /// <summary>
         ///     Get Length in Decimeters.
@@ -241,6 +335,16 @@ namespace UnitsNet
         public double Feet => As(LengthUnit.Foot);
 
         /// <summary>
+        ///     Get Length in GermanLegalMeters.
+        /// </summary>
+        public double GermanLegalMeters => As(LengthUnit.GermanLegalMeter);
+
+        /// <summary>
+        ///     Get Length in GoldCoastFeet.
+        /// </summary>
+        public double GoldCoastFeet => As(LengthUnit.GoldCoastFoot);
+
+        /// <summary>
         ///     Get Length in Hands.
         /// </summary>
         public double Hands => As(LengthUnit.Hand);
@@ -254,6 +358,16 @@ namespace UnitsNet
         ///     Get Length in Inches.
         /// </summary>
         public double Inches => As(LengthUnit.Inch);
+
+        /// <summary>
+        ///     Get Length in InchBy3Twos.
+        /// </summary>
+        public double InchBy3Twos => As(LengthUnit.InchBy3Two);
+
+        /// <summary>
+        ///     Get Length in IndianYards.
+        /// </summary>
+        public double IndianYards => As(LengthUnit.IndianYard);
 
         /// <summary>
         ///     Get Length in KilolightYears.
@@ -274,6 +388,11 @@ namespace UnitsNet
         ///     Get Length in LightYears.
         /// </summary>
         public double LightYears => As(LengthUnit.LightYear);
+
+        /// <summary>
+        ///     Get Length in Links.
+        /// </summary>
+        public double Links => As(LengthUnit.Link);
 
         /// <summary>
         ///     Get Length in MegalightYears.
@@ -316,6 +435,36 @@ namespace UnitsNet
         public double Millimeters => As(LengthUnit.Millimeter);
 
         /// <summary>
+        ///     Get Length in MillionBarrelsPerAcre.
+        /// </summary>
+        public double MillionBarrelsPerAcre => As(LengthUnit.MillionBarrelsPerAcre);
+
+        /// <summary>
+        ///     Get Length in MillionBarrelsPerSection.
+        /// </summary>
+        public double MillionBarrelsPerSection => As(LengthUnit.MillionBarrelsPerSection);
+
+        /// <summary>
+        ///     Get Length in MillionBarrelsPerSquareKilometer.
+        /// </summary>
+        public double MillionBarrelsPerSquareKilometer => As(LengthUnit.MillionBarrelsPerSquareKilometer);
+
+        /// <summary>
+        ///     Get Length in MillionCubicFeetsPerAcre.
+        /// </summary>
+        public double MillionCubicFeetsPerAcre => As(LengthUnit.MillionCubicFeetPerAcre);
+
+        /// <summary>
+        ///     Get Length in MillionCubicFeetsPerSection.
+        /// </summary>
+        public double MillionCubicFeetsPerSection => As(LengthUnit.MillionCubicFeetPerSection);
+
+        /// <summary>
+        ///     Get Length in MillionCubicFeetsPerSquareKilometer.
+        /// </summary>
+        public double MillionCubicFeetsPerSquareKilometer => As(LengthUnit.MillionCubicFeetPerSquareKilometer);
+
+        /// <summary>
         ///     Get Length in Nanometers.
         /// </summary>
         public double Nanometers => As(LengthUnit.Nanometer);
@@ -349,6 +498,26 @@ namespace UnitsNet
         ///     Get Length in SolarRadiuses.
         /// </summary>
         public double SolarRadiuses => As(LengthUnit.SolarRadius);
+
+        /// <summary>
+        ///     Get Length in ThousandBarrelsPerAcre.
+        /// </summary>
+        public double ThousandBarrelsPerAcre => As(LengthUnit.ThousandBarrelsPerAcre);
+
+        /// <summary>
+        ///     Get Length in ThousandBarrelsPerSquareKilometer.
+        /// </summary>
+        public double ThousandBarrelsPerSquareKilometer => As(LengthUnit.ThousandBarrelsPerSquareKilometer);
+
+        /// <summary>
+        ///     Get Length in ThousandCubicFeetsPerAcre.
+        /// </summary>
+        public double ThousandCubicFeetsPerAcre => As(LengthUnit.ThousandCubicFeetPerAcre);
+
+        /// <summary>
+        ///     Get Length in ThousandCubicFeetsPerSquareKilometer.
+        /// </summary>
+        public double ThousandCubicFeetsPerSquareKilometer => As(LengthUnit.ThousandCubicFeetPerSquareKilometer);
 
         /// <summary>
         ///     Get Length in Twips.
@@ -404,6 +573,78 @@ namespace UnitsNet
             return new Length(value, LengthUnit.AstronomicalUnit);
         }
         /// <summary>
+        ///     Get Length from BillionCubicFeetsPerAcre.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromBillionCubicFeetsPerAcre(QuantityValue billioncubicfeetsperacre)
+        {
+            double value = (double) billioncubicfeetsperacre;
+            return new Length(value, LengthUnit.BillionCubicFeetPerAcre);
+        }
+        /// <summary>
+        ///     Get Length from BillionCubicFeetsPerHundredAcres.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromBillionCubicFeetsPerHundredAcres(QuantityValue billioncubicfeetsperhundredacres)
+        {
+            double value = (double) billioncubicfeetsperhundredacres;
+            return new Length(value, LengthUnit.BillionCubicFeetPerHundredAcres);
+        }
+        /// <summary>
+        ///     Get Length from BillionCubicFeetsPerSection.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromBillionCubicFeetsPerSection(QuantityValue billioncubicfeetspersection)
+        {
+            double value = (double) billioncubicfeetspersection;
+            return new Length(value, LengthUnit.BillionCubicFeetPerSection);
+        }
+        /// <summary>
+        ///     Get Length from BritishChainSearsOne9TwoTwos.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromBritishChainSearsOne9TwoTwos(QuantityValue britishchainsearsone9twotwos)
+        {
+            double value = (double) britishchainsearsone9twotwos;
+            return new Length(value, LengthUnit.BritishChainSearsOne9TwoTwo);
+        }
+        /// <summary>
+        ///     Get Length from BritishChainSearsOne9TwoTwoTruncateds.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromBritishChainSearsOne9TwoTwoTruncateds(QuantityValue britishchainsearsone9twotwotruncateds)
+        {
+            double value = (double) britishchainsearsone9twotwotruncateds;
+            return new Length(value, LengthUnit.BritishChainSearsOne9TwoTwoTruncated);
+        }
+        /// <summary>
+        ///     Get Length from BritishFootSearsOne9TwoTwos.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromBritishFootSearsOne9TwoTwos(QuantityValue britishfootsearsone9twotwos)
+        {
+            double value = (double) britishfootsearsone9twotwos;
+            return new Length(value, LengthUnit.BritishFootSearsOne9TwoTwo);
+        }
+        /// <summary>
+        ///     Get Length from BritishYardSearsOne9TwoTwos.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromBritishYardSearsOne9TwoTwos(QuantityValue britishyardsearsone9twotwos)
+        {
+            double value = (double) britishyardsearsone9twotwos;
+            return new Length(value, LengthUnit.BritishYardSearsOne9TwoTwo);
+        }
+        /// <summary>
+        ///     Get Length from BritishYardSearsOne9TwoTwoTruncateds.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromBritishYardSearsOne9TwoTwoTruncateds(QuantityValue britishyardsearsone9twotwotruncateds)
+        {
+            double value = (double) britishyardsearsone9twotwotruncateds;
+            return new Length(value, LengthUnit.BritishYardSearsOne9TwoTwoTruncated);
+        }
+        /// <summary>
         ///     Get Length from Centimeters.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -420,6 +661,51 @@ namespace UnitsNet
         {
             double value = (double) chains;
             return new Length(value, LengthUnit.Chain);
+        }
+        /// <summary>
+        ///     Get Length from ClarkesFeet.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromClarkesFeet(QuantityValue clarkesfeet)
+        {
+            double value = (double) clarkesfeet;
+            return new Length(value, LengthUnit.ClarkesFoot);
+        }
+        /// <summary>
+        ///     Get Length from ClarkesLinks.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromClarkesLinks(QuantityValue clarkeslinks)
+        {
+            double value = (double) clarkeslinks;
+            return new Length(value, LengthUnit.ClarkesLink);
+        }
+        /// <summary>
+        ///     Get Length from ClarkesYards.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromClarkesYards(QuantityValue clarkesyards)
+        {
+            double value = (double) clarkesyards;
+            return new Length(value, LengthUnit.ClarkesYard);
+        }
+        /// <summary>
+        ///     Get Length from CubicFeetPerSquareFoot.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromCubicFeetPerSquareFoot(QuantityValue cubicfeetpersquarefoot)
+        {
+            double value = (double) cubicfeetpersquarefoot;
+            return new Length(value, LengthUnit.CubicFootPerSquareFoot);
+        }
+        /// <summary>
+        ///     Get Length from CubicMetersPerSquareMeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromCubicMetersPerSquareMeter(QuantityValue cubicmeterspersquaremeter)
+        {
+            double value = (double) cubicmeterspersquaremeter;
+            return new Length(value, LengthUnit.CubicMeterPerSquareMeter);
         }
         /// <summary>
         ///     Get Length from Decimeters.
@@ -467,6 +753,24 @@ namespace UnitsNet
             return new Length(value, LengthUnit.Foot);
         }
         /// <summary>
+        ///     Get Length from GermanLegalMeters.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromGermanLegalMeters(QuantityValue germanlegalmeters)
+        {
+            double value = (double) germanlegalmeters;
+            return new Length(value, LengthUnit.GermanLegalMeter);
+        }
+        /// <summary>
+        ///     Get Length from GoldCoastFeet.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromGoldCoastFeet(QuantityValue goldcoastfeet)
+        {
+            double value = (double) goldcoastfeet;
+            return new Length(value, LengthUnit.GoldCoastFoot);
+        }
+        /// <summary>
         ///     Get Length from Hands.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -492,6 +796,24 @@ namespace UnitsNet
         {
             double value = (double) inches;
             return new Length(value, LengthUnit.Inch);
+        }
+        /// <summary>
+        ///     Get Length from InchBy3Twos.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromInchBy3Twos(QuantityValue inchby3twos)
+        {
+            double value = (double) inchby3twos;
+            return new Length(value, LengthUnit.InchBy3Two);
+        }
+        /// <summary>
+        ///     Get Length from IndianYards.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromIndianYards(QuantityValue indianyards)
+        {
+            double value = (double) indianyards;
+            return new Length(value, LengthUnit.IndianYard);
         }
         /// <summary>
         ///     Get Length from KilolightYears.
@@ -528,6 +850,15 @@ namespace UnitsNet
         {
             double value = (double) lightyears;
             return new Length(value, LengthUnit.LightYear);
+        }
+        /// <summary>
+        ///     Get Length from Links.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromLinks(QuantityValue links)
+        {
+            double value = (double) links;
+            return new Length(value, LengthUnit.Link);
         }
         /// <summary>
         ///     Get Length from MegalightYears.
@@ -602,6 +933,60 @@ namespace UnitsNet
             return new Length(value, LengthUnit.Millimeter);
         }
         /// <summary>
+        ///     Get Length from MillionBarrelsPerAcre.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromMillionBarrelsPerAcre(QuantityValue millionbarrelsperacre)
+        {
+            double value = (double) millionbarrelsperacre;
+            return new Length(value, LengthUnit.MillionBarrelsPerAcre);
+        }
+        /// <summary>
+        ///     Get Length from MillionBarrelsPerSection.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromMillionBarrelsPerSection(QuantityValue millionbarrelspersection)
+        {
+            double value = (double) millionbarrelspersection;
+            return new Length(value, LengthUnit.MillionBarrelsPerSection);
+        }
+        /// <summary>
+        ///     Get Length from MillionBarrelsPerSquareKilometer.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromMillionBarrelsPerSquareKilometer(QuantityValue millionbarrelspersquarekilometer)
+        {
+            double value = (double) millionbarrelspersquarekilometer;
+            return new Length(value, LengthUnit.MillionBarrelsPerSquareKilometer);
+        }
+        /// <summary>
+        ///     Get Length from MillionCubicFeetsPerAcre.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromMillionCubicFeetsPerAcre(QuantityValue millioncubicfeetsperacre)
+        {
+            double value = (double) millioncubicfeetsperacre;
+            return new Length(value, LengthUnit.MillionCubicFeetPerAcre);
+        }
+        /// <summary>
+        ///     Get Length from MillionCubicFeetsPerSection.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromMillionCubicFeetsPerSection(QuantityValue millioncubicfeetspersection)
+        {
+            double value = (double) millioncubicfeetspersection;
+            return new Length(value, LengthUnit.MillionCubicFeetPerSection);
+        }
+        /// <summary>
+        ///     Get Length from MillionCubicFeetsPerSquareKilometer.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromMillionCubicFeetsPerSquareKilometer(QuantityValue millioncubicfeetspersquarekilometer)
+        {
+            double value = (double) millioncubicfeetspersquarekilometer;
+            return new Length(value, LengthUnit.MillionCubicFeetPerSquareKilometer);
+        }
+        /// <summary>
         ///     Get Length from Nanometers.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -663,6 +1048,42 @@ namespace UnitsNet
         {
             double value = (double) solarradiuses;
             return new Length(value, LengthUnit.SolarRadius);
+        }
+        /// <summary>
+        ///     Get Length from ThousandBarrelsPerAcre.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromThousandBarrelsPerAcre(QuantityValue thousandbarrelsperacre)
+        {
+            double value = (double) thousandbarrelsperacre;
+            return new Length(value, LengthUnit.ThousandBarrelsPerAcre);
+        }
+        /// <summary>
+        ///     Get Length from ThousandBarrelsPerSquareKilometer.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromThousandBarrelsPerSquareKilometer(QuantityValue thousandbarrelspersquarekilometer)
+        {
+            double value = (double) thousandbarrelspersquarekilometer;
+            return new Length(value, LengthUnit.ThousandBarrelsPerSquareKilometer);
+        }
+        /// <summary>
+        ///     Get Length from ThousandCubicFeetsPerAcre.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromThousandCubicFeetsPerAcre(QuantityValue thousandcubicfeetsperacre)
+        {
+            double value = (double) thousandcubicfeetsperacre;
+            return new Length(value, LengthUnit.ThousandCubicFeetPerAcre);
+        }
+        /// <summary>
+        ///     Get Length from ThousandCubicFeetsPerSquareKilometer.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromThousandCubicFeetsPerSquareKilometer(QuantityValue thousandcubicfeetspersquarekilometer)
+        {
+            double value = (double) thousandcubicfeetspersquarekilometer;
+            return new Length(value, LengthUnit.ThousandCubicFeetPerSquareKilometer);
         }
         /// <summary>
         ///     Get Length from Twips.
@@ -1121,20 +1542,38 @@ namespace UnitsNet
             switch(Unit)
             {
                 case LengthUnit.AstronomicalUnit: return _value * 1.4959787070e11;
+                case LengthUnit.BillionCubicFeetPerAcre: return _value * 28316846.592 / 4046.8564224;
+                case LengthUnit.BillionCubicFeetPerHundredAcres: return _value * 28316846.592 / 404685.64224;
+                case LengthUnit.BillionCubicFeetPerSection: return _value * 28316846.592 / 2589988.110336;
+                case LengthUnit.BritishChainSearsOne9TwoTwo: return _value * 792 / 39.370147;
+                case LengthUnit.BritishChainSearsOne9TwoTwoTruncated: return _value * 20.116756;
+                case LengthUnit.BritishFootSearsOne9TwoTwo: return _value * 12 / 39.370147;
+                case LengthUnit.BritishYardSearsOne9TwoTwo: return _value * 36 / 39.370147;
+                case LengthUnit.BritishYardSearsOne9TwoTwoTruncated: return _value * 0.914398;
                 case LengthUnit.Centimeter: return (_value) * 1e-2d;
                 case LengthUnit.Chain: return _value*20.1168;
+                case LengthUnit.ClarkesFoot: return _value * 0.3047972654;
+                case LengthUnit.ClarkesLink: return _value * 0.201166195164;
+                case LengthUnit.ClarkesYard: return _value * 0.9143917962;
+                case LengthUnit.CubicFootPerSquareFoot: return _value * 0.028316846592 / 0.09290304;
+                case LengthUnit.CubicMeterPerSquareMeter: return _value;
                 case LengthUnit.Decimeter: return (_value) * 1e-1d;
                 case LengthUnit.DtpPica: return _value/236.220472441;
                 case LengthUnit.DtpPoint: return (_value/72)*2.54e-2;
                 case LengthUnit.Fathom: return _value*1.8288;
                 case LengthUnit.Foot: return _value*0.3048;
+                case LengthUnit.GermanLegalMeter: return _value * 1.0000135965;
+                case LengthUnit.GoldCoastFoot: return _value * 6378300 / 20926201;
                 case LengthUnit.Hand: return _value * 1.016e-1;
                 case LengthUnit.Hectometer: return (_value) * 1e2d;
                 case LengthUnit.Inch: return _value*2.54e-2;
+                case LengthUnit.InchBy3Two: return _value * 0.0254 / 32;
+                case LengthUnit.IndianYard: return _value * 36 / 39.370142;
                 case LengthUnit.KilolightYear: return (_value * 9.46073047258e15) * 1e3d;
                 case LengthUnit.Kilometer: return (_value) * 1e3d;
                 case LengthUnit.Kiloparsec: return (_value * 3.08567758128e16) * 1e3d;
                 case LengthUnit.LightYear: return _value * 9.46073047258e15;
+                case LengthUnit.Link: return _value * 20.1168 / 100;
                 case LengthUnit.MegalightYear: return (_value * 9.46073047258e15) * 1e6d;
                 case LengthUnit.Megaparsec: return (_value * 3.08567758128e16) * 1e6d;
                 case LengthUnit.Meter: return _value;
@@ -1143,6 +1582,12 @@ namespace UnitsNet
                 case LengthUnit.Mil: return _value*2.54e-5;
                 case LengthUnit.Mile: return _value*1609.34;
                 case LengthUnit.Millimeter: return (_value) * 1e-3d;
+                case LengthUnit.MillionBarrelsPerAcre: return _value * 158987.294928 / 4046.8564224;
+                case LengthUnit.MillionBarrelsPerSection: return _value * 158987.294928 / 2589988.110336;
+                case LengthUnit.MillionBarrelsPerSquareKilometer: return _value * 158987.294928 / 1000000;
+                case LengthUnit.MillionCubicFeetPerAcre: return _value * 28316.846592 / 4046.8564224;
+                case LengthUnit.MillionCubicFeetPerSection: return _value * 28316.846592 / 2589988.110336;
+                case LengthUnit.MillionCubicFeetPerSquareKilometer: return _value * 28316.846592 / 1000000;
                 case LengthUnit.Nanometer: return (_value) * 1e-9d;
                 case LengthUnit.NauticalMile: return _value*1852;
                 case LengthUnit.Parsec: return _value * 3.08567758128e16;
@@ -1150,6 +1595,10 @@ namespace UnitsNet
                 case LengthUnit.PrinterPoint: return (_value/72.27)*2.54e-2;
                 case LengthUnit.Shackle: return _value*27.432;
                 case LengthUnit.SolarRadius: return _value * 6.95510000E+08;
+                case LengthUnit.ThousandBarrelsPerAcre: return _value * 158.987294928 / 4046.8564224;
+                case LengthUnit.ThousandBarrelsPerSquareKilometer: return _value * 158.987294928 / 1000000;
+                case LengthUnit.ThousandCubicFeetPerAcre: return _value * 28.316846592 / 4046.8564224;
+                case LengthUnit.ThousandCubicFeetPerSquareKilometer: return _value * 28.316846592 / 1000000;
                 case LengthUnit.Twip: return _value/56692.913385826;
                 case LengthUnit.UsSurveyFoot: return _value*1200/3937;
                 case LengthUnit.Yard: return _value*0.9144;
@@ -1179,20 +1628,38 @@ namespace UnitsNet
             switch(unit)
             {
                 case LengthUnit.AstronomicalUnit: return baseUnitValue / 1.4959787070e11;
+                case LengthUnit.BillionCubicFeetPerAcre: return baseUnitValue / 28316846.592 * 4046.8564224;
+                case LengthUnit.BillionCubicFeetPerHundredAcres: return baseUnitValue / 28316846.592 * 404685.64224;
+                case LengthUnit.BillionCubicFeetPerSection: return baseUnitValue / 28316846.592 * 2589988.110336;
+                case LengthUnit.BritishChainSearsOne9TwoTwo: return baseUnitValue / 792 * 39.370147;
+                case LengthUnit.BritishChainSearsOne9TwoTwoTruncated: return baseUnitValue / 20.116756;
+                case LengthUnit.BritishFootSearsOne9TwoTwo: return baseUnitValue / 12 * 39.370147;
+                case LengthUnit.BritishYardSearsOne9TwoTwo: return baseUnitValue / 36 * 39.370147;
+                case LengthUnit.BritishYardSearsOne9TwoTwoTruncated: return baseUnitValue / 0.914398;
                 case LengthUnit.Centimeter: return (baseUnitValue) / 1e-2d;
                 case LengthUnit.Chain: return baseUnitValue/20.1168;
+                case LengthUnit.ClarkesFoot: return baseUnitValue / 0.3047972654;
+                case LengthUnit.ClarkesLink: return baseUnitValue / 0.201166195164;
+                case LengthUnit.ClarkesYard: return baseUnitValue / 0.9143917962;
+                case LengthUnit.CubicFootPerSquareFoot: return baseUnitValue / 0.028316846592 * 0.09290304;
+                case LengthUnit.CubicMeterPerSquareMeter: return baseUnitValue;
                 case LengthUnit.Decimeter: return (baseUnitValue) / 1e-1d;
                 case LengthUnit.DtpPica: return baseUnitValue*236.220472441;
                 case LengthUnit.DtpPoint: return (baseUnitValue/2.54e-2)*72;
                 case LengthUnit.Fathom: return baseUnitValue/1.8288;
                 case LengthUnit.Foot: return baseUnitValue/0.3048;
+                case LengthUnit.GermanLegalMeter: return baseUnitValue / 1.0000135965;
+                case LengthUnit.GoldCoastFoot: return baseUnitValue / 6378300 * 20926201;
                 case LengthUnit.Hand: return baseUnitValue / 1.016e-1;
                 case LengthUnit.Hectometer: return (baseUnitValue) / 1e2d;
                 case LengthUnit.Inch: return baseUnitValue/2.54e-2;
+                case LengthUnit.InchBy3Two: return baseUnitValue / 0.0254 * 32;
+                case LengthUnit.IndianYard: return baseUnitValue / 36 * 39.370142;
                 case LengthUnit.KilolightYear: return (baseUnitValue / 9.46073047258e15) / 1e3d;
                 case LengthUnit.Kilometer: return (baseUnitValue) / 1e3d;
                 case LengthUnit.Kiloparsec: return (baseUnitValue / 3.08567758128e16) / 1e3d;
                 case LengthUnit.LightYear: return baseUnitValue / 9.46073047258e15;
+                case LengthUnit.Link: return baseUnitValue / 20.1168 * 100;
                 case LengthUnit.MegalightYear: return (baseUnitValue / 9.46073047258e15) / 1e6d;
                 case LengthUnit.Megaparsec: return (baseUnitValue / 3.08567758128e16) / 1e6d;
                 case LengthUnit.Meter: return baseUnitValue;
@@ -1201,6 +1668,12 @@ namespace UnitsNet
                 case LengthUnit.Mil: return baseUnitValue/2.54e-5;
                 case LengthUnit.Mile: return baseUnitValue/1609.34;
                 case LengthUnit.Millimeter: return (baseUnitValue) / 1e-3d;
+                case LengthUnit.MillionBarrelsPerAcre: return baseUnitValue / 158987.294928 * 4046.8564224;
+                case LengthUnit.MillionBarrelsPerSection: return baseUnitValue / 158987.294928 * 2589988.110336;
+                case LengthUnit.MillionBarrelsPerSquareKilometer: return baseUnitValue / 158987.294928 * 1000000;
+                case LengthUnit.MillionCubicFeetPerAcre: return baseUnitValue / 28316.846592 * 4046.8564224;
+                case LengthUnit.MillionCubicFeetPerSection: return baseUnitValue / 28316.846592 * 2589988.110336;
+                case LengthUnit.MillionCubicFeetPerSquareKilometer: return baseUnitValue / 28316.846592 * 1000000;
                 case LengthUnit.Nanometer: return (baseUnitValue) / 1e-9d;
                 case LengthUnit.NauticalMile: return baseUnitValue/1852;
                 case LengthUnit.Parsec: return baseUnitValue / 3.08567758128e16;
@@ -1208,6 +1681,10 @@ namespace UnitsNet
                 case LengthUnit.PrinterPoint: return (baseUnitValue/2.54e-2)*72.27;
                 case LengthUnit.Shackle: return baseUnitValue/27.432;
                 case LengthUnit.SolarRadius: return baseUnitValue / 6.95510000E+08;
+                case LengthUnit.ThousandBarrelsPerAcre: return baseUnitValue / 158.987294928 * 4046.8564224;
+                case LengthUnit.ThousandBarrelsPerSquareKilometer: return baseUnitValue / 158.987294928 * 1000000;
+                case LengthUnit.ThousandCubicFeetPerAcre: return baseUnitValue / 28.316846592 * 4046.8564224;
+                case LengthUnit.ThousandCubicFeetPerSquareKilometer: return baseUnitValue / 28.316846592 * 1000000;
                 case LengthUnit.Twip: return baseUnitValue*56692.913385826;
                 case LengthUnit.UsSurveyFoot: return baseUnitValue*3937/1200;
                 case LengthUnit.Yard: return baseUnitValue/0.9144;

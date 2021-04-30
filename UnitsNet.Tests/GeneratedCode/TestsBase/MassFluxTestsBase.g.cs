@@ -37,18 +37,18 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class MassFluxTestsBase : QuantityTestsBase
     {
-        protected abstract double GramsPerHourPerSquareCentimeterInOneKilogramPerSecondPerSquareMeter { get; }
-        protected abstract double GramsPerHourPerSquareMeterInOneKilogramPerSecondPerSquareMeter { get; }
-        protected abstract double GramsPerHourPerSquareMillimeterInOneKilogramPerSecondPerSquareMeter { get; }
-        protected abstract double GramsPerSecondPerSquareCentimeterInOneKilogramPerSecondPerSquareMeter { get; }
-        protected abstract double GramsPerSecondPerSquareMeterInOneKilogramPerSecondPerSquareMeter { get; }
-        protected abstract double GramsPerSecondPerSquareMillimeterInOneKilogramPerSecondPerSquareMeter { get; }
-        protected abstract double KilogramsPerHourPerSquareCentimeterInOneKilogramPerSecondPerSquareMeter { get; }
-        protected abstract double KilogramsPerHourPerSquareMeterInOneKilogramPerSecondPerSquareMeter { get; }
-        protected abstract double KilogramsPerHourPerSquareMillimeterInOneKilogramPerSecondPerSquareMeter { get; }
-        protected abstract double KilogramsPerSecondPerSquareCentimeterInOneKilogramPerSecondPerSquareMeter { get; }
-        protected abstract double KilogramsPerSecondPerSquareMeterInOneKilogramPerSecondPerSquareMeter { get; }
-        protected abstract double KilogramsPerSecondPerSquareMillimeterInOneKilogramPerSecondPerSquareMeter { get; }
+        protected virtual double GramsPerHourPerSquareCentimeterInOneKilogramPerSecondPerSquareMeter { get; }
+        protected virtual double GramsPerHourPerSquareMeterInOneKilogramPerSecondPerSquareMeter { get; }
+        protected virtual double GramsPerHourPerSquareMillimeterInOneKilogramPerSecondPerSquareMeter { get; }
+        protected virtual double GramsPerSecondPerSquareCentimeterInOneKilogramPerSecondPerSquareMeter { get; }
+        protected virtual double GramsPerSecondPerSquareMeterInOneKilogramPerSecondPerSquareMeter { get; }
+        protected virtual double GramsPerSecondPerSquareMillimeterInOneKilogramPerSecondPerSquareMeter { get; }
+        protected virtual double KilogramsPerHourPerSquareCentimeterInOneKilogramPerSecondPerSquareMeter { get; }
+        protected virtual double KilogramsPerHourPerSquareMeterInOneKilogramPerSecondPerSquareMeter { get; }
+        protected virtual double KilogramsPerHourPerSquareMillimeterInOneKilogramPerSecondPerSquareMeter { get; }
+        protected virtual double KilogramsPerSecondPerSquareCentimeterInOneKilogramPerSecondPerSquareMeter { get; }
+        protected virtual double KilogramsPerSecondPerSquareMeterInOneKilogramPerSecondPerSquareMeter { get; }
+        protected virtual double KilogramsPerSecondPerSquareMillimeterInOneKilogramPerSecondPerSquareMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double GramsPerHourPerSquareCentimeterTolerance { get { return 1e-5; } }

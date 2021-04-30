@@ -37,16 +37,16 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class DynamicViscosityTestsBase : QuantityTestsBase
     {
-        protected abstract double CentipoiseInOneNewtonSecondPerMeterSquared { get; }
-        protected abstract double MicropascalSecondsInOneNewtonSecondPerMeterSquared { get; }
-        protected abstract double MillipascalSecondsInOneNewtonSecondPerMeterSquared { get; }
-        protected abstract double NewtonSecondsPerMeterSquaredInOneNewtonSecondPerMeterSquared { get; }
-        protected abstract double PascalSecondsInOneNewtonSecondPerMeterSquared { get; }
-        protected abstract double PoiseInOneNewtonSecondPerMeterSquared { get; }
-        protected abstract double PoundsForceSecondPerSquareFootInOneNewtonSecondPerMeterSquared { get; }
-        protected abstract double PoundsForceSecondPerSquareInchInOneNewtonSecondPerMeterSquared { get; }
-        protected abstract double PoundsPerFootSecondInOneNewtonSecondPerMeterSquared { get; }
-        protected abstract double ReynsInOneNewtonSecondPerMeterSquared { get; }
+        protected virtual double CentipoiseInOneNewtonSecondPerMeterSquared { get; }
+        protected virtual double MicropascalSecondsInOneNewtonSecondPerMeterSquared { get; }
+        protected virtual double MillipascalSecondsInOneNewtonSecondPerMeterSquared { get; }
+        protected virtual double NewtonSecondsPerMeterSquaredInOneNewtonSecondPerMeterSquared { get; }
+        protected virtual double PascalSecondsInOneNewtonSecondPerMeterSquared { get; }
+        protected virtual double PoiseInOneNewtonSecondPerMeterSquared { get; }
+        protected virtual double PoundsForceSecondPerSquareFootInOneNewtonSecondPerMeterSquared { get; }
+        protected virtual double PoundsForceSecondPerSquareInchInOneNewtonSecondPerMeterSquared { get; }
+        protected virtual double PoundsPerFootSecondInOneNewtonSecondPerMeterSquared { get; }
+        protected virtual double ReynsInOneNewtonSecondPerMeterSquared { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CentipoiseTolerance { get { return 1e-5; } }

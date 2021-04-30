@@ -60,6 +60,7 @@ namespace UnitsNet.Units
         LongTon,
         Megapound,
         Megatonne,
+        MetricTon,
         Microgram,
         Milligram,
         Nanogram,
@@ -105,6 +106,8 @@ namespace UnitsNet.Units
         /// <remarks>http://en.wikipedia.org/wiki/Stone_(unit)</remarks>
         Stone,
         Tonne,
+        UkTonne,
+        UsTonne,
     }
 
     #pragma warning restore 1591

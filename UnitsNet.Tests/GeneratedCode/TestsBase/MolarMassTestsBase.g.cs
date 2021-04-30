@@ -37,18 +37,18 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class MolarMassTestsBase : QuantityTestsBase
     {
-        protected abstract double CentigramsPerMoleInOneKilogramPerMole { get; }
-        protected abstract double DecagramsPerMoleInOneKilogramPerMole { get; }
-        protected abstract double DecigramsPerMoleInOneKilogramPerMole { get; }
-        protected abstract double GramsPerMoleInOneKilogramPerMole { get; }
-        protected abstract double HectogramsPerMoleInOneKilogramPerMole { get; }
-        protected abstract double KilogramsPerMoleInOneKilogramPerMole { get; }
-        protected abstract double KilopoundsPerMoleInOneKilogramPerMole { get; }
-        protected abstract double MegapoundsPerMoleInOneKilogramPerMole { get; }
-        protected abstract double MicrogramsPerMoleInOneKilogramPerMole { get; }
-        protected abstract double MilligramsPerMoleInOneKilogramPerMole { get; }
-        protected abstract double NanogramsPerMoleInOneKilogramPerMole { get; }
-        protected abstract double PoundsPerMoleInOneKilogramPerMole { get; }
+        protected virtual double CentigramsPerMoleInOneKilogramPerMole { get; }
+        protected virtual double DecagramsPerMoleInOneKilogramPerMole { get; }
+        protected virtual double DecigramsPerMoleInOneKilogramPerMole { get; }
+        protected virtual double GramsPerMoleInOneKilogramPerMole { get; }
+        protected virtual double HectogramsPerMoleInOneKilogramPerMole { get; }
+        protected virtual double KilogramsPerMoleInOneKilogramPerMole { get; }
+        protected virtual double KilopoundsPerMoleInOneKilogramPerMole { get; }
+        protected virtual double MegapoundsPerMoleInOneKilogramPerMole { get; }
+        protected virtual double MicrogramsPerMoleInOneKilogramPerMole { get; }
+        protected virtual double MilligramsPerMoleInOneKilogramPerMole { get; }
+        protected virtual double NanogramsPerMoleInOneKilogramPerMole { get; }
+        protected virtual double PoundsPerMoleInOneKilogramPerMole { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CentigramsPerMoleTolerance { get { return 1e-5; } }

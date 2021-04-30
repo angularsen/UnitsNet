@@ -28,6 +28,10 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificVolume
     /// </summary>
     public static class NumberToSpecificVolumeExtensions
     {
+        /// <inheritdoc cref="SpecificVolume.FromCubicCentimetersPerGram(UnitsNet.QuantityValue)" />
+        public static SpecificVolume CubicCentimetersPerGram<T>(this T value) =>
+            SpecificVolume.FromCubicCentimetersPerGram(Convert.ToDouble(value));
+
         /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPound(UnitsNet.QuantityValue)" />
         public static SpecificVolume CubicFeetPerPound<T>(this T value) =>
             SpecificVolume.FromCubicFeetPerPound(Convert.ToDouble(value));
@@ -36,9 +40,21 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificVolume
         public static SpecificVolume CubicMetersPerKilogram<T>(this T value) =>
             SpecificVolume.FromCubicMetersPerKilogram(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="SpecificVolume.FromCubicMetersPerTonne(UnitsNet.QuantityValue)" />
+        public static SpecificVolume CubicMetersPerTonne<T>(this T value) =>
+            SpecificVolume.FromCubicMetersPerTonne(Convert.ToDouble(value));
+
         /// <inheritdoc cref="SpecificVolume.FromMillicubicMetersPerKilogram(UnitsNet.QuantityValue)" />
         public static SpecificVolume MillicubicMetersPerKilogram<T>(this T value) =>
             SpecificVolume.FromMillicubicMetersPerKilogram(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="SpecificVolume.FromStandardCubicFeetPerLongTonne(UnitsNet.QuantityValue)" />
+        public static SpecificVolume StandardCubicFeetPerLongTonne<T>(this T value) =>
+            SpecificVolume.FromStandardCubicFeetPerLongTonne(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="SpecificVolume.FromStandardCubicFeetPerTonne(UnitsNet.QuantityValue)" />
+        public static SpecificVolume StandardCubicFeetPerTonne<T>(this T value) =>
+            SpecificVolume.FromStandardCubicFeetPerTonne(Convert.ToDouble(value));
 
     }
 }

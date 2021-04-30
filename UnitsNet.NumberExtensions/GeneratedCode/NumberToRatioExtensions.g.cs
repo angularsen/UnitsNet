@@ -32,6 +32,10 @@ namespace UnitsNet.NumberExtensions.NumberToRatio
         public static Ratio DecimalFractions<T>(this T value) =>
             Ratio.FromDecimalFractions(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Ratio.FromOnes(UnitsNet.QuantityValue)" />
+        public static Ratio Ones<T>(this T value) =>
+            Ratio.FromOnes(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Ratio.FromPartsPerBillion(UnitsNet.QuantityValue)" />
         public static Ratio PartsPerBillion<T>(this T value) =>
             Ratio.FromPartsPerBillion(Convert.ToDouble(value));

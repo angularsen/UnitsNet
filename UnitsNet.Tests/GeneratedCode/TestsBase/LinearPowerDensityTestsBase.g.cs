@@ -37,31 +37,31 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class LinearPowerDensityTestsBase : QuantityTestsBase
     {
-        protected abstract double GigawattsPerCentimeterInOneWattPerMeter { get; }
-        protected abstract double GigawattsPerFootInOneWattPerMeter { get; }
-        protected abstract double GigawattsPerInchInOneWattPerMeter { get; }
-        protected abstract double GigawattsPerMeterInOneWattPerMeter { get; }
-        protected abstract double GigawattsPerMillimeterInOneWattPerMeter { get; }
-        protected abstract double KilowattsPerCentimeterInOneWattPerMeter { get; }
-        protected abstract double KilowattsPerFootInOneWattPerMeter { get; }
-        protected abstract double KilowattsPerInchInOneWattPerMeter { get; }
-        protected abstract double KilowattsPerMeterInOneWattPerMeter { get; }
-        protected abstract double KilowattsPerMillimeterInOneWattPerMeter { get; }
-        protected abstract double MegawattsPerCentimeterInOneWattPerMeter { get; }
-        protected abstract double MegawattsPerFootInOneWattPerMeter { get; }
-        protected abstract double MegawattsPerInchInOneWattPerMeter { get; }
-        protected abstract double MegawattsPerMeterInOneWattPerMeter { get; }
-        protected abstract double MegawattsPerMillimeterInOneWattPerMeter { get; }
-        protected abstract double MilliwattsPerCentimeterInOneWattPerMeter { get; }
-        protected abstract double MilliwattsPerFootInOneWattPerMeter { get; }
-        protected abstract double MilliwattsPerInchInOneWattPerMeter { get; }
-        protected abstract double MilliwattsPerMeterInOneWattPerMeter { get; }
-        protected abstract double MilliwattsPerMillimeterInOneWattPerMeter { get; }
-        protected abstract double WattsPerCentimeterInOneWattPerMeter { get; }
-        protected abstract double WattsPerFootInOneWattPerMeter { get; }
-        protected abstract double WattsPerInchInOneWattPerMeter { get; }
-        protected abstract double WattsPerMeterInOneWattPerMeter { get; }
-        protected abstract double WattsPerMillimeterInOneWattPerMeter { get; }
+        protected virtual double GigawattsPerCentimeterInOneWattPerMeter { get; }
+        protected virtual double GigawattsPerFootInOneWattPerMeter { get; }
+        protected virtual double GigawattsPerInchInOneWattPerMeter { get; }
+        protected virtual double GigawattsPerMeterInOneWattPerMeter { get; }
+        protected virtual double GigawattsPerMillimeterInOneWattPerMeter { get; }
+        protected virtual double KilowattsPerCentimeterInOneWattPerMeter { get; }
+        protected virtual double KilowattsPerFootInOneWattPerMeter { get; }
+        protected virtual double KilowattsPerInchInOneWattPerMeter { get; }
+        protected virtual double KilowattsPerMeterInOneWattPerMeter { get; }
+        protected virtual double KilowattsPerMillimeterInOneWattPerMeter { get; }
+        protected virtual double MegawattsPerCentimeterInOneWattPerMeter { get; }
+        protected virtual double MegawattsPerFootInOneWattPerMeter { get; }
+        protected virtual double MegawattsPerInchInOneWattPerMeter { get; }
+        protected virtual double MegawattsPerMeterInOneWattPerMeter { get; }
+        protected virtual double MegawattsPerMillimeterInOneWattPerMeter { get; }
+        protected virtual double MilliwattsPerCentimeterInOneWattPerMeter { get; }
+        protected virtual double MilliwattsPerFootInOneWattPerMeter { get; }
+        protected virtual double MilliwattsPerInchInOneWattPerMeter { get; }
+        protected virtual double MilliwattsPerMeterInOneWattPerMeter { get; }
+        protected virtual double MilliwattsPerMillimeterInOneWattPerMeter { get; }
+        protected virtual double WattsPerCentimeterInOneWattPerMeter { get; }
+        protected virtual double WattsPerFootInOneWattPerMeter { get; }
+        protected virtual double WattsPerInchInOneWattPerMeter { get; }
+        protected virtual double WattsPerMeterInOneWattPerMeter { get; }
+        protected virtual double WattsPerMillimeterInOneWattPerMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double GigawattsPerCentimeterTolerance { get { return 1e-5; } }

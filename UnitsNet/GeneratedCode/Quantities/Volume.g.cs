@@ -17,19 +17,20 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Globalization;
-using System.Linq;
-using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
-
 #nullable enable
 
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using JetBrains.Annotations;
+    using UnitsNet.InternalHelpers;
+    using UnitsNet.Units;
+    
+
     /// <inheritdoc />
     /// <summary>
     ///     Volume is the quantity of three-dimensional space enclosed by some closed boundary, for example, the space that a substance (solid, liquid, gas, or plasma) or shape occupies or contains.[1] Volume is often quantified numerically using the SI derived unit, the cubic metre. The volume of a container is generally understood to be the capacity of the container, i. e. the amount of fluid (gas or liquid) that the container could hold, rather than the amount of space the container itself displaces.
@@ -54,6 +55,9 @@ namespace UnitsNet
                 new UnitInfo<VolumeUnit>[] {
                     new UnitInfo<VolumeUnit>(VolumeUnit.AcreFoot, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.AuTablespoon, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.Barrel, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.BillionCubicFeet, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.BillionCubicMeter, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.BoardFoot, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.Centiliter, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.CubicCentimeter, BaseUnits.Undefined),
@@ -92,7 +96,26 @@ namespace UnitsNet
                     new UnitInfo<VolumeUnit>(VolumeUnit.MetricTeaspoon, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.Microliter, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.Milliliter, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.MillionBarrels, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.MillionCubicFeet, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.MillionCubicMeter, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.MillionReservoirBarrels, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.MillionStandardCubicFeet, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.MillionUkGallons, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.MillionUsGallons, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.OilBarrel, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.ReservoirBarrel, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.ReservoirCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.StandardCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.StockTankBarrel, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.ThousandBarrels, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.ThousandCubicFeet, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.ThousandReservoirBarrels, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.ThousandStandardCubicFeet, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.ThousandUkGallons, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.ThousandUsGallons, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.TrillionCubicFoot, BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.UkGallon, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.UkTablespoon, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.UsBeerBarrel, BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.UsCustomaryCup, BaseUnits.Undefined),
@@ -227,6 +250,21 @@ namespace UnitsNet
         ///     Get Volume in AuTablespoons.
         /// </summary>
         public double AuTablespoons => As(VolumeUnit.AuTablespoon);
+
+        /// <summary>
+        ///     Get Volume in Barrels.
+        /// </summary>
+        public double Barrels => As(VolumeUnit.Barrel);
+
+        /// <summary>
+        ///     Get Volume in BillionCubicFeets.
+        /// </summary>
+        public double BillionCubicFeets => As(VolumeUnit.BillionCubicFeet);
+
+        /// <summary>
+        ///     Get Volume in BillionCubicMeters.
+        /// </summary>
+        public double BillionCubicMeters => As(VolumeUnit.BillionCubicMeter);
 
         /// <summary>
         ///     Get Volume in BoardFeet.
@@ -419,9 +457,104 @@ namespace UnitsNet
         public double Milliliters => As(VolumeUnit.Milliliter);
 
         /// <summary>
+        ///     Get Volume in MillionBarrels.
+        /// </summary>
+        public double MillionBarrels => As(VolumeUnit.MillionBarrels);
+
+        /// <summary>
+        ///     Get Volume in MillionCubicFeets.
+        /// </summary>
+        public double MillionCubicFeets => As(VolumeUnit.MillionCubicFeet);
+
+        /// <summary>
+        ///     Get Volume in MillionCubicMeters.
+        /// </summary>
+        public double MillionCubicMeters => As(VolumeUnit.MillionCubicMeter);
+
+        /// <summary>
+        ///     Get Volume in MillionReservoirBarrels.
+        /// </summary>
+        public double MillionReservoirBarrels => As(VolumeUnit.MillionReservoirBarrels);
+
+        /// <summary>
+        ///     Get Volume in MillionStandardCubicFeets.
+        /// </summary>
+        public double MillionStandardCubicFeets => As(VolumeUnit.MillionStandardCubicFeet);
+
+        /// <summary>
+        ///     Get Volume in MillionUkGallons.
+        /// </summary>
+        public double MillionUkGallons => As(VolumeUnit.MillionUkGallons);
+
+        /// <summary>
+        ///     Get Volume in MillionUsGallons.
+        /// </summary>
+        public double MillionUsGallons => As(VolumeUnit.MillionUsGallons);
+
+        /// <summary>
         ///     Get Volume in OilBarrels.
         /// </summary>
         public double OilBarrels => As(VolumeUnit.OilBarrel);
+
+        /// <summary>
+        ///     Get Volume in ReservoirBarrels.
+        /// </summary>
+        public double ReservoirBarrels => As(VolumeUnit.ReservoirBarrel);
+
+        /// <summary>
+        ///     Get Volume in ReservoirCubicFeet.
+        /// </summary>
+        public double ReservoirCubicFeet => As(VolumeUnit.ReservoirCubicFoot);
+
+        /// <summary>
+        ///     Get Volume in StandardCubicFeet.
+        /// </summary>
+        public double StandardCubicFeet => As(VolumeUnit.StandardCubicFoot);
+
+        /// <summary>
+        ///     Get Volume in StockTankBarrels.
+        /// </summary>
+        public double StockTankBarrels => As(VolumeUnit.StockTankBarrel);
+
+        /// <summary>
+        ///     Get Volume in ThousandBarrels.
+        /// </summary>
+        public double ThousandBarrels => As(VolumeUnit.ThousandBarrels);
+
+        /// <summary>
+        ///     Get Volume in ThousandCubicFeets.
+        /// </summary>
+        public double ThousandCubicFeets => As(VolumeUnit.ThousandCubicFeet);
+
+        /// <summary>
+        ///     Get Volume in ThousandReservoirBarrels.
+        /// </summary>
+        public double ThousandReservoirBarrels => As(VolumeUnit.ThousandReservoirBarrels);
+
+        /// <summary>
+        ///     Get Volume in ThousandStandardCubicFeets.
+        /// </summary>
+        public double ThousandStandardCubicFeets => As(VolumeUnit.ThousandStandardCubicFeet);
+
+        /// <summary>
+        ///     Get Volume in ThousandUkGallons.
+        /// </summary>
+        public double ThousandUkGallons => As(VolumeUnit.ThousandUkGallons);
+
+        /// <summary>
+        ///     Get Volume in ThousandUsGallons.
+        /// </summary>
+        public double ThousandUsGallons => As(VolumeUnit.ThousandUsGallons);
+
+        /// <summary>
+        ///     Get Volume in TrillionCubicFeet.
+        /// </summary>
+        public double TrillionCubicFeet => As(VolumeUnit.TrillionCubicFoot);
+
+        /// <summary>
+        ///     Get Volume in UkGallons.
+        /// </summary>
+        public double UkGallons => As(VolumeUnit.UkGallon);
 
         /// <summary>
         ///     Get Volume in UkTablespoons.
@@ -519,6 +652,33 @@ namespace UnitsNet
         {
             double value = (double) autablespoons;
             return new Volume(value, VolumeUnit.AuTablespoon);
+        }
+        /// <summary>
+        ///     Get Volume from Barrels.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromBarrels(QuantityValue barrels)
+        {
+            double value = (double) barrels;
+            return new Volume(value, VolumeUnit.Barrel);
+        }
+        /// <summary>
+        ///     Get Volume from BillionCubicFeets.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromBillionCubicFeets(QuantityValue billioncubicfeets)
+        {
+            double value = (double) billioncubicfeets;
+            return new Volume(value, VolumeUnit.BillionCubicFeet);
+        }
+        /// <summary>
+        ///     Get Volume from BillionCubicMeters.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromBillionCubicMeters(QuantityValue billioncubicmeters)
+        {
+            double value = (double) billioncubicmeters;
+            return new Volume(value, VolumeUnit.BillionCubicMeter);
         }
         /// <summary>
         ///     Get Volume from BoardFeet.
@@ -863,6 +1023,69 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.Milliliter);
         }
         /// <summary>
+        ///     Get Volume from MillionBarrels.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromMillionBarrels(QuantityValue millionbarrels)
+        {
+            double value = (double) millionbarrels;
+            return new Volume(value, VolumeUnit.MillionBarrels);
+        }
+        /// <summary>
+        ///     Get Volume from MillionCubicFeets.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromMillionCubicFeets(QuantityValue millioncubicfeets)
+        {
+            double value = (double) millioncubicfeets;
+            return new Volume(value, VolumeUnit.MillionCubicFeet);
+        }
+        /// <summary>
+        ///     Get Volume from MillionCubicMeters.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromMillionCubicMeters(QuantityValue millioncubicmeters)
+        {
+            double value = (double) millioncubicmeters;
+            return new Volume(value, VolumeUnit.MillionCubicMeter);
+        }
+        /// <summary>
+        ///     Get Volume from MillionReservoirBarrels.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromMillionReservoirBarrels(QuantityValue millionreservoirbarrels)
+        {
+            double value = (double) millionreservoirbarrels;
+            return new Volume(value, VolumeUnit.MillionReservoirBarrels);
+        }
+        /// <summary>
+        ///     Get Volume from MillionStandardCubicFeets.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromMillionStandardCubicFeets(QuantityValue millionstandardcubicfeets)
+        {
+            double value = (double) millionstandardcubicfeets;
+            return new Volume(value, VolumeUnit.MillionStandardCubicFeet);
+        }
+        /// <summary>
+        ///     Get Volume from MillionUkGallons.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromMillionUkGallons(QuantityValue millionukgallons)
+        {
+            double value = (double) millionukgallons;
+            return new Volume(value, VolumeUnit.MillionUkGallons);
+        }
+        /// <summary>
+        ///     Get Volume from MillionUsGallons.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromMillionUsGallons(QuantityValue millionusgallons)
+        {
+            double value = (double) millionusgallons;
+            return new Volume(value, VolumeUnit.MillionUsGallons);
+        }
+        /// <summary>
         ///     Get Volume from OilBarrels.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -870,6 +1093,114 @@ namespace UnitsNet
         {
             double value = (double) oilbarrels;
             return new Volume(value, VolumeUnit.OilBarrel);
+        }
+        /// <summary>
+        ///     Get Volume from ReservoirBarrels.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromReservoirBarrels(QuantityValue reservoirbarrels)
+        {
+            double value = (double) reservoirbarrels;
+            return new Volume(value, VolumeUnit.ReservoirBarrel);
+        }
+        /// <summary>
+        ///     Get Volume from ReservoirCubicFeet.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromReservoirCubicFeet(QuantityValue reservoircubicfeet)
+        {
+            double value = (double) reservoircubicfeet;
+            return new Volume(value, VolumeUnit.ReservoirCubicFoot);
+        }
+        /// <summary>
+        ///     Get Volume from StandardCubicFeet.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromStandardCubicFeet(QuantityValue standardcubicfeet)
+        {
+            double value = (double) standardcubicfeet;
+            return new Volume(value, VolumeUnit.StandardCubicFoot);
+        }
+        /// <summary>
+        ///     Get Volume from StockTankBarrels.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromStockTankBarrels(QuantityValue stocktankbarrels)
+        {
+            double value = (double) stocktankbarrels;
+            return new Volume(value, VolumeUnit.StockTankBarrel);
+        }
+        /// <summary>
+        ///     Get Volume from ThousandBarrels.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromThousandBarrels(QuantityValue thousandbarrels)
+        {
+            double value = (double) thousandbarrels;
+            return new Volume(value, VolumeUnit.ThousandBarrels);
+        }
+        /// <summary>
+        ///     Get Volume from ThousandCubicFeets.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromThousandCubicFeets(QuantityValue thousandcubicfeets)
+        {
+            double value = (double) thousandcubicfeets;
+            return new Volume(value, VolumeUnit.ThousandCubicFeet);
+        }
+        /// <summary>
+        ///     Get Volume from ThousandReservoirBarrels.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromThousandReservoirBarrels(QuantityValue thousandreservoirbarrels)
+        {
+            double value = (double) thousandreservoirbarrels;
+            return new Volume(value, VolumeUnit.ThousandReservoirBarrels);
+        }
+        /// <summary>
+        ///     Get Volume from ThousandStandardCubicFeets.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromThousandStandardCubicFeets(QuantityValue thousandstandardcubicfeets)
+        {
+            double value = (double) thousandstandardcubicfeets;
+            return new Volume(value, VolumeUnit.ThousandStandardCubicFeet);
+        }
+        /// <summary>
+        ///     Get Volume from ThousandUkGallons.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromThousandUkGallons(QuantityValue thousandukgallons)
+        {
+            double value = (double) thousandukgallons;
+            return new Volume(value, VolumeUnit.ThousandUkGallons);
+        }
+        /// <summary>
+        ///     Get Volume from ThousandUsGallons.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromThousandUsGallons(QuantityValue thousandusgallons)
+        {
+            double value = (double) thousandusgallons;
+            return new Volume(value, VolumeUnit.ThousandUsGallons);
+        }
+        /// <summary>
+        ///     Get Volume from TrillionCubicFeet.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromTrillionCubicFeet(QuantityValue trillioncubicfeet)
+        {
+            double value = (double) trillioncubicfeet;
+            return new Volume(value, VolumeUnit.TrillionCubicFoot);
+        }
+        /// <summary>
+        ///     Get Volume from UkGallons.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromUkGallons(QuantityValue ukgallons)
+        {
+            double value = (double) ukgallons;
+            return new Volume(value, VolumeUnit.UkGallon);
         }
         /// <summary>
         ///     Get Volume from UkTablespoons.
@@ -1392,6 +1723,9 @@ namespace UnitsNet
             {
                 case VolumeUnit.AcreFoot: return _value/0.000810714;
                 case VolumeUnit.AuTablespoon: return _value*2e-5;
+                case VolumeUnit.Barrel: return _value * 0.158987294928;
+                case VolumeUnit.BillionCubicFeet: return _value * 28316846.592;
+                case VolumeUnit.BillionCubicMeter: return _value * 1000000000;
                 case VolumeUnit.BoardFoot: return _value*2.3597372158e-3;
                 case VolumeUnit.Centiliter: return (_value/1e3) * 1e-2d;
                 case VolumeUnit.CubicCentimeter: return _value/1e6;
@@ -1430,7 +1764,26 @@ namespace UnitsNet
                 case VolumeUnit.MetricTeaspoon: return _value*0.5e-5;
                 case VolumeUnit.Microliter: return (_value/1e3) * 1e-6d;
                 case VolumeUnit.Milliliter: return (_value/1e3) * 1e-3d;
+                case VolumeUnit.MillionBarrels: return _value * 158987.294928;
+                case VolumeUnit.MillionCubicFeet: return _value * 28316.846592;
+                case VolumeUnit.MillionCubicMeter: return _value * 1000000;
+                case VolumeUnit.MillionReservoirBarrels: return _value * 158987.294928;
+                case VolumeUnit.MillionStandardCubicFeet: return _value * 28316.846592;
+                case VolumeUnit.MillionUkGallons: return _value * 4546.09;
+                case VolumeUnit.MillionUsGallons: return _value * 3785.411784;
                 case VolumeUnit.OilBarrel: return _value*0.158987294928;
+                case VolumeUnit.ReservoirBarrel: return _value * 0.158987294928;
+                case VolumeUnit.ReservoirCubicFoot: return _value * 0.028316846592;
+                case VolumeUnit.StandardCubicFoot: return _value * 0.028316846592;
+                case VolumeUnit.StockTankBarrel: return _value * 0.158987294928;
+                case VolumeUnit.ThousandBarrels: return _value * 158.987294928;
+                case VolumeUnit.ThousandCubicFeet: return _value * 28.316846592;
+                case VolumeUnit.ThousandReservoirBarrels: return _value * 158.987294928;
+                case VolumeUnit.ThousandStandardCubicFeet: return _value * 28.316846592;
+                case VolumeUnit.ThousandUkGallons: return _value * 4.54609;
+                case VolumeUnit.ThousandUsGallons: return _value * 3.785411784;
+                case VolumeUnit.TrillionCubicFoot: return _value * 28316846592;
+                case VolumeUnit.UkGallon: return _value * 0.00454609;
                 case VolumeUnit.UkTablespoon: return _value*1.5e-5;
                 case VolumeUnit.UsBeerBarrel: return _value*0.1173477658;
                 case VolumeUnit.UsCustomaryCup: return _value*0.0002365882365;
@@ -1468,6 +1821,9 @@ namespace UnitsNet
             {
                 case VolumeUnit.AcreFoot: return baseUnitValue*0.000810714;
                 case VolumeUnit.AuTablespoon: return baseUnitValue/2e-5;
+                case VolumeUnit.Barrel: return baseUnitValue / 0.158987294928;
+                case VolumeUnit.BillionCubicFeet: return baseUnitValue / 28316846.592;
+                case VolumeUnit.BillionCubicMeter: return baseUnitValue / 1000000000;
                 case VolumeUnit.BoardFoot: return baseUnitValue/2.3597372158e-3;
                 case VolumeUnit.Centiliter: return (baseUnitValue*1e3) / 1e-2d;
                 case VolumeUnit.CubicCentimeter: return baseUnitValue*1e6;
@@ -1506,7 +1862,26 @@ namespace UnitsNet
                 case VolumeUnit.MetricTeaspoon: return baseUnitValue/0.5e-5;
                 case VolumeUnit.Microliter: return (baseUnitValue*1e3) / 1e-6d;
                 case VolumeUnit.Milliliter: return (baseUnitValue*1e3) / 1e-3d;
+                case VolumeUnit.MillionBarrels: return baseUnitValue / 158987.294928;
+                case VolumeUnit.MillionCubicFeet: return baseUnitValue / 28316.846592;
+                case VolumeUnit.MillionCubicMeter: return baseUnitValue / 1000000;
+                case VolumeUnit.MillionReservoirBarrels: return baseUnitValue / 158987.294928;
+                case VolumeUnit.MillionStandardCubicFeet: return baseUnitValue / 28316.846592;
+                case VolumeUnit.MillionUkGallons: return baseUnitValue / 4546.09;
+                case VolumeUnit.MillionUsGallons: return baseUnitValue / 3785.411784;
                 case VolumeUnit.OilBarrel: return baseUnitValue/0.158987294928;
+                case VolumeUnit.ReservoirBarrel: return baseUnitValue / 0.158987294928;
+                case VolumeUnit.ReservoirCubicFoot: return baseUnitValue / 0.028316846592;
+                case VolumeUnit.StandardCubicFoot: return baseUnitValue / 0.028316846592;
+                case VolumeUnit.StockTankBarrel: return baseUnitValue / 0.158987294928;
+                case VolumeUnit.ThousandBarrels: return baseUnitValue / 158.987294928;
+                case VolumeUnit.ThousandCubicFeet: return baseUnitValue / 28.316846592;
+                case VolumeUnit.ThousandReservoirBarrels: return baseUnitValue / 158.987294928;
+                case VolumeUnit.ThousandStandardCubicFeet: return baseUnitValue / 28.316846592;
+                case VolumeUnit.ThousandUkGallons: return baseUnitValue / 4.54609;
+                case VolumeUnit.ThousandUsGallons: return baseUnitValue / 3.785411784;
+                case VolumeUnit.TrillionCubicFoot: return baseUnitValue / 28316846592;
+                case VolumeUnit.UkGallon: return baseUnitValue / 0.00454609;
                 case VolumeUnit.UkTablespoon: return baseUnitValue/1.5e-5;
                 case VolumeUnit.UsBeerBarrel: return baseUnitValue/0.1173477658;
                 case VolumeUnit.UsCustomaryCup: return baseUnitValue/0.0002365882365;

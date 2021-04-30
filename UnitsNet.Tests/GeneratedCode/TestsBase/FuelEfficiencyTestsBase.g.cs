@@ -37,10 +37,10 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class FuelEfficiencyTestsBase : QuantityTestsBase
     {
-        protected abstract double KilometersPerLitersInOneLiterPer100Kilometers { get; }
-        protected abstract double LitersPer100KilometersInOneLiterPer100Kilometers { get; }
-        protected abstract double MilesPerUkGallonInOneLiterPer100Kilometers { get; }
-        protected abstract double MilesPerUsGallonInOneLiterPer100Kilometers { get; }
+        protected virtual double KilometersPerLitersInOneLiterPer100Kilometers { get; }
+        protected virtual double LitersPer100KilometersInOneLiterPer100Kilometers { get; }
+        protected virtual double MilesPerUkGallonInOneLiterPer100Kilometers { get; }
+        protected virtual double MilesPerUsGallonInOneLiterPer100Kilometers { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double KilometersPerLitersTolerance { get { return 1e-5; } }

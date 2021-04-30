@@ -17,19 +17,20 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Globalization;
-using System.Linq;
-using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
-
 #nullable enable
 
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using JetBrains.Annotations;
+    using UnitsNet.InternalHelpers;
+    using UnitsNet.Units;
+    
+
     /// <inheritdoc />
     /// <summary>
     ///     The electrical resistance of an electrical conductor is the opposition to the passage of an electric current through that conductor.
@@ -53,8 +54,10 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricResistanceUnit>("ElectricResistance",
                 new UnitInfo<ElectricResistanceUnit>[] {
                     new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Gigaohm, BaseUnits.Undefined),
+                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Kilohm, BaseUnits.Undefined),
                     new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Kiloohm, BaseUnits.Undefined),
                     new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Megaohm, BaseUnits.Undefined),
+                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Megohm, BaseUnits.Undefined),
                     new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Microohm, BaseUnits.Undefined),
                     new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Milliohm, BaseUnits.Undefined),
                     new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Ohm, BaseUnits.Undefined),
@@ -179,6 +182,11 @@ namespace UnitsNet
         public double Gigaohms => As(ElectricResistanceUnit.Gigaohm);
 
         /// <summary>
+        ///     Get ElectricResistance in Kilohms.
+        /// </summary>
+        public double Kilohms => As(ElectricResistanceUnit.Kilohm);
+
+        /// <summary>
         ///     Get ElectricResistance in Kiloohms.
         /// </summary>
         public double Kiloohms => As(ElectricResistanceUnit.Kiloohm);
@@ -187,6 +195,11 @@ namespace UnitsNet
         ///     Get ElectricResistance in Megaohms.
         /// </summary>
         public double Megaohms => As(ElectricResistanceUnit.Megaohm);
+
+        /// <summary>
+        ///     Get ElectricResistance in Megohms.
+        /// </summary>
+        public double Megohms => As(ElectricResistanceUnit.Megohm);
 
         /// <summary>
         ///     Get ElectricResistance in Microohms.
@@ -242,6 +255,15 @@ namespace UnitsNet
             return new ElectricResistance(value, ElectricResistanceUnit.Gigaohm);
         }
         /// <summary>
+        ///     Get ElectricResistance from Kilohms.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricResistance FromKilohms(QuantityValue kilohms)
+        {
+            double value = (double) kilohms;
+            return new ElectricResistance(value, ElectricResistanceUnit.Kilohm);
+        }
+        /// <summary>
         ///     Get ElectricResistance from Kiloohms.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -258,6 +280,15 @@ namespace UnitsNet
         {
             double value = (double) megaohms;
             return new ElectricResistance(value, ElectricResistanceUnit.Megaohm);
+        }
+        /// <summary>
+        ///     Get ElectricResistance from Megohms.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricResistance FromMegohms(QuantityValue megohms)
+        {
+            double value = (double) megohms;
+            return new ElectricResistance(value, ElectricResistanceUnit.Megohm);
         }
         /// <summary>
         ///     Get ElectricResistance from Microohms.
@@ -716,8 +747,10 @@ namespace UnitsNet
             switch(Unit)
             {
                 case ElectricResistanceUnit.Gigaohm: return (_value) * 1e9d;
+                case ElectricResistanceUnit.Kilohm: return _value * 1000;
                 case ElectricResistanceUnit.Kiloohm: return (_value) * 1e3d;
                 case ElectricResistanceUnit.Megaohm: return (_value) * 1e6d;
+                case ElectricResistanceUnit.Megohm: return _value * 1000000;
                 case ElectricResistanceUnit.Microohm: return (_value) * 1e-6d;
                 case ElectricResistanceUnit.Milliohm: return (_value) * 1e-3d;
                 case ElectricResistanceUnit.Ohm: return _value;
@@ -747,8 +780,10 @@ namespace UnitsNet
             switch(unit)
             {
                 case ElectricResistanceUnit.Gigaohm: return (baseUnitValue) / 1e9d;
+                case ElectricResistanceUnit.Kilohm: return baseUnitValue / 1000;
                 case ElectricResistanceUnit.Kiloohm: return (baseUnitValue) / 1e3d;
                 case ElectricResistanceUnit.Megaohm: return (baseUnitValue) / 1e6d;
+                case ElectricResistanceUnit.Megohm: return baseUnitValue / 1000000;
                 case ElectricResistanceUnit.Microohm: return (baseUnitValue) / 1e-6d;
                 case ElectricResistanceUnit.Milliohm: return (baseUnitValue) / 1e-3d;
                 case ElectricResistanceUnit.Ohm: return baseUnitValue;

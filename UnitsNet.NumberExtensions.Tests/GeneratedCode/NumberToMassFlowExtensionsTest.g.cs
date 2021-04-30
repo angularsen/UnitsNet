@@ -156,5 +156,13 @@ namespace UnitsNet.Tests
         public void NumberToTonnesPerHourTest() =>
             Assert.Equal(MassFlow.FromTonnesPerHour(2), 2.TonnesPerHour());
 
+        [Fact]
+        public void NumberToUkTonnesPerDayTest() =>
+            Assert.Equal(MassFlow.FromUkTonnesPerDay(2), 2.UkTonnesPerDay());
+
+        [Fact]
+        public void NumberToUsTonnesPerDayTest() =>
+            Assert.Equal(MassFlow.FromUsTonnesPerDay(2), 2.UsTonnesPerDay());
+
     }
 }

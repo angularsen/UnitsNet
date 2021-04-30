@@ -37,13 +37,13 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class VolumePerLengthTestsBase : QuantityTestsBase
     {
-        protected abstract double CubicMetersPerMeterInOneCubicMeterPerMeter { get; }
-        protected abstract double CubicYardsPerFootInOneCubicMeterPerMeter { get; }
-        protected abstract double CubicYardsPerUsSurveyFootInOneCubicMeterPerMeter { get; }
-        protected abstract double LitersPerKilometerInOneCubicMeterPerMeter { get; }
-        protected abstract double LitersPerMeterInOneCubicMeterPerMeter { get; }
-        protected abstract double LitersPerMillimeterInOneCubicMeterPerMeter { get; }
-        protected abstract double OilBarrelsPerFootInOneCubicMeterPerMeter { get; }
+        protected virtual double CubicMetersPerMeterInOneCubicMeterPerMeter { get; }
+        protected virtual double CubicYardsPerFootInOneCubicMeterPerMeter { get; }
+        protected virtual double CubicYardsPerUsSurveyFootInOneCubicMeterPerMeter { get; }
+        protected virtual double LitersPerKilometerInOneCubicMeterPerMeter { get; }
+        protected virtual double LitersPerMeterInOneCubicMeterPerMeter { get; }
+        protected virtual double LitersPerMillimeterInOneCubicMeterPerMeter { get; }
+        protected virtual double OilBarrelsPerFootInOneCubicMeterPerMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CubicMetersPerMeterTolerance { get { return 1e-5; } }

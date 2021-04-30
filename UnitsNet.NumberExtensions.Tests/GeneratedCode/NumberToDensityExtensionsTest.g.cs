@@ -25,6 +25,10 @@ namespace UnitsNet.Tests
     public class NumberToDensityExtensionsTests
     {
         [Fact]
+        public void NumberToBarsPerMeterEqTest() =>
+            Assert.Equal(Density.FromBarsPerMeterEq(2), 2.BarsPerMeterEq());
+
+        [Fact]
         public void NumberToCentigramsPerDeciLiterTest() =>
             Assert.Equal(Density.FromCentigramsPerDeciLiter(2), 2.CentigramsPerDeciLiter());
 
@@ -47,6 +51,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToDecigramsPerMilliliterTest() =>
             Assert.Equal(Density.FromDecigramsPerMilliliter(2), 2.DecigramsPerMilliliter());
+
+        [Fact]
+        public void NumberToDegreeApisTest() =>
+            Assert.Equal(Density.FromDegreeApis(2), 2.DegreeApis());
 
         [Fact]
         public void NumberToGramsPerCubicCentimeterTest() =>
@@ -87,6 +95,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToKilogramsPerLiterTest() =>
             Assert.Equal(Density.FromKilogramsPerLiter(2), 2.KilogramsPerLiter());
+
+        [Fact]
+        public void NumberToKilogramsPerSquareCentimeterPerFootTest() =>
+            Assert.Equal(Density.FromKilogramsPerSquareCentimeterPerFoot(2), 2.KilogramsPerSquareCentimeterPerFoot());
+
+        [Fact]
+        public void NumberToKilogramsPerSquareCentimeterPerMeterTest() =>
+            Assert.Equal(Density.FromKilogramsPerSquareCentimeterPerMeter(2), 2.KilogramsPerSquareCentimeterPerMeter());
+
+        [Fact]
+        public void NumberToKilopascalsPerFootEqTest() =>
+            Assert.Equal(Density.FromKilopascalsPerFootEq(2), 2.KilopascalsPerFootEq());
+
+        [Fact]
+        public void NumberToKilopascalsPerMeterEqTest() =>
+            Assert.Equal(Density.FromKilopascalsPerMeterEq(2), 2.KilopascalsPerMeterEq());
 
         [Fact]
         public void NumberToKilopoundsPerCubicFootTest() =>
@@ -141,6 +165,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Density.FromNanogramsPerMilliliter(2), 2.NanogramsPerMilliliter());
 
         [Fact]
+        public void NumberToPascalsPerMeterEqTest() =>
+            Assert.Equal(Density.FromPascalsPerMeterEq(2), 2.PascalsPerMeterEq());
+
+        [Fact]
         public void NumberToPicogramsPerDeciLiterTest() =>
             Assert.Equal(Density.FromPicogramsPerDeciLiter(2), 2.PicogramsPerDeciLiter());
 
@@ -153,12 +181,32 @@ namespace UnitsNet.Tests
             Assert.Equal(Density.FromPicogramsPerMilliliter(2), 2.PicogramsPerMilliliter());
 
         [Fact]
+        public void NumberToPoundForcesPerSquareInchPerFootTest() =>
+            Assert.Equal(Density.FromPoundForcesPerSquareInchPerFoot(2), 2.PoundForcesPerSquareInchPerFoot());
+
+        [Fact]
+        public void NumberToPoundForcesPerSquareInchPerMeterTest() =>
+            Assert.Equal(Density.FromPoundForcesPerSquareInchPerMeter(2), 2.PoundForcesPerSquareInchPerMeter());
+
+        [Fact]
+        public void NumberToPoundForcesPerSquareInchPerThousandFootTest() =>
+            Assert.Equal(Density.FromPoundForcesPerSquareInchPerThousandFoot(2), 2.PoundForcesPerSquareInchPerThousandFoot());
+
+        [Fact]
+        public void NumberToPoundsPerBarrelTest() =>
+            Assert.Equal(Density.FromPoundsPerBarrel(2), 2.PoundsPerBarrel());
+
+        [Fact]
         public void NumberToPoundsPerCubicFootTest() =>
             Assert.Equal(Density.FromPoundsPerCubicFoot(2), 2.PoundsPerCubicFoot());
 
         [Fact]
         public void NumberToPoundsPerCubicInchTest() =>
             Assert.Equal(Density.FromPoundsPerCubicInch(2), 2.PoundsPerCubicInch());
+
+        [Fact]
+        public void NumberToPoundsPerGallonTest() =>
+            Assert.Equal(Density.FromPoundsPerGallon(2), 2.PoundsPerGallon());
 
         [Fact]
         public void NumberToPoundsPerImperialGallonTest() =>
@@ -173,6 +221,18 @@ namespace UnitsNet.Tests
             Assert.Equal(Density.FromSlugsPerCubicFoot(2), 2.SlugsPerCubicFoot());
 
         [Fact]
+        public void NumberToSpecificGravitysTest() =>
+            Assert.Equal(Density.FromSpecificGravitys(2), 2.SpecificGravitys());
+
+        [Fact]
+        public void NumberToSpecificGravityApiDefsTest() =>
+            Assert.Equal(Density.FromSpecificGravityApiDefs(2), 2.SpecificGravityApiDefs());
+
+        [Fact]
+        public void NumberToSpecificGravityToAirsTest() =>
+            Assert.Equal(Density.FromSpecificGravityToAirs(2), 2.SpecificGravityToAirs());
+
+        [Fact]
         public void NumberToTonnesPerCubicCentimeterTest() =>
             Assert.Equal(Density.FromTonnesPerCubicCentimeter(2), 2.TonnesPerCubicCentimeter());
 
@@ -183,6 +243,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToTonnesPerCubicMillimeterTest() =>
             Assert.Equal(Density.FromTonnesPerCubicMillimeter(2), 2.TonnesPerCubicMillimeter());
+
+        [Fact]
+        public void NumberToTonsPerCubicMeterTest() =>
+            Assert.Equal(Density.FromTonsPerCubicMeter(2), 2.TonsPerCubicMeter());
 
     }
 }

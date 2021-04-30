@@ -53,6 +53,14 @@ namespace UnitsNet.Tests
             Assert.Equal(Temperature.FromDegreesRoemer(2), 2.DegreesRoemer());
 
         [Fact]
+        public void NumberToDeltaDegreeCelsiusTest() =>
+            Assert.Equal(Temperature.FromDeltaDegreeCelsius(2), 2.DeltaDegreeCelsius());
+
+        [Fact]
+        public void NumberToDeltaDegreeFahrenheitsTest() =>
+            Assert.Equal(Temperature.FromDeltaDegreeFahrenheits(2), 2.DeltaDegreeFahrenheits());
+
+        [Fact]
         public void NumberToKelvinsTest() =>
             Assert.Equal(Temperature.FromKelvins(2), 2.Kelvins());
 

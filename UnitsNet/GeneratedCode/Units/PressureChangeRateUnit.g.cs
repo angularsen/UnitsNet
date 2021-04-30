@@ -27,12 +27,16 @@ namespace UnitsNet.Units
     {
         Undefined = 0,
         AtmospherePerSecond,
+        BarPerMinute,
+        BarPerSecond,
         KilopascalPerMinute,
         KilopascalPerSecond,
         MegapascalPerMinute,
         MegapascalPerSecond,
         PascalPerMinute,
         PascalPerSecond,
+        PoundForcePerSquareInchPerMinute,
+        PoundForcePerSquareInchPerSecond,
     }
 
     #pragma warning restore 1591

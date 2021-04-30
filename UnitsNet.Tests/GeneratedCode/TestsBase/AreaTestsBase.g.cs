@@ -37,24 +37,26 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class AreaTestsBase : QuantityTestsBase
     {
-        protected abstract double AcresInOneSquareMeter { get; }
-        protected abstract double HectaresInOneSquareMeter { get; }
-        protected abstract double SquareCentimetersInOneSquareMeter { get; }
-        protected abstract double SquareDecimetersInOneSquareMeter { get; }
-        protected abstract double SquareFeetInOneSquareMeter { get; }
-        protected abstract double SquareInchesInOneSquareMeter { get; }
-        protected abstract double SquareKilometersInOneSquareMeter { get; }
-        protected abstract double SquareMetersInOneSquareMeter { get; }
-        protected abstract double SquareMicrometersInOneSquareMeter { get; }
-        protected abstract double SquareMilesInOneSquareMeter { get; }
-        protected abstract double SquareMillimetersInOneSquareMeter { get; }
-        protected abstract double SquareNauticalMilesInOneSquareMeter { get; }
-        protected abstract double SquareYardsInOneSquareMeter { get; }
-        protected abstract double UsSurveySquareFeetInOneSquareMeter { get; }
+        protected virtual double AcresInOneSquareMeter { get; }
+        protected virtual double HectaresInOneSquareMeter { get; }
+        protected virtual double SectionsInOneSquareMeter { get; }
+        protected virtual double SquareCentimetersInOneSquareMeter { get; }
+        protected virtual double SquareDecimetersInOneSquareMeter { get; }
+        protected virtual double SquareFeetInOneSquareMeter { get; }
+        protected virtual double SquareInchesInOneSquareMeter { get; }
+        protected virtual double SquareKilometersInOneSquareMeter { get; }
+        protected virtual double SquareMetersInOneSquareMeter { get; }
+        protected virtual double SquareMicrometersInOneSquareMeter { get; }
+        protected virtual double SquareMilesInOneSquareMeter { get; }
+        protected virtual double SquareMillimetersInOneSquareMeter { get; }
+        protected virtual double SquareNauticalMilesInOneSquareMeter { get; }
+        protected virtual double SquareYardsInOneSquareMeter { get; }
+        protected virtual double UsSurveySquareFeetInOneSquareMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double AcresTolerance { get { return 1e-5; } }
         protected virtual double HectaresTolerance { get { return 1e-5; } }
+        protected virtual double SectionsTolerance { get { return 1e-5; } }
         protected virtual double SquareCentimetersTolerance { get { return 1e-5; } }
         protected virtual double SquareDecimetersTolerance { get { return 1e-5; } }
         protected virtual double SquareFeetTolerance { get { return 1e-5; } }
@@ -143,6 +145,7 @@ namespace UnitsNet.Tests
             Area squaremeter = Area.FromSquareMeters(1);
             AssertEx.EqualTolerance(AcresInOneSquareMeter, squaremeter.Acres, AcresTolerance);
             AssertEx.EqualTolerance(HectaresInOneSquareMeter, squaremeter.Hectares, HectaresTolerance);
+            AssertEx.EqualTolerance(SectionsInOneSquareMeter, squaremeter.Sections, SectionsTolerance);
             AssertEx.EqualTolerance(SquareCentimetersInOneSquareMeter, squaremeter.SquareCentimeters, SquareCentimetersTolerance);
             AssertEx.EqualTolerance(SquareDecimetersInOneSquareMeter, squaremeter.SquareDecimeters, SquareDecimetersTolerance);
             AssertEx.EqualTolerance(SquareFeetInOneSquareMeter, squaremeter.SquareFeet, SquareFeetTolerance);
@@ -168,53 +171,57 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity01.Hectares, HectaresTolerance);
             Assert.Equal(AreaUnit.Hectare, quantity01.Unit);
 
-            var quantity02 = Area.From(1, AreaUnit.SquareCentimeter);
-            AssertEx.EqualTolerance(1, quantity02.SquareCentimeters, SquareCentimetersTolerance);
-            Assert.Equal(AreaUnit.SquareCentimeter, quantity02.Unit);
+            var quantity02 = Area.From(1, AreaUnit.Section);
+            AssertEx.EqualTolerance(1, quantity02.Sections, SectionsTolerance);
+            Assert.Equal(AreaUnit.Section, quantity02.Unit);
 
-            var quantity03 = Area.From(1, AreaUnit.SquareDecimeter);
-            AssertEx.EqualTolerance(1, quantity03.SquareDecimeters, SquareDecimetersTolerance);
-            Assert.Equal(AreaUnit.SquareDecimeter, quantity03.Unit);
+            var quantity03 = Area.From(1, AreaUnit.SquareCentimeter);
+            AssertEx.EqualTolerance(1, quantity03.SquareCentimeters, SquareCentimetersTolerance);
+            Assert.Equal(AreaUnit.SquareCentimeter, quantity03.Unit);
 
-            var quantity04 = Area.From(1, AreaUnit.SquareFoot);
-            AssertEx.EqualTolerance(1, quantity04.SquareFeet, SquareFeetTolerance);
-            Assert.Equal(AreaUnit.SquareFoot, quantity04.Unit);
+            var quantity04 = Area.From(1, AreaUnit.SquareDecimeter);
+            AssertEx.EqualTolerance(1, quantity04.SquareDecimeters, SquareDecimetersTolerance);
+            Assert.Equal(AreaUnit.SquareDecimeter, quantity04.Unit);
 
-            var quantity05 = Area.From(1, AreaUnit.SquareInch);
-            AssertEx.EqualTolerance(1, quantity05.SquareInches, SquareInchesTolerance);
-            Assert.Equal(AreaUnit.SquareInch, quantity05.Unit);
+            var quantity05 = Area.From(1, AreaUnit.SquareFoot);
+            AssertEx.EqualTolerance(1, quantity05.SquareFeet, SquareFeetTolerance);
+            Assert.Equal(AreaUnit.SquareFoot, quantity05.Unit);
 
-            var quantity06 = Area.From(1, AreaUnit.SquareKilometer);
-            AssertEx.EqualTolerance(1, quantity06.SquareKilometers, SquareKilometersTolerance);
-            Assert.Equal(AreaUnit.SquareKilometer, quantity06.Unit);
+            var quantity06 = Area.From(1, AreaUnit.SquareInch);
+            AssertEx.EqualTolerance(1, quantity06.SquareInches, SquareInchesTolerance);
+            Assert.Equal(AreaUnit.SquareInch, quantity06.Unit);
 
-            var quantity07 = Area.From(1, AreaUnit.SquareMeter);
-            AssertEx.EqualTolerance(1, quantity07.SquareMeters, SquareMetersTolerance);
-            Assert.Equal(AreaUnit.SquareMeter, quantity07.Unit);
+            var quantity07 = Area.From(1, AreaUnit.SquareKilometer);
+            AssertEx.EqualTolerance(1, quantity07.SquareKilometers, SquareKilometersTolerance);
+            Assert.Equal(AreaUnit.SquareKilometer, quantity07.Unit);
 
-            var quantity08 = Area.From(1, AreaUnit.SquareMicrometer);
-            AssertEx.EqualTolerance(1, quantity08.SquareMicrometers, SquareMicrometersTolerance);
-            Assert.Equal(AreaUnit.SquareMicrometer, quantity08.Unit);
+            var quantity08 = Area.From(1, AreaUnit.SquareMeter);
+            AssertEx.EqualTolerance(1, quantity08.SquareMeters, SquareMetersTolerance);
+            Assert.Equal(AreaUnit.SquareMeter, quantity08.Unit);
 
-            var quantity09 = Area.From(1, AreaUnit.SquareMile);
-            AssertEx.EqualTolerance(1, quantity09.SquareMiles, SquareMilesTolerance);
-            Assert.Equal(AreaUnit.SquareMile, quantity09.Unit);
+            var quantity09 = Area.From(1, AreaUnit.SquareMicrometer);
+            AssertEx.EqualTolerance(1, quantity09.SquareMicrometers, SquareMicrometersTolerance);
+            Assert.Equal(AreaUnit.SquareMicrometer, quantity09.Unit);
 
-            var quantity10 = Area.From(1, AreaUnit.SquareMillimeter);
-            AssertEx.EqualTolerance(1, quantity10.SquareMillimeters, SquareMillimetersTolerance);
-            Assert.Equal(AreaUnit.SquareMillimeter, quantity10.Unit);
+            var quantity10 = Area.From(1, AreaUnit.SquareMile);
+            AssertEx.EqualTolerance(1, quantity10.SquareMiles, SquareMilesTolerance);
+            Assert.Equal(AreaUnit.SquareMile, quantity10.Unit);
 
-            var quantity11 = Area.From(1, AreaUnit.SquareNauticalMile);
-            AssertEx.EqualTolerance(1, quantity11.SquareNauticalMiles, SquareNauticalMilesTolerance);
-            Assert.Equal(AreaUnit.SquareNauticalMile, quantity11.Unit);
+            var quantity11 = Area.From(1, AreaUnit.SquareMillimeter);
+            AssertEx.EqualTolerance(1, quantity11.SquareMillimeters, SquareMillimetersTolerance);
+            Assert.Equal(AreaUnit.SquareMillimeter, quantity11.Unit);
 
-            var quantity12 = Area.From(1, AreaUnit.SquareYard);
-            AssertEx.EqualTolerance(1, quantity12.SquareYards, SquareYardsTolerance);
-            Assert.Equal(AreaUnit.SquareYard, quantity12.Unit);
+            var quantity12 = Area.From(1, AreaUnit.SquareNauticalMile);
+            AssertEx.EqualTolerance(1, quantity12.SquareNauticalMiles, SquareNauticalMilesTolerance);
+            Assert.Equal(AreaUnit.SquareNauticalMile, quantity12.Unit);
 
-            var quantity13 = Area.From(1, AreaUnit.UsSurveySquareFoot);
-            AssertEx.EqualTolerance(1, quantity13.UsSurveySquareFeet, UsSurveySquareFeetTolerance);
-            Assert.Equal(AreaUnit.UsSurveySquareFoot, quantity13.Unit);
+            var quantity13 = Area.From(1, AreaUnit.SquareYard);
+            AssertEx.EqualTolerance(1, quantity13.SquareYards, SquareYardsTolerance);
+            Assert.Equal(AreaUnit.SquareYard, quantity13.Unit);
+
+            var quantity14 = Area.From(1, AreaUnit.UsSurveySquareFoot);
+            AssertEx.EqualTolerance(1, quantity14.UsSurveySquareFeet, UsSurveySquareFeetTolerance);
+            Assert.Equal(AreaUnit.UsSurveySquareFoot, quantity14.Unit);
 
         }
 
@@ -237,6 +244,7 @@ namespace UnitsNet.Tests
             var squaremeter = Area.FromSquareMeters(1);
             AssertEx.EqualTolerance(AcresInOneSquareMeter, squaremeter.As(AreaUnit.Acre), AcresTolerance);
             AssertEx.EqualTolerance(HectaresInOneSquareMeter, squaremeter.As(AreaUnit.Hectare), HectaresTolerance);
+            AssertEx.EqualTolerance(SectionsInOneSquareMeter, squaremeter.As(AreaUnit.Section), SectionsTolerance);
             AssertEx.EqualTolerance(SquareCentimetersInOneSquareMeter, squaremeter.As(AreaUnit.SquareCentimeter), SquareCentimetersTolerance);
             AssertEx.EqualTolerance(SquareDecimetersInOneSquareMeter, squaremeter.As(AreaUnit.SquareDecimeter), SquareDecimetersTolerance);
             AssertEx.EqualTolerance(SquareFeetInOneSquareMeter, squaremeter.As(AreaUnit.SquareFoot), SquareFeetTolerance);
@@ -280,6 +288,10 @@ namespace UnitsNet.Tests
             var hectareQuantity = squaremeter.ToUnit(AreaUnit.Hectare);
             AssertEx.EqualTolerance(HectaresInOneSquareMeter, (double)hectareQuantity.Value, HectaresTolerance);
             Assert.Equal(AreaUnit.Hectare, hectareQuantity.Unit);
+
+            var sectionQuantity = squaremeter.ToUnit(AreaUnit.Section);
+            AssertEx.EqualTolerance(SectionsInOneSquareMeter, (double)sectionQuantity.Value, SectionsTolerance);
+            Assert.Equal(AreaUnit.Section, sectionQuantity.Unit);
 
             var squarecentimeterQuantity = squaremeter.ToUnit(AreaUnit.SquareCentimeter);
             AssertEx.EqualTolerance(SquareCentimetersInOneSquareMeter, (double)squarecentimeterQuantity.Value, SquareCentimetersTolerance);
@@ -343,6 +355,7 @@ namespace UnitsNet.Tests
             Area squaremeter = Area.FromSquareMeters(1);
             AssertEx.EqualTolerance(1, Area.FromAcres(squaremeter.Acres).SquareMeters, AcresTolerance);
             AssertEx.EqualTolerance(1, Area.FromHectares(squaremeter.Hectares).SquareMeters, HectaresTolerance);
+            AssertEx.EqualTolerance(1, Area.FromSections(squaremeter.Sections).SquareMeters, SectionsTolerance);
             AssertEx.EqualTolerance(1, Area.FromSquareCentimeters(squaremeter.SquareCentimeters).SquareMeters, SquareCentimetersTolerance);
             AssertEx.EqualTolerance(1, Area.FromSquareDecimeters(squaremeter.SquareDecimeters).SquareMeters, SquareDecimetersTolerance);
             AssertEx.EqualTolerance(1, Area.FromSquareFeet(squaremeter.SquareFeet).SquareMeters, SquareFeetTolerance);
@@ -513,6 +526,7 @@ namespace UnitsNet.Tests
             try {
                 Assert.Equal("1 ac", new Area(1, AreaUnit.Acre).ToString());
                 Assert.Equal("1 ha", new Area(1, AreaUnit.Hectare).ToString());
+                Assert.Equal("1 Section", new Area(1, AreaUnit.Section).ToString());
                 Assert.Equal("1 cm²", new Area(1, AreaUnit.SquareCentimeter).ToString());
                 Assert.Equal("1 dm²", new Area(1, AreaUnit.SquareDecimeter).ToString());
                 Assert.Equal("1 ft²", new Area(1, AreaUnit.SquareFoot).ToString());
@@ -540,6 +554,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal("1 ac", new Area(1, AreaUnit.Acre).ToString(swedishCulture));
             Assert.Equal("1 ha", new Area(1, AreaUnit.Hectare).ToString(swedishCulture));
+            Assert.Equal("1 Section", new Area(1, AreaUnit.Section).ToString(swedishCulture));
             Assert.Equal("1 cm²", new Area(1, AreaUnit.SquareCentimeter).ToString(swedishCulture));
             Assert.Equal("1 dm²", new Area(1, AreaUnit.SquareDecimeter).ToString(swedishCulture));
             Assert.Equal("1 ft²", new Area(1, AreaUnit.SquareFoot).ToString(swedishCulture));

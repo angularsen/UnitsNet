@@ -16,15 +16,26 @@
       },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
+      "Prefixes": [
+        "Nano",
+        "Micro",
+        "Milli",
+        "Centi",
+        "Deci",
+        "Kilo"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "m/s²" ]
+          "Abbreviations": [
+            "m/s²"
+          ]
         },
-		{
+        {
           "Culture": "ru-RU",
-          "Abbreviations": [ "м/с²" ]
+          "Abbreviations": [
+            "м/с²"
+          ]
         }
       ]
     },
@@ -40,11 +51,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "in/s²" ]
+          "Abbreviations": [
+            "in/s²"
+          ]
         },
-		{
+        {
           "Culture": "ru-RU",
-          "Abbreviations": [ "дюйм/с²" ]
+          "Abbreviations": [
+            "дюйм/с²"
+          ]
         }
       ]
     },
@@ -60,11 +75,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ft/s²" ]
+          "Abbreviations": [
+            "ft/s²"
+          ]
         },
-		{
+        {
           "Culture": "ru-RU",
-          "Abbreviations": [ "фут/с²" ]
+          "Abbreviations": [
+            "фут/с²"
+          ]
         }
       ]
     },
@@ -80,11 +99,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kn/s" ]
+          "Abbreviations": [
+            "kn/s"
+          ]
         },
-		{
+        {
           "Culture": "ru-RU",
-          "Abbreviations": [ "узел/с" ]
+          "Abbreviations": [
+            "узел/с"
+          ]
         }
       ]
     },
@@ -100,11 +123,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kn/min" ]
+          "Abbreviations": [
+            "kn/min"
+          ]
         },
-		{
+        {
           "Culture": "ru-RU",
-          "Abbreviations": [ "узел/мин" ]
+          "Abbreviations": [
+            "узел/мин"
+          ]
         }
       ]
     },
@@ -120,11 +147,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kn/h" ]
+          "Abbreviations": [
+            "kn/h"
+          ]
         },
-		{
+        {
           "Culture": "ru-RU",
-          "Abbreviations": [ "узел/час" ]
+          "Abbreviations": [
+            "узел/час"
+          ]
         }
       ]
     },
@@ -137,15 +168,231 @@
       },
       "FromUnitToBaseFunc": "x*9.80665",
       "FromBaseToUnitFunc": "x/9.80665",
-      "Prefixes": [ "Milli"],
+      "Prefixes": [
+        "Milli"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "g" ]
+          "Abbreviations": [
+            "g"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "g" ]
+          "Abbreviations": [
+            "g"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "FootPerMillisecondPerMillisecond",
+      "PluralName": "FeetPerMillisecondPerMillisecond",
+      "FromUnitToBaseFunc": "x * 0.3048 / 1E-06",
+      "FromBaseToUnitFunc": "x / 0.3048 * 1E-06",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "f/ms/ms",
+            "f/ms2",
+            "ft/m2",
+            "ft/ms/ms"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "FootPerMillisecondPerSecond",
+      "PluralName": "FeetPerMillisecondPerSecond",
+      "FromUnitToBaseFunc": "x * 0.3048 / 0.001",
+      "FromBaseToUnitFunc": "x / 0.3048 * 0.001",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "f/ms/s",
+            "ft/ms/s"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "FootPerMillisecondPerMicrosecond",
+      "PluralName": "FeetPerMillisecondPerMicrosecond",
+      "FromUnitToBaseFunc": "x * 0.3048 / 1E-09",
+      "FromBaseToUnitFunc": "x / 0.3048 * 1E-09",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "f/ms/µs",
+            "f/ms/us",
+            "ft/ms/us",
+            "ft/ms/µs"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "FootPerMillisecondSquared",
+      "PluralName": "FeetPerMillisecondSquared",
+      "FromUnitToBaseFunc": "x * 0.3048 / 1E-06",
+      "FromBaseToUnitFunc": "x / 0.3048 * 1E-06",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "ft/ms2"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "FootPerSecondPerMillisecond",
+      "PluralName": "FeetPerSecondPerMillisecond",
+      "FromUnitToBaseFunc": "x * 0.3048 / 0.001",
+      "FromBaseToUnitFunc": "x / 0.3048 * 0.001",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "f/s/ms",
+            "ft/s/ms"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "FootPerSecondPerSecond",
+      "PluralName": "FeetPerSecondPerSecond",
+      "FromUnitToBaseFunc": "x * 0.3048",
+      "FromBaseToUnitFunc": "x / 0.3048",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "f/s/s",
+            "ft/s/s"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "FootPerSecondPerMicrosecond",
+      "PluralName": "FeetPerSecondPerMicrosecond",
+      "FromUnitToBaseFunc": "x * 0.3048 / 1E-06",
+      "FromBaseToUnitFunc": "x / 0.3048 * 1E-06",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "f/s/µs",
+            "f/s/us",
+            "ft/s/us",
+            "ft/s/µs"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MeterPerMillisecondPerMillisecond",
+      "PluralName": "MetersPerMillisecondPerMillisecond",
+      "FromUnitToBaseFunc": "x / 1E-06",
+      "FromBaseToUnitFunc": "x * 1E-06",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "m/ms/ms"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MeterPerMillisecondPerSecond",
+      "PluralName": "MetersPerMillisecondPerSecond",
+      "FromUnitToBaseFunc": "x / 0.001",
+      "FromBaseToUnitFunc": "x * 0.001",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "m/ms/s"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MeterPerMillisecondPerMicrosecond",
+      "PluralName": "MetersPerMillisecondPerMicrosecond",
+      "FromUnitToBaseFunc": "x / 1E-09",
+      "FromBaseToUnitFunc": "x * 1E-09",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "m/ms/us",
+            "m/ms/µs"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MeterPerMillisecondSquared",
+      "PluralName": "MetersPerMillisecondSquared",
+      "FromUnitToBaseFunc": "x / 1E-06",
+      "FromBaseToUnitFunc": "x * 1E-06",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "m/ms2"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MeterPerSecondPerMillisecond",
+      "PluralName": "MetersPerSecondPerMillisecond",
+      "FromUnitToBaseFunc": "x / 0.001",
+      "FromBaseToUnitFunc": "x * 0.001",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "m/s/ms"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MeterPerSecondPerSecond",
+      "PluralName": "MetersPerSecondPerSecond",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "m/s/s"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MeterPerSecondPerMicrosecond",
+      "PluralName": "MetersPerSecondPerMicrosecond",
+      "FromUnitToBaseFunc": "x / 1E-06",
+      "FromBaseToUnitFunc": "x * 1E-06",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "m/s/us",
+            "m/s/µs"
+          ]
         }
       ]
     }

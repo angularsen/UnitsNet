@@ -37,11 +37,11 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ElectricChargeTestsBase : QuantityTestsBase
     {
-        protected abstract double AmpereHoursInOneCoulomb { get; }
-        protected abstract double CoulombsInOneCoulomb { get; }
-        protected abstract double KiloampereHoursInOneCoulomb { get; }
-        protected abstract double MegaampereHoursInOneCoulomb { get; }
-        protected abstract double MilliampereHoursInOneCoulomb { get; }
+        protected virtual double AmpereHoursInOneCoulomb { get; }
+        protected virtual double CoulombsInOneCoulomb { get; }
+        protected virtual double KiloampereHoursInOneCoulomb { get; }
+        protected virtual double MegaampereHoursInOneCoulomb { get; }
+        protected virtual double MilliampereHoursInOneCoulomb { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double AmpereHoursTolerance { get { return 1e-5; } }

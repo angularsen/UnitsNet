@@ -25,8 +25,32 @@ namespace UnitsNet.Tests
     public class NumberToPermeabilityExtensionsTests
     {
         [Fact]
+        public void NumberToDarciesTest() =>
+            Assert.Equal(Permeability.FromDarcies(2), 2.Darcies());
+
+        [Fact]
         public void NumberToHenriesPerMeterTest() =>
             Assert.Equal(Permeability.FromHenriesPerMeter(2), 2.HenriesPerMeter());
+
+        [Fact]
+        public void NumberToMicrodarciesTest() =>
+            Assert.Equal(Permeability.FromMicrodarcies(2), 2.Microdarcies());
+
+        [Fact]
+        public void NumberToMillidarciesTest() =>
+            Assert.Equal(Permeability.FromMillidarcies(2), 2.Millidarcies());
+
+        [Fact]
+        public void NumberToNanodarciesTest() =>
+            Assert.Equal(Permeability.FromNanodarcies(2), 2.Nanodarcies());
+
+        [Fact]
+        public void NumberToSquareMetersTest() =>
+            Assert.Equal(Permeability.FromSquareMeters(2), 2.SquareMeters());
+
+        [Fact]
+        public void NumberToSquareMicrometersTest() =>
+            Assert.Equal(Permeability.FromSquareMicrometers(2), 2.SquareMicrometers());
 
     }
 }

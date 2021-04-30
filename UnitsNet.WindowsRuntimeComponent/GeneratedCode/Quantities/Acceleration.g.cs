@@ -166,6 +166,41 @@ namespace UnitsNet
         public double DecimetersPerSecondSquared => As(AccelerationUnit.DecimeterPerSecondSquared);
 
         /// <summary>
+        ///     Get Acceleration in FeetPerMillisecondPerMicrosecond.
+        /// </summary>
+        public double FeetPerMillisecondPerMicrosecond => As(AccelerationUnit.FootPerMillisecondPerMicrosecond);
+
+        /// <summary>
+        ///     Get Acceleration in FeetPerMillisecondPerMillisecond.
+        /// </summary>
+        public double FeetPerMillisecondPerMillisecond => As(AccelerationUnit.FootPerMillisecondPerMillisecond);
+
+        /// <summary>
+        ///     Get Acceleration in FeetPerMillisecondPerSecond.
+        /// </summary>
+        public double FeetPerMillisecondPerSecond => As(AccelerationUnit.FootPerMillisecondPerSecond);
+
+        /// <summary>
+        ///     Get Acceleration in FeetPerMillisecondSquared.
+        /// </summary>
+        public double FeetPerMillisecondSquared => As(AccelerationUnit.FootPerMillisecondSquared);
+
+        /// <summary>
+        ///     Get Acceleration in FeetPerSecondPerMicrosecond.
+        /// </summary>
+        public double FeetPerSecondPerMicrosecond => As(AccelerationUnit.FootPerSecondPerMicrosecond);
+
+        /// <summary>
+        ///     Get Acceleration in FeetPerSecondPerMillisecond.
+        /// </summary>
+        public double FeetPerSecondPerMillisecond => As(AccelerationUnit.FootPerSecondPerMillisecond);
+
+        /// <summary>
+        ///     Get Acceleration in FeetPerSecondPerSecond.
+        /// </summary>
+        public double FeetPerSecondPerSecond => As(AccelerationUnit.FootPerSecondPerSecond);
+
+        /// <summary>
         ///     Get Acceleration in FeetPerSecondSquared.
         /// </summary>
         public double FeetPerSecondSquared => As(AccelerationUnit.FootPerSecondSquared);
@@ -194,6 +229,41 @@ namespace UnitsNet
         ///     Get Acceleration in KnotsPerSecond.
         /// </summary>
         public double KnotsPerSecond => As(AccelerationUnit.KnotPerSecond);
+
+        /// <summary>
+        ///     Get Acceleration in MetersPerMillisecondPerMicrosecond.
+        /// </summary>
+        public double MetersPerMillisecondPerMicrosecond => As(AccelerationUnit.MeterPerMillisecondPerMicrosecond);
+
+        /// <summary>
+        ///     Get Acceleration in MetersPerMillisecondPerMillisecond.
+        /// </summary>
+        public double MetersPerMillisecondPerMillisecond => As(AccelerationUnit.MeterPerMillisecondPerMillisecond);
+
+        /// <summary>
+        ///     Get Acceleration in MetersPerMillisecondPerSecond.
+        /// </summary>
+        public double MetersPerMillisecondPerSecond => As(AccelerationUnit.MeterPerMillisecondPerSecond);
+
+        /// <summary>
+        ///     Get Acceleration in MetersPerMillisecondSquared.
+        /// </summary>
+        public double MetersPerMillisecondSquared => As(AccelerationUnit.MeterPerMillisecondSquared);
+
+        /// <summary>
+        ///     Get Acceleration in MetersPerSecondPerMicrosecond.
+        /// </summary>
+        public double MetersPerSecondPerMicrosecond => As(AccelerationUnit.MeterPerSecondPerMicrosecond);
+
+        /// <summary>
+        ///     Get Acceleration in MetersPerSecondPerMillisecond.
+        /// </summary>
+        public double MetersPerSecondPerMillisecond => As(AccelerationUnit.MeterPerSecondPerMillisecond);
+
+        /// <summary>
+        ///     Get Acceleration in MetersPerSecondPerSecond.
+        /// </summary>
+        public double MetersPerSecondPerSecond => As(AccelerationUnit.MeterPerSecondPerSecond);
 
         /// <summary>
         ///     Get Acceleration in MetersPerSecondSquared.
@@ -276,6 +346,76 @@ namespace UnitsNet
             return new Acceleration(value, AccelerationUnit.DecimeterPerSecondSquared);
         }
         /// <summary>
+        ///     Get Acceleration from FeetPerMillisecondPerMicrosecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Acceleration FromFeetPerMillisecondPerMicrosecond(double feetpermillisecondpermicrosecond)
+        {
+            double value = (double) feetpermillisecondpermicrosecond;
+            return new Acceleration(value, AccelerationUnit.FootPerMillisecondPerMicrosecond);
+        }
+        /// <summary>
+        ///     Get Acceleration from FeetPerMillisecondPerMillisecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Acceleration FromFeetPerMillisecondPerMillisecond(double feetpermillisecondpermillisecond)
+        {
+            double value = (double) feetpermillisecondpermillisecond;
+            return new Acceleration(value, AccelerationUnit.FootPerMillisecondPerMillisecond);
+        }
+        /// <summary>
+        ///     Get Acceleration from FeetPerMillisecondPerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Acceleration FromFeetPerMillisecondPerSecond(double feetpermillisecondpersecond)
+        {
+            double value = (double) feetpermillisecondpersecond;
+            return new Acceleration(value, AccelerationUnit.FootPerMillisecondPerSecond);
+        }
+        /// <summary>
+        ///     Get Acceleration from FeetPerMillisecondSquared.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Acceleration FromFeetPerMillisecondSquared(double feetpermillisecondsquared)
+        {
+            double value = (double) feetpermillisecondsquared;
+            return new Acceleration(value, AccelerationUnit.FootPerMillisecondSquared);
+        }
+        /// <summary>
+        ///     Get Acceleration from FeetPerSecondPerMicrosecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Acceleration FromFeetPerSecondPerMicrosecond(double feetpersecondpermicrosecond)
+        {
+            double value = (double) feetpersecondpermicrosecond;
+            return new Acceleration(value, AccelerationUnit.FootPerSecondPerMicrosecond);
+        }
+        /// <summary>
+        ///     Get Acceleration from FeetPerSecondPerMillisecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Acceleration FromFeetPerSecondPerMillisecond(double feetpersecondpermillisecond)
+        {
+            double value = (double) feetpersecondpermillisecond;
+            return new Acceleration(value, AccelerationUnit.FootPerSecondPerMillisecond);
+        }
+        /// <summary>
+        ///     Get Acceleration from FeetPerSecondPerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Acceleration FromFeetPerSecondPerSecond(double feetpersecondpersecond)
+        {
+            double value = (double) feetpersecondpersecond;
+            return new Acceleration(value, AccelerationUnit.FootPerSecondPerSecond);
+        }
+        /// <summary>
         ///     Get Acceleration from FeetPerSecondSquared.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -334,6 +474,76 @@ namespace UnitsNet
         {
             double value = (double) knotspersecond;
             return new Acceleration(value, AccelerationUnit.KnotPerSecond);
+        }
+        /// <summary>
+        ///     Get Acceleration from MetersPerMillisecondPerMicrosecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Acceleration FromMetersPerMillisecondPerMicrosecond(double meterspermillisecondpermicrosecond)
+        {
+            double value = (double) meterspermillisecondpermicrosecond;
+            return new Acceleration(value, AccelerationUnit.MeterPerMillisecondPerMicrosecond);
+        }
+        /// <summary>
+        ///     Get Acceleration from MetersPerMillisecondPerMillisecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Acceleration FromMetersPerMillisecondPerMillisecond(double meterspermillisecondpermillisecond)
+        {
+            double value = (double) meterspermillisecondpermillisecond;
+            return new Acceleration(value, AccelerationUnit.MeterPerMillisecondPerMillisecond);
+        }
+        /// <summary>
+        ///     Get Acceleration from MetersPerMillisecondPerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Acceleration FromMetersPerMillisecondPerSecond(double meterspermillisecondpersecond)
+        {
+            double value = (double) meterspermillisecondpersecond;
+            return new Acceleration(value, AccelerationUnit.MeterPerMillisecondPerSecond);
+        }
+        /// <summary>
+        ///     Get Acceleration from MetersPerMillisecondSquared.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Acceleration FromMetersPerMillisecondSquared(double meterspermillisecondsquared)
+        {
+            double value = (double) meterspermillisecondsquared;
+            return new Acceleration(value, AccelerationUnit.MeterPerMillisecondSquared);
+        }
+        /// <summary>
+        ///     Get Acceleration from MetersPerSecondPerMicrosecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Acceleration FromMetersPerSecondPerMicrosecond(double meterspersecondpermicrosecond)
+        {
+            double value = (double) meterspersecondpermicrosecond;
+            return new Acceleration(value, AccelerationUnit.MeterPerSecondPerMicrosecond);
+        }
+        /// <summary>
+        ///     Get Acceleration from MetersPerSecondPerMillisecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Acceleration FromMetersPerSecondPerMillisecond(double meterspersecondpermillisecond)
+        {
+            double value = (double) meterspersecondpermillisecond;
+            return new Acceleration(value, AccelerationUnit.MeterPerSecondPerMillisecond);
+        }
+        /// <summary>
+        ///     Get Acceleration from MetersPerSecondPerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Acceleration FromMetersPerSecondPerSecond(double meterspersecondpersecond)
+        {
+            double value = (double) meterspersecondpersecond;
+            return new Acceleration(value, AccelerationUnit.MeterPerSecondPerSecond);
         }
         /// <summary>
         ///     Get Acceleration from MetersPerSecondSquared.
@@ -688,12 +898,26 @@ namespace UnitsNet
             {
                 case AccelerationUnit.CentimeterPerSecondSquared: return (_value) * 1e-2d;
                 case AccelerationUnit.DecimeterPerSecondSquared: return (_value) * 1e-1d;
+                case AccelerationUnit.FootPerMillisecondPerMicrosecond: return _value * 0.3048 / 1E-09;
+                case AccelerationUnit.FootPerMillisecondPerMillisecond: return _value * 0.3048 / 1E-06;
+                case AccelerationUnit.FootPerMillisecondPerSecond: return _value * 0.3048 / 0.001;
+                case AccelerationUnit.FootPerMillisecondSquared: return _value * 0.3048 / 1E-06;
+                case AccelerationUnit.FootPerSecondPerMicrosecond: return _value * 0.3048 / 1E-06;
+                case AccelerationUnit.FootPerSecondPerMillisecond: return _value * 0.3048 / 0.001;
+                case AccelerationUnit.FootPerSecondPerSecond: return _value * 0.3048;
                 case AccelerationUnit.FootPerSecondSquared: return _value*0.304800;
                 case AccelerationUnit.InchPerSecondSquared: return _value*0.0254;
                 case AccelerationUnit.KilometerPerSecondSquared: return (_value) * 1e3d;
                 case AccelerationUnit.KnotPerHour: return _value*0.5144444444444/3600;
                 case AccelerationUnit.KnotPerMinute: return _value*0.5144444444444/60;
                 case AccelerationUnit.KnotPerSecond: return _value*0.5144444444444;
+                case AccelerationUnit.MeterPerMillisecondPerMicrosecond: return _value / 1E-09;
+                case AccelerationUnit.MeterPerMillisecondPerMillisecond: return _value / 1E-06;
+                case AccelerationUnit.MeterPerMillisecondPerSecond: return _value / 0.001;
+                case AccelerationUnit.MeterPerMillisecondSquared: return _value / 1E-06;
+                case AccelerationUnit.MeterPerSecondPerMicrosecond: return _value / 1E-06;
+                case AccelerationUnit.MeterPerSecondPerMillisecond: return _value / 0.001;
+                case AccelerationUnit.MeterPerSecondPerSecond: return _value;
                 case AccelerationUnit.MeterPerSecondSquared: return _value;
                 case AccelerationUnit.MicrometerPerSecondSquared: return (_value) * 1e-6d;
                 case AccelerationUnit.MillimeterPerSecondSquared: return (_value) * 1e-3d;
@@ -716,12 +940,26 @@ namespace UnitsNet
             {
                 case AccelerationUnit.CentimeterPerSecondSquared: return (baseUnitValue) / 1e-2d;
                 case AccelerationUnit.DecimeterPerSecondSquared: return (baseUnitValue) / 1e-1d;
+                case AccelerationUnit.FootPerMillisecondPerMicrosecond: return baseUnitValue / 0.3048 * 1E-09;
+                case AccelerationUnit.FootPerMillisecondPerMillisecond: return baseUnitValue / 0.3048 * 1E-06;
+                case AccelerationUnit.FootPerMillisecondPerSecond: return baseUnitValue / 0.3048 * 0.001;
+                case AccelerationUnit.FootPerMillisecondSquared: return baseUnitValue / 0.3048 * 1E-06;
+                case AccelerationUnit.FootPerSecondPerMicrosecond: return baseUnitValue / 0.3048 * 1E-06;
+                case AccelerationUnit.FootPerSecondPerMillisecond: return baseUnitValue / 0.3048 * 0.001;
+                case AccelerationUnit.FootPerSecondPerSecond: return baseUnitValue / 0.3048;
                 case AccelerationUnit.FootPerSecondSquared: return baseUnitValue/0.304800;
                 case AccelerationUnit.InchPerSecondSquared: return baseUnitValue/0.0254;
                 case AccelerationUnit.KilometerPerSecondSquared: return (baseUnitValue) / 1e3d;
                 case AccelerationUnit.KnotPerHour: return baseUnitValue/0.5144444444444*3600;
                 case AccelerationUnit.KnotPerMinute: return baseUnitValue/0.5144444444444*60;
                 case AccelerationUnit.KnotPerSecond: return baseUnitValue/0.5144444444444;
+                case AccelerationUnit.MeterPerMillisecondPerMicrosecond: return baseUnitValue * 1E-09;
+                case AccelerationUnit.MeterPerMillisecondPerMillisecond: return baseUnitValue * 1E-06;
+                case AccelerationUnit.MeterPerMillisecondPerSecond: return baseUnitValue * 0.001;
+                case AccelerationUnit.MeterPerMillisecondSquared: return baseUnitValue * 1E-06;
+                case AccelerationUnit.MeterPerSecondPerMicrosecond: return baseUnitValue * 1E-06;
+                case AccelerationUnit.MeterPerSecondPerMillisecond: return baseUnitValue * 0.001;
+                case AccelerationUnit.MeterPerSecondPerSecond: return baseUnitValue;
                 case AccelerationUnit.MeterPerSecondSquared: return baseUnitValue;
                 case AccelerationUnit.MicrometerPerSecondSquared: return (baseUnitValue) / 1e-6d;
                 case AccelerationUnit.MillimeterPerSecondSquared: return (baseUnitValue) / 1e-3d;

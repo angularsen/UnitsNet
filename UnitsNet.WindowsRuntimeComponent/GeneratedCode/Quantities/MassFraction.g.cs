@@ -254,6 +254,11 @@ namespace UnitsNet
         public double NanogramsPerKilogram => As(MassFractionUnit.NanogramPerKilogram);
 
         /// <summary>
+        ///     Get MassFraction in Ones.
+        /// </summary>
+        public double Ones => As(MassFractionUnit.One);
+
+        /// <summary>
         ///     Get MassFraction in PartsPerBillion.
         /// </summary>
         public double PartsPerBillion => As(MassFractionUnit.PartPerBillion);
@@ -277,6 +282,11 @@ namespace UnitsNet
         ///     Get MassFraction in Percent.
         /// </summary>
         public double Percent => As(MassFractionUnit.Percent);
+
+        /// <summary>
+        ///     Get MassFraction in PoundsPerPound.
+        /// </summary>
+        public double PoundsPerPound => As(MassFractionUnit.PoundPerPound);
 
         #endregion
 
@@ -499,6 +509,16 @@ namespace UnitsNet
             return new MassFraction(value, MassFractionUnit.NanogramPerKilogram);
         }
         /// <summary>
+        ///     Get MassFraction from Ones.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MassFraction FromOnes(double ones)
+        {
+            double value = (double) ones;
+            return new MassFraction(value, MassFractionUnit.One);
+        }
+        /// <summary>
         ///     Get MassFraction from PartsPerBillion.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -547,6 +567,16 @@ namespace UnitsNet
         {
             double value = (double) percent;
             return new MassFraction(value, MassFractionUnit.Percent);
+        }
+        /// <summary>
+        ///     Get MassFraction from PoundsPerPound.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MassFraction FromPoundsPerPound(double poundsperpound)
+        {
+            double value = (double) poundsperpound;
+            return new MassFraction(value, MassFractionUnit.PoundPerPound);
         }
 
         /// <summary>
@@ -858,11 +888,13 @@ namespace UnitsNet
                 case MassFractionUnit.MilligramPerKilogram: return (_value/1e3) * 1e-3d;
                 case MassFractionUnit.NanogramPerGram: return (_value) * 1e-9d;
                 case MassFractionUnit.NanogramPerKilogram: return (_value/1e3) * 1e-9d;
+                case MassFractionUnit.One: return _value;
                 case MassFractionUnit.PartPerBillion: return _value/1e9;
                 case MassFractionUnit.PartPerMillion: return _value/1e6;
                 case MassFractionUnit.PartPerThousand: return _value/1e3;
                 case MassFractionUnit.PartPerTrillion: return _value/1e12;
                 case MassFractionUnit.Percent: return _value/1e2;
+                case MassFractionUnit.PoundPerPound: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -896,11 +928,13 @@ namespace UnitsNet
                 case MassFractionUnit.MilligramPerKilogram: return (baseUnitValue*1e3) / 1e-3d;
                 case MassFractionUnit.NanogramPerGram: return (baseUnitValue) / 1e-9d;
                 case MassFractionUnit.NanogramPerKilogram: return (baseUnitValue*1e3) / 1e-9d;
+                case MassFractionUnit.One: return baseUnitValue;
                 case MassFractionUnit.PartPerBillion: return baseUnitValue*1e9;
                 case MassFractionUnit.PartPerMillion: return baseUnitValue*1e6;
                 case MassFractionUnit.PartPerThousand: return baseUnitValue*1e3;
                 case MassFractionUnit.PartPerTrillion: return baseUnitValue*1e12;
                 case MassFractionUnit.Percent: return baseUnitValue*1e2;
+                case MassFractionUnit.PoundPerPound: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

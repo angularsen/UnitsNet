@@ -320,6 +320,16 @@ namespace UnitsNet
         /// </summary>
         public double TonnesPerHour => As(MassFlowUnit.TonnePerHour);
 
+        /// <summary>
+        ///     Get MassFlow in UkTonnesPerDay.
+        /// </summary>
+        public double UkTonnesPerDay => As(MassFlowUnit.UkTonnePerDay);
+
+        /// <summary>
+        ///     Get MassFlow in UsTonnesPerDay.
+        /// </summary>
+        public double UsTonnesPerDay => As(MassFlowUnit.UsTonnePerDay);
+
         #endregion
 
         #region Static Methods
@@ -680,6 +690,26 @@ namespace UnitsNet
             double value = (double) tonnesperhour;
             return new MassFlow(value, MassFlowUnit.TonnePerHour);
         }
+        /// <summary>
+        ///     Get MassFlow from UkTonnesPerDay.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MassFlow FromUkTonnesPerDay(double uktonnesperday)
+        {
+            double value = (double) uktonnesperday;
+            return new MassFlow(value, MassFlowUnit.UkTonnePerDay);
+        }
+        /// <summary>
+        ///     Get MassFlow from UsTonnesPerDay.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MassFlow FromUsTonnesPerDay(double ustonnesperday)
+        {
+            double value = (double) ustonnesperday;
+            return new MassFlow(value, MassFlowUnit.UsTonnePerDay);
+        }
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MassFlowUnit" /> to <see cref="MassFlow" />.
@@ -1004,6 +1034,8 @@ namespace UnitsNet
                 case MassFlowUnit.ShortTonPerHour: return _value*251.9957611;
                 case MassFlowUnit.TonnePerDay: return _value/0.0864000;
                 case MassFlowUnit.TonnePerHour: return 1000*_value/3.6;
+                case MassFlowUnit.UkTonnePerDay: return _value * 1016.0469088 / 86400;
+                case MassFlowUnit.UsTonnePerDay: return _value * 907.18474 / 86400;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -1051,6 +1083,8 @@ namespace UnitsNet
                 case MassFlowUnit.ShortTonPerHour: return baseUnitValue/251.9957611;
                 case MassFlowUnit.TonnePerDay: return baseUnitValue*0.0864000;
                 case MassFlowUnit.TonnePerHour: return baseUnitValue*3.6/1000;
+                case MassFlowUnit.UkTonnePerDay: return baseUnitValue / 1016.0469088 * 86400;
+                case MassFlowUnit.UsTonnePerDay: return baseUnitValue / 907.18474 * 86400;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

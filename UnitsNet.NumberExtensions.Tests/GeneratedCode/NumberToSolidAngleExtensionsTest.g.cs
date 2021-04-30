@@ -25,6 +25,10 @@ namespace UnitsNet.Tests
     public class NumberToSolidAngleExtensionsTests
     {
         [Fact]
+        public void NumberToSquareDegreesTest() =>
+            Assert.Equal(SolidAngle.FromSquareDegrees(2), 2.SquareDegrees());
+
+        [Fact]
         public void NumberToSteradiansTest() =>
             Assert.Equal(SolidAngle.FromSteradians(2), 2.Steradians());
 

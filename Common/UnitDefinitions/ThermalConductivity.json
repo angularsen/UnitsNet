@@ -18,7 +18,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "W/m·K" ]
+          "Abbreviations": [
+            "W/m·K"
+          ]
         }
       ]
     },
@@ -30,7 +32,23 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "BTU/h·ft·°F" ]
+          "Abbreviations": [
+            "BTU/h·ft·°F"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BritishThermalUnitPerDayFootDegreeRankin",
+      "PluralName": "BritishThermalUnitsPerDayFootDegreeRankin",
+      "FromUnitToBaseFunc": "x * 1055.05585262 / 14630.4",
+      "FromBaseToUnitFunc": "x / 1055.05585262 * 14630.4",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "Btu/(d.ft.°R)"
+          ]
         }
       ]
     }

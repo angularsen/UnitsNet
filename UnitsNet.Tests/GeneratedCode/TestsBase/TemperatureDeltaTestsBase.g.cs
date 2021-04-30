@@ -37,15 +37,15 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class TemperatureDeltaTestsBase : QuantityTestsBase
     {
-        protected abstract double DegreesCelsiusInOneKelvin { get; }
-        protected abstract double DegreesDelisleInOneKelvin { get; }
-        protected abstract double DegreesFahrenheitInOneKelvin { get; }
-        protected abstract double DegreesNewtonInOneKelvin { get; }
-        protected abstract double DegreesRankineInOneKelvin { get; }
-        protected abstract double DegreesReaumurInOneKelvin { get; }
-        protected abstract double DegreesRoemerInOneKelvin { get; }
-        protected abstract double KelvinsInOneKelvin { get; }
-        protected abstract double MillidegreesCelsiusInOneKelvin { get; }
+        protected virtual double DegreesCelsiusInOneKelvin { get; }
+        protected virtual double DegreesDelisleInOneKelvin { get; }
+        protected virtual double DegreesFahrenheitInOneKelvin { get; }
+        protected virtual double DegreesNewtonInOneKelvin { get; }
+        protected virtual double DegreesRankineInOneKelvin { get; }
+        protected virtual double DegreesReaumurInOneKelvin { get; }
+        protected virtual double DegreesRoemerInOneKelvin { get; }
+        protected virtual double KelvinsInOneKelvin { get; }
+        protected virtual double MillidegreesCelsiusInOneKelvin { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double DegreesCelsiusTolerance { get { return 1e-5; } }

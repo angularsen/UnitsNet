@@ -21,11 +21,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "dyn" ]
+          "Abbreviations": [
+            "dyn"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "дин" ]
+          "Abbreviations": [
+            "дин"
+          ]
         }
       ]
     },
@@ -37,11 +41,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kgf" ]
+          "Abbreviations": [
+            "kgf"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "кгс" ]
+          "Abbreviations": [
+            "кгс"
+          ]
         }
       ]
     },
@@ -53,11 +61,16 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "tf", "Ton" ]
+          "Abbreviations": [
+            "tf",
+            "Ton"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "тс" ]
+          "Abbreviations": [
+            "тс"
+          ]
         }
       ]
     },
@@ -71,15 +84,25 @@
       },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Micro", "Milli", "Deca", "Kilo", "Mega" ],
+      "Prefixes": [
+        "Micro",
+        "Milli",
+        "Deca",
+        "Kilo",
+        "Mega"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "N" ]
+          "Abbreviations": [
+            "N"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Н" ]
+          "Abbreviations": [
+            "Н"
+          ]
         }
       ]
     },
@@ -91,11 +114,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kp" ]
+          "Abbreviations": [
+            "kp"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "кгс" ]
+          "Abbreviations": [
+            "кгс"
+          ]
         }
       ]
     },
@@ -112,11 +139,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "pdl" ]
+          "Abbreviations": [
+            "pdl"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "паундаль" ]
+          "Abbreviations": [
+            "паундаль"
+          ]
         }
       ]
     },
@@ -128,11 +159,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lbf" ]
+          "Abbreviations": [
+            "lbf"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "фунт-сила" ]
+          "Abbreviations": [
+            "фунт-сила"
+          ]
         }
       ]
     },
@@ -144,7 +179,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ozf" ]
+          "Abbreviations": [
+            "ozf"
+          ]
         }
       ]
     },
@@ -156,11 +193,19 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kipf", "kip", "k" ]
+          "Abbreviations": [
+            "kipf",
+            "kip",
+            "k"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "кипф", "койка", "К" ]
+          "Abbreviations": [
+            "кипф",
+            "койка",
+            "К"
+          ]
         }
       ]
     },
@@ -169,12 +214,88 @@
       "PluralName": "ShortTonsForce",
       "FromUnitToBaseFunc": "x*8.896443230521e3",
       "FromBaseToUnitFunc": "x/8.896443230521e3",
-      "XmlDocSummary": "The short ton-force is a unit of force equal to 2,000 pounds-force (907.18474 kgf), that is most commonly used in the United States – known there simply as the ton or US ton.",
-      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Ton-force#Short_ton-force",
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "tf (short)", "t (US)f", "short tons-force" ]
+          "Abbreviations": [
+            "tf (short)",
+            "t (US)f",
+            "short tons-force"
+          ]
+        }
+      ],
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Ton-force#Short_ton-force",
+      "XmlDocSummary": "The short ton-force is a unit of force equal to 2,000 pounds-force (907.18474 kgf), that is most commonly used in the United States – known there simply as the ton or US ton."
+    },
+    {
+      "SingularName": "Dekanewton",
+      "PluralName": "Dekanewtons",
+      "FromUnitToBaseFunc": "x * 10",
+      "FromBaseToUnitFunc": "x / 10",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "daN"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Dyne",
+      "PluralName": "Dynes",
+      "FromUnitToBaseFunc": "x * 1E-05",
+      "FromBaseToUnitFunc": "x / 1E-05",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "Dn",
+            "dyn"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramForce",
+      "PluralName": "GramForces",
+      "FromUnitToBaseFunc": "x * 0.00980665",
+      "FromBaseToUnitFunc": "x / 0.00980665",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "gf"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Kilodekanewton",
+      "PluralName": "Kilodekanewtons",
+      "FromUnitToBaseFunc": "x * 10000",
+      "FromBaseToUnitFunc": "x / 10000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "kdaN"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Kilodyne",
+      "PluralName": "Kilodynes",
+      "FromUnitToBaseFunc": "x * 1E-02",
+      "FromBaseToUnitFunc": "x / 1E-02",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "KDn",
+            "kdyn"
+          ]
         }
       ]
     }

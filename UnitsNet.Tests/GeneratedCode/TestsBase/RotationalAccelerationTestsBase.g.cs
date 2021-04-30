@@ -37,10 +37,10 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class RotationalAccelerationTestsBase : QuantityTestsBase
     {
-        protected abstract double DegreesPerSecondSquaredInOneRadianPerSecondSquared { get; }
-        protected abstract double RadiansPerSecondSquaredInOneRadianPerSecondSquared { get; }
-        protected abstract double RevolutionsPerMinutePerSecondInOneRadianPerSecondSquared { get; }
-        protected abstract double RevolutionsPerSecondSquaredInOneRadianPerSecondSquared { get; }
+        protected virtual double DegreesPerSecondSquaredInOneRadianPerSecondSquared { get; }
+        protected virtual double RadiansPerSecondSquaredInOneRadianPerSecondSquared { get; }
+        protected virtual double RevolutionsPerMinutePerSecondInOneRadianPerSecondSquared { get; }
+        protected virtual double RevolutionsPerSecondSquaredInOneRadianPerSecondSquared { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double DegreesPerSecondSquaredTolerance { get { return 1e-5; } }

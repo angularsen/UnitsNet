@@ -37,34 +37,34 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class MassMomentOfInertiaTestsBase : QuantityTestsBase
     {
-        protected abstract double GramSquareCentimetersInOneKilogramSquareMeter { get; }
-        protected abstract double GramSquareDecimetersInOneKilogramSquareMeter { get; }
-        protected abstract double GramSquareMetersInOneKilogramSquareMeter { get; }
-        protected abstract double GramSquareMillimetersInOneKilogramSquareMeter { get; }
-        protected abstract double KilogramSquareCentimetersInOneKilogramSquareMeter { get; }
-        protected abstract double KilogramSquareDecimetersInOneKilogramSquareMeter { get; }
-        protected abstract double KilogramSquareMetersInOneKilogramSquareMeter { get; }
-        protected abstract double KilogramSquareMillimetersInOneKilogramSquareMeter { get; }
-        protected abstract double KilotonneSquareCentimetersInOneKilogramSquareMeter { get; }
-        protected abstract double KilotonneSquareDecimetersInOneKilogramSquareMeter { get; }
-        protected abstract double KilotonneSquareMetersInOneKilogramSquareMeter { get; }
-        protected abstract double KilotonneSquareMilimetersInOneKilogramSquareMeter { get; }
-        protected abstract double MegatonneSquareCentimetersInOneKilogramSquareMeter { get; }
-        protected abstract double MegatonneSquareDecimetersInOneKilogramSquareMeter { get; }
-        protected abstract double MegatonneSquareMetersInOneKilogramSquareMeter { get; }
-        protected abstract double MegatonneSquareMilimetersInOneKilogramSquareMeter { get; }
-        protected abstract double MilligramSquareCentimetersInOneKilogramSquareMeter { get; }
-        protected abstract double MilligramSquareDecimetersInOneKilogramSquareMeter { get; }
-        protected abstract double MilligramSquareMetersInOneKilogramSquareMeter { get; }
-        protected abstract double MilligramSquareMillimetersInOneKilogramSquareMeter { get; }
-        protected abstract double PoundSquareFeetInOneKilogramSquareMeter { get; }
-        protected abstract double PoundSquareInchesInOneKilogramSquareMeter { get; }
-        protected abstract double SlugSquareFeetInOneKilogramSquareMeter { get; }
-        protected abstract double SlugSquareInchesInOneKilogramSquareMeter { get; }
-        protected abstract double TonneSquareCentimetersInOneKilogramSquareMeter { get; }
-        protected abstract double TonneSquareDecimetersInOneKilogramSquareMeter { get; }
-        protected abstract double TonneSquareMetersInOneKilogramSquareMeter { get; }
-        protected abstract double TonneSquareMilimetersInOneKilogramSquareMeter { get; }
+        protected virtual double GramSquareCentimetersInOneKilogramSquareMeter { get; }
+        protected virtual double GramSquareDecimetersInOneKilogramSquareMeter { get; }
+        protected virtual double GramSquareMetersInOneKilogramSquareMeter { get; }
+        protected virtual double GramSquareMillimetersInOneKilogramSquareMeter { get; }
+        protected virtual double KilogramSquareCentimetersInOneKilogramSquareMeter { get; }
+        protected virtual double KilogramSquareDecimetersInOneKilogramSquareMeter { get; }
+        protected virtual double KilogramSquareMetersInOneKilogramSquareMeter { get; }
+        protected virtual double KilogramSquareMillimetersInOneKilogramSquareMeter { get; }
+        protected virtual double KilotonneSquareCentimetersInOneKilogramSquareMeter { get; }
+        protected virtual double KilotonneSquareDecimetersInOneKilogramSquareMeter { get; }
+        protected virtual double KilotonneSquareMetersInOneKilogramSquareMeter { get; }
+        protected virtual double KilotonneSquareMilimetersInOneKilogramSquareMeter { get; }
+        protected virtual double MegatonneSquareCentimetersInOneKilogramSquareMeter { get; }
+        protected virtual double MegatonneSquareDecimetersInOneKilogramSquareMeter { get; }
+        protected virtual double MegatonneSquareMetersInOneKilogramSquareMeter { get; }
+        protected virtual double MegatonneSquareMilimetersInOneKilogramSquareMeter { get; }
+        protected virtual double MilligramSquareCentimetersInOneKilogramSquareMeter { get; }
+        protected virtual double MilligramSquareDecimetersInOneKilogramSquareMeter { get; }
+        protected virtual double MilligramSquareMetersInOneKilogramSquareMeter { get; }
+        protected virtual double MilligramSquareMillimetersInOneKilogramSquareMeter { get; }
+        protected virtual double PoundSquareFeetInOneKilogramSquareMeter { get; }
+        protected virtual double PoundSquareInchesInOneKilogramSquareMeter { get; }
+        protected virtual double SlugSquareFeetInOneKilogramSquareMeter { get; }
+        protected virtual double SlugSquareInchesInOneKilogramSquareMeter { get; }
+        protected virtual double TonneSquareCentimetersInOneKilogramSquareMeter { get; }
+        protected virtual double TonneSquareDecimetersInOneKilogramSquareMeter { get; }
+        protected virtual double TonneSquareMetersInOneKilogramSquareMeter { get; }
+        protected virtual double TonneSquareMilimetersInOneKilogramSquareMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double GramSquareCentimetersTolerance { get { return 1e-5; } }

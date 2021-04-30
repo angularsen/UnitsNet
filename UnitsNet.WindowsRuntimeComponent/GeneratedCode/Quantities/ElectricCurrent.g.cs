@@ -166,9 +166,19 @@ namespace UnitsNet
         public double Centiamperes => As(ElectricCurrentUnit.Centiampere);
 
         /// <summary>
+        ///     Get ElectricCurrent in GramsPerMole.
+        /// </summary>
+        public double GramsPerMole => As(ElectricCurrentUnit.GramPerMole);
+
+        /// <summary>
         ///     Get ElectricCurrent in Kiloamperes.
         /// </summary>
         public double Kiloamperes => As(ElectricCurrentUnit.Kiloampere);
+
+        /// <summary>
+        ///     Get ElectricCurrent in KilogramsPerMole.
+        /// </summary>
+        public double KilogramsPerMole => As(ElectricCurrentUnit.KilogramPerMole);
 
         /// <summary>
         ///     Get ElectricCurrent in Megaamperes.
@@ -194,6 +204,11 @@ namespace UnitsNet
         ///     Get ElectricCurrent in Picoamperes.
         /// </summary>
         public double Picoamperes => As(ElectricCurrentUnit.Picoampere);
+
+        /// <summary>
+        ///     Get ElectricCurrent in PoundsPerMole.
+        /// </summary>
+        public double PoundsPerMole => As(ElectricCurrentUnit.PoundPerMole);
 
         #endregion
 
@@ -246,6 +261,16 @@ namespace UnitsNet
             return new ElectricCurrent(value, ElectricCurrentUnit.Centiampere);
         }
         /// <summary>
+        ///     Get ElectricCurrent from GramsPerMole.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ElectricCurrent FromGramsPerMole(double gramspermole)
+        {
+            double value = (double) gramspermole;
+            return new ElectricCurrent(value, ElectricCurrentUnit.GramPerMole);
+        }
+        /// <summary>
         ///     Get ElectricCurrent from Kiloamperes.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -254,6 +279,16 @@ namespace UnitsNet
         {
             double value = (double) kiloamperes;
             return new ElectricCurrent(value, ElectricCurrentUnit.Kiloampere);
+        }
+        /// <summary>
+        ///     Get ElectricCurrent from KilogramsPerMole.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ElectricCurrent FromKilogramsPerMole(double kilogramspermole)
+        {
+            double value = (double) kilogramspermole;
+            return new ElectricCurrent(value, ElectricCurrentUnit.KilogramPerMole);
         }
         /// <summary>
         ///     Get ElectricCurrent from Megaamperes.
@@ -304,6 +339,16 @@ namespace UnitsNet
         {
             double value = (double) picoamperes;
             return new ElectricCurrent(value, ElectricCurrentUnit.Picoampere);
+        }
+        /// <summary>
+        ///     Get ElectricCurrent from PoundsPerMole.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ElectricCurrent FromPoundsPerMole(double poundspermole)
+        {
+            double value = (double) poundspermole;
+            return new ElectricCurrent(value, ElectricCurrentUnit.PoundPerMole);
         }
 
         /// <summary>
@@ -598,12 +643,15 @@ namespace UnitsNet
             {
                 case ElectricCurrentUnit.Ampere: return _value;
                 case ElectricCurrentUnit.Centiampere: return (_value) * 1e-2d;
+                case ElectricCurrentUnit.GramPerMole: return _value * 0.001;
                 case ElectricCurrentUnit.Kiloampere: return (_value) * 1e3d;
+                case ElectricCurrentUnit.KilogramPerMole: return _value;
                 case ElectricCurrentUnit.Megaampere: return (_value) * 1e6d;
                 case ElectricCurrentUnit.Microampere: return (_value) * 1e-6d;
                 case ElectricCurrentUnit.Milliampere: return (_value) * 1e-3d;
                 case ElectricCurrentUnit.Nanoampere: return (_value) * 1e-9d;
                 case ElectricCurrentUnit.Picoampere: return (_value) * 1e-12d;
+                case ElectricCurrentUnit.PoundPerMole: return _value * 0.45359237;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -620,12 +668,15 @@ namespace UnitsNet
             {
                 case ElectricCurrentUnit.Ampere: return baseUnitValue;
                 case ElectricCurrentUnit.Centiampere: return (baseUnitValue) / 1e-2d;
+                case ElectricCurrentUnit.GramPerMole: return baseUnitValue / 0.001;
                 case ElectricCurrentUnit.Kiloampere: return (baseUnitValue) / 1e3d;
+                case ElectricCurrentUnit.KilogramPerMole: return baseUnitValue;
                 case ElectricCurrentUnit.Megaampere: return (baseUnitValue) / 1e6d;
                 case ElectricCurrentUnit.Microampere: return (baseUnitValue) / 1e-6d;
                 case ElectricCurrentUnit.Milliampere: return (baseUnitValue) / 1e-3d;
                 case ElectricCurrentUnit.Nanoampere: return (baseUnitValue) / 1e-9d;
                 case ElectricCurrentUnit.Picoampere: return (baseUnitValue) / 1e-12d;
+                case ElectricCurrentUnit.PoundPerMole: return baseUnitValue / 0.45359237;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

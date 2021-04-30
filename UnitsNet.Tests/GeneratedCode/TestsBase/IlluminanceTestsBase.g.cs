@@ -37,10 +37,10 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class IlluminanceTestsBase : QuantityTestsBase
     {
-        protected abstract double KiloluxInOneLux { get; }
-        protected abstract double LuxInOneLux { get; }
-        protected abstract double MegaluxInOneLux { get; }
-        protected abstract double MilliluxInOneLux { get; }
+        protected virtual double KiloluxInOneLux { get; }
+        protected virtual double LuxInOneLux { get; }
+        protected virtual double MegaluxInOneLux { get; }
+        protected virtual double MilliluxInOneLux { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double KiloluxTolerance { get { return 1e-5; } }

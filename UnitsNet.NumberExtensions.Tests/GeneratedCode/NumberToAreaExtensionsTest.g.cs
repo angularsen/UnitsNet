@@ -33,6 +33,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Area.FromHectares(2), 2.Hectares());
 
         [Fact]
+        public void NumberToSectionsTest() =>
+            Assert.Equal(Area.FromSections(2), 2.Sections());
+
+        [Fact]
         public void NumberToSquareCentimetersTest() =>
             Assert.Equal(Area.FromSquareCentimeters(2), 2.SquareCentimeters());
 

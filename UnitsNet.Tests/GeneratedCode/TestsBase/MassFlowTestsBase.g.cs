@@ -37,39 +37,41 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class MassFlowTestsBase : QuantityTestsBase
     {
-        protected abstract double CentigramsPerDayInOneGramPerSecond { get; }
-        protected abstract double CentigramsPerSecondInOneGramPerSecond { get; }
-        protected abstract double DecagramsPerDayInOneGramPerSecond { get; }
-        protected abstract double DecagramsPerSecondInOneGramPerSecond { get; }
-        protected abstract double DecigramsPerDayInOneGramPerSecond { get; }
-        protected abstract double DecigramsPerSecondInOneGramPerSecond { get; }
-        protected abstract double GramsPerDayInOneGramPerSecond { get; }
-        protected abstract double GramsPerHourInOneGramPerSecond { get; }
-        protected abstract double GramsPerSecondInOneGramPerSecond { get; }
-        protected abstract double HectogramsPerDayInOneGramPerSecond { get; }
-        protected abstract double HectogramsPerSecondInOneGramPerSecond { get; }
-        protected abstract double KilogramsPerDayInOneGramPerSecond { get; }
-        protected abstract double KilogramsPerHourInOneGramPerSecond { get; }
-        protected abstract double KilogramsPerMinuteInOneGramPerSecond { get; }
-        protected abstract double KilogramsPerSecondInOneGramPerSecond { get; }
-        protected abstract double MegagramsPerDayInOneGramPerSecond { get; }
-        protected abstract double MegapoundsPerDayInOneGramPerSecond { get; }
-        protected abstract double MegapoundsPerHourInOneGramPerSecond { get; }
-        protected abstract double MegapoundsPerMinuteInOneGramPerSecond { get; }
-        protected abstract double MegapoundsPerSecondInOneGramPerSecond { get; }
-        protected abstract double MicrogramsPerDayInOneGramPerSecond { get; }
-        protected abstract double MicrogramsPerSecondInOneGramPerSecond { get; }
-        protected abstract double MilligramsPerDayInOneGramPerSecond { get; }
-        protected abstract double MilligramsPerSecondInOneGramPerSecond { get; }
-        protected abstract double NanogramsPerDayInOneGramPerSecond { get; }
-        protected abstract double NanogramsPerSecondInOneGramPerSecond { get; }
-        protected abstract double PoundsPerDayInOneGramPerSecond { get; }
-        protected abstract double PoundsPerHourInOneGramPerSecond { get; }
-        protected abstract double PoundsPerMinuteInOneGramPerSecond { get; }
-        protected abstract double PoundsPerSecondInOneGramPerSecond { get; }
-        protected abstract double ShortTonsPerHourInOneGramPerSecond { get; }
-        protected abstract double TonnesPerDayInOneGramPerSecond { get; }
-        protected abstract double TonnesPerHourInOneGramPerSecond { get; }
+        protected virtual double CentigramsPerDayInOneGramPerSecond { get; }
+        protected virtual double CentigramsPerSecondInOneGramPerSecond { get; }
+        protected virtual double DecagramsPerDayInOneGramPerSecond { get; }
+        protected virtual double DecagramsPerSecondInOneGramPerSecond { get; }
+        protected virtual double DecigramsPerDayInOneGramPerSecond { get; }
+        protected virtual double DecigramsPerSecondInOneGramPerSecond { get; }
+        protected virtual double GramsPerDayInOneGramPerSecond { get; }
+        protected virtual double GramsPerHourInOneGramPerSecond { get; }
+        protected virtual double GramsPerSecondInOneGramPerSecond { get; }
+        protected virtual double HectogramsPerDayInOneGramPerSecond { get; }
+        protected virtual double HectogramsPerSecondInOneGramPerSecond { get; }
+        protected virtual double KilogramsPerDayInOneGramPerSecond { get; }
+        protected virtual double KilogramsPerHourInOneGramPerSecond { get; }
+        protected virtual double KilogramsPerMinuteInOneGramPerSecond { get; }
+        protected virtual double KilogramsPerSecondInOneGramPerSecond { get; }
+        protected virtual double MegagramsPerDayInOneGramPerSecond { get; }
+        protected virtual double MegapoundsPerDayInOneGramPerSecond { get; }
+        protected virtual double MegapoundsPerHourInOneGramPerSecond { get; }
+        protected virtual double MegapoundsPerMinuteInOneGramPerSecond { get; }
+        protected virtual double MegapoundsPerSecondInOneGramPerSecond { get; }
+        protected virtual double MicrogramsPerDayInOneGramPerSecond { get; }
+        protected virtual double MicrogramsPerSecondInOneGramPerSecond { get; }
+        protected virtual double MilligramsPerDayInOneGramPerSecond { get; }
+        protected virtual double MilligramsPerSecondInOneGramPerSecond { get; }
+        protected virtual double NanogramsPerDayInOneGramPerSecond { get; }
+        protected virtual double NanogramsPerSecondInOneGramPerSecond { get; }
+        protected virtual double PoundsPerDayInOneGramPerSecond { get; }
+        protected virtual double PoundsPerHourInOneGramPerSecond { get; }
+        protected virtual double PoundsPerMinuteInOneGramPerSecond { get; }
+        protected virtual double PoundsPerSecondInOneGramPerSecond { get; }
+        protected virtual double ShortTonsPerHourInOneGramPerSecond { get; }
+        protected virtual double TonnesPerDayInOneGramPerSecond { get; }
+        protected virtual double TonnesPerHourInOneGramPerSecond { get; }
+        protected virtual double UkTonnesPerDayInOneGramPerSecond { get; }
+        protected virtual double UsTonnesPerDayInOneGramPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CentigramsPerDayTolerance { get { return 1e-5; } }
@@ -105,6 +107,8 @@ namespace UnitsNet.Tests
         protected virtual double ShortTonsPerHourTolerance { get { return 1e-5; } }
         protected virtual double TonnesPerDayTolerance { get { return 1e-5; } }
         protected virtual double TonnesPerHourTolerance { get { return 1e-5; } }
+        protected virtual double UkTonnesPerDayTolerance { get { return 1e-5; } }
+        protected virtual double UsTonnesPerDayTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
@@ -212,6 +216,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(ShortTonsPerHourInOneGramPerSecond, grampersecond.ShortTonsPerHour, ShortTonsPerHourTolerance);
             AssertEx.EqualTolerance(TonnesPerDayInOneGramPerSecond, grampersecond.TonnesPerDay, TonnesPerDayTolerance);
             AssertEx.EqualTolerance(TonnesPerHourInOneGramPerSecond, grampersecond.TonnesPerHour, TonnesPerHourTolerance);
+            AssertEx.EqualTolerance(UkTonnesPerDayInOneGramPerSecond, grampersecond.UkTonnesPerDay, UkTonnesPerDayTolerance);
+            AssertEx.EqualTolerance(UsTonnesPerDayInOneGramPerSecond, grampersecond.UsTonnesPerDay, UsTonnesPerDayTolerance);
         }
 
         [Fact]
@@ -349,6 +355,14 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity32.TonnesPerHour, TonnesPerHourTolerance);
             Assert.Equal(MassFlowUnit.TonnePerHour, quantity32.Unit);
 
+            var quantity33 = MassFlow.From(1, MassFlowUnit.UkTonnePerDay);
+            AssertEx.EqualTolerance(1, quantity33.UkTonnesPerDay, UkTonnesPerDayTolerance);
+            Assert.Equal(MassFlowUnit.UkTonnePerDay, quantity33.Unit);
+
+            var quantity34 = MassFlow.From(1, MassFlowUnit.UsTonnePerDay);
+            AssertEx.EqualTolerance(1, quantity34.UsTonnesPerDay, UsTonnesPerDayTolerance);
+            Assert.Equal(MassFlowUnit.UsTonnePerDay, quantity34.Unit);
+
         }
 
         [Fact]
@@ -401,6 +415,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(ShortTonsPerHourInOneGramPerSecond, grampersecond.As(MassFlowUnit.ShortTonPerHour), ShortTonsPerHourTolerance);
             AssertEx.EqualTolerance(TonnesPerDayInOneGramPerSecond, grampersecond.As(MassFlowUnit.TonnePerDay), TonnesPerDayTolerance);
             AssertEx.EqualTolerance(TonnesPerHourInOneGramPerSecond, grampersecond.As(MassFlowUnit.TonnePerHour), TonnesPerHourTolerance);
+            AssertEx.EqualTolerance(UkTonnesPerDayInOneGramPerSecond, grampersecond.As(MassFlowUnit.UkTonnePerDay), UkTonnesPerDayTolerance);
+            AssertEx.EqualTolerance(UsTonnesPerDayInOneGramPerSecond, grampersecond.As(MassFlowUnit.UsTonnePerDay), UsTonnesPerDayTolerance);
         }
 
         [Fact]
@@ -556,6 +572,14 @@ namespace UnitsNet.Tests
             var tonneperhourQuantity = grampersecond.ToUnit(MassFlowUnit.TonnePerHour);
             AssertEx.EqualTolerance(TonnesPerHourInOneGramPerSecond, (double)tonneperhourQuantity.Value, TonnesPerHourTolerance);
             Assert.Equal(MassFlowUnit.TonnePerHour, tonneperhourQuantity.Unit);
+
+            var uktonneperdayQuantity = grampersecond.ToUnit(MassFlowUnit.UkTonnePerDay);
+            AssertEx.EqualTolerance(UkTonnesPerDayInOneGramPerSecond, (double)uktonneperdayQuantity.Value, UkTonnesPerDayTolerance);
+            Assert.Equal(MassFlowUnit.UkTonnePerDay, uktonneperdayQuantity.Unit);
+
+            var ustonneperdayQuantity = grampersecond.ToUnit(MassFlowUnit.UsTonnePerDay);
+            AssertEx.EqualTolerance(UsTonnesPerDayInOneGramPerSecond, (double)ustonneperdayQuantity.Value, UsTonnesPerDayTolerance);
+            Assert.Equal(MassFlowUnit.UsTonnePerDay, ustonneperdayQuantity.Unit);
         }
 
         [Fact]
@@ -602,6 +626,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, MassFlow.FromShortTonsPerHour(grampersecond.ShortTonsPerHour).GramsPerSecond, ShortTonsPerHourTolerance);
             AssertEx.EqualTolerance(1, MassFlow.FromTonnesPerDay(grampersecond.TonnesPerDay).GramsPerSecond, TonnesPerDayTolerance);
             AssertEx.EqualTolerance(1, MassFlow.FromTonnesPerHour(grampersecond.TonnesPerHour).GramsPerSecond, TonnesPerHourTolerance);
+            AssertEx.EqualTolerance(1, MassFlow.FromUkTonnesPerDay(grampersecond.UkTonnesPerDay).GramsPerSecond, UkTonnesPerDayTolerance);
+            AssertEx.EqualTolerance(1, MassFlow.FromUsTonnesPerDay(grampersecond.UsTonnesPerDay).GramsPerSecond, UsTonnesPerDayTolerance);
         }
 
         [Fact]
@@ -791,6 +817,8 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 short tn/h", new MassFlow(1, MassFlowUnit.ShortTonPerHour).ToString());
                 Assert.Equal("1 t/d", new MassFlow(1, MassFlowUnit.TonnePerDay).ToString());
                 Assert.Equal("1 t/h", new MassFlow(1, MassFlowUnit.TonnePerHour).ToString());
+                Assert.Equal("1 UKton/day", new MassFlow(1, MassFlowUnit.UkTonnePerDay).ToString());
+                Assert.Equal("1 USton/day", new MassFlow(1, MassFlowUnit.UsTonnePerDay).ToString());
             }
             finally
             {
@@ -837,6 +865,8 @@ namespace UnitsNet.Tests
             Assert.Equal("1 short tn/h", new MassFlow(1, MassFlowUnit.ShortTonPerHour).ToString(swedishCulture));
             Assert.Equal("1 t/d", new MassFlow(1, MassFlowUnit.TonnePerDay).ToString(swedishCulture));
             Assert.Equal("1 t/h", new MassFlow(1, MassFlowUnit.TonnePerHour).ToString(swedishCulture));
+            Assert.Equal("1 UKton/day", new MassFlow(1, MassFlowUnit.UkTonnePerDay).ToString(swedishCulture));
+            Assert.Equal("1 USton/day", new MassFlow(1, MassFlowUnit.UsTonnePerDay).ToString(swedishCulture));
         }
 
         [Fact]

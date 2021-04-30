@@ -37,10 +37,12 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ThermalConductivityTestsBase : QuantityTestsBase
     {
-        protected abstract double BtusPerHourFootFahrenheitInOneWattPerMeterKelvin { get; }
-        protected abstract double WattsPerMeterKelvinInOneWattPerMeterKelvin { get; }
+        protected virtual double BritishThermalUnitsPerDayFootDegreeRankinInOneWattPerMeterKelvin { get; }
+        protected virtual double BtusPerHourFootFahrenheitInOneWattPerMeterKelvin { get; }
+        protected virtual double WattsPerMeterKelvinInOneWattPerMeterKelvin { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double BritishThermalUnitsPerDayFootDegreeRankinTolerance { get { return 1e-5; } }
         protected virtual double BtusPerHourFootFahrenheitTolerance { get { return 1e-5; } }
         protected virtual double WattsPerMeterKelvinTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
@@ -117,6 +119,7 @@ namespace UnitsNet.Tests
         public void WattPerMeterKelvinToThermalConductivityUnits()
         {
             ThermalConductivity wattpermeterkelvin = ThermalConductivity.FromWattsPerMeterKelvin(1);
+            AssertEx.EqualTolerance(BritishThermalUnitsPerDayFootDegreeRankinInOneWattPerMeterKelvin, wattpermeterkelvin.BritishThermalUnitsPerDayFootDegreeRankin, BritishThermalUnitsPerDayFootDegreeRankinTolerance);
             AssertEx.EqualTolerance(BtusPerHourFootFahrenheitInOneWattPerMeterKelvin, wattpermeterkelvin.BtusPerHourFootFahrenheit, BtusPerHourFootFahrenheitTolerance);
             AssertEx.EqualTolerance(WattsPerMeterKelvinInOneWattPerMeterKelvin, wattpermeterkelvin.WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
         }
@@ -124,13 +127,17 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ThermalConductivity.From(1, ThermalConductivityUnit.BtuPerHourFootFahrenheit);
-            AssertEx.EqualTolerance(1, quantity00.BtusPerHourFootFahrenheit, BtusPerHourFootFahrenheitTolerance);
-            Assert.Equal(ThermalConductivityUnit.BtuPerHourFootFahrenheit, quantity00.Unit);
+            var quantity00 = ThermalConductivity.From(1, ThermalConductivityUnit.BritishThermalUnitPerDayFootDegreeRankin);
+            AssertEx.EqualTolerance(1, quantity00.BritishThermalUnitsPerDayFootDegreeRankin, BritishThermalUnitsPerDayFootDegreeRankinTolerance);
+            Assert.Equal(ThermalConductivityUnit.BritishThermalUnitPerDayFootDegreeRankin, quantity00.Unit);
 
-            var quantity01 = ThermalConductivity.From(1, ThermalConductivityUnit.WattPerMeterKelvin);
-            AssertEx.EqualTolerance(1, quantity01.WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
-            Assert.Equal(ThermalConductivityUnit.WattPerMeterKelvin, quantity01.Unit);
+            var quantity01 = ThermalConductivity.From(1, ThermalConductivityUnit.BtuPerHourFootFahrenheit);
+            AssertEx.EqualTolerance(1, quantity01.BtusPerHourFootFahrenheit, BtusPerHourFootFahrenheitTolerance);
+            Assert.Equal(ThermalConductivityUnit.BtuPerHourFootFahrenheit, quantity01.Unit);
+
+            var quantity02 = ThermalConductivity.From(1, ThermalConductivityUnit.WattPerMeterKelvin);
+            AssertEx.EqualTolerance(1, quantity02.WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
+            Assert.Equal(ThermalConductivityUnit.WattPerMeterKelvin, quantity02.Unit);
 
         }
 
@@ -151,6 +158,7 @@ namespace UnitsNet.Tests
         public void As()
         {
             var wattpermeterkelvin = ThermalConductivity.FromWattsPerMeterKelvin(1);
+            AssertEx.EqualTolerance(BritishThermalUnitsPerDayFootDegreeRankinInOneWattPerMeterKelvin, wattpermeterkelvin.As(ThermalConductivityUnit.BritishThermalUnitPerDayFootDegreeRankin), BritishThermalUnitsPerDayFootDegreeRankinTolerance);
             AssertEx.EqualTolerance(BtusPerHourFootFahrenheitInOneWattPerMeterKelvin, wattpermeterkelvin.As(ThermalConductivityUnit.BtuPerHourFootFahrenheit), BtusPerHourFootFahrenheitTolerance);
             AssertEx.EqualTolerance(WattsPerMeterKelvinInOneWattPerMeterKelvin, wattpermeterkelvin.As(ThermalConductivityUnit.WattPerMeterKelvin), WattsPerMeterKelvinTolerance);
         }
@@ -177,6 +185,10 @@ namespace UnitsNet.Tests
         {
             var wattpermeterkelvin = ThermalConductivity.FromWattsPerMeterKelvin(1);
 
+            var britishthermalunitperdayfootdegreerankinQuantity = wattpermeterkelvin.ToUnit(ThermalConductivityUnit.BritishThermalUnitPerDayFootDegreeRankin);
+            AssertEx.EqualTolerance(BritishThermalUnitsPerDayFootDegreeRankinInOneWattPerMeterKelvin, (double)britishthermalunitperdayfootdegreerankinQuantity.Value, BritishThermalUnitsPerDayFootDegreeRankinTolerance);
+            Assert.Equal(ThermalConductivityUnit.BritishThermalUnitPerDayFootDegreeRankin, britishthermalunitperdayfootdegreerankinQuantity.Unit);
+
             var btuperhourfootfahrenheitQuantity = wattpermeterkelvin.ToUnit(ThermalConductivityUnit.BtuPerHourFootFahrenheit);
             AssertEx.EqualTolerance(BtusPerHourFootFahrenheitInOneWattPerMeterKelvin, (double)btuperhourfootfahrenheitQuantity.Value, BtusPerHourFootFahrenheitTolerance);
             Assert.Equal(ThermalConductivityUnit.BtuPerHourFootFahrenheit, btuperhourfootfahrenheitQuantity.Unit);
@@ -197,6 +209,7 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             ThermalConductivity wattpermeterkelvin = ThermalConductivity.FromWattsPerMeterKelvin(1);
+            AssertEx.EqualTolerance(1, ThermalConductivity.FromBritishThermalUnitsPerDayFootDegreeRankin(wattpermeterkelvin.BritishThermalUnitsPerDayFootDegreeRankin).WattsPerMeterKelvin, BritishThermalUnitsPerDayFootDegreeRankinTolerance);
             AssertEx.EqualTolerance(1, ThermalConductivity.FromBtusPerHourFootFahrenheit(wattpermeterkelvin.BtusPerHourFootFahrenheit).WattsPerMeterKelvin, BtusPerHourFootFahrenheitTolerance);
             AssertEx.EqualTolerance(1, ThermalConductivity.FromWattsPerMeterKelvin(wattpermeterkelvin.WattsPerMeterKelvin).WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
         }
@@ -355,6 +368,7 @@ namespace UnitsNet.Tests
             var prevCulture = Thread.CurrentThread.CurrentUICulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             try {
+                Assert.Equal("1 Btu/(d.ft.°R)", new ThermalConductivity(1, ThermalConductivityUnit.BritishThermalUnitPerDayFootDegreeRankin).ToString());
                 Assert.Equal("1 BTU/h·ft·°F", new ThermalConductivity(1, ThermalConductivityUnit.BtuPerHourFootFahrenheit).ToString());
                 Assert.Equal("1 W/m·K", new ThermalConductivity(1, ThermalConductivityUnit.WattPerMeterKelvin).ToString());
             }
@@ -370,6 +384,7 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
+            Assert.Equal("1 Btu/(d.ft.°R)", new ThermalConductivity(1, ThermalConductivityUnit.BritishThermalUnitPerDayFootDegreeRankin).ToString(swedishCulture));
             Assert.Equal("1 BTU/h·ft·°F", new ThermalConductivity(1, ThermalConductivityUnit.BtuPerHourFootFahrenheit).ToString(swedishCulture));
             Assert.Equal("1 W/m·K", new ThermalConductivity(1, ThermalConductivityUnit.WattPerMeterKelvin).ToString(swedishCulture));
         }

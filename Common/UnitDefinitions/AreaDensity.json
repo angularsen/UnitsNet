@@ -19,7 +19,53 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kg/m²" ]
+          "Abbreviations": [
+            "kg/m²"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilogramPerSquareFoot",
+      "PluralName": "KilogramsPerSquareFoot",
+      "FromUnitToBaseFunc": "x / 0.09290304",
+      "FromBaseToUnitFunc": "x * 0.09290304",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "kg/ft2"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerSquareFoot",
+      "PluralName": "PoundsPerSquareFoot",
+      "FromUnitToBaseFunc": "x * 0.45359237 / 0.09290304",
+      "FromBaseToUnitFunc": "x / 0.45359237 * 0.09290304",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "lbm/ft2",
+            "lb/ft2"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerSquareMeter",
+      "PluralName": "PoundsPerSquareMeter",
+      "FromUnitToBaseFunc": "x * 0.45359237",
+      "FromBaseToUnitFunc": "x / 0.45359237",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "lbm/m2",
+            "lb/m2"
+          ]
         }
       ]
     }

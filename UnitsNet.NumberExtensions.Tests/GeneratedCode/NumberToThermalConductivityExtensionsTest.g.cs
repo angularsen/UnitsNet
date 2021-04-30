@@ -25,6 +25,10 @@ namespace UnitsNet.Tests
     public class NumberToThermalConductivityExtensionsTests
     {
         [Fact]
+        public void NumberToBritishThermalUnitsPerDayFootDegreeRankinTest() =>
+            Assert.Equal(ThermalConductivity.FromBritishThermalUnitsPerDayFootDegreeRankin(2), 2.BritishThermalUnitsPerDayFootDegreeRankin());
+
+        [Fact]
         public void NumberToBtusPerHourFootFahrenheitTest() =>
             Assert.Equal(ThermalConductivity.FromBtusPerHourFootFahrenheit(2), 2.BtusPerHourFootFahrenheit());
 

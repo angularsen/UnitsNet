@@ -17,19 +17,20 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Globalization;
-using System.Linq;
-using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
-
 #nullable enable
 
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using JetBrains.Annotations;
+    using UnitsNet.InternalHelpers;
+    using UnitsNet.Units;
+    
+
     /// <inheritdoc />
     /// <summary>
     ///     In mathematics, a ratio is a relationship between two numbers of the same kind (e.g., objects, persons, students, spoonfuls, units of whatever identical dimension), usually expressed as "a to b" or a:b, sometimes expressed arithmetically as a dimensionless quotient of the two that explicitly indicates how many times the first number contains the second (not necessarily an integer).
@@ -53,6 +54,7 @@ namespace UnitsNet
             Info = new QuantityInfo<RatioUnit>("Ratio",
                 new UnitInfo<RatioUnit>[] {
                     new UnitInfo<RatioUnit>(RatioUnit.DecimalFraction, BaseUnits.Undefined),
+                    new UnitInfo<RatioUnit>(RatioUnit.One, BaseUnits.Undefined),
                     new UnitInfo<RatioUnit>(RatioUnit.PartPerBillion, BaseUnits.Undefined),
                     new UnitInfo<RatioUnit>(RatioUnit.PartPerMillion, BaseUnits.Undefined),
                     new UnitInfo<RatioUnit>(RatioUnit.PartPerThousand, BaseUnits.Undefined),
@@ -179,6 +181,11 @@ namespace UnitsNet
         public double DecimalFractions => As(RatioUnit.DecimalFraction);
 
         /// <summary>
+        ///     Get Ratio in Ones.
+        /// </summary>
+        public double Ones => As(RatioUnit.One);
+
+        /// <summary>
         ///     Get Ratio in PartsPerBillion.
         /// </summary>
         public double PartsPerBillion => As(RatioUnit.PartPerBillion);
@@ -240,6 +247,15 @@ namespace UnitsNet
         {
             double value = (double) decimalfractions;
             return new Ratio(value, RatioUnit.DecimalFraction);
+        }
+        /// <summary>
+        ///     Get Ratio from Ones.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Ratio FromOnes(QuantityValue ones)
+        {
+            double value = (double) ones;
+            return new Ratio(value, RatioUnit.One);
         }
         /// <summary>
         ///     Get Ratio from PartsPerBillion.
@@ -716,6 +732,7 @@ namespace UnitsNet
             switch(Unit)
             {
                 case RatioUnit.DecimalFraction: return _value;
+                case RatioUnit.One: return _value;
                 case RatioUnit.PartPerBillion: return _value/1e9;
                 case RatioUnit.PartPerMillion: return _value/1e6;
                 case RatioUnit.PartPerThousand: return _value/1e3;
@@ -747,6 +764,7 @@ namespace UnitsNet
             switch(unit)
             {
                 case RatioUnit.DecimalFraction: return baseUnitValue;
+                case RatioUnit.One: return baseUnitValue;
                 case RatioUnit.PartPerBillion: return baseUnitValue*1e9;
                 case RatioUnit.PartPerMillion: return baseUnitValue*1e6;
                 case RatioUnit.PartPerThousand: return baseUnitValue*1e3;

@@ -36,9 +36,17 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrent
         public static ElectricCurrent Centiamperes<T>(this T value) =>
             ElectricCurrent.FromCentiamperes(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="ElectricCurrent.FromGramsPerMole(UnitsNet.QuantityValue)" />
+        public static ElectricCurrent GramsPerMole<T>(this T value) =>
+            ElectricCurrent.FromGramsPerMole(Convert.ToDouble(value));
+
         /// <inheritdoc cref="ElectricCurrent.FromKiloamperes(UnitsNet.QuantityValue)" />
         public static ElectricCurrent Kiloamperes<T>(this T value) =>
             ElectricCurrent.FromKiloamperes(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricCurrent.FromKilogramsPerMole(UnitsNet.QuantityValue)" />
+        public static ElectricCurrent KilogramsPerMole<T>(this T value) =>
+            ElectricCurrent.FromKilogramsPerMole(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricCurrent.FromMegaamperes(UnitsNet.QuantityValue)" />
         public static ElectricCurrent Megaamperes<T>(this T value) =>
@@ -59,6 +67,10 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrent
         /// <inheritdoc cref="ElectricCurrent.FromPicoamperes(UnitsNet.QuantityValue)" />
         public static ElectricCurrent Picoamperes<T>(this T value) =>
             ElectricCurrent.FromPicoamperes(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricCurrent.FromPoundsPerMole(UnitsNet.QuantityValue)" />
+        public static ElectricCurrent PoundsPerMole<T>(this T value) =>
+            ElectricCurrent.FromPoundsPerMole(Convert.ToDouble(value));
 
     }
 }

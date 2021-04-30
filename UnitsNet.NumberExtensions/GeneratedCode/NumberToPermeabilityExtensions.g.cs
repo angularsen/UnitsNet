@@ -28,9 +28,33 @@ namespace UnitsNet.NumberExtensions.NumberToPermeability
     /// </summary>
     public static class NumberToPermeabilityExtensions
     {
+        /// <inheritdoc cref="Permeability.FromDarcies(UnitsNet.QuantityValue)" />
+        public static Permeability Darcies<T>(this T value) =>
+            Permeability.FromDarcies(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Permeability.FromHenriesPerMeter(UnitsNet.QuantityValue)" />
         public static Permeability HenriesPerMeter<T>(this T value) =>
             Permeability.FromHenriesPerMeter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Permeability.FromMicrodarcies(UnitsNet.QuantityValue)" />
+        public static Permeability Microdarcies<T>(this T value) =>
+            Permeability.FromMicrodarcies(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Permeability.FromMillidarcies(UnitsNet.QuantityValue)" />
+        public static Permeability Millidarcies<T>(this T value) =>
+            Permeability.FromMillidarcies(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Permeability.FromNanodarcies(UnitsNet.QuantityValue)" />
+        public static Permeability Nanodarcies<T>(this T value) =>
+            Permeability.FromNanodarcies(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Permeability.FromSquareMeters(UnitsNet.QuantityValue)" />
+        public static Permeability SquareMeters<T>(this T value) =>
+            Permeability.FromSquareMeters(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Permeability.FromSquareMicrometers(UnitsNet.QuantityValue)" />
+        public static Permeability SquareMicrometers<T>(this T value) =>
+            Permeability.FromSquareMicrometers(Convert.ToDouble(value));
 
     }
 }

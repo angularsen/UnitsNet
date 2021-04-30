@@ -80,5 +80,13 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
         public static RotationalSpeed RevolutionsPerSecond<T>(this T value) =>
             RotationalSpeed.FromRevolutionsPerSecond(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="RotationalSpeed.FromRotationsPerMinute(UnitsNet.QuantityValue)" />
+        public static RotationalSpeed RotationsPerMinute<T>(this T value) =>
+            RotationalSpeed.FromRotationsPerMinute(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="RotationalSpeed.FromRotationsPerSecond(UnitsNet.QuantityValue)" />
+        public static RotationalSpeed RotationsPerSecond<T>(this T value) =>
+            RotationalSpeed.FromRotationsPerSecond(Convert.ToDouble(value));
+
     }
 }

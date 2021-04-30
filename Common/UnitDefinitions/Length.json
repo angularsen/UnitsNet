@@ -14,19 +14,33 @@
       },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Hecto", "Kilo" ],
+      "Prefixes": [
+        "Nano",
+        "Micro",
+        "Milli",
+        "Centi",
+        "Deci",
+        "Hecto",
+        "Kilo"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "m" ]
+          "Abbreviations": [
+            "m"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "м" ]
+          "Abbreviations": [
+            "м"
+          ]
         },
         {
           "Culture": "zh-CN",
-          "Abbreviations": [ "米" ]
+          "Abbreviations": [
+            "米"
+          ]
         }
       ]
     },
@@ -41,15 +55,21 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "mi" ]
+          "Abbreviations": [
+            "mi"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "миля" ]
+          "Abbreviations": [
+            "миля"
+          ]
         },
         {
           "Culture": "zh-CN",
-          "Abbreviations": [ "英里" ]
+          "Abbreviations": [
+            "英里"
+          ]
         }
       ]
     },
@@ -64,15 +84,21 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "yd" ]
+          "Abbreviations": [
+            "yd"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "ярд" ]
+          "Abbreviations": [
+            "ярд"
+          ]
         },
         {
           "Culture": "zh-CN",
-          "Abbreviations": [ "码" ]
+          "Abbreviations": [
+            "码"
+          ]
         }
       ]
     },
@@ -87,15 +113,23 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ft", "'", "′" ]
+          "Abbreviations": [
+            "ft",
+            "'",
+            "′"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "фут" ]
+          "Abbreviations": [
+            "фут"
+          ]
         },
         {
           "Culture": "zh-CN",
-          "Abbreviations": [ "英尺" ]
+          "Abbreviations": [
+            "英尺"
+          ]
         }
       ]
     },
@@ -110,7 +144,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ftUS" ]
+          "Abbreviations": [
+            "ftUS"
+          ]
         }
       ]
     },
@@ -125,15 +161,23 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "in", "\\\"", "″" ]
+          "Abbreviations": [
+            "in",
+            "\\\"",
+            "″"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "дюйм" ]
+          "Abbreviations": [
+            "дюйм"
+          ]
         },
         {
           "Culture": "zh-CN",
-          "Abbreviations": [ "英寸" ]
+          "Abbreviations": [
+            "英寸"
+          ]
         }
       ]
     },
@@ -148,15 +192,21 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "mil" ]
+          "Abbreviations": [
+            "mil"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "мил" ]
+          "Abbreviations": [
+            "мил"
+          ]
         },
         {
           "Culture": "zh-CN",
-          "Abbreviations": [ "密耳" ]
+          "Abbreviations": [
+            "密耳"
+          ]
         }
       ]
     },
@@ -171,15 +221,21 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "NM" ]
+          "Abbreviations": [
+            "NM"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "мил" ]
+          "Abbreviations": [
+            "мил"
+          ]
         },
         {
           "Culture": "zh-CN",
-          "Abbreviations": [ "纳米" ]
+          "Abbreviations": [
+            "纳米"
+          ]
         }
       ]
     },
@@ -194,7 +250,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "fathom" ]
+          "Abbreviations": [
+            "fathom"
+          ]
         }
       ]
     },
@@ -209,7 +267,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "shackle" ]
+          "Abbreviations": [
+            "shackle"
+          ]
         }
       ]
     },
@@ -224,15 +284,21 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "µin" ]
+          "Abbreviations": [
+            "µin"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "микродюйм" ]
+          "Abbreviations": [
+            "микродюйм"
+          ]
         },
         {
           "Culture": "zh-CN",
-          "Abbreviations": [ "微英寸" ]
+          "Abbreviations": [
+            "微英寸"
+          ]
         }
       ]
     },
@@ -247,7 +313,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "pt" ]
+          "Abbreviations": [
+            "pt"
+          ]
         }
       ]
     },
@@ -262,7 +330,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "pt" ]
+          "Abbreviations": [
+            "pt"
+          ]
         }
       ]
     },
@@ -277,7 +347,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "pica" ]
+          "Abbreviations": [
+            "pica"
+          ]
         }
       ]
     },
@@ -292,7 +364,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "pica" ]
+          "Abbreviations": [
+            "pica"
+          ]
         }
       ]
     },
@@ -307,7 +381,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "twip" ]
+          "Abbreviations": [
+            "twip"
+          ]
         }
       ]
     },
@@ -322,7 +398,10 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "h", "hh" ]
+          "Abbreviations": [
+            "h",
+            "hh"
+          ]
         }
       ]
     },
@@ -331,58 +410,73 @@
       "PluralName": "AstronomicalUnits",
       "FromUnitToBaseFunc": "x * 1.4959787070e11",
       "FromBaseToUnitFunc": "x / 1.4959787070e11",
-      "XmlDocSummary": "One Astronomical Unit is the distance from the solar system Star, the sun, to planet Earth.",
-      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Astronomical_unit",
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "au", "ua" ]
+          "Abbreviations": [
+            "au",
+            "ua"
+          ]
         }
-      ]
+      ],
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Astronomical_unit",
+      "XmlDocSummary": "One Astronomical Unit is the distance from the solar system Star, the sun, to planet Earth."
     },
     {
       "SingularName": "Parsec",
       "PluralName": "Parsecs",
       "FromUnitToBaseFunc": "x * 3.08567758128e16",
       "FromBaseToUnitFunc": "x / 3.08567758128e16",
-      "XmlDocSummary": "A parsec is defined as the distance at which one astronomical unit (AU) subtends an angle of one arcsecond.",
-      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Parsec",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": [
+        "Kilo",
+        "Mega"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "pc" ]
+          "Abbreviations": [
+            "pc"
+          ]
         }
-      ]
+      ],
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Parsec",
+      "XmlDocSummary": "A parsec is defined as the distance at which one astronomical unit (AU) subtends an angle of one arcsecond."
     },
     {
       "SingularName": "LightYear",
       "PluralName": "LightYears",
       "FromUnitToBaseFunc": "x * 9.46073047258e15",
       "FromBaseToUnitFunc": "x / 9.46073047258e15",
-      "XmlDocSummary": "A Light Year (ly) is the distance that light travel during an Earth year, ie 365 days.",
-      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Light-year",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": [
+        "Kilo",
+        "Mega"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ly" ]
+          "Abbreviations": [
+            "ly"
+          ]
         }
-      ]
+      ],
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Light-year",
+      "XmlDocSummary": "A Light Year (ly) is the distance that light travel during an Earth year, ie 365 days."
     },
     {
       "SingularName": "SolarRadius",
       "PluralName": "SolarRadiuses",
       "FromUnitToBaseFunc": "x * 6.95510000E+08",
       "FromBaseToUnitFunc": "x / 6.95510000E+08",
-      "XmlDocSummary": "Solar radius is a ratio unit to the radius of the solar system star, the sun.",
-      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Stellar_classification",
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "R⊙" ]
+          "Abbreviations": [
+            "R⊙"
+          ]
         }
-      ]
+      ],
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Stellar_classification",
+      "XmlDocSummary": "Solar radius is a ratio unit to the radius of the solar system star, the sun."
     },
     {
       "SingularName": "Chain",
@@ -395,7 +489,419 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ch" ]
+          "Abbreviations": [
+            "ch"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BillionCubicFeetPerHundredAcres",
+      "PluralName": "BillionCubicFeetsPerHundredAcres",
+      "FromUnitToBaseFunc": "x * 28316846.592 / 404685.64224",
+      "FromBaseToUnitFunc": "x / 28316846.592 * 404685.64224",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "BCF/100 acre",
+            "Bft3/100 acre",
+            "Bcf/100acre"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BillionCubicFeetPerAcre",
+      "PluralName": "BillionCubicFeetsPerAcre",
+      "FromUnitToBaseFunc": "x * 28316846.592 / 4046.8564224",
+      "FromBaseToUnitFunc": "x / 28316846.592 * 4046.8564224",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "BCF/acre",
+            "Bft3/acre",
+            "Bcf/acre"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BillionCubicFeetPerSection",
+      "PluralName": "BillionCubicFeetsPerSection",
+      "FromUnitToBaseFunc": "x * 28316846.592 / 2589988.110336",
+      "FromBaseToUnitFunc": "x / 28316846.592 * 2589988.110336",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "BCF/Section",
+            "Bft3/Section",
+            "Bcf/section"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BritishChainSearsOne9TwoTwo",
+      "PluralName": "BritishChainSearsOne9TwoTwos",
+      "FromUnitToBaseFunc": "x * 792 / 39.370147",
+      "FromBaseToUnitFunc": "x / 792 * 39.370147",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "chSe"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BritishChainSearsOne9TwoTwoTruncated",
+      "PluralName": "BritishChainSearsOne9TwoTwoTruncateds",
+      "FromUnitToBaseFunc": "x * 20.116756",
+      "FromBaseToUnitFunc": "x / 20.116756",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "chSe(T)"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CubicFootPerSquareFoot",
+      "PluralName": "CubicFeetPerSquareFoot",
+      "FromUnitToBaseFunc": "x * 0.028316846592 / 0.09290304",
+      "FromBaseToUnitFunc": "x / 0.028316846592 * 0.09290304",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "ft3/ft2"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "ClarkesFoot",
+      "PluralName": "ClarkesFeet",
+      "FromUnitToBaseFunc": "x * 0.3047972654",
+      "FromBaseToUnitFunc": "x / 0.3047972654",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "ftCla"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GoldCoastFoot",
+      "PluralName": "GoldCoastFeet",
+      "FromUnitToBaseFunc": "x * 6378300 / 20926201",
+      "FromBaseToUnitFunc": "x / 6378300 * 20926201",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "ftGC"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BritishFootSearsOne9TwoTwo",
+      "PluralName": "BritishFootSearsOne9TwoTwos",
+      "FromUnitToBaseFunc": "x * 12 / 39.370147",
+      "FromBaseToUnitFunc": "x / 12 * 39.370147",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "ftSe"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GermanLegalMeter",
+      "PluralName": "GermanLegalMeters",
+      "FromUnitToBaseFunc": "x * 1.0000135965",
+      "FromBaseToUnitFunc": "x / 1.0000135965",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "GLM"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InchBy3Two",
+      "PluralName": "InchBy3Twos",
+      "FromUnitToBaseFunc": "x * 0.0254 / 32",
+      "FromBaseToUnitFunc": "x / 0.0254 * 32",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "in/32"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Link",
+      "PluralName": "Links",
+      "FromUnitToBaseFunc": "x * 20.1168 / 100",
+      "FromBaseToUnitFunc": "x / 20.1168 * 100",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "lk"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "ClarkesLink",
+      "PluralName": "ClarkesLinks",
+      "FromUnitToBaseFunc": "x * 0.201166195164",
+      "FromBaseToUnitFunc": "x / 0.201166195164",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "lkCla"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CubicMeterPerSquareMeter",
+      "PluralName": "CubicMetersPerSquareMeter",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "m3/m2"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "ThousandBarrelsPerAcre",
+      "PluralName": "ThousandBarrelsPerAcre",
+      "FromUnitToBaseFunc": "x * 158.987294928 / 4046.8564224",
+      "FromBaseToUnitFunc": "x / 158.987294928 * 4046.8564224",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "Mb/acre",
+            "Mbbl/acre"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "ThousandBarrelsPerSquareKilometer",
+      "PluralName": "ThousandBarrelsPerSquareKilometer",
+      "FromUnitToBaseFunc": "x * 158.987294928 / 1000000",
+      "FromBaseToUnitFunc": "x / 158.987294928 * 1000000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "Mb/km2",
+            "Mbbl/km2"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "ThousandCubicFeetPerAcre",
+      "PluralName": "ThousandCubicFeetsPerAcre",
+      "FromUnitToBaseFunc": "x * 28.316846592 / 4046.8564224",
+      "FromBaseToUnitFunc": "x / 28.316846592 * 4046.8564224",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "Mft3/acre",
+            "Mcf/acre"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "ThousandCubicFeetPerSquareKilometer",
+      "PluralName": "ThousandCubicFeetsPerSquareKilometer",
+      "FromUnitToBaseFunc": "x * 28.316846592 / 1000000",
+      "FromBaseToUnitFunc": "x / 28.316846592 * 1000000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "Mft3/km2",
+            "Mcf/km2"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillionBarrelsPerAcre",
+      "PluralName": "MillionBarrelsPerAcre",
+      "FromUnitToBaseFunc": "x * 158987.294928 / 4046.8564224",
+      "FromBaseToUnitFunc": "x / 158987.294928 * 4046.8564224",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "MMb/acre",
+            "MMbbl/acre"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillionBarrelsPerSquareKilometer",
+      "PluralName": "MillionBarrelsPerSquareKilometer",
+      "FromUnitToBaseFunc": "x * 158987.294928 / 1000000",
+      "FromBaseToUnitFunc": "x / 158987.294928 * 1000000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "MMb/km2",
+            "MMbl/km2",
+            "MMbbl/km2"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillionBarrelsPerSection",
+      "PluralName": "MillionBarrelsPerSection",
+      "FromUnitToBaseFunc": "x * 158987.294928 / 2589988.110336",
+      "FromBaseToUnitFunc": "x / 158987.294928 * 2589988.110336",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "MMb/Section",
+            "MMbbl/section"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillionCubicFeetPerAcre",
+      "PluralName": "MillionCubicFeetsPerAcre",
+      "FromUnitToBaseFunc": "x * 28316.846592 / 4046.8564224",
+      "FromBaseToUnitFunc": "x / 28316.846592 * 4046.8564224",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "MMft3/acre",
+            "MMcf/acre"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillionCubicFeetPerSquareKilometer",
+      "PluralName": "MillionCubicFeetsPerSquareKilometer",
+      "FromUnitToBaseFunc": "x * 28316.846592 / 1000000",
+      "FromBaseToUnitFunc": "x / 28316.846592 * 1000000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "MMft3/km2",
+            "MMcf/km2"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillionCubicFeetPerSection",
+      "PluralName": "MillionCubicFeetsPerSection",
+      "FromUnitToBaseFunc": "x * 28316.846592 / 2589988.110336",
+      "FromBaseToUnitFunc": "x / 28316.846592 * 2589988.110336",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "MMcf/Section",
+            "MMft3/Section",
+            "MMcf/section"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "ClarkesYard",
+      "PluralName": "ClarkesYards",
+      "FromUnitToBaseFunc": "x * 0.9143917962",
+      "FromBaseToUnitFunc": "x / 0.9143917962",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "ydCla"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "IndianYard",
+      "PluralName": "IndianYards",
+      "FromUnitToBaseFunc": "x * 36 / 39.370142",
+      "FromBaseToUnitFunc": "x / 36 * 39.370142",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "ydInd"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BritishYardSearsOne9TwoTwo",
+      "PluralName": "BritishYardSearsOne9TwoTwos",
+      "FromUnitToBaseFunc": "x * 36 / 39.370147",
+      "FromBaseToUnitFunc": "x / 36 * 39.370147",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "ydSe"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BritishYardSearsOne9TwoTwoTruncated",
+      "PluralName": "BritishYardSearsOne9TwoTwoTruncateds",
+      "FromUnitToBaseFunc": "x * 0.914398",
+      "FromBaseToUnitFunc": "x / 0.914398",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "ydSe(T)"
+          ]
         }
       ]
     }

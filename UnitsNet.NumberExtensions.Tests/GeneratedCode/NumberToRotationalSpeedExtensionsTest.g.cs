@@ -76,5 +76,13 @@ namespace UnitsNet.Tests
         public void NumberToRevolutionsPerSecondTest() =>
             Assert.Equal(RotationalSpeed.FromRevolutionsPerSecond(2), 2.RevolutionsPerSecond());
 
+        [Fact]
+        public void NumberToRotationsPerMinuteTest() =>
+            Assert.Equal(RotationalSpeed.FromRotationsPerMinute(2), 2.RotationsPerMinute());
+
+        [Fact]
+        public void NumberToRotationsPerSecondTest() =>
+            Assert.Equal(RotationalSpeed.FromRotationsPerSecond(2), 2.RotationsPerSecond());
+
     }
 }

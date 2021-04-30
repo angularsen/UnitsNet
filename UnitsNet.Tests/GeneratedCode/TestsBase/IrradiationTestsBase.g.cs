@@ -37,13 +37,13 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class IrradiationTestsBase : QuantityTestsBase
     {
-        protected abstract double JoulesPerSquareCentimeterInOneJoulePerSquareMeter { get; }
-        protected abstract double JoulesPerSquareMeterInOneJoulePerSquareMeter { get; }
-        protected abstract double JoulesPerSquareMillimeterInOneJoulePerSquareMeter { get; }
-        protected abstract double KilojoulesPerSquareMeterInOneJoulePerSquareMeter { get; }
-        protected abstract double KilowattHoursPerSquareMeterInOneJoulePerSquareMeter { get; }
-        protected abstract double MillijoulesPerSquareCentimeterInOneJoulePerSquareMeter { get; }
-        protected abstract double WattHoursPerSquareMeterInOneJoulePerSquareMeter { get; }
+        protected virtual double JoulesPerSquareCentimeterInOneJoulePerSquareMeter { get; }
+        protected virtual double JoulesPerSquareMeterInOneJoulePerSquareMeter { get; }
+        protected virtual double JoulesPerSquareMillimeterInOneJoulePerSquareMeter { get; }
+        protected virtual double KilojoulesPerSquareMeterInOneJoulePerSquareMeter { get; }
+        protected virtual double KilowattHoursPerSquareMeterInOneJoulePerSquareMeter { get; }
+        protected virtual double MillijoulesPerSquareCentimeterInOneJoulePerSquareMeter { get; }
+        protected virtual double WattHoursPerSquareMeterInOneJoulePerSquareMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double JoulesPerSquareCentimeterTolerance { get { return 1e-5; } }

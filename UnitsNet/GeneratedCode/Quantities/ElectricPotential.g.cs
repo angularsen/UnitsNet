@@ -17,19 +17,20 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Globalization;
-using System.Linq;
-using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
-
 #nullable enable
 
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using JetBrains.Annotations;
+    using UnitsNet.InternalHelpers;
+    using UnitsNet.Units;
+    
+
     /// <inheritdoc />
     /// <summary>
     ///     In classical electromagnetism, the electric potential (a scalar quantity denoted by Φ, ΦE or V and also called the electric field potential or the electrostatic potential) at a point is the amount of electric potential energy that a unitary point charge would have when located at that point.
@@ -56,6 +57,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Megavolt, BaseUnits.Undefined),
                     new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Microvolt, BaseUnits.Undefined),
                     new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Millivolt, BaseUnits.Undefined),
+                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Nanovolt, BaseUnits.Undefined),
                     new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Volt, new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricPotential);
@@ -193,6 +195,11 @@ namespace UnitsNet
         public double Millivolts => As(ElectricPotentialUnit.Millivolt);
 
         /// <summary>
+        ///     Get ElectricPotential in Nanovolts.
+        /// </summary>
+        public double Nanovolts => As(ElectricPotentialUnit.Nanovolt);
+
+        /// <summary>
         ///     Get ElectricPotential in Volts.
         /// </summary>
         public double Volts => As(ElectricPotentialUnit.Volt);
@@ -261,6 +268,15 @@ namespace UnitsNet
         {
             double value = (double) millivolts;
             return new ElectricPotential(value, ElectricPotentialUnit.Millivolt);
+        }
+        /// <summary>
+        ///     Get ElectricPotential from Nanovolts.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricPotential FromNanovolts(QuantityValue nanovolts)
+        {
+            double value = (double) nanovolts;
+            return new ElectricPotential(value, ElectricPotentialUnit.Nanovolt);
         }
         /// <summary>
         ///     Get ElectricPotential from Volts.
@@ -704,6 +720,7 @@ namespace UnitsNet
                 case ElectricPotentialUnit.Megavolt: return (_value) * 1e6d;
                 case ElectricPotentialUnit.Microvolt: return (_value) * 1e-6d;
                 case ElectricPotentialUnit.Millivolt: return (_value) * 1e-3d;
+                case ElectricPotentialUnit.Nanovolt: return _value * 1E-09;
                 case ElectricPotentialUnit.Volt: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -734,6 +751,7 @@ namespace UnitsNet
                 case ElectricPotentialUnit.Megavolt: return (baseUnitValue) / 1e6d;
                 case ElectricPotentialUnit.Microvolt: return (baseUnitValue) / 1e-6d;
                 case ElectricPotentialUnit.Millivolt: return (baseUnitValue) / 1e-3d;
+                case ElectricPotentialUnit.Nanovolt: return baseUnitValue / 1E-09;
                 case ElectricPotentialUnit.Volt: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");

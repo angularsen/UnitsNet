@@ -17,19 +17,20 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Globalization;
-using System.Linq;
-using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
-
 #nullable enable
 
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using JetBrains.Annotations;
+    using UnitsNet.InternalHelpers;
+    using UnitsNet.Units;
+    
+
     /// <inheritdoc />
     /// <summary>
     ///     Torque, moment or moment of force (see the terminology below), is the tendency of a force to rotate an object about an axis,[1] fulcrum, or pivot. Just as a force is a push or a pull, a torque can be thought of as a twist to an object. Mathematically, torque is defined as the cross product of the lever-arm distance and force, which tends to produce rotation. Loosely speaking, torque is a measure of the turning force on an object such as a bolt or a flywheel. For example, pushing or pulling the handle of a wrench connected to a nut or bolt produces a torque (turning force) that loosens or tightens the nut or bolt.
@@ -52,6 +53,7 @@ namespace UnitsNet
 
             Info = new QuantityInfo<TorqueUnit>("Torque",
                 new UnitInfo<TorqueUnit>[] {
+                    new UnitInfo<TorqueUnit>(TorqueUnit.Joule, BaseUnits.Undefined),
                     new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceCentimeter, BaseUnits.Undefined),
                     new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceMeter, BaseUnits.Undefined),
                     new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceMillimeter, BaseUnits.Undefined),
@@ -188,6 +190,11 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Properties
+
+        /// <summary>
+        ///     Get Torque in Joules.
+        /// </summary>
+        public double Joules => As(TorqueUnit.Joule);
 
         /// <summary>
         ///     Get Torque in KilogramForceCentimeters.
@@ -328,6 +335,15 @@ namespace UnitsNet
 
         #region Static Factory Methods
 
+        /// <summary>
+        ///     Get Torque from Joules.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Torque FromJoules(QuantityValue joules)
+        {
+            double value = (double) joules;
+            return new Torque(value, TorqueUnit.Joule);
+        }
         /// <summary>
         ///     Get Torque from KilogramForceCentimeters.
         /// </summary>
@@ -955,6 +971,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case TorqueUnit.Joule: return _value;
                 case TorqueUnit.KilogramForceCentimeter: return _value*0.0980665019960652;
                 case TorqueUnit.KilogramForceMeter: return _value*9.80665019960652;
                 case TorqueUnit.KilogramForceMillimeter: return _value*0.00980665019960652;
@@ -1002,6 +1019,7 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case TorqueUnit.Joule: return baseUnitValue;
                 case TorqueUnit.KilogramForceCentimeter: return baseUnitValue*10.1971619222242;
                 case TorqueUnit.KilogramForceMeter: return baseUnitValue*0.101971619222242;
                 case TorqueUnit.KilogramForceMillimeter: return baseUnitValue*101.971619222242;

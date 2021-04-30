@@ -28,6 +28,10 @@ namespace UnitsNet.NumberExtensions.NumberToEntropy
     /// </summary>
     public static class NumberToEntropyExtensions
     {
+        /// <inheritdoc cref="Entropy.FromBritishThermalUnitsPerDegreeRankin(UnitsNet.QuantityValue)" />
+        public static Entropy BritishThermalUnitsPerDegreeRankin<T>(this T value) =>
+            Entropy.FromBritishThermalUnitsPerDegreeRankin(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Entropy.FromCaloriesPerKelvin(UnitsNet.QuantityValue)" />
         public static Entropy CaloriesPerKelvin<T>(this T value) =>
             Entropy.FromCaloriesPerKelvin(Convert.ToDouble(value));

@@ -28,6 +28,10 @@ namespace UnitsNet.NumberExtensions.NumberToThermalConductivity
     /// </summary>
     public static class NumberToThermalConductivityExtensions
     {
+        /// <inheritdoc cref="ThermalConductivity.FromBritishThermalUnitsPerDayFootDegreeRankin(UnitsNet.QuantityValue)" />
+        public static ThermalConductivity BritishThermalUnitsPerDayFootDegreeRankin<T>(this T value) =>
+            ThermalConductivity.FromBritishThermalUnitsPerDayFootDegreeRankin(Convert.ToDouble(value));
+
         /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(UnitsNet.QuantityValue)" />
         public static ThermalConductivity BtusPerHourFootFahrenheit<T>(this T value) =>
             ThermalConductivity.FromBtusPerHourFootFahrenheit(Convert.ToDouble(value));

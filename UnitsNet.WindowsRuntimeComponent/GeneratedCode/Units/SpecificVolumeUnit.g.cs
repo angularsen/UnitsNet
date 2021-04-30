@@ -26,9 +26,13 @@ namespace UnitsNet.Units
     public enum SpecificVolumeUnit
     {
         Undefined = 0,
+        CubicCentimeterPerGram,
         CubicFootPerPound,
         CubicMeterPerKilogram,
+        CubicMeterPerTonne,
         MillicubicMeterPerKilogram,
+        StandardCubicFootPerLongTonne,
+        StandardCubicFootPerTonne,
     }
 
     #pragma warning restore 1591

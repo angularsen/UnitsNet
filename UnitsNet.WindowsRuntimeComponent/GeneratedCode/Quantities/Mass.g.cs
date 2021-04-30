@@ -226,6 +226,11 @@ namespace UnitsNet
         public double Megatonnes => As(MassUnit.Megatonne);
 
         /// <summary>
+        ///     Get Mass in MetricTons.
+        /// </summary>
+        public double MetricTons => As(MassUnit.MetricTon);
+
+        /// <summary>
         ///     Get Mass in Micrograms.
         /// </summary>
         public double Micrograms => As(MassUnit.Microgram);
@@ -279,6 +284,16 @@ namespace UnitsNet
         ///     Get Mass in Tonnes.
         /// </summary>
         public double Tonnes => As(MassUnit.Tonne);
+
+        /// <summary>
+        ///     Get Mass in UkTonnes.
+        /// </summary>
+        public double UkTonnes => As(MassUnit.UkTonne);
+
+        /// <summary>
+        ///     Get Mass in UsTonnes.
+        /// </summary>
+        public double UsTonnes => As(MassUnit.UsTonne);
 
         #endregion
 
@@ -451,6 +466,16 @@ namespace UnitsNet
             return new Mass(value, MassUnit.Megatonne);
         }
         /// <summary>
+        ///     Get Mass from MetricTons.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Mass FromMetricTons(double metrictons)
+        {
+            double value = (double) metrictons;
+            return new Mass(value, MassUnit.MetricTon);
+        }
+        /// <summary>
         ///     Get Mass from Micrograms.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -559,6 +584,26 @@ namespace UnitsNet
         {
             double value = (double) tonnes;
             return new Mass(value, MassUnit.Tonne);
+        }
+        /// <summary>
+        ///     Get Mass from UkTonnes.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Mass FromUkTonnes(double uktonnes)
+        {
+            double value = (double) uktonnes;
+            return new Mass(value, MassUnit.UkTonne);
+        }
+        /// <summary>
+        ///     Get Mass from UsTonnes.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Mass FromUsTonnes(double ustonnes)
+        {
+            double value = (double) ustonnes;
+            return new Mass(value, MassUnit.UsTonne);
         }
 
         /// <summary>
@@ -865,6 +910,7 @@ namespace UnitsNet
                 case MassUnit.LongTon: return _value*1.0160469088e3;
                 case MassUnit.Megapound: return (_value*0.45359237) * 1e6d;
                 case MassUnit.Megatonne: return (_value*1e3) * 1e6d;
+                case MassUnit.MetricTon: return _value * 1000;
                 case MassUnit.Microgram: return (_value/1e3) * 1e-6d;
                 case MassUnit.Milligram: return (_value/1e3) * 1e-3d;
                 case MassUnit.Nanogram: return (_value/1e3) * 1e-9d;
@@ -876,6 +922,8 @@ namespace UnitsNet
                 case MassUnit.SolarMass: return _value * 1.98947e30;
                 case MassUnit.Stone: return _value/0.1574731728702698;
                 case MassUnit.Tonne: return _value*1e3;
+                case MassUnit.UkTonne: return _value * 1016.0469088;
+                case MassUnit.UsTonne: return _value * 907.18474;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -904,6 +952,7 @@ namespace UnitsNet
                 case MassUnit.LongTon: return baseUnitValue/1.0160469088e3;
                 case MassUnit.Megapound: return (baseUnitValue/0.45359237) / 1e6d;
                 case MassUnit.Megatonne: return (baseUnitValue/1e3) / 1e6d;
+                case MassUnit.MetricTon: return baseUnitValue / 1000;
                 case MassUnit.Microgram: return (baseUnitValue*1e3) / 1e-6d;
                 case MassUnit.Milligram: return (baseUnitValue*1e3) / 1e-3d;
                 case MassUnit.Nanogram: return (baseUnitValue*1e3) / 1e-9d;
@@ -915,6 +964,8 @@ namespace UnitsNet
                 case MassUnit.SolarMass: return baseUnitValue / 1.98947e30;
                 case MassUnit.Stone: return baseUnitValue*0.1574731728702698;
                 case MassUnit.Tonne: return baseUnitValue/1e3;
+                case MassUnit.UkTonne: return baseUnitValue / 1016.0469088;
+                case MassUnit.UsTonne: return baseUnitValue / 907.18474;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

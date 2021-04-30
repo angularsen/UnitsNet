@@ -37,7 +37,7 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class TurbidityTestsBase : QuantityTestsBase
     {
-        protected abstract double NTUInOneNTU { get; }
+        protected virtual double NTUInOneNTU { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double NTUTolerance { get { return 1e-5; } }

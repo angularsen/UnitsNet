@@ -37,9 +37,9 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ElectricConductivityTestsBase : QuantityTestsBase
     {
-        protected abstract double SiemensPerFootInOneSiemensPerMeter { get; }
-        protected abstract double SiemensPerInchInOneSiemensPerMeter { get; }
-        protected abstract double SiemensPerMeterInOneSiemensPerMeter { get; }
+        protected virtual double SiemensPerFootInOneSiemensPerMeter { get; }
+        protected virtual double SiemensPerInchInOneSiemensPerMeter { get; }
+        protected virtual double SiemensPerMeterInOneSiemensPerMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double SiemensPerFootTolerance { get { return 1e-5; } }

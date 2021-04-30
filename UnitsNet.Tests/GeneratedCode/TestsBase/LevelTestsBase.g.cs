@@ -37,8 +37,8 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class LevelTestsBase : QuantityTestsBase
     {
-        protected abstract double DecibelsInOneDecibel { get; }
-        protected abstract double NepersInOneDecibel { get; }
+        protected virtual double DecibelsInOneDecibel { get; }
+        protected virtual double NepersInOneDecibel { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double DecibelsTolerance { get { return 1e-5; } }

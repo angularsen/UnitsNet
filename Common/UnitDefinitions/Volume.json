@@ -11,35 +11,54 @@
       "PluralName": "Liters",
       "FromUnitToBaseFunc": "x/1e3",
       "FromBaseToUnitFunc": "x*1e3",
-      "Prefixes": [ "Micro", "Milli", "Centi", "Deci", "Hecto", "Kilo", "Mega" ],
+      "Prefixes": [
+        "Micro",
+        "Milli",
+        "Centi",
+        "Deci",
+        "Hecto",
+        "Kilo",
+        "Mega"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "l" ]
+          "Abbreviations": [
+            "l"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "л" ]
+          "Abbreviations": [
+            "л"
+          ]
         }
       ]
     },
     {
       "SingularName": "CubicMeter",
       "PluralName": "CubicMeters",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Hecto", "Kilo" ],
       "BaseUnits": {
         "L": "Meter"
       },
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [
+        "Hecto",
+        "Kilo"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "m³" ]
+          "Abbreviations": [
+            "m³"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "м³" ]
+          "Abbreviations": [
+            "м³"
+          ]
         }
       ]
     },
@@ -51,11 +70,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "km³" ]
+          "Abbreviations": [
+            "km³"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "км³" ]
+          "Abbreviations": [
+            "км³"
+          ]
         }
       ]
     },
@@ -70,15 +93,19 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "hm³" ]
+          "Abbreviations": [
+            "hm³"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "гм³" ]
+          "Abbreviations": [
+            "гм³"
+          ]
         }
       ]
     },
-	  {
+    {
       "SingularName": "CubicDecimeter",
       "PluralName": "CubicDecimeters",
       "FromUnitToBaseFunc": "x/1e3",
@@ -86,11 +113,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "dm³" ]
+          "Abbreviations": [
+            "dm³"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "дм³" ]
+          "Abbreviations": [
+            "дм³"
+          ]
         }
       ]
     },
@@ -102,11 +133,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "cm³" ]
+          "Abbreviations": [
+            "cm³"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "см³" ]
+          "Abbreviations": [
+            "см³"
+          ]
         }
       ]
     },
@@ -118,11 +153,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "mm³" ]
+          "Abbreviations": [
+            "mm³"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "мм³" ]
+          "Abbreviations": [
+            "мм³"
+          ]
         }
       ]
     },
@@ -134,11 +173,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "µm³" ]
+          "Abbreviations": [
+            "µm³"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "мкм³" ]
+          "Abbreviations": [
+            "мкм³"
+          ]
         }
       ]
     },
@@ -150,11 +193,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "mi³" ]
+          "Abbreviations": [
+            "mi³"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "миля³" ]
+          "Abbreviations": [
+            "миля³"
+          ]
         }
       ]
     },
@@ -166,11 +213,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "yd³" ]
+          "Abbreviations": [
+            "yd³"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "ярд³" ]
+          "Abbreviations": [
+            "ярд³"
+          ]
         }
       ]
     },
@@ -179,15 +230,23 @@
       "PluralName": "CubicFeet",
       "FromUnitToBaseFunc": "x*0.0283168",
       "FromBaseToUnitFunc": "x/0.0283168",
-      "Prefixes": [ "Hecto", "Kilo", "Mega" ],
+      "Prefixes": [
+        "Hecto",
+        "Kilo",
+        "Mega"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ft³" ]
+          "Abbreviations": [
+            "ft³"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "фут³" ]
+          "Abbreviations": [
+            "фут³"
+          ]
         }
       ]
     },
@@ -199,11 +258,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "in³" ]
+          "Abbreviations": [
+            "in³"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "дюйм³" ]
+          "Abbreviations": [
+            "дюйм³"
+          ]
         }
       ]
     },
@@ -212,15 +275,22 @@
       "PluralName": "ImperialGallons",
       "FromUnitToBaseFunc": "x*0.00454609000000181429905810072407",
       "FromBaseToUnitFunc": "x/0.00454609000000181429905810072407",
-      "Prefixes": [ "Kilo", "Mega" ],
+      "Prefixes": [
+        "Kilo",
+        "Mega"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "gal (imp.)" ]
+          "Abbreviations": [
+            "gal (imp.)"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Английский галлон" ]
+          "Abbreviations": [
+            "Английский галлон"
+          ]
         }
       ]
     },
@@ -232,11 +302,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "oz (imp.)" ]
+          "Abbreviations": [
+            "oz (imp.)"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Английская унция" ]
+          "Abbreviations": [
+            "Английская унция"
+          ]
         }
       ]
     },
@@ -245,15 +319,25 @@
       "PluralName": "UsGallons",
       "FromUnitToBaseFunc": "x*0.00378541",
       "FromBaseToUnitFunc": "x/0.00378541",
-      "Prefixes": [ "Deca", "Deci", "Hecto", "Kilo", "Mega" ],
+      "Prefixes": [
+        "Deca",
+        "Deci",
+        "Hecto",
+        "Kilo",
+        "Mega"
+      ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "gal (U.S.)" ]
+          "Abbreviations": [
+            "gal (U.S.)"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Американский галлон" ]
+          "Abbreviations": [
+            "Американский галлон"
+          ]
         }
       ]
     },
@@ -265,11 +349,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "oz (U.S.)" ]
+          "Abbreviations": [
+            "oz (U.S.)"
+          ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Американская унция" ]
+          "Abbreviations": [
+            "Американская унция"
+          ]
         }
       ]
     },
@@ -341,7 +429,17 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "tsp", "t", "ts", "tspn", "t.", "ts.", "tsp.", "tspn.", "teaspoon" ]
+          "Abbreviations": [
+            "tsp",
+            "t",
+            "ts",
+            "tspn",
+            "t.",
+            "ts.",
+            "tsp.",
+            "tspn.",
+            "teaspoon"
+          ]
         },
         {
           "Culture": "ru-RU",
@@ -417,7 +515,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "bbl" ]
+          "Abbreviations": [
+            "bbl"
+          ]
         }
       ]
     },
@@ -429,7 +529,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "bl (U.S.)" ]
+          "Abbreviations": [
+            "bl (U.S.)"
+          ]
         }
       ]
     },
@@ -441,7 +543,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "bl (imp.)" ]
+          "Abbreviations": [
+            "bl (imp.)"
+          ]
         }
       ]
     },
@@ -453,7 +557,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "qt (U.S.)" ]
+          "Abbreviations": [
+            "qt (U.S.)"
+          ]
         }
       ]
     },
@@ -465,7 +571,9 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "pt (U.S.)" ]
+          "Abbreviations": [
+            "pt (U.S.)"
+          ]
         }
       ]
     },
@@ -477,7 +585,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ac-ft", "acre-foot", "acre-feet" ]
+          "Abbreviations": [
+            "ac-ft",
+            "acre-foot",
+            "acre-feet"
+          ]
         }
       ]
     },
@@ -492,7 +604,12 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "pt (imp.)", "UK pt", "pt", "p" ]
+          "Abbreviations": [
+            "pt (imp.)",
+            "UK pt",
+            "pt",
+            "p"
+          ]
         }
       ]
     },
@@ -504,11 +621,347 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "bf", "board foot", "board feet" ]
+          "Abbreviations": [
+            "bf",
+            "board foot",
+            "board feet"
+          ]
         },
         {
           "Culture": "fr-CA",
-          "Abbreviations": [ "pmp", "pied-planche", "pied de planche" ]
+          "Abbreviations": [
+            "pmp",
+            "pied-planche",
+            "pied de planche"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Barrel",
+      "PluralName": "Barrels",
+      "FromUnitToBaseFunc": "x * 0.158987294928",
+      "FromBaseToUnitFunc": "x / 0.158987294928",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "bbl"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BillionCubicFeet",
+      "PluralName": "BillionCubicFeets",
+      "FromUnitToBaseFunc": "x * 28316846.592",
+      "FromBaseToUnitFunc": "x / 28316846.592",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "BCF",
+            "Bft3",
+            "Bcf"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BillionCubicMeter",
+      "PluralName": "BillionCubicMeters",
+      "FromUnitToBaseFunc": "x * 1000000000",
+      "FromBaseToUnitFunc": "x / 1000000000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "Gm3",
+            "G(m3)"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "UkGallon",
+      "PluralName": "UkGallons",
+      "FromUnitToBaseFunc": "x * 0.00454609",
+      "FromBaseToUnitFunc": "x / 0.00454609",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "UKgal",
+            "galUK"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillionCubicMeter",
+      "PluralName": "MillionCubicMeters",
+      "FromUnitToBaseFunc": "x * 1000000",
+      "FromBaseToUnitFunc": "x / 1000000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "Mm3",
+            "M(m3)"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "ThousandBarrels",
+      "PluralName": "ThousandBarrels",
+      "FromUnitToBaseFunc": "x * 158.987294928",
+      "FromBaseToUnitFunc": "x / 158.987294928",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "Mb",
+            "Mbbl"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "ThousandCubicFeet",
+      "PluralName": "ThousandCubicFeets",
+      "FromUnitToBaseFunc": "x * 28.316846592",
+      "FromBaseToUnitFunc": "x / 28.316846592",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "Mft3",
+            "Mcf"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "ThousandUkGallons",
+      "PluralName": "ThousandUkGallons",
+      "FromUnitToBaseFunc": "x * 4.54609",
+      "FromBaseToUnitFunc": "x / 4.54609",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "MUKgal",
+            "MgalUK"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "ThousandUsGallons",
+      "PluralName": "ThousandUsGallons",
+      "FromUnitToBaseFunc": "x * 3.785411784",
+      "FromBaseToUnitFunc": "x / 3.785411784",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "MUSgal",
+            "MgalUS"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillionBarrels",
+      "PluralName": "MillionBarrels",
+      "FromUnitToBaseFunc": "x * 158987.294928",
+      "FromBaseToUnitFunc": "x / 158987.294928",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "MMb",
+            "MMbbl"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillionCubicFeet",
+      "PluralName": "MillionCubicFeets",
+      "FromUnitToBaseFunc": "x * 28316.846592",
+      "FromBaseToUnitFunc": "x / 28316.846592",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "MMft3",
+            "MMcf"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillionUkGallons",
+      "PluralName": "MillionUkGallons",
+      "FromUnitToBaseFunc": "x * 4546.09",
+      "FromBaseToUnitFunc": "x / 4546.09",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "MMUKgal",
+            "MMgalUK"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillionUsGallons",
+      "PluralName": "MillionUsGallons",
+      "FromUnitToBaseFunc": "x * 3785.411784",
+      "FromBaseToUnitFunc": "x / 3785.411784",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "MMUSgal",
+            "MMgalUS"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillionReservoirBarrels",
+      "PluralName": "MillionReservoirBarrels",
+      "FromUnitToBaseFunc": "x * 158987.294928",
+      "FromBaseToUnitFunc": "x / 158987.294928",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "MMrbbl",
+            "MMrb"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillionStandardCubicFeet",
+      "PluralName": "MillionStandardCubicFeets",
+      "FromUnitToBaseFunc": "x * 28316.846592",
+      "FromBaseToUnitFunc": "x / 28316.846592",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "MMscf"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "ThousandReservoirBarrels",
+      "PluralName": "ThousandReservoirBarrels",
+      "FromUnitToBaseFunc": "x * 158.987294928",
+      "FromBaseToUnitFunc": "x / 158.987294928",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "Mrbbl",
+            "Mrb"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "ThousandStandardCubicFeet",
+      "PluralName": "ThousandStandardCubicFeets",
+      "FromUnitToBaseFunc": "x * 28.316846592",
+      "FromBaseToUnitFunc": "x / 28.316846592",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "Mscf"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "ReservoirBarrel",
+      "PluralName": "ReservoirBarrels",
+      "FromUnitToBaseFunc": "x * 0.158987294928",
+      "FromBaseToUnitFunc": "x / 0.158987294928",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "rbbl",
+            "rb"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "ReservoirCubicFoot",
+      "PluralName": "ReservoirCubicFeet",
+      "FromUnitToBaseFunc": "x * 0.028316846592",
+      "FromBaseToUnitFunc": "x / 0.028316846592",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "rft3",
+            "rcf"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "StandardCubicFoot",
+      "PluralName": "StandardCubicFeet",
+      "FromUnitToBaseFunc": "x * 0.028316846592",
+      "FromBaseToUnitFunc": "x / 0.028316846592",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "scf"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "StockTankBarrel",
+      "PluralName": "StockTankBarrels",
+      "FromUnitToBaseFunc": "x * 0.158987294928",
+      "FromBaseToUnitFunc": "x / 0.158987294928",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "stbbl",
+            "stb"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "TrillionCubicFoot",
+      "PluralName": "TrillionCubicFeet",
+      "FromUnitToBaseFunc": "x * 28316846592",
+      "FromBaseToUnitFunc": "x / 28316846592",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "TCF",
+            "Tft3",
+            "Tcf"
+          ]
         }
       ]
     }

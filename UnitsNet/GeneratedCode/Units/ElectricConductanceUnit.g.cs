@@ -26,7 +26,9 @@ namespace UnitsNet.Units
     public enum ElectricConductanceUnit
     {
         Undefined = 0,
+        Mho,
         Microsiemens,
+        Millimho,
         Millisiemens,
         Siemens,
     }
