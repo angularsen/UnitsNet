@@ -33,6 +33,7 @@ namespace CodeGen.Generators.NanoFrameworkGen
     <RootNamespace>UnitsNet</RootNamespace>
     <AssemblyName>UnitsNet.{_quantity.Name}</AssemblyName>
     <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
+    <DocumentationFile>bin\$(Configuration)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
   <Import Project=""$(NanoFrameworkProjectSystemPath)NFProjectSystem.props"" Condition=""Exists('$(NanoFrameworkProjectSystemPath)NFProjectSystem.props')"" />
   <ItemGroup>
