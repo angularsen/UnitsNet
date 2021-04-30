@@ -3,20 +3,20 @@
   <metadata>
     <id>UnitsNet.nanoFramework.Temperature</id>
     <version>4.89.0</version>
-    <title>Units.NET - Temperature</title>
-    <authors>Andreas Gullberg Larsen</authors>
-    <owners>Andreas Gullberg Larsen</owners>
+    <title>Units.NET Temperature - nanoFramework</title>
+    <authors>Andreas Gullberg Larsen, nanoFramework project contributors</authors>
+    <owners>UnitsNet</owners>
     <license type="expression">MIT</license>
     <projectUrl>https://github.com/angularsen/UnitsNet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Temperature unit for .NET nanoFramework. It is light-weight and thoroughly tested.&#10; 
+    <description>Adds temperature units for Units.NET on .NET nanoFramework.&#10; 
 For C#/VB Universal Windows code (UWP), use UnitsNet instead. Get all the common units of measurement and the conversions between them. </description>
     <iconUrl>https://raw.githubusercontent.com/angularsen/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</iconUrl>
     <releaseNotes>
     </releaseNotes>
     <copyright>Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).</copyright>
     <language>en-US</language>
-    <tags>unit units measurement si metric imperial abbreviation abbreviations convert conversion parse c# .net immutable uwp uap winrt win10 windows runtime component</tags>
+    <tags>nanoframework unit units measurement si metric imperial abbreviation abbreviations convert conversion parse c# .net immutable uwp uap winrt win10 windows runtime component</tags>
     <dependencies>
       <dependency id="nanoFramework.CoreLibrary" version="1.10.3-preview.7" />
     </dependencies>
