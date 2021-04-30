@@ -10,6 +10,8 @@ if ($msbuild) {
   $msbuild = join-path $msbuild 'MSBuild\Current\Bin\MSBuild.exe'
 }
 
+import-module $PSScriptRoot\build-pack-nano-nugets.psm1
+
 function Remove-ArtifactsDir {
   if (Test-Path $artifactsDir) {
     write-host -foreground blue "Clean up...`n"
@@ -132,10 +134,10 @@ function Start-PackNugets {
   }
 
   if (-not $IncludeNanoFramework) {
-    write-host -foreground yellow "Skipping NanoFramework nuget pack."
+    write-host -foreground yellow "Skipping nanoFramework nuget pack."
   } else {
-    write-host -foreground yellow "NanoFramework project not yet supported by dotnet CLI, using nuget.exe instead"
-    & $nuget pack "$root\UnitsNet.NanoFramework\UnitsNet.NanoFramework.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
+    write-host -foreground yellow "nanoFramework project not yet supported by dotnet CLI, using nuget.exe instead"
+    Build-NanoNugets
   }
 
 
