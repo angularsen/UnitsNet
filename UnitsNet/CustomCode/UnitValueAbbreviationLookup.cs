@@ -1,4 +1,4 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -32,7 +32,7 @@ namespace UnitsNet
         internal List<string> GetAbbreviationsForUnit(int unit)
         {
             if(!unitToAbbreviationMap.TryGetValue(unit, out var abbreviations))
-                unitToAbbreviationMap[unit] = abbreviations = new List<string>();
+                return new List<string>(0);
 
             return abbreviations.Distinct().ToList();
         }
@@ -44,7 +44,7 @@ namespace UnitsNet
             var map = ignoreCase ? lowerCaseAbbreviationToUnitMap : abbreviationToUnitMap;
 
             if(!map.TryGetValue(key, out List<int> units))
-                map[key] = units = new List<int>();
+                return new List<int>(0);
 
             return units.Distinct().ToList();
         }
