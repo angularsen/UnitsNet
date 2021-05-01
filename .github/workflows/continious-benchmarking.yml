@@ -16,6 +16,7 @@ env:
   
 jobs:
   benchmark:
+    if: github.repository_owner == 'angularsen' # (by default) the workflow doesn't need to run in a fork
     runs-on: windows-latest # required by the older frameworks
     strategy:
       # max-parallel: 1 # is it better to avoid running in parallel?
