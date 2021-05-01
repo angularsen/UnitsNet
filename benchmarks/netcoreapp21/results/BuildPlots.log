@@ -1,29 +1,29 @@
     where                                   html  
     vars_select_helpers                     html  
     vars_select                             html  
-Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpeYqlIX/R.INSTALL13087d3b67d2/tidyselect/man/vars_pull.Rd:23: file link 'quasiquotation' in package 'rlang' does not exist and so has been treated as a topic
+Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpItOTv0/R.INSTALL447723462d/tidyselect/man/vars_pull.Rd:23: file link 'quasiquotation' in package 'rlang' does not exist and so has been treated as a topic
     vars_pull                               html  
     tidyselect-package                      html  
     starts_with                             html  
-Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpeYqlIX/R.INSTALL13087d3b67d2/tidyselect/man/reexports.Rd:17: file link 'quos' in package 'rlang' does not exist and so has been treated as a topic
-Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpeYqlIX/R.INSTALL13087d3b67d2/tidyselect/man/reexports.Rd:17: file link 'quo_name' in package 'rlang' does not exist and so has been treated as a topic
-Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpeYqlIX/R.INSTALL13087d3b67d2/tidyselect/man/reexports.Rd:17: file link 'quo' in package 'rlang' does not exist and so has been treated as a topic
-Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpeYqlIX/R.INSTALL13087d3b67d2/tidyselect/man/reexports.Rd:17: file link 'enquo' in package 'rlang' does not exist and so has been treated as a topic
+Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpItOTv0/R.INSTALL447723462d/tidyselect/man/reexports.Rd:17: file link 'quos' in package 'rlang' does not exist and so has been treated as a topic
+Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpItOTv0/R.INSTALL447723462d/tidyselect/man/reexports.Rd:17: file link 'quo_name' in package 'rlang' does not exist and so has been treated as a topic
+Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpItOTv0/R.INSTALL447723462d/tidyselect/man/reexports.Rd:17: file link 'quo' in package 'rlang' does not exist and so has been treated as a topic
+Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpItOTv0/R.INSTALL447723462d/tidyselect/man/reexports.Rd:17: file link 'enquo' in package 'rlang' does not exist and so has been treated as a topic
     reexports                               html  
     poke_vars                               html  
     peek_vars                               html  
     one_of                                  html  
-Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpeYqlIX/R.INSTALL13087d3b67d2/tidyselect/man/language.Rd:41: file link 'any_of' in package 'tidyselect' does not exist and so has been treated as a topic
-Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpeYqlIX/R.INSTALL13087d3b67d2/tidyselect/man/language.Rd:33: file link 'num_range' in package 'tidyselect' does not exist and so has been treated as a topic
-Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpeYqlIX/R.INSTALL13087d3b67d2/tidyselect/man/language.Rd:32: file link 'matches' in package 'tidyselect' does not exist and so has been treated as a topic
-Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpeYqlIX/R.INSTALL13087d3b67d2/tidyselect/man/language.Rd:31: file link 'contains' in package 'tidyselect' does not exist and so has been treated as a topic
-Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpeYqlIX/R.INSTALL13087d3b67d2/tidyselect/man/language.Rd:30: file link 'ends_with' in package 'tidyselect' does not exist and so has been treated as a topic
-Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpeYqlIX/R.INSTALL13087d3b67d2/tidyselect/man/language.Rd:24: file link 'last_col' in package 'tidyselect' does not exist and so has been treated as a topic
+Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpItOTv0/R.INSTALL447723462d/tidyselect/man/language.Rd:41: file link 'any_of' in package 'tidyselect' does not exist and so has been treated as a topic
+Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpItOTv0/R.INSTALL447723462d/tidyselect/man/language.Rd:33: file link 'num_range' in package 'tidyselect' does not exist and so has been treated as a topic
+Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpItOTv0/R.INSTALL447723462d/tidyselect/man/language.Rd:32: file link 'matches' in package 'tidyselect' does not exist and so has been treated as a topic
+Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpItOTv0/R.INSTALL447723462d/tidyselect/man/language.Rd:31: file link 'contains' in package 'tidyselect' does not exist and so has been treated as a topic
+Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpItOTv0/R.INSTALL447723462d/tidyselect/man/language.Rd:30: file link 'ends_with' in package 'tidyselect' does not exist and so has been treated as a topic
+Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpItOTv0/R.INSTALL447723462d/tidyselect/man/language.Rd:24: file link 'last_col' in package 'tidyselect' does not exist and so has been treated as a topic
     language                                html  
     faq-selection-context                   html  
     faq-external-vector                     html  
     everything                              html  
-Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpeYqlIX/R.INSTALL13087d3b67d2/tidyselect/man/eval_select.Rd:38: file link 'enquo' in package 'rlang' does not exist and so has been treated as a topic
+Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpItOTv0/R.INSTALL447723462d/tidyselect/man/eval_select.Rd:38: file link 'enquo' in package 'rlang' does not exist and so has been treated as a topic
     eval_select                             html  
     all_of                                  html  
   converting help for package 'tidyselect'
@@ -244,7 +244,207 @@ C:/rtools40/mingw64/bin/gcc -shared -s -static-libgcc -o ellipsis.dll tmp.def do
 C:/rtools40/mingw32/bin/gcc -shared -s -static-libgcc -o ellipsis.dll tmp.def dots.o init.o -LC:/PROGRA~1/R/R-40~1.5/bin/i386 -lR
 "C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c init.c -o init.o
 "C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c dots.c -o dots.o
-	C:\Users\runneradmin\AppData\Local\Temp\Rtmpi8b7Rg\downloaded_packages
+    zap_srcref                              html  
+    zap                                     html  
+    wref_key                                html  
+    with_restarts                           html  
+    with_handlers                           html  
+    with_env                                html  
+    with_abort                              html  
+    vector-old-ctors                        html  
+    vector-construction                     html  
+    vector-coercion                         html  
+    vec_poke_n                              html  
+    type_of                                 html  
+    type-predicates                         html  
+    trace_back                              html  
+    tidyeval-data                           html  
+    sym                                     html  
+    switch_type                             html  
+    string                                  html  
+    stack_trim                              html  
+    stack                                   html  
+    splice                                  html  
+    set_names                               html  
+    set_expr                                html  
+    set_attrs                               html  
+    seq2                                    html  
+    search_envs                             html  
+    scoped_interactive                      html  
+    scoped_env                              html  
+    scalar-type-predicates                  html  
+    rst_list                                html  
+    rst_abort                               html  
+    rlang_backtrace_on_error                html  
+    return_from                             html  
+    restarting                              html  
+    rep_along                               html  
+    raw_deparse_str                         html  
+    quosure                                 html  
+    quo_squash                              html  
+    quo_label                               html  
+    quo_expr                                html  
+    prim_name                               html  
+    prepend                                 html  
+    parse_quosure                           html  
+    parse_expr                              html  
+    pairlist2                               html  
+    overscope_eval_next                     html  
+    op-null-default                         html  
+    op-na-default                           html  
+    op-get-attr                             html  
+    op-definition                           html  
+    nse-force                               html  
+    nse-defuse                              html  
+    ns_env                                  html  
+    new_weakref                             html  
+    new_quosures                            html  
+    new_node                                html  
+    new_function                            html  
+    new_formula                             html  
+    new_call                                html  
+    new-vector                              html  
+    new-vector-along-retired                html  
+    names2                                  html  
+    mut_node_car                            html  
+    missing_arg                             html  
+    missing                                 html  
+    local_options                           html  
+    local_bindings                          html  
+    list2                                   html  
+    lifecycle                               html  
+    last_error                              html  
+    lang_modify                             html  
+    lang_head                               html  
+    lang                                    html  
+    is_weakref                              html  
+    is_true                                 html  
+    is_symbol                               html  
+    is_stack                                html  
+    is_reference                            html  
+    is_pairlist                             html  
+    is_namespace                            html  
+    is_named                                html  
+    is_lang                                 html  
+    is_interactive                          html  
+    is_integerish                           html  
+    is_installed                            html  
+    is_function                             html  
+    is_frame                                html  
+    is_formula                              html  
+    is_expression                           html  
+    is_expr                                 html  
+    is_environment                          html  
+    is_env                                  html  
+    is_empty                                html  
+    is_copyable                             html  
+    is_condition                            html  
+    is_callable                             html  
+    is_call                                 html  
+    invoke                                  html  
+    inject                                  html  
+    inherits_any                            html  
+    hash                                    html  
+    has_name                                html  
+    has_length                              html  
+    get_env                                 html  
+    friendly_type                           html  
+    frame_position                          html  
+    format_error_bullets                    html  
+    fn_fmls                                 html  
+    fn_env                                  html  
+    fn_body                                 html  
+    flatten                                 html  
+    faq-options                             html  
+    f_text                                  html  
+    f_rhs                                   html  
+    exprs_auto_name                         html  
+    expr_print                              html  
+    expr_label                              html  
+    expr_interp                             html  
+    exiting                                 html  
+    exec                                    html  
+    eval_tidy                               html  
+    eval_bare                               html  
+    env_unlock                              html  
+    env_unbind                              html  
+    env_print                               html  
+    env_poke                                html  
+    env_parent                              html  
+    env_names                               html  
+    env_name                                html  
+    env_lock                                html  
+    env_inherits                            html  
+    env_has                                 html  
+    env_get                                 html  
+    env_depth                               html  
+    env_clone                               html  
+    env_bury                                html  
+    env_browse                              html  
+    env_binding_lock                        html  
+    env_binding_are_active                  html  
+    env_bind_exprs                          html  
+    env_bind                                html  
+    env                                     html  
+    entrace                                 html  
+    enquo0                                  html  
+    empty_env                               html  
+    dyn-dots                                html  
+    duplicate                               html  
+    dots_values                             html  
+    dots_n                                  html  
+    dots_definitions                        html  
+    done                                    html  
+    cnd_type                                html  
+    cnd_signal                              html  
+    cnd_muffle                              html  
+    cnd_message                             html  
+    cnd                                     html  
+    chr_unserialise_unicode                 html  
+    catch_cnd                               html  
+    caller_frame                            html  
+    caller_fn                               html  
+    caller_env                              html  
+    call_standardise                        html  
+    call_parse_type                         html  
+    call_name                               html  
+    call_modify                             html  
+    call_inspect                            html  
+    call_fn                                 html  
+    call_args                               html  
+    call2                                   html  
+    box                                     html  
+    bare-type-predicates                    html  
+    as_utf8_character                       html  
+    as_string                               html  
+    as_quosure                              html  
+    as_pairlist                             html  
+    as_overscope                            html  
+    as_name                                 html  
+    as_label                                html  
+    as_function                             html  
+    as_environment                          html  
+    as_env                                  html  
+    as_data_mask                            html  
+    as_bytes                                html  
+    as_box                                  html  
+    arg_match                               html  
+    are_na                                  html  
+    abort                                   html  
+  converting help for package 'rlang'
+C:/rtools40/mingw64/bin/gcc -shared -s -static-libgcc -o rlang.dll tmp.def capture.o export.o internal.o lib.o version.o -LC:/PROGRA~1/R/R-40~1.5/bin/x64 -lR
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -I./lib/         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c version.c -o version.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -I./lib/         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c lib.c -o lib.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -I./lib/         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c internal.c -o internal.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -I./lib/         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c export.c -o export.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -I./lib/         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c capture.c -o capture.o
+C:/rtools40/mingw32/bin/gcc -shared -s -static-libgcc -o rlang.dll tmp.def capture.o export.o internal.o lib.o version.o -LC:/PROGRA~1/R/R-40~1.5/bin/i386 -lR
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -I./lib/         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c version.c -o version.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -I./lib/         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c lib.c -o lib.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -I./lib/         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c internal.c -o internal.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -I./lib/         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c export.c -o export.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -I./lib/         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c capture.c -o capture.o
+	C:\Users\runneradmin\AppData\Local\Temp\RtmpERxPkk\downloaded_packages
 The downloaded binary packages are in
 package 'R.devices' successfully unpacked and MD5 sums checked
 package 'Rcpp' successfully unpacked and MD5 sums checked
@@ -267,7 +467,6 @@ package 'generics' successfully unpacked and MD5 sums checked
 package 'withr' successfully unpacked and MD5 sums checked
 package 'tibble' successfully unpacked and MD5 sums checked
 package 'scales' successfully unpacked and MD5 sums checked
-package 'rlang' successfully unpacked and MD5 sums checked
 package 'isoband' successfully unpacked and MD5 sums checked
 package 'gtable' successfully unpacked and MD5 sums checked
 package 'glue' successfully unpacked and MD5 sums checked
@@ -287,11 +486,12 @@ package 'colorspace' successfully unpacked and MD5 sums checked
 vctrs       0.3.7  0.3.8              TRUE
 tidyselect  1.1.0  1.1.1              TRUE
 ellipsis    0.3.1  0.3.2              TRUE
+rlang      0.4.10 0.4.11              TRUE
            binary source needs_compilation
   There are binary versions available but the source versions are later:
 Execution halted
 Error in library(ggplot2) : there is no package called 'ggplot2'
-	'C:\Users\runneradmin\AppData\Local\Temp\Rtmpi8b7Rg\downloaded_packages'
+	'C:\Users\runneradmin\AppData\Local\Temp\RtmpERxPkk\downloaded_packages'
 The downloaded source packages are in
 * DONE (tidyselect)
 ** testing if installed package keeps a record of temporary installation path
@@ -368,6 +568,55 @@ installing to C:/Users/runneradmin/R/win-library/4.0/00LOCK-ellipsis/00new/ellip
 please set environment variable 'TZ'
   unable to identify current timezone 'C':
 Warning in strptime(xx, f, tz = tz) :
+* DONE (rlang)
+** testing if installed package keeps a record of temporary installation path
+*** arch - x64
+*** arch - i386
+** testing if installed package can be loaded from final location
+*** arch - x64
+*** arch - i386
+** testing if installed package can be loaded from temporary location
+** building package indices
+*** copying figures
+    finding HTML links ... done
+*** installing help indices
+** help
+** byte-compile and prepare package for lazy loading
+** inst
+** R
+installing to C:/Users/runneradmin/R/win-library/4.0/00LOCK-rlang/00new/rlang/libs/x64
+         ^~~
+   sexp* top;
+internal/eval-tidy.c:417:9: note: 'top' was declared here
+In file included from internal.c:8:
+          ^~~~~~~~~~~
+   return ENCLOS(env);
+./lib/env.h:33:10: warning: 'top' may be used uninitialized in this function [-Wmaybe-uninitialized]
+internal/eval-tidy.c: In function 'rlang_tilde_eval':
+                 from internal.c:1:
+                 from internal/arg.c:1,
+In file included from ./lib/rlang.h:83,
+*** arch - x64
+installing to C:/Users/runneradmin/R/win-library/4.0/00LOCK-rlang/00new/rlang/libs/i386
+         ^~~
+   sexp* top;
+internal/eval-tidy.c:417:9: note: 'top' was declared here
+In file included from internal.c:8:
+          ^~~~~~~~~~~
+   return ENCLOS(env);
+./lib/env.h:33:10: warning: 'top' may be used uninitialized in this function [-Wmaybe-uninitialized]
+internal/eval-tidy.c: In function 'rlang_tilde_eval':
+                 from internal.c:1:
+                 from internal/arg.c:1,
+In file included from ./lib/rlang.h:83,
+*** arch - i386
+** libs
+** using staged installation
+** package 'rlang' successfully unpacked and MD5 sums checked
+* installing *source* package 'rlang' ...
+please set environment variable 'TZ'
+  unable to identify current timezone 'C':
+Warning in strptime(xx, f, tz = tz) :
 downloaded 764 KB
 ==================================================
 Content type 'application/x-gzip' length 782608 bytes (764 KB)
@@ -380,7 +629,11 @@ downloaded 8066 bytes
 ==================================================
 Content type 'application/x-gzip' length 8066 bytes
 trying URL 'https://cran.rstudio.com/src/contrib/ellipsis_0.3.2.tar.gz'
-installing the source packages 'ellipsis', 'tidyselect', 'vctrs'
+downloaded 841 KB
+==================================================
+Content type 'application/x-gzip' length 861727 bytes (841 KB)
+trying URL 'https://cran.rstudio.com/src/contrib/rlang_0.4.11.tar.gz'
+installing the source packages 'rlang', 'ellipsis', 'tidyselect', 'vctrs'
 downloaded 370 KB
 ==================================================
 Content type 'application/zip' length 379733 bytes (370 KB)
@@ -465,10 +718,6 @@ downloaded 545 KB
 ==================================================
 Content type 'application/zip' length 558082 bytes (545 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/scales_1.1.1.zip'
-downloaded 1.1 MB
-==================================================
-Content type 'application/zip' length 1199837 bytes (1.1 MB)
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/rlang_0.4.10.zip'
 downloaded 2.9 MB
 ==================================================
 Content type 'application/zip' length 3062195 bytes (2.9 MB)
