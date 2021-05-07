@@ -12,7 +12,7 @@
     some large, extra Visual Studio features to be installed.
 .EXAMPLE
   powershell ./build.ps1
-  powershell ./build.ps1 -skipUWP
+  powershell ./build.ps1 -IncludeWindowsRuntimeComponent -IncludeNanoFramework
 
 .NOTES
     Author: Andreas Gullberg Larsen
@@ -20,7 +20,8 @@
     #>
 [CmdletBinding()]
 Param(
-    [switch] $IncludeWindowsRuntimeComponent
+    [switch] $IncludeWindowsRuntimeComponent,
+    [switch] $IncludeNanoFramework
   )
 
 remove-module build-functions -ErrorAction SilentlyContinue
@@ -31,7 +32,7 @@ try {
 
   Remove-ArtifactsDir
   Update-GeneratedCode
-  Start-Build -IncludeWindowsRuntimeComponent $IncludeWindowsRuntimeComponent
+  Start-Build -IncludeWindowsRuntimeComponent $IncludeWindowsRuntimeComponent -IncludeNanoFramework $IncludeNanoFramework
   Start-Tests
   Start-PackNugets
   Compress-ArtifactsAsZip
