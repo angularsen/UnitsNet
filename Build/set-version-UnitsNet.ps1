@@ -51,15 +51,25 @@ Import-Module "$PSScriptRoot\set-version.psm1"
 $root = Resolve-Path "$PSScriptRoot\.."
 $paramSet = $PsCmdlet.ParameterSetName
 $projFile = "$root\UnitsNet\UnitsNet.csproj"
+$numberExtensionsProjFile = "$root\UnitsNet.NumberExtensions\UnitsNet.NumberExtensions.csproj"
 $winrtAssemblyInfoFile = "$root\UnitsNet.WindowsRuntimeComponent\Properties\AssemblyInfo.cs"
 $winrtNuspecFile = "$root\UnitsNet.WindowsRuntimeComponent\UnitsNet.WindowsRuntimeComponent.nuspec"
-$versionFiles = @($projFile, $winrtAssemblyInfoFile, $winrtNuspecFile)
-$projectName = "UnitsNet"
+$versionFiles = @($projFile, $numberExtensionsProjFile, $winrtAssemblyInfoFile, $winrtNuspecFile)
 
 # Use UnitsNet.Common.props version as base if bumping major/minor/patch
 $newVersion = Get-NewProjectVersion $projFile $paramSet $setVersion $bumpVersion
 
+# # Update project files
 Set-ProjectVersion $projFile $newVersion
+Set-ProjectVersion $numberExtensionsProjFile $newVersion
+
+# # Update AssemblyInfo.cs files
 Set-AssemblyInfoVersion $winrtAssemblyInfoFile $newVersion
+
+# # Update .nuspec files
 Set-NuspecVersion $winrtNuspecFile $newVersion
-Invoke-CommitAndTagVersion $projectName $versionFiles $newVersion
+
+# Git commit and tag
+Invoke-CommitVersionBump @("UnitsNet") $versionFiles $newVersion
+Invoke-TagVersionBump "UnitsNet" $newVersion
+Invoke-TagVersionBump "UnitsNet.NumberExtensions" $newVersion

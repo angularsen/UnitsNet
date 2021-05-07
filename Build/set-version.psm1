@@ -16,8 +16,8 @@ function Get-NewProjectVersion(
   }
 }
 
-function Invoke-CommitAndTagVersion(
-  [string]$projectName,
+function Invoke-CommitVersionBump(
+  [string[]]$projectNames,
   [string[]]$projectPaths,
   [string] $newSemVer) {
   try {
@@ -30,16 +30,21 @@ function Invoke-CommitAndTagVersion(
       git add $path
     }
 
-    Write-Host -Foreground Green "Committing new versions: $projectName/$newSemVer"
-    git commit -m "${projectName}: $newSemVer"
-    Write-Host -Foreground Green "Tagging version: $projectName/$newSemVer"
-    git tag -a "$projectName/$newSemVer" -m "$projectName/$newSemVer" -m "TODO List changes here"
+    $projectNamesConcat = [string]::Join(", ", $projectNames)
+    Write-Host -Foreground Green "Committing new version: $newSemVer"
+    git commit -m "${projectNamesConcat}: $newSemVer"
   }
   catch {
     $err = $PSItem.Exception
-    Write-Error "ERROR: Failed to commit and tag version: `n---`n$err`n---`n$($PSItem.ScriptStackTrace)"
+    Write-Error "ERROR: Failed to commit version: `n---`n$err`n---`n$($PSItem.ScriptStackTrace)"
     exit 1
   }
+}
+
+function Invoke-TagVersionBump(
+  [string] $projectName,
+  [string] $newSemVer) {
+    git tag -a "$projectName/$newSemVer" -m "$projectName/$newSemVer" -m "TODO List changes here"
 }
 
 function Set-ProjectVersion([string] $file, [string] $version) {
@@ -154,4 +159,4 @@ function Resolve-Error ($ErrorRecord=$Error[0])
   }
 }
 
-export-modulemember -function Get-NewProjectVersion, Set-ProjectVersion, Set-AssemblyInfoVersion, Invoke-CommitAndTagVersion, Set-NuspecVersion
+export-modulemember -function Get-NewProjectVersion, Invoke-CommitVersionBump, Invoke-TagVersionBump, Set-ProjectVersion, Set-AssemblyInfoVersion, Set-NuspecVersion
