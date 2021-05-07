@@ -1,457 +1,22 @@
-    where                                   html  
-    vars_select_helpers                     html  
-    vars_select                             html  
-Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpKc6wrk/R.INSTALL1528cbb7a1f/tidyselect/man/vars_pull.Rd:23: file link 'quasiquotation' in package 'rlang' does not exist and so has been treated as a topic
-    vars_pull                               html  
-    tidyselect-package                      html  
-    starts_with                             html  
-Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpKc6wrk/R.INSTALL1528cbb7a1f/tidyselect/man/reexports.Rd:17: file link 'quos' in package 'rlang' does not exist and so has been treated as a topic
-Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpKc6wrk/R.INSTALL1528cbb7a1f/tidyselect/man/reexports.Rd:17: file link 'quo_name' in package 'rlang' does not exist and so has been treated as a topic
-Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpKc6wrk/R.INSTALL1528cbb7a1f/tidyselect/man/reexports.Rd:17: file link 'quo' in package 'rlang' does not exist and so has been treated as a topic
-Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpKc6wrk/R.INSTALL1528cbb7a1f/tidyselect/man/reexports.Rd:17: file link 'enquo' in package 'rlang' does not exist and so has been treated as a topic
-    reexports                               html  
-    poke_vars                               html  
-    peek_vars                               html  
-    one_of                                  html  
-Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpKc6wrk/R.INSTALL1528cbb7a1f/tidyselect/man/language.Rd:41: file link 'any_of' in package 'tidyselect' does not exist and so has been treated as a topic
-Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpKc6wrk/R.INSTALL1528cbb7a1f/tidyselect/man/language.Rd:33: file link 'num_range' in package 'tidyselect' does not exist and so has been treated as a topic
-Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpKc6wrk/R.INSTALL1528cbb7a1f/tidyselect/man/language.Rd:32: file link 'matches' in package 'tidyselect' does not exist and so has been treated as a topic
-Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpKc6wrk/R.INSTALL1528cbb7a1f/tidyselect/man/language.Rd:31: file link 'contains' in package 'tidyselect' does not exist and so has been treated as a topic
-Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpKc6wrk/R.INSTALL1528cbb7a1f/tidyselect/man/language.Rd:30: file link 'ends_with' in package 'tidyselect' does not exist and so has been treated as a topic
-Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpKc6wrk/R.INSTALL1528cbb7a1f/tidyselect/man/language.Rd:24: file link 'last_col' in package 'tidyselect' does not exist and so has been treated as a topic
-    language                                html  
-    faq-selection-context                   html  
-    faq-external-vector                     html  
-    everything                              html  
-Rd warning: C:/Users/runneradmin/AppData/Local/Temp/RtmpKc6wrk/R.INSTALL1528cbb7a1f/tidyselect/man/eval_select.Rd:38: file link 'enquo' in package 'rlang' does not exist and so has been treated as a topic
-    eval_select                             html  
-    all_of                                  html  
-  converting help for package 'tidyselect'
-    vec_unique                              html  
-    vec_type                                html  
-    vec_split                               html  
-    vec_slice                               html  
-    vec_size                                html  
-    vec_seq_along                           html  
-    vec_repeat                              html  
-    vec_recycle                             html  
-    vec_ptype_full                          html  
-    vec_ptype2                              html  
-    vec_ptype                               html  
-    vec_proxy_equal                         html  
-    vec_proxy_compare                       html  
-    vec_proxy                               html  
-    vec_order                               html  
-    vec_names                               html  
-    vec_math                                html  
-    vec_match                               html  
-    vec_list_cast                           html  
-    vec_is_list                             html  
-    vec_init                                html  
-    vec_identify_runs                       html  
-    vec_group                               html  
-    vec_fill_missing                        html  
-    vec_equal                               html  
-    vec_empty                               html  
-    vec_duplicate                           html  
-    vec_detect_complete                     html  
-    vec_default_ptype2                      html  
-    vec_data                                html  
-    vec_count                               html  
-    vec_compare                             html  
-    vec_chop                                html  
-    vec_cbind_frame_ptype                   html  
-    vec_cast                                html  
-    vec_c                                   html  
-    vec_bind                                html  
-    vec_assert                              html  
-    vec_as_subscript                        html  
-    vec_as_names_legacy                     html  
-    vec_as_names                            html  
-    vec_as_location                         html  
-    vec_as_index                            html  
-    vec_arith                               html  
-    vec-rep                                 html  
-    vctrs-package                           html  
-    vctrs-data-frame                        html  
-    vctrs-conditions                        html  
-    unspecified                             html  
-    theory-faq-coercion                     html  
-    table                                   html  
-    s3_register                             html  
-    reference-faq-compatibility             html  
-    partial_frame                           html  
-    partial_factor                          html  
-    op-empty-default                        html  
-    obj_print                               html  
-    new_vctr                                html  
-    new_rcrd                                html  
-    new_partial                             html  
-    new_list_of                             html  
-    new_factor                              html  
-    new_date                                html  
-    new_data_frame                          html  
-    name_spec                               html  
-    maybe_lossy_cast                        html  
-    list_of                                 html  
-    internal-faq-ptype2-identity            html  
-    int64                                   html  
-    howto-faq-fix-scalar-type-error         html  
-    howto-faq-coercion                      html  
-    howto-faq-coercion-data-frame           html  
-    fields                                  html  
-    faq-error-scalar-type                   html  
-    faq-error-incompatible-attributes       html  
-    faq-compatibility-types                 html  
-    df_ptype2                               html  
-    df_list                                 html  
-    data_frame                              html  
-    as-is                                   html  
-  converting help for package 'vctrs'
-C:/rtools40/mingw64/bin/gcc -shared -s -static-libgcc -o vctrs.dll tmp.def altrep-rle.o arg-counter.o arg.o bind.o c-unchop.o c.o callables.o cast-bare.o cast-dispatch.o cast.o compare.o complete.o conditions.o dictionary.o dim.o equal.o fields.o fill.o group.o growable.o hash.o init.o names.o order-groups.o order-radix.o order-sortedness.o order-transform.o order-truelength.o poly-op.o proxy-restore.o proxy.o ptype2-dispatch.o rep.o runs.o shape.o size-common.o size.o slice-array.o slice-assign-array.o slice-assign.o slice-chop.o slice.o split.o subscript-loc.o subscript.o translate.o type-data-frame.o type-date-time.o type-factor.o type-info.o type-tibble.o type.o type2.o typeof2-s3.o typeof2.o unspecified.o utils-dispatch.o utils-rlang.o utils.o version.o -LC:/PROGRA~1/R/R-40~1.5/bin/x64 -lR
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c version.c -o version.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c utils.c -o utils.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c utils-rlang.c -o utils-rlang.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c utils-dispatch.c -o utils-dispatch.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c unspecified.c -o unspecified.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c typeof2.c -o typeof2.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c typeof2-s3.c -o typeof2-s3.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c type2.c -o type2.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c type.c -o type.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c type-tibble.c -o type-tibble.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c type-info.c -o type-info.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c type-factor.c -o type-factor.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c type-date-time.c -o type-date-time.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c type-data-frame.c -o type-data-frame.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c translate.c -o translate.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c subscript.c -o subscript.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c subscript-loc.c -o subscript-loc.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c split.c -o split.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c slice.c -o slice.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c slice-chop.c -o slice-chop.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c slice-assign.c -o slice-assign.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c slice-assign-array.c -o slice-assign-array.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c slice-array.c -o slice-array.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c size.c -o size.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c size-common.c -o size-common.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c shape.c -o shape.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c runs.c -o runs.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c rep.c -o rep.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c ptype2-dispatch.c -o ptype2-dispatch.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c proxy.c -o proxy.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c proxy-restore.c -o proxy-restore.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c poly-op.c -o poly-op.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c order-truelength.c -o order-truelength.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c order-transform.c -o order-transform.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c order-sortedness.c -o order-sortedness.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c order-radix.c -o order-radix.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c order-groups.c -o order-groups.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c names.c -o names.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c init.c -o init.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c hash.c -o hash.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c growable.c -o growable.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c group.c -o group.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c fill.c -o fill.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c fields.c -o fields.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c equal.c -o equal.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c dim.c -o dim.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c dictionary.c -o dictionary.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c conditions.c -o conditions.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c complete.c -o complete.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c compare.c -o compare.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c cast.c -o cast.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c cast-dispatch.c -o cast-dispatch.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c cast-bare.c -o cast-bare.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c callables.c -o callables.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c c.c -o c.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c c-unchop.c -o c-unchop.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c bind.c -o bind.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c arg.c -o arg.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c arg-counter.c -o arg-counter.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c altrep-rle.c -o altrep-rle.o
-C:/rtools40/mingw32/bin/gcc -shared -s -static-libgcc -o vctrs.dll tmp.def altrep-rle.o arg-counter.o arg.o bind.o c-unchop.o c.o callables.o cast-bare.o cast-dispatch.o cast.o compare.o complete.o conditions.o dictionary.o dim.o equal.o fields.o fill.o group.o growable.o hash.o init.o names.o order-groups.o order-radix.o order-sortedness.o order-transform.o order-truelength.o poly-op.o proxy-restore.o proxy.o ptype2-dispatch.o rep.o runs.o shape.o size-common.o size.o slice-array.o slice-assign-array.o slice-assign.o slice-chop.o slice.o split.o subscript-loc.o subscript.o translate.o type-data-frame.o type-date-time.o type-factor.o type-info.o type-tibble.o type.o type2.o typeof2-s3.o typeof2.o unspecified.o utils-dispatch.o utils-rlang.o utils.o version.o -LC:/PROGRA~1/R/R-40~1.5/bin/i386 -lR
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c version.c -o version.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c utils.c -o utils.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c utils-rlang.c -o utils-rlang.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c utils-dispatch.c -o utils-dispatch.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c unspecified.c -o unspecified.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c typeof2.c -o typeof2.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c typeof2-s3.c -o typeof2-s3.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c type2.c -o type2.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c type.c -o type.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c type-tibble.c -o type-tibble.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c type-info.c -o type-info.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c type-factor.c -o type-factor.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c type-date-time.c -o type-date-time.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c type-data-frame.c -o type-data-frame.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c translate.c -o translate.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c subscript.c -o subscript.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c subscript-loc.c -o subscript-loc.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c split.c -o split.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c slice.c -o slice.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c slice-chop.c -o slice-chop.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c slice-assign.c -o slice-assign.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c slice-assign-array.c -o slice-assign-array.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c slice-array.c -o slice-array.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c size.c -o size.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c size-common.c -o size-common.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c shape.c -o shape.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c runs.c -o runs.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c rep.c -o rep.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c ptype2-dispatch.c -o ptype2-dispatch.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c proxy.c -o proxy.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c proxy-restore.c -o proxy-restore.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c poly-op.c -o poly-op.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c order-truelength.c -o order-truelength.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c order-transform.c -o order-transform.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c order-sortedness.c -o order-sortedness.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c order-radix.c -o order-radix.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c order-groups.c -o order-groups.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c names.c -o names.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c init.c -o init.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c hash.c -o hash.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c growable.c -o growable.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c group.c -o group.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c fill.c -o fill.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c fields.c -o fields.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c equal.c -o equal.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c dim.c -o dim.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c dictionary.c -o dictionary.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c conditions.c -o conditions.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c complete.c -o complete.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c compare.c -o compare.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c cast.c -o cast.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c cast-dispatch.c -o cast-dispatch.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c cast-bare.c -o cast-bare.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c callables.c -o callables.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c c.c -o c.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c c-unchop.c -o c-unchop.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c bind.c -o bind.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c arg.c -o arg.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c arg-counter.c -o arg-counter.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c altrep-rle.c -o altrep-rle.o
-    safe_median                             html  
-    ellipsis-package                        html  
-    dots_used                               html  
-    dots_empty                              html  
-    check_dots_used                         html  
-    check_dots_unnamed                      html  
-    check_dots_empty                        html  
-  converting help for package 'ellipsis'
-C:/rtools40/mingw64/bin/gcc -shared -s -static-libgcc -o ellipsis.dll tmp.def dots.o init.o -LC:/PROGRA~1/R/R-40~1.5/bin/x64 -lR
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c init.c -o init.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c dots.c -o dots.o
-C:/rtools40/mingw32/bin/gcc -shared -s -static-libgcc -o ellipsis.dll tmp.def dots.o init.o -LC:/PROGRA~1/R/R-40~1.5/bin/i386 -lR
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c init.c -o init.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c dots.c -o dots.o
-    zap_srcref                              html  
-    zap                                     html  
-    wref_key                                html  
-    with_restarts                           html  
-    with_handlers                           html  
-    with_env                                html  
-    with_abort                              html  
-    vector-old-ctors                        html  
-    vector-construction                     html  
-    vector-coercion                         html  
-    vec_poke_n                              html  
-    type_of                                 html  
-    type-predicates                         html  
-    trace_back                              html  
-    tidyeval-data                           html  
-    sym                                     html  
-    switch_type                             html  
-    string                                  html  
-    stack_trim                              html  
-    stack                                   html  
-    splice                                  html  
-    set_names                               html  
-    set_expr                                html  
-    set_attrs                               html  
-    seq2                                    html  
-    search_envs                             html  
-    scoped_interactive                      html  
-    scoped_env                              html  
-    scalar-type-predicates                  html  
-    rst_list                                html  
-    rst_abort                               html  
-    rlang_backtrace_on_error                html  
-    return_from                             html  
-    restarting                              html  
-    rep_along                               html  
-    raw_deparse_str                         html  
-    quosure                                 html  
-    quo_squash                              html  
-    quo_label                               html  
-    quo_expr                                html  
-    prim_name                               html  
-    prepend                                 html  
-    parse_quosure                           html  
-    parse_expr                              html  
-    pairlist2                               html  
-    overscope_eval_next                     html  
-    op-null-default                         html  
-    op-na-default                           html  
-    op-get-attr                             html  
-    op-definition                           html  
-    nse-force                               html  
-    nse-defuse                              html  
-    ns_env                                  html  
-    new_weakref                             html  
-    new_quosures                            html  
-    new_node                                html  
-    new_function                            html  
-    new_formula                             html  
-    new_call                                html  
-    new-vector                              html  
-    new-vector-along-retired                html  
-    names2                                  html  
-    mut_node_car                            html  
-    missing_arg                             html  
-    missing                                 html  
-    local_options                           html  
-    local_bindings                          html  
-    list2                                   html  
-    lifecycle                               html  
-    last_error                              html  
-    lang_modify                             html  
-    lang_head                               html  
-    lang                                    html  
-    is_weakref                              html  
-    is_true                                 html  
-    is_symbol                               html  
-    is_stack                                html  
-    is_reference                            html  
-    is_pairlist                             html  
-    is_namespace                            html  
-    is_named                                html  
-    is_lang                                 html  
-    is_interactive                          html  
-    is_integerish                           html  
-    is_installed                            html  
-    is_function                             html  
-    is_frame                                html  
-    is_formula                              html  
-    is_expression                           html  
-    is_expr                                 html  
-    is_environment                          html  
-    is_env                                  html  
-    is_empty                                html  
-    is_copyable                             html  
-    is_condition                            html  
-    is_callable                             html  
-    is_call                                 html  
-    invoke                                  html  
-    inject                                  html  
-    inherits_any                            html  
-    hash                                    html  
-    has_name                                html  
-    has_length                              html  
-    get_env                                 html  
-    friendly_type                           html  
-    frame_position                          html  
-    format_error_bullets                    html  
-    fn_fmls                                 html  
-    fn_env                                  html  
-    fn_body                                 html  
-    flatten                                 html  
-    faq-options                             html  
-    f_text                                  html  
-    f_rhs                                   html  
-    exprs_auto_name                         html  
-    expr_print                              html  
-    expr_label                              html  
-    expr_interp                             html  
-    exiting                                 html  
-    exec                                    html  
-    eval_tidy                               html  
-    eval_bare                               html  
-    env_unlock                              html  
-    env_unbind                              html  
-    env_print                               html  
-    env_poke                                html  
-    env_parent                              html  
-    env_names                               html  
-    env_name                                html  
-    env_lock                                html  
-    env_inherits                            html  
-    env_has                                 html  
-    env_get                                 html  
-    env_depth                               html  
-    env_clone                               html  
-    env_bury                                html  
-    env_browse                              html  
-    env_binding_lock                        html  
-    env_binding_are_active                  html  
-    env_bind_exprs                          html  
-    env_bind                                html  
-    env                                     html  
-    entrace                                 html  
-    enquo0                                  html  
-    empty_env                               html  
-    dyn-dots                                html  
-    duplicate                               html  
-    dots_values                             html  
-    dots_n                                  html  
-    dots_definitions                        html  
-    done                                    html  
-    cnd_type                                html  
-    cnd_signal                              html  
-    cnd_muffle                              html  
-    cnd_message                             html  
-    cnd                                     html  
-    chr_unserialise_unicode                 html  
-    catch_cnd                               html  
-    caller_frame                            html  
-    caller_fn                               html  
-    caller_env                              html  
-    call_standardise                        html  
-    call_parse_type                         html  
-    call_name                               html  
-    call_modify                             html  
-    call_inspect                            html  
-    call_fn                                 html  
-    call_args                               html  
-    call2                                   html  
-    box                                     html  
-    bare-type-predicates                    html  
-    as_utf8_character                       html  
-    as_string                               html  
-    as_quosure                              html  
-    as_pairlist                             html  
-    as_overscope                            html  
-    as_name                                 html  
-    as_label                                html  
-    as_function                             html  
-    as_environment                          html  
-    as_env                                  html  
-    as_data_mask                            html  
-    as_bytes                                html  
-    as_box                                  html  
-    arg_match                               html  
-    are_na                                  html  
-    abort                                   html  
-  converting help for package 'rlang'
-C:/rtools40/mingw64/bin/gcc -shared -s -static-libgcc -o rlang.dll tmp.def capture.o export.o internal.o lib.o version.o -LC:/PROGRA~1/R/R-40~1.5/bin/x64 -lR
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -I./lib/         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c version.c -o version.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -I./lib/         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c lib.c -o lib.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -I./lib/         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c internal.c -o internal.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -I./lib/         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c export.c -o export.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -I./lib/         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c capture.c -o capture.o
-C:/rtools40/mingw32/bin/gcc -shared -s -static-libgcc -o rlang.dll tmp.def capture.o export.o internal.o lib.o version.o -LC:/PROGRA~1/R/R-40~1.5/bin/i386 -lR
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -I./lib/         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c version.c -o version.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -I./lib/         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c lib.c -o lib.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -I./lib/         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c internal.c -o internal.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -I./lib/         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c export.c -o export.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -I./lib/         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c capture.c -o capture.o
-	C:\Users\runneradmin\AppData\Local\Temp\RtmpykuPix\downloaded_packages
+"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -shared -s -static-libgcc -o dplyr.dll tmp.def chop.o filter.o funs.o group_by.o group_data.o imports.o init.o mask.o mutate.o slice.o summarise.o -LC:/PROGRA~1/R/R-40~1.5/bin/i386 -lR
+"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c summarise.cpp -o summarise.o
+"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c slice.cpp -o slice.o
+"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c mutate.cpp -o mutate.o
+"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c mask.cpp -o mask.o
+"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c init.cpp -o init.o
+"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c imports.cpp -o imports.o
+"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c group_data.cpp -o group_data.o
+"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c group_by.cpp -o group_by.o
+"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c funs.cpp -o funs.o
+"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c filter.cpp -o filter.o
+"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c chop.cpp -o chop.o
+	C:\Users\runneradmin\AppData\Local\Temp\RtmpEttYqA\downloaded_packages
 The downloaded binary packages are in
 package 'R.devices' successfully unpacked and MD5 sums checked
 package 'Rcpp' successfully unpacked and MD5 sums checked
 package 'gridExtra' successfully unpacked and MD5 sums checked
 package 'tidyr' successfully unpacked and MD5 sums checked
 package 'gdata' successfully unpacked and MD5 sums checked
-package 'dplyr' successfully unpacked and MD5 sums checked
 package 'ggplot2' successfully unpacked and MD5 sums checked
 package 'base64enc' successfully unpacked and MD5 sums checked
 package 'R.utils' successfully unpacked and MD5 sums checked
@@ -460,207 +25,83 @@ package 'R.methodsS3' successfully unpacked and MD5 sums checked
 package 'cpp11' successfully unpacked and MD5 sums checked
 package 'purrr' successfully unpacked and MD5 sums checked
 package 'gtools' successfully unpacked and MD5 sums checked
+package 'pillar' successfully unpacked and MD5 sums checked
+package 'vctrs' successfully unpacked and MD5 sums checked
+package 'tidyselect' successfully unpacked and MD5 sums checked
 package 'R6' successfully unpacked and MD5 sums checked
 package 'magrittr' successfully unpacked and MD5 sums checked
 package 'lifecycle' successfully unpacked and MD5 sums checked
 package 'generics' successfully unpacked and MD5 sums checked
+package 'ellipsis' successfully unpacked and MD5 sums checked
 package 'withr' successfully unpacked and MD5 sums checked
 package 'tibble' successfully unpacked and MD5 sums checked
 package 'scales' successfully unpacked and MD5 sums checked
+package 'rlang' successfully unpacked and MD5 sums checked
 package 'isoband' successfully unpacked and MD5 sums checked
 package 'gtable' successfully unpacked and MD5 sums checked
 package 'glue' successfully unpacked and MD5 sums checked
 package 'digest' successfully unpacked and MD5 sums checked
+package 'utf8' successfully unpacked and MD5 sums checked
+package 'crayon' successfully unpacked and MD5 sums checked
+package 'cli' successfully unpacked and MD5 sums checked
 package 'pkgconfig' successfully unpacked and MD5 sums checked
-package 'pillar' successfully unpacked and MD5 sums checked
 package 'fansi' successfully unpacked and MD5 sums checked
 package 'viridisLite' successfully unpacked and MD5 sums checked
 package 'RColorBrewer' successfully unpacked and MD5 sums checked
 package 'munsell' successfully unpacked and MD5 sums checked
 package 'labeling' successfully unpacked and MD5 sums checked
 package 'farver' successfully unpacked and MD5 sums checked
-package 'utf8' successfully unpacked and MD5 sums checked
-package 'crayon' successfully unpacked and MD5 sums checked
-package 'cli' successfully unpacked and MD5 sums checked
 package 'colorspace' successfully unpacked and MD5 sums checked
-vctrs       0.3.7  0.3.8              TRUE
-tidyselect  1.1.0  1.1.1              TRUE
-ellipsis    0.3.1  0.3.2              TRUE
-rlang      0.4.10 0.4.11              TRUE
-           binary source needs_compilation
-  There are binary versions available but the source versions are later:
+dplyr  1.0.5  1.0.6              TRUE
+      binary source needs_compilation
+  There is a binary version available but the source version is later:
 Execution halted
 Error in library(ggplot2) : there is no package called 'ggplot2'
-	'C:\Users\runneradmin\AppData\Local\Temp\RtmpykuPix\downloaded_packages'
+  installation of package 'dplyr' had non-zero exit status
+In install.packages(new.packages, lib = Sys.getenv("R_LIBS_USER"),  :
+Warning message:
+	'C:\Users\runneradmin\AppData\Local\Temp\RtmpEttYqA\downloaded_packages'
 The downloaded source packages are in
-* DONE (tidyselect)
-** testing if installed package keeps a record of temporary installation path
-*** arch - x64
-*** arch - i386
-** testing if installed package can be loaded from final location
-*** arch - x64
-*** arch - i386
-** testing if installed package can be loaded from temporary location
-** installing vignettes
-** building package indices
-    finding HTML links ... done
-*** installing help indices
-** help
-** byte-compile and prepare package for lazy loading
-** inst
-** R
-** using staged installation
-** package 'tidyselect' successfully unpacked and MD5 sums checked
-* installing *source* package 'tidyselect' ...
-please set environment variable 'TZ'
-  unable to identify current timezone 'C':
-Warning in strptime(xx, f, tz = tz) :
-* DONE (vctrs)
-** testing if installed package keeps a record of temporary installation path
-*** arch - x64
-*** arch - i386
-** testing if installed package can be loaded from final location
-*** arch - x64
-*** arch - i386
-** testing if installed package can be loaded from temporary location
-** installing vignettes
-** building package indices
-*** copying figures
-    finding HTML links ... done
-*** installing help indices
-** help
-** byte-compile and prepare package for lazy loading
-** inst
-** R
-installing to C:/Users/runneradmin/R/win-library/4.0/00LOCK-vctrs/00new/vctrs/libs/x64
-*** arch - x64
-installing to C:/Users/runneradmin/R/win-library/4.0/00LOCK-vctrs/00new/vctrs/libs/i386
+* removing 'C:/Users/runneradmin/R/win-library/4.0/dplyr'
+ERROR: compilation failed for package 'dplyr'
+no DLL was created
+/usr/bin/sh: line 8: "C:/rtools40/mingw32/bin/"g++ -std=gnu++11 : No such file or directory
 *** arch - i386
 ** libs
 ** using staged installation
-** package 'vctrs' successfully unpacked and MD5 sums checked
-* installing *source* package 'vctrs' ...
+** package 'dplyr' successfully unpacked and MD5 sums checked
+* installing *source* package 'dplyr' ...
 please set environment variable 'TZ'
   unable to identify current timezone 'C':
 Warning in strptime(xx, f, tz = tz) :
-* DONE (ellipsis)
-** testing if installed package keeps a record of temporary installation path
-*** arch - x64
-*** arch - i386
-** testing if installed package can be loaded from final location
-*** arch - x64
-*** arch - i386
-** testing if installed package can be loaded from temporary location
-** building package indices
-    finding HTML links ... done
-*** installing help indices
-** help
-** byte-compile and prepare package for lazy loading
-** R
-installing to C:/Users/runneradmin/R/win-library/4.0/00LOCK-ellipsis/00new/ellipsis/libs/x64
-*** arch - x64
-installing to C:/Users/runneradmin/R/win-library/4.0/00LOCK-ellipsis/00new/ellipsis/libs/i386
-*** arch - i386
-** libs
-** using staged installation
-** package 'ellipsis' successfully unpacked and MD5 sums checked
-* installing *source* package 'ellipsis' ...
-please set environment variable 'TZ'
-  unable to identify current timezone 'C':
-Warning in strptime(xx, f, tz = tz) :
-* DONE (rlang)
-** testing if installed package keeps a record of temporary installation path
-*** arch - x64
-*** arch - i386
-** testing if installed package can be loaded from final location
-*** arch - x64
-*** arch - i386
-** testing if installed package can be loaded from temporary location
-** building package indices
-*** copying figures
-    finding HTML links ... done
-*** installing help indices
-** help
-** byte-compile and prepare package for lazy loading
-** inst
-** R
-installing to C:/Users/runneradmin/R/win-library/4.0/00LOCK-rlang/00new/rlang/libs/x64
-         ^~~
-   sexp* top;
-internal/eval-tidy.c:417:9: note: 'top' was declared here
-In file included from internal.c:8:
-          ^~~~~~~~~~~
-   return ENCLOS(env);
-./lib/env.h:33:10: warning: 'top' may be used uninitialized in this function [-Wmaybe-uninitialized]
-internal/eval-tidy.c: In function 'rlang_tilde_eval':
-                 from internal.c:1:
-                 from internal/arg.c:1,
-In file included from ./lib/rlang.h:83,
-*** arch - x64
-installing to C:/Users/runneradmin/R/win-library/4.0/00LOCK-rlang/00new/rlang/libs/i386
-         ^~~
-   sexp* top;
-internal/eval-tidy.c:417:9: note: 'top' was declared here
-In file included from internal.c:8:
-          ^~~~~~~~~~~
-   return ENCLOS(env);
-./lib/env.h:33:10: warning: 'top' may be used uninitialized in this function [-Wmaybe-uninitialized]
-internal/eval-tidy.c: In function 'rlang_tilde_eval':
-                 from internal.c:1:
-                 from internal/arg.c:1,
-In file included from ./lib/rlang.h:83,
-*** arch - i386
-** libs
-** using staged installation
-** package 'rlang' successfully unpacked and MD5 sums checked
-* installing *source* package 'rlang' ...
-please set environment variable 'TZ'
-  unable to identify current timezone 'C':
-Warning in strptime(xx, f, tz = tz) :
-downloaded 764 KB
+downloaded 932 KB
 ==================================================
-Content type 'application/x-gzip' length 782608 bytes (764 KB)
-trying URL 'https://cran.rstudio.com/src/contrib/vctrs_0.3.8.tar.gz'
-downloaded 89 KB
-==================================================
-Content type 'application/x-gzip' length 92088 bytes (89 KB)
-trying URL 'https://cran.rstudio.com/src/contrib/tidyselect_1.1.1.tar.gz'
-downloaded 8066 bytes
-==================================================
-Content type 'application/x-gzip' length 8066 bytes
-trying URL 'https://cran.rstudio.com/src/contrib/ellipsis_0.3.2.tar.gz'
-downloaded 841 KB
-==================================================
-Content type 'application/x-gzip' length 861727 bytes (841 KB)
-trying URL 'https://cran.rstudio.com/src/contrib/rlang_0.4.11.tar.gz'
-installing the source packages 'rlang', 'ellipsis', 'tidyselect', 'vctrs'
+Content type 'application/x-gzip' length 954401 bytes (932 KB)
+trying URL 'https://cran.rstudio.com/src/contrib/dplyr_1.0.6.tar.gz'
+installing the source package 'dplyr'
 downloaded 370 KB
 ==================================================
-Content type 'application/zip' length 379733 bytes (370 KB)
+Content type 'application/zip' length 379266 bytes (370 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/R.devices_2.17.0.zip'
 downloaded 3.1 MB
 ==================================================
-Content type 'application/zip' length 3253457 bytes (3.1 MB)
+Content type 'application/zip' length 3253654 bytes (3.1 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/Rcpp_1.0.6.zip'
 downloaded 1.1 MB
 ==================================================
-Content type 'application/zip' length 1109097 bytes (1.1 MB)
+Content type 'application/zip' length 1109088 bytes (1.1 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/gridExtra_2.3.zip'
 downloaded 1.0 MB
 ==================================================
-Content type 'application/zip' length 1055514 bytes (1.0 MB)
+Content type 'application/zip' length 1055388 bytes (1.0 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/tidyr_1.1.3.zip'
 downloaded 1.2 MB
 ==================================================
 Content type 'application/zip' length 1264005 bytes (1.2 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/gdata_2.18.0.zip'
-downloaded 1.3 MB
-==================================================
-Content type 'application/zip' length 1334630 bytes (1.3 MB)
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/dplyr_1.0.5.zip'
 downloaded 3.9 MB
 ==================================================
-Content type 'application/zip' length 4071315 bytes (3.9 MB)
+Content type 'application/zip' length 4070070 bytes (3.9 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/ggplot2_3.3.3.zip'
 downloaded 42 KB
 ==================================================
@@ -668,7 +109,7 @@ Content type 'application/zip' length 43016 bytes (42 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/base64enc_0.1-3.zip'
 downloaded 1.3 MB
 ==================================================
-Content type 'application/zip' length 1408403 bytes (1.3 MB)
+Content type 'application/zip' length 1407151 bytes (1.3 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/R.utils_2.10.1.zip'
 downloaded 942 KB
 ==================================================
@@ -680,75 +121,103 @@ Content type 'application/zip' length 81299 bytes (79 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/R.methodsS3_1.8.1.zip'
 downloaded 212 KB
 ==================================================
-Content type 'application/zip' length 217708 bytes (212 KB)
+Content type 'application/zip' length 217772 bytes (212 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/cpp11_0.2.7.zip'
-downloaded 420 KB
+downloaded 419 KB
 ==================================================
-Content type 'application/zip' length 430244 bytes (420 KB)
+Content type 'application/zip' length 429582 bytes (419 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/purrr_0.3.4.zip'
 downloaded 328 KB
 ==================================================
 Content type 'application/zip' length 336012 bytes (328 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/gtools_3.8.2.zip'
+downloaded 992 KB
+==================================================
+Content type 'application/zip' length 1016285 bytes (992 KB)
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/pillar_1.6.0.zip'
+downloaded 1.2 MB
+==================================================
+Content type 'application/zip' length 1252174 bytes (1.2 MB)
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/vctrs_0.3.8.zip'
+downloaded 199 KB
+==================================================
+Content type 'application/zip' length 204234 bytes (199 KB)
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/tidyselect_1.1.1.zip'
 downloaded 82 KB
 ==================================================
-Content type 'application/zip' length 84105 bytes (82 KB)
+Content type 'application/zip' length 84030 bytes (82 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/R6_2.5.0.zip'
 downloaded 230 KB
 ==================================================
-Content type 'application/zip' length 235525 bytes (230 KB)
+Content type 'application/zip' length 235595 bytes (230 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/magrittr_2.0.1.zip'
 downloaded 108 KB
 ==================================================
-Content type 'application/zip' length 111207 bytes (108 KB)
+Content type 'application/zip' length 111210 bytes (108 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/lifecycle_1.0.0.zip'
 downloaded 69 KB
 ==================================================
-Content type 'application/zip' length 71533 bytes (69 KB)
+Content type 'application/zip' length 71044 bytes (69 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/generics_0.1.0.zip'
+downloaded 47 KB
+==================================================
+Content type 'application/zip' length 49048 bytes (47 KB)
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/ellipsis_0.3.2.zip'
 downloaded 207 KB
 ==================================================
-Content type 'application/zip' length 212910 bytes (207 KB)
+Content type 'application/zip' length 212538 bytes (207 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/withr_2.4.2.zip'
 downloaded 806 KB
 ==================================================
-Content type 'application/zip' length 825971 bytes (806 KB)
+Content type 'application/zip' length 825910 bytes (806 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/tibble_3.1.1.zip'
-downloaded 545 KB
+downloaded 544 KB
 ==================================================
-Content type 'application/zip' length 558082 bytes (545 KB)
+Content type 'application/zip' length 557690 bytes (544 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/scales_1.1.1.zip'
+downloaded 1.1 MB
+==================================================
+Content type 'application/zip' length 1203672 bytes (1.1 MB)
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/rlang_0.4.11.zip'
 downloaded 2.9 MB
 ==================================================
-Content type 'application/zip' length 3062195 bytes (2.9 MB)
+Content type 'application/zip' length 3062224 bytes (2.9 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/isoband_0.2.4.zip'
 downloaded 424 KB
 ==================================================
-Content type 'application/zip' length 434223 bytes (424 KB)
+Content type 'application/zip' length 434274 bytes (424 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/gtable_0.3.0.zip'
 downloaded 151 KB
 ==================================================
-Content type 'application/zip' length 155461 bytes (151 KB)
+Content type 'application/zip' length 155439 bytes (151 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/glue_1.4.2.zip'
 downloaded 262 KB
 ==================================================
-Content type 'application/zip' length 268566 bytes (262 KB)
+Content type 'application/zip' length 268585 bytes (262 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/digest_0.6.27.zip'
+downloaded 205 KB
+==================================================
+Content type 'application/zip' length 209923 bytes (205 KB)
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/utf8_1.2.1.zip'
+downloaded 138 KB
+==================================================
+Content type 'application/zip' length 141814 bytes (138 KB)
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/crayon_1.4.1.zip'
+downloaded 521 KB
+==================================================
+Content type 'application/zip' length 534118 bytes (521 KB)
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/cli_2.5.0.zip'
 downloaded 21 KB
 ==================================================
-Content type 'application/zip' length 22312 bytes (21 KB)
+Content type 'application/zip' length 22278 bytes (21 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/pkgconfig_2.0.3.zip'
-downloaded 992 KB
-==================================================
-Content type 'application/zip' length 1016196 bytes (992 KB)
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/pillar_1.6.0.zip'
 downloaded 218 KB
 ==================================================
-Content type 'application/zip' length 224216 bytes (218 KB)
+Content type 'application/zip' length 224253 bytes (218 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/fansi_0.4.2.zip'
 downloaded 1.2 MB
 ==================================================
-Content type 'application/zip' length 1299323 bytes (1.2 MB)
+Content type 'application/zip' length 1299319 bytes (1.2 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/viridisLite_0.4.0.zip'
 downloaded 54 KB
 ==================================================
@@ -756,7 +225,7 @@ Content type 'application/zip' length 55548 bytes (54 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/RColorBrewer_1.1-2.zip'
 downloaded 239 KB
 ==================================================
-Content type 'application/zip' length 245133 bytes (239 KB)
+Content type 'application/zip' length 245007 bytes (239 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/munsell_0.5.0.zip'
 downloaded 61 KB
 ==================================================
@@ -764,22 +233,10 @@ Content type 'application/zip' length 62727 bytes (61 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/labeling_0.4.2.zip'
 downloaded 1.7 MB
 ==================================================
-Content type 'application/zip' length 1751628 bytes (1.7 MB)
+Content type 'application/zip' length 1751736 bytes (1.7 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/farver_2.1.0.zip'
-downloaded 204 KB
-==================================================
-Content type 'application/zip' length 209879 bytes (204 KB)
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/utf8_1.2.1.zip'
-downloaded 138 KB
-==================================================
-Content type 'application/zip' length 142005 bytes (138 KB)
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/crayon_1.4.1.zip'
-downloaded 522 KB
-==================================================
-Content type 'application/zip' length 534646 bytes (522 KB)
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/cli_2.5.0.zip'
 downloaded 2.5 MB
 ==================================================
-Content type 'application/zip' length 2646910 bytes (2.5 MB)
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/colorspace_2.0-0.zip'
-also installing the dependencies 'colorspace', 'cli', 'crayon', 'utf8', 'farver', 'labeling', 'munsell', 'RColorBrewer', 'viridisLite', 'fansi', 'pillar', 'pkgconfig', 'digest', 'glue', 'gtable', 'isoband', 'rlang', 'scales', 'tibble', 'withr', 'ellipsis', 'generics', 'lifecycle', 'magrittr', 'R6', 'tidyselect', 'vctrs', 'gtools', 'purrr', 'cpp11', 'R.methodsS3', 'R.oo', 'R.utils', 'base64enc'
+Content type 'application/zip' length 2641019 bytes (2.5 MB)
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/colorspace_2.0-1.zip'
+also installing the dependencies 'colorspace', 'farver', 'labeling', 'munsell', 'RColorBrewer', 'viridisLite', 'fansi', 'pkgconfig', 'cli', 'crayon', 'utf8', 'digest', 'glue', 'gtable', 'isoband', 'rlang', 'scales', 'tibble', 'withr', 'ellipsis', 'generics', 'lifecycle', 'magrittr', 'R6', 'tidyselect', 'vctrs', 'pillar', 'gtools', 'purrr', 'cpp11', 'R.methodsS3', 'R.oo', 'R.utils', 'base64enc'
