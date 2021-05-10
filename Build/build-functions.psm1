@@ -137,7 +137,7 @@ function Start-PackNugets {
     write-host -foreground yellow "Skipping nanoFramework nuget pack."
   } else {
     write-host -foreground yellow "nanoFramework project not yet supported by dotnet CLI, using nuget.exe instead"
-    Build-NanoNugets
+    Invoke-Build-NanoNugets
   }
 
 

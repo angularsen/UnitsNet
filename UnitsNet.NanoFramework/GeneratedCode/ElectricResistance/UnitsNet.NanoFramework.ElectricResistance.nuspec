@@ -2,14 +2,14 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>UnitsNet.nanoFramework.ElectricResistance</id>
-    <version>4.89.0</version>
+    <version>4.90.0</version>
     <title>Units.NET ElectricResistance - nanoFramework</title>
     <authors>Andreas Gullberg Larsen, nanoFramework project contributors</authors>
     <owners>UnitsNet</owners>
     <license type="expression">MIT</license>
     <projectUrl>https://github.com/angularsen/UnitsNet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Adds ElectricResistance units for Units.NET on .NET nanoFramework.&#10; For .NET or .NET Core, use UnitsNet instead.</description>
+    <description>Adds ElectricResistance units for Units.NET on .NET nanoFramework.&#10;For .NET or .NET Core, use UnitsNet instead.</description>
     <iconUrl>https://raw.githubusercontent.com/angularsen/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</iconUrl>
     <releaseNotes>
     </releaseNotes>
@@ -21,6 +21,6 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="..\..\..\Artifacts\ElectricResistance\UnitsNet.*" target="lib" />
+    <file src="..\..\..\Artifacts\UnitsNet.NanoFramework\ElectricResistance\UnitsNet.*" target="lib" />
   </files>
 </package>

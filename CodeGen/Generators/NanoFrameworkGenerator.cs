@@ -120,22 +120,19 @@ namespace CodeGen.Generators
                 Log.Information($"Creating .NET nanoFramework project for {quantity.Name}");
 
                 var projectPath = Path.Combine(outputDir, quantity.Name);
+                var sb = new StringBuilder($"{quantity.Name}:".PadRight(AlignPad));
 
                 GeneratePackage(projectPath, quantity.Name);
-
-                Log.Information($"Package(OK)");
-
-                var sb = new StringBuilder($"{quantity.Name}:".PadRight(AlignPad));
                 GenerateUnitType(sb, quantity, Path.Combine(outputUnits, $"{quantity.Name}Unit.g.cs"));
                 GenerateQuantity(sb, quantity, Path.Combine(outputQuantitites, $"{quantity.Name}.g.cs"));
                 GenerateProject(sb, quantity, projectPath);
-                Log.Information(sb.ToString());
+
                 numberQuantity++;
             }
 
             GenerateSolution(quantities, outputDir);
             Log.Information("UnitsNet.nanoFrmawork.sln generated");
-            Log.Information($"Total quantities generated: {numberQuantity}");
+            Log.Information($"Count of generated projects: {numberQuantity}");
         }
 
         private static void GeneratePackage(string projectPath, string quantityName)
