@@ -4,7 +4,7 @@
     <id>UnitsNet.nanoFramework.ElectricResistance</id>
     <version>4.90.0</version>
     <title>Units.NET ElectricResistance - nanoFramework</title>
-    <authors>Andreas Gullberg Larsen, nanoFramework project contributors</authors>
+    <authors>Andreas Gullberg Larsen,nanoFramework project contributors</authors>
     <owners>UnitsNet</owners>
     <license type="expression">MIT</license>
     <projectUrl>https://github.com/angularsen/UnitsNet</projectUrl>
