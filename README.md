@@ -41,6 +41,7 @@ Run the following command in the [Package Manager Console](http://docs.nuget.org
 
 * .NET Standard 2.0
 * .NET 4.0
+* [.NET nanoFramework](https://www.nanoframework.net/)
 * [Windows Runtime Component](https://docs.microsoft.com/en-us/windows/uwp/winrt-components/) for UWP apps (WinJS or C++)
 
 ### <a name="static-typing"></a>Static Typing
