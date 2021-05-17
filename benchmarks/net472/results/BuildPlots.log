@@ -1,22 +1,78 @@
-"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -shared -s -static-libgcc -o dplyr.dll tmp.def chop.o filter.o funs.o group_by.o group_data.o imports.o init.o mask.o mutate.o slice.o summarise.o -LC:/PROGRA~1/R/R-40~1.5/bin/i386 -lR
-"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c summarise.cpp -o summarise.o
-"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c slice.cpp -o slice.o
-"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c mutate.cpp -o mutate.o
-"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c mask.cpp -o mask.o
-"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c init.cpp -o init.o
-"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c imports.cpp -o imports.o
-"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c group_data.cpp -o group_data.o
-"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c group_by.cpp -o group_by.o
-"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c funs.cpp -o funs.o
-"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c filter.cpp -o filter.o
-"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG          -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c chop.cpp -o chop.o
-	C:\Users\runneradmin\AppData\Local\Temp\RtmpEttYqA\downloaded_packages
+    view                                    html  
+    trunc_mat                               html  
+    tribble                                 html  
+    tibble                                  html  
+    tibble-package                          html  
+    tbl_df-class                            html  
+    subsetting                              html  
+    rownames                                html  
+    reexports                               html  
+    new_tibble                              html  
+    name-repair                             html  
+    name-repair-superseded                  html  
+    lst                                     html  
+    knit_print.trunc_mat                    html  
+    is_tibble                               html  
+    is.tibble                               html  
+    frame_matrix                            html  
+    formatting                              html  
+    enframe                                 html  
+    deprecated                              html  
+    as_tibble                               html  
+    add_row                                 html  
+    add_column                              html  
+  converting help for package 'tibble'
+C:/rtools40/mingw64/bin/gcc -shared -s -static-libgcc -o tibble.dll tmp.def attributes.o coerce.o init.o matrixToDataFrame.o -LC:/PROGRA~1/R/R-40~1.5/bin/x64 -lR
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -std=gnu99         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c matrixToDataFrame.c -o matrixToDataFrame.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -std=gnu99         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c init.c -o init.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -std=gnu99         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c coerce.c -o coerce.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -std=gnu99         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c attributes.c -o attributes.o
+C:/rtools40/mingw32/bin/gcc -shared -s -static-libgcc -o tibble.dll tmp.def attributes.o coerce.o init.o matrixToDataFrame.o -LC:/PROGRA~1/R/R-40~1.5/bin/i386 -lR
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -std=gnu99         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c matrixToDataFrame.c -o matrixToDataFrame.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -std=gnu99         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c init.c -o init.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -std=gnu99         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c coerce.c -o coerce.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -std=gnu99         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c attributes.c -o attributes.o
+    type_sum                                html  
+    tbl_sum                                 html  
+    tbl_format_setup                        html  
+    tbl_format_header                       html  
+    tbl_format_footer                       html  
+    tbl_format_body                         html  
+    style_subtle                            html  
+    squeeze                                 html  
+    pillar_shaft                            html  
+    pillar                                  html  
+    pillar-package                          html  
+    num                                     html  
+    new_tbl_format_setup                    html  
+    new_pillar_type                         html  
+    new_pillar_title                        html  
+    new_pillar_shaft                        html  
+    new_pillar_component                    html  
+    new_pillar                              html  
+    new_ornament                            html  
+    glimpse                                 html  
+    get_extent                              html  
+    format_type_sum                         html  
+    format_tbl                              html  
+    format_glimpse                          html  
+    extra_cols                              html  
+    expect_known_display                    html  
+    dim_desc                                html  
+    deprecated                              html  
+    ctl_new_pillar                          html  
+    colonnade                               html  
+    char                                    html  
+    align                                   html  
+  converting help for package 'pillar'
+	C:\Users\runneradmin\AppData\Local\Temp\Rtmpu01Gz3\downloaded_packages
 The downloaded binary packages are in
 package 'R.devices' successfully unpacked and MD5 sums checked
 package 'Rcpp' successfully unpacked and MD5 sums checked
 package 'gridExtra' successfully unpacked and MD5 sums checked
 package 'tidyr' successfully unpacked and MD5 sums checked
 package 'gdata' successfully unpacked and MD5 sums checked
+package 'dplyr' successfully unpacked and MD5 sums checked
 package 'ggplot2' successfully unpacked and MD5 sums checked
 package 'base64enc' successfully unpacked and MD5 sums checked
 package 'R.utils' successfully unpacked and MD5 sums checked
@@ -25,7 +81,6 @@ package 'R.methodsS3' successfully unpacked and MD5 sums checked
 package 'cpp11' successfully unpacked and MD5 sums checked
 package 'purrr' successfully unpacked and MD5 sums checked
 package 'gtools' successfully unpacked and MD5 sums checked
-package 'pillar' successfully unpacked and MD5 sums checked
 package 'vctrs' successfully unpacked and MD5 sums checked
 package 'tidyselect' successfully unpacked and MD5 sums checked
 package 'R6' successfully unpacked and MD5 sums checked
@@ -34,7 +89,6 @@ package 'lifecycle' successfully unpacked and MD5 sums checked
 package 'generics' successfully unpacked and MD5 sums checked
 package 'ellipsis' successfully unpacked and MD5 sums checked
 package 'withr' successfully unpacked and MD5 sums checked
-package 'tibble' successfully unpacked and MD5 sums checked
 package 'scales' successfully unpacked and MD5 sums checked
 package 'rlang' successfully unpacked and MD5 sums checked
 package 'isoband' successfully unpacked and MD5 sums checked
@@ -52,56 +106,103 @@ package 'munsell' successfully unpacked and MD5 sums checked
 package 'labeling' successfully unpacked and MD5 sums checked
 package 'farver' successfully unpacked and MD5 sums checked
 package 'colorspace' successfully unpacked and MD5 sums checked
-dplyr  1.0.5  1.0.6              TRUE
-      binary source needs_compilation
-  There is a binary version available but the source version is later:
+pillar  1.6.0  1.6.1             FALSE
+tibble  3.1.1  3.1.2              TRUE
+       binary source needs_compilation
+  There are binary versions available but the source versions are later:
 Execution halted
 Error in library(ggplot2) : there is no package called 'ggplot2'
-  installation of package 'dplyr' had non-zero exit status
-In install.packages(new.packages, lib = Sys.getenv("R_LIBS_USER"),  :
-Warning message:
-	'C:\Users\runneradmin\AppData\Local\Temp\RtmpEttYqA\downloaded_packages'
+	'C:\Users\runneradmin\AppData\Local\Temp\Rtmpu01Gz3\downloaded_packages'
 The downloaded source packages are in
-* removing 'C:/Users/runneradmin/R/win-library/4.0/dplyr'
-ERROR: compilation failed for package 'dplyr'
-no DLL was created
-/usr/bin/sh: line 8: "C:/rtools40/mingw32/bin/"g++ -std=gnu++11 : No such file or directory
+* DONE (tibble)
+** testing if installed package keeps a record of temporary installation path
+*** arch - x64
+*** arch - i386
+** testing if installed package can be loaded from final location
+*** arch - x64
+*** arch - i386
+** testing if installed package can be loaded from temporary location
+** installing vignettes
+** building package indices
+*** copying figures
+    finding level-2 HTML links ... done
+    finding HTML links ... done
+*** installing help indices
+** help
+** byte-compile and prepare package for lazy loading
+** inst
+** R
+installing to C:/Users/runneradmin/R/win-library/4.0/00LOCK-tibble/00new/tibble/libs/x64
+*** arch - x64
+installing to C:/Users/runneradmin/R/win-library/4.0/00LOCK-tibble/00new/tibble/libs/i386
 *** arch - i386
 ** libs
 ** using staged installation
-** package 'dplyr' successfully unpacked and MD5 sums checked
-* installing *source* package 'dplyr' ...
+** package 'tibble' successfully unpacked and MD5 sums checked
+* installing *source* package 'tibble' ...
 please set environment variable 'TZ'
   unable to identify current timezone 'C':
 Warning in strptime(xx, f, tz = tz) :
-downloaded 932 KB
+* DONE (pillar)
+** testing if installed package keeps a record of temporary installation path
+*** arch - x64
+*** arch - i386
+** testing if installed package can be loaded from final location
+*** arch - x64
+*** arch - i386
+** testing if installed package can be loaded from temporary location
+** installing vignettes
+** building package indices
+*** copying figures
+    finding level-2 HTML links ... done
+    finding HTML links ... done
+*** installing help indices
+** help
+** byte-compile and prepare package for lazy loading
+** inst
+** R
+** using staged installation
+** package 'pillar' successfully unpacked and MD5 sums checked
+* installing *source* package 'pillar' ...
+please set environment variable 'TZ'
+  unable to identify current timezone 'C':
+Warning in strptime(xx, f, tz = tz) :
+downloaded 1.1 MB
 ==================================================
-Content type 'application/x-gzip' length 954401 bytes (932 KB)
-trying URL 'https://cran.rstudio.com/src/contrib/dplyr_1.0.6.tar.gz'
-installing the source package 'dplyr'
+Content type 'application/x-gzip' length 1111747 bytes (1.1 MB)
+trying URL 'https://cran.rstudio.com/src/contrib/pillar_1.6.1.tar.gz'
+downloaded 670 KB
+==================================================
+Content type 'application/x-gzip' length 686145 bytes (670 KB)
+trying URL 'https://cran.rstudio.com/src/contrib/tibble_3.1.2.tar.gz'
+installing the source packages 'tibble', 'pillar'
 downloaded 370 KB
 ==================================================
-Content type 'application/zip' length 379266 bytes (370 KB)
+Content type 'application/zip' length 379812 bytes (370 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/R.devices_2.17.0.zip'
 downloaded 3.1 MB
 ==================================================
-Content type 'application/zip' length 3253654 bytes (3.1 MB)
+Content type 'application/zip' length 3253651 bytes (3.1 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/Rcpp_1.0.6.zip'
 downloaded 1.1 MB
 ==================================================
-Content type 'application/zip' length 1109088 bytes (1.1 MB)
+Content type 'application/zip' length 1109086 bytes (1.1 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/gridExtra_2.3.zip'
 downloaded 1.0 MB
 ==================================================
-Content type 'application/zip' length 1055388 bytes (1.0 MB)
+Content type 'application/zip' length 1055278 bytes (1.0 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/tidyr_1.1.3.zip'
 downloaded 1.2 MB
 ==================================================
 Content type 'application/zip' length 1264005 bytes (1.2 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/gdata_2.18.0.zip'
+downloaded 1.3 MB
+==================================================
+Content type 'application/zip' length 1339339 bytes (1.3 MB)
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/dplyr_1.0.6.zip'
 downloaded 3.9 MB
 ==================================================
-Content type 'application/zip' length 4070070 bytes (3.9 MB)
+Content type 'application/zip' length 4070942 bytes (3.9 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/ggplot2_3.3.3.zip'
 downloaded 42 KB
 ==================================================
@@ -109,7 +210,7 @@ Content type 'application/zip' length 43016 bytes (42 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/base64enc_0.1-3.zip'
 downloaded 1.3 MB
 ==================================================
-Content type 'application/zip' length 1407151 bytes (1.3 MB)
+Content type 'application/zip' length 1406614 bytes (1.3 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/R.utils_2.10.1.zip'
 downloaded 942 KB
 ==================================================
@@ -121,111 +222,103 @@ Content type 'application/zip' length 81299 bytes (79 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/R.methodsS3_1.8.1.zip'
 downloaded 212 KB
 ==================================================
-Content type 'application/zip' length 217772 bytes (212 KB)
+Content type 'application/zip' length 217767 bytes (212 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/cpp11_0.2.7.zip'
-downloaded 419 KB
+downloaded 420 KB
 ==================================================
-Content type 'application/zip' length 429582 bytes (419 KB)
+Content type 'application/zip' length 430335 bytes (420 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/purrr_0.3.4.zip'
 downloaded 328 KB
 ==================================================
 Content type 'application/zip' length 336012 bytes (328 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/gtools_3.8.2.zip'
-downloaded 992 KB
-==================================================
-Content type 'application/zip' length 1016285 bytes (992 KB)
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/pillar_1.6.0.zip'
 downloaded 1.2 MB
 ==================================================
-Content type 'application/zip' length 1252174 bytes (1.2 MB)
+Content type 'application/zip' length 1252864 bytes (1.2 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/vctrs_0.3.8.zip'
 downloaded 199 KB
 ==================================================
-Content type 'application/zip' length 204234 bytes (199 KB)
+Content type 'application/zip' length 204088 bytes (199 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/tidyselect_1.1.1.zip'
 downloaded 82 KB
 ==================================================
-Content type 'application/zip' length 84030 bytes (82 KB)
+Content type 'application/zip' length 84090 bytes (82 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/R6_2.5.0.zip'
 downloaded 230 KB
 ==================================================
-Content type 'application/zip' length 235595 bytes (230 KB)
+Content type 'application/zip' length 235721 bytes (230 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/magrittr_2.0.1.zip'
 downloaded 108 KB
 ==================================================
-Content type 'application/zip' length 111210 bytes (108 KB)
+Content type 'application/zip' length 111189 bytes (108 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/lifecycle_1.0.0.zip'
 downloaded 69 KB
 ==================================================
-Content type 'application/zip' length 71044 bytes (69 KB)
+Content type 'application/zip' length 70676 bytes (69 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/generics_0.1.0.zip'
-downloaded 47 KB
+downloaded 48 KB
 ==================================================
-Content type 'application/zip' length 49048 bytes (47 KB)
+Content type 'application/zip' length 49166 bytes (48 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/ellipsis_0.3.2.zip'
-downloaded 207 KB
+downloaded 206 KB
 ==================================================
-Content type 'application/zip' length 212538 bytes (207 KB)
+Content type 'application/zip' length 211924 bytes (206 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/withr_2.4.2.zip'
-downloaded 806 KB
-==================================================
-Content type 'application/zip' length 825910 bytes (806 KB)
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/tibble_3.1.1.zip'
 downloaded 544 KB
 ==================================================
-Content type 'application/zip' length 557690 bytes (544 KB)
+Content type 'application/zip' length 557964 bytes (544 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/scales_1.1.1.zip'
 downloaded 1.1 MB
 ==================================================
-Content type 'application/zip' length 1203672 bytes (1.1 MB)
+Content type 'application/zip' length 1205092 bytes (1.1 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/rlang_0.4.11.zip'
 downloaded 2.9 MB
 ==================================================
-Content type 'application/zip' length 3062224 bytes (2.9 MB)
+Content type 'application/zip' length 3062184 bytes (2.9 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/isoband_0.2.4.zip'
-downloaded 424 KB
+downloaded 423 KB
 ==================================================
-Content type 'application/zip' length 434274 bytes (424 KB)
+Content type 'application/zip' length 434072 bytes (423 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/gtable_0.3.0.zip'
 downloaded 151 KB
 ==================================================
-Content type 'application/zip' length 155439 bytes (151 KB)
+Content type 'application/zip' length 155073 bytes (151 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/glue_1.4.2.zip'
 downloaded 262 KB
 ==================================================
-Content type 'application/zip' length 268585 bytes (262 KB)
+Content type 'application/zip' length 268632 bytes (262 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/digest_0.6.27.zip'
-downloaded 205 KB
+downloaded 204 KB
 ==================================================
-Content type 'application/zip' length 209923 bytes (205 KB)
+Content type 'application/zip' length 209845 bytes (204 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/utf8_1.2.1.zip'
 downloaded 138 KB
 ==================================================
-Content type 'application/zip' length 141814 bytes (138 KB)
+Content type 'application/zip' length 142180 bytes (138 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/crayon_1.4.1.zip'
-downloaded 521 KB
+downloaded 525 KB
 ==================================================
-Content type 'application/zip' length 534118 bytes (521 KB)
+Content type 'application/zip' length 537808 bytes (525 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/cli_2.5.0.zip'
 downloaded 21 KB
 ==================================================
-Content type 'application/zip' length 22278 bytes (21 KB)
+Content type 'application/zip' length 22285 bytes (21 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/pkgconfig_2.0.3.zip'
 downloaded 218 KB
 ==================================================
-Content type 'application/zip' length 224253 bytes (218 KB)
+Content type 'application/zip' length 224171 bytes (218 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/fansi_0.4.2.zip'
 downloaded 1.2 MB
 ==================================================
-Content type 'application/zip' length 1299319 bytes (1.2 MB)
+Content type 'application/zip' length 1299302 bytes (1.2 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/viridisLite_0.4.0.zip'
 downloaded 54 KB
 ==================================================
 Content type 'application/zip' length 55548 bytes (54 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/RColorBrewer_1.1-2.zip'
-downloaded 239 KB
+downloaded 238 KB
 ==================================================
-Content type 'application/zip' length 245007 bytes (239 KB)
+Content type 'application/zip' length 244393 bytes (238 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/munsell_0.5.0.zip'
 downloaded 61 KB
 ==================================================
@@ -233,10 +326,10 @@ Content type 'application/zip' length 62727 bytes (61 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/labeling_0.4.2.zip'
 downloaded 1.7 MB
 ==================================================
-Content type 'application/zip' length 1751736 bytes (1.7 MB)
+Content type 'application/zip' length 1751523 bytes (1.7 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/farver_2.1.0.zip'
 downloaded 2.5 MB
 ==================================================
-Content type 'application/zip' length 2641019 bytes (2.5 MB)
+Content type 'application/zip' length 2640866 bytes (2.5 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/colorspace_2.0-1.zip'
 also installing the dependencies 'colorspace', 'farver', 'labeling', 'munsell', 'RColorBrewer', 'viridisLite', 'fansi', 'pkgconfig', 'cli', 'crayon', 'utf8', 'digest', 'glue', 'gtable', 'isoband', 'rlang', 'scales', 'tibble', 'withr', 'ellipsis', 'generics', 'lifecycle', 'magrittr', 'R6', 'tidyselect', 'vctrs', 'pillar', 'gtools', 'purrr', 'cpp11', 'R.methodsS3', 'R.oo', 'R.utils', 'base64enc'
