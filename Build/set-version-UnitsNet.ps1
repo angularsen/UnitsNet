@@ -46,6 +46,7 @@
   }
 
 # Import functions: Get-NewProjectVersion, Set-ProjectVersion, Set-AssemblyInfoVersion, Invoke-CommitAndTagVersion
+Remove-Module set-version -ErrorAction Ignore
 Import-Module "$PSScriptRoot\set-version.psm1"
 
 $root = Resolve-Path "$PSScriptRoot\.."
@@ -73,6 +74,7 @@ Set-NuspecVersion $winrtNuspecFile $newVersion
 Get-ChildItem -Path "$root\UnitsNet.NanoFramework\GeneratedCode" -Include '*.nuspec' -Recurse |
     Foreach-object {
         Set-NuspecVersion $_.FullName $newVersion
+        $versionFiles += $_.FullName
     }
 
 # Git commit and tag
