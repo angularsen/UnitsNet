@@ -130,8 +130,8 @@ namespace CodeGen.Generators
                 numberQuantity++;
             }
 
-            GenerateSolution(quantities, outputDir);
-            Log.Information("UnitsNet.nanoFrmawork.sln generated");
+            GenerateSolution(quantities, rootDir, outputDir);
+            Log.Information("UnitsNet.nanoFramework.sln generated");
             Log.Information($"Count of generated projects: {numberQuantity}");
         }
 
@@ -178,11 +178,11 @@ namespace CodeGen.Generators
             sb.Append("project(OK) ");
         }
 
-        private static void GenerateSolution(Quantity[] quantities, string outputDir)
+        private static void GenerateSolution(Quantity[] quantities, string rootDir, string outputDir)
         {
-            var content = new SolutionGenerator(quantities, outputDir).Generate();
+            var content = new SolutionGenerator(quantities).Generate();
 
-            var filePath = Path.Combine(outputDir, "UnitsNet.nanoFramework.sln");
+            var filePath = Path.Combine(rootDir, "UnitsNet.nanoFramework.sln");
 
             File.WriteAllText(filePath, content, Encoding.UTF8);
         }
