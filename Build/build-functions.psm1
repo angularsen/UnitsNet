@@ -66,9 +66,9 @@ function Start-Build([boolean] $IncludeWindowsRuntimeComponent = $false, [boolea
     $appVeyorLoggerArg = if (Test-Path "$appVeyorLoggerDll") { "/logger:$appVeyorLoggerDll" } else { "" }
 
     # msbuild does not auto-restore nugets for this project type
-    & "nuget" restore "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln"
+    & "nuget" restore "$root\UnitsNet.nanoFramework.sln"
     # now build
-    & "$msbuild" "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln" /verbosity:minimal /p:Configuration=Release $fileLoggerArg $appVeyorLoggerArg
+    & "$msbuild" "$root\UnitsNet.nanoFramework.sln" /verbosity:minimal /p:Configuration=Release $fileLoggerArg $appVeyorLoggerArg
     if ($lastexitcode -ne 0) { exit 1 }
   }
 
