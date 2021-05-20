@@ -26,7 +26,7 @@ namespace CodeGen.Generators.NanoFrameworkGen
     <Configuration Condition="" '$(Configuration)' == '' "">Debug</Configuration>
     <Platform Condition="" '$(Platform)' == '' "">AnyCPU</Platform>
     <ProjectTypeGuids>{{11A8DD76-328B-46DF-9F39-F559912D0360}};{{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}}</ProjectTypeGuids>
-    <ProjectGuid>{{{Guid.NewGuid()}}}</ProjectGuid>
+    <ProjectGuid>{HashGuid.ToHashGuid(_quantity.Name):B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <FileAlignment>512</FileAlignment>
