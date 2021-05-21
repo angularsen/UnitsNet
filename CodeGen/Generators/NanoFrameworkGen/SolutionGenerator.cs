@@ -33,7 +33,7 @@ MinimumVisualStudioVersion = 10.0.40219.1");
 
                 var projectGuid = HashGuid.ToHashGuid(quantity.Name);
                 Writer.WL($@"
-Project(""{_globalGuid:B}"") = ""{quantity.Name}"", ""{quantity.Name}\{quantity.Name}.nfproj"", ""{projectGuid:B}""
+Project(""{_globalGuid:B}"") = ""{quantity.Name}"", ""UnitsNet.NanoFramework\GeneratedCode\{quantity.Name}\{quantity.Name}.nfproj"", ""{projectGuid:B}""
 EndProject");
                 sb.Append($"{{{projectGuid}}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU\r\n");
                 sb.Append($"{{{projectGuid}}}.Debug|Any CPU.Build.0 = Debug|Any CPU\r\n");
