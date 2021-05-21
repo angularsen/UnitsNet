@@ -67,7 +67,7 @@ namespace CodeGen.Generators
 
             // NuGet package Version
             // including preview
-            var mscorlibPackage = packageVersions.Where(v => v.IsPrerelease).OrderByDescending(v => v.Version).First();
+            var mscorlibPackage = packageVersions.Where(v => v.IsPrerelease).OrderByDescending(v => v).First();
             // stable only
             //var mscorlibPackage = packageVersions.OrderByDescending(v => v.Version).First();
 
