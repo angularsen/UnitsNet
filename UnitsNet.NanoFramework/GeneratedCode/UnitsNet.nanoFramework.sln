@@ -2,211 +2,211 @@
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Acceleration", "Acceleration\Acceleration.nfproj", "{8e3a6691-a05f-d71c-f12a-f537c0807f85}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Acceleration", "UnitsNet.NanoFramework\GeneratedCode\Acceleration\Acceleration.nfproj", "{8e3a6691-a05f-d71c-f12a-f537c0807f85}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "AmountOfSubstance", "AmountOfSubstance\AmountOfSubstance.nfproj", "{1cd282f3-3bdc-bc00-a63a-03a11a9b5c4d}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "AmountOfSubstance", "UnitsNet.NanoFramework\GeneratedCode\AmountOfSubstance\AmountOfSubstance.nfproj", "{1cd282f3-3bdc-bc00-a63a-03a11a9b5c4d}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "AmplitudeRatio", "AmplitudeRatio\AmplitudeRatio.nfproj", "{59c09a1b-eff0-e367-6372-d16c4c984916}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "AmplitudeRatio", "UnitsNet.NanoFramework\GeneratedCode\AmplitudeRatio\AmplitudeRatio.nfproj", "{59c09a1b-eff0-e367-6372-d16c4c984916}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Angle", "Angle\Angle.nfproj", "{4b036819-f813-0c4d-3e44-1fcc8b5f3ec7}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Angle", "UnitsNet.NanoFramework\GeneratedCode\Angle\Angle.nfproj", "{4b036819-f813-0c4d-3e44-1fcc8b5f3ec7}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ApparentEnergy", "ApparentEnergy\ApparentEnergy.nfproj", "{6f80e841-e953-bc39-6670-8711f2ad9d18}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ApparentEnergy", "UnitsNet.NanoFramework\GeneratedCode\ApparentEnergy\ApparentEnergy.nfproj", "{6f80e841-e953-bc39-6670-8711f2ad9d18}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ApparentPower", "ApparentPower\ApparentPower.nfproj", "{88b9a61a-b21b-97cc-ef89-78d1e3ff7767}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ApparentPower", "UnitsNet.NanoFramework\GeneratedCode\ApparentPower\ApparentPower.nfproj", "{88b9a61a-b21b-97cc-ef89-78d1e3ff7767}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Area", "Area\Area.nfproj", "{04c24d02-bad7-a877-ff9b-a36a886c9633}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Area", "UnitsNet.NanoFramework\GeneratedCode\Area\Area.nfproj", "{04c24d02-bad7-a877-ff9b-a36a886c9633}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "AreaDensity", "AreaDensity\AreaDensity.nfproj", "{92ff1332-bf34-943e-a58d-8a76746d879e}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "AreaDensity", "UnitsNet.NanoFramework\GeneratedCode\AreaDensity\AreaDensity.nfproj", "{92ff1332-bf34-943e-a58d-8a76746d879e}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "AreaMomentOfInertia", "AreaMomentOfInertia\AreaMomentOfInertia.nfproj", "{566ef13c-0d17-e465-d35f-1bd9c65559bf}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "AreaMomentOfInertia", "UnitsNet.NanoFramework\GeneratedCode\AreaMomentOfInertia\AreaMomentOfInertia.nfproj", "{566ef13c-0d17-e465-d35f-1bd9c65559bf}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "BrakeSpecificFuelConsumption", "BrakeSpecificFuelConsumption\BrakeSpecificFuelConsumption.nfproj", "{085145f2-2b8f-4d09-5290-c14cdcd452bf}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "BrakeSpecificFuelConsumption", "UnitsNet.NanoFramework\GeneratedCode\BrakeSpecificFuelConsumption\BrakeSpecificFuelConsumption.nfproj", "{085145f2-2b8f-4d09-5290-c14cdcd452bf}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Capacitance", "Capacitance\Capacitance.nfproj", "{c1351fc7-d3d8-c3ce-0715-ad8e18ab8c94}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Capacitance", "UnitsNet.NanoFramework\GeneratedCode\Capacitance\Capacitance.nfproj", "{c1351fc7-d3d8-c3ce-0715-ad8e18ab8c94}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "CoefficientOfThermalExpansion", "CoefficientOfThermalExpansion\CoefficientOfThermalExpansion.nfproj", "{a9514ce6-d4e7-88ca-051e-e9e53610c519}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "CoefficientOfThermalExpansion", "UnitsNet.NanoFramework\GeneratedCode\CoefficientOfThermalExpansion\CoefficientOfThermalExpansion.nfproj", "{a9514ce6-d4e7-88ca-051e-e9e53610c519}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Density", "Density\Density.nfproj", "{d683a277-5892-aec2-985d-c2343725d0af}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Density", "UnitsNet.NanoFramework\GeneratedCode\Density\Density.nfproj", "{d683a277-5892-aec2-985d-c2343725d0af}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Duration", "Duration\Duration.nfproj", "{3c2ac54f-554c-518b-7c46-3b22d86d0e3b}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Duration", "UnitsNet.NanoFramework\GeneratedCode\Duration\Duration.nfproj", "{3c2ac54f-554c-518b-7c46-3b22d86d0e3b}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "DynamicViscosity", "DynamicViscosity\DynamicViscosity.nfproj", "{5dde57f4-3f98-c4b7-47e5-65229faf1f0f}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "DynamicViscosity", "UnitsNet.NanoFramework\GeneratedCode\DynamicViscosity\DynamicViscosity.nfproj", "{5dde57f4-3f98-c4b7-47e5-65229faf1f0f}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricAdmittance", "ElectricAdmittance\ElectricAdmittance.nfproj", "{2ee55c63-d077-25dd-f076-857adfe08080}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricAdmittance", "UnitsNet.NanoFramework\GeneratedCode\ElectricAdmittance\ElectricAdmittance.nfproj", "{2ee55c63-d077-25dd-f076-857adfe08080}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricCharge", "ElectricCharge\ElectricCharge.nfproj", "{f4286cfc-484b-8466-8efa-1111696babb9}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricCharge", "UnitsNet.NanoFramework\GeneratedCode\ElectricCharge\ElectricCharge.nfproj", "{f4286cfc-484b-8466-8efa-1111696babb9}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricChargeDensity", "ElectricChargeDensity\ElectricChargeDensity.nfproj", "{b1567c85-ad77-c283-9165-777ad0e9a2eb}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricChargeDensity", "UnitsNet.NanoFramework\GeneratedCode\ElectricChargeDensity\ElectricChargeDensity.nfproj", "{b1567c85-ad77-c283-9165-777ad0e9a2eb}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricConductance", "ElectricConductance\ElectricConductance.nfproj", "{fcd3dfb2-9ee2-ad22-0e1f-4cddd575792a}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricConductance", "UnitsNet.NanoFramework\GeneratedCode\ElectricConductance\ElectricConductance.nfproj", "{fcd3dfb2-9ee2-ad22-0e1f-4cddd575792a}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricConductivity", "ElectricConductivity\ElectricConductivity.nfproj", "{f420eccc-b12d-72e4-2ad2-f93054eeec30}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricConductivity", "UnitsNet.NanoFramework\GeneratedCode\ElectricConductivity\ElectricConductivity.nfproj", "{f420eccc-b12d-72e4-2ad2-f93054eeec30}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricCurrent", "ElectricCurrent\ElectricCurrent.nfproj", "{55160a70-69b2-4144-b974-b64d78bd50e0}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricCurrent", "UnitsNet.NanoFramework\GeneratedCode\ElectricCurrent\ElectricCurrent.nfproj", "{55160a70-69b2-4144-b974-b64d78bd50e0}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricCurrentDensity", "ElectricCurrentDensity\ElectricCurrentDensity.nfproj", "{8beda85e-3d20-5926-c060-f92913f1192e}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricCurrentDensity", "UnitsNet.NanoFramework\GeneratedCode\ElectricCurrentDensity\ElectricCurrentDensity.nfproj", "{8beda85e-3d20-5926-c060-f92913f1192e}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricCurrentGradient", "ElectricCurrentGradient\ElectricCurrentGradient.nfproj", "{29df066c-c160-cd60-b10f-23a0c3bb8457}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricCurrentGradient", "UnitsNet.NanoFramework\GeneratedCode\ElectricCurrentGradient\ElectricCurrentGradient.nfproj", "{29df066c-c160-cd60-b10f-23a0c3bb8457}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricField", "ElectricField\ElectricField.nfproj", "{635581a6-f954-d0e4-9c68-02c1725e49d2}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricField", "UnitsNet.NanoFramework\GeneratedCode\ElectricField\ElectricField.nfproj", "{635581a6-f954-d0e4-9c68-02c1725e49d2}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricInductance", "ElectricInductance\ElectricInductance.nfproj", "{76bf8a97-e573-a5b5-286f-04ca7e00f8e9}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricInductance", "UnitsNet.NanoFramework\GeneratedCode\ElectricInductance\ElectricInductance.nfproj", "{76bf8a97-e573-a5b5-286f-04ca7e00f8e9}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricPotential", "ElectricPotential\ElectricPotential.nfproj", "{66c94dc2-e546-9737-a45b-4bc60fe0e536}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricPotential", "UnitsNet.NanoFramework\GeneratedCode\ElectricPotential\ElectricPotential.nfproj", "{66c94dc2-e546-9737-a45b-4bc60fe0e536}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricPotentialAc", "ElectricPotentialAc\ElectricPotentialAc.nfproj", "{ab1339ec-f1d8-6abf-093e-1525ee231a9d}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricPotentialAc", "UnitsNet.NanoFramework\GeneratedCode\ElectricPotentialAc\ElectricPotentialAc.nfproj", "{ab1339ec-f1d8-6abf-093e-1525ee231a9d}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricPotentialChangeRate", "ElectricPotentialChangeRate\ElectricPotentialChangeRate.nfproj", "{679517ca-9d0b-0ec2-35ae-95230281cfba}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricPotentialChangeRate", "UnitsNet.NanoFramework\GeneratedCode\ElectricPotentialChangeRate\ElectricPotentialChangeRate.nfproj", "{679517ca-9d0b-0ec2-35ae-95230281cfba}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricPotentialDc", "ElectricPotentialDc\ElectricPotentialDc.nfproj", "{27ebf863-3ee7-ddb0-08ab-8577438a8f1c}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricPotentialDc", "UnitsNet.NanoFramework\GeneratedCode\ElectricPotentialDc\ElectricPotentialDc.nfproj", "{27ebf863-3ee7-ddb0-08ab-8577438a8f1c}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricResistance", "ElectricResistance\ElectricResistance.nfproj", "{78d59e90-3339-54d6-3803-f68623b72eff}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricResistance", "UnitsNet.NanoFramework\GeneratedCode\ElectricResistance\ElectricResistance.nfproj", "{78d59e90-3339-54d6-3803-f68623b72eff}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricResistivity", "ElectricResistivity\ElectricResistivity.nfproj", "{6a4a0f45-c2b4-6be4-e44a-e78d3282359f}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricResistivity", "UnitsNet.NanoFramework\GeneratedCode\ElectricResistivity\ElectricResistivity.nfproj", "{6a4a0f45-c2b4-6be4-e44a-e78d3282359f}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricSurfaceChargeDensity", "ElectricSurfaceChargeDensity\ElectricSurfaceChargeDensity.nfproj", "{006e161d-aae1-2dd1-5b94-ebd45d31f50a}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricSurfaceChargeDensity", "UnitsNet.NanoFramework\GeneratedCode\ElectricSurfaceChargeDensity\ElectricSurfaceChargeDensity.nfproj", "{006e161d-aae1-2dd1-5b94-ebd45d31f50a}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Energy", "Energy\Energy.nfproj", "{f7d3fcf2-cadc-19dd-4c4c-5a54a5102c95}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Energy", "UnitsNet.NanoFramework\GeneratedCode\Energy\Energy.nfproj", "{f7d3fcf2-cadc-19dd-4c4c-5a54a5102c95}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Entropy", "Entropy\Entropy.nfproj", "{816884bb-a5f6-5c07-967b-bb8f21d724b7}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Entropy", "UnitsNet.NanoFramework\GeneratedCode\Entropy\Entropy.nfproj", "{816884bb-a5f6-5c07-967b-bb8f21d724b7}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Force", "Force\Force.nfproj", "{5517dacf-b1ff-6515-e5b6-b5081f92f407}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Force", "UnitsNet.NanoFramework\GeneratedCode\Force\Force.nfproj", "{5517dacf-b1ff-6515-e5b6-b5081f92f407}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ForceChangeRate", "ForceChangeRate\ForceChangeRate.nfproj", "{97ad732d-4ce5-2027-aabc-844002d29c23}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ForceChangeRate", "UnitsNet.NanoFramework\GeneratedCode\ForceChangeRate\ForceChangeRate.nfproj", "{97ad732d-4ce5-2027-aabc-844002d29c23}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ForcePerLength", "ForcePerLength\ForcePerLength.nfproj", "{6b975d30-c5dd-f1fd-9d0c-4d56ecdf9b25}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ForcePerLength", "UnitsNet.NanoFramework\GeneratedCode\ForcePerLength\ForcePerLength.nfproj", "{6b975d30-c5dd-f1fd-9d0c-4d56ecdf9b25}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Frequency", "Frequency\Frequency.nfproj", "{8d66b616-3198-b8a1-d2d0-03496db6a62b}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Frequency", "UnitsNet.NanoFramework\GeneratedCode\Frequency\Frequency.nfproj", "{8d66b616-3198-b8a1-d2d0-03496db6a62b}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "FuelEfficiency", "FuelEfficiency\FuelEfficiency.nfproj", "{6e68ff9b-3947-d706-3ad7-f9237a67c874}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "FuelEfficiency", "UnitsNet.NanoFramework\GeneratedCode\FuelEfficiency\FuelEfficiency.nfproj", "{6e68ff9b-3947-d706-3ad7-f9237a67c874}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "HeatFlux", "HeatFlux\HeatFlux.nfproj", "{2b132458-96e5-72bf-673f-dda4a7fd514b}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "HeatFlux", "UnitsNet.NanoFramework\GeneratedCode\HeatFlux\HeatFlux.nfproj", "{2b132458-96e5-72bf-673f-dda4a7fd514b}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "HeatTransferCoefficient", "HeatTransferCoefficient\HeatTransferCoefficient.nfproj", "{3ede821e-ee76-967e-94d7-5b1d1239c8dd}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "HeatTransferCoefficient", "UnitsNet.NanoFramework\GeneratedCode\HeatTransferCoefficient\HeatTransferCoefficient.nfproj", "{3ede821e-ee76-967e-94d7-5b1d1239c8dd}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Illuminance", "Illuminance\Illuminance.nfproj", "{d846582b-8ae3-9779-01ea-7210b5330cfd}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Illuminance", "UnitsNet.NanoFramework\GeneratedCode\Illuminance\Illuminance.nfproj", "{d846582b-8ae3-9779-01ea-7210b5330cfd}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Irradiance", "Irradiance\Irradiance.nfproj", "{5f9c09c7-9e32-8927-7a5d-90001ceffc69}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Irradiance", "UnitsNet.NanoFramework\GeneratedCode\Irradiance\Irradiance.nfproj", "{5f9c09c7-9e32-8927-7a5d-90001ceffc69}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Irradiation", "Irradiation\Irradiation.nfproj", "{b545726f-7a83-3c78-2b55-6a709c5a6d00}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Irradiation", "UnitsNet.NanoFramework\GeneratedCode\Irradiation\Irradiation.nfproj", "{b545726f-7a83-3c78-2b55-6a709c5a6d00}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "KinematicViscosity", "KinematicViscosity\KinematicViscosity.nfproj", "{733e533d-9ff2-4c72-3da9-200f758dc6e3}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "KinematicViscosity", "UnitsNet.NanoFramework\GeneratedCode\KinematicViscosity\KinematicViscosity.nfproj", "{733e533d-9ff2-4c72-3da9-200f758dc6e3}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "LapseRate", "LapseRate\LapseRate.nfproj", "{3f29cf67-7bd2-2cec-413f-5237833c48c6}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "LapseRate", "UnitsNet.NanoFramework\GeneratedCode\LapseRate\LapseRate.nfproj", "{3f29cf67-7bd2-2cec-413f-5237833c48c6}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Length", "Length\Length.nfproj", "{0556c9ad-b3a1-730c-959f-baf21e60f972}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Length", "UnitsNet.NanoFramework\GeneratedCode\Length\Length.nfproj", "{0556c9ad-b3a1-730c-959f-baf21e60f972}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Level", "Level\Level.nfproj", "{5c300917-a99f-d166-4f56-f0da3c3614bb}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Level", "UnitsNet.NanoFramework\GeneratedCode\Level\Level.nfproj", "{5c300917-a99f-d166-4f56-f0da3c3614bb}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "LinearDensity", "LinearDensity\LinearDensity.nfproj", "{ab414094-9582-3357-d0e9-20b153a1b54c}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "LinearDensity", "UnitsNet.NanoFramework\GeneratedCode\LinearDensity\LinearDensity.nfproj", "{ab414094-9582-3357-d0e9-20b153a1b54c}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "LinearPowerDensity", "LinearPowerDensity\LinearPowerDensity.nfproj", "{8823a9ee-673a-e7d4-3c0a-bae61a262388}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "LinearPowerDensity", "UnitsNet.NanoFramework\GeneratedCode\LinearPowerDensity\LinearPowerDensity.nfproj", "{8823a9ee-673a-e7d4-3c0a-bae61a262388}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Luminosity", "Luminosity\Luminosity.nfproj", "{fe30ed04-094f-5005-b0aa-1b3623db60b2}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Luminosity", "UnitsNet.NanoFramework\GeneratedCode\Luminosity\Luminosity.nfproj", "{fe30ed04-094f-5005-b0aa-1b3623db60b2}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "LuminousFlux", "LuminousFlux\LuminousFlux.nfproj", "{a38e4da2-f05f-aa6f-82f1-56cd2e062d96}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "LuminousFlux", "UnitsNet.NanoFramework\GeneratedCode\LuminousFlux\LuminousFlux.nfproj", "{a38e4da2-f05f-aa6f-82f1-56cd2e062d96}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "LuminousIntensity", "LuminousIntensity\LuminousIntensity.nfproj", "{733f9598-101b-936b-b081-2805dd793091}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "LuminousIntensity", "UnitsNet.NanoFramework\GeneratedCode\LuminousIntensity\LuminousIntensity.nfproj", "{733f9598-101b-936b-b081-2805dd793091}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MagneticField", "MagneticField\MagneticField.nfproj", "{809c4afa-d014-471b-518b-4fd01cb7c808}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MagneticField", "UnitsNet.NanoFramework\GeneratedCode\MagneticField\MagneticField.nfproj", "{809c4afa-d014-471b-518b-4fd01cb7c808}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MagneticFlux", "MagneticFlux\MagneticFlux.nfproj", "{f0c5342b-fb95-48a4-029f-7aa631ce06f1}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MagneticFlux", "UnitsNet.NanoFramework\GeneratedCode\MagneticFlux\MagneticFlux.nfproj", "{f0c5342b-fb95-48a4-029f-7aa631ce06f1}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Magnetization", "Magnetization\Magnetization.nfproj", "{3ea3301e-d3de-6979-f1d7-58352998951c}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Magnetization", "UnitsNet.NanoFramework\GeneratedCode\Magnetization\Magnetization.nfproj", "{3ea3301e-d3de-6979-f1d7-58352998951c}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Mass", "Mass\Mass.nfproj", "{f8c5a010-c353-31da-cadc-b56186be374f}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Mass", "UnitsNet.NanoFramework\GeneratedCode\Mass\Mass.nfproj", "{f8c5a010-c353-31da-cadc-b56186be374f}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MassConcentration", "MassConcentration\MassConcentration.nfproj", "{0b1482c2-a3b1-6207-b73f-a07f46718b65}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MassConcentration", "UnitsNet.NanoFramework\GeneratedCode\MassConcentration\MassConcentration.nfproj", "{0b1482c2-a3b1-6207-b73f-a07f46718b65}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MassFlow", "MassFlow\MassFlow.nfproj", "{a0821347-be46-c587-b61d-5152c578048d}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MassFlow", "UnitsNet.NanoFramework\GeneratedCode\MassFlow\MassFlow.nfproj", "{a0821347-be46-c587-b61d-5152c578048d}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MassFlux", "MassFlux\MassFlux.nfproj", "{15622f39-b4c5-7e66-57bc-31900b6065c8}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MassFlux", "UnitsNet.NanoFramework\GeneratedCode\MassFlux\MassFlux.nfproj", "{15622f39-b4c5-7e66-57bc-31900b6065c8}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MassFraction", "MassFraction\MassFraction.nfproj", "{db140d08-4769-dc51-8809-a9222b830ef4}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MassFraction", "UnitsNet.NanoFramework\GeneratedCode\MassFraction\MassFraction.nfproj", "{db140d08-4769-dc51-8809-a9222b830ef4}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MassMomentOfInertia", "MassMomentOfInertia\MassMomentOfInertia.nfproj", "{6218c061-3905-79b2-d3bc-bb7b8fc77a69}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MassMomentOfInertia", "UnitsNet.NanoFramework\GeneratedCode\MassMomentOfInertia\MassMomentOfInertia.nfproj", "{6218c061-3905-79b2-d3bc-bb7b8fc77a69}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MolarEnergy", "MolarEnergy\MolarEnergy.nfproj", "{9b77d4e0-863d-4a74-c30a-56f7b2bb7cb7}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MolarEnergy", "UnitsNet.NanoFramework\GeneratedCode\MolarEnergy\MolarEnergy.nfproj", "{9b77d4e0-863d-4a74-c30a-56f7b2bb7cb7}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MolarEntropy", "MolarEntropy\MolarEntropy.nfproj", "{2053731b-90f5-5141-d15e-8d7be8c2662f}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MolarEntropy", "UnitsNet.NanoFramework\GeneratedCode\MolarEntropy\MolarEntropy.nfproj", "{2053731b-90f5-5141-d15e-8d7be8c2662f}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Molarity", "Molarity\Molarity.nfproj", "{0d21f127-8c25-9b3a-9612-ce2eea6e7ac1}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Molarity", "UnitsNet.NanoFramework\GeneratedCode\Molarity\Molarity.nfproj", "{0d21f127-8c25-9b3a-9612-ce2eea6e7ac1}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MolarMass", "MolarMass\MolarMass.nfproj", "{fe51bbda-2039-23fd-f29a-39c14adcb1f6}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MolarMass", "UnitsNet.NanoFramework\GeneratedCode\MolarMass\MolarMass.nfproj", "{fe51bbda-2039-23fd-f29a-39c14adcb1f6}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Permeability", "Permeability\Permeability.nfproj", "{34a31e0b-15ec-829c-6f0b-74f5acfd97e2}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Permeability", "UnitsNet.NanoFramework\GeneratedCode\Permeability\Permeability.nfproj", "{34a31e0b-15ec-829c-6f0b-74f5acfd97e2}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Permittivity", "Permittivity\Permittivity.nfproj", "{9b381685-8129-acba-66f0-7068fe43a6c3}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Permittivity", "UnitsNet.NanoFramework\GeneratedCode\Permittivity\Permittivity.nfproj", "{9b381685-8129-acba-66f0-7068fe43a6c3}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "PowerDensity", "PowerDensity\PowerDensity.nfproj", "{5e741dd9-690a-de16-e7a1-85e6239aa70d}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "PowerDensity", "UnitsNet.NanoFramework\GeneratedCode\PowerDensity\PowerDensity.nfproj", "{5e741dd9-690a-de16-e7a1-85e6239aa70d}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "PowerRatio", "PowerRatio\PowerRatio.nfproj", "{94317d9a-d614-b098-6175-76ee84262c05}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "PowerRatio", "UnitsNet.NanoFramework\GeneratedCode\PowerRatio\PowerRatio.nfproj", "{94317d9a-d614-b098-6175-76ee84262c05}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Pressure", "Pressure\Pressure.nfproj", "{f907841f-b1ee-9b12-580e-cfe2324bed03}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Pressure", "UnitsNet.NanoFramework\GeneratedCode\Pressure\Pressure.nfproj", "{f907841f-b1ee-9b12-580e-cfe2324bed03}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "PressureChangeRate", "PressureChangeRate\PressureChangeRate.nfproj", "{c9e4cfa9-c5d3-5e9d-243c-106ba4b6a447}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "PressureChangeRate", "UnitsNet.NanoFramework\GeneratedCode\PressureChangeRate\PressureChangeRate.nfproj", "{c9e4cfa9-c5d3-5e9d-243c-106ba4b6a447}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Ratio", "Ratio\Ratio.nfproj", "{b0be4813-d93e-7b06-d422-23ca28adf22a}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Ratio", "UnitsNet.NanoFramework\GeneratedCode\Ratio\Ratio.nfproj", "{b0be4813-d93e-7b06-d422-23ca28adf22a}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "RatioChangeRate", "RatioChangeRate\RatioChangeRate.nfproj", "{c028861d-f9e8-8231-2b6a-bc3b3fba349c}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "RatioChangeRate", "UnitsNet.NanoFramework\GeneratedCode\RatioChangeRate\RatioChangeRate.nfproj", "{c028861d-f9e8-8231-2b6a-bc3b3fba349c}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ReactiveEnergy", "ReactiveEnergy\ReactiveEnergy.nfproj", "{64c918a4-27a8-3e9c-e81f-6917f0edde90}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ReactiveEnergy", "UnitsNet.NanoFramework\GeneratedCode\ReactiveEnergy\ReactiveEnergy.nfproj", "{64c918a4-27a8-3e9c-e81f-6917f0edde90}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ReactivePower", "ReactivePower\ReactivePower.nfproj", "{6821b87e-65eb-bfdb-8fdc-8b183edf739e}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ReactivePower", "UnitsNet.NanoFramework\GeneratedCode\ReactivePower\ReactivePower.nfproj", "{6821b87e-65eb-bfdb-8fdc-8b183edf739e}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "RelativeHumidity", "RelativeHumidity\RelativeHumidity.nfproj", "{4ac05c74-08c5-2153-f38c-976975747b5c}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "RelativeHumidity", "UnitsNet.NanoFramework\GeneratedCode\RelativeHumidity\RelativeHumidity.nfproj", "{4ac05c74-08c5-2153-f38c-976975747b5c}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "RotationalAcceleration", "RotationalAcceleration\RotationalAcceleration.nfproj", "{e2110137-6a36-f4d1-2219-26eb18fee74d}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "RotationalAcceleration", "UnitsNet.NanoFramework\GeneratedCode\RotationalAcceleration\RotationalAcceleration.nfproj", "{e2110137-6a36-f4d1-2219-26eb18fee74d}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "RotationalSpeed", "RotationalSpeed\RotationalSpeed.nfproj", "{934ef064-2dce-6d50-64e9-d4d2c4d41a81}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "RotationalSpeed", "UnitsNet.NanoFramework\GeneratedCode\RotationalSpeed\RotationalSpeed.nfproj", "{934ef064-2dce-6d50-64e9-d4d2c4d41a81}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "RotationalStiffness", "RotationalStiffness\RotationalStiffness.nfproj", "{3788f245-ea6d-eb5d-80de-f25ab30a51cc}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "RotationalStiffness", "UnitsNet.NanoFramework\GeneratedCode\RotationalStiffness\RotationalStiffness.nfproj", "{3788f245-ea6d-eb5d-80de-f25ab30a51cc}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "RotationalStiffnessPerLength", "RotationalStiffnessPerLength\RotationalStiffnessPerLength.nfproj", "{eae89113-1312-f83c-1a4b-638b98e760b3}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "RotationalStiffnessPerLength", "UnitsNet.NanoFramework\GeneratedCode\RotationalStiffnessPerLength\RotationalStiffnessPerLength.nfproj", "{eae89113-1312-f83c-1a4b-638b98e760b3}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Scalar", "Scalar\Scalar.nfproj", "{609c8143-bdb3-709b-a7a5-cc33659c9b51}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Scalar", "UnitsNet.NanoFramework\GeneratedCode\Scalar\Scalar.nfproj", "{609c8143-bdb3-709b-a7a5-cc33659c9b51}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "SolidAngle", "SolidAngle\SolidAngle.nfproj", "{39d13fa7-a1df-cea6-adee-bab64a00a843}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "SolidAngle", "UnitsNet.NanoFramework\GeneratedCode\SolidAngle\SolidAngle.nfproj", "{39d13fa7-a1df-cea6-adee-bab64a00a843}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "SpecificEnergy", "SpecificEnergy\SpecificEnergy.nfproj", "{5bce25ab-a4d6-d89c-5274-7eadd8c5967a}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "SpecificEnergy", "UnitsNet.NanoFramework\GeneratedCode\SpecificEnergy\SpecificEnergy.nfproj", "{5bce25ab-a4d6-d89c-5274-7eadd8c5967a}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "SpecificEntropy", "SpecificEntropy\SpecificEntropy.nfproj", "{0d5dc515-9d35-ac02-c0b1-12c70c3163a2}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "SpecificEntropy", "UnitsNet.NanoFramework\GeneratedCode\SpecificEntropy\SpecificEntropy.nfproj", "{0d5dc515-9d35-ac02-c0b1-12c70c3163a2}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "SpecificVolume", "SpecificVolume\SpecificVolume.nfproj", "{74b88d5c-96e5-7286-d2b2-8def18538246}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "SpecificVolume", "UnitsNet.NanoFramework\GeneratedCode\SpecificVolume\SpecificVolume.nfproj", "{74b88d5c-96e5-7286-d2b2-8def18538246}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "SpecificWeight", "SpecificWeight\SpecificWeight.nfproj", "{d63ac796-7087-bf6c-2848-e6511358fbe4}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "SpecificWeight", "UnitsNet.NanoFramework\GeneratedCode\SpecificWeight\SpecificWeight.nfproj", "{d63ac796-7087-bf6c-2848-e6511358fbe4}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Speed", "Speed\Speed.nfproj", "{e9fe72c3-56b4-856b-a592-ae6e98e571f3}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Speed", "UnitsNet.NanoFramework\GeneratedCode\Speed\Speed.nfproj", "{e9fe72c3-56b4-856b-a592-ae6e98e571f3}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "StandardVolumeFlow", "StandardVolumeFlow\StandardVolumeFlow.nfproj", "{5da7dbe9-f180-570f-2da0-2737f043744d}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "StandardVolumeFlow", "UnitsNet.NanoFramework\GeneratedCode\StandardVolumeFlow\StandardVolumeFlow.nfproj", "{5da7dbe9-f180-570f-2da0-2737f043744d}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Temperature", "Temperature\Temperature.nfproj", "{8bce58b9-1a87-6bb3-3cee-e0e0f012b618}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Temperature", "UnitsNet.NanoFramework\GeneratedCode\Temperature\Temperature.nfproj", "{8bce58b9-1a87-6bb3-3cee-e0e0f012b618}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "TemperatureChangeRate", "TemperatureChangeRate\TemperatureChangeRate.nfproj", "{dfbb7b9f-c604-fedd-e658-17e196043123}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "TemperatureChangeRate", "UnitsNet.NanoFramework\GeneratedCode\TemperatureChangeRate\TemperatureChangeRate.nfproj", "{dfbb7b9f-c604-fedd-e658-17e196043123}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "TemperatureDelta", "TemperatureDelta\TemperatureDelta.nfproj", "{8854c5e8-e40b-74c3-aafc-de0f13239276}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "TemperatureDelta", "UnitsNet.NanoFramework\GeneratedCode\TemperatureDelta\TemperatureDelta.nfproj", "{8854c5e8-e40b-74c3-aafc-de0f13239276}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ThermalConductivity", "ThermalConductivity\ThermalConductivity.nfproj", "{7e7d8010-b37a-151a-11a5-1db234ee1104}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ThermalConductivity", "UnitsNet.NanoFramework\GeneratedCode\ThermalConductivity\ThermalConductivity.nfproj", "{7e7d8010-b37a-151a-11a5-1db234ee1104}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ThermalResistance", "ThermalResistance\ThermalResistance.nfproj", "{c69bdd4d-3ebd-4b8e-cffb-650903da3872}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ThermalResistance", "UnitsNet.NanoFramework\GeneratedCode\ThermalResistance\ThermalResistance.nfproj", "{c69bdd4d-3ebd-4b8e-cffb-650903da3872}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Torque", "Torque\Torque.nfproj", "{3b6bbc8a-1b22-deff-2980-53b77b6f3e5f}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Torque", "UnitsNet.NanoFramework\GeneratedCode\Torque\Torque.nfproj", "{3b6bbc8a-1b22-deff-2980-53b77b6f3e5f}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "TorquePerLength", "TorquePerLength\TorquePerLength.nfproj", "{c27e1919-64f1-ce81-c6d9-b46ced745a12}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "TorquePerLength", "UnitsNet.NanoFramework\GeneratedCode\TorquePerLength\TorquePerLength.nfproj", "{c27e1919-64f1-ce81-c6d9-b46ced745a12}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Turbidity", "Turbidity\Turbidity.nfproj", "{05ac8aed-49a4-5c9f-d8c2-8d2debf64791}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Turbidity", "UnitsNet.NanoFramework\GeneratedCode\Turbidity\Turbidity.nfproj", "{05ac8aed-49a4-5c9f-d8c2-8d2debf64791}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "VitaminA", "VitaminA\VitaminA.nfproj", "{c00185af-8735-7674-5fa6-232424b04161}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "VitaminA", "UnitsNet.NanoFramework\GeneratedCode\VitaminA\VitaminA.nfproj", "{c00185af-8735-7674-5fa6-232424b04161}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Volume", "Volume\Volume.nfproj", "{66b90fb1-20d7-f563-3477-4c7c6b404f4d}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Volume", "UnitsNet.NanoFramework\GeneratedCode\Volume\Volume.nfproj", "{66b90fb1-20d7-f563-3477-4c7c6b404f4d}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "VolumeConcentration", "VolumeConcentration\VolumeConcentration.nfproj", "{4aa72022-0946-6a28-a4e9-6c9add5caef6}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "VolumeConcentration", "UnitsNet.NanoFramework\GeneratedCode\VolumeConcentration\VolumeConcentration.nfproj", "{4aa72022-0946-6a28-a4e9-6c9add5caef6}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "VolumeFlow", "VolumeFlow\VolumeFlow.nfproj", "{b22e47e1-9506-56e6-3d19-780b887d8cb3}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "VolumeFlow", "UnitsNet.NanoFramework\GeneratedCode\VolumeFlow\VolumeFlow.nfproj", "{b22e47e1-9506-56e6-3d19-780b887d8cb3}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "VolumePerLength", "VolumePerLength\VolumePerLength.nfproj", "{b66e3a3e-7945-3d40-24ef-73fa6e1b8d41}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "VolumePerLength", "UnitsNet.NanoFramework\GeneratedCode\VolumePerLength\VolumePerLength.nfproj", "{b66e3a3e-7945-3d40-24ef-73fa6e1b8d41}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "WarpingMomentOfInertia", "WarpingMomentOfInertia\WarpingMomentOfInertia.nfproj", "{8433aac6-218d-9b7b-6eaa-36774e165446}"
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "WarpingMomentOfInertia", "UnitsNet.NanoFramework\GeneratedCode\WarpingMomentOfInertia\WarpingMomentOfInertia.nfproj", "{8433aac6-218d-9b7b-6eaa-36774e165446}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
