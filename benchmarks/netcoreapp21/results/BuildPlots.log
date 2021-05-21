@@ -32,40 +32,7 @@ C:/rtools40/mingw32/bin/gcc -shared -s -static-libgcc -o tibble.dll tmp.def attr
 "C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -std=gnu99         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c init.c -o init.o
 "C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -std=gnu99         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c coerce.c -o coerce.o
 "C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-40~1.5/include" -DNDEBUG -std=gnu99         -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign -c attributes.c -o attributes.o
-    type_sum                                html  
-    tbl_sum                                 html  
-    tbl_format_setup                        html  
-    tbl_format_header                       html  
-    tbl_format_footer                       html  
-    tbl_format_body                         html  
-    style_subtle                            html  
-    squeeze                                 html  
-    pillar_shaft                            html  
-    pillar                                  html  
-    pillar-package                          html  
-    num                                     html  
-    new_tbl_format_setup                    html  
-    new_pillar_type                         html  
-    new_pillar_title                        html  
-    new_pillar_shaft                        html  
-    new_pillar_component                    html  
-    new_pillar                              html  
-    new_ornament                            html  
-    glimpse                                 html  
-    get_extent                              html  
-    format_type_sum                         html  
-    format_tbl                              html  
-    format_glimpse                          html  
-    extra_cols                              html  
-    expect_known_display                    html  
-    dim_desc                                html  
-    deprecated                              html  
-    ctl_new_pillar                          html  
-    colonnade                               html  
-    char                                    html  
-    align                                   html  
-  converting help for package 'pillar'
-	C:\Users\runneradmin\AppData\Local\Temp\RtmpCgywu3\downloaded_packages
+	C:\Users\runneradmin\AppData\Local\Temp\RtmpgxjZAV\downloaded_packages
 The downloaded binary packages are in
 package 'R.devices' successfully unpacked and MD5 sums checked
 package 'Rcpp' successfully unpacked and MD5 sums checked
@@ -81,6 +48,7 @@ package 'R.methodsS3' successfully unpacked and MD5 sums checked
 package 'cpp11' successfully unpacked and MD5 sums checked
 package 'purrr' successfully unpacked and MD5 sums checked
 package 'gtools' successfully unpacked and MD5 sums checked
+package 'pillar' successfully unpacked and MD5 sums checked
 package 'vctrs' successfully unpacked and MD5 sums checked
 package 'tidyselect' successfully unpacked and MD5 sums checked
 package 'R6' successfully unpacked and MD5 sums checked
@@ -106,13 +74,12 @@ package 'munsell' successfully unpacked and MD5 sums checked
 package 'labeling' successfully unpacked and MD5 sums checked
 package 'farver' successfully unpacked and MD5 sums checked
 package 'colorspace' successfully unpacked and MD5 sums checked
-pillar  1.6.0  1.6.1             FALSE
 tibble  3.1.1  3.1.2              TRUE
        binary source needs_compilation
-  There are binary versions available but the source versions are later:
+  There is a binary version available but the source version is later:
 Execution halted
 Error in library(ggplot2) : there is no package called 'ggplot2'
-	'C:\Users\runneradmin\AppData\Local\Temp\RtmpCgywu3\downloaded_packages'
+	'C:\Users\runneradmin\AppData\Local\Temp\RtmpgxjZAV\downloaded_packages'
 The downloaded source packages are in
 * DONE (tibble)
 ** testing if installed package keeps a record of temporary installation path
@@ -143,39 +110,11 @@ installing to C:/Users/runneradmin/R/win-library/4.0/00LOCK-tibble/00new/tibble/
 please set environment variable 'TZ'
   unable to identify current timezone 'C':
 Warning in strptime(xx, f, tz = tz) :
-* DONE (pillar)
-** testing if installed package keeps a record of temporary installation path
-*** arch - x64
-*** arch - i386
-** testing if installed package can be loaded from final location
-*** arch - x64
-*** arch - i386
-** testing if installed package can be loaded from temporary location
-** installing vignettes
-** building package indices
-*** copying figures
-    finding level-2 HTML links ... done
-    finding HTML links ... done
-*** installing help indices
-** help
-** byte-compile and prepare package for lazy loading
-** inst
-** R
-** using staged installation
-** package 'pillar' successfully unpacked and MD5 sums checked
-* installing *source* package 'pillar' ...
-please set environment variable 'TZ'
-  unable to identify current timezone 'C':
-Warning in strptime(xx, f, tz = tz) :
-downloaded 1.1 MB
-==================================================
-Content type 'application/x-gzip' length 1111747 bytes (1.1 MB)
-trying URL 'https://cran.rstudio.com/src/contrib/pillar_1.6.1.tar.gz'
 downloaded 670 KB
 ==================================================
 Content type 'application/x-gzip' length 686145 bytes (670 KB)
 trying URL 'https://cran.rstudio.com/src/contrib/tibble_3.1.2.tar.gz'
-installing the source packages 'tibble', 'pillar'
+installing the source package 'tibble'
 downloaded 370 KB
 ==================================================
 Content type 'application/zip' length 379812 bytes (370 KB)
@@ -232,6 +171,10 @@ downloaded 328 KB
 ==================================================
 Content type 'application/zip' length 336012 bytes (328 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/gtools_3.8.2.zip'
+downloaded 1001 KB
+==================================================
+Content type 'application/zip' length 1025368 bytes (1001 KB)
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/pillar_1.6.1.zip'
 downloaded 1.2 MB
 ==================================================
 Content type 'application/zip' length 1252864 bytes (1.2 MB)
