@@ -127,10 +127,10 @@ namespace CodeGen.Generators
                     var replacements = new Dictionary<string, string>
                     {
                         //{ "(\\)sdecimal(\\s)", "$1float$2" }
-                        { "(\\d)m", "$1f" },
-                        { "(\\d)M", "$1f" },
-                        { " decimal ", " float " },
-                        { "(decimal ", "(float " }
+                        { "(\\d)m", "$1d" },
+                        { "(\\d)M", "$1d" },
+                        { " decimal ", " double " },
+                        { "(decimal ", "(double " }
                     };
                     new FileInfo($"{outputDir}\\Units\\{quantity.Name}Unit.g.cs").EditFile(replacements); 
                     new FileInfo($"{outputDir}\\Quantities\\{quantity.Name}.g.cs").EditFile(replacements); 
