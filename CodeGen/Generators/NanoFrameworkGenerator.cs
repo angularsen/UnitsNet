@@ -108,16 +108,10 @@ namespace CodeGen.Generators
             int numberQuantity = 0;
             foreach (var quantity in quantities)
             {
-                // Skip decimal based units, they are not supported by nanoFramework
-                if (quantity.BaseType == "decimal")
-                {
-                    Log.Information($"Skipping {quantity.Name} as it's decimal based");
-                    continue;
-                }
-
                 Log.Information($"Creating .NET nanoFramework project for {quantity.Name}");
 
                 var projectPath = Path.Combine(outputDir, quantity.Name);
+                Directory.CreateDirectory(projectPath);
                 var sb = new StringBuilder($"{quantity.Name}:".PadRight(AlignPad));
 
                 GeneratePackageConfig(projectPath, quantity.Name);
@@ -125,6 +119,22 @@ namespace CodeGen.Generators
                 GenerateUnitType(sb, quantity, Path.Combine(outputUnits, $"{quantity.Name}Unit.g.cs"));
                 GenerateQuantity(sb, quantity, Path.Combine(outputQuantitites, $"{quantity.Name}.g.cs"));
                 GenerateProject(sb, quantity, projectPath);
+
+
+                // Convert decimal based units to floats; decimals are not supported by nanoFramework
+                if (quantity.BaseType == "decimal")
+                {
+                    var replacements = new Dictionary<string, string>
+                    {
+                        //{ "(\\)sdecimal(\\s)", "$1float$2" }
+                        { "(\\d)m", "$1f" },
+                        { "(\\d)M", "$1f" },
+                        { " decimal ", " float " },
+                        { "(decimal ", "(float " }
+                    };
+                    new FileInfo($"{outputDir}\\Units\\{quantity.Name}Unit.g.cs").EditFile(replacements); 
+                    new FileInfo($"{outputDir}\\Quantities\\{quantity.Name}.g.cs").EditFile(replacements); 
+                }
 
                 numberQuantity++;
             }
