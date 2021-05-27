@@ -108,22 +108,33 @@ namespace CodeGen.Generators
             int numberQuantity = 0;
             foreach (var quantity in quantities)
             {
-                // Skip decimal based units, they are not supported by nanoFramework
-                if (quantity.BaseType == "decimal")
-                {
-                    Log.Information($"Skipping {quantity.Name} as it's decimal based");
-                    continue;
-                }
-
                 Log.Information($"Creating .NET nanoFramework project for {quantity.Name}");
 
                 var projectPath = Path.Combine(outputDir, quantity.Name);
+                Directory.CreateDirectory(projectPath);
                 var sb = new StringBuilder($"{quantity.Name}:".PadRight(AlignPad));
 
-                GeneratePackage(projectPath, quantity.Name);
+                GeneratePackageConfig(projectPath, quantity.Name);
+                GenerateNuspec(projectPath, quantity, MathNuGetVersion);
                 GenerateUnitType(sb, quantity, Path.Combine(outputUnits, $"{quantity.Name}Unit.g.cs"));
                 GenerateQuantity(sb, quantity, Path.Combine(outputQuantitites, $"{quantity.Name}.g.cs"));
                 GenerateProject(sb, quantity, projectPath);
+
+
+                // Convert decimal based units to floats; decimals are not supported by nanoFramework
+                if (quantity.BaseType == "decimal")
+                {
+                    var replacements = new Dictionary<string, string>
+                    {
+                        //{ "(\\)sdecimal(\\s)", "$1float$2" }
+                        { "(\\d)m", "$1d" },
+                        { "(\\d)M", "$1d" },
+                        { " decimal ", " double " },
+                        { "(decimal ", "(double " }
+                    };
+                    new FileInfo($"{outputDir}\\Units\\{quantity.Name}Unit.g.cs").EditFile(replacements); 
+                    new FileInfo($"{outputDir}\\Quantities\\{quantity.Name}.g.cs").EditFile(replacements); 
+                }
 
                 numberQuantity++;
             }
@@ -133,11 +144,18 @@ namespace CodeGen.Generators
             Log.Information($"Count of generated projects: {numberQuantity}");
         }
 
-        private static void GeneratePackage(string projectPath, string quantityName)
+        private static void GeneratePackageConfig(string projectPath, string quantityName)
         {
             string filePath = Path.Combine(projectPath, "packages.config");
 
-            var content = Generate(quantityName);
+            var content = GeneratePackageConfigFile(quantityName);
+            File.WriteAllText(filePath, content, Encoding.UTF8);
+        }
+        private static void GenerateNuspec(string projectPath, Quantity quantity, string mathNuGetVersion)
+        {
+            string filePath = Path.Combine(projectPath, $"UnitsNet.NanoFramework.{quantity.Name}.nuspec");
+
+            var content = new NuspecGenerator(quantity, mathNuGetVersion).Generate();
             File.WriteAllText(filePath, content, Encoding.UTF8);
         }
 
@@ -185,7 +203,7 @@ namespace CodeGen.Generators
             File.WriteAllText(filePath, content, Encoding.UTF8);
         }
 
-        private static string Generate(string quantityName)
+        private static string GeneratePackageConfigFile(string quantityName)
         {
             MyTextWriter Writer = new MyTextWriter();
 
