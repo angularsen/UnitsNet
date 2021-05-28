@@ -39,7 +39,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         {
             var exception = Assert.Throws<ArgumentNullException>(() => _sut.WriteJson(writer, Power.FromWatts(10D), serializer));
 
-            Assert.Equal($"Value cannot be null.{Environment.NewLine}Parameter name: {parameterName}", exception.Message);
+            Assert.Equal($"Value cannot be null. (Parameter '{parameterName}')", exception.Message);
         }
 
         [Fact]
@@ -104,7 +104,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         {
             var exception = Assert.Throws<ArgumentNullException>(() => _sut.ReadJson(reader, typeof(IQuantity), null, false, serializer));
 
-            Assert.Equal($"Value cannot be null.{Environment.NewLine}Parameter name: {paramName}", exception.Message);
+            Assert.Equal($"Value cannot be null. (Parameter '{paramName}')", exception.Message);
         }
 
         [Fact]

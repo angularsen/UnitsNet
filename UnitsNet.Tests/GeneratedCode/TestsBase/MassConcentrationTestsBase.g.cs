@@ -845,7 +845,8 @@ namespace UnitsNet.Tests
             var a = MassConcentration.FromKilogramsPerCubicMeter(1);
             var b = MassConcentration.FromKilogramsPerCubicMeter(2);
 
- // ReSharper disable EqualExpressionComparison
+#pragma warning disable CS8073
+// ReSharper disable EqualExpressionComparison
 
             Assert.True(a == a);
             Assert.False(a != a);
@@ -857,6 +858,7 @@ namespace UnitsNet.Tests
             Assert.False(null == a);
 
 // ReSharper restore EqualExpressionComparison
+#pragma warning restore CS8073
         }
 
         [Fact]

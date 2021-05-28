@@ -416,7 +416,8 @@ namespace UnitsNet.Tests
             var a = Area.FromSquareMeters(1);
             var b = Area.FromSquareMeters(2);
 
- // ReSharper disable EqualExpressionComparison
+#pragma warning disable CS8073
+// ReSharper disable EqualExpressionComparison
 
             Assert.True(a == a);
             Assert.False(a != a);
@@ -428,6 +429,7 @@ namespace UnitsNet.Tests
             Assert.False(null == a);
 
 // ReSharper restore EqualExpressionComparison
+#pragma warning restore CS8073
         }
 
         [Fact]
