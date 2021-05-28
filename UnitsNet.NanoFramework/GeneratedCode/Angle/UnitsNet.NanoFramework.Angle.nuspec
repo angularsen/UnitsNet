@@ -18,7 +18,7 @@
     <tags>nanoframework unit units measurement si metric imperial abbreviation abbreviations convert conversion parse c# .net immutable uwp uap winrt win10 windows runtime component angle</tags>
     <dependencies>
       <dependency id="nanoFramework.CoreLibrary" version="1.10.4-preview.11" />
-      <dependency id="nanoFramework.System.Math" version="1.4.0-preview.1" />
+      <dependency id="nanoFramework.System.Math" version="1.4.0-preview.9" />
     </dependencies>
   </metadata>
   <files>
