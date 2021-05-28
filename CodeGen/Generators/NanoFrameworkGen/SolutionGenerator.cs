@@ -25,12 +25,6 @@ MinimumVisualStudioVersion = 10.0.40219.1");
 
             foreach (var quantity in _quantities)
             {
-                // Skip decimal based units, they are not supported by nanoFramework
-                if (quantity.BaseType == "decimal")
-                {
-                    continue;
-                }
-
                 var projectGuid = HashGuid.ToHashGuid(quantity.Name);
                 Writer.WL($@"
 Project(""{_globalGuid:B}"") = ""{quantity.Name}"", ""{quantity.Name}\{quantity.Name}.nfproj"", ""{projectGuid:B}""

@@ -20,6 +20,8 @@ Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "AreaDensity", "AreaDensity\
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "AreaMomentOfInertia", "AreaMomentOfInertia\AreaMomentOfInertia.nfproj", "{566ef13c-0d17-e465-d35f-1bd9c65559bf}"
 EndProject
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "BitRate", "BitRate\BitRate.nfproj", "{b5fdf997-829f-5281-e624-ee4eee5aa26c}"
+EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "BrakeSpecificFuelConsumption", "BrakeSpecificFuelConsumption\BrakeSpecificFuelConsumption.nfproj", "{085145f2-2b8f-4d09-5290-c14cdcd452bf}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Capacitance", "Capacitance\Capacitance.nfproj", "{c1351fc7-d3d8-c3ce-0715-ad8e18ab8c94}"
@@ -86,6 +88,8 @@ Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "HeatTransferCoefficient", "
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Illuminance", "Illuminance\Illuminance.nfproj", "{d846582b-8ae3-9779-01ea-7210b5330cfd}"
 EndProject
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Information", "Information\Information.nfproj", "{12bab01c-845f-82c9-b00b-a3639cdfb2ce}"
+EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Irradiance", "Irradiance\Irradiance.nfproj", "{5f9c09c7-9e32-8927-7a5d-90001ceffc69}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Irradiation", "Irradiation\Irradiation.nfproj", "{b545726f-7a83-3c78-2b55-6a709c5a6d00}"
@@ -137,6 +141,8 @@ EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Permeability", "Permeability\Permeability.nfproj", "{34a31e0b-15ec-829c-6f0b-74f5acfd97e2}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Permittivity", "Permittivity\Permittivity.nfproj", "{9b381685-8129-acba-66f0-7068fe43a6c3}"
+EndProject
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Power", "Power\Power.nfproj", "{56968e84-6b7d-d548-4c0b-53017bd6123c}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "PowerDensity", "PowerDensity\PowerDensity.nfproj", "{5e741dd9-690a-de16-e7a1-85e6239aa70d}"
 EndProject
@@ -268,6 +274,12 @@ Global
 {566ef13c-0d17-e465-d35f-1bd9c65559bf}.Release|Any CPU.ActiveCfg = Release|Any CPU
 {566ef13c-0d17-e465-d35f-1bd9c65559bf}.Release|Any CPU.Build.0 = Release|Any CPU
 {566ef13c-0d17-e465-d35f-1bd9c65559bf}.Release|Any CPU.Deploy.0 = Release|Any CPU
+{b5fdf997-829f-5281-e624-ee4eee5aa26c}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{b5fdf997-829f-5281-e624-ee4eee5aa26c}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{b5fdf997-829f-5281-e624-ee4eee5aa26c}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+{b5fdf997-829f-5281-e624-ee4eee5aa26c}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{b5fdf997-829f-5281-e624-ee4eee5aa26c}.Release|Any CPU.Build.0 = Release|Any CPU
+{b5fdf997-829f-5281-e624-ee4eee5aa26c}.Release|Any CPU.Deploy.0 = Release|Any CPU
 {085145f2-2b8f-4d09-5290-c14cdcd452bf}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {085145f2-2b8f-4d09-5290-c14cdcd452bf}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {085145f2-2b8f-4d09-5290-c14cdcd452bf}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
@@ -466,6 +478,12 @@ Global
 {d846582b-8ae3-9779-01ea-7210b5330cfd}.Release|Any CPU.ActiveCfg = Release|Any CPU
 {d846582b-8ae3-9779-01ea-7210b5330cfd}.Release|Any CPU.Build.0 = Release|Any CPU
 {d846582b-8ae3-9779-01ea-7210b5330cfd}.Release|Any CPU.Deploy.0 = Release|Any CPU
+{12bab01c-845f-82c9-b00b-a3639cdfb2ce}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{12bab01c-845f-82c9-b00b-a3639cdfb2ce}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{12bab01c-845f-82c9-b00b-a3639cdfb2ce}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+{12bab01c-845f-82c9-b00b-a3639cdfb2ce}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{12bab01c-845f-82c9-b00b-a3639cdfb2ce}.Release|Any CPU.Build.0 = Release|Any CPU
+{12bab01c-845f-82c9-b00b-a3639cdfb2ce}.Release|Any CPU.Deploy.0 = Release|Any CPU
 {5f9c09c7-9e32-8927-7a5d-90001ceffc69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {5f9c09c7-9e32-8927-7a5d-90001ceffc69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {5f9c09c7-9e32-8927-7a5d-90001ceffc69}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
@@ -622,6 +640,12 @@ Global
 {9b381685-8129-acba-66f0-7068fe43a6c3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 {9b381685-8129-acba-66f0-7068fe43a6c3}.Release|Any CPU.Build.0 = Release|Any CPU
 {9b381685-8129-acba-66f0-7068fe43a6c3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+{56968e84-6b7d-d548-4c0b-53017bd6123c}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{56968e84-6b7d-d548-4c0b-53017bd6123c}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{56968e84-6b7d-d548-4c0b-53017bd6123c}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+{56968e84-6b7d-d548-4c0b-53017bd6123c}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{56968e84-6b7d-d548-4c0b-53017bd6123c}.Release|Any CPU.Build.0 = Release|Any CPU
+{56968e84-6b7d-d548-4c0b-53017bd6123c}.Release|Any CPU.Deploy.0 = Release|Any CPU
 {5e741dd9-690a-de16-e7a1-85e6239aa70d}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {5e741dd9-690a-de16-e7a1-85e6239aa70d}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {5e741dd9-690a-de16-e7a1-85e6239aa70d}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
