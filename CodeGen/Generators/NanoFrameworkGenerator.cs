@@ -69,7 +69,7 @@ namespace CodeGen.Generators
             // including preview
             var mscorlibPackage = packageVersions.Where(v => v.IsPrerelease).OrderByDescending(v => v).First();
             // stable only
-            //var mscorlibPackage = packageVersions.OrderByDescending(v => v.Version).First();
+            //var mscorlibPackage = packageVersions.OrderByDescending(v => v).First();
 
             MscorlibVersion = mscorlibPackage.Version.ToString();
             MscorlibNuGetVersion = mscorlibPackage.ToNormalizedString();
@@ -83,9 +83,9 @@ namespace CodeGen.Generators
 
             // NuGet package Version
             // including preview
-            var mathPackage = packageVersions.Where(v => v.IsPrerelease).OrderByDescending(v => v.Version).First();
+            var mathPackage = packageVersions.Where(v => v.IsPrerelease).OrderByDescending(v => v).First();
             // stable only
-            //var mathPackage = MathNuGetVersion = packageVersions.OrderByDescending(v => v.Version).First();
+            //var mathPackage = MathNuGetVersion = packageVersions.OrderByDescending(v => v).First();
 
             MathVersion = mathPackage.Version.ToString();
             MathNuGetVersion = mathPackage.ToNormalizedString();
@@ -132,8 +132,8 @@ namespace CodeGen.Generators
                         { " decimal ", " double " },
                         { "(decimal ", "(double " }
                     };
-                    new FileInfo($"{outputDir}\\Units\\{quantity.Name}Unit.g.cs").EditFile(replacements); 
-                    new FileInfo($"{outputDir}\\Quantities\\{quantity.Name}.g.cs").EditFile(replacements); 
+                    new FileInfo($"{outputDir}\\Units\\{quantity.Name}Unit.g.cs").EditFile(replacements);
+                    new FileInfo($"{outputDir}\\Quantities\\{quantity.Name}.g.cs").EditFile(replacements);
                 }
 
                 numberQuantity++;
