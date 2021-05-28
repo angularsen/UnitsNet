@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1621630681715,
+  "lastUpdate": 1622239524520,
   "repoUrl": "https://github.com/angularsen/UnitsNet",
   "entries": {
     "UnitsNet Benchmarks (net472)": [
@@ -882,6 +882,132 @@ window.BENCHMARK_DATA = {
             "value": 2028.6208704672272,
             "unit": "ns",
             "range": "± 49.10813890231726"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "andreas.larsen84@gmail.com",
+            "name": "Andreas Gullberg Larsen",
+            "username": "angularsen"
+          },
+          "committer": {
+            "email": "andreas.larsen84@gmail.com",
+            "name": "Andreas Gullberg Larsen",
+            "username": "angularsen"
+          },
+          "distinct": true,
+          "id": "59d980c098795945fd5a11ea4bd695934ecc9bd4",
+          "message": "UnitsNet: 4.93.0",
+          "timestamp": "2021-05-28T23:53:04+02:00",
+          "tree_id": "bff33bbf617580f8bacaa25fff56a132320a766e",
+          "url": "https://github.com/angularsen/UnitsNet/commit/59d980c098795945fd5a11ea4bd695934ecc9bd4"
+        },
+        "date": 1622239523453,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "UnitsNet.Benchmark.UnitsNetBenchmarks.Constructor",
+            "value": 12.05536551489347,
+            "unit": "ns",
+            "range": "± 0.34427743306182157"
+          },
+          {
+            "name": "UnitsNet.Benchmark.UnitsNetBenchmarks.Constructor_SI",
+            "value": 463.3853956022328,
+            "unit": "ns",
+            "range": "± 15.15881702748676"
+          },
+          {
+            "name": "UnitsNet.Benchmark.UnitsNetBenchmarks.FromMethod",
+            "value": 28.451910511350142,
+            "unit": "ns",
+            "range": "± 0.809161403803301"
+          },
+          {
+            "name": "UnitsNet.Benchmark.UnitsNetBenchmarks.ToProperty",
+            "value": 8.201640732234459,
+            "unit": "ns",
+            "range": "± 0.33854945236944134"
+          },
+          {
+            "name": "UnitsNet.Benchmark.UnitsNetBenchmarks.As",
+            "value": 8.481700571263218,
+            "unit": "ns",
+            "range": "± 0.26293884295432274"
+          },
+          {
+            "name": "UnitsNet.Benchmark.UnitsNetBenchmarks.As_SI",
+            "value": 461.614756598151,
+            "unit": "ns",
+            "range": "± 14.886251966136546"
+          },
+          {
+            "name": "UnitsNet.Benchmark.UnitsNetBenchmarks.ToUnit",
+            "value": 18.489933576865734,
+            "unit": "ns",
+            "range": "± 0.6686270245276118"
+          },
+          {
+            "name": "UnitsNet.Benchmark.UnitsNetBenchmarks.ToUnit_SI",
+            "value": 480.0059406786453,
+            "unit": "ns",
+            "range": "± 15.147094275860963"
+          },
+          {
+            "name": "UnitsNet.Benchmark.UnitsNetBenchmarks.ToStringTest",
+            "value": 1718.7149324888119,
+            "unit": "ns",
+            "range": "± 43.43378343493361"
+          },
+          {
+            "name": "UnitsNet.Benchmark.UnitsNetBenchmarks.Parse",
+            "value": 50914.94351192155,
+            "unit": "ns",
+            "range": "± 1433.3549049309272"
+          },
+          {
+            "name": "UnitsNet.Benchmark.UnitsNetBenchmarks.TryParseValid",
+            "value": 50660.774294060386,
+            "unit": "ns",
+            "range": "± 1746.7791228837145"
+          },
+          {
+            "name": "UnitsNet.Benchmark.UnitsNetBenchmarks.TryParseInvalid",
+            "value": 55029.81109799292,
+            "unit": "ns",
+            "range": "± 1806.1853912587565"
+          },
+          {
+            "name": "UnitsNet.Benchmark.UnitsNetBenchmarks.QuantityFrom",
+            "value": 1608.860759493671,
+            "unit": "ns",
+            "range": "± 83.49708027709944"
+          },
+          {
+            "name": "UnitsNet.Benchmark.UnitsNetBenchmarks.IQuantity_As",
+            "value": 17.526310144853642,
+            "unit": "ns",
+            "range": "± 0.47141337196824656"
+          },
+          {
+            "name": "UnitsNet.Benchmark.UnitsNetBenchmarks.IQuantity_As_SI",
+            "value": 457.88849780031006,
+            "unit": "ns",
+            "range": "± 14.42184047820167"
+          },
+          {
+            "name": "UnitsNet.Benchmark.UnitsNetBenchmarks.IQuantity_ToUnit",
+            "value": 26.375857476516593,
+            "unit": "ns",
+            "range": "± 0.47252671799513957"
+          },
+          {
+            "name": "UnitsNet.Benchmark.UnitsNetBenchmarks.IQuantity_ToStringTest",
+            "value": 1787.4325288763448,
+            "unit": "ns",
+            "range": "± 51.71889296742068"
           }
         ]
       }
