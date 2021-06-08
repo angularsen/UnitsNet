@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
@@ -17,6 +18,28 @@ namespace UnitsNet.Serialization.JsonNet
     /// <typeparam name="T">The type being converted. Should either be <see cref="IQuantity"/> or <see cref="IComparable"/></typeparam>
     public abstract class UnitsNetBaseJsonConverter<T> : JsonConverter<T>
     {
+        private List<(Type Quantity, Type Unit)> _registeredTypes = new();
+
+        /// <summary>
+        /// Register custom types so that the converter can instantiate these quantities.
+        /// Instead of calling <see cref="Quantity.From"/>, the <see cref="Activator"/> will be used to instantiate the object.
+        /// It is therefore assumed that the constructor of <paramref name="quantity"/> is specified with <c>new T(double value, typeof(<paramref name="unit"/>) unit)</c>.
+        /// </summary>
+        public void RegisterCustomType(Type quantity, Type unit)
+        {
+            if (!typeof(T).IsAssignableFrom(quantity))
+            {
+                throw new ArgumentException($"The type {quantity} is not a {nameof(T)}");
+            }
+
+            if (!typeof(Enum).IsAssignableFrom(unit))
+            {
+                throw new ArgumentException($"The type {unit} is not a {nameof(Enum)}");
+            }
+
+            _registeredTypes.Add((quantity, unit));
+        }
+
         /// <summary>
         /// Reads the "Unit" and "Value" properties from a JSON string
         /// </summary>
@@ -79,6 +102,12 @@ namespace UnitsNet.Serialization.JsonNet
             }
 
             var unit = GetUnit(valueUnit.Unit);
+            Type registeredType = GetRegisteredType(valueUnit.Unit);
+
+            if (registeredType is not null)
+            {
+                return (IQuantity)Activator.CreateInstance(registeredType, valueUnit.Value, unit);
+            }
 
             return valueUnit switch
             {
@@ -87,7 +116,40 @@ namespace UnitsNet.Serialization.JsonNet
             };
         }
 
-        private static Enum GetUnit(string unit)
+        private Type GetRegisteredType(string unit)
+        {
+            (var unitEnumTypeName, var unitEnumValue) = SplitUnitString(unit);
+            return _registeredTypes.Find(t => t.Unit.Name == unitEnumTypeName).Quantity;
+        }
+
+        private Enum GetUnit(string unit)
+        {
+            (var unitEnumTypeName, var unitEnumValue) = SplitUnitString(unit);
+
+            // First try to find the name in the list of registered types.
+            var unitEnumType = _registeredTypes.Find(t => t.Unit.Name == unitEnumTypeName).Unit;
+
+            if (unitEnumType is null)
+            {
+                // "UnitsNet.Units.MassUnit,UnitsNet"
+                var unitEnumTypeAssemblyQualifiedName = "UnitsNet.Units." + unitEnumTypeName + ",UnitsNet";
+
+                // -- see http://stackoverflow.com/a/6465096/1256096 for details
+                unitEnumType = Type.GetType(unitEnumTypeAssemblyQualifiedName);
+
+                if (unitEnumType is null)
+                {
+                    var ex = new UnitsNetException("Unable to find enum type.");
+                    ex.Data["type"] = unitEnumTypeAssemblyQualifiedName;
+                    throw ex;
+                }
+            }
+            
+            var unitValue = (Enum) Enum.Parse(unitEnumType, unitEnumValue); // Ex: MassUnit.Kilogram
+            return unitValue;
+        }
+
+        private static (string EnumName, string EnumValue) SplitUnitString(string unit)
         {
             var unitParts = unit.Split('.');
 
@@ -99,23 +161,7 @@ namespace UnitsNet.Serialization.JsonNet
             }
 
             // "MassUnit.Kilogram" => "MassUnit" and "Kilogram"
-            var unitEnumTypeName = unitParts[0];
-            var unitEnumValue = unitParts[1];
-
-            // "UnitsNet.Units.MassUnit,UnitsNet"
-            var unitEnumTypeAssemblyQualifiedName = "UnitsNet.Units." + unitEnumTypeName + ",UnitsNet";
-
-            // -- see http://stackoverflow.com/a/6465096/1256096 for details
-            var unitEnumType = Type.GetType(unitEnumTypeAssemblyQualifiedName);
-            if (unitEnumType == null)
-            {
-                var ex = new UnitsNetException("Unable to find enum type.");
-                ex.Data["type"] = unitEnumTypeAssemblyQualifiedName;
-                throw ex;
-            }
-
-            var unitValue = (Enum) Enum.Parse(unitEnumType, unitEnumValue); // Ex: MassUnit.Kilogram
-            return unitValue;
+            return (unitParts[0], unitParts[1]);
         }
 
         /// <summary>
