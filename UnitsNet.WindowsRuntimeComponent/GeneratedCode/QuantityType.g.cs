@@ -117,6 +117,7 @@ namespace UnitsNet
         SolidAngle,
         SpecificEnergy,
         SpecificEntropy,
+        SpecificFuelConsumption,
         SpecificVolume,
         SpecificWeight,
         Speed,

@@ -1956,6 +1956,11 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, SpecificEntropy.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropy.BaseUnit, SpecificEntropyUnit.MegajoulePerKilogramKelvin, q => q.ToUnit(SpecificEntropyUnit.MegajoulePerKilogramKelvin));
             unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.MegajoulePerKilogramKelvin, SpecificEntropy.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumption.BaseUnit, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, q => q.ToUnit(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond));
+            unitConverter.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumption.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumption.BaseUnit, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, q => q.ToUnit(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour));
+            unitConverter.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, SpecificFuelConsumption.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumption.BaseUnit, SpecificFuelConsumption.BaseUnit, q => q);
             unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolume.BaseUnit, SpecificVolumeUnit.CubicFootPerPound, q => q.ToUnit(SpecificVolumeUnit.CubicFootPerPound));
             unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicFootPerPound, SpecificVolume.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolume.BaseUnit, SpecificVolume.BaseUnit, q => q);
