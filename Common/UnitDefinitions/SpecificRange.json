@@ -1,0 +1,49 @@
+{
+  "Name": "SpecificRange",
+  "BaseUnit": "MeterPerKilogramForce",
+  "XmlDoc": "The range of the aircraft per unit of fuel.",
+  "BaseDimensions": {
+    "M": -1,
+    "T": 2
+  },
+  "Units": [
+    {
+      "SingularName": "NauticalMilePerPoundForce",
+      "PluralName": "NauticalMilesPerPoundForce",
+      "FromUnitToBaseFunc": "x/0.00024492",
+      "FromBaseToUnitFunc": "x*0.00024492",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "nmi/lbf" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MeterPerKilogramForce",
+      "PluralName": "MetersPerKilogramForce",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m/kgf" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MeterPerNewton",
+      "PluralName": "MetersPerNewton",
+      "FromUnitToBaseFunc": "x/0.101972",
+      "FromBaseToUnitFunc": "x*0.101972",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m/N" ]
+        }
+      ]
+    }
+  ]
+}

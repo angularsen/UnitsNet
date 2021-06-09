@@ -122,6 +122,7 @@ namespace UnitsNet.Tests
             Assertion(3, SolidAngleUnit.Steradian, Quantity.From(3, SolidAngleUnit.Steradian));
             Assertion(3, SpecificEnergyUnit.WattHourPerKilogram, Quantity.From(3, SpecificEnergyUnit.WattHourPerKilogram));
             Assertion(3, SpecificEntropyUnit.MegajoulePerKilogramKelvin, Quantity.From(3, SpecificEntropyUnit.MegajoulePerKilogramKelvin));
+            Assertion(3, SpecificRangeUnit.NauticalMilePerPoundForce, Quantity.From(3, SpecificRangeUnit.NauticalMilePerPoundForce));
             Assertion(3, SpecificVolumeUnit.MillicubicMeterPerKilogram, Quantity.From(3, SpecificVolumeUnit.MillicubicMeterPerKilogram));
             Assertion(3, SpecificWeightUnit.TonneForcePerCubicMillimeter, Quantity.From(3, SpecificWeightUnit.TonneForcePerCubicMillimeter));
             Assertion(3, SpeedUnit.YardPerSecond, Quantity.From(3, SpeedUnit.YardPerSecond));
@@ -235,6 +236,7 @@ namespace UnitsNet.Tests
             Assertion(SolidAngle.Info, SolidAngle.Zero);
             Assertion(SpecificEnergy.Info, SpecificEnergy.Zero);
             Assertion(SpecificEntropy.Info, SpecificEntropy.Zero);
+            Assertion(SpecificRange.Info, SpecificRange.Zero);
             Assertion(SpecificVolume.Info, SpecificVolume.Zero);
             Assertion(SpecificWeight.Info, SpecificWeight.Zero);
             Assertion(Speed.Info, Speed.Zero);
@@ -348,6 +350,7 @@ namespace UnitsNet.Tests
             Assertion(SolidAngle.QuantityType, SolidAngle.Zero);
             Assertion(SpecificEnergy.QuantityType, SpecificEnergy.Zero);
             Assertion(SpecificEntropy.QuantityType, SpecificEntropy.Zero);
+            Assertion(SpecificRange.QuantityType, SpecificRange.Zero);
             Assertion(SpecificVolume.QuantityType, SpecificVolume.Zero);
             Assertion(SpecificWeight.QuantityType, SpecificWeight.Zero);
             Assertion(Speed.QuantityType, Speed.Zero);
@@ -461,6 +464,7 @@ namespace UnitsNet.Tests
             Assertion(SolidAngle.BaseDimensions, SolidAngle.Zero);
             Assertion(SpecificEnergy.BaseDimensions, SpecificEnergy.Zero);
             Assertion(SpecificEntropy.BaseDimensions, SpecificEntropy.Zero);
+            Assertion(SpecificRange.BaseDimensions, SpecificRange.Zero);
             Assertion(SpecificVolume.BaseDimensions, SpecificVolume.Zero);
             Assertion(SpecificWeight.BaseDimensions, SpecificWeight.Zero);
             Assertion(Speed.BaseDimensions, Speed.Zero);

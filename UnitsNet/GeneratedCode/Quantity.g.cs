@@ -126,6 +126,7 @@ namespace UnitsNet
             { "SolidAngle", SolidAngle.Info },
             { "SpecificEnergy", SpecificEnergy.Info },
             { "SpecificEntropy", SpecificEntropy.Info },
+            { "SpecificRange", SpecificRange.Info },
             { "SpecificVolume", SpecificVolume.Info },
             { "SpecificWeight", SpecificWeight.Info },
             { "Speed", Speed.Info },
@@ -238,6 +239,7 @@ namespace UnitsNet
             { "SolidAngle", QuantityType.SolidAngle },
             { "SpecificEnergy", QuantityType.SpecificEnergy },
             { "SpecificEntropy", QuantityType.SpecificEntropy },
+            { "SpecificRange", QuantityType.SpecificRange },
             { "SpecificVolume", QuantityType.SpecificVolume },
             { "SpecificWeight", QuantityType.SpecificWeight },
             { "Speed", QuantityType.Speed },
@@ -445,6 +447,8 @@ namespace UnitsNet
                     return SpecificEnergy.From(value, SpecificEnergy.BaseUnit);
                 case QuantityType.SpecificEntropy:
                     return SpecificEntropy.From(value, SpecificEntropy.BaseUnit);
+                case QuantityType.SpecificRange:
+                    return SpecificRange.From(value, SpecificRange.BaseUnit);
                 case QuantityType.SpecificVolume:
                     return SpecificVolume.From(value, SpecificVolume.BaseUnit);
                 case QuantityType.SpecificWeight:
@@ -672,6 +676,8 @@ namespace UnitsNet
                     return SpecificEnergy.From(value, SpecificEnergy.BaseUnit);
                 case "SpecificEntropy":
                     return SpecificEntropy.From(value, SpecificEntropy.BaseUnit);
+                case "SpecificRange":
+                    return SpecificRange.From(value, SpecificRange.BaseUnit);
                 case "SpecificVolume":
                     return SpecificVolume.From(value, SpecificVolume.BaseUnit);
                 case "SpecificWeight":
@@ -988,6 +994,9 @@ namespace UnitsNet
                 case SpecificEntropyUnit specificEntropyUnit:
                     quantity = SpecificEntropy.From(value, specificEntropyUnit);
                     return true;
+                case SpecificRangeUnit specificRangeUnit:
+                    quantity = SpecificRange.From(value, specificRangeUnit);
+                    return true;
                 case SpecificVolumeUnit specificVolumeUnit:
                     quantity = SpecificVolume.From(value, specificVolumeUnit);
                     return true;
@@ -1245,6 +1254,8 @@ namespace UnitsNet
                     return parser.TryParse<SpecificEnergy, SpecificEnergyUnit>(quantityString, formatProvider, SpecificEnergy.From, out quantity);
                 case Type _ when quantityType == typeof(SpecificEntropy):
                     return parser.TryParse<SpecificEntropy, SpecificEntropyUnit>(quantityString, formatProvider, SpecificEntropy.From, out quantity);
+                case Type _ when quantityType == typeof(SpecificRange):
+                    return parser.TryParse<SpecificRange, SpecificRangeUnit>(quantityString, formatProvider, SpecificRange.From, out quantity);
                 case Type _ when quantityType == typeof(SpecificVolume):
                     return parser.TryParse<SpecificVolume, SpecificVolumeUnit>(quantityString, formatProvider, SpecificVolume.From, out quantity);
                 case Type _ when quantityType == typeof(SpecificWeight):
