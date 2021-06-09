@@ -90,6 +90,8 @@ Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Illuminance", "Illuminance\
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Information", "Information\Information.nfproj", "{12bab01c-845f-82c9-b00b-a3639cdfb2ce}"
 EndProject
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "InverseAngle", "InverseAngle\InverseAngle.nfproj", "{5e9c261b-a162-ce4d-5dc4-53988f382cd4}"
+EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Irradiance", "Irradiance\Irradiance.nfproj", "{5f9c09c7-9e32-8927-7a5d-90001ceffc69}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Irradiation", "Irradiation\Irradiation.nfproj", "{b545726f-7a83-3c78-2b55-6a709c5a6d00}"
@@ -484,6 +486,12 @@ Global
 {12bab01c-845f-82c9-b00b-a3639cdfb2ce}.Release|Any CPU.ActiveCfg = Release|Any CPU
 {12bab01c-845f-82c9-b00b-a3639cdfb2ce}.Release|Any CPU.Build.0 = Release|Any CPU
 {12bab01c-845f-82c9-b00b-a3639cdfb2ce}.Release|Any CPU.Deploy.0 = Release|Any CPU
+{5e9c261b-a162-ce4d-5dc4-53988f382cd4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{5e9c261b-a162-ce4d-5dc4-53988f382cd4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{5e9c261b-a162-ce4d-5dc4-53988f382cd4}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+{5e9c261b-a162-ce4d-5dc4-53988f382cd4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{5e9c261b-a162-ce4d-5dc4-53988f382cd4}.Release|Any CPU.Build.0 = Release|Any CPU
+{5e9c261b-a162-ce4d-5dc4-53988f382cd4}.Release|Any CPU.Deploy.0 = Release|Any CPU
 {5f9c09c7-9e32-8927-7a5d-90001ceffc69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {5f9c09c7-9e32-8927-7a5d-90001ceffc69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {5f9c09c7-9e32-8927-7a5d-90001ceffc69}.Debug|Any CPU.Deploy.0 = Debug|Any CPU

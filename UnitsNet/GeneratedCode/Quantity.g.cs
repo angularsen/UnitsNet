@@ -82,6 +82,7 @@ namespace UnitsNet
             { "HeatTransferCoefficient", HeatTransferCoefficient.Info },
             { "Illuminance", Illuminance.Info },
             { "Information", Information.Info },
+            { "InverseAngle", InverseAngle.Info },
             { "Irradiance", Irradiance.Info },
             { "Irradiation", Irradiation.Info },
             { "KinematicViscosity", KinematicViscosity.Info },
@@ -194,6 +195,7 @@ namespace UnitsNet
             { "HeatTransferCoefficient", QuantityType.HeatTransferCoefficient },
             { "Illuminance", QuantityType.Illuminance },
             { "Information", QuantityType.Information },
+            { "InverseAngle", QuantityType.InverseAngle },
             { "Irradiance", QuantityType.Irradiance },
             { "Irradiation", QuantityType.Irradiation },
             { "KinematicViscosity", QuantityType.KinematicViscosity },
@@ -357,6 +359,8 @@ namespace UnitsNet
                     return Illuminance.From(value, Illuminance.BaseUnit);
                 case QuantityType.Information:
                     return Information.From(value, Information.BaseUnit);
+                case QuantityType.InverseAngle:
+                    return InverseAngle.From(value, InverseAngle.BaseUnit);
                 case QuantityType.Irradiance:
                     return Irradiance.From(value, Irradiance.BaseUnit);
                 case QuantityType.Irradiation:
@@ -584,6 +588,8 @@ namespace UnitsNet
                     return Illuminance.From(value, Illuminance.BaseUnit);
                 case "Information":
                     return Information.From(value, Information.BaseUnit);
+                case "InverseAngle":
+                    return InverseAngle.From(value, InverseAngle.BaseUnit);
                 case "Irradiance":
                     return Irradiance.From(value, Irradiance.BaseUnit);
                 case "Irradiation":
@@ -855,6 +861,9 @@ namespace UnitsNet
                     return true;
                 case InformationUnit informationUnit:
                     quantity = Information.From(value, informationUnit);
+                    return true;
+                case InverseAngleUnit inverseAngleUnit:
+                    quantity = InverseAngle.From(value, inverseAngleUnit);
                     return true;
                 case IrradianceUnit irradianceUnit:
                     quantity = Irradiance.From(value, irradianceUnit);
@@ -1157,6 +1166,8 @@ namespace UnitsNet
                     return parser.TryParse<Illuminance, IlluminanceUnit>(quantityString, formatProvider, Illuminance.From, out quantity);
                 case Type _ when quantityType == typeof(Information):
                     return parser.TryParse<Information, InformationUnit>(quantityString, formatProvider, Information.From, out quantity);
+                case Type _ when quantityType == typeof(InverseAngle):
+                    return parser.TryParse<InverseAngle, InverseAngleUnit>(quantityString, formatProvider, InverseAngle.From, out quantity);
                 case Type _ when quantityType == typeof(Irradiance):
                     return parser.TryParse<Irradiance, IrradianceUnit>(quantityString, formatProvider, Irradiance.From, out quantity);
                 case Type _ when quantityType == typeof(Irradiation):

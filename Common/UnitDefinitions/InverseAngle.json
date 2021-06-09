@@ -1,0 +1,39 @@
+{
+  "Name": "InverseAngle",
+  "BaseUnit": "InverseDegree",
+  "XmlDoc": "1 / Angle",
+  "Units": [
+    {
+      "SingularName": "InverseRadian",
+      "PluralName": "InverseRadians",
+      "FromUnitToBaseFunc": "x*Math.PI/180",
+      "FromBaseToUnitFunc": "x/Math.PI*180",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "1/rad" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "рад" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InverseDegree",
+      "PluralName": "InverseDegrees",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "1/°", "1/deg" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "°" ]
+        }
+      ]
+    }
+  ]
+}

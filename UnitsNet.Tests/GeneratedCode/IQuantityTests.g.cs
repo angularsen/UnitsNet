@@ -78,6 +78,7 @@ namespace UnitsNet.Tests
             Assertion(3, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, Quantity.From(3, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin));
             Assertion(3, IlluminanceUnit.Millilux, Quantity.From(3, IlluminanceUnit.Millilux));
             Assertion(3, InformationUnit.Terabyte, Quantity.From(3, InformationUnit.Terabyte));
+            Assertion(3, InverseAngleUnit.InverseRadian, Quantity.From(3, InverseAngleUnit.InverseRadian));
             Assertion(3, IrradianceUnit.WattPerSquareMeter, Quantity.From(3, IrradianceUnit.WattPerSquareMeter));
             Assertion(3, IrradiationUnit.WattHourPerSquareMeter, Quantity.From(3, IrradiationUnit.WattHourPerSquareMeter));
             Assertion(3, KinematicViscosityUnit.Stokes, Quantity.From(3, KinematicViscosityUnit.Stokes));
@@ -191,6 +192,7 @@ namespace UnitsNet.Tests
             Assertion(HeatTransferCoefficient.Info, HeatTransferCoefficient.Zero);
             Assertion(Illuminance.Info, Illuminance.Zero);
             Assertion(Information.Info, Information.Zero);
+            Assertion(InverseAngle.Info, InverseAngle.Zero);
             Assertion(Irradiance.Info, Irradiance.Zero);
             Assertion(Irradiation.Info, Irradiation.Zero);
             Assertion(KinematicViscosity.Info, KinematicViscosity.Zero);
@@ -304,6 +306,7 @@ namespace UnitsNet.Tests
             Assertion(HeatTransferCoefficient.QuantityType, HeatTransferCoefficient.Zero);
             Assertion(Illuminance.QuantityType, Illuminance.Zero);
             Assertion(Information.QuantityType, Information.Zero);
+            Assertion(InverseAngle.QuantityType, InverseAngle.Zero);
             Assertion(Irradiance.QuantityType, Irradiance.Zero);
             Assertion(Irradiation.QuantityType, Irradiation.Zero);
             Assertion(KinematicViscosity.QuantityType, KinematicViscosity.Zero);
@@ -417,6 +420,7 @@ namespace UnitsNet.Tests
             Assertion(HeatTransferCoefficient.BaseDimensions, HeatTransferCoefficient.Zero);
             Assertion(Illuminance.BaseDimensions, Illuminance.Zero);
             Assertion(Information.BaseDimensions, Information.Zero);
+            Assertion(InverseAngle.BaseDimensions, InverseAngle.Zero);
             Assertion(Irradiance.BaseDimensions, Irradiance.Zero);
             Assertion(Irradiation.BaseDimensions, Irradiation.Zero);
             Assertion(KinematicViscosity.BaseDimensions, KinematicViscosity.Zero);

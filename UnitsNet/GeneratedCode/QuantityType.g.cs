@@ -75,6 +75,7 @@ namespace UnitsNet
         HeatTransferCoefficient,
         Illuminance,
         Information,
+        InverseAngle,
         Irradiance,
         Irradiation,
         KinematicViscosity,

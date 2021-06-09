@@ -880,6 +880,9 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Information>(InformationUnit.Terabit, Information.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Information>(Information.BaseUnit, InformationUnit.Terabyte, q => q.ToUnit(InformationUnit.Terabyte));
             unitConverter.SetConversionFunction<Information>(InformationUnit.Terabyte, Information.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<InverseAngle>(InverseAngle.BaseUnit, InverseAngle.BaseUnit, q => q);
+            unitConverter.SetConversionFunction<InverseAngle>(InverseAngle.BaseUnit, InverseAngleUnit.InverseRadian, q => q.ToUnit(InverseAngleUnit.InverseRadian));
+            unitConverter.SetConversionFunction<InverseAngle>(InverseAngleUnit.InverseRadian, InverseAngle.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Irradiance>(Irradiance.BaseUnit, IrradianceUnit.KilowattPerSquareCentimeter, q => q.ToUnit(IrradianceUnit.KilowattPerSquareCentimeter));
             unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.KilowattPerSquareCentimeter, Irradiance.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Irradiance>(Irradiance.BaseUnit, IrradianceUnit.KilowattPerSquareMeter, q => q.ToUnit(IrradianceUnit.KilowattPerSquareMeter));
