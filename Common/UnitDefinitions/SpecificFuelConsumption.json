@@ -1,42 +1,44 @@
 {
   "Name": "SpecificFuelConsumption",
-  "BaseUnit": "PoundMassPerPoundForceHour",
+  "BaseUnit": "GramPerKiloNewtonSecond",
   "XmlDoc": "SFC is the fuel efficiency of an engine design with respect to thrust output",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Thrust-specific_fuel_consumption",
   "Units": [
     {
       "SingularName": "PoundMassPerPoundForceHour",
       "PluralName": "PoundsMassPerPoundForceHour",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "x*28.33",
+      "FromBaseToUnitFunc": "x/28.33",
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb/(lbf*h)" ]
+          "Abbreviations": [ "lb/(lbf·h)" ]
         }
       ]
     },
     {
       "SingularName": "KilogramPerKilogramForceHour",
       "PluralName": "KilogramsPerKilogramForceHour",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "x*28.33",
+      "FromBaseToUnitFunc": "x/28.33",
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kg/(kgf*h)" ]
+          "Abbreviations": [ "kg/(kgf·h)" ]
         }
       ]
     },
     {
       "SingularName": "GramPerKiloNewtonSecond",
       "PluralName": "GramsPerKiloNewtonSecond",
-      "FromUnitToBaseFunc": "x/28.33",
-      "FromBaseToUnitFunc": "x*28.33",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "g/(kN*s)" ]
+          "Abbreviations": [ "g/(kN·s)" ],
+          "AbbreviationsForPrefixes": { "Kilo": [ "kg/(kN·s)" ] }
         }
       ]
     }

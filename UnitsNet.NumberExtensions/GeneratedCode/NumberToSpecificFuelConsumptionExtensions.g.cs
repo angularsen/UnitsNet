@@ -36,6 +36,10 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificFuelConsumption
         public static SpecificFuelConsumption KilogramsPerKilogramForceHour<T>(this T value) =>
             SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="SpecificFuelConsumption.FromKilogramsPerKiloNewtonSecond(UnitsNet.QuantityValue)" />
+        public static SpecificFuelConsumption KilogramsPerKiloNewtonSecond<T>(this T value) =>
+            SpecificFuelConsumption.FromKilogramsPerKiloNewtonSecond(Convert.ToDouble(value));
+
         /// <inheritdoc cref="SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(UnitsNet.QuantityValue)" />
         public static SpecificFuelConsumption PoundsMassPerPoundForceHour<T>(this T value) =>
             SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(Convert.ToDouble(value));

@@ -28,6 +28,7 @@ namespace UnitsNet.Units
         Undefined = 0,
         GramPerKiloNewtonSecond,
         KilogramPerKilogramForceHour,
+        KilogramPerKiloNewtonSecond,
         PoundMassPerPoundForceHour,
     }
 

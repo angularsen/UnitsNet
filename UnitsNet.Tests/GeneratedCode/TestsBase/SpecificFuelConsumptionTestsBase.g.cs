@@ -37,13 +37,15 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class SpecificFuelConsumptionTestsBase : QuantityTestsBase
     {
-        protected abstract double GramsPerKiloNewtonSecondInOnePoundMassPerPoundForceHour { get; }
-        protected abstract double KilogramsPerKilogramForceHourInOnePoundMassPerPoundForceHour { get; }
-        protected abstract double PoundsMassPerPoundForceHourInOnePoundMassPerPoundForceHour { get; }
+        protected abstract double GramsPerKiloNewtonSecondInOneGramPerKiloNewtonSecond { get; }
+        protected abstract double KilogramsPerKilogramForceHourInOneGramPerKiloNewtonSecond { get; }
+        protected abstract double KilogramsPerKiloNewtonSecondInOneGramPerKiloNewtonSecond { get; }
+        protected abstract double PoundsMassPerPoundForceHourInOneGramPerKiloNewtonSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double GramsPerKiloNewtonSecondTolerance { get { return 1e-5; } }
         protected virtual double KilogramsPerKilogramForceHourTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsPerKiloNewtonSecondTolerance { get { return 1e-5; } }
         protected virtual double PoundsMassPerPoundForceHourTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
@@ -58,21 +60,21 @@ namespace UnitsNet.Tests
         {
             var quantity = new SpecificFuelConsumption();
             Assert.Equal(0, quantity.Value);
-            Assert.Equal(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, quantity.Unit);
+            Assert.Equal(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, quantity.Unit);
         }
 
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new SpecificFuelConsumption(double.PositiveInfinity, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour));
-            Assert.Throws<ArgumentException>(() => new SpecificFuelConsumption(double.NegativeInfinity, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour));
+            Assert.Throws<ArgumentException>(() => new SpecificFuelConsumption(double.PositiveInfinity, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond));
+            Assert.Throws<ArgumentException>(() => new SpecificFuelConsumption(double.NegativeInfinity, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond));
         }
 
         [Fact]
         public void Ctor_WithNaNValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new SpecificFuelConsumption(double.NaN, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour));
+            Assert.Throws<ArgumentException>(() => new SpecificFuelConsumption(double.NaN, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond));
         }
 
         [Fact]
@@ -99,7 +101,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void SpecificFuelConsumption_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            var quantity = new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour);
+            var quantity = new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond);
 
             QuantityInfo<SpecificFuelConsumptionUnit> quantityInfo = quantity.QuantityInfo;
 
@@ -116,12 +118,13 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void PoundMassPerPoundForceHourToSpecificFuelConsumptionUnits()
+        public void GramPerKiloNewtonSecondToSpecificFuelConsumptionUnits()
         {
-            SpecificFuelConsumption poundmassperpoundforcehour = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1);
-            AssertEx.EqualTolerance(GramsPerKiloNewtonSecondInOnePoundMassPerPoundForceHour, poundmassperpoundforcehour.GramsPerKiloNewtonSecond, GramsPerKiloNewtonSecondTolerance);
-            AssertEx.EqualTolerance(KilogramsPerKilogramForceHourInOnePoundMassPerPoundForceHour, poundmassperpoundforcehour.KilogramsPerKilogramForceHour, KilogramsPerKilogramForceHourTolerance);
-            AssertEx.EqualTolerance(PoundsMassPerPoundForceHourInOnePoundMassPerPoundForceHour, poundmassperpoundforcehour.PoundsMassPerPoundForceHour, PoundsMassPerPoundForceHourTolerance);
+            SpecificFuelConsumption gramperkilonewtonsecond = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1);
+            AssertEx.EqualTolerance(GramsPerKiloNewtonSecondInOneGramPerKiloNewtonSecond, gramperkilonewtonsecond.GramsPerKiloNewtonSecond, GramsPerKiloNewtonSecondTolerance);
+            AssertEx.EqualTolerance(KilogramsPerKilogramForceHourInOneGramPerKiloNewtonSecond, gramperkilonewtonsecond.KilogramsPerKilogramForceHour, KilogramsPerKilogramForceHourTolerance);
+            AssertEx.EqualTolerance(KilogramsPerKiloNewtonSecondInOneGramPerKiloNewtonSecond, gramperkilonewtonsecond.KilogramsPerKiloNewtonSecond, KilogramsPerKiloNewtonSecondTolerance);
+            AssertEx.EqualTolerance(PoundsMassPerPoundForceHourInOneGramPerKiloNewtonSecond, gramperkilonewtonsecond.PoundsMassPerPoundForceHour, PoundsMassPerPoundForceHourTolerance);
         }
 
         [Fact]
@@ -135,32 +138,37 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity01.KilogramsPerKilogramForceHour, KilogramsPerKilogramForceHourTolerance);
             Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, quantity01.Unit);
 
-            var quantity02 = SpecificFuelConsumption.From(1, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour);
-            AssertEx.EqualTolerance(1, quantity02.PoundsMassPerPoundForceHour, PoundsMassPerPoundForceHourTolerance);
-            Assert.Equal(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, quantity02.Unit);
+            var quantity02 = SpecificFuelConsumption.From(1, SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond);
+            AssertEx.EqualTolerance(1, quantity02.KilogramsPerKiloNewtonSecond, KilogramsPerKiloNewtonSecondTolerance);
+            Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, quantity02.Unit);
+
+            var quantity03 = SpecificFuelConsumption.From(1, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour);
+            AssertEx.EqualTolerance(1, quantity03.PoundsMassPerPoundForceHour, PoundsMassPerPoundForceHourTolerance);
+            Assert.Equal(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, quantity03.Unit);
 
         }
 
         [Fact]
-        public void FromPoundsMassPerPoundForceHour_WithInfinityValue_ThrowsArgumentException()
+        public void FromGramsPerKiloNewtonSecond_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(double.NegativeInfinity));
         }
 
         [Fact]
-        public void FromPoundsMassPerPoundForceHour_WithNanValue_ThrowsArgumentException()
+        public void FromGramsPerKiloNewtonSecond_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(double.NaN));
+            Assert.Throws<ArgumentException>(() => SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var poundmassperpoundforcehour = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1);
-            AssertEx.EqualTolerance(GramsPerKiloNewtonSecondInOnePoundMassPerPoundForceHour, poundmassperpoundforcehour.As(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond), GramsPerKiloNewtonSecondTolerance);
-            AssertEx.EqualTolerance(KilogramsPerKilogramForceHourInOnePoundMassPerPoundForceHour, poundmassperpoundforcehour.As(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour), KilogramsPerKilogramForceHourTolerance);
-            AssertEx.EqualTolerance(PoundsMassPerPoundForceHourInOnePoundMassPerPoundForceHour, poundmassperpoundforcehour.As(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour), PoundsMassPerPoundForceHourTolerance);
+            var gramperkilonewtonsecond = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1);
+            AssertEx.EqualTolerance(GramsPerKiloNewtonSecondInOneGramPerKiloNewtonSecond, gramperkilonewtonsecond.As(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond), GramsPerKiloNewtonSecondTolerance);
+            AssertEx.EqualTolerance(KilogramsPerKilogramForceHourInOneGramPerKiloNewtonSecond, gramperkilonewtonsecond.As(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour), KilogramsPerKilogramForceHourTolerance);
+            AssertEx.EqualTolerance(KilogramsPerKiloNewtonSecondInOneGramPerKiloNewtonSecond, gramperkilonewtonsecond.As(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond), KilogramsPerKiloNewtonSecondTolerance);
+            AssertEx.EqualTolerance(PoundsMassPerPoundForceHourInOneGramPerKiloNewtonSecond, gramperkilonewtonsecond.As(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour), PoundsMassPerPoundForceHourTolerance);
         }
 
         [Fact]
@@ -183,95 +191,100 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var poundmassperpoundforcehour = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1);
+            var gramperkilonewtonsecond = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1);
 
-            var gramperkilonewtonsecondQuantity = poundmassperpoundforcehour.ToUnit(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond);
-            AssertEx.EqualTolerance(GramsPerKiloNewtonSecondInOnePoundMassPerPoundForceHour, (double)gramperkilonewtonsecondQuantity.Value, GramsPerKiloNewtonSecondTolerance);
+            var gramperkilonewtonsecondQuantity = gramperkilonewtonsecond.ToUnit(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond);
+            AssertEx.EqualTolerance(GramsPerKiloNewtonSecondInOneGramPerKiloNewtonSecond, (double)gramperkilonewtonsecondQuantity.Value, GramsPerKiloNewtonSecondTolerance);
             Assert.Equal(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, gramperkilonewtonsecondQuantity.Unit);
 
-            var kilogramperkilogramforcehourQuantity = poundmassperpoundforcehour.ToUnit(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour);
-            AssertEx.EqualTolerance(KilogramsPerKilogramForceHourInOnePoundMassPerPoundForceHour, (double)kilogramperkilogramforcehourQuantity.Value, KilogramsPerKilogramForceHourTolerance);
+            var kilogramperkilogramforcehourQuantity = gramperkilonewtonsecond.ToUnit(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour);
+            AssertEx.EqualTolerance(KilogramsPerKilogramForceHourInOneGramPerKiloNewtonSecond, (double)kilogramperkilogramforcehourQuantity.Value, KilogramsPerKilogramForceHourTolerance);
             Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, kilogramperkilogramforcehourQuantity.Unit);
 
-            var poundmassperpoundforcehourQuantity = poundmassperpoundforcehour.ToUnit(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour);
-            AssertEx.EqualTolerance(PoundsMassPerPoundForceHourInOnePoundMassPerPoundForceHour, (double)poundmassperpoundforcehourQuantity.Value, PoundsMassPerPoundForceHourTolerance);
+            var kilogramperkilonewtonsecondQuantity = gramperkilonewtonsecond.ToUnit(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond);
+            AssertEx.EqualTolerance(KilogramsPerKiloNewtonSecondInOneGramPerKiloNewtonSecond, (double)kilogramperkilonewtonsecondQuantity.Value, KilogramsPerKiloNewtonSecondTolerance);
+            Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, kilogramperkilonewtonsecondQuantity.Unit);
+
+            var poundmassperpoundforcehourQuantity = gramperkilonewtonsecond.ToUnit(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour);
+            AssertEx.EqualTolerance(PoundsMassPerPoundForceHourInOneGramPerKiloNewtonSecond, (double)poundmassperpoundforcehourQuantity.Value, PoundsMassPerPoundForceHourTolerance);
             Assert.Equal(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, poundmassperpoundforcehourQuantity.Unit);
         }
 
         [Fact]
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1).ToBaseUnit();
+            var quantityInBaseUnit = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1).ToBaseUnit();
             Assert.Equal(SpecificFuelConsumption.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            SpecificFuelConsumption poundmassperpoundforcehour = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1);
-            AssertEx.EqualTolerance(1, SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(poundmassperpoundforcehour.GramsPerKiloNewtonSecond).PoundsMassPerPoundForceHour, GramsPerKiloNewtonSecondTolerance);
-            AssertEx.EqualTolerance(1, SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(poundmassperpoundforcehour.KilogramsPerKilogramForceHour).PoundsMassPerPoundForceHour, KilogramsPerKilogramForceHourTolerance);
-            AssertEx.EqualTolerance(1, SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(poundmassperpoundforcehour.PoundsMassPerPoundForceHour).PoundsMassPerPoundForceHour, PoundsMassPerPoundForceHourTolerance);
+            SpecificFuelConsumption gramperkilonewtonsecond = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1);
+            AssertEx.EqualTolerance(1, SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(gramperkilonewtonsecond.GramsPerKiloNewtonSecond).GramsPerKiloNewtonSecond, GramsPerKiloNewtonSecondTolerance);
+            AssertEx.EqualTolerance(1, SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(gramperkilonewtonsecond.KilogramsPerKilogramForceHour).GramsPerKiloNewtonSecond, KilogramsPerKilogramForceHourTolerance);
+            AssertEx.EqualTolerance(1, SpecificFuelConsumption.FromKilogramsPerKiloNewtonSecond(gramperkilonewtonsecond.KilogramsPerKiloNewtonSecond).GramsPerKiloNewtonSecond, KilogramsPerKiloNewtonSecondTolerance);
+            AssertEx.EqualTolerance(1, SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(gramperkilonewtonsecond.PoundsMassPerPoundForceHour).GramsPerKiloNewtonSecond, PoundsMassPerPoundForceHourTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            SpecificFuelConsumption v = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1);
-            AssertEx.EqualTolerance(-1, -v.PoundsMassPerPoundForceHour, PoundsMassPerPoundForceHourTolerance);
-            AssertEx.EqualTolerance(2, (SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(3)-v).PoundsMassPerPoundForceHour, PoundsMassPerPoundForceHourTolerance);
-            AssertEx.EqualTolerance(2, (v + v).PoundsMassPerPoundForceHour, PoundsMassPerPoundForceHourTolerance);
-            AssertEx.EqualTolerance(10, (v*10).PoundsMassPerPoundForceHour, PoundsMassPerPoundForceHourTolerance);
-            AssertEx.EqualTolerance(10, (10*v).PoundsMassPerPoundForceHour, PoundsMassPerPoundForceHourTolerance);
-            AssertEx.EqualTolerance(2, (SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(10)/5).PoundsMassPerPoundForceHour, PoundsMassPerPoundForceHourTolerance);
-            AssertEx.EqualTolerance(2, SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(10)/SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(5), PoundsMassPerPoundForceHourTolerance);
+            SpecificFuelConsumption v = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1);
+            AssertEx.EqualTolerance(-1, -v.GramsPerKiloNewtonSecond, GramsPerKiloNewtonSecondTolerance);
+            AssertEx.EqualTolerance(2, (SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(3)-v).GramsPerKiloNewtonSecond, GramsPerKiloNewtonSecondTolerance);
+            AssertEx.EqualTolerance(2, (v + v).GramsPerKiloNewtonSecond, GramsPerKiloNewtonSecondTolerance);
+            AssertEx.EqualTolerance(10, (v*10).GramsPerKiloNewtonSecond, GramsPerKiloNewtonSecondTolerance);
+            AssertEx.EqualTolerance(10, (10*v).GramsPerKiloNewtonSecond, GramsPerKiloNewtonSecondTolerance);
+            AssertEx.EqualTolerance(2, (SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(10)/5).GramsPerKiloNewtonSecond, GramsPerKiloNewtonSecondTolerance);
+            AssertEx.EqualTolerance(2, SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(10)/SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(5), GramsPerKiloNewtonSecondTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            SpecificFuelConsumption onePoundMassPerPoundForceHour = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1);
-            SpecificFuelConsumption twoPoundsMassPerPoundForceHour = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(2);
+            SpecificFuelConsumption oneGramPerKiloNewtonSecond = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1);
+            SpecificFuelConsumption twoGramsPerKiloNewtonSecond = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(2);
 
-            Assert.True(onePoundMassPerPoundForceHour < twoPoundsMassPerPoundForceHour);
-            Assert.True(onePoundMassPerPoundForceHour <= twoPoundsMassPerPoundForceHour);
-            Assert.True(twoPoundsMassPerPoundForceHour > onePoundMassPerPoundForceHour);
-            Assert.True(twoPoundsMassPerPoundForceHour >= onePoundMassPerPoundForceHour);
+            Assert.True(oneGramPerKiloNewtonSecond < twoGramsPerKiloNewtonSecond);
+            Assert.True(oneGramPerKiloNewtonSecond <= twoGramsPerKiloNewtonSecond);
+            Assert.True(twoGramsPerKiloNewtonSecond > oneGramPerKiloNewtonSecond);
+            Assert.True(twoGramsPerKiloNewtonSecond >= oneGramPerKiloNewtonSecond);
 
-            Assert.False(onePoundMassPerPoundForceHour > twoPoundsMassPerPoundForceHour);
-            Assert.False(onePoundMassPerPoundForceHour >= twoPoundsMassPerPoundForceHour);
-            Assert.False(twoPoundsMassPerPoundForceHour < onePoundMassPerPoundForceHour);
-            Assert.False(twoPoundsMassPerPoundForceHour <= onePoundMassPerPoundForceHour);
+            Assert.False(oneGramPerKiloNewtonSecond > twoGramsPerKiloNewtonSecond);
+            Assert.False(oneGramPerKiloNewtonSecond >= twoGramsPerKiloNewtonSecond);
+            Assert.False(twoGramsPerKiloNewtonSecond < oneGramPerKiloNewtonSecond);
+            Assert.False(twoGramsPerKiloNewtonSecond <= oneGramPerKiloNewtonSecond);
         }
 
         [Fact]
         public void CompareToIsImplemented()
         {
-            SpecificFuelConsumption poundmassperpoundforcehour = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1);
-            Assert.Equal(0, poundmassperpoundforcehour.CompareTo(poundmassperpoundforcehour));
-            Assert.True(poundmassperpoundforcehour.CompareTo(SpecificFuelConsumption.Zero) > 0);
-            Assert.True(SpecificFuelConsumption.Zero.CompareTo(poundmassperpoundforcehour) < 0);
+            SpecificFuelConsumption gramperkilonewtonsecond = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1);
+            Assert.Equal(0, gramperkilonewtonsecond.CompareTo(gramperkilonewtonsecond));
+            Assert.True(gramperkilonewtonsecond.CompareTo(SpecificFuelConsumption.Zero) > 0);
+            Assert.True(SpecificFuelConsumption.Zero.CompareTo(gramperkilonewtonsecond) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            SpecificFuelConsumption poundmassperpoundforcehour = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1);
-            Assert.Throws<ArgumentException>(() => poundmassperpoundforcehour.CompareTo(new object()));
+            SpecificFuelConsumption gramperkilonewtonsecond = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1);
+            Assert.Throws<ArgumentException>(() => gramperkilonewtonsecond.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            SpecificFuelConsumption poundmassperpoundforcehour = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1);
-            Assert.Throws<ArgumentNullException>(() => poundmassperpoundforcehour.CompareTo(null));
+            SpecificFuelConsumption gramperkilonewtonsecond = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1);
+            Assert.Throws<ArgumentNullException>(() => gramperkilonewtonsecond.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1);
-            var b = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(2);
+            var a = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1);
+            var b = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(2);
 
 #pragma warning disable CS8073
 // ReSharper disable EqualExpressionComparison
@@ -292,8 +305,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_SameType_IsImplemented()
         {
-            var a = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1);
-            var b = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(2);
+            var a = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1);
+            var b = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -302,8 +315,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_QuantityAsObject_IsImplemented()
         {
-            object a = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1);
-            object b = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(2);
+            object a = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1);
+            object b = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -313,30 +326,30 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
-            var v = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1);
-            Assert.True(v.Equals(SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1), PoundsMassPerPoundForceHourTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(SpecificFuelConsumption.Zero, PoundsMassPerPoundForceHourTolerance, ComparisonType.Relative));
+            var v = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1);
+            Assert.True(v.Equals(SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1), GramsPerKiloNewtonSecondTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(SpecificFuelConsumption.Zero, GramsPerKiloNewtonSecondTolerance, ComparisonType.Relative));
         }
 
         [Fact]
         public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
         {
-            var v = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1), -1, ComparisonType.Relative));
+            var v = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1), -1, ComparisonType.Relative));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            SpecificFuelConsumption poundmassperpoundforcehour = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1);
-            Assert.False(poundmassperpoundforcehour.Equals(new object()));
+            SpecificFuelConsumption gramperkilonewtonsecond = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1);
+            Assert.False(gramperkilonewtonsecond.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            SpecificFuelConsumption poundmassperpoundforcehour = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1);
-            Assert.False(poundmassperpoundforcehour.Equals(null));
+            SpecificFuelConsumption gramperkilonewtonsecond = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1);
+            Assert.False(gramperkilonewtonsecond.Equals(null));
         }
 
         [Fact]
@@ -370,9 +383,10 @@ namespace UnitsNet.Tests
             var prevCulture = Thread.CurrentThread.CurrentUICulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             try {
-                Assert.Equal("1 g/(kN*s)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond).ToString());
-                Assert.Equal("1 kg/(kgf*h)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour).ToString());
-                Assert.Equal("1 lb/(lbf*h)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour).ToString());
+                Assert.Equal("1 g/(kN�s)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond).ToString());
+                Assert.Equal("1 kg/(kgf�h)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour).ToString());
+                Assert.Equal("1 kg/(kN�s)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond).ToString());
+                Assert.Equal("1 lb/(lbf�h)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour).ToString());
             }
             finally
             {
@@ -386,9 +400,10 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 g/(kN*s)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond).ToString(swedishCulture));
-            Assert.Equal("1 kg/(kgf*h)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour).ToString(swedishCulture));
-            Assert.Equal("1 lb/(lbf*h)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour).ToString(swedishCulture));
+            Assert.Equal("1 g/(kN�s)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond).ToString(swedishCulture));
+            Assert.Equal("1 kg/(kgf�h)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour).ToString(swedishCulture));
+            Assert.Equal("1 kg/(kN�s)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond).ToString(swedishCulture));
+            Assert.Equal("1 lb/(lbf�h)", new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour).ToString(swedishCulture));
         }
 
         [Fact]
@@ -398,10 +413,10 @@ namespace UnitsNet.Tests
             try
             {
                 CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 lb/(lbf*h)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour).ToString("s1"));
-                Assert.Equal("0.12 lb/(lbf*h)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour).ToString("s2"));
-                Assert.Equal("0.123 lb/(lbf*h)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour).ToString("s3"));
-                Assert.Equal("0.1235 lb/(lbf*h)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour).ToString("s4"));
+                Assert.Equal("0.1 g/(kN�s)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond).ToString("s1"));
+                Assert.Equal("0.12 g/(kN�s)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond).ToString("s2"));
+                Assert.Equal("0.123 g/(kN�s)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond).ToString("s3"));
+                Assert.Equal("0.1235 g/(kN�s)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond).ToString("s4"));
             }
             finally
             {
@@ -413,31 +428,31 @@ namespace UnitsNet.Tests
         public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
         {
             var culture = CultureInfo.InvariantCulture;
-            Assert.Equal("0.1 lb/(lbf*h)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour).ToString("s1", culture));
-            Assert.Equal("0.12 lb/(lbf*h)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour).ToString("s2", culture));
-            Assert.Equal("0.123 lb/(lbf*h)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour).ToString("s3", culture));
-            Assert.Equal("0.1235 lb/(lbf*h)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour).ToString("s4", culture));
+            Assert.Equal("0.1 g/(kN�s)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond).ToString("s1", culture));
+            Assert.Equal("0.12 g/(kN�s)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond).ToString("s2", culture));
+            Assert.Equal("0.123 g/(kN�s)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond).ToString("s3", culture));
+            Assert.Equal("0.1235 g/(kN�s)", new SpecificFuelConsumption(0.123456, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond).ToString("s4", culture));
         }
 
 
         [Fact]
         public void ToString_NullFormat_ThrowsArgumentNullException()
         {
-            var quantity = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1.0);
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
             Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
         }
 
         [Fact]
         public void ToString_NullArgs_ThrowsArgumentNullException()
         {
-            var quantity = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1.0);
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
             Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, "g", null));
         }
 
         [Fact]
         public void ToString_NullProvider_EqualsCurrentUICulture()
         {
-            var quantity = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1.0);
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
             Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
         }
 
@@ -445,154 +460,154 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()
         {
-            var quantity = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1.0);
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ToBoolean(quantity));
         }
 
         [Fact]
         public void Convert_ToByte_EqualsValueAsSameType()
         {
-            var quantity = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1.0);
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
            Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
         }
 
         [Fact]
         public void Convert_ToChar_ThrowsInvalidCastException()
         {
-            var quantity = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1.0);
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ToChar(quantity));
         }
 
         [Fact]
         public void Convert_ToDateTime_ThrowsInvalidCastException()
         {
-            var quantity = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1.0);
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ToDateTime(quantity));
         }
 
         [Fact]
         public void Convert_ToDecimal_EqualsValueAsSameType()
         {
-            var quantity = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1.0);
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
             Assert.Equal((decimal)quantity.Value, Convert.ToDecimal(quantity));
         }
 
         [Fact]
         public void Convert_ToDouble_EqualsValueAsSameType()
         {
-            var quantity = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1.0);
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
             Assert.Equal((double)quantity.Value, Convert.ToDouble(quantity));
         }
 
         [Fact]
         public void Convert_ToInt16_EqualsValueAsSameType()
         {
-            var quantity = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1.0);
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
             Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToInt32_EqualsValueAsSameType()
         {
-            var quantity = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1.0);
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
             Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToInt64_EqualsValueAsSameType()
         {
-            var quantity = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1.0);
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
             Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
         }
 
         [Fact]
         public void Convert_ToSByte_EqualsValueAsSameType()
         {
-            var quantity = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1.0);
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
             Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
         }
 
         [Fact]
         public void Convert_ToSingle_EqualsValueAsSameType()
         {
-            var quantity = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1.0);
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
             Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
         }
 
         [Fact]
         public void Convert_ToString_EqualsToString()
         {
-            var quantity = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1.0);
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
             Assert.Equal(quantity.ToString(), Convert.ToString(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt16_EqualsValueAsSameType()
         {
-            var quantity = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1.0);
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
             Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt32_EqualsValueAsSameType()
         {
-            var quantity = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1.0);
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
             Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt64_EqualsValueAsSameType()
         {
-            var quantity = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1.0);
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
             Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
 
         [Fact]
         public void Convert_ChangeType_SelfType_EqualsSelf()
         {
-            var quantity = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1.0);
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
             Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(SpecificFuelConsumption)));
         }
 
         [Fact]
         public void Convert_ChangeType_UnitType_EqualsUnit()
         {
-            var quantity = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1.0);
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(SpecificFuelConsumptionUnit)));
         }
 
         [Fact]
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
-            var quantity = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1.0);
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
             Assert.Equal(QuantityType.SpecificFuelConsumption, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]
         public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
         {
-            var quantity = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1.0);
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
             Assert.Equal(SpecificFuelConsumption.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
         public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
         {
-            var quantity = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1.0);
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
             Assert.Equal(SpecificFuelConsumption.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
         }
 
         [Fact]
         public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
         {
-            var quantity = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1.0);
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
         }
 
         [Fact]
         public void GetHashCode_Equals()
         {
-            var quantity = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(1.0);
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
             Assert.Equal(new {SpecificFuelConsumption.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
@@ -601,8 +616,8 @@ namespace UnitsNet.Tests
         [InlineData(-1.0)]
         public void NegationOperator_ReturnsQuantity_WithNegatedValue(double value)
         {
-            var quantity = SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(value);
-            Assert.Equal(SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(-value), -quantity);
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(value);
+            Assert.Equal(SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(-value), -quantity);
         }
     }
 }

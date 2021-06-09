@@ -24,12 +24,14 @@ namespace UnitsNet.Tests.CustomCode
     public class SpecificFuelConsumptionTests : SpecificFuelConsumptionTestsBase
     {
         // Override properties in base class here
-        protected override double GramsPerKiloNewtonSecondInOnePoundMassPerPoundForceHour => 28.33;
-
-        protected override double PoundsMassPerPoundForceHourInOnePoundMassPerPoundForceHour => 1;
-
-        protected override double KilogramsPerKilogramForceHourInOnePoundMassPerPoundForceHour => 1;
-
         protected override bool SupportsSIUnitSystem => false;
+
+        protected override double GramsPerKiloNewtonSecondInOneGramPerKiloNewtonSecond => 1;
+
+        protected override double KilogramsPerKiloNewtonSecondInOneGramPerKiloNewtonSecond => 1e-3;
+
+        protected override double PoundsMassPerPoundForceHourInOneGramPerKiloNewtonSecond => 0.03529827;
+
+        protected override double KilogramsPerKilogramForceHourInOneGramPerKiloNewtonSecond => 0.03529827;        
     }
 }

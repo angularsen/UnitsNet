@@ -33,6 +33,10 @@ namespace UnitsNet.Tests
             Assert.Equal(SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(2), 2.KilogramsPerKilogramForceHour());
 
         [Fact]
+        public void NumberToKilogramsPerKiloNewtonSecondTest() =>
+            Assert.Equal(SpecificFuelConsumption.FromKilogramsPerKiloNewtonSecond(2), 2.KilogramsPerKiloNewtonSecond());
+
+        [Fact]
         public void NumberToPoundsMassPerPoundForceHourTest() =>
             Assert.Equal(SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(2), 2.PoundsMassPerPoundForceHour());
 
