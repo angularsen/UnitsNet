@@ -932,6 +932,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.Millistokes, KinematicViscosity.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosity.BaseUnit, KinematicViscosityUnit.Nanostokes, q => q.ToUnit(KinematicViscosityUnit.Nanostokes));
             unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.Nanostokes, KinematicViscosity.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosity.BaseUnit, KinematicViscosityUnit.SquareFootPerSecond, q => q.ToUnit(KinematicViscosityUnit.SquareFootPerSecond));
+            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.SquareFootPerSecond, KinematicViscosity.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosity.BaseUnit, KinematicViscosity.BaseUnit, q => q);
             unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosity.BaseUnit, KinematicViscosityUnit.Stokes, q => q.ToUnit(KinematicViscosityUnit.Stokes));
             unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.Stokes, KinematicViscosity.BaseUnit, q => q.ToBaseUnit());
