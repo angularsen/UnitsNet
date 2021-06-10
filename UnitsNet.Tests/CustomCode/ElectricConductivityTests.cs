@@ -22,6 +22,8 @@
 
 
 using System;
+using UnitsNet.Units;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -31,5 +33,19 @@ namespace UnitsNet.Tests.CustomCode
         protected override double SiemensPerMeterInOneSiemensPerMeter => 1;
         protected override double SiemensPerInchInOneSiemensPerMeter => 2.54e-2;
         protected override double SiemensPerFootInOneSiemensPerMeter => 3.048e-1;
+
+        [Theory]
+        [InlineData( -1.0, -1.0 )]
+        [InlineData( -2.0, -0.5 )]
+        [InlineData( 0.0, 0.0 )]
+        [InlineData( 1.0, 1.0 )]
+        [InlineData( 2.0, 0.5 )]
+        public static void InverseTest( double value, double expected )
+        {
+            var unit = new ElectricConductivity( value, ElectricConductivityUnit.SiemensPerMeter );
+            var inverse = unit.Inverse();
+
+            AssertEx.Equals( expected, inverse.OhmMeters );
+        }
     }
 }
