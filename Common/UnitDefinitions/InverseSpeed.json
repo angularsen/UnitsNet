@@ -1,0 +1,187 @@
+{
+  "Name": "InverseSpeed",
+  "BaseUnit": "SecondPerMeter",
+  "XmlDoc": "The inverse of speed, ie distance over time.",
+  "BaseDimensions": {
+    "L": -1,
+    "T": 1
+  },
+  "Units": [
+    {
+      "SingularName": "SecondPerMeter",
+      "PluralName": "SecondsPerMeters",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "s/m" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MinutePerMeter",
+      "PluralName": "MinutesPerMeter",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Minute"
+      },
+      "FromUnitToBaseFunc": "x/60",
+      "FromBaseToUnitFunc": "x*60",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "min/m" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "HourPerMeter",
+      "PluralName": "HoursPerMeter",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Hour"
+      },
+      "FromUnitToBaseFunc": "x/3600",
+      "FromBaseToUnitFunc": "x*3600",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "h/m" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SecondPerFoot",
+      "PluralName": "SecondsPerFoot",
+      "BaseUnits": {
+        "L": "Foot",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "x/0.3048",
+      "FromBaseToUnitFunc": "x*0.3048",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "s/ft" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MinutePerFoot",
+      "PluralName": "MinutesPerFoot",
+      "BaseUnits": {
+        "L": "Foot",
+        "T": "Minute"
+      },
+      "FromUnitToBaseFunc": "x/196.85",
+      "FromBaseToUnitFunc": "x*196.85",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "min/ft" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "HourPerFoot",
+      "PluralName": "HoursPerFoot",
+      "BaseUnits": {
+        "L": "Foot",
+        "T": "Hour"
+      },
+      "FromUnitToBaseFunc": "x/11811",
+      "FromBaseToUnitFunc": "x*11811",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "h/ft" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SecondPerInch",
+      "PluralName": "SecondsPerInch",
+      "BaseUnits": {
+        "L": "Inch",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "x/39.37",
+      "FromBaseToUnitFunc": "x*39.37",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "s/in" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MinutePerInch",
+      "PluralName": "MinutesPerInch",
+      "BaseUnits": {
+        "L": "Inch",
+        "T": "Minute"
+      },
+      "FromUnitToBaseFunc": "x/2362.2",
+      "FromBaseToUnitFunc": "x*2362.2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "min/in" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "HourPerInch",
+      "PluralName": "HoursPerInch",
+      "BaseUnits": {
+        "L": "Inch",
+        "T": "Hour"
+      },
+      "FromUnitToBaseFunc": "x/1.41732e5",
+      "FromBaseToUnitFunc": "x*1.41732e5",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "h/in" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InverseKnot",
+      "PluralName": "InverseKnots",
+      "BaseUnits": {
+        "L": "NauticalMile",
+        "T": "Hour"
+      },
+      "FromUnitToBaseFunc": "x/0.514444",
+      "FromBaseToUnitFunc": "x*0.514444",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "1/knot" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "HourPerMile",
+      "PluralName": "HoursPerMile",
+      "BaseUnits": {
+        "L": "Mile",
+        "T": "Hour"
+      },
+      "FromUnitToBaseFunc": "x/2.23694",
+      "FromBaseToUnitFunc": "x*2.23694",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "h/mi" ]
+        }
+      ]
+    }
+  ]
+}
