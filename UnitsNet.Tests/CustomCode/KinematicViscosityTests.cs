@@ -26,6 +26,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double StokesInOneSquareMeterPerSecond => 1e4;
 
+        protected override double SquareFeetPerSecondInOneSquareMeterPerSecond => 10.7639;
+
         [Fact]
         public static void DurationTimesKinematicViscosityEqualsArea()
         {

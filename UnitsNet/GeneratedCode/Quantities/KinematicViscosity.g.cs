@@ -61,6 +61,7 @@ namespace UnitsNet
                     new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Microstokes, BaseUnits.Undefined),
                     new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Millistokes, BaseUnits.Undefined),
                     new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Nanostokes, BaseUnits.Undefined),
+                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.SquareFootPerSecond, BaseUnits.Undefined),
                     new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.SquareMeterPerSecond, BaseUnits.Undefined),
                     new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Stokes, BaseUnits.Undefined),
                 },
@@ -209,6 +210,11 @@ namespace UnitsNet
         public double Nanostokes => As(KinematicViscosityUnit.Nanostokes);
 
         /// <summary>
+        ///     Get KinematicViscosity in SquareFeetPerSecond.
+        /// </summary>
+        public double SquareFeetPerSecond => As(KinematicViscosityUnit.SquareFootPerSecond);
+
+        /// <summary>
         ///     Get KinematicViscosity in SquareMetersPerSecond.
         /// </summary>
         public double SquareMetersPerSecond => As(KinematicViscosityUnit.SquareMeterPerSecond);
@@ -300,6 +306,15 @@ namespace UnitsNet
         {
             double value = (double) nanostokes;
             return new KinematicViscosity(value, KinematicViscosityUnit.Nanostokes);
+        }
+        /// <summary>
+        ///     Get KinematicViscosity from SquareFeetPerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static KinematicViscosity FromSquareFeetPerSecond(QuantityValue squarefeetpersecond)
+        {
+            double value = (double) squarefeetpersecond;
+            return new KinematicViscosity(value, KinematicViscosityUnit.SquareFootPerSecond);
         }
         /// <summary>
         ///     Get KinematicViscosity from SquareMetersPerSecond.
@@ -754,6 +769,7 @@ namespace UnitsNet
                 case KinematicViscosityUnit.Microstokes: return (_value/1e4) * 1e-6d;
                 case KinematicViscosityUnit.Millistokes: return (_value/1e4) * 1e-3d;
                 case KinematicViscosityUnit.Nanostokes: return (_value/1e4) * 1e-9d;
+                case KinematicViscosityUnit.SquareFootPerSecond: return _value/10.7639;
                 case KinematicViscosityUnit.SquareMeterPerSecond: return _value;
                 case KinematicViscosityUnit.Stokes: return _value/1e4;
                 default:
@@ -787,6 +803,7 @@ namespace UnitsNet
                 case KinematicViscosityUnit.Microstokes: return (baseUnitValue*1e4) / 1e-6d;
                 case KinematicViscosityUnit.Millistokes: return (baseUnitValue*1e4) / 1e-3d;
                 case KinematicViscosityUnit.Nanostokes: return (baseUnitValue*1e4) / 1e-9d;
+                case KinematicViscosityUnit.SquareFootPerSecond: return baseUnitValue*10.7639;
                 case KinematicViscosityUnit.SquareMeterPerSecond: return baseUnitValue;
                 case KinematicViscosityUnit.Stokes: return baseUnitValue*1e4;
                 default:

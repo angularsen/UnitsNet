@@ -32,6 +32,7 @@ namespace UnitsNet.Units
         Microstokes,
         Millistokes,
         Nanostokes,
+        SquareFootPerSecond,
         SquareMeterPerSecond,
         Stokes,
     }

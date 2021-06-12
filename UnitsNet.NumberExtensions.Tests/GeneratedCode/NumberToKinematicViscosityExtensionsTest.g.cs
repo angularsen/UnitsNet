@@ -49,6 +49,10 @@ namespace UnitsNet.Tests
             Assert.Equal(KinematicViscosity.FromNanostokes(2), 2.Nanostokes());
 
         [Fact]
+        public void NumberToSquareFeetPerSecondTest() =>
+            Assert.Equal(KinematicViscosity.FromSquareFeetPerSecond(2), 2.SquareFeetPerSecond());
+
+        [Fact]
         public void NumberToSquareMetersPerSecondTest() =>
             Assert.Equal(KinematicViscosity.FromSquareMetersPerSecond(2), 2.SquareMetersPerSecond());
 

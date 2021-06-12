@@ -40,6 +40,18 @@
           "Abbreviations": [ "Ст" ]
         }
       ]
+    },
+    {
+      "SingularName": "SquareFootPerSecond",
+      "PluralName": "SquareFeetPerSecond",
+      "FromUnitToBaseFunc": "x/10.7639",
+      "FromBaseToUnitFunc": "x*10.7639",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ft²/s" ]
+        }
+      ]
     }
   ]
 }

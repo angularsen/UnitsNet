@@ -627,6 +627,7 @@ namespace UnitsNet
                 ("ru-RU", typeof(KinematicViscosityUnit), (int)KinematicViscosityUnit.Millistokes, new string[]{"мСт"}),
                 ("en-US", typeof(KinematicViscosityUnit), (int)KinematicViscosityUnit.Nanostokes, new string[]{"nSt"}),
                 ("ru-RU", typeof(KinematicViscosityUnit), (int)KinematicViscosityUnit.Nanostokes, new string[]{"нСт"}),
+                ("en-US", typeof(KinematicViscosityUnit), (int)KinematicViscosityUnit.SquareFootPerSecond, new string[]{"ft²/s"}),
                 ("en-US", typeof(KinematicViscosityUnit), (int)KinematicViscosityUnit.SquareMeterPerSecond, new string[]{"m²/s"}),
                 ("ru-RU", typeof(KinematicViscosityUnit), (int)KinematicViscosityUnit.SquareMeterPerSecond, new string[]{"м²/с"}),
                 ("en-US", typeof(KinematicViscosityUnit), (int)KinematicViscosityUnit.Stokes, new string[]{"St"}),
