@@ -305,6 +305,9 @@ namespace UnitsNet
                 case SpecificEntropyUnit specificEntropyUnit:
                     quantity = SpecificEntropy.From(value, specificEntropyUnit);
                     return true;
+                case SpecificFuelConsumptionUnit specificFuelConsumptionUnit:
+                    quantity = SpecificFuelConsumption.From(value, specificFuelConsumptionUnit);
+                    return true;
                 case SpecificVolumeUnit specificVolumeUnit:
                     quantity = SpecificVolume.From(value, specificVolumeUnit);
                     return true;
@@ -672,6 +675,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(SpecificEntropy))
                 return parser.TryParse<SpecificEntropy, SpecificEntropyUnit>(quantityString, formatProvider, SpecificEntropy.From, out quantity);
+
+            if (quantityType == typeof(SpecificFuelConsumption))
+                return parser.TryParse<SpecificFuelConsumption, SpecificFuelConsumptionUnit>(quantityString, formatProvider, SpecificFuelConsumption.From, out quantity);
 
             if (quantityType == typeof(SpecificVolume))
                 return parser.TryParse<SpecificVolume, SpecificVolumeUnit>(quantityString, formatProvider, SpecificVolume.From, out quantity);
