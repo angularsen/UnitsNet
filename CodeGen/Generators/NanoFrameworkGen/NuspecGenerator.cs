@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using CodeGen.JsonTypes;
@@ -8,7 +8,7 @@ namespace CodeGen.Generators.NanoFrameworkGen
     class NuspecGenerator : GeneratorBase
     {
         private readonly Quantity _quantity;
-        private string _mathNuGetVersion;
+        private readonly string _mathNuGetVersion;
 
         public NuspecGenerator(Quantity quantity, string mathNuGetVersion)
         {
