@@ -77,7 +77,6 @@ Set-NuspecVersion $nanoFrameworkNuspecGeneratorFile $newVersion
 # Git commit and tag
 Invoke-CommitVersionBump @("UnitsNet") $newVersion
 Invoke-TagVersionBump "UnitsNet" $newVersion
-Invoke-TagVersionBump "UnitsNet.NumberExtensions" $newVersion
 
 # Restore any local changes.
 Invoke-StashPop
