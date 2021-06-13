@@ -56,10 +56,12 @@ $numberExtensionsProjFile = "$root\UnitsNet.NumberExtensions\UnitsNet.NumberExte
 $nanoFrameworkNuspecGeneratorFile = "$root\CodeGen\Generators\NanoFrameworkGen\NuspecGenerator.cs"
 $winrtAssemblyInfoFile = "$root\UnitsNet.WindowsRuntimeComponent\Properties\AssemblyInfo.cs"
 $winrtNuspecFile = "$root\UnitsNet.WindowsRuntimeComponent\UnitsNet.WindowsRuntimeComponent.nuspec"
-$versionFiles = @($projFile, $numberExtensionsProjFile, $winrtAssemblyInfoFile, $winrtNuspecFile)
 
 # Use UnitsNet.Common.props version as base if bumping major/minor/patch
 $newVersion = Get-NewProjectVersion $projFile $paramSet $setVersion $bumpVersion
+
+# Reset and stash any other local changes.
+Invoke-StashPush
 
 # Update project files
 Set-ProjectVersion $projFile $newVersion
@@ -73,6 +75,9 @@ Set-NuspecVersion $winrtNuspecFile $newVersion
 Set-NuspecVersion $nanoFrameworkNuspecGeneratorFile $newVersion
 
 # Git commit and tag
-Invoke-CommitVersionBump @("UnitsNet") $versionFiles $newVersion
+Invoke-CommitVersionBump @("UnitsNet") $newVersion
 Invoke-TagVersionBump "UnitsNet" $newVersion
 Invoke-TagVersionBump "UnitsNet.NumberExtensions" $newVersion
+
+# Restore any local changes.
+Invoke-StashPop

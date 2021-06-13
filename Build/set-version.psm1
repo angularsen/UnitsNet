@@ -16,23 +16,22 @@ function Get-NewProjectVersion(
   }
 }
 
+function Invoke-StashPush() {
+  git reset --quiet
+  git stash --include-untracked --message "Before version bump" --quiet
+}
+
+function Invoke-StashPop() {
+  git stash pop --quiet
+}
+
 function Invoke-CommitVersionBump(
   [string[]]$projectNames,
-  [string[]]$projectPaths,
   [string] $newSemVer) {
   try {
-    Write-Host -Foreground Green Resetting git index.
-    git reset
-
-    ForEach ($path in $projectPaths) {
-      $path = Resolve-Path $path
-      Write-Host -Foreground Green "Staging file: $path"
-      git add $path
-    }
-
     $projectNamesConcat = [string]::Join(", ", $projectNames)
     Write-Host -Foreground Green "Committing new version: $newSemVer"
-    git commit -m "${projectNamesConcat}: $newSemVer"
+    git commit -a -m "${projectNamesConcat}: $newSemVer"
   }
   catch {
     $err = $PSItem.Exception
@@ -159,4 +158,11 @@ function Resolve-Error ($ErrorRecord=$Error[0])
   }
 }
 
-export-modulemember -function Get-NewProjectVersion, Invoke-CommitVersionBump, Invoke-TagVersionBump, Set-ProjectVersion, Set-AssemblyInfoVersion, Set-NuspecVersion
+export-modulemember -function Get-NewProjectVersion,
+  Invoke-CommitVersionBump,
+  Invoke-TagVersionBump,
+  Set-ProjectVersion,
+  Set-AssemblyInfoVersion,
+  Set-NuspecVersion,
+  Invoke-StashPush,
+  Invoke-StashPop
