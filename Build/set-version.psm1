@@ -17,8 +17,11 @@ function Get-NewProjectVersion(
 }
 
 function Invoke-StashPush() {
+  $oldSha=$(git rev-parse -q --verify refs/stash)
   git reset --quiet
-  git stash --include-untracked --message "Before version bump" --quiet
+  git stash push --include-untracked --message "Before version bump" --quiet
+  $newSha=$(git rev-parse -q --verify refs/stash)
+  return $oldSha -ne $newSha
 }
 
 function Invoke-StashPop() {

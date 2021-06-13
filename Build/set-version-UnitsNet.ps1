@@ -61,7 +61,7 @@ $winrtNuspecFile = "$root\UnitsNet.WindowsRuntimeComponent\UnitsNet.WindowsRunti
 $newVersion = Get-NewProjectVersion $projFile $paramSet $setVersion $bumpVersion
 
 # Reset and stash any other local changes.
-Invoke-StashPush
+$didStash = Invoke-StashPush
 
 # Update project files
 Set-ProjectVersion $projFile $newVersion
@@ -79,4 +79,6 @@ Invoke-CommitVersionBump @("UnitsNet") $newVersion
 Invoke-TagVersionBump "UnitsNet" $newVersion
 
 # Restore any local changes.
-Invoke-StashPop
+if ($didStash) {
+  Invoke-StashPop
+}
