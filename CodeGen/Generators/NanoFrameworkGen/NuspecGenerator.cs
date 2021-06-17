@@ -37,7 +37,7 @@ namespace CodeGen.Generators.NanoFrameworkGen
     <language>en-US</language>
     <tags>nanoframework unit units measurement si metric imperial abbreviation abbreviations convert conversion parse c# .net immutable uwp uap winrt win10 windows runtime component {_quantity.Name.ToLower()}</tags>
     <dependencies>
-      <dependency id=""nanoFramework.CoreLibrary"" version=""1.10.4-preview.11"" />");
+      <dependency id=""nanoFramework.CoreLibrary"" version=""1.10.5-preview.13"" />");
 
     if(NanoFrameworkGenerator.ProjectsRequiringMath.Contains(_quantity.Name))
     {
