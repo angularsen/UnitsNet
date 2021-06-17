@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using CodeGen.JsonTypes;
@@ -8,11 +8,16 @@ namespace CodeGen.Generators.NanoFrameworkGen
     class NuspecGenerator : GeneratorBase
     {
         private readonly Quantity _quantity;
+        private readonly string _mscorlibNuGetVersion;
         private readonly string _mathNuGetVersion;
 
-        public NuspecGenerator(Quantity quantity, string mathNuGetVersion)
+        public NuspecGenerator(
+            Quantity quantity,
+            string mscorlibNuGetVersion,
+            string mathNuGetVersion)
         {
             _quantity = quantity ?? throw new ArgumentNullException(nameof(quantity));
+            _mscorlibNuGetVersion = mscorlibNuGetVersion;
             _mathNuGetVersion = mathNuGetVersion;
         }
 
@@ -37,7 +42,7 @@ namespace CodeGen.Generators.NanoFrameworkGen
     <language>en-US</language>
     <tags>nanoframework unit units measurement si metric imperial abbreviation abbreviations convert conversion parse c# .net immutable uwp uap winrt win10 windows runtime component {_quantity.Name.ToLower()}</tags>
     <dependencies>
-      <dependency id=""nanoFramework.CoreLibrary"" version=""1.10.5-preview.13"" />");
+      <dependency id=""nanoFramework.CoreLibrary"" version=""{_mscorlibNuGetVersion}"" />");
 
     if(NanoFrameworkGenerator.ProjectsRequiringMath.Contains(_quantity.Name))
     {

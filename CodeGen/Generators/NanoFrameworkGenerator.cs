@@ -115,7 +115,13 @@ namespace CodeGen.Generators
                 var sb = new StringBuilder($"{quantity.Name}:".PadRight(AlignPad));
 
                 GeneratePackageConfig(projectPath, quantity.Name);
-                GenerateNuspec(projectPath, quantity, MathNuGetVersion);
+
+                GenerateNuspec(
+                    projectPath,
+                    quantity,
+                    MscorlibNuGetVersion,
+                    MathNuGetVersion);
+
                 GenerateUnitType(sb, quantity, Path.Combine(outputUnits, $"{quantity.Name}Unit.g.cs"));
                 GenerateQuantity(sb, quantity, Path.Combine(outputQuantitites, $"{quantity.Name}.g.cs"));
                 GenerateProject(sb, quantity, projectPath);
@@ -151,11 +157,19 @@ namespace CodeGen.Generators
             var content = GeneratePackageConfigFile(quantityName);
             File.WriteAllText(filePath, content, Encoding.UTF8);
         }
-        private static void GenerateNuspec(string projectPath, Quantity quantity, string mathNuGetVersion)
+        private static void GenerateNuspec(
+            string projectPath,
+            Quantity quantity,
+            string mscorlibNuGetVersion,
+            string mathNuGetVersion)
         {
             string filePath = Path.Combine(projectPath, $"UnitsNet.NanoFramework.{quantity.Name}.nuspec");
 
-            var content = new NuspecGenerator(quantity, mathNuGetVersion).Generate();
+            var content = new NuspecGenerator(
+                quantity,
+                mscorlibNuGetVersion,
+                mathNuGetVersion).Generate();
+
             File.WriteAllText(filePath, content, Encoding.UTF8);
         }
 
