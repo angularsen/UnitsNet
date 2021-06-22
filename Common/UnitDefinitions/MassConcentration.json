@@ -239,6 +239,30 @@
         }
       ]
     },
+	{
+      "SingularName": "OuncePerUSGallon",
+      "PluralName": "OuncesPerUSGallon",
+      "FromUnitToBaseFunc": " x/0.1335264711843",
+      "FromBaseToUnitFunc": "x*0.1335264711843",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "opg (U.S)" ]
+        }
+      ]
+    },
+	{
+      "SingularName": "OuncePerImperialGallon",
+      "PluralName": "OuncesPerImperialGallon",
+      "FromUnitToBaseFunc": " x/0.1603586720609",
+      "FromBaseToUnitFunc": "x*0.1603586720609",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "opg (imp.)" ]
+        }
+      ]
+    },
     {
       "SingularName": "PoundPerImperialGallon",
       "PluralName": "PoundsPerImperialGallon",
