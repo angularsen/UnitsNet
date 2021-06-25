@@ -66,35 +66,35 @@ namespace CodeGen.Generators
         private static void GenerateQuantity(StringBuilder sb, Quantity quantity, string filePath)
         {
             var content = new QuantityGenerator(quantity).Generate();
-            File.WriteAllText(filePath, content, Encoding.UTF8);
+            File.WriteAllText(filePath, content);
             sb.Append("quantity(OK) ");
         }
 
         private static void GenerateUnitType(StringBuilder sb, Quantity quantity, string filePath)
         {
             var content = new UnitTypeGenerator(quantity).Generate();
-            File.WriteAllText(filePath, content, Encoding.UTF8);
+            File.WriteAllText(filePath, content);
             sb.Append("unit(OK) ");
         }
 
         private static void GenerateUnitAbbreviationsCache(Quantity[] quantities, string filePath)
         {
             var content = new UnitAbbreviationsCacheGenerator(quantities).Generate();
-            File.WriteAllText(filePath, content, Encoding.UTF8);
+            File.WriteAllText(filePath, content);
             Log.Information("UnitAbbreviationsCache.g.cs: ".PadRight(AlignPad) + "(OK)");
         }
 
         private static void GenerateQuantityType(Quantity[] quantities, string filePath)
         {
             var content = new QuantityTypeGenerator(quantities).Generate();
-            File.WriteAllText(filePath, content, Encoding.UTF8);
+            File.WriteAllText(filePath, content);
             Log.Information("QuantityType.g.cs: ".PadRight(AlignPad) + "(OK)");
         }
 
         private static void GenerateStaticQuantity(Quantity[] quantities, string filePath)
         {
             var content = new StaticQuantityGenerator(quantities).Generate();
-            File.WriteAllText(filePath, content, Encoding.UTF8);
+            File.WriteAllText(filePath, content);
             Log.Information("Quantity.g.cs: ".PadRight(AlignPad) + "(OK)");
         }
     }

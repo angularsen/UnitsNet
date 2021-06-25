@@ -91,77 +91,77 @@ namespace CodeGen.Generators
             }
 
             var content = new UnitTestStubGenerator(quantity).Generate();
-            File.WriteAllText(filePath, content, Encoding.UTF8);
+            File.WriteAllText(filePath, content);
             sb.Append("test stub(OK) ");
         }
 
         private static void GenerateQuantity(StringBuilder sb, Quantity quantity, string filePath)
         {
             var content = new QuantityGenerator(quantity).Generate();
-            File.WriteAllText(filePath, content, Encoding.UTF8);
+            File.WriteAllText(filePath, content);
             sb.Append("quantity(OK) ");
         }
 
         private static void GenerateNumberToExtensions(StringBuilder sb, Quantity quantity, string filePath)
         {
             var content = new NumberExtensionsGenerator(quantity).Generate();
-            File.WriteAllText(filePath, content, Encoding.UTF8);
+            File.WriteAllText(filePath, content);
             sb.Append("number extensions(OK) ");
         }
 
         private static void GenerateNumberToExtensionsTestClass(StringBuilder sb, Quantity quantity, string filePath)
         {
             var content = new NumberExtensionsTestClassGenerator(quantity).Generate();
-            File.WriteAllText(filePath, content, Encoding.UTF8);
+            File.WriteAllText(filePath, content);
             sb.Append("number extensions tests(OK) ");
         }
 
         private static void GenerateUnitType(StringBuilder sb, Quantity quantity, string filePath)
         {
             var content = new UnitTypeGenerator(quantity).Generate();
-            File.WriteAllText(filePath, content, Encoding.UTF8);
+            File.WriteAllText(filePath, content);
             sb.Append("unit(OK) ");
         }
 
         private static void GenerateQuantityTestBaseClass(StringBuilder sb, Quantity quantity, string filePath)
         {
             var content = new UnitTestBaseClassGenerator(quantity).Generate();
-            File.WriteAllText(filePath, content, Encoding.UTF8);
+            File.WriteAllText(filePath, content);
             sb.Append("test base(OK) ");
         }
 
         private static void GenerateIQuantityTests(Quantity[] quantities, string filePath)
         {
             var content = new IQuantityTestClassGenerator(quantities).Generate();
-            File.WriteAllText(filePath, content, Encoding.UTF8);
+            File.WriteAllText(filePath, content);
             Log.Information("IQuantityTests.g.cs: ".PadRight(AlignPad) + "(OK)");
         }
 
         private static void GenerateUnitAbbreviationsCache(Quantity[] quantities, string filePath)
         {
             var content = new UnitAbbreviationsCacheGenerator(quantities).Generate();
-            File.WriteAllText(filePath, content, Encoding.UTF8);
+            File.WriteAllText(filePath, content);
             Log.Information("UnitAbbreviationsCache.g.cs: ".PadRight(AlignPad) + "(OK)");
         }
 
         private static void GenerateQuantityType(Quantity[] quantities, string filePath)
         {
             var content = new QuantityTypeGenerator(quantities).Generate();
-            File.WriteAllText(filePath, content, Encoding.UTF8);
+            File.WriteAllText(filePath, content);
             Log.Information("QuantityType.g.cs: ".PadRight(AlignPad) + "(OK)");
         }
 
         private static void GenerateStaticQuantity(Quantity[] quantities, string filePath)
         {
             var content = new StaticQuantityGenerator(quantities).Generate();
-            File.WriteAllText(filePath, content, Encoding.UTF8);
+            File.WriteAllText(filePath, content);
             Log.Information("Quantity.g.cs: ".PadRight(AlignPad) + "(OK)");
         }
 
         private static void GenerateUnitConverter(Quantity[] quantities, string filePath)
         {
             var content = new UnitConverterGenerator(quantities).Generate();
-            File.WriteAllText(filePath, content, Encoding.UTF8);
+            File.WriteAllText(filePath, content);
             Log.Information("UnitConverter.g.cs: ".PadRight(AlignPad) + "(OK)");
         }
     }

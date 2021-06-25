@@ -202,7 +202,7 @@ namespace CodeGen.Generators
             string filePath = Path.Combine(projectPath, "packages.config");
 
             var content = GeneratePackageConfigFile(quantityName);
-            File.WriteAllText(filePath, content, Encoding.UTF8);
+            File.WriteAllText(filePath, content);
         }
         private static void GenerateNuspec(
             string projectPath,
@@ -217,19 +217,19 @@ namespace CodeGen.Generators
                 mscorlibNuGetVersion,
                 mathNuGetVersion).Generate();
 
-            File.WriteAllText(filePath, content, Encoding.UTF8);
+            File.WriteAllText(filePath, content);
         }
 
         private static void GenerateProperties(string filePath)
         {
             var content = new PropertyGenerator().Generate();
-            File.WriteAllText(filePath, content, Encoding.UTF8);
+            File.WriteAllText(filePath, content);
         }
 
         private static void GenerateUnitType(StringBuilder sb, Quantity quantity, string filePath)
         {
             var content = new UnitTypeGenerator(quantity).Generate();
-            File.WriteAllText(filePath, content, Encoding.UTF8);
+            File.WriteAllText(filePath, content);
             sb.Append("unit(OK) ");
         }
 
@@ -242,14 +242,14 @@ namespace CodeGen.Generators
             content = content.Replace("Math.Pow(0.3048, 4)", "0.0086309748412416");
             // Replace Math.Pow(2.54e-2, 4) by 0.0000004162314256
             content = content.Replace("Math.Pow(2.54e-2, 4)", "0.0000004162314256");
-            File.WriteAllText(filePath, content, Encoding.UTF8);
+            File.WriteAllText(filePath, content);
             sb.Append("quantity(OK) ");
         }
 
         private static void GenerateProject(StringBuilder sb, Quantity quantity, string filePath)
         {
             var content = new ProjectGenerator(quantity).Generate();
-            File.WriteAllText(filePath, content, Encoding.UTF8);
+            File.WriteAllText(filePath, content);
             sb.Append("project(OK) ");
         }
 
@@ -259,7 +259,7 @@ namespace CodeGen.Generators
 
             var filePath = Path.Combine(outputDir, "UnitsNet.nanoFramework.sln");
 
-            File.WriteAllText(filePath, content, Encoding.UTF8);
+            File.WriteAllText(filePath, content);
         }
 
         private static string GeneratePackageConfigFile(string quantityName)
