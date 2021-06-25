@@ -359,6 +359,9 @@ namespace UnitsNet
                 case VolumePerLengthUnit volumePerLengthUnit:
                     quantity = VolumePerLength.From(value, volumePerLengthUnit);
                     return true;
+                case VolumetricHeatCapacityUnit volumetricHeatCapacityUnit:
+                    quantity = VolumetricHeatCapacity.From(value, volumetricHeatCapacityUnit);
+                    return true;
                 case WarpingMomentOfInertiaUnit warpingMomentOfInertiaUnit:
                     quantity = WarpingMomentOfInertia.From(value, warpingMomentOfInertiaUnit);
                     return true;
@@ -729,6 +732,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(VolumePerLength))
                 return parser.TryParse<VolumePerLength, VolumePerLengthUnit>(quantityString, formatProvider, VolumePerLength.From, out quantity);
+
+            if (quantityType == typeof(VolumetricHeatCapacity))
+                return parser.TryParse<VolumetricHeatCapacity, VolumetricHeatCapacityUnit>(quantityString, formatProvider, VolumetricHeatCapacity.From, out quantity);
 
             if (quantityType == typeof(WarpingMomentOfInertia))
                 return parser.TryParse<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit>(quantityString, formatProvider, WarpingMomentOfInertia.From, out quantity);

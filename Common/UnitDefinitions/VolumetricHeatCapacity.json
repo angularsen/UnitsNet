@@ -1,0 +1,65 @@
+{
+  "Name": "VolumetricHeatCapacity",
+  "BaseUnit": "JoulePerCubicMeterKelvin",
+  "XmlDoc": "The volumetric heat capacity is the amount of energy that must be added, in the form of heat, to one unit of volume of the material in order to cause an increase of one unit in its temperature.",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Volumetric_heat_capacity",
+  "BaseDimensions": {
+    "M": 1,
+    "L": -1,
+    "T": -2,
+    "Θ": -1
+  },
+  "Units": [
+    {
+      "SingularName": "JoulePerCubicMeterKelvin",
+      "PluralName": "JoulesPerCubicMeterKelvin",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "J/m³·K" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "JoulePerCubicMeterDegreeCelsius",
+      "PluralName": "JoulesPerCubicMeterDegreeCelsius",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "J/m³·°C" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CaloriePerCubicCentimeterDegreeCelsius",
+      "PluralName": "CaloriesPerCubicCentimeterDegreeCelsius",
+      "FromUnitToBaseFunc": "x / 2.388459e-7",
+      "FromBaseToUnitFunc": "x * 2.388459e-7",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "cal/cm³·°C" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BtuPerCubicFootDegreeFahrenheit",
+      "PluralName": "BtusPerCubicFootDegreeFahrenheit",
+      "FromUnitToBaseFunc": "x / 1.4910660e-5",
+      "FromBaseToUnitFunc": "x * 1.4910660e-5",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "BTU/ft³·°F" ]
+        }
+      ]
+    }
+  ]
+}
