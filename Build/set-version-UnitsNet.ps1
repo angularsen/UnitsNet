@@ -72,7 +72,14 @@ Set-AssemblyInfoVersion $winrtAssemblyInfoFile $newVersion
 
 # Update .nuspec files
 Set-NuspecVersion $winrtNuspecFile $newVersion
+
+# Update codegen and .nuspec files for nanoFramework
 Set-NuspecVersion $nanoFrameworkNuspecGeneratorFile $newVersion
+Get-ChildItem -Path "$root\UnitsNet.NanoFramework\GeneratedCode" -Include '*.nuspec' -Recurse |
+    Foreach-object {
+        Set-NuspecVersion $_.FullName $newVersion
+        $versionFiles += $_.FullName
+    }
 
 # Git commit and tag
 Invoke-CommitVersionBump @("UnitsNet") $newVersion

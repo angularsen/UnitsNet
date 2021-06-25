@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using CodeGen.JsonTypes;
 
 namespace CodeGen.Generators.NanoFrameworkGen
