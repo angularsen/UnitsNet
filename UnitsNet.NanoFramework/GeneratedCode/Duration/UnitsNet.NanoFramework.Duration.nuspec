@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>UnitsNet.nanoFramework.Duration</id>
-    <version>4.96.0</version>
+    <version>4.97.0</version>
     <title>Units.NET Duration - nanoFramework</title>
     <authors>Andreas Gullberg Larsen,nanoFramework project contributors</authors>
     <owners>UnitsNet</owners>
