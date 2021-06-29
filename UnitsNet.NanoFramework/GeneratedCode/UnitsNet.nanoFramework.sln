@@ -214,6 +214,8 @@ Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "VolumeFlow", "VolumeFlow\Vo
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "VolumePerLength", "VolumePerLength\VolumePerLength.nfproj", "{b66e3a3e-7945-3d40-24ef-73fa6e1b8d41}"
 EndProject
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "VolumetricHeatCapacity", "VolumetricHeatCapacity\VolumetricHeatCapacity.nfproj", "{cd2b60c1-a4b5-36f2-afa3-6cf1031f9e7f}"
+EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "WarpingMomentOfInertia", "WarpingMomentOfInertia\WarpingMomentOfInertia.nfproj", "{8433aac6-218d-9b7b-6eaa-36774e165446}"
 EndProject
 Global
@@ -858,6 +860,12 @@ Global
 {b66e3a3e-7945-3d40-24ef-73fa6e1b8d41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 {b66e3a3e-7945-3d40-24ef-73fa6e1b8d41}.Release|Any CPU.Build.0 = Release|Any CPU
 {b66e3a3e-7945-3d40-24ef-73fa6e1b8d41}.Release|Any CPU.Deploy.0 = Release|Any CPU
+{cd2b60c1-a4b5-36f2-afa3-6cf1031f9e7f}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{cd2b60c1-a4b5-36f2-afa3-6cf1031f9e7f}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{cd2b60c1-a4b5-36f2-afa3-6cf1031f9e7f}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+{cd2b60c1-a4b5-36f2-afa3-6cf1031f9e7f}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{cd2b60c1-a4b5-36f2-afa3-6cf1031f9e7f}.Release|Any CPU.Build.0 = Release|Any CPU
+{cd2b60c1-a4b5-36f2-afa3-6cf1031f9e7f}.Release|Any CPU.Deploy.0 = Release|Any CPU
 {8433aac6-218d-9b7b-6eaa-36774e165446}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {8433aac6-218d-9b7b-6eaa-36774e165446}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {8433aac6-218d-9b7b-6eaa-36774e165446}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
