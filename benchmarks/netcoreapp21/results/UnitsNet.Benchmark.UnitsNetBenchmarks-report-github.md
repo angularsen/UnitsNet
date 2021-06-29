@@ -4,27 +4,27 @@ BenchmarkDotNet=v0.12.1, OS=Windows 10.0.17763.1999 (1809/October2018Update/Reds
 Intel Xeon Platinum 8272CL CPU 2.60GHz, 1 CPU, 2 logical and 2 physical cores
 .NET Core SDK=5.0.301
   [Host]     : .NET Core 5.0.7 (CoreCLR 5.0.721.25508, CoreFX 5.0.721.25508), X64 RyuJIT
-  Job-JPTBRP : .NET Core 2.1.28 (CoreCLR 4.6.30015.01, CoreFX 4.6.30015.01), X64 RyuJIT
+  Job-VTIKSD : .NET Core 2.1.28 (CoreCLR 4.6.30015.01, CoreFX 4.6.30015.01), X64 RyuJIT
 
 Runtime=.NET Core 2.1  Toolchain=netcoreapp21  IterationTime=500.0000 ms  
 
 ```
 |                 Method |          Mean |         Error |        StdDev |        Median |  Gen 0 |  Gen 1 | Gen 2 | Allocated |
 |----------------------- |--------------:|--------------:|--------------:|--------------:|-------:|-------:|------:|----------:|
-|            Constructor |     10.374 ns |     0.2450 ns |     0.5115 ns |     10.361 ns |      - |      - |     - |         - |
-|         Constructor_SI |    505.581 ns |    10.1375 ns |    18.5371 ns |    506.609 ns | 0.0281 |      - |     - |     192 B |
-|             FromMethod |     24.536 ns |     0.5223 ns |     1.0062 ns |     24.628 ns |      - |      - |     - |         - |
-|             ToProperty |      8.219 ns |     0.2038 ns |     0.4343 ns |      8.228 ns |      - |      - |     - |         - |
-|                     As |      8.793 ns |     0.2089 ns |     0.3126 ns |      8.934 ns |      - |      - |     - |         - |
-|                  As_SI |    497.884 ns |     9.9944 ns |    17.5043 ns |    502.426 ns | 0.0284 |      - |     - |     192 B |
-|                 ToUnit |     16.882 ns |     0.3744 ns |     0.7122 ns |     16.900 ns |      - |      - |     - |         - |
-|              ToUnit_SI |    503.313 ns |    10.0777 ns |    22.7471 ns |    508.750 ns | 0.0280 |      - |     - |     192 B |
-|           ToStringTest |  1,999.525 ns |    39.9437 ns |    94.1519 ns |  2,018.075 ns | 0.1425 |      - |     - |     952 B |
-|                  Parse | 60,491.282 ns | 1,194.7227 ns | 2,358.2660 ns | 61,352.128 ns | 6.8102 | 0.2432 |     - |   44816 B |
-|          TryParseValid | 60,123.315 ns | 1,198.4987 ns | 2,579.8949 ns | 61,117.510 ns | 6.8667 | 0.2543 |     - |   44792 B |
-|        TryParseInvalid | 63,953.452 ns | 1,267.4895 ns | 2,962.7157 ns | 64,348.789 ns | 6.6763 | 0.2618 |     - |   44392 B |
-|           QuantityFrom |  1,608.421 ns |    43.0368 ns |   123.4807 ns |  1,600.000 ns |      - |      - |     - |      56 B |
-|           IQuantity_As |     18.789 ns |     0.4184 ns |     1.0497 ns |     18.769 ns | 0.0037 |      - |     - |      24 B |
-|        IQuantity_As_SI |    493.611 ns |     9.8070 ns |    19.5856 ns |    496.942 ns | 0.0284 |      - |     - |     192 B |
-|       IQuantity_ToUnit |     28.451 ns |     0.6495 ns |     1.5809 ns |     28.620 ns | 0.0087 |      - |     - |      56 B |
-| IQuantity_ToStringTest |  2,012.879 ns |    40.1359 ns |    89.7697 ns |  2,003.296 ns | 0.1406 |      - |     - |     952 B |
+|            Constructor |     10.628 ns |     0.2084 ns |     0.1949 ns |     10.658 ns |      - |      - |     - |         - |
+|         Constructor_SI |    505.938 ns |    10.0319 ns |    15.6184 ns |    507.447 ns | 0.0282 |      - |     - |     192 B |
+|             FromMethod |     24.371 ns |     0.5159 ns |     0.6525 ns |     24.283 ns |      - |      - |     - |         - |
+|             ToProperty |      8.243 ns |     0.1928 ns |     0.2368 ns |      8.318 ns |      - |      - |     - |         - |
+|                     As |      8.602 ns |     0.2048 ns |     0.2438 ns |      8.680 ns |      - |      - |     - |         - |
+|                  As_SI |    489.868 ns |     9.8062 ns |    13.0910 ns |    493.801 ns | 0.0283 |      - |     - |     192 B |
+|                 ToUnit |     17.161 ns |     0.3706 ns |     0.3466 ns |     17.380 ns |      - |      - |     - |         - |
+|              ToUnit_SI |    502.464 ns |     9.0995 ns |     8.5116 ns |    501.635 ns | 0.0277 |      - |     - |     192 B |
+|           ToStringTest |  2,163.245 ns |    43.1329 ns |    74.4021 ns |  2,181.252 ns | 0.1412 |      - |     - |     952 B |
+|                  Parse | 58,569.947 ns | 1,147.5436 ns | 1,608.6959 ns | 58,822.717 ns | 6.8163 | 0.2350 |     - |   44816 B |
+|          TryParseValid | 59,550.572 ns |   930.9184 ns |   870.7816 ns | 59,811.884 ns | 6.8582 | 0.2365 |     - |   44792 B |
+|        TryParseInvalid | 63,988.704 ns | 1,265.9966 ns | 1,690.0690 ns | 63,928.854 ns | 6.7131 | 0.2533 |     - |   44392 B |
+|           QuantityFrom |  1,438.462 ns |    28.5143 ns |    79.9573 ns |  1,400.000 ns |      - |      - |     - |      56 B |
+|           IQuantity_As |     18.388 ns |     0.4040 ns |     0.4809 ns |     18.434 ns | 0.0037 |      - |     - |      24 B |
+|        IQuantity_As_SI |    492.460 ns |     9.2246 ns |    16.6339 ns |    492.647 ns | 0.0280 |      - |     - |     192 B |
+|       IQuantity_ToUnit |     26.484 ns |     0.6009 ns |     0.6679 ns |     26.582 ns | 0.0087 |      - |     - |      56 B |
+| IQuantity_ToStringTest |  2,214.879 ns |    43.1845 ns |    65.9472 ns |  2,218.508 ns | 0.1404 |      - |     - |     952 B |
