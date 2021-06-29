@@ -1,4 +1,215 @@
-	C:\Users\runneradmin\AppData\Local\Temp\RtmpkBc9Qi\downloaded_packages
+please set environment variable 'TZ'
+  unable to identify current timezone 'C':
+Warning in as.POSIXlt.POSIXct(Sys.time()) :
+please set environment variable 'TZ'
+  unable to identify current timezone 'C':
+Warning in as.POSIXlt.POSIXct(Sys.time()) :
+please set environment variable 'TZ'
+  unable to identify current timezone 'C':
+Warning in as.POSIXlt.POSIXct(Sys.time()) :
+please set environment variable 'TZ'
+  unable to identify current timezone 'C':
+Warning in as.POSIXlt.POSIXct(Sys.time()) :
+    zeroGrob                                html  
+    wrap_dims                               html  
+    waiver                                  html  
+    vars                                    html  
+    update_labels                           html  
+    update_defaults                         html  
+    txhousing                               html  
+    translate_qplot_lattice                 html  
+    translate_qplot_ggplot                  html  
+    transform_position                      html  
+    tidyeval                                html  
+    theme_get                               html  
+    theme                                   html  
+    summary.ggplot                          html  
+    summarise_plot                          html  
+    stat_unique                             html  
+    stat_summary_2d                         html  
+    stat_summary                            html  
+    stat_sf_coordinates                     html  
+    stat_identity                           html  
+    stat_ellipse                            html  
+    stat_ecdf                               html  
+    standardise_aes_names                   html  
+    should_stop                             html  
+    sf_transform_xy                         html  
+    set_last_plot                           html  
+    sec_axis                                html  
+    seals                                   html  
+    scale_viridis                           html  
+    scale_type                              html  
+    scale_steps                             html  
+    scale_size                              html  
+    scale_shape                             html  
+    scale_manual                            html  
+    scale_linetype                          html  
+    scale_identity                          html  
+    scale_hue                               html  
+    scale_grey                              html  
+    scale_gradient                          html  
+    scale_discrete                          html  
+    scale_date                              html  
+    scale_continuous                        html  
+    scale_colour_discrete                   html  
+    scale_colour_continuous                 html  
+    scale_brewer                            html  
+    scale_binned                            html  
+    scale_alpha                             html  
+    resolution                              html  
+    render_strips                           html  
+    render_axes                             html  
+    remove_missing                          html  
+    register_theme_elements                 html  
+    reexports                               html  
+    qplot                                   html  
+    print.ggproto                           html  
+    print.ggplot                            html  
+    presidential                            html  
+    position_stack                          html  
+    position_nudge                          html  
+    position_jitterdodge                    html  
+    position_jitter                         html  
+    position_identity                       html  
+    position_dodge                          html  
+    msleep                                  html  
+    mpg                                     html  
+    midwest                                 html  
+    merge_element                           html  
+    mean_se                                 html  
+    max_height                              html  
+    map_data                                html  
+    luv_colours                             html  
+    lims                                    html  
+    limits                                  html  
+    layer_sf                                html  
+    layer                                   html  
+    last_plot                               html  
+    labs                                    html  
+    labellers                               html  
+    labeller                                html  
+    label_bquote                            html  
+    is.theme                                html  
+    is.rel                                  html  
+    is.ggplot                               html  
+    is.facet                                html  
+    is.Coord                                html  
+    hmisc                                   html  
+    guides                                  html  
+    guide_none                              html  
+    guide_legend                            html  
+    guide_coloursteps                       html  
+    guide_colourbar                         html  
+    guide_bins                              html  
+    guide_axis                              html  
+    guide-exts                              html  
+    graphical-units                         html  
+    ggtheme                                 html  
+    ggsf                                    html  
+    ggsave                                  html  
+    ggproto                                 html  
+    ggplot_gtable                           html  
+    ggplot_build                            html  
+    ggplot_add                              html  
+    ggplotGrob                              html  
+    ggplot2-package                         html  
+    ggplot2-ggproto                         html  
+    ggplot                                  html  
+    gg_dep                                  html  
+    gg-add                                  html  
+    get_alt_text                            html  
+    geom_violin                             html  
+    geom_tile                               html  
+    geom_text                               html  
+    geom_spoke                              html  
+    geom_smooth                             html  
+    geom_segment                            html  
+    geom_rug                                html  
+    geom_ribbon                             html  
+    geom_quantile                           html  
+    geom_qq                                 html  
+    geom_polygon                            html  
+    geom_point                              html  
+    geom_path                               html  
+    geom_map                                html  
+    geom_linerange                          html  
+    geom_jitter                             html  
+    geom_histogram                          html  
+    geom_hex                                html  
+    geom_function                           html  
+    geom_errorbarh                          html  
+    geom_dotplot                            html  
+    geom_density_2d                         html  
+    geom_density                            html  
+    geom_count                              html  
+    geom_contour                            html  
+    geom_boxplot                            html  
+    geom_blank                              html  
+    geom_bin_2d                             html  
+    geom_bar                                html  
+    geom_abline                             html  
+    fortify.sp                              html  
+    fortify.map                             html  
+    fortify.lm                              html  
+    fortify                                 html  
+    fortify-multcomp                        html  
+    find_panel                              html  
+    faithfuld                               html  
+    facet_wrap                              html  
+    facet_null                              html  
+    facet_grid                              html  
+    expansion                               html  
+    expand_limits                           html  
+    element_render                          html  
+    element_grob                            html  
+    element                                 html  
+    economics                               html  
+    draw_key                                html  
+    discrete_scale                          html  
+    diamonds                                html  
+    cut_interval                            html  
+    coord_trans                             html  
+    coord_polar                             html  
+    coord_munch                             html  
+    coord_map                               html  
+    coord_flip                              html  
+    coord_fixed                             html  
+    coord_cartesian                         html  
+    continuous_scale                        html  
+    combine_vars                            html  
+    calc_element                            html  
+    borders                                 html  
+    binned_scale                            html  
+    bidirection                             html  
+    benchplot                               html  
+    autoplot                                html  
+    autolayer                               html  
+    as_labeller                             html  
+    as.list.ggproto                         html  
+    annotation_raster                       html  
+    annotation_map                          html  
+    annotation_logticks                     html  
+    annotation_custom                       html  
+    annotate                                html  
+    aes_position                            html  
+    aes_linetype_size_shape                 html  
+    aes_group_order                         html  
+    aes_eval                                html  
+    aes_colour_fill_alpha                   html  
+    aes_auto                                html  
+    aes_all                                 html  
+    aes_                                    html  
+    aes                                     html  
+    add_theme                               html  
+    absoluteGrob                            html  
+  converting help for package 'ggplot2'
+    cpp_vendor                              html  
+    cpp_source                              html  
+    cpp_register                            html  
+    cpp11-package                           html  
+  converting help for package 'cpp11'
+	C:\Users\runneradmin\AppData\Local\Temp\RtmpkJ0Upp\downloaded_packages
 The downloaded binary packages are in
 package 'R.devices' successfully unpacked and MD5 sums checked
 package 'Rcpp' successfully unpacked and MD5 sums checked
@@ -6,12 +217,10 @@ package 'gridExtra' successfully unpacked and MD5 sums checked
 package 'tidyr' successfully unpacked and MD5 sums checked
 package 'gdata' successfully unpacked and MD5 sums checked
 package 'dplyr' successfully unpacked and MD5 sums checked
-package 'ggplot2' successfully unpacked and MD5 sums checked
 package 'base64enc' successfully unpacked and MD5 sums checked
 package 'R.utils' successfully unpacked and MD5 sums checked
 package 'R.oo' successfully unpacked and MD5 sums checked
 package 'R.methodsS3' successfully unpacked and MD5 sums checked
-package 'cpp11' successfully unpacked and MD5 sums checked
 package 'purrr' successfully unpacked and MD5 sums checked
 package 'gtools' successfully unpacked and MD5 sums checked
 package 'pillar' successfully unpacked and MD5 sums checked
@@ -41,43 +250,103 @@ package 'munsell' successfully unpacked and MD5 sums checked
 package 'labeling' successfully unpacked and MD5 sums checked
 package 'farver' successfully unpacked and MD5 sums checked
 package 'colorspace' successfully unpacked and MD5 sums checked
+ggplot2  3.3.4  3.3.5             FALSE
+cpp11    0.2.7  0.3.1             FALSE
+        binary source needs_compilation
+  There are binary versions available but the source versions are later:
 Execution halted
 Error in library(ggplot2) : there is no package called 'ggplot2'
-downloaded 370 KB
+	'C:\Users\runneradmin\AppData\Local\Temp\RtmpkJ0Upp\downloaded_packages'
+The downloaded source packages are in
+* DONE (ggplot2)
+** testing if installed package keeps a record of temporary installation path
+*** arch - x64
+*** arch - i386
+** testing if installed package can be loaded from final location
+*** arch - x64
+*** arch - i386
+** testing if installed package can be loaded from temporary location
+** installing vignettes
+** building package indices
+*** copying figures
+    finding level-2 HTML links ... done
+REDIRECT:topic	 Previous alias or file overwritten by alias: C:/Users/runneradmin/R/win-library/4.1/00LOCK-ggplot2/00new/ggplot2/help/Stat.html
+    finding HTML links ... done
+*** installing help indices
+** help
+** byte-compile and prepare package for lazy loading
+** inst
+*** moving datasets to lazyload DB
+** data
+** R
+** using staged installation
+** package 'ggplot2' successfully unpacked and MD5 sums checked
+* installing *source* package 'ggplot2' ...
+please set environment variable 'TZ'
+  unable to identify current timezone 'C':
+Warning in strptime(xx, f, tz = tz) :
+* DONE (cpp11)
+** testing if installed package keeps a record of temporary installation path
+*** arch - x64
+*** arch - i386
+** testing if installed package can be loaded from final location
+*** arch - x64
+*** arch - i386
+** testing if installed package can be loaded from temporary location
+** installing vignettes
+** building package indices
+    finding HTML links ... done
+*** installing help indices
+** help
+** byte-compile and prepare package for lazy loading
+** inst
+** R
+** using staged installation
+** package 'cpp11' successfully unpacked and MD5 sums checked
+* installing *source* package 'cpp11' ...
+please set environment variable 'TZ'
+  unable to identify current timezone 'C':
+Warning in strptime(xx, f, tz = tz) :
+downloaded 2.9 MB
 ==================================================
-Content type 'application/zip' length 379010 bytes (370 KB)
+Content type 'application/x-gzip' length 3063309 bytes (2.9 MB)
+trying URL 'https://cran.rstudio.com/src/contrib/ggplot2_3.3.5.tar.gz'
+downloaded 212 KB
+==================================================
+Content type 'application/x-gzip' length 217952 bytes (212 KB)
+trying URL 'https://cran.rstudio.com/src/contrib/cpp11_0.3.1.tar.gz'
+installing the source packages 'cpp11', 'ggplot2'
+downloaded 369 KB
+==================================================
+Content type 'application/zip' length 378789 bytes (369 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/R.devices_2.17.0.zip'
 downloaded 3.1 MB
 ==================================================
-Content type 'application/zip' length 3254247 bytes (3.1 MB)
+Content type 'application/zip' length 3254676 bytes (3.1 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/Rcpp_1.0.6.zip'
 downloaded 1.1 MB
 ==================================================
-Content type 'application/zip' length 1109325 bytes (1.1 MB)
+Content type 'application/zip' length 1109328 bytes (1.1 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/gridExtra_2.3.zip'
 downloaded 1.0 MB
 ==================================================
-Content type 'application/zip' length 1054870 bytes (1.0 MB)
+Content type 'application/zip' length 1055924 bytes (1.0 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/tidyr_1.1.3.zip'
 downloaded 1.2 MB
 ==================================================
-Content type 'application/zip' length 1263652 bytes (1.2 MB)
+Content type 'application/zip' length 1263321 bytes (1.2 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/gdata_2.18.0.zip'
 downloaded 1.3 MB
 ==================================================
-Content type 'application/zip' length 1337380 bytes (1.3 MB)
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/dplyr_1.0.6.zip'
-downloaded 3.9 MB
-==================================================
-Content type 'application/zip' length 4134806 bytes (3.9 MB)
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/ggplot2_3.3.4.zip'
+Content type 'application/zip' length 1342473 bytes (1.3 MB)
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/dplyr_1.0.7.zip'
 downloaded 41 KB
 ==================================================
 Content type 'application/zip' length 43002 bytes (41 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/base64enc_0.1-3.zip'
 downloaded 1.3 MB
 ==================================================
-Content type 'application/zip' length 1396231 bytes (1.3 MB)
+Content type 'application/zip' length 1397781 bytes (1.3 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/R.utils_2.10.1.zip'
 downloaded 943 KB
 ==================================================
@@ -87,113 +356,109 @@ downloaded 79 KB
 ==================================================
 Content type 'application/zip' length 81208 bytes (79 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/R.methodsS3_1.8.1.zip'
-downloaded 212 KB
+downloaded 417 KB
 ==================================================
-Content type 'application/zip' length 217787 bytes (212 KB)
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/cpp11_0.2.7.zip'
-downloaded 418 KB
-==================================================
-Content type 'application/zip' length 428718 bytes (418 KB)
+Content type 'application/zip' length 427839 bytes (417 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/purrr_0.3.4.zip'
 downloaded 358 KB
 ==================================================
-Content type 'application/zip' length 366662 bytes (358 KB)
+Content type 'application/zip' length 366968 bytes (358 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/gtools_3.9.2.zip'
 downloaded 1001 KB
 ==================================================
-Content type 'application/zip' length 1025713 bytes (1001 KB)
+Content type 'application/zip' length 1025834 bytes (1001 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/pillar_1.6.1.zip'
 downloaded 1.2 MB
 ==================================================
-Content type 'application/zip' length 1252618 bytes (1.2 MB)
+Content type 'application/zip' length 1252014 bytes (1.2 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/vctrs_0.3.8.zip'
 downloaded 199 KB
 ==================================================
-Content type 'application/zip' length 204061 bytes (199 KB)
+Content type 'application/zip' length 204212 bytes (199 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/tidyselect_1.1.1.zip'
 downloaded 82 KB
 ==================================================
-Content type 'application/zip' length 84102 bytes (82 KB)
+Content type 'application/zip' length 84123 bytes (82 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/R6_2.5.0.zip'
-downloaded 229 KB
+downloaded 230 KB
 ==================================================
-Content type 'application/zip' length 234942 bytes (229 KB)
+Content type 'application/zip' length 235955 bytes (230 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/magrittr_2.0.1.zip'
 downloaded 108 KB
 ==================================================
-Content type 'application/zip' length 111134 bytes (108 KB)
+Content type 'application/zip' length 111190 bytes (108 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/lifecycle_1.0.0.zip'
 downloaded 69 KB
 ==================================================
-Content type 'application/zip' length 70683 bytes (69 KB)
+Content type 'application/zip' length 71221 bytes (69 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/generics_0.1.0.zip'
 downloaded 48 KB
 ==================================================
-Content type 'application/zip' length 49165 bytes (48 KB)
+Content type 'application/zip' length 49172 bytes (48 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/ellipsis_0.3.2.zip'
 downloaded 207 KB
 ==================================================
-Content type 'application/zip' length 212655 bytes (207 KB)
+Content type 'application/zip' length 212679 bytes (207 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/withr_2.4.2.zip'
 downloaded 805 KB
 ==================================================
-Content type 'application/zip' length 824649 bytes (805 KB)
+Content type 'application/zip' length 824615 bytes (805 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/tibble_3.1.2.zip'
 downloaded 550 KB
 ==================================================
-Content type 'application/zip' length 563218 bytes (550 KB)
+Content type 'application/zip' length 563835 bytes (550 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/scales_1.1.1.zip'
 downloaded 1.1 MB
 ==================================================
-Content type 'application/zip' length 1178499 bytes (1.1 MB)
+Content type 'application/zip' length 1186273 bytes (1.1 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/rlang_0.4.11.zip'
 downloaded 2.9 MB
 ==================================================
-Content type 'application/zip' length 3062307 bytes (2.9 MB)
+Content type 'application/zip' length 3062336 bytes (2.9 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/isoband_0.2.4.zip'
 downloaded 423 KB
 ==================================================
-Content type 'application/zip' length 433980 bytes (423 KB)
+Content type 'application/zip' length 433937 bytes (423 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/gtable_0.3.0.zip'
 downloaded 151 KB
 ==================================================
-Content type 'application/zip' length 154640 bytes (151 KB)
+Content type 'application/zip' length 154911 bytes (151 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/glue_1.4.2.zip'
 downloaded 262 KB
 ==================================================
-Content type 'application/zip' length 268455 bytes (262 KB)
+Content type 'application/zip' length 268482 bytes (262 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/digest_0.6.27.zip'
 downloaded 204 KB
 ==================================================
-Content type 'application/zip' length 209859 bytes (204 KB)
+Content type 'application/zip' length 209904 bytes (204 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/utf8_1.2.1.zip'
 downloaded 138 KB
 ==================================================
-Content type 'application/zip' length 141549 bytes (138 KB)
+Content type 'application/zip' length 141442 bytes (138 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/crayon_1.4.1.zip'
-downloaded 522 KB
+downloaded 520 KB
 ==================================================
-Content type 'application/zip' length 534878 bytes (522 KB)
+Content type 'application/zip' length 533399 bytes (520 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/cli_2.5.0.zip'
 downloaded 21 KB
 ==================================================
-Content type 'application/zip' length 22375 bytes (21 KB)
+Content type 'application/zip' length 22399 bytes (21 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/pkgconfig_2.0.3.zip'
 downloaded 242 KB
 ==================================================
-Content type 'application/zip' length 248671 bytes (242 KB)
+Content type 'application/zip' length 248579 bytes (242 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/fansi_0.5.0.zip'
 downloaded 1.2 MB
 ==================================================
-Content type 'application/zip' length 1299478 bytes (1.2 MB)
+Content type 'application/zip' length 1299477 bytes (1.2 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/viridisLite_0.4.0.zip'
 downloaded 54 KB
 ==================================================
 Content type 'application/zip' length 55593 bytes (54 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/RColorBrewer_1.1-2.zip'
-downloaded 239 KB
+downloaded 238 KB
 ==================================================
-Content type 'application/zip' length 244743 bytes (239 KB)
+Content type 'application/zip' length 244527 bytes (238 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/munsell_0.5.0.zip'
 downloaded 61 KB
 ==================================================
@@ -201,10 +466,10 @@ Content type 'application/zip' length 62808 bytes (61 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/labeling_0.4.2.zip'
 downloaded 1.7 MB
 ==================================================
-Content type 'application/zip' length 1752070 bytes (1.7 MB)
+Content type 'application/zip' length 1752202 bytes (1.7 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/farver_2.1.0.zip'
 downloaded 2.5 MB
 ==================================================
-Content type 'application/zip' length 2641141 bytes (2.5 MB)
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/colorspace_2.0-1.zip'
+Content type 'application/zip' length 2649258 bytes (2.5 MB)
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/colorspace_2.0-2.zip'
 also installing the dependencies 'colorspace', 'farver', 'labeling', 'munsell', 'RColorBrewer', 'viridisLite', 'fansi', 'pkgconfig', 'cli', 'crayon', 'utf8', 'digest', 'glue', 'gtable', 'isoband', 'rlang', 'scales', 'tibble', 'withr', 'ellipsis', 'generics', 'lifecycle', 'magrittr', 'R6', 'tidyselect', 'vctrs', 'pillar', 'gtools', 'purrr', 'cpp11', 'R.methodsS3', 'R.oo', 'R.utils', 'base64enc'
