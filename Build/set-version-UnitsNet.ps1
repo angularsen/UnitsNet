@@ -54,6 +54,7 @@ $paramSet = $PsCmdlet.ParameterSetName
 $projFile = "$root\UnitsNet\UnitsNet.csproj"
 $numberExtensionsProjFile = "$root\UnitsNet.NumberExtensions\UnitsNet.NumberExtensions.csproj"
 $nanoFrameworkNuspecGeneratorFile = "$root\CodeGen\Generators\NanoFrameworkGen\NuspecGenerator.cs"
+$nanoFrameworkAssemblyInfoFile = "$root\UnitsNet.NanoFramework\GeneratedCode\Properties\AssemblyInfo.cs"
 $winrtAssemblyInfoFile = "$root\UnitsNet.WindowsRuntimeComponent\Properties\AssemblyInfo.cs"
 $winrtNuspecFile = "$root\UnitsNet.WindowsRuntimeComponent\UnitsNet.WindowsRuntimeComponent.nuspec"
 
@@ -69,6 +70,9 @@ Set-ProjectVersion $numberExtensionsProjFile $newVersion
 
 # Update AssemblyInfo.cs files
 Set-AssemblyInfoVersion $winrtAssemblyInfoFile $newVersion
+
+# Update AssemblyInfo.cs file for .NET nanoFramework
+Set-AssemblyInfoVersion $nanoFrameworkAssemblyInfoFile $newVersion
 
 # Update .nuspec files
 Set-NuspecVersion $winrtNuspecFile $newVersion
