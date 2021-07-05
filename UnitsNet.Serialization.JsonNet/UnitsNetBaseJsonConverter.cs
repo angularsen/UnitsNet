@@ -2,7 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
@@ -18,18 +18,19 @@ namespace UnitsNet.Serialization.JsonNet
     /// <typeparam name="T">The type being converted. Should either be <see cref="IQuantity"/> or <see cref="IComparable"/></typeparam>
     public abstract class UnitsNetBaseJsonConverter<T> : JsonConverter<T>
     {
-        private List<(Type Quantity, Type Unit)> _registeredTypes = new();
+        private ConcurrentDictionary<string, (Type Quantity, Type Unit)> _registeredTypes = new();
 
         /// <summary>
         /// Register custom types so that the converter can instantiate these quantities.
         /// Instead of calling <see cref="Quantity.From"/>, the <see cref="Activator"/> will be used to instantiate the object.
         /// It is therefore assumed that the constructor of <paramref name="quantity"/> is specified with <c>new T(double value, typeof(<paramref name="unit"/>) unit)</c>.
+        /// Registering the same <paramref name="unit"/> multiple times, it will overwrite the one registered.
         /// </summary>
         public void RegisterCustomType(Type quantity, Type unit)
         {
             if (!typeof(T).IsAssignableFrom(quantity))
             {
-                throw new ArgumentException($"The type {quantity} is not a {nameof(T)}");
+                throw new ArgumentException($"The type {quantity} is not a {typeof(T)}");
             }
 
             if (!typeof(Enum).IsAssignableFrom(unit))
@@ -37,7 +38,7 @@ namespace UnitsNet.Serialization.JsonNet
                 throw new ArgumentException($"The type {unit} is not a {nameof(Enum)}");
             }
 
-            _registeredTypes.Add((quantity, unit));
+            _registeredTypes[unit.Name] = (quantity, unit);
         }
 
         /// <summary>
@@ -102,11 +103,11 @@ namespace UnitsNet.Serialization.JsonNet
             }
 
             var unit = GetUnit(valueUnit.Unit);
-            Type registeredType = GetRegisteredType(valueUnit.Unit);
+            var registeredQuantity = GetRegisteredType(valueUnit.Unit).Quantity;
 
-            if (registeredType is not null)
+            if (registeredQuantity is not null)
             {
-                return (IQuantity)Activator.CreateInstance(registeredType, valueUnit.Value, unit);
+                return (IQuantity)Activator.CreateInstance(registeredQuantity, valueUnit.Value, unit);
             }
 
             return valueUnit switch
@@ -116,10 +117,15 @@ namespace UnitsNet.Serialization.JsonNet
             };
         }
 
-        private Type GetRegisteredType(string unit)
+        private (Type Quantity, Type Unit) GetRegisteredType(string unit)
         {
-            (var unitEnumTypeName, var unitEnumValue) = SplitUnitString(unit);
-            return _registeredTypes.Find(t => t.Unit.Name == unitEnumTypeName).Quantity;
+            (var unitEnumTypeName, var _) = SplitUnitString(unit);
+            if (_registeredTypes.TryGetValue(unitEnumTypeName, out var registeredType))
+            {
+                return registeredType;
+            }
+
+            return (null, null);
         }
 
         private Enum GetUnit(string unit)
@@ -127,7 +133,7 @@ namespace UnitsNet.Serialization.JsonNet
             (var unitEnumTypeName, var unitEnumValue) = SplitUnitString(unit);
 
             // First try to find the name in the list of registered types.
-            var unitEnumType = _registeredTypes.Find(t => t.Unit.Name == unitEnumTypeName).Unit;
+            var unitEnumType = GetRegisteredType(unit).Unit;
 
             if (unitEnumType is null)
             {
