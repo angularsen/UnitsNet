@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>UnitsNet.nanoFramework.RotationalStiffness</id>
-    <version>updated_by_codegen</version>
+    <version>4.95.0</version>
     <title>Units.NET RotationalStiffness - nanoFramework</title>
     <authors>Andreas Gullberg Larsen,nanoFramework project contributors</authors>
     <owners>UnitsNet</owners>
@@ -17,7 +17,7 @@
     <language>en-US</language>
     <tags>nanoframework unit units measurement si metric imperial abbreviation abbreviations convert conversion parse c# .net immutable uwp uap winrt win10 windows runtime component rotationalstiffness</tags>
     <dependencies>
-      <dependency id="nanoFramework.CoreLibrary" version="1.10.5-preview.13" />
+      <dependency id="nanoFramework.CoreLibrary" version="1.10.5-preview.18" />
     </dependencies>
   </metadata>
   <files>

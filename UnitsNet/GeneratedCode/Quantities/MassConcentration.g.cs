@@ -90,6 +90,8 @@ namespace UnitsNet
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.NanogramPerLiter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.NanogramPerMicroliter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.NanogramPerMilliliter, BaseUnits.Undefined),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.OuncePerImperialGallon, BaseUnits.Undefined),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.OuncePerUSGallon, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PicogramPerDeciliter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PicogramPerLiter, BaseUnits.Undefined),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PicogramPerMicroliter, BaseUnits.Undefined),
@@ -391,6 +393,16 @@ namespace UnitsNet
         ///     Get MassConcentration in NanogramsPerMilliliter.
         /// </summary>
         public double NanogramsPerMilliliter => As(MassConcentrationUnit.NanogramPerMilliliter);
+
+        /// <summary>
+        ///     Get MassConcentration in OuncesPerImperialGallon.
+        /// </summary>
+        public double OuncesPerImperialGallon => As(MassConcentrationUnit.OuncePerImperialGallon);
+
+        /// <summary>
+        ///     Get MassConcentration in OuncesPerUSGallon.
+        /// </summary>
+        public double OuncesPerUSGallon => As(MassConcentrationUnit.OuncePerUSGallon);
 
         /// <summary>
         ///     Get MassConcentration in PicogramsPerDeciliter.
@@ -795,6 +807,24 @@ namespace UnitsNet
         {
             double value = (double) nanogramspermilliliter;
             return new MassConcentration(value, MassConcentrationUnit.NanogramPerMilliliter);
+        }
+        /// <summary>
+        ///     Get MassConcentration from OuncesPerImperialGallon.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassConcentration FromOuncesPerImperialGallon(QuantityValue ouncesperimperialgallon)
+        {
+            double value = (double) ouncesperimperialgallon;
+            return new MassConcentration(value, MassConcentrationUnit.OuncePerImperialGallon);
+        }
+        /// <summary>
+        ///     Get MassConcentration from OuncesPerUSGallon.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MassConcentration FromOuncesPerUSGallon(QuantityValue ouncesperusgallon)
+        {
+            double value = (double) ouncesperusgallon;
+            return new MassConcentration(value, MassConcentrationUnit.OuncePerUSGallon);
         }
         /// <summary>
         ///     Get MassConcentration from PicogramsPerDeciliter.
@@ -1368,6 +1398,8 @@ namespace UnitsNet
                 case MassConcentrationUnit.NanogramPerLiter: return (_value) * 1e-9d;
                 case MassConcentrationUnit.NanogramPerMicroliter: return (_value/1e-6) * 1e-9d;
                 case MassConcentrationUnit.NanogramPerMilliliter: return (_value/1e-3) * 1e-9d;
+                case MassConcentrationUnit.OuncePerImperialGallon: return  _value/0.1603586720609;
+                case MassConcentrationUnit.OuncePerUSGallon: return  _value/0.1335264711843;
                 case MassConcentrationUnit.PicogramPerDeciliter: return (_value/1e-1) * 1e-12d;
                 case MassConcentrationUnit.PicogramPerLiter: return (_value) * 1e-12d;
                 case MassConcentrationUnit.PicogramPerMicroliter: return (_value/1e-6) * 1e-12d;
@@ -1440,6 +1472,8 @@ namespace UnitsNet
                 case MassConcentrationUnit.NanogramPerLiter: return (baseUnitValue) / 1e-9d;
                 case MassConcentrationUnit.NanogramPerMicroliter: return (baseUnitValue*1e-6) / 1e-9d;
                 case MassConcentrationUnit.NanogramPerMilliliter: return (baseUnitValue*1e-3) / 1e-9d;
+                case MassConcentrationUnit.OuncePerImperialGallon: return baseUnitValue*0.1603586720609;
+                case MassConcentrationUnit.OuncePerUSGallon: return baseUnitValue*0.1335264711843;
                 case MassConcentrationUnit.PicogramPerDeciliter: return (baseUnitValue*1e-1) / 1e-12d;
                 case MassConcentrationUnit.PicogramPerLiter: return (baseUnitValue) / 1e-12d;
                 case MassConcentrationUnit.PicogramPerMicroliter: return (baseUnitValue*1e-6) / 1e-12d;
