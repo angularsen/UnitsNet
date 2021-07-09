@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>UnitsNet.nanoFramework.Turbidity</id>
-    <version>4.95.0</version>
+    <version>4.97.1</version>
     <title>Units.NET Turbidity - nanoFramework</title>
     <authors>Andreas Gullberg Larsen,nanoFramework project contributors</authors>
     <owners>UnitsNet</owners>
@@ -18,7 +18,7 @@
     <tags>nanoframework unit units measurement si metric imperial abbreviation abbreviations convert conversion parse c# .net immutable uwp uap winrt win10 windows runtime component turbidity</tags>
     <dependencies>
       <dependency id="nanoFramework.CoreLibrary" version="1.10.5-preview.18" />
-      <dependency id="nanoFramework.System.Math" version="1.4.1-preview.10" />
+      <dependency id="nanoFramework.System.Math" version="1.4.1-preview.7" />
     </dependencies>
   </metadata>
   <files>

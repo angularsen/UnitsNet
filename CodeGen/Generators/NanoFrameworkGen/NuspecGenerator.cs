@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System;
 using CodeGen.JsonTypes;
 
 namespace CodeGen.Generators.NanoFrameworkGen
@@ -27,7 +25,7 @@ namespace CodeGen.Generators.NanoFrameworkGen
 <package xmlns=""http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd"">
   <metadata>
     <id>UnitsNet.nanoFramework.{_quantity.Name}</id>
-    <version>4.95.0</version>
+    <version>4.97.1</version>
     <title>Units.NET {_quantity.Name} - nanoFramework</title>
     <authors>Andreas Gullberg Larsen,nanoFramework project contributors</authors>
     <owners>UnitsNet</owners>
