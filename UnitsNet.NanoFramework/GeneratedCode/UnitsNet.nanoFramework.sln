@@ -160,6 +160,8 @@ Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ReactiveEnergy", "ReactiveE
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ReactivePower", "ReactivePower\ReactivePower.nfproj", "{6821b87e-65eb-bfdb-8fdc-8b183edf739e}"
 EndProject
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ReciprocalLength", "ReciprocalLength\ReciprocalLength.nfproj", "{83d6c79a-c71a-d467-284c-28edbbd059d2}"
+EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "RelativeHumidity", "RelativeHumidity\RelativeHumidity.nfproj", "{4ac05c74-08c5-2153-f38c-976975747b5c}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "RotationalAcceleration", "RotationalAcceleration\RotationalAcceleration.nfproj", "{e2110137-6a36-f4d1-2219-26eb18fee74d}"
@@ -698,6 +700,12 @@ Global
 {6821b87e-65eb-bfdb-8fdc-8b183edf739e}.Release|Any CPU.ActiveCfg = Release|Any CPU
 {6821b87e-65eb-bfdb-8fdc-8b183edf739e}.Release|Any CPU.Build.0 = Release|Any CPU
 {6821b87e-65eb-bfdb-8fdc-8b183edf739e}.Release|Any CPU.Deploy.0 = Release|Any CPU
+{83d6c79a-c71a-d467-284c-28edbbd059d2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{83d6c79a-c71a-d467-284c-28edbbd059d2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{83d6c79a-c71a-d467-284c-28edbbd059d2}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+{83d6c79a-c71a-d467-284c-28edbbd059d2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{83d6c79a-c71a-d467-284c-28edbbd059d2}.Release|Any CPU.Build.0 = Release|Any CPU
+{83d6c79a-c71a-d467-284c-28edbbd059d2}.Release|Any CPU.Deploy.0 = Release|Any CPU
 {4ac05c74-08c5-2153-f38c-976975747b5c}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {4ac05c74-08c5-2153-f38c-976975747b5c}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {4ac05c74-08c5-2153-f38c-976975747b5c}.Debug|Any CPU.Deploy.0 = Debug|Any CPU

@@ -278,6 +278,9 @@ namespace UnitsNet
                 case ReactivePowerUnit reactivePowerUnit:
                     quantity = ReactivePower.From(value, reactivePowerUnit);
                     return true;
+                case ReciprocalLengthUnit reciprocalLengthUnit:
+                    quantity = ReciprocalLength.From(value, reciprocalLengthUnit);
+                    return true;
                 case RelativeHumidityUnit relativeHumidityUnit:
                     quantity = RelativeHumidity.From(value, relativeHumidityUnit);
                     return true;
@@ -651,6 +654,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(ReactivePower))
                 return parser.TryParse<ReactivePower, ReactivePowerUnit>(quantityString, formatProvider, ReactivePower.From, out quantity);
+
+            if (quantityType == typeof(ReciprocalLength))
+                return parser.TryParse<ReciprocalLength, ReciprocalLengthUnit>(quantityString, formatProvider, ReciprocalLength.From, out quantity);
 
             if (quantityType == typeof(RelativeHumidity))
                 return parser.TryParse<RelativeHumidity, RelativeHumidityUnit>(quantityString, formatProvider, RelativeHumidity.From, out quantity);
