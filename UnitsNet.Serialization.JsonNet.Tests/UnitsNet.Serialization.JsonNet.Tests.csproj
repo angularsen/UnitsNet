@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj" />
+    <ProjectReference Include="..\UnitsNet.Tests\UnitsNet.Tests.csproj" />
   </ItemGroup>
 
 </Project>
