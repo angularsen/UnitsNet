@@ -39,5 +39,19 @@ namespace UnitsNet.Tests.CustomCode
         protected override double InverseInchInOneInverseMeter => 1 / 39.37007874;
         protected override double InverseMilInOneInverseMeter => 1 / 39370.07874015;
         protected override double InverseMicroinchInOneInverseMeter => 1 / 39370078.74015748;
+
+        [Theory]
+        [InlineData(-1.0, -1.0)]
+        [InlineData(-2.0, -0.5)]
+        [InlineData(0.0, 0.0)]
+        [InlineData(1.0, 1.0)]
+        [InlineData(2.0, 0.5)]
+        public static void InverseTest(double value, double expected)
+        {
+            var inverseLength = new ReciprocalLength(value, ReciprocalLengthUnit.InverseMeter);
+            var length = inverseLength.Inverse();
+
+            AssertEx.Equals(expected, length.Meters);
+        }
     }
 }
