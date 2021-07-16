@@ -860,6 +860,8 @@ namespace UnitsNet
                 ("en-US", typeof(MassConcentrationUnit), (int)MassConcentrationUnit.NanogramPerLiter, new string[]{"ng/L"}),
                 ("en-US", typeof(MassConcentrationUnit), (int)MassConcentrationUnit.NanogramPerMicroliter, new string[]{"ng/μL"}),
                 ("en-US", typeof(MassConcentrationUnit), (int)MassConcentrationUnit.NanogramPerMilliliter, new string[]{"ng/mL"}),
+                ("en-US", typeof(MassConcentrationUnit), (int)MassConcentrationUnit.OuncePerImperialGallon, new string[]{"oz/gal (imp.)"}),
+                ("en-US", typeof(MassConcentrationUnit), (int)MassConcentrationUnit.OuncePerUSGallon, new string[]{"oz/gal (U.S.)"}),
                 ("en-US", typeof(MassConcentrationUnit), (int)MassConcentrationUnit.PicogramPerDeciliter, new string[]{"pg/dL"}),
                 ("en-US", typeof(MassConcentrationUnit), (int)MassConcentrationUnit.PicogramPerLiter, new string[]{"pg/L"}),
                 ("en-US", typeof(MassConcentrationUnit), (int)MassConcentrationUnit.PicogramPerMicroliter, new string[]{"pg/μL"}),

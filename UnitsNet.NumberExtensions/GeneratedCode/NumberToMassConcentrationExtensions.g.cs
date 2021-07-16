@@ -168,6 +168,14 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
         public static MassConcentration NanogramsPerMilliliter<T>(this T value) =>
             MassConcentration.FromNanogramsPerMilliliter(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="MassConcentration.FromOuncesPerImperialGallon(UnitsNet.QuantityValue)" />
+        public static MassConcentration OuncesPerImperialGallon<T>(this T value) =>
+            MassConcentration.FromOuncesPerImperialGallon(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MassConcentration.FromOuncesPerUSGallon(UnitsNet.QuantityValue)" />
+        public static MassConcentration OuncesPerUSGallon<T>(this T value) =>
+            MassConcentration.FromOuncesPerUSGallon(Convert.ToDouble(value));
+
         /// <inheritdoc cref="MassConcentration.FromPicogramsPerDeciliter(UnitsNet.QuantityValue)" />
         public static MassConcentration PicogramsPerDeciliter<T>(this T value) =>
             MassConcentration.FromPicogramsPerDeciliter(Convert.ToDouble(value));

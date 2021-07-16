@@ -61,6 +61,8 @@ namespace UnitsNet.Units
         NanogramPerLiter,
         NanogramPerMicroliter,
         NanogramPerMilliliter,
+        OuncePerImperialGallon,
+        OuncePerUSGallon,
         PicogramPerDeciliter,
         PicogramPerLiter,
         PicogramPerMicroliter,

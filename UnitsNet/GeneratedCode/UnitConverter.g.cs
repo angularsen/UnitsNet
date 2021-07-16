@@ -1242,6 +1242,10 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.NanogramPerMicroliter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.NanogramPerMilliliter, q => q.ToUnit(MassConcentrationUnit.NanogramPerMilliliter));
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.NanogramPerMilliliter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.OuncePerImperialGallon, q => q.ToUnit(MassConcentrationUnit.OuncePerImperialGallon));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.OuncePerImperialGallon, MassConcentration.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.OuncePerUSGallon, q => q.ToUnit(MassConcentrationUnit.OuncePerUSGallon));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.OuncePerUSGallon, MassConcentration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.PicogramPerDeciliter, q => q.ToUnit(MassConcentrationUnit.PicogramPerDeciliter));
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.PicogramPerDeciliter, MassConcentration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentration.BaseUnit, MassConcentrationUnit.PicogramPerLiter, q => q.ToUnit(MassConcentrationUnit.PicogramPerLiter));

@@ -165,6 +165,14 @@ namespace UnitsNet.Tests
             Assert.Equal(MassConcentration.FromNanogramsPerMilliliter(2), 2.NanogramsPerMilliliter());
 
         [Fact]
+        public void NumberToOuncesPerImperialGallonTest() =>
+            Assert.Equal(MassConcentration.FromOuncesPerImperialGallon(2), 2.OuncesPerImperialGallon());
+
+        [Fact]
+        public void NumberToOuncesPerUSGallonTest() =>
+            Assert.Equal(MassConcentration.FromOuncesPerUSGallon(2), 2.OuncesPerUSGallon());
+
+        [Fact]
         public void NumberToPicogramsPerDeciliterTest() =>
             Assert.Equal(MassConcentration.FromPicogramsPerDeciliter(2), 2.PicogramsPerDeciliter());
 
