@@ -74,5 +74,12 @@ namespace UnitsNet.Tests.CustomCode
             ForcePerLength forcePerLength = Force.FromNewtons(10) * ReciprocalLength.FromInverseMeter(5);
             Assert.Equal(forcePerLength, ForcePerLength.FromNewtonsPerMeter(50));
         }
+
+        [Fact]
+        public static void PressureDividedByReciprocalLengthEqualsForcePerLength()
+        {
+            ForcePerLength forcePerLength = Pressure.FromPascals(50) / ReciprocalLength.FromInverseMeter(5);
+            Assert.Equal(forcePerLength, ForcePerLength.FromNewtonsPerMeter(10));
+        }
     }
 }
