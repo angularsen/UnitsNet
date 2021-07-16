@@ -28,5 +28,17 @@ namespace UnitsNet
         {
             return Torque.FromNewtonMeters(forcePerLength.NewtonsPerMeter * area.SquareMeters);
         }
+
+        /// <summary>Get <see cref="Pressure"/> from <see cref="ForcePerLength"/> multiplied by <see cref="ReciprocalLength"/>.</summary>
+        public static Pressure operator *(ForcePerLength forcePerLength, ReciprocalLength reciprocalLength)
+        {
+            return Pressure.FromNewtonsPerSquareMeter(forcePerLength.NewtonsPerMeter * reciprocalLength.InverseMeter);
+        }
+
+        /// <summary>Get <see cref="Force"/> from <see cref="ForcePerLength"/> divided by <see cref="ReciprocalLength"/>.</summary>
+        public static Force operator /(ForcePerLength forcePerLength, ReciprocalLength reciprocalLength)
+        {
+            return Force.FromNewtons(forcePerLength.NewtonsPerMeter / reciprocalLength.InverseMeter);
+        }
     }
 }
