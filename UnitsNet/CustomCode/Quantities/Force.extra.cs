@@ -32,6 +32,12 @@ namespace UnitsNet
             return Power.FromWatts(force.Newtons * speed.MetersPerSecond);
         }
 
+        /// <summary>Get <see cref="ForcePerLength"/> from <see cref="Force"/> times <see cref="ReciprocalLength"/>.</summary>
+        public static ForcePerLength operator *(Force force, ReciprocalLength reciprocalLength)
+        {
+            return ForcePerLength.FromNewtonsPerMeter(force.Newtons * reciprocalLength.InverseMeter);
+        }
+
         /// <summary>Get <see cref="Acceleration"/> from <see cref="Force"/> divided by <see cref="Mass"/>.</summary>
         public static Acceleration operator /(Force force, Mass mass)
         {
