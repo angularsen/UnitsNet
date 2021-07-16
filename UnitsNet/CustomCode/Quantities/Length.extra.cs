@@ -15,6 +15,18 @@ namespace UnitsNet
         private const double InchesInOneFoot = 12;
 
         /// <summary>
+        /// Calculates the inverse of this unit.
+        /// </summary>
+        /// <returns>The inverse of this unit as <see cref="ReciprocalLength"/>.</returns>
+        public ReciprocalLength Inverse()
+        {
+            if (Meters == 0.0)
+                return new ReciprocalLength(0.0, ReciprocalLengthUnit.InverseMeter);
+
+            return new ReciprocalLength(1 / Meters, ReciprocalLengthUnit.InverseMeter);
+        }
+
+        /// <summary>
         ///     Converts the length to a customary feet/inches combination.
         /// </summary>
         public FeetInches FeetInches

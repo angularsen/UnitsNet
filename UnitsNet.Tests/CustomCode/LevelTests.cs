@@ -42,5 +42,19 @@ namespace UnitsNet.Tests.CustomCode
             // reference can't be zero or less than zero if quantity is postive.
             Assert.Throws<ArgumentOutOfRangeException>(() => new Level(quantity, reference));
         }
+
+        [Theory]
+        [InlineData(-1.0, -1.0)]
+        [InlineData(-2.0, -0.5)]
+        [InlineData(0.0, 0.0)]
+        [InlineData(1.0, 1.0)]
+        [InlineData(2.0, 0.5)]
+        public static void InverseTest(double value, double expected)
+        {
+            var length = new Length(value, Units.LengthUnit.Meter);
+            var inverseLength = length.Inverse();
+
+            AssertEx.Equals(expected, inverseLength.InverseMeter);
+        }
     }
 }
