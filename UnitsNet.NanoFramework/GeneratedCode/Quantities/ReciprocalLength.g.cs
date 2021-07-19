@@ -81,44 +81,44 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ReciprocalLength in InverseCentimeter.
+        ///     Get ReciprocalLength in InverseCentimeters.
         /// </summary>
-        public double InverseCentimeter => As(ReciprocalLengthUnit.InverseCentimeter);
+        public double InverseCentimeters => As(ReciprocalLengthUnit.InverseCentimeter);
 
         /// <summary>
-        ///     Get ReciprocalLength in InverseFoot.
+        ///     Get ReciprocalLength in InverseFeet.
         /// </summary>
-        public double InverseFoot => As(ReciprocalLengthUnit.InverseFoot);
+        public double InverseFeet => As(ReciprocalLengthUnit.InverseFoot);
 
         /// <summary>
-        ///     Get ReciprocalLength in InverseInch.
+        ///     Get ReciprocalLength in InverseInches.
         /// </summary>
-        public double InverseInch => As(ReciprocalLengthUnit.InverseInch);
+        public double InverseInches => As(ReciprocalLengthUnit.InverseInch);
 
         /// <summary>
-        ///     Get ReciprocalLength in InverseMeter.
+        ///     Get ReciprocalLength in InverseMeters.
         /// </summary>
-        public double InverseMeter => As(ReciprocalLengthUnit.InverseMeter);
+        public double InverseMeters => As(ReciprocalLengthUnit.InverseMeter);
 
         /// <summary>
-        ///     Get ReciprocalLength in InverseMicroinch.
+        ///     Get ReciprocalLength in InverseMicroinches.
         /// </summary>
-        public double InverseMicroinch => As(ReciprocalLengthUnit.InverseMicroinch);
+        public double InverseMicroinches => As(ReciprocalLengthUnit.InverseMicroinch);
 
         /// <summary>
-        ///     Get ReciprocalLength in InverseMil.
+        ///     Get ReciprocalLength in InverseMils.
         /// </summary>
-        public double InverseMil => As(ReciprocalLengthUnit.InverseMil);
+        public double InverseMils => As(ReciprocalLengthUnit.InverseMil);
 
         /// <summary>
-        ///     Get ReciprocalLength in InverseMile.
+        ///     Get ReciprocalLength in InverseMiles.
         /// </summary>
-        public double InverseMile => As(ReciprocalLengthUnit.InverseMile);
+        public double InverseMiles => As(ReciprocalLengthUnit.InverseMile);
 
         /// <summary>
-        ///     Get ReciprocalLength in InverseMillimeter.
+        ///     Get ReciprocalLength in InverseMillimeters.
         /// </summary>
-        public double InverseMillimeter => As(ReciprocalLengthUnit.InverseMillimeter);
+        public double InverseMillimeters => As(ReciprocalLengthUnit.InverseMillimeter);
 
         /// <summary>
         ///     Get ReciprocalLength in InverseUsSurveyFeet.
@@ -126,61 +126,61 @@ namespace UnitsNet
         public double InverseUsSurveyFeet => As(ReciprocalLengthUnit.InverseUsSurveyFoot);
 
         /// <summary>
-        ///     Get ReciprocalLength in InverseYard.
+        ///     Get ReciprocalLength in InverseYards.
         /// </summary>
-        public double InverseYard => As(ReciprocalLengthUnit.InverseYard);
+        public double InverseYards => As(ReciprocalLengthUnit.InverseYard);
 
         #endregion
 
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ReciprocalLength from InverseCentimeter.
+        ///     Get ReciprocalLength from InverseCentimeters.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalLength FromInverseCentimeter(double inversecentimeter) => new ReciprocalLength(inversecentimeter, ReciprocalLengthUnit.InverseCentimeter);
+        public static ReciprocalLength FromInverseCentimeters(double inversecentimeters) => new ReciprocalLength(inversecentimeters, ReciprocalLengthUnit.InverseCentimeter);
 
         /// <summary>
-        ///     Get ReciprocalLength from InverseFoot.
+        ///     Get ReciprocalLength from InverseFeet.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalLength FromInverseFoot(double inversefoot) => new ReciprocalLength(inversefoot, ReciprocalLengthUnit.InverseFoot);
+        public static ReciprocalLength FromInverseFeet(double inversefeet) => new ReciprocalLength(inversefeet, ReciprocalLengthUnit.InverseFoot);
 
         /// <summary>
-        ///     Get ReciprocalLength from InverseInch.
+        ///     Get ReciprocalLength from InverseInches.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalLength FromInverseInch(double inverseinch) => new ReciprocalLength(inverseinch, ReciprocalLengthUnit.InverseInch);
+        public static ReciprocalLength FromInverseInches(double inverseinches) => new ReciprocalLength(inverseinches, ReciprocalLengthUnit.InverseInch);
 
         /// <summary>
-        ///     Get ReciprocalLength from InverseMeter.
+        ///     Get ReciprocalLength from InverseMeters.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalLength FromInverseMeter(double inversemeter) => new ReciprocalLength(inversemeter, ReciprocalLengthUnit.InverseMeter);
+        public static ReciprocalLength FromInverseMeters(double inversemeters) => new ReciprocalLength(inversemeters, ReciprocalLengthUnit.InverseMeter);
 
         /// <summary>
-        ///     Get ReciprocalLength from InverseMicroinch.
+        ///     Get ReciprocalLength from InverseMicroinches.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalLength FromInverseMicroinch(double inversemicroinch) => new ReciprocalLength(inversemicroinch, ReciprocalLengthUnit.InverseMicroinch);
+        public static ReciprocalLength FromInverseMicroinches(double inversemicroinches) => new ReciprocalLength(inversemicroinches, ReciprocalLengthUnit.InverseMicroinch);
 
         /// <summary>
-        ///     Get ReciprocalLength from InverseMil.
+        ///     Get ReciprocalLength from InverseMils.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalLength FromInverseMil(double inversemil) => new ReciprocalLength(inversemil, ReciprocalLengthUnit.InverseMil);
+        public static ReciprocalLength FromInverseMils(double inversemils) => new ReciprocalLength(inversemils, ReciprocalLengthUnit.InverseMil);
 
         /// <summary>
-        ///     Get ReciprocalLength from InverseMile.
+        ///     Get ReciprocalLength from InverseMiles.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalLength FromInverseMile(double inversemile) => new ReciprocalLength(inversemile, ReciprocalLengthUnit.InverseMile);
+        public static ReciprocalLength FromInverseMiles(double inversemiles) => new ReciprocalLength(inversemiles, ReciprocalLengthUnit.InverseMile);
 
         /// <summary>
-        ///     Get ReciprocalLength from InverseMillimeter.
+        ///     Get ReciprocalLength from InverseMillimeters.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalLength FromInverseMillimeter(double inversemillimeter) => new ReciprocalLength(inversemillimeter, ReciprocalLengthUnit.InverseMillimeter);
+        public static ReciprocalLength FromInverseMillimeters(double inversemillimeters) => new ReciprocalLength(inversemillimeters, ReciprocalLengthUnit.InverseMillimeter);
 
         /// <summary>
         ///     Get ReciprocalLength from InverseUsSurveyFeet.
@@ -189,10 +189,10 @@ namespace UnitsNet
         public static ReciprocalLength FromInverseUsSurveyFeet(double inverseussurveyfeet) => new ReciprocalLength(inverseussurveyfeet, ReciprocalLengthUnit.InverseUsSurveyFoot);
 
         /// <summary>
-        ///     Get ReciprocalLength from InverseYard.
+        ///     Get ReciprocalLength from InverseYards.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalLength FromInverseYard(double inverseyard) => new ReciprocalLength(inverseyard, ReciprocalLengthUnit.InverseYard);
+        public static ReciprocalLength FromInverseYards(double inverseyards) => new ReciprocalLength(inverseyards, ReciprocalLengthUnit.InverseYard);
 
 
         /// <summary>

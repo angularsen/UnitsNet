@@ -28,45 +28,45 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalLength
     /// </summary>
     public static class NumberToReciprocalLengthExtensions
     {
-        /// <inheritdoc cref="ReciprocalLength.FromInverseCentimeter(UnitsNet.QuantityValue)" />
-        public static ReciprocalLength InverseCentimeter<T>(this T value) =>
-            ReciprocalLength.FromInverseCentimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ReciprocalLength.FromInverseCentimeters(UnitsNet.QuantityValue)" />
+        public static ReciprocalLength InverseCentimeters<T>(this T value) =>
+            ReciprocalLength.FromInverseCentimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReciprocalLength.FromInverseFoot(UnitsNet.QuantityValue)" />
-        public static ReciprocalLength InverseFoot<T>(this T value) =>
-            ReciprocalLength.FromInverseFoot(Convert.ToDouble(value));
+        /// <inheritdoc cref="ReciprocalLength.FromInverseFeet(UnitsNet.QuantityValue)" />
+        public static ReciprocalLength InverseFeet<T>(this T value) =>
+            ReciprocalLength.FromInverseFeet(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReciprocalLength.FromInverseInch(UnitsNet.QuantityValue)" />
-        public static ReciprocalLength InverseInch<T>(this T value) =>
-            ReciprocalLength.FromInverseInch(Convert.ToDouble(value));
+        /// <inheritdoc cref="ReciprocalLength.FromInverseInches(UnitsNet.QuantityValue)" />
+        public static ReciprocalLength InverseInches<T>(this T value) =>
+            ReciprocalLength.FromInverseInches(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReciprocalLength.FromInverseMeter(UnitsNet.QuantityValue)" />
-        public static ReciprocalLength InverseMeter<T>(this T value) =>
-            ReciprocalLength.FromInverseMeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ReciprocalLength.FromInverseMeters(UnitsNet.QuantityValue)" />
+        public static ReciprocalLength InverseMeters<T>(this T value) =>
+            ReciprocalLength.FromInverseMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReciprocalLength.FromInverseMicroinch(UnitsNet.QuantityValue)" />
-        public static ReciprocalLength InverseMicroinch<T>(this T value) =>
-            ReciprocalLength.FromInverseMicroinch(Convert.ToDouble(value));
+        /// <inheritdoc cref="ReciprocalLength.FromInverseMicroinches(UnitsNet.QuantityValue)" />
+        public static ReciprocalLength InverseMicroinches<T>(this T value) =>
+            ReciprocalLength.FromInverseMicroinches(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReciprocalLength.FromInverseMil(UnitsNet.QuantityValue)" />
-        public static ReciprocalLength InverseMil<T>(this T value) =>
-            ReciprocalLength.FromInverseMil(Convert.ToDouble(value));
+        /// <inheritdoc cref="ReciprocalLength.FromInverseMils(UnitsNet.QuantityValue)" />
+        public static ReciprocalLength InverseMils<T>(this T value) =>
+            ReciprocalLength.FromInverseMils(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReciprocalLength.FromInverseMile(UnitsNet.QuantityValue)" />
-        public static ReciprocalLength InverseMile<T>(this T value) =>
-            ReciprocalLength.FromInverseMile(Convert.ToDouble(value));
+        /// <inheritdoc cref="ReciprocalLength.FromInverseMiles(UnitsNet.QuantityValue)" />
+        public static ReciprocalLength InverseMiles<T>(this T value) =>
+            ReciprocalLength.FromInverseMiles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReciprocalLength.FromInverseMillimeter(UnitsNet.QuantityValue)" />
-        public static ReciprocalLength InverseMillimeter<T>(this T value) =>
-            ReciprocalLength.FromInverseMillimeter(Convert.ToDouble(value));
+        /// <inheritdoc cref="ReciprocalLength.FromInverseMillimeters(UnitsNet.QuantityValue)" />
+        public static ReciprocalLength InverseMillimeters<T>(this T value) =>
+            ReciprocalLength.FromInverseMillimeters(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ReciprocalLength.FromInverseUsSurveyFeet(UnitsNet.QuantityValue)" />
         public static ReciprocalLength InverseUsSurveyFeet<T>(this T value) =>
             ReciprocalLength.FromInverseUsSurveyFeet(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReciprocalLength.FromInverseYard(UnitsNet.QuantityValue)" />
-        public static ReciprocalLength InverseYard<T>(this T value) =>
-            ReciprocalLength.FromInverseYard(Convert.ToDouble(value));
+        /// <inheritdoc cref="ReciprocalLength.FromInverseYards(UnitsNet.QuantityValue)" />
+        public static ReciprocalLength InverseYards<T>(this T value) =>
+            ReciprocalLength.FromInverseYards(Convert.ToDouble(value));
 
     }
 }

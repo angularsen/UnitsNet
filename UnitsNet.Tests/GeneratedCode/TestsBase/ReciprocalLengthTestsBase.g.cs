@@ -37,28 +37,28 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ReciprocalLengthTestsBase : QuantityTestsBase
     {
-        protected abstract double InverseCentimeterInOneInverseMeter { get; }
-        protected abstract double InverseFootInOneInverseMeter { get; }
-        protected abstract double InverseInchInOneInverseMeter { get; }
-        protected abstract double InverseMeterInOneInverseMeter { get; }
-        protected abstract double InverseMicroinchInOneInverseMeter { get; }
-        protected abstract double InverseMilInOneInverseMeter { get; }
-        protected abstract double InverseMileInOneInverseMeter { get; }
-        protected abstract double InverseMillimeterInOneInverseMeter { get; }
+        protected abstract double InverseCentimetersInOneInverseMeter { get; }
+        protected abstract double InverseFeetInOneInverseMeter { get; }
+        protected abstract double InverseInchesInOneInverseMeter { get; }
+        protected abstract double InverseMetersInOneInverseMeter { get; }
+        protected abstract double InverseMicroinchesInOneInverseMeter { get; }
+        protected abstract double InverseMilsInOneInverseMeter { get; }
+        protected abstract double InverseMilesInOneInverseMeter { get; }
+        protected abstract double InverseMillimetersInOneInverseMeter { get; }
         protected abstract double InverseUsSurveyFeetInOneInverseMeter { get; }
-        protected abstract double InverseYardInOneInverseMeter { get; }
+        protected abstract double InverseYardsInOneInverseMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double InverseCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double InverseFootTolerance { get { return 1e-5; } }
-        protected virtual double InverseInchTolerance { get { return 1e-5; } }
-        protected virtual double InverseMeterTolerance { get { return 1e-5; } }
-        protected virtual double InverseMicroinchTolerance { get { return 1e-5; } }
-        protected virtual double InverseMilTolerance { get { return 1e-5; } }
-        protected virtual double InverseMileTolerance { get { return 1e-5; } }
-        protected virtual double InverseMillimeterTolerance { get { return 1e-5; } }
+        protected virtual double InverseCentimetersTolerance { get { return 1e-5; } }
+        protected virtual double InverseFeetTolerance { get { return 1e-5; } }
+        protected virtual double InverseInchesTolerance { get { return 1e-5; } }
+        protected virtual double InverseMetersTolerance { get { return 1e-5; } }
+        protected virtual double InverseMicroinchesTolerance { get { return 1e-5; } }
+        protected virtual double InverseMilsTolerance { get { return 1e-5; } }
+        protected virtual double InverseMilesTolerance { get { return 1e-5; } }
+        protected virtual double InverseMillimetersTolerance { get { return 1e-5; } }
         protected virtual double InverseUsSurveyFeetTolerance { get { return 1e-5; } }
-        protected virtual double InverseYardTolerance { get { return 1e-5; } }
+        protected virtual double InverseYardsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
@@ -132,52 +132,52 @@ namespace UnitsNet.Tests
         [Fact]
         public void InverseMeterToReciprocalLengthUnits()
         {
-            ReciprocalLength inversemeter = ReciprocalLength.FromInverseMeter(1);
-            AssertEx.EqualTolerance(InverseCentimeterInOneInverseMeter, inversemeter.InverseCentimeter, InverseCentimeterTolerance);
-            AssertEx.EqualTolerance(InverseFootInOneInverseMeter, inversemeter.InverseFoot, InverseFootTolerance);
-            AssertEx.EqualTolerance(InverseInchInOneInverseMeter, inversemeter.InverseInch, InverseInchTolerance);
-            AssertEx.EqualTolerance(InverseMeterInOneInverseMeter, inversemeter.InverseMeter, InverseMeterTolerance);
-            AssertEx.EqualTolerance(InverseMicroinchInOneInverseMeter, inversemeter.InverseMicroinch, InverseMicroinchTolerance);
-            AssertEx.EqualTolerance(InverseMilInOneInverseMeter, inversemeter.InverseMil, InverseMilTolerance);
-            AssertEx.EqualTolerance(InverseMileInOneInverseMeter, inversemeter.InverseMile, InverseMileTolerance);
-            AssertEx.EqualTolerance(InverseMillimeterInOneInverseMeter, inversemeter.InverseMillimeter, InverseMillimeterTolerance);
+            ReciprocalLength inversemeter = ReciprocalLength.FromInverseMeters(1);
+            AssertEx.EqualTolerance(InverseCentimetersInOneInverseMeter, inversemeter.InverseCentimeters, InverseCentimetersTolerance);
+            AssertEx.EqualTolerance(InverseFeetInOneInverseMeter, inversemeter.InverseFeet, InverseFeetTolerance);
+            AssertEx.EqualTolerance(InverseInchesInOneInverseMeter, inversemeter.InverseInches, InverseInchesTolerance);
+            AssertEx.EqualTolerance(InverseMetersInOneInverseMeter, inversemeter.InverseMeters, InverseMetersTolerance);
+            AssertEx.EqualTolerance(InverseMicroinchesInOneInverseMeter, inversemeter.InverseMicroinches, InverseMicroinchesTolerance);
+            AssertEx.EqualTolerance(InverseMilsInOneInverseMeter, inversemeter.InverseMils, InverseMilsTolerance);
+            AssertEx.EqualTolerance(InverseMilesInOneInverseMeter, inversemeter.InverseMiles, InverseMilesTolerance);
+            AssertEx.EqualTolerance(InverseMillimetersInOneInverseMeter, inversemeter.InverseMillimeters, InverseMillimetersTolerance);
             AssertEx.EqualTolerance(InverseUsSurveyFeetInOneInverseMeter, inversemeter.InverseUsSurveyFeet, InverseUsSurveyFeetTolerance);
-            AssertEx.EqualTolerance(InverseYardInOneInverseMeter, inversemeter.InverseYard, InverseYardTolerance);
+            AssertEx.EqualTolerance(InverseYardsInOneInverseMeter, inversemeter.InverseYards, InverseYardsTolerance);
         }
 
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
             var quantity00 = ReciprocalLength.From(1, ReciprocalLengthUnit.InverseCentimeter);
-            AssertEx.EqualTolerance(1, quantity00.InverseCentimeter, InverseCentimeterTolerance);
+            AssertEx.EqualTolerance(1, quantity00.InverseCentimeters, InverseCentimetersTolerance);
             Assert.Equal(ReciprocalLengthUnit.InverseCentimeter, quantity00.Unit);
 
             var quantity01 = ReciprocalLength.From(1, ReciprocalLengthUnit.InverseFoot);
-            AssertEx.EqualTolerance(1, quantity01.InverseFoot, InverseFootTolerance);
+            AssertEx.EqualTolerance(1, quantity01.InverseFeet, InverseFeetTolerance);
             Assert.Equal(ReciprocalLengthUnit.InverseFoot, quantity01.Unit);
 
             var quantity02 = ReciprocalLength.From(1, ReciprocalLengthUnit.InverseInch);
-            AssertEx.EqualTolerance(1, quantity02.InverseInch, InverseInchTolerance);
+            AssertEx.EqualTolerance(1, quantity02.InverseInches, InverseInchesTolerance);
             Assert.Equal(ReciprocalLengthUnit.InverseInch, quantity02.Unit);
 
             var quantity03 = ReciprocalLength.From(1, ReciprocalLengthUnit.InverseMeter);
-            AssertEx.EqualTolerance(1, quantity03.InverseMeter, InverseMeterTolerance);
+            AssertEx.EqualTolerance(1, quantity03.InverseMeters, InverseMetersTolerance);
             Assert.Equal(ReciprocalLengthUnit.InverseMeter, quantity03.Unit);
 
             var quantity04 = ReciprocalLength.From(1, ReciprocalLengthUnit.InverseMicroinch);
-            AssertEx.EqualTolerance(1, quantity04.InverseMicroinch, InverseMicroinchTolerance);
+            AssertEx.EqualTolerance(1, quantity04.InverseMicroinches, InverseMicroinchesTolerance);
             Assert.Equal(ReciprocalLengthUnit.InverseMicroinch, quantity04.Unit);
 
             var quantity05 = ReciprocalLength.From(1, ReciprocalLengthUnit.InverseMil);
-            AssertEx.EqualTolerance(1, quantity05.InverseMil, InverseMilTolerance);
+            AssertEx.EqualTolerance(1, quantity05.InverseMils, InverseMilsTolerance);
             Assert.Equal(ReciprocalLengthUnit.InverseMil, quantity05.Unit);
 
             var quantity06 = ReciprocalLength.From(1, ReciprocalLengthUnit.InverseMile);
-            AssertEx.EqualTolerance(1, quantity06.InverseMile, InverseMileTolerance);
+            AssertEx.EqualTolerance(1, quantity06.InverseMiles, InverseMilesTolerance);
             Assert.Equal(ReciprocalLengthUnit.InverseMile, quantity06.Unit);
 
             var quantity07 = ReciprocalLength.From(1, ReciprocalLengthUnit.InverseMillimeter);
-            AssertEx.EqualTolerance(1, quantity07.InverseMillimeter, InverseMillimeterTolerance);
+            AssertEx.EqualTolerance(1, quantity07.InverseMillimeters, InverseMillimetersTolerance);
             Assert.Equal(ReciprocalLengthUnit.InverseMillimeter, quantity07.Unit);
 
             var quantity08 = ReciprocalLength.From(1, ReciprocalLengthUnit.InverseUsSurveyFoot);
@@ -185,38 +185,38 @@ namespace UnitsNet.Tests
             Assert.Equal(ReciprocalLengthUnit.InverseUsSurveyFoot, quantity08.Unit);
 
             var quantity09 = ReciprocalLength.From(1, ReciprocalLengthUnit.InverseYard);
-            AssertEx.EqualTolerance(1, quantity09.InverseYard, InverseYardTolerance);
+            AssertEx.EqualTolerance(1, quantity09.InverseYards, InverseYardsTolerance);
             Assert.Equal(ReciprocalLengthUnit.InverseYard, quantity09.Unit);
 
         }
 
         [Fact]
-        public void FromInverseMeter_WithInfinityValue_ThrowsArgumentException()
+        public void FromInverseMeters_WithInfinityValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ReciprocalLength.FromInverseMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ReciprocalLength.FromInverseMeter(double.NegativeInfinity));
+            Assert.Throws<ArgumentException>(() => ReciprocalLength.FromInverseMeters(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => ReciprocalLength.FromInverseMeters(double.NegativeInfinity));
         }
 
         [Fact]
-        public void FromInverseMeter_WithNanValue_ThrowsArgumentException()
+        public void FromInverseMeters_WithNanValue_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ReciprocalLength.FromInverseMeter(double.NaN));
+            Assert.Throws<ArgumentException>(() => ReciprocalLength.FromInverseMeters(double.NaN));
         }
 
         [Fact]
         public void As()
         {
-            var inversemeter = ReciprocalLength.FromInverseMeter(1);
-            AssertEx.EqualTolerance(InverseCentimeterInOneInverseMeter, inversemeter.As(ReciprocalLengthUnit.InverseCentimeter), InverseCentimeterTolerance);
-            AssertEx.EqualTolerance(InverseFootInOneInverseMeter, inversemeter.As(ReciprocalLengthUnit.InverseFoot), InverseFootTolerance);
-            AssertEx.EqualTolerance(InverseInchInOneInverseMeter, inversemeter.As(ReciprocalLengthUnit.InverseInch), InverseInchTolerance);
-            AssertEx.EqualTolerance(InverseMeterInOneInverseMeter, inversemeter.As(ReciprocalLengthUnit.InverseMeter), InverseMeterTolerance);
-            AssertEx.EqualTolerance(InverseMicroinchInOneInverseMeter, inversemeter.As(ReciprocalLengthUnit.InverseMicroinch), InverseMicroinchTolerance);
-            AssertEx.EqualTolerance(InverseMilInOneInverseMeter, inversemeter.As(ReciprocalLengthUnit.InverseMil), InverseMilTolerance);
-            AssertEx.EqualTolerance(InverseMileInOneInverseMeter, inversemeter.As(ReciprocalLengthUnit.InverseMile), InverseMileTolerance);
-            AssertEx.EqualTolerance(InverseMillimeterInOneInverseMeter, inversemeter.As(ReciprocalLengthUnit.InverseMillimeter), InverseMillimeterTolerance);
+            var inversemeter = ReciprocalLength.FromInverseMeters(1);
+            AssertEx.EqualTolerance(InverseCentimetersInOneInverseMeter, inversemeter.As(ReciprocalLengthUnit.InverseCentimeter), InverseCentimetersTolerance);
+            AssertEx.EqualTolerance(InverseFeetInOneInverseMeter, inversemeter.As(ReciprocalLengthUnit.InverseFoot), InverseFeetTolerance);
+            AssertEx.EqualTolerance(InverseInchesInOneInverseMeter, inversemeter.As(ReciprocalLengthUnit.InverseInch), InverseInchesTolerance);
+            AssertEx.EqualTolerance(InverseMetersInOneInverseMeter, inversemeter.As(ReciprocalLengthUnit.InverseMeter), InverseMetersTolerance);
+            AssertEx.EqualTolerance(InverseMicroinchesInOneInverseMeter, inversemeter.As(ReciprocalLengthUnit.InverseMicroinch), InverseMicroinchesTolerance);
+            AssertEx.EqualTolerance(InverseMilsInOneInverseMeter, inversemeter.As(ReciprocalLengthUnit.InverseMil), InverseMilsTolerance);
+            AssertEx.EqualTolerance(InverseMilesInOneInverseMeter, inversemeter.As(ReciprocalLengthUnit.InverseMile), InverseMilesTolerance);
+            AssertEx.EqualTolerance(InverseMillimetersInOneInverseMeter, inversemeter.As(ReciprocalLengthUnit.InverseMillimeter), InverseMillimetersTolerance);
             AssertEx.EqualTolerance(InverseUsSurveyFeetInOneInverseMeter, inversemeter.As(ReciprocalLengthUnit.InverseUsSurveyFoot), InverseUsSurveyFeetTolerance);
-            AssertEx.EqualTolerance(InverseYardInOneInverseMeter, inversemeter.As(ReciprocalLengthUnit.InverseYard), InverseYardTolerance);
+            AssertEx.EqualTolerance(InverseYardsInOneInverseMeter, inversemeter.As(ReciprocalLengthUnit.InverseYard), InverseYardsTolerance);
         }
 
         [Fact]
@@ -239,38 +239,38 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit()
         {
-            var inversemeter = ReciprocalLength.FromInverseMeter(1);
+            var inversemeter = ReciprocalLength.FromInverseMeters(1);
 
             var inversecentimeterQuantity = inversemeter.ToUnit(ReciprocalLengthUnit.InverseCentimeter);
-            AssertEx.EqualTolerance(InverseCentimeterInOneInverseMeter, (double)inversecentimeterQuantity.Value, InverseCentimeterTolerance);
+            AssertEx.EqualTolerance(InverseCentimetersInOneInverseMeter, (double)inversecentimeterQuantity.Value, InverseCentimetersTolerance);
             Assert.Equal(ReciprocalLengthUnit.InverseCentimeter, inversecentimeterQuantity.Unit);
 
             var inversefootQuantity = inversemeter.ToUnit(ReciprocalLengthUnit.InverseFoot);
-            AssertEx.EqualTolerance(InverseFootInOneInverseMeter, (double)inversefootQuantity.Value, InverseFootTolerance);
+            AssertEx.EqualTolerance(InverseFeetInOneInverseMeter, (double)inversefootQuantity.Value, InverseFeetTolerance);
             Assert.Equal(ReciprocalLengthUnit.InverseFoot, inversefootQuantity.Unit);
 
             var inverseinchQuantity = inversemeter.ToUnit(ReciprocalLengthUnit.InverseInch);
-            AssertEx.EqualTolerance(InverseInchInOneInverseMeter, (double)inverseinchQuantity.Value, InverseInchTolerance);
+            AssertEx.EqualTolerance(InverseInchesInOneInverseMeter, (double)inverseinchQuantity.Value, InverseInchesTolerance);
             Assert.Equal(ReciprocalLengthUnit.InverseInch, inverseinchQuantity.Unit);
 
             var inversemeterQuantity = inversemeter.ToUnit(ReciprocalLengthUnit.InverseMeter);
-            AssertEx.EqualTolerance(InverseMeterInOneInverseMeter, (double)inversemeterQuantity.Value, InverseMeterTolerance);
+            AssertEx.EqualTolerance(InverseMetersInOneInverseMeter, (double)inversemeterQuantity.Value, InverseMetersTolerance);
             Assert.Equal(ReciprocalLengthUnit.InverseMeter, inversemeterQuantity.Unit);
 
             var inversemicroinchQuantity = inversemeter.ToUnit(ReciprocalLengthUnit.InverseMicroinch);
-            AssertEx.EqualTolerance(InverseMicroinchInOneInverseMeter, (double)inversemicroinchQuantity.Value, InverseMicroinchTolerance);
+            AssertEx.EqualTolerance(InverseMicroinchesInOneInverseMeter, (double)inversemicroinchQuantity.Value, InverseMicroinchesTolerance);
             Assert.Equal(ReciprocalLengthUnit.InverseMicroinch, inversemicroinchQuantity.Unit);
 
             var inversemilQuantity = inversemeter.ToUnit(ReciprocalLengthUnit.InverseMil);
-            AssertEx.EqualTolerance(InverseMilInOneInverseMeter, (double)inversemilQuantity.Value, InverseMilTolerance);
+            AssertEx.EqualTolerance(InverseMilsInOneInverseMeter, (double)inversemilQuantity.Value, InverseMilsTolerance);
             Assert.Equal(ReciprocalLengthUnit.InverseMil, inversemilQuantity.Unit);
 
             var inversemileQuantity = inversemeter.ToUnit(ReciprocalLengthUnit.InverseMile);
-            AssertEx.EqualTolerance(InverseMileInOneInverseMeter, (double)inversemileQuantity.Value, InverseMileTolerance);
+            AssertEx.EqualTolerance(InverseMilesInOneInverseMeter, (double)inversemileQuantity.Value, InverseMilesTolerance);
             Assert.Equal(ReciprocalLengthUnit.InverseMile, inversemileQuantity.Unit);
 
             var inversemillimeterQuantity = inversemeter.ToUnit(ReciprocalLengthUnit.InverseMillimeter);
-            AssertEx.EqualTolerance(InverseMillimeterInOneInverseMeter, (double)inversemillimeterQuantity.Value, InverseMillimeterTolerance);
+            AssertEx.EqualTolerance(InverseMillimetersInOneInverseMeter, (double)inversemillimeterQuantity.Value, InverseMillimetersTolerance);
             Assert.Equal(ReciprocalLengthUnit.InverseMillimeter, inversemillimeterQuantity.Unit);
 
             var inverseussurveyfootQuantity = inversemeter.ToUnit(ReciprocalLengthUnit.InverseUsSurveyFoot);
@@ -278,67 +278,67 @@ namespace UnitsNet.Tests
             Assert.Equal(ReciprocalLengthUnit.InverseUsSurveyFoot, inverseussurveyfootQuantity.Unit);
 
             var inverseyardQuantity = inversemeter.ToUnit(ReciprocalLengthUnit.InverseYard);
-            AssertEx.EqualTolerance(InverseYardInOneInverseMeter, (double)inverseyardQuantity.Value, InverseYardTolerance);
+            AssertEx.EqualTolerance(InverseYardsInOneInverseMeter, (double)inverseyardQuantity.Value, InverseYardsTolerance);
             Assert.Equal(ReciprocalLengthUnit.InverseYard, inverseyardQuantity.Unit);
         }
 
         [Fact]
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = ReciprocalLength.FromInverseMeter(1).ToBaseUnit();
+            var quantityInBaseUnit = ReciprocalLength.FromInverseMeters(1).ToBaseUnit();
             Assert.Equal(ReciprocalLength.BaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            ReciprocalLength inversemeter = ReciprocalLength.FromInverseMeter(1);
-            AssertEx.EqualTolerance(1, ReciprocalLength.FromInverseCentimeter(inversemeter.InverseCentimeter).InverseMeter, InverseCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ReciprocalLength.FromInverseFoot(inversemeter.InverseFoot).InverseMeter, InverseFootTolerance);
-            AssertEx.EqualTolerance(1, ReciprocalLength.FromInverseInch(inversemeter.InverseInch).InverseMeter, InverseInchTolerance);
-            AssertEx.EqualTolerance(1, ReciprocalLength.FromInverseMeter(inversemeter.InverseMeter).InverseMeter, InverseMeterTolerance);
-            AssertEx.EqualTolerance(1, ReciprocalLength.FromInverseMicroinch(inversemeter.InverseMicroinch).InverseMeter, InverseMicroinchTolerance);
-            AssertEx.EqualTolerance(1, ReciprocalLength.FromInverseMil(inversemeter.InverseMil).InverseMeter, InverseMilTolerance);
-            AssertEx.EqualTolerance(1, ReciprocalLength.FromInverseMile(inversemeter.InverseMile).InverseMeter, InverseMileTolerance);
-            AssertEx.EqualTolerance(1, ReciprocalLength.FromInverseMillimeter(inversemeter.InverseMillimeter).InverseMeter, InverseMillimeterTolerance);
-            AssertEx.EqualTolerance(1, ReciprocalLength.FromInverseUsSurveyFeet(inversemeter.InverseUsSurveyFeet).InverseMeter, InverseUsSurveyFeetTolerance);
-            AssertEx.EqualTolerance(1, ReciprocalLength.FromInverseYard(inversemeter.InverseYard).InverseMeter, InverseYardTolerance);
+            ReciprocalLength inversemeter = ReciprocalLength.FromInverseMeters(1);
+            AssertEx.EqualTolerance(1, ReciprocalLength.FromInverseCentimeters(inversemeter.InverseCentimeters).InverseMeters, InverseCentimetersTolerance);
+            AssertEx.EqualTolerance(1, ReciprocalLength.FromInverseFeet(inversemeter.InverseFeet).InverseMeters, InverseFeetTolerance);
+            AssertEx.EqualTolerance(1, ReciprocalLength.FromInverseInches(inversemeter.InverseInches).InverseMeters, InverseInchesTolerance);
+            AssertEx.EqualTolerance(1, ReciprocalLength.FromInverseMeters(inversemeter.InverseMeters).InverseMeters, InverseMetersTolerance);
+            AssertEx.EqualTolerance(1, ReciprocalLength.FromInverseMicroinches(inversemeter.InverseMicroinches).InverseMeters, InverseMicroinchesTolerance);
+            AssertEx.EqualTolerance(1, ReciprocalLength.FromInverseMils(inversemeter.InverseMils).InverseMeters, InverseMilsTolerance);
+            AssertEx.EqualTolerance(1, ReciprocalLength.FromInverseMiles(inversemeter.InverseMiles).InverseMeters, InverseMilesTolerance);
+            AssertEx.EqualTolerance(1, ReciprocalLength.FromInverseMillimeters(inversemeter.InverseMillimeters).InverseMeters, InverseMillimetersTolerance);
+            AssertEx.EqualTolerance(1, ReciprocalLength.FromInverseUsSurveyFeet(inversemeter.InverseUsSurveyFeet).InverseMeters, InverseUsSurveyFeetTolerance);
+            AssertEx.EqualTolerance(1, ReciprocalLength.FromInverseYards(inversemeter.InverseYards).InverseMeters, InverseYardsTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            ReciprocalLength v = ReciprocalLength.FromInverseMeter(1);
-            AssertEx.EqualTolerance(-1, -v.InverseMeter, InverseMeterTolerance);
-            AssertEx.EqualTolerance(2, (ReciprocalLength.FromInverseMeter(3)-v).InverseMeter, InverseMeterTolerance);
-            AssertEx.EqualTolerance(2, (v + v).InverseMeter, InverseMeterTolerance);
-            AssertEx.EqualTolerance(10, (v*10).InverseMeter, InverseMeterTolerance);
-            AssertEx.EqualTolerance(10, (10*v).InverseMeter, InverseMeterTolerance);
-            AssertEx.EqualTolerance(2, (ReciprocalLength.FromInverseMeter(10)/5).InverseMeter, InverseMeterTolerance);
-            AssertEx.EqualTolerance(2, ReciprocalLength.FromInverseMeter(10)/ReciprocalLength.FromInverseMeter(5), InverseMeterTolerance);
+            ReciprocalLength v = ReciprocalLength.FromInverseMeters(1);
+            AssertEx.EqualTolerance(-1, -v.InverseMeters, InverseMetersTolerance);
+            AssertEx.EqualTolerance(2, (ReciprocalLength.FromInverseMeters(3)-v).InverseMeters, InverseMetersTolerance);
+            AssertEx.EqualTolerance(2, (v + v).InverseMeters, InverseMetersTolerance);
+            AssertEx.EqualTolerance(10, (v*10).InverseMeters, InverseMetersTolerance);
+            AssertEx.EqualTolerance(10, (10*v).InverseMeters, InverseMetersTolerance);
+            AssertEx.EqualTolerance(2, (ReciprocalLength.FromInverseMeters(10)/5).InverseMeters, InverseMetersTolerance);
+            AssertEx.EqualTolerance(2, ReciprocalLength.FromInverseMeters(10)/ReciprocalLength.FromInverseMeters(5), InverseMetersTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            ReciprocalLength oneInverseMeter = ReciprocalLength.FromInverseMeter(1);
-            ReciprocalLength twoInverseMeter = ReciprocalLength.FromInverseMeter(2);
+            ReciprocalLength oneInverseMeter = ReciprocalLength.FromInverseMeters(1);
+            ReciprocalLength twoInverseMeters = ReciprocalLength.FromInverseMeters(2);
 
-            Assert.True(oneInverseMeter < twoInverseMeter);
-            Assert.True(oneInverseMeter <= twoInverseMeter);
-            Assert.True(twoInverseMeter > oneInverseMeter);
-            Assert.True(twoInverseMeter >= oneInverseMeter);
+            Assert.True(oneInverseMeter < twoInverseMeters);
+            Assert.True(oneInverseMeter <= twoInverseMeters);
+            Assert.True(twoInverseMeters > oneInverseMeter);
+            Assert.True(twoInverseMeters >= oneInverseMeter);
 
-            Assert.False(oneInverseMeter > twoInverseMeter);
-            Assert.False(oneInverseMeter >= twoInverseMeter);
-            Assert.False(twoInverseMeter < oneInverseMeter);
-            Assert.False(twoInverseMeter <= oneInverseMeter);
+            Assert.False(oneInverseMeter > twoInverseMeters);
+            Assert.False(oneInverseMeter >= twoInverseMeters);
+            Assert.False(twoInverseMeters < oneInverseMeter);
+            Assert.False(twoInverseMeters <= oneInverseMeter);
         }
 
         [Fact]
         public void CompareToIsImplemented()
         {
-            ReciprocalLength inversemeter = ReciprocalLength.FromInverseMeter(1);
+            ReciprocalLength inversemeter = ReciprocalLength.FromInverseMeters(1);
             Assert.Equal(0, inversemeter.CompareTo(inversemeter));
             Assert.True(inversemeter.CompareTo(ReciprocalLength.Zero) > 0);
             Assert.True(ReciprocalLength.Zero.CompareTo(inversemeter) < 0);
@@ -347,22 +347,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            ReciprocalLength inversemeter = ReciprocalLength.FromInverseMeter(1);
+            ReciprocalLength inversemeter = ReciprocalLength.FromInverseMeters(1);
             Assert.Throws<ArgumentException>(() => inversemeter.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            ReciprocalLength inversemeter = ReciprocalLength.FromInverseMeter(1);
+            ReciprocalLength inversemeter = ReciprocalLength.FromInverseMeters(1);
             Assert.Throws<ArgumentNullException>(() => inversemeter.CompareTo(null));
         }
 
         [Fact]
         public void EqualityOperators()
         {
-            var a = ReciprocalLength.FromInverseMeter(1);
-            var b = ReciprocalLength.FromInverseMeter(2);
+            var a = ReciprocalLength.FromInverseMeters(1);
+            var b = ReciprocalLength.FromInverseMeters(2);
 
 #pragma warning disable CS8073
 // ReSharper disable EqualExpressionComparison
@@ -383,8 +383,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_SameType_IsImplemented()
         {
-            var a = ReciprocalLength.FromInverseMeter(1);
-            var b = ReciprocalLength.FromInverseMeter(2);
+            var a = ReciprocalLength.FromInverseMeters(1);
+            var b = ReciprocalLength.FromInverseMeters(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -393,8 +393,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_QuantityAsObject_IsImplemented()
         {
-            object a = ReciprocalLength.FromInverseMeter(1);
-            object b = ReciprocalLength.FromInverseMeter(2);
+            object a = ReciprocalLength.FromInverseMeters(1);
+            object b = ReciprocalLength.FromInverseMeters(2);
 
             Assert.True(a.Equals(a));
             Assert.False(a.Equals(b));
@@ -404,29 +404,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
-            var v = ReciprocalLength.FromInverseMeter(1);
-            Assert.True(v.Equals(ReciprocalLength.FromInverseMeter(1), InverseMeterTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(ReciprocalLength.Zero, InverseMeterTolerance, ComparisonType.Relative));
+            var v = ReciprocalLength.FromInverseMeters(1);
+            Assert.True(v.Equals(ReciprocalLength.FromInverseMeters(1), InverseMetersTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(ReciprocalLength.Zero, InverseMetersTolerance, ComparisonType.Relative));
         }
 
         [Fact]
         public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
         {
-            var v = ReciprocalLength.FromInverseMeter(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(ReciprocalLength.FromInverseMeter(1), -1, ComparisonType.Relative));
+            var v = ReciprocalLength.FromInverseMeters(1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(ReciprocalLength.FromInverseMeters(1), -1, ComparisonType.Relative));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            ReciprocalLength inversemeter = ReciprocalLength.FromInverseMeter(1);
+            ReciprocalLength inversemeter = ReciprocalLength.FromInverseMeters(1);
             Assert.False(inversemeter.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            ReciprocalLength inversemeter = ReciprocalLength.FromInverseMeter(1);
+            ReciprocalLength inversemeter = ReciprocalLength.FromInverseMeters(1);
             Assert.False(inversemeter.Equals(null));
         }
 
@@ -528,21 +528,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_NullFormat_ThrowsArgumentNullException()
         {
-            var quantity = ReciprocalLength.FromInverseMeter(1.0);
+            var quantity = ReciprocalLength.FromInverseMeters(1.0);
             Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
         }
 
         [Fact]
         public void ToString_NullArgs_ThrowsArgumentNullException()
         {
-            var quantity = ReciprocalLength.FromInverseMeter(1.0);
+            var quantity = ReciprocalLength.FromInverseMeters(1.0);
             Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, "g", null));
         }
 
         [Fact]
         public void ToString_NullProvider_EqualsCurrentUICulture()
         {
-            var quantity = ReciprocalLength.FromInverseMeter(1.0);
+            var quantity = ReciprocalLength.FromInverseMeters(1.0);
             Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
         }
 
@@ -550,154 +550,154 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()
         {
-            var quantity = ReciprocalLength.FromInverseMeter(1.0);
+            var quantity = ReciprocalLength.FromInverseMeters(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ToBoolean(quantity));
         }
 
         [Fact]
         public void Convert_ToByte_EqualsValueAsSameType()
         {
-            var quantity = ReciprocalLength.FromInverseMeter(1.0);
+            var quantity = ReciprocalLength.FromInverseMeters(1.0);
            Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
         }
 
         [Fact]
         public void Convert_ToChar_ThrowsInvalidCastException()
         {
-            var quantity = ReciprocalLength.FromInverseMeter(1.0);
+            var quantity = ReciprocalLength.FromInverseMeters(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ToChar(quantity));
         }
 
         [Fact]
         public void Convert_ToDateTime_ThrowsInvalidCastException()
         {
-            var quantity = ReciprocalLength.FromInverseMeter(1.0);
+            var quantity = ReciprocalLength.FromInverseMeters(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ToDateTime(quantity));
         }
 
         [Fact]
         public void Convert_ToDecimal_EqualsValueAsSameType()
         {
-            var quantity = ReciprocalLength.FromInverseMeter(1.0);
+            var quantity = ReciprocalLength.FromInverseMeters(1.0);
             Assert.Equal((decimal)quantity.Value, Convert.ToDecimal(quantity));
         }
 
         [Fact]
         public void Convert_ToDouble_EqualsValueAsSameType()
         {
-            var quantity = ReciprocalLength.FromInverseMeter(1.0);
+            var quantity = ReciprocalLength.FromInverseMeters(1.0);
             Assert.Equal((double)quantity.Value, Convert.ToDouble(quantity));
         }
 
         [Fact]
         public void Convert_ToInt16_EqualsValueAsSameType()
         {
-            var quantity = ReciprocalLength.FromInverseMeter(1.0);
+            var quantity = ReciprocalLength.FromInverseMeters(1.0);
             Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToInt32_EqualsValueAsSameType()
         {
-            var quantity = ReciprocalLength.FromInverseMeter(1.0);
+            var quantity = ReciprocalLength.FromInverseMeters(1.0);
             Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToInt64_EqualsValueAsSameType()
         {
-            var quantity = ReciprocalLength.FromInverseMeter(1.0);
+            var quantity = ReciprocalLength.FromInverseMeters(1.0);
             Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
         }
 
         [Fact]
         public void Convert_ToSByte_EqualsValueAsSameType()
         {
-            var quantity = ReciprocalLength.FromInverseMeter(1.0);
+            var quantity = ReciprocalLength.FromInverseMeters(1.0);
             Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
         }
 
         [Fact]
         public void Convert_ToSingle_EqualsValueAsSameType()
         {
-            var quantity = ReciprocalLength.FromInverseMeter(1.0);
+            var quantity = ReciprocalLength.FromInverseMeters(1.0);
             Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
         }
 
         [Fact]
         public void Convert_ToString_EqualsToString()
         {
-            var quantity = ReciprocalLength.FromInverseMeter(1.0);
+            var quantity = ReciprocalLength.FromInverseMeters(1.0);
             Assert.Equal(quantity.ToString(), Convert.ToString(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt16_EqualsValueAsSameType()
         {
-            var quantity = ReciprocalLength.FromInverseMeter(1.0);
+            var quantity = ReciprocalLength.FromInverseMeters(1.0);
             Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt32_EqualsValueAsSameType()
         {
-            var quantity = ReciprocalLength.FromInverseMeter(1.0);
+            var quantity = ReciprocalLength.FromInverseMeters(1.0);
             Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt64_EqualsValueAsSameType()
         {
-            var quantity = ReciprocalLength.FromInverseMeter(1.0);
+            var quantity = ReciprocalLength.FromInverseMeters(1.0);
             Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
 
         [Fact]
         public void Convert_ChangeType_SelfType_EqualsSelf()
         {
-            var quantity = ReciprocalLength.FromInverseMeter(1.0);
+            var quantity = ReciprocalLength.FromInverseMeters(1.0);
             Assert.Equal(quantity, Convert.ChangeType(quantity, typeof(ReciprocalLength)));
         }
 
         [Fact]
         public void Convert_ChangeType_UnitType_EqualsUnit()
         {
-            var quantity = ReciprocalLength.FromInverseMeter(1.0);
+            var quantity = ReciprocalLength.FromInverseMeters(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ReciprocalLengthUnit)));
         }
 
         [Fact]
         public void Convert_ChangeType_QuantityType_EqualsQuantityType()
         {
-            var quantity = ReciprocalLength.FromInverseMeter(1.0);
+            var quantity = ReciprocalLength.FromInverseMeters(1.0);
             Assert.Equal(QuantityType.ReciprocalLength, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]
         public void Convert_ChangeType_QuantityInfo_EqualsQuantityInfo()
         {
-            var quantity = ReciprocalLength.FromInverseMeter(1.0);
+            var quantity = ReciprocalLength.FromInverseMeters(1.0);
             Assert.Equal(ReciprocalLength.Info, Convert.ChangeType(quantity, typeof(QuantityInfo)));
         }
 
         [Fact]
         public void Convert_ChangeType_BaseDimensions_EqualsBaseDimensions()
         {
-            var quantity = ReciprocalLength.FromInverseMeter(1.0);
+            var quantity = ReciprocalLength.FromInverseMeters(1.0);
             Assert.Equal(ReciprocalLength.BaseDimensions, Convert.ChangeType(quantity, typeof(BaseDimensions)));
         }
 
         [Fact]
         public void Convert_ChangeType_InvalidType_ThrowsInvalidCastException()
         {
-            var quantity = ReciprocalLength.FromInverseMeter(1.0);
+            var quantity = ReciprocalLength.FromInverseMeters(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(quantity, typeof(QuantityFormatter)));
         }
 
         [Fact]
         public void GetHashCode_Equals()
         {
-            var quantity = ReciprocalLength.FromInverseMeter(1.0);
+            var quantity = ReciprocalLength.FromInverseMeters(1.0);
             Assert.Equal(new {ReciprocalLength.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
@@ -706,8 +706,8 @@ namespace UnitsNet.Tests
         [InlineData(-1.0)]
         public void NegationOperator_ReturnsQuantity_WithNegatedValue(double value)
         {
-            var quantity = ReciprocalLength.FromInverseMeter(value);
-            Assert.Equal(ReciprocalLength.FromInverseMeter(-value), -quantity);
+            var quantity = ReciprocalLength.FromInverseMeters(value);
+            Assert.Equal(ReciprocalLength.FromInverseMeters(-value), -quantity);
         }
     }
 }

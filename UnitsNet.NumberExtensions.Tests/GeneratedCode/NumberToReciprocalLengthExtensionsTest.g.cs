@@ -25,44 +25,44 @@ namespace UnitsNet.Tests
     public class NumberToReciprocalLengthExtensionsTests
     {
         [Fact]
-        public void NumberToInverseCentimeterTest() =>
-            Assert.Equal(ReciprocalLength.FromInverseCentimeter(2), 2.InverseCentimeter());
+        public void NumberToInverseCentimetersTest() =>
+            Assert.Equal(ReciprocalLength.FromInverseCentimeters(2), 2.InverseCentimeters());
 
         [Fact]
-        public void NumberToInverseFootTest() =>
-            Assert.Equal(ReciprocalLength.FromInverseFoot(2), 2.InverseFoot());
+        public void NumberToInverseFeetTest() =>
+            Assert.Equal(ReciprocalLength.FromInverseFeet(2), 2.InverseFeet());
 
         [Fact]
-        public void NumberToInverseInchTest() =>
-            Assert.Equal(ReciprocalLength.FromInverseInch(2), 2.InverseInch());
+        public void NumberToInverseInchesTest() =>
+            Assert.Equal(ReciprocalLength.FromInverseInches(2), 2.InverseInches());
 
         [Fact]
-        public void NumberToInverseMeterTest() =>
-            Assert.Equal(ReciprocalLength.FromInverseMeter(2), 2.InverseMeter());
+        public void NumberToInverseMetersTest() =>
+            Assert.Equal(ReciprocalLength.FromInverseMeters(2), 2.InverseMeters());
 
         [Fact]
-        public void NumberToInverseMicroinchTest() =>
-            Assert.Equal(ReciprocalLength.FromInverseMicroinch(2), 2.InverseMicroinch());
+        public void NumberToInverseMicroinchesTest() =>
+            Assert.Equal(ReciprocalLength.FromInverseMicroinches(2), 2.InverseMicroinches());
 
         [Fact]
-        public void NumberToInverseMilTest() =>
-            Assert.Equal(ReciprocalLength.FromInverseMil(2), 2.InverseMil());
+        public void NumberToInverseMilsTest() =>
+            Assert.Equal(ReciprocalLength.FromInverseMils(2), 2.InverseMils());
 
         [Fact]
-        public void NumberToInverseMileTest() =>
-            Assert.Equal(ReciprocalLength.FromInverseMile(2), 2.InverseMile());
+        public void NumberToInverseMilesTest() =>
+            Assert.Equal(ReciprocalLength.FromInverseMiles(2), 2.InverseMiles());
 
         [Fact]
-        public void NumberToInverseMillimeterTest() =>
-            Assert.Equal(ReciprocalLength.FromInverseMillimeter(2), 2.InverseMillimeter());
+        public void NumberToInverseMillimetersTest() =>
+            Assert.Equal(ReciprocalLength.FromInverseMillimeters(2), 2.InverseMillimeters());
 
         [Fact]
         public void NumberToInverseUsSurveyFeetTest() =>
             Assert.Equal(ReciprocalLength.FromInverseUsSurveyFeet(2), 2.InverseUsSurveyFeet());
 
         [Fact]
-        public void NumberToInverseYardTest() =>
-            Assert.Equal(ReciprocalLength.FromInverseYard(2), 2.InverseYard());
+        public void NumberToInverseYardsTest() =>
+            Assert.Equal(ReciprocalLength.FromInverseYards(2), 2.InverseYards());
 
     }
 }
