@@ -26,19 +26,19 @@ namespace UnitsNet.Tests.CustomCode
     {
         protected override bool SupportsSIUnitSystem => false;
 
-        protected override double InverseMeterInOneInverseMeter => 1;
-        protected override double InverseCentimeterInOneInverseMeter => 1E-2;
-        protected override double InverseMillimeterInOneInverseMeter => 1E-3;
+        protected override double InverseMetersInOneInverseMeter => 1;
+        protected override double InverseCentimetersInOneInverseMeter => 1E-2;
+        protected override double InverseMillimetersInOneInverseMeter => 1E-3;
 
-        protected override double InverseMileInOneInverseMeter => 1 / 0.000621371;
-        protected override double InverseYardInOneInverseMeter => 1 / 1.09361;
-        protected override double InverseFootInOneInverseMeter => 1 / 3.28084;
+        protected override double InverseMilesInOneInverseMeter => 1 / 0.000621371;
+        protected override double InverseYardsInOneInverseMeter => 1 / 1.09361;
+        protected override double InverseFeetInOneInverseMeter => 1 / 3.28084;
 
         protected override double InverseUsSurveyFeetInOneInverseMeter => 1 / 3.280833333333333;
 
-        protected override double InverseInchInOneInverseMeter => 1 / 39.37007874;
-        protected override double InverseMilInOneInverseMeter => 1 / 39370.07874015;
-        protected override double InverseMicroinchInOneInverseMeter => 1 / 39370078.74015748;
+        protected override double InverseInchesInOneInverseMeter => 1 / 39.37007874;
+        protected override double InverseMilsInOneInverseMeter => 1 / 39370.07874015;
+        protected override double InverseMicroinchesInOneInverseMeter => 1 / 39370078.74015748;
 
         [Theory]
         [InlineData(-1.0, -1.0)]
@@ -57,42 +57,42 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public static void ForcePerLengthTimesReciprocalLengthEqualsPressure()
         {
-            Pressure pressure = ForcePerLength.FromNewtonsPerMeter(10) * ReciprocalLength.FromInverseMeter(5);
+            Pressure pressure = ForcePerLength.FromNewtonsPerMeter(10) * ReciprocalLength.FromInverseMeters(5);
             Assert.Equal(pressure, Pressure.FromNewtonsPerSquareMeter(50));
         }
 
         [Fact]
         public static void ForcePerLengthDividedByReciprocalLengthEqualsForce()
         {
-            Force force = ForcePerLength.FromNewtonsPerMeter(10) / ReciprocalLength.FromInverseMeter(5);
+            Force force = ForcePerLength.FromNewtonsPerMeter(10) / ReciprocalLength.FromInverseMeters(5);
             Assert.Equal(force, Force.FromNewtons(2));
         }
 
         [Fact]
         public static void ForceTimesReciprocalLengthEqualsForcePerLength()
         {
-            ForcePerLength forcePerLength = Force.FromNewtons(10) * ReciprocalLength.FromInverseMeter(5);
+            ForcePerLength forcePerLength = Force.FromNewtons(10) * ReciprocalLength.FromInverseMeters(5);
             Assert.Equal(forcePerLength, ForcePerLength.FromNewtonsPerMeter(50));
         }
 
         [Fact]
         public static void PressureDividedByReciprocalLengthEqualsForcePerLength()
         {
-            ForcePerLength forcePerLength = Pressure.FromPascals(50) / ReciprocalLength.FromInverseMeter(5);
+            ForcePerLength forcePerLength = Pressure.FromPascals(50) / ReciprocalLength.FromInverseMeters(5);
             Assert.Equal(forcePerLength, ForcePerLength.FromNewtonsPerMeter(10));
         }
 
         [Fact]
         public static void ReciprocalLengthTimesForcePerLengthEqualsPressure()
         {
-            Pressure pressure = ReciprocalLength.FromInverseMeter(5) *ForcePerLength.FromNewtonsPerMeter(10);
+            Pressure pressure = ReciprocalLength.FromInverseMeters(5) *ForcePerLength.FromNewtonsPerMeter(10);
             Assert.Equal(pressure, Pressure.FromNewtonsPerSquareMeter(50));
         }
 
         [Fact]
         public static void ReciprocalLengthTimesForceEqualsForcePerLength()
         {
-            ForcePerLength forcePerLength = ReciprocalLength.FromInverseMeter(5) * Force.FromNewtons(10);
+            ForcePerLength forcePerLength = ReciprocalLength.FromInverseMeters(5) * Force.FromNewtons(10);
             Assert.Equal(forcePerLength, ForcePerLength.FromNewtonsPerMeter(50));
         }
     }

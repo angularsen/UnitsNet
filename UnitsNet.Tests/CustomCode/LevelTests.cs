@@ -54,7 +54,7 @@ namespace UnitsNet.Tests.CustomCode
             var length = new Length(value, Units.LengthUnit.Meter);
             var inverseLength = length.Inverse();
 
-            AssertEx.Equals(expected, inverseLength.InverseMeter);
+            AssertEx.Equals(expected, inverseLength.InverseMeters);
         }
     }
 }

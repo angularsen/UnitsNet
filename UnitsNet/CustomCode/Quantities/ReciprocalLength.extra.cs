@@ -13,22 +13,22 @@ namespace UnitsNet
         /// <returns>The inverse or <see cref="Length"/> of this unit.</returns>
         public Length Inverse()
         {
-            if (InverseMeter == 0.0)
+            if (InverseMeters == 0.0)
                 return new Length(0.0, LengthUnit.Meter);
 
-            return new Length(1 / InverseMeter, LengthUnit.Meter);
+            return new Length(1 / InverseMeters, LengthUnit.Meter);
         }
 
         /// <summary>Get <see cref="Pressure"/> from <see cref="ReciprocalLength"/> multiplied by <see cref="ForcePerLength"/>.</summary>
         public static Pressure operator *(ReciprocalLength reciprocalLength, ForcePerLength forcePerLength)
         {
-            return Pressure.FromNewtonsPerSquareMeter(reciprocalLength.InverseMeter * forcePerLength.NewtonsPerMeter);
+            return Pressure.FromNewtonsPerSquareMeter(reciprocalLength.InverseMeters * forcePerLength.NewtonsPerMeter);
         }
 
         /// <summary>Get <see cref="ForcePerLength"/> from <see cref="ReciprocalLength"/> times <see cref="Force"/>.</summary>
         public static ForcePerLength operator *(ReciprocalLength reciprocalLength, Force force)
         {
-            return ForcePerLength.FromNewtonsPerMeter(reciprocalLength.InverseMeter * force.Newtons);
+            return ForcePerLength.FromNewtonsPerMeter(reciprocalLength.InverseMeters * force.Newtons);
         }
     }
 }

@@ -35,7 +35,7 @@ namespace UnitsNet
         /// <summary>Get <see cref="ForcePerLength"/> from <see cref="Force"/> times <see cref="ReciprocalLength"/>.</summary>
         public static ForcePerLength operator *(Force force, ReciprocalLength reciprocalLength)
         {
-            return ForcePerLength.FromNewtonsPerMeter(force.Newtons * reciprocalLength.InverseMeter);
+            return ForcePerLength.FromNewtonsPerMeter(force.Newtons * reciprocalLength.InverseMeters);
         }
 
         /// <summary>Get <see cref="Acceleration"/> from <see cref="Force"/> divided by <see cref="Mass"/>.</summary>

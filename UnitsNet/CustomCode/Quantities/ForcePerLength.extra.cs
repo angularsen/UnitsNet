@@ -32,13 +32,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="Pressure"/> from <see cref="ForcePerLength"/> multiplied by <see cref="ReciprocalLength"/>.</summary>
         public static Pressure operator *(ForcePerLength forcePerLength, ReciprocalLength reciprocalLength)
         {
-            return Pressure.FromNewtonsPerSquareMeter(forcePerLength.NewtonsPerMeter * reciprocalLength.InverseMeter);
+            return Pressure.FromNewtonsPerSquareMeter(forcePerLength.NewtonsPerMeter * reciprocalLength.InverseMeters);
         }
 
         /// <summary>Get <see cref="Force"/> from <see cref="ForcePerLength"/> divided by <see cref="ReciprocalLength"/>.</summary>
         public static Force operator /(ForcePerLength forcePerLength, ReciprocalLength reciprocalLength)
         {
-            return Force.FromNewtons(forcePerLength.NewtonsPerMeter / reciprocalLength.InverseMeter);
+            return Force.FromNewtons(forcePerLength.NewtonsPerMeter / reciprocalLength.InverseMeters);
         }
     }
 }
