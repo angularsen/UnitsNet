@@ -30,15 +30,15 @@ namespace UnitsNet.Tests.CustomCode
         protected override double InverseCentimetersInOneInverseMeter => 1E-2;
         protected override double InverseMillimetersInOneInverseMeter => 1E-3;
 
-        protected override double InverseMilesInOneInverseMeter => 1 / 0.000621371;
-        protected override double InverseYardsInOneInverseMeter => 1 / 1.09361;
-        protected override double InverseFeetInOneInverseMeter => 1 / 3.28084;
+        protected override double InverseMilesInOneInverseMeter => 1609.344;
+        protected override double InverseYardsInOneInverseMeter => 0.914402;
+        protected override double InverseFeetInOneInverseMeter => 0.3048;
 
-        protected override double InverseUsSurveyFeetInOneInverseMeter => 1 / 3.280833333333333;
+        protected override double InverseUsSurveyFeetInOneInverseMeter => 0.3048;
 
-        protected override double InverseInchesInOneInverseMeter => 1 / 39.37007874;
-        protected override double InverseMilsInOneInverseMeter => 1 / 39370.07874015;
-        protected override double InverseMicroinchesInOneInverseMeter => 1 / 39370078.74015748;
+        protected override double InverseInchesInOneInverseMeter => 2.54E-2;
+        protected override double InverseMilsInOneInverseMeter => 2.54E-5;
+        protected override double InverseMicroinchesInOneInverseMeter => 2.54E-8;
 
         [Theory]
         [InlineData(-1.0, -1.0)]
