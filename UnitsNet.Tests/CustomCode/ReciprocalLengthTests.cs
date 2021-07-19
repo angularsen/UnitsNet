@@ -46,7 +46,7 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData(0.0, 0.0)]
         [InlineData(1.0, 1.0)]
         [InlineData(2.0, 0.5)]
-        public static void InverseTest(double value, double expected)
+        public static void InverseReturnsLength(double value, double expected)
         {
             var inverseLength = new ReciprocalLength(value, ReciprocalLengthUnit.InverseMeter);
             var length = inverseLength.Inverse();
