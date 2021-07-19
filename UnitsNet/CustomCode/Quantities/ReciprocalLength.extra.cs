@@ -8,9 +8,9 @@ namespace UnitsNet
     public partial struct ReciprocalLength
     {
         /// <summary>
-        /// Calculates the inverse or <see cref="Length"/> of this unit.
+        /// Calculates the inverse of this quantity.
         /// </summary>
-        /// <returns>The inverse or <see cref="Length"/> of this unit.</returns>
+        /// <returns>The corresponding inverse quantity, <see cref="Length"/>.</returns>
         public Length Inverse()
         {
             if (InverseMeters == 0.0)
