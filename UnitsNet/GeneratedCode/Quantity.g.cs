@@ -117,6 +117,7 @@ namespace UnitsNet
             { "RatioChangeRate", RatioChangeRate.Info },
             { "ReactiveEnergy", ReactiveEnergy.Info },
             { "ReactivePower", ReactivePower.Info },
+            { "ReciprocalLength", ReciprocalLength.Info },
             { "RelativeHumidity", RelativeHumidity.Info },
             { "RotationalAcceleration", RotationalAcceleration.Info },
             { "RotationalSpeed", RotationalSpeed.Info },
@@ -231,6 +232,7 @@ namespace UnitsNet
             { "RatioChangeRate", QuantityType.RatioChangeRate },
             { "ReactiveEnergy", QuantityType.ReactiveEnergy },
             { "ReactivePower", QuantityType.ReactivePower },
+            { "ReciprocalLength", QuantityType.ReciprocalLength },
             { "RelativeHumidity", QuantityType.RelativeHumidity },
             { "RotationalAcceleration", QuantityType.RotationalAcceleration },
             { "RotationalSpeed", QuantityType.RotationalSpeed },
@@ -431,6 +433,8 @@ namespace UnitsNet
                     return ReactiveEnergy.From(value, ReactiveEnergy.BaseUnit);
                 case QuantityType.ReactivePower:
                     return ReactivePower.From(value, ReactivePower.BaseUnit);
+                case QuantityType.ReciprocalLength:
+                    return ReciprocalLength.From(value, ReciprocalLength.BaseUnit);
                 case QuantityType.RelativeHumidity:
                     return RelativeHumidity.From(value, RelativeHumidity.BaseUnit);
                 case QuantityType.RotationalAcceleration:
@@ -662,6 +666,8 @@ namespace UnitsNet
                     return ReactiveEnergy.From(value, ReactiveEnergy.BaseUnit);
                 case "ReactivePower":
                     return ReactivePower.From(value, ReactivePower.BaseUnit);
+                case "ReciprocalLength":
+                    return ReciprocalLength.From(value, ReciprocalLength.BaseUnit);
                 case "RelativeHumidity":
                     return RelativeHumidity.From(value, RelativeHumidity.BaseUnit);
                 case "RotationalAcceleration":
@@ -973,6 +979,9 @@ namespace UnitsNet
                 case ReactivePowerUnit reactivePowerUnit:
                     quantity = ReactivePower.From(value, reactivePowerUnit);
                     return true;
+                case ReciprocalLengthUnit reciprocalLengthUnit:
+                    quantity = ReciprocalLength.From(value, reciprocalLengthUnit);
+                    return true;
                 case RelativeHumidityUnit relativeHumidityUnit:
                     quantity = RelativeHumidity.From(value, relativeHumidityUnit);
                     return true;
@@ -1245,6 +1254,8 @@ namespace UnitsNet
                     return parser.TryParse<ReactiveEnergy, ReactiveEnergyUnit>(quantityString, formatProvider, ReactiveEnergy.From, out quantity);
                 case Type _ when quantityType == typeof(ReactivePower):
                     return parser.TryParse<ReactivePower, ReactivePowerUnit>(quantityString, formatProvider, ReactivePower.From, out quantity);
+                case Type _ when quantityType == typeof(ReciprocalLength):
+                    return parser.TryParse<ReciprocalLength, ReciprocalLengthUnit>(quantityString, formatProvider, ReciprocalLength.From, out quantity);
                 case Type _ when quantityType == typeof(RelativeHumidity):
                     return parser.TryParse<RelativeHumidity, RelativeHumidityUnit>(quantityString, formatProvider, RelativeHumidity.From, out quantity);
                 case Type _ when quantityType == typeof(RotationalAcceleration):

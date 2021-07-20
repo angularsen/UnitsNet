@@ -213,5 +213,19 @@ namespace UnitsNet.Tests.CustomCode
             Assert.Equal(0.0508, inSI.Value);
             Assert.Equal(LengthUnit.Meter, inSI.Unit);
         }
+
+        [Theory]
+        [InlineData(-1.0, -1.0)]
+        [InlineData(-2.0, -0.5)]
+        [InlineData(0.0, 0.0)]
+        [InlineData(1.0, 1.0)]
+        [InlineData(2.0, 0.5)]
+        public static void InverseReturnsReciprocalLength(double value, double expected)
+        {
+            var length = new Length(value, Units.LengthUnit.Meter);
+            var inverseLength = length.Inverse();
+
+            AssertEx.Equals(expected, inverseLength.InverseMeters);
+        }
     }
 }

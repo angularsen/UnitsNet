@@ -28,5 +28,11 @@ namespace UnitsNet
         {
             return new SpecificWeight(pressure.Pascals / length.Meters, UnitsNet.Units.SpecificWeightUnit.NewtonPerCubicMeter);
         }
+
+        /// <summary>Get <see cref="ForcePerLength"/> from <see cref="Pressure"/> divided by <see cref="ReciprocalLength"/>.</summary>
+        public static ForcePerLength operator /(Pressure pressure, ReciprocalLength reciprocalLength)
+        {
+            return new ForcePerLength(pressure.Pascals / reciprocalLength.InverseMeters, UnitsNet.Units.ForcePerLengthUnit.NewtonPerMeter);
+        }
     }
 }
