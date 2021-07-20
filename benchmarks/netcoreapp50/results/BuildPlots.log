@@ -1,4 +1,4 @@
-	C:\Users\runneradmin\AppData\Local\Temp\RtmpuYoCZu\downloaded_packages
+	C:\Users\runneradmin\AppData\Local\Temp\RtmpgVVlBa\downloaded_packages
 The downloaded binary packages are in
 package 'R.devices' successfully unpacked and MD5 sums checked
 package 'Rcpp' successfully unpacked and MD5 sums checked
@@ -26,6 +26,7 @@ package 'withr' successfully unpacked and MD5 sums checked
 package 'tibble' successfully unpacked and MD5 sums checked
 package 'scales' successfully unpacked and MD5 sums checked
 package 'rlang' successfully unpacked and MD5 sums checked
+package 'isoband' successfully unpacked and MD5 sums checked
 package 'gtable' successfully unpacked and MD5 sums checked
 package 'glue' successfully unpacked and MD5 sums checked
 package 'digest' successfully unpacked and MD5 sums checked
@@ -40,32 +41,8 @@ package 'munsell' successfully unpacked and MD5 sums checked
 package 'labeling' successfully unpacked and MD5 sums checked
 package 'farver' successfully unpacked and MD5 sums checked
 package 'colorspace' successfully unpacked and MD5 sums checked
-isoband  0.2.4  0.2.5              TRUE
-        binary source needs_compilation
-  There is a binary version available but the source version is later:
 Execution halted
 Error in library(ggplot2) : there is no package called 'ggplot2'
-  installation of package 'isoband' had non-zero exit status
-In install.packages(new.packages, lib = Sys.getenv("R_LIBS_USER"),  :
-Warning message:
-	'C:\Users\runneradmin\AppData\Local\Temp\RtmpuYoCZu\downloaded_packages'
-The downloaded source packages are in
-* removing 'C:/Users/runneradmin/R/win-library/4.1/isoband'
-ERROR: compilation failed for package 'isoband'
-mingw32-make: *** No rule to make target '$(CXX11STD)''.  Stop.
-*** arch - i386
-** libs
-** using staged installation
-** package 'isoband' successfully unpacked and MD5 sums checked
-* installing *source* package 'isoband' ...
-please set environment variable 'TZ'
-  unable to identify current timezone 'C':
-Warning in strptime(xx, f, tz = tz) :
-downloaded 1.6 MB
-==================================================
-Content type 'application/x-gzip' length 1671911 bytes (1.6 MB)
-trying URL 'https://cran.rstudio.com/src/contrib/isoband_0.2.5.tar.gz'
-installing the source package 'isoband'
 downloaded 369 KB
 ==================================================
 Content type 'application/zip' length 378621 bytes (369 KB)
@@ -170,6 +147,10 @@ downloaded 1.1 MB
 ==================================================
 Content type 'application/zip' length 1201243 bytes (1.1 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/rlang_0.4.11.zip'
+downloaded 2.6 MB
+==================================================
+Content type 'application/zip' length 2726723 bytes (2.6 MB)
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/isoband_0.2.5.zip'
 downloaded 423 KB
 ==================================================
 Content type 'application/zip' length 434093 bytes (423 KB)
@@ -190,10 +171,10 @@ downloaded 138 KB
 ==================================================
 Content type 'application/zip' length 141720 bytes (138 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/crayon_1.4.1.zip'
-downloaded 735 KB
+downloaded 737 KB
 ==================================================
-Content type 'application/zip' length 752853 bytes (735 KB)
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/cli_3.0.0.zip'
+Content type 'application/zip' length 755424 bytes (737 KB)
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/cli_3.0.1.zip'
 downloaded 21 KB
 ==================================================
 Content type 'application/zip' length 22313 bytes (21 KB)
