@@ -53,5 +53,26 @@ namespace UnitsNet.Tests.CustomCode
 
             AssertEx.Equals(expected, area.SquareMeters);
         }
+
+        [Fact]
+        public static void ReciprocalAreaTimesForceEqualsPressure()
+        {
+            Pressure pressure = ReciprocalArea.FromInverseSquareMeters(25) * Force.FromNewtons(2);
+            Assert.Equal(pressure, Pressure.FromNewtonsPerSquareMeter(50));
+        }
+
+        [Fact]
+        public static void ReciprocalAreaTimesAreaEqualsRatio()
+        {
+            Ratio ratio = ReciprocalArea.FromInverseSquareMeters(10) * Area.FromSquareMeters(0.5);
+            Assert.Equal(5.0, ratio.Value);
+        }
+
+        [Fact]
+        public static void ReciprocalAreaDividedByReciprocalLengthEqualsReciprocalLength()
+        {
+            ReciprocalLength reciprocalLength = ReciprocalArea.FromInverseSquareMeters(10) / ReciprocalLength.FromInverseMeters(0.5);
+            Assert.Equal(reciprocalLength, ReciprocalLength.FromInverseMeters(20));
+        }
     }
 }
