@@ -38,6 +38,12 @@ namespace UnitsNet
             return ForcePerLength.FromNewtonsPerMeter(force.Newtons * reciprocalLength.InverseMeters);
         }
 
+        /// <summary>Get <see cref="Pressure"/> from <see cref="Force"/> times <see cref="ReciprocalArea"/>.</summary>
+        public static Pressure operator *(Force force, ReciprocalArea reciprocalArea)
+        {
+            return Pressure.FromNewtonsPerSquareMeter(force.Newtons * reciprocalArea.InverseSquareMeters);
+        }
+
         /// <summary>Get <see cref="Acceleration"/> from <see cref="Force"/> divided by <see cref="Mass"/>.</summary>
         public static Acceleration operator /(Force force, Mass mass)
         {

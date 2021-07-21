@@ -110,6 +110,7 @@ namespace UnitsNet
         RatioChangeRate,
         ReactiveEnergy,
         ReactivePower,
+        ReciprocalArea,
         ReciprocalLength,
         RelativeHumidity,
         RotationalAcceleration,

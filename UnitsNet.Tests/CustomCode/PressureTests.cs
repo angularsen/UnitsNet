@@ -237,5 +237,12 @@ namespace UnitsNet.Tests.CustomCode
             var refPressure = new ReferencePressure(Pressure.FromAtmospheres(1), PressureReference.Vacuum);
             AssertEx.EqualTolerance(1, refPressure.Vacuum.Atmospheres, AtmospheresTolerance);
         }
+
+        [Fact]
+        public void PressureDividedByReciprocalAreaEqualsForce()
+        {
+            Force force = Pressure.FromPascals(200) / ReciprocalArea.FromInverseSquareMeters(5);
+            Assert.Equal(force, Force.FromNewtons(40));
+        }
     }
 }
