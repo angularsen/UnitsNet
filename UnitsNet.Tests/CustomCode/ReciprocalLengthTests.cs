@@ -97,14 +97,14 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
-        public static void ReciprocalLengthTimesReciprocalLengthEqualsReciprocalArea()
+        public void ReciprocalLengthTimesReciprocalLengthEqualsReciprocalArea()
         {
             ReciprocalArea reciprocalArea = ReciprocalLength.FromInverseMeters(10) * ReciprocalLength.FromInverseMeters(20);
             Assert.Equal(reciprocalArea, ReciprocalArea.FromInverseSquareMeters(200));
         }
 
         [Fact]
-        public static void ReciprocalLengthDividedByReciprocalAreaEqualsLength()
+        public void ReciprocalLengthDividedByReciprocalAreaEqualsLength()
         {
             Length length = ReciprocalLength.FromInverseMeters(5) / ReciprocalArea.FromInverseSquareMeters(10);
             Assert.Equal(length, Length.FromMeters(0.5));

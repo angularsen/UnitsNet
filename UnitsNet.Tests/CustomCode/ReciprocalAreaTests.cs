@@ -46,7 +46,7 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData(0.0, 0.0)]
         [InlineData(1.0, 1.0)]
         [InlineData(2.0, 0.5)]
-        public static void InverseReturnsArea(double value, double expected)
+        public void InverseReturnsArea(double value, double expected)
         {
             var inverseArea = new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareMeter);
             var area = inverseArea.Inverse();
@@ -55,21 +55,21 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
-        public static void ReciprocalAreaTimesForceEqualsPressure()
+        public void ReciprocalAreaTimesForceEqualsPressure()
         {
             Pressure pressure = ReciprocalArea.FromInverseSquareMeters(25) * Force.FromNewtons(2);
             Assert.Equal(pressure, Pressure.FromNewtonsPerSquareMeter(50));
         }
 
         [Fact]
-        public static void ReciprocalAreaTimesAreaEqualsRatio()
+        public void ReciprocalAreaTimesAreaEqualsRatio()
         {
             Ratio ratio = ReciprocalArea.FromInverseSquareMeters(10) * Area.FromSquareMeters(0.5);
             Assert.Equal(5.0, ratio.Value);
         }
 
         [Fact]
-        public static void ReciprocalAreaDividedByReciprocalLengthEqualsReciprocalLength()
+        public void ReciprocalAreaDividedByReciprocalLengthEqualsReciprocalLength()
         {
             ReciprocalLength reciprocalLength = ReciprocalArea.FromInverseSquareMeters(10) / ReciprocalLength.FromInverseMeters(0.5);
             Assert.Equal(reciprocalLength, ReciprocalLength.FromInverseMeters(20));
