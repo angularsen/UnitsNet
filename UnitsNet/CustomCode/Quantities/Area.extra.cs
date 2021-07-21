@@ -59,5 +59,11 @@ namespace UnitsNet
         {
             return LinearDensity.FromKilogramsPerMeter(area.SquareMeters * density.KilogramsPerCubicMeter);
         }
+
+        /// <summary>Get <see cref="Ratio"/> from <see cref="Area"/> times <see cref="ReciprocalArea"/>.</summary>
+        public static Ratio operator *(Area area, ReciprocalArea reciprocalArea)
+        {
+            return Ratio.FromDecimalFractions(area.SquareMeters * reciprocalArea.InverseSquareMeters);
+        }
     }
 }

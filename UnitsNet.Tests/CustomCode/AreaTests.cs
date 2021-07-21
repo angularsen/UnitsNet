@@ -132,5 +132,12 @@ namespace UnitsNet.Tests.CustomCode
 
             AssertEx.Equals(expected, inverseArea.InverseSquareMeters);
         }
+
+        [Fact]
+        public static void AreaTimesReciprocalAreaEqualsRatio()
+        {
+            Ratio ratio = Area.FromSquareMeters(0.5) * ReciprocalArea.FromInverseSquareMeters(10);
+            Assert.Equal(5.0, ratio.Value);
+        }
     }
 }
