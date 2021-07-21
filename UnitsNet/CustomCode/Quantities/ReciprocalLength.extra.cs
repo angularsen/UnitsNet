@@ -42,7 +42,5 @@ namespace UnitsNet
         {
             return Length.FromMeters(reciprocalLength.InverseMeters / reciprocalArea.InverseSquareMeters);
         }
-
-        
     }
 }
