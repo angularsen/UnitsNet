@@ -90,5 +90,12 @@ namespace UnitsNet.Tests.CustomCode
             Power power = Speed.FromMetersPerSecond(10.0)*Force.FromNewtons(27.0);
             Assert.Equal(power, Power.FromWatts(270));
         }
+
+        [Fact]
+        public void ForceTimesReciprocalAreaEqualsPressure()
+        {
+            Pressure pressure = Force.FromNewtons(2) * ReciprocalArea.FromInverseSquareMeters(25);
+            Assert.Equal(pressure, Pressure.FromNewtonsPerSquareMeter(50));
+        }
     }
 }
