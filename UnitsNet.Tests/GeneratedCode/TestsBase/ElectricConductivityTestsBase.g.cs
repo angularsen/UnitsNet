@@ -82,21 +82,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new ElectricConductivity(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (ElectricConductivity) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new ElectricConductivity(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new ElectricConductivity(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new ElectricConductivity(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new ElectricConductivity(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new ElectricConductivity(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new ElectricConductivity(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new ElectricConductivity(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new ElectricConductivity(1, null));
+        }
+
         public void ElectricConductivity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new ElectricConductivity(1, ElectricConductivityUnit.SiemensPerMeter);
@@ -164,20 +166,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new ElectricConductivity(value: 1, unit: ElectricConductivity.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var siemenspermeter = ElectricConductivity.FromSiemensPerMeter(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => siemenspermeter.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => siemenspermeter.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => siemenspermeter.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => siemenspermeter.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => siemenspermeter.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => siemenspermeter.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => siemenspermeter.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var siemenspermeter = ElectricConductivity.FromSiemensPerMeter(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => siemenspermeter.As(null));
         }
 
         [Fact]
@@ -196,6 +203,28 @@ namespace UnitsNet.Tests
             var siemenspermeterQuantity = siemenspermeter.ToUnit(ElectricConductivityUnit.SiemensPerMeter);
             AssertEx.EqualTolerance(SiemensPerMeterInOneSiemensPerMeter, (double)siemenspermeterQuantity.Value, SiemensPerMeterTolerance);
             Assert.Equal(ElectricConductivityUnit.SiemensPerMeter, siemenspermeterQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var siemenspermeter = ElectricConductivity.FromSiemensPerMeter(1);
+
+            Assert.Throws<ArgumentException>(() => siemenspermeter.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => siemenspermeter.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => siemenspermeter.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => siemenspermeter.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => siemenspermeter.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => siemenspermeter.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => siemenspermeter.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var siemenspermeter = ElectricConductivity.FromSiemensPerMeter(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => siemenspermeter.ToUnit(null));
         }
 
         [Fact]

@@ -14,6 +14,7 @@
       },
       "FromUnitToBaseFunc": "x*365*24*3600",
       "FromBaseToUnitFunc": "x/(365*24*3600)",
+      "UnitSystems": [ "SI", "CGS", "BI", "EE", "USC", "FPS" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -33,6 +34,7 @@
       },
       "FromUnitToBaseFunc": "x*30*24*3600",
       "FromBaseToUnitFunc": "x/(30*24*3600)",
+      "UnitSystems": [ "SI", "CGS", "BI", "EE", "USC", "FPS" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -52,6 +54,7 @@
       },
       "FromUnitToBaseFunc": "x*7*24*3600",
       "FromBaseToUnitFunc": "x/(7*24*3600)",
+      "UnitSystems": [ "SI", "CGS", "BI", "EE", "USC", "FPS" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -71,6 +74,7 @@
       },
       "FromUnitToBaseFunc": "x*24*3600",
       "FromBaseToUnitFunc": "x/(24*3600)",
+      "UnitSystems": [ "SI", "CGS", "BI", "EE", "USC", "FPS", "Astronomical" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -90,6 +94,7 @@
       },
       "FromUnitToBaseFunc": "x*3600",
       "FromBaseToUnitFunc": "x/3600",
+      "UnitSystems": [ "SI", "CGS", "BI", "EE", "USC", "FPS", "Astronomical" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -109,6 +114,7 @@
       },
       "FromUnitToBaseFunc": "x*60",
       "FromBaseToUnitFunc": "x/60",
+      "UnitSystems": [ "SI", "CGS", "BI", "EE", "USC", "FPS", "Astronomical" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -128,6 +134,7 @@
       },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
+      "UnitSystems": [ "SI", "CGS", "BI", "EE", "USC", "FPS", "Astronomical" ],
       "Prefixes": [ "Nano", "Micro", "Milli" ],
       "Localization": [
         {
@@ -139,6 +146,36 @@
           "Abbreviations": [ "сек", "с" ]
         }
       ]
+    }
+  ],
+  "UnitSystems": [
+    {
+      "UnitSystem": "SI",
+      "BaseUnit": "Second"
+    },
+    {
+      "UnitSystem": "CGS",
+      "BaseUnit": "Second"
+    },
+    {
+      "UnitSystem": "BI",
+      "BaseUnit": "Second"
+    },
+    {
+      "UnitSystem": "EE",
+      "BaseUnit": "Second"
+    },
+    {
+      "UnitSystem": "USC",
+      "BaseUnit": "Second"
+    },
+    {
+      "UnitSystem": "FPS",
+      "BaseUnit": "Second"
+    },
+    {
+      "UnitSystem": "Astronomical",
+      "BaseUnit": "Day"
     }
   ]
 }

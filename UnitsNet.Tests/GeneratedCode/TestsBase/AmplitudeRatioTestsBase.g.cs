@@ -84,21 +84,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new AmplitudeRatio(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (AmplitudeRatio) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new AmplitudeRatio(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new AmplitudeRatio(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new AmplitudeRatio(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new AmplitudeRatio(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new AmplitudeRatio(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new AmplitudeRatio(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new AmplitudeRatio(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new AmplitudeRatio(1, null));
+        }
+
         public void AmplitudeRatio_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new AmplitudeRatio(1, AmplitudeRatioUnit.DecibelVolt);
@@ -172,20 +174,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new AmplitudeRatio(value: 1, unit: AmplitudeRatio.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var decibelvolt = AmplitudeRatio.FromDecibelVolts(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => decibelvolt.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => decibelvolt.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => decibelvolt.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => decibelvolt.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => decibelvolt.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => decibelvolt.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => decibelvolt.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var decibelvolt = AmplitudeRatio.FromDecibelVolts(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => decibelvolt.As(null));
         }
 
         [Fact]
@@ -208,6 +215,28 @@ namespace UnitsNet.Tests
             var decibelvoltQuantity = decibelvolt.ToUnit(AmplitudeRatioUnit.DecibelVolt);
             AssertEx.EqualTolerance(DecibelVoltsInOneDecibelVolt, (double)decibelvoltQuantity.Value, DecibelVoltsTolerance);
             Assert.Equal(AmplitudeRatioUnit.DecibelVolt, decibelvoltQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var decibelvolt = AmplitudeRatio.FromDecibelVolts(1);
+
+            Assert.Throws<ArgumentException>(() => decibelvolt.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => decibelvolt.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => decibelvolt.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => decibelvolt.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => decibelvolt.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => decibelvolt.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => decibelvolt.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var decibelvolt = AmplitudeRatio.FromDecibelVolts(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => decibelvolt.ToUnit(null));
         }
 
         [Fact]

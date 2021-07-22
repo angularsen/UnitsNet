@@ -78,21 +78,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new MagneticFlux(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (MagneticFlux) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new MagneticFlux(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new MagneticFlux(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new MagneticFlux(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new MagneticFlux(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new MagneticFlux(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new MagneticFlux(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new MagneticFlux(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new MagneticFlux(1, null));
+        }
+
         public void MagneticFlux_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new MagneticFlux(1, MagneticFluxUnit.Weber);
@@ -148,20 +150,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new MagneticFlux(value: 1, unit: MagneticFlux.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var weber = MagneticFlux.FromWebers(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => weber.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => weber.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => weber.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => weber.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => weber.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => weber.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => weber.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var weber = MagneticFlux.FromWebers(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => weber.As(null));
         }
 
         [Fact]
@@ -172,6 +179,28 @@ namespace UnitsNet.Tests
             var weberQuantity = weber.ToUnit(MagneticFluxUnit.Weber);
             AssertEx.EqualTolerance(WebersInOneWeber, (double)weberQuantity.Value, WebersTolerance);
             Assert.Equal(MagneticFluxUnit.Weber, weberQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var weber = MagneticFlux.FromWebers(1);
+
+            Assert.Throws<ArgumentException>(() => weber.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => weber.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => weber.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => weber.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => weber.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => weber.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => weber.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var weber = MagneticFlux.FromWebers(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => weber.ToUnit(null));
         }
 
         [Fact]

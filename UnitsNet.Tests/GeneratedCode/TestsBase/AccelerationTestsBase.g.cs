@@ -119,6 +119,32 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var siQuantity = new Acceleration(1, UnitSystem.SI);
+            Assert.Equal(1, (double)siQuantity.Value);
+            Assert.Equal(AccelerationUnit.MeterPerSecondSquared, siQuantity.Unit);
+
+            var cgsQuantity = new Acceleration(1, UnitSystem.CGS);
+            Assert.Equal(1, (double)cgsQuantity.Value);
+            Assert.Equal(AccelerationUnit.CentimeterPerSecondSquared, cgsQuantity.Unit);
+
+            var eeQuantity = new Acceleration(1, UnitSystem.EE);
+            Assert.Equal(1, (double)eeQuantity.Value);
+            Assert.Equal(AccelerationUnit.FootPerSecondSquared, eeQuantity.Unit);
+
+            Assert.Throws<ArgumentException>(() => new Acceleration(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new Acceleration(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new Acceleration(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new Acceleration(1, UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Acceleration(1, null));
+        }
+
         public void Acceleration_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new Acceleration(1, AccelerationUnit.MeterPerSecondSquared);
@@ -269,6 +295,29 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var meterpersecondsquared = Acceleration.FromMetersPerSecondSquared(1);
+
+            AssertEx.EqualTolerance(MetersPerSecondSquaredInOneMeterPerSecondSquared, meterpersecondsquared.As(UnitSystem.SI), MetersPerSecondSquaredTolerance);
+            AssertEx.EqualTolerance(CentimetersPerSecondSquaredInOneMeterPerSecondSquared, meterpersecondsquared.As(UnitSystem.CGS), CentimetersPerSecondSquaredTolerance);
+            AssertEx.EqualTolerance(FeetPerSecondSquaredInOneMeterPerSecondSquared, meterpersecondsquared.As(UnitSystem.EE), FeetPerSecondSquaredTolerance);
+
+            Assert.Throws<ArgumentException>(() => meterpersecondsquared.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => meterpersecondsquared.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => meterpersecondsquared.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => meterpersecondsquared.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var meterpersecondsquared = Acceleration.FromMetersPerSecondSquared(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => meterpersecondsquared.As(null));
+        }
+
+        [Fact]
         public void ToUnit()
         {
             var meterpersecondsquared = Acceleration.FromMetersPerSecondSquared(1);
@@ -331,10 +380,34 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantityInBaseUnit = Acceleration.FromMetersPerSecondSquared(1).ToBaseUnit();
-            Assert.Equal(Acceleration.BaseUnit, quantityInBaseUnit.Unit);
+            var meterpersecondsquared = Acceleration.FromMetersPerSecondSquared(1);
+
+            var siQuantity = meterpersecondsquared.ToUnit(UnitSystem.SI);
+            AssertEx.EqualTolerance(MetersPerSecondSquaredInOneMeterPerSecondSquared, (double)siQuantity.Value, MetersPerSecondSquaredTolerance);
+            Assert.Equal(AccelerationUnit.MeterPerSecondSquared, siQuantity.Unit);
+
+            var cgsQuantity = meterpersecondsquared.ToUnit(UnitSystem.CGS);
+            AssertEx.EqualTolerance(CentimetersPerSecondSquaredInOneMeterPerSecondSquared, (double)cgsQuantity.Value, CentimetersPerSecondSquaredTolerance);
+            Assert.Equal(AccelerationUnit.CentimeterPerSecondSquared, cgsQuantity.Unit);
+
+            var eeQuantity = meterpersecondsquared.ToUnit(UnitSystem.EE);
+            AssertEx.EqualTolerance(FeetPerSecondSquaredInOneMeterPerSecondSquared, (double)eeQuantity.Value, FeetPerSecondSquaredTolerance);
+            Assert.Equal(AccelerationUnit.FootPerSecondSquared, eeQuantity.Unit);
+
+            Assert.Throws<ArgumentException>(() => meterpersecondsquared.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => meterpersecondsquared.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => meterpersecondsquared.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => meterpersecondsquared.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var meterpersecondsquared = Acceleration.FromMetersPerSecondSquared(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => meterpersecondsquared.ToUnit(null));
         }
 
         [Fact]

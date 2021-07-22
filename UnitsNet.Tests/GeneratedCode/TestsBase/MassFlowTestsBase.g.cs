@@ -142,21 +142,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new MassFlow(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (MassFlow) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new MassFlow(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new MassFlow(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new MassFlow(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new MassFlow(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new MassFlow(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new MassFlow(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new MassFlow(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new MassFlow(1, null));
+        }
+
         public void MassFlow_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new MassFlow(1, MassFlowUnit.GramPerSecond);
@@ -404,20 +406,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new MassFlow(value: 1, unit: MassFlow.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var grampersecond = MassFlow.FromGramsPerSecond(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => grampersecond.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => grampersecond.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => grampersecond.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => grampersecond.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => grampersecond.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => grampersecond.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => grampersecond.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var grampersecond = MassFlow.FromGramsPerSecond(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => grampersecond.As(null));
         }
 
         [Fact]
@@ -556,6 +563,28 @@ namespace UnitsNet.Tests
             var tonneperhourQuantity = grampersecond.ToUnit(MassFlowUnit.TonnePerHour);
             AssertEx.EqualTolerance(TonnesPerHourInOneGramPerSecond, (double)tonneperhourQuantity.Value, TonnesPerHourTolerance);
             Assert.Equal(MassFlowUnit.TonnePerHour, tonneperhourQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var grampersecond = MassFlow.FromGramsPerSecond(1);
+
+            Assert.Throws<ArgumentException>(() => grampersecond.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => grampersecond.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => grampersecond.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => grampersecond.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => grampersecond.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => grampersecond.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => grampersecond.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var grampersecond = MassFlow.FromGramsPerSecond(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => grampersecond.ToUnit(null));
         }
 
         [Fact]

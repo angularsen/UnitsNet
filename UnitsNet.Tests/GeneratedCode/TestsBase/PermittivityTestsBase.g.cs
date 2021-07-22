@@ -78,21 +78,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new Permittivity(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (Permittivity) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new Permittivity(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new Permittivity(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new Permittivity(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new Permittivity(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new Permittivity(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new Permittivity(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new Permittivity(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Permittivity(1, null));
+        }
+
         public void Permittivity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new Permittivity(1, PermittivityUnit.FaradPerMeter);
@@ -148,20 +150,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Permittivity(value: 1, unit: Permittivity.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var faradpermeter = Permittivity.FromFaradsPerMeter(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => faradpermeter.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => faradpermeter.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => faradpermeter.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => faradpermeter.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => faradpermeter.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => faradpermeter.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => faradpermeter.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var faradpermeter = Permittivity.FromFaradsPerMeter(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => faradpermeter.As(null));
         }
 
         [Fact]
@@ -172,6 +179,28 @@ namespace UnitsNet.Tests
             var faradpermeterQuantity = faradpermeter.ToUnit(PermittivityUnit.FaradPerMeter);
             AssertEx.EqualTolerance(FaradsPerMeterInOneFaradPerMeter, (double)faradpermeterQuantity.Value, FaradsPerMeterTolerance);
             Assert.Equal(PermittivityUnit.FaradPerMeter, faradpermeterQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var faradpermeter = Permittivity.FromFaradsPerMeter(1);
+
+            Assert.Throws<ArgumentException>(() => faradpermeter.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => faradpermeter.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => faradpermeter.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => faradpermeter.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => faradpermeter.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => faradpermeter.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => faradpermeter.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var faradpermeter = Permittivity.FromFaradsPerMeter(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => faradpermeter.ToUnit(null));
         }
 
         [Fact]

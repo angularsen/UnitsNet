@@ -178,21 +178,32 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new Volume(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (Volume) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var siQuantity = new Volume(1, UnitSystem.SI);
+            Assert.Equal(1, (double)siQuantity.Value);
+            Assert.Equal(VolumeUnit.CubicMeter, siQuantity.Unit);
+
+            var cgsQuantity = new Volume(1, UnitSystem.CGS);
+            Assert.Equal(1, (double)cgsQuantity.Value);
+            Assert.Equal(VolumeUnit.CubicCentimeter, cgsQuantity.Unit);
+
+            var eeQuantity = new Volume(1, UnitSystem.EE);
+            Assert.Equal(1, (double)eeQuantity.Value);
+            Assert.Equal(VolumeUnit.CubicFoot, eeQuantity.Unit);
+
+            Assert.Throws<ArgumentException>(() => new Volume(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new Volume(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new Volume(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new Volume(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Volume(1, null));
+        }
+
         public void Volume_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new Volume(1, VolumeUnit.CubicMeter);
@@ -548,20 +559,26 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Volume(value: 1, unit: Volume.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var cubicmeter = Volume.FromCubicMeters(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            AssertEx.EqualTolerance(CubicMetersInOneCubicMeter, cubicmeter.As(UnitSystem.SI), CubicMetersTolerance);
+            AssertEx.EqualTolerance(CubicCentimetersInOneCubicMeter, cubicmeter.As(UnitSystem.CGS), CubicCentimetersTolerance);
+            AssertEx.EqualTolerance(CubicFeetInOneCubicMeter, cubicmeter.As(UnitSystem.EE), CubicFeetTolerance);
+
+            Assert.Throws<ArgumentException>(() => cubicmeter.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => cubicmeter.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => cubicmeter.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => cubicmeter.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var cubicmeter = Volume.FromCubicMeters(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => cubicmeter.As(null));
         }
 
         [Fact]
@@ -772,6 +789,37 @@ namespace UnitsNet.Tests
             var usteaspoonQuantity = cubicmeter.ToUnit(VolumeUnit.UsTeaspoon);
             AssertEx.EqualTolerance(UsTeaspoonsInOneCubicMeter, (double)usteaspoonQuantity.Value, UsTeaspoonsTolerance);
             Assert.Equal(VolumeUnit.UsTeaspoon, usteaspoonQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var cubicmeter = Volume.FromCubicMeters(1);
+
+            var siQuantity = cubicmeter.ToUnit(UnitSystem.SI);
+            AssertEx.EqualTolerance(CubicMetersInOneCubicMeter, (double)siQuantity.Value, CubicMetersTolerance);
+            Assert.Equal(VolumeUnit.CubicMeter, siQuantity.Unit);
+
+            var cgsQuantity = cubicmeter.ToUnit(UnitSystem.CGS);
+            AssertEx.EqualTolerance(CubicCentimetersInOneCubicMeter, (double)cgsQuantity.Value, CubicCentimetersTolerance);
+            Assert.Equal(VolumeUnit.CubicCentimeter, cgsQuantity.Unit);
+
+            var eeQuantity = cubicmeter.ToUnit(UnitSystem.EE);
+            AssertEx.EqualTolerance(CubicFeetInOneCubicMeter, (double)eeQuantity.Value, CubicFeetTolerance);
+            Assert.Equal(VolumeUnit.CubicFoot, eeQuantity.Unit);
+
+            Assert.Throws<ArgumentException>(() => cubicmeter.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => cubicmeter.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => cubicmeter.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => cubicmeter.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var cubicmeter = Volume.FromCubicMeters(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => cubicmeter.ToUnit(null));
         }
 
         [Fact]

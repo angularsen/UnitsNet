@@ -5,7 +5,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ForceChangeRateTests : ForceChangeRateTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
         protected override double NewtonsPerMinuteInOneNewtonPerSecond => 60;
         protected override double DecanewtonsPerMinuteInOneNewtonPerSecond => 6;
         protected override double KilonewtonsPerMinuteInOneNewtonPerSecond => 0.06;

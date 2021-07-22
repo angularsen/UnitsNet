@@ -78,21 +78,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new Scalar(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (Scalar) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new Scalar(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new Scalar(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new Scalar(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new Scalar(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new Scalar(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new Scalar(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new Scalar(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Scalar(1, null));
+        }
+
         public void Scalar_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new Scalar(1, ScalarUnit.Amount);
@@ -148,20 +150,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Scalar(value: 1, unit: Scalar.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var amount = Scalar.FromAmount(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => amount.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => amount.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => amount.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => amount.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => amount.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => amount.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => amount.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var amount = Scalar.FromAmount(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => amount.As(null));
         }
 
         [Fact]
@@ -172,6 +179,28 @@ namespace UnitsNet.Tests
             var amountQuantity = amount.ToUnit(ScalarUnit.Amount);
             AssertEx.EqualTolerance(AmountInOneAmount, (double)amountQuantity.Value, AmountTolerance);
             Assert.Equal(ScalarUnit.Amount, amountQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var amount = Scalar.FromAmount(1);
+
+            Assert.Throws<ArgumentException>(() => amount.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => amount.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => amount.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => amount.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => amount.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => amount.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => amount.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var amount = Scalar.FromAmount(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => amount.ToUnit(null));
         }
 
         [Fact]

@@ -57,6 +57,9 @@
     <EmbeddedResource Remove="UnitDefinitions\**" />
     <None Remove="UnitDefinitions\**" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GeneratedCode\UnitSystems\" />
+  </ItemGroup>
 
   <!-- Files to include in nuget package -->
   <ItemGroup>

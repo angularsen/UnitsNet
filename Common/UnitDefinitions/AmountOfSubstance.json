@@ -14,7 +14,8 @@
       "BaseUnits": {
         "N": "Mole"
       },
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega"],
+      "UnitSystems": [ "SI", "CGS" ],
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -30,6 +31,7 @@
       },
       "FromUnitToBaseFunc": "x*453.59237",
       "FromBaseToUnitFunc": "x/453.59237",
+      "UnitSystems": [ "BI", "EE", "FPS", "USC" ],
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
       "Localization": [
         {
@@ -37,6 +39,32 @@
           "Abbreviations": [ "lbmol" ]
         }
       ]
+    }
+  ],
+  "UnitSystems": [
+    {
+      "UnitSystem": "SI",
+      "BaseUnit": "Mole"
+    },
+    {
+      "UnitSystem": "CGS",
+      "BaseUnit": "Mole"
+    },
+    {
+      "UnitSystem": "BI",
+      "BaseUnit": "PoundMole"
+    },
+    {
+      "UnitSystem": "EE",
+      "BaseUnit": "PoundMole"
+    },
+    {
+      "UnitSystem": "FPS",
+      "BaseUnit": "PoundMole"
+    },
+    {
+      "UnitSystem": "USC",
+      "BaseUnit": "PoundMole"
     }
   ]
 }

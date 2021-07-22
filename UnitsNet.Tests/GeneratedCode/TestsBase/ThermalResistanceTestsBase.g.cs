@@ -86,21 +86,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new ThermalResistance(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (ThermalResistance) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new ThermalResistance(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new ThermalResistance(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new ThermalResistance(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new ThermalResistance(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new ThermalResistance(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new ThermalResistance(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new ThermalResistance(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new ThermalResistance(1, null));
+        }
+
         public void ThermalResistance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new ThermalResistance(1, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt);
@@ -180,20 +182,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new ThermalResistance(value: 1, unit: ThermalResistance.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var squaremeterkelvinperkilowatt = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => squaremeterkelvinperkilowatt.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => squaremeterkelvinperkilowatt.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => squaremeterkelvinperkilowatt.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => squaremeterkelvinperkilowatt.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => squaremeterkelvinperkilowatt.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => squaremeterkelvinperkilowatt.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => squaremeterkelvinperkilowatt.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var squaremeterkelvinperkilowatt = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => squaremeterkelvinperkilowatt.As(null));
         }
 
         [Fact]
@@ -220,6 +227,28 @@ namespace UnitsNet.Tests
             var squaremeterkelvinperkilowattQuantity = squaremeterkelvinperkilowatt.ToUnit(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt);
             AssertEx.EqualTolerance(SquareMeterKelvinsPerKilowattInOneSquareMeterKelvinPerKilowatt, (double)squaremeterkelvinperkilowattQuantity.Value, SquareMeterKelvinsPerKilowattTolerance);
             Assert.Equal(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, squaremeterkelvinperkilowattQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var squaremeterkelvinperkilowatt = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1);
+
+            Assert.Throws<ArgumentException>(() => squaremeterkelvinperkilowatt.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => squaremeterkelvinperkilowatt.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => squaremeterkelvinperkilowatt.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => squaremeterkelvinperkilowatt.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => squaremeterkelvinperkilowatt.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => squaremeterkelvinperkilowatt.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => squaremeterkelvinperkilowatt.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var squaremeterkelvinperkilowatt = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => squaremeterkelvinperkilowatt.ToUnit(null));
         }
 
         [Fact]

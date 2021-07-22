@@ -8,7 +8,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class EnergyTests : EnergyTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
         protected override double ThermsImperialInOneJoule => 9.478171203551087813109937767482e-9;
 
         protected override double JoulesInOneJoule => 1;

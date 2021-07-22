@@ -7,7 +7,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class SpecificEnergyTests : SpecificEnergyTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
         protected override double JoulesPerKilogramInOneJoulePerKilogram => 1e0;
         protected override double KilojoulesPerKilogramInOneJoulePerKilogram => 1e-3;
         protected override double MegajoulesPerKilogramInOneJoulePerKilogram => 1e-6;

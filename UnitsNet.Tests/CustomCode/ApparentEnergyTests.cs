@@ -27,8 +27,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ApparentEnergyTests : ApparentEnergyTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
-
         protected override double VoltampereHoursInOneVoltampereHour => 1;
 
         protected override double KilovoltampereHoursInOneVoltampereHour => 1E-3;

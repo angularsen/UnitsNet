@@ -78,21 +78,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new LapseRate(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (LapseRate) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new LapseRate(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new LapseRate(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new LapseRate(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new LapseRate(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new LapseRate(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new LapseRate(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new LapseRate(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new LapseRate(1, null));
+        }
+
         public void LapseRate_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new LapseRate(1, LapseRateUnit.DegreeCelsiusPerKilometer);
@@ -148,20 +150,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new LapseRate(value: 1, unit: LapseRate.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var degreecelsiusperkilometer = LapseRate.FromDegreesCelciusPerKilometer(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => degreecelsiusperkilometer.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => degreecelsiusperkilometer.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => degreecelsiusperkilometer.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => degreecelsiusperkilometer.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => degreecelsiusperkilometer.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => degreecelsiusperkilometer.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => degreecelsiusperkilometer.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var degreecelsiusperkilometer = LapseRate.FromDegreesCelciusPerKilometer(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => degreecelsiusperkilometer.As(null));
         }
 
         [Fact]
@@ -172,6 +179,28 @@ namespace UnitsNet.Tests
             var degreecelsiusperkilometerQuantity = degreecelsiusperkilometer.ToUnit(LapseRateUnit.DegreeCelsiusPerKilometer);
             AssertEx.EqualTolerance(DegreesCelciusPerKilometerInOneDegreeCelsiusPerKilometer, (double)degreecelsiusperkilometerQuantity.Value, DegreesCelciusPerKilometerTolerance);
             Assert.Equal(LapseRateUnit.DegreeCelsiusPerKilometer, degreecelsiusperkilometerQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var degreecelsiusperkilometer = LapseRate.FromDegreesCelciusPerKilometer(1);
+
+            Assert.Throws<ArgumentException>(() => degreecelsiusperkilometer.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => degreecelsiusperkilometer.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => degreecelsiusperkilometer.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => degreecelsiusperkilometer.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => degreecelsiusperkilometer.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => degreecelsiusperkilometer.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => degreecelsiusperkilometer.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var degreecelsiusperkilometer = LapseRate.FromDegreesCelciusPerKilometer(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => degreecelsiusperkilometer.ToUnit(null));
         }
 
         [Fact]

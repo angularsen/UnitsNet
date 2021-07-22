@@ -88,21 +88,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new WarpingMomentOfInertia(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (WarpingMomentOfInertia) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new WarpingMomentOfInertia(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new WarpingMomentOfInertia(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new WarpingMomentOfInertia(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new WarpingMomentOfInertia(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new WarpingMomentOfInertia(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new WarpingMomentOfInertia(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new WarpingMomentOfInertia(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new WarpingMomentOfInertia(1, null));
+        }
+
         public void WarpingMomentOfInertia_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new WarpingMomentOfInertia(1, WarpingMomentOfInertiaUnit.MeterToTheSixth);
@@ -188,20 +190,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new WarpingMomentOfInertia(value: 1, unit: WarpingMomentOfInertia.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var metertothesixth = WarpingMomentOfInertia.FromMetersToTheSixth(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => metertothesixth.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => metertothesixth.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => metertothesixth.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => metertothesixth.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => metertothesixth.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => metertothesixth.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => metertothesixth.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var metertothesixth = WarpingMomentOfInertia.FromMetersToTheSixth(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => metertothesixth.As(null));
         }
 
         [Fact]
@@ -232,6 +239,28 @@ namespace UnitsNet.Tests
             var millimetertothesixthQuantity = metertothesixth.ToUnit(WarpingMomentOfInertiaUnit.MillimeterToTheSixth);
             AssertEx.EqualTolerance(MillimetersToTheSixthInOneMeterToTheSixth, (double)millimetertothesixthQuantity.Value, MillimetersToTheSixthTolerance);
             Assert.Equal(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, millimetertothesixthQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var metertothesixth = WarpingMomentOfInertia.FromMetersToTheSixth(1);
+
+            Assert.Throws<ArgumentException>(() => metertothesixth.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => metertothesixth.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => metertothesixth.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => metertothesixth.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => metertothesixth.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => metertothesixth.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => metertothesixth.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var metertothesixth = WarpingMomentOfInertia.FromMetersToTheSixth(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => metertothesixth.ToUnit(null));
         }
 
         [Fact]

@@ -106,21 +106,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new ForceChangeRate(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (ForceChangeRate) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new ForceChangeRate(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new ForceChangeRate(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new ForceChangeRate(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new ForceChangeRate(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new ForceChangeRate(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new ForceChangeRate(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new ForceChangeRate(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new ForceChangeRate(1, null));
+        }
+
         public void ForceChangeRate_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new ForceChangeRate(1, ForceChangeRateUnit.NewtonPerSecond);
@@ -260,20 +262,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new ForceChangeRate(value: 1, unit: ForceChangeRate.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var newtonpersecond = ForceChangeRate.FromNewtonsPerSecond(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => newtonpersecond.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => newtonpersecond.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => newtonpersecond.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => newtonpersecond.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => newtonpersecond.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => newtonpersecond.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => newtonpersecond.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var newtonpersecond = ForceChangeRate.FromNewtonsPerSecond(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => newtonpersecond.As(null));
         }
 
         [Fact]
@@ -340,6 +347,28 @@ namespace UnitsNet.Tests
             var poundforcepersecondQuantity = newtonpersecond.ToUnit(ForceChangeRateUnit.PoundForcePerSecond);
             AssertEx.EqualTolerance(PoundsForcePerSecondInOneNewtonPerSecond, (double)poundforcepersecondQuantity.Value, PoundsForcePerSecondTolerance);
             Assert.Equal(ForceChangeRateUnit.PoundForcePerSecond, poundforcepersecondQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var newtonpersecond = ForceChangeRate.FromNewtonsPerSecond(1);
+
+            Assert.Throws<ArgumentException>(() => newtonpersecond.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => newtonpersecond.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => newtonpersecond.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => newtonpersecond.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => newtonpersecond.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => newtonpersecond.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => newtonpersecond.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var newtonpersecond = ForceChangeRate.FromNewtonsPerSecond(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => newtonpersecond.ToUnit(null));
         }
 
         [Fact]

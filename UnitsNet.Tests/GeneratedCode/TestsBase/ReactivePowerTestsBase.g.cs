@@ -84,21 +84,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new ReactivePower(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (ReactivePower) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new ReactivePower(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new ReactivePower(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new ReactivePower(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new ReactivePower(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new ReactivePower(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new ReactivePower(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new ReactivePower(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new ReactivePower(1, null));
+        }
+
         public void ReactivePower_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new ReactivePower(1, ReactivePowerUnit.VoltampereReactive);
@@ -172,20 +174,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new ReactivePower(value: 1, unit: ReactivePower.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var voltamperereactive = ReactivePower.FromVoltamperesReactive(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => voltamperereactive.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => voltamperereactive.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => voltamperereactive.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => voltamperereactive.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => voltamperereactive.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => voltamperereactive.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => voltamperereactive.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var voltamperereactive = ReactivePower.FromVoltamperesReactive(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => voltamperereactive.As(null));
         }
 
         [Fact]
@@ -208,6 +215,28 @@ namespace UnitsNet.Tests
             var voltamperereactiveQuantity = voltamperereactive.ToUnit(ReactivePowerUnit.VoltampereReactive);
             AssertEx.EqualTolerance(VoltamperesReactiveInOneVoltampereReactive, (double)voltamperereactiveQuantity.Value, VoltamperesReactiveTolerance);
             Assert.Equal(ReactivePowerUnit.VoltampereReactive, voltamperereactiveQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var voltamperereactive = ReactivePower.FromVoltamperesReactive(1);
+
+            Assert.Throws<ArgumentException>(() => voltamperereactive.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => voltamperereactive.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => voltamperereactive.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => voltamperereactive.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => voltamperereactive.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => voltamperereactive.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => voltamperereactive.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var voltamperereactive = ReactivePower.FromVoltamperesReactive(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => voltamperereactive.ToUnit(null));
         }
 
         [Fact]

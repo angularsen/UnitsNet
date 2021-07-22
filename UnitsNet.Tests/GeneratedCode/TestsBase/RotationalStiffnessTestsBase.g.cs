@@ -142,21 +142,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new RotationalStiffness(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (RotationalStiffness) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new RotationalStiffness(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new RotationalStiffness(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new RotationalStiffness(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new RotationalStiffness(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new RotationalStiffness(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new RotationalStiffness(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new RotationalStiffness(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new RotationalStiffness(1, null));
+        }
+
         public void RotationalStiffness_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new RotationalStiffness(1, RotationalStiffnessUnit.NewtonMeterPerRadian);
@@ -404,20 +406,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new RotationalStiffness(value: 1, unit: RotationalStiffness.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var newtonmeterperradian = RotationalStiffness.FromNewtonMetersPerRadian(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => newtonmeterperradian.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => newtonmeterperradian.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => newtonmeterperradian.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => newtonmeterperradian.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => newtonmeterperradian.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => newtonmeterperradian.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => newtonmeterperradian.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var newtonmeterperradian = RotationalStiffness.FromNewtonMetersPerRadian(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => newtonmeterperradian.As(null));
         }
 
         [Fact]
@@ -556,6 +563,28 @@ namespace UnitsNet.Tests
             var poundforcefootperdegreesQuantity = newtonmeterperradian.ToUnit(RotationalStiffnessUnit.PoundForceFootPerDegrees);
             AssertEx.EqualTolerance(PoundForceFeetPerDegreesInOneNewtonMeterPerRadian, (double)poundforcefootperdegreesQuantity.Value, PoundForceFeetPerDegreesTolerance);
             Assert.Equal(RotationalStiffnessUnit.PoundForceFootPerDegrees, poundforcefootperdegreesQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var newtonmeterperradian = RotationalStiffness.FromNewtonMetersPerRadian(1);
+
+            Assert.Throws<ArgumentException>(() => newtonmeterperradian.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => newtonmeterperradian.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => newtonmeterperradian.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => newtonmeterperradian.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => newtonmeterperradian.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => newtonmeterperradian.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => newtonmeterperradian.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var newtonmeterperradian = RotationalStiffness.FromNewtonMetersPerRadian(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => newtonmeterperradian.ToUnit(null));
         }
 
         [Fact]

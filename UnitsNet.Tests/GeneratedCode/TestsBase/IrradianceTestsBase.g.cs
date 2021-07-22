@@ -104,21 +104,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new Irradiance(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (Irradiance) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new Irradiance(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new Irradiance(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new Irradiance(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new Irradiance(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new Irradiance(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new Irradiance(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new Irradiance(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Irradiance(1, null));
+        }
+
         public void Irradiance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new Irradiance(1, IrradianceUnit.WattPerSquareMeter);
@@ -252,20 +254,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Irradiance(value: 1, unit: Irradiance.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var wattpersquaremeter = Irradiance.FromWattsPerSquareMeter(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => wattpersquaremeter.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => wattpersquaremeter.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => wattpersquaremeter.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => wattpersquaremeter.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => wattpersquaremeter.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => wattpersquaremeter.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => wattpersquaremeter.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var wattpersquaremeter = Irradiance.FromWattsPerSquareMeter(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => wattpersquaremeter.As(null));
         }
 
         [Fact]
@@ -328,6 +335,28 @@ namespace UnitsNet.Tests
             var wattpersquaremeterQuantity = wattpersquaremeter.ToUnit(IrradianceUnit.WattPerSquareMeter);
             AssertEx.EqualTolerance(WattsPerSquareMeterInOneWattPerSquareMeter, (double)wattpersquaremeterQuantity.Value, WattsPerSquareMeterTolerance);
             Assert.Equal(IrradianceUnit.WattPerSquareMeter, wattpersquaremeterQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var wattpersquaremeter = Irradiance.FromWattsPerSquareMeter(1);
+
+            Assert.Throws<ArgumentException>(() => wattpersquaremeter.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => wattpersquaremeter.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => wattpersquaremeter.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => wattpersquaremeter.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => wattpersquaremeter.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => wattpersquaremeter.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => wattpersquaremeter.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var wattpersquaremeter = Irradiance.FromWattsPerSquareMeter(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => wattpersquaremeter.ToUnit(null));
         }
 
         [Fact]

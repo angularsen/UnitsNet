@@ -104,21 +104,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new ElectricResistivity(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (ElectricResistivity) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new ElectricResistivity(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new ElectricResistivity(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new ElectricResistivity(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new ElectricResistivity(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new ElectricResistivity(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new ElectricResistivity(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new ElectricResistivity(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new ElectricResistivity(1, null));
+        }
+
         public void ElectricResistivity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new ElectricResistivity(1, ElectricResistivityUnit.OhmMeter);
@@ -252,20 +254,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new ElectricResistivity(value: 1, unit: ElectricResistivity.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var ohmmeter = ElectricResistivity.FromOhmMeters(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => ohmmeter.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => ohmmeter.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => ohmmeter.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => ohmmeter.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => ohmmeter.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => ohmmeter.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => ohmmeter.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var ohmmeter = ElectricResistivity.FromOhmMeters(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => ohmmeter.As(null));
         }
 
         [Fact]
@@ -328,6 +335,28 @@ namespace UnitsNet.Tests
             var picoohmmeterQuantity = ohmmeter.ToUnit(ElectricResistivityUnit.PicoohmMeter);
             AssertEx.EqualTolerance(PicoohmMetersInOneOhmMeter, (double)picoohmmeterQuantity.Value, PicoohmMetersTolerance);
             Assert.Equal(ElectricResistivityUnit.PicoohmMeter, picoohmmeterQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var ohmmeter = ElectricResistivity.FromOhmMeters(1);
+
+            Assert.Throws<ArgumentException>(() => ohmmeter.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => ohmmeter.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => ohmmeter.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => ohmmeter.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => ohmmeter.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => ohmmeter.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => ohmmeter.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var ohmmeter = ElectricResistivity.FromOhmMeters(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => ohmmeter.ToUnit(null));
         }
 
         [Fact]

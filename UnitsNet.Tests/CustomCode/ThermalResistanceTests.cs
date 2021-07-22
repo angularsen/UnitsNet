@@ -27,7 +27,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ThermalResistanceTests : ThermalResistanceTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
         protected override double HourSquareFeetDegreesFahrenheitPerBtuInOneSquareMeterKelvinPerKilowatt => 0.0056782d;
         protected override double SquareCentimeterHourDegreesCelsiusPerKilocalorieInOneSquareMeterKelvinPerKilowatt => 11.63088897992627d;
         protected override double SquareCentimeterKelvinsPerWattInOneSquareMeterKelvinPerKilowatt => 10.00035223670306d;

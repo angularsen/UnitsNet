@@ -116,21 +116,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new Information(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (Information) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new Information(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new Information(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new Information(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new Information(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new Information(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new Information(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new Information(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Information(1, null));
+        }
+
         public void Information_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new Information(1, InformationUnit.Bit);
@@ -323,20 +325,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Information(value: 1, unit: Information.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var bit = Information.FromBits(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => bit.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => bit.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => bit.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => bit.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => bit.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => bit.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => bit.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var bit = Information.FromBits(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => bit.As(null));
         }
 
         [Fact]
@@ -447,6 +454,28 @@ namespace UnitsNet.Tests
             var terabyteQuantity = bit.ToUnit(InformationUnit.Terabyte);
             AssertEx.EqualTolerance(TerabytesInOneBit, (double)terabyteQuantity.Value, TerabytesTolerance);
             Assert.Equal(InformationUnit.Terabyte, terabyteQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var bit = Information.FromBits(1);
+
+            Assert.Throws<ArgumentException>(() => bit.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => bit.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => bit.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => bit.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => bit.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => bit.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => bit.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var bit = Information.FromBits(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => bit.ToUnit(null));
         }
 
         [Fact]

@@ -8,7 +8,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class PowerRatioTests : PowerRatioTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
         protected override double DecibelMilliwattsInOneDecibelWatt => 31;
 
         protected override double DecibelWattsInOneDecibelWatt => 1;

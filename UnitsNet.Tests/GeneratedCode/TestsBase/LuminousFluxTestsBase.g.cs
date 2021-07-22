@@ -78,21 +78,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new LuminousFlux(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (LuminousFlux) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new LuminousFlux(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new LuminousFlux(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new LuminousFlux(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new LuminousFlux(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new LuminousFlux(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new LuminousFlux(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new LuminousFlux(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new LuminousFlux(1, null));
+        }
+
         public void LuminousFlux_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new LuminousFlux(1, LuminousFluxUnit.Lumen);
@@ -148,20 +150,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new LuminousFlux(value: 1, unit: LuminousFlux.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var lumen = LuminousFlux.FromLumens(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => lumen.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => lumen.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => lumen.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => lumen.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => lumen.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => lumen.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => lumen.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var lumen = LuminousFlux.FromLumens(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => lumen.As(null));
         }
 
         [Fact]
@@ -172,6 +179,28 @@ namespace UnitsNet.Tests
             var lumenQuantity = lumen.ToUnit(LuminousFluxUnit.Lumen);
             AssertEx.EqualTolerance(LumensInOneLumen, (double)lumenQuantity.Value, LumensTolerance);
             Assert.Equal(LuminousFluxUnit.Lumen, lumenQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var lumen = LuminousFlux.FromLumens(1);
+
+            Assert.Throws<ArgumentException>(() => lumen.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => lumen.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => lumen.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => lumen.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => lumen.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => lumen.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => lumen.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var lumen = LuminousFlux.FromLumens(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => lumen.ToUnit(null));
         }
 
         [Fact]

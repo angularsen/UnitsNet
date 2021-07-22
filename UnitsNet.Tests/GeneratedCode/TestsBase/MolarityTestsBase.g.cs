@@ -92,21 +92,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new Molarity(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (Molarity) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new Molarity(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new Molarity(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new Molarity(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new Molarity(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new Molarity(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new Molarity(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new Molarity(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Molarity(1, null));
+        }
+
         public void Molarity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new Molarity(1, MolarityUnit.MolesPerCubicMeter);
@@ -204,20 +206,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Molarity(value: 1, unit: Molarity.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var molespercubicmeter = Molarity.FromMolesPerCubicMeter(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => molespercubicmeter.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => molespercubicmeter.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => molespercubicmeter.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => molespercubicmeter.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => molespercubicmeter.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => molespercubicmeter.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => molespercubicmeter.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var molespercubicmeter = Molarity.FromMolesPerCubicMeter(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => molespercubicmeter.As(null));
         }
 
         [Fact]
@@ -256,6 +263,28 @@ namespace UnitsNet.Tests
             var picomolesperliterQuantity = molespercubicmeter.ToUnit(MolarityUnit.PicomolesPerLiter);
             AssertEx.EqualTolerance(PicomolesPerLiterInOneMolesPerCubicMeter, (double)picomolesperliterQuantity.Value, PicomolesPerLiterTolerance);
             Assert.Equal(MolarityUnit.PicomolesPerLiter, picomolesperliterQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var molespercubicmeter = Molarity.FromMolesPerCubicMeter(1);
+
+            Assert.Throws<ArgumentException>(() => molespercubicmeter.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => molespercubicmeter.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => molespercubicmeter.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => molespercubicmeter.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => molespercubicmeter.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => molespercubicmeter.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => molespercubicmeter.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var molespercubicmeter = Molarity.FromMolesPerCubicMeter(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => molespercubicmeter.ToUnit(null));
         }
 
         [Fact]

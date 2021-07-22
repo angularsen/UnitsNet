@@ -10,7 +10,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class PressureTests : PressureTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
         protected override double AtmospheresInOnePascal => 9.8692 * 1E-6;
 
         protected override double BarsInOnePascal => 1E-5;

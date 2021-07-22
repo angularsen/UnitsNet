@@ -78,21 +78,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new ElectricChargeDensity(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (ElectricChargeDensity) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new ElectricChargeDensity(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new ElectricChargeDensity(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new ElectricChargeDensity(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new ElectricChargeDensity(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new ElectricChargeDensity(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new ElectricChargeDensity(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new ElectricChargeDensity(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new ElectricChargeDensity(1, null));
+        }
+
         public void ElectricChargeDensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new ElectricChargeDensity(1, ElectricChargeDensityUnit.CoulombPerCubicMeter);
@@ -148,20 +150,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new ElectricChargeDensity(value: 1, unit: ElectricChargeDensity.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var coulombpercubicmeter = ElectricChargeDensity.FromCoulombsPerCubicMeter(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => coulombpercubicmeter.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => coulombpercubicmeter.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => coulombpercubicmeter.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => coulombpercubicmeter.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => coulombpercubicmeter.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => coulombpercubicmeter.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => coulombpercubicmeter.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var coulombpercubicmeter = ElectricChargeDensity.FromCoulombsPerCubicMeter(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => coulombpercubicmeter.As(null));
         }
 
         [Fact]
@@ -172,6 +179,28 @@ namespace UnitsNet.Tests
             var coulombpercubicmeterQuantity = coulombpercubicmeter.ToUnit(ElectricChargeDensityUnit.CoulombPerCubicMeter);
             AssertEx.EqualTolerance(CoulombsPerCubicMeterInOneCoulombPerCubicMeter, (double)coulombpercubicmeterQuantity.Value, CoulombsPerCubicMeterTolerance);
             Assert.Equal(ElectricChargeDensityUnit.CoulombPerCubicMeter, coulombpercubicmeterQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var coulombpercubicmeter = ElectricChargeDensity.FromCoulombsPerCubicMeter(1);
+
+            Assert.Throws<ArgumentException>(() => coulombpercubicmeter.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => coulombpercubicmeter.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => coulombpercubicmeter.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => coulombpercubicmeter.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => coulombpercubicmeter.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => coulombpercubicmeter.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => coulombpercubicmeter.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var coulombpercubicmeter = ElectricChargeDensity.FromCoulombsPerCubicMeter(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => coulombpercubicmeter.ToUnit(null));
         }
 
         [Fact]

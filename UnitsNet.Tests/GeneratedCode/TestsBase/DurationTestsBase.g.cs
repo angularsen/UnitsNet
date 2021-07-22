@@ -96,21 +96,44 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new Duration(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (Duration) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var siQuantity = new Duration(1, UnitSystem.SI);
+            Assert.Equal(1, (double)siQuantity.Value);
+            Assert.Equal(DurationUnit.Second, siQuantity.Unit);
+
+            var cgsQuantity = new Duration(1, UnitSystem.CGS);
+            Assert.Equal(1, (double)cgsQuantity.Value);
+            Assert.Equal(DurationUnit.Second, cgsQuantity.Unit);
+
+            var biQuantity = new Duration(1, UnitSystem.BI);
+            Assert.Equal(1, (double)biQuantity.Value);
+            Assert.Equal(DurationUnit.Second, biQuantity.Unit);
+
+            var eeQuantity = new Duration(1, UnitSystem.EE);
+            Assert.Equal(1, (double)eeQuantity.Value);
+            Assert.Equal(DurationUnit.Second, eeQuantity.Unit);
+
+            var uscQuantity = new Duration(1, UnitSystem.USC);
+            Assert.Equal(1, (double)uscQuantity.Value);
+            Assert.Equal(DurationUnit.Second, uscQuantity.Unit);
+
+            var fpsQuantity = new Duration(1, UnitSystem.FPS);
+            Assert.Equal(1, (double)fpsQuantity.Value);
+            Assert.Equal(DurationUnit.Second, fpsQuantity.Unit);
+
+            var astronomicalQuantity = new Duration(1, UnitSystem.Astronomical);
+            Assert.Equal(1, (double)astronomicalQuantity.Value);
+            Assert.Equal(DurationUnit.Day, astronomicalQuantity.Unit);
+
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Duration(1, null));
+        }
+
         public void Duration_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new Duration(1, DurationUnit.Second);
@@ -220,20 +243,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Duration(value: 1, unit: Duration.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var second = Duration.FromSeconds(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            AssertEx.EqualTolerance(SecondsInOneSecond, second.As(UnitSystem.SI), SecondsTolerance);
+            AssertEx.EqualTolerance(SecondsInOneSecond, second.As(UnitSystem.CGS), SecondsTolerance);
+            AssertEx.EqualTolerance(SecondsInOneSecond, second.As(UnitSystem.BI), SecondsTolerance);
+            AssertEx.EqualTolerance(SecondsInOneSecond, second.As(UnitSystem.EE), SecondsTolerance);
+            AssertEx.EqualTolerance(SecondsInOneSecond, second.As(UnitSystem.USC), SecondsTolerance);
+            AssertEx.EqualTolerance(SecondsInOneSecond, second.As(UnitSystem.FPS), SecondsTolerance);
+            AssertEx.EqualTolerance(DaysInOneSecond, second.As(UnitSystem.Astronomical), DaysTolerance);
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var second = Duration.FromSeconds(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => second.As(null));
         }
 
         [Fact]
@@ -280,6 +308,48 @@ namespace UnitsNet.Tests
             var year365Quantity = second.ToUnit(DurationUnit.Year365);
             AssertEx.EqualTolerance(Years365InOneSecond, (double)year365Quantity.Value, Years365Tolerance);
             Assert.Equal(DurationUnit.Year365, year365Quantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var second = Duration.FromSeconds(1);
+
+            var siQuantity = second.ToUnit(UnitSystem.SI);
+            AssertEx.EqualTolerance(SecondsInOneSecond, (double)siQuantity.Value, SecondsTolerance);
+            Assert.Equal(DurationUnit.Second, siQuantity.Unit);
+
+            var cgsQuantity = second.ToUnit(UnitSystem.CGS);
+            AssertEx.EqualTolerance(SecondsInOneSecond, (double)cgsQuantity.Value, SecondsTolerance);
+            Assert.Equal(DurationUnit.Second, cgsQuantity.Unit);
+
+            var biQuantity = second.ToUnit(UnitSystem.BI);
+            AssertEx.EqualTolerance(SecondsInOneSecond, (double)biQuantity.Value, SecondsTolerance);
+            Assert.Equal(DurationUnit.Second, biQuantity.Unit);
+
+            var eeQuantity = second.ToUnit(UnitSystem.EE);
+            AssertEx.EqualTolerance(SecondsInOneSecond, (double)eeQuantity.Value, SecondsTolerance);
+            Assert.Equal(DurationUnit.Second, eeQuantity.Unit);
+
+            var uscQuantity = second.ToUnit(UnitSystem.USC);
+            AssertEx.EqualTolerance(SecondsInOneSecond, (double)uscQuantity.Value, SecondsTolerance);
+            Assert.Equal(DurationUnit.Second, uscQuantity.Unit);
+
+            var fpsQuantity = second.ToUnit(UnitSystem.FPS);
+            AssertEx.EqualTolerance(SecondsInOneSecond, (double)fpsQuantity.Value, SecondsTolerance);
+            Assert.Equal(DurationUnit.Second, fpsQuantity.Unit);
+
+            var astronomicalQuantity = second.ToUnit(UnitSystem.Astronomical);
+            AssertEx.EqualTolerance(DaysInOneSecond, (double)astronomicalQuantity.Value, DaysTolerance);
+            Assert.Equal(DurationUnit.Day, astronomicalQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var second = Duration.FromSeconds(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => second.ToUnit(null));
         }
 
         [Fact]

@@ -96,21 +96,44 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new Temperature(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (Temperature) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var siQuantity = new Temperature(1, UnitSystem.SI);
+            Assert.Equal(1, (double)siQuantity.Value);
+            Assert.Equal(TemperatureUnit.Kelvin, siQuantity.Unit);
+
+            var cgsQuantity = new Temperature(1, UnitSystem.CGS);
+            Assert.Equal(1, (double)cgsQuantity.Value);
+            Assert.Equal(TemperatureUnit.Kelvin, cgsQuantity.Unit);
+
+            var biQuantity = new Temperature(1, UnitSystem.BI);
+            Assert.Equal(1, (double)biQuantity.Value);
+            Assert.Equal(TemperatureUnit.DegreeFahrenheit, biQuantity.Unit);
+
+            var eeQuantity = new Temperature(1, UnitSystem.EE);
+            Assert.Equal(1, (double)eeQuantity.Value);
+            Assert.Equal(TemperatureUnit.DegreeFahrenheit, eeQuantity.Unit);
+
+            var uscQuantity = new Temperature(1, UnitSystem.USC);
+            Assert.Equal(1, (double)uscQuantity.Value);
+            Assert.Equal(TemperatureUnit.DegreeFahrenheit, uscQuantity.Unit);
+
+            var fpsQuantity = new Temperature(1, UnitSystem.FPS);
+            Assert.Equal(1, (double)fpsQuantity.Value);
+            Assert.Equal(TemperatureUnit.DegreeFahrenheit, fpsQuantity.Unit);
+
+            var astronomicalQuantity = new Temperature(1, UnitSystem.Astronomical);
+            Assert.Equal(1, (double)astronomicalQuantity.Value);
+            Assert.Equal(TemperatureUnit.Kelvin, astronomicalQuantity.Unit);
+
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Temperature(1, null));
+        }
+
         public void Temperature_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new Temperature(1, TemperatureUnit.Kelvin);
@@ -220,20 +243,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Temperature(value: 1, unit: Temperature.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var kelvin = Temperature.FromKelvins(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            AssertEx.EqualTolerance(KelvinsInOneKelvin, kelvin.As(UnitSystem.SI), KelvinsTolerance);
+            AssertEx.EqualTolerance(KelvinsInOneKelvin, kelvin.As(UnitSystem.CGS), KelvinsTolerance);
+            AssertEx.EqualTolerance(DegreesFahrenheitInOneKelvin, kelvin.As(UnitSystem.BI), DegreesFahrenheitTolerance);
+            AssertEx.EqualTolerance(DegreesFahrenheitInOneKelvin, kelvin.As(UnitSystem.EE), DegreesFahrenheitTolerance);
+            AssertEx.EqualTolerance(DegreesFahrenheitInOneKelvin, kelvin.As(UnitSystem.USC), DegreesFahrenheitTolerance);
+            AssertEx.EqualTolerance(DegreesFahrenheitInOneKelvin, kelvin.As(UnitSystem.FPS), DegreesFahrenheitTolerance);
+            AssertEx.EqualTolerance(KelvinsInOneKelvin, kelvin.As(UnitSystem.Astronomical), KelvinsTolerance);
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var kelvin = Temperature.FromKelvins(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => kelvin.As(null));
         }
 
         [Fact]
@@ -280,6 +308,48 @@ namespace UnitsNet.Tests
             var solartemperatureQuantity = kelvin.ToUnit(TemperatureUnit.SolarTemperature);
             AssertEx.EqualTolerance(SolarTemperaturesInOneKelvin, (double)solartemperatureQuantity.Value, SolarTemperaturesTolerance);
             Assert.Equal(TemperatureUnit.SolarTemperature, solartemperatureQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var kelvin = Temperature.FromKelvins(1);
+
+            var siQuantity = kelvin.ToUnit(UnitSystem.SI);
+            AssertEx.EqualTolerance(KelvinsInOneKelvin, (double)siQuantity.Value, KelvinsTolerance);
+            Assert.Equal(TemperatureUnit.Kelvin, siQuantity.Unit);
+
+            var cgsQuantity = kelvin.ToUnit(UnitSystem.CGS);
+            AssertEx.EqualTolerance(KelvinsInOneKelvin, (double)cgsQuantity.Value, KelvinsTolerance);
+            Assert.Equal(TemperatureUnit.Kelvin, cgsQuantity.Unit);
+
+            var biQuantity = kelvin.ToUnit(UnitSystem.BI);
+            AssertEx.EqualTolerance(DegreesFahrenheitInOneKelvin, (double)biQuantity.Value, DegreesFahrenheitTolerance);
+            Assert.Equal(TemperatureUnit.DegreeFahrenheit, biQuantity.Unit);
+
+            var eeQuantity = kelvin.ToUnit(UnitSystem.EE);
+            AssertEx.EqualTolerance(DegreesFahrenheitInOneKelvin, (double)eeQuantity.Value, DegreesFahrenheitTolerance);
+            Assert.Equal(TemperatureUnit.DegreeFahrenheit, eeQuantity.Unit);
+
+            var uscQuantity = kelvin.ToUnit(UnitSystem.USC);
+            AssertEx.EqualTolerance(DegreesFahrenheitInOneKelvin, (double)uscQuantity.Value, DegreesFahrenheitTolerance);
+            Assert.Equal(TemperatureUnit.DegreeFahrenheit, uscQuantity.Unit);
+
+            var fpsQuantity = kelvin.ToUnit(UnitSystem.FPS);
+            AssertEx.EqualTolerance(DegreesFahrenheitInOneKelvin, (double)fpsQuantity.Value, DegreesFahrenheitTolerance);
+            Assert.Equal(TemperatureUnit.DegreeFahrenheit, fpsQuantity.Unit);
+
+            var astronomicalQuantity = kelvin.ToUnit(UnitSystem.Astronomical);
+            AssertEx.EqualTolerance(KelvinsInOneKelvin, (double)astronomicalQuantity.Value, KelvinsTolerance);
+            Assert.Equal(TemperatureUnit.Kelvin, astronomicalQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var kelvin = Temperature.FromKelvins(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => kelvin.ToUnit(null));
         }
 
         [Fact]

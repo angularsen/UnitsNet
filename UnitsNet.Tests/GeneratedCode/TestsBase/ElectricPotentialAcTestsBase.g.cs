@@ -86,21 +86,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new ElectricPotentialAc(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (ElectricPotentialAc) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new ElectricPotentialAc(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new ElectricPotentialAc(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new ElectricPotentialAc(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new ElectricPotentialAc(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new ElectricPotentialAc(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new ElectricPotentialAc(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new ElectricPotentialAc(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new ElectricPotentialAc(1, null));
+        }
+
         public void ElectricPotentialAc_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new ElectricPotentialAc(1, ElectricPotentialAcUnit.VoltAc);
@@ -180,20 +182,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new ElectricPotentialAc(value: 1, unit: ElectricPotentialAc.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var voltac = ElectricPotentialAc.FromVoltsAc(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => voltac.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => voltac.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => voltac.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => voltac.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => voltac.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => voltac.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => voltac.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var voltac = ElectricPotentialAc.FromVoltsAc(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => voltac.As(null));
         }
 
         [Fact]
@@ -220,6 +227,28 @@ namespace UnitsNet.Tests
             var voltacQuantity = voltac.ToUnit(ElectricPotentialAcUnit.VoltAc);
             AssertEx.EqualTolerance(VoltsAcInOneVoltAc, (double)voltacQuantity.Value, VoltsAcTolerance);
             Assert.Equal(ElectricPotentialAcUnit.VoltAc, voltacQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var voltac = ElectricPotentialAc.FromVoltsAc(1);
+
+            Assert.Throws<ArgumentException>(() => voltac.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => voltac.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => voltac.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => voltac.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => voltac.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => voltac.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => voltac.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var voltac = ElectricPotentialAc.FromVoltsAc(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => voltac.ToUnit(null));
         }
 
         [Fact]

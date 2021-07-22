@@ -120,21 +120,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new Torque(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (Torque) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new Torque(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new Torque(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new Torque(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new Torque(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new Torque(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new Torque(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new Torque(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Torque(1, null));
+        }
+
         public void Torque_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new Torque(1, TorqueUnit.NewtonMeter);
@@ -316,20 +318,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Torque(value: 1, unit: Torque.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var newtonmeter = Torque.FromNewtonMeters(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => newtonmeter.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => newtonmeter.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => newtonmeter.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => newtonmeter.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => newtonmeter.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => newtonmeter.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => newtonmeter.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var newtonmeter = Torque.FromNewtonMeters(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => newtonmeter.As(null));
         }
 
         [Fact]
@@ -424,6 +431,28 @@ namespace UnitsNet.Tests
             var tonneforcemillimeterQuantity = newtonmeter.ToUnit(TorqueUnit.TonneForceMillimeter);
             AssertEx.EqualTolerance(TonneForceMillimetersInOneNewtonMeter, (double)tonneforcemillimeterQuantity.Value, TonneForceMillimetersTolerance);
             Assert.Equal(TorqueUnit.TonneForceMillimeter, tonneforcemillimeterQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var newtonmeter = Torque.FromNewtonMeters(1);
+
+            Assert.Throws<ArgumentException>(() => newtonmeter.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => newtonmeter.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => newtonmeter.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => newtonmeter.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => newtonmeter.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => newtonmeter.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => newtonmeter.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var newtonmeter = Torque.FromNewtonMeters(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => newtonmeter.ToUnit(null));
         }
 
         [Fact]

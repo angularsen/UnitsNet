@@ -23,7 +23,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ForcePerLengthTests : ForcePerLengthTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
         protected override double KilopoundsForcePerInchInOneNewtonPerMeter => 5.710147162769201E-6;
         protected override double KilogramsForcePerMillimeterInOneNewtonPerMeter => 1.019716212977928e-4;
         protected override double KilogramsForcePerCentimeterInOneNewtonPerMeter => 1.019716212977928e-3;

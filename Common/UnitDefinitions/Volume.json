@@ -12,6 +12,7 @@
       "FromUnitToBaseFunc": "x/1e3",
       "FromBaseToUnitFunc": "x*1e3",
       "Prefixes": [ "Micro", "Milli", "Centi", "Deci", "Hecto", "Kilo", "Mega" ],
+      "UnitSystems":  ["SI", "CGS"], 
       "Localization": [
         {
           "Culture": "en-US",
@@ -32,6 +33,7 @@
       "BaseUnits": {
         "L": "Meter"
       },
+      "UnitSystems": [ "SI", "CGS" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -48,6 +50,7 @@
       "PluralName": "CubicKilometers",
       "FromUnitToBaseFunc": "x*1e9",
       "FromBaseToUnitFunc": "x/1e9",
+      "UnitSystems": [ "SI", "CGS" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -67,6 +70,7 @@
       },
       "FromUnitToBaseFunc": "x*1e6",
       "FromBaseToUnitFunc": "x/1e6",
+      "UnitSystems": [ "SI", "CGS" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -78,11 +82,12 @@
         }
       ]
     },
-	  {
+    {
       "SingularName": "CubicDecimeter",
       "PluralName": "CubicDecimeters",
       "FromUnitToBaseFunc": "x/1e3",
       "FromBaseToUnitFunc": "x*1e3",
+      "UnitSystems": [ "SI", "CGS" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -99,6 +104,7 @@
       "PluralName": "CubicCentimeters",
       "FromUnitToBaseFunc": "x/1e6",
       "FromBaseToUnitFunc": "x*1e6",
+      "UnitSystems": [ "SI", "CGS" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -115,6 +121,7 @@
       "PluralName": "CubicMillimeters",
       "FromUnitToBaseFunc": "x/1e9",
       "FromBaseToUnitFunc": "x*1e9",
+      "UnitSystems": [ "SI", "CGS" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -131,6 +138,7 @@
       "PluralName": "CubicMicrometers",
       "FromUnitToBaseFunc": "x/1e18",
       "FromBaseToUnitFunc": "x*1e18",
+      "UnitSystems": [ "SI", "CGS" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -145,6 +153,7 @@
     {
       "SingularName": "CubicMile",
       "PluralName": "CubicMiles",
+      "UnitSystems": [ "BI", "USC" ],
       "FromUnitToBaseFunc": "x*4.16818182544058e9",
       "FromBaseToUnitFunc": "x/4.16818182544058e9",
       "Localization": [
@@ -163,6 +172,7 @@
       "PluralName": "CubicYards",
       "FromUnitToBaseFunc": "x*0.764554858",
       "FromBaseToUnitFunc": "x/0.764554858",
+      "UnitSystems": [ "EE", "BI", "USC" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -180,6 +190,7 @@
       "FromUnitToBaseFunc": "x*0.0283168",
       "FromBaseToUnitFunc": "x/0.0283168",
       "Prefixes": [ "Hecto", "Kilo", "Mega" ],
+      "UnitSystems": [ "EE", "BI", "USC" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -196,6 +207,7 @@
       "PluralName": "CubicInches",
       "FromUnitToBaseFunc": "x*1.6387*1e-5",
       "FromBaseToUnitFunc": "x/(1.6387*1e-5)",
+      "UnitSystems": [ "EE", "BI", "USC" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -213,6 +225,7 @@
       "FromUnitToBaseFunc": "x*0.00454609000000181429905810072407",
       "FromBaseToUnitFunc": "x/0.00454609000000181429905810072407",
       "Prefixes": [ "Kilo", "Mega" ],
+      "UnitSystems": [ "BI" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -229,6 +242,7 @@
       "PluralName": "ImperialOunces",
       "FromUnitToBaseFunc": "x*2.8413062499962901241875439064617e-5",
       "FromBaseToUnitFunc": "x/2.8413062499962901241875439064617e-5",
+      "UnitSystems": [ "BI" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -245,6 +259,7 @@
       "PluralName": "UsGallons",
       "FromUnitToBaseFunc": "x*0.00378541",
       "FromBaseToUnitFunc": "x/0.00378541",
+      "UnitSystems": [ "USC" ],
       "Prefixes": [ "Deca", "Deci", "Hecto", "Kilo", "Mega" ],
       "Localization": [
         {
@@ -262,6 +277,7 @@
       "PluralName": "UsOunces",
       "FromUnitToBaseFunc": "x*2.957352956253760505068307980135e-5",
       "FromBaseToUnitFunc": "x/2.957352956253760505068307980135e-5",
+      "UnitSystems": [ "USC" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -278,6 +294,7 @@
       "PluralName": "UsTablespoons",
       "FromUnitToBaseFunc": "x*1.478676478125e-5",
       "FromBaseToUnitFunc": "x/1.478676478125e-5",
+      "UnitSystems": [ "USC" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -318,6 +335,7 @@
       "PluralName": "UkTablespoons",
       "FromUnitToBaseFunc": "x*1.5e-5",
       "FromBaseToUnitFunc": "x/1.5e-5",
+      "UnitSystems": [ "BI" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -358,6 +376,7 @@
       "PluralName": "UsTeaspoons",
       "FromUnitToBaseFunc": "x*4.92892159375e-6",
       "FromBaseToUnitFunc": "x/4.92892159375e-6",
+      "UnitSystems": [ "USC" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -390,6 +409,7 @@
       "PluralName": "UsCustomaryCups",
       "FromUnitToBaseFunc": "x*0.0002365882365",
       "FromBaseToUnitFunc": "x/0.0002365882365",
+      "UnitSystems": [ "USC" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -402,6 +422,7 @@
       "PluralName": "UsLegalCups",
       "FromUnitToBaseFunc": "x*0.00024",
       "FromBaseToUnitFunc": "x/0.00024",
+      "UnitSystems": [ "USC" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -426,6 +447,7 @@
       "PluralName": "UsBeerBarrels",
       "FromUnitToBaseFunc": "x*0.1173477658",
       "FromBaseToUnitFunc": "x/0.1173477658",
+      "UnitSystems": [ "USC" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -438,6 +460,7 @@
       "PluralName": "ImperialBeerBarrels",
       "FromUnitToBaseFunc": "x*0.16365924",
       "FromBaseToUnitFunc": "x/0.16365924",
+      "UnitSystems": [ "BI" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -450,6 +473,7 @@
       "PluralName": "UsQuarts",
       "FromUnitToBaseFunc": "x*9.46352946e-4",
       "FromBaseToUnitFunc": "x/9.46352946e-4",
+      "UnitSystems": [ "USC" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -462,6 +486,7 @@
       "PluralName": "UsPints",
       "FromUnitToBaseFunc": "x*4.73176473e-4",
       "FromBaseToUnitFunc": "x/4.73176473e-4",
+      "UnitSystems": [ "USC" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -489,6 +514,7 @@
       },
       "FromUnitToBaseFunc": "x * 5.6826125e-4",
       "FromBaseToUnitFunc": "x / 5.6826125e-4",
+      "UnitSystems": [ "BI" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -512,5 +538,19 @@
         }
       ]
     }
-  ]
+  ],
+  "UnitSystems": [
+    {
+      "UnitSystem": "SI",
+      "BaseUnit": "CubicMeter"
+    },
+    {
+      "UnitSystem": "CGS",
+      "BaseUnit": "CubicCentimeter"
+    },
+    {
+      "UnitSystem": "EE",
+      "BaseUnit": "CubicFoot"
+    }
+  ] 
 }

@@ -82,21 +82,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new SpecificVolume(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (SpecificVolume) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new SpecificVolume(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new SpecificVolume(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new SpecificVolume(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new SpecificVolume(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new SpecificVolume(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new SpecificVolume(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new SpecificVolume(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new SpecificVolume(1, null));
+        }
+
         public void SpecificVolume_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new SpecificVolume(1, SpecificVolumeUnit.CubicMeterPerKilogram);
@@ -164,20 +166,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new SpecificVolume(value: 1, unit: SpecificVolume.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var cubicmeterperkilogram = SpecificVolume.FromCubicMetersPerKilogram(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => cubicmeterperkilogram.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => cubicmeterperkilogram.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => cubicmeterperkilogram.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => cubicmeterperkilogram.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => cubicmeterperkilogram.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => cubicmeterperkilogram.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => cubicmeterperkilogram.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var cubicmeterperkilogram = SpecificVolume.FromCubicMetersPerKilogram(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => cubicmeterperkilogram.As(null));
         }
 
         [Fact]
@@ -196,6 +203,28 @@ namespace UnitsNet.Tests
             var millicubicmeterperkilogramQuantity = cubicmeterperkilogram.ToUnit(SpecificVolumeUnit.MillicubicMeterPerKilogram);
             AssertEx.EqualTolerance(MillicubicMetersPerKilogramInOneCubicMeterPerKilogram, (double)millicubicmeterperkilogramQuantity.Value, MillicubicMetersPerKilogramTolerance);
             Assert.Equal(SpecificVolumeUnit.MillicubicMeterPerKilogram, millicubicmeterperkilogramQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var cubicmeterperkilogram = SpecificVolume.FromCubicMetersPerKilogram(1);
+
+            Assert.Throws<ArgumentException>(() => cubicmeterperkilogram.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => cubicmeterperkilogram.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => cubicmeterperkilogram.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => cubicmeterperkilogram.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => cubicmeterperkilogram.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => cubicmeterperkilogram.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => cubicmeterperkilogram.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var cubicmeterperkilogram = SpecificVolume.FromCubicMetersPerKilogram(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => cubicmeterperkilogram.ToUnit(null));
         }
 
         [Fact]

@@ -126,21 +126,44 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new Mass(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (Mass) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            var siQuantity = new Mass(1, UnitSystem.SI);
+            Assert.Equal(1, (double)siQuantity.Value);
+            Assert.Equal(MassUnit.Kilogram, siQuantity.Unit);
+
+            var cgsQuantity = new Mass(1, UnitSystem.CGS);
+            Assert.Equal(1, (double)cgsQuantity.Value);
+            Assert.Equal(MassUnit.Gram, cgsQuantity.Unit);
+
+            var biQuantity = new Mass(1, UnitSystem.BI);
+            Assert.Equal(1, (double)biQuantity.Value);
+            Assert.Equal(MassUnit.Pound, biQuantity.Unit);
+
+            var eeQuantity = new Mass(1, UnitSystem.EE);
+            Assert.Equal(1, (double)eeQuantity.Value);
+            Assert.Equal(MassUnit.Pound, eeQuantity.Unit);
+
+            var uscQuantity = new Mass(1, UnitSystem.USC);
+            Assert.Equal(1, (double)uscQuantity.Value);
+            Assert.Equal(MassUnit.Pound, uscQuantity.Unit);
+
+            var fpsQuantity = new Mass(1, UnitSystem.FPS);
+            Assert.Equal(1, (double)fpsQuantity.Value);
+            Assert.Equal(MassUnit.Pound, fpsQuantity.Unit);
+
+            var astronomicalQuantity = new Mass(1, UnitSystem.Astronomical);
+            Assert.Equal(1, (double)astronomicalQuantity.Value);
+            Assert.Equal(MassUnit.SolarMass, astronomicalQuantity.Unit);
+
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Mass(1, null));
+        }
+
         public void Mass_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new Mass(1, MassUnit.Kilogram);
@@ -340,20 +363,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Mass(value: 1, unit: Mass.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var kilogram = Mass.FromKilograms(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            AssertEx.EqualTolerance(KilogramsInOneKilogram, kilogram.As(UnitSystem.SI), KilogramsTolerance);
+            AssertEx.EqualTolerance(GramsInOneKilogram, kilogram.As(UnitSystem.CGS), GramsTolerance);
+            AssertEx.EqualTolerance(PoundsInOneKilogram, kilogram.As(UnitSystem.BI), PoundsTolerance);
+            AssertEx.EqualTolerance(PoundsInOneKilogram, kilogram.As(UnitSystem.EE), PoundsTolerance);
+            AssertEx.EqualTolerance(PoundsInOneKilogram, kilogram.As(UnitSystem.USC), PoundsTolerance);
+            AssertEx.EqualTolerance(PoundsInOneKilogram, kilogram.As(UnitSystem.FPS), PoundsTolerance);
+            AssertEx.EqualTolerance(SolarMassesInOneKilogram, kilogram.As(UnitSystem.Astronomical), SolarMassesTolerance);
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var kilogram = Mass.FromKilograms(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => kilogram.As(null));
         }
 
         [Fact]
@@ -460,6 +488,48 @@ namespace UnitsNet.Tests
             var tonneQuantity = kilogram.ToUnit(MassUnit.Tonne);
             AssertEx.EqualTolerance(TonnesInOneKilogram, (double)tonneQuantity.Value, TonnesTolerance);
             Assert.Equal(MassUnit.Tonne, tonneQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var kilogram = Mass.FromKilograms(1);
+
+            var siQuantity = kilogram.ToUnit(UnitSystem.SI);
+            AssertEx.EqualTolerance(KilogramsInOneKilogram, (double)siQuantity.Value, KilogramsTolerance);
+            Assert.Equal(MassUnit.Kilogram, siQuantity.Unit);
+
+            var cgsQuantity = kilogram.ToUnit(UnitSystem.CGS);
+            AssertEx.EqualTolerance(GramsInOneKilogram, (double)cgsQuantity.Value, GramsTolerance);
+            Assert.Equal(MassUnit.Gram, cgsQuantity.Unit);
+
+            var biQuantity = kilogram.ToUnit(UnitSystem.BI);
+            AssertEx.EqualTolerance(PoundsInOneKilogram, (double)biQuantity.Value, PoundsTolerance);
+            Assert.Equal(MassUnit.Pound, biQuantity.Unit);
+
+            var eeQuantity = kilogram.ToUnit(UnitSystem.EE);
+            AssertEx.EqualTolerance(PoundsInOneKilogram, (double)eeQuantity.Value, PoundsTolerance);
+            Assert.Equal(MassUnit.Pound, eeQuantity.Unit);
+
+            var uscQuantity = kilogram.ToUnit(UnitSystem.USC);
+            AssertEx.EqualTolerance(PoundsInOneKilogram, (double)uscQuantity.Value, PoundsTolerance);
+            Assert.Equal(MassUnit.Pound, uscQuantity.Unit);
+
+            var fpsQuantity = kilogram.ToUnit(UnitSystem.FPS);
+            AssertEx.EqualTolerance(PoundsInOneKilogram, (double)fpsQuantity.Value, PoundsTolerance);
+            Assert.Equal(MassUnit.Pound, fpsQuantity.Unit);
+
+            var astronomicalQuantity = kilogram.ToUnit(UnitSystem.Astronomical);
+            AssertEx.EqualTolerance(SolarMassesInOneKilogram, (double)astronomicalQuantity.Value, SolarMassesTolerance);
+            Assert.Equal(MassUnit.SolarMass, astronomicalQuantity.Unit);
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var kilogram = Mass.FromKilograms(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => kilogram.ToUnit(null));
         }
 
         [Fact]

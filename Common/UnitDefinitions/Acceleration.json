@@ -16,6 +16,7 @@
       },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
+      "UnitSystems": [ "SI", "CGS" ],
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
       "Localization": [
         {
@@ -37,6 +38,7 @@
       },
       "FromUnitToBaseFunc": "x*0.0254",
       "FromBaseToUnitFunc": "x/0.0254",
+      "UnitSystems": [ "EE", "BI", "USC" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -57,6 +59,7 @@
       },
       "FromUnitToBaseFunc": "x*0.304800",
       "FromBaseToUnitFunc": "x/0.304800",
+      "UnitSystems": [ "EE", "BI", "USC" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -148,6 +151,20 @@
           "Abbreviations": [ "g" ]
         }
       ]
+    }
+  ],
+  "UnitSystems": [
+    {
+      "UnitSystem": "SI",
+      "BaseUnit": "MeterPerSecondSquared"
+    },
+    {
+      "UnitSystem": "CGS",
+      "BaseUnit": "CentimeterPerSecondSquared"
+    },
+    {
+      "UnitSystem": "EE",
+      "BaseUnit": "FootPerSecondSquared"
     }
   ]
 }

@@ -78,21 +78,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new AreaDensity(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (AreaDensity) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new AreaDensity(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new AreaDensity(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new AreaDensity(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new AreaDensity(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new AreaDensity(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new AreaDensity(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new AreaDensity(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new AreaDensity(1, null));
+        }
+
         public void AreaDensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new AreaDensity(1, AreaDensityUnit.KilogramPerSquareMeter);
@@ -148,20 +150,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new AreaDensity(value: 1, unit: AreaDensity.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var kilogrampersquaremeter = AreaDensity.FromKilogramsPerSquareMeter(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => kilogrampersquaremeter.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => kilogrampersquaremeter.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => kilogrampersquaremeter.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => kilogrampersquaremeter.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => kilogrampersquaremeter.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => kilogrampersquaremeter.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => kilogrampersquaremeter.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var kilogrampersquaremeter = AreaDensity.FromKilogramsPerSquareMeter(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => kilogrampersquaremeter.As(null));
         }
 
         [Fact]
@@ -172,6 +179,28 @@ namespace UnitsNet.Tests
             var kilogrampersquaremeterQuantity = kilogrampersquaremeter.ToUnit(AreaDensityUnit.KilogramPerSquareMeter);
             AssertEx.EqualTolerance(KilogramsPerSquareMeterInOneKilogramPerSquareMeter, (double)kilogrampersquaremeterQuantity.Value, KilogramsPerSquareMeterTolerance);
             Assert.Equal(AreaDensityUnit.KilogramPerSquareMeter, kilogrampersquaremeterQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var kilogrampersquaremeter = AreaDensity.FromKilogramsPerSquareMeter(1);
+
+            Assert.Throws<ArgumentException>(() => kilogrampersquaremeter.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => kilogrampersquaremeter.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => kilogrampersquaremeter.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => kilogrampersquaremeter.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => kilogrampersquaremeter.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => kilogrampersquaremeter.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => kilogrampersquaremeter.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var kilogrampersquaremeter = AreaDensity.FromKilogramsPerSquareMeter(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => kilogrampersquaremeter.ToUnit(null));
         }
 
         [Fact]

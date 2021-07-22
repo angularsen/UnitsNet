@@ -26,7 +26,6 @@ namespace UnitsNet.Tests.CustomCode
     {
         // Override properties in base class here
         protected override double AmountInOneAmount => 1;
-        protected override bool SupportsSIUnitSystem => false;
        
     }
 }

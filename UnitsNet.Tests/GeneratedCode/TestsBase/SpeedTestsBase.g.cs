@@ -140,21 +140,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new Speed(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (Speed) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new Speed(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new Speed(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new Speed(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new Speed(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new Speed(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new Speed(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new Speed(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Speed(1, null));
+        }
+
         public void Speed_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new Speed(1, SpeedUnit.MeterPerSecond);
@@ -396,20 +398,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Speed(value: 1, unit: Speed.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var meterpersecond = Speed.FromMetersPerSecond(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => meterpersecond.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => meterpersecond.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => meterpersecond.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => meterpersecond.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => meterpersecond.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => meterpersecond.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => meterpersecond.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var meterpersecond = Speed.FromMetersPerSecond(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => meterpersecond.As(null));
         }
 
         [Fact]
@@ -544,6 +551,28 @@ namespace UnitsNet.Tests
             var yardpersecondQuantity = meterpersecond.ToUnit(SpeedUnit.YardPerSecond);
             AssertEx.EqualTolerance(YardsPerSecondInOneMeterPerSecond, (double)yardpersecondQuantity.Value, YardsPerSecondTolerance);
             Assert.Equal(SpeedUnit.YardPerSecond, yardpersecondQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var meterpersecond = Speed.FromMetersPerSecond(1);
+
+            Assert.Throws<ArgumentException>(() => meterpersecond.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => meterpersecond.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => meterpersecond.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => meterpersecond.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => meterpersecond.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => meterpersecond.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => meterpersecond.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var meterpersecond = Speed.FromMetersPerSecond(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => meterpersecond.ToUnit(null));
         }
 
         [Fact]

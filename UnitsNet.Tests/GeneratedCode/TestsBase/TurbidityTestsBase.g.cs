@@ -78,21 +78,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new Turbidity(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (Turbidity) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new Turbidity(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new Turbidity(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new Turbidity(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new Turbidity(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new Turbidity(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new Turbidity(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new Turbidity(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Turbidity(1, null));
+        }
+
         public void Turbidity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new Turbidity(1, TurbidityUnit.NTU);
@@ -148,20 +150,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Turbidity(value: 1, unit: Turbidity.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var ntu = Turbidity.FromNTU(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => ntu.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => ntu.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => ntu.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => ntu.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => ntu.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => ntu.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => ntu.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var ntu = Turbidity.FromNTU(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => ntu.As(null));
         }
 
         [Fact]
@@ -172,6 +179,28 @@ namespace UnitsNet.Tests
             var ntuQuantity = ntu.ToUnit(TurbidityUnit.NTU);
             AssertEx.EqualTolerance(NTUInOneNTU, (double)ntuQuantity.Value, NTUTolerance);
             Assert.Equal(TurbidityUnit.NTU, ntuQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var ntu = Turbidity.FromNTU(1);
+
+            Assert.Throws<ArgumentException>(() => ntu.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => ntu.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => ntu.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => ntu.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => ntu.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => ntu.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => ntu.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var ntu = Turbidity.FromNTU(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => ntu.ToUnit(null));
         }
 
         [Fact]

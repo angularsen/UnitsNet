@@ -26,7 +26,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class SpecificVolumeTests : SpecificVolumeTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
         protected override double CubicMetersPerKilogramInOneCubicMeterPerKilogram => 1;
 
         protected override double CubicFeetPerPoundInOneCubicMeterPerKilogram => 16.01846353;

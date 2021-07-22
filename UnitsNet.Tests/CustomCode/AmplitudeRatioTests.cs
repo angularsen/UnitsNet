@@ -8,7 +8,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class AmplitudeRatioTests : AmplitudeRatioTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
         protected override double DecibelMicrovoltsInOneDecibelVolt => 121;
 
         protected override double DecibelMillivoltsInOneDecibelVolt => 61;

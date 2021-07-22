@@ -44,8 +44,11 @@ namespace CodeGen.Generators
             // Ensure output directories exist
             Directory.CreateDirectory($"{outputDir}/Quantities");
             Directory.CreateDirectory($"{outputDir}/Units");
+            Directory.CreateDirectory($"{outputDir}/UnitSystems");
+
             Directory.CreateDirectory($"{extensionsOutputDir}");
             Directory.CreateDirectory($"{extensionsTestOutputDir}");
+
             Directory.CreateDirectory($"{testProjectDir}/GeneratedCode");
             Directory.CreateDirectory($"{testProjectDir}/GeneratedCode/TestsBase");
             Directory.CreateDirectory($"{testProjectDir}/GeneratedCode/QuantityTests");
@@ -66,6 +69,12 @@ namespace CodeGen.Generators
                 GenerateQuantityTestClassIfNotExists(sb, quantity, $"{testProjectDir}/CustomCode/{quantity.Name}Tests.cs");
 
                 Log.Information(sb.ToString());
+            }
+
+            var unitSystems = quantities.SelectMany(x => x.Units.SelectMany(u=> u.UnitSystems)).Distinct();
+            foreach (string unitSystem in unitSystems)
+            {
+                GenerateUnitSystemMappings(unitSystem, quantities, $"{outputDir}/UnitSystems/{unitSystem}.g.cs");
             }
 
             GenerateIQuantityTests(quantities, $"{testProjectDir}/GeneratedCode/IQuantityTests.g.cs");
@@ -163,6 +172,13 @@ namespace CodeGen.Generators
             var content = new UnitConverterGenerator(quantities).Generate();
             File.WriteAllText(filePath, content);
             Log.Information("UnitConverter.g.cs: ".PadRight(AlignPad) + "(OK)");
+        }
+
+        private static void GenerateUnitSystemMappings(string unitSystemName, Quantity[] quantities, string filePath)
+        {
+            var content = new UnitSystemInfoGenerator(unitSystemName, quantities).Generate();
+            File.WriteAllText(filePath, content, Encoding.UTF8);
+            Log.Information($"{unitSystemName}.g.cs: ".PadRight(AlignPad) + "(OK)");
         }
     }
 }

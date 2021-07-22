@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CodeGen.JsonTypes;
 
@@ -16,6 +17,11 @@ namespace CodeGen.Generators.UnitsNetGen
     internal class UnitTestBaseClassGenerator : GeneratorBase
     {
         /// <summary>
+        /// The list of all unit systems that are currently supported in Units.Net. 
+        /// </summary>
+        private static string[] SupportedUnitSystems = {"SI", "CGS", "BI", "EE", "USC", "FPS", "Astronomical"};
+
+        /// <summary>
         /// The quantity to generate test base class for.
         /// </summary>
         private readonly Quantity _quantity;
@@ -29,6 +35,7 @@ namespace CodeGen.Generators.UnitsNetGen
         /// Example: "LengthUnit"
         /// </summary>
         private readonly string _unitEnumName;
+        private readonly Dictionary<string, Unit> _unitSystemUnits = new Dictionary<string, Unit>();
 
         /// <summary>
         /// Example: " m" for Length quantity with leading whitespace or "" for Ratio quantity where base unit does not have an abbreviation.
@@ -52,6 +59,14 @@ namespace CodeGen.Generators.UnitsNetGen
                         throw new ArgumentException($"No unit found with SingularName equal to BaseUnit [{_quantity.BaseUnit}]. This unit must be defined.",
                             nameof(quantity));
             _unitEnumName = $"{quantity.Name}Unit";
+
+            foreach (var unitSystemMapping in quantity.UnitSystems)
+            {
+                _unitSystemUnits.Add(unitSystemMapping.UnitSystem, quantity.Units.FirstOrDefault(u => u.SingularName == unitSystemMapping.BaseUnit) ??
+                                                 throw new ArgumentException($"No unit found with SingularName equal to the one defined for '{unitSystemMapping.UnitSystem}' [{unitSystemMapping.BaseUnit}]. This unit must be defined.",
+                                                     nameof(quantity)));
+            }
+
             _baseUnitEnglishAbbreviation = GetEnglishAbbreviation(_baseUnit);
             _baseUnitFullName = $"{_unitEnumName}.{_baseUnit.SingularName}";
             _numberSuffix = quantity.BaseType == "decimal" ? "m" : "";
@@ -145,21 +160,30 @@ namespace UnitsNet.Tests
         }}
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
-        {{
-            Func<object> TestCode = () => new {_quantity.Name}(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {{
-                var quantity = ({_quantity.Name}) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }}
-            else
-            {{
-                Assert.Throws<ArgumentException>(TestCode);
-            }}
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {{");
+            foreach (var unit in _unitSystemUnits)
+            {
+                var asQuantityVariableName = $"{unit.Key.ToLowerInvariant()}Quantity";
+
+                Writer.WL($@"
+            var {asQuantityVariableName} = new {_quantity.Name}(1, UnitSystem.{unit.Key});
+            Assert.Equal(1, (double){asQuantityVariableName}.Value);
+            Assert.Equal({_unitEnumName}.{unit.Value.SingularName}, {asQuantityVariableName}.Unit);");
+                Writer.WL();
+            }
+            foreach (var unitSystem in SupportedUnitSystems.Where(x => !_unitSystemUnits.ContainsKey(x))) Writer.WL($@"
+            Assert.Throws<ArgumentException>(() => new {_quantity.Name}(1, UnitSystem.{unitSystem}));");
+            Writer.WL($@"
         }}
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {{
+            Assert.Throws<ArgumentNullException>(() => new {_quantity.Name}(1, null));");
+            Writer.WL($@"
+        }}
+
         public void {_quantity.Name}_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {{
             var quantity = new {_quantity.Name}(1, {_baseUnitFullName});
@@ -230,20 +254,25 @@ namespace UnitsNet.Tests
         }}
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {{
-            var quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);");
+            if(_unitSystemUnits.Any()) Writer.WL();
+            foreach (var unitSystem in _unitSystemUnits) Writer.WL($@"
+            AssertEx.EqualTolerance({unitSystem.Value.PluralName}InOne{_baseUnit.SingularName}, {baseUnitVariableName}.As(UnitSystem.{unitSystem.Key}), {unitSystem.Value.PluralName}Tolerance);");
+            if(_unitSystemUnits.Count < SupportedUnitSystems.Length) Writer.WL();
+            foreach (var unitSystem in SupportedUnitSystems.Where(x => !_unitSystemUnits.ContainsKey(x))) Writer.WL($@"
+            Assert.Throws<ArgumentException>(() => {baseUnitVariableName}.As(UnitSystem.{unitSystem}));");
+            Writer.WL($@"
+        }}
 
-            if (SupportsSIUnitSystem)
-            {{
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }}
-            else
-            {{
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }}
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {{
+            var {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);");
+            Writer.WL($@" 
+            Assert.Throws<ArgumentNullException>(() => {baseUnitVariableName}.As(null));");
+            Writer.WL($@"
         }}
 
         [Fact]
@@ -254,12 +283,41 @@ namespace UnitsNet.Tests
             {
                 var asQuantityVariableName = $"{unit.SingularName.ToLowerInvariant()}Quantity";
 
-                Writer.WL("");
+                Writer.WL();
                 Writer.WL($@"
             var {asQuantityVariableName} = {baseUnitVariableName}.ToUnit({GetUnitFullName(unit)});
             AssertEx.EqualTolerance({unit.PluralName}InOne{_baseUnit.SingularName}, (double){asQuantityVariableName}.Value, {unit.PluralName}Tolerance);
             Assert.Equal({GetUnitFullName(unit)}, {asQuantityVariableName}.Unit);");
             }
+            Writer.WL($@"
+        }}
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {{
+            var {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);");
+            foreach (var unit in _unitSystemUnits)
+            {
+                var asQuantityVariableName = $"{unit.Key.ToLowerInvariant()}Quantity";
+
+                Writer.WL();
+                Writer.WL($@"
+            var {asQuantityVariableName} = {baseUnitVariableName}.ToUnit(UnitSystem.{unit.Key});
+            AssertEx.EqualTolerance({unit.Value.PluralName}InOne{_baseUnit.SingularName}, (double){asQuantityVariableName}.Value, {unit.Value.PluralName}Tolerance);
+            Assert.Equal({_unitEnumName}.{unit.Value.SingularName}, {asQuantityVariableName}.Unit);");
+            }
+            if(_unitSystemUnits.Count < SupportedUnitSystems.Length) Writer.WL();
+            foreach (var unitSystem in SupportedUnitSystems.Where(x => !_unitSystemUnits.ContainsKey(x))) Writer.WL($@"
+            Assert.Throws<ArgumentException>(() => {baseUnitVariableName}.ToUnit(UnitSystem.{unitSystem}));");
+            Writer.WL($@"
+        }}
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {{
+            var {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);");
+            Writer.WL($@" 
+            Assert.Throws<ArgumentNullException>(() => {baseUnitVariableName}.ToUnit(null));");
             Writer.WL($@"
         }}
 
@@ -321,7 +379,7 @@ namespace UnitsNet.Tests
             }
             else
             {
-                Writer.WL("");
+                Writer.WL();
             }
 
             Writer.WL($@"

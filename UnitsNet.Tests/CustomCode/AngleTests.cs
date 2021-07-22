@@ -8,8 +8,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class AngleTests : AngleTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
-
         protected override double DegreesInOneDegree => 1;
 
         protected override double GradiansInOneDegree => 400 / 360.0;

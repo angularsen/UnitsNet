@@ -78,21 +78,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new SolidAngle(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (SolidAngle) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new SolidAngle(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new SolidAngle(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new SolidAngle(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new SolidAngle(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new SolidAngle(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new SolidAngle(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new SolidAngle(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new SolidAngle(1, null));
+        }
+
         public void SolidAngle_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new SolidAngle(1, SolidAngleUnit.Steradian);
@@ -148,20 +150,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new SolidAngle(value: 1, unit: SolidAngle.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var steradian = SolidAngle.FromSteradians(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => steradian.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => steradian.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => steradian.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => steradian.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => steradian.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => steradian.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => steradian.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var steradian = SolidAngle.FromSteradians(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => steradian.As(null));
         }
 
         [Fact]
@@ -172,6 +179,28 @@ namespace UnitsNet.Tests
             var steradianQuantity = steradian.ToUnit(SolidAngleUnit.Steradian);
             AssertEx.EqualTolerance(SteradiansInOneSteradian, (double)steradianQuantity.Value, SteradiansTolerance);
             Assert.Equal(SolidAngleUnit.Steradian, steradianQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var steradian = SolidAngle.FromSteradians(1);
+
+            Assert.Throws<ArgumentException>(() => steradian.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => steradian.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => steradian.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => steradian.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => steradian.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => steradian.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => steradian.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var steradian = SolidAngle.FromSteradians(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => steradian.ToUnit(null));
         }
 
         [Fact]

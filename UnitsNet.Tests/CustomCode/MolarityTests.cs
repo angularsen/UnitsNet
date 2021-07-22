@@ -29,7 +29,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class MolarityTests : MolarityTestsBase
     {
-        protected override bool SupportsSIUnitSystem => true;
 
         #region Unit Conversion Coefficients
         protected override double CentimolesPerLiterInOneMolesPerCubicMeter => 1e-1;

@@ -18,6 +18,7 @@
       },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
+      "UnitSystems": [ "SI", "CGS" ],
       "Prefixes": [ "Milli", "Kilo", "Mega", "Giga" ],
       "Localization": [
         {
@@ -31,6 +32,7 @@
       "PluralName": "Calories",
       "FromUnitToBaseFunc": "x*4.184",
       "FromBaseToUnitFunc": "x/4.184",
+      "UnitSystems": [ "SI", "CGS" ],
       "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
@@ -44,6 +46,7 @@
       "PluralName": "BritishThermalUnits",
       "FromUnitToBaseFunc": "x*1055.05585262",
       "FromBaseToUnitFunc": "x/1055.05585262",
+      "UnitSystems": [ "BI" ],
       "Prefixes": [ "Kilo", "Mega", "Giga" ],
       "Localization": [
         {
@@ -79,6 +82,7 @@
       "PluralName": "FootPounds",
       "FromUnitToBaseFunc": "x*1.355817948",
       "FromBaseToUnitFunc": "x/1.355817948",
+      "UnitSystems": [ "EE", "BI", "USC" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -91,6 +95,7 @@
       "PluralName": "Ergs",
       "FromUnitToBaseFunc": "x*1e-7",
       "FromBaseToUnitFunc": "x/1e-7",
+      "UnitSystems": [ "CGS" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -156,6 +161,7 @@
       "PluralName": "ThermsUs",
       "FromUnitToBaseFunc": "x*1.054804e8",
       "FromBaseToUnitFunc": "x/1.054804e8",
+      "UnitSystems": [ "USC" ],
       "Prefixes": [ "Deca" ],
       "Localization": [
         {
@@ -175,6 +181,7 @@
       "PluralName": "ThermsImperial",
       "FromUnitToBaseFunc": "x*1.05505585257348e8",
       "FromBaseToUnitFunc": "x/1.05505585257348e8",
+      "UnitSystems": [ "BI" ],
       "Prefixes": [ "Deca" ],
       "Localization": [
         {
@@ -200,6 +207,20 @@
           "Abbreviations": [ "hp·h" ]
         }
       ]
+    }
+  ],
+  "UnitSystems": [
+    {
+      "UnitSystem": "SI",
+      "BaseUnit": "Joule"
+    },
+    {
+      "UnitSystem": "CGS",
+      "BaseUnit": "Erg"
+    },
+    {
+      "UnitSystem": "EE",
+      "BaseUnit": "FootPound"
     }
   ]
 }

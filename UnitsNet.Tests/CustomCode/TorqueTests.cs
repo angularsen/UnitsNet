@@ -7,7 +7,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class TorqueTests : TorqueTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
         protected override double KilogramForceCentimetersInOneNewtonMeter => 10.1971621;
 
         protected override double KilogramForceMetersInOneNewtonMeter => 0.101971621;

@@ -95,16 +95,16 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
-        /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
+        /// <exception cref="ArgumentException">No default unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Luminosity(double value, UnitSystem unitSystem)
         {
             if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = Guard.EnsureValidNumber(value, nameof(value));
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            var defaultUnitInfo = unitSystem.GetDefaultUnitInfo(QuantityType) as UnitInfo<LuminosityUnit>;
+
+            _unit = defaultUnitInfo?.Value ?? throw new ArgumentException("No default unit was defined for the given UnitSystem.", nameof(unitSystem));
         }
 
         #region Static Properties
@@ -768,13 +768,12 @@ namespace UnitsNet
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
+            var defaultUnitInfo = unitSystem.GetDefaultUnitInfo(QuantityType) as UnitInfo<LuminosityUnit>;
 
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            if(defaultUnitInfo == null)
+                throw new ArgumentException("No default unit was found for the given UnitSystem.", nameof(unitSystem));
 
-            return As(firstUnitInfo.Value);
+            return As(defaultUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -811,13 +810,12 @@ namespace UnitsNet
             if(unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
+            var defaultUnitInfo = unitSystem.GetDefaultUnitInfo(QuantityType) as UnitInfo<LuminosityUnit>;
 
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            if(defaultUnitInfo == null)
+                throw new ArgumentException("No default unit was found for the given UnitSystem.", nameof(unitSystem));
 
-            return ToUnit(firstUnitInfo.Value);
+            return ToUnit(defaultUnitInfo.Value);
         }
 
         /// <inheritdoc />

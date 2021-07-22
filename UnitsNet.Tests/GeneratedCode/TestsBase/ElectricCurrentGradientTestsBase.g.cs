@@ -84,21 +84,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new ElectricCurrentGradient(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (ElectricCurrentGradient) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new ElectricCurrentGradient(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new ElectricCurrentGradient(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new ElectricCurrentGradient(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new ElectricCurrentGradient(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new ElectricCurrentGradient(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new ElectricCurrentGradient(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new ElectricCurrentGradient(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new ElectricCurrentGradient(1, null));
+        }
+
         public void ElectricCurrentGradient_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerSecond);
@@ -172,20 +174,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new ElectricCurrentGradient(value: 1, unit: ElectricCurrentGradient.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var amperepersecond = ElectricCurrentGradient.FromAmperesPerSecond(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => amperepersecond.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => amperepersecond.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => amperepersecond.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => amperepersecond.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => amperepersecond.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => amperepersecond.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => amperepersecond.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var amperepersecond = ElectricCurrentGradient.FromAmperesPerSecond(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => amperepersecond.As(null));
         }
 
         [Fact]
@@ -208,6 +215,28 @@ namespace UnitsNet.Tests
             var amperepersecondQuantity = amperepersecond.ToUnit(ElectricCurrentGradientUnit.AmperePerSecond);
             AssertEx.EqualTolerance(AmperesPerSecondInOneAmperePerSecond, (double)amperepersecondQuantity.Value, AmperesPerSecondTolerance);
             Assert.Equal(ElectricCurrentGradientUnit.AmperePerSecond, amperepersecondQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var amperepersecond = ElectricCurrentGradient.FromAmperesPerSecond(1);
+
+            Assert.Throws<ArgumentException>(() => amperepersecond.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => amperepersecond.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => amperepersecond.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => amperepersecond.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => amperepersecond.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => amperepersecond.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => amperepersecond.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var amperepersecond = ElectricCurrentGradient.FromAmperesPerSecond(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => amperepersecond.ToUnit(null));
         }
 
         [Fact]

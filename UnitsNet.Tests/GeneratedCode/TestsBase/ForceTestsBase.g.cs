@@ -106,21 +106,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new Force(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (Force) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new Force(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new Force(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new Force(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new Force(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new Force(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new Force(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new Force(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Force(1, null));
+        }
+
         public void Force_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new Force(1, ForceUnit.Newton);
@@ -260,20 +262,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Force(value: 1, unit: Force.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var newton = Force.FromNewtons(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => newton.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => newton.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => newton.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => newton.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => newton.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => newton.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => newton.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var newton = Force.FromNewtons(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => newton.As(null));
         }
 
         [Fact]
@@ -340,6 +347,28 @@ namespace UnitsNet.Tests
             var tonneforceQuantity = newton.ToUnit(ForceUnit.TonneForce);
             AssertEx.EqualTolerance(TonnesForceInOneNewton, (double)tonneforceQuantity.Value, TonnesForceTolerance);
             Assert.Equal(ForceUnit.TonneForce, tonneforceQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var newton = Force.FromNewtons(1);
+
+            Assert.Throws<ArgumentException>(() => newton.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => newton.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => newton.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => newton.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => newton.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => newton.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => newton.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var newton = Force.FromNewtons(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => newton.ToUnit(null));
         }
 
         [Fact]

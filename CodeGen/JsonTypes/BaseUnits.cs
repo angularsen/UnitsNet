@@ -1,13 +1,12 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+#pragma warning disable 8618 // 8618 Non-nullable field is uninitialized
+#pragma warning disable 0649 // 0649 Field is never assigned to
 namespace CodeGen.JsonTypes
 {
     internal class BaseUnits
     {
-        // 0649 Field is never assigned to
-#pragma warning disable 0649
-
         /// <summary>AmountOfSubstance.</summary>
         public string N;
         /// <summary>ElectricCurrent.</summary>
@@ -23,7 +22,5 @@ namespace CodeGen.JsonTypes
         /// <summary>Time.</summary>
         public string T;
 
-        // 0649 Field is never assigned to
-#pragma warning restore 0649
     }
 }

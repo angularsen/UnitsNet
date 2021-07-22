@@ -14,6 +14,7 @@
       },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
+      "UnitSystems": [ "SI", "CGS" ],
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Hecto", "Kilo" ],
       "Localization": [
         {
@@ -38,6 +39,7 @@
       },
       "FromUnitToBaseFunc": "x*1609.34",
       "FromBaseToUnitFunc": "x/1609.34",
+      "UnitSystems": [ "EE", "BI", "USC" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -61,6 +63,7 @@
       },
       "FromUnitToBaseFunc": "x*0.9144",
       "FromBaseToUnitFunc": "x/0.9144",
+      "UnitSystems": [ "EE", "BI", "USC" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -84,6 +87,7 @@
       },
       "FromUnitToBaseFunc": "x*0.3048",
       "FromBaseToUnitFunc": "x/0.3048",
+      "UnitSystems": [ "EE", "BI", "USC" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -102,6 +106,7 @@
     {
       "SingularName": "UsSurveyFoot",
       "PluralName": "UsSurveyFeet",
+      "UnitSystems": [ "USC" ],
       "BaseUnits": {
         "L": "UsSurveyFoot"
       },
@@ -122,6 +127,7 @@
       },
       "FromUnitToBaseFunc": "x*2.54e-2",
       "FromBaseToUnitFunc": "x/2.54e-2",
+      "UnitSystems": [ "EE", "BI", "USC" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -221,6 +227,7 @@
       },
       "FromUnitToBaseFunc": "x*2.54e-8",
       "FromBaseToUnitFunc": "x/2.54e-8",
+      "UnitSystems": [ "EE", "BI", "USC" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -331,6 +338,7 @@
       "PluralName": "AstronomicalUnits",
       "FromUnitToBaseFunc": "x * 1.4959787070e11",
       "FromBaseToUnitFunc": "x / 1.4959787070e11",
+      "UnitSystems": [ "Astronomical" ],
       "XmlDocSummary": "One Astronomical Unit is the distance from the solar system Star, the sun, to planet Earth.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Astronomical_unit",
       "Localization": [
@@ -345,6 +353,7 @@
       "PluralName": "Parsecs",
       "FromUnitToBaseFunc": "x * 3.08567758128e16",
       "FromBaseToUnitFunc": "x / 3.08567758128e16",
+      "UnitSystems": [ "Astronomical" ],
       "XmlDocSummary": "A parsec is defined as the distance at which one astronomical unit (AU) subtends an angle of one arcsecond.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Parsec",
       "Prefixes": [ "Kilo", "Mega" ],
@@ -360,6 +369,7 @@
       "PluralName": "LightYears",
       "FromUnitToBaseFunc": "x * 9.46073047258e15",
       "FromBaseToUnitFunc": "x / 9.46073047258e15",
+      "UnitSystems": [ "Astronomical" ],
       "XmlDocSummary": "A Light Year (ly) is the distance that light travel during an Earth year, ie 365 days.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Light-year",
       "Prefixes": [ "Kilo", "Mega" ],
@@ -375,6 +385,7 @@
       "PluralName": "SolarRadiuses",
       "FromUnitToBaseFunc": "x * 6.95510000E+08",
       "FromBaseToUnitFunc": "x / 6.95510000E+08",
+      "UnitSystems": [ "Astronomical" ],
       "XmlDocSummary": "Solar radius is a ratio unit to the radius of the solar system star, the sun.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Stellar_classification",
       "Localization": [
@@ -398,6 +409,32 @@
           "Abbreviations": [ "ch" ]
         }
       ]
+    }
+  ],
+  "UnitSystems": [
+    {
+      "UnitSystem": "SI",
+      "BaseUnit": "Meter"
+    },
+    {
+      "UnitSystem": "CGS",
+      "BaseUnit": "Centimeter"
+    },
+    {
+      "UnitSystem": "BI",
+      "BaseUnit": "Yard"
+    },
+    {
+      "UnitSystem": "EE",
+      "BaseUnit": "Foot"
+    },
+    {
+      "UnitSystem": "USC",
+      "BaseUnit": "Yard"
+    },
+    {
+      "UnitSystem": "Astronomical",
+      "BaseUnit": "AstronomicalUnit"
     }
   ]
 }

@@ -15,12 +15,39 @@
       },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
+      "UnitSystems": [ "SI", "CGS", "BI", "EE", "USC", "FPS", "Astronomical" ],
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "cd" ]
         }
       ]
+    }
+  ],
+  "UnitSystems": [
+    {
+      "UnitSystem": "SI",
+      "BaseUnit": "Candela"
+    },
+    {
+      "UnitSystem": "CGS",
+      "BaseUnit": "Candela"
+    },
+    {
+      "UnitSystem": "BI",
+      "BaseUnit": "Candela"
+    },
+    {
+      "UnitSystem": "EE",
+      "BaseUnit": "Candela"
+    },
+    {
+      "UnitSystem": "USC",
+      "BaseUnit": "Candela"
+    },
+    {
+      "UnitSystem": "FPS",
+      "BaseUnit": "Candela"
     }
   ]
 }

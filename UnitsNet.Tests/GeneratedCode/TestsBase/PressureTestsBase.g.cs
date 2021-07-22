@@ -164,21 +164,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new Pressure(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (Pressure) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new Pressure(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new Pressure(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new Pressure(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new Pressure(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new Pressure(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new Pressure(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new Pressure(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Pressure(1, null));
+        }
+
         public void Pressure_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new Pressure(1, PressureUnit.Pascal);
@@ -492,20 +494,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Pressure(value: 1, unit: Pressure.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var pascal = Pressure.FromPascals(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => pascal.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => pascal.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => pascal.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => pascal.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => pascal.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => pascal.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => pascal.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var pascal = Pressure.FromPascals(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => pascal.As(null));
         }
 
         [Fact]
@@ -688,6 +695,28 @@ namespace UnitsNet.Tests
             var torrQuantity = pascal.ToUnit(PressureUnit.Torr);
             AssertEx.EqualTolerance(TorrsInOnePascal, (double)torrQuantity.Value, TorrsTolerance);
             Assert.Equal(PressureUnit.Torr, torrQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var pascal = Pressure.FromPascals(1);
+
+            Assert.Throws<ArgumentException>(() => pascal.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => pascal.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => pascal.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => pascal.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => pascal.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => pascal.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => pascal.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var pascal = Pressure.FromPascals(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => pascal.ToUnit(null));
         }
 
         [Fact]

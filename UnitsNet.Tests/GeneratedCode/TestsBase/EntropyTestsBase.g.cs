@@ -90,21 +90,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new Entropy(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (Entropy) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new Entropy(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new Entropy(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new Entropy(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new Entropy(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new Entropy(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new Entropy(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new Entropy(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Entropy(1, null));
+        }
+
         public void Entropy_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new Entropy(1, EntropyUnit.JoulePerKelvin);
@@ -196,20 +198,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Entropy(value: 1, unit: Entropy.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var jouleperkelvin = Entropy.FromJoulesPerKelvin(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => jouleperkelvin.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => jouleperkelvin.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => jouleperkelvin.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => jouleperkelvin.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => jouleperkelvin.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => jouleperkelvin.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => jouleperkelvin.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var jouleperkelvin = Entropy.FromJoulesPerKelvin(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => jouleperkelvin.As(null));
         }
 
         [Fact]
@@ -244,6 +251,28 @@ namespace UnitsNet.Tests
             var megajouleperkelvinQuantity = jouleperkelvin.ToUnit(EntropyUnit.MegajoulePerKelvin);
             AssertEx.EqualTolerance(MegajoulesPerKelvinInOneJoulePerKelvin, (double)megajouleperkelvinQuantity.Value, MegajoulesPerKelvinTolerance);
             Assert.Equal(EntropyUnit.MegajoulePerKelvin, megajouleperkelvinQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var jouleperkelvin = Entropy.FromJoulesPerKelvin(1);
+
+            Assert.Throws<ArgumentException>(() => jouleperkelvin.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => jouleperkelvin.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => jouleperkelvin.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => jouleperkelvin.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => jouleperkelvin.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => jouleperkelvin.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => jouleperkelvin.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var jouleperkelvin = Entropy.FromJoulesPerKelvin(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => jouleperkelvin.ToUnit(null));
         }
 
         [Fact]

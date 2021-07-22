@@ -29,7 +29,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ElectricResistivityTests : ElectricResistivityTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
+        // TODO Override properties in base class here
         protected override double KiloohmsCentimeterInOneOhmMeter => 1e-1;
 
         protected override double KiloohmMetersInOneOhmMeter => 1e-3;

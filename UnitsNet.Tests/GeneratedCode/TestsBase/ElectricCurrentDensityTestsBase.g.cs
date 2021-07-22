@@ -82,21 +82,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new ElectricCurrentDensity(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (ElectricCurrentDensity) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new ElectricCurrentDensity(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new ElectricCurrentDensity(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new ElectricCurrentDensity(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new ElectricCurrentDensity(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new ElectricCurrentDensity(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new ElectricCurrentDensity(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new ElectricCurrentDensity(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new ElectricCurrentDensity(1, null));
+        }
+
         public void ElectricCurrentDensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new ElectricCurrentDensity(1, ElectricCurrentDensityUnit.AmperePerSquareMeter);
@@ -164,20 +166,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new ElectricCurrentDensity(value: 1, unit: ElectricCurrentDensity.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var amperepersquaremeter = ElectricCurrentDensity.FromAmperesPerSquareMeter(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => amperepersquaremeter.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => amperepersquaremeter.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => amperepersquaremeter.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => amperepersquaremeter.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => amperepersquaremeter.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => amperepersquaremeter.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => amperepersquaremeter.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var amperepersquaremeter = ElectricCurrentDensity.FromAmperesPerSquareMeter(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => amperepersquaremeter.As(null));
         }
 
         [Fact]
@@ -196,6 +203,28 @@ namespace UnitsNet.Tests
             var amperepersquaremeterQuantity = amperepersquaremeter.ToUnit(ElectricCurrentDensityUnit.AmperePerSquareMeter);
             AssertEx.EqualTolerance(AmperesPerSquareMeterInOneAmperePerSquareMeter, (double)amperepersquaremeterQuantity.Value, AmperesPerSquareMeterTolerance);
             Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareMeter, amperepersquaremeterQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var amperepersquaremeter = ElectricCurrentDensity.FromAmperesPerSquareMeter(1);
+
+            Assert.Throws<ArgumentException>(() => amperepersquaremeter.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => amperepersquaremeter.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => amperepersquaremeter.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => amperepersquaremeter.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => amperepersquaremeter.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => amperepersquaremeter.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => amperepersquaremeter.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var amperepersquaremeter = ElectricCurrentDensity.FromAmperesPerSquareMeter(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => amperepersquaremeter.ToUnit(null));
         }
 
         [Fact]

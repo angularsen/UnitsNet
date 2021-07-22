@@ -78,21 +78,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void Ctor_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            Func<object> TestCode = () => new RelativeHumidity(value: 1, unitSystem: UnitSystem.SI);
-            if (SupportsSIUnitSystem)
-            {
-                var quantity = (RelativeHumidity) TestCode();
-                Assert.Equal(1, quantity.Value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(TestCode);
-            }
+            Assert.Throws<ArgumentException>(() => new RelativeHumidity(1, UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => new RelativeHumidity(1, UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => new RelativeHumidity(1, UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => new RelativeHumidity(1, UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => new RelativeHumidity(1, UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => new RelativeHumidity(1, UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => new RelativeHumidity(1, UnitSystem.Astronomical));
         }
 
         [Fact]
+        public void Ctor_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new RelativeHumidity(1, null));
+        }
+
         public void RelativeHumidity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
             var quantity = new RelativeHumidity(1, RelativeHumidityUnit.Percent);
@@ -148,20 +150,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        public void As_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new RelativeHumidity(value: 1, unit: RelativeHumidity.BaseUnit);
-            Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
+            var percent = RelativeHumidity.FromPercent(1);
 
-            if (SupportsSIUnitSystem)
-            {
-                var value = (double) AsWithSIUnitSystem();
-                Assert.Equal(1, value);
-            }
-            else
-            {
-                Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
-            }
+            Assert.Throws<ArgumentException>(() => percent.As(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => percent.As(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => percent.As(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => percent.As(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => percent.As(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => percent.As(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => percent.As(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void As_WithNullUnitSystem_ThrowsArgumentNullException()
+        {
+            var percent = RelativeHumidity.FromPercent(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => percent.As(null));
         }
 
         [Fact]
@@ -172,6 +179,28 @@ namespace UnitsNet.Tests
             var percentQuantity = percent.ToUnit(RelativeHumidityUnit.Percent);
             AssertEx.EqualTolerance(PercentInOnePercent, (double)percentQuantity.Value, PercentTolerance);
             Assert.Equal(RelativeHumidityUnit.Percent, percentQuantity.Unit);
+        }
+
+        [Fact]
+        public void To_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var percent = RelativeHumidity.FromPercent(1);
+
+            Assert.Throws<ArgumentException>(() => percent.ToUnit(UnitSystem.SI));
+            Assert.Throws<ArgumentException>(() => percent.ToUnit(UnitSystem.CGS));
+            Assert.Throws<ArgumentException>(() => percent.ToUnit(UnitSystem.BI));
+            Assert.Throws<ArgumentException>(() => percent.ToUnit(UnitSystem.EE));
+            Assert.Throws<ArgumentException>(() => percent.ToUnit(UnitSystem.USC));
+            Assert.Throws<ArgumentException>(() => percent.ToUnit(UnitSystem.FPS));
+            Assert.Throws<ArgumentException>(() => percent.ToUnit(UnitSystem.Astronomical));
+        }
+
+        [Fact]
+        public void ToUnit_WithNullUnitSystem_ThrowsNullException()
+        {
+            var percent = RelativeHumidity.FromPercent(1);
+ 
+            Assert.Throws<ArgumentNullException>(() => percent.ToUnit(null));
         }
 
         [Fact]
