@@ -41,8 +41,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double InverseSquareInchesInOneInverseSquareMeter => 0.00064516;
 
         [Theory]
-        [InlineData(-1.0, -1.0)]
         [InlineData(-2.0, -0.5)]
+        [InlineData(-1.0, -1.0)]
         [InlineData(0.0, 0.0)]
         [InlineData(1.0, 1.0)]
         [InlineData(2.0, 0.5)]
