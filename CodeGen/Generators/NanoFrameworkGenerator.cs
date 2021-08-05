@@ -74,9 +74,14 @@ namespace CodeGen.Generators
 
             Log.Information($"Directory NanoFramework creation(OK)");
 
-            SetDependencyVersions(resource, cache, logger, cancellationToken, updateNanoFrameworkDependencies, outputDir);
-            GenerateProperties(Path.Combine(outputProperties, "AssemblyInfo.cs"));
-            Log.Information($"Property(OK)");
+            var lengthNuspecFile = Path.Combine(outputDir, "Length", "UnitsNet.NanoFramework.Length.nuspec");
+            var projectVersion = ParseVersion(File.ReadAllText(lengthNuspecFile),
+                new Regex(@"<version>(?<version>[\d\.]+)</version>", RegexOptions.IgnoreCase),
+                "projectVersion");
+
+            SetDependencyVersions(resource, cache, logger, ct, updateNanoFrameworkDependencies, outputDir);
+            GenerateProperties(Path.Combine(outputProperties, "AssemblyInfo.cs"), projectVersion);
+            Log.Information("Property(OK)");
 
             int numberQuantity = 0;
             foreach (var quantity in quantities)
@@ -220,9 +225,9 @@ namespace CodeGen.Generators
             File.WriteAllText(filePath, content);
         }
 
-        private static void GenerateProperties(string filePath)
+        private static void GenerateProperties(string filePath, string version)
         {
-            var content = new PropertyGenerator().Generate();
+            var content = new PropertyGenerator(version).Generate();
             File.WriteAllText(filePath, content);
         }
 
