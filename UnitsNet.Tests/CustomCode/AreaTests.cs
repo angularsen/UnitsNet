@@ -120,17 +120,16 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Theory]
-        [InlineData(-3.0, -3.0)]
+        [InlineData(-3.0, -0.3333333333)]
         [InlineData(-2.0, -0.5)]
         [InlineData(0.0, 0.0)]
-        [InlineData(3.0, 3.0)]
+        [InlineData(3.0, 0.3333333333)]
         [InlineData(2.0, 0.5)]
         public void InverseReturnsReciprocalArea(double value, double expected)
         {
             var area = new Area(value, AreaUnit.SquareMeter);
             var inverseArea = area.Inverse();
-
-            AssertEx.Equals(expected, inverseArea.InverseSquareMeters);
+            AssertEx.EqualTolerance(expected, inverseArea.InverseSquareMeters, 1e-5);
         }
 
         [Fact]
