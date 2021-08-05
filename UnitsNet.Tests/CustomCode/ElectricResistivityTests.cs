@@ -69,7 +69,7 @@ namespace UnitsNet.Tests.CustomCode
             var unit = new ElectricResistivity( value, ElectricResistivityUnit.OhmMeter );
             var inverse = unit.Inverse();
 
-            AssertEx.Equals( expected, inverse.SiemensPerMeter );
+            Assert.Equal( expected, inverse.SiemensPerMeter );
         }
     }
 }

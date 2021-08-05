@@ -34,5 +34,11 @@ namespace UnitsNet
         {
             return new ForcePerLength(pressure.Pascals / reciprocalLength.InverseMeters, UnitsNet.Units.ForcePerLengthUnit.NewtonPerMeter);
         }
+
+        /// <summary>Get <see cref="Force"/> from <see cref="Pressure"/> divided by <see cref="ReciprocalArea"/>.</summary>
+        public static Force operator /(Pressure pressure, ReciprocalArea reciprocalArea)
+        {
+            return new Force(pressure.Pascals / reciprocalArea.InverseSquareMeters, UnitsNet.Units.ForceUnit.Newton);
+        }
     }
 }

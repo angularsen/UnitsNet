@@ -113,6 +113,7 @@ namespace UnitsNet.Tests
             Assertion(3, RatioChangeRateUnit.PercentPerSecond, Quantity.From(3, RatioChangeRateUnit.PercentPerSecond));
             Assertion(3, ReactiveEnergyUnit.VoltampereReactiveHour, Quantity.From(3, ReactiveEnergyUnit.VoltampereReactiveHour));
             Assertion(3, ReactivePowerUnit.VoltampereReactive, Quantity.From(3, ReactivePowerUnit.VoltampereReactive));
+            Assertion(3, ReciprocalAreaUnit.InverseUsSurveySquareFoot, Quantity.From(3, ReciprocalAreaUnit.InverseUsSurveySquareFoot));
             Assertion(3, ReciprocalLengthUnit.InverseYard, Quantity.From(3, ReciprocalLengthUnit.InverseYard));
             Assertion(3, RelativeHumidityUnit.Percent, Quantity.From(3, RelativeHumidityUnit.Percent));
             Assertion(3, RotationalAccelerationUnit.RevolutionPerSecondSquared, Quantity.From(3, RotationalAccelerationUnit.RevolutionPerSecondSquared));
@@ -229,6 +230,7 @@ namespace UnitsNet.Tests
             Assertion(RatioChangeRate.Info, RatioChangeRate.Zero);
             Assertion(ReactiveEnergy.Info, ReactiveEnergy.Zero);
             Assertion(ReactivePower.Info, ReactivePower.Zero);
+            Assertion(ReciprocalArea.Info, ReciprocalArea.Zero);
             Assertion(ReciprocalLength.Info, ReciprocalLength.Zero);
             Assertion(RelativeHumidity.Info, RelativeHumidity.Zero);
             Assertion(RotationalAcceleration.Info, RotationalAcceleration.Zero);
@@ -345,6 +347,7 @@ namespace UnitsNet.Tests
             Assertion(RatioChangeRate.QuantityType, RatioChangeRate.Zero);
             Assertion(ReactiveEnergy.QuantityType, ReactiveEnergy.Zero);
             Assertion(ReactivePower.QuantityType, ReactivePower.Zero);
+            Assertion(ReciprocalArea.QuantityType, ReciprocalArea.Zero);
             Assertion(ReciprocalLength.QuantityType, ReciprocalLength.Zero);
             Assertion(RelativeHumidity.QuantityType, RelativeHumidity.Zero);
             Assertion(RotationalAcceleration.QuantityType, RotationalAcceleration.Zero);
@@ -461,6 +464,7 @@ namespace UnitsNet.Tests
             Assertion(RatioChangeRate.BaseDimensions, RatioChangeRate.Zero);
             Assertion(ReactiveEnergy.BaseDimensions, ReactiveEnergy.Zero);
             Assertion(ReactivePower.BaseDimensions, ReactivePower.Zero);
+            Assertion(ReciprocalArea.BaseDimensions, ReciprocalArea.Zero);
             Assertion(ReciprocalLength.BaseDimensions, ReciprocalLength.Zero);
             Assertion(RelativeHumidity.BaseDimensions, RelativeHumidity.Zero);
             Assertion(RotationalAcceleration.BaseDimensions, RotationalAcceleration.Zero);

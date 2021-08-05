@@ -51,7 +51,7 @@ namespace UnitsNet.Tests.CustomCode
             var inverseLength = new ReciprocalLength(value, ReciprocalLengthUnit.InverseMeter);
             var length = inverseLength.Inverse();
 
-            AssertEx.Equals(expected, length.Meters);
+            Assert.Equal(expected, length.Meters);
         }
 
         [Fact]
@@ -94,6 +94,20 @@ namespace UnitsNet.Tests.CustomCode
         {
             ForcePerLength forcePerLength = ReciprocalLength.FromInverseMeters(5) * Force.FromNewtons(10);
             Assert.Equal(forcePerLength, ForcePerLength.FromNewtonsPerMeter(50));
+        }
+
+        [Fact]
+        public void ReciprocalLengthTimesReciprocalLengthEqualsReciprocalArea()
+        {
+            ReciprocalArea reciprocalArea = ReciprocalLength.FromInverseMeters(10) * ReciprocalLength.FromInverseMeters(20);
+            Assert.Equal(reciprocalArea, ReciprocalArea.FromInverseSquareMeters(200));
+        }
+
+        [Fact]
+        public void ReciprocalLengthDividedByReciprocalAreaEqualsLength()
+        {
+            Length length = ReciprocalLength.FromInverseMeters(5) / ReciprocalArea.FromInverseSquareMeters(10);
+            Assert.Equal(length, Length.FromMeters(0.5));
         }
     }
 }

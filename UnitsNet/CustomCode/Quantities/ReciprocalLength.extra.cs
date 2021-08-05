@@ -30,5 +30,17 @@ namespace UnitsNet
         {
             return ForcePerLength.FromNewtonsPerMeter(reciprocalLength.InverseMeters * force.Newtons);
         }
+
+        /// <summary>Get <see cref="ReciprocalArea"/> from <see cref="ReciprocalLength"/> times <see cref="ReciprocalLength"/>.</summary>
+        public static ReciprocalArea operator *(ReciprocalLength reciprocalLength, ReciprocalLength other)
+        {
+            return ReciprocalArea.FromInverseSquareMeters(reciprocalLength.InverseMeters * other.InverseMeters);
+        }
+
+        /// <summary>Get <see cref="Length"/> from <see cref="ReciprocalLength"/> times <see cref="ReciprocalArea"/>.</summary>
+        public static Length operator /(ReciprocalLength reciprocalLength, ReciprocalArea reciprocalArea)
+        {
+            return Length.FromMeters(reciprocalLength.InverseMeters / reciprocalArea.InverseSquareMeters);
+        }
     }
 }
