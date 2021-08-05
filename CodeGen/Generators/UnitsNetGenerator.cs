@@ -3,7 +3,6 @@
 
 using System.IO;
 using System.Linq;
-using System.Text;
 using CodeGen.Generators.UnitsNetGen;
 using CodeGen.JsonTypes;
 using Serilog;
@@ -15,8 +14,6 @@ namespace CodeGen.Generators
     /// </summary>
     internal static class UnitsNetGenerator
     {
-        private const int AlignPad = 35;
-
         /// <summary>
         ///     Generate source code for UnitsNet project for the given parsed quantities.
         ///     Outputs files relative to the given root dir to these locations:
@@ -52,25 +49,23 @@ namespace CodeGen.Generators
 
             foreach (var quantity in quantities)
             {
-                var sb = new StringBuilder($"{quantity.Name}:".PadRight(AlignPad));
-                GenerateQuantity(sb, quantity, $"{outputDir}/Quantities/{quantity.Name}.g.cs");
-                GenerateUnitType(sb, quantity, $"{outputDir}/Units/{quantity.Name}Unit.g.cs");
-                GenerateNumberToExtensions(sb, quantity, $"{extensionsOutputDir}/NumberTo{quantity.Name}Extensions.g.cs");
-                GenerateNumberToExtensionsTestClass(sb, quantity, $"{extensionsTestOutputDir}/NumberTo{quantity.Name}ExtensionsTest.g.cs");
+                GenerateQuantity(quantity, $"{outputDir}/Quantities/{quantity.Name}.g.cs");
+                GenerateUnitType(quantity, $"{outputDir}/Units/{quantity.Name}Unit.g.cs");
+                GenerateNumberToExtensions(quantity, $"{extensionsOutputDir}/NumberTo{quantity.Name}Extensions.g.cs");
+                GenerateNumberToExtensionsTestClass(quantity, $"{extensionsTestOutputDir}/NumberTo{quantity.Name}ExtensionsTest.g.cs");
 
                 // Example: CustomCode/Quantities/LengthTests inherits GeneratedCode/TestsBase/LengthTestsBase
                 // This way when new units are added to the quantity JSON definition, we auto-generate the new
                 // conversion function tests that needs to be manually implemented by the developer to fix the compile error
                 // so it cannot be forgotten.
-                GenerateQuantityTestBaseClass(sb, quantity, $"{testProjectDir}/GeneratedCode/TestsBase/{quantity.Name}TestsBase.g.cs");
-                GenerateQuantityTestClassIfNotExists(sb, quantity, $"{testProjectDir}/CustomCode/{quantity.Name}Tests.cs");
+                GenerateQuantityTestBaseClass(quantity, $"{testProjectDir}/GeneratedCode/TestsBase/{quantity.Name}TestsBase.g.cs");
+                GenerateQuantityTestClassIfNotExists(quantity, $"{testProjectDir}/CustomCode/{quantity.Name}Tests.cs");
 
-                Log.Information(sb.ToString());
+                Log.Information("✅ {Quantity}", quantity.Name);
             }
 
-            GenerateIQuantityTests(quantities, $"{testProjectDir}/GeneratedCode/IQuantityTests.g.cs");
-
             Log.Information("");
+            GenerateIQuantityTests(quantities, $"{testProjectDir}/GeneratedCode/IQuantityTests.g.cs");
             GenerateUnitAbbreviationsCache(quantities, $"{outputDir}/UnitAbbreviationsCache.g.cs");
             GenerateQuantityType(quantities, $"{outputDir}/QuantityType.g.cs");
             GenerateStaticQuantity(quantities, $"{outputDir}/Quantity.g.cs");
@@ -78,91 +73,82 @@ namespace CodeGen.Generators
 
             var unitCount = quantities.SelectMany(q => q.Units).Count();
             Log.Information("");
-            Log.Information($"Total of {unitCount} units and {quantities.Length} quantities.");
+            Log.Information("Total of {UnitCount} units and {QuantityCount} quantities", unitCount, quantities.Length);
             Log.Information("");
         }
 
-        private static void GenerateQuantityTestClassIfNotExists(StringBuilder sb, Quantity quantity, string filePath)
+        private static void GenerateQuantityTestClassIfNotExists(Quantity quantity, string filePath)
         {
-            if (File.Exists(filePath))
-            {
-                sb.Append("test stub(skip) ");
-                return;
-            }
+            if (File.Exists(filePath)) return;
 
             var content = new UnitTestStubGenerator(quantity).Generate();
             File.WriteAllText(filePath, content);
-            sb.Append("test stub(OK) ");
+            Log.Information("✅ {Quantity} initial test stub", quantity.Name);
         }
 
-        private static void GenerateQuantity(StringBuilder sb, Quantity quantity, string filePath)
+        private static void GenerateQuantity(Quantity quantity, string filePath)
         {
             var content = new QuantityGenerator(quantity).Generate();
             File.WriteAllText(filePath, content);
-            sb.Append("quantity(OK) ");
         }
 
-        private static void GenerateNumberToExtensions(StringBuilder sb, Quantity quantity, string filePath)
+        private static void GenerateNumberToExtensions(Quantity quantity, string filePath)
         {
             var content = new NumberExtensionsGenerator(quantity).Generate();
             File.WriteAllText(filePath, content);
-            sb.Append("number extensions(OK) ");
         }
 
-        private static void GenerateNumberToExtensionsTestClass(StringBuilder sb, Quantity quantity, string filePath)
+        private static void GenerateNumberToExtensionsTestClass(Quantity quantity, string filePath)
         {
             var content = new NumberExtensionsTestClassGenerator(quantity).Generate();
             File.WriteAllText(filePath, content);
-            sb.Append("number extensions tests(OK) ");
         }
 
-        private static void GenerateUnitType(StringBuilder sb, Quantity quantity, string filePath)
+        private static void GenerateUnitType(Quantity quantity, string filePath)
         {
             var content = new UnitTypeGenerator(quantity).Generate();
             File.WriteAllText(filePath, content);
-            sb.Append("unit(OK) ");
         }
 
-        private static void GenerateQuantityTestBaseClass(StringBuilder sb, Quantity quantity, string filePath)
+        private static void GenerateQuantityTestBaseClass(Quantity quantity, string filePath)
         {
             var content = new UnitTestBaseClassGenerator(quantity).Generate();
             File.WriteAllText(filePath, content);
-            sb.Append("test base(OK) ");
         }
 
         private static void GenerateIQuantityTests(Quantity[] quantities, string filePath)
         {
             var content = new IQuantityTestClassGenerator(quantities).Generate();
             File.WriteAllText(filePath, content);
-            Log.Information("IQuantityTests.g.cs: ".PadRight(AlignPad) + "(OK)");
+            Log.Information("✅ IQuantityTests.g.cs");
         }
 
         private static void GenerateUnitAbbreviationsCache(Quantity[] quantities, string filePath)
         {
             var content = new UnitAbbreviationsCacheGenerator(quantities).Generate();
             File.WriteAllText(filePath, content);
-            Log.Information("UnitAbbreviationsCache.g.cs: ".PadRight(AlignPad) + "(OK)");
+            Log.Information("✅ UnitAbbreviationsCache.g.cs");
         }
 
         private static void GenerateQuantityType(Quantity[] quantities, string filePath)
         {
             var content = new QuantityTypeGenerator(quantities).Generate();
             File.WriteAllText(filePath, content);
-            Log.Information("QuantityType.g.cs: ".PadRight(AlignPad) + "(OK)");
+            Log.Information("✅ QuantityType.g.cs");
         }
 
         private static void GenerateStaticQuantity(Quantity[] quantities, string filePath)
         {
             var content = new StaticQuantityGenerator(quantities).Generate();
             File.WriteAllText(filePath, content);
-            Log.Information("Quantity.g.cs: ".PadRight(AlignPad) + "(OK)");
+            Log.Information("✅ Quantity.g.cs");
         }
 
         private static void GenerateUnitConverter(Quantity[] quantities, string filePath)
         {
             var content = new UnitConverterGenerator(quantities).Generate();
             File.WriteAllText(filePath, content);
-            Log.Information("UnitConverter.g.cs: ".PadRight(AlignPad) + "(OK)");
+            Log.Information("✅ UnitConverter.g.cs");
         }
     }
 }

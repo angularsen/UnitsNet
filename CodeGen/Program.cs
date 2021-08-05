@@ -45,21 +45,24 @@ namespace CodeGen
         /// <param name="skipWrc">Skip generate UnitsNet.WindowsRuntimeComponent? Defaults to false.</param>
         /// <param name="skipNanoFramework">Skip generate nanoFramework Units? Defaults to false</param>
         /// <param name="updateNanoFrameworkDependencies">Update nanoFramework nuget dependencies? Defaults to false.</param>
-        private static int Main(bool verbose = false, DirectoryInfo repositoryRoot = null, bool skipWrc = false, bool skipNanoFramework = false, bool updateNanoFrameworkDependencies = false)
+        public static int Main(bool verbose = false, DirectoryInfo? repositoryRoot = null, bool skipWrc = false, bool skipNanoFramework = false, bool updateNanoFrameworkDependencies = false)
         {
             Log.Logger = new LoggerConfiguration()
                 .WriteTo
                 .Console(verbose ? LogEventLevel.Verbose : LogEventLevel.Information)
                 .CreateLogger();
 
+            // Enable emojis and other UTF8 symbols.
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+
             try
             {
-                repositoryRoot = repositoryRoot ?? FindRepositoryRoot();
+                repositoryRoot ??= FindRepositoryRoot();
 
                 var rootDir = repositoryRoot.FullName;
 
-                Log.Information($"Units.NET code generator {Assembly.GetExecutingAssembly().GetName().Version}", ConsoleColor.Green);
-                if (verbose) Log.Debug($"verbose: {true}", ConsoleColor.Blue);
+                Log.Information("Units.NET code generator {Version}", Assembly.GetExecutingAssembly().GetName().Version);
+                if (verbose) Log.Debug("Verbose output enabled");
 
                 var sw = Stopwatch.StartNew();
                 var quantities = QuantityJsonFilesParser.ParseQuantities(repositoryRoot.FullName);
@@ -73,34 +76,34 @@ namespace CodeGen
 
                 if (!skipNanoFramework)
                 {
-                    Log.Information("Generating nanoFramework elements");
+                    Log.Information("Generate nanoFramework projects\n---");
                     NanoFrameworkGenerator.Generate(rootDir, quantities, updateNanoFrameworkDependencies);
                 }
 
-                Log.Information($"Completed in {sw.ElapsedMilliseconds} ms!", ConsoleColor.Green);
+                Log.Information("Completed in {ElapsedMs} ms!", sw.ElapsedMilliseconds);
                 return 0;
             }
             catch (Exception e)
             {
-                Log.Error(e, "Unexpected error.");
+                Log.Error(e, "Unexpected error");
                 return 1;
             }
         }
 
         private static DirectoryInfo FindRepositoryRoot()
         {
-            var executableParentDir = new DirectoryInfo(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
-            Log.Verbose($"Executable dir: {executableParentDir}");
+            var executableParentDir = new DirectoryInfo(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!);
+            Log.Verbose("Executable dir: {ExecutableParentDir}", executableParentDir);
 
             for (var dir = executableParentDir; dir != null; dir = dir.Parent)
             {
                 if (dir.GetFiles("UnitsNet.sln").Any())
                 {
-                    Log.Verbose($"Found repo root: {dir}");
+                    Log.Verbose("Found repo root: {Dir}", dir);
                     return dir;
                 }
 
-                Log.Verbose($"Not repo root: {dir}");
+                Log.Verbose("Not repo root: {Dir}", dir);
             }
 
             throw new Exception($"Unable to find repository root in directory hierarchy: {executableParentDir}");
