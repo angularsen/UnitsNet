@@ -51,7 +51,7 @@ namespace UnitsNet.Tests.CustomCode
             var inverseLength = new ReciprocalLength(value, ReciprocalLengthUnit.InverseMeter);
             var length = inverseLength.Inverse();
 
-            AssertEx.Equals(expected, length.Meters);
+            Assert.Equal(expected, length.Meters);
         }
 
         [Fact]

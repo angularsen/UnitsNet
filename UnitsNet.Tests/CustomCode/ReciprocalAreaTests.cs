@@ -51,7 +51,7 @@ namespace UnitsNet.Tests.CustomCode
             var inverseArea = new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareMeter);
             var area = inverseArea.Inverse();
 
-            AssertEx.Equals(expected, area.SquareMeters);
+            Assert.Equal(expected, area.SquareMeters);
         }
 
         [Fact]

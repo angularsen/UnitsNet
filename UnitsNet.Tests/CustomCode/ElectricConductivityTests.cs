@@ -45,7 +45,7 @@ namespace UnitsNet.Tests.CustomCode
             var unit = new ElectricConductivity( value, ElectricConductivityUnit.SiemensPerMeter );
             var inverse = unit.Inverse();
 
-            AssertEx.Equals( expected, inverse.OhmMeters );
+            Assert.Equal( expected, inverse.OhmMeters );
         }
     }
 }
