@@ -140,14 +140,26 @@ namespace CodeGen.Generators
                     logger,
                     cancellationToken).Result;
 
-                // NuGet package Version
-                // including preview
-                var mscorlibPackage = packageVersions.Where(v => v.IsPrerelease).OrderByDescending(v => v).First();
-                // stable only
-                //var mscorlibPackage = packageVersions.OrderByDescending(v => v).First();
+                // get NuGet package Version for mscorlib
+                var latestStableVersion = packageVersions.OrderByDescending(v => v).First();
+                var latestPreviewVersion = packageVersions.Where(v => v.IsPrerelease).OrderByDescending(v => v).First();
+                NuGetVersion mscorlibVersion;
 
-                MscorlibVersion = mscorlibPackage.Version.ToString();
-                MscorlibNuGetVersion = mscorlibPackage.ToNormalizedString();
+                // check which version is greatest
+                if (latestStableVersion > latestPreviewVersion)
+                {
+                    // newest is stable
+                    MscorlibVersion = latestStableVersion.Version.ToString();
+                    MscorlibNuGetVersion = latestStableVersion.ToNormalizedString();
+                    mscorlibVersion = latestStableVersion;
+                }
+                else
+                {
+                    // newest is preview
+                    MscorlibVersion = latestPreviewVersion.Version.ToString();
+                    MscorlibNuGetVersion = latestPreviewVersion.ToNormalizedString();
+                    mscorlibVersion = latestPreviewVersion;
+                }
 
                 // Math
                 packageVersions = resource.GetAllVersionsAsync(
@@ -156,14 +168,23 @@ namespace CodeGen.Generators
                     logger,
                     cancellationToken).Result;
 
-                // NuGet package Version
-                // including preview
-                var mathPackage = packageVersions.Where(v => v.IsPrerelease).OrderByDescending(v => v).First();
-                // stable only
-                //var mathPackage = MathNuGetVersion = packageVersions.OrderByDescending(v => v).First();
+                if(mscorlibVersion.IsPrerelease)
+                {
+                    // we are working with a preview version
+                    var mathPackage = packageVersions.Where(v => v.IsPrerelease).OrderByDescending(v => v).First();
+                    MathVersion = mathPackage.Version.ToString();
+                    MathNuGetVersion = mathPackage.ToNormalizedString();
+                }
+                else
+                {
+                    // we are working with a stable version
+                    var mathPackage = packageVersions.OrderByDescending(v => v).First();
+                    MathVersion = mathPackage.Version.ToString();
+                    MathNuGetVersion = mathPackage.ToNormalizedString();
+                }
 
-                MathVersion = mathPackage.Version.ToString();
-                MathNuGetVersion = mathPackage.ToNormalizedString();
+                logger.LogInformation($"Referencing nanoFramework.CoreLibrary {MscorlibNuGetVersion}");
+                logger.LogInformation($"Referencing nanoFramework.System.Math {MathNuGetVersion}");
             }
             else
             {
