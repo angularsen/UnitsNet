@@ -443,6 +443,6 @@ https://kito.com
 > UnitsNet is used by the SDK provided by SCIA to facilitate import / export between metric & imperial systems
 
 https://www.saf.guide  
-https://github.com/StructuralAnalysisFormat _(SDK will soon be available under this org. when it's ready, soon&trade;)_
+https://github.com/StructuralAnalysisFormat/StructuralAnalysisFormat-SDK
 
 *- Dirk Schuermans, Software Engineer for [SCIA nv](https://www.scia.net)*
