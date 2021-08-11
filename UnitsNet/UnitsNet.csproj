@@ -23,7 +23,7 @@
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <RootNamespace>UnitsNet</RootNamespace>
-    <TargetFrameworks>netstandard2.0;net40</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net40;net47</TargetFrameworks>
   </PropertyGroup>
 
   <!-- SourceLink -->
@@ -41,10 +41,14 @@
     <AssemblyName>UnitsNet</AssemblyName>
   </PropertyGroup>
 
-  <!-- NuGet references that work for both signed and unsigned -->
+  <!-- NuGet references that work for all TargetFrameworks, both signed and unsigned. -->
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2019.1.3" PrivateAssets="All" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
+  <!-- System.ValueTuple is only required for net40 target. -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
 
