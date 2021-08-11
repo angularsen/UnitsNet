@@ -338,7 +338,7 @@ JSON output:
 
 If you need to support deserializing into properties/fields of type `IComparable` instead of type `IQuantity`, then you can add 
 ```c#
-jsonSerializerSettings.Converters.Add(new UnitsNetIQuantityJsonConverter());
+jsonSerializerSettings.Converters.Add(new UnitsNetIComparableJsonConverter());
 ```
 
 **Important!** 
@@ -434,3 +434,15 @@ https://www.harringtonhoists.com<br>
 https://kito.com
 
 *- Luke Westfall, Design Automation Engineer*
+
+#### Structural Analysis Format - SDK project
+<img src="https://gblobscdn.gitbook.com/spaces%2F-M__87HTlQktMqcjAf65%2Favatar-1620901174483.png?alt=media" height="35" />
+
+> The Structural Analysis Format (SAF) has been created to allow structural engineering applications to exchange data using a straight forward and simple to understand format.  
+> While inspired by IFC, SAF has its benefits that it's **easily modifyable** by the end-user _(it's an xlsx file)_, **well documented** and **easy to understand**.  
+> UnitsNet is used by the SDK provided by SCIA to facilitate import / export between metric & imperial systems
+
+https://www.saf.guide  
+https://github.com/StructuralAnalysisFormat/StructuralAnalysisFormat-SDK
+
+*- Dirk Schuermans, Software Engineer for [SCIA nv](https://www.scia.net)*
