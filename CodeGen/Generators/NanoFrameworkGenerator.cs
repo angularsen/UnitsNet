@@ -140,30 +140,27 @@ namespace CodeGen.Generators
                     logger,
                     cancellationToken).Result;
 
-                // NuGet package Version
-                // including preview
-                var mscorlibPackage = packageVersions.Where(v => v.IsPrerelease).OrderByDescending(v => v).First();
-                // stable only
-                //var mscorlibPackage = packageVersions.OrderByDescending(v => v).First();
+                // get NuGet package Version for mscorlib
+                // grab latest available (doesn't matter if it's preview or stable)
+                NuGetVersion mscorlibVersion = packageVersions.OrderByDescending(v => v).First();
+                MscorlibVersion = mscorlibVersion.Version.ToString();
+                MscorlibNuGetVersion = mscorlibVersion.ToNormalizedString();
 
-                MscorlibVersion = mscorlibPackage.Version.ToString();
-                MscorlibNuGetVersion = mscorlibPackage.ToNormalizedString();
-
-                // Math
+                // System.Math
                 packageVersions = resource.GetAllVersionsAsync(
                     "nanoFramework.System.Math",
                     cache,
                     logger,
                     cancellationToken).Result;
 
-                // NuGet package Version
-                // including preview
-                var mathPackage = packageVersions.Where(v => v.IsPrerelease).OrderByDescending(v => v).First();
-                // stable only
-                //var mathPackage = MathNuGetVersion = packageVersions.OrderByDescending(v => v).First();
+                // grab latest available (doesn't matter if it's preview or stable)
+                // making an assumption here that the available version is referencing the correct mscolib
+                var mathVersion = packageVersions.OrderByDescending(v => v).First();
+                MathVersion = mathVersion.Version.ToString();
+                MathNuGetVersion = mathVersion.ToNormalizedString();
 
-                MathVersion = mathPackage.Version.ToString();
-                MathNuGetVersion = mathPackage.ToNormalizedString();
+                logger.LogInformation($"Referencing nanoFramework.CoreLibrary {MscorlibNuGetVersion}");
+                logger.LogInformation($"Referencing nanoFramework.System.Math {MathNuGetVersion}");
             }
             else
             {
