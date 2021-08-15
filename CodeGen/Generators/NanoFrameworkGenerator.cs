@@ -71,7 +71,6 @@ namespace CodeGen.Generators
                 "projectVersion");
 
             int numberQuantity = 0;
-
             foreach (var quantity in quantities)
             {
                 var projectPath = Path.Combine(outputDir, quantity.Name);
