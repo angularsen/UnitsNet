@@ -141,7 +141,7 @@ namespace CodeGen.Generators
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    FileName = "nuget.exe",
+                    FileName = "Tools/nuget.exe",
                     Arguments = $"update {path}\\UnitsNet.nanoFramework.sln -PreRelease",
                     UseShellExecute = false,
                     CreateNoWindow = true
