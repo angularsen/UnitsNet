@@ -1,6 +1,5 @@
 # Set default behavior to automatically normalize line endings.
 * text=auto
-
 # Visual Studio
 *.sln        text eol=crlf
 *.csproj     text eol=crlf
@@ -14,19 +13,15 @@
 *.modelproj  text eol=crlf
 *.sqlproj    text eol=crlf
 *.wmaproj    text eol=crlf
-
 *.xproj      text eol=crlf
 *.props      text eol=crlf
 *.filters    text eol=crlf
 *.vcxitems   text eol=crlf
-
 # C#
 *.cs    diff=csharp
 *.g.cs  linguist-generated
-
 # Powershell
 *.ps1    text  eol=crlf
-
 # Common
 # Documents
 *.doc	 diff=astextplain
@@ -47,7 +42,6 @@
 *.tab text
 *.tsv text
 *.sql text
-
 # Graphics
 *.png binary
 *.jpg binary
@@ -61,8 +55,8 @@
 *.svg binary
 #*.svg text
 *.eps binary
-
 # Avoid messing up GitHub statistics on code language by excluding sample projects
 UnitsNet.TestApps.Uwp.JavaScript/* linguist-vendored
 UnitsNet.TestApps.Uwp.WinJS/* linguist-vendored
 UnitsNet.TestApps.Uwp.Csharp/* linguist-vendored
+*.exe filter=lfs diff=lfs merge=lfs -text
