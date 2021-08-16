@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -147,8 +147,6 @@ namespace CodeGen.Generators
                     CreateNoWindow = true
                 }
             };
-
-            nugetCLI.Start();
 
             // start nuget CLI and wait for exit
             if (!nugetCLI.Start())
