@@ -78,9 +78,6 @@ namespace CodeGen
                 {
                     Log.Information("Generate nanoFramework projects\n---");
                     NanoFrameworkGenerator.Generate(rootDir, quantities);
-
-                    // after generating code, force a dependencies update to make sure it's using the latest NuGet packages
-                    updateNanoFrameworkDependencies = true;
                 }
 
                 if(updateNanoFrameworkDependencies)
