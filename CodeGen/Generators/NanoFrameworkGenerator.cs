@@ -19,13 +19,6 @@ namespace CodeGen.Generators
     /// </summary>
     internal static class NanoFrameworkGenerator
     {
-        private const int AlignPad = 35;
-
-        internal static string MscorlibVersion = "1.10.5.0";
-        internal static string MscorlibNuGetVersion = "1.10.5-preview.18";
-        internal static string MathVersion = "1.4.1.0";
-        internal static string MathNuGetVersion = "1.4.1-preview.7";
-
         /// <summary>
         /// These projects require inclusion of Math NuGet package.
         /// </summary>
@@ -52,15 +45,17 @@ namespace CodeGen.Generators
             // get latest version of .NET nanoFramework mscorlib
             ILogger logger = NullLogger.Instance;
 
-            logger.LogInformation($"Referencing nanoFramework.CoreLibrary {MscorlibNuGetVersion}");
-            logger.LogInformation($"Referencing nanoFramework.System.Math {MathNuGetVersion}");
+            NanoFrameworkVersions versions = ParseCurrentNanoFrameworkVersions(rootDir);
+
+            logger.LogInformation($"Referencing nanoFramework.CoreLibrary {versions.MscorlibNugetVersion}");
+            logger.LogInformation($"Referencing nanoFramework.System.Math {versions.MathNugetVersion}");
 
             var outputDir = Path.Combine(rootDir, "UnitsNet.NanoFramework", "GeneratedCode");
             var outputQuantities = Path.Combine(outputDir, "Quantities");
             var outputUnits = Path.Combine(outputDir, "Units");
             var outputProperties = Path.Combine(outputDir, "Properties");
-            // Ensure output directories exist
 
+            // Ensure output directories exist
             Directory.CreateDirectory(outputQuantities);
             Directory.CreateDirectory(outputUnits);
             Directory.CreateDirectory(outputProperties);
@@ -70,7 +65,6 @@ namespace CodeGen.Generators
                 new Regex(@"<version>(?<version>[\d\.]+)</version>", RegexOptions.IgnoreCase),
                 "projectVersion");
 
-            int numberQuantity = 0;
             foreach (var quantity in quantities)
             {
                 var projectPath = Path.Combine(outputDir, quantity.Name);
@@ -79,18 +73,18 @@ namespace CodeGen.Generators
                 GeneratePackageConfig(
                     projectPath,
                     quantity.Name,
-                    MscorlibNuGetVersion,
-                    MathNuGetVersion);
+                    versions.MscorlibNugetVersion,
+                    versions.MathNugetVersion);
 
                 GenerateNuspec(
                     projectPath,
                     quantity,
-                    MscorlibNuGetVersion,
-                    MathNuGetVersion);
+                    versions.MscorlibNugetVersion,
+                    versions.MathNugetVersion);
 
                 GenerateUnitType(quantity, Path.Combine(outputUnits, $"{quantity.Name}Unit.g.cs"));
                 GenerateQuantity(quantity, Path.Combine(outputQuantities, $"{quantity.Name}.g.cs"));
-                GenerateProject(quantity, Path.Combine(projectPath, $"{quantity.Name}.nfproj"));
+                GenerateProject(quantity, Path.Combine(projectPath, $"{quantity.Name}.nfproj"), versions);
 
                 // Convert decimal based units to floats; decimals are not supported by nanoFramework
                 if (quantity.BaseType == "decimal")
@@ -108,7 +102,6 @@ namespace CodeGen.Generators
                 }
 
                 Log.Information("✅ {Quantity} (nanoFramework)", quantity.Name);
-                numberQuantity++;
             }
             Log.Information("");
 
@@ -137,7 +130,7 @@ namespace CodeGen.Generators
             Log.Information("Updating .NET nanoFramework references using nuget CLI");
 
             // run nuget CLI
-            var nugetCLI = new System.Diagnostics.Process
+            var nugetCLI = new Process
             {
                 StartInfo = new ProcessStartInfo
                 {
@@ -174,21 +167,20 @@ namespace CodeGen.Generators
                         Log.Information("Updating .NET nanoFramework nuspec files");
                         Log.Information("");
 
-                        int numberQuantity = 0;
-
                         foreach (var quantity in quantities)
                         {
                             var projectPath = Path.Combine(path, quantity.Name);
 
                             // read packages.config content
                             var packagesConfig = Path.Combine(projectPath, "packages.config");
+                            var packagesConfigText = File.ReadAllText(packagesConfig);
 
-                            var mscorlibVersion = ParseVersion(File.ReadAllText(packagesConfig),
+                            var mscorlibVersion = ParseVersion(packagesConfigText,
                                 new Regex("CoreLibrary\\\" version=\\\"(?<version>.+)\\\" targetFramework", RegexOptions.IgnoreCase),
                                 "projectVersion");
 
                             // don't throw on failure because not all packages have System.Math
-                            var mathVersion = ParseVersion(File.ReadAllText(packagesConfig),
+                            var mathVersion = ParseVersion(packagesConfigText,
                                 new Regex("Math\\\" version=\\\"(?<version>.+)\\\" targetFramework", RegexOptions.IgnoreCase),
                                 "projectVersion",
                                 false);
@@ -201,7 +193,6 @@ namespace CodeGen.Generators
                                 mathVersion);
 
                             Log.Information("✅ {Quantity} (nanoFramework)", quantity.Name);
-                            numberQuantity++;
                         }
                     }
                     else
@@ -215,56 +206,34 @@ namespace CodeGen.Generators
             Log.Information("");
         }
 
-        /// <summary>
-        /// Update NanoFrameworkGenerator source file with new assembly and NuGet packages versions.
-        /// </summary>
-        /// <param name="rootDir">The repository root directory.</param>
-        public static void UpdateNanoFrameworkGenerator(string rootDir)
+        private static NanoFrameworkVersions ParseCurrentNanoFrameworkVersions(string rootDir)
         {
             // Angle has both mscorlib and System.Math dependency
             string generatedCodePath = Path.Combine(rootDir, "UnitsNet.NanoFramework\\GeneratedCode");
             var angleProjectFile = Path.Combine(generatedCodePath, "Angle", "Angle.nfproj");
             var projectFileContent = File.ReadAllText(angleProjectFile);
 
-            // save current versions
-            string prevMscorlibVersion = MscorlibVersion;
-            string prevMscorlibNuGetVersion = MscorlibNuGetVersion;
-            string prevMathVersion = MathVersion;
-            string prevMathNuGetVersion = MathNuGetVersion;
-
             // <Reference Include="mscorlib, Version=1.10.5.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
-            MscorlibVersion = ParseVersion(projectFileContent,
-                    new Regex(@"<Reference Include=""mscorlib,\s*Version=(?<version>[\d\.]+),.*"">", RegexOptions.IgnoreCase),
-                    nameof(MscorlibVersion));
+            var mscorlibVersion = ParseVersion(projectFileContent,
+                new Regex(@"<Reference Include=""mscorlib,\s*Version=(?<version>[\d\.]+),.*"">", RegexOptions.IgnoreCase),
+                "mscorlib assembly version");
 
             // <HintPath>..\packages\nanoFramework.CoreLibrary.1.10.5-preview.18\lib\mscorlib.dll</HintPath>
-            MscorlibNuGetVersion = ParseVersion(projectFileContent,
+            var mscorlibNuGetVersion = ParseVersion(projectFileContent,
                 new Regex(@"<HintPath>.*[\\\/]nanoFramework\.CoreLibrary\.(?<version>.*?)[\\\/]lib[\\\/]mscorlib.dll<", RegexOptions.IgnoreCase),
-                nameof(MscorlibNuGetVersion));
+                "nanoFramework.CoreLibrary nuget version");
 
             // <Reference Include="System.Math, Version=1.4.1.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
-            MathVersion = ParseVersion(projectFileContent,
+            var mathVersion = ParseVersion(projectFileContent,
                 new Regex(@"<Reference Include=""System.Math,\s*Version=(?<version>[\d\.]+),.*"">", RegexOptions.IgnoreCase),
-                nameof(MathVersion));
+                "System.Math assembly version");
 
             //   <HintPath>..\packages\nanoFramework.System.Math.1.4.1-preview.7\lib\System.Math.dll</HintPath>
-            MathNuGetVersion = ParseVersion(projectFileContent,
+            var mathNuGetVersion = ParseVersion(projectFileContent,
                 new Regex(@"<HintPath>.*[\\\/]nanoFramework\.System\.Math\.(?<version>.*?)[\\\/]lib[\\\/]System.Math.dll<", RegexOptions.IgnoreCase),
-                nameof(MathNuGetVersion));
+                "nanoFramework.System.Math nuget version");
 
-            // re-write NanoFrameworkGenerator.cs
-            var nanoFrameworkGeneratorFilePath = Path.Combine(rootDir, "CodeGen", "Generators", "NanoFrameworkGenerator.cs");
-
-            var nanoFrameworkGeneratorFileContent = File.ReadAllText(nanoFrameworkGeneratorFilePath);
-
-            // replace content of version static properties
-            nanoFrameworkGeneratorFileContent = nanoFrameworkGeneratorFileContent.Replace($"MscorlibVersion = \"{prevMscorlibVersion}\";", $"MscorlibVersion = \"{MscorlibVersion}\";");
-            nanoFrameworkGeneratorFileContent = nanoFrameworkGeneratorFileContent.Replace($"MscorlibNuGetVersion = \"{prevMscorlibNuGetVersion}\";", $"MscorlibNuGetVersion = \"{MscorlibNuGetVersion}\";");
-            nanoFrameworkGeneratorFileContent = nanoFrameworkGeneratorFileContent.Replace($"MathVersion = \"{prevMathVersion}\";", $"MathVersion = \"{MathVersion}\";");
-            nanoFrameworkGeneratorFileContent = nanoFrameworkGeneratorFileContent.Replace($"MathNuGetVersion = \"{prevMathNuGetVersion}\";", $"MathNuGetVersion = \"{MathNuGetVersion}\";");
-
-            // save updated NanoFrameworkGenerator.cs
-            File.WriteAllText(nanoFrameworkGeneratorFilePath, nanoFrameworkGeneratorFileContent);
+            return new NanoFrameworkVersions(mscorlibVersion, mscorlibNuGetVersion, mathVersion, mathNuGetVersion);
         }
 
         private static string ParseVersion(
@@ -337,9 +306,9 @@ namespace CodeGen.Generators
             File.WriteAllText(filePath, content);
         }
 
-        private static void GenerateProject(Quantity quantity, string filePath)
+        private static void GenerateProject(Quantity quantity, string filePath, NanoFrameworkVersions versions)
         {
-            var content = new ProjectGenerator(quantity).Generate();
+            var content = new ProjectGenerator(quantity, versions).Generate();
             File.WriteAllText(filePath, content);
         }
 
