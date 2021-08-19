@@ -6,7 +6,7 @@ namespace CodeGen.Generators.NanoFrameworkGen
     class ProjectGenerator: GeneratorBase
     {
         private readonly Quantity _quantity;
-        private readonly NanoFrameworkGenerator.NanoFrameworkVersions _versions;
+        private readonly NanoFrameworkVersions _versions;
 
         public ProjectGenerator(Quantity quantity, NanoFrameworkVersions versions)
         {
