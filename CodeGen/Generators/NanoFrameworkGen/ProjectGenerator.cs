@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using CodeGen.JsonTypes;
 
 namespace CodeGen.Generators.NanoFrameworkGen
@@ -8,10 +6,12 @@ namespace CodeGen.Generators.NanoFrameworkGen
     class ProjectGenerator: GeneratorBase
     {
         private readonly Quantity _quantity;
+        private readonly NanoFrameworkVersions _versions;
 
-        public ProjectGenerator(Quantity quantity)
+        public ProjectGenerator(Quantity quantity, NanoFrameworkVersions versions)
         {
             _quantity = quantity ?? throw new ArgumentNullException(nameof(quantity));
+            _versions = versions;
         }
 
         public override string Generate()
@@ -42,8 +42,8 @@ namespace CodeGen.Generators.NanoFrameworkGen
     <Compile Include=""..\Properties\AssemblyInfo.cs"" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include=""mscorlib, Version={NanoFrameworkGenerator.MscorlibVersion}, Culture=neutral, PublicKeyToken=c07d481e9758c731"">
-      <HintPath>..\packages\nanoFramework.CoreLibrary.{NanoFrameworkGenerator.MscorlibNuGetVersion}\lib\mscorlib.dll</HintPath>
+    <Reference Include=""mscorlib, Version={_versions.MscorlibVersion}, Culture=neutral, PublicKeyToken=c07d481e9758c731"">
+      <HintPath>..\packages\nanoFramework.CoreLibrary.{_versions.MscorlibNugetVersion}\lib\mscorlib.dll</HintPath>
       <Private>True</Private>
       <SpecificVersion>True</SpecificVersion>
     </Reference>");
@@ -51,8 +51,8 @@ namespace CodeGen.Generators.NanoFrameworkGen
     if(NanoFrameworkGenerator.ProjectsRequiringMath.Contains(_quantity.Name))
     {
                 Writer.WL($@"
-    <Reference Include=""System.Math, Version={NanoFrameworkGenerator.MathVersion}, Culture=neutral, PublicKeyToken=c07d481e9758c731"">
-      <HintPath>..\packages\nanoFramework.System.Math.{NanoFrameworkGenerator.MathNuGetVersion}\lib\System.Math.dll</HintPath>
+    <Reference Include=""System.Math, Version={_versions.MathVersion}, Culture=neutral, PublicKeyToken=c07d481e9758c731"">
+      <HintPath>..\packages\nanoFramework.System.Math.{_versions.MathNugetVersion}\lib\System.Math.dll</HintPath>
       <Private>True</Private>
       <SpecificVersion>True</SpecificVersion>
     </Reference>");
