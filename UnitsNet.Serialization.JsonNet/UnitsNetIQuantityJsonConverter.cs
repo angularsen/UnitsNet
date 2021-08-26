@@ -32,7 +32,7 @@ namespace UnitsNet.Serialization.JsonNet
                 return;
             }
 
-            var valueUnit = BaseConverter.ConvertIQuantity(value, CreateValueUnit, CreateExtendedValueUnit);
+            var valueUnit = (ValueUnit) BaseConverter.ConvertIQuantity(value, CreateValueUnit, CreateExtendedValueUnit);
 
             serializer.Serialize(writer, valueUnit);
         }

@@ -46,6 +46,10 @@ EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Serialization", "UnitsNet.Serialization\UnitsNet.Serialization.csproj", "{9800D74F-5A10-4E36-89E3-4C9EE112413F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Serialization.SystemTextJson", "UnitsNet.Serialization.SystemTextJson\UnitsNet.Serialization.SystemTextJson.csproj", "{95341193-0C5F-4AEA-9705-801872D6F19A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.Serialization.SystemTextJson.Tests", "UnitsNet.Serialization.SystemTextJson.Tests\UnitsNet.Serialization.SystemTextJson.Tests.csproj", "{F313EC26-748F-440E-8F7E-698C4DA45953}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,6 +96,14 @@ Global
 		{9800D74F-5A10-4E36-89E3-4C9EE112413F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9800D74F-5A10-4E36-89E3-4C9EE112413F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9800D74F-5A10-4E36-89E3-4C9EE112413F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95341193-0C5F-4AEA-9705-801872D6F19A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95341193-0C5F-4AEA-9705-801872D6F19A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95341193-0C5F-4AEA-9705-801872D6F19A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95341193-0C5F-4AEA-9705-801872D6F19A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F313EC26-748F-440E-8F7E-698C4DA45953}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F313EC26-748F-440E-8F7E-698C4DA45953}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F313EC26-748F-440E-8F7E-698C4DA45953}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F313EC26-748F-440E-8F7E-698C4DA45953}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
