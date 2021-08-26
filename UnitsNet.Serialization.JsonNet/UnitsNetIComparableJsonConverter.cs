@@ -76,7 +76,7 @@ namespace UnitsNet.Serialization.JsonNet
                 return token.ToObject<IComparable>(localSerializer);
             }
 
-            return ConvertValueUnit(valueUnit) as IComparable;
+            return BaseConverter.ConvertValueUnit(valueUnit) as IComparable;
         }
     }
 }

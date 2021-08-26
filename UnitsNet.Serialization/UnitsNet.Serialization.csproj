@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <!-- NuGet properties -->
   <PropertyGroup>
-    <PackageId>UnitsNet.Serialization.JsonNet</PackageId>
+    <PackageId>UnitsNet.Serialization</PackageId>
     <Version>4.4.0</Version>
     <Authors>Andreas Gullberg Larsen</Authors>
     <Title>Units.NET Serialization with Json.NET</Title>
@@ -22,7 +22,7 @@
   <PropertyGroup>
     <AssemblyVersion>4.0.0.0</AssemblyVersion> <!-- Should reflect major part of Version -->
     <LangVersion>latest</LangVersion>
-    <RootNamespace>UnitsNet.Serialization.JsonNet</RootNamespace>
+    <RootNamespace>UnitsNet.Serialization</RootNamespace>
     <TargetFrameworks>netstandard2.0;net40</TargetFrameworks>
   </PropertyGroup>
 
@@ -44,12 +44,10 @@
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2019.1.3" PrivateAssets="All" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
   <!-- Project references, will also generate the corresponding nuget dependencies -->
   <ItemGroup>
-    <ProjectReference Include="..\UnitsNet.Serialization\UnitsNet.Serialization.csproj" />
     <ProjectReference Include="..\UnitsNet\UnitsNet.csproj" />
   </ItemGroup>
 

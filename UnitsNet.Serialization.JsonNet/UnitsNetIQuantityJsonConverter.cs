@@ -32,10 +32,12 @@ namespace UnitsNet.Serialization.JsonNet
                 return;
             }
 
-            var valueUnit = ConvertIQuantity(value);
+            var valueUnit = BaseConverter.ConvertIQuantity(value, CreateValueUnit, CreateExtendedValueUnit);
 
             serializer.Serialize(writer, valueUnit);
         }
+
+
 
         /// <summary>
         /// Reads the JSON representation of the object.
@@ -64,7 +66,7 @@ namespace UnitsNet.Serialization.JsonNet
 
             var valueUnit = ReadValueUnit(token);
 
-            return ConvertValueUnit(valueUnit);
+            return BaseConverter.ConvertValueUnit(valueUnit);
         }
     }
 }

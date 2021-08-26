@@ -230,13 +230,13 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             public (string Unit, double Value) Test_ConvertDoubleIQuantity(IQuantity value)
             {
-                var result = ConvertIQuantity(value);
+                var result = BaseConverter.ConvertIQuantity(value, CreateValueUnit, CreateExtendedValueUnit);
                 return (result.Unit, result.Value);
             }
 
             public (string Unit, decimal Value) Test_ConvertDecimalIQuantity(IQuantity value)
             {
-                var result = ConvertIQuantity(value);
+                var result = BaseConverter.ConvertIQuantity(value, CreateValueUnit, CreateExtendedValueUnit);
                 if (result is ExtendedValueUnit {ValueType: "decimal"} decimalResult)
                 {
                     return (result.Unit, decimal.Parse(decimalResult.ValueString, CultureInfo.InvariantCulture));
@@ -253,7 +253,8 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             });
 
             public IQuantity Test_ConvertValueUnit() => Test_ConvertValueUnit(null);
-            private IQuantity Test_ConvertValueUnit(ValueUnit valueUnit) => ConvertValueUnit(valueUnit);
+
+            private IQuantity Test_ConvertValueUnit(ValueUnit valueUnit) => BaseConverter.ConvertValueUnit(valueUnit);
 
             public JsonSerializer Test_CreateLocalSerializer(JsonSerializer serializer) => CreateLocalSerializer(serializer, this);
 
