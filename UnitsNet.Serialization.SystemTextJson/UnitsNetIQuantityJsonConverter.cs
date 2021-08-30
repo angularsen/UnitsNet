@@ -5,39 +5,45 @@ using System.Text.Json.Serialization;
 namespace UnitsNet.Serialization.SystemTextJson
 {
     /// <summary>
-    /// System.Text.Json converter for IQuantity types (e.g. all units in UnitsNet)
-    /// Use this converter to serialize and deserialize UnitsNet types to and from JSON
+    /// System.Text.Json converter for a specific IQuantity subtypes.
+    /// Normally, <see cref="UnitsNetIQuantityJsonConverterFactory"/> should be used from client code.
     /// </summary>
-    public class UnitsNetIQuantityJsonConverter : JsonConverter<IQuantity>
+    public class UnitsNetIQuantityJsonConverter<TQuantity> : JsonConverter<TQuantity> where TQuantity : IQuantity
     {
-        /// <summary>
-        /// Base converter functionality
-        /// </summary>
-        private readonly QuantityConverter<IQuantity> _baseConverter = new();
+        private readonly QuantityConverter _baseConverter;
 
-        /// <inheritdoc cref="QuantityConverter{TQuantity}.RegisterCustomType"/>
+        /// <summary>
+        /// Instantiates this converter with an optional base converter
+        /// </summary>
+        /// <param name="baseConverter"></param>
+        public UnitsNetIQuantityJsonConverter(QuantityConverter baseConverter = null)
+        {
+            _baseConverter = baseConverter ?? new QuantityConverter();
+        }
+
+        /// <inheritdoc cref="QuantityConverter.RegisterCustomType"/>
         public void RegisterCustomType(Type quantity, Type unit)
         {
             _baseConverter.RegisterCustomType(quantity, unit);
         }
 
         /// <inheritdoc cref="JsonConverter{TUnitType}.Read"/>
-        public override IQuantity Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override TQuantity Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             var token = JsonDocument.ParseValue(ref reader).RootElement;
 
             if (reader.TokenType == JsonTokenType.Null)
             {
-                return null;
+                return default(TQuantity);
             }
 
             var valueUnit = ReadValueUnit(token);
 
-            return _baseConverter.ConvertValueUnit(valueUnit);
+            return (TQuantity)_baseConverter.ConvertValueUnit(valueUnit);
         }
 
         /// <inheritdoc cref="JsonConverter{TUnitType}.Write"/>
-        public override void Write(Utf8JsonWriter writer, IQuantity value, JsonSerializerOptions options)
+        public override void Write(Utf8JsonWriter writer, TQuantity value, JsonSerializerOptions options)
         {
             if (value == null)
             {
@@ -51,7 +57,7 @@ namespace UnitsNet.Serialization.SystemTextJson
         }
 
         /// <inheritdoc cref="JsonConverter{TUnitType}.CanConvert"/>
-        public override bool CanConvert(Type typeToConvert) => typeof(IQuantity).IsAssignableFrom(typeToConvert);
+        public override bool CanConvert(Type typeToConvert) => typeof(TQuantity).IsAssignableFrom(typeToConvert);
 
         /// <summary>
         /// Factory method to create a <see cref="ValueUnit"/>

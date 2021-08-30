@@ -10,11 +10,11 @@ namespace UnitsNet.Serialization.SystemTextJson.Tests
 {
     public sealed class UnitsNetIQuantityJsonConverterTest
     {
-        private readonly UnitsNetIQuantityJsonConverter _sut;
+        private readonly UnitsNetIQuantityJsonConverter<IQuantity> _sut;
 
         public UnitsNetIQuantityJsonConverterTest()
         {
-            _sut = new UnitsNetIQuantityJsonConverter();
+            _sut = new UnitsNetIQuantityJsonConverter<IQuantity>();
         }
 
         [Fact]

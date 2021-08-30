@@ -10,7 +10,7 @@ namespace UnitsNet.Serialization
     /// <summary>
     /// Common converter functionality that can be used from both Json.Net and System.Text.Json converters
     /// </summary>
-    public class QuantityConverter<TQuantity>
+    public class QuantityConverter
     {
         private readonly ConcurrentDictionary<string, (Type Quantity, Type Unit)> _registeredTypes = new ();
 
@@ -22,9 +22,9 @@ namespace UnitsNet.Serialization
         /// </summary>
         public void RegisterCustomType(Type quantity, Type unit)
         {
-            if (!typeof(TQuantity).IsAssignableFrom(quantity))
+            if (!typeof(IQuantity).IsAssignableFrom(quantity))
             {
-                throw new ArgumentException($"The type {quantity} is not a {typeof(TQuantity)}");
+                throw new ArgumentException($"The type {quantity} is not a {typeof(IQuantity)}");
             }
 
             if (!typeof(Enum).IsAssignableFrom(unit))
@@ -65,7 +65,7 @@ namespace UnitsNet.Serialization
         }
 
         /// <summary>
-        /// Convert a <see cref="IValueUnit"/> to an <see cref="IQuantity"/>
+        /// Convert a <see cref="IValueUnit"/> to a <see cref="IQuantity"/>
         /// </summary>
         /// <param name="valueUnit">The value unit to convert</param>
         /// <exception cref="UnitsNetException">Thrown when an invalid Unit has been provided</exception>
@@ -74,7 +74,7 @@ namespace UnitsNet.Serialization
         {
             if (string.IsNullOrWhiteSpace(valueUnit?.Unit))
             {
-                return null;
+                return default(IQuantity);
             }
 
             var unit = GetUnit(valueUnit.Unit);

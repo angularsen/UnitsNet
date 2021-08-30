@@ -19,9 +19,9 @@ namespace UnitsNet.Serialization.JsonNet
         /// <summary>
         /// Base converter functionality
         /// </summary>
-        protected readonly QuantityConverter<IQuantity> BaseConverter = new();
+        protected readonly QuantityConverter BaseConverter = new();
 
-        /// <inheritdoc cref="QuantityConverter{TQuantity}.RegisterCustomType"/>
+        /// <inheritdoc cref="QuantityConverter.RegisterCustomType"/>
         public void RegisterCustomType(Type quantity, Type unit)
         {
             BaseConverter.RegisterCustomType(quantity, unit);

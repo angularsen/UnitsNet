@@ -12,7 +12,7 @@ namespace UnitsNet.Serialization.SystemTextJson.Tests.Infrastructure
         protected UnitsNetJsonBaseTest()
         {
             _jsonSerializerSettings = new JsonSerializerOptions  { WriteIndented = true };
-            _jsonSerializerSettings.Converters.Add(new UnitsNetIQuantityJsonConverter());
+            _jsonSerializerSettings.Converters.Add(new UnitsNetIQuantityJsonConverterFactory());
         }
 
         protected string SerializeObject(object obj)
