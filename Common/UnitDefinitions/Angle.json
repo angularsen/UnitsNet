@@ -78,6 +78,18 @@
       ]
     },
     {
+      "SingularName": "NatoMil",
+      "PluralName": "NatoMils",
+      "FromUnitToBaseFunc": "x*9/160",
+      "FromBaseToUnitFunc": "x*160/9",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mil" ]
+        }
+      ]
+    },
+    {
       "SingularName": "Revolution",
       "PluralName": "Revolutions",
       "FromUnitToBaseFunc": "x*360",

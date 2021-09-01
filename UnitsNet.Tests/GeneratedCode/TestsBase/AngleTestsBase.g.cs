@@ -49,6 +49,7 @@ namespace UnitsNet.Tests
         protected abstract double MilliradiansInOneDegree { get; }
         protected abstract double NanodegreesInOneDegree { get; }
         protected abstract double NanoradiansInOneDegree { get; }
+        protected abstract double NatoMilsInOneDegree { get; }
         protected abstract double RadiansInOneDegree { get; }
         protected abstract double RevolutionsInOneDegree { get; }
         protected abstract double TiltInOneDegree { get; }
@@ -66,6 +67,7 @@ namespace UnitsNet.Tests
         protected virtual double MilliradiansTolerance { get { return 1e-5; } }
         protected virtual double NanodegreesTolerance { get { return 1e-5; } }
         protected virtual double NanoradiansTolerance { get { return 1e-5; } }
+        protected virtual double NatoMilsTolerance { get { return 1e-5; } }
         protected virtual double RadiansTolerance { get { return 1e-5; } }
         protected virtual double RevolutionsTolerance { get { return 1e-5; } }
         protected virtual double TiltTolerance { get { return 1e-5; } }
@@ -155,6 +157,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MilliradiansInOneDegree, degree.Milliradians, MilliradiansTolerance);
             AssertEx.EqualTolerance(NanodegreesInOneDegree, degree.Nanodegrees, NanodegreesTolerance);
             AssertEx.EqualTolerance(NanoradiansInOneDegree, degree.Nanoradians, NanoradiansTolerance);
+            AssertEx.EqualTolerance(NatoMilsInOneDegree, degree.NatoMils, NatoMilsTolerance);
             AssertEx.EqualTolerance(RadiansInOneDegree, degree.Radians, RadiansTolerance);
             AssertEx.EqualTolerance(RevolutionsInOneDegree, degree.Revolutions, RevolutionsTolerance);
             AssertEx.EqualTolerance(TiltInOneDegree, degree.Tilt, TiltTolerance);
@@ -211,17 +214,21 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity11.Nanoradians, NanoradiansTolerance);
             Assert.Equal(AngleUnit.Nanoradian, quantity11.Unit);
 
-            var quantity12 = Angle.From(1, AngleUnit.Radian);
-            AssertEx.EqualTolerance(1, quantity12.Radians, RadiansTolerance);
-            Assert.Equal(AngleUnit.Radian, quantity12.Unit);
+            var quantity12 = Angle.From(1, AngleUnit.NatoMil);
+            AssertEx.EqualTolerance(1, quantity12.NatoMils, NatoMilsTolerance);
+            Assert.Equal(AngleUnit.NatoMil, quantity12.Unit);
 
-            var quantity13 = Angle.From(1, AngleUnit.Revolution);
-            AssertEx.EqualTolerance(1, quantity13.Revolutions, RevolutionsTolerance);
-            Assert.Equal(AngleUnit.Revolution, quantity13.Unit);
+            var quantity13 = Angle.From(1, AngleUnit.Radian);
+            AssertEx.EqualTolerance(1, quantity13.Radians, RadiansTolerance);
+            Assert.Equal(AngleUnit.Radian, quantity13.Unit);
 
-            var quantity14 = Angle.From(1, AngleUnit.Tilt);
-            AssertEx.EqualTolerance(1, quantity14.Tilt, TiltTolerance);
-            Assert.Equal(AngleUnit.Tilt, quantity14.Unit);
+            var quantity14 = Angle.From(1, AngleUnit.Revolution);
+            AssertEx.EqualTolerance(1, quantity14.Revolutions, RevolutionsTolerance);
+            Assert.Equal(AngleUnit.Revolution, quantity14.Unit);
+
+            var quantity15 = Angle.From(1, AngleUnit.Tilt);
+            AssertEx.EqualTolerance(1, quantity15.Tilt, TiltTolerance);
+            Assert.Equal(AngleUnit.Tilt, quantity15.Unit);
 
         }
 
@@ -254,6 +261,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MilliradiansInOneDegree, degree.As(AngleUnit.Milliradian), MilliradiansTolerance);
             AssertEx.EqualTolerance(NanodegreesInOneDegree, degree.As(AngleUnit.Nanodegree), NanodegreesTolerance);
             AssertEx.EqualTolerance(NanoradiansInOneDegree, degree.As(AngleUnit.Nanoradian), NanoradiansTolerance);
+            AssertEx.EqualTolerance(NatoMilsInOneDegree, degree.As(AngleUnit.NatoMil), NatoMilsTolerance);
             AssertEx.EqualTolerance(RadiansInOneDegree, degree.As(AngleUnit.Radian), RadiansTolerance);
             AssertEx.EqualTolerance(RevolutionsInOneDegree, degree.As(AngleUnit.Revolution), RevolutionsTolerance);
             AssertEx.EqualTolerance(TiltInOneDegree, degree.As(AngleUnit.Tilt), TiltTolerance);
@@ -329,6 +337,10 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(NanoradiansInOneDegree, (double)nanoradianQuantity.Value, NanoradiansTolerance);
             Assert.Equal(AngleUnit.Nanoradian, nanoradianQuantity.Unit);
 
+            var natomilQuantity = degree.ToUnit(AngleUnit.NatoMil);
+            AssertEx.EqualTolerance(NatoMilsInOneDegree, (double)natomilQuantity.Value, NatoMilsTolerance);
+            Assert.Equal(AngleUnit.NatoMil, natomilQuantity.Unit);
+
             var radianQuantity = degree.ToUnit(AngleUnit.Radian);
             AssertEx.EqualTolerance(RadiansInOneDegree, (double)radianQuantity.Value, RadiansTolerance);
             Assert.Equal(AngleUnit.Radian, radianQuantity.Unit);
@@ -365,6 +377,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Angle.FromMilliradians(degree.Milliradians).Degrees, MilliradiansTolerance);
             AssertEx.EqualTolerance(1, Angle.FromNanodegrees(degree.Nanodegrees).Degrees, NanodegreesTolerance);
             AssertEx.EqualTolerance(1, Angle.FromNanoradians(degree.Nanoradians).Degrees, NanoradiansTolerance);
+            AssertEx.EqualTolerance(1, Angle.FromNatoMils(degree.NatoMils).Degrees, NatoMilsTolerance);
             AssertEx.EqualTolerance(1, Angle.FromRadians(degree.Radians).Degrees, RadiansTolerance);
             AssertEx.EqualTolerance(1, Angle.FromRevolutions(degree.Revolutions).Degrees, RevolutionsTolerance);
             AssertEx.EqualTolerance(1, Angle.FromTilt(degree.Tilt).Degrees, TiltTolerance);
@@ -538,6 +551,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 mrad", new Angle(1, AngleUnit.Milliradian).ToString());
                 Assert.Equal("1 n°", new Angle(1, AngleUnit.Nanodegree).ToString());
                 Assert.Equal("1 nrad", new Angle(1, AngleUnit.Nanoradian).ToString());
+                Assert.Equal("1 mil", new Angle(1, AngleUnit.NatoMil).ToString());
                 Assert.Equal("1 rad", new Angle(1, AngleUnit.Radian).ToString());
                 Assert.Equal("1 r", new Angle(1, AngleUnit.Revolution).ToString());
                 Assert.Equal("1 sin(θ)", new Angle(1, AngleUnit.Tilt).ToString());
@@ -566,6 +580,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 mrad", new Angle(1, AngleUnit.Milliradian).ToString(swedishCulture));
             Assert.Equal("1 n°", new Angle(1, AngleUnit.Nanodegree).ToString(swedishCulture));
             Assert.Equal("1 nrad", new Angle(1, AngleUnit.Nanoradian).ToString(swedishCulture));
+            Assert.Equal("1 mil", new Angle(1, AngleUnit.NatoMil).ToString(swedishCulture));
             Assert.Equal("1 rad", new Angle(1, AngleUnit.Radian).ToString(swedishCulture));
             Assert.Equal("1 r", new Angle(1, AngleUnit.Revolution).ToString(swedishCulture));
             Assert.Equal("1 sin(θ)", new Angle(1, AngleUnit.Tilt).ToString(swedishCulture));

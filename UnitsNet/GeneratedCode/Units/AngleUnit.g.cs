@@ -38,6 +38,7 @@ namespace UnitsNet.Units
         Milliradian,
         Nanodegree,
         Nanoradian,
+        NatoMil,
         Radian,
         Revolution,
         Tilt,

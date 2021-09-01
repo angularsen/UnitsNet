@@ -40,6 +40,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double TiltInOneDegree => 0.01745240643728351281941897851632;
 
+        protected override double NatoMilsInOneDegree => 17.777777777777777777777777777778;
+
         [Fact]
         public void AngleDividedByDurationEqualsRotationalSpeed()
         {

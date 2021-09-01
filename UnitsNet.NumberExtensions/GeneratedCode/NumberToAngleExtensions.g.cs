@@ -76,6 +76,10 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
         public static Angle Nanoradians<T>(this T value) =>
             Angle.FromNanoradians(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Angle.FromNatoMils(UnitsNet.QuantityValue)" />
+        public static Angle NatoMils<T>(this T value) =>
+            Angle.FromNatoMils(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Angle.FromRadians(UnitsNet.QuantityValue)" />
         public static Angle Radians<T>(this T value) =>
             Angle.FromRadians(Convert.ToDouble(value));
