@@ -138,6 +138,11 @@ namespace UnitsNet
         public double Nanoradians => As(AngleUnit.Nanoradian);
 
         /// <summary>
+        ///     Get Angle in NatoMils.
+        /// </summary>
+        public double NatoMils => As(AngleUnit.NatoMil);
+
+        /// <summary>
         ///     Get Angle in Radians.
         /// </summary>
         public double Radians => As(AngleUnit.Radian);
@@ -229,6 +234,12 @@ namespace UnitsNet
         public static Angle FromNanoradians(double nanoradians) => new Angle(nanoradians, AngleUnit.Nanoradian);
 
         /// <summary>
+        ///     Get Angle from NatoMils.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Angle FromNatoMils(double natomils) => new Angle(natomils, AngleUnit.NatoMil);
+
+        /// <summary>
         ///     Get Angle from Radians.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -301,6 +312,7 @@ namespace UnitsNet
                 case AngleUnit.Milliradian: return (_value*180/3.1415926535897931) * 1e-3d;
                 case AngleUnit.Nanodegree: return (_value) * 1e-9d;
                 case AngleUnit.Nanoradian: return (_value*180/3.1415926535897931) * 1e-9d;
+                case AngleUnit.NatoMil: return _value*9/160;
                 case AngleUnit.Radian: return _value*180/3.1415926535897931;
                 case AngleUnit.Revolution: return _value*360;
                 case AngleUnit.Tilt: return Math.Asin(_value)*180/3.1415926535897931;
@@ -330,6 +342,7 @@ namespace UnitsNet
                 case AngleUnit.Milliradian: return (baseUnitValue/180*3.1415926535897931) / 1e-3d;
                 case AngleUnit.Nanodegree: return (baseUnitValue) / 1e-9d;
                 case AngleUnit.Nanoradian: return (baseUnitValue/180*3.1415926535897931) / 1e-9d;
+                case AngleUnit.NatoMil: return baseUnitValue*160/9;
                 case AngleUnit.Radian: return baseUnitValue/180*3.1415926535897931;
                 case AngleUnit.Revolution: return baseUnitValue/360;
                 case AngleUnit.Tilt: return Math.Sin(baseUnitValue/180*3.1415926535897931);

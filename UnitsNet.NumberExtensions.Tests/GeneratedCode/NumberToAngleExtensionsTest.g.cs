@@ -73,6 +73,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Angle.FromNanoradians(2), 2.Nanoradians());
 
         [Fact]
+        public void NumberToNatoMilsTest() =>
+            Assert.Equal(Angle.FromNatoMils(2), 2.NatoMils());
+
+        [Fact]
         public void NumberToRadiansTest() =>
             Assert.Equal(Angle.FromRadians(2), 2.Radians());
 

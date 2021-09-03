@@ -98,6 +98,7 @@ namespace UnitsNet
                 ("ru-RU", typeof(AngleUnit), (int)AngleUnit.Nanodegree, new string[]{"н°"}),
                 ("en-US", typeof(AngleUnit), (int)AngleUnit.Nanoradian, new string[]{"nrad"}),
                 ("ru-RU", typeof(AngleUnit), (int)AngleUnit.Nanoradian, new string[]{"нрад"}),
+                ("en-US", typeof(AngleUnit), (int)AngleUnit.NatoMil, new string[]{"mil"}),
                 ("en-US", typeof(AngleUnit), (int)AngleUnit.Radian, new string[]{"rad"}),
                 ("ru-RU", typeof(AngleUnit), (int)AngleUnit.Radian, new string[]{"рад"}),
                 ("en-US", typeof(AngleUnit), (int)AngleUnit.Revolution, new string[]{"r"}),

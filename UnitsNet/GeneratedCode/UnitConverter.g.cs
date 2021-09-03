@@ -118,6 +118,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Angle>(AngleUnit.Nanodegree, Angle.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Angle>(Angle.BaseUnit, AngleUnit.Nanoradian, q => q.ToUnit(AngleUnit.Nanoradian));
             unitConverter.SetConversionFunction<Angle>(AngleUnit.Nanoradian, Angle.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<Angle>(Angle.BaseUnit, AngleUnit.NatoMil, q => q.ToUnit(AngleUnit.NatoMil));
+            unitConverter.SetConversionFunction<Angle>(AngleUnit.NatoMil, Angle.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Angle>(Angle.BaseUnit, AngleUnit.Radian, q => q.ToUnit(AngleUnit.Radian));
             unitConverter.SetConversionFunction<Angle>(AngleUnit.Radian, Angle.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Angle>(Angle.BaseUnit, AngleUnit.Revolution, q => q.ToUnit(AngleUnit.Revolution));
