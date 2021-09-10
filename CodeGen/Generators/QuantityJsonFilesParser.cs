@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using CodeGen.Exceptions;
 using CodeGen.Helpers;
 using CodeGen.JsonTypes;
 using Newtonsoft.Json;
@@ -41,7 +42,9 @@ namespace CodeGen.Generators
         {
             try
             {
-                var quantity = JsonConvert.DeserializeObject<Quantity>(File.ReadAllText(jsonFile, Encoding.UTF8), JsonSerializerSettings);
+                var quantity = JsonConvert.DeserializeObject<Quantity>(File.ReadAllText(jsonFile, Encoding.UTF8), JsonSerializerSettings)
+                               ?? throw new UnitsNetCodeGenException($"Unable to parse quantity from JSON file: {jsonFile}");
+
                 AddPrefixUnits(quantity);
                 FixConversionFunctionsForDecimalValueTypes(quantity);
                 OrderUnitsByName(quantity);

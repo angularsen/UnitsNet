@@ -10,9 +10,21 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KilopascalsPerSecondInOnePascalPerSecond => 1e-3;
 
+        protected override double KilopoundsForcePerSquareInchPerMinuteInOnePascalPerSecond => 1.450377377302092e-7 * 60;
+
+        protected override double KilopoundsForcePerSquareInchPerSecondInOnePascalPerSecond => 1.450377377302092e-7;
+
         protected override double MegapascalsPerSecondInOnePascalPerSecond => 1E-6;
 
+        protected override double MegapoundsForcePerSquareInchPerMinuteInOnePascalPerSecond => 1.450377377302092e-10 * 60;
+
+        protected override double MegapoundsForcePerSquareInchPerSecondInOnePascalPerSecond => 1.450377377302092e-10;
+
         protected override double PascalsPerSecondInOnePascalPerSecond => 1;
+
+        protected override double PoundsForcePerSquareInchPerMinuteInOnePascalPerSecond => 1.450377377302092e-4 * 60;
+
+        protected override double PoundsForcePerSquareInchPerSecondInOnePascalPerSecond => 1.450377377302092e-4;
 
         protected override double MegapascalsPerMinuteInOnePascalPerSecond => 6e-5;
 

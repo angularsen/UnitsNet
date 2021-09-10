@@ -407,7 +407,7 @@ namespace UnitsNet.Tests
             var prevCulture = Thread.CurrentThread.CurrentUICulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             try {
-                Assert.Equal("1 ", new Ratio(1, RatioUnit.DecimalFraction).ToString());
+                Assert.Equal("1", new Ratio(1, RatioUnit.DecimalFraction).ToString());
                 Assert.Equal("1 ppb", new Ratio(1, RatioUnit.PartPerBillion).ToString());
                 Assert.Equal("1 ppm", new Ratio(1, RatioUnit.PartPerMillion).ToString());
                 Assert.Equal("1 ‰", new Ratio(1, RatioUnit.PartPerThousand).ToString());
@@ -426,7 +426,7 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 ", new Ratio(1, RatioUnit.DecimalFraction).ToString(swedishCulture));
+            Assert.Equal("1", new Ratio(1, RatioUnit.DecimalFraction).ToString(swedishCulture));
             Assert.Equal("1 ppb", new Ratio(1, RatioUnit.PartPerBillion).ToString(swedishCulture));
             Assert.Equal("1 ppm", new Ratio(1, RatioUnit.PartPerMillion).ToString(swedishCulture));
             Assert.Equal("1 ‰", new Ratio(1, RatioUnit.PartPerThousand).ToString(swedishCulture));
@@ -441,10 +441,10 @@ namespace UnitsNet.Tests
             try
             {
                 CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 ", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s1"));
-                Assert.Equal("0.12 ", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s2"));
-                Assert.Equal("0.123 ", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s3"));
-                Assert.Equal("0.1235 ", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s4"));
+                Assert.Equal("0.1", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s1"));
+                Assert.Equal("0.12", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s2"));
+                Assert.Equal("0.123", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s3"));
+                Assert.Equal("0.1235", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s4"));
             }
             finally
             {
@@ -456,10 +456,10 @@ namespace UnitsNet.Tests
         public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
         {
             var culture = CultureInfo.InvariantCulture;
-            Assert.Equal("0.1 ", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s1", culture));
-            Assert.Equal("0.12 ", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s2", culture));
-            Assert.Equal("0.123 ", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s3", culture));
-            Assert.Equal("0.1235 ", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s4", culture));
+            Assert.Equal("0.1", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s1", culture));
+            Assert.Equal("0.12", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s2", culture));
+            Assert.Equal("0.123", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s3", culture));
+            Assert.Equal("0.1235", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s4", culture));
         }
 
 

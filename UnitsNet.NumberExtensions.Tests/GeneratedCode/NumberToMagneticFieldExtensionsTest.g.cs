@@ -33,6 +33,10 @@ namespace UnitsNet.Tests
             Assert.Equal(MagneticField.FromMicroteslas(2), 2.Microteslas());
 
         [Fact]
+        public void NumberToMilligaussesTest() =>
+            Assert.Equal(MagneticField.FromMilligausses(2), 2.Milligausses());
+
+        [Fact]
         public void NumberToMilliteslasTest() =>
             Assert.Equal(MagneticField.FromMilliteslas(2), 2.Milliteslas());
 

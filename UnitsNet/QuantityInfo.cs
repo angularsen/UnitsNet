@@ -23,12 +23,12 @@ namespace UnitsNet
     {
         private static readonly string UnitEnumNamespace = typeof(LengthUnit).Namespace;
 
-        private static readonly Type[] UnitEnumTypes = typeof(Length)
+        private static readonly Dictionary<string, Type> UnitEnumTypes = typeof(Length)
             .Wrap()
             .Assembly
             .GetExportedTypes()
             .Where(t => t.Wrap().IsEnum && t.Namespace == UnitEnumNamespace && t.Name.EndsWith("Unit"))
-            .ToArray();
+            .ToDictionary(t => t.Name, t => t);
 
         /// <summary>
         ///     Constructs an instance.
@@ -42,7 +42,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentNullException">If units -or- baseUnit -or- zero -or- baseDimensions is null.</exception>
         [Obsolete("QuantityType will be removed in the future. Use QuantityInfo(string, UnitInfo[], Enum, IQuantity, BaseDimensions) instead.")]
         public QuantityInfo(QuantityType quantityType, [NotNull] UnitInfo[] unitInfos, [NotNull] Enum baseUnit, [NotNull] IQuantity zero, [NotNull] BaseDimensions baseDimensions)
-            : this(quantityType.ToString(), unitInfos, baseUnit, zero, baseDimensions, quantityType)
+            : this(quantityType.ToString(), UnitEnumTypes[$"{quantityType}Unit"], unitInfos, baseUnit, zero, baseDimensions, quantityType)
         {
         }
 
@@ -50,6 +50,7 @@ namespace UnitsNet
         ///     Constructs an instance.
         /// </summary>
         /// <param name="name">Name of the quantity.</param>
+        /// <param name="unitType">The unit enum type, such as <see cref="LengthUnit" />.</param>
         /// <param name="unitInfos">The information about the units for this quantity.</param>
         /// <param name="baseUnit">The base unit enum value.</param>
         /// <param name="zero">The zero quantity.</param>
@@ -57,7 +58,7 @@ namespace UnitsNet
         /// <param name="quantityType">The the quantity type. Defaults to Undefined.</param>
         /// <exception cref="ArgumentException">Quantity type can not be undefined.</exception>
         /// <exception cref="ArgumentNullException">If units -or- baseUnit -or- zero -or- baseDimensions is null.</exception>
-        public QuantityInfo([NotNull] string name, [NotNull] UnitInfo[] unitInfos, [NotNull] Enum baseUnit, [NotNull] IQuantity zero, [NotNull] BaseDimensions baseDimensions,
+        public QuantityInfo([NotNull] string name, Type unitType, [NotNull] UnitInfo[] unitInfos, [NotNull] Enum baseUnit, [NotNull] IQuantity zero, [NotNull] BaseDimensions baseDimensions,
            QuantityType quantityType = QuantityType.Undefined)
         {
             if(baseUnit == null) throw new ArgumentNullException(nameof(baseUnit));
@@ -65,8 +66,8 @@ namespace UnitsNet
             BaseDimensions = baseDimensions ?? throw new ArgumentNullException(nameof(baseDimensions));
             Zero = zero ?? throw new ArgumentNullException(nameof(zero));
 
-            Name = name;
-            UnitType = UnitEnumTypes.First(t => t.Name == $"{name}Unit");
+            Name = name ?? throw new ArgumentNullException(nameof(name));
+            UnitType = unitType ?? throw new ArgumentNullException(nameof(unitType));
             UnitInfos = unitInfos ?? throw new ArgumentNullException(nameof(unitInfos));
             BaseUnitInfo = UnitInfos.First(unitInfo => unitInfo.Value.Equals(baseUnit));
             Zero = zero ?? throw new ArgumentNullException(nameof(zero));
@@ -203,7 +204,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo(string name, UnitInfo<TUnit>[] unitInfos, TUnit baseUnit, IQuantity<TUnit> zero, BaseDimensions baseDimensions,
             QuantityType quantityType = QuantityType.Undefined)
-            : base(name, unitInfos, baseUnit, zero, baseDimensions, quantityType)
+            : base(name, typeof(TUnit), unitInfos.ToArray<UnitInfo>(), baseUnit, zero, baseDimensions, quantityType)
         {
             Zero = zero;
             UnitInfos = unitInfos ?? throw new ArgumentNullException(nameof(unitInfos));

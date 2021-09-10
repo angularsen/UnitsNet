@@ -29,10 +29,16 @@ namespace UnitsNet.Units
         AtmospherePerSecond,
         KilopascalPerMinute,
         KilopascalPerSecond,
+        KilopoundForcePerSquareInchPerMinute,
+        KilopoundForcePerSquareInchPerSecond,
         MegapascalPerMinute,
         MegapascalPerSecond,
+        MegapoundForcePerSquareInchPerMinute,
+        MegapoundForcePerSquareInchPerSecond,
         PascalPerMinute,
         PascalPerSecond,
+        PoundForcePerSquareInchPerMinute,
+        PoundForcePerSquareInchPerSecond,
     }
 
     #pragma warning restore 1591

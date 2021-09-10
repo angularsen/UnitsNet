@@ -51,6 +51,7 @@ namespace UnitsNet.Tests
         protected abstract double NanoradiansInOneDegree { get; }
         protected abstract double RadiansInOneDegree { get; }
         protected abstract double RevolutionsInOneDegree { get; }
+        protected abstract double TiltInOneDegree { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double ArcminutesTolerance { get { return 1e-5; } }
@@ -67,6 +68,7 @@ namespace UnitsNet.Tests
         protected virtual double NanoradiansTolerance { get { return 1e-5; } }
         protected virtual double RadiansTolerance { get { return 1e-5; } }
         protected virtual double RevolutionsTolerance { get { return 1e-5; } }
+        protected virtual double TiltTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
@@ -155,6 +157,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(NanoradiansInOneDegree, degree.Nanoradians, NanoradiansTolerance);
             AssertEx.EqualTolerance(RadiansInOneDegree, degree.Radians, RadiansTolerance);
             AssertEx.EqualTolerance(RevolutionsInOneDegree, degree.Revolutions, RevolutionsTolerance);
+            AssertEx.EqualTolerance(TiltInOneDegree, degree.Tilt, TiltTolerance);
         }
 
         [Fact]
@@ -216,6 +219,10 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity13.Revolutions, RevolutionsTolerance);
             Assert.Equal(AngleUnit.Revolution, quantity13.Unit);
 
+            var quantity14 = Angle.From(1, AngleUnit.Tilt);
+            AssertEx.EqualTolerance(1, quantity14.Tilt, TiltTolerance);
+            Assert.Equal(AngleUnit.Tilt, quantity14.Unit);
+
         }
 
         [Fact]
@@ -249,6 +256,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(NanoradiansInOneDegree, degree.As(AngleUnit.Nanoradian), NanoradiansTolerance);
             AssertEx.EqualTolerance(RadiansInOneDegree, degree.As(AngleUnit.Radian), RadiansTolerance);
             AssertEx.EqualTolerance(RevolutionsInOneDegree, degree.As(AngleUnit.Revolution), RevolutionsTolerance);
+            AssertEx.EqualTolerance(TiltInOneDegree, degree.As(AngleUnit.Tilt), TiltTolerance);
         }
 
         [Fact]
@@ -328,6 +336,10 @@ namespace UnitsNet.Tests
             var revolutionQuantity = degree.ToUnit(AngleUnit.Revolution);
             AssertEx.EqualTolerance(RevolutionsInOneDegree, (double)revolutionQuantity.Value, RevolutionsTolerance);
             Assert.Equal(AngleUnit.Revolution, revolutionQuantity.Unit);
+
+            var tiltQuantity = degree.ToUnit(AngleUnit.Tilt);
+            AssertEx.EqualTolerance(TiltInOneDegree, (double)tiltQuantity.Value, TiltTolerance);
+            Assert.Equal(AngleUnit.Tilt, tiltQuantity.Unit);
         }
 
         [Fact]
@@ -355,6 +367,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Angle.FromNanoradians(degree.Nanoradians).Degrees, NanoradiansTolerance);
             AssertEx.EqualTolerance(1, Angle.FromRadians(degree.Radians).Degrees, RadiansTolerance);
             AssertEx.EqualTolerance(1, Angle.FromRevolutions(degree.Revolutions).Degrees, RevolutionsTolerance);
+            AssertEx.EqualTolerance(1, Angle.FromTilt(degree.Tilt).Degrees, TiltTolerance);
         }
 
         [Fact]
@@ -525,6 +538,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 nrad", new Angle(1, AngleUnit.Nanoradian).ToString());
                 Assert.Equal("1 rad", new Angle(1, AngleUnit.Radian).ToString());
                 Assert.Equal("1 r", new Angle(1, AngleUnit.Revolution).ToString());
+                Assert.Equal("1 sin(θ)", new Angle(1, AngleUnit.Tilt).ToString());
             }
             finally
             {
@@ -552,6 +566,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 nrad", new Angle(1, AngleUnit.Nanoradian).ToString(swedishCulture));
             Assert.Equal("1 rad", new Angle(1, AngleUnit.Radian).ToString(swedishCulture));
             Assert.Equal("1 r", new Angle(1, AngleUnit.Revolution).ToString(swedishCulture));
+            Assert.Equal("1 sin(θ)", new Angle(1, AngleUnit.Tilt).ToString(swedishCulture));
         }
 
         [Fact]

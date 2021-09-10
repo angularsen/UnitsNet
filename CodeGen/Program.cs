@@ -43,7 +43,8 @@ namespace CodeGen
         /// <param name="verbose">Verbose output? Defaults to false.</param>
         /// <param name="repositoryRoot">The repository root directory, defaults to searching parent directories for UnitsNet.sln.</param>
         /// <param name="skipWrc">Skip generate UnitsNet.WindowsRuntimeComponent? Defaults to false.</param>
-        private static int Main(bool verbose = false, DirectoryInfo repositoryRoot = null, bool skipWrc = false)
+        /// <param name="skipNanoFramework">Skip generate nanoFrmaework Units? Defaults to false</param>
+        private static int Main(bool verbose = false, DirectoryInfo repositoryRoot = null, bool skipWrc = false, bool skipNanoFramework = false)
         {
             Log.Logger = new LoggerConfiguration()
                 .WriteTo
@@ -65,7 +66,15 @@ namespace CodeGen
                 UnitsNetGenerator.Generate(rootDir, quantities);
 
                 if (!skipWrc)
+                {
                     UnitsNetWrcGenerator.Generate(rootDir, quantities);
+                }
+
+                if (!skipNanoFramework)
+                {
+                    Log.Information("Generating nanoFramework elements");
+                    NanoFrameworkGenerator.Generate(rootDir, quantities);
+                }
 
                 Log.Information($"Completed in {sw.ElapsedMilliseconds} ms!", ConsoleColor.Green);
                 return 0;

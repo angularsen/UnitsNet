@@ -706,7 +706,7 @@ namespace UnitsNet
                 case ForceUnit.KilogramForce: return _value*9.80665002864;
                 case ForceUnit.Kilonewton: return (_value) * 1e3d;
                 case ForceUnit.KiloPond: return _value*9.80665002864;
-                case ForceUnit.KilopoundForce: return _value*4448.2216152605095551842641431421;
+                case ForceUnit.KilopoundForce: return (_value*4.4482216152605095551842641431421) * 1e3d;
                 case ForceUnit.Meganewton: return (_value) * 1e6d;
                 case ForceUnit.Micronewton: return (_value) * 1e-6d;
                 case ForceUnit.Millinewton: return (_value) * 1e-3d;
@@ -735,7 +735,7 @@ namespace UnitsNet
                 case ForceUnit.KilogramForce: return baseUnitValue/9.80665002864;
                 case ForceUnit.Kilonewton: return (baseUnitValue) / 1e3d;
                 case ForceUnit.KiloPond: return baseUnitValue/9.80665002864;
-                case ForceUnit.KilopoundForce: return baseUnitValue/4448.2216152605095551842641431421;
+                case ForceUnit.KilopoundForce: return (baseUnitValue/4.4482216152605095551842641431421) / 1e3d;
                 case ForceUnit.Meganewton: return (baseUnitValue) / 1e6d;
                 case ForceUnit.Micronewton: return (baseUnitValue) / 1e-6d;
                 case ForceUnit.Millinewton: return (baseUnitValue) / 1e-3d;

@@ -342,7 +342,7 @@ namespace UnitsNet.Tests
             var prevCulture = Thread.CurrentThread.CurrentUICulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             try {
-                Assert.Equal("1 ", new Scalar(1, ScalarUnit.Amount).ToString());
+                Assert.Equal("1", new Scalar(1, ScalarUnit.Amount).ToString());
             }
             finally
             {
@@ -356,7 +356,7 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 ", new Scalar(1, ScalarUnit.Amount).ToString(swedishCulture));
+            Assert.Equal("1", new Scalar(1, ScalarUnit.Amount).ToString(swedishCulture));
         }
 
         [Fact]
@@ -366,10 +366,10 @@ namespace UnitsNet.Tests
             try
             {
                 CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 ", new Scalar(0.123456, ScalarUnit.Amount).ToString("s1"));
-                Assert.Equal("0.12 ", new Scalar(0.123456, ScalarUnit.Amount).ToString("s2"));
-                Assert.Equal("0.123 ", new Scalar(0.123456, ScalarUnit.Amount).ToString("s3"));
-                Assert.Equal("0.1235 ", new Scalar(0.123456, ScalarUnit.Amount).ToString("s4"));
+                Assert.Equal("0.1", new Scalar(0.123456, ScalarUnit.Amount).ToString("s1"));
+                Assert.Equal("0.12", new Scalar(0.123456, ScalarUnit.Amount).ToString("s2"));
+                Assert.Equal("0.123", new Scalar(0.123456, ScalarUnit.Amount).ToString("s3"));
+                Assert.Equal("0.1235", new Scalar(0.123456, ScalarUnit.Amount).ToString("s4"));
             }
             finally
             {
@@ -381,10 +381,10 @@ namespace UnitsNet.Tests
         public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
         {
             var culture = CultureInfo.InvariantCulture;
-            Assert.Equal("0.1 ", new Scalar(0.123456, ScalarUnit.Amount).ToString("s1", culture));
-            Assert.Equal("0.12 ", new Scalar(0.123456, ScalarUnit.Amount).ToString("s2", culture));
-            Assert.Equal("0.123 ", new Scalar(0.123456, ScalarUnit.Amount).ToString("s3", culture));
-            Assert.Equal("0.1235 ", new Scalar(0.123456, ScalarUnit.Amount).ToString("s4", culture));
+            Assert.Equal("0.1", new Scalar(0.123456, ScalarUnit.Amount).ToString("s1", culture));
+            Assert.Equal("0.12", new Scalar(0.123456, ScalarUnit.Amount).ToString("s2", culture));
+            Assert.Equal("0.123", new Scalar(0.123456, ScalarUnit.Amount).ToString("s3", culture));
+            Assert.Equal("0.1235", new Scalar(0.123456, ScalarUnit.Amount).ToString("s4", culture));
         }
 
 

@@ -10,6 +10,8 @@ if ($msbuild) {
   $msbuild = join-path $msbuild 'MSBuild\Current\Bin\MSBuild.exe'
 }
 
+import-module $PSScriptRoot\build-pack-nano-nugets.psm1
+
 function Remove-ArtifactsDir {
   if (Test-Path $artifactsDir) {
     write-host -foreground blue "Clean up...`n"
@@ -25,7 +27,7 @@ function Update-GeneratedCode {
   write-host -foreground blue "Generate code...END`n"
 }
 
-function Start-Build([boolean] $IncludeWindowsRuntimeComponent = $false) {
+function Start-Build([boolean] $IncludeWindowsRuntimeComponent = $false, [boolean] $IncludeNanoFramework = $false) {
   write-host -foreground blue "Start-Build...`n---"
 
   $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$testReportDir\UnitsNet.msbuild.log"
@@ -51,6 +53,22 @@ function Start-Build([boolean] $IncludeWindowsRuntimeComponent = $false) {
     write-host -foreground yellow "WindowsRuntimeComponent project not yet supported by dotnet CLI, using MSBuild15 instead"
     & "$msbuild" "$root\UnitsNet.WindowsRuntimeComponent.sln" /verbosity:minimal /p:Configuration=Release /t:restore
     & "$msbuild" "$root\UnitsNet.WindowsRuntimeComponent.sln" /verbosity:minimal /p:Configuration=Release $fileLoggerArg $appVeyorLoggerArg
+    if ($lastexitcode -ne 0) { exit 1 }
+  }
+
+  if (-not $IncludeNanoFramework)
+  {
+    write-host -foreground yellow "Skipping .NET nanoFramework build."
+  }
+  else
+  {
+    $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$testReportDir\UnitsNet.NanoFramework.msbuild.log"
+    $appVeyorLoggerArg = if (Test-Path "$appVeyorLoggerDll") { "/logger:$appVeyorLoggerDll" } else { "" }
+
+    # msbuild does not auto-restore nugets for this project type
+    & "nuget" restore "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln"
+    # now build
+    & "$msbuild" "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln" /verbosity:minimal /p:Configuration=Release $fileLoggerArg $appVeyorLoggerArg
     if ($lastexitcode -ne 0) { exit 1 }
   }
 
@@ -114,6 +132,14 @@ function Start-PackNugets {
     write-host -foreground yellow "WindowsRuntimeComponent project not yet supported by dotnet CLI, using nuget.exe instead"
     & $nuget pack "$root\UnitsNet.WindowsRuntimeComponent\UnitsNet.WindowsRuntimeComponent.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
   }
+
+  if (-not $IncludeNanoFramework) {
+    write-host -foreground yellow "Skipping nanoFramework nuget pack."
+  } else {
+    write-host -foreground yellow "nanoFramework project not yet supported by dotnet CLI, using nuget.exe instead"
+    Invoke-Build-NanoNugets
+  }
+
 
   write-host -foreground blue "Pack nugets...END`n"
 }

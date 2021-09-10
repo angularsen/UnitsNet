@@ -61,6 +61,7 @@ namespace UnitsNet
                 new UnitInfo<MagneticFieldUnit>[] {
                     new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Gauss, BaseUnits.Undefined),
                     new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Microtesla, BaseUnits.Undefined),
+                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Milligauss, BaseUnits.Undefined),
                     new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Millitesla, BaseUnits.Undefined),
                     new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Nanotesla, BaseUnits.Undefined),
                     new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Tesla, BaseUnits.Undefined),
@@ -190,6 +191,11 @@ namespace UnitsNet
         public double Microteslas => As(MagneticFieldUnit.Microtesla);
 
         /// <summary>
+        ///     Get MagneticField in Milligausses.
+        /// </summary>
+        public double Milligausses => As(MagneticFieldUnit.Milligauss);
+
+        /// <summary>
         ///     Get MagneticField in Milliteslas.
         /// </summary>
         public double Milliteslas => As(MagneticFieldUnit.Millitesla);
@@ -250,6 +256,15 @@ namespace UnitsNet
         {
             double value = (double) microteslas;
             return new MagneticField(value, MagneticFieldUnit.Microtesla);
+        }
+        /// <summary>
+        ///     Get MagneticField from Milligausses.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MagneticField FromMilligausses(QuantityValue milligausses)
+        {
+            double value = (double) milligausses;
+            return new MagneticField(value, MagneticFieldUnit.Milligauss);
         }
         /// <summary>
         ///     Get MagneticField from Milliteslas.
@@ -709,6 +724,7 @@ namespace UnitsNet
             {
                 case MagneticFieldUnit.Gauss: return _value/1e4;
                 case MagneticFieldUnit.Microtesla: return (_value) * 1e-6d;
+                case MagneticFieldUnit.Milligauss: return (_value/1e4) * 1e-3d;
                 case MagneticFieldUnit.Millitesla: return (_value) * 1e-3d;
                 case MagneticFieldUnit.Nanotesla: return (_value) * 1e-9d;
                 case MagneticFieldUnit.Tesla: return _value;
@@ -739,6 +755,7 @@ namespace UnitsNet
             {
                 case MagneticFieldUnit.Gauss: return baseUnitValue*1e4;
                 case MagneticFieldUnit.Microtesla: return (baseUnitValue) / 1e-6d;
+                case MagneticFieldUnit.Milligauss: return (baseUnitValue*1e4) / 1e-3d;
                 case MagneticFieldUnit.Millitesla: return (baseUnitValue) / 1e-3d;
                 case MagneticFieldUnit.Nanotesla: return (baseUnitValue) / 1e-9d;
                 case MagneticFieldUnit.Tesla: return baseUnitValue;

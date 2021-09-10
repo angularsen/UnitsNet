@@ -92,6 +92,18 @@
           "Abbreviations": [ "r" ]
         }
       ]
+    },
+    {
+      "SingularName": "Tilt",
+      "PluralName": "Tilt",
+      "FromUnitToBaseFunc": "Math.Asin(x)*180/Math.PI",
+      "FromBaseToUnitFunc": "Math.Sin(x/180*Math.PI)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "sin(θ)" ]
+        }
+      ]
     }
   ]
 }

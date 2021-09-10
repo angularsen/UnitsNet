@@ -37,7 +37,7 @@ namespace UnitsNet.Tests
             Assertion(3, AccelerationUnit.StandardGravity, Quantity.From(3, AccelerationUnit.StandardGravity));
             Assertion(3, AmountOfSubstanceUnit.PoundMole, Quantity.From(3, AmountOfSubstanceUnit.PoundMole));
             Assertion(3, AmplitudeRatioUnit.DecibelVolt, Quantity.From(3, AmplitudeRatioUnit.DecibelVolt));
-            Assertion(3, AngleUnit.Revolution, Quantity.From(3, AngleUnit.Revolution));
+            Assertion(3, AngleUnit.Tilt, Quantity.From(3, AngleUnit.Tilt));
             Assertion(3, ApparentEnergyUnit.VoltampereHour, Quantity.From(3, ApparentEnergyUnit.VoltampereHour));
             Assertion(3, ApparentPowerUnit.Voltampere, Quantity.From(3, ApparentPowerUnit.Voltampere));
             Assertion(3, AreaUnit.UsSurveySquareFoot, Quantity.From(3, AreaUnit.UsSurveySquareFoot));
@@ -70,7 +70,7 @@ namespace UnitsNet.Tests
             Assertion(3, EnergyUnit.WattHour, Quantity.From(3, EnergyUnit.WattHour));
             Assertion(3, EntropyUnit.MegajoulePerKelvin, Quantity.From(3, EntropyUnit.MegajoulePerKelvin));
             Assertion(3, ForceUnit.TonneForce, Quantity.From(3, ForceUnit.TonneForce));
-            Assertion(3, ForceChangeRateUnit.NewtonPerSecond, Quantity.From(3, ForceChangeRateUnit.NewtonPerSecond));
+            Assertion(3, ForceChangeRateUnit.PoundForcePerSecond, Quantity.From(3, ForceChangeRateUnit.PoundForcePerSecond));
             Assertion(3, ForcePerLengthUnit.TonneForcePerMillimeter, Quantity.From(3, ForcePerLengthUnit.TonneForcePerMillimeter));
             Assertion(3, FrequencyUnit.Terahertz, Quantity.From(3, FrequencyUnit.Terahertz));
             Assertion(3, FuelEfficiencyUnit.MilePerUsGallon, Quantity.From(3, FuelEfficiencyUnit.MilePerUsGallon));
@@ -108,7 +108,7 @@ namespace UnitsNet.Tests
             Assertion(3, PowerDensityUnit.WattPerLiter, Quantity.From(3, PowerDensityUnit.WattPerLiter));
             Assertion(3, PowerRatioUnit.DecibelWatt, Quantity.From(3, PowerRatioUnit.DecibelWatt));
             Assertion(3, PressureUnit.Torr, Quantity.From(3, PressureUnit.Torr));
-            Assertion(3, PressureChangeRateUnit.PascalPerSecond, Quantity.From(3, PressureChangeRateUnit.PascalPerSecond));
+            Assertion(3, PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, Quantity.From(3, PressureChangeRateUnit.PoundForcePerSquareInchPerSecond));
             Assertion(3, RatioUnit.Percent, Quantity.From(3, RatioUnit.Percent));
             Assertion(3, RatioChangeRateUnit.PercentPerSecond, Quantity.From(3, RatioChangeRateUnit.PercentPerSecond));
             Assertion(3, ReactiveEnergyUnit.VoltampereReactiveHour, Quantity.From(3, ReactiveEnergyUnit.VoltampereReactiveHour));

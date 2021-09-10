@@ -60,7 +60,6 @@ build_script:
     }
 
 # Upload code coverage reports to codecov.io.
-# PowerShell does not support TLS1.2 by default ¯\_(ツ)_/¯, so need to configure that.
 after_test:
 - ps: |
     $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
@@ -74,12 +73,12 @@ artifacts:
 deploy:
 - provider: NuGet
   api_key:
-    secure: Bc59XzyBNSWbOvxFp8Fyv2v5TVs5NY/rFnz/BA1lA7A35qrS3Ngrc8YFe/zuSXfF
+    secure: wUADhxnlTxLj2ge4k459gEuu6tLtVBD1lN2MacpH1glEvA2LKyM2QbJYKlNTu6vg
   on:
     branch: master
 
 - provider: NuGet
   api_key:
-    secure: Bc59XzyBNSWbOvxFp8Fyv2v5TVs5NY/rFnz/BA1lA7A35qrS3Ngrc8YFe/zuSXfF
+    secure: wUADhxnlTxLj2ge4k459gEuu6tLtVBD1lN2MacpH1glEvA2LKyM2QbJYKlNTu6vg
   on:
     branch: release/*

@@ -2,7 +2,10 @@
   <!-- This file will be implicitly linked by all projects in folder -folders -->
   <PropertyGroup>
     <!-- Default to output to Artifacts folder -->
-    <OutputPath>$(MSBuildThisFileDirectory)Artifacts/$(MSBuildProjectName)</OutputPath>
+    <OutputPath>$(MSBuildThisFileDirectory)Artifacts/$(MSBuildProjectName)</OutputPath> 
+    <!-- Specific output folder for .NET nanoFramework projects -->
+    <OutputPath Condition=" '$(TargetFrameworkIdentifier)' == '.NETnanoFramework'">$(MSBuildThisFileDirectory)Artifacts/UnitsNet.NanoFramework/$(MSBuildProjectName)</OutputPath> 
+
   </PropertyGroup>
 
   <!-- Workaround for `dotnet test UnitsNet.sln`: https://dasmulli.blog/2018/01/20/make-dotnet-test-work-on-solution-files/ -->

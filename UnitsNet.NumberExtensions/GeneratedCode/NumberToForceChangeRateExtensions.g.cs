@@ -52,6 +52,14 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
         public static ForceChangeRate KilonewtonsPerSecond<T>(this T value) =>
             ForceChangeRate.FromKilonewtonsPerSecond(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="ForceChangeRate.FromKilopoundsForcePerMinute(UnitsNet.QuantityValue)" />
+        public static ForceChangeRate KilopoundsForcePerMinute<T>(this T value) =>
+            ForceChangeRate.FromKilopoundsForcePerMinute(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ForceChangeRate.FromKilopoundsForcePerSecond(UnitsNet.QuantityValue)" />
+        public static ForceChangeRate KilopoundsForcePerSecond<T>(this T value) =>
+            ForceChangeRate.FromKilopoundsForcePerSecond(Convert.ToDouble(value));
+
         /// <inheritdoc cref="ForceChangeRate.FromMicronewtonsPerSecond(UnitsNet.QuantityValue)" />
         public static ForceChangeRate MicronewtonsPerSecond<T>(this T value) =>
             ForceChangeRate.FromMicronewtonsPerSecond(Convert.ToDouble(value));
@@ -71,6 +79,14 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
         /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerSecond(UnitsNet.QuantityValue)" />
         public static ForceChangeRate NewtonsPerSecond<T>(this T value) =>
             ForceChangeRate.FromNewtonsPerSecond(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ForceChangeRate.FromPoundsForcePerMinute(UnitsNet.QuantityValue)" />
+        public static ForceChangeRate PoundsForcePerMinute<T>(this T value) =>
+            ForceChangeRate.FromPoundsForcePerMinute(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ForceChangeRate.FromPoundsForcePerSecond(UnitsNet.QuantityValue)" />
+        public static ForceChangeRate PoundsForcePerSecond<T>(this T value) =>
+            ForceChangeRate.FromPoundsForcePerSecond(Convert.ToDouble(value));
 
     }
 }

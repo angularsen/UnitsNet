@@ -10,7 +10,7 @@ namespace CodeGen.JsonTypes
         // 0649 Field is never assigned to
 #pragma warning disable 0649
 
-        public BaseUnits BaseUnits;
+        public BaseUnits? BaseUnits;
         public string FromBaseToUnitFunc;
         public string FromUnitToBaseFunc;
         public Localization[] Localization = Array.Empty<Localization>();

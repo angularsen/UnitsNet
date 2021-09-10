@@ -56,4 +56,5 @@ $projectName = "JsonNet"
 $newVersion = Get-NewProjectVersion $projFile $paramSet $setVersion $bumpVersion
 
 Set-ProjectVersion $projFile $newVersion
-Invoke-CommitAndTagVersion $projectName $versionFiles $newVersion
+Invoke-CommitVersionBump @($projectName) $versionFiles $newVersion
+Invoke-TagVersionBump $projectName $newVersion

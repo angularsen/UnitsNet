@@ -36,6 +36,10 @@ namespace UnitsNet.NumberExtensions.NumberToMagneticField
         public static MagneticField Microteslas<T>(this T value) =>
             MagneticField.FromMicroteslas(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="MagneticField.FromMilligausses(UnitsNet.QuantityValue)" />
+        public static MagneticField Milligausses<T>(this T value) =>
+            MagneticField.FromMilligausses(Convert.ToDouble(value));
+
         /// <inheritdoc cref="MagneticField.FromMilliteslas(UnitsNet.QuantityValue)" />
         public static MagneticField Milliteslas<T>(this T value) =>
             MagneticField.FromMilliteslas(Convert.ToDouble(value));

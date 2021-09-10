@@ -19,31 +19,22 @@ namespace UnitsNet
         /// <param name="baseUnits">The base units for the unit system.</param>
         public UnitSystem(BaseUnits baseUnits)
         {
-            if(baseUnits is null)
-                throw new ArgumentNullException(nameof(baseUnits));
-
-            if(!baseUnits.IsFullyDefined)
-                throw new ArgumentException("A unit system must have all base units defined.", nameof(baseUnits));
+            if (baseUnits is null) throw new ArgumentNullException(nameof(baseUnits));
+            if (!baseUnits.IsFullyDefined) throw new ArgumentException("A unit system must have all base units defined.", nameof(baseUnits));
 
             BaseUnits = baseUnits;
         }
 
         /// <inheritdoc />
-        public override bool Equals(object obj)
+        public override bool Equals(object? other)
         {
-            if(obj is null || !(obj is UnitSystem))
-                return false;
-
-            return Equals((UnitSystem)obj);
+            return other is UnitSystem otherUnitSystem && Equals(otherUnitSystem);
         }
 
         /// <inheritdoc />
-        public bool Equals(UnitSystem other)
+        public bool Equals(UnitSystem? other)
         {
-            if(other is null)
-                return false;
-
-            return BaseUnits.Equals(other.BaseUnits);
+            return other is not null && BaseUnits.Equals(other.BaseUnits);
         }
 
         /// <summary>
@@ -53,9 +44,9 @@ namespace UnitsNet
         /// <param name="right">The right instance.</param>
         /// <returns>True if equal, otherwise false.</returns>
         /// <seealso cref="Equals(UnitSystem)"/>
-        public static bool operator ==(UnitSystem left, UnitSystem right)
+        public static bool operator ==(UnitSystem? left, UnitSystem? right)
         {
-            return left is null ? right is null : left.Equals(right);
+            return left?.Equals(right) ?? right is null;
         }
 
         /// <summary>
@@ -65,7 +56,7 @@ namespace UnitsNet
         /// <param name="right">The right instance.</param>
         /// <returns>True if equal, otherwise false.</returns>
         /// <seealso cref="Equals(UnitSystem)"/>
-        public static bool operator !=(UnitSystem left, UnitSystem right)
+        public static bool operator !=(UnitSystem? left, UnitSystem? right)
         {
             return !(left == right);
         }
