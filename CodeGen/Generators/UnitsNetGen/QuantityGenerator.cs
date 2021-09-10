@@ -71,8 +71,8 @@ namespace UnitsNet
     /// </remarks>");
 
             Writer.W(@$"
-        [DataContract]
-        public partial struct {_quantity.Name} : IQuantity<{_unitEnumName}>, ");
+    [DataContract]
+    public partial struct {_quantity.Name} : IQuantity<{_unitEnumName}>, ");
             if (_quantity.BaseType == "decimal")
             {
                 Writer.W("IDecimalQuantity, ");
