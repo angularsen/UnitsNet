@@ -38,8 +38,8 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Irradiation
     /// </remarks>
-        [DataContract]
-        public partial struct Irradiation : IQuantity<IrradiationUnit>, IEquatable<Irradiation>, IComparable, IComparable<Irradiation>, IConvertible, IFormattable
+    [DataContract]
+    public partial struct Irradiation : IQuantity<IrradiationUnit>, IEquatable<Irradiation>, IComparable, IComparable<Irradiation>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

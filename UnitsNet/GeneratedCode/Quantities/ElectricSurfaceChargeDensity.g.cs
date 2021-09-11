@@ -38,8 +38,8 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Charge_density
     /// </remarks>
-        [DataContract]
-        public partial struct ElectricSurfaceChargeDensity : IQuantity<ElectricSurfaceChargeDensityUnit>, IEquatable<ElectricSurfaceChargeDensity>, IComparable, IComparable<ElectricSurfaceChargeDensity>, IConvertible, IFormattable
+    [DataContract]
+    public partial struct ElectricSurfaceChargeDensity : IQuantity<ElectricSurfaceChargeDensityUnit>, IEquatable<ElectricSurfaceChargeDensity>, IComparable, IComparable<ElectricSurfaceChargeDensity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

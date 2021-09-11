@@ -38,8 +38,8 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Capacitance
     /// </remarks>
-        [DataContract]
-        public partial struct Capacitance : IQuantity<CapacitanceUnit>, IEquatable<Capacitance>, IComparable, IComparable<Capacitance>, IConvertible, IFormattable
+    [DataContract]
+    public partial struct Capacitance : IQuantity<CapacitanceUnit>, IEquatable<Capacitance>, IComparable, IComparable<Capacitance>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

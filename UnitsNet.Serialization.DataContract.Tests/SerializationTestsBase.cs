@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
-using UnitsNet.Serialization.Contracts;
 using UnitsNet.Units;
 using Xunit;
 
@@ -15,54 +14,7 @@ namespace UnitsNet.Serialization.DataContract.Tests
     {
         protected abstract TPayload SerializeObject(object obj);
         protected abstract T DeserializeObject<T>(TPayload payload);
-
-        protected void GenericQuantityValueContract_SerializationRoundTrips<TValue, TUnit>(TValue value, TUnit unit)
-        {
-            var quantityValue = new QuantityValueContract<TValue, TUnit>(value, unit);
-
-            var payload = SerializeObject(quantityValue);
-            var result = DeserializeObject<QuantityValueContract<TValue, TUnit>>(payload);
-
-            Assert.Equal(unit, quantityValue.Unit);
-            Assert.Equal(value, quantityValue.Value);
-            Assert.Equal(quantityValue.Unit, result.Unit);
-            Assert.Equal(quantityValue.Value, result.Value);
-        }
-
-        protected void GenericExtendedQuantityValueContract_SerializationRoundTrips<TValueType, TUnit>(
-            double value, TUnit unit, string valueString, TValueType valueType)
-        {
-            var quantityValue = new ExtendedQuantityValueContract<TValueType, TUnit>(value, unit, valueString, valueType);
-
-            var payload = SerializeObject(quantityValue);
-            var result = DeserializeObject<ExtendedQuantityValueContract<TValueType, TUnit>>(payload);
-
-            Assert.Equal(unit, quantityValue.Unit);
-            Assert.Equal(value, quantityValue.Value);
-            Assert.Equal(valueString, quantityValue.ValueString);
-            Assert.Equal(valueType, quantityValue.ValueType);
-            Assert.Equal(quantityValue.Unit, result.Unit);
-            Assert.Equal(quantityValue.Value, result.Value);
-            Assert.Equal(quantityValue.ValueString, result.ValueString);
-            Assert.Equal(quantityValue.ValueType, result.ValueType);
-        }
-
-        protected void GenericQuantityWithAbbreviationContract_SerializationRoundTrips<TValue, TQuantity>(
-            TValue value, TQuantity quantityType, string unitAbbreviation)
-        {
-            var quantityValue = new QuantityWithAbbreviationContract<TValue, TQuantity>(value, quantityType, unitAbbreviation);
-
-            var payload = SerializeObject(quantityValue);
-            var result = DeserializeObject<QuantityWithAbbreviationContract<TValue, TQuantity>>(payload);
-
-            Assert.Equal(unitAbbreviation, result.Unit);
-            Assert.Equal(value, result.Value);
-            Assert.Equal(quantityType, result.QuantityType);
-            Assert.Equal(quantityValue.Unit, result.Unit);
-            Assert.Equal(quantityValue.Value, result.Value);
-            Assert.Equal(quantityValue.QuantityType, result.QuantityType);
-        }
-
+        
         [Fact]
         public void DoubleValueQuantity_SerializationRoundTrips()
         {

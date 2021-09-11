@@ -35,8 +35,8 @@ namespace UnitsNet
     /// <summary>
     ///     The area density of a two-dimensional object is calculated as the mass per unit area.
     /// </summary>
-        [DataContract]
-        public partial struct AreaDensity : IQuantity<AreaDensityUnit>, IEquatable<AreaDensity>, IComparable, IComparable<AreaDensity>, IConvertible, IFormattable
+    [DataContract]
+    public partial struct AreaDensity : IQuantity<AreaDensityUnit>, IEquatable<AreaDensity>, IComparable, IComparable<AreaDensity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

@@ -38,8 +38,8 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Mass_fraction_(chemistry)
     /// </remarks>
-        [DataContract]
-        public partial struct MassFraction : IQuantity<MassFractionUnit>, IEquatable<MassFraction>, IComparable, IComparable<MassFraction>, IConvertible, IFormattable
+    [DataContract]
+    public partial struct MassFraction : IQuantity<MassFractionUnit>, IEquatable<MassFraction>, IComparable, IComparable<MassFraction>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

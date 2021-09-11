@@ -35,8 +35,8 @@ namespace UnitsNet
     /// <summary>
     ///     A way of representing a number of items.
     /// </summary>
-        [DataContract]
-        public partial struct Scalar : IQuantity<ScalarUnit>, IEquatable<Scalar>, IComparable, IComparable<Scalar>, IConvertible, IFormattable
+    [DataContract]
+    public partial struct Scalar : IQuantity<ScalarUnit>, IEquatable<Scalar>, IComparable, IComparable<Scalar>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

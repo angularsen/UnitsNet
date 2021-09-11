@@ -38,8 +38,8 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Solid_angle
     /// </remarks>
-        [DataContract]
-        public partial struct SolidAngle : IQuantity<SolidAngleUnit>, IEquatable<SolidAngle>, IComparable, IComparable<SolidAngle>, IConvertible, IFormattable
+    [DataContract]
+    public partial struct SolidAngle : IQuantity<SolidAngleUnit>, IEquatable<SolidAngle>, IComparable, IComparable<SolidAngle>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

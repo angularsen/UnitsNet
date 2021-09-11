@@ -38,8 +38,8 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Specific_energy
     /// </remarks>
-        [DataContract]
-        public partial struct SpecificEnergy : IQuantity<SpecificEnergyUnit>, IEquatable<SpecificEnergy>, IComparable, IComparable<SpecificEnergy>, IConvertible, IFormattable
+    [DataContract]
+    public partial struct SpecificEnergy : IQuantity<SpecificEnergyUnit>, IEquatable<SpecificEnergy>, IComparable, IComparable<SpecificEnergy>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

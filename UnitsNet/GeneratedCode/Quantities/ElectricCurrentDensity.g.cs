@@ -38,8 +38,8 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Current_density
     /// </remarks>
-        [DataContract]
-        public partial struct ElectricCurrentDensity : IQuantity<ElectricCurrentDensityUnit>, IEquatable<ElectricCurrentDensity>, IComparable, IComparable<ElectricCurrentDensity>, IConvertible, IFormattable
+    [DataContract]
+    public partial struct ElectricCurrentDensity : IQuantity<ElectricCurrentDensityUnit>, IEquatable<ElectricCurrentDensity>, IComparable, IComparable<ElectricCurrentDensity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

@@ -35,8 +35,8 @@ namespace UnitsNet
     /// <summary>
     ///     The magnitude of force per unit length.
     /// </summary>
-        [DataContract]
-        public partial struct ForcePerLength : IQuantity<ForcePerLengthUnit>, IEquatable<ForcePerLength>, IComparable, IComparable<ForcePerLength>, IConvertible, IFormattable
+    [DataContract]
+    public partial struct ForcePerLength : IQuantity<ForcePerLengthUnit>, IEquatable<ForcePerLength>, IComparable, IComparable<ForcePerLength>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

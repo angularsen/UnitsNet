@@ -35,8 +35,8 @@ namespace UnitsNet
     /// <summary>
     ///     Heat flux is the flow of energy per unit of area per unit of time
     /// </summary>
-        [DataContract]
-        public partial struct HeatFlux : IQuantity<HeatFluxUnit>, IEquatable<HeatFlux>, IComparable, IComparable<HeatFlux>, IConvertible, IFormattable
+    [DataContract]
+    public partial struct HeatFlux : IQuantity<HeatFluxUnit>, IEquatable<HeatFlux>, IComparable, IComparable<HeatFlux>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

@@ -35,8 +35,8 @@ namespace UnitsNet
     /// <summary>
     ///     Level is the logarithm of the ratio of a quantity Q to a reference value of that quantity, Q₀, expressed in dimensionless units.
     /// </summary>
-        [DataContract]
-        public partial struct Level : IQuantity<LevelUnit>, IEquatable<Level>, IComparable, IComparable<Level>, IConvertible, IFormattable
+    [DataContract]
+    public partial struct Level : IQuantity<LevelUnit>, IEquatable<Level>, IComparable, IComparable<Level>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

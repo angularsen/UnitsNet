@@ -35,8 +35,8 @@ namespace UnitsNet
     /// <summary>
     ///     Difference between two temperatures. The conversions are different than for Temperature.
     /// </summary>
-        [DataContract]
-        public partial struct TemperatureDelta : IQuantity<TemperatureDeltaUnit>, IEquatable<TemperatureDelta>, IComparable, IComparable<TemperatureDelta>, IConvertible, IFormattable
+    [DataContract]
+    public partial struct TemperatureDelta : IQuantity<TemperatureDeltaUnit>, IEquatable<TemperatureDelta>, IComparable, IComparable<TemperatureDelta>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

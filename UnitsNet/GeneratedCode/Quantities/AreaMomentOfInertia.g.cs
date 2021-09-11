@@ -35,8 +35,8 @@ namespace UnitsNet
     /// <summary>
     ///     A geometric property of an area that reflects how its points are distributed with regard to an axis.
     /// </summary>
-        [DataContract]
-        public partial struct AreaMomentOfInertia : IQuantity<AreaMomentOfInertiaUnit>, IEquatable<AreaMomentOfInertia>, IComparable, IComparable<AreaMomentOfInertia>, IConvertible, IFormattable
+    [DataContract]
+    public partial struct AreaMomentOfInertia : IQuantity<AreaMomentOfInertiaUnit>, IEquatable<AreaMomentOfInertia>, IComparable, IComparable<AreaMomentOfInertia>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

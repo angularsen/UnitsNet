@@ -38,8 +38,8 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Permittivity
     /// </remarks>
-        [DataContract]
-        public partial struct Permittivity : IQuantity<PermittivityUnit>, IEquatable<Permittivity>, IComparable, IComparable<Permittivity>, IConvertible, IFormattable
+    [DataContract]
+    public partial struct Permittivity : IQuantity<PermittivityUnit>, IEquatable<Permittivity>, IComparable, IComparable<Permittivity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

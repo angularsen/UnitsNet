@@ -38,8 +38,8 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Magnetic_field
     /// </remarks>
-        [DataContract]
-        public partial struct MagneticField : IQuantity<MagneticFieldUnit>, IEquatable<MagneticField>, IComparable, IComparable<MagneticField>, IConvertible, IFormattable
+    [DataContract]
+    public partial struct MagneticField : IQuantity<MagneticFieldUnit>, IEquatable<MagneticField>, IComparable, IComparable<MagneticField>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

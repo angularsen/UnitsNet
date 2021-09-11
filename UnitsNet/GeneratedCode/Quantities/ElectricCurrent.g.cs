@@ -35,8 +35,8 @@ namespace UnitsNet
     /// <summary>
     ///     An electric current is a flow of electric charge. In electric circuits this charge is often carried by moving electrons in a wire. It can also be carried by ions in an electrolyte, or by both ions and electrons such as in a plasma.
     /// </summary>
-        [DataContract]
-        public partial struct ElectricCurrent : IQuantity<ElectricCurrentUnit>, IEquatable<ElectricCurrent>, IComparable, IComparable<ElectricCurrent>, IConvertible, IFormattable
+    [DataContract]
+    public partial struct ElectricCurrent : IQuantity<ElectricCurrentUnit>, IEquatable<ElectricCurrent>, IComparable, IComparable<ElectricCurrent>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

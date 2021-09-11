@@ -35,8 +35,8 @@ namespace UnitsNet
     /// <summary>
     ///     The strength of a signal expressed in decibels (dB) relative to one watt.
     /// </summary>
-        [DataContract]
-        public partial struct PowerRatio : IQuantity<PowerRatioUnit>, IEquatable<PowerRatio>, IComparable, IComparable<PowerRatio>, IConvertible, IFormattable
+    [DataContract]
+    public partial struct PowerRatio : IQuantity<PowerRatioUnit>, IEquatable<PowerRatio>, IComparable, IComparable<PowerRatio>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

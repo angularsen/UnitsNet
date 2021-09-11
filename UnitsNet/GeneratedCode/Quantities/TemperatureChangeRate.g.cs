@@ -35,8 +35,8 @@ namespace UnitsNet
     /// <summary>
     ///     Temperature change rate is the ratio of the temperature change to the time during which the change occurred (value of temperature changes per unit time).
     /// </summary>
-        [DataContract]
-        public partial struct TemperatureChangeRate : IQuantity<TemperatureChangeRateUnit>, IEquatable<TemperatureChangeRate>, IComparable, IComparable<TemperatureChangeRate>, IConvertible, IFormattable
+    [DataContract]
+    public partial struct TemperatureChangeRate : IQuantity<TemperatureChangeRateUnit>, IEquatable<TemperatureChangeRate>, IComparable, IComparable<TemperatureChangeRate>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

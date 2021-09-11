@@ -38,8 +38,8 @@ namespace UnitsNet
     /// <remarks>
     ///     http://en.wikipedia.org/wiki/Linear_density
     /// </remarks>
-        [DataContract]
-        public partial struct LinearPowerDensity : IQuantity<LinearPowerDensityUnit>, IEquatable<LinearPowerDensity>, IComparable, IComparable<LinearPowerDensity>, IConvertible, IFormattable
+    [DataContract]
+    public partial struct LinearPowerDensity : IQuantity<LinearPowerDensityUnit>, IEquatable<LinearPowerDensity>, IComparable, IComparable<LinearPowerDensity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

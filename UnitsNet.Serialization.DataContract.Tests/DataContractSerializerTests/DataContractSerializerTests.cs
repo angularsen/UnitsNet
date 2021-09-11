@@ -1,6 +1,6 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Runtime.Serialization;
+using UnitsNet.Serialization.Contracts;
 using UnitsNet.Units;
 using Xunit;
 
@@ -30,30 +30,6 @@ namespace UnitsNet.Serialization.DataContract.Tests.DataContractSerializerTests
             writer.Flush();
             stream.Position = 0;
             return (T)serializer.ReadObject(stream);
-        }
-
-        [Fact]
-        public void QuantityValueContract_SerializationRoundTrips()
-        {
-            GenericQuantityValueContract_SerializationRoundTrips(123.456, "units");
-            GenericQuantityValueContract_SerializationRoundTrips(123.456m, Information.BaseUnit);
-            GenericQuantityValueContract_SerializationRoundTrips(2, DayOfWeek.Friday);
-        }
-
-        [Fact]
-        public void ExtendedQuantityValueContract_SerializationRoundTrips()
-        {
-            GenericExtendedQuantityValueContract_SerializationRoundTrips(123.456, "units", "123.456", 123.456);
-            GenericExtendedQuantityValueContract_SerializationRoundTrips(123.456, Information.BaseUnit, "123.456", 123.456m);
-            GenericExtendedQuantityValueContract_SerializationRoundTrips(2.0, DayOfWeek.Friday, "2", 2);
-        }
-
-        [Fact]
-        public void QuantityWithAbbreviationContract_SerializationRoundTrips()
-        {
-            GenericQuantityWithAbbreviationContract_SerializationRoundTrips(123.456, Mass.Info.Name, "kg");
-            GenericQuantityWithAbbreviationContract_SerializationRoundTrips(123.456m, Information.BaseUnit, "mb");
-            GenericQuantityWithAbbreviationContract_SerializationRoundTrips(2, DayOfWeek.Friday, "f");
         }
 
         [Fact]
@@ -98,6 +74,45 @@ namespace UnitsNet.Serialization.DataContract.Tests.DataContractSerializerTests
             var xml = SerializeObject(quantity);
 
             Assert.Equal(expectedXml, xml);
+        }
+
+        [Fact]
+        public void QuantityValueContract_SerializationRoundTrips()
+        {
+            var quantityValue = new QuantityValueContract<decimal, InformationUnit>(123.456m, Information.BaseUnit);
+
+            var payload = SerializeObject(quantityValue);
+            var result = DeserializeObject<QuantityValueContract<decimal, InformationUnit>>(payload);
+
+            Assert.Equal(quantityValue.Unit, result.Unit);
+            Assert.Equal(quantityValue.Value, result.Value);
+        }
+
+        [Fact]
+        public void ExtendedQuantityValueContract_SerializationRoundTrips()
+        {
+            var quantityValue = new ExtendedQuantityValueContract<decimal, string>(123.456, "units", "123.456", 123.456m);
+
+            var payload = SerializeObject(quantityValue);
+            var result = DeserializeObject<ExtendedQuantityValueContract<decimal, string>>(payload);
+
+            Assert.Equal(quantityValue.Unit, result.Unit);
+            Assert.Equal(quantityValue.Value, result.Value);
+            Assert.Equal(quantityValue.ValueString, result.ValueString);
+            Assert.Equal(quantityValue.ValueType, result.ValueType);
+        }
+
+        [Fact]
+        public void QuantityWithAbbreviationContract_SerializationRoundTrips()
+        {
+            var quantityValue = new QuantityWithAbbreviationContract<double, string>(123.456, "Mass", "kg");
+
+            var payload = SerializeObject(quantityValue);
+            var result = DeserializeObject<QuantityWithAbbreviationContract<double, string>>(payload);
+
+            Assert.Equal(quantityValue.Unit, result.Unit);
+            Assert.Equal(quantityValue.Value, result.Value);
+            Assert.Equal(quantityValue.QuantityType, result.QuantityType);
         }
     }
 }

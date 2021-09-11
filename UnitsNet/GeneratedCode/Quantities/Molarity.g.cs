@@ -38,8 +38,8 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Molar_concentration
     /// </remarks>
-        [DataContract]
-        public partial struct Molarity : IQuantity<MolarityUnit>, IEquatable<Molarity>, IComparable, IComparable<Molarity>, IConvertible, IFormattable
+    [DataContract]
+    public partial struct Molarity : IQuantity<MolarityUnit>, IEquatable<Molarity>, IComparable, IComparable<Molarity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

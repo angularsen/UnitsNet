@@ -35,8 +35,8 @@ namespace UnitsNet
     /// <summary>
     ///     Electric admittance is a measure of how easily a circuit or device will allow a current to flow. It is defined as the inverse of impedance. The SI unit of admittance is the siemens (symbol S).
     /// </summary>
-        [DataContract]
-        public partial struct ElectricAdmittance : IQuantity<ElectricAdmittanceUnit>, IEquatable<ElectricAdmittance>, IComparable, IComparable<ElectricAdmittance>, IConvertible, IFormattable
+    [DataContract]
+    public partial struct ElectricAdmittance : IQuantity<ElectricAdmittanceUnit>, IEquatable<ElectricAdmittance>, IComparable, IComparable<ElectricAdmittance>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

@@ -35,8 +35,8 @@ namespace UnitsNet
     /// <summary>
     ///     https://en.wikipedia.org/wiki/Stiffness#Rotational_stiffness
     /// </summary>
-        [DataContract]
-        public partial struct RotationalStiffness : IQuantity<RotationalStiffnessUnit>, IEquatable<RotationalStiffness>, IComparable, IComparable<RotationalStiffness>, IConvertible, IFormattable
+    [DataContract]
+    public partial struct RotationalStiffness : IQuantity<RotationalStiffnessUnit>, IEquatable<RotationalStiffness>, IComparable, IComparable<RotationalStiffness>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

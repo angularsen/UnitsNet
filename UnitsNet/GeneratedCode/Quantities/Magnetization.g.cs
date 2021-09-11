@@ -38,8 +38,8 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Magnetization
     /// </remarks>
-        [DataContract]
-        public partial struct Magnetization : IQuantity<MagnetizationUnit>, IEquatable<Magnetization>, IComparable, IComparable<Magnetization>, IConvertible, IFormattable
+    [DataContract]
+    public partial struct Magnetization : IQuantity<MagnetizationUnit>, IEquatable<Magnetization>, IComparable, IComparable<Magnetization>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
