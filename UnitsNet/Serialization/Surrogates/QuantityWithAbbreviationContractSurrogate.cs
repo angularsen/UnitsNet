@@ -20,12 +20,12 @@ namespace UnitsNet.Serialization.Surrogates
         {
             if (typeof(IDecimalQuantity).IsAssignableFrom(type))
             {
-                return typeof(QuantityWithAbbreviationContract<string, decimal>);
+                return typeof(QuantityWithAbbreviationContract<decimal, string>);
             }
 
             if (typeof(IQuantity).IsAssignableFrom(type))
             {
-                return typeof(QuantityWithAbbreviationContract<string, double>);
+                return typeof(QuantityWithAbbreviationContract<double, string>);
             }
 
             return type;
@@ -38,10 +38,10 @@ namespace UnitsNet.Serialization.Surrogates
             var unit = quantity.ToString("a", CultureInfo.InvariantCulture);
             if (quantity is IDecimalQuantity decimalQuantity)
             {
-                return new QuantityWithAbbreviationContract<string, decimal>(quantity.QuantityInfo.Name, decimalQuantity.Value, unit);
+                return new QuantityWithAbbreviationContract<decimal, string>(decimalQuantity.Value, quantity.QuantityInfo.Name, unit);
             }
 
-            return new QuantityWithAbbreviationContract<string, double>(quantity.QuantityInfo.Name, quantity.Value, unit);
+            return new QuantityWithAbbreviationContract<double, string>(quantity.Value, quantity.QuantityInfo.Name, unit);
         }
 
         /// <inheritdoc />
@@ -49,15 +49,15 @@ namespace UnitsNet.Serialization.Surrogates
         {
             return obj switch
             {
-                QuantityWithAbbreviationContract<string, double> doubleValue =>
-                    FromQuantityWithAbbreviation(doubleValue.QuantityType, doubleValue.Value, doubleValue.Unit),
-                QuantityWithAbbreviationContract<string, decimal> decimalValue =>
-                    FromQuantityWithAbbreviation(decimalValue.QuantityType, decimalValue.Value, decimalValue.Unit),
+                QuantityWithAbbreviationContract<double, string> doubleValue =>
+                    FromQuantityWithAbbreviation(doubleValue.Value, doubleValue.QuantityType, doubleValue.Unit),
+                QuantityWithAbbreviationContract<decimal, string> decimalValue =>
+                    FromQuantityWithAbbreviation(decimalValue.Value, decimalValue.QuantityType, decimalValue.Unit),
                 _ => obj
             };
         }
 
-        private static IQuantity FromQuantityWithAbbreviation(string quantityType, QuantityValue value, string unitAbbreviation)
+        private static IQuantity FromQuantityWithAbbreviation(QuantityValue value, string quantityType, string unitAbbreviation)
         {
             return Quantity.ByName.TryGetValue(quantityType, out var quantityInfo)
                 ? Quantity.From(value, UnitParser.Default.Parse(unitAbbreviation, quantityInfo.UnitType, CultureInfo.InvariantCulture))

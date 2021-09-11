@@ -37,7 +37,7 @@ namespace UnitsNet.Serialization.DataContract.Tests.DataContractJsonSerializerTe
             writer.Write(xml);
             writer.Flush();
             stream.Position = 0;
-            return (T) serializer.ReadObject(stream);
+            return (T)serializer.ReadObject(stream);
         }
     }
 }

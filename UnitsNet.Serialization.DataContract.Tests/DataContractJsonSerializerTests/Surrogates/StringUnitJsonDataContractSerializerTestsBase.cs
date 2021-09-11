@@ -8,8 +8,8 @@ using Xunit;
 namespace UnitsNet.Serialization.DataContract.Tests.DataContractJsonSerializerTests.Surrogates
 {
     /// <summary>
-    /// This is a test-bed for any serializers that use the <i>standard</i> format of encoding the Unit & Value:
-    /// https://github.com/angularsen/UnitsNet#serialization
+    ///     This is a test-bed for any serializers that use the <i>standard</i> format of encoding the Unit and Value:
+    ///     https://github.com/angularsen/UnitsNet#serialization
     /// </summary>
     public abstract class StringUnitJsonDataContractSerializerTestsBase : DataContractJsonSerializerTestsBase
     {

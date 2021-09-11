@@ -4,7 +4,7 @@ using UnitsNet.Serialization.Surrogates;
 namespace UnitsNet.Serialization.DataContract.Tests.DataContractJsonSerializerTests.Surrogates
 {
     /// <summary>
-    ///     There are no special tests here: uses the <i>standard</i> format of encoding the Unit & Value (with no support for
+    ///     There are no special tests here: uses the <i>standard</i> format of encoding the Unit and Value (with no support for
     ///     decimals):
     ///     https://github.com/angularsen/UnitsNet#serialization
     ///     <remarks>

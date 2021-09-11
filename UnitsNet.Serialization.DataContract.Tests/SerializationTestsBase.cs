@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
+using UnitsNet.Serialization.Contracts;
 using UnitsNet.Units;
 using Xunit;
 
@@ -14,6 +15,41 @@ namespace UnitsNet.Serialization.DataContract.Tests
     {
         protected abstract TPayload SerializeObject(object obj);
         protected abstract T DeserializeObject<T>(TPayload payload);
+
+        protected void GenericQuantityValueContract_SerializationRoundTrips<TValue, TUnit>(QuantityValueContract<TValue, TUnit> quantityValue)
+        {
+            var payload = SerializeObject(quantityValue);
+
+            var result = DeserializeObject<QuantityValueContract<TValue, TUnit>>(payload);
+
+            Assert.Equal(quantityValue.Unit, result.Unit);
+            Assert.Equal(quantityValue.Value, result.Value);
+        }
+
+        protected void GenericExtendedQuantityValueContract_SerializationRoundTrips<TValueType, TUnit>(
+            ExtendedQuantityValueContract<TValueType, TUnit> quantityValue)
+        {
+            var payload = SerializeObject(quantityValue);
+
+            var result = DeserializeObject<ExtendedQuantityValueContract<TValueType, TUnit>>(payload);
+
+            Assert.Equal(quantityValue.Unit, result.Unit);
+            Assert.Equal(quantityValue.Value, result.Value);
+            Assert.Equal(quantityValue.ValueType, result.ValueType);
+            Assert.Equal(quantityValue.ValueString, result.ValueString);
+        }
+
+        protected void GenericQuantityWithAbbreviationContract_SerializationRoundTrips<TValue, TQuantity>(
+            QuantityWithAbbreviationContract<TValue, TQuantity> quantityValue)
+        {
+            var payload = SerializeObject(quantityValue);
+
+            var result = DeserializeObject<QuantityWithAbbreviationContract<TValue, TQuantity>>(payload);
+
+            Assert.Equal(quantityValue.Unit, result.Unit);
+            Assert.Equal(quantityValue.Value, result.Value);
+            Assert.Equal(quantityValue.QuantityType, result.QuantityType);
+        }
 
         [Fact]
         public void DoubleValueQuantity_SerializationRoundTrips()
@@ -70,7 +106,7 @@ namespace UnitsNet.Serialization.DataContract.Tests
         [Fact]
         public virtual void ArrayOfDoubleValueQuantities_SerializationRoundTrips()
         {
-            var quantities = new[] {new Mass(1.2, MassUnit.Milligram), new Mass(2, MassUnit.Gram)};
+            var quantities = new[] { new Mass(1.2, MassUnit.Milligram), new Mass(2, MassUnit.Gram) };
             var payload = SerializeObject(quantities);
 
             var results = DeserializeObject<Mass[]>(payload);
@@ -91,7 +127,7 @@ namespace UnitsNet.Serialization.DataContract.Tests
         [Fact]
         public virtual void ArrayOfDecimalValueQuantities_SerializationRoundTrips()
         {
-            var quantities = new[] {new Information(1.2m, InformationUnit.Exabit), new Information(2, InformationUnit.Exabyte)};
+            var quantities = new[] { new Information(1.2m, InformationUnit.Exabit), new Information(2, InformationUnit.Exabyte) };
             var payload = SerializeObject(quantities);
 
             var results = DeserializeObject<Information[]>(payload);
@@ -114,7 +150,7 @@ namespace UnitsNet.Serialization.DataContract.Tests
         {
             var firstQuantity = new Mass(1.2, MassUnit.Milligram);
             var secondQuantity = new Mass(2, MassUnit.Gram);
-            IEnumerable<Mass> quantities = new List<Mass> {firstQuantity, secondQuantity};
+            IEnumerable<Mass> quantities = new List<Mass> { firstQuantity, secondQuantity };
             var payload = SerializeObject(quantities);
 
             var results = DeserializeObject<IEnumerable<Mass>>(payload);
@@ -137,7 +173,7 @@ namespace UnitsNet.Serialization.DataContract.Tests
         {
             var firstQuantity = new Information(1.2m, InformationUnit.Exabit);
             var secondQuantity = new Information(2, InformationUnit.Exabyte);
-            IEnumerable<Information> quantities = new List<Information> {firstQuantity, secondQuantity};
+            IEnumerable<Information> quantities = new List<Information> { firstQuantity, secondQuantity };
             var payload = SerializeObject(quantities);
 
             var results = DeserializeObject<IEnumerable<Information>>(payload);
@@ -208,7 +244,7 @@ namespace UnitsNet.Serialization.DataContract.Tests
         protected void ClassOfDoubleAndNullUnits_SerializationRoundTrips()
         {
             var quantity = new Mass(1.2, MassUnit.Milligram);
-            var quantities = new TestObject<Mass> {Quantity = quantity, NullableQuantity = null};
+            var quantities = new TestObject<Mass> { Quantity = quantity, NullableQuantity = null };
             var payload = SerializeObject(quantities);
 
             var results = DeserializeObject<TestObject<Mass>>(payload);
@@ -224,7 +260,7 @@ namespace UnitsNet.Serialization.DataContract.Tests
         protected void ClassOfDecimalAndNullUnits_SerializationRoundTrips()
         {
             var quantity = new Information(2, InformationUnit.Exabyte);
-            var quantities = new TestObject<Information> {Quantity = quantity, NullableQuantity = null};
+            var quantities = new TestObject<Information> { Quantity = quantity, NullableQuantity = null };
             var payload = SerializeObject(quantities);
 
             var results = DeserializeObject<TestObject<Information>>(payload);

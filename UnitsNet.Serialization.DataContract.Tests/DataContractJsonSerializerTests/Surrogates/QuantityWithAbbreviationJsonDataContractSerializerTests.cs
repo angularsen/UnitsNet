@@ -11,7 +11,7 @@ namespace UnitsNet.Serialization.DataContract.Tests.DataContractJsonSerializerTe
     public class QuantityWithAbbreviationJsonDataContractSerializerTests : DataContractJsonSerializerTestsBase
     {
         public QuantityWithAbbreviationJsonDataContractSerializerTests()
-            : base(new DataContractJsonSerializerSettings {DataContractSurrogate = new QuantityWithAbbreviationContractSurrogate()})
+            : base(new DataContractJsonSerializerSettings { DataContractSurrogate = new QuantityWithAbbreviationContractSurrogate() })
         {
         }
 
