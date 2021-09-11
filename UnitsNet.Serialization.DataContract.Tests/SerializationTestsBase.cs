@@ -16,36 +16,48 @@ namespace UnitsNet.Serialization.DataContract.Tests
         protected abstract TPayload SerializeObject(object obj);
         protected abstract T DeserializeObject<T>(TPayload payload);
 
-        protected void GenericQuantityValueContract_SerializationRoundTrips<TValue, TUnit>(QuantityValueContract<TValue, TUnit> quantityValue)
+        protected void GenericQuantityValueContract_SerializationRoundTrips<TValue, TUnit>(TValue value, TUnit unit)
         {
-            var payload = SerializeObject(quantityValue);
+            var quantityValue = new QuantityValueContract<TValue, TUnit>(value, unit);
 
+            var payload = SerializeObject(quantityValue);
             var result = DeserializeObject<QuantityValueContract<TValue, TUnit>>(payload);
 
+            Assert.Equal(unit, quantityValue.Unit);
+            Assert.Equal(value, quantityValue.Value);
             Assert.Equal(quantityValue.Unit, result.Unit);
             Assert.Equal(quantityValue.Value, result.Value);
         }
 
         protected void GenericExtendedQuantityValueContract_SerializationRoundTrips<TValueType, TUnit>(
-            ExtendedQuantityValueContract<TValueType, TUnit> quantityValue)
+            double value, TUnit unit, string valueString, TValueType valueType)
         {
-            var payload = SerializeObject(quantityValue);
+            var quantityValue = new ExtendedQuantityValueContract<TValueType, TUnit>(value, unit, valueString, valueType);
 
+            var payload = SerializeObject(quantityValue);
             var result = DeserializeObject<ExtendedQuantityValueContract<TValueType, TUnit>>(payload);
 
+            Assert.Equal(unit, quantityValue.Unit);
+            Assert.Equal(value, quantityValue.Value);
+            Assert.Equal(valueString, quantityValue.ValueString);
+            Assert.Equal(valueType, quantityValue.ValueType);
             Assert.Equal(quantityValue.Unit, result.Unit);
             Assert.Equal(quantityValue.Value, result.Value);
-            Assert.Equal(quantityValue.ValueType, result.ValueType);
             Assert.Equal(quantityValue.ValueString, result.ValueString);
+            Assert.Equal(quantityValue.ValueType, result.ValueType);
         }
 
         protected void GenericQuantityWithAbbreviationContract_SerializationRoundTrips<TValue, TQuantity>(
-            QuantityWithAbbreviationContract<TValue, TQuantity> quantityValue)
+            TValue value, TQuantity quantityType, string unitAbbreviation)
         {
-            var payload = SerializeObject(quantityValue);
+            var quantityValue = new QuantityWithAbbreviationContract<TValue, TQuantity>(value, quantityType, unitAbbreviation);
 
+            var payload = SerializeObject(quantityValue);
             var result = DeserializeObject<QuantityWithAbbreviationContract<TValue, TQuantity>>(payload);
 
+            Assert.Equal(unitAbbreviation, result.Unit);
+            Assert.Equal(value, result.Value);
+            Assert.Equal(quantityType, result.QuantityType);
             Assert.Equal(quantityValue.Unit, result.Unit);
             Assert.Equal(quantityValue.Value, result.Value);
             Assert.Equal(quantityValue.QuantityType, result.QuantityType);
@@ -55,8 +67,8 @@ namespace UnitsNet.Serialization.DataContract.Tests
         public void DoubleValueQuantity_SerializationRoundTrips()
         {
             var quantity = new Mass(1.2, MassUnit.Milligram);
-            var payload = SerializeObject(quantity);
 
+            var payload = SerializeObject(quantity);
             var result = DeserializeObject<Mass>(payload);
 
             Assert.Equal(quantity.Unit, result.Unit);
@@ -68,8 +80,8 @@ namespace UnitsNet.Serialization.DataContract.Tests
         public void LargeDoubleValueQuantity_SerializationRoundTrips()
         {
             var quantity = new Mass(1E+9, MassUnit.Milligram);
-            var payload = SerializeObject(quantity);
 
+            var payload = SerializeObject(quantity);
             var result = DeserializeObject<Mass>(payload);
 
             Assert.Equal(quantity.Unit, result.Unit);
@@ -81,8 +93,8 @@ namespace UnitsNet.Serialization.DataContract.Tests
         public void DecimalValueQuantity_SerializationRoundTrips()
         {
             var quantity = Information.FromExabytes(1.20m);
-            var payload = SerializeObject(quantity);
 
+            var payload = SerializeObject(quantity);
             var result = DeserializeObject<Information>(payload);
 
             Assert.Equal(quantity.Unit, result.Unit);
@@ -94,8 +106,8 @@ namespace UnitsNet.Serialization.DataContract.Tests
         public void LargeDecimalValueQuantity_SerializationRoundTrips()
         {
             var quantity = Information.FromExabytes(1E+9);
-            var payload = SerializeObject(quantity);
 
+            var payload = SerializeObject(quantity);
             var result = DeserializeObject<Information>(payload);
 
             Assert.Equal(quantity.Unit, result.Unit);
@@ -107,8 +119,8 @@ namespace UnitsNet.Serialization.DataContract.Tests
         public virtual void ArrayOfDoubleValueQuantities_SerializationRoundTrips()
         {
             var quantities = new[] { new Mass(1.2, MassUnit.Milligram), new Mass(2, MassUnit.Gram) };
-            var payload = SerializeObject(quantities);
 
+            var payload = SerializeObject(quantities);
             var results = DeserializeObject<Mass[]>(payload);
 
             Assert.Collection(results, result =>
@@ -128,8 +140,8 @@ namespace UnitsNet.Serialization.DataContract.Tests
         public virtual void ArrayOfDecimalValueQuantities_SerializationRoundTrips()
         {
             var quantities = new[] { new Information(1.2m, InformationUnit.Exabit), new Information(2, InformationUnit.Exabyte) };
-            var payload = SerializeObject(quantities);
 
+            var payload = SerializeObject(quantities);
             var results = DeserializeObject<Information[]>(payload);
 
             Assert.Collection(results, result =>
@@ -151,8 +163,8 @@ namespace UnitsNet.Serialization.DataContract.Tests
             var firstQuantity = new Mass(1.2, MassUnit.Milligram);
             var secondQuantity = new Mass(2, MassUnit.Gram);
             IEnumerable<Mass> quantities = new List<Mass> { firstQuantity, secondQuantity };
-            var payload = SerializeObject(quantities);
 
+            var payload = SerializeObject(quantities);
             var results = DeserializeObject<IEnumerable<Mass>>(payload);
 
             Assert.Collection(results, result =>
@@ -174,8 +186,8 @@ namespace UnitsNet.Serialization.DataContract.Tests
             var firstQuantity = new Information(1.2m, InformationUnit.Exabit);
             var secondQuantity = new Information(2, InformationUnit.Exabyte);
             IEnumerable<Information> quantities = new List<Information> { firstQuantity, secondQuantity };
-            var payload = SerializeObject(quantities);
 
+            var payload = SerializeObject(quantities);
             var results = DeserializeObject<IEnumerable<Information>>(payload);
 
             Assert.Collection(results, result =>
@@ -195,8 +207,8 @@ namespace UnitsNet.Serialization.DataContract.Tests
         public virtual void TupleOfMixedValueQuantities_SerializationRoundTrips()
         {
             var quantities = new Tuple<Mass, Information>(new Mass(1.2, MassUnit.Milligram), new Information(2, InformationUnit.Exabyte));
-            var payload = SerializeObject(quantities);
 
+            var payload = SerializeObject(quantities);
             var results = DeserializeObject<Tuple<Mass, Information>>(payload);
 
             Assert.Equal(quantities.Item1.Unit, results.Item1.Unit);
@@ -213,8 +225,8 @@ namespace UnitsNet.Serialization.DataContract.Tests
         {
             var quantity = new Mass(1.2, MassUnit.Milligram);
             var quantities = new Tuple<Mass?, Information?>(quantity, null);
-            var payload = SerializeObject(quantities);
 
+            var payload = SerializeObject(quantities);
             var results = DeserializeObject<Tuple<Mass?, Information?>>(payload);
 
             Assert.Equal(quantity.Unit, results.Item1.Value.Unit);
@@ -229,8 +241,8 @@ namespace UnitsNet.Serialization.DataContract.Tests
         {
             var quantity = new Information(2, InformationUnit.Exabyte);
             var quantities = new Tuple<Mass?, Information?>(null, quantity);
-            var payload = SerializeObject(quantities);
 
+            var payload = SerializeObject(quantities);
             var results = DeserializeObject<Tuple<Mass?, Information?>>(payload);
 
             Assert.Null(results.Item1);
@@ -245,8 +257,8 @@ namespace UnitsNet.Serialization.DataContract.Tests
         {
             var quantity = new Mass(1.2, MassUnit.Milligram);
             var quantities = new TestObject<Mass> { Quantity = quantity, NullableQuantity = null };
-            var payload = SerializeObject(quantities);
 
+            var payload = SerializeObject(quantities);
             var results = DeserializeObject<TestObject<Mass>>(payload);
 
             Assert.Equal(quantity.Unit, results.Quantity.Unit);
@@ -261,8 +273,8 @@ namespace UnitsNet.Serialization.DataContract.Tests
         {
             var quantity = new Information(2, InformationUnit.Exabyte);
             var quantities = new TestObject<Information> { Quantity = quantity, NullableQuantity = null };
-            var payload = SerializeObject(quantities);
 
+            var payload = SerializeObject(quantities);
             var results = DeserializeObject<TestObject<Information>>(payload);
 
             Assert.Equal(quantity.Unit, results.Quantity.Unit);
@@ -281,8 +293,8 @@ namespace UnitsNet.Serialization.DataContract.Tests
             {
                 Quantity = doubleQuantity, NullableQuantity = doubleQuantity, DecimalQuantity = decimalQuantity
             };
-            var payload = SerializeObject(quantities);
 
+            var payload = SerializeObject(quantities);
             var results = DeserializeObject<TestObject<Mass, Information>>(payload);
 
             Assert.Equal(doubleQuantity.Unit, results.Quantity.Unit);
