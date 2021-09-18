@@ -48,7 +48,7 @@ namespace UnitsNet
 
         static RatioChangeRate()
         {
-            BaseDimensions = BaseDimensions.Dimensionless;
+            BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
             Info = new QuantityInfo(QuantityType.RatioChangeRate, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 

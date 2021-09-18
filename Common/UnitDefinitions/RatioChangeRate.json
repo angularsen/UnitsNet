@@ -2,6 +2,7 @@
   "Name": "RatioChangeRate",
   "BaseUnit": "DecimalFractionPerSecond",
   "XmlDoc": "The change in ratio per unit of time.",
+  "BaseDimensions": { "T": -1 },
   "Units": [
     {
       "SingularName": "PercentPerSecond",
