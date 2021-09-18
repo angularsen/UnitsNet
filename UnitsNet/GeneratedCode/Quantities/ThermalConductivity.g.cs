@@ -51,7 +51,7 @@ namespace UnitsNet
 
         static ThermalConductivity()
         {
-            BaseDimensions = new BaseDimensions(1, 1, -3, 0, -1, 0, 0);
+            BaseDimensions = new BaseDimensions(1, 1, -3, 0, -1, 0, 0, 0);
 
             Info = new QuantityInfo<ThermalConductivityUnit>("ThermalConductivity",
                 new UnitInfo<ThermalConductivityUnit>[] {

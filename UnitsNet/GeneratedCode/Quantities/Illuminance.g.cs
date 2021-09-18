@@ -51,7 +51,7 @@ namespace UnitsNet
 
         static Illuminance()
         {
-            BaseDimensions = new BaseDimensions(-2, 0, 0, 0, 0, 0, 1);
+            BaseDimensions = new BaseDimensions(-2, 0, 0, 0, 0, 0, 1, 0);
 
             Info = new QuantityInfo<IlluminanceUnit>("Illuminance",
                 new UnitInfo<IlluminanceUnit>[] {

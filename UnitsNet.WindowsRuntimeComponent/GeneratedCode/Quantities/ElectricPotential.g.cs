@@ -48,7 +48,7 @@ namespace UnitsNet
 
         static ElectricPotential()
         {
-            BaseDimensions = new BaseDimensions(2, 1, -3, -1, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(2, 1, -3, -1, 0, 0, 0, 0);
             Info = new QuantityInfo(QuantityType.ElectricPotential, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 

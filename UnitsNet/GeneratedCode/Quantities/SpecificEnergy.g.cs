@@ -51,7 +51,7 @@ namespace UnitsNet
 
         static SpecificEnergy()
         {
-            BaseDimensions = new BaseDimensions(2, 0, -2, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(2, 0, -2, 0, 0, 0, 0, 0);
 
             Info = new QuantityInfo<SpecificEnergyUnit>("SpecificEnergy",
                 new UnitInfo<SpecificEnergyUnit>[] {

@@ -48,7 +48,7 @@ namespace UnitsNet
 
         static Information()
         {
-            BaseDimensions = BaseDimensions.Dimensionless;
+            BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 0, 0, 1);
             Info = new QuantityInfo(QuantityType.Information, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 

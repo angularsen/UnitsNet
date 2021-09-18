@@ -48,7 +48,7 @@ namespace UnitsNet
 
         static VolumePerLength()
         {
-            BaseDimensions = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(2, 0, 0, 0, 0, 0, 0, 0);
 
             Info = new QuantityInfo<VolumePerLengthUnit>("VolumePerLength",
                 new UnitInfo<VolumePerLengthUnit>[] {

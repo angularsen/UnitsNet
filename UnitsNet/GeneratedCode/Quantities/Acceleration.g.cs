@@ -48,7 +48,7 @@ namespace UnitsNet
 
         static Acceleration()
         {
-            BaseDimensions = new BaseDimensions(1, 0, -2, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(1, 0, -2, 0, 0, 0, 0, 0);
 
             Info = new QuantityInfo<AccelerationUnit>("Acceleration",
                 new UnitInfo<AccelerationUnit>[] {

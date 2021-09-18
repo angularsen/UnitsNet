@@ -48,7 +48,7 @@ namespace UnitsNet
 
         static TemperatureDelta()
         {
-            BaseDimensions = new BaseDimensions(0, 0, 0, 0, 1, 0, 0);
+            BaseDimensions = new BaseDimensions(0, 0, 0, 0, 1, 0, 0, 0);
 
             Info = new QuantityInfo<TemperatureDeltaUnit>("TemperatureDelta",
                 new UnitInfo<TemperatureDeltaUnit>[] {

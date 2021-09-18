@@ -48,7 +48,7 @@ namespace UnitsNet
 
         static ForcePerLength()
         {
-            BaseDimensions = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(0, 1, -2, 0, 0, 0, 0, 0);
             Info = new QuantityInfo(QuantityType.ForcePerLength, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 

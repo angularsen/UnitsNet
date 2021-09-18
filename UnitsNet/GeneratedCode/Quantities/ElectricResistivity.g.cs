@@ -51,7 +51,7 @@ namespace UnitsNet
 
         static ElectricResistivity()
         {
-            BaseDimensions = new BaseDimensions(3, 1, -3, -2, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(3, 1, -3, -2, 0, 0, 0, 0);
 
             Info = new QuantityInfo<ElectricResistivityUnit>("ElectricResistivity",
                 new UnitInfo<ElectricResistivityUnit>[] {

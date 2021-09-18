@@ -51,7 +51,7 @@ namespace UnitsNet
 
         static LinearDensity()
         {
-            BaseDimensions = new BaseDimensions(-1, 1, 0, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(-1, 1, 0, 0, 0, 0, 0, 0);
             Info = new QuantityInfo(QuantityType.LinearDensity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 

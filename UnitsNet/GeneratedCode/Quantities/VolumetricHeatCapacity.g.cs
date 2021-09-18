@@ -51,7 +51,7 @@ namespace UnitsNet
 
         static VolumetricHeatCapacity()
         {
-            BaseDimensions = new BaseDimensions(-1, 1, -2, 0, -1, 0, 0);
+            BaseDimensions = new BaseDimensions(-1, 1, -2, 0, -1, 0, 0, 0);
 
             Info = new QuantityInfo<VolumetricHeatCapacityUnit>("VolumetricHeatCapacity",
                 new UnitInfo<VolumetricHeatCapacityUnit>[] {

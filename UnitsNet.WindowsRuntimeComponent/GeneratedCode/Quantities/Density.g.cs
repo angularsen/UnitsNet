@@ -51,7 +51,7 @@ namespace UnitsNet
 
         static Density()
         {
-            BaseDimensions = new BaseDimensions(-3, 1, 0, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(-3, 1, 0, 0, 0, 0, 0, 0);
             Info = new QuantityInfo(QuantityType.Density, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 

@@ -51,7 +51,7 @@ namespace UnitsNet
 
         static MagneticField()
         {
-            BaseDimensions = new BaseDimensions(0, 1, -2, -1, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(0, 1, -2, -1, 0, 0, 0, 0);
             Info = new QuantityInfo(QuantityType.MagneticField, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 

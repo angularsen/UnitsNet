@@ -48,7 +48,7 @@ namespace UnitsNet
 
         static AreaMomentOfInertia()
         {
-            BaseDimensions = new BaseDimensions(4, 0, 0, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(4, 0, 0, 0, 0, 0, 0, 0);
 
             Info = new QuantityInfo<AreaMomentOfInertiaUnit>("AreaMomentOfInertia",
                 new UnitInfo<AreaMomentOfInertiaUnit>[] {

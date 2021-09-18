@@ -48,7 +48,7 @@ namespace UnitsNet
 
         static ApparentEnergy()
         {
-            BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0, 0);
 
             Info = new QuantityInfo<ApparentEnergyUnit>("ApparentEnergy",
                 new UnitInfo<ApparentEnergyUnit>[] {

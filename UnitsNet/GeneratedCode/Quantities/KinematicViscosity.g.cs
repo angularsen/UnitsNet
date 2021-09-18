@@ -51,7 +51,7 @@ namespace UnitsNet
 
         static KinematicViscosity()
         {
-            BaseDimensions = new BaseDimensions(2, 0, -1, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(2, 0, -1, 0, 0, 0, 0, 0);
 
             Info = new QuantityInfo<KinematicViscosityUnit>("KinematicViscosity",
                 new UnitInfo<KinematicViscosityUnit>[] {

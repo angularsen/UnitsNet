@@ -51,7 +51,7 @@ namespace UnitsNet
 
         static ReciprocalArea()
         {
-            BaseDimensions = new BaseDimensions(-2, 0, 0, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(-2, 0, 0, 0, 0, 0, 0, 0);
 
             Info = new QuantityInfo<ReciprocalAreaUnit>("ReciprocalArea",
                 new UnitInfo<ReciprocalAreaUnit>[] {

@@ -51,7 +51,7 @@ namespace UnitsNet
 
         static Magnetization()
         {
-            BaseDimensions = new BaseDimensions(-1, 0, 0, 1, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(-1, 0, 0, 1, 0, 0, 0, 0);
             Info = new QuantityInfo(QuantityType.Magnetization, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 

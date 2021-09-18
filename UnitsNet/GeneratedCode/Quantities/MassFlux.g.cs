@@ -48,7 +48,7 @@ namespace UnitsNet
 
         static MassFlux()
         {
-            BaseDimensions = new BaseDimensions(-2, 1, -1, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(-2, 1, -1, 0, 0, 0, 0, 0);
 
             Info = new QuantityInfo<MassFluxUnit>("MassFlux",
                 new UnitInfo<MassFluxUnit>[] {

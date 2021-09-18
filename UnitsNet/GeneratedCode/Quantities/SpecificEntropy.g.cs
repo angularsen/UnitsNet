@@ -48,7 +48,7 @@ namespace UnitsNet
 
         static SpecificEntropy()
         {
-            BaseDimensions = new BaseDimensions(2, 0, -2, 0, -1, 0, 0);
+            BaseDimensions = new BaseDimensions(2, 0, -2, 0, -1, 0, 0, 0);
 
             Info = new QuantityInfo<SpecificEntropyUnit>("SpecificEntropy",
                 new UnitInfo<SpecificEntropyUnit>[] {

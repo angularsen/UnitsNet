@@ -48,7 +48,7 @@ namespace UnitsNet
 
         static Volume()
         {
-            BaseDimensions = new BaseDimensions(3, 0, 0, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(3, 0, 0, 0, 0, 0, 0, 0);
             Info = new QuantityInfo(QuantityType.Volume, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 

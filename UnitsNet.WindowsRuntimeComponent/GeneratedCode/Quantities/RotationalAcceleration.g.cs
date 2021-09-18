@@ -48,7 +48,7 @@ namespace UnitsNet
 
         static RotationalAcceleration()
         {
-            BaseDimensions = new BaseDimensions(0, 0, -2, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(0, 0, -2, 0, 0, 0, 0, 0);
             Info = new QuantityInfo(QuantityType.RotationalAcceleration, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 

@@ -48,7 +48,7 @@ namespace UnitsNet
 
         static StandardVolumeFlow()
         {
-            BaseDimensions = new BaseDimensions(0, 1, -1, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(0, 1, -1, 0, 0, 0, 0, 0);
             Info = new QuantityInfo(QuantityType.StandardVolumeFlow, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 

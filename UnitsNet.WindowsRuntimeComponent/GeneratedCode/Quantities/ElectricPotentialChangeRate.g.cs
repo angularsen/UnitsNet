@@ -48,7 +48,7 @@ namespace UnitsNet
 
         static ElectricPotentialChangeRate()
         {
-            BaseDimensions = new BaseDimensions(2, 1, -4, -1, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(2, 1, -4, -1, 0, 0, 0, 0);
             Info = new QuantityInfo(QuantityType.ElectricPotentialChangeRate, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 

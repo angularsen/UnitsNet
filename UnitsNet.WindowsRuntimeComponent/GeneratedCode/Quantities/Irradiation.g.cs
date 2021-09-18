@@ -51,7 +51,7 @@ namespace UnitsNet
 
         static Irradiation()
         {
-            BaseDimensions = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(0, 1, -2, 0, 0, 0, 0, 0);
             Info = new QuantityInfo(QuantityType.Irradiation, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 

@@ -48,7 +48,7 @@ namespace UnitsNet
 
         static Area()
         {
-            BaseDimensions = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(2, 0, 0, 0, 0, 0, 0, 0);
             Info = new QuantityInfo(QuantityType.Area, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 

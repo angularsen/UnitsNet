@@ -51,7 +51,7 @@ namespace UnitsNet
 
         static ElectricSurfaceChargeDensity()
         {
-            BaseDimensions = new BaseDimensions(-2, 0, 1, 1, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(-2, 0, 1, 1, 0, 0, 0, 0);
 
             Info = new QuantityInfo<ElectricSurfaceChargeDensityUnit>("ElectricSurfaceChargeDensity",
                 new UnitInfo<ElectricSurfaceChargeDensityUnit>[] {

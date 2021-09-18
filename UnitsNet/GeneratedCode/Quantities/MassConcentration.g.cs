@@ -51,7 +51,7 @@ namespace UnitsNet
 
         static MassConcentration()
         {
-            BaseDimensions = new BaseDimensions(-3, 1, 0, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(-3, 1, 0, 0, 0, 0, 0, 0);
 
             Info = new QuantityInfo<MassConcentrationUnit>("MassConcentration",
                 new UnitInfo<MassConcentrationUnit>[] {

@@ -51,7 +51,7 @@ namespace UnitsNet
 
         static ElectricField()
         {
-            BaseDimensions = new BaseDimensions(1, 1, -3, -1, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(1, 1, -3, -1, 0, 0, 0, 0);
 
             Info = new QuantityInfo<ElectricFieldUnit>("ElectricField",
                 new UnitInfo<ElectricFieldUnit>[] {

@@ -51,7 +51,7 @@ namespace UnitsNet
 
         static DynamicViscosity()
         {
-            BaseDimensions = new BaseDimensions(-1, 1, -1, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(-1, 1, -1, 0, 0, 0, 0, 0);
 
             Info = new QuantityInfo<DynamicViscosityUnit>("DynamicViscosity",
                 new UnitInfo<DynamicViscosityUnit>[] {

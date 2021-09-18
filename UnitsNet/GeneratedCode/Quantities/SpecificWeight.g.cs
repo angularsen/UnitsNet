@@ -51,7 +51,7 @@ namespace UnitsNet
 
         static SpecificWeight()
         {
-            BaseDimensions = new BaseDimensions(-2, 1, -2, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(-2, 1, -2, 0, 0, 0, 0, 0);
 
             Info = new QuantityInfo<SpecificWeightUnit>("SpecificWeight",
                 new UnitInfo<SpecificWeightUnit>[] {

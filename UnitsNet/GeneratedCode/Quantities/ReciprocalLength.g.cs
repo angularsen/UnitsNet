@@ -51,7 +51,7 @@ namespace UnitsNet
 
         static ReciprocalLength()
         {
-            BaseDimensions = new BaseDimensions(-1, 0, 0, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(-1, 0, 0, 0, 0, 0, 0, 0);
 
             Info = new QuantityInfo<ReciprocalLengthUnit>("ReciprocalLength",
                 new UnitInfo<ReciprocalLengthUnit>[] {

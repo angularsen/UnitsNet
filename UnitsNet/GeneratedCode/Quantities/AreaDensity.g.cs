@@ -48,7 +48,7 @@ namespace UnitsNet
 
         static AreaDensity()
         {
-            BaseDimensions = new BaseDimensions(-2, 1, 0, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(-2, 1, 0, 0, 0, 0, 0, 0);
 
             Info = new QuantityInfo<AreaDensityUnit>("AreaDensity",
                 new UnitInfo<AreaDensityUnit>[] {

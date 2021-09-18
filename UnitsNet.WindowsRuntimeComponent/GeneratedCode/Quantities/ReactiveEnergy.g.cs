@@ -48,7 +48,7 @@ namespace UnitsNet
 
         static ReactiveEnergy()
         {
-            BaseDimensions = new BaseDimensions(2, 1, -1, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(2, 1, -1, 0, 0, 0, 0, 0);
             Info = new QuantityInfo(QuantityType.ReactiveEnergy, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 

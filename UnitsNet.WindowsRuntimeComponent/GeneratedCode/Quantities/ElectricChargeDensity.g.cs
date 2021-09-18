@@ -51,7 +51,7 @@ namespace UnitsNet
 
         static ElectricChargeDensity()
         {
-            BaseDimensions = new BaseDimensions(-3, 0, 1, 1, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(-3, 0, 1, 1, 0, 0, 0, 0);
             Info = new QuantityInfo(QuantityType.ElectricChargeDensity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 

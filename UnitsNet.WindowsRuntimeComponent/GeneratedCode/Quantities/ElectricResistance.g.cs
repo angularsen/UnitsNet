@@ -48,7 +48,7 @@ namespace UnitsNet
 
         static ElectricResistance()
         {
-            BaseDimensions = new BaseDimensions(2, 1, -3, -2, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(2, 1, -3, -2, 0, 0, 0, 0);
             Info = new QuantityInfo(QuantityType.ElectricResistance, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 

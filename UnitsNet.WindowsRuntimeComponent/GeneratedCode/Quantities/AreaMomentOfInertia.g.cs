@@ -48,7 +48,7 @@ namespace UnitsNet
 
         static AreaMomentOfInertia()
         {
-            BaseDimensions = new BaseDimensions(4, 0, 0, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(4, 0, 0, 0, 0, 0, 0, 0);
             Info = new QuantityInfo(QuantityType.AreaMomentOfInertia, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 

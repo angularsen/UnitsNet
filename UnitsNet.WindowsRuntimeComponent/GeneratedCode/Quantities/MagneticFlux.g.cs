@@ -51,7 +51,7 @@ namespace UnitsNet
 
         static MagneticFlux()
         {
-            BaseDimensions = new BaseDimensions(2, 1, -2, -1, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(2, 1, -2, -1, 0, 0, 0, 0);
             Info = new QuantityInfo(QuantityType.MagneticFlux, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 

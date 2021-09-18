@@ -51,7 +51,7 @@ namespace UnitsNet
 
         static LuminousFlux()
         {
-            BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
+            BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 0, 1, 0);
             Info = new QuantityInfo(QuantityType.LuminousFlux, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 

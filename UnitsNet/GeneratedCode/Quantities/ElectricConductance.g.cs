@@ -51,7 +51,7 @@ namespace UnitsNet
 
         static ElectricConductance()
         {
-            BaseDimensions = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0, 0);
 
             Info = new QuantityInfo<ElectricConductanceUnit>("ElectricConductance",
                 new UnitInfo<ElectricConductanceUnit>[] {

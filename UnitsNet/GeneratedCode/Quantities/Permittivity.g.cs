@@ -51,7 +51,7 @@ namespace UnitsNet
 
         static Permittivity()
         {
-            BaseDimensions = new BaseDimensions(-3, -1, 4, 2, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(-3, -1, 4, 2, 0, 0, 0, 0);
 
             Info = new QuantityInfo<PermittivityUnit>("Permittivity",
                 new UnitInfo<PermittivityUnit>[] {

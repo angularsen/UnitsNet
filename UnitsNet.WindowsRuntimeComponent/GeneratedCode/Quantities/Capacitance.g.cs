@@ -51,7 +51,7 @@ namespace UnitsNet
 
         static Capacitance()
         {
-            BaseDimensions = new BaseDimensions(-2, -1, 4, 2, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(-2, -1, 4, 2, 0, 0, 0, 0);
             Info = new QuantityInfo(QuantityType.Capacitance, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 

@@ -48,7 +48,7 @@ namespace UnitsNet
 
         static MolarEnergy()
         {
-            BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, -1, 0);
+            BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, -1, 0, 0);
 
             Info = new QuantityInfo<MolarEnergyUnit>("MolarEnergy",
                 new UnitInfo<MolarEnergyUnit>[] {

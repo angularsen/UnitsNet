@@ -51,7 +51,7 @@ namespace UnitsNet
 
         static LinearPowerDensity()
         {
-            BaseDimensions = new BaseDimensions(1, 1, -3, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(1, 1, -3, 0, 0, 0, 0, 0);
 
             Info = new QuantityInfo<LinearPowerDensityUnit>("LinearPowerDensity",
                 new UnitInfo<LinearPowerDensityUnit>[] {

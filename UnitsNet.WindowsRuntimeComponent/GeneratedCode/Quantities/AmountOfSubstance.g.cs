@@ -48,7 +48,7 @@ namespace UnitsNet
 
         static AmountOfSubstance()
         {
-            BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 1, 0);
+            BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 1, 0, 0);
             Info = new QuantityInfo(QuantityType.AmountOfSubstance, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 

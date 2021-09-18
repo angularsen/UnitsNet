@@ -48,7 +48,7 @@ namespace UnitsNet
 
         static Length()
         {
-            BaseDimensions = new BaseDimensions(1, 0, 0, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(1, 0, 0, 0, 0, 0, 0, 0);
             Info = new QuantityInfo(QuantityType.Length, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 

@@ -48,7 +48,7 @@ namespace UnitsNet
 
         static HeatFlux()
         {
-            BaseDimensions = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(0, 1, -3, 0, 0, 0, 0, 0);
             Info = new QuantityInfo(QuantityType.HeatFlux, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 

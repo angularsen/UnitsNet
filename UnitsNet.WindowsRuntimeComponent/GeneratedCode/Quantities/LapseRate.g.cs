@@ -48,7 +48,7 @@ namespace UnitsNet
 
         static LapseRate()
         {
-            BaseDimensions = new BaseDimensions(-1, 0, 0, 0, 1, 0, 0);
+            BaseDimensions = new BaseDimensions(-1, 0, 0, 0, 1, 0, 0, 0);
             Info = new QuantityInfo(QuantityType.LapseRate, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
