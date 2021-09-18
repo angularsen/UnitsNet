@@ -36,7 +36,8 @@ namespace CodeGen.Generators.UnitsNetGen
                               baseDimensions.I == 0 &&
                               baseDimensions.Θ == 0 &&
                               baseDimensions.N == 0 &&
-                              baseDimensions.J == 0;
+                              baseDimensions.J == 0 &&
+                              baseDimensions.b == 0;
 
         }
 
@@ -120,7 +121,7 @@ namespace UnitsNet
             BaseDimensions = BaseDimensions.Dimensionless;
 "
                 : $@"
-            BaseDimensions = new BaseDimensions({baseDimensions.L}, {baseDimensions.M}, {baseDimensions.T}, {baseDimensions.I}, {baseDimensions.Θ}, {baseDimensions.N}, {baseDimensions.J});
+            BaseDimensions = new BaseDimensions({baseDimensions.L}, {baseDimensions.M}, {baseDimensions.T}, {baseDimensions.I}, {baseDimensions.Θ}, {baseDimensions.N}, {baseDimensions.J}, {baseDimensions.b});
 ");
 
             Writer.WL($@"

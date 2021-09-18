@@ -13,7 +13,7 @@ namespace UnitsNet
     public sealed class BaseDimensions
     {
         /// <inheritdoc />
-        public BaseDimensions(int length, int mass, int time, int current, int temperature, int amount, int luminousIntensity)
+        public BaseDimensions(int length, int mass, int time, int current, int temperature, int amount, int luminousIntensity, int information)
         {
             Length = length;
             Mass = mass;
@@ -22,6 +22,7 @@ namespace UnitsNet
             Temperature = temperature;
             Amount = amount;
             LuminousIntensity = luminousIntensity;
+            Information = information;
         }
 
         /// <summary>
@@ -30,7 +31,7 @@ namespace UnitsNet
         /// <returns>True if the dimensions represent a base quantity, otherwise false.</returns>
         public bool IsBaseQuantity()
         {
-            var dimensionsArray = new int[]{Length, Mass, Time, Current, Temperature, Amount, LuminousIntensity};
+            var dimensionsArray = new int[]{Length, Mass, Time, Current, Temperature, Amount, LuminousIntensity, Information};
             bool onlyOneEqualsOne = dimensionsArray.Where(dimension => dimension == 1).Take(2).Count() == 1;
             return onlyOneEqualsOne;
         }
@@ -67,7 +68,8 @@ namespace UnitsNet
                 Current == other.Current &&
                 Temperature == other.Temperature &&
                 Amount == other.Amount &&
-                LuminousIntensity == other.LuminousIntensity;
+                LuminousIntensity == other.LuminousIntensity &&
+                Information == other.Information;
         }
 
         /// <inheritdoc />
@@ -93,7 +95,8 @@ namespace UnitsNet
                 Current + right.Current,
                 Temperature + right.Temperature,
                 Amount + right.Amount,
-                LuminousIntensity + right.LuminousIntensity);
+                LuminousIntensity + right.LuminousIntensity,
+                Information + right.Information);
         }
 
         /// <summary>
@@ -113,7 +116,8 @@ namespace UnitsNet
                 Current - right.Current,
                 Temperature - right.Temperature,
                 Amount - right.Amount,
-                LuminousIntensity - right.LuminousIntensity);
+                LuminousIntensity - right.LuminousIntensity,
+                Information - right.Information);
         }
 
         /// <summary>
@@ -182,6 +186,7 @@ namespace UnitsNet
             AppendDimensionString(sb, "Temperature", Temperature);
             AppendDimensionString(sb, "Amount", Amount);
             AppendDimensionString(sb, "LuminousIntensity", LuminousIntensity);
+            AppendDimensionString(sb, "Information", Information);
 
             return sb.ToString();
         }
@@ -235,8 +240,13 @@ namespace UnitsNet
         public int LuminousIntensity{ get; }
 
         /// <summary>
+        /// Gets the information dimensions (b).
+        /// </summary>
+        public int Information { get; }
+
+        /// <summary>
         /// Represents a dimensionless (unitless) quantity.
         /// </summary>
-        public static BaseDimensions Dimensionless { get; } = new BaseDimensions(0, 0, 0, 0, 0, 0, 0);
+        public static BaseDimensions Dimensionless { get; } = new BaseDimensions(0, 0, 0, 0, 0, 0, 0, 0);
     }
 }

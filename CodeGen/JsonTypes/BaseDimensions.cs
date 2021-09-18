@@ -22,6 +22,8 @@ namespace CodeGen.JsonTypes
         public int Θ = 0;
         /// <summary>Time.</summary>
         public int T = 0;
+        /// <summary>Information.</summary>
+        public int b = 0;
 
         // 0649 Field is never assigned to
 #pragma warning restore 0649
