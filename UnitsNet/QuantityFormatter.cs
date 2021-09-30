@@ -4,7 +4,6 @@
 using System;
 using System.Globalization;
 using System.Linq;
-using System.Text.RegularExpressions;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -169,13 +168,6 @@ namespace UnitsNet
                             throw new FormatException($"The {format} format string is invalid because the abbreviation index does not exist.");
 
                         return abbreviations[precisionSpecifier];
-                    case 'f':
-                        UnitInfo unitInfo = UnitAbbreviationsCache.GetUnitInfo(quantity.Unit);
-                        var singleOrPluralName = quantity.Value == 1 ? unitInfo.Name : unitInfo.PluralName;
-                        string.Join(" ", Regex.Split(singleOrPluralName, @"(?<!^)(?=[A-Z])")).ToLower()
-                        var unitLongName = unitInfo.PluralName;
-                        return string.Format(formatProvider, $"{{0:{format}}} {{1}}", quantity.Value, unitLongName);
-
                     case 'V':
                     case 'v':
                         return quantity.Value.ToString(formatProvider);
