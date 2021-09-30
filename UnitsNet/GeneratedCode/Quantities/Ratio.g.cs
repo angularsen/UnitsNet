@@ -52,12 +52,12 @@ namespace UnitsNet
 
             Info = new QuantityInfo<RatioUnit>("Ratio",
                 new UnitInfo<RatioUnit>[] {
-                    new UnitInfo<RatioUnit>(RatioUnit.DecimalFraction, BaseUnits.Undefined),
-                    new UnitInfo<RatioUnit>(RatioUnit.PartPerBillion, BaseUnits.Undefined),
-                    new UnitInfo<RatioUnit>(RatioUnit.PartPerMillion, BaseUnits.Undefined),
-                    new UnitInfo<RatioUnit>(RatioUnit.PartPerThousand, BaseUnits.Undefined),
-                    new UnitInfo<RatioUnit>(RatioUnit.PartPerTrillion, BaseUnits.Undefined),
-                    new UnitInfo<RatioUnit>(RatioUnit.Percent, BaseUnits.Undefined),
+                    new UnitInfo<RatioUnit>(RatioUnit.DecimalFraction, "DecimalFractions", BaseUnits.Undefined),
+                    new UnitInfo<RatioUnit>(RatioUnit.PartPerBillion, "PartsPerBillion", BaseUnits.Undefined),
+                    new UnitInfo<RatioUnit>(RatioUnit.PartPerMillion, "PartsPerMillion", BaseUnits.Undefined),
+                    new UnitInfo<RatioUnit>(RatioUnit.PartPerThousand, "PartsPerThousand", BaseUnits.Undefined),
+                    new UnitInfo<RatioUnit>(RatioUnit.PartPerTrillion, "PartsPerTrillion", BaseUnits.Undefined),
+                    new UnitInfo<RatioUnit>(RatioUnit.Percent, "Percent", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Ratio);
         }

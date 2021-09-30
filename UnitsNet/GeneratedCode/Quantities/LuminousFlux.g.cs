@@ -55,7 +55,7 @@ namespace UnitsNet
 
             Info = new QuantityInfo<LuminousFluxUnit>("LuminousFlux",
                 new UnitInfo<LuminousFluxUnit>[] {
-                    new UnitInfo<LuminousFluxUnit>(LuminousFluxUnit.Lumen, BaseUnits.Undefined),
+                    new UnitInfo<LuminousFluxUnit>(LuminousFluxUnit.Lumen, "Lumens", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.LuminousFlux);
         }

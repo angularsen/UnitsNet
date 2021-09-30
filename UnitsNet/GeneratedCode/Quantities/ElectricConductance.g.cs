@@ -55,9 +55,9 @@ namespace UnitsNet
 
             Info = new QuantityInfo<ElectricConductanceUnit>("ElectricConductance",
                 new UnitInfo<ElectricConductanceUnit>[] {
-                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Microsiemens, BaseUnits.Undefined),
-                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Millisiemens, BaseUnits.Undefined),
-                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Siemens, BaseUnits.Undefined),
+                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Microsiemens, "Microsiemens", BaseUnits.Undefined),
+                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Millisiemens, "Millisiemens", BaseUnits.Undefined),
+                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Siemens, "Siemens", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricConductance);
         }

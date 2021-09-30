@@ -55,12 +55,12 @@ namespace UnitsNet
 
             Info = new QuantityInfo<MagneticFieldUnit>("MagneticField",
                 new UnitInfo<MagneticFieldUnit>[] {
-                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Gauss, BaseUnits.Undefined),
-                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Microtesla, BaseUnits.Undefined),
-                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Milligauss, BaseUnits.Undefined),
-                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Millitesla, BaseUnits.Undefined),
-                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Nanotesla, BaseUnits.Undefined),
-                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Tesla, BaseUnits.Undefined),
+                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Gauss, "Gausses", BaseUnits.Undefined),
+                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Microtesla, "Microteslas", BaseUnits.Undefined),
+                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Milligauss, "Milligausses", BaseUnits.Undefined),
+                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Millitesla, "Milliteslas", BaseUnits.Undefined),
+                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Nanotesla, "Nanoteslas", BaseUnits.Undefined),
+                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Tesla, "Teslas", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.MagneticField);
         }

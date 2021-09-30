@@ -52,7 +52,7 @@ namespace UnitsNet
 
             Info = new QuantityInfo<ScalarUnit>("Scalar",
                 new UnitInfo<ScalarUnit>[] {
-                    new UnitInfo<ScalarUnit>(ScalarUnit.Amount, BaseUnits.Undefined),
+                    new UnitInfo<ScalarUnit>(ScalarUnit.Amount, "Amount", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Scalar);
         }

@@ -9,6 +9,7 @@ namespace UnitsNet
     public partial class Quantity
     {
         private static readonly Lazy<QuantityInfo[]> InfosLazy;
+        private static readonly Lazy<Dictionary<(Type, string), UnitInfo>> UnitTypeAndNameToUnitInfoLazy;
 
         static Quantity()
         {
@@ -19,6 +20,16 @@ namespace UnitsNet
             InfosLazy = new Lazy<QuantityInfo[]>(() => quantityInfos
                 .OrderBy(quantityInfo => quantityInfo.Name)
                 .ToArray());
+
+            UnitTypeAndNameToUnitInfoLazy = new Lazy<Dictionary<(Type, string), UnitInfo>>(() =>
+            {
+                return Infos
+                    .SelectMany(quantityInfo => quantityInfo.UnitInfos
+                        .Select(unitInfo => new KeyValuePair<(Type, string), UnitInfo>(
+                            (unitInfo.Value.GetType(), unitInfo.Name),
+                            unitInfo)))
+                    .ToDictionary(x => x.Key, x => x.Value);
+            });
         }
 
         /// <summary>
@@ -36,6 +47,17 @@ namespace UnitsNet
         /// All quantity information objects, such as <see cref="Length.Info"/> and <see cref="Mass.Info"/>.
         /// </summary>
         public static QuantityInfo[] Infos => InfosLazy.Value;
+
+        /// <summary>
+        /// Get <see cref="UnitInfo"/> for a given unit enum value.
+        /// </summary>
+        public static UnitInfo GetUnitInfo(Enum unitEnum) => UnitTypeAndNameToUnitInfoLazy.Value[(unitEnum.GetType(), unitEnum.ToString())];
+
+        /// <summary>
+        /// Try to get <see cref="UnitInfo"/> for a given unit enum value.
+        /// </summary>
+        public static bool TryGetUnitInfo(Enum unitEnum, out UnitInfo unitInfo) =>
+            UnitTypeAndNameToUnitInfoLazy.Value.TryGetValue((unitEnum.GetType(), unitEnum.ToString()), out unitInfo);
 
         /// <summary>
         ///     Dynamically construct a quantity.

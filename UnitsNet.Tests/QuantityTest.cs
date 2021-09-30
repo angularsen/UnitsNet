@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using JetBrains.Annotations;
 using UnitsNet.Units;
 using Xunit;
 
@@ -96,6 +95,38 @@ namespace UnitsNet.Tests
 
             Assert.Superset(knownQuantityInfos.ToHashSet(), infos.ToHashSet());
             Assert.Equal(QuantityCount, infos.Length);
+        }
+
+        [Fact]
+        public void GetUnitInfo_ReturnsUnitInfoForUnitEnumValue()
+        {
+            var unitInfo = Quantity.GetUnitInfo(LengthUnit.Meter);
+            Assert.Equal("Meter", unitInfo.Name);
+            Assert.Equal("Meters", unitInfo.PluralName);
+            Assert.Equal(LengthUnit.Meter, unitInfo.Value);
+        }
+
+        [Fact]
+        public void TryGetUnitInfo_ReturnsUnitInfoForUnitEnumValue()
+        {
+            bool found = Quantity.TryGetUnitInfo(LengthUnit.Meter, out UnitInfo unitInfo);
+            Assert.True(found);
+            Assert.Equal("Meter", unitInfo.Name);
+            Assert.Equal("Meters", unitInfo.PluralName);
+            Assert.Equal(LengthUnit.Meter, unitInfo.Value);
+        }
+
+        [Fact]
+        public void GetUnitInfo_ThrowsKeyNotFoundExceptionIfNotFound()
+        {
+            Assert.Throws<KeyNotFoundException>(() => Quantity.GetUnitInfo(ConsoleColor.Red));
+        }
+
+        [Fact]
+        public void TryGetUnitInfo_ReturnsFalseIfNotFound()
+        {
+            bool found = Quantity.TryGetUnitInfo(ConsoleColor.Red, out UnitInfo unitInfo);
+            Assert.False(found);
         }
 
         [Fact]

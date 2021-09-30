@@ -52,7 +52,7 @@ namespace UnitsNet
 
             Info = new QuantityInfo<RelativeHumidityUnit>("RelativeHumidity",
                 new UnitInfo<RelativeHumidityUnit>[] {
-                    new UnitInfo<RelativeHumidityUnit>(RelativeHumidityUnit.Percent, BaseUnits.Undefined),
+                    new UnitInfo<RelativeHumidityUnit>(RelativeHumidityUnit.Percent, "Percent", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.RelativeHumidity);
         }

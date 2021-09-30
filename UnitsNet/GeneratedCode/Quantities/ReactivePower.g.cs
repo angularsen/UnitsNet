@@ -52,10 +52,10 @@ namespace UnitsNet
 
             Info = new QuantityInfo<ReactivePowerUnit>("ReactivePower",
                 new UnitInfo<ReactivePowerUnit>[] {
-                    new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.GigavoltampereReactive, BaseUnits.Undefined),
-                    new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.KilovoltampereReactive, BaseUnits.Undefined),
-                    new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.MegavoltampereReactive, BaseUnits.Undefined),
-                    new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.VoltampereReactive, BaseUnits.Undefined),
+                    new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.GigavoltampereReactive, "GigavoltamperesReactive", BaseUnits.Undefined),
+                    new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.KilovoltampereReactive, "KilovoltamperesReactive", BaseUnits.Undefined),
+                    new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.MegavoltampereReactive, "MegavoltamperesReactive", BaseUnits.Undefined),
+                    new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.VoltampereReactive, "VoltamperesReactive", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ReactivePower);
         }

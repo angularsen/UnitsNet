@@ -17,8 +17,8 @@ namespace UnitsNet.Tests
         {
             var expectedZero = Length.FromCentimeters(10);
             var expectedUnitInfos = new UnitInfo[]{
-                new UnitInfo(LengthUnit.Centimeter, new BaseUnits(LengthUnit.Centimeter)),
-                new UnitInfo(LengthUnit.Kilometer, new BaseUnits(LengthUnit.Kilometer))
+                new UnitInfo(LengthUnit.Centimeter, "Centimeters", new BaseUnits(LengthUnit.Centimeter)),
+                new UnitInfo(LengthUnit.Kilometer, "Kilometers", new BaseUnits(LengthUnit.Kilometer))
             };
             var expectedBaseUnit = LengthUnit.Centimeter;
             var expectedQuantityType = QuantityType.Length;
@@ -44,9 +44,9 @@ namespace UnitsNet.Tests
             var expectedZero = new HowMuch(10, HowMuchUnit.Some);
             var expectedUnitInfos = new UnitInfo[]
             {
-                new UnitInfo(HowMuchUnit.Some, BaseUnits.Undefined),
-                new UnitInfo(HowMuchUnit.ATon, BaseUnits.Undefined),
-                new UnitInfo(HowMuchUnit.AShitTon, BaseUnits.Undefined)
+                new UnitInfo(HowMuchUnit.Some, "Some", BaseUnits.Undefined),
+                new UnitInfo(HowMuchUnit.ATon, "Tons", BaseUnits.Undefined),
+                new UnitInfo(HowMuchUnit.AShitTon, "ShitTons", BaseUnits.Undefined)
             };
             var expectedBaseUnit = HowMuchUnit.Some;
             var expectedQuantityType = QuantityType.Undefined;
@@ -71,8 +71,8 @@ namespace UnitsNet.Tests
         {
             var expectedZero = Length.FromCentimeters(10);
             var expectedUnitInfos = new UnitInfo[]{
-                new UnitInfo(LengthUnit.Centimeter, new BaseUnits(LengthUnit.Centimeter)),
-                new UnitInfo(LengthUnit.Kilometer, new BaseUnits(LengthUnit.Kilometer))
+                new UnitInfo(LengthUnit.Centimeter, "Centimeters", new BaseUnits(LengthUnit.Centimeter)),
+                new UnitInfo(LengthUnit.Kilometer, "Kilometers", new BaseUnits(LengthUnit.Kilometer))
             };
             var expectedBaseUnit = LengthUnit.Centimeter;
             var expectedQuantityType = QuantityType.Length;
@@ -97,8 +97,8 @@ namespace UnitsNet.Tests
         {
             var expectedZero = Length.FromCentimeters(10);
             var expectedUnitInfos = new UnitInfo<LengthUnit>[]{
-                new UnitInfo<LengthUnit>(LengthUnit.Centimeter, new BaseUnits(LengthUnit.Centimeter)),
-                new UnitInfo<LengthUnit>(LengthUnit.Kilometer, new BaseUnits(LengthUnit.Kilometer))
+                new UnitInfo<LengthUnit>(LengthUnit.Centimeter, "Centimeters", new BaseUnits(LengthUnit.Centimeter)),
+                new UnitInfo<LengthUnit>(LengthUnit.Kilometer,"Kilometers",  new BaseUnits(LengthUnit.Kilometer))
             };
             var expectedBaseUnit = LengthUnit.Centimeter;
             var expectedQuantityType = QuantityType.Length;
@@ -248,8 +248,8 @@ namespace UnitsNet.Tests
 
             var quantityInfo = new QuantityInfo<LengthUnit>(Length.Info.Name,
                 new UnitInfo<LengthUnit>[]{
-                    new UnitInfo<LengthUnit>(LengthUnit.Meter, baseUnits),
-                    new UnitInfo<LengthUnit>(LengthUnit.Foot, baseUnits) },
+                    new UnitInfo<LengthUnit>(LengthUnit.Meter, "Meters", baseUnits),
+                    new UnitInfo<LengthUnit>(LengthUnit.Foot, "Feet", baseUnits) },
                 LengthUnit.Meter, Length.Zero, Length.BaseDimensions);
 
             Assert.Throws<InvalidOperationException>(() => quantityInfo.GetUnitInfoFor(baseUnits));
@@ -284,8 +284,8 @@ namespace UnitsNet.Tests
 
             var quantityInfo = new QuantityInfo<LengthUnit>(Length.Info.Name,
                 new UnitInfo<LengthUnit>[]{
-                    new UnitInfo<LengthUnit>(LengthUnit.Meter, baseUnits),
-                    new UnitInfo<LengthUnit>(LengthUnit.Foot, baseUnits) },
+                    new UnitInfo<LengthUnit>(LengthUnit.Meter, "Meters", baseUnits),
+                    new UnitInfo<LengthUnit>(LengthUnit.Foot, "Feet", baseUnits) },
                 LengthUnit.Meter, Length.Zero, Length.BaseDimensions);
 
             var result = quantityInfo.GetUnitInfosFor(baseUnits);

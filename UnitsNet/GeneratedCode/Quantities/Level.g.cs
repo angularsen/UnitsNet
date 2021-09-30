@@ -52,8 +52,8 @@ namespace UnitsNet
 
             Info = new QuantityInfo<LevelUnit>("Level",
                 new UnitInfo<LevelUnit>[] {
-                    new UnitInfo<LevelUnit>(LevelUnit.Decibel, BaseUnits.Undefined),
-                    new UnitInfo<LevelUnit>(LevelUnit.Neper, BaseUnits.Undefined),
+                    new UnitInfo<LevelUnit>(LevelUnit.Decibel, "Decibels", BaseUnits.Undefined),
+                    new UnitInfo<LevelUnit>(LevelUnit.Neper, "Nepers", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Level);
         }

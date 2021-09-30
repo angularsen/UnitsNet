@@ -52,11 +52,11 @@ namespace UnitsNet
 
             Info = new QuantityInfo<ElectricPotentialUnit>("ElectricPotential",
                 new UnitInfo<ElectricPotentialUnit>[] {
-                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Kilovolt, BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Megavolt, BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Microvolt, BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Millivolt, BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Volt, new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
+                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Kilovolt, "Kilovolts", BaseUnits.Undefined),
+                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Megavolt, "Megavolts", BaseUnits.Undefined),
+                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Microvolt, "Microvolts", BaseUnits.Undefined),
+                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Millivolt, "Millivolts", BaseUnits.Undefined),
+                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Volt, "Volts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricPotential);
         }

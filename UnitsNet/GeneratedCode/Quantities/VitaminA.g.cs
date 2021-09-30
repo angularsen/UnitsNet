@@ -52,7 +52,7 @@ namespace UnitsNet
 
             Info = new QuantityInfo<VitaminAUnit>("VitaminA",
                 new UnitInfo<VitaminAUnit>[] {
-                    new UnitInfo<VitaminAUnit>(VitaminAUnit.InternationalUnit, BaseUnits.Undefined),
+                    new UnitInfo<VitaminAUnit>(VitaminAUnit.InternationalUnit, "InternationalUnits", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.VitaminA);
         }

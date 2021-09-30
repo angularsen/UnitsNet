@@ -55,7 +55,7 @@ namespace UnitsNet
 
             Info = new QuantityInfo<SolidAngleUnit>("SolidAngle",
                 new UnitInfo<SolidAngleUnit>[] {
-                    new UnitInfo<SolidAngleUnit>(SolidAngleUnit.Steradian, BaseUnits.Undefined),
+                    new UnitInfo<SolidAngleUnit>(SolidAngleUnit.Steradian, "Steradians", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.SolidAngle);
         }

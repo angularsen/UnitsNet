@@ -55,10 +55,10 @@ namespace UnitsNet
 
             Info = new QuantityInfo<IlluminanceUnit>("Illuminance",
                 new UnitInfo<IlluminanceUnit>[] {
-                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Kilolux, BaseUnits.Undefined),
-                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Lux, BaseUnits.Undefined),
-                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Megalux, BaseUnits.Undefined),
-                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Millilux, BaseUnits.Undefined),
+                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Kilolux, "Kilolux", BaseUnits.Undefined),
+                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Lux, "Lux", BaseUnits.Undefined),
+                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Megalux, "Megalux", BaseUnits.Undefined),
+                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Millilux, "Millilux", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Illuminance);
         }

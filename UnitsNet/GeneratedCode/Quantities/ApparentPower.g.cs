@@ -52,10 +52,10 @@ namespace UnitsNet
 
             Info = new QuantityInfo<ApparentPowerUnit>("ApparentPower",
                 new UnitInfo<ApparentPowerUnit>[] {
-                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Gigavoltampere, BaseUnits.Undefined),
-                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Kilovoltampere, BaseUnits.Undefined),
-                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Megavoltampere, BaseUnits.Undefined),
-                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Voltampere, BaseUnits.Undefined),
+                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Gigavoltampere, "Gigavoltamperes", BaseUnits.Undefined),
+                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Kilovoltampere, "Kilovoltamperes", BaseUnits.Undefined),
+                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Megavoltampere, "Megavoltamperes", BaseUnits.Undefined),
+                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Voltampere, "Voltamperes", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ApparentPower);
         }

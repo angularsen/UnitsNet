@@ -55,7 +55,7 @@ namespace UnitsNet
 
             Info = new QuantityInfo<TurbidityUnit>("Turbidity",
                 new UnitInfo<TurbidityUnit>[] {
-                    new UnitInfo<TurbidityUnit>(TurbidityUnit.NTU, BaseUnits.Undefined),
+                    new UnitInfo<TurbidityUnit>(TurbidityUnit.NTU, "NTU", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Turbidity);
         }

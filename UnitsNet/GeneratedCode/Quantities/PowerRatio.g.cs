@@ -52,8 +52,8 @@ namespace UnitsNet
 
             Info = new QuantityInfo<PowerRatioUnit>("PowerRatio",
                 new UnitInfo<PowerRatioUnit>[] {
-                    new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelMilliwatt, BaseUnits.Undefined),
-                    new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelWatt, BaseUnits.Undefined),
+                    new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelMilliwatt, "DecibelMilliwatts", BaseUnits.Undefined),
+                    new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelWatt, "DecibelWatts", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.PowerRatio);
         }

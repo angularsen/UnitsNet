@@ -52,13 +52,13 @@ namespace UnitsNet
 
             Info = new QuantityInfo<EntropyUnit>("Entropy",
                 new UnitInfo<EntropyUnit>[] {
-                    new UnitInfo<EntropyUnit>(EntropyUnit.CaloriePerKelvin, BaseUnits.Undefined),
-                    new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerDegreeCelsius, BaseUnits.Undefined),
-                    new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerKelvin, BaseUnits.Undefined),
-                    new UnitInfo<EntropyUnit>(EntropyUnit.KilocaloriePerKelvin, BaseUnits.Undefined),
-                    new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerDegreeCelsius, BaseUnits.Undefined),
-                    new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerKelvin, BaseUnits.Undefined),
-                    new UnitInfo<EntropyUnit>(EntropyUnit.MegajoulePerKelvin, BaseUnits.Undefined),
+                    new UnitInfo<EntropyUnit>(EntropyUnit.CaloriePerKelvin, "CaloriesPerKelvin", BaseUnits.Undefined),
+                    new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerDegreeCelsius, "JoulesPerDegreeCelsius", BaseUnits.Undefined),
+                    new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerKelvin, "JoulesPerKelvin", BaseUnits.Undefined),
+                    new UnitInfo<EntropyUnit>(EntropyUnit.KilocaloriePerKelvin, "KilocaloriesPerKelvin", BaseUnits.Undefined),
+                    new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerDegreeCelsius, "KilojoulesPerDegreeCelsius", BaseUnits.Undefined),
+                    new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerKelvin, "KilojoulesPerKelvin", BaseUnits.Undefined),
+                    new UnitInfo<EntropyUnit>(EntropyUnit.MegajoulePerKelvin, "MegajoulesPerKelvin", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Entropy);
         }

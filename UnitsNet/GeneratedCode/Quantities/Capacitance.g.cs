@@ -55,13 +55,13 @@ namespace UnitsNet
 
             Info = new QuantityInfo<CapacitanceUnit>("Capacitance",
                 new UnitInfo<CapacitanceUnit>[] {
-                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Farad, new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
-                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Kilofarad, BaseUnits.Undefined),
-                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Megafarad, BaseUnits.Undefined),
-                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Microfarad, BaseUnits.Undefined),
-                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Millifarad, BaseUnits.Undefined),
-                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Nanofarad, BaseUnits.Undefined),
-                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Picofarad, BaseUnits.Undefined),
+                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Farad, "Farads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
+                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Kilofarad, "Kilofarads", BaseUnits.Undefined),
+                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Megafarad, "Megafarads", BaseUnits.Undefined),
+                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Microfarad, "Microfarads", BaseUnits.Undefined),
+                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Millifarad, "Millifarads", BaseUnits.Undefined),
+                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Nanofarad, "Nanofarads", BaseUnits.Undefined),
+                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Picofarad, "Picofarads", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Capacitance);
         }

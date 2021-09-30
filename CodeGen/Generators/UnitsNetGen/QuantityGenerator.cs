@@ -133,7 +133,7 @@ namespace UnitsNet
                 if (baseUnits == null)
                 {
                     Writer.WL($@"
-                    new UnitInfo<{_unitEnumName}>({_unitEnumName}.{unit.SingularName}, BaseUnits.Undefined),");
+                    new UnitInfo<{_unitEnumName}>({_unitEnumName}.{unit.SingularName}, ""{unit.PluralName}"", BaseUnits.Undefined),");
                 }
                 else
                 {
@@ -150,7 +150,7 @@ namespace UnitsNet
                         }.Where(str => str != null));
 
                     Writer.WL($@"
-                    new UnitInfo<{_unitEnumName}>({_unitEnumName}.{unit.SingularName}, new BaseUnits({baseUnitsCtorArgs})),");
+                    new UnitInfo<{_unitEnumName}>({_unitEnumName}.{unit.SingularName}, ""{unit.PluralName}"", new BaseUnits({baseUnitsCtorArgs})),");
                 }
             }
 
