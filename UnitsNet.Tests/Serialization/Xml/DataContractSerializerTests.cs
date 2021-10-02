@@ -78,5 +78,27 @@ namespace UnitsNet.Tests.Serialization.Xml
 
             Assert.Equal(expectedXml, xml);
         }
+
+        [Fact]
+        public void InterfaceObject_IncludesTypeInformation()
+        {
+            var testObject = new TestInterfaceObject { Quantity = new Information(1.20m, InformationUnit.Exabyte) };
+
+            var quantityNamespace = "xmlns:a=\"http://schemas.datacontract.org/2004/07/UnitsNet\""; // there is an extra 'a' compared to Namespace
+            var expectedQuantityXml = $"<Quantity i:type=\"a:Information\" {quantityNamespace}><a:Value>1.20</a:Value><a:Unit>Exabyte</a:Unit></Quantity>";
+            var expectedXml = $"<TestInterfaceObject xmlns=\"http://schemas.datacontract.org/2004/07/UnitsNet.Tests.Serialization\" {XmlSchema}>{expectedQuantityXml}</TestInterfaceObject>";
+
+            var xml = SerializeObject(testObject);
+
+            Assert.Equal(expectedXml, xml);
+        }
+
+        [Fact]
+        public void InterfaceObject_WithMissingKnownTypeInformation_ThrowsSerializationException()
+        {
+            var testObject = new TestInterfaceObject { Quantity = new Volume(1.2, VolumeUnit.Microliter) };
+
+            Assert.Throws<SerializationException>(() => SerializeObject(testObject));
+        }
     }
 }

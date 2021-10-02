@@ -11,11 +11,23 @@ using Xunit;
 
 namespace UnitsNet.Tests.Serialization
 {
+    /// <summary>
+    ///     A set of serialization/deserialization tests that can be used by for testing the capabilities of different
+    ///     serializers / schemas.
+    /// </summary>
+    /// <remarks>
+    ///     Note that some of the tests are marked as virtual: you can [Skip] them in the derived class, in case the given
+    ///     capabilities are not supported.
+    /// </remarks>
+    /// <typeparam name="TPayload">
+    ///     The type of payload (typically string) that is the expected result of the serialization
+    ///     process.
+    /// </typeparam>
     public abstract class SerializationTestsBase<TPayload>
     {
         protected abstract TPayload SerializeObject(object obj);
         protected abstract T DeserializeObject<T>(TPayload payload);
-        
+
         [Theory]
         [InlineData(1.0)]
         [InlineData(0)]
@@ -34,7 +46,7 @@ namespace UnitsNet.Tests.Serialization
             Assert.Equal(quantity.Value, result.Value);
             Assert.Equal(quantity, result);
         }
-        
+
         [Fact]
         public void DecimalValueQuantity_SerializationRoundTrips()
         {
@@ -289,15 +301,6 @@ namespace UnitsNet.Tests.Serialization
             Assert.Equal(quantity.Value, ((IDecimalQuantity)result.Quantity).Value);
             Assert.Equal(quantity, result.Quantity);
             Assert.Equal("2", ((IDecimalQuantity)result.Quantity).Value.ToString(CultureInfo.InvariantCulture));
-        }
-
-        [DataContract]
-        [KnownType(typeof(Mass))]
-        [KnownType(typeof(Information))]
-        protected class TestInterfaceObject
-        {
-            [DataMember]
-            public IQuantity Quantity { get; set; }
         }
 
         [DataContract]
