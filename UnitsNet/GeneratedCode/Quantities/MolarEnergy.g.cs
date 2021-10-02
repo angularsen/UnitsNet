@@ -20,6 +20,7 @@
 using System;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -34,16 +35,19 @@ namespace UnitsNet
     /// <summary>
     ///     Molar energy is the amount of energy stored in 1 mole of a substance.
     /// </summary>
+    [DataContract]
     public partial struct MolarEnergy : IQuantity<MolarEnergyUnit>, IEquatable<MolarEnergy>, IComparable, IComparable<MolarEnergy>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Value", Order = 0)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Unit", Order = 1)]
         private readonly MolarEnergyUnit? _unit;
 
         static MolarEnergy()
