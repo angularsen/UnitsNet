@@ -139,7 +139,7 @@ namespace UnitsNet.Tests.Serialization.Json
         }
         
         [Fact]
-        public void DecimalQuantity_DeserializedFromDoubleValueAndIntegerUnit()
+        public void DecimalQuantity_DeserializedFromDecimalValueAndIntegerUnit()
         {
             var json = "{\"Value\":1.200,\"Unit\":4}";
 
@@ -151,7 +151,7 @@ namespace UnitsNet.Tests.Serialization.Json
         }
 
         [Fact]
-        public void DecimalQuantity_DeserializedFromQuotedDoubleValueAndIntegerUnit()
+        public void DecimalQuantity_DeserializedFromQuotedDecimalValueAndIntegerUnit()
         {
             var json = "{\"Value\":\"1.200\",\"Unit\":4}";
 
@@ -174,7 +174,7 @@ namespace UnitsNet.Tests.Serialization.Json
         }
 
         [Fact]
-        public void DecimalBaseUnitQuantity_DeserializedFromValueAndNoUnit()
+        public void DecimalBaseUnitQuantity_DeserializedFromDecimalValueAndNoUnit()
         {
             var json = "{\"Value\":1.200}";
 

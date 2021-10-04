@@ -125,11 +125,11 @@ namespace UnitsNet.Tests.Serialization
         }
 
         [Fact]
-        public void EnumerableOfDoubleValueQuantities_SerializationRoundTrips()
+        public virtual void EnumerableOfDoubleValueQuantities_SerializationRoundTrips()
         {
             var firstQuantity = new Mass(1.2, MassUnit.Milligram);
             var secondQuantity = new Mass(2, MassUnit.Gram);
-            IEnumerable<Mass> quantities = new List<Mass> { firstQuantity, secondQuantity };
+            var quantities = new List<Mass> { firstQuantity, secondQuantity };
 
             var payload = SerializeObject(quantities);
             var results = DeserializeObject<IEnumerable<Mass>>(payload);
@@ -152,7 +152,7 @@ namespace UnitsNet.Tests.Serialization
         {
             var firstQuantity = new Information(1.2m, InformationUnit.Exabit);
             var secondQuantity = new Information(2, InformationUnit.Exabyte);
-            IEnumerable<Information> quantities = new List<Information> { firstQuantity, secondQuantity };
+            var quantities = new List<Information> { firstQuantity, secondQuantity };
 
             var payload = SerializeObject(quantities);
             var results = DeserializeObject<IEnumerable<Information>>(payload);
