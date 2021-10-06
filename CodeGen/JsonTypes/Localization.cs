@@ -1,4 +1,4 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -43,6 +43,7 @@ namespace CodeGen.JsonTypes
                     throw new NotSupportedException($"AbbreviationsForPrefixes.{prefix} must be a string or an array of strings, but was {value.Type}.");
             }
         }
+
         // 0649 Field is never assigned to
 #pragma warning disable 0649
 
@@ -50,6 +51,11 @@ namespace CodeGen.JsonTypes
         ///     The unit abbreviations. Can be empty for dimensionless units like Ratio.DecimalFraction.
         /// </summary>
         public string[] Abbreviations = Array.Empty<string>();
+
+        //WIP LTU
+        public string SingularName ;
+        //WIP LTU
+        public string PluralName ;
 
         /// <summary>
         ///     Explicit configuration of unit abbreviations for prefixes.

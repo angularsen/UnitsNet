@@ -1,4 +1,4 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -86,8 +86,6 @@ namespace CodeGen.Generators
 
                     unitsToAdd.Add(new Unit
                     {
-                        SingularName = $"{prefix}{unit.SingularName.ToCamelCase()}", // "Kilo" + "NewtonPerMeter" => "KilonewtonPerMeter"
-                        PluralName = $"{prefix}{unit.PluralName.ToCamelCase()}", // "Kilo" + "NewtonsPerMeter" => "KilonewtonsPerMeter"
                         BaseUnits = null, // Can we determine this somehow?
                         FromBaseToUnitFunc = $"({unit.FromBaseToUnitFunc}) / {prefixInfo.Factor}",
                         FromUnitToBaseFunc = $"({unit.FromUnitToBaseFunc}) * {prefixInfo.Factor}",
@@ -112,6 +110,7 @@ namespace CodeGen.Generators
         {
             return localizations.Select(loc =>
             {
+                //specific abbreviations for prefixes (example: "kip/in³" for prefix "Kilo" of Density)
                 if (loc.TryGetAbbreviationsForPrefix(prefixInfo.Prefix, out string[] unitAbbreviationsForPrefix))
                 {
                     return new Localization
@@ -126,10 +125,13 @@ namespace CodeGen.Generators
                 var prefix = prefixInfo.GetPrefixForCultureOrSiPrefix(loc.Culture);
                 unitAbbreviationsForPrefix = loc.Abbreviations.Select(unitAbbreviation => $"{prefix}{unitAbbreviation}").ToArray();
 
+                //WIP LTU
                 return new Localization
                 {
                     Culture = loc.Culture,
-                    Abbreviations = unitAbbreviationsForPrefix
+                    Abbreviations = unitAbbreviationsForPrefix,
+                    SingularName = $"{prefix}.{loc.SingularName}",
+                    PluralName = $"{prefix}.{loc.PluralName}"
                 };
             }).ToArray();
         }

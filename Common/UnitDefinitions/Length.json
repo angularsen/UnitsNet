@@ -25,6 +25,12 @@
           "Abbreviations": [ "м" ]
         },
         {
+          "Culture": "fr-FR",
+          "Abbreviations": [ "м" ],
+          "SingularName": "Mètre",
+          "PluralName": "Mètres"
+        },
+        {
           "Culture": "zh-CN",
           "Abbreviations": [ "米" ]
         }
