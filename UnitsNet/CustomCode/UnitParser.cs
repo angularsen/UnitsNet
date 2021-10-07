@@ -75,17 +75,17 @@ namespace UnitsNet
             if(!_unitAbbreviationsCache.TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var abbreviations))
                 throw new UnitNotFoundException($"No abbreviations defined for unit type [{unitType}] for culture [{formatProvider}].");
 
-            var unitIntValues = abbreviations!.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
+            var unitIntValues = abbreviations!.GetUnitsForString(unitAbbreviation, ignoreCase: true);
 
             if (unitIntValues.Count == 0)
             {
                 unitAbbreviation = NormalizeUnitString(unitAbbreviation);
-                unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
+                unitIntValues = abbreviations.GetUnitsForString(unitAbbreviation, ignoreCase: true);
             }
 
             // Narrow the search if too many hits, for example Megabar "Mbar" and Millibar "mbar" need to be distinguished
             if (unitIntValues.Count > 1)
-                unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: false);
+                unitIntValues = abbreviations.GetUnitsForString(unitAbbreviation, ignoreCase: false);
 
             switch (unitIntValues.Count)
             {
@@ -200,17 +200,17 @@ namespace UnitsNet
             if(!_unitAbbreviationsCache.TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var abbreviations))
                 return false;
 
-            var unitIntValues = abbreviations!.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
+            var unitIntValues = abbreviations!.GetUnitsForString(unitAbbreviation, ignoreCase: true);
 
             if (unitIntValues.Count == 0)
             {
                 unitAbbreviation = NormalizeUnitString(unitAbbreviation);
-                unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
+                unitIntValues = abbreviations.GetUnitsForString(unitAbbreviation, ignoreCase: true);
             }
 
             // Narrow the search if too many hits, for example Megabar "Mbar" and Millibar "mbar" need to be distinguished
             if (unitIntValues.Count > 1)
-                unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: false);
+                unitIntValues = abbreviations.GetUnitsForString(unitAbbreviation, ignoreCase: false);
 
             if(unitIntValues.Count != 1)
                 return false;

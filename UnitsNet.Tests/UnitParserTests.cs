@@ -104,7 +104,7 @@ namespace UnitsNet.Tests
         public void Parse_AmbiguousUnitsThrowsException()
         {
             // Act 1
-            var exception1 = Assert.Throws<AmbiguousUnitParseException>(() => UnitParser.Default.Parse<LengthUnit>("pt"));
+            var exception1 = Assert.Throws<AmbiguousUnitParseException>(() => UnitParser.Default.Parse<LengthUnit>("pt",new CultureInfo("en-US")));
 
             // Act 2
             var exception2 = Assert.Throws<AmbiguousUnitParseException>(() => Length.Parse("1 pt"));
