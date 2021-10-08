@@ -2,9 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 using Xunit.Abstractions;
@@ -22,7 +20,7 @@ namespace UnitsNet.Tests
         private static readonly IFormatProvider AmericanCulture = new CultureInfo(AmericanCultureName);
         private static readonly IFormatProvider FrenchCulture = new CultureInfo(FrenchCultureName);
         private static readonly IFormatProvider RussianCulture = new CultureInfo(RussianCultureName);
-        
+
         public UnitSingularNamesCacheTests(ITestOutputHelper output)
         {
             _output = output;
@@ -32,18 +30,17 @@ namespace UnitsNet.Tests
         {
             // ReSharper disable UnusedMember.Local
             Undefined = 0,
+
             Unit1,
             Unit2
             // ReSharper restore UnusedMember.Local
         }
-
 
         [Fact]
         public void SingularName_WithAmericanCulture()
         {
             Assert.Equal("Meter", UnitSingularNamesCache.Default.GetDefaultSingularName(LengthUnit.Meter, AmericanCulture));
             Assert.Equal("Decimeter", UnitSingularNamesCache.Default.GetDefaultSingularName(LengthUnit.Decimeter, AmericanCulture));
-
         }
 
         [Fact]
@@ -67,14 +64,14 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void GetDefaultAbbreviationThrowsNotImplementedExceptionIfNoneExist()
+        public void GetDefaultSingularNameThrowsNotImplementedExceptionIfNoneExist()
         {
-            var unitAbbreviationCache = new UnitAbbreviationsCache();
-            Assert.Throws<NotImplementedException>(() => unitAbbreviationCache.GetDefaultAbbreviation(CustomUnit.Unit1));
+            var unitCache = new UnitSingularNamesCache();
+            Assert.Throws<NotImplementedException>(() => unitCache.GetDefaultSingularName(CustomUnit.Unit1));
         }
 
         [Fact]
-        public void GetDefaultAbbreviationFallsBackToUsEnglishCulture()
+        public void GetDefaultASingularNameFallsBackToUsEnglishCulture()
         {
             var oldCurrentCulture = CultureInfo.CurrentCulture;
             var oldCurrentUICulture = CultureInfo.CurrentUICulture;
@@ -87,14 +84,14 @@ namespace UnitsNet.Tests
                 var zuluCulture = new CultureInfo("zu-ZA");
                 CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = zuluCulture;
 
-                var abbreviationsCache = new UnitAbbreviationsCache();
-                abbreviationsCache.MapUnitToAbbreviation(CustomUnit.Unit1, AmericanCulture, "US english abbreviation for Unit1");
+                var cache = new UnitSingularNamesCache();
+                cache.MapUnitToDefaultSingularName(CustomUnit.Unit1, AmericanCulture, "US english singular name for Unit1");
 
                 // Act
-                string abbreviation = abbreviationsCache.GetDefaultAbbreviation(CustomUnit.Unit1, zuluCulture);
+                string abbreviation = cache.GetDefaultSingularName(CustomUnit.Unit1, zuluCulture);
 
                 // Assert
-                Assert.Equal("US english abbreviation for Unit1", abbreviation);
+                Assert.Equal("US english singular name for Unit1", abbreviation);
             }
             finally
             {
@@ -104,31 +101,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void MapUnitToAbbreviation_AddCustomUnit_DoesNotOverrideDefaultAbbreviationForAlreadyMappedUnits()
+        public void MapUnitToSingularName_AddCustomUnit_DoesNotOverrideDefaultSingularNameForAlreadyMappedUnits()
         {
-            var cache = new UnitAbbreviationsCache();
-            cache.MapUnitToAbbreviation(AreaUnit.SquareMeter, AmericanCulture, "m^2");
+            var cache = new UnitSingularNamesCache();
+            cache.MapUnitToSingularName(LengthUnit.Centimeter, AmericanCulture, "mycentimeter");
 
-            Assert.Equal("m²", cache.GetDefaultAbbreviation(AreaUnit.SquareMeter));
+            Assert.Equal("Centimeter", cache.GetDefaultSingularName(LengthUnit.Centimeter));
         }
 
         [Fact]
-        public void MapUnitToDefaultAbbreviation_GivenUnitAndCulture_SetsDefaultAbbreviationForUnitAndCulture()
+        public void MapUnitToSingularnName_GivenUnitAndCulture_SetsDefaulSingularNameForUnitAndCulture()
         {
-            var cache = new UnitAbbreviationsCache();
-            cache.MapUnitToDefaultAbbreviation(AreaUnit.SquareMeter, AmericanCulture, "m^2");
-
-            Assert.Equal("m^2", cache.GetDefaultAbbreviation(AreaUnit.SquareMeter, AmericanCulture));
-        }
-
-        [Fact]
-        public void MapUnitToDefaultAbbreviation_GivenCustomAbbreviation_SetsAbbreviationUsedByQuantityToString()
-        {
-            // Use a distinct culture here so that we don't mess up other tests that may rely on the default cache.
-            var newZealandCulture = GetCulture("en-NZ");
-            UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(AreaUnit.SquareMeter, newZealandCulture, "m^2");
-
-            Assert.Equal("1 m^2", Area.FromSquareMeters(1).ToString(newZealandCulture));
+            var cache = new UnitSingularNamesCache();
+            cache.MapUnitToDefaultSingularName(LengthUnit.Centimeter, AmericanCulture, "mycentimeter");
+            Assert.Equal("mycentimeter", cache.GetDefaultSingularName(LengthUnit.Centimeter, AmericanCulture));
         }
 
         /// <summary>
