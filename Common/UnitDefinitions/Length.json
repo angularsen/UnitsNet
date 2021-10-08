@@ -22,7 +22,9 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "м" ]
+          "Abbreviations": [ "м" ],
+          "SingularName": "метр",
+          "PluralName": "метры"
         },
         {
           "Culture": "fr-FR",

@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using CodeGen.Exceptions;
@@ -104,7 +105,7 @@ namespace CodeGen.Generators
         }
 
         /// <summary>
-        ///     Create unit abbreviations for a prefix unit, given a unit and the prefix.
+        ///     Create unit abbreviations, singular name and plural names for a prefix unit, given a unit and the prefix.
         ///     The unit abbreviations are either prefixed with the SI prefix or an explicitly configured abbreviation via
         ///     <see cref="Localization.AbbreviationsForPrefixes" />.
         /// </summary>
@@ -112,13 +113,19 @@ namespace CodeGen.Generators
         {
             return localizations.Select(loc =>
             {
+                var prefixName = prefixInfo.GetPrefixNameForCultureOrSiPrefix(loc.Culture);
+                var localizedSingularName = string.IsNullOrEmpty(loc.SingularName) ? string.Empty:$"{CultureInfo.CurrentUICulture.TextInfo.ToTitleCase((prefixName + loc.SingularName).ToLower().Trim())}";
+                var localizedPluralName = string.IsNullOrEmpty(loc.PluralName) ? string.Empty : $"{prefixName}{loc.PluralName}";
+
                 //specific abbreviations for prefixes (example: "kip/in³" for prefix "Kilo" of Density)
                 if (loc.TryGetAbbreviationsForPrefix(prefixInfo.Prefix, out string[] unitAbbreviationsForPrefix))
                 {
                     return new Localization
                     {
                         Culture = loc.Culture,
-                        Abbreviations = unitAbbreviationsForPrefix
+                        Abbreviations = unitAbbreviationsForPrefix,
+                        SingularName = localizedSingularName,
+                        PluralName = localizedPluralName
                     };
                 }
 
@@ -127,13 +134,12 @@ namespace CodeGen.Generators
                 var prefix = prefixInfo.GetPrefixForCultureOrSiPrefix(loc.Culture);
                 unitAbbreviationsForPrefix = loc.Abbreviations.Select(unitAbbreviation => $"{prefix}{unitAbbreviation}").ToArray();
 
-                //WIP LTU
                 return new Localization
                 {
                     Culture = loc.Culture,
                     Abbreviations = unitAbbreviationsForPrefix,
-                    SingularName = $"{prefix}.{loc.SingularName}",
-                    PluralName = $"{prefix}.{loc.PluralName}"
+                    SingularName = localizedSingularName,
+                    PluralName = localizedPluralName
                 };
             }).ToArray();
         }

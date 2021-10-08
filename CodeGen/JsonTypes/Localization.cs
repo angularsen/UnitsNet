@@ -52,10 +52,15 @@ namespace CodeGen.JsonTypes
         /// </summary>
         public string[] Abbreviations = Array.Empty<string>();
 
-        //WIP LTU
-        public string SingularName ;
-        //WIP LTU
-        public string PluralName ;
+        /// <summary>
+        /// The unit singular name for this localization
+        /// </summary>
+        public string SingularName = string.Empty ;
+
+        /// <summary>
+        /// The unit plural name for this localization
+        /// </summary>
+        public string PluralName = string.Empty ;
 
         /// <summary>
         ///     Explicit configuration of unit abbreviations for prefixes.

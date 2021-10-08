@@ -23,7 +23,6 @@ namespace UnitsNet
     {
         private readonly string _stringName;
         private readonly Dictionary<IFormatProvider, UnitTypeToLookup> _lookupsForCulture;
-        private readonly (string CultureName, Type UnitType, int UnitValue, string[] Strings)[] _generatedLocalizedStrings;
 
         /// <summary>
         ///     Fallback culture used by <see cref="GetUnitStrings{TUnitType}" /> and <see cref="GetDefaultString{TUnitType}" />
@@ -45,7 +44,7 @@ namespace UnitsNet
         {
             _stringName = stringName;
             _lookupsForCulture = new Dictionary<IFormatProvider, UnitTypeToLookup>();
-            _generatedLocalizedStrings = generatedLocalizedStrings;
+            LoadGeneratedStrings(generatedLocalizedStrings);
         }
 
         /// <summary>
@@ -309,6 +308,16 @@ namespace UnitsNet
                 return formatProvider != FallbackCulture && TryGetUnitValueStringLookup(unitType, FallbackCulture, out unitToStrings);
 
             return true;
+        }
+
+        private void LoadGeneratedStrings((string CultureName, Type UnitType, int UnitValue, string[] Strings)[] generatedLocalizedStrings)
+        {
+            foreach (var localization in generatedLocalizedStrings)
+            {
+
+                var culture = new CultureInfo(localization.CultureName);
+                MapUnitToStrings(localization.UnitType, localization.UnitValue, culture, localization.Strings);
+            }
         }
     }
 }
