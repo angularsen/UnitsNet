@@ -413,13 +413,6 @@ namespace UnitsNet.Tests
 
 
         [Fact]
-        public void Convert_ToBool_ThrowsInvalidCastException()
-        {
-            var quantity = Scalar.FromAmount(1.0);
-            Assert.Throws<InvalidCastException>(() => Convert.ToBoolean(quantity));
-        }
-
-        [Fact]
         public void Convert_ToByte_EqualsValueAsSameType()
         {
             var quantity = Scalar.FromAmount(1.0);

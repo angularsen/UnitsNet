@@ -545,6 +545,10 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, ""g""), quantity.ToString(null, ""g""));
         }}
 
+");
+            if (!_quantity.Name.Equals("Scalar"))
+            {
+                Writer.WL($@"
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()
@@ -552,6 +556,9 @@ namespace UnitsNet.Tests
             var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(1.0);
             Assert.Throws<InvalidCastException>(() => Convert.ToBoolean(quantity));
         }}
+");
+            }
+            Writer.WL($@"
 
         [Fact]
         public void Convert_ToByte_EqualsValueAsSameType()
