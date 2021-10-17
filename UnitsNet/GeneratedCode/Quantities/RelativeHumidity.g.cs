@@ -20,6 +20,7 @@
 using System;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -34,16 +35,19 @@ namespace UnitsNet
     /// <summary>
     ///     Relative humidity is a ratio of the actual water vapor present in the air to the maximum water vapor in the air at the given temperature.
     /// </summary>
+    [DataContract]
     public partial struct RelativeHumidity : IQuantity<RelativeHumidityUnit>, IEquatable<RelativeHumidity>, IComparable, IComparable<RelativeHumidity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Value", Order = 0)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Unit", Order = 1)]
         private readonly RelativeHumidityUnit? _unit;
 
         static RelativeHumidity()

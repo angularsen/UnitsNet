@@ -20,6 +20,7 @@
 using System;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -34,16 +35,19 @@ namespace UnitsNet
     /// <summary>
     ///     A temperature is a numerical measure of hot or cold. Its measurement is by detection of heat radiation or particle velocity or kinetic energy, or by the bulk behavior of a thermometric material. It may be calibrated in any of various temperature scales, Celsius, Fahrenheit, Kelvin, etc. The fundamental physical definition of temperature is provided by thermodynamics.
     /// </summary>
+    [DataContract]
     public partial struct Temperature : IQuantity<TemperatureUnit>, IEquatable<Temperature>, IComparable, IComparable<Temperature>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Value", Order = 0)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Unit", Order = 1)]
         private readonly TemperatureUnit? _unit;
 
         static Temperature()

@@ -20,6 +20,7 @@
 using System;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -34,16 +35,19 @@ namespace UnitsNet
     /// <summary>
     ///     Volume, typically of fluid, that a container can hold within a unit of length.
     /// </summary>
+    [DataContract]
     public partial struct VolumePerLength : IQuantity<VolumePerLengthUnit>, IEquatable<VolumePerLength>, IComparable, IComparable<VolumePerLength>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Value", Order = 0)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Unit", Order = 1)]
         private readonly VolumePerLengthUnit? _unit;
 
         static VolumePerLength()

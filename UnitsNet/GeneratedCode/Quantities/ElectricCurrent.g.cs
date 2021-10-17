@@ -20,6 +20,7 @@
 using System;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -34,16 +35,19 @@ namespace UnitsNet
     /// <summary>
     ///     An electric current is a flow of electric charge. In electric circuits this charge is often carried by moving electrons in a wire. It can also be carried by ions in an electrolyte, or by both ions and electrons such as in a plasma.
     /// </summary>
+    [DataContract]
     public partial struct ElectricCurrent : IQuantity<ElectricCurrentUnit>, IEquatable<ElectricCurrent>, IComparable, IComparable<ElectricCurrent>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Value", Order = 0)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Unit", Order = 1)]
         private readonly ElectricCurrentUnit? _unit;
 
         static ElectricCurrent()

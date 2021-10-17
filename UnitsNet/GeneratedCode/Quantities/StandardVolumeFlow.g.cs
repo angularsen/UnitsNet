@@ -20,6 +20,7 @@
 using System;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -34,16 +35,19 @@ namespace UnitsNet
     /// <summary>
     ///     The molar flow rate of a gas corrected to standardized conditions of temperature and pressure thus representing a fixed number of moles of gas regardless of composition and actual flow conditions.
     /// </summary>
+    [DataContract]
     public partial struct StandardVolumeFlow : IQuantity<StandardVolumeFlowUnit>, IEquatable<StandardVolumeFlow>, IComparable, IComparable<StandardVolumeFlow>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Value", Order = 0)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Unit", Order = 1)]
         private readonly StandardVolumeFlowUnit? _unit;
 
         static StandardVolumeFlow()

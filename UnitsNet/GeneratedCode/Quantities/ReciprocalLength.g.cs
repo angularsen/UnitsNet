@@ -20,6 +20,7 @@
 using System;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -37,16 +38,19 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Reciprocal_length
     /// </remarks>
+    [DataContract]
     public partial struct ReciprocalLength : IQuantity<ReciprocalLengthUnit>, IEquatable<ReciprocalLength>, IComparable, IComparable<ReciprocalLength>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Value", Order = 0)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Unit", Order = 1)]
         private readonly ReciprocalLengthUnit? _unit;
 
         static ReciprocalLength()

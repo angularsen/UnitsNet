@@ -20,6 +20,7 @@
 using System;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -34,16 +35,19 @@ namespace UnitsNet
     /// <summary>
     ///     A unit that represents a fractional change in size in response to a change in temperature.
     /// </summary>
+    [DataContract]
     public partial struct CoefficientOfThermalExpansion : IQuantity<CoefficientOfThermalExpansionUnit>, IEquatable<CoefficientOfThermalExpansion>, IComparable, IComparable<CoefficientOfThermalExpansion>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Value", Order = 0)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
+        [DataMember(Name = "Unit", Order = 1)]
         private readonly CoefficientOfThermalExpansionUnit? _unit;
 
         static CoefficientOfThermalExpansion()
