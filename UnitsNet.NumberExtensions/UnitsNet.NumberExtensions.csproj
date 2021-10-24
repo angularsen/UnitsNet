@@ -22,7 +22,7 @@
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <RootNamespace>UnitsNet</RootNamespace>
-    <TargetFrameworks>netstandard2.0;net40</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>
@@ -43,7 +43,7 @@
 
   <!-- Files to include in nuget package -->
   <ItemGroup>
-    <None Include="../Docs/Images/logo-32.png" Pack="true" PackagePath="/"/>
+    <None Include="../Docs/Images/logo-32.png" Pack="true" PackagePath="/" />
   </ItemGroup>
 
 </Project>
