@@ -334,6 +334,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Day, Duration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Duration>(Duration.BaseUnit, DurationUnit.Hour, q => q.ToUnit(DurationUnit.Hour));
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Hour, Duration.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<Duration>(Duration.BaseUnit, DurationUnit.JulianYear, q => q.ToUnit(DurationUnit.JulianYear));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.JulianYear, Duration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Duration>(Duration.BaseUnit, DurationUnit.Microsecond, q => q.ToUnit(DurationUnit.Microsecond));
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Microsecond, Duration.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Duration>(Duration.BaseUnit, DurationUnit.Millisecond, q => q.ToUnit(DurationUnit.Millisecond));

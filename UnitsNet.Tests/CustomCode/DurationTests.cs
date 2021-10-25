@@ -31,6 +31,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double Years365InOneSecond => 3.170979198376458e-8;
 
+        protected override double JulianYearsInOneSecond => 3.16880878140289e-08;
+
         [Fact]
         public static void ToTimeSpanShouldThrowExceptionOnValuesLargerThanTimeSpanMax()
         {
