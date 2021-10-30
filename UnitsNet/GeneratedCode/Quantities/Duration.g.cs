@@ -58,7 +58,7 @@ namespace UnitsNet
                 new UnitInfo<DurationUnit>[] {
                     new UnitInfo<DurationUnit>(DurationUnit.Day, "Days", new BaseUnits(time: DurationUnit.Day)),
                     new UnitInfo<DurationUnit>(DurationUnit.Hour, "Hours", new BaseUnits(time: DurationUnit.Hour)),
-                    new UnitInfo<DurationUnit>(DurationUnit.JulianYear, "JulianYears", new BaseUnits(time: DurationUnit.Second)),
+                    new UnitInfo<DurationUnit>(DurationUnit.JulianYear, "JulianYears", new BaseUnits(time: DurationUnit.JulianYear)),
                     new UnitInfo<DurationUnit>(DurationUnit.Microsecond, "Microseconds", BaseUnits.Undefined),
                     new UnitInfo<DurationUnit>(DurationUnit.Millisecond, "Milliseconds", BaseUnits.Undefined),
                     new UnitInfo<DurationUnit>(DurationUnit.Minute, "Minutes", new BaseUnits(time: DurationUnit.Minute)),
