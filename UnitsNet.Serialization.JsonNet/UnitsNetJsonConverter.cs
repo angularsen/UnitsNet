@@ -3,7 +3,6 @@
 
 using System;
 using System.Linq;
-using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnitsNet.Serialization.JsonNet.Internal;
@@ -36,25 +35,23 @@ namespace UnitsNet.Serialization.JsonNet
         ///     The object value.
         /// </returns>
         /// <exception cref="UnitsNetException">Unable to parse value and unit from JSON.</exception>
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
+        public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue,
             JsonSerializer serializer)
         {
             if (reader.ValueType != null)
                 return reader.Value;
 
-            object obj = TryDeserializeIComparable(reader, serializer);
+            object? obj = TryDeserializeIComparable(reader, serializer);
             if (obj is Array values)
             {
 
                 // Create array with the requested type, such as `Length[]` or `Frequency[]` or multi-dimensional arrays like `Length[,]` or `Frequency[,,]`
-                var arrayOfQuantities = Array.CreateInstance(objectType.GetElementType(), MultiDimensionalArrayHelpers.LastIndex(values));
+                var elementType = objectType.GetElementType() ?? throw new NotSupportedException($"GetElementType() returned null for type {objectType}.");
+                var arrayOfQuantities = Array.CreateInstance(elementType, MultiDimensionalArrayHelpers.LastIndex(values));
 
                 // Fill array with parsed quantities
                 int[] index = MultiDimensionalArrayHelpers.FirstIndex(values);
-                while (index != null)
-                {
-                    arrayOfQuantities.SetValue(values.GetValue(index), index);
-                }
+                arrayOfQuantities.SetValue(values.GetValue(index), index);
 
                 return arrayOfQuantities;
             }
@@ -78,12 +75,13 @@ namespace UnitsNet.Serialization.JsonNet
             string unitEnumTypeAssemblyQualifiedName = "UnitsNet.Units." + unitEnumTypeName + ",UnitsNet";
 
             // -- see http://stackoverflow.com/a/6465096/1256096 for details
-            Type unitEnumType = Type.GetType(unitEnumTypeAssemblyQualifiedName);
+            Type? unitEnumType = Type.GetType(unitEnumTypeAssemblyQualifiedName);
             if (unitEnumType == null)
             {
-                var ex = new UnitsNetException("Unable to find enum type.");
-                ex.Data["type"] = unitEnumTypeAssemblyQualifiedName;
-                throw ex;
+                throw new UnitsNetException("Unable to find enum type.")
+                {
+                    Data = { ["type"] = unitEnumTypeAssemblyQualifiedName }
+                };
             }
 
             double value = vu.Value;
@@ -92,13 +90,13 @@ namespace UnitsNet.Serialization.JsonNet
             return Quantity.From(value, unitValue);
         }
 
-        private static object TryDeserializeIComparable(JsonReader reader, JsonSerializer serializer)
+        private static object? TryDeserializeIComparable(JsonReader reader, JsonSerializer serializer)
         {
             JToken token = JToken.Load(reader);
 
             if (token is JArray)
             {
-                object[] results = token.Children().Select(item => TryDeserializeIComparable(item, serializer)).ToArray();
+                object?[] results = token.Children().Select(item => TryDeserializeIComparable(item, serializer)).ToArray();
                 return results;
             }
             else
@@ -107,24 +105,17 @@ namespace UnitsNet.Serialization.JsonNet
             }
         }
 
-        private static object TryDeserializeIComparable(JToken token, JsonSerializer serializer)
+        private static object? TryDeserializeIComparable(JToken token, JsonSerializer serializer)
         {
-            if (!token.HasValues || token[nameof(ValueUnit.Unit)] == null || token[nameof(ValueUnit.Value)] == null)
+            JToken? unitToken = token[nameof(ValueUnit.Unit)];
+            JToken? valueToken = token[nameof(ValueUnit.Value)];
+            if (unitToken != null && valueToken != null)
             {
-                var localSerializer = new JsonSerializer
-                {
-                    TypeNameHandling = serializer.TypeNameHandling,
-                };
-                return token.ToObject<IComparable>(localSerializer);
+                return new ValueUnit { Unit = unitToken.ToString(), Value = valueToken.ToObject<double>() };
             }
-            else
-            {
-                return new ValueUnit
-                {
-                    Unit = token[nameof(ValueUnit.Unit)].ToString(),
-                    Value = token[nameof(ValueUnit.Value)].ToObject<double>()
-                };
-            }
+
+            var localSerializer = new JsonSerializer { TypeNameHandling = serializer.TypeNameHandling, };
+            return token.ToObject<IComparable>(localSerializer);
         }
 
         /// <summary>
@@ -134,7 +125,7 @@ namespace UnitsNet.Serialization.JsonNet
         /// <param name="obj">The value to write.</param>
         /// <param name="serializer">The calling serializer.</param>
         /// <exception cref="UnitsNetException">Can't serialize 'null' value.</exception>
-        public override void WriteJson(JsonWriter writer, object obj, JsonSerializer serializer)
+        public override void WriteJson(JsonWriter writer, object? obj, JsonSerializer serializer)
         {
             // ValueUnit should be written as usual (but read in a custom way)
             if (obj is ValueUnit valueUnit)
@@ -164,6 +155,10 @@ namespace UnitsNet.Serialization.JsonNet
             else if (obj is IQuantity quantity)
             {
                 serializer.Serialize(writer, ToValueUnit(quantity));
+            }
+            else if (obj is null)
+            {
+                serializer.Serialize(writer, null);
             }
             else
             {
@@ -195,8 +190,8 @@ namespace UnitsNet.Serialization.JsonNet
         /// </remarks>
         private class ValueUnit
         {
-            public string Unit { get; [UsedImplicitly] set; }
-            public double Value { get; [UsedImplicitly] set; }
+            public string Unit { get; set; } = null!;
+            public double Value { get; set; }
         }
 
         #region Can Convert

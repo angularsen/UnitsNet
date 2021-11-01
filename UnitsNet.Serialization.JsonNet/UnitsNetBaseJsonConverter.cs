@@ -17,7 +17,7 @@ namespace UnitsNet.Serialization.JsonNet
     /// <typeparam name="T">The type being converted. Should either be <see cref="IQuantity"/> or <see cref="IComparable"/></typeparam>
     public abstract class UnitsNetBaseJsonConverter<T> : JsonConverter<T>
     {
-        private ConcurrentDictionary<string, (Type Quantity, Type Unit)> _registeredTypes = new();
+        private readonly ConcurrentDictionary<string, (Type Quantity, Type Unit)> _registeredTypes = new();
 
         /// <summary>
         /// Register custom types so that the converter can instantiate these quantities.
@@ -45,7 +45,7 @@ namespace UnitsNet.Serialization.JsonNet
         /// </summary>
         /// <param name="jsonToken">The JSON data to read from</param>
         /// <returns>A <see cref="ValueUnit"/></returns>
-        protected ValueUnit ReadValueUnit(JToken jsonToken)
+        protected ValueUnit? ReadValueUnit(JToken jsonToken)
         {
             if (!jsonToken.HasValues)
             {
@@ -96,9 +96,9 @@ namespace UnitsNet.Serialization.JsonNet
         /// <returns>An IQuantity</returns>
         protected IQuantity ConvertValueUnit(ValueUnit valueUnit)
         {
-            if (string.IsNullOrWhiteSpace(valueUnit?.Unit))
+            if (string.IsNullOrWhiteSpace(valueUnit.Unit))
             {
-                return null;
+                throw new NotSupportedException("Unit must be specified.");
             }
 
             var unit = GetUnit(valueUnit.Unit);
@@ -111,14 +111,14 @@ namespace UnitsNet.Serialization.JsonNet
 
             return valueUnit switch
             {
-                ExtendedValueUnit {ValueType: "decimal"} extendedValueUnit => Quantity.From(decimal.Parse(extendedValueUnit.ValueString, CultureInfo.InvariantCulture), unit),
+                ExtendedValueUnit {ValueType: "decimal", ValueString: {}} extendedValueUnit => Quantity.From(decimal.Parse(extendedValueUnit.ValueString, CultureInfo.InvariantCulture), unit),
                 _ => Quantity.From(valueUnit.Value, unit)
             };
         }
 
-        private (Type Quantity, Type Unit) GetRegisteredType(string unit)
+        private (Type? Quantity, Type? Unit) GetRegisteredType(string unit)
         {
-            (var unitEnumTypeName, var _) = SplitUnitString(unit);
+            var (unitEnumTypeName, _) = SplitUnitString(unit);
             if (_registeredTypes.TryGetValue(unitEnumTypeName, out var registeredType))
             {
                 return registeredType;
@@ -129,7 +129,7 @@ namespace UnitsNet.Serialization.JsonNet
 
         private Enum GetUnit(string unit)
         {
-            (var unitEnumTypeName, var unitEnumValue) = SplitUnitString(unit);
+            var (unitEnumTypeName, unitEnumValue) = SplitUnitString(unit);
 
             // First try to find the name in the list of registered types.
             var unitEnumType = GetRegisteredType(unit).Unit;

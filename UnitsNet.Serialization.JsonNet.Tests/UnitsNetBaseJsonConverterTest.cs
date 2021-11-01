@@ -59,14 +59,6 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void UnitsNetBaseJsonConverter_ConvertValueUnit_works_with_NULL_value()
-        {
-            var result = _sut.Test_ConvertValueUnit();
-
-            Assert.Null(result);
-        }
-
-        [Fact]
         public void UnitsNetBaseJsonConverter_ConvertValueUnit_throws_UnitsNetException_when_unit_does_not_exist()
         {
             var result = Assert.Throws<UnitsNetException>(() => _sut.Test_ConvertDoubleValueUnit("SomeImaginaryUnit.Watt", 10.2365D));
