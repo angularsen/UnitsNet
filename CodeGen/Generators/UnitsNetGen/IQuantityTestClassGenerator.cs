@@ -18,7 +18,7 @@ namespace CodeGen.Generators.UnitsNetGen
             _quantities = quantities;
         }
 
-        public override string Generate()
+        public string Generate()
         {
             Writer.WL(GeneratedFileHeader);
             Writer.WL($@"

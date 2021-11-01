@@ -28,7 +28,7 @@ namespace UnitsNet
         ///     Create a parser using the given unit abbreviations cache.
         /// </summary>
         /// <param name="unitAbbreviationsCache"></param>
-        public UnitParser(UnitAbbreviationsCache unitAbbreviationsCache)
+        public UnitParser(UnitAbbreviationsCache? unitAbbreviationsCache)
         {
             _unitAbbreviationsCache = unitAbbreviationsCache ?? UnitAbbreviationsCache.Default;
         }

@@ -16,7 +16,7 @@ namespace CodeGen.Generators.UnitsNetGen
             _quantityName = quantity.Name;
         }
 
-        public override string Generate()
+        public string Generate()
         {
             Writer.WL(GeneratedFileHeader);
 
@@ -47,7 +47,7 @@ namespace UnitsNet.Tests
             return Writer.ToString();
         }
 
-        private string GetObsoleteAttributeOrNull(string obsoleteText) =>
+        private static string? GetObsoleteAttributeOrNull(string obsoleteText) =>
           string.IsNullOrWhiteSpace(obsoleteText) ?
           null :
           $"[System.Obsolete({obsoleteText})]";

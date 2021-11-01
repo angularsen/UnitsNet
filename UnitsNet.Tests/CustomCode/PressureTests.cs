@@ -3,7 +3,7 @@
 
 using System;
 using UnitsNet.CustomCode.Units;
-using UnitsNet.CustomCode.Wrappers;
+using UnitsNet.Wrappers;
 using Xunit;
 
 namespace UnitsNet.Tests.CustomCode

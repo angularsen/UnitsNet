@@ -40,7 +40,7 @@ namespace CodeGen.Generators.UnitsNetGen
 
         }
 
-        public override string Generate()
+        public string Generate()
         {
             Writer.WL(GeneratedFileHeader);
             Writer.WL(@"

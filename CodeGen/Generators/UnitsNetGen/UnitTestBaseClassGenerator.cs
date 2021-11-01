@@ -69,7 +69,7 @@ namespace CodeGen.Generators.UnitsNetGen
             return string.IsNullOrEmpty(unitAbbreviation) ? "" : $" {unitAbbreviation}";
         }
 
-        public override string Generate()
+        public string Generate()
         {
             var baseUnitVariableName = _baseUnit.SingularName.ToLowerInvariant();
 

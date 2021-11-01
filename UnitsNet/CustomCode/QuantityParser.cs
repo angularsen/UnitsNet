@@ -28,7 +28,7 @@ namespace UnitsNet
 
         public static QuantityParser Default { get; }
 
-        public QuantityParser(UnitAbbreviationsCache unitAbbreviationsCache)
+        public QuantityParser(UnitAbbreviationsCache? unitAbbreviationsCache)
         {
             _unitAbbreviationsCache = unitAbbreviationsCache ?? UnitAbbreviationsCache.Default;
             _unitParser = new UnitParser(_unitAbbreviationsCache);
@@ -48,13 +48,6 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
             str = str.Trim();
-
-            var numFormat = formatProvider != null
-                ? (NumberFormatInfo) formatProvider.GetFormat(typeof(NumberFormatInfo))
-                : NumberFormatInfo.CurrentInfo;
-
-            if (numFormat == null)
-                throw new InvalidOperationException($"No number format was found for the given format provider: {formatProvider}");
 
             var regex = CreateRegexForQuantity<TUnitType>(formatProvider);
 
@@ -81,19 +74,10 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str)) return false;
             str = str!.Trim();
 
-            var numFormat = formatProvider != null
-                ? (NumberFormatInfo) formatProvider.GetFormat(typeof(NumberFormatInfo))
-                : NumberFormatInfo.CurrentInfo;
-
-            if(numFormat == null)
-                return false;
-
             var regex = CreateRegexForQuantity<TUnitType>(formatProvider);
 
-            if (!TryExtractValueAndUnit(regex, str, out var valueString, out var unitString))
-                return false;
-
-            return TryParseWithRegex(valueString, unitString, fromDelegate, formatProvider, out result);
+            return TryExtractValueAndUnit(regex, str, out var valueString, out var unitString) &&
+                   TryParseWithRegex(valueString, unitString, fromDelegate, formatProvider, out result);
         }
 
         /// <summary>

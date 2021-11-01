@@ -13,7 +13,7 @@ namespace CodeGen.Generators.NanoFrameworkGen
             _version = version;
         }
 
-        public override string Generate()
+        public string Generate()
         {
             Writer.WL(GeneratedFileHeader);
             Writer.W($@"using System.Reflection;

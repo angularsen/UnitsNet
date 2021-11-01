@@ -9,7 +9,10 @@ using Serilog.Events;
 
 namespace CodeGen
 {
-    internal class Program
+    /// <summary>
+    ///     Code generator for Units.NET.
+    /// </summary>
+    public class Program
     {
         /// <summary>
         ///     Code generator for Units.NET.

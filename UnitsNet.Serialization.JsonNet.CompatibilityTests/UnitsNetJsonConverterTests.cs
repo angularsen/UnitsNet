@@ -142,7 +142,7 @@ namespace UnitsNet.Serialization.JsonNet.CompatibilityTests
             [Fact(Skip = "Not supported in older versions of serialization")]
             public void EmptyArrayValue_ExpectJsonArray()
             {
-                Frequency[] testObj = new Frequency[0];
+                Frequency[] testObj = { };
 
                 string expectedJson = "[]";
 

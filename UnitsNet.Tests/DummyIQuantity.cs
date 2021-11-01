@@ -28,16 +28,6 @@ namespace UnitsNet.Tests
             throw new NotImplementedException();
         }
 
-        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string ToString(IFormatProvider? provider, string format, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-
         public string ToString(string? format, IFormatProvider? formatProvider)
         {
             throw new NotImplementedException();

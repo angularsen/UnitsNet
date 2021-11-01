@@ -138,9 +138,6 @@ namespace UnitsNet.Tests
         [Fact]
         public void SIUnitSystemHasCorrectBaseUnits()
         {
-            var siBaseUnits = new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
-                ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela);
-
             Assert.Equal(LengthUnit.Meter, UnitSystem.SI.BaseUnits.Length);
             Assert.Equal(MassUnit.Kilogram, UnitSystem.SI.BaseUnits.Mass);
             Assert.Equal(DurationUnit.Second, UnitSystem.SI.BaseUnits.Time);

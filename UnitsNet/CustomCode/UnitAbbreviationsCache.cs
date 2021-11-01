@@ -29,7 +29,7 @@ namespace UnitsNet
         ///     culture, but no translation is defined, so we return the US English definition as a last resort. If it's not
         ///     defined there either, an exception is thrown.
         /// </example>
-        private static readonly CultureInfo FallbackCulture = new CultureInfo("en-US");
+        private static readonly CultureInfo FallbackCulture = new("en-US");
 
         /// <summary>
         ///     The static instance used internally for ToString() and Parse() of quantities and units.
@@ -95,7 +95,7 @@ namespace UnitsNet
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <param name="abbreviations">Unit abbreviations to add.</param>
         /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
-        public void MapUnitToAbbreviation<TUnitType>(TUnitType unit, IFormatProvider formatProvider, params string[] abbreviations) where TUnitType : Enum
+        public void MapUnitToAbbreviation<TUnitType>(TUnitType unit, IFormatProvider? formatProvider, params string[] abbreviations) where TUnitType : Enum
         {
             // Assuming TUnitType is an enum, this conversion is safe. Seems not possible to enforce this today.
             // Src: http://stackoverflow.com/questions/908543/how-to-convert-from-system-enum-to-base-integer
@@ -115,7 +115,7 @@ namespace UnitsNet
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <param name="abbreviation">Unit abbreviation to add as default.</param>
         /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
-        public void MapUnitToDefaultAbbreviation<TUnitType>(TUnitType unit, IFormatProvider formatProvider, string abbreviation) where TUnitType : Enum
+        public void MapUnitToDefaultAbbreviation<TUnitType>(TUnitType unit, IFormatProvider? formatProvider, string abbreviation) where TUnitType : Enum
         {
             // Assuming TUnitType is an enum, this conversion is safe. Seems not possible to enforce this today.
             // Src: http://stackoverflow.com/questions/908543/how-to-convert-from-system-enum-to-base-integer
@@ -135,7 +135,7 @@ namespace UnitsNet
         /// <param name="unitValue">The unit enum value.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <param name="abbreviations">Unit abbreviations to add.</param>
-        public void MapUnitToAbbreviation(Type unitType, int unitValue, IFormatProvider formatProvider, params string[] abbreviations)
+        public void MapUnitToAbbreviation(Type unitType, int unitValue, IFormatProvider? formatProvider, params string[] abbreviations)
         {
             PerformAbbreviationMapping(unitType, unitValue, formatProvider, false, abbreviations);
         }
@@ -149,12 +149,12 @@ namespace UnitsNet
         /// <param name="unitValue">The unit enum value.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <param name="abbreviation">Unit abbreviation to add as default.</param>
-        public void MapUnitToDefaultAbbreviation(Type unitType, int unitValue, IFormatProvider formatProvider, string abbreviation)
+        public void MapUnitToDefaultAbbreviation(Type unitType, int unitValue, IFormatProvider? formatProvider, string abbreviation)
         {
             PerformAbbreviationMapping(unitType, unitValue, formatProvider, true, abbreviation);
         }
 
-        private void PerformAbbreviationMapping(Type unitType, int unitValue, IFormatProvider formatProvider, bool setAsDefault, params string[] abbreviations)
+        private void PerformAbbreviationMapping(Type unitType, int unitValue, IFormatProvider? formatProvider, bool setAsDefault, params string[] abbreviations)
         {
             if (!unitType.IsEnum)
                 throw new ArgumentException("Must be an enum type.", nameof(unitType));
@@ -162,7 +162,7 @@ namespace UnitsNet
             if (abbreviations == null)
                 throw new ArgumentNullException(nameof(abbreviations));
 
-            formatProvider = formatProvider ?? CultureInfo.CurrentUICulture;
+            formatProvider ??= CultureInfo.CurrentUICulture;
 
             if (!_lookupsForCulture.TryGetValue(formatProvider, out var quantitiesForProvider))
                 quantitiesForProvider = _lookupsForCulture[formatProvider] = new UnitTypeToLookup();
@@ -190,19 +190,17 @@ namespace UnitsNet
 
             if(!TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var lookup))
             {
-                if(formatProvider != FallbackCulture)
-                    return GetDefaultAbbreviation(unit, FallbackCulture);
-                else
-                    throw new NotImplementedException($"No abbreviation is specified for {unitType.Name}.{unit}");
+                return !Equals(formatProvider, FallbackCulture)
+                    ? GetDefaultAbbreviation(unit, FallbackCulture)
+                    : throw new NotImplementedException($"No abbreviation is specified for {unitType.Name}.{unit}");
             }
 
             var abbreviations = lookup!.GetAbbreviationsForUnit(unit);
             if(abbreviations.Count == 0)
             {
-                if(formatProvider != FallbackCulture)
-                    return GetDefaultAbbreviation(unit, FallbackCulture);
-                else
-                    throw new NotImplementedException($"No abbreviation is specified for {unitType.Name}.{unit}");
+                return !Equals(formatProvider, FallbackCulture)
+                    ? GetDefaultAbbreviation(unit, FallbackCulture)
+                    : throw new NotImplementedException($"No abbreviation is specified for {unitType.Name}.{unit}");
             }
 
             return abbreviations.First();
@@ -221,19 +219,17 @@ namespace UnitsNet
         {
             if(!TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var lookup))
             {
-                if(formatProvider != FallbackCulture)
-                    return GetDefaultAbbreviation(unitType, unitValue, FallbackCulture);
-                else
-                    throw new NotImplementedException($"No abbreviation is specified for {unitType.Name} with numeric value {unitValue}.");
+                return !Equals(formatProvider, FallbackCulture)
+                    ? GetDefaultAbbreviation(unitType, unitValue, FallbackCulture)
+                    : throw new NotImplementedException($"No abbreviation is specified for {unitType.Name} with numeric value {unitValue}.");
             }
 
             var abbreviations = lookup!.GetAbbreviationsForUnit(unitValue);
             if(abbreviations.Count == 0)
             {
-                if(formatProvider != FallbackCulture)
-                    return GetDefaultAbbreviation(unitType, unitValue, FallbackCulture);
-                else
-                    throw new NotImplementedException($"No abbreviation is specified for {unitType.Name} with numeric value {unitValue}.");
+                return !Equals(formatProvider, FallbackCulture)
+                    ? GetDefaultAbbreviation(unitType, unitValue, FallbackCulture)
+                    : throw new NotImplementedException($"No abbreviation is specified for {unitType.Name} with numeric value {unitValue}.");
             }
 
             return abbreviations.First();
@@ -262,12 +258,20 @@ namespace UnitsNet
         {
             formatProvider = formatProvider ?? CultureInfo.CurrentUICulture;
 
-            if(!TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var lookup))
-                return formatProvider != FallbackCulture ? GetUnitAbbreviations(unitType, unitValue, FallbackCulture) : new string[] { };
+            if (!TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var lookup))
+            {
+                return !Equals(formatProvider, FallbackCulture)
+                    ? GetUnitAbbreviations(unitType, unitValue, FallbackCulture)
+                    : new string[] { };
+            }
 
             var abbreviations = lookup!.GetAbbreviationsForUnit(unitValue);
-            if(abbreviations.Count == 0)
-                return formatProvider != FallbackCulture ? GetUnitAbbreviations(unitType, unitValue, FallbackCulture) : new string[] { };
+            if (abbreviations.Count == 0)
+            {
+                return !Equals(formatProvider, FallbackCulture)
+                    ? GetUnitAbbreviations(unitType, unitValue, FallbackCulture)
+                    : new string[] { };
+            }
 
             return abbreviations.ToArray();
         }
@@ -280,10 +284,14 @@ namespace UnitsNet
         /// <returns>Unit abbreviations associated with unit.</returns>
         public string[] GetAllUnitAbbreviationsForQuantity(Type unitEnumType, IFormatProvider? formatProvider = null)
         {
-            formatProvider = formatProvider ?? CultureInfo.CurrentUICulture;
+            formatProvider ??= CultureInfo.CurrentUICulture;
 
-            if(!TryGetUnitValueAbbreviationLookup(unitEnumType, formatProvider, out var lookup))
-                return formatProvider != FallbackCulture ? GetAllUnitAbbreviationsForQuantity(unitEnumType, FallbackCulture) : new string[] { };
+            if (!TryGetUnitValueAbbreviationLookup(unitEnumType, formatProvider, out var lookup))
+            {
+                return !Equals(formatProvider, FallbackCulture)
+                    ? GetAllUnitAbbreviationsForQuantity(unitEnumType, FallbackCulture)
+                    : new string[] { };
+            }
 
             return lookup!.GetAllUnitAbbreviationsForQuantity();
         }
@@ -292,13 +300,19 @@ namespace UnitsNet
         {
             unitToAbbreviations = null;
 
-            formatProvider = formatProvider ?? CultureInfo.CurrentUICulture;
+            formatProvider ??= CultureInfo.CurrentUICulture;
 
-            if(!_lookupsForCulture.TryGetValue(formatProvider, out var quantitiesForProvider))
-                return formatProvider != FallbackCulture ? TryGetUnitValueAbbreviationLookup(unitType, FallbackCulture, out unitToAbbreviations) : false;
+            if (!_lookupsForCulture.TryGetValue(formatProvider, out var quantitiesForProvider))
+            {
+                return !Equals(formatProvider, FallbackCulture) &&
+                       TryGetUnitValueAbbreviationLookup(unitType, FallbackCulture, out unitToAbbreviations);
+            }
 
-            if(!quantitiesForProvider.TryGetValue(unitType, out unitToAbbreviations))
-                return formatProvider != FallbackCulture ? TryGetUnitValueAbbreviationLookup(unitType, FallbackCulture, out unitToAbbreviations) : false;
+            if (!quantitiesForProvider.TryGetValue(unitType, out unitToAbbreviations))
+            {
+                return !Equals(formatProvider, FallbackCulture) &&
+                       TryGetUnitValueAbbreviationLookup(unitType, FallbackCulture, out unitToAbbreviations);
+            }
 
             return true;
         }

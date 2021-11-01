@@ -120,7 +120,7 @@ namespace UnitsNet
             if(baseUnits is null)
                 throw new ArgumentNullException(nameof(baseUnits));
 
-            return UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.IsSubsetOf(baseUnits));
+            return UnitInfos.Where(unitInfo => unitInfo.BaseUnits.IsSubsetOf(baseUnits));
         }
     }
 

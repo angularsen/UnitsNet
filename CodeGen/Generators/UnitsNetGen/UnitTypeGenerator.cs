@@ -14,7 +14,7 @@ namespace CodeGen.Generators.UnitsNetGen
             _unitEnumName = $"{quantity.Name}Unit";
         }
 
-        public override string Generate()
+        public string Generate()
         {
             Writer.WL(GeneratedFileHeader);
             Writer.WL($@"

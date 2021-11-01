@@ -96,7 +96,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void TryGetUnitInfo_ReturnsFalseIfNotFound()
         {
-            bool found = Quantity.TryGetUnitInfo(ConsoleColor.Red, out UnitInfo unitInfo);
+            bool found = Quantity.TryGetUnitInfo(ConsoleColor.Red, out _);
             Assert.False(found);
         }
 

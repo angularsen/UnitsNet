@@ -57,12 +57,9 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
-            if(obj is null || !(obj is BaseUnits))
-                return false;
-
-            return Equals((BaseUnits)obj);
+            return obj is BaseUnits other && Equals(other);
         }
 
         /// <summary>
@@ -70,9 +67,9 @@ namespace UnitsNet
         /// </summary>
         /// <param name="other">The other instance to check if equal to.</param>
         /// <returns>True if equal, otherwise false.</returns>
-        public bool Equals(BaseUnits other)
+        public bool Equals(BaseUnits? other)
         {
-            if(other is null)
+            if (other is null)
                 return false;
 
             return Length == other.Length &&
@@ -93,11 +90,8 @@ namespace UnitsNet
         /// <returns>True if the base units are a subset of other, otherwise false.</returns>
         public bool IsSubsetOf(BaseUnits other)
         {
-            if(other is null)
-                return false;
-
             // If all base units are undefined, can only be a subset of another where all base units are undefined.
-            if(Equals(Undefined))
+            if (Equals(Undefined))
                 return other.Equals(Undefined);
 
             return (Length == LengthUnit.Undefined || Length == other.Length) &&
@@ -122,9 +116,9 @@ namespace UnitsNet
         /// <param name="right">The right instance.</param>
         /// <returns>True if equal, otherwise false.</returns>
         /// <seealso cref="Equals(BaseUnits)"/>
-        public static bool operator ==(BaseUnits left, BaseUnits right)
+        public static bool operator ==(BaseUnits? left, BaseUnits? right)
         {
-            return left is null ? right is null : left.Equals(right);
+            return left?.Equals(right!) ?? right is null;
         }
 
         /// <summary>

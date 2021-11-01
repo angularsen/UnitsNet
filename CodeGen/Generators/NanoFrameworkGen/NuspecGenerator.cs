@@ -19,7 +19,7 @@ namespace CodeGen.Generators.NanoFrameworkGen
             _mathNuGetVersion = mathNuGetVersion;
         }
 
-        public override string Generate()
+        public string Generate()
         {
             Writer.WL($@"<?xml version=""1.0"" encoding=""utf-8""?>
 <package xmlns=""http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd"">

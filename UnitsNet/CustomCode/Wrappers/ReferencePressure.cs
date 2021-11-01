@@ -2,12 +2,11 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using UnitsNet.CustomCode.Units;
 using UnitsNet.Units;
 
-namespace UnitsNet.CustomCode.Wrappers
+namespace UnitsNet.Wrappers
 {
     /// <summary>
     ///     Pressure tied to a real-world reference, allowing conversion between references.

@@ -15,7 +15,7 @@ namespace CodeGen.Generators.NanoFrameworkGen
             _quantities = quantities;
         }
 
-        public override string Generate()
+        public string Generate()
         {
             StringBuilder sb = new();
             Writer.WL($@"Microsoft Visual Studio Solution File, Format Version 12.00

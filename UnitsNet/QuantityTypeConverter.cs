@@ -10,7 +10,7 @@ namespace UnitsNet
     /// <summary>
     /// Is the base class for all attributes that are related to <see cref="QuantityTypeConverter{T}"/>
     /// </summary>
-    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
+    [AttributeUsage(AttributeTargets.Property)]
     public abstract class UnitAttributeBase : Attribute
     {
         /// <summary>
@@ -167,7 +167,7 @@ namespace UnitsNet
         /// <returns>An <see cref="IQuantity"/> object.</returns>
         /// <exception cref="System.NotSupportedException">The conversion cannot be performed.</exception>
         /// <exception cref="ArgumentException">Unit value is not a know unit enum type.</exception>
-        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        public override object? ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object? value)
         {
             if (value is string stringValue && !string.IsNullOrEmpty(stringValue))
             {
@@ -184,7 +184,7 @@ namespace UnitsNet
                     quantity = Quantity.Parse(culture, typeof(TQuantity), stringValue);
                 }
 
-                if( quantity != null )
+                if( quantity != null)
                 {
                     ConvertToUnitAttribute? convertToUnit = GetAttribute<ConvertToUnitAttribute>(context);
                     if (convertToUnit != null && convertToUnit.UnitType != null)
@@ -214,16 +214,15 @@ namespace UnitsNet
         /// <param name="destinationType">The <see cref="T:System.Type" /> to convert the <paramref name="value" /> parameter to. </param>
         /// <exception cref="T:System.ArgumentNullException">The <paramref name="destinationType" /> parameter is null. </exception>
         /// <exception cref="T:System.NotSupportedException">The conversion cannot be performed. </exception>
-        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        public override object? ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object? value, Type destinationType)
         {
             DisplayAsUnitAttribute? displayAsUnit = GetAttribute<DisplayAsUnitAttribute>(context);
 
             if (value is IQuantity qvalue && destinationType == typeof(string) && displayAsUnit != null)
             {
-                if (displayAsUnit.UnitType != null)
-                    return qvalue.ToUnit(displayAsUnit.UnitType).ToString(displayAsUnit.Format, culture);
-                else
-                    return qvalue.ToString(displayAsUnit.Format, culture);
+                return displayAsUnit.UnitType != null
+                    ? qvalue.ToUnit(displayAsUnit.UnitType).ToString(displayAsUnit.Format, culture)
+                    : qvalue.ToString(displayAsUnit.Format, culture);
             }
 
             return base.ConvertTo(context, culture, value, destinationType);

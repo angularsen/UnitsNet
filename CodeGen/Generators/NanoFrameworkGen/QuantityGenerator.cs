@@ -17,7 +17,7 @@ namespace CodeGen.Generators.NanoFrameworkGen
             _unitEnumName = $"{quantity.Name}Unit";
         }
 
-        public override string Generate()
+        public string Generate()
         {
             // Auto generated header
             Writer.WL(GeneratedFileHeader);
