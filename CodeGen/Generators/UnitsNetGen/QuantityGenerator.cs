@@ -25,7 +25,7 @@ namespace CodeGen.Generators.UnitsNetGen
                         throw new ArgumentException($"No unit found with SingularName equal to BaseUnit [{_quantity.BaseUnit}]. This unit must be defined.",
                             nameof(quantity));
 
-            _valueType = quantity.BaseType;
+            _valueType = quantity.ValueType;
             _unitEnumName = $"{quantity.Name}Unit";
 
             BaseDimensions baseDimensions = quantity.BaseDimensions;
@@ -73,7 +73,7 @@ namespace UnitsNet
             Writer.W(@$"
     [DataContract]
     public partial struct {_quantity.Name} : IQuantity<{_unitEnumName}>, ");
-            if (_quantity.BaseType == "decimal")
+            if (_quantity.ValueType == "decimal")
             {
                 Writer.W("IDecimalQuantity, ");
             }
@@ -85,7 +85,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = ""Value"", Order = 0)]
-        private readonly {_quantity.BaseType} _value;
+        private readonly {_quantity.ValueType} _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -174,13 +174,13 @@ namespace UnitsNet
         /// <param name=""value"">The numeric value to construct this quantity with.</param>
         /// <param name=""unit"">The unit representation to construct this quantity with.</param>
         /// <exception cref=""ArgumentException"">If value is NaN or Infinity.</exception>
-        public {_quantity.Name}({_quantity.BaseType} value, {_unitEnumName} unit)
+        public {_quantity.Name}({_quantity.ValueType} value, {_unitEnumName} unit)
         {{
             if(unit == {_unitEnumName}.Undefined)
               throw new ArgumentException(""The quantity can not be created with an undefined unit."", nameof(unit));
 ");
 
-            Writer.WL(_quantity.BaseType == "double"
+            Writer.WL(_quantity.ValueType == "double"
                 ? @"
             _value = Guard.EnsureValidNumber(value, nameof(value));"
                 : @"
@@ -205,7 +205,7 @@ namespace UnitsNet
             var firstUnitInfo = unitInfos.FirstOrDefault();
 ");
 
-            Writer.WL(_quantity.BaseType == "double"
+            Writer.WL(_quantity.ValueType == "double"
                 ? @"
             _value = Guard.EnsureValidNumber(value, nameof(value));"
                 : @"
@@ -278,11 +278,11 @@ namespace UnitsNet
 ");
 
             // Need to provide explicit interface implementation for decimal quantities like Information
-            if (_quantity.BaseType != "double")
+            if (_quantity.ValueType != "double")
                 Writer.WL(@"
         double IQuantity.Value => (double) _value;
 ");
-            if (_quantity.BaseType == "decimal")
+            if (_quantity.ValueType == "decimal")
                 Writer.WL(@"
         /// <inheritdoc cref=""IDecimalQuantity.Value""/>
         decimal IDecimalQuantity.Value => _value;

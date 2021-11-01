@@ -65,7 +65,7 @@ namespace CodeGen.Generators
             foreach (var u in quantity.Units)
                 // Use decimal for internal calculations if base type is not double, such as for long or int.
             {
-                if (string.Equals(quantity.BaseType, "decimal", StringComparison.OrdinalIgnoreCase))
+                if (string.Equals(quantity.ValueType, "decimal", StringComparison.OrdinalIgnoreCase))
                 {
                     // Change any double literals like "1024d" to decimal literals "1024m"
                     u.FromUnitToBaseFunc = u.FromUnitToBaseFunc.Replace("d", "m");

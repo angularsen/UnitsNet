@@ -44,7 +44,7 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly {_quantity.BaseType} _value;
+        private readonly {_quantity.ValueType} _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -54,7 +54,7 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public {_quantity.BaseType} Value => _value;
+        public {_quantity.ValueType} Value => _value;
 
         /// <inheritdoc />
         public {_unitEnumName} Unit => _unit;");
@@ -66,7 +66,7 @@ namespace UnitsNet
         /// <param name=""value"">The numeric value to construct this quantity with.</param>
         /// <param name=""unit"">The unit representation to construct this quantity with.</param>
         /// <exception cref=""ArgumentException"">If value is NaN or Infinity.</exception>
-        public {_quantity.Name}({_quantity.BaseType} value, {_unitEnumName} unit)
+        public {_quantity.Name}({_quantity.ValueType} value, {_unitEnumName} unit)
         {{
             _value = value;
             _unit = unit;
@@ -82,16 +82,16 @@ namespace UnitsNet
         /// </summary>");
 
             // Non decimal
-            Writer.WLCondition(_quantity.BaseType != "decimal", $@"
-        public static {_quantity.Name} MaxValue {{ get; }} = new {_quantity.Name}({_quantity.BaseType}.MaxValue, BaseUnit);
+            Writer.WLCondition(_quantity.ValueType != "decimal", $@"
+        public static {_quantity.Name} MaxValue {{ get; }} = new {_quantity.Name}({_quantity.ValueType}.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}({_quantity.BaseType}.MinValue, BaseUnit);");
+        public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}({_quantity.ValueType}.MinValue, BaseUnit);");
 
             // Decimal MaxValue = 79228162514264337593543950335M
-            Writer.WLCondition(_quantity.BaseType == "decimal", $@"
+            Writer.WLCondition(_quantity.ValueType == "decimal", $@"
         public static {_quantity.Name} MaxValue {{ get; }} = new {_quantity.Name}(79228162514264337593543950335M, BaseUnit);
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace UnitsNet
         ///     Get {_quantity.Name} in {unit.PluralName}.
         /// </summary>");
                 Writer.WL($@"
-        public {_quantity.BaseType} {unit.PluralName} => As({_unitEnumName}.{unit.SingularName});
+        public {_quantity.ValueType} {unit.PluralName} => As({_unitEnumName}.{unit.SingularName});
 ");
             }
 
@@ -153,7 +153,7 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref=""ArgumentException"">If value is NaN or Infinity.</exception>");
                 Writer.WL($@"
-        public static {_quantity.Name} From{unit.PluralName}({_quantity.BaseType} {valueParamName}) => new {_quantity.Name}({valueParamName}, {_unitEnumName}.{unit.SingularName});
+        public static {_quantity.Name} From{unit.PluralName}({_quantity.ValueType} {valueParamName}) => new {_quantity.Name}({valueParamName}, {_unitEnumName}.{unit.SingularName});
 ");
             }
 
@@ -165,7 +165,7 @@ namespace UnitsNet
         /// <param name=""value"">Value to convert from.</param>
         /// <param name=""fromUnit"">Unit to convert from.</param>
         /// <returns>{_quantity.Name} unit value.</returns>
-        public static {_quantity.Name} From({_quantity.BaseType} value, {_unitEnumName} fromUnit)
+        public static {_quantity.Name} From({_quantity.ValueType} value, {_unitEnumName} fromUnit)
         {{
             return new {_quantity.Name}(value, fromUnit);
         }}
@@ -183,7 +183,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name=""unit"" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public {_quantity.BaseType} As({_unitEnumName} unit) => GetValueAs(unit);        
+        public {_quantity.ValueType} As({_unitEnumName} unit) => GetValueAs(unit);        
 
         /// <summary>
         ///     Converts this Duration to another Duration with the unit representation <paramref name=""unit"" />.
@@ -202,7 +202,7 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private {_quantity.BaseType} GetValueInBaseUnit()
+        private {_quantity.ValueType} GetValueInBaseUnit()
         {{
             switch(Unit)
             {{");
@@ -219,7 +219,7 @@ namespace UnitsNet
             }}
         }}
 
-        private {_quantity.BaseType} GetValueAs({_unitEnumName} unit)
+        private {_quantity.ValueType} GetValueAs({_unitEnumName} unit)
         {{
             if(Unit == unit)
                 return _value;

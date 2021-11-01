@@ -54,7 +54,7 @@ namespace CodeGen.Generators.UnitsNetGen
             _unitEnumName = $"{quantity.Name}Unit";
             _baseUnitEnglishAbbreviation = GetEnglishAbbreviation(_baseUnit);
             _baseUnitFullName = $"{_unitEnumName}.{_baseUnit.SingularName}";
-            _numberSuffix = quantity.BaseType == "decimal" ? "m" : "";
+            _numberSuffix = quantity.ValueType == "decimal" ? "m" : "";
         }
 
         private string GetUnitFullName(Unit unit) => $"{_unitEnumName}.{unit.SingularName}";
@@ -108,7 +108,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {{
-            Assert.Throws<ArgumentException>(() => new {_quantity.Name}(({_quantity.BaseType})0.0, {_unitEnumName}.Undefined));
+            Assert.Throws<ArgumentException>(() => new {_quantity.Name}(({_quantity.ValueType})0.0, {_unitEnumName}.Undefined));
         }}
 
         [Fact]
@@ -116,14 +116,14 @@ namespace UnitsNet.Tests
         {{
             var quantity = new {_quantity.Name}();
             Assert.Equal(0, quantity.Value);");
-            if (_quantity.BaseType == "decimal") Writer.WL($@"
+            if (_quantity.ValueType == "decimal") Writer.WL($@"
             Assert.Equal(0m, ((IDecimalQuantity)quantity).Value);");
             Writer.WL($@"
             Assert.Equal({_baseUnitFullName}, quantity.Unit);
         }}
 
 ");
-            if (_quantity.BaseType == "double") Writer.WL($@"
+            if (_quantity.ValueType == "double") Writer.WL($@"
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {{
@@ -205,7 +205,7 @@ namespace UnitsNet.Tests
             Writer.WL($@"
         }}
 ");
-            if (_quantity.BaseType == "double") Writer.WL($@"
+            if (_quantity.ValueType == "double") Writer.WL($@"
         [Fact]
         public void From{_baseUnit.PluralName}_WithInfinityValue_ThrowsArgumentException()
         {{

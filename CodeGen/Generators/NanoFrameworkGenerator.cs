@@ -87,7 +87,7 @@ namespace CodeGen.Generators
                 GenerateProject(quantity, Path.Combine(projectPath, $"{quantity.Name}.nfproj"), versions);
 
                 // Convert decimal based units to floats; decimals are not supported by nanoFramework
-                if (quantity.BaseType == "decimal")
+                if (quantity.ValueType == "decimal")
                 {
                     var replacements = new Dictionary<string, string>
                     {
