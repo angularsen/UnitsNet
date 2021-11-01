@@ -15,7 +15,7 @@ namespace CodeGen.Generators
     /// <summary>
     ///     Parses JSON files that define quantities and their units.
     ///     This will later be used to generate source code and can be reused for different targets such as .NET framework,
-    ///     WindowsRuntimeComponent and even other programming languages.
+    ///     .NET Core, .NET nanoFramework and even other programming languages.
     /// </summary>
     internal static class QuantityJsonFilesParser
     {

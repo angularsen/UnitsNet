@@ -42,7 +42,7 @@ cache:
 build_script:
 - ps: |
     # Build, test, pack and push nugets
-    .\\build-with-wrc.bat
+    .\\build-all-targets.bat
     $BuildExitCode = $LASTEXITCODE
 
     # Upload test results to AppVeyor

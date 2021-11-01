@@ -3,7 +3,7 @@
 
 ## Units.NET
 
-Add strongly typed quantities to your code and get merrily on with your life. 
+Add strongly typed quantities to your code and get merrily on with your life.
 
 No more magic constants found on Stack Overflow, no more second-guessing the unit of parameters and variables.
 
@@ -42,15 +42,14 @@ Run the following command in the [Package Manager Console](http://docs.nuget.org
 * .NET Standard 2.0
 * .NET 4.0
 * [.NET nanoFramework](https://www.nanoframework.net/)
-* [Windows Runtime Component](https://docs.microsoft.com/en-us/windows/uwp/winrt-components/) for UWP apps (WinJS or C++)
 
 ### <a name="static-typing"></a>Static Typing
 
 ```C#
-// Construct            
+// Construct
 Length meter = Length.FromMeters(1);
 Length twoMeters = new Length(2, LengthUnit.Meter);
-          
+
 // Convert
 double cm = meter.Centimeters;         // 100
 double yards = meter.Yards;            // 1.09361
@@ -61,8 +60,8 @@ double inches = meter.Inches;          // 39.3701
 string PrintPersonWeight(Mass weight)
 {
     // Compile error! Newtons belong to Force, not Mass. A common source of confusion.
-    double weightNewtons = weight.Newtons; 
-    
+    double weightNewtons = weight.Newtons;
+
     // Convert to the unit of choice - when you need it
     return $"You weigh {weight.Kilograms:F1} kg.";
 }
@@ -166,7 +165,7 @@ All you need is the value and the unit enum value.
 IQuantity quantity = Quantity.From(3, LengthUnit.Centimeter); // Length
 
 if (Quantity.TryFrom(3, LengthUnit.Centimeter, out IQuantity quantity2))
-{	
+{
 }
 ```
 #### Parse quantity
@@ -336,12 +335,12 @@ JSON output:
 }
 ```
 
-If you need to support deserializing into properties/fields of type `IComparable` instead of type `IQuantity`, then you can add 
+If you need to support deserializing into properties/fields of type `IComparable` instead of type `IQuantity`, then you can add
 ```c#
 jsonSerializerSettings.Converters.Add(new UnitsNetIComparableJsonConverter());
 ```
 
-**Important!** 
+**Important!**
 We cannot guarantee backwards compatibility, although we will strive to do that on a "best effort" basis and bumping the major nuget version when a change is necessary.
 
 The base unit of any unit should be treated as volatile as we have changed this several times in the history of this library already. Either to reduce precision errors of common units or to simplify code generation. An example is Mass, where the base unit was first Kilogram as this is the SI unit of mass, but in order to use powershell scripts to generate milligrams, nanograms etc. it was easier to choose Gram as the base unit of Mass.
@@ -374,7 +373,7 @@ It would be awesome to know who are using this library. If you would like your p
 
 #### Swing Catalyst and Motion Catalyst, Norway
 > Sports performance applications for Windows and iOS, that combine high-speed video with sensor data to bring facts into your training and visualize the invisible forces at work
-> 
+>
 > Units.NET started here in 2007 when reading strain gauge measurements from force plates and has been very useful in integrating a number of different sensor types into our software and presenting the data in the user's preferred culture and units.
 
 https://www.swingcatalyst.com (for golf)<br>
@@ -419,7 +418,7 @@ https://www.ansys.com/products/3d-design/ansys-discovery-live
 *- Tristan Milnthorp, Principal Software Architect (tristan.milnthorp@ansys.com)*
 
 #### Primoris Sigma Stargen
-Stargen is a decades old software to create realistic planets and satellites from a given Star. It's based on work from various scientists and been used for years. Primoris Sigma Stargen is a C# port of the utility that makes it a Framework to extend it with new algorithms for planetary formation and physics equations. 
+Stargen is a decades old software to create realistic planets and satellites from a given Star. It's based on work from various scientists and been used for years. Primoris Sigma Stargen is a C# port of the utility that makes it a Framework to extend it with new algorithms for planetary formation and physics equations.
 
 https://github.com/ebfortin/primoris.universe.stargen
 
@@ -438,11 +437,11 @@ https://kito.com
 #### Structural Analysis Format - SDK project
 <img src="https://gblobscdn.gitbook.com/spaces%2F-M__87HTlQktMqcjAf65%2Favatar-1620901174483.png?alt=media" height="35" />
 
-> The Structural Analysis Format (SAF) has been created to allow structural engineering applications to exchange data using a straight forward and simple to understand format.  
-> While inspired by IFC, SAF has its benefits that it's **easily modifyable** by the end-user _(it's an xlsx file)_, **well documented** and **easy to understand**.  
+> The Structural Analysis Format (SAF) has been created to allow structural engineering applications to exchange data using a straight forward and simple to understand format.
+> While inspired by IFC, SAF has its benefits that it's **easily modifyable** by the end-user _(it's an xlsx file)_, **well documented** and **easy to understand**.
 > UnitsNet is used by the SDK provided by SCIA to facilitate import / export between metric & imperial systems
 
-https://www.saf.guide  
+https://www.saf.guide
 https://github.com/StructuralAnalysisFormat/StructuralAnalysisFormat-SDK
 
 *- Dirk Schuermans, Software Engineer for [SCIA nv](https://www.scia.net)*
