@@ -44,11 +44,6 @@ namespace UnitsNet
             Zero = zero ?? throw new ArgumentNullException(nameof(zero));
             ValueType = zero.GetType();
             BaseDimensions = baseDimensions ?? throw new ArgumentNullException(nameof(baseDimensions));
-
-            // Obsolete members
-            UnitNames = UnitInfos.Select( unitInfo => unitInfo.Name ).ToArray();
-            Units = UnitInfos.Select( unitInfo => unitInfo.Value ).ToArray();
-            ConversionBaseUnit = BaseUnitInfo.Value;
         }
 
         /// <summary>
@@ -62,28 +57,9 @@ namespace UnitsNet
         public UnitInfo[] UnitInfos { get; }
 
         /// <summary>
-        ///     All unit names for the quantity, such as ["Centimeter", "Decimeter", "Meter", ...].
-        /// </summary>
-        [Obsolete("This property is deprecated and will be removed at a future release. Please use the UnitInfos property.")]
-        public string[] UnitNames { get; }
-
-        /// <summary>
-        ///     All unit enum values for the quantity, such as [<see cref="LengthUnit.Centimeter" />,
-        ///     <see cref="LengthUnit.Decimeter" />, <see cref="LengthUnit.Meter" />, ...].
-        /// </summary>
-        [Obsolete("This property is deprecated and will be removed at a future release. Please use the UnitInfos property.")]
-        public Enum[] Units { get; }
-
-        /// <summary>
         ///     The base unit of this quantity.
         /// </summary>
         public UnitInfo BaseUnitInfo { get; }
-
-        /// <summary>
-        ///     The base unit for the quantity, such as <see cref="LengthUnit.Meter" />.
-        /// </summary>
-        [Obsolete("This property is deprecated and will be removed at a future release. Please use the BaseUnitInfo property.")]
-        public Enum ConversionBaseUnit { get; }
 
         /// <summary>
         ///     Zero value of quantity, such as <see cref="Length.Zero" />.
@@ -166,25 +142,13 @@ namespace UnitsNet
             UnitInfos = unitInfos ?? throw new ArgumentNullException(nameof(unitInfos));
             BaseUnitInfo = UnitInfos.First(unitInfo => unitInfo.Value.Equals(baseUnit));
             UnitType = baseUnit;
-
-            // Obsolete members
-            Units = UnitInfos.Select(unitInfo => unitInfo.Value).ToArray();
-            ConversionBaseUnit = BaseUnitInfo.Value;
         }
 
         /// <inheritdoc cref="QuantityInfo.UnitInfos" />
         public new UnitInfo<TUnit>[] UnitInfos { get; }
 
-        /// <inheritdoc cref="QuantityInfo.Units" />
-        [Obsolete("This property is deprecated and will be removed at a future release. Please use the UnitInfos property.")]
-        public new TUnit[] Units { get; }
-
         /// <inheritdoc cref="QuantityInfo.BaseUnitInfo" />
         public new UnitInfo<TUnit> BaseUnitInfo { get; }
-
-        /// <inheritdoc cref="QuantityInfo.ConversionBaseUnit" />
-        [Obsolete("This property is deprecated and will be removed at a future release. Please use the BaseUnitInfo property.")]
-        public new TUnit ConversionBaseUnit { get; }
 
         /// <inheritdoc cref="QuantityInfo.Zero" />
         public new IQuantity<TUnit> Zero { get; }

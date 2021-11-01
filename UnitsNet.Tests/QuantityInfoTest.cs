@@ -29,10 +29,6 @@ namespace UnitsNet.Tests
             Assert.Equal("Length", info.Name);
             Assert.Equal(expectedUnitInfos, info.UnitInfos);
             Assert.Equal(expectedBaseDimensions, info.BaseDimensions);
-
-            // Obsolete members
-            Assert.Equal( expectedBaseUnit, info.ConversionBaseUnit );
-            Assert.Equal( new[] { "Centimeter", "Kilometer" }, info.UnitNames );
         }
 
         [Fact]
@@ -54,10 +50,6 @@ namespace UnitsNet.Tests
             Assert.Equal(nameof(HowMuch), info.Name);
             Assert.Equal(expectedUnitInfos, info.UnitInfos);
             Assert.Equal(expectedBaseDimensions, info.BaseDimensions);
-
-            // Obsolete members
-            Assert.Equal( expectedBaseUnit, info.ConversionBaseUnit );
-            Assert.Equal(new[] {nameof(HowMuchUnit.Some), nameof(HowMuchUnit.ATon), nameof(HowMuchUnit.AShitTon)}, info.UnitNames);
         }
 
         [Fact]
@@ -76,10 +68,6 @@ namespace UnitsNet.Tests
             Assert.Equal("Length", info.Name);
             Assert.Equal(expectedUnitInfos, info.UnitInfos);
             Assert.Equal(expectedBaseDimensions, info.BaseDimensions);
-
-            // Obsolete members
-            Assert.Equal( expectedBaseUnit, info.ConversionBaseUnit );
-            Assert.Equal( new[] { "Centimeter", "Kilometer" }, info.UnitNames );
         }
 
         [Fact]

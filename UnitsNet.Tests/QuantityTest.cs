@@ -45,41 +45,17 @@ namespace UnitsNet.Tests
         [Fact]
         public void ByName_GivenLength_ReturnsQuantityInfoForLength()
         {
-            var knownLengthUnits = new Enum[] { LengthUnit.Meter, LengthUnit.Centimeter, LengthUnit.Kilometer };
-            var knownLengthUnitNames = new[] { "Meter", "Centimeter", "Kilometer" };
-            var lengthUnitCount = Enum.GetValues(typeof(LengthUnit)).Length - 1; // Exclude LengthUnit.Undefined
-
             QuantityInfo quantityInfo = Quantity.ByName["Length"];
             Assert.Equal("Length", quantityInfo.Name);
             Assert.Same(Length.Info, quantityInfo.Name);
-            // Obsolete members
-            Assert.Superset(knownLengthUnitNames.ToHashSet(), quantityInfo.UnitNames.ToHashSet());
-            Assert.Superset(knownLengthUnits.ToHashSet(), quantityInfo.Units.ToHashSet());
-            Assert.Equal(lengthUnitCount, quantityInfo.UnitNames.Length);
-            Assert.Equal(lengthUnitCount, quantityInfo.Units.Length);
-            Assert.Equal(typeof(LengthUnit), quantityInfo.UnitType);
-            Assert.Equal(typeof(Length), quantityInfo.ValueType);
-            Assert.Equal(Length.Zero, quantityInfo.Zero);
         }
 
         [Fact]
         public void ByName_GivenMass_ReturnsQuantityInfoForMass()
         {
-            var knownMassUnits = new Enum[] { MassUnit.Kilogram, MassUnit.Gram, MassUnit.Tonne };
-            var knownMassUnitNames = new[] { "Kilogram", "Gram", "Tonne" };
-            var massUnitCount = Enum.GetValues(typeof(MassUnit)).Length - 1; // Exclude MassUnit.Undefined
-
             QuantityInfo quantityInfo = Quantity.ByName["Mass"];
             Assert.Equal("Mass", quantityInfo.Name);
             Assert.Same(Mass.Info, quantityInfo.Name);
-            // Obsolete members
-            Assert.Superset(knownMassUnitNames.ToHashSet(), quantityInfo.UnitNames.ToHashSet());
-            Assert.Superset(knownMassUnits.ToHashSet(), quantityInfo.Units.ToHashSet());
-            Assert.Equal(massUnitCount, quantityInfo.UnitNames.Length);
-            Assert.Equal(massUnitCount, quantityInfo.Units.Length);
-            Assert.Equal(typeof(MassUnit), quantityInfo.UnitType);
-            Assert.Equal(typeof(Mass), quantityInfo.ValueType);
-            Assert.Equal(Mass.Zero, quantityInfo.Zero);
         }
 
         [Fact]
