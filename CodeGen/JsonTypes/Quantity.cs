@@ -20,7 +20,7 @@ namespace CodeGen.JsonTypes
         public string Name;
         public Unit[] Units = Array.Empty<Unit>();
         public string XmlDocRemarks;
-        public string XmlDoc; // TODO Rename to XmlDocSummary
+        public string XmlDocSummary;
         public string ObsoleteText;
 
         // 0649 Field is never assigned to

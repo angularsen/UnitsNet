@@ -61,7 +61,7 @@ namespace UnitsNet
             Writer.WL($@"
     /// <inheritdoc />
     /// <summary>
-    ///     {_quantity.XmlDoc}
+    ///     {_quantity.XmlDocSummary}
     /// </summary>");
 
             Writer.WLCondition(_quantity.XmlDocRemarks.HasText(), $@"

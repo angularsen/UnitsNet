@@ -1,7 +1,7 @@
 {
   "Name": "ReciprocalArea",
   "ConversionBaseUnit": "InverseSquareMeter",
-  "XmlDoc": "Reciprocal area (Inverse-square) quantity is used to specify a physical quantity inversely proportional to the square of the distance.",
+  "XmlDocSummary": "Reciprocal area (Inverse-square) quantity is used to specify a physical quantity inversely proportional to the square of the distance.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Inverse-square_law",
   "BaseDimensions": {
     "L": -2

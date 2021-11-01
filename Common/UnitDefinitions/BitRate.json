@@ -2,7 +2,7 @@
   "Name": "BitRate",
   "ConversionBaseUnit": "BitPerSecond",
   "ValueType": "decimal",
-  "XmlDoc": "In telecommunications and computing, bit rate is the number of bits that are conveyed or processed per unit of time.",
+  "XmlDocSummary": "In telecommunications and computing, bit rate is the number of bits that are conveyed or processed per unit of time.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Bit_rate",
   "BaseDimensions": { "T": -1 },
   "Units": [
