@@ -62,7 +62,7 @@ namespace CodeGen.Generators
 
             var lengthNuspecFile = Path.Combine(outputDir, "Length", "UnitsNet.NanoFramework.Length.nuspec");
             var projectVersion = ParseVersion(File.ReadAllText(lengthNuspecFile),
-                new Regex(@"<version>(?<version>[\d\.]+)</version>", RegexOptions.IgnoreCase),
+                new Regex(@"<version>(?<version>[\d.]+)(?<suffix>-[a-z\d]+)?<\/version>", RegexOptions.IgnoreCase),
                 "projectVersion");
 
             foreach (var quantity in quantities)
