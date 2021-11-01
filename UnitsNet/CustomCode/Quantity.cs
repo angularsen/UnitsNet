@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
@@ -102,7 +101,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">Type must be of type UnitsNet.IQuantity -or- Type is not a known quantity type.</exception>
         public static IQuantity Parse(IFormatProvider? formatProvider, Type quantityType, string quantityString)
         {
-            if (!typeof(IQuantity).Wrap().IsAssignableFrom(quantityType))
+            if (!typeof(IQuantity).IsAssignableFrom(quantityType))
                 throw new ArgumentException($"Type {quantityType} must be of type UnitsNet.IQuantity.");
 
             if (TryParse(formatProvider, quantityType, quantityString, out IQuantity? quantity))

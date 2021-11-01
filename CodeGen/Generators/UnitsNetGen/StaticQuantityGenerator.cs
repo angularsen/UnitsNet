@@ -19,7 +19,6 @@ namespace CodeGen.Generators.UnitsNetGen
 using System;
 using System.Globalization;
 using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Collections.Generic;
 

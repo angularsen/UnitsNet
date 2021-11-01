@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 using UnitTypeToLookup = System.Collections.Generic.Dictionary<System.Type, UnitsNet.UnitValueAbbreviationLookup>;
@@ -163,7 +162,7 @@ namespace UnitsNet
 
         private void PerformAbbreviationMapping(Type unitType, int unitValue, IFormatProvider formatProvider, bool setAsDefault, [NotNull] params string[] abbreviations)
         {
-            if (!unitType.Wrap().IsEnum)
+            if (!unitType.IsEnum)
                 throw new ArgumentException("Must be an enum type.", nameof(unitType));
 
             if (abbreviations == null)

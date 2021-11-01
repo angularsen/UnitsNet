@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -24,10 +23,9 @@ namespace UnitsNet
         private static readonly string UnitEnumNamespace = typeof(LengthUnit).Namespace;
 
         private static readonly Dictionary<string, Type> UnitEnumTypes = typeof(Length)
-            .Wrap()
             .Assembly
             .GetExportedTypes()
-            .Where(t => t.Wrap().IsEnum && t.Namespace == UnitEnumNamespace && t.Name.EndsWith("Unit"))
+            .Where(t => t.IsEnum && t.Namespace == UnitEnumNamespace && t.Name.EndsWith("Unit"))
             .ToDictionary(t => t.Name, t => t);
 
         /// <summary>
