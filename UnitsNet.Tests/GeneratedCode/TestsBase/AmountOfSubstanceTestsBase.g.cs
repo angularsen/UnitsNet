@@ -262,7 +262,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new AmountOfSubstance(value: 1, unit: AmountOfSubstance.BaseUnit);
+            var quantity = new AmountOfSubstance(value: 1, unit: AmountOfSubstance.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -346,7 +346,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = AmountOfSubstance.FromMoles(1).ToBaseUnit();
-            Assert.Equal(AmountOfSubstance.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(AmountOfSubstance.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

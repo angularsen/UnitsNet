@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static EntropyUnit BaseUnit { get; } = EntropyUnit.JoulePerKelvin;
+        public static EntropyUnit ConversionBaseUnit { get; } = EntropyUnit.JoulePerKelvin;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static Entropy MaxValue { get; } = new Entropy(double.MaxValue, BaseUnit);
+        public static Entropy MaxValue { get; } = new Entropy(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static Entropy MinValue { get; } = new Entropy(double.MinValue, BaseUnit);
+        public static Entropy MinValue { get; } = new Entropy(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static Entropy Zero { get; } = new Entropy(0, BaseUnit);
+        public static Entropy Zero { get; } = new Entropy(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

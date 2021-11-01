@@ -71,7 +71,7 @@ namespace UnitsNet
                     new UnitInfo<AccelerationUnit>(AccelerationUnit.NanometerPerSecondSquared, "NanometersPerSecondSquared", BaseUnits.Undefined),
                     new UnitInfo<AccelerationUnit>(AccelerationUnit.StandardGravity, "StandardGravity", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second)),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Acceleration);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Acceleration);
         }
 
         /// <summary>
@@ -121,19 +121,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Acceleration, which is MeterPerSecondSquared. All conversions go via this value.
         /// </summary>
-        public static AccelerationUnit BaseUnit { get; } = AccelerationUnit.MeterPerSecondSquared;
+        public static AccelerationUnit ConversionBaseUnit { get; } = AccelerationUnit.MeterPerSecondSquared;
 
         /// <summary>
         /// Represents the largest possible value of Acceleration
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Acceleration MaxValue { get; } = new Acceleration(double.MaxValue, BaseUnit);
+        public static Acceleration MaxValue { get; } = new Acceleration(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Acceleration
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Acceleration MinValue { get; } = new Acceleration(double.MinValue, BaseUnit);
+        public static Acceleration MinValue { get; } = new Acceleration(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -149,7 +149,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit MeterPerSecondSquared.
         /// </summary>
-        public static Acceleration Zero { get; } = new Acceleration(0, BaseUnit);
+        public static Acceleration Zero { get; } = new Acceleration(0, ConversionBaseUnit);
 
         #endregion
 
@@ -163,7 +163,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public AccelerationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public AccelerationUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<AccelerationUnit> QuantityInfo => Info;
@@ -866,7 +866,7 @@ namespace UnitsNet
         internal Acceleration ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Acceleration(baseUnitValue, BaseUnit);
+            return new Acceleration(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(AccelerationUnit unit)

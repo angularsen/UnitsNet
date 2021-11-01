@@ -90,7 +90,7 @@ namespace UnitsNet
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerDay, "TonnesPerDay", BaseUnits.Undefined),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerHour, "TonnesPerHour", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.MassFlow);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.MassFlow);
         }
 
         /// <summary>
@@ -140,19 +140,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of MassFlow, which is GramPerSecond. All conversions go via this value.
         /// </summary>
-        public static MassFlowUnit BaseUnit { get; } = MassFlowUnit.GramPerSecond;
+        public static MassFlowUnit ConversionBaseUnit { get; } = MassFlowUnit.GramPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of MassFlow
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static MassFlow MaxValue { get; } = new MassFlow(double.MaxValue, BaseUnit);
+        public static MassFlow MaxValue { get; } = new MassFlow(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of MassFlow
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static MassFlow MinValue { get; } = new MassFlow(double.MinValue, BaseUnit);
+        public static MassFlow MinValue { get; } = new MassFlow(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -168,7 +168,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit GramPerSecond.
         /// </summary>
-        public static MassFlow Zero { get; } = new MassFlow(0, BaseUnit);
+        public static MassFlow Zero { get; } = new MassFlow(0, ConversionBaseUnit);
 
         #endregion
 
@@ -182,7 +182,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public MassFlowUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public MassFlowUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<MassFlowUnit> QuantityInfo => Info;
@@ -1170,7 +1170,7 @@ namespace UnitsNet
         internal MassFlow ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new MassFlow(baseUnitValue, BaseUnit);
+            return new MassFlow(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(MassFlowUnit unit)

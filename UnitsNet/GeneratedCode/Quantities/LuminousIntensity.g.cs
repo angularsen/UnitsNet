@@ -61,7 +61,7 @@ namespace UnitsNet
                 new UnitInfo<LuminousIntensityUnit>[] {
                     new UnitInfo<LuminousIntensityUnit>(LuminousIntensityUnit.Candela, "Candela", new BaseUnits(luminousIntensity: LuminousIntensityUnit.Candela)),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.LuminousIntensity);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.LuminousIntensity);
         }
 
         /// <summary>
@@ -111,19 +111,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of LuminousIntensity, which is Candela. All conversions go via this value.
         /// </summary>
-        public static LuminousIntensityUnit BaseUnit { get; } = LuminousIntensityUnit.Candela;
+        public static LuminousIntensityUnit ConversionBaseUnit { get; } = LuminousIntensityUnit.Candela;
 
         /// <summary>
         /// Represents the largest possible value of LuminousIntensity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static LuminousIntensity MaxValue { get; } = new LuminousIntensity(double.MaxValue, BaseUnit);
+        public static LuminousIntensity MaxValue { get; } = new LuminousIntensity(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of LuminousIntensity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static LuminousIntensity MinValue { get; } = new LuminousIntensity(double.MinValue, BaseUnit);
+        public static LuminousIntensity MinValue { get; } = new LuminousIntensity(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -139,7 +139,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Candela.
         /// </summary>
-        public static LuminousIntensity Zero { get; } = new LuminousIntensity(0, BaseUnit);
+        public static LuminousIntensity Zero { get; } = new LuminousIntensity(0, ConversionBaseUnit);
 
         #endregion
 
@@ -153,7 +153,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public LuminousIntensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public LuminousIntensityUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<LuminousIntensityUnit> QuantityInfo => Info;
@@ -661,7 +661,7 @@ namespace UnitsNet
         internal LuminousIntensity ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new LuminousIntensity(baseUnitValue, BaseUnit);
+            return new LuminousIntensity(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(LuminousIntensityUnit unit)

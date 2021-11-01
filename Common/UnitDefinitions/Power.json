@@ -1,6 +1,6 @@
 {
   "Name": "Power",
-  "BaseUnit": "Watt",
+  "ConversionBaseUnit": "Watt",
   "ValueType": "decimal",
   "XmlDoc": "In physics, power is the rate of doing work. It is equivalent to an amount of energy consumed per unit time.",
   "BaseDimensions": {

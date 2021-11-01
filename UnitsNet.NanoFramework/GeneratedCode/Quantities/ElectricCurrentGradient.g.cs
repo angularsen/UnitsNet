@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static ElectricCurrentGradientUnit BaseUnit { get; } = ElectricCurrentGradientUnit.AmperePerSecond;
+        public static ElectricCurrentGradientUnit ConversionBaseUnit { get; } = ElectricCurrentGradientUnit.AmperePerSecond;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static ElectricCurrentGradient MaxValue { get; } = new ElectricCurrentGradient(double.MaxValue, BaseUnit);
+        public static ElectricCurrentGradient MaxValue { get; } = new ElectricCurrentGradient(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static ElectricCurrentGradient MinValue { get; } = new ElectricCurrentGradient(double.MinValue, BaseUnit);
+        public static ElectricCurrentGradient MinValue { get; } = new ElectricCurrentGradient(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static ElectricCurrentGradient Zero { get; } = new ElectricCurrentGradient(0, BaseUnit);
+        public static ElectricCurrentGradient Zero { get; } = new ElectricCurrentGradient(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

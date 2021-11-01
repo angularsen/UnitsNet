@@ -222,7 +222,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new DynamicViscosity(value: 1, unit: DynamicViscosity.BaseUnit);
+            var quantity = new DynamicViscosity(value: 1, unit: DynamicViscosity.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -286,7 +286,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1).ToBaseUnit();
-            Assert.Equal(DynamicViscosity.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(DynamicViscosity.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

@@ -90,7 +90,7 @@ namespace UnitsNet
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.PoundForceFeetPerRadian, "PoundForceFeetPerRadian", BaseUnits.Undefined),
                     new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.PoundForceFootPerDegrees, "PoundForceFeetPerDegrees", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.RotationalStiffness);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.RotationalStiffness);
         }
 
         /// <summary>
@@ -140,19 +140,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of RotationalStiffness, which is NewtonMeterPerRadian. All conversions go via this value.
         /// </summary>
-        public static RotationalStiffnessUnit BaseUnit { get; } = RotationalStiffnessUnit.NewtonMeterPerRadian;
+        public static RotationalStiffnessUnit ConversionBaseUnit { get; } = RotationalStiffnessUnit.NewtonMeterPerRadian;
 
         /// <summary>
         /// Represents the largest possible value of RotationalStiffness
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static RotationalStiffness MaxValue { get; } = new RotationalStiffness(double.MaxValue, BaseUnit);
+        public static RotationalStiffness MaxValue { get; } = new RotationalStiffness(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of RotationalStiffness
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static RotationalStiffness MinValue { get; } = new RotationalStiffness(double.MinValue, BaseUnit);
+        public static RotationalStiffness MinValue { get; } = new RotationalStiffness(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -168,7 +168,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonMeterPerRadian.
         /// </summary>
-        public static RotationalStiffness Zero { get; } = new RotationalStiffness(0, BaseUnit);
+        public static RotationalStiffness Zero { get; } = new RotationalStiffness(0, ConversionBaseUnit);
 
         #endregion
 
@@ -182,7 +182,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public RotationalStiffnessUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public RotationalStiffnessUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<RotationalStiffnessUnit> QuantityInfo => Info;
@@ -1170,7 +1170,7 @@ namespace UnitsNet
         internal RotationalStiffness ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new RotationalStiffness(baseUnitValue, BaseUnit);
+            return new RotationalStiffness(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(RotationalStiffnessUnit unit)

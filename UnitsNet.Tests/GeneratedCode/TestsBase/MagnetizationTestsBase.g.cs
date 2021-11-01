@@ -150,7 +150,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Magnetization(value: 1, unit: Magnetization.BaseUnit);
+            var quantity = new Magnetization(value: 1, unit: Magnetization.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -178,7 +178,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = Magnetization.FromAmperesPerMeter(1).ToBaseUnit();
-            Assert.Equal(Magnetization.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(Magnetization.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

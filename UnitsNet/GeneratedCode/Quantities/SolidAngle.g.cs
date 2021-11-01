@@ -61,7 +61,7 @@ namespace UnitsNet
                 new UnitInfo<SolidAngleUnit>[] {
                     new UnitInfo<SolidAngleUnit>(SolidAngleUnit.Steradian, "Steradians", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.SolidAngle);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.SolidAngle);
         }
 
         /// <summary>
@@ -111,19 +111,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of SolidAngle, which is Steradian. All conversions go via this value.
         /// </summary>
-        public static SolidAngleUnit BaseUnit { get; } = SolidAngleUnit.Steradian;
+        public static SolidAngleUnit ConversionBaseUnit { get; } = SolidAngleUnit.Steradian;
 
         /// <summary>
         /// Represents the largest possible value of SolidAngle
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static SolidAngle MaxValue { get; } = new SolidAngle(double.MaxValue, BaseUnit);
+        public static SolidAngle MaxValue { get; } = new SolidAngle(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of SolidAngle
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static SolidAngle MinValue { get; } = new SolidAngle(double.MinValue, BaseUnit);
+        public static SolidAngle MinValue { get; } = new SolidAngle(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -139,7 +139,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Steradian.
         /// </summary>
-        public static SolidAngle Zero { get; } = new SolidAngle(0, BaseUnit);
+        public static SolidAngle Zero { get; } = new SolidAngle(0, ConversionBaseUnit);
 
         #endregion
 
@@ -153,7 +153,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public SolidAngleUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public SolidAngleUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<SolidAngleUnit> QuantityInfo => Info;
@@ -661,7 +661,7 @@ namespace UnitsNet
         internal SolidAngle ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new SolidAngle(baseUnitValue, BaseUnit);
+            return new SolidAngle(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(SolidAngleUnit unit)

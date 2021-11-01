@@ -406,7 +406,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new RotationalStiffness(value: 1, unit: RotationalStiffness.BaseUnit);
+            var quantity = new RotationalStiffness(value: 1, unit: RotationalStiffness.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -562,7 +562,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = RotationalStiffness.FromNewtonMetersPerRadian(1).ToBaseUnit();
-            Assert.Equal(RotationalStiffness.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(RotationalStiffness.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

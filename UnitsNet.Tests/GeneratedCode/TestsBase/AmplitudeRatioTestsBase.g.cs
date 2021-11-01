@@ -174,7 +174,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new AmplitudeRatio(value: 1, unit: AmplitudeRatio.BaseUnit);
+            var quantity = new AmplitudeRatio(value: 1, unit: AmplitudeRatio.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -214,7 +214,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = AmplitudeRatio.FromDecibelVolts(1).ToBaseUnit();
-            Assert.Equal(AmplitudeRatio.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(AmplitudeRatio.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

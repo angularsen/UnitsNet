@@ -100,7 +100,7 @@ namespace UnitsNet
                     new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicMeter, "TonnesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Tonne)),
                     new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicMillimeter, "TonnesPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Tonne)),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Density);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Density);
         }
 
         /// <summary>
@@ -150,19 +150,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Density, which is KilogramPerCubicMeter. All conversions go via this value.
         /// </summary>
-        public static DensityUnit BaseUnit { get; } = DensityUnit.KilogramPerCubicMeter;
+        public static DensityUnit ConversionBaseUnit { get; } = DensityUnit.KilogramPerCubicMeter;
 
         /// <summary>
         /// Represents the largest possible value of Density
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Density MaxValue { get; } = new Density(double.MaxValue, BaseUnit);
+        public static Density MaxValue { get; } = new Density(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Density
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Density MinValue { get; } = new Density(double.MinValue, BaseUnit);
+        public static Density MinValue { get; } = new Density(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -178,7 +178,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerCubicMeter.
         /// </summary>
-        public static Density Zero { get; } = new Density(0, BaseUnit);
+        public static Density Zero { get; } = new Density(0, ConversionBaseUnit);
 
         #endregion
 
@@ -192,7 +192,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public DensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public DensityUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<DensityUnit> QuantityInfo => Info;
@@ -1285,7 +1285,7 @@ namespace UnitsNet
         internal Density ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Density(baseUnitValue, BaseUnit);
+            return new Density(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(DensityUnit unit)

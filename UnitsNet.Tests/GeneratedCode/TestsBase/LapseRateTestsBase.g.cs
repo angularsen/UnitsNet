@@ -150,7 +150,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new LapseRate(value: 1, unit: LapseRate.BaseUnit);
+            var quantity = new LapseRate(value: 1, unit: LapseRate.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -178,7 +178,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = LapseRate.FromDegreesCelciusPerKilometer(1).ToBaseUnit();
-            Assert.Equal(LapseRate.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(LapseRate.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

@@ -246,7 +246,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new PressureChangeRate(value: 1, unit: PressureChangeRate.BaseUnit);
+            var quantity = new PressureChangeRate(value: 1, unit: PressureChangeRate.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -322,7 +322,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = PressureChangeRate.FromPascalsPerSecond(1).ToBaseUnit();
-            Assert.Equal(PressureChangeRate.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(PressureChangeRate.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

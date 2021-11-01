@@ -71,7 +71,7 @@ namespace UnitsNet
                     new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareYard, "InverseSquareYards", BaseUnits.Undefined),
                     new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseUsSurveySquareFoot, "InverseUsSurveySquareFeet", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ReciprocalArea);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.ReciprocalArea);
         }
 
         /// <summary>
@@ -121,19 +121,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ReciprocalArea, which is InverseSquareMeter. All conversions go via this value.
         /// </summary>
-        public static ReciprocalAreaUnit BaseUnit { get; } = ReciprocalAreaUnit.InverseSquareMeter;
+        public static ReciprocalAreaUnit ConversionBaseUnit { get; } = ReciprocalAreaUnit.InverseSquareMeter;
 
         /// <summary>
         /// Represents the largest possible value of ReciprocalArea
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ReciprocalArea MaxValue { get; } = new ReciprocalArea(double.MaxValue, BaseUnit);
+        public static ReciprocalArea MaxValue { get; } = new ReciprocalArea(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ReciprocalArea
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ReciprocalArea MinValue { get; } = new ReciprocalArea(double.MinValue, BaseUnit);
+        public static ReciprocalArea MinValue { get; } = new ReciprocalArea(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -149,7 +149,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit InverseSquareMeter.
         /// </summary>
-        public static ReciprocalArea Zero { get; } = new ReciprocalArea(0, BaseUnit);
+        public static ReciprocalArea Zero { get; } = new ReciprocalArea(0, ConversionBaseUnit);
 
         #endregion
 
@@ -163,7 +163,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public ReciprocalAreaUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public ReciprocalAreaUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<ReciprocalAreaUnit> QuantityInfo => Info;
@@ -821,7 +821,7 @@ namespace UnitsNet
         internal ReciprocalArea ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new ReciprocalArea(baseUnitValue, BaseUnit);
+            return new ReciprocalArea(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(ReciprocalAreaUnit unit)

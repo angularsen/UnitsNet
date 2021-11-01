@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static LuminousIntensityUnit BaseUnit { get; } = LuminousIntensityUnit.Candela;
+        public static LuminousIntensityUnit ConversionBaseUnit { get; } = LuminousIntensityUnit.Candela;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static LuminousIntensity MaxValue { get; } = new LuminousIntensity(double.MaxValue, BaseUnit);
+        public static LuminousIntensity MaxValue { get; } = new LuminousIntensity(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static LuminousIntensity MinValue { get; } = new LuminousIntensity(double.MinValue, BaseUnit);
+        public static LuminousIntensity MinValue { get; } = new LuminousIntensity(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static LuminousIntensity Zero { get; } = new LuminousIntensity(0, BaseUnit);
+        public static LuminousIntensity Zero { get; } = new LuminousIntensity(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

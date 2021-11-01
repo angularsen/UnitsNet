@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static VolumeUnit BaseUnit { get; } = VolumeUnit.CubicMeter;
+        public static VolumeUnit ConversionBaseUnit { get; } = VolumeUnit.CubicMeter;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static Volume MaxValue { get; } = new Volume(double.MaxValue, BaseUnit);
+        public static Volume MaxValue { get; } = new Volume(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static Volume MinValue { get; } = new Volume(double.MinValue, BaseUnit);
+        public static Volume MinValue { get; } = new Volume(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static Volume Zero { get; } = new Volume(0, BaseUnit);
+        public static Volume Zero { get; } = new Volume(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

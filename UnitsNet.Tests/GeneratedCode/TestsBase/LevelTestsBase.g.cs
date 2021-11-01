@@ -158,7 +158,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Level(value: 1, unit: Level.BaseUnit);
+            var quantity = new Level(value: 1, unit: Level.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -190,7 +190,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = Level.FromDecibels(1).ToBaseUnit();
-            Assert.Equal(Level.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(Level.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

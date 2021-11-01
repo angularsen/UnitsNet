@@ -1,6 +1,6 @@
 {
   "Name": "MassFraction",
-  "BaseUnit": "DecimalFraction",
+  "ConversionBaseUnit": "DecimalFraction",
   "XmlDoc": "The mass fraction is defined as the mass of a constituent divided by the total mass of the mixture.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Mass_fraction_(chemistry)",
   "Units": [

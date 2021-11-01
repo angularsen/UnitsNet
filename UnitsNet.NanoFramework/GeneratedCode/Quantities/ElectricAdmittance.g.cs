@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static ElectricAdmittanceUnit BaseUnit { get; } = ElectricAdmittanceUnit.Siemens;
+        public static ElectricAdmittanceUnit ConversionBaseUnit { get; } = ElectricAdmittanceUnit.Siemens;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static ElectricAdmittance MaxValue { get; } = new ElectricAdmittance(double.MaxValue, BaseUnit);
+        public static ElectricAdmittance MaxValue { get; } = new ElectricAdmittance(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static ElectricAdmittance MinValue { get; } = new ElectricAdmittance(double.MinValue, BaseUnit);
+        public static ElectricAdmittance MinValue { get; } = new ElectricAdmittance(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static ElectricAdmittance Zero { get; } = new ElectricAdmittance(0, BaseUnit);
+        public static ElectricAdmittance Zero { get; } = new ElectricAdmittance(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

@@ -174,7 +174,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new FuelEfficiency(value: 1, unit: FuelEfficiency.BaseUnit);
+            var quantity = new FuelEfficiency(value: 1, unit: FuelEfficiency.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -214,7 +214,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = FuelEfficiency.FromLitersPer100Kilometers(1).ToBaseUnit();
-            Assert.Equal(FuelEfficiency.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(FuelEfficiency.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

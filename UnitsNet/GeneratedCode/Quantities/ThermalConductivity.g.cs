@@ -62,7 +62,7 @@ namespace UnitsNet
                     new UnitInfo<ThermalConductivityUnit>(ThermalConductivityUnit.BtuPerHourFootFahrenheit, "BtusPerHourFootFahrenheit", BaseUnits.Undefined),
                     new UnitInfo<ThermalConductivityUnit>(ThermalConductivityUnit.WattPerMeterKelvin, "WattsPerMeterKelvin", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ThermalConductivity);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.ThermalConductivity);
         }
 
         /// <summary>
@@ -112,19 +112,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ThermalConductivity, which is WattPerMeterKelvin. All conversions go via this value.
         /// </summary>
-        public static ThermalConductivityUnit BaseUnit { get; } = ThermalConductivityUnit.WattPerMeterKelvin;
+        public static ThermalConductivityUnit ConversionBaseUnit { get; } = ThermalConductivityUnit.WattPerMeterKelvin;
 
         /// <summary>
         /// Represents the largest possible value of ThermalConductivity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ThermalConductivity MaxValue { get; } = new ThermalConductivity(double.MaxValue, BaseUnit);
+        public static ThermalConductivity MaxValue { get; } = new ThermalConductivity(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ThermalConductivity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ThermalConductivity MinValue { get; } = new ThermalConductivity(double.MinValue, BaseUnit);
+        public static ThermalConductivity MinValue { get; } = new ThermalConductivity(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -140,7 +140,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit WattPerMeterKelvin.
         /// </summary>
-        public static ThermalConductivity Zero { get; } = new ThermalConductivity(0, BaseUnit);
+        public static ThermalConductivity Zero { get; } = new ThermalConductivity(0, ConversionBaseUnit);
 
         #endregion
 
@@ -154,7 +154,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public ThermalConductivityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public ThermalConductivityUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<ThermalConductivityUnit> QuantityInfo => Info;
@@ -677,7 +677,7 @@ namespace UnitsNet
         internal ThermalConductivity ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new ThermalConductivity(baseUnitValue, BaseUnit);
+            return new ThermalConductivity(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(ThermalConductivityUnit unit)

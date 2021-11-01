@@ -302,7 +302,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new VolumeConcentration(value: 1, unit: VolumeConcentration.BaseUnit);
+            var quantity = new VolumeConcentration(value: 1, unit: VolumeConcentration.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -406,7 +406,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = VolumeConcentration.FromDecimalFractions(1).ToBaseUnit();
-            Assert.Equal(VolumeConcentration.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(VolumeConcentration.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

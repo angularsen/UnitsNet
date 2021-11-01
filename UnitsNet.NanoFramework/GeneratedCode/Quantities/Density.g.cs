@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static DensityUnit BaseUnit { get; } = DensityUnit.KilogramPerCubicMeter;
+        public static DensityUnit ConversionBaseUnit { get; } = DensityUnit.KilogramPerCubicMeter;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static Density MaxValue { get; } = new Density(double.MaxValue, BaseUnit);
+        public static Density MaxValue { get; } = new Density(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static Density MinValue { get; } = new Density(double.MinValue, BaseUnit);
+        public static Density MinValue { get; } = new Density(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static Density Zero { get; } = new Density(0, BaseUnit);
+        public static Density Zero { get; } = new Density(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

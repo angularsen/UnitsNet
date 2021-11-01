@@ -406,7 +406,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new MassFlow(value: 1, unit: MassFlow.BaseUnit);
+            var quantity = new MassFlow(value: 1, unit: MassFlow.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -562,7 +562,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = MassFlow.FromGramsPerSecond(1).ToBaseUnit();
-            Assert.Equal(MassFlow.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(MassFlow.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

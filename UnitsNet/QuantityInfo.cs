@@ -77,7 +77,7 @@ namespace UnitsNet
             // Obsolete members
             UnitNames = UnitInfos.Select( unitInfo => unitInfo.Name ).ToArray();
             Units = UnitInfos.Select( unitInfo => unitInfo.Value ).ToArray();
-            BaseUnit = BaseUnitInfo.Value;
+            ConversionBaseUnit = BaseUnitInfo.Value;
             QuantityType = quantityType;
         }
 
@@ -119,7 +119,7 @@ namespace UnitsNet
         ///     The base unit for the quantity, such as <see cref="LengthUnit.Meter" />.
         /// </summary>
         [Obsolete("This property is deprecated and will be removed at a future release. Please use the BaseUnitInfo property.")]
-        public Enum BaseUnit { get; }
+        public Enum ConversionBaseUnit { get; }
 
         /// <summary>
         ///     Zero value of quantity, such as <see cref="Length.Zero" />.
@@ -213,7 +213,7 @@ namespace UnitsNet
 
             // Obsolete members
             Units = UnitInfos.Select(unitInfo => unitInfo.Value).ToArray();
-            BaseUnit = BaseUnitInfo.Value;
+            ConversionBaseUnit = BaseUnitInfo.Value;
         }
 
         /// <inheritdoc cref="QuantityInfo.UnitInfos" />
@@ -226,9 +226,9 @@ namespace UnitsNet
         /// <inheritdoc cref="QuantityInfo.BaseUnitInfo" />
         public new UnitInfo<TUnit> BaseUnitInfo { get; }
 
-        /// <inheritdoc cref="QuantityInfo.BaseUnit" />
+        /// <inheritdoc cref="QuantityInfo.ConversionBaseUnit" />
         [Obsolete("This property is deprecated and will be removed at a future release. Please use the BaseUnitInfo property.")]
-        public new TUnit BaseUnit { get; }
+        public new TUnit ConversionBaseUnit { get; }
 
         /// <inheritdoc cref="QuantityInfo.Zero" />
         public new IQuantity<TUnit> Zero { get; }

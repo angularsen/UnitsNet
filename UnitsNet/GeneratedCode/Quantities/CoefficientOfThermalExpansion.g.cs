@@ -60,7 +60,7 @@ namespace UnitsNet
                     new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, "InverseDegreeFahrenheit", new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit)),
                     new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseKelvin, "InverseKelvin", new BaseUnits(temperature: TemperatureUnit.Kelvin)),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.CoefficientOfThermalExpansion);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.CoefficientOfThermalExpansion);
         }
 
         /// <summary>
@@ -110,19 +110,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of CoefficientOfThermalExpansion, which is InverseKelvin. All conversions go via this value.
         /// </summary>
-        public static CoefficientOfThermalExpansionUnit BaseUnit { get; } = CoefficientOfThermalExpansionUnit.InverseKelvin;
+        public static CoefficientOfThermalExpansionUnit ConversionBaseUnit { get; } = CoefficientOfThermalExpansionUnit.InverseKelvin;
 
         /// <summary>
         /// Represents the largest possible value of CoefficientOfThermalExpansion
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static CoefficientOfThermalExpansion MaxValue { get; } = new CoefficientOfThermalExpansion(double.MaxValue, BaseUnit);
+        public static CoefficientOfThermalExpansion MaxValue { get; } = new CoefficientOfThermalExpansion(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of CoefficientOfThermalExpansion
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static CoefficientOfThermalExpansion MinValue { get; } = new CoefficientOfThermalExpansion(double.MinValue, BaseUnit);
+        public static CoefficientOfThermalExpansion MinValue { get; } = new CoefficientOfThermalExpansion(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -138,7 +138,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit InverseKelvin.
         /// </summary>
-        public static CoefficientOfThermalExpansion Zero { get; } = new CoefficientOfThermalExpansion(0, BaseUnit);
+        public static CoefficientOfThermalExpansion Zero { get; } = new CoefficientOfThermalExpansion(0, ConversionBaseUnit);
 
         #endregion
 
@@ -152,7 +152,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public CoefficientOfThermalExpansionUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public CoefficientOfThermalExpansionUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<CoefficientOfThermalExpansionUnit> QuantityInfo => Info;
@@ -690,7 +690,7 @@ namespace UnitsNet
         internal CoefficientOfThermalExpansion ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new CoefficientOfThermalExpansion(baseUnitValue, BaseUnit);
+            return new CoefficientOfThermalExpansion(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(CoefficientOfThermalExpansionUnit unit)

@@ -222,7 +222,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Duration(value: 1, unit: Duration.BaseUnit);
+            var quantity = new Duration(value: 1, unit: Duration.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -286,7 +286,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = Duration.FromSeconds(1).ToBaseUnit();
-            Assert.Equal(Duration.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(Duration.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

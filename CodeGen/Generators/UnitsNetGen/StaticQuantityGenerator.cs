@@ -69,7 +69,7 @@ namespace UnitsNet
                 var quantityName = quantity.Name;
                 Writer.WL($@"
                 case QuantityType.{quantityName}:
-                    return {quantityName}.From(value, {quantityName}.BaseUnit);");
+                    return {quantityName}.From(value, {quantityName}.ConversionBaseUnit);");
             }
 
             Writer.WL(@"
@@ -93,7 +93,7 @@ namespace UnitsNet
                 var quantityName = quantity.Name;
                 Writer.WL($@"
                 case ""{quantityName}"":
-                    return {quantityName}.From(value, {quantityName}.BaseUnit);");
+                    return {quantityName}.From(value, {quantityName}.ConversionBaseUnit);");
             }
 
             Writer.WL(@"

@@ -64,7 +64,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Millihenry, "Millihenries", BaseUnits.Undefined),
                     new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Nanohenry, "Nanohenries", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricInductance);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.ElectricInductance);
         }
 
         /// <summary>
@@ -114,19 +114,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricInductance, which is Henry. All conversions go via this value.
         /// </summary>
-        public static ElectricInductanceUnit BaseUnit { get; } = ElectricInductanceUnit.Henry;
+        public static ElectricInductanceUnit ConversionBaseUnit { get; } = ElectricInductanceUnit.Henry;
 
         /// <summary>
         /// Represents the largest possible value of ElectricInductance
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricInductance MaxValue { get; } = new ElectricInductance(double.MaxValue, BaseUnit);
+        public static ElectricInductance MaxValue { get; } = new ElectricInductance(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricInductance
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricInductance MinValue { get; } = new ElectricInductance(double.MinValue, BaseUnit);
+        public static ElectricInductance MinValue { get; } = new ElectricInductance(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -142,7 +142,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Henry.
         /// </summary>
-        public static ElectricInductance Zero { get; } = new ElectricInductance(0, BaseUnit);
+        public static ElectricInductance Zero { get; } = new ElectricInductance(0, ConversionBaseUnit);
 
         #endregion
 
@@ -156,7 +156,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public ElectricInductanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public ElectricInductanceUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<ElectricInductanceUnit> QuantityInfo => Info;
@@ -709,7 +709,7 @@ namespace UnitsNet
         internal ElectricInductance ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new ElectricInductance(baseUnitValue, BaseUnit);
+            return new ElectricInductance(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(ElectricInductanceUnit unit)

@@ -430,7 +430,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Energy(value: 1, unit: Energy.BaseUnit);
+            var quantity = new Energy(value: 1, unit: Energy.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -598,7 +598,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = Energy.FromJoules(1).ToBaseUnit();
-            Assert.Equal(Energy.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(Energy.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

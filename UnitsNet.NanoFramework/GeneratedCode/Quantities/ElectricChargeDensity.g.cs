@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static ElectricChargeDensityUnit BaseUnit { get; } = ElectricChargeDensityUnit.CoulombPerCubicMeter;
+        public static ElectricChargeDensityUnit ConversionBaseUnit { get; } = ElectricChargeDensityUnit.CoulombPerCubicMeter;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static ElectricChargeDensity MaxValue { get; } = new ElectricChargeDensity(double.MaxValue, BaseUnit);
+        public static ElectricChargeDensity MaxValue { get; } = new ElectricChargeDensity(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static ElectricChargeDensity MinValue { get; } = new ElectricChargeDensity(double.MinValue, BaseUnit);
+        public static ElectricChargeDensity MinValue { get; } = new ElectricChargeDensity(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static ElectricChargeDensity Zero { get; } = new ElectricChargeDensity(0, BaseUnit);
+        public static ElectricChargeDensity Zero { get; } = new ElectricChargeDensity(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

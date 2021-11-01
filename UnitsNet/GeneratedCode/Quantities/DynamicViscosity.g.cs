@@ -70,7 +70,7 @@ namespace UnitsNet
                     new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PoundPerFootSecond, "PoundsPerFootSecond", BaseUnits.Undefined),
                     new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Reyn, "Reyns", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.DynamicViscosity);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.DynamicViscosity);
         }
 
         /// <summary>
@@ -120,19 +120,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of DynamicViscosity, which is NewtonSecondPerMeterSquared. All conversions go via this value.
         /// </summary>
-        public static DynamicViscosityUnit BaseUnit { get; } = DynamicViscosityUnit.NewtonSecondPerMeterSquared;
+        public static DynamicViscosityUnit ConversionBaseUnit { get; } = DynamicViscosityUnit.NewtonSecondPerMeterSquared;
 
         /// <summary>
         /// Represents the largest possible value of DynamicViscosity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static DynamicViscosity MaxValue { get; } = new DynamicViscosity(double.MaxValue, BaseUnit);
+        public static DynamicViscosity MaxValue { get; } = new DynamicViscosity(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of DynamicViscosity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static DynamicViscosity MinValue { get; } = new DynamicViscosity(double.MinValue, BaseUnit);
+        public static DynamicViscosity MinValue { get; } = new DynamicViscosity(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -148,7 +148,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonSecondPerMeterSquared.
         /// </summary>
-        public static DynamicViscosity Zero { get; } = new DynamicViscosity(0, BaseUnit);
+        public static DynamicViscosity Zero { get; } = new DynamicViscosity(0, ConversionBaseUnit);
 
         #endregion
 
@@ -162,7 +162,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public DynamicViscosityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public DynamicViscosityUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<DynamicViscosityUnit> QuantityInfo => Info;
@@ -805,7 +805,7 @@ namespace UnitsNet
         internal DynamicViscosity ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new DynamicViscosity(baseUnitValue, BaseUnit);
+            return new DynamicViscosity(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(DynamicViscosityUnit unit)

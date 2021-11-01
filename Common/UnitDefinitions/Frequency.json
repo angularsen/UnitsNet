@@ -1,6 +1,6 @@
 {
   "Name": "Frequency",
-  "BaseUnit": "Hertz",
+  "ConversionBaseUnit": "Hertz",
   "XmlDoc": "The number of occurrences of a repeating event per unit time.",
   "BaseDimensions": {
     "T": -1

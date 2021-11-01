@@ -108,7 +108,7 @@ namespace UnitsNet
                     new UnitInfo<VolumeUnit>(VolumeUnit.UsTablespoon, "UsTablespoons", BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.UsTeaspoon, "UsTeaspoons", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Volume);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Volume);
         }
 
         /// <summary>
@@ -158,19 +158,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Volume, which is CubicMeter. All conversions go via this value.
         /// </summary>
-        public static VolumeUnit BaseUnit { get; } = VolumeUnit.CubicMeter;
+        public static VolumeUnit ConversionBaseUnit { get; } = VolumeUnit.CubicMeter;
 
         /// <summary>
         /// Represents the largest possible value of Volume
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Volume MaxValue { get; } = new Volume(double.MaxValue, BaseUnit);
+        public static Volume MaxValue { get; } = new Volume(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Volume
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Volume MinValue { get; } = new Volume(double.MinValue, BaseUnit);
+        public static Volume MinValue { get; } = new Volume(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -186,7 +186,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit CubicMeter.
         /// </summary>
-        public static Volume Zero { get; } = new Volume(0, BaseUnit);
+        public static Volume Zero { get; } = new Volume(0, ConversionBaseUnit);
 
         #endregion
 
@@ -200,7 +200,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public VolumeUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public VolumeUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<VolumeUnit> QuantityInfo => Info;
@@ -1458,7 +1458,7 @@ namespace UnitsNet
         internal Volume ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Volume(baseUnitValue, BaseUnit);
+            return new Volume(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(VolumeUnit unit)

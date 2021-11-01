@@ -68,7 +68,7 @@ namespace UnitsNet
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.RadianPerSecond, "RadiansPerSecond", BaseUnits.Undefined),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.Terahertz, "Terahertz", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Frequency);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Frequency);
         }
 
         /// <summary>
@@ -118,19 +118,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Frequency, which is Hertz. All conversions go via this value.
         /// </summary>
-        public static FrequencyUnit BaseUnit { get; } = FrequencyUnit.Hertz;
+        public static FrequencyUnit ConversionBaseUnit { get; } = FrequencyUnit.Hertz;
 
         /// <summary>
         /// Represents the largest possible value of Frequency
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Frequency MaxValue { get; } = new Frequency(double.MaxValue, BaseUnit);
+        public static Frequency MaxValue { get; } = new Frequency(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Frequency
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Frequency MinValue { get; } = new Frequency(double.MinValue, BaseUnit);
+        public static Frequency MinValue { get; } = new Frequency(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -146,7 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Hertz.
         /// </summary>
-        public static Frequency Zero { get; } = new Frequency(0, BaseUnit);
+        public static Frequency Zero { get; } = new Frequency(0, ConversionBaseUnit);
 
         #endregion
 
@@ -160,7 +160,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public FrequencyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public FrequencyUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<FrequencyUnit> QuantityInfo => Info;
@@ -818,7 +818,7 @@ namespace UnitsNet
         internal Frequency ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Frequency(baseUnitValue, BaseUnit);
+            return new Frequency(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(FrequencyUnit unit)

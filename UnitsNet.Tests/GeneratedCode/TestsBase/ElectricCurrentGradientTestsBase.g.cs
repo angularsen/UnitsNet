@@ -174,7 +174,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new ElectricCurrentGradient(value: 1, unit: ElectricCurrentGradient.BaseUnit);
+            var quantity = new ElectricCurrentGradient(value: 1, unit: ElectricCurrentGradient.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -214,7 +214,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = ElectricCurrentGradient.FromAmperesPerSecond(1).ToBaseUnit();
-            Assert.Equal(ElectricCurrentGradient.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(ElectricCurrentGradient.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

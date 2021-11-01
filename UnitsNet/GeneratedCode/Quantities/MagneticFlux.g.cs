@@ -61,7 +61,7 @@ namespace UnitsNet
                 new UnitInfo<MagneticFluxUnit>[] {
                     new UnitInfo<MagneticFluxUnit>(MagneticFluxUnit.Weber, "Webers", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.MagneticFlux);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.MagneticFlux);
         }
 
         /// <summary>
@@ -111,19 +111,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of MagneticFlux, which is Weber. All conversions go via this value.
         /// </summary>
-        public static MagneticFluxUnit BaseUnit { get; } = MagneticFluxUnit.Weber;
+        public static MagneticFluxUnit ConversionBaseUnit { get; } = MagneticFluxUnit.Weber;
 
         /// <summary>
         /// Represents the largest possible value of MagneticFlux
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static MagneticFlux MaxValue { get; } = new MagneticFlux(double.MaxValue, BaseUnit);
+        public static MagneticFlux MaxValue { get; } = new MagneticFlux(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of MagneticFlux
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static MagneticFlux MinValue { get; } = new MagneticFlux(double.MinValue, BaseUnit);
+        public static MagneticFlux MinValue { get; } = new MagneticFlux(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -139,7 +139,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Weber.
         /// </summary>
-        public static MagneticFlux Zero { get; } = new MagneticFlux(0, BaseUnit);
+        public static MagneticFlux Zero { get; } = new MagneticFlux(0, ConversionBaseUnit);
 
         #endregion
 
@@ -153,7 +153,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public MagneticFluxUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public MagneticFluxUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<MagneticFluxUnit> QuantityInfo => Info;
@@ -661,7 +661,7 @@ namespace UnitsNet
         internal MagneticFlux ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new MagneticFlux(baseUnitValue, BaseUnit);
+            return new MagneticFlux(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(MagneticFluxUnit unit)

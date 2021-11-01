@@ -83,7 +83,7 @@ namespace UnitsNet
                     new UnitInfo<InformationUnit>(InformationUnit.Terabit, "Terabits", BaseUnits.Undefined),
                     new UnitInfo<InformationUnit>(InformationUnit.Terabyte, "Terabytes", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Information);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Information);
         }
 
         /// <summary>
@@ -133,19 +133,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Information, which is Bit. All conversions go via this value.
         /// </summary>
-        public static InformationUnit BaseUnit { get; } = InformationUnit.Bit;
+        public static InformationUnit ConversionBaseUnit { get; } = InformationUnit.Bit;
 
         /// <summary>
         /// Represents the largest possible value of Information
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Information MaxValue { get; } = new Information(decimal.MaxValue, BaseUnit);
+        public static Information MaxValue { get; } = new Information(decimal.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Information
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Information MinValue { get; } = new Information(decimal.MinValue, BaseUnit);
+        public static Information MinValue { get; } = new Information(decimal.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -161,7 +161,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Bit.
         /// </summary>
-        public static Information Zero { get; } = new Information(0, BaseUnit);
+        public static Information Zero { get; } = new Information(0, ConversionBaseUnit);
 
         #endregion
 
@@ -180,7 +180,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public InformationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public InformationUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<InformationUnit> QuantityInfo => Info;
@@ -1063,7 +1063,7 @@ namespace UnitsNet
         internal Information ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Information(baseUnitValue, BaseUnit);
+            return new Information(baseUnitValue, ConversionBaseUnit);
         }
 
         private decimal GetValueAs(InformationUnit unit)

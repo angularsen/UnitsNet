@@ -446,7 +446,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new ForcePerLength(value: 1, unit: ForcePerLength.BaseUnit);
+            var quantity = new ForcePerLength(value: 1, unit: ForcePerLength.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -622,7 +622,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = ForcePerLength.FromNewtonsPerMeter(1).ToBaseUnit();
-            Assert.Equal(ForcePerLength.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(ForcePerLength.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

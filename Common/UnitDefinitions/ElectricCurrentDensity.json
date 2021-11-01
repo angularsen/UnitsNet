@@ -1,6 +1,6 @@
 {
   "Name": "ElectricCurrentDensity",
-  "BaseUnit": "AmperePerSquareMeter",
+  "ConversionBaseUnit": "AmperePerSquareMeter",
   "XmlDoc": "In electromagnetism, current density is the electric current per unit area of cross section.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Current_density",
   "BaseDimensions": {

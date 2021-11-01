@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static MassFluxUnit BaseUnit { get; } = MassFluxUnit.KilogramPerSecondPerSquareMeter;
+        public static MassFluxUnit ConversionBaseUnit { get; } = MassFluxUnit.KilogramPerSecondPerSquareMeter;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static MassFlux MaxValue { get; } = new MassFlux(double.MaxValue, BaseUnit);
+        public static MassFlux MaxValue { get; } = new MassFlux(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static MassFlux MinValue { get; } = new MassFlux(double.MinValue, BaseUnit);
+        public static MassFlux MinValue { get; } = new MassFlux(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static MassFlux Zero { get; } = new MassFlux(0, BaseUnit);
+        public static MassFlux Zero { get; } = new MassFlux(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

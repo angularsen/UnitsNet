@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static AccelerationUnit BaseUnit { get; } = AccelerationUnit.MeterPerSecondSquared;
+        public static AccelerationUnit ConversionBaseUnit { get; } = AccelerationUnit.MeterPerSecondSquared;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static Acceleration MaxValue { get; } = new Acceleration(double.MaxValue, BaseUnit);
+        public static Acceleration MaxValue { get; } = new Acceleration(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static Acceleration MinValue { get; } = new Acceleration(double.MinValue, BaseUnit);
+        public static Acceleration MinValue { get; } = new Acceleration(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static Acceleration Zero { get; } = new Acceleration(0, BaseUnit);
+        public static Acceleration Zero { get; } = new Acceleration(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

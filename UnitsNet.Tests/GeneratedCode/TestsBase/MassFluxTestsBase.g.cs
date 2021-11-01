@@ -238,7 +238,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new MassFlux(value: 1, unit: MassFlux.BaseUnit);
+            var quantity = new MassFlux(value: 1, unit: MassFlux.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -310,7 +310,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = MassFlux.FromKilogramsPerSecondPerSquareMeter(1).ToBaseUnit();
-            Assert.Equal(MassFlux.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(MassFlux.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

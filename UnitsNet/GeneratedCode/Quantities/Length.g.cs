@@ -90,7 +90,7 @@ namespace UnitsNet
                     new UnitInfo<LengthUnit>(LengthUnit.UsSurveyFoot, "UsSurveyFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot)),
                     new UnitInfo<LengthUnit>(LengthUnit.Yard, "Yards", new BaseUnits(length: LengthUnit.Yard)),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Length);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Length);
         }
 
         /// <summary>
@@ -140,19 +140,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Length, which is Meter. All conversions go via this value.
         /// </summary>
-        public static LengthUnit BaseUnit { get; } = LengthUnit.Meter;
+        public static LengthUnit ConversionBaseUnit { get; } = LengthUnit.Meter;
 
         /// <summary>
         /// Represents the largest possible value of Length
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Length MaxValue { get; } = new Length(double.MaxValue, BaseUnit);
+        public static Length MaxValue { get; } = new Length(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Length
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Length MinValue { get; } = new Length(double.MinValue, BaseUnit);
+        public static Length MinValue { get; } = new Length(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -168,7 +168,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Meter.
         /// </summary>
-        public static Length Zero { get; } = new Length(0, BaseUnit);
+        public static Length Zero { get; } = new Length(0, ConversionBaseUnit);
 
         #endregion
 
@@ -182,7 +182,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public LengthUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public LengthUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<LengthUnit> QuantityInfo => Info;
@@ -1170,7 +1170,7 @@ namespace UnitsNet
         internal Length ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Length(baseUnitValue, BaseUnit);
+            return new Length(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(LengthUnit unit)

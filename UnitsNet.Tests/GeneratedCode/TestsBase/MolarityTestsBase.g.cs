@@ -206,7 +206,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Molarity(value: 1, unit: Molarity.BaseUnit);
+            var quantity = new Molarity(value: 1, unit: Molarity.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -262,7 +262,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = Molarity.FromMolesPerCubicMeter(1).ToBaseUnit();
-            Assert.Equal(Molarity.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(Molarity.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

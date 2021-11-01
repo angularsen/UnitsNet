@@ -1,6 +1,6 @@
 {
   "Name": "Irradiance",
-  "BaseUnit": "WattPerSquareMeter",
+  "ConversionBaseUnit": "WattPerSquareMeter",
   "XmlDoc": "Irradiance is the intensity of ultraviolet (UV) or visible light incident on a surface.",
   "BaseDimensions": {
     "M": 1,

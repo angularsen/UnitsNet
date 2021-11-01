@@ -150,7 +150,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new AreaDensity(value: 1, unit: AreaDensity.BaseUnit);
+            var quantity = new AreaDensity(value: 1, unit: AreaDensity.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -178,7 +178,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = AreaDensity.FromKilogramsPerSquareMeter(1).ToBaseUnit();
-            Assert.Equal(AreaDensity.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(AreaDensity.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static PowerRatioUnit BaseUnit { get; } = PowerRatioUnit.DecibelWatt;
+        public static PowerRatioUnit ConversionBaseUnit { get; } = PowerRatioUnit.DecibelWatt;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static PowerRatio MaxValue { get; } = new PowerRatio(double.MaxValue, BaseUnit);
+        public static PowerRatio MaxValue { get; } = new PowerRatio(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static PowerRatio MinValue { get; } = new PowerRatio(double.MinValue, BaseUnit);
+        public static PowerRatio MinValue { get; } = new PowerRatio(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static PowerRatio Zero { get; } = new PowerRatio(0, BaseUnit);
+        public static PowerRatio Zero { get; } = new PowerRatio(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

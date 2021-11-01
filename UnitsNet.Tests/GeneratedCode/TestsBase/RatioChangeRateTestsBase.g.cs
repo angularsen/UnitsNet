@@ -158,7 +158,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new RatioChangeRate(value: 1, unit: RatioChangeRate.BaseUnit);
+            var quantity = new RatioChangeRate(value: 1, unit: RatioChangeRate.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -190,7 +190,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = RatioChangeRate.FromDecimalFractionsPerSecond(1).ToBaseUnit();
-            Assert.Equal(RatioChangeRate.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(RatioChangeRate.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

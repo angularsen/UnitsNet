@@ -61,7 +61,7 @@ namespace UnitsNet
                 new UnitInfo<PermittivityUnit>[] {
                     new UnitInfo<PermittivityUnit>(PermittivityUnit.FaradPerMeter, "FaradsPerMeter", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Permittivity);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Permittivity);
         }
 
         /// <summary>
@@ -111,19 +111,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Permittivity, which is FaradPerMeter. All conversions go via this value.
         /// </summary>
-        public static PermittivityUnit BaseUnit { get; } = PermittivityUnit.FaradPerMeter;
+        public static PermittivityUnit ConversionBaseUnit { get; } = PermittivityUnit.FaradPerMeter;
 
         /// <summary>
         /// Represents the largest possible value of Permittivity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Permittivity MaxValue { get; } = new Permittivity(double.MaxValue, BaseUnit);
+        public static Permittivity MaxValue { get; } = new Permittivity(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Permittivity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Permittivity MinValue { get; } = new Permittivity(double.MinValue, BaseUnit);
+        public static Permittivity MinValue { get; } = new Permittivity(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -139,7 +139,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit FaradPerMeter.
         /// </summary>
-        public static Permittivity Zero { get; } = new Permittivity(0, BaseUnit);
+        public static Permittivity Zero { get; } = new Permittivity(0, ConversionBaseUnit);
 
         #endregion
 
@@ -153,7 +153,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public PermittivityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public PermittivityUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<PermittivityUnit> QuantityInfo => Info;
@@ -661,7 +661,7 @@ namespace UnitsNet
         internal Permittivity ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Permittivity(baseUnitValue, BaseUnit);
+            return new Permittivity(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(PermittivityUnit unit)

@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static LevelUnit BaseUnit { get; } = LevelUnit.Decibel;
+        public static LevelUnit ConversionBaseUnit { get; } = LevelUnit.Decibel;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static Level MaxValue { get; } = new Level(double.MaxValue, BaseUnit);
+        public static Level MaxValue { get; } = new Level(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static Level MinValue { get; } = new Level(double.MinValue, BaseUnit);
+        public static Level MinValue { get; } = new Level(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static Level Zero { get; } = new Level(0, BaseUnit);
+        public static Level Zero { get; } = new Level(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static SpecificFuelConsumptionUnit BaseUnit { get; } = SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond;
+        public static SpecificFuelConsumptionUnit ConversionBaseUnit { get; } = SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static SpecificFuelConsumption MaxValue { get; } = new SpecificFuelConsumption(double.MaxValue, BaseUnit);
+        public static SpecificFuelConsumption MaxValue { get; } = new SpecificFuelConsumption(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static SpecificFuelConsumption MinValue { get; } = new SpecificFuelConsumption(double.MinValue, BaseUnit);
+        public static SpecificFuelConsumption MinValue { get; } = new SpecificFuelConsumption(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static SpecificFuelConsumption Zero { get; } = new SpecificFuelConsumption(0, BaseUnit);
+        public static SpecificFuelConsumption Zero { get; } = new SpecificFuelConsumption(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

@@ -61,7 +61,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerNanosecond, "AmperesPerNanosecond", new BaseUnits(time: DurationUnit.Nanosecond, current: ElectricCurrentUnit.Ampere)),
                     new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerSecond, "AmperesPerSecond", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricCurrentGradient);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.ElectricCurrentGradient);
         }
 
         /// <summary>
@@ -111,19 +111,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricCurrentGradient, which is AmperePerSecond. All conversions go via this value.
         /// </summary>
-        public static ElectricCurrentGradientUnit BaseUnit { get; } = ElectricCurrentGradientUnit.AmperePerSecond;
+        public static ElectricCurrentGradientUnit ConversionBaseUnit { get; } = ElectricCurrentGradientUnit.AmperePerSecond;
 
         /// <summary>
         /// Represents the largest possible value of ElectricCurrentGradient
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricCurrentGradient MaxValue { get; } = new ElectricCurrentGradient(double.MaxValue, BaseUnit);
+        public static ElectricCurrentGradient MaxValue { get; } = new ElectricCurrentGradient(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricCurrentGradient
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricCurrentGradient MinValue { get; } = new ElectricCurrentGradient(double.MinValue, BaseUnit);
+        public static ElectricCurrentGradient MinValue { get; } = new ElectricCurrentGradient(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -139,7 +139,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit AmperePerSecond.
         /// </summary>
-        public static ElectricCurrentGradient Zero { get; } = new ElectricCurrentGradient(0, BaseUnit);
+        public static ElectricCurrentGradient Zero { get; } = new ElectricCurrentGradient(0, ConversionBaseUnit);
 
         #endregion
 
@@ -153,7 +153,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public ElectricCurrentGradientUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public ElectricCurrentGradientUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<ElectricCurrentGradientUnit> QuantityInfo => Info;
@@ -706,7 +706,7 @@ namespace UnitsNet
         internal ElectricCurrentGradient ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new ElectricCurrentGradient(baseUnitValue, BaseUnit);
+            return new ElectricCurrentGradient(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(ElectricCurrentGradientUnit unit)

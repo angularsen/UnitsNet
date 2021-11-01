@@ -82,7 +82,7 @@ namespace UnitsNet
                     new UnitInfo<PowerUnit>(PowerUnit.Terawatt, "Terawatts", BaseUnits.Undefined),
                     new UnitInfo<PowerUnit>(PowerUnit.Watt, "Watts", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Power);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Power);
         }
 
         /// <summary>
@@ -132,19 +132,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Power, which is Watt. All conversions go via this value.
         /// </summary>
-        public static PowerUnit BaseUnit { get; } = PowerUnit.Watt;
+        public static PowerUnit ConversionBaseUnit { get; } = PowerUnit.Watt;
 
         /// <summary>
         /// Represents the largest possible value of Power
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Power MaxValue { get; } = new Power(decimal.MaxValue, BaseUnit);
+        public static Power MaxValue { get; } = new Power(decimal.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Power
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Power MinValue { get; } = new Power(decimal.MinValue, BaseUnit);
+        public static Power MinValue { get; } = new Power(decimal.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -160,7 +160,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Watt.
         /// </summary>
-        public static Power Zero { get; } = new Power(0, BaseUnit);
+        public static Power Zero { get; } = new Power(0, ConversionBaseUnit);
 
         #endregion
 
@@ -179,7 +179,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public PowerUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public PowerUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<PowerUnit> QuantityInfo => Info;
@@ -1047,7 +1047,7 @@ namespace UnitsNet
         internal Power ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Power(baseUnitValue, BaseUnit);
+            return new Power(baseUnitValue, ConversionBaseUnit);
         }
 
         private decimal GetValueAs(PowerUnit unit)

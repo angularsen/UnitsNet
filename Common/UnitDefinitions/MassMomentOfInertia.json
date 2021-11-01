@@ -1,6 +1,6 @@
 {
   "Name": "MassMomentOfInertia",
-  "BaseUnit": "KilogramSquareMeter",
+  "ConversionBaseUnit": "KilogramSquareMeter",
   "XmlDoc": "A property of body reflects how its mass is distributed with regard to an axis.",
   "BaseDimensions": {
     "L": 2,

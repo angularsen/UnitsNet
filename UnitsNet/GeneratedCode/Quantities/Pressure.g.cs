@@ -101,7 +101,7 @@ namespace UnitsNet
                     new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareMillimeter, "TonnesForcePerSquareMillimeter", BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.Torr, "Torrs", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Pressure);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Pressure);
         }
 
         /// <summary>
@@ -151,19 +151,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Pressure, which is Pascal. All conversions go via this value.
         /// </summary>
-        public static PressureUnit BaseUnit { get; } = PressureUnit.Pascal;
+        public static PressureUnit ConversionBaseUnit { get; } = PressureUnit.Pascal;
 
         /// <summary>
         /// Represents the largest possible value of Pressure
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Pressure MaxValue { get; } = new Pressure(double.MaxValue, BaseUnit);
+        public static Pressure MaxValue { get; } = new Pressure(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Pressure
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Pressure MinValue { get; } = new Pressure(double.MinValue, BaseUnit);
+        public static Pressure MinValue { get; } = new Pressure(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -179,7 +179,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Pascal.
         /// </summary>
-        public static Pressure Zero { get; } = new Pressure(0, BaseUnit);
+        public static Pressure Zero { get; } = new Pressure(0, ConversionBaseUnit);
 
         #endregion
 
@@ -193,7 +193,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public PressureUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public PressureUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<PressureUnit> QuantityInfo => Info;
@@ -1346,7 +1346,7 @@ namespace UnitsNet
         internal Pressure ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Pressure(baseUnitValue, BaseUnit);
+            return new Pressure(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(PressureUnit unit)

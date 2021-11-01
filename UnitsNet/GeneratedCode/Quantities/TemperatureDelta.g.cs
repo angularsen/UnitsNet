@@ -66,7 +66,7 @@ namespace UnitsNet
                     new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.Kelvin, "Kelvins", BaseUnits.Undefined),
                     new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.MillidegreeCelsius, "MillidegreesCelsius", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.TemperatureDelta);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.TemperatureDelta);
         }
 
         /// <summary>
@@ -116,19 +116,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of TemperatureDelta, which is Kelvin. All conversions go via this value.
         /// </summary>
-        public static TemperatureDeltaUnit BaseUnit { get; } = TemperatureDeltaUnit.Kelvin;
+        public static TemperatureDeltaUnit ConversionBaseUnit { get; } = TemperatureDeltaUnit.Kelvin;
 
         /// <summary>
         /// Represents the largest possible value of TemperatureDelta
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static TemperatureDelta MaxValue { get; } = new TemperatureDelta(double.MaxValue, BaseUnit);
+        public static TemperatureDelta MaxValue { get; } = new TemperatureDelta(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of TemperatureDelta
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static TemperatureDelta MinValue { get; } = new TemperatureDelta(double.MinValue, BaseUnit);
+        public static TemperatureDelta MinValue { get; } = new TemperatureDelta(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -144,7 +144,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Kelvin.
         /// </summary>
-        public static TemperatureDelta Zero { get; } = new TemperatureDelta(0, BaseUnit);
+        public static TemperatureDelta Zero { get; } = new TemperatureDelta(0, ConversionBaseUnit);
 
         #endregion
 
@@ -158,7 +158,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public TemperatureDeltaUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public TemperatureDeltaUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<TemperatureDeltaUnit> QuantityInfo => Info;
@@ -786,7 +786,7 @@ namespace UnitsNet
         internal TemperatureDelta ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new TemperatureDelta(baseUnitValue, BaseUnit);
+            return new TemperatureDelta(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(TemperatureDeltaUnit unit)

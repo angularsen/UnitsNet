@@ -70,7 +70,7 @@ namespace UnitsNet
                     new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PoundForcePerSquareInchPerMinute, "PoundsForcePerSquareInchPerMinute", BaseUnits.Undefined),
                     new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, "PoundsForcePerSquareInchPerSecond", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.PressureChangeRate);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.PressureChangeRate);
         }
 
         /// <summary>
@@ -120,19 +120,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of PressureChangeRate, which is PascalPerSecond. All conversions go via this value.
         /// </summary>
-        public static PressureChangeRateUnit BaseUnit { get; } = PressureChangeRateUnit.PascalPerSecond;
+        public static PressureChangeRateUnit ConversionBaseUnit { get; } = PressureChangeRateUnit.PascalPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of PressureChangeRate
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static PressureChangeRate MaxValue { get; } = new PressureChangeRate(double.MaxValue, BaseUnit);
+        public static PressureChangeRate MaxValue { get; } = new PressureChangeRate(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of PressureChangeRate
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static PressureChangeRate MinValue { get; } = new PressureChangeRate(double.MinValue, BaseUnit);
+        public static PressureChangeRate MinValue { get; } = new PressureChangeRate(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -148,7 +148,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit PascalPerSecond.
         /// </summary>
-        public static PressureChangeRate Zero { get; } = new PressureChangeRate(0, BaseUnit);
+        public static PressureChangeRate Zero { get; } = new PressureChangeRate(0, ConversionBaseUnit);
 
         #endregion
 
@@ -162,7 +162,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public PressureChangeRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public PressureChangeRateUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<PressureChangeRateUnit> QuantityInfo => Info;
@@ -850,7 +850,7 @@ namespace UnitsNet
         internal PressureChangeRate ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new PressureChangeRate(baseUnitValue, BaseUnit);
+            return new PressureChangeRate(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(PressureChangeRateUnit unit)

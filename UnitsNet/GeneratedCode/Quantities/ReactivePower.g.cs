@@ -61,7 +61,7 @@ namespace UnitsNet
                     new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.MegavoltampereReactive, "MegavoltamperesReactive", BaseUnits.Undefined),
                     new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.VoltampereReactive, "VoltamperesReactive", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ReactivePower);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.ReactivePower);
         }
 
         /// <summary>
@@ -111,19 +111,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ReactivePower, which is VoltampereReactive. All conversions go via this value.
         /// </summary>
-        public static ReactivePowerUnit BaseUnit { get; } = ReactivePowerUnit.VoltampereReactive;
+        public static ReactivePowerUnit ConversionBaseUnit { get; } = ReactivePowerUnit.VoltampereReactive;
 
         /// <summary>
         /// Represents the largest possible value of ReactivePower
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ReactivePower MaxValue { get; } = new ReactivePower(double.MaxValue, BaseUnit);
+        public static ReactivePower MaxValue { get; } = new ReactivePower(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ReactivePower
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ReactivePower MinValue { get; } = new ReactivePower(double.MinValue, BaseUnit);
+        public static ReactivePower MinValue { get; } = new ReactivePower(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -139,7 +139,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit VoltampereReactive.
         /// </summary>
-        public static ReactivePower Zero { get; } = new ReactivePower(0, BaseUnit);
+        public static ReactivePower Zero { get; } = new ReactivePower(0, ConversionBaseUnit);
 
         #endregion
 
@@ -153,7 +153,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public ReactivePowerUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public ReactivePowerUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<ReactivePowerUnit> QuantityInfo => Info;
@@ -706,7 +706,7 @@ namespace UnitsNet
         internal ReactivePower ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new ReactivePower(baseUnitValue, BaseUnit);
+            return new ReactivePower(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(ReactivePowerUnit unit)

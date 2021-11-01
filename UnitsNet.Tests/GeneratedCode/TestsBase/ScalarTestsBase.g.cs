@@ -150,7 +150,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Scalar(value: 1, unit: Scalar.BaseUnit);
+            var quantity = new Scalar(value: 1, unit: Scalar.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -178,7 +178,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = Scalar.FromAmount(1).ToBaseUnit();
-            Assert.Equal(Scalar.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(Scalar.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

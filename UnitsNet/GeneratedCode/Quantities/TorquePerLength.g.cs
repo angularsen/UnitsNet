@@ -78,7 +78,7 @@ namespace UnitsNet
                     new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.TonneForceMeterPerMeter, "TonneForceMetersPerMeter", BaseUnits.Undefined),
                     new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.TonneForceMillimeterPerMeter, "TonneForceMillimetersPerMeter", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.TorquePerLength);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.TorquePerLength);
         }
 
         /// <summary>
@@ -128,19 +128,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of TorquePerLength, which is NewtonMeterPerMeter. All conversions go via this value.
         /// </summary>
-        public static TorquePerLengthUnit BaseUnit { get; } = TorquePerLengthUnit.NewtonMeterPerMeter;
+        public static TorquePerLengthUnit ConversionBaseUnit { get; } = TorquePerLengthUnit.NewtonMeterPerMeter;
 
         /// <summary>
         /// Represents the largest possible value of TorquePerLength
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static TorquePerLength MaxValue { get; } = new TorquePerLength(double.MaxValue, BaseUnit);
+        public static TorquePerLength MaxValue { get; } = new TorquePerLength(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of TorquePerLength
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static TorquePerLength MinValue { get; } = new TorquePerLength(double.MinValue, BaseUnit);
+        public static TorquePerLength MinValue { get; } = new TorquePerLength(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -156,7 +156,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonMeterPerMeter.
         /// </summary>
-        public static TorquePerLength Zero { get; } = new TorquePerLength(0, BaseUnit);
+        public static TorquePerLength Zero { get; } = new TorquePerLength(0, ConversionBaseUnit);
 
         #endregion
 
@@ -170,7 +170,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public TorquePerLengthUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public TorquePerLengthUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<TorquePerLengthUnit> QuantityInfo => Info;
@@ -978,7 +978,7 @@ namespace UnitsNet
         internal TorquePerLength ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new TorquePerLength(baseUnitValue, BaseUnit);
+            return new TorquePerLength(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(TorquePerLengthUnit unit)

@@ -150,7 +150,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new ElectricChargeDensity(value: 1, unit: ElectricChargeDensity.BaseUnit);
+            var quantity = new ElectricChargeDensity(value: 1, unit: ElectricChargeDensity.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -178,7 +178,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = ElectricChargeDensity.FromCoulombsPerCubicMeter(1).ToBaseUnit();
-            Assert.Equal(ElectricChargeDensity.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(ElectricChargeDensity.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

@@ -64,7 +64,7 @@ namespace UnitsNet
                     new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Megalux, "Megalux", BaseUnits.Undefined),
                     new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Millilux, "Millilux", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Illuminance);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Illuminance);
         }
 
         /// <summary>
@@ -114,19 +114,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Illuminance, which is Lux. All conversions go via this value.
         /// </summary>
-        public static IlluminanceUnit BaseUnit { get; } = IlluminanceUnit.Lux;
+        public static IlluminanceUnit ConversionBaseUnit { get; } = IlluminanceUnit.Lux;
 
         /// <summary>
         /// Represents the largest possible value of Illuminance
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Illuminance MaxValue { get; } = new Illuminance(double.MaxValue, BaseUnit);
+        public static Illuminance MaxValue { get; } = new Illuminance(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Illuminance
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Illuminance MinValue { get; } = new Illuminance(double.MinValue, BaseUnit);
+        public static Illuminance MinValue { get; } = new Illuminance(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -142,7 +142,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Lux.
         /// </summary>
-        public static Illuminance Zero { get; } = new Illuminance(0, BaseUnit);
+        public static Illuminance Zero { get; } = new Illuminance(0, ConversionBaseUnit);
 
         #endregion
 
@@ -156,7 +156,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public IlluminanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public IlluminanceUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<IlluminanceUnit> QuantityInfo => Info;
@@ -709,7 +709,7 @@ namespace UnitsNet
         internal Illuminance ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Illuminance(baseUnitValue, BaseUnit);
+            return new Illuminance(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(IlluminanceUnit unit)

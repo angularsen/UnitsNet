@@ -166,7 +166,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new ElectricCurrentDensity(value: 1, unit: ElectricCurrentDensity.BaseUnit);
+            var quantity = new ElectricCurrentDensity(value: 1, unit: ElectricCurrentDensity.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -202,7 +202,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = ElectricCurrentDensity.FromAmperesPerSquareMeter(1).ToBaseUnit();
-            Assert.Equal(ElectricCurrentDensity.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(ElectricCurrentDensity.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

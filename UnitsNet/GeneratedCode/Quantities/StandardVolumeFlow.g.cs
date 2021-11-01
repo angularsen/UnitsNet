@@ -66,7 +66,7 @@ namespace UnitsNet
                     new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicMeterPerSecond, "StandardCubicMetersPerSecond", BaseUnits.Undefined),
                     new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardLiterPerMinute, "StandardLitersPerMinute", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.StandardVolumeFlow);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.StandardVolumeFlow);
         }
 
         /// <summary>
@@ -116,19 +116,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of StandardVolumeFlow, which is StandardCubicMeterPerSecond. All conversions go via this value.
         /// </summary>
-        public static StandardVolumeFlowUnit BaseUnit { get; } = StandardVolumeFlowUnit.StandardCubicMeterPerSecond;
+        public static StandardVolumeFlowUnit ConversionBaseUnit { get; } = StandardVolumeFlowUnit.StandardCubicMeterPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of StandardVolumeFlow
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static StandardVolumeFlow MaxValue { get; } = new StandardVolumeFlow(double.MaxValue, BaseUnit);
+        public static StandardVolumeFlow MaxValue { get; } = new StandardVolumeFlow(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of StandardVolumeFlow
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static StandardVolumeFlow MinValue { get; } = new StandardVolumeFlow(double.MinValue, BaseUnit);
+        public static StandardVolumeFlow MinValue { get; } = new StandardVolumeFlow(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -144,7 +144,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit StandardCubicMeterPerSecond.
         /// </summary>
-        public static StandardVolumeFlow Zero { get; } = new StandardVolumeFlow(0, BaseUnit);
+        public static StandardVolumeFlow Zero { get; } = new StandardVolumeFlow(0, ConversionBaseUnit);
 
         #endregion
 
@@ -158,7 +158,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public StandardVolumeFlowUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public StandardVolumeFlowUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<StandardVolumeFlowUnit> QuantityInfo => Info;
@@ -786,7 +786,7 @@ namespace UnitsNet
         internal StandardVolumeFlow ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new StandardVolumeFlow(baseUnitValue, BaseUnit);
+            return new StandardVolumeFlow(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(StandardVolumeFlowUnit unit)

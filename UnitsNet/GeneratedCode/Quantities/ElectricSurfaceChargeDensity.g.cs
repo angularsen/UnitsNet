@@ -63,7 +63,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricSurfaceChargeDensityUnit>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, "CoulombsPerSquareInch", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                     new UnitInfo<ElectricSurfaceChargeDensityUnit>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, "CoulombsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricSurfaceChargeDensity);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.ElectricSurfaceChargeDensity);
         }
 
         /// <summary>
@@ -113,19 +113,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricSurfaceChargeDensity, which is CoulombPerSquareMeter. All conversions go via this value.
         /// </summary>
-        public static ElectricSurfaceChargeDensityUnit BaseUnit { get; } = ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter;
+        public static ElectricSurfaceChargeDensityUnit ConversionBaseUnit { get; } = ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter;
 
         /// <summary>
         /// Represents the largest possible value of ElectricSurfaceChargeDensity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricSurfaceChargeDensity MaxValue { get; } = new ElectricSurfaceChargeDensity(double.MaxValue, BaseUnit);
+        public static ElectricSurfaceChargeDensity MaxValue { get; } = new ElectricSurfaceChargeDensity(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricSurfaceChargeDensity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricSurfaceChargeDensity MinValue { get; } = new ElectricSurfaceChargeDensity(double.MinValue, BaseUnit);
+        public static ElectricSurfaceChargeDensity MinValue { get; } = new ElectricSurfaceChargeDensity(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -141,7 +141,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit CoulombPerSquareMeter.
         /// </summary>
-        public static ElectricSurfaceChargeDensity Zero { get; } = new ElectricSurfaceChargeDensity(0, BaseUnit);
+        public static ElectricSurfaceChargeDensity Zero { get; } = new ElectricSurfaceChargeDensity(0, ConversionBaseUnit);
 
         #endregion
 
@@ -155,7 +155,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public ElectricSurfaceChargeDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public ElectricSurfaceChargeDensityUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<ElectricSurfaceChargeDensityUnit> QuantityInfo => Info;
@@ -693,7 +693,7 @@ namespace UnitsNet
         internal ElectricSurfaceChargeDensity ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new ElectricSurfaceChargeDensity(baseUnitValue, BaseUnit);
+            return new ElectricSurfaceChargeDensity(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(ElectricSurfaceChargeDensityUnit unit)

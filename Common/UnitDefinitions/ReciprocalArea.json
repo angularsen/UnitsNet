@@ -1,6 +1,6 @@
 {
   "Name": "ReciprocalArea",
-  "BaseUnit": "InverseSquareMeter",
+  "ConversionBaseUnit": "InverseSquareMeter",
   "XmlDoc": "Reciprocal area (Inverse-square) quantity is used to specify a physical quantity inversely proportional to the square of the distance.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Inverse-square_law",
   "BaseDimensions": {
@@ -141,4 +141,3 @@
     }
   ]
 }
-  

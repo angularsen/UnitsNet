@@ -166,7 +166,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new SpecificVolume(value: 1, unit: SpecificVolume.BaseUnit);
+            var quantity = new SpecificVolume(value: 1, unit: SpecificVolume.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -202,7 +202,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = SpecificVolume.FromCubicMetersPerKilogram(1).ToBaseUnit();
-            Assert.Equal(SpecificVolume.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(SpecificVolume.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

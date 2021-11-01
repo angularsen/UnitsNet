@@ -150,7 +150,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Turbidity(value: 1, unit: Turbidity.BaseUnit);
+            var quantity = new Turbidity(value: 1, unit: Turbidity.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -178,7 +178,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = Turbidity.FromNTU(1).ToBaseUnit();
-            Assert.Equal(Turbidity.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(Turbidity.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

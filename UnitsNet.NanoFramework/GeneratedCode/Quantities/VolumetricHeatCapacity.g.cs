@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static VolumetricHeatCapacityUnit BaseUnit { get; } = VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin;
+        public static VolumetricHeatCapacityUnit ConversionBaseUnit { get; } = VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static VolumetricHeatCapacity MaxValue { get; } = new VolumetricHeatCapacity(double.MaxValue, BaseUnit);
+        public static VolumetricHeatCapacity MaxValue { get; } = new VolumetricHeatCapacity(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static VolumetricHeatCapacity MinValue { get; } = new VolumetricHeatCapacity(double.MinValue, BaseUnit);
+        public static VolumetricHeatCapacity MinValue { get; } = new VolumetricHeatCapacity(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static VolumetricHeatCapacity Zero { get; } = new VolumetricHeatCapacity(0, BaseUnit);
+        public static VolumetricHeatCapacity Zero { get; } = new VolumetricHeatCapacity(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

@@ -278,7 +278,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new SpecificWeight(value: 1, unit: SpecificWeight.BaseUnit);
+            var quantity = new SpecificWeight(value: 1, unit: SpecificWeight.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -370,7 +370,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = SpecificWeight.FromNewtonsPerCubicMeter(1).ToBaseUnit();
-            Assert.Equal(SpecificWeight.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(SpecificWeight.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

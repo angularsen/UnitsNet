@@ -150,7 +150,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new MagneticFlux(value: 1, unit: MagneticFlux.BaseUnit);
+            var quantity = new MagneticFlux(value: 1, unit: MagneticFlux.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -178,7 +178,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = MagneticFlux.FromWebers(1).ToBaseUnit();
-            Assert.Equal(MagneticFlux.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(MagneticFlux.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

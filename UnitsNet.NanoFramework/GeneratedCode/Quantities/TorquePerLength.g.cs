@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static TorquePerLengthUnit BaseUnit { get; } = TorquePerLengthUnit.NewtonMeterPerMeter;
+        public static TorquePerLengthUnit ConversionBaseUnit { get; } = TorquePerLengthUnit.NewtonMeterPerMeter;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static TorquePerLength MaxValue { get; } = new TorquePerLength(double.MaxValue, BaseUnit);
+        public static TorquePerLength MaxValue { get; } = new TorquePerLength(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static TorquePerLength MinValue { get; } = new TorquePerLength(double.MinValue, BaseUnit);
+        public static TorquePerLength MinValue { get; } = new TorquePerLength(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static TorquePerLength Zero { get; } = new TorquePerLength(0, BaseUnit);
+        public static TorquePerLength Zero { get; } = new TorquePerLength(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

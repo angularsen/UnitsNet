@@ -33,7 +33,7 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     Molar concentration, also called molarity, amount concentration or substance concentration, is a measure of the concentration of a solute in a solution, or of any chemical species, in terms of amount of substance in a given volume. 
+    ///     Molar concentration, also called molarity, amount concentration or substance concentration, is a measure of the concentration of a solute in a solution, or of any chemical species, in terms of amount of substance in a given volume.
     /// </summary>
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Molar_concentration
@@ -68,7 +68,7 @@ namespace UnitsNet
                     new UnitInfo<MolarityUnit>(MolarityUnit.NanomolesPerLiter, "NanomolesPerLiter", BaseUnits.Undefined),
                     new UnitInfo<MolarityUnit>(MolarityUnit.PicomolesPerLiter, "PicomolesPerLiter", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Molarity);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Molarity);
         }
 
         /// <summary>
@@ -118,19 +118,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Molarity, which is MolesPerCubicMeter. All conversions go via this value.
         /// </summary>
-        public static MolarityUnit BaseUnit { get; } = MolarityUnit.MolesPerCubicMeter;
+        public static MolarityUnit ConversionBaseUnit { get; } = MolarityUnit.MolesPerCubicMeter;
 
         /// <summary>
         /// Represents the largest possible value of Molarity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Molarity MaxValue { get; } = new Molarity(double.MaxValue, BaseUnit);
+        public static Molarity MaxValue { get; } = new Molarity(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Molarity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Molarity MinValue { get; } = new Molarity(double.MinValue, BaseUnit);
+        public static Molarity MinValue { get; } = new Molarity(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -146,7 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit MolesPerCubicMeter.
         /// </summary>
-        public static Molarity Zero { get; } = new Molarity(0, BaseUnit);
+        public static Molarity Zero { get; } = new Molarity(0, ConversionBaseUnit);
 
         #endregion
 
@@ -160,7 +160,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public MolarityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public MolarityUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<MolarityUnit> QuantityInfo => Info;
@@ -773,7 +773,7 @@ namespace UnitsNet
         internal Molarity ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Molarity(baseUnitValue, BaseUnit);
+            return new Molarity(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(MolarityUnit unit)

@@ -190,7 +190,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new AreaMomentOfInertia(value: 1, unit: AreaMomentOfInertia.BaseUnit);
+            var quantity = new AreaMomentOfInertia(value: 1, unit: AreaMomentOfInertia.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -238,7 +238,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = AreaMomentOfInertia.FromMetersToTheFourth(1).ToBaseUnit();
-            Assert.Equal(AreaMomentOfInertia.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(AreaMomentOfInertia.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

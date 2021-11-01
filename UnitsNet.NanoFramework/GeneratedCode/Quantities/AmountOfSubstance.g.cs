@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static AmountOfSubstanceUnit BaseUnit { get; } = AmountOfSubstanceUnit.Mole;
+        public static AmountOfSubstanceUnit ConversionBaseUnit { get; } = AmountOfSubstanceUnit.Mole;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static AmountOfSubstance MaxValue { get; } = new AmountOfSubstance(double.MaxValue, BaseUnit);
+        public static AmountOfSubstance MaxValue { get; } = new AmountOfSubstance(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static AmountOfSubstance MinValue { get; } = new AmountOfSubstance(double.MinValue, BaseUnit);
+        public static AmountOfSubstance MinValue { get; } = new AmountOfSubstance(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static AmountOfSubstance Zero { get; } = new AmountOfSubstance(0, BaseUnit);
+        public static AmountOfSubstance Zero { get; } = new AmountOfSubstance(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

@@ -262,7 +262,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new ForceChangeRate(value: 1, unit: ForceChangeRate.BaseUnit);
+            var quantity = new ForceChangeRate(value: 1, unit: ForceChangeRate.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -346,7 +346,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = ForceChangeRate.FromNewtonsPerSecond(1).ToBaseUnit();
-            Assert.Equal(ForceChangeRate.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(ForceChangeRate.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

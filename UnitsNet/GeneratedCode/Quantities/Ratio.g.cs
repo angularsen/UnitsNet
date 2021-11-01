@@ -63,7 +63,7 @@ namespace UnitsNet
                     new UnitInfo<RatioUnit>(RatioUnit.PartPerTrillion, "PartsPerTrillion", BaseUnits.Undefined),
                     new UnitInfo<RatioUnit>(RatioUnit.Percent, "Percent", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Ratio);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Ratio);
         }
 
         /// <summary>
@@ -113,19 +113,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Ratio, which is DecimalFraction. All conversions go via this value.
         /// </summary>
-        public static RatioUnit BaseUnit { get; } = RatioUnit.DecimalFraction;
+        public static RatioUnit ConversionBaseUnit { get; } = RatioUnit.DecimalFraction;
 
         /// <summary>
         /// Represents the largest possible value of Ratio
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Ratio MaxValue { get; } = new Ratio(double.MaxValue, BaseUnit);
+        public static Ratio MaxValue { get; } = new Ratio(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Ratio
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Ratio MinValue { get; } = new Ratio(double.MinValue, BaseUnit);
+        public static Ratio MinValue { get; } = new Ratio(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -141,7 +141,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DecimalFraction.
         /// </summary>
-        public static Ratio Zero { get; } = new Ratio(0, BaseUnit);
+        public static Ratio Zero { get; } = new Ratio(0, ConversionBaseUnit);
 
         #endregion
 
@@ -155,7 +155,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public RatioUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public RatioUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<RatioUnit> QuantityInfo => Info;
@@ -738,7 +738,7 @@ namespace UnitsNet
         internal Ratio ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Ratio(baseUnitValue, BaseUnit);
+            return new Ratio(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(RatioUnit unit)

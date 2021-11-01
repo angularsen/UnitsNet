@@ -65,7 +65,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Nanoampere, "Nanoamperes", BaseUnits.Undefined),
                     new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Picoampere, "Picoamperes", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricCurrent);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.ElectricCurrent);
         }
 
         /// <summary>
@@ -115,19 +115,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricCurrent, which is Ampere. All conversions go via this value.
         /// </summary>
-        public static ElectricCurrentUnit BaseUnit { get; } = ElectricCurrentUnit.Ampere;
+        public static ElectricCurrentUnit ConversionBaseUnit { get; } = ElectricCurrentUnit.Ampere;
 
         /// <summary>
         /// Represents the largest possible value of ElectricCurrent
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricCurrent MaxValue { get; } = new ElectricCurrent(double.MaxValue, BaseUnit);
+        public static ElectricCurrent MaxValue { get; } = new ElectricCurrent(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricCurrent
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricCurrent MinValue { get; } = new ElectricCurrent(double.MinValue, BaseUnit);
+        public static ElectricCurrent MinValue { get; } = new ElectricCurrent(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -143,7 +143,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Ampere.
         /// </summary>
-        public static ElectricCurrent Zero { get; } = new ElectricCurrent(0, BaseUnit);
+        public static ElectricCurrent Zero { get; } = new ElectricCurrent(0, ConversionBaseUnit);
 
         #endregion
 
@@ -157,7 +157,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public ElectricCurrentUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public ElectricCurrentUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<ElectricCurrentUnit> QuantityInfo => Info;
@@ -770,7 +770,7 @@ namespace UnitsNet
         internal ElectricCurrent ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new ElectricCurrent(baseUnitValue, BaseUnit);
+            return new ElectricCurrent(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(ElectricCurrentUnit unit)

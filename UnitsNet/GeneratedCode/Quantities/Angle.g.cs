@@ -73,7 +73,7 @@ namespace UnitsNet
                     new UnitInfo<AngleUnit>(AngleUnit.Revolution, "Revolutions", BaseUnits.Undefined),
                     new UnitInfo<AngleUnit>(AngleUnit.Tilt, "Tilt", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Angle);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Angle);
         }
 
         /// <summary>
@@ -123,19 +123,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Angle, which is Degree. All conversions go via this value.
         /// </summary>
-        public static AngleUnit BaseUnit { get; } = AngleUnit.Degree;
+        public static AngleUnit ConversionBaseUnit { get; } = AngleUnit.Degree;
 
         /// <summary>
         /// Represents the largest possible value of Angle
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Angle MaxValue { get; } = new Angle(double.MaxValue, BaseUnit);
+        public static Angle MaxValue { get; } = new Angle(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Angle
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Angle MinValue { get; } = new Angle(double.MinValue, BaseUnit);
+        public static Angle MinValue { get; } = new Angle(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Degree.
         /// </summary>
-        public static Angle Zero { get; } = new Angle(0, BaseUnit);
+        public static Angle Zero { get; } = new Angle(0, ConversionBaseUnit);
 
         #endregion
 
@@ -165,7 +165,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public AngleUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public AngleUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<AngleUnit> QuantityInfo => Info;
@@ -898,7 +898,7 @@ namespace UnitsNet
         internal Angle ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Angle(baseUnitValue, BaseUnit);
+            return new Angle(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(AngleUnit unit)

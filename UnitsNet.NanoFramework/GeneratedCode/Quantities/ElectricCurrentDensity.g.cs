@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static ElectricCurrentDensityUnit BaseUnit { get; } = ElectricCurrentDensityUnit.AmperePerSquareMeter;
+        public static ElectricCurrentDensityUnit ConversionBaseUnit { get; } = ElectricCurrentDensityUnit.AmperePerSquareMeter;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static ElectricCurrentDensity MaxValue { get; } = new ElectricCurrentDensity(double.MaxValue, BaseUnit);
+        public static ElectricCurrentDensity MaxValue { get; } = new ElectricCurrentDensity(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static ElectricCurrentDensity MinValue { get; } = new ElectricCurrentDensity(double.MinValue, BaseUnit);
+        public static ElectricCurrentDensity MinValue { get; } = new ElectricCurrentDensity(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static ElectricCurrentDensity Zero { get; } = new ElectricCurrentDensity(0, BaseUnit);
+        public static ElectricCurrentDensity Zero { get; } = new ElectricCurrentDensity(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

@@ -101,7 +101,7 @@ namespace UnitsNet
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerCubicMeter, "WattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
                     new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerLiter, "WattsPerLiter", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.PowerDensity);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.PowerDensity);
         }
 
         /// <summary>
@@ -151,19 +151,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of PowerDensity, which is WattPerCubicMeter. All conversions go via this value.
         /// </summary>
-        public static PowerDensityUnit BaseUnit { get; } = PowerDensityUnit.WattPerCubicMeter;
+        public static PowerDensityUnit ConversionBaseUnit { get; } = PowerDensityUnit.WattPerCubicMeter;
 
         /// <summary>
         /// Represents the largest possible value of PowerDensity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static PowerDensity MaxValue { get; } = new PowerDensity(double.MaxValue, BaseUnit);
+        public static PowerDensity MaxValue { get; } = new PowerDensity(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of PowerDensity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static PowerDensity MinValue { get; } = new PowerDensity(double.MinValue, BaseUnit);
+        public static PowerDensity MinValue { get; } = new PowerDensity(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -179,7 +179,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit WattPerCubicMeter.
         /// </summary>
-        public static PowerDensity Zero { get; } = new PowerDensity(0, BaseUnit);
+        public static PowerDensity Zero { get; } = new PowerDensity(0, ConversionBaseUnit);
 
         #endregion
 
@@ -193,7 +193,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public PowerDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public PowerDensityUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<PowerDensityUnit> QuantityInfo => Info;
@@ -1346,7 +1346,7 @@ namespace UnitsNet
         internal PowerDensity ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new PowerDensity(baseUnitValue, BaseUnit);
+            return new PowerDensity(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(PowerDensityUnit unit)

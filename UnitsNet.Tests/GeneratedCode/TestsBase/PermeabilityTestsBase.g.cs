@@ -150,7 +150,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Permeability(value: 1, unit: Permeability.BaseUnit);
+            var quantity = new Permeability(value: 1, unit: Permeability.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -178,7 +178,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = Permeability.FromHenriesPerMeter(1).ToBaseUnit();
-            Assert.Equal(Permeability.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(Permeability.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

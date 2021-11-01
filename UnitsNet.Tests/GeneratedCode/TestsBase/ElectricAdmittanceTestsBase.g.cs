@@ -174,7 +174,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new ElectricAdmittance(value: 1, unit: ElectricAdmittance.BaseUnit);
+            var quantity = new ElectricAdmittance(value: 1, unit: ElectricAdmittance.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -214,7 +214,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = ElectricAdmittance.FromSiemens(1).ToBaseUnit();
-            Assert.Equal(ElectricAdmittance.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(ElectricAdmittance.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

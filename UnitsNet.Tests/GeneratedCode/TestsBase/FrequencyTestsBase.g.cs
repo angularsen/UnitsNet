@@ -230,7 +230,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Frequency(value: 1, unit: Frequency.BaseUnit);
+            var quantity = new Frequency(value: 1, unit: Frequency.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -298,7 +298,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = Frequency.FromHertz(1).ToBaseUnit();
-            Assert.Equal(Frequency.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(Frequency.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static ForceChangeRateUnit BaseUnit { get; } = ForceChangeRateUnit.NewtonPerSecond;
+        public static ForceChangeRateUnit ConversionBaseUnit { get; } = ForceChangeRateUnit.NewtonPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static ForceChangeRate MaxValue { get; } = new ForceChangeRate(double.MaxValue, BaseUnit);
+        public static ForceChangeRate MaxValue { get; } = new ForceChangeRate(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static ForceChangeRate MinValue { get; } = new ForceChangeRate(double.MinValue, BaseUnit);
+        public static ForceChangeRate MinValue { get; } = new ForceChangeRate(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static ForceChangeRate Zero { get; } = new ForceChangeRate(0, BaseUnit);
+        public static ForceChangeRate Zero { get; } = new ForceChangeRate(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

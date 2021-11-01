@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static BrakeSpecificFuelConsumptionUnit BaseUnit { get; } = BrakeSpecificFuelConsumptionUnit.KilogramPerJoule;
+        public static BrakeSpecificFuelConsumptionUnit ConversionBaseUnit { get; } = BrakeSpecificFuelConsumptionUnit.KilogramPerJoule;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static BrakeSpecificFuelConsumption MaxValue { get; } = new BrakeSpecificFuelConsumption(double.MaxValue, BaseUnit);
+        public static BrakeSpecificFuelConsumption MaxValue { get; } = new BrakeSpecificFuelConsumption(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static BrakeSpecificFuelConsumption MinValue { get; } = new BrakeSpecificFuelConsumption(double.MinValue, BaseUnit);
+        public static BrakeSpecificFuelConsumption MinValue { get; } = new BrakeSpecificFuelConsumption(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static BrakeSpecificFuelConsumption Zero { get; } = new BrakeSpecificFuelConsumption(0, BaseUnit);
+        public static BrakeSpecificFuelConsumption Zero { get; } = new BrakeSpecificFuelConsumption(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

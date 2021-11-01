@@ -61,7 +61,7 @@ namespace UnitsNet
                     new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelUnloaded, "DecibelsUnloaded", BaseUnits.Undefined),
                     new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelVolt, "DecibelVolts", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.AmplitudeRatio);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.AmplitudeRatio);
         }
 
         /// <summary>
@@ -111,19 +111,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of AmplitudeRatio, which is DecibelVolt. All conversions go via this value.
         /// </summary>
-        public static AmplitudeRatioUnit BaseUnit { get; } = AmplitudeRatioUnit.DecibelVolt;
+        public static AmplitudeRatioUnit ConversionBaseUnit { get; } = AmplitudeRatioUnit.DecibelVolt;
 
         /// <summary>
         /// Represents the largest possible value of AmplitudeRatio
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static AmplitudeRatio MaxValue { get; } = new AmplitudeRatio(double.MaxValue, BaseUnit);
+        public static AmplitudeRatio MaxValue { get; } = new AmplitudeRatio(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of AmplitudeRatio
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static AmplitudeRatio MinValue { get; } = new AmplitudeRatio(double.MinValue, BaseUnit);
+        public static AmplitudeRatio MinValue { get; } = new AmplitudeRatio(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -139,7 +139,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DecibelVolt.
         /// </summary>
-        public static AmplitudeRatio Zero { get; } = new AmplitudeRatio(0, BaseUnit);
+        public static AmplitudeRatio Zero { get; } = new AmplitudeRatio(0, ConversionBaseUnit);
 
         #endregion
 
@@ -153,7 +153,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public AmplitudeRatioUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public AmplitudeRatioUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<AmplitudeRatioUnit> QuantityInfo => Info;
@@ -714,7 +714,7 @@ namespace UnitsNet
         internal AmplitudeRatio ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new AmplitudeRatio(baseUnitValue, BaseUnit);
+            return new AmplitudeRatio(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(AmplitudeRatioUnit unit)

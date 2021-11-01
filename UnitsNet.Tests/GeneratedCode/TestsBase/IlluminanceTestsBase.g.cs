@@ -174,7 +174,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Illuminance(value: 1, unit: Illuminance.BaseUnit);
+            var quantity = new Illuminance(value: 1, unit: Illuminance.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -214,7 +214,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = Illuminance.FromLux(1).ToBaseUnit();
-            Assert.Equal(Illuminance.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(Illuminance.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

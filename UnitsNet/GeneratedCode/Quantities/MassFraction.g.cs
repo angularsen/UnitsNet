@@ -84,7 +84,7 @@ namespace UnitsNet
                     new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerTrillion, "PartsPerTrillion", BaseUnits.Undefined),
                     new UnitInfo<MassFractionUnit>(MassFractionUnit.Percent, "Percent", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.MassFraction);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.MassFraction);
         }
 
         /// <summary>
@@ -134,19 +134,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of MassFraction, which is DecimalFraction. All conversions go via this value.
         /// </summary>
-        public static MassFractionUnit BaseUnit { get; } = MassFractionUnit.DecimalFraction;
+        public static MassFractionUnit ConversionBaseUnit { get; } = MassFractionUnit.DecimalFraction;
 
         /// <summary>
         /// Represents the largest possible value of MassFraction
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static MassFraction MaxValue { get; } = new MassFraction(double.MaxValue, BaseUnit);
+        public static MassFraction MaxValue { get; } = new MassFraction(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of MassFraction
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static MassFraction MinValue { get; } = new MassFraction(double.MinValue, BaseUnit);
+        public static MassFraction MinValue { get; } = new MassFraction(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -162,7 +162,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DecimalFraction.
         /// </summary>
-        public static MassFraction Zero { get; } = new MassFraction(0, BaseUnit);
+        public static MassFraction Zero { get; } = new MassFraction(0, ConversionBaseUnit);
 
         #endregion
 
@@ -176,7 +176,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public MassFractionUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public MassFractionUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<MassFractionUnit> QuantityInfo => Info;
@@ -1029,7 +1029,7 @@ namespace UnitsNet
         internal MassFraction ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new MassFraction(baseUnitValue, BaseUnit);
+            return new MassFraction(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(MassFractionUnit unit)

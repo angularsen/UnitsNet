@@ -58,7 +58,7 @@ namespace UnitsNet
                 new UnitInfo<VitaminAUnit>[] {
                     new UnitInfo<VitaminAUnit>(VitaminAUnit.InternationalUnit, "InternationalUnits", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.VitaminA);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.VitaminA);
         }
 
         /// <summary>
@@ -108,19 +108,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of VitaminA, which is InternationalUnit. All conversions go via this value.
         /// </summary>
-        public static VitaminAUnit BaseUnit { get; } = VitaminAUnit.InternationalUnit;
+        public static VitaminAUnit ConversionBaseUnit { get; } = VitaminAUnit.InternationalUnit;
 
         /// <summary>
         /// Represents the largest possible value of VitaminA
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static VitaminA MaxValue { get; } = new VitaminA(double.MaxValue, BaseUnit);
+        public static VitaminA MaxValue { get; } = new VitaminA(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of VitaminA
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static VitaminA MinValue { get; } = new VitaminA(double.MinValue, BaseUnit);
+        public static VitaminA MinValue { get; } = new VitaminA(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -136,7 +136,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit InternationalUnit.
         /// </summary>
-        public static VitaminA Zero { get; } = new VitaminA(0, BaseUnit);
+        public static VitaminA Zero { get; } = new VitaminA(0, ConversionBaseUnit);
 
         #endregion
 
@@ -150,7 +150,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public VitaminAUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public VitaminAUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<VitaminAUnit> QuantityInfo => Info;
@@ -658,7 +658,7 @@ namespace UnitsNet
         internal VitaminA ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new VitaminA(baseUnitValue, BaseUnit);
+            return new VitaminA(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(VitaminAUnit unit)

@@ -62,7 +62,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.MillivoltDc, "MillivoltsDc", BaseUnits.Undefined),
                     new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.VoltDc, "VoltsDc", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricPotentialDc);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.ElectricPotentialDc);
         }
 
         /// <summary>
@@ -112,19 +112,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricPotentialDc, which is VoltDc. All conversions go via this value.
         /// </summary>
-        public static ElectricPotentialDcUnit BaseUnit { get; } = ElectricPotentialDcUnit.VoltDc;
+        public static ElectricPotentialDcUnit ConversionBaseUnit { get; } = ElectricPotentialDcUnit.VoltDc;
 
         /// <summary>
         /// Represents the largest possible value of ElectricPotentialDc
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricPotentialDc MaxValue { get; } = new ElectricPotentialDc(double.MaxValue, BaseUnit);
+        public static ElectricPotentialDc MaxValue { get; } = new ElectricPotentialDc(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricPotentialDc
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricPotentialDc MinValue { get; } = new ElectricPotentialDc(double.MinValue, BaseUnit);
+        public static ElectricPotentialDc MinValue { get; } = new ElectricPotentialDc(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -140,7 +140,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit VoltDc.
         /// </summary>
-        public static ElectricPotentialDc Zero { get; } = new ElectricPotentialDc(0, BaseUnit);
+        public static ElectricPotentialDc Zero { get; } = new ElectricPotentialDc(0, ConversionBaseUnit);
 
         #endregion
 
@@ -154,7 +154,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public ElectricPotentialDcUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public ElectricPotentialDcUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<ElectricPotentialDcUnit> QuantityInfo => Info;
@@ -722,7 +722,7 @@ namespace UnitsNet
         internal ElectricPotentialDc ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new ElectricPotentialDc(baseUnitValue, BaseUnit);
+            return new ElectricPotentialDc(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(ElectricPotentialDcUnit unit)

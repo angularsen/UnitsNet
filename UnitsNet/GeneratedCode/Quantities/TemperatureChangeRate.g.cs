@@ -67,7 +67,7 @@ namespace UnitsNet
                     new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, "MillidegreesCelsiusPerSecond", BaseUnits.Undefined),
                     new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, "NanodegreesCelsiusPerSecond", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.TemperatureChangeRate);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.TemperatureChangeRate);
         }
 
         /// <summary>
@@ -117,19 +117,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of TemperatureChangeRate, which is DegreeCelsiusPerSecond. All conversions go via this value.
         /// </summary>
-        public static TemperatureChangeRateUnit BaseUnit { get; } = TemperatureChangeRateUnit.DegreeCelsiusPerSecond;
+        public static TemperatureChangeRateUnit ConversionBaseUnit { get; } = TemperatureChangeRateUnit.DegreeCelsiusPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of TemperatureChangeRate
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static TemperatureChangeRate MaxValue { get; } = new TemperatureChangeRate(double.MaxValue, BaseUnit);
+        public static TemperatureChangeRate MaxValue { get; } = new TemperatureChangeRate(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of TemperatureChangeRate
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static TemperatureChangeRate MinValue { get; } = new TemperatureChangeRate(double.MinValue, BaseUnit);
+        public static TemperatureChangeRate MinValue { get; } = new TemperatureChangeRate(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -145,7 +145,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DegreeCelsiusPerSecond.
         /// </summary>
-        public static TemperatureChangeRate Zero { get; } = new TemperatureChangeRate(0, BaseUnit);
+        public static TemperatureChangeRate Zero { get; } = new TemperatureChangeRate(0, ConversionBaseUnit);
 
         #endregion
 
@@ -159,7 +159,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public TemperatureChangeRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public TemperatureChangeRateUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<TemperatureChangeRateUnit> QuantityInfo => Info;
@@ -802,7 +802,7 @@ namespace UnitsNet
         internal TemperatureChangeRate ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new TemperatureChangeRate(baseUnitValue, BaseUnit);
+            return new TemperatureChangeRate(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(TemperatureChangeRateUnit unit)

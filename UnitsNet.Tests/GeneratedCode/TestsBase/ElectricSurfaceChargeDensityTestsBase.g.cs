@@ -166,7 +166,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new ElectricSurfaceChargeDensity(value: 1, unit: ElectricSurfaceChargeDensity.BaseUnit);
+            var quantity = new ElectricSurfaceChargeDensity(value: 1, unit: ElectricSurfaceChargeDensity.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -202,7 +202,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(1).ToBaseUnit();
-            Assert.Equal(ElectricSurfaceChargeDensity.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(ElectricSurfaceChargeDensity.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

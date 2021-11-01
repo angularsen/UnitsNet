@@ -79,7 +79,7 @@ namespace UnitsNet
                     new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceMeter, "TonneForceMeters", BaseUnits.Undefined),
                     new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceMillimeter, "TonneForceMillimeters", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Torque);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Torque);
         }
 
         /// <summary>
@@ -129,19 +129,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Torque, which is NewtonMeter. All conversions go via this value.
         /// </summary>
-        public static TorqueUnit BaseUnit { get; } = TorqueUnit.NewtonMeter;
+        public static TorqueUnit ConversionBaseUnit { get; } = TorqueUnit.NewtonMeter;
 
         /// <summary>
         /// Represents the largest possible value of Torque
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Torque MaxValue { get; } = new Torque(double.MaxValue, BaseUnit);
+        public static Torque MaxValue { get; } = new Torque(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Torque
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Torque MinValue { get; } = new Torque(double.MinValue, BaseUnit);
+        public static Torque MinValue { get; } = new Torque(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -157,7 +157,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonMeter.
         /// </summary>
-        public static Torque Zero { get; } = new Torque(0, BaseUnit);
+        public static Torque Zero { get; } = new Torque(0, ConversionBaseUnit);
 
         #endregion
 
@@ -171,7 +171,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public TorqueUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public TorqueUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<TorqueUnit> QuantityInfo => Info;
@@ -994,7 +994,7 @@ namespace UnitsNet
         internal Torque ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Torque(baseUnitValue, BaseUnit);
+            return new Torque(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(TorqueUnit unit)

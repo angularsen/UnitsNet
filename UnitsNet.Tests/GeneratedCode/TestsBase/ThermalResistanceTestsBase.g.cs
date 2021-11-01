@@ -182,7 +182,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new ThermalResistance(value: 1, unit: ThermalResistance.BaseUnit);
+            var quantity = new ThermalResistance(value: 1, unit: ThermalResistance.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -226,7 +226,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1).ToBaseUnit();
-            Assert.Equal(ThermalResistance.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(ThermalResistance.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

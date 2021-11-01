@@ -95,7 +95,7 @@ namespace UnitsNet
                     new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.TonneForcePerMeter, "TonnesForcePerMeter", BaseUnits.Undefined),
                     new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.TonneForcePerMillimeter, "TonnesForcePerMillimeter", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ForcePerLength);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.ForcePerLength);
         }
 
         /// <summary>
@@ -145,19 +145,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ForcePerLength, which is NewtonPerMeter. All conversions go via this value.
         /// </summary>
-        public static ForcePerLengthUnit BaseUnit { get; } = ForcePerLengthUnit.NewtonPerMeter;
+        public static ForcePerLengthUnit ConversionBaseUnit { get; } = ForcePerLengthUnit.NewtonPerMeter;
 
         /// <summary>
         /// Represents the largest possible value of ForcePerLength
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ForcePerLength MaxValue { get; } = new ForcePerLength(double.MaxValue, BaseUnit);
+        public static ForcePerLength MaxValue { get; } = new ForcePerLength(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ForcePerLength
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ForcePerLength MinValue { get; } = new ForcePerLength(double.MinValue, BaseUnit);
+        public static ForcePerLength MinValue { get; } = new ForcePerLength(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -173,7 +173,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonPerMeter.
         /// </summary>
-        public static ForcePerLength Zero { get; } = new ForcePerLength(0, BaseUnit);
+        public static ForcePerLength Zero { get; } = new ForcePerLength(0, ConversionBaseUnit);
 
         #endregion
 
@@ -187,7 +187,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public ForcePerLengthUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public ForcePerLengthUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<ForcePerLengthUnit> QuantityInfo => Info;
@@ -1250,7 +1250,7 @@ namespace UnitsNet
         internal ForcePerLength ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new ForcePerLength(baseUnitValue, BaseUnit);
+            return new ForcePerLength(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(ForcePerLengthUnit unit)

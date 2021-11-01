@@ -270,7 +270,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Angle(value: 1, unit: Angle.BaseUnit);
+            var quantity = new Angle(value: 1, unit: Angle.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -358,7 +358,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = Angle.FromDegrees(1).ToBaseUnit();
-            Assert.Equal(Angle.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(Angle.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

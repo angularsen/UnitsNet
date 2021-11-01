@@ -174,7 +174,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new RotationalAcceleration(value: 1, unit: RotationalAcceleration.BaseUnit);
+            var quantity = new RotationalAcceleration(value: 1, unit: RotationalAcceleration.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -214,7 +214,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = RotationalAcceleration.FromRadiansPerSecondSquared(1).ToBaseUnit();
-            Assert.Equal(RotationalAcceleration.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(RotationalAcceleration.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

@@ -63,7 +63,7 @@ namespace UnitsNet
                     new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.MeterToTheFourth, "MetersToTheFourth", new BaseUnits(length: LengthUnit.Meter)),
                     new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.MillimeterToTheFourth, "MillimetersToTheFourth", new BaseUnits(length: LengthUnit.Millimeter)),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.AreaMomentOfInertia);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.AreaMomentOfInertia);
         }
 
         /// <summary>
@@ -113,19 +113,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of AreaMomentOfInertia, which is MeterToTheFourth. All conversions go via this value.
         /// </summary>
-        public static AreaMomentOfInertiaUnit BaseUnit { get; } = AreaMomentOfInertiaUnit.MeterToTheFourth;
+        public static AreaMomentOfInertiaUnit ConversionBaseUnit { get; } = AreaMomentOfInertiaUnit.MeterToTheFourth;
 
         /// <summary>
         /// Represents the largest possible value of AreaMomentOfInertia
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static AreaMomentOfInertia MaxValue { get; } = new AreaMomentOfInertia(double.MaxValue, BaseUnit);
+        public static AreaMomentOfInertia MaxValue { get; } = new AreaMomentOfInertia(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of AreaMomentOfInertia
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static AreaMomentOfInertia MinValue { get; } = new AreaMomentOfInertia(double.MinValue, BaseUnit);
+        public static AreaMomentOfInertia MinValue { get; } = new AreaMomentOfInertia(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -141,7 +141,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit MeterToTheFourth.
         /// </summary>
-        public static AreaMomentOfInertia Zero { get; } = new AreaMomentOfInertia(0, BaseUnit);
+        public static AreaMomentOfInertia Zero { get; } = new AreaMomentOfInertia(0, ConversionBaseUnit);
 
         #endregion
 
@@ -155,7 +155,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public AreaMomentOfInertiaUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public AreaMomentOfInertiaUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<AreaMomentOfInertiaUnit> QuantityInfo => Info;
@@ -738,7 +738,7 @@ namespace UnitsNet
         internal AreaMomentOfInertia ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new AreaMomentOfInertia(baseUnitValue, BaseUnit);
+            return new AreaMomentOfInertia(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(AreaMomentOfInertiaUnit unit)

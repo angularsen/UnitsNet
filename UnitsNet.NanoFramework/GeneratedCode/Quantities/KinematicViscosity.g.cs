@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static KinematicViscosityUnit BaseUnit { get; } = KinematicViscosityUnit.SquareMeterPerSecond;
+        public static KinematicViscosityUnit ConversionBaseUnit { get; } = KinematicViscosityUnit.SquareMeterPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static KinematicViscosity MaxValue { get; } = new KinematicViscosity(double.MaxValue, BaseUnit);
+        public static KinematicViscosity MaxValue { get; } = new KinematicViscosity(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static KinematicViscosity MinValue { get; } = new KinematicViscosity(double.MinValue, BaseUnit);
+        public static KinematicViscosity MinValue { get; } = new KinematicViscosity(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static KinematicViscosity Zero { get; } = new KinematicViscosity(0, BaseUnit);
+        public static KinematicViscosity Zero { get; } = new KinematicViscosity(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

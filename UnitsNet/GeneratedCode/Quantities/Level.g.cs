@@ -59,7 +59,7 @@ namespace UnitsNet
                     new UnitInfo<LevelUnit>(LevelUnit.Decibel, "Decibels", BaseUnits.Undefined),
                     new UnitInfo<LevelUnit>(LevelUnit.Neper, "Nepers", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Level);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Level);
         }
 
         /// <summary>
@@ -109,19 +109,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Level, which is Decibel. All conversions go via this value.
         /// </summary>
-        public static LevelUnit BaseUnit { get; } = LevelUnit.Decibel;
+        public static LevelUnit ConversionBaseUnit { get; } = LevelUnit.Decibel;
 
         /// <summary>
         /// Represents the largest possible value of Level
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Level MaxValue { get; } = new Level(double.MaxValue, BaseUnit);
+        public static Level MaxValue { get; } = new Level(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Level
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Level MinValue { get; } = new Level(double.MinValue, BaseUnit);
+        public static Level MinValue { get; } = new Level(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -137,7 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Decibel.
         /// </summary>
-        public static Level Zero { get; } = new Level(0, BaseUnit);
+        public static Level Zero { get; } = new Level(0, ConversionBaseUnit);
 
         #endregion
 
@@ -151,7 +151,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public LevelUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public LevelUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<LevelUnit> QuantityInfo => Info;
@@ -682,7 +682,7 @@ namespace UnitsNet
         internal Level ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Level(baseUnitValue, BaseUnit);
+            return new Level(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(LevelUnit unit)

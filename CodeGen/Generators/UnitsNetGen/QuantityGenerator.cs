@@ -21,8 +21,8 @@ namespace CodeGen.Generators.UnitsNetGen
         {
             _quantity = quantity ?? throw new ArgumentNullException(nameof(quantity));
 
-            _baseUnit = quantity.Units.FirstOrDefault(u => u.SingularName == _quantity.BaseUnit) ??
-                        throw new ArgumentException($"No unit found with SingularName equal to BaseUnit [{_quantity.BaseUnit}]. This unit must be defined.",
+            _baseUnit = quantity.Units.FirstOrDefault(u => u.SingularName == _quantity.ConversionBaseUnit) ??
+                        throw new ArgumentException($"No unit found with SingularName equal to ConversionBaseUnit [{_quantity.ConversionBaseUnit}]. This unit must be defined.",
                             nameof(quantity));
 
             _valueType = quantity.ValueType;
@@ -160,7 +160,7 @@ namespace UnitsNet
 
             Writer.WL($@"
                 }},
-                BaseUnit, Zero, BaseDimensions, QuantityType.{_quantity.Name});
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.{_quantity.Name});
         }}
 ");
         }
@@ -230,21 +230,21 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions {{ get; }}
 
         /// <summary>
-        ///     The base unit of {_quantity.Name}, which is {_quantity.BaseUnit}. All conversions go via this value.
+        ///     The base unit of {_quantity.Name}, which is {_quantity.ConversionBaseUnit}. All conversions go via this value.
         /// </summary>
-        public static {_unitEnumName} BaseUnit {{ get; }} = {_unitEnumName}.{_quantity.BaseUnit};
+        public static {_unitEnumName} ConversionBaseUnit {{ get; }} = {_unitEnumName}.{_quantity.ConversionBaseUnit};
 
         /// <summary>
         /// Represents the largest possible value of {_quantity.Name}
         /// </summary>
         [Obsolete(""MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848."")]
-        public static {_quantity.Name} MaxValue {{ get; }} = new {_quantity.Name}({_valueType}.MaxValue, BaseUnit);
+        public static {_quantity.Name} MaxValue {{ get; }} = new {_quantity.Name}({_valueType}.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of {_quantity.Name}
         /// </summary>
         [Obsolete(""MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848."")]
-        public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}({_valueType}.MinValue, BaseUnit);
+        public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}({_valueType}.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref=""QuantityType"" /> of this quantity.
@@ -258,9 +258,9 @@ namespace UnitsNet
         public static {_unitEnumName}[] Units {{ get; }} = Enum.GetValues(typeof({_unitEnumName})).Cast<{_unitEnumName}>().Except(new {_unitEnumName}[]{{ {_unitEnumName}.Undefined }}).ToArray();
 
         /// <summary>
-        ///     Gets an instance of this quantity with a value of 0 in the base unit {_quantity.BaseUnit}.
+        ///     Gets an instance of this quantity with a value of 0 in the base unit {_quantity.ConversionBaseUnit}.
         /// </summary>
-        public static {_quantity.Name} Zero {{ get; }} = new {_quantity.Name}(0, BaseUnit);
+        public static {_quantity.Name} Zero {{ get; }} = new {_quantity.Name}(0, ConversionBaseUnit);
 
         #endregion
 ");
@@ -292,7 +292,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public {_unitEnumName} Unit => _unit.GetValueOrDefault(BaseUnit);
+        public {_unitEnumName} Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<{_unitEnumName}> QuantityInfo => Info;
@@ -933,7 +933,7 @@ namespace UnitsNet
         internal {_quantity.Name} ToBaseUnit()
         {{
             var baseUnitValue = GetValueInBaseUnit();
-            return new {_quantity.Name}(baseUnitValue, BaseUnit);
+            return new {_quantity.Name}(baseUnitValue, ConversionBaseUnit);
         }}
 
         private {_valueType} GetValueAs({_unitEnumName} unit)

@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static IrradiationUnit BaseUnit { get; } = IrradiationUnit.JoulePerSquareMeter;
+        public static IrradiationUnit ConversionBaseUnit { get; } = IrradiationUnit.JoulePerSquareMeter;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static Irradiation MaxValue { get; } = new Irradiation(double.MaxValue, BaseUnit);
+        public static Irradiation MaxValue { get; } = new Irradiation(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static Irradiation MinValue { get; } = new Irradiation(double.MinValue, BaseUnit);
+        public static Irradiation MinValue { get; } = new Irradiation(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static Irradiation Zero { get; } = new Irradiation(0, BaseUnit);
+        public static Irradiation Zero { get; } = new Irradiation(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

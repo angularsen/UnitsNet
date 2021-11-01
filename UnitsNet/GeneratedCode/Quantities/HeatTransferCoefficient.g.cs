@@ -60,7 +60,7 @@ namespace UnitsNet
                     new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, "WattsPerSquareMeterCelsius", BaseUnits.Undefined),
                     new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, "WattsPerSquareMeterKelvin", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.HeatTransferCoefficient);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.HeatTransferCoefficient);
         }
 
         /// <summary>
@@ -110,19 +110,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of HeatTransferCoefficient, which is WattPerSquareMeterKelvin. All conversions go via this value.
         /// </summary>
-        public static HeatTransferCoefficientUnit BaseUnit { get; } = HeatTransferCoefficientUnit.WattPerSquareMeterKelvin;
+        public static HeatTransferCoefficientUnit ConversionBaseUnit { get; } = HeatTransferCoefficientUnit.WattPerSquareMeterKelvin;
 
         /// <summary>
         /// Represents the largest possible value of HeatTransferCoefficient
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static HeatTransferCoefficient MaxValue { get; } = new HeatTransferCoefficient(double.MaxValue, BaseUnit);
+        public static HeatTransferCoefficient MaxValue { get; } = new HeatTransferCoefficient(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of HeatTransferCoefficient
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static HeatTransferCoefficient MinValue { get; } = new HeatTransferCoefficient(double.MinValue, BaseUnit);
+        public static HeatTransferCoefficient MinValue { get; } = new HeatTransferCoefficient(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -138,7 +138,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit WattPerSquareMeterKelvin.
         /// </summary>
-        public static HeatTransferCoefficient Zero { get; } = new HeatTransferCoefficient(0, BaseUnit);
+        public static HeatTransferCoefficient Zero { get; } = new HeatTransferCoefficient(0, ConversionBaseUnit);
 
         #endregion
 
@@ -152,7 +152,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public HeatTransferCoefficientUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public HeatTransferCoefficientUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<HeatTransferCoefficientUnit> QuantityInfo => Info;
@@ -690,7 +690,7 @@ namespace UnitsNet
         internal HeatTransferCoefficient ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new HeatTransferCoefficient(baseUnitValue, BaseUnit);
+            return new HeatTransferCoefficient(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(HeatTransferCoefficientUnit unit)

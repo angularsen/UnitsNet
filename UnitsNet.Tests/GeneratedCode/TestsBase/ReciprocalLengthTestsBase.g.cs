@@ -222,7 +222,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new ReciprocalLength(value: 1, unit: ReciprocalLength.BaseUnit);
+            var quantity = new ReciprocalLength(value: 1, unit: ReciprocalLength.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -286,7 +286,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = ReciprocalLength.FromInverseMeters(1).ToBaseUnit();
-            Assert.Equal(ReciprocalLength.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(ReciprocalLength.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

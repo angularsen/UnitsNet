@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static SpeedUnit BaseUnit { get; } = SpeedUnit.MeterPerSecond;
+        public static SpeedUnit ConversionBaseUnit { get; } = SpeedUnit.MeterPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static Speed MaxValue { get; } = new Speed(double.MaxValue, BaseUnit);
+        public static Speed MaxValue { get; } = new Speed(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static Speed MinValue { get; } = new Speed(double.MinValue, BaseUnit);
+        public static Speed MinValue { get; } = new Speed(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static Speed Zero { get; } = new Speed(0, BaseUnit);
+        public static Speed Zero { get; } = new Speed(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

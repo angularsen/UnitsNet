@@ -58,7 +58,7 @@ namespace UnitsNet
                 new UnitInfo<LapseRateUnit>[] {
                     new UnitInfo<LapseRateUnit>(LapseRateUnit.DegreeCelsiusPerKilometer, "DegreesCelciusPerKilometer", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.LapseRate);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.LapseRate);
         }
 
         /// <summary>
@@ -108,19 +108,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of LapseRate, which is DegreeCelsiusPerKilometer. All conversions go via this value.
         /// </summary>
-        public static LapseRateUnit BaseUnit { get; } = LapseRateUnit.DegreeCelsiusPerKilometer;
+        public static LapseRateUnit ConversionBaseUnit { get; } = LapseRateUnit.DegreeCelsiusPerKilometer;
 
         /// <summary>
         /// Represents the largest possible value of LapseRate
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static LapseRate MaxValue { get; } = new LapseRate(double.MaxValue, BaseUnit);
+        public static LapseRate MaxValue { get; } = new LapseRate(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of LapseRate
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static LapseRate MinValue { get; } = new LapseRate(double.MinValue, BaseUnit);
+        public static LapseRate MinValue { get; } = new LapseRate(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -136,7 +136,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DegreeCelsiusPerKilometer.
         /// </summary>
-        public static LapseRate Zero { get; } = new LapseRate(0, BaseUnit);
+        public static LapseRate Zero { get; } = new LapseRate(0, ConversionBaseUnit);
 
         #endregion
 
@@ -150,7 +150,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public LapseRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public LapseRateUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<LapseRateUnit> QuantityInfo => Info;
@@ -658,7 +658,7 @@ namespace UnitsNet
         internal LapseRate ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new LapseRate(baseUnitValue, BaseUnit);
+            return new LapseRate(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(LapseRateUnit unit)

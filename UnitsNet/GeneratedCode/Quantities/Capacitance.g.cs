@@ -67,7 +67,7 @@ namespace UnitsNet
                     new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Nanofarad, "Nanofarads", BaseUnits.Undefined),
                     new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Picofarad, "Picofarads", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Capacitance);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Capacitance);
         }
 
         /// <summary>
@@ -117,19 +117,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Capacitance, which is Farad. All conversions go via this value.
         /// </summary>
-        public static CapacitanceUnit BaseUnit { get; } = CapacitanceUnit.Farad;
+        public static CapacitanceUnit ConversionBaseUnit { get; } = CapacitanceUnit.Farad;
 
         /// <summary>
         /// Represents the largest possible value of Capacitance
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Capacitance MaxValue { get; } = new Capacitance(double.MaxValue, BaseUnit);
+        public static Capacitance MaxValue { get; } = new Capacitance(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Capacitance
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Capacitance MinValue { get; } = new Capacitance(double.MinValue, BaseUnit);
+        public static Capacitance MinValue { get; } = new Capacitance(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -145,7 +145,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Farad.
         /// </summary>
-        public static Capacitance Zero { get; } = new Capacitance(0, BaseUnit);
+        public static Capacitance Zero { get; } = new Capacitance(0, ConversionBaseUnit);
 
         #endregion
 
@@ -159,7 +159,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public CapacitanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public CapacitanceUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<CapacitanceUnit> QuantityInfo => Info;
@@ -757,7 +757,7 @@ namespace UnitsNet
         internal Capacitance ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Capacitance(baseUnitValue, BaseUnit);
+            return new Capacitance(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(CapacitanceUnit unit)

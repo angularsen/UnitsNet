@@ -150,7 +150,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new ElectricField(value: 1, unit: ElectricField.BaseUnit);
+            var quantity = new ElectricField(value: 1, unit: ElectricField.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -178,7 +178,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = ElectricField.FromVoltsPerMeter(1).ToBaseUnit();
-            Assert.Equal(ElectricField.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(ElectricField.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

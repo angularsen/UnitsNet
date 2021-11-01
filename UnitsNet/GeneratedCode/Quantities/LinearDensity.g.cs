@@ -74,7 +74,7 @@ namespace UnitsNet
                     new UnitInfo<LinearDensityUnit>(LinearDensityUnit.PoundPerFoot, "PoundsPerFoot", BaseUnits.Undefined),
                     new UnitInfo<LinearDensityUnit>(LinearDensityUnit.PoundPerInch, "PoundsPerInch", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.LinearDensity);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.LinearDensity);
         }
 
         /// <summary>
@@ -124,19 +124,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of LinearDensity, which is KilogramPerMeter. All conversions go via this value.
         /// </summary>
-        public static LinearDensityUnit BaseUnit { get; } = LinearDensityUnit.KilogramPerMeter;
+        public static LinearDensityUnit ConversionBaseUnit { get; } = LinearDensityUnit.KilogramPerMeter;
 
         /// <summary>
         /// Represents the largest possible value of LinearDensity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static LinearDensity MaxValue { get; } = new LinearDensity(double.MaxValue, BaseUnit);
+        public static LinearDensity MaxValue { get; } = new LinearDensity(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of LinearDensity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static LinearDensity MinValue { get; } = new LinearDensity(double.MinValue, BaseUnit);
+        public static LinearDensity MinValue { get; } = new LinearDensity(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -152,7 +152,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerMeter.
         /// </summary>
-        public static LinearDensity Zero { get; } = new LinearDensity(0, BaseUnit);
+        public static LinearDensity Zero { get; } = new LinearDensity(0, ConversionBaseUnit);
 
         #endregion
 
@@ -166,7 +166,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public LinearDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public LinearDensityUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<LinearDensityUnit> QuantityInfo => Info;
@@ -869,7 +869,7 @@ namespace UnitsNet
         internal LinearDensity ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new LinearDensity(baseUnitValue, BaseUnit);
+            return new LinearDensity(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(LinearDensityUnit unit)

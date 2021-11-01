@@ -150,7 +150,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new SolidAngle(value: 1, unit: SolidAngle.BaseUnit);
+            var quantity = new SolidAngle(value: 1, unit: SolidAngle.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -178,7 +178,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = SolidAngle.FromSteradians(1).ToBaseUnit();
-            Assert.Equal(SolidAngle.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(SolidAngle.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

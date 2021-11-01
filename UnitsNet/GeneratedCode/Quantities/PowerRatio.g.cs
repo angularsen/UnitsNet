@@ -59,7 +59,7 @@ namespace UnitsNet
                     new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelMilliwatt, "DecibelMilliwatts", BaseUnits.Undefined),
                     new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelWatt, "DecibelWatts", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.PowerRatio);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.PowerRatio);
         }
 
         /// <summary>
@@ -109,19 +109,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of PowerRatio, which is DecibelWatt. All conversions go via this value.
         /// </summary>
-        public static PowerRatioUnit BaseUnit { get; } = PowerRatioUnit.DecibelWatt;
+        public static PowerRatioUnit ConversionBaseUnit { get; } = PowerRatioUnit.DecibelWatt;
 
         /// <summary>
         /// Represents the largest possible value of PowerRatio
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static PowerRatio MaxValue { get; } = new PowerRatio(double.MaxValue, BaseUnit);
+        public static PowerRatio MaxValue { get; } = new PowerRatio(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of PowerRatio
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static PowerRatio MinValue { get; } = new PowerRatio(double.MinValue, BaseUnit);
+        public static PowerRatio MinValue { get; } = new PowerRatio(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -137,7 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DecibelWatt.
         /// </summary>
-        public static PowerRatio Zero { get; } = new PowerRatio(0, BaseUnit);
+        public static PowerRatio Zero { get; } = new PowerRatio(0, ConversionBaseUnit);
 
         #endregion
 
@@ -151,7 +151,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public PowerRatioUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public PowerRatioUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<PowerRatioUnit> QuantityInfo => Info;
@@ -682,7 +682,7 @@ namespace UnitsNet
         internal PowerRatio ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new PowerRatio(baseUnitValue, BaseUnit);
+            return new PowerRatio(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(PowerRatioUnit unit)

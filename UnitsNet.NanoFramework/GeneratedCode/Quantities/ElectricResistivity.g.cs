@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static ElectricResistivityUnit BaseUnit { get; } = ElectricResistivityUnit.OhmMeter;
+        public static ElectricResistivityUnit ConversionBaseUnit { get; } = ElectricResistivityUnit.OhmMeter;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static ElectricResistivity MaxValue { get; } = new ElectricResistivity(double.MaxValue, BaseUnit);
+        public static ElectricResistivity MaxValue { get; } = new ElectricResistivity(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static ElectricResistivity MinValue { get; } = new ElectricResistivity(double.MinValue, BaseUnit);
+        public static ElectricResistivity MinValue { get; } = new ElectricResistivity(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static ElectricResistivity Zero { get; } = new ElectricResistivity(0, BaseUnit);
+        public static ElectricResistivity Zero { get; } = new ElectricResistivity(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

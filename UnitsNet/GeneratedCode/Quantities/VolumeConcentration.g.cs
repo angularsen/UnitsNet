@@ -80,7 +80,7 @@ namespace UnitsNet
                     new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PicolitersPerLiter, "PicolitersPerLiter", BaseUnits.Undefined),
                     new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PicolitersPerMililiter, "PicolitersPerMililiter", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.VolumeConcentration);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.VolumeConcentration);
         }
 
         /// <summary>
@@ -130,19 +130,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of VolumeConcentration, which is DecimalFraction. All conversions go via this value.
         /// </summary>
-        public static VolumeConcentrationUnit BaseUnit { get; } = VolumeConcentrationUnit.DecimalFraction;
+        public static VolumeConcentrationUnit ConversionBaseUnit { get; } = VolumeConcentrationUnit.DecimalFraction;
 
         /// <summary>
         /// Represents the largest possible value of VolumeConcentration
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static VolumeConcentration MaxValue { get; } = new VolumeConcentration(double.MaxValue, BaseUnit);
+        public static VolumeConcentration MaxValue { get; } = new VolumeConcentration(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of VolumeConcentration
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static VolumeConcentration MinValue { get; } = new VolumeConcentration(double.MinValue, BaseUnit);
+        public static VolumeConcentration MinValue { get; } = new VolumeConcentration(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -158,7 +158,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DecimalFraction.
         /// </summary>
-        public static VolumeConcentration Zero { get; } = new VolumeConcentration(0, BaseUnit);
+        public static VolumeConcentration Zero { get; } = new VolumeConcentration(0, ConversionBaseUnit);
 
         #endregion
 
@@ -172,7 +172,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public VolumeConcentrationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public VolumeConcentrationUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<VolumeConcentrationUnit> QuantityInfo => Info;
@@ -965,7 +965,7 @@ namespace UnitsNet
         internal VolumeConcentration ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new VolumeConcentration(baseUnitValue, BaseUnit);
+            return new VolumeConcentration(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(VolumeConcentrationUnit unit)

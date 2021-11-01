@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static ApparentPowerUnit BaseUnit { get; } = ApparentPowerUnit.Voltampere;
+        public static ApparentPowerUnit ConversionBaseUnit { get; } = ApparentPowerUnit.Voltampere;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static ApparentPower MaxValue { get; } = new ApparentPower(double.MaxValue, BaseUnit);
+        public static ApparentPower MaxValue { get; } = new ApparentPower(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static ApparentPower MinValue { get; } = new ApparentPower(double.MinValue, BaseUnit);
+        public static ApparentPower MinValue { get; } = new ApparentPower(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static ApparentPower Zero { get; } = new ApparentPower(0, BaseUnit);
+        public static ApparentPower Zero { get; } = new ApparentPower(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

@@ -85,7 +85,7 @@ namespace UnitsNet
                     new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattDayPerTonne, "WattDaysPerTonne", BaseUnits.Undefined),
                     new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattHourPerKilogram, "WattHoursPerKilogram", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.SpecificEnergy);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.SpecificEnergy);
         }
 
         /// <summary>
@@ -135,19 +135,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of SpecificEnergy, which is JoulePerKilogram. All conversions go via this value.
         /// </summary>
-        public static SpecificEnergyUnit BaseUnit { get; } = SpecificEnergyUnit.JoulePerKilogram;
+        public static SpecificEnergyUnit ConversionBaseUnit { get; } = SpecificEnergyUnit.JoulePerKilogram;
 
         /// <summary>
         /// Represents the largest possible value of SpecificEnergy
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static SpecificEnergy MaxValue { get; } = new SpecificEnergy(double.MaxValue, BaseUnit);
+        public static SpecificEnergy MaxValue { get; } = new SpecificEnergy(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of SpecificEnergy
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static SpecificEnergy MinValue { get; } = new SpecificEnergy(double.MinValue, BaseUnit);
+        public static SpecificEnergy MinValue { get; } = new SpecificEnergy(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -163,7 +163,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit JoulePerKilogram.
         /// </summary>
-        public static SpecificEnergy Zero { get; } = new SpecificEnergy(0, BaseUnit);
+        public static SpecificEnergy Zero { get; } = new SpecificEnergy(0, ConversionBaseUnit);
 
         #endregion
 
@@ -177,7 +177,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public SpecificEnergyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public SpecificEnergyUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<SpecificEnergyUnit> QuantityInfo => Info;
@@ -1045,7 +1045,7 @@ namespace UnitsNet
         internal SpecificEnergy ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new SpecificEnergy(baseUnitValue, BaseUnit);
+            return new SpecificEnergy(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(SpecificEnergyUnit unit)

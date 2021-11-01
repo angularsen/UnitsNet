@@ -72,7 +72,7 @@ namespace UnitsNet
                     new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.NanopoundMole, "NanopoundMoles", BaseUnits.Undefined),
                     new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.PoundMole, "PoundMoles", new BaseUnits(amount: AmountOfSubstanceUnit.PoundMole)),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.AmountOfSubstance);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.AmountOfSubstance);
         }
 
         /// <summary>
@@ -122,19 +122,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of AmountOfSubstance, which is Mole. All conversions go via this value.
         /// </summary>
-        public static AmountOfSubstanceUnit BaseUnit { get; } = AmountOfSubstanceUnit.Mole;
+        public static AmountOfSubstanceUnit ConversionBaseUnit { get; } = AmountOfSubstanceUnit.Mole;
 
         /// <summary>
         /// Represents the largest possible value of AmountOfSubstance
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static AmountOfSubstance MaxValue { get; } = new AmountOfSubstance(double.MaxValue, BaseUnit);
+        public static AmountOfSubstance MaxValue { get; } = new AmountOfSubstance(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of AmountOfSubstance
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static AmountOfSubstance MinValue { get; } = new AmountOfSubstance(double.MinValue, BaseUnit);
+        public static AmountOfSubstance MinValue { get; } = new AmountOfSubstance(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -150,7 +150,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Mole.
         /// </summary>
-        public static AmountOfSubstance Zero { get; } = new AmountOfSubstance(0, BaseUnit);
+        public static AmountOfSubstance Zero { get; } = new AmountOfSubstance(0, ConversionBaseUnit);
 
         #endregion
 
@@ -164,7 +164,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public AmountOfSubstanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public AmountOfSubstanceUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<AmountOfSubstanceUnit> QuantityInfo => Info;
@@ -882,7 +882,7 @@ namespace UnitsNet
         internal AmountOfSubstance ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new AmountOfSubstance(baseUnitValue, BaseUnit);
+            return new AmountOfSubstance(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(AmountOfSubstanceUnit unit)

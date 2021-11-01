@@ -254,7 +254,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new LinearDensity(value: 1, unit: LinearDensity.BaseUnit);
+            var quantity = new LinearDensity(value: 1, unit: LinearDensity.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -334,7 +334,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = LinearDensity.FromKilogramsPerMeter(1).ToBaseUnit();
-            Assert.Equal(LinearDensity.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(LinearDensity.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

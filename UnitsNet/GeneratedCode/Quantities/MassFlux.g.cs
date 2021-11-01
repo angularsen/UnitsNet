@@ -69,7 +69,7 @@ namespace UnitsNet
                     new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareMeter, "KilogramsPerSecondPerSquareMeter", BaseUnits.Undefined),
                     new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, "KilogramsPerSecondPerSquareMillimeter", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.MassFlux);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.MassFlux);
         }
 
         /// <summary>
@@ -119,19 +119,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of MassFlux, which is KilogramPerSecondPerSquareMeter. All conversions go via this value.
         /// </summary>
-        public static MassFluxUnit BaseUnit { get; } = MassFluxUnit.KilogramPerSecondPerSquareMeter;
+        public static MassFluxUnit ConversionBaseUnit { get; } = MassFluxUnit.KilogramPerSecondPerSquareMeter;
 
         /// <summary>
         /// Represents the largest possible value of MassFlux
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static MassFlux MaxValue { get; } = new MassFlux(double.MaxValue, BaseUnit);
+        public static MassFlux MaxValue { get; } = new MassFlux(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of MassFlux
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static MassFlux MinValue { get; } = new MassFlux(double.MinValue, BaseUnit);
+        public static MassFlux MinValue { get; } = new MassFlux(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -147,7 +147,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerSecondPerSquareMeter.
         /// </summary>
-        public static MassFlux Zero { get; } = new MassFlux(0, BaseUnit);
+        public static MassFlux Zero { get; } = new MassFlux(0, ConversionBaseUnit);
 
         #endregion
 
@@ -161,7 +161,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public MassFluxUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public MassFluxUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<MassFluxUnit> QuantityInfo => Info;
@@ -834,7 +834,7 @@ namespace UnitsNet
         internal MassFlux ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new MassFlux(baseUnitValue, BaseUnit);
+            return new MassFlux(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(MassFluxUnit unit)

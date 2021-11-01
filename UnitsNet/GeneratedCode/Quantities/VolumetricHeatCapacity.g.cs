@@ -69,7 +69,7 @@ namespace UnitsNet
                     new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, "MegajoulesPerCubicMeterDegreeCelsius", BaseUnits.Undefined),
                     new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, "MegajoulesPerCubicMeterKelvin", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.VolumetricHeatCapacity);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.VolumetricHeatCapacity);
         }
 
         /// <summary>
@@ -119,19 +119,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of VolumetricHeatCapacity, which is JoulePerCubicMeterKelvin. All conversions go via this value.
         /// </summary>
-        public static VolumetricHeatCapacityUnit BaseUnit { get; } = VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin;
+        public static VolumetricHeatCapacityUnit ConversionBaseUnit { get; } = VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin;
 
         /// <summary>
         /// Represents the largest possible value of VolumetricHeatCapacity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static VolumetricHeatCapacity MaxValue { get; } = new VolumetricHeatCapacity(double.MaxValue, BaseUnit);
+        public static VolumetricHeatCapacity MaxValue { get; } = new VolumetricHeatCapacity(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of VolumetricHeatCapacity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static VolumetricHeatCapacity MinValue { get; } = new VolumetricHeatCapacity(double.MinValue, BaseUnit);
+        public static VolumetricHeatCapacity MinValue { get; } = new VolumetricHeatCapacity(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -147,7 +147,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit JoulePerCubicMeterKelvin.
         /// </summary>
-        public static VolumetricHeatCapacity Zero { get; } = new VolumetricHeatCapacity(0, BaseUnit);
+        public static VolumetricHeatCapacity Zero { get; } = new VolumetricHeatCapacity(0, ConversionBaseUnit);
 
         #endregion
 
@@ -161,7 +161,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public VolumetricHeatCapacityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public VolumetricHeatCapacityUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<VolumetricHeatCapacityUnit> QuantityInfo => Info;
@@ -789,7 +789,7 @@ namespace UnitsNet
         internal VolumetricHeatCapacity ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new VolumetricHeatCapacity(baseUnitValue, BaseUnit);
+            return new VolumetricHeatCapacity(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(VolumetricHeatCapacityUnit unit)

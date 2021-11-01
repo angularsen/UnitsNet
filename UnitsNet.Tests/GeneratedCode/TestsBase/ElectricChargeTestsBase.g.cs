@@ -182,7 +182,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new ElectricCharge(value: 1, unit: ElectricCharge.BaseUnit);
+            var quantity = new ElectricCharge(value: 1, unit: ElectricCharge.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -226,7 +226,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = ElectricCharge.FromCoulombs(1).ToBaseUnit();
-            Assert.Equal(ElectricCharge.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(ElectricCharge.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

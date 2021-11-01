@@ -66,7 +66,7 @@ namespace UnitsNet
                     new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Nanotesla, "Nanoteslas", BaseUnits.Undefined),
                     new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Tesla, "Teslas", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.MagneticField);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.MagneticField);
         }
 
         /// <summary>
@@ -116,19 +116,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of MagneticField, which is Tesla. All conversions go via this value.
         /// </summary>
-        public static MagneticFieldUnit BaseUnit { get; } = MagneticFieldUnit.Tesla;
+        public static MagneticFieldUnit ConversionBaseUnit { get; } = MagneticFieldUnit.Tesla;
 
         /// <summary>
         /// Represents the largest possible value of MagneticField
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static MagneticField MaxValue { get; } = new MagneticField(double.MaxValue, BaseUnit);
+        public static MagneticField MaxValue { get; } = new MagneticField(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of MagneticField
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static MagneticField MinValue { get; } = new MagneticField(double.MinValue, BaseUnit);
+        public static MagneticField MinValue { get; } = new MagneticField(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -144,7 +144,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Tesla.
         /// </summary>
-        public static MagneticField Zero { get; } = new MagneticField(0, BaseUnit);
+        public static MagneticField Zero { get; } = new MagneticField(0, ConversionBaseUnit);
 
         #endregion
 
@@ -158,7 +158,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public MagneticFieldUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public MagneticFieldUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<MagneticFieldUnit> QuantityInfo => Info;
@@ -741,7 +741,7 @@ namespace UnitsNet
         internal MagneticField ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new MagneticField(baseUnitValue, BaseUnit);
+            return new MagneticField(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(MagneticFieldUnit unit)

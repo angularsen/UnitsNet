@@ -1,6 +1,6 @@
 {
   "Name": "SpecificFuelConsumption",
-  "BaseUnit": "GramPerKiloNewtonSecond",
+  "ConversionBaseUnit": "GramPerKiloNewtonSecond",
   "XmlDoc": "SFC is the fuel efficiency of an engine design with respect to thrust output",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Thrust-specific_fuel_consumption",
   "Units": [
@@ -12,7 +12,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb/(lbf·h)" ]
+          "Abbreviations": [ "lb/(lbfï¿½h)" ]
         }
       ]
     },
@@ -24,7 +24,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kg/(kgf·h)" ]
+          "Abbreviations": [ "kg/(kgfï¿½h)" ]
         }
       ]
     },
@@ -37,8 +37,8 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "g/(kN·s)" ],
-          "AbbreviationsForPrefixes": { "Kilo": [ "kg/(kN·s)" ] }
+          "Abbreviations": [ "g/(kNï¿½s)" ],
+          "AbbreviationsForPrefixes": { "Kilo": [ "kg/(kNï¿½s)" ] }
         }
       ]
     }

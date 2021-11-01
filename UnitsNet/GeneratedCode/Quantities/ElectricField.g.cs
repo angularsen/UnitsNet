@@ -61,7 +61,7 @@ namespace UnitsNet
                 new UnitInfo<ElectricFieldUnit>[] {
                     new UnitInfo<ElectricFieldUnit>(ElectricFieldUnit.VoltPerMeter, "VoltsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricField);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.ElectricField);
         }
 
         /// <summary>
@@ -111,19 +111,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricField, which is VoltPerMeter. All conversions go via this value.
         /// </summary>
-        public static ElectricFieldUnit BaseUnit { get; } = ElectricFieldUnit.VoltPerMeter;
+        public static ElectricFieldUnit ConversionBaseUnit { get; } = ElectricFieldUnit.VoltPerMeter;
 
         /// <summary>
         /// Represents the largest possible value of ElectricField
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricField MaxValue { get; } = new ElectricField(double.MaxValue, BaseUnit);
+        public static ElectricField MaxValue { get; } = new ElectricField(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricField
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricField MinValue { get; } = new ElectricField(double.MinValue, BaseUnit);
+        public static ElectricField MinValue { get; } = new ElectricField(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -139,7 +139,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit VoltPerMeter.
         /// </summary>
-        public static ElectricField Zero { get; } = new ElectricField(0, BaseUnit);
+        public static ElectricField Zero { get; } = new ElectricField(0, ConversionBaseUnit);
 
         #endregion
 
@@ -153,7 +153,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public ElectricFieldUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public ElectricFieldUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<ElectricFieldUnit> QuantityInfo => Info;
@@ -661,7 +661,7 @@ namespace UnitsNet
         internal ElectricField ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new ElectricField(baseUnitValue, BaseUnit);
+            return new ElectricField(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(ElectricFieldUnit unit)

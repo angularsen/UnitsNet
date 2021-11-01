@@ -85,7 +85,7 @@ namespace UnitsNet
                     new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareMeter, "TonneSquareMeters", BaseUnits.Undefined),
                     new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareMilimeter, "TonneSquareMilimeters", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.MassMomentOfInertia);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.MassMomentOfInertia);
         }
 
         /// <summary>
@@ -135,19 +135,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of MassMomentOfInertia, which is KilogramSquareMeter. All conversions go via this value.
         /// </summary>
-        public static MassMomentOfInertiaUnit BaseUnit { get; } = MassMomentOfInertiaUnit.KilogramSquareMeter;
+        public static MassMomentOfInertiaUnit ConversionBaseUnit { get; } = MassMomentOfInertiaUnit.KilogramSquareMeter;
 
         /// <summary>
         /// Represents the largest possible value of MassMomentOfInertia
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static MassMomentOfInertia MaxValue { get; } = new MassMomentOfInertia(double.MaxValue, BaseUnit);
+        public static MassMomentOfInertia MaxValue { get; } = new MassMomentOfInertia(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of MassMomentOfInertia
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static MassMomentOfInertia MinValue { get; } = new MassMomentOfInertia(double.MinValue, BaseUnit);
+        public static MassMomentOfInertia MinValue { get; } = new MassMomentOfInertia(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -163,7 +163,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramSquareMeter.
         /// </summary>
-        public static MassMomentOfInertia Zero { get; } = new MassMomentOfInertia(0, BaseUnit);
+        public static MassMomentOfInertia Zero { get; } = new MassMomentOfInertia(0, ConversionBaseUnit);
 
         #endregion
 
@@ -177,7 +177,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public MassMomentOfInertiaUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public MassMomentOfInertiaUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<MassMomentOfInertiaUnit> QuantityInfo => Info;
@@ -1090,7 +1090,7 @@ namespace UnitsNet
         internal MassMomentOfInertia ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new MassMomentOfInertia(baseUnitValue, BaseUnit);
+            return new MassMomentOfInertia(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(MassMomentOfInertiaUnit unit)

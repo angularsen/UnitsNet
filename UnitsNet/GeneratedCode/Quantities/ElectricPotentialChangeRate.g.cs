@@ -77,7 +77,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.VoltPerMinute, "VoltsPerMinutes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Minute, current: ElectricCurrentUnit.Ampere)),
                     new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.VoltPerSecond, "VoltsPerSeconds", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricPotentialChangeRate);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.ElectricPotentialChangeRate);
         }
 
         /// <summary>
@@ -127,19 +127,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricPotentialChangeRate, which is VoltPerSecond. All conversions go via this value.
         /// </summary>
-        public static ElectricPotentialChangeRateUnit BaseUnit { get; } = ElectricPotentialChangeRateUnit.VoltPerSecond;
+        public static ElectricPotentialChangeRateUnit ConversionBaseUnit { get; } = ElectricPotentialChangeRateUnit.VoltPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of ElectricPotentialChangeRate
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricPotentialChangeRate MaxValue { get; } = new ElectricPotentialChangeRate(double.MaxValue, BaseUnit);
+        public static ElectricPotentialChangeRate MaxValue { get; } = new ElectricPotentialChangeRate(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricPotentialChangeRate
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricPotentialChangeRate MinValue { get; } = new ElectricPotentialChangeRate(double.MinValue, BaseUnit);
+        public static ElectricPotentialChangeRate MinValue { get; } = new ElectricPotentialChangeRate(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -155,7 +155,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit VoltPerSecond.
         /// </summary>
-        public static ElectricPotentialChangeRate Zero { get; } = new ElectricPotentialChangeRate(0, BaseUnit);
+        public static ElectricPotentialChangeRate Zero { get; } = new ElectricPotentialChangeRate(0, ConversionBaseUnit);
 
         #endregion
 
@@ -169,7 +169,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public ElectricPotentialChangeRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public ElectricPotentialChangeRateUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<ElectricPotentialChangeRateUnit> QuantityInfo => Info;
@@ -962,7 +962,7 @@ namespace UnitsNet
         internal ElectricPotentialChangeRate ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new ElectricPotentialChangeRate(baseUnitValue, BaseUnit);
+            return new ElectricPotentialChangeRate(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(ElectricPotentialChangeRateUnit unit)

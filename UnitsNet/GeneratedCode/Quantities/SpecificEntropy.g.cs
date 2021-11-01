@@ -66,7 +66,7 @@ namespace UnitsNet
                     new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, "MegajoulesPerKilogramDegreeCelsius", BaseUnits.Undefined),
                     new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.MegajoulePerKilogramKelvin, "MegajoulesPerKilogramKelvin", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.SpecificEntropy);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.SpecificEntropy);
         }
 
         /// <summary>
@@ -116,19 +116,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of SpecificEntropy, which is JoulePerKilogramKelvin. All conversions go via this value.
         /// </summary>
-        public static SpecificEntropyUnit BaseUnit { get; } = SpecificEntropyUnit.JoulePerKilogramKelvin;
+        public static SpecificEntropyUnit ConversionBaseUnit { get; } = SpecificEntropyUnit.JoulePerKilogramKelvin;
 
         /// <summary>
         /// Represents the largest possible value of SpecificEntropy
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static SpecificEntropy MaxValue { get; } = new SpecificEntropy(double.MaxValue, BaseUnit);
+        public static SpecificEntropy MaxValue { get; } = new SpecificEntropy(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of SpecificEntropy
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static SpecificEntropy MinValue { get; } = new SpecificEntropy(double.MinValue, BaseUnit);
+        public static SpecificEntropy MinValue { get; } = new SpecificEntropy(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -144,7 +144,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit JoulePerKilogramKelvin.
         /// </summary>
-        public static SpecificEntropy Zero { get; } = new SpecificEntropy(0, BaseUnit);
+        public static SpecificEntropy Zero { get; } = new SpecificEntropy(0, ConversionBaseUnit);
 
         #endregion
 
@@ -158,7 +158,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public SpecificEntropyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public SpecificEntropyUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<SpecificEntropyUnit> QuantityInfo => Info;
@@ -786,7 +786,7 @@ namespace UnitsNet
         internal SpecificEntropy ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new SpecificEntropy(baseUnitValue, BaseUnit);
+            return new SpecificEntropy(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(SpecificEntropyUnit unit)

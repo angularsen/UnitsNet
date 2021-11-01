@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static LengthUnit BaseUnit { get; } = LengthUnit.Meter;
+        public static LengthUnit ConversionBaseUnit { get; } = LengthUnit.Meter;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static Length MaxValue { get; } = new Length(double.MaxValue, BaseUnit);
+        public static Length MaxValue { get; } = new Length(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static Length MinValue { get; } = new Length(double.MinValue, BaseUnit);
+        public static Length MinValue { get; } = new Length(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static Length Zero { get; } = new Length(0, BaseUnit);
+        public static Length Zero { get; } = new Length(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

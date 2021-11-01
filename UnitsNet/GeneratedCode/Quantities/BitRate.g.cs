@@ -86,7 +86,7 @@ namespace UnitsNet
                     new UnitInfo<BitRateUnit>(BitRateUnit.TerabitPerSecond, "TerabitsPerSecond", BaseUnits.Undefined),
                     new UnitInfo<BitRateUnit>(BitRateUnit.TerabytePerSecond, "TerabytesPerSecond", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.BitRate);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.BitRate);
         }
 
         /// <summary>
@@ -136,19 +136,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of BitRate, which is BitPerSecond. All conversions go via this value.
         /// </summary>
-        public static BitRateUnit BaseUnit { get; } = BitRateUnit.BitPerSecond;
+        public static BitRateUnit ConversionBaseUnit { get; } = BitRateUnit.BitPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of BitRate
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static BitRate MaxValue { get; } = new BitRate(decimal.MaxValue, BaseUnit);
+        public static BitRate MaxValue { get; } = new BitRate(decimal.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of BitRate
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static BitRate MinValue { get; } = new BitRate(decimal.MinValue, BaseUnit);
+        public static BitRate MinValue { get; } = new BitRate(decimal.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -164,7 +164,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit BitPerSecond.
         /// </summary>
-        public static BitRate Zero { get; } = new BitRate(0, BaseUnit);
+        public static BitRate Zero { get; } = new BitRate(0, ConversionBaseUnit);
 
         #endregion
 
@@ -183,7 +183,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public BitRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public BitRateUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<BitRateUnit> QuantityInfo => Info;
@@ -1066,7 +1066,7 @@ namespace UnitsNet
         internal BitRate ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new BitRate(baseUnitValue, BaseUnit);
+            return new BitRate(baseUnitValue, ConversionBaseUnit);
         }
 
         private decimal GetValueAs(BitRateUnit unit)

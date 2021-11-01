@@ -166,7 +166,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new HeatTransferCoefficient(value: 1, unit: HeatTransferCoefficient.BaseUnit);
+            var quantity = new HeatTransferCoefficient(value: 1, unit: HeatTransferCoefficient.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -202,7 +202,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1).ToBaseUnit();
-            Assert.Equal(HeatTransferCoefficient.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(HeatTransferCoefficient.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

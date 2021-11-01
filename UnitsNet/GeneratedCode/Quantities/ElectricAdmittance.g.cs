@@ -61,7 +61,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Nanosiemens, "Nanosiemens", BaseUnits.Undefined),
                     new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Siemens, "Siemens", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricAdmittance);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.ElectricAdmittance);
         }
 
         /// <summary>
@@ -111,19 +111,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricAdmittance, which is Siemens. All conversions go via this value.
         /// </summary>
-        public static ElectricAdmittanceUnit BaseUnit { get; } = ElectricAdmittanceUnit.Siemens;
+        public static ElectricAdmittanceUnit ConversionBaseUnit { get; } = ElectricAdmittanceUnit.Siemens;
 
         /// <summary>
         /// Represents the largest possible value of ElectricAdmittance
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricAdmittance MaxValue { get; } = new ElectricAdmittance(double.MaxValue, BaseUnit);
+        public static ElectricAdmittance MaxValue { get; } = new ElectricAdmittance(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricAdmittance
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricAdmittance MinValue { get; } = new ElectricAdmittance(double.MinValue, BaseUnit);
+        public static ElectricAdmittance MinValue { get; } = new ElectricAdmittance(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -139,7 +139,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Siemens.
         /// </summary>
-        public static ElectricAdmittance Zero { get; } = new ElectricAdmittance(0, BaseUnit);
+        public static ElectricAdmittance Zero { get; } = new ElectricAdmittance(0, ConversionBaseUnit);
 
         #endregion
 
@@ -153,7 +153,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public ElectricAdmittanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public ElectricAdmittanceUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<ElectricAdmittanceUnit> QuantityInfo => Info;
@@ -706,7 +706,7 @@ namespace UnitsNet
         internal ElectricAdmittance ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new ElectricAdmittance(baseUnitValue, BaseUnit);
+            return new ElectricAdmittance(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(ElectricAdmittanceUnit unit)

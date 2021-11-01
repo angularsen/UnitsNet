@@ -214,7 +214,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new StandardVolumeFlow(value: 1, unit: StandardVolumeFlow.BaseUnit);
+            var quantity = new StandardVolumeFlow(value: 1, unit: StandardVolumeFlow.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -274,7 +274,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1).ToBaseUnit();
-            Assert.Equal(StandardVolumeFlow.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(StandardVolumeFlow.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

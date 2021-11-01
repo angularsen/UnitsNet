@@ -1,6 +1,6 @@
 {
   "Name": "TorquePerLength",
-  "BaseUnit": "NewtonMeterPerMeter",
+  "ConversionBaseUnit": "NewtonMeterPerMeter",
   "XmlDoc": "The magnitude of torque per unit length.",
   "BaseDimensions": {
     "L": 1,

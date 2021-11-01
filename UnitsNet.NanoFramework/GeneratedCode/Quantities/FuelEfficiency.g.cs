@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static FuelEfficiencyUnit BaseUnit { get; } = FuelEfficiencyUnit.LiterPer100Kilometers;
+        public static FuelEfficiencyUnit ConversionBaseUnit { get; } = FuelEfficiencyUnit.LiterPer100Kilometers;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static FuelEfficiency MaxValue { get; } = new FuelEfficiency(double.MaxValue, BaseUnit);
+        public static FuelEfficiency MaxValue { get; } = new FuelEfficiency(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static FuelEfficiency MinValue { get; } = new FuelEfficiency(double.MinValue, BaseUnit);
+        public static FuelEfficiency MinValue { get; } = new FuelEfficiency(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static FuelEfficiency Zero { get; } = new FuelEfficiency(0, BaseUnit);
+        public static FuelEfficiency Zero { get; } = new FuelEfficiency(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

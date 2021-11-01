@@ -59,7 +59,7 @@ namespace UnitsNet
                     new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.DecimalFractionPerSecond, "DecimalFractionsPerSecond", BaseUnits.Undefined),
                     new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.PercentPerSecond, "PercentsPerSecond", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.RatioChangeRate);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.RatioChangeRate);
         }
 
         /// <summary>
@@ -109,19 +109,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of RatioChangeRate, which is DecimalFractionPerSecond. All conversions go via this value.
         /// </summary>
-        public static RatioChangeRateUnit BaseUnit { get; } = RatioChangeRateUnit.DecimalFractionPerSecond;
+        public static RatioChangeRateUnit ConversionBaseUnit { get; } = RatioChangeRateUnit.DecimalFractionPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of RatioChangeRate
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static RatioChangeRate MaxValue { get; } = new RatioChangeRate(double.MaxValue, BaseUnit);
+        public static RatioChangeRate MaxValue { get; } = new RatioChangeRate(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of RatioChangeRate
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static RatioChangeRate MinValue { get; } = new RatioChangeRate(double.MinValue, BaseUnit);
+        public static RatioChangeRate MinValue { get; } = new RatioChangeRate(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -137,7 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DecimalFractionPerSecond.
         /// </summary>
-        public static RatioChangeRate Zero { get; } = new RatioChangeRate(0, BaseUnit);
+        public static RatioChangeRate Zero { get; } = new RatioChangeRate(0, ConversionBaseUnit);
 
         #endregion
 
@@ -151,7 +151,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public RatioChangeRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public RatioChangeRateUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<RatioChangeRateUnit> QuantityInfo => Info;
@@ -674,7 +674,7 @@ namespace UnitsNet
         internal RatioChangeRate ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new RatioChangeRate(baseUnitValue, BaseUnit);
+            return new RatioChangeRate(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(RatioChangeRateUnit unit)

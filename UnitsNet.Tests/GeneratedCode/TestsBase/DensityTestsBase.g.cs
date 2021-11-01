@@ -462,7 +462,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Density(value: 1, unit: Density.BaseUnit);
+            var quantity = new Density(value: 1, unit: Density.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -646,7 +646,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = Density.FromKilogramsPerCubicMeter(1).ToBaseUnit();
-            Assert.Equal(Density.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(Density.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

@@ -113,7 +113,7 @@ namespace UnitsNet
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerMinute, "UsGallonsPerMinute", BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerSecond, "UsGallonsPerSecond", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.VolumeFlow);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.VolumeFlow);
         }
 
         /// <summary>
@@ -163,19 +163,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of VolumeFlow, which is CubicMeterPerSecond. All conversions go via this value.
         /// </summary>
-        public static VolumeFlowUnit BaseUnit { get; } = VolumeFlowUnit.CubicMeterPerSecond;
+        public static VolumeFlowUnit ConversionBaseUnit { get; } = VolumeFlowUnit.CubicMeterPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of VolumeFlow
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static VolumeFlow MaxValue { get; } = new VolumeFlow(double.MaxValue, BaseUnit);
+        public static VolumeFlow MaxValue { get; } = new VolumeFlow(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of VolumeFlow
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static VolumeFlow MinValue { get; } = new VolumeFlow(double.MinValue, BaseUnit);
+        public static VolumeFlow MinValue { get; } = new VolumeFlow(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -191,7 +191,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit CubicMeterPerSecond.
         /// </summary>
-        public static VolumeFlow Zero { get; } = new VolumeFlow(0, BaseUnit);
+        public static VolumeFlow Zero { get; } = new VolumeFlow(0, ConversionBaseUnit);
 
         #endregion
 
@@ -205,7 +205,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public VolumeFlowUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public VolumeFlowUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<VolumeFlowUnit> QuantityInfo => Info;
@@ -1538,7 +1538,7 @@ namespace UnitsNet
         internal VolumeFlow ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new VolumeFlow(baseUnitValue, BaseUnit);
+            return new VolumeFlow(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(VolumeFlowUnit unit)

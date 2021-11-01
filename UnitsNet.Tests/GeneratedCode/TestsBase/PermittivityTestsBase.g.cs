@@ -150,7 +150,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Permittivity(value: 1, unit: Permittivity.BaseUnit);
+            var quantity = new Permittivity(value: 1, unit: Permittivity.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -178,7 +178,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = Permittivity.FromFaradsPerMeter(1).ToBaseUnit();
-            Assert.Equal(Permittivity.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(Permittivity.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

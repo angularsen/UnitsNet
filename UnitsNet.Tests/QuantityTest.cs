@@ -223,7 +223,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(0.0, fromQuantity.Value);
             Assert.Equal(QuantityType.Length, fromQuantity.Type);
-            Assert.Equal(Length.BaseUnit, fromQuantity.Unit);
+            Assert.Equal(Length.ConversionBaseUnit, fromQuantity.Unit);
         }
     }
 }

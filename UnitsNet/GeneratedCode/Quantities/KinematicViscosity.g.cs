@@ -69,7 +69,7 @@ namespace UnitsNet
                     new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.SquareMeterPerSecond, "SquareMetersPerSecond", BaseUnits.Undefined),
                     new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Stokes, "Stokes", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.KinematicViscosity);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.KinematicViscosity);
         }
 
         /// <summary>
@@ -119,19 +119,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of KinematicViscosity, which is SquareMeterPerSecond. All conversions go via this value.
         /// </summary>
-        public static KinematicViscosityUnit BaseUnit { get; } = KinematicViscosityUnit.SquareMeterPerSecond;
+        public static KinematicViscosityUnit ConversionBaseUnit { get; } = KinematicViscosityUnit.SquareMeterPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of KinematicViscosity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static KinematicViscosity MaxValue { get; } = new KinematicViscosity(double.MaxValue, BaseUnit);
+        public static KinematicViscosity MaxValue { get; } = new KinematicViscosity(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of KinematicViscosity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static KinematicViscosity MinValue { get; } = new KinematicViscosity(double.MinValue, BaseUnit);
+        public static KinematicViscosity MinValue { get; } = new KinematicViscosity(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -147,7 +147,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit SquareMeterPerSecond.
         /// </summary>
-        public static KinematicViscosity Zero { get; } = new KinematicViscosity(0, BaseUnit);
+        public static KinematicViscosity Zero { get; } = new KinematicViscosity(0, ConversionBaseUnit);
 
         #endregion
 
@@ -161,7 +161,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public KinematicViscosityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public KinematicViscosityUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<KinematicViscosityUnit> QuantityInfo => Info;
@@ -789,7 +789,7 @@ namespace UnitsNet
         internal KinematicViscosity ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new KinematicViscosity(baseUnitValue, BaseUnit);
+            return new KinematicViscosity(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(KinematicViscosityUnit unit)

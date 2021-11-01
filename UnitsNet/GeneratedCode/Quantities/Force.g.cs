@@ -72,7 +72,7 @@ namespace UnitsNet
                     new UnitInfo<ForceUnit>(ForceUnit.ShortTonForce, "ShortTonsForce", BaseUnits.Undefined),
                     new UnitInfo<ForceUnit>(ForceUnit.TonneForce, "TonnesForce", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Force);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Force);
         }
 
         /// <summary>
@@ -122,19 +122,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Force, which is Newton. All conversions go via this value.
         /// </summary>
-        public static ForceUnit BaseUnit { get; } = ForceUnit.Newton;
+        public static ForceUnit ConversionBaseUnit { get; } = ForceUnit.Newton;
 
         /// <summary>
         /// Represents the largest possible value of Force
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Force MaxValue { get; } = new Force(double.MaxValue, BaseUnit);
+        public static Force MaxValue { get; } = new Force(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Force
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Force MinValue { get; } = new Force(double.MinValue, BaseUnit);
+        public static Force MinValue { get; } = new Force(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -150,7 +150,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Newton.
         /// </summary>
-        public static Force Zero { get; } = new Force(0, BaseUnit);
+        public static Force Zero { get; } = new Force(0, ConversionBaseUnit);
 
         #endregion
 
@@ -164,7 +164,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public ForceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public ForceUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<ForceUnit> QuantityInfo => Info;
@@ -882,7 +882,7 @@ namespace UnitsNet
         internal Force ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Force(baseUnitValue, BaseUnit);
+            return new Force(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(ForceUnit unit)

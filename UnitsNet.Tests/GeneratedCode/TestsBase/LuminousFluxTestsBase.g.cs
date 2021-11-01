@@ -150,7 +150,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new LuminousFlux(value: 1, unit: LuminousFlux.BaseUnit);
+            var quantity = new LuminousFlux(value: 1, unit: LuminousFlux.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -178,7 +178,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = LuminousFlux.FromLumens(1).ToBaseUnit();
-            Assert.Equal(LuminousFlux.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(LuminousFlux.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

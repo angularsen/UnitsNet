@@ -62,7 +62,7 @@ namespace UnitsNet
                     new UnitInfo<RotationalStiffnessPerLengthUnit>(RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, "NewtonMetersPerRadianPerMeter", BaseUnits.Undefined),
                     new UnitInfo<RotationalStiffnessPerLengthUnit>(RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, "PoundForceFeetPerDegreesPerFeet", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.RotationalStiffnessPerLength);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.RotationalStiffnessPerLength);
         }
 
         /// <summary>
@@ -112,19 +112,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of RotationalStiffnessPerLength, which is NewtonMeterPerRadianPerMeter. All conversions go via this value.
         /// </summary>
-        public static RotationalStiffnessPerLengthUnit BaseUnit { get; } = RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter;
+        public static RotationalStiffnessPerLengthUnit ConversionBaseUnit { get; } = RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter;
 
         /// <summary>
         /// Represents the largest possible value of RotationalStiffnessPerLength
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static RotationalStiffnessPerLength MaxValue { get; } = new RotationalStiffnessPerLength(double.MaxValue, BaseUnit);
+        public static RotationalStiffnessPerLength MaxValue { get; } = new RotationalStiffnessPerLength(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of RotationalStiffnessPerLength
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static RotationalStiffnessPerLength MinValue { get; } = new RotationalStiffnessPerLength(double.MinValue, BaseUnit);
+        public static RotationalStiffnessPerLength MinValue { get; } = new RotationalStiffnessPerLength(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -140,7 +140,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonMeterPerRadianPerMeter.
         /// </summary>
-        public static RotationalStiffnessPerLength Zero { get; } = new RotationalStiffnessPerLength(0, BaseUnit);
+        public static RotationalStiffnessPerLength Zero { get; } = new RotationalStiffnessPerLength(0, ConversionBaseUnit);
 
         #endregion
 
@@ -154,7 +154,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public RotationalStiffnessPerLengthUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public RotationalStiffnessPerLengthUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<RotationalStiffnessPerLengthUnit> QuantityInfo => Info;
@@ -722,7 +722,7 @@ namespace UnitsNet
         internal RotationalStiffnessPerLength ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new RotationalStiffnessPerLength(baseUnitValue, BaseUnit);
+            return new RotationalStiffnessPerLength(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(RotationalStiffnessPerLengthUnit unit)

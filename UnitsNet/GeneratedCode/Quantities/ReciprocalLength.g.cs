@@ -70,7 +70,7 @@ namespace UnitsNet
                     new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseUsSurveyFoot, "InverseUsSurveyFeet", BaseUnits.Undefined),
                     new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseYard, "InverseYards", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ReciprocalLength);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.ReciprocalLength);
         }
 
         /// <summary>
@@ -120,19 +120,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ReciprocalLength, which is InverseMeter. All conversions go via this value.
         /// </summary>
-        public static ReciprocalLengthUnit BaseUnit { get; } = ReciprocalLengthUnit.InverseMeter;
+        public static ReciprocalLengthUnit ConversionBaseUnit { get; } = ReciprocalLengthUnit.InverseMeter;
 
         /// <summary>
         /// Represents the largest possible value of ReciprocalLength
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ReciprocalLength MaxValue { get; } = new ReciprocalLength(double.MaxValue, BaseUnit);
+        public static ReciprocalLength MaxValue { get; } = new ReciprocalLength(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ReciprocalLength
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ReciprocalLength MinValue { get; } = new ReciprocalLength(double.MinValue, BaseUnit);
+        public static ReciprocalLength MinValue { get; } = new ReciprocalLength(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -148,7 +148,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit InverseMeter.
         /// </summary>
-        public static ReciprocalLength Zero { get; } = new ReciprocalLength(0, BaseUnit);
+        public static ReciprocalLength Zero { get; } = new ReciprocalLength(0, ConversionBaseUnit);
 
         #endregion
 
@@ -162,7 +162,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public ReciprocalLengthUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public ReciprocalLengthUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<ReciprocalLengthUnit> QuantityInfo => Info;
@@ -805,7 +805,7 @@ namespace UnitsNet
         internal ReciprocalLength ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new ReciprocalLength(baseUnitValue, BaseUnit);
+            return new ReciprocalLength(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(ReciprocalLengthUnit unit)

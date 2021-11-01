@@ -20,7 +20,7 @@ namespace UnitsNet.Serialization.JsonNet
     ///     Assumptions by reflection code in the converter:
     ///     * Unit classes are of type UnitsNet.Length etc.
     ///     * Unit enums are of type UnitsNet.Units.LengthUnit etc.
-    ///     * Unit class has a BaseUnit property returning the base unit, such as LengthUnit.Meter
+    ///     * Unit class has a ConversionBaseUnit property returning the base unit, such as LengthUnit.Meter
     /// </remarks>
     [Obsolete("Replaced by UnitsNetIQuantityJsonConverter and UnitsNetIComparableJsonConverter (if you need support for IComparable)")]
     public class UnitsNetJsonConverter : JsonConverter
@@ -46,7 +46,7 @@ namespace UnitsNet.Serialization.JsonNet
             if (obj is Array values)
             {
 
-                // Create array with the requested type, such as `Length[]` or `Frequency[]` or multi-dimensional arrays like `Length[,]` or `Frequency[,,]` 
+                // Create array with the requested type, such as `Length[]` or `Frequency[]` or multi-dimensional arrays like `Length[,]` or `Frequency[,,]`
                 var arrayOfQuantities = Array.CreateInstance(objectType.GetElementType(), MultiDimensionalArrayHelpers.LastIndex(values));
 
                 // Fill array with parsed quantities
@@ -157,8 +157,8 @@ namespace UnitsNet.Serialization.JsonNet
                 {
                     results.SetValue((IQuantity)values.GetValue(ind), ind);
                     ind = MultiDimensionalArrayHelpers.NextIndex(results, ind);
-                }                
-                
+                }
+
                 serializer.Serialize(writer, results);
             }
             else if (obj is IQuantity quantity)

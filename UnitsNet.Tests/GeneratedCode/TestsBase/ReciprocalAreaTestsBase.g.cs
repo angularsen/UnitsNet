@@ -230,7 +230,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new ReciprocalArea(value: 1, unit: ReciprocalArea.BaseUnit);
+            var quantity = new ReciprocalArea(value: 1, unit: ReciprocalArea.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -298,7 +298,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = ReciprocalArea.FromInverseSquareMeters(1).ToBaseUnit();
-            Assert.Equal(ReciprocalArea.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(ReciprocalArea.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

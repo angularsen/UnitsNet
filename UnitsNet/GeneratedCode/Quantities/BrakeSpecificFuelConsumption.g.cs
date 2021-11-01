@@ -60,7 +60,7 @@ namespace UnitsNet
                     new UnitInfo<BrakeSpecificFuelConsumptionUnit>(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, "KilogramsPerJoule", BaseUnits.Undefined),
                     new UnitInfo<BrakeSpecificFuelConsumptionUnit>(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, "PoundsPerMechanicalHorsepowerHour", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.BrakeSpecificFuelConsumption);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.BrakeSpecificFuelConsumption);
         }
 
         /// <summary>
@@ -110,19 +110,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of BrakeSpecificFuelConsumption, which is KilogramPerJoule. All conversions go via this value.
         /// </summary>
-        public static BrakeSpecificFuelConsumptionUnit BaseUnit { get; } = BrakeSpecificFuelConsumptionUnit.KilogramPerJoule;
+        public static BrakeSpecificFuelConsumptionUnit ConversionBaseUnit { get; } = BrakeSpecificFuelConsumptionUnit.KilogramPerJoule;
 
         /// <summary>
         /// Represents the largest possible value of BrakeSpecificFuelConsumption
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static BrakeSpecificFuelConsumption MaxValue { get; } = new BrakeSpecificFuelConsumption(double.MaxValue, BaseUnit);
+        public static BrakeSpecificFuelConsumption MaxValue { get; } = new BrakeSpecificFuelConsumption(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of BrakeSpecificFuelConsumption
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static BrakeSpecificFuelConsumption MinValue { get; } = new BrakeSpecificFuelConsumption(double.MinValue, BaseUnit);
+        public static BrakeSpecificFuelConsumption MinValue { get; } = new BrakeSpecificFuelConsumption(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -138,7 +138,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerJoule.
         /// </summary>
-        public static BrakeSpecificFuelConsumption Zero { get; } = new BrakeSpecificFuelConsumption(0, BaseUnit);
+        public static BrakeSpecificFuelConsumption Zero { get; } = new BrakeSpecificFuelConsumption(0, ConversionBaseUnit);
 
         #endregion
 
@@ -152,7 +152,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public BrakeSpecificFuelConsumptionUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public BrakeSpecificFuelConsumptionUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<BrakeSpecificFuelConsumptionUnit> QuantityInfo => Info;
@@ -690,7 +690,7 @@ namespace UnitsNet
         internal BrakeSpecificFuelConsumption ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new BrakeSpecificFuelConsumption(baseUnitValue, BaseUnit);
+            return new BrakeSpecificFuelConsumption(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(BrakeSpecificFuelConsumptionUnit unit)

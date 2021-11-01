@@ -72,7 +72,7 @@ namespace UnitsNet
                     new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.PoundForcePerMinute, "PoundsForcePerMinute", BaseUnits.Undefined),
                     new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.PoundForcePerSecond, "PoundsForcePerSecond", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ForceChangeRate);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.ForceChangeRate);
         }
 
         /// <summary>
@@ -122,19 +122,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ForceChangeRate, which is NewtonPerSecond. All conversions go via this value.
         /// </summary>
-        public static ForceChangeRateUnit BaseUnit { get; } = ForceChangeRateUnit.NewtonPerSecond;
+        public static ForceChangeRateUnit ConversionBaseUnit { get; } = ForceChangeRateUnit.NewtonPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of ForceChangeRate
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ForceChangeRate MaxValue { get; } = new ForceChangeRate(double.MaxValue, BaseUnit);
+        public static ForceChangeRate MaxValue { get; } = new ForceChangeRate(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ForceChangeRate
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ForceChangeRate MinValue { get; } = new ForceChangeRate(double.MinValue, BaseUnit);
+        public static ForceChangeRate MinValue { get; } = new ForceChangeRate(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -150,7 +150,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonPerSecond.
         /// </summary>
-        public static ForceChangeRate Zero { get; } = new ForceChangeRate(0, BaseUnit);
+        public static ForceChangeRate Zero { get; } = new ForceChangeRate(0, ConversionBaseUnit);
 
         #endregion
 
@@ -164,7 +164,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public ForceChangeRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public ForceChangeRateUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<ForceChangeRateUnit> QuantityInfo => Info;
@@ -882,7 +882,7 @@ namespace UnitsNet
         internal ForceChangeRate ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new ForceChangeRate(baseUnitValue, BaseUnit);
+            return new ForceChangeRate(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(ForceChangeRateUnit unit)

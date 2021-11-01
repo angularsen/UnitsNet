@@ -74,7 +74,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.PicoohmCentimeter, "PicoohmsCentimeter", BaseUnits.Undefined),
                     new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.PicoohmMeter, "PicoohmMeters", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricResistivity);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.ElectricResistivity);
         }
 
         /// <summary>
@@ -124,19 +124,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricResistivity, which is OhmMeter. All conversions go via this value.
         /// </summary>
-        public static ElectricResistivityUnit BaseUnit { get; } = ElectricResistivityUnit.OhmMeter;
+        public static ElectricResistivityUnit ConversionBaseUnit { get; } = ElectricResistivityUnit.OhmMeter;
 
         /// <summary>
         /// Represents the largest possible value of ElectricResistivity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricResistivity MaxValue { get; } = new ElectricResistivity(double.MaxValue, BaseUnit);
+        public static ElectricResistivity MaxValue { get; } = new ElectricResistivity(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricResistivity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricResistivity MinValue { get; } = new ElectricResistivity(double.MinValue, BaseUnit);
+        public static ElectricResistivity MinValue { get; } = new ElectricResistivity(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -152,7 +152,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit OhmMeter.
         /// </summary>
-        public static ElectricResistivity Zero { get; } = new ElectricResistivity(0, BaseUnit);
+        public static ElectricResistivity Zero { get; } = new ElectricResistivity(0, ConversionBaseUnit);
 
         #endregion
 
@@ -166,7 +166,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public ElectricResistivityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public ElectricResistivityUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<ElectricResistivityUnit> QuantityInfo => Info;
@@ -869,7 +869,7 @@ namespace UnitsNet
         internal ElectricResistivity ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new ElectricResistivity(baseUnitValue, BaseUnit);
+            return new ElectricResistivity(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(ElectricResistivityUnit unit)

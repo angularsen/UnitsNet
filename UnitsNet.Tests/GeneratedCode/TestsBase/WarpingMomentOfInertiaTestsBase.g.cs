@@ -190,7 +190,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new WarpingMomentOfInertia(value: 1, unit: WarpingMomentOfInertia.BaseUnit);
+            var quantity = new WarpingMomentOfInertia(value: 1, unit: WarpingMomentOfInertia.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -238,7 +238,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = WarpingMomentOfInertia.FromMetersToTheSixth(1).ToBaseUnit();
-            Assert.Equal(WarpingMomentOfInertia.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(WarpingMomentOfInertia.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

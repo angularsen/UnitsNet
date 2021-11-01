@@ -48,8 +48,8 @@ namespace CodeGen.Generators.UnitsNetGen
         public UnitTestBaseClassGenerator(Quantity quantity)
         {
             _quantity = quantity;
-            _baseUnit = quantity.Units.FirstOrDefault(u => u.SingularName == _quantity.BaseUnit) ??
-                        throw new ArgumentException($"No unit found with SingularName equal to BaseUnit [{_quantity.BaseUnit}]. This unit must be defined.",
+            _baseUnit = quantity.Units.FirstOrDefault(u => u.SingularName == _quantity.ConversionBaseUnit) ??
+                        throw new ArgumentException($"No unit found with SingularName equal to ConversionBaseUnit [{_quantity.ConversionBaseUnit}]. This unit must be defined.",
                             nameof(quantity));
             _unitEnumName = $"{quantity.Name}Unit";
             _baseUnitEnglishAbbreviation = GetEnglishAbbreviation(_baseUnit);
@@ -232,7 +232,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {{
-            var quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.BaseUnit);
+            var quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -267,7 +267,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {{
             var quantityInBaseUnit = {_quantity.Name}.From{_baseUnit.PluralName}(1).ToBaseUnit();
-            Assert.Equal({_quantity.Name}.BaseUnit, quantityInBaseUnit.Unit);");
+            Assert.Equal({_quantity.Name}.ConversionBaseUnit, quantityInBaseUnit.Unit);");
             Writer.WL($@"
         }}
 

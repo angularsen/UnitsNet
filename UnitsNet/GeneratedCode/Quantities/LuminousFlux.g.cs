@@ -61,7 +61,7 @@ namespace UnitsNet
                 new UnitInfo<LuminousFluxUnit>[] {
                     new UnitInfo<LuminousFluxUnit>(LuminousFluxUnit.Lumen, "Lumens", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.LuminousFlux);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.LuminousFlux);
         }
 
         /// <summary>
@@ -111,19 +111,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of LuminousFlux, which is Lumen. All conversions go via this value.
         /// </summary>
-        public static LuminousFluxUnit BaseUnit { get; } = LuminousFluxUnit.Lumen;
+        public static LuminousFluxUnit ConversionBaseUnit { get; } = LuminousFluxUnit.Lumen;
 
         /// <summary>
         /// Represents the largest possible value of LuminousFlux
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static LuminousFlux MaxValue { get; } = new LuminousFlux(double.MaxValue, BaseUnit);
+        public static LuminousFlux MaxValue { get; } = new LuminousFlux(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of LuminousFlux
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static LuminousFlux MinValue { get; } = new LuminousFlux(double.MinValue, BaseUnit);
+        public static LuminousFlux MinValue { get; } = new LuminousFlux(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -139,7 +139,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Lumen.
         /// </summary>
-        public static LuminousFlux Zero { get; } = new LuminousFlux(0, BaseUnit);
+        public static LuminousFlux Zero { get; } = new LuminousFlux(0, ConversionBaseUnit);
 
         #endregion
 
@@ -153,7 +153,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public LuminousFluxUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public LuminousFluxUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<LuminousFluxUnit> QuantityInfo => Info;
@@ -661,7 +661,7 @@ namespace UnitsNet
         internal LuminousFlux ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new LuminousFlux(baseUnitValue, BaseUnit);
+            return new LuminousFlux(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(LuminousFluxUnit unit)

@@ -158,7 +158,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new PowerRatio(value: 1, unit: PowerRatio.BaseUnit);
+            var quantity = new PowerRatio(value: 1, unit: PowerRatio.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -190,7 +190,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = PowerRatio.FromDecibelWatts(1).ToBaseUnit();
-            Assert.Equal(PowerRatio.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(PowerRatio.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

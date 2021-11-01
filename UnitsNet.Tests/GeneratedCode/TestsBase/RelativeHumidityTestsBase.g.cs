@@ -150,7 +150,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new RelativeHumidity(value: 1, unit: RelativeHumidity.BaseUnit);
+            var quantity = new RelativeHumidity(value: 1, unit: RelativeHumidity.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -178,7 +178,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = RelativeHumidity.FromPercent(1).ToBaseUnit();
-            Assert.Equal(RelativeHumidity.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(RelativeHumidity.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

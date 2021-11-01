@@ -37,12 +37,12 @@ namespace UnitsNet
             foreach (Quantity quantity in _quantities)
             foreach (Unit unit in quantity.Units)
             {
-                Writer.WL(quantity.BaseUnit == unit.SingularName
+                Writer.WL(quantity.ConversionBaseUnit == unit.SingularName
                     ? $@"
-            unitConverter.SetConversionFunction<{quantity.Name}>({quantity.Name}.BaseUnit, {quantity.Name}.BaseUnit, q => q);"
+            unitConverter.SetConversionFunction<{quantity.Name}>({quantity.Name}.ConversionBaseUnit, {quantity.Name}.ConversionBaseUnit, q => q);"
                     : $@"
-            unitConverter.SetConversionFunction<{quantity.Name}>({quantity.Name}.BaseUnit, {quantity.Name}Unit.{unit.SingularName}, q => q.ToUnit({quantity.Name}Unit.{unit.SingularName}));
-            unitConverter.SetConversionFunction<{quantity.Name}>({quantity.Name}Unit.{unit.SingularName}, {quantity.Name}.BaseUnit, q => q.ToBaseUnit());");
+            unitConverter.SetConversionFunction<{quantity.Name}>({quantity.Name}.ConversionBaseUnit, {quantity.Name}Unit.{unit.SingularName}, q => q.ToUnit({quantity.Name}Unit.{unit.SingularName}));
+            unitConverter.SetConversionFunction<{quantity.Name}>({quantity.Name}Unit.{unit.SingularName}, {quantity.Name}.ConversionBaseUnit, q => q.ToBaseUnit());");
             }
 
             Writer.WL($@"

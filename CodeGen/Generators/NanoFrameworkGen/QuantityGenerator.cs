@@ -14,7 +14,7 @@ namespace CodeGen.Generators.NanoFrameworkGen
         public QuantityGenerator(Quantity quantity)
         {
             _quantity = quantity ?? throw new ArgumentNullException(nameof(quantity));
-            _unitEnumName = $"{quantity.Name}Unit";            
+            _unitEnumName = $"{quantity.Name}Unit";
         }
 
         public override string Generate()
@@ -75,7 +75,7 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static {_unitEnumName} BaseUnit {{ get; }} = {_unitEnumName}.{_quantity.BaseUnit};
+        public static {_unitEnumName} ConversionBaseUnit {{ get; }} = {_unitEnumName}.{_quantity.ConversionBaseUnit};
 
         /// <summary>
         /// Represents the largest possible value of Duration
@@ -83,27 +83,27 @@ namespace UnitsNet
 
             // Non decimal
             Writer.WLCondition(_quantity.ValueType != "decimal", $@"
-        public static {_quantity.Name} MaxValue {{ get; }} = new {_quantity.Name}({_quantity.ValueType}.MaxValue, BaseUnit);
+        public static {_quantity.Name} MaxValue {{ get; }} = new {_quantity.Name}({_quantity.ValueType}.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}({_quantity.ValueType}.MinValue, BaseUnit);");
+        public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}({_quantity.ValueType}.MinValue, ConversionBaseUnit);");
 
             // Decimal MaxValue = 79228162514264337593543950335M
             Writer.WLCondition(_quantity.ValueType == "decimal", $@"
-        public static {_quantity.Name} MaxValue {{ get; }} = new {_quantity.Name}(79228162514264337593543950335M, BaseUnit);
+        public static {_quantity.Name} MaxValue {{ get; }} = new {_quantity.Name}(79228162514264337593543950335M, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}(-79228162514264337593543950335M, BaseUnit);");
+        public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}(-79228162514264337593543950335M, ConversionBaseUnit);");
 
             Writer.WL($@"
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static {_quantity.Name} Zero {{ get; }} = new {_quantity.Name}(0, BaseUnit);");
+        public static {_quantity.Name} Zero {{ get; }} = new {_quantity.Name}(0, ConversionBaseUnit);");
 
             GenerateConversionProperties();
             GenerateStaticFactoryMethods();
@@ -183,7 +183,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name=""unit"" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public {_quantity.ValueType} As({_unitEnumName} unit) => GetValueAs(unit);        
+        public {_quantity.ValueType} As({_unitEnumName} unit) => GetValueAs(unit);
 
         /// <summary>
         ///     Converts this Duration to another Duration with the unit representation <paramref name=""unit"" />.
@@ -191,7 +191,7 @@ namespace UnitsNet
         /// <returns>A Duration with the specified unit.</returns>
         public {_quantity.Name} ToUnit({_unitEnumName} unit)
         {{
-                
+
             var convertedValue = GetValueAs(unit);
             return new {_quantity.Name}(convertedValue, unit);
         }}

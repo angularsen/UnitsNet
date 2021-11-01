@@ -158,7 +158,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new ThermalConductivity(value: 1, unit: ThermalConductivity.BaseUnit);
+            var quantity = new ThermalConductivity(value: 1, unit: ThermalConductivity.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -190,7 +190,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = ThermalConductivity.FromWattsPerMeterKelvin(1).ToBaseUnit();
-            Assert.Equal(ThermalConductivity.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(ThermalConductivity.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

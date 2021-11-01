@@ -61,7 +61,7 @@ namespace UnitsNet
                 new UnitInfo<PermeabilityUnit>[] {
                     new UnitInfo<PermeabilityUnit>(PermeabilityUnit.HenryPerMeter, "HenriesPerMeter", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Permeability);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Permeability);
         }
 
         /// <summary>
@@ -111,19 +111,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Permeability, which is HenryPerMeter. All conversions go via this value.
         /// </summary>
-        public static PermeabilityUnit BaseUnit { get; } = PermeabilityUnit.HenryPerMeter;
+        public static PermeabilityUnit ConversionBaseUnit { get; } = PermeabilityUnit.HenryPerMeter;
 
         /// <summary>
         /// Represents the largest possible value of Permeability
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Permeability MaxValue { get; } = new Permeability(double.MaxValue, BaseUnit);
+        public static Permeability MaxValue { get; } = new Permeability(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Permeability
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Permeability MinValue { get; } = new Permeability(double.MinValue, BaseUnit);
+        public static Permeability MinValue { get; } = new Permeability(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -139,7 +139,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit HenryPerMeter.
         /// </summary>
-        public static Permeability Zero { get; } = new Permeability(0, BaseUnit);
+        public static Permeability Zero { get; } = new Permeability(0, ConversionBaseUnit);
 
         #endregion
 
@@ -153,7 +153,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public PermeabilityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public PermeabilityUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<PermeabilityUnit> QuantityInfo => Info;
@@ -661,7 +661,7 @@ namespace UnitsNet
         internal Permeability ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Permeability(baseUnitValue, BaseUnit);
+            return new Permeability(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(PermeabilityUnit unit)

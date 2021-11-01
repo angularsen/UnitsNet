@@ -82,7 +82,7 @@ namespace UnitsNet
                     new UnitInfo<MassUnit>(MassUnit.Stone, "Stone", new BaseUnits(mass: MassUnit.Stone)),
                     new UnitInfo<MassUnit>(MassUnit.Tonne, "Tonnes", new BaseUnits(mass: MassUnit.Tonne)),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Mass);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Mass);
         }
 
         /// <summary>
@@ -132,19 +132,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Mass, which is Kilogram. All conversions go via this value.
         /// </summary>
-        public static MassUnit BaseUnit { get; } = MassUnit.Kilogram;
+        public static MassUnit ConversionBaseUnit { get; } = MassUnit.Kilogram;
 
         /// <summary>
         /// Represents the largest possible value of Mass
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Mass MaxValue { get; } = new Mass(double.MaxValue, BaseUnit);
+        public static Mass MaxValue { get; } = new Mass(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Mass
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Mass MinValue { get; } = new Mass(double.MinValue, BaseUnit);
+        public static Mass MinValue { get; } = new Mass(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -160,7 +160,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Kilogram.
         /// </summary>
-        public static Mass Zero { get; } = new Mass(0, BaseUnit);
+        public static Mass Zero { get; } = new Mass(0, ConversionBaseUnit);
 
         #endregion
 
@@ -174,7 +174,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public MassUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public MassUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<MassUnit> QuantityInfo => Info;
@@ -1042,7 +1042,7 @@ namespace UnitsNet
         internal Mass ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Mass(baseUnitValue, BaseUnit);
+            return new Mass(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(MassUnit unit)

@@ -63,7 +63,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Milliohm, "Milliohms", BaseUnits.Undefined),
                     new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Ohm, "Ohms", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricResistance);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.ElectricResistance);
         }
 
         /// <summary>
@@ -113,19 +113,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricResistance, which is Ohm. All conversions go via this value.
         /// </summary>
-        public static ElectricResistanceUnit BaseUnit { get; } = ElectricResistanceUnit.Ohm;
+        public static ElectricResistanceUnit ConversionBaseUnit { get; } = ElectricResistanceUnit.Ohm;
 
         /// <summary>
         /// Represents the largest possible value of ElectricResistance
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricResistance MaxValue { get; } = new ElectricResistance(double.MaxValue, BaseUnit);
+        public static ElectricResistance MaxValue { get; } = new ElectricResistance(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricResistance
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricResistance MinValue { get; } = new ElectricResistance(double.MinValue, BaseUnit);
+        public static ElectricResistance MinValue { get; } = new ElectricResistance(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -141,7 +141,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Ohm.
         /// </summary>
-        public static ElectricResistance Zero { get; } = new ElectricResistance(0, BaseUnit);
+        public static ElectricResistance Zero { get; } = new ElectricResistance(0, ConversionBaseUnit);
 
         #endregion
 
@@ -155,7 +155,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public ElectricResistanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public ElectricResistanceUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<ElectricResistanceUnit> QuantityInfo => Info;
@@ -738,7 +738,7 @@ namespace UnitsNet
         internal ElectricResistance ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new ElectricResistance(baseUnitValue, BaseUnit);
+            return new ElectricResistance(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(ElectricResistanceUnit unit)

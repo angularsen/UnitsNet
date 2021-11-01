@@ -342,7 +342,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Mass(value: 1, unit: Mass.BaseUnit);
+            var quantity = new Mass(value: 1, unit: Mass.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -466,7 +466,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = Mass.FromKilograms(1).ToBaseUnit();
-            Assert.Equal(Mass.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(Mass.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

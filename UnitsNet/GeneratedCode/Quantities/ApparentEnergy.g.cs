@@ -60,7 +60,7 @@ namespace UnitsNet
                     new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.MegavoltampereHour, "MegavoltampereHours", BaseUnits.Undefined),
                     new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.VoltampereHour, "VoltampereHours", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ApparentEnergy);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.ApparentEnergy);
         }
 
         /// <summary>
@@ -110,19 +110,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ApparentEnergy, which is VoltampereHour. All conversions go via this value.
         /// </summary>
-        public static ApparentEnergyUnit BaseUnit { get; } = ApparentEnergyUnit.VoltampereHour;
+        public static ApparentEnergyUnit ConversionBaseUnit { get; } = ApparentEnergyUnit.VoltampereHour;
 
         /// <summary>
         /// Represents the largest possible value of ApparentEnergy
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ApparentEnergy MaxValue { get; } = new ApparentEnergy(double.MaxValue, BaseUnit);
+        public static ApparentEnergy MaxValue { get; } = new ApparentEnergy(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ApparentEnergy
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ApparentEnergy MinValue { get; } = new ApparentEnergy(double.MinValue, BaseUnit);
+        public static ApparentEnergy MinValue { get; } = new ApparentEnergy(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -138,7 +138,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit VoltampereHour.
         /// </summary>
-        public static ApparentEnergy Zero { get; } = new ApparentEnergy(0, BaseUnit);
+        public static ApparentEnergy Zero { get; } = new ApparentEnergy(0, ConversionBaseUnit);
 
         #endregion
 
@@ -152,7 +152,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public ApparentEnergyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public ApparentEnergyUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<ApparentEnergyUnit> QuantityInfo => Info;
@@ -690,7 +690,7 @@ namespace UnitsNet
         internal ApparentEnergy ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new ApparentEnergy(baseUnitValue, BaseUnit);
+            return new ApparentEnergy(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(ApparentEnergyUnit unit)

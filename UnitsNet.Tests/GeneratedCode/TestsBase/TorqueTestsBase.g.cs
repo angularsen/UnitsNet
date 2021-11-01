@@ -318,7 +318,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Torque(value: 1, unit: Torque.BaseUnit);
+            var quantity = new Torque(value: 1, unit: Torque.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -430,7 +430,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = Torque.FromNewtonMeters(1).ToBaseUnit();
-            Assert.Equal(Torque.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(Torque.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

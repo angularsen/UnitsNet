@@ -342,7 +342,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new LinearPowerDensity(value: 1, unit: LinearPowerDensity.BaseUnit);
+            var quantity = new LinearPowerDensity(value: 1, unit: LinearPowerDensity.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -466,7 +466,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = LinearPowerDensity.FromWattsPerMeter(1).ToBaseUnit();
-            Assert.Equal(LinearPowerDensity.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(LinearPowerDensity.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

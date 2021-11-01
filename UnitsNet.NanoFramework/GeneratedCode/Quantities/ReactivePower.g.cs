@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static ReactivePowerUnit BaseUnit { get; } = ReactivePowerUnit.VoltampereReactive;
+        public static ReactivePowerUnit ConversionBaseUnit { get; } = ReactivePowerUnit.VoltampereReactive;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static ReactivePower MaxValue { get; } = new ReactivePower(double.MaxValue, BaseUnit);
+        public static ReactivePower MaxValue { get; } = new ReactivePower(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static ReactivePower MinValue { get; } = new ReactivePower(double.MinValue, BaseUnit);
+        public static ReactivePower MinValue { get; } = new ReactivePower(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static ReactivePower Zero { get; } = new ReactivePower(0, BaseUnit);
+        public static ReactivePower Zero { get; } = new ReactivePower(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

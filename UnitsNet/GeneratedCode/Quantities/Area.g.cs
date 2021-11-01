@@ -71,7 +71,7 @@ namespace UnitsNet
                     new UnitInfo<AreaUnit>(AreaUnit.SquareYard, "SquareYards", new BaseUnits(length: LengthUnit.Yard)),
                     new UnitInfo<AreaUnit>(AreaUnit.UsSurveySquareFoot, "UsSurveySquareFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot)),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Area);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Area);
         }
 
         /// <summary>
@@ -121,19 +121,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Area, which is SquareMeter. All conversions go via this value.
         /// </summary>
-        public static AreaUnit BaseUnit { get; } = AreaUnit.SquareMeter;
+        public static AreaUnit ConversionBaseUnit { get; } = AreaUnit.SquareMeter;
 
         /// <summary>
         /// Represents the largest possible value of Area
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Area MaxValue { get; } = new Area(double.MaxValue, BaseUnit);
+        public static Area MaxValue { get; } = new Area(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Area
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Area MinValue { get; } = new Area(double.MinValue, BaseUnit);
+        public static Area MinValue { get; } = new Area(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -149,7 +149,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit SquareMeter.
         /// </summary>
-        public static Area Zero { get; } = new Area(0, BaseUnit);
+        public static Area Zero { get; } = new Area(0, ConversionBaseUnit);
 
         #endregion
 
@@ -163,7 +163,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public AreaUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public AreaUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<AreaUnit> QuantityInfo => Info;
@@ -866,7 +866,7 @@ namespace UnitsNet
         internal Area ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Area(baseUnitValue, BaseUnit);
+            return new Area(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(AreaUnit unit)

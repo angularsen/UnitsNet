@@ -63,7 +63,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareInch, "AmperesPerSquareInch", new BaseUnits(length: LengthUnit.Inch, current: ElectricCurrentUnit.Ampere)),
                     new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareMeter, "AmperesPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere)),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricCurrentDensity);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.ElectricCurrentDensity);
         }
 
         /// <summary>
@@ -113,19 +113,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricCurrentDensity, which is AmperePerSquareMeter. All conversions go via this value.
         /// </summary>
-        public static ElectricCurrentDensityUnit BaseUnit { get; } = ElectricCurrentDensityUnit.AmperePerSquareMeter;
+        public static ElectricCurrentDensityUnit ConversionBaseUnit { get; } = ElectricCurrentDensityUnit.AmperePerSquareMeter;
 
         /// <summary>
         /// Represents the largest possible value of ElectricCurrentDensity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricCurrentDensity MaxValue { get; } = new ElectricCurrentDensity(double.MaxValue, BaseUnit);
+        public static ElectricCurrentDensity MaxValue { get; } = new ElectricCurrentDensity(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricCurrentDensity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricCurrentDensity MinValue { get; } = new ElectricCurrentDensity(double.MinValue, BaseUnit);
+        public static ElectricCurrentDensity MinValue { get; } = new ElectricCurrentDensity(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -141,7 +141,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit AmperePerSquareMeter.
         /// </summary>
-        public static ElectricCurrentDensity Zero { get; } = new ElectricCurrentDensity(0, BaseUnit);
+        public static ElectricCurrentDensity Zero { get; } = new ElectricCurrentDensity(0, ConversionBaseUnit);
 
         #endregion
 
@@ -155,7 +155,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public ElectricCurrentDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public ElectricCurrentDensityUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<ElectricCurrentDensityUnit> QuantityInfo => Info;
@@ -693,7 +693,7 @@ namespace UnitsNet
         internal ElectricCurrentDensity ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new ElectricCurrentDensity(baseUnitValue, BaseUnit);
+            return new ElectricCurrentDensity(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(ElectricCurrentDensityUnit unit)

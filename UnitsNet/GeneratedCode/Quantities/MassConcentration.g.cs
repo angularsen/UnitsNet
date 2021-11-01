@@ -109,7 +109,7 @@ namespace UnitsNet
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.TonnePerCubicMeter, "TonnesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Tonne)),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.TonnePerCubicMillimeter, "TonnesPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Tonne)),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.MassConcentration);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.MassConcentration);
         }
 
         /// <summary>
@@ -159,19 +159,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of MassConcentration, which is KilogramPerCubicMeter. All conversions go via this value.
         /// </summary>
-        public static MassConcentrationUnit BaseUnit { get; } = MassConcentrationUnit.KilogramPerCubicMeter;
+        public static MassConcentrationUnit ConversionBaseUnit { get; } = MassConcentrationUnit.KilogramPerCubicMeter;
 
         /// <summary>
         /// Represents the largest possible value of MassConcentration
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static MassConcentration MaxValue { get; } = new MassConcentration(double.MaxValue, BaseUnit);
+        public static MassConcentration MaxValue { get; } = new MassConcentration(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of MassConcentration
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static MassConcentration MinValue { get; } = new MassConcentration(double.MinValue, BaseUnit);
+        public static MassConcentration MinValue { get; } = new MassConcentration(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -187,7 +187,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerCubicMeter.
         /// </summary>
-        public static MassConcentration Zero { get; } = new MassConcentration(0, BaseUnit);
+        public static MassConcentration Zero { get; } = new MassConcentration(0, ConversionBaseUnit);
 
         #endregion
 
@@ -201,7 +201,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public MassConcentrationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public MassConcentrationUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<MassConcentrationUnit> QuantityInfo => Info;
@@ -1429,7 +1429,7 @@ namespace UnitsNet
         internal MassConcentration ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new MassConcentration(baseUnitValue, BaseUnit);
+            return new MassConcentration(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(MassConcentrationUnit unit)

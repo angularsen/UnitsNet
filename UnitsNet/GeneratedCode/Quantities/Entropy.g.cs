@@ -64,7 +64,7 @@ namespace UnitsNet
                     new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerKelvin, "KilojoulesPerKelvin", BaseUnits.Undefined),
                     new UnitInfo<EntropyUnit>(EntropyUnit.MegajoulePerKelvin, "MegajoulesPerKelvin", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Entropy);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Entropy);
         }
 
         /// <summary>
@@ -114,19 +114,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Entropy, which is JoulePerKelvin. All conversions go via this value.
         /// </summary>
-        public static EntropyUnit BaseUnit { get; } = EntropyUnit.JoulePerKelvin;
+        public static EntropyUnit ConversionBaseUnit { get; } = EntropyUnit.JoulePerKelvin;
 
         /// <summary>
         /// Represents the largest possible value of Entropy
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Entropy MaxValue { get; } = new Entropy(double.MaxValue, BaseUnit);
+        public static Entropy MaxValue { get; } = new Entropy(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Entropy
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Entropy MinValue { get; } = new Entropy(double.MinValue, BaseUnit);
+        public static Entropy MinValue { get; } = new Entropy(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -142,7 +142,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit JoulePerKelvin.
         /// </summary>
-        public static Entropy Zero { get; } = new Entropy(0, BaseUnit);
+        public static Entropy Zero { get; } = new Entropy(0, ConversionBaseUnit);
 
         #endregion
 
@@ -156,7 +156,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public EntropyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public EntropyUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<EntropyUnit> QuantityInfo => Info;
@@ -754,7 +754,7 @@ namespace UnitsNet
         internal Entropy ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Entropy(baseUnitValue, BaseUnit);
+            return new Entropy(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(EntropyUnit unit)

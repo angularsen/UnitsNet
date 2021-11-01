@@ -71,7 +71,7 @@ namespace UnitsNet
                     new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareCentimeter, "WattsPerSquareCentimeter", BaseUnits.Undefined),
                     new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareMeter, "WattsPerSquareMeter", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Irradiance);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Irradiance);
         }
 
         /// <summary>
@@ -121,19 +121,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Irradiance, which is WattPerSquareMeter. All conversions go via this value.
         /// </summary>
-        public static IrradianceUnit BaseUnit { get; } = IrradianceUnit.WattPerSquareMeter;
+        public static IrradianceUnit ConversionBaseUnit { get; } = IrradianceUnit.WattPerSquareMeter;
 
         /// <summary>
         /// Represents the largest possible value of Irradiance
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Irradiance MaxValue { get; } = new Irradiance(double.MaxValue, BaseUnit);
+        public static Irradiance MaxValue { get; } = new Irradiance(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Irradiance
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Irradiance MinValue { get; } = new Irradiance(double.MinValue, BaseUnit);
+        public static Irradiance MinValue { get; } = new Irradiance(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -149,7 +149,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit WattPerSquareMeter.
         /// </summary>
-        public static Irradiance Zero { get; } = new Irradiance(0, BaseUnit);
+        public static Irradiance Zero { get; } = new Irradiance(0, ConversionBaseUnit);
 
         #endregion
 
@@ -163,7 +163,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public IrradianceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public IrradianceUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<IrradianceUnit> QuantityInfo => Info;
@@ -866,7 +866,7 @@ namespace UnitsNet
         internal Irradiance ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Irradiance(baseUnitValue, BaseUnit);
+            return new Irradiance(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(IrradianceUnit unit)

@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static AreaUnit BaseUnit { get; } = AreaUnit.SquareMeter;
+        public static AreaUnit ConversionBaseUnit { get; } = AreaUnit.SquareMeter;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static Area MaxValue { get; } = new Area(double.MaxValue, BaseUnit);
+        public static Area MaxValue { get; } = new Area(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static Area MinValue { get; } = new Area(double.MinValue, BaseUnit);
+        public static Area MinValue { get; } = new Area(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static Area Zero { get; } = new Area(0, BaseUnit);
+        public static Area Zero { get; } = new Area(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

@@ -166,7 +166,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new CoefficientOfThermalExpansion(value: 1, unit: CoefficientOfThermalExpansion.BaseUnit);
+            var quantity = new CoefficientOfThermalExpansion(value: 1, unit: CoefficientOfThermalExpansion.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -202,7 +202,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = CoefficientOfThermalExpansion.FromInverseKelvin(1).ToBaseUnit();
-            Assert.Equal(CoefficientOfThermalExpansion.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(CoefficientOfThermalExpansion.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

@@ -214,7 +214,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new SpecificEntropy(value: 1, unit: SpecificEntropy.BaseUnit);
+            var quantity = new SpecificEntropy(value: 1, unit: SpecificEntropy.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -274,7 +274,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = SpecificEntropy.FromJoulesPerKilogramKelvin(1).ToBaseUnit();
-            Assert.Equal(SpecificEntropy.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(SpecificEntropy.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

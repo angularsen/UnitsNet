@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static HeatTransferCoefficientUnit BaseUnit { get; } = HeatTransferCoefficientUnit.WattPerSquareMeterKelvin;
+        public static HeatTransferCoefficientUnit ConversionBaseUnit { get; } = HeatTransferCoefficientUnit.WattPerSquareMeterKelvin;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static HeatTransferCoefficient MaxValue { get; } = new HeatTransferCoefficient(double.MaxValue, BaseUnit);
+        public static HeatTransferCoefficient MaxValue { get; } = new HeatTransferCoefficient(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static HeatTransferCoefficient MinValue { get; } = new HeatTransferCoefficient(double.MinValue, BaseUnit);
+        public static HeatTransferCoefficient MinValue { get; } = new HeatTransferCoefficient(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static HeatTransferCoefficient Zero { get; } = new HeatTransferCoefficient(0, BaseUnit);
+        public static HeatTransferCoefficient Zero { get; } = new HeatTransferCoefficient(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

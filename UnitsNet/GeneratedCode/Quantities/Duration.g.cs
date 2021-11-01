@@ -67,7 +67,7 @@ namespace UnitsNet
                     new UnitInfo<DurationUnit>(DurationUnit.Week, "Weeks", new BaseUnits(time: DurationUnit.Week)),
                     new UnitInfo<DurationUnit>(DurationUnit.Year365, "Years365", new BaseUnits(time: DurationUnit.Year365)),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Duration);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Duration);
         }
 
         /// <summary>
@@ -117,19 +117,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static DurationUnit BaseUnit { get; } = DurationUnit.Second;
+        public static DurationUnit ConversionBaseUnit { get; } = DurationUnit.Second;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Duration MaxValue { get; } = new Duration(double.MaxValue, BaseUnit);
+        public static Duration MaxValue { get; } = new Duration(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Duration MinValue { get; } = new Duration(double.MinValue, BaseUnit);
+        public static Duration MinValue { get; } = new Duration(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -145,7 +145,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static Duration Zero { get; } = new Duration(0, BaseUnit);
+        public static Duration Zero { get; } = new Duration(0, ConversionBaseUnit);
 
         #endregion
 
@@ -159,7 +159,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public DurationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public DurationUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<DurationUnit> QuantityInfo => Info;
@@ -802,7 +802,7 @@ namespace UnitsNet
         internal Duration ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Duration(baseUnitValue, BaseUnit);
+            return new Duration(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(DurationUnit unit)

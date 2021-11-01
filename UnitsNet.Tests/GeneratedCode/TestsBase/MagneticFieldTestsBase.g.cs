@@ -190,7 +190,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new MagneticField(value: 1, unit: MagneticField.BaseUnit);
+            var quantity = new MagneticField(value: 1, unit: MagneticField.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -238,7 +238,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = MagneticField.FromTeslas(1).ToBaseUnit();
-            Assert.Equal(MagneticField.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(MagneticField.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

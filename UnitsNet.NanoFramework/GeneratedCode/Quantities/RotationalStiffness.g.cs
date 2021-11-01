@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static RotationalStiffnessUnit BaseUnit { get; } = RotationalStiffnessUnit.NewtonMeterPerRadian;
+        public static RotationalStiffnessUnit ConversionBaseUnit { get; } = RotationalStiffnessUnit.NewtonMeterPerRadian;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static RotationalStiffness MaxValue { get; } = new RotationalStiffness(double.MaxValue, BaseUnit);
+        public static RotationalStiffness MaxValue { get; } = new RotationalStiffness(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static RotationalStiffness MinValue { get; } = new RotationalStiffness(double.MinValue, BaseUnit);
+        public static RotationalStiffness MinValue { get; } = new RotationalStiffness(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static RotationalStiffness Zero { get; } = new RotationalStiffness(0, BaseUnit);
+        public static RotationalStiffness Zero { get; } = new RotationalStiffness(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

@@ -61,7 +61,7 @@ namespace UnitsNet
                 new UnitInfo<MagnetizationUnit>[] {
                     new UnitInfo<MagnetizationUnit>(MagnetizationUnit.AmperePerMeter, "AmperesPerMeter", new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere)),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Magnetization);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Magnetization);
         }
 
         /// <summary>
@@ -111,19 +111,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Magnetization, which is AmperePerMeter. All conversions go via this value.
         /// </summary>
-        public static MagnetizationUnit BaseUnit { get; } = MagnetizationUnit.AmperePerMeter;
+        public static MagnetizationUnit ConversionBaseUnit { get; } = MagnetizationUnit.AmperePerMeter;
 
         /// <summary>
         /// Represents the largest possible value of Magnetization
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Magnetization MaxValue { get; } = new Magnetization(double.MaxValue, BaseUnit);
+        public static Magnetization MaxValue { get; } = new Magnetization(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Magnetization
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Magnetization MinValue { get; } = new Magnetization(double.MinValue, BaseUnit);
+        public static Magnetization MinValue { get; } = new Magnetization(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -139,7 +139,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit AmperePerMeter.
         /// </summary>
-        public static Magnetization Zero { get; } = new Magnetization(0, BaseUnit);
+        public static Magnetization Zero { get; } = new Magnetization(0, ConversionBaseUnit);
 
         #endregion
 
@@ -153,7 +153,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public MagnetizationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public MagnetizationUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<MagnetizationUnit> QuantityInfo => Info;
@@ -661,7 +661,7 @@ namespace UnitsNet
         internal Magnetization ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Magnetization(baseUnitValue, BaseUnit);
+            return new Magnetization(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(MagnetizationUnit unit)

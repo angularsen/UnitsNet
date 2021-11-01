@@ -85,7 +85,7 @@ namespace UnitsNet
                     new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerMeter, "WattsPerMeter", BaseUnits.Undefined),
                     new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerMillimeter, "WattsPerMillimeter", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.LinearPowerDensity);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.LinearPowerDensity);
         }
 
         /// <summary>
@@ -135,19 +135,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of LinearPowerDensity, which is WattPerMeter. All conversions go via this value.
         /// </summary>
-        public static LinearPowerDensityUnit BaseUnit { get; } = LinearPowerDensityUnit.WattPerMeter;
+        public static LinearPowerDensityUnit ConversionBaseUnit { get; } = LinearPowerDensityUnit.WattPerMeter;
 
         /// <summary>
         /// Represents the largest possible value of LinearPowerDensity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static LinearPowerDensity MaxValue { get; } = new LinearPowerDensity(double.MaxValue, BaseUnit);
+        public static LinearPowerDensity MaxValue { get; } = new LinearPowerDensity(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of LinearPowerDensity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static LinearPowerDensity MinValue { get; } = new LinearPowerDensity(double.MinValue, BaseUnit);
+        public static LinearPowerDensity MinValue { get; } = new LinearPowerDensity(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -163,7 +163,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit WattPerMeter.
         /// </summary>
-        public static LinearPowerDensity Zero { get; } = new LinearPowerDensity(0, BaseUnit);
+        public static LinearPowerDensity Zero { get; } = new LinearPowerDensity(0, ConversionBaseUnit);
 
         #endregion
 
@@ -177,7 +177,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public LinearPowerDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public LinearPowerDensityUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<LinearPowerDensityUnit> QuantityInfo => Info;
@@ -1045,7 +1045,7 @@ namespace UnitsNet
         internal LinearPowerDensity ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new LinearPowerDensity(baseUnitValue, BaseUnit);
+            return new LinearPowerDensity(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(LinearPowerDensityUnit unit)

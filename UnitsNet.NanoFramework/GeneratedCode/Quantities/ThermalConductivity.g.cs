@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static ThermalConductivityUnit BaseUnit { get; } = ThermalConductivityUnit.WattPerMeterKelvin;
+        public static ThermalConductivityUnit ConversionBaseUnit { get; } = ThermalConductivityUnit.WattPerMeterKelvin;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static ThermalConductivity MaxValue { get; } = new ThermalConductivity(double.MaxValue, BaseUnit);
+        public static ThermalConductivity MaxValue { get; } = new ThermalConductivity(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static ThermalConductivity MinValue { get; } = new ThermalConductivity(double.MinValue, BaseUnit);
+        public static ThermalConductivity MinValue { get; } = new ThermalConductivity(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static ThermalConductivity Zero { get; } = new ThermalConductivity(0, BaseUnit);
+        public static ThermalConductivity Zero { get; } = new ThermalConductivity(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

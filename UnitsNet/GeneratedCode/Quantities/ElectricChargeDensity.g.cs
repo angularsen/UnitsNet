@@ -61,7 +61,7 @@ namespace UnitsNet
                 new UnitInfo<ElectricChargeDensityUnit>[] {
                     new UnitInfo<ElectricChargeDensityUnit>(ElectricChargeDensityUnit.CoulombPerCubicMeter, "CoulombsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricChargeDensity);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.ElectricChargeDensity);
         }
 
         /// <summary>
@@ -111,19 +111,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricChargeDensity, which is CoulombPerCubicMeter. All conversions go via this value.
         /// </summary>
-        public static ElectricChargeDensityUnit BaseUnit { get; } = ElectricChargeDensityUnit.CoulombPerCubicMeter;
+        public static ElectricChargeDensityUnit ConversionBaseUnit { get; } = ElectricChargeDensityUnit.CoulombPerCubicMeter;
 
         /// <summary>
         /// Represents the largest possible value of ElectricChargeDensity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricChargeDensity MaxValue { get; } = new ElectricChargeDensity(double.MaxValue, BaseUnit);
+        public static ElectricChargeDensity MaxValue { get; } = new ElectricChargeDensity(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricChargeDensity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricChargeDensity MinValue { get; } = new ElectricChargeDensity(double.MinValue, BaseUnit);
+        public static ElectricChargeDensity MinValue { get; } = new ElectricChargeDensity(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -139,7 +139,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit CoulombPerCubicMeter.
         /// </summary>
-        public static ElectricChargeDensity Zero { get; } = new ElectricChargeDensity(0, BaseUnit);
+        public static ElectricChargeDensity Zero { get; } = new ElectricChargeDensity(0, ConversionBaseUnit);
 
         #endregion
 
@@ -153,7 +153,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public ElectricChargeDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public ElectricChargeDensityUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<ElectricChargeDensityUnit> QuantityInfo => Info;
@@ -661,7 +661,7 @@ namespace UnitsNet
         internal ElectricChargeDensity ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new ElectricChargeDensity(baseUnitValue, BaseUnit);
+            return new ElectricChargeDensity(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(ElectricChargeDensityUnit unit)

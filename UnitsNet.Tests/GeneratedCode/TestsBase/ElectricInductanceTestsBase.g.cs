@@ -174,7 +174,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new ElectricInductance(value: 1, unit: ElectricInductance.BaseUnit);
+            var quantity = new ElectricInductance(value: 1, unit: ElectricInductance.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -214,7 +214,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = ElectricInductance.FromHenries(1).ToBaseUnit();
-            Assert.Equal(ElectricInductance.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(ElectricInductance.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

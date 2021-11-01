@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static MolarEnergyUnit BaseUnit { get; } = MolarEnergyUnit.JoulePerMole;
+        public static MolarEnergyUnit ConversionBaseUnit { get; } = MolarEnergyUnit.JoulePerMole;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static MolarEnergy MaxValue { get; } = new MolarEnergy(double.MaxValue, BaseUnit);
+        public static MolarEnergy MaxValue { get; } = new MolarEnergy(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static MolarEnergy MinValue { get; } = new MolarEnergy(double.MinValue, BaseUnit);
+        public static MolarEnergy MinValue { get; } = new MolarEnergy(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static MolarEnergy Zero { get; } = new MolarEnergy(0, BaseUnit);
+        public static MolarEnergy Zero { get; } = new MolarEnergy(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

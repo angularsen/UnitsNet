@@ -65,7 +65,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MegaampereHour, "MegaampereHours", BaseUnits.Undefined),
                     new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MilliampereHour, "MilliampereHours", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricCharge);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.ElectricCharge);
         }
 
         /// <summary>
@@ -115,19 +115,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricCharge, which is Coulomb. All conversions go via this value.
         /// </summary>
-        public static ElectricChargeUnit BaseUnit { get; } = ElectricChargeUnit.Coulomb;
+        public static ElectricChargeUnit ConversionBaseUnit { get; } = ElectricChargeUnit.Coulomb;
 
         /// <summary>
         /// Represents the largest possible value of ElectricCharge
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricCharge MaxValue { get; } = new ElectricCharge(double.MaxValue, BaseUnit);
+        public static ElectricCharge MaxValue { get; } = new ElectricCharge(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricCharge
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricCharge MinValue { get; } = new ElectricCharge(double.MinValue, BaseUnit);
+        public static ElectricCharge MinValue { get; } = new ElectricCharge(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -143,7 +143,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Coulomb.
         /// </summary>
-        public static ElectricCharge Zero { get; } = new ElectricCharge(0, BaseUnit);
+        public static ElectricCharge Zero { get; } = new ElectricCharge(0, ConversionBaseUnit);
 
         #endregion
 
@@ -157,7 +157,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public ElectricChargeUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public ElectricChargeUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<ElectricChargeUnit> QuantityInfo => Info;
@@ -725,7 +725,7 @@ namespace UnitsNet
         internal ElectricCharge ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new ElectricCharge(baseUnitValue, BaseUnit);
+            return new ElectricCharge(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(ElectricChargeUnit unit)

@@ -74,7 +74,7 @@ namespace UnitsNet
                     new UnitInfo<LuminosityUnit>(LuminosityUnit.Terawatt, "Terawatts", BaseUnits.Undefined),
                     new UnitInfo<LuminosityUnit>(LuminosityUnit.Watt, "Watts", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Luminosity);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Luminosity);
         }
 
         /// <summary>
@@ -124,19 +124,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Luminosity, which is Watt. All conversions go via this value.
         /// </summary>
-        public static LuminosityUnit BaseUnit { get; } = LuminosityUnit.Watt;
+        public static LuminosityUnit ConversionBaseUnit { get; } = LuminosityUnit.Watt;
 
         /// <summary>
         /// Represents the largest possible value of Luminosity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Luminosity MaxValue { get; } = new Luminosity(double.MaxValue, BaseUnit);
+        public static Luminosity MaxValue { get; } = new Luminosity(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Luminosity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Luminosity MinValue { get; } = new Luminosity(double.MinValue, BaseUnit);
+        public static Luminosity MinValue { get; } = new Luminosity(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -152,7 +152,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Watt.
         /// </summary>
-        public static Luminosity Zero { get; } = new Luminosity(0, BaseUnit);
+        public static Luminosity Zero { get; } = new Luminosity(0, ConversionBaseUnit);
 
         #endregion
 
@@ -166,7 +166,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public LuminosityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public LuminosityUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<LuminosityUnit> QuantityInfo => Info;
@@ -869,7 +869,7 @@ namespace UnitsNet
         internal Luminosity ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Luminosity(baseUnitValue, BaseUnit);
+            return new Luminosity(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(LuminosityUnit unit)

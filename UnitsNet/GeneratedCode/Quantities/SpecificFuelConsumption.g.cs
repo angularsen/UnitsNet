@@ -64,7 +64,7 @@ namespace UnitsNet
                     new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, "KilogramsPerKiloNewtonSecond", BaseUnits.Undefined),
                     new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, "PoundsMassPerPoundForceHour", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.SpecificFuelConsumption);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.SpecificFuelConsumption);
         }
 
         /// <summary>
@@ -114,19 +114,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of SpecificFuelConsumption, which is GramPerKiloNewtonSecond. All conversions go via this value.
         /// </summary>
-        public static SpecificFuelConsumptionUnit BaseUnit { get; } = SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond;
+        public static SpecificFuelConsumptionUnit ConversionBaseUnit { get; } = SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond;
 
         /// <summary>
         /// Represents the largest possible value of SpecificFuelConsumption
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static SpecificFuelConsumption MaxValue { get; } = new SpecificFuelConsumption(double.MaxValue, BaseUnit);
+        public static SpecificFuelConsumption MaxValue { get; } = new SpecificFuelConsumption(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of SpecificFuelConsumption
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static SpecificFuelConsumption MinValue { get; } = new SpecificFuelConsumption(double.MinValue, BaseUnit);
+        public static SpecificFuelConsumption MinValue { get; } = new SpecificFuelConsumption(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -142,7 +142,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit GramPerKiloNewtonSecond.
         /// </summary>
-        public static SpecificFuelConsumption Zero { get; } = new SpecificFuelConsumption(0, BaseUnit);
+        public static SpecificFuelConsumption Zero { get; } = new SpecificFuelConsumption(0, ConversionBaseUnit);
 
         #endregion
 
@@ -156,7 +156,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public SpecificFuelConsumptionUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public SpecificFuelConsumptionUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<SpecificFuelConsumptionUnit> QuantityInfo => Info;
@@ -709,7 +709,7 @@ namespace UnitsNet
         internal SpecificFuelConsumption ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new SpecificFuelConsumption(baseUnitValue, BaseUnit);
+            return new SpecificFuelConsumption(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(SpecificFuelConsumptionUnit unit)

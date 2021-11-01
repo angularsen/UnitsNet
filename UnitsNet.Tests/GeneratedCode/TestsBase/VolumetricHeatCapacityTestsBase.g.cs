@@ -214,7 +214,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new VolumetricHeatCapacity(value: 1, unit: VolumetricHeatCapacity.BaseUnit);
+            var quantity = new VolumetricHeatCapacity(value: 1, unit: VolumetricHeatCapacity.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -274,7 +274,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(1).ToBaseUnit();
-            Assert.Equal(VolumetricHeatCapacity.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(VolumetricHeatCapacity.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

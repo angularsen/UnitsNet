@@ -64,7 +64,7 @@ namespace UnitsNet
                     new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.MilePerUkGallon, "MilesPerUkGallon", BaseUnits.Undefined),
                     new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.MilePerUsGallon, "MilesPerUsGallon", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.FuelEfficiency);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.FuelEfficiency);
         }
 
         /// <summary>
@@ -114,19 +114,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of FuelEfficiency, which is LiterPer100Kilometers. All conversions go via this value.
         /// </summary>
-        public static FuelEfficiencyUnit BaseUnit { get; } = FuelEfficiencyUnit.LiterPer100Kilometers;
+        public static FuelEfficiencyUnit ConversionBaseUnit { get; } = FuelEfficiencyUnit.LiterPer100Kilometers;
 
         /// <summary>
         /// Represents the largest possible value of FuelEfficiency
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static FuelEfficiency MaxValue { get; } = new FuelEfficiency(double.MaxValue, BaseUnit);
+        public static FuelEfficiency MaxValue { get; } = new FuelEfficiency(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of FuelEfficiency
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static FuelEfficiency MinValue { get; } = new FuelEfficiency(double.MinValue, BaseUnit);
+        public static FuelEfficiency MinValue { get; } = new FuelEfficiency(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -142,7 +142,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit LiterPer100Kilometers.
         /// </summary>
-        public static FuelEfficiency Zero { get; } = new FuelEfficiency(0, BaseUnit);
+        public static FuelEfficiency Zero { get; } = new FuelEfficiency(0, ConversionBaseUnit);
 
         #endregion
 
@@ -156,7 +156,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public FuelEfficiencyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public FuelEfficiencyUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<FuelEfficiencyUnit> QuantityInfo => Info;
@@ -709,7 +709,7 @@ namespace UnitsNet
         internal FuelEfficiency ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new FuelEfficiency(baseUnitValue, BaseUnit);
+            return new FuelEfficiency(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(FuelEfficiencyUnit unit)

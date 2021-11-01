@@ -61,7 +61,7 @@ namespace UnitsNet
                 new UnitInfo<TurbidityUnit>[] {
                     new UnitInfo<TurbidityUnit>(TurbidityUnit.NTU, "NTU", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Turbidity);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Turbidity);
         }
 
         /// <summary>
@@ -111,19 +111,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Turbidity, which is NTU. All conversions go via this value.
         /// </summary>
-        public static TurbidityUnit BaseUnit { get; } = TurbidityUnit.NTU;
+        public static TurbidityUnit ConversionBaseUnit { get; } = TurbidityUnit.NTU;
 
         /// <summary>
         /// Represents the largest possible value of Turbidity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Turbidity MaxValue { get; } = new Turbidity(double.MaxValue, BaseUnit);
+        public static Turbidity MaxValue { get; } = new Turbidity(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Turbidity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Turbidity MinValue { get; } = new Turbidity(double.MinValue, BaseUnit);
+        public static Turbidity MinValue { get; } = new Turbidity(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -139,7 +139,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NTU.
         /// </summary>
-        public static Turbidity Zero { get; } = new Turbidity(0, BaseUnit);
+        public static Turbidity Zero { get; } = new Turbidity(0, ConversionBaseUnit);
 
         #endregion
 
@@ -153,7 +153,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public TurbidityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public TurbidityUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<TurbidityUnit> QuantityInfo => Info;
@@ -661,7 +661,7 @@ namespace UnitsNet
         internal Turbidity ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Turbidity(baseUnitValue, BaseUnit);
+            return new Turbidity(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(TurbidityUnit unit)

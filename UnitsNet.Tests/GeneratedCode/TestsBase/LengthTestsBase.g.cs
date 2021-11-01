@@ -406,7 +406,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Length(value: 1, unit: Length.BaseUnit);
+            var quantity = new Length(value: 1, unit: Length.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -562,7 +562,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = Length.FromMeters(1).ToBaseUnit();
-            Assert.Equal(Length.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(Length.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

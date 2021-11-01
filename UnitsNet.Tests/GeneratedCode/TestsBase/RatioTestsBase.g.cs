@@ -190,7 +190,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Ratio(value: 1, unit: Ratio.BaseUnit);
+            var quantity = new Ratio(value: 1, unit: Ratio.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -238,7 +238,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = Ratio.FromDecimalFractions(1).ToBaseUnit();
-            Assert.Equal(Ratio.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(Ratio.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

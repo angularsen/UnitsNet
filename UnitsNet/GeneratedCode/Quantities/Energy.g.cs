@@ -93,7 +93,7 @@ namespace UnitsNet
                     new UnitInfo<EnergyUnit>(EnergyUnit.WattDay, "WattDays", BaseUnits.Undefined),
                     new UnitInfo<EnergyUnit>(EnergyUnit.WattHour, "WattHours", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Energy);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Energy);
         }
 
         /// <summary>
@@ -143,19 +143,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Energy, which is Joule. All conversions go via this value.
         /// </summary>
-        public static EnergyUnit BaseUnit { get; } = EnergyUnit.Joule;
+        public static EnergyUnit ConversionBaseUnit { get; } = EnergyUnit.Joule;
 
         /// <summary>
         /// Represents the largest possible value of Energy
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Energy MaxValue { get; } = new Energy(double.MaxValue, BaseUnit);
+        public static Energy MaxValue { get; } = new Energy(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Energy
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Energy MinValue { get; } = new Energy(double.MinValue, BaseUnit);
+        public static Energy MinValue { get; } = new Energy(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -171,7 +171,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Joule.
         /// </summary>
-        public static Energy Zero { get; } = new Energy(0, BaseUnit);
+        public static Energy Zero { get; } = new Energy(0, ConversionBaseUnit);
 
         #endregion
 
@@ -185,7 +185,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public EnergyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public EnergyUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<EnergyUnit> QuantityInfo => Info;
@@ -1218,7 +1218,7 @@ namespace UnitsNet
         internal Energy ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Energy(baseUnitValue, BaseUnit);
+            return new Energy(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(EnergyUnit unit)

@@ -222,7 +222,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new TemperatureChangeRate(value: 1, unit: TemperatureChangeRate.BaseUnit);
+            var quantity = new TemperatureChangeRate(value: 1, unit: TemperatureChangeRate.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -286,7 +286,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1).ToBaseUnit();
-            Assert.Equal(TemperatureChangeRate.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(TemperatureChangeRate.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

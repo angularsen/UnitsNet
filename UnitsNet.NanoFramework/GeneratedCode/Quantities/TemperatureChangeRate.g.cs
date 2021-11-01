@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static TemperatureChangeRateUnit BaseUnit { get; } = TemperatureChangeRateUnit.DegreeCelsiusPerSecond;
+        public static TemperatureChangeRateUnit ConversionBaseUnit { get; } = TemperatureChangeRateUnit.DegreeCelsiusPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static TemperatureChangeRate MaxValue { get; } = new TemperatureChangeRate(double.MaxValue, BaseUnit);
+        public static TemperatureChangeRate MaxValue { get; } = new TemperatureChangeRate(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static TemperatureChangeRate MinValue { get; } = new TemperatureChangeRate(double.MinValue, BaseUnit);
+        public static TemperatureChangeRate MinValue { get; } = new TemperatureChangeRate(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static TemperatureChangeRate Zero { get; } = new TemperatureChangeRate(0, BaseUnit);
+        public static TemperatureChangeRate Zero { get; } = new TemperatureChangeRate(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

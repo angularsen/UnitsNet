@@ -89,7 +89,7 @@ namespace UnitsNet
                     new UnitInfo<SpeedUnit>(SpeedUnit.YardPerMinute, "YardsPerMinute", new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Minute)),
                     new UnitInfo<SpeedUnit>(SpeedUnit.YardPerSecond, "YardsPerSecond", new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Second)),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Speed);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Speed);
         }
 
         /// <summary>
@@ -139,19 +139,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Speed, which is MeterPerSecond. All conversions go via this value.
         /// </summary>
-        public static SpeedUnit BaseUnit { get; } = SpeedUnit.MeterPerSecond;
+        public static SpeedUnit ConversionBaseUnit { get; } = SpeedUnit.MeterPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of Speed
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Speed MaxValue { get; } = new Speed(double.MaxValue, BaseUnit);
+        public static Speed MaxValue { get; } = new Speed(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Speed
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Speed MinValue { get; } = new Speed(double.MinValue, BaseUnit);
+        public static Speed MinValue { get; } = new Speed(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -167,7 +167,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit MeterPerSecond.
         /// </summary>
-        public static Speed Zero { get; } = new Speed(0, BaseUnit);
+        public static Speed Zero { get; } = new Speed(0, ConversionBaseUnit);
 
         #endregion
 
@@ -181,7 +181,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public SpeedUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public SpeedUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<SpeedUnit> QuantityInfo => Info;
@@ -1154,7 +1154,7 @@ namespace UnitsNet
         internal Speed ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Speed(baseUnitValue, BaseUnit);
+            return new Speed(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(SpeedUnit unit)

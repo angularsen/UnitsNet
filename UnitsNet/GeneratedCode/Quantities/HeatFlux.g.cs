@@ -75,7 +75,7 @@ namespace UnitsNet
                     new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareInch, "WattsPerSquareInch", BaseUnits.Undefined),
                     new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareMeter, "WattsPerSquareMeter", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second)),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.HeatFlux);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.HeatFlux);
         }
 
         /// <summary>
@@ -125,19 +125,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of HeatFlux, which is WattPerSquareMeter. All conversions go via this value.
         /// </summary>
-        public static HeatFluxUnit BaseUnit { get; } = HeatFluxUnit.WattPerSquareMeter;
+        public static HeatFluxUnit ConversionBaseUnit { get; } = HeatFluxUnit.WattPerSquareMeter;
 
         /// <summary>
         /// Represents the largest possible value of HeatFlux
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static HeatFlux MaxValue { get; } = new HeatFlux(double.MaxValue, BaseUnit);
+        public static HeatFlux MaxValue { get; } = new HeatFlux(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of HeatFlux
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static HeatFlux MinValue { get; } = new HeatFlux(double.MinValue, BaseUnit);
+        public static HeatFlux MinValue { get; } = new HeatFlux(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -153,7 +153,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit WattPerSquareMeter.
         /// </summary>
-        public static HeatFlux Zero { get; } = new HeatFlux(0, BaseUnit);
+        public static HeatFlux Zero { get; } = new HeatFlux(0, ConversionBaseUnit);
 
         #endregion
 
@@ -167,7 +167,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public HeatFluxUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public HeatFluxUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<HeatFluxUnit> QuantityInfo => Info;
@@ -930,7 +930,7 @@ namespace UnitsNet
         internal HeatFlux ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new HeatFlux(baseUnitValue, BaseUnit);
+            return new HeatFlux(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(HeatFluxUnit unit)

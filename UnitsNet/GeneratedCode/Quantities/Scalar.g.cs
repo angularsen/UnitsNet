@@ -58,7 +58,7 @@ namespace UnitsNet
                 new UnitInfo<ScalarUnit>[] {
                     new UnitInfo<ScalarUnit>(ScalarUnit.Amount, "Amount", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Scalar);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Scalar);
         }
 
         /// <summary>
@@ -108,19 +108,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Scalar, which is Amount. All conversions go via this value.
         /// </summary>
-        public static ScalarUnit BaseUnit { get; } = ScalarUnit.Amount;
+        public static ScalarUnit ConversionBaseUnit { get; } = ScalarUnit.Amount;
 
         /// <summary>
         /// Represents the largest possible value of Scalar
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Scalar MaxValue { get; } = new Scalar(double.MaxValue, BaseUnit);
+        public static Scalar MaxValue { get; } = new Scalar(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Scalar
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Scalar MinValue { get; } = new Scalar(double.MinValue, BaseUnit);
+        public static Scalar MinValue { get; } = new Scalar(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -136,7 +136,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Amount.
         /// </summary>
-        public static Scalar Zero { get; } = new Scalar(0, BaseUnit);
+        public static Scalar Zero { get; } = new Scalar(0, ConversionBaseUnit);
 
         #endregion
 
@@ -150,7 +150,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public ScalarUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public ScalarUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<ScalarUnit> QuantityInfo => Info;
@@ -658,7 +658,7 @@ namespace UnitsNet
         internal Scalar ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Scalar(baseUnitValue, BaseUnit);
+            return new Scalar(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(ScalarUnit unit)

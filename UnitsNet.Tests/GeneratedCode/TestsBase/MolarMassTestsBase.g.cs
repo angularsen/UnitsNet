@@ -238,7 +238,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new MolarMass(value: 1, unit: MolarMass.BaseUnit);
+            var quantity = new MolarMass(value: 1, unit: MolarMass.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -310,7 +310,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = MolarMass.FromKilogramsPerMole(1).ToBaseUnit();
-            Assert.Equal(MolarMass.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(MolarMass.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

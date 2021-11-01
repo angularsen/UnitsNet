@@ -166,7 +166,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new ReactiveEnergy(value: 1, unit: ReactiveEnergy.BaseUnit);
+            var quantity = new ReactiveEnergy(value: 1, unit: ReactiveEnergy.ConversionBaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -202,7 +202,7 @@ namespace UnitsNet.Tests
         public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
         {
             var quantityInBaseUnit = ReactiveEnergy.FromVoltampereReactiveHours(1).ToBaseUnit();
-            Assert.Equal(ReactiveEnergy.BaseUnit, quantityInBaseUnit.Unit);
+            Assert.Equal(ReactiveEnergy.ConversionBaseUnit, quantityInBaseUnit.Unit);
         }
 
         [Fact]

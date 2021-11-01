@@ -67,7 +67,7 @@ namespace UnitsNet
                     new UnitInfo<TemperatureUnit>(TemperatureUnit.MillidegreeCelsius, "MillidegreesCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius)),
                     new UnitInfo<TemperatureUnit>(TemperatureUnit.SolarTemperature, "SolarTemperatures", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Temperature);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Temperature);
         }
 
         /// <summary>
@@ -117,19 +117,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Temperature, which is Kelvin. All conversions go via this value.
         /// </summary>
-        public static TemperatureUnit BaseUnit { get; } = TemperatureUnit.Kelvin;
+        public static TemperatureUnit ConversionBaseUnit { get; } = TemperatureUnit.Kelvin;
 
         /// <summary>
         /// Represents the largest possible value of Temperature
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Temperature MaxValue { get; } = new Temperature(double.MaxValue, BaseUnit);
+        public static Temperature MaxValue { get; } = new Temperature(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Temperature
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Temperature MinValue { get; } = new Temperature(double.MinValue, BaseUnit);
+        public static Temperature MinValue { get; } = new Temperature(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -145,7 +145,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Kelvin.
         /// </summary>
-        public static Temperature Zero { get; } = new Temperature(0, BaseUnit);
+        public static Temperature Zero { get; } = new Temperature(0, ConversionBaseUnit);
 
         #endregion
 
@@ -159,7 +159,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public TemperatureUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public TemperatureUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<TemperatureUnit> QuantityInfo => Info;
@@ -756,7 +756,7 @@ namespace UnitsNet
         internal Temperature ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new Temperature(baseUnitValue, BaseUnit);
+            return new Temperature(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(TemperatureUnit unit)

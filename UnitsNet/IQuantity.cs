@@ -46,7 +46,7 @@ namespace UnitsNet
         double As(UnitSystem unitSystem);
 
         /// <summary>
-        ///     The unit this quantity was constructed with -or- BaseUnit if default ctor was used.
+        ///     The unit this quantity was constructed with -or- ConversionBaseUnit if default ctor was used.
         /// </summary>
         Enum Unit { get; }
 

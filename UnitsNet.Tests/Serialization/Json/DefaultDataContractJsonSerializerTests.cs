@@ -82,7 +82,7 @@ namespace UnitsNet.Tests.Serialization.Json
 
             Assert.Equal(expectedJson, json);
         }
-        
+
         [Fact]
         public void DoubleQuantity_DeserializedFromDoubleValueAndIntegerUnit()
         {
@@ -124,7 +124,7 @@ namespace UnitsNet.Tests.Serialization.Json
             var quantity = DeserializeObject<Mass>(json);
 
             Assert.Equal(1.2, quantity.Value);
-            Assert.Equal(Mass.BaseUnit, quantity.Unit);
+            Assert.Equal(Mass.ConversionBaseUnit, quantity.Unit);
         }
 
         [Fact]
@@ -135,9 +135,9 @@ namespace UnitsNet.Tests.Serialization.Json
             var quantity = DeserializeObject<Mass>(json);
 
             Assert.Equal(0, quantity.Value);
-            Assert.Equal(Mass.BaseUnit, quantity.Unit);
+            Assert.Equal(Mass.ConversionBaseUnit, quantity.Unit);
         }
-        
+
         [Fact]
         public void DecimalQuantity_DeserializedFromDecimalValueAndIntegerUnit()
         {
@@ -179,10 +179,10 @@ namespace UnitsNet.Tests.Serialization.Json
             var json = "{\"Value\":1.200}";
 
             var quantity = DeserializeObject<Information>(json);
-            
+
             Assert.Equal(1.200m, quantity.Value);
             Assert.Equal("1.200", quantity.Value.ToString(CultureInfo.InvariantCulture));
-            Assert.Equal(Information.BaseUnit, quantity.Unit);
+            Assert.Equal(Information.ConversionBaseUnit, quantity.Unit);
         }
 
         [Fact]
@@ -193,7 +193,7 @@ namespace UnitsNet.Tests.Serialization.Json
             var quantity = DeserializeObject<Information>(json);
 
             Assert.Equal(0, quantity.Value);
-            Assert.Equal(Information.BaseUnit, quantity.Unit);
+            Assert.Equal(Information.ConversionBaseUnit, quantity.Unit);
         }
 
         [Fact]

@@ -77,7 +77,7 @@ namespace UnitsNet
                     new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.TonneForcePerCubicMeter, "TonnesForcePerCubicMeter", BaseUnits.Undefined),
                     new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.TonneForcePerCubicMillimeter, "TonnesForcePerCubicMillimeter", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.SpecificWeight);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.SpecificWeight);
         }
 
         /// <summary>
@@ -127,19 +127,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of SpecificWeight, which is NewtonPerCubicMeter. All conversions go via this value.
         /// </summary>
-        public static SpecificWeightUnit BaseUnit { get; } = SpecificWeightUnit.NewtonPerCubicMeter;
+        public static SpecificWeightUnit ConversionBaseUnit { get; } = SpecificWeightUnit.NewtonPerCubicMeter;
 
         /// <summary>
         /// Represents the largest possible value of SpecificWeight
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static SpecificWeight MaxValue { get; } = new SpecificWeight(double.MaxValue, BaseUnit);
+        public static SpecificWeight MaxValue { get; } = new SpecificWeight(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of SpecificWeight
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static SpecificWeight MinValue { get; } = new SpecificWeight(double.MinValue, BaseUnit);
+        public static SpecificWeight MinValue { get; } = new SpecificWeight(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -155,7 +155,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonPerCubicMeter.
         /// </summary>
-        public static SpecificWeight Zero { get; } = new SpecificWeight(0, BaseUnit);
+        public static SpecificWeight Zero { get; } = new SpecificWeight(0, ConversionBaseUnit);
 
         #endregion
 
@@ -169,7 +169,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public SpecificWeightUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public SpecificWeightUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<SpecificWeightUnit> QuantityInfo => Info;
@@ -917,7 +917,7 @@ namespace UnitsNet
         internal SpecificWeight ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new SpecificWeight(baseUnitValue, BaseUnit);
+            return new SpecificWeight(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(SpecificWeightUnit unit)

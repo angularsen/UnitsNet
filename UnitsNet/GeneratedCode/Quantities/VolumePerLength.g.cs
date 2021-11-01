@@ -64,7 +64,7 @@ namespace UnitsNet
                     new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.LiterPerMillimeter, "LitersPerMillimeter", BaseUnits.Undefined),
                     new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.OilBarrelPerFoot, "OilBarrelsPerFoot", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.VolumePerLength);
+                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.VolumePerLength);
         }
 
         /// <summary>
@@ -114,19 +114,19 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of VolumePerLength, which is CubicMeterPerMeter. All conversions go via this value.
         /// </summary>
-        public static VolumePerLengthUnit BaseUnit { get; } = VolumePerLengthUnit.CubicMeterPerMeter;
+        public static VolumePerLengthUnit ConversionBaseUnit { get; } = VolumePerLengthUnit.CubicMeterPerMeter;
 
         /// <summary>
         /// Represents the largest possible value of VolumePerLength
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static VolumePerLength MaxValue { get; } = new VolumePerLength(double.MaxValue, BaseUnit);
+        public static VolumePerLength MaxValue { get; } = new VolumePerLength(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of VolumePerLength
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static VolumePerLength MinValue { get; } = new VolumePerLength(double.MinValue, BaseUnit);
+        public static VolumePerLength MinValue { get; } = new VolumePerLength(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -142,7 +142,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit CubicMeterPerMeter.
         /// </summary>
-        public static VolumePerLength Zero { get; } = new VolumePerLength(0, BaseUnit);
+        public static VolumePerLength Zero { get; } = new VolumePerLength(0, ConversionBaseUnit);
 
         #endregion
 
@@ -156,7 +156,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public VolumePerLengthUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public VolumePerLengthUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<VolumePerLengthUnit> QuantityInfo => Info;
@@ -754,7 +754,7 @@ namespace UnitsNet
         internal VolumePerLength ToBaseUnit()
         {
             var baseUnitValue = GetValueInBaseUnit();
-            return new VolumePerLength(baseUnitValue, BaseUnit);
+            return new VolumePerLength(baseUnitValue, ConversionBaseUnit);
         }
 
         private double GetValueAs(VolumePerLengthUnit unit)

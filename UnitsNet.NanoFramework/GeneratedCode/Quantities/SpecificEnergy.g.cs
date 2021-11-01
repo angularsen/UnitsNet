@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static SpecificEnergyUnit BaseUnit { get; } = SpecificEnergyUnit.JoulePerKilogram;
+        public static SpecificEnergyUnit ConversionBaseUnit { get; } = SpecificEnergyUnit.JoulePerKilogram;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static SpecificEnergy MaxValue { get; } = new SpecificEnergy(double.MaxValue, BaseUnit);
+        public static SpecificEnergy MaxValue { get; } = new SpecificEnergy(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static SpecificEnergy MinValue { get; } = new SpecificEnergy(double.MinValue, BaseUnit);
+        public static SpecificEnergy MinValue { get; } = new SpecificEnergy(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static SpecificEnergy Zero { get; } = new SpecificEnergy(0, BaseUnit);
+        public static SpecificEnergy Zero { get; } = new SpecificEnergy(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>

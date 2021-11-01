@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static LinearDensityUnit BaseUnit { get; } = LinearDensityUnit.KilogramPerMeter;
+        public static LinearDensityUnit ConversionBaseUnit { get; } = LinearDensityUnit.KilogramPerMeter;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static LinearDensity MaxValue { get; } = new LinearDensity(double.MaxValue, BaseUnit);
+        public static LinearDensity MaxValue { get; } = new LinearDensity(double.MaxValue, ConversionBaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static LinearDensity MinValue { get; } = new LinearDensity(double.MinValue, BaseUnit);
+        public static LinearDensity MinValue { get; } = new LinearDensity(double.MinValue, ConversionBaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static LinearDensity Zero { get; } = new LinearDensity(0, BaseUnit);
+        public static LinearDensity Zero { get; } = new LinearDensity(0, ConversionBaseUnit);
         #region Conversion Properties
 
         /// <summary>
