@@ -61,23 +61,10 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double TerabytesInOneBit => 0.125d*1e-12d;
 
-// ReSharper disable once InconsistentNaming
         [Fact]
         public void OneKBHas1000Bytes()
         {
             Assert.Equal(1000, Information.FromKilobytes(1).Bytes);
-        }
-
-        [Fact]
-        public void MaxValueIsCorrectForUnitWithBaseTypeDecimal()
-        {
-            Assert.Equal((double) decimal.MaxValue, Information.MaxValue.Bits);
-        }
-
-        [Fact]
-        public void MinValueIsCorrectForUnitWithBaseTypeDecimal()
-        {
-            Assert.Equal((double) decimal.MinValue, Information.MinValue.Bits);
         }
     }
 }

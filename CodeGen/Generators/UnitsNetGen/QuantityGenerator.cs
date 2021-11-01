@@ -234,18 +234,6 @@ namespace UnitsNet
         public static {_unitEnumName} ConversionBaseUnit {{ get; }} = {_unitEnumName}.{_quantity.ConversionBaseUnit};
 
         /// <summary>
-        /// Represents the largest possible value of {_quantity.Name}
-        /// </summary>
-        [Obsolete(""MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848."")]
-        public static {_quantity.Name} MaxValue {{ get; }} = new {_quantity.Name}({_valueType}.MaxValue, ConversionBaseUnit);
-
-        /// <summary>
-        /// Represents the smallest possible value of {_quantity.Name}
-        /// </summary>
-        [Obsolete(""MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848."")]
-        public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}({_valueType}.MinValue, ConversionBaseUnit);
-
-        /// <summary>
         ///     All units of measurement for the {_quantity.Name} quantity.
         /// </summary>
         public static {_unitEnumName}[] Units {{ get; }} = Enum.GetValues(typeof({_unitEnumName})).Cast<{_unitEnumName}>().Except(new {_unitEnumName}[]{{ {_unitEnumName}.Undefined }}).ToArray();
@@ -974,40 +962,6 @@ namespace UnitsNet
             return ToString(""g"", provider);
         }}
 
-        /// <summary>
-        ///     Get string representation of value and unit.
-        /// </summary>
-        /// <param name=""significantDigitsAfterRadix"">The number of significant digits after the radix point.</param>
-        /// <returns>String representation.</returns>
-        /// <param name=""provider"">Format to use for localization and number formatting. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
-        [Obsolete(@""This method is deprecated and will be removed at a future release. Please use ToString(""""s2"""") or ToString(""""s2"""", provider) where 2 is an example of the number passed to significantDigitsAfterRadix."")]
-        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
-        {{
-            var value = Convert.ToDouble(Value);
-            var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(provider, format);
-        }}
-
-        /// <summary>
-        ///     Get string representation of value and unit.
-        /// </summary>
-        /// <param name=""format"">String format to use. Default:  ""{{0:0.##}} {{1}} for value and unit abbreviation respectively.""</param>
-        /// <param name=""args"">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
-        /// <returns>String representation.</returns>
-        /// <param name=""provider"">Format to use for localization and number formatting. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
-        [Obsolete(""This method is deprecated and will be removed at a future release. Please use string.Format()."")]
-        public string ToString(IFormatProvider? provider, string format, params object[] args)
-        {{
-            if (format == null) throw new ArgumentNullException(nameof(format));
-            if (args == null) throw new ArgumentNullException(nameof(args));
-
-            provider = provider ?? CultureInfo.CurrentUICulture;
-
-            var value = Convert.ToDouble(Value);
-            var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
-            return string.Format(provider, format, formatArgs);
-        }}
-
         /// <inheritdoc cref=""QuantityFormatter.Format{{TUnitType}}(IQuantity{{TUnitType}}, string, IFormatProvider)""/>
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using <see cref=""CultureInfo.CurrentUICulture"" />.
@@ -1138,7 +1092,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)"/>
-        internal static string? GetObsoleteAttributeOrNull(Quantity quantity) => GetObsoleteAttributeOrNull(quantity.ObsoleteText);
+        private static string? GetObsoleteAttributeOrNull(Quantity quantity) => GetObsoleteAttributeOrNull(quantity.ObsoleteText);
 
         /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)"/>
         internal static string? GetObsoleteAttributeOrNull(Unit unit) => GetObsoleteAttributeOrNull(unit.ObsoleteText);

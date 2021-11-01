@@ -47,7 +47,7 @@ namespace UnitsNet.Tests
         {
             QuantityInfo quantityInfo = Quantity.ByName["Length"];
             Assert.Equal("Length", quantityInfo.Name);
-            Assert.Same(Length.Info, quantityInfo.Name);
+            Assert.Same(Length.Info, quantityInfo);
         }
 
         [Fact]
@@ -55,7 +55,7 @@ namespace UnitsNet.Tests
         {
             QuantityInfo quantityInfo = Quantity.ByName["Mass"];
             Assert.Equal("Mass", quantityInfo.Name);
-            Assert.Same(Mass.Info, quantityInfo.Name);
+            Assert.Same(Mass.Info, quantityInfo);
         }
 
         [Fact]

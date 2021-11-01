@@ -1,8 +1,10 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System;
 using Newtonsoft.Json;
 using UnitsNet.Serialization.JsonNet.Tests.Infrastructure;
+using UnitsNet.Units;
 using Xunit;
 
 namespace UnitsNet.Serialization.JsonNet.Tests
@@ -10,9 +12,9 @@ namespace UnitsNet.Serialization.JsonNet.Tests
     public sealed class UnitsNetJsonDeserializationTests : UnitsNetJsonBaseTest
     {
         [Fact]
-        public void Information_CanDeserializeVeryLargeValues()
+        public void Information_CanDeserializeLargeValue()
         {
-            var original = Information.FromExabytes(1E+9);
+            var original = new Information(decimal.MaxValue, InformationUnit.Exbibyte);
             var json = SerializeObject(original);
             var deserialized = DeserializeObject<Information>(json);
 
@@ -20,9 +22,10 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void Information_CanDeserializeMaxValue()
+        public void Information_CanDeserializeSmallValue()
         {
-            var original = Information.MaxValue;
+            decimal decimalEpsilon = (decimal)(1 / Math.Pow(10, 28));
+            var original = new Information(decimalEpsilon, InformationUnit.Bit);
             var json = SerializeObject(original);
             var deserialized = DeserializeObject<Information>(json);
 
@@ -30,19 +33,9 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void Information_CanDeserializeMinValue()
+        public void Length_CanDeserializeLargeValue()
         {
-            var original = Information.MinValue;
-            var json = SerializeObject(original);
-            var deserialized = DeserializeObject<Information>(json);
-
-            Assert.Equal(original, deserialized);
-        }
-
-        [Fact]
-        public void Length_CanDeserializeMaxValue()
-        {
-            var original = Length.MaxValue;
+            var original = new Length(double.MaxValue, LengthUnit.MegalightYear);
             var json = SerializeObject(original);
             var deserialized = DeserializeObject<Length>(json);
 
@@ -50,9 +43,9 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void Length_CanDeserializeMinValue()
+        public void Length_CanDeserializeSmallValue()
         {
-            var original = Length.MinValue;
+            var original = new Length(double.Epsilon, LengthUnit.Nanometer);
             var json = SerializeObject(original);
             var deserialized = DeserializeObject<Length>(json);
 
