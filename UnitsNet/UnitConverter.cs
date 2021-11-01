@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using JetBrains.Annotations;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -31,7 +30,6 @@ namespace UnitsNet
     /// <summary>
     ///     Convert between units of a quantity, such as converting from meters to centimeters of a given length.
     /// </summary>
-    [PublicAPI]
     public sealed partial class UnitConverter
     {
         /// <summary>

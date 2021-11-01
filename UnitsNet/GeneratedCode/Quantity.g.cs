@@ -19,7 +19,6 @@
 
 using System;
 using System.Globalization;
-using JetBrains.Annotations;
 using UnitsNet.Units;
 using System.Collections.Generic;
 
@@ -1097,7 +1096,7 @@ namespace UnitsNet
         {
             quantity = default(IQuantity);
 
-            if (!typeof(IQuantity).Wrap().IsAssignableFrom(quantityType))
+            if (!typeof(IQuantity).IsAssignableFrom(quantityType))
                 return false;
 
             var parser = QuantityParser.Default;

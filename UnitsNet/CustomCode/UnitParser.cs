@@ -4,7 +4,6 @@
 using System;
 using System.Globalization;
 using System.Linq;
-using JetBrains.Annotations;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -47,7 +46,6 @@ namespace UnitsNet
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <typeparam name="TUnitType"></typeparam>
         /// <returns></returns>
-        [PublicAPI]
         public TUnitType Parse<TUnitType>(string unitAbbreviation, IFormatProvider? formatProvider = null) where TUnitType : Enum
         {
             return (TUnitType)Parse(unitAbbreviation, typeof(TUnitType), formatProvider);
@@ -66,8 +64,7 @@ namespace UnitsNet
         /// <returns>Unit enum value, such as <see cref="MassUnit.Kilogram" />.</returns>
         /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
-        [PublicAPI]
-        public Enum Parse([NotNull] string unitAbbreviation, Type unitType, IFormatProvider? formatProvider = null)
+        public Enum Parse(string unitAbbreviation, Type unitType, IFormatProvider? formatProvider = null)
         {
             if (unitAbbreviation == null) throw new ArgumentNullException(nameof(unitAbbreviation));
             unitAbbreviation = unitAbbreviation.Trim();
@@ -138,7 +135,6 @@ namespace UnitsNet
         /// <param name="unit">The unit enum value as out result.</param>
         /// <typeparam name="TUnitType">Type of unit enum.</typeparam>
         /// <returns>True if successful.</returns>
-        [PublicAPI]
         public bool TryParse<TUnitType>(string unitAbbreviation, out TUnitType unit) where TUnitType : struct, Enum
         {
             return TryParse(unitAbbreviation, null, out unit);
@@ -152,7 +148,6 @@ namespace UnitsNet
         /// <param name="unit">The unit enum value as out result.</param>
         /// <typeparam name="TUnitType">Type of unit enum.</typeparam>
         /// <returns>True if successful.</returns>
-        [PublicAPI]
         public bool TryParse<TUnitType>(string? unitAbbreviation, IFormatProvider? formatProvider, out TUnitType unit) where TUnitType : struct, Enum
         {
             unit = default;
@@ -171,7 +166,6 @@ namespace UnitsNet
         /// <param name="unitType">Type of unit enum.</param>
         /// <param name="unit">The unit enum value as out result.</param>
         /// <returns>True if successful.</returns>
-        [PublicAPI]
         public bool TryParse(string unitAbbreviation, Type unitType, out Enum? unit)
         {
             return TryParse(unitAbbreviation, unitType, null, out unit);
@@ -185,7 +179,6 @@ namespace UnitsNet
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <param name="unit">The unit enum value as out result.</param>
         /// <returns>True if successful.</returns>
-        [PublicAPI]
         public bool TryParse(string? unitAbbreviation, Type unitType, IFormatProvider? formatProvider, out Enum? unit)
         {
             if (unitAbbreviation == null)

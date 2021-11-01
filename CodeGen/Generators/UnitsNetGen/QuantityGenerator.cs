@@ -48,7 +48,6 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -1008,7 +1007,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name=""provider"">Format to use for localization and number formatting. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
         [Obsolete(""This method is deprecated and will be removed at a future release. Please use string.Format()."")]
-        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
+        public string ToString(IFormatProvider? provider, string format, params object[] args)
         {{
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));

@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using JetBrains.Annotations;
 using UnitsNet.Units;
 
 using UnitTypeToLookup = System.Collections.Generic.Dictionary<System.Type, UnitsNet.UnitValueAbbreviationLookup>;
@@ -69,7 +68,6 @@ namespace UnitsNet
         /// <param name="unit">The unit enum value.</param>
         /// <param name="abbreviations">Unit abbreviations to add.</param>
         /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
-        [PublicAPI]
         public void MapUnitToAbbreviation<TUnitType>(TUnitType unit, params string[] abbreviations) where TUnitType : Enum
         {
             MapUnitToAbbreviation(typeof(TUnitType), Convert.ToInt32(unit), CultureInfo.CurrentUICulture, abbreviations);
@@ -97,7 +95,6 @@ namespace UnitsNet
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <param name="abbreviations">Unit abbreviations to add.</param>
         /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
-        [PublicAPI]
         public void MapUnitToAbbreviation<TUnitType>(TUnitType unit, IFormatProvider formatProvider, params string[] abbreviations) where TUnitType : Enum
         {
             // Assuming TUnitType is an enum, this conversion is safe. Seems not possible to enforce this today.
@@ -118,7 +115,6 @@ namespace UnitsNet
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <param name="abbreviation">Unit abbreviation to add as default.</param>
         /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
-        [PublicAPI]
         public void MapUnitToDefaultAbbreviation<TUnitType>(TUnitType unit, IFormatProvider formatProvider, string abbreviation) where TUnitType : Enum
         {
             // Assuming TUnitType is an enum, this conversion is safe. Seems not possible to enforce this today.
@@ -139,8 +135,7 @@ namespace UnitsNet
         /// <param name="unitValue">The unit enum value.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <param name="abbreviations">Unit abbreviations to add.</param>
-        [PublicAPI]
-        public void MapUnitToAbbreviation(Type unitType, int unitValue, IFormatProvider formatProvider, [NotNull] params string[] abbreviations)
+        public void MapUnitToAbbreviation(Type unitType, int unitValue, IFormatProvider formatProvider, params string[] abbreviations)
         {
             PerformAbbreviationMapping(unitType, unitValue, formatProvider, false, abbreviations);
         }
@@ -154,13 +149,12 @@ namespace UnitsNet
         /// <param name="unitValue">The unit enum value.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <param name="abbreviation">Unit abbreviation to add as default.</param>
-        [PublicAPI]
-        public void MapUnitToDefaultAbbreviation(Type unitType, int unitValue, IFormatProvider formatProvider, [NotNull] string abbreviation)
+        public void MapUnitToDefaultAbbreviation(Type unitType, int unitValue, IFormatProvider formatProvider, string abbreviation)
         {
             PerformAbbreviationMapping(unitType, unitValue, formatProvider, true, abbreviation);
         }
 
-        private void PerformAbbreviationMapping(Type unitType, int unitValue, IFormatProvider formatProvider, bool setAsDefault, [NotNull] params string[] abbreviations)
+        private void PerformAbbreviationMapping(Type unitType, int unitValue, IFormatProvider formatProvider, bool setAsDefault, params string[] abbreviations)
         {
             if (!unitType.IsEnum)
                 throw new ArgumentException("Must be an enum type.", nameof(unitType));
@@ -190,7 +184,6 @@ namespace UnitsNet
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
         /// <returns>The default unit abbreviation string.</returns>
-        [PublicAPI]
         public string GetDefaultAbbreviation<TUnitType>(TUnitType unit, IFormatProvider? formatProvider = null) where TUnitType : Enum
         {
             var unitType = typeof(TUnitType);
@@ -224,7 +217,6 @@ namespace UnitsNet
         /// <param name="unitValue">The unit enum value.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>The default unit abbreviation string.</returns>
-        [PublicAPI]
         public string GetDefaultAbbreviation(Type unitType, int unitValue, IFormatProvider? formatProvider = null)
         {
             if(!TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var lookup))
@@ -254,7 +246,6 @@ namespace UnitsNet
         /// <param name="unit">Enum value for unit.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>Unit abbreviations associated with unit.</returns>
-        [PublicAPI]
         public string[] GetUnitAbbreviations<TUnitType>(TUnitType unit, IFormatProvider? formatProvider = null) where TUnitType : Enum
         {
             return GetUnitAbbreviations(typeof(TUnitType), Convert.ToInt32(unit), formatProvider);
@@ -267,7 +258,6 @@ namespace UnitsNet
         /// <param name="unitValue">Enum value for unit.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>Unit abbreviations associated with unit.</returns>
-        [PublicAPI]
         public string[] GetUnitAbbreviations(Type unitType, int unitValue, IFormatProvider? formatProvider = null)
         {
             formatProvider = formatProvider ?? CultureInfo.CurrentUICulture;
@@ -288,7 +278,6 @@ namespace UnitsNet
         /// <param name="unitEnumType">Enum type for unit.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>Unit abbreviations associated with unit.</returns>
-        [PublicAPI]
         public string[] GetAllUnitAbbreviationsForQuantity(Type unitEnumType, IFormatProvider? formatProvider = null)
         {
             formatProvider = formatProvider ?? CultureInfo.CurrentUICulture;

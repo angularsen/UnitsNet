@@ -4,7 +4,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using JetBrains.Annotations;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -39,7 +38,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">Quantity type can not be undefined.</exception>
         /// <exception cref="ArgumentNullException">If units -or- baseUnit -or- zero -or- baseDimensions is null.</exception>
         [Obsolete("QuantityType will be removed in the future. Use QuantityInfo(string, UnitInfo[], Enum, IQuantity, BaseDimensions) instead.")]
-        public QuantityInfo(QuantityType quantityType, [NotNull] UnitInfo[] unitInfos, [NotNull] Enum baseUnit, [NotNull] IQuantity zero, [NotNull] BaseDimensions baseDimensions)
+        public QuantityInfo(QuantityType quantityType, UnitInfo[] unitInfos, Enum baseUnit, IQuantity zero, BaseDimensions baseDimensions)
             : this(quantityType.ToString(), UnitEnumTypes[$"{quantityType}Unit"], unitInfos, baseUnit, zero, baseDimensions, quantityType)
         {
         }
@@ -56,7 +55,7 @@ namespace UnitsNet
         /// <param name="quantityType">The the quantity type. Defaults to Undefined.</param>
         /// <exception cref="ArgumentException">Quantity type can not be undefined.</exception>
         /// <exception cref="ArgumentNullException">If units -or- baseUnit -or- zero -or- baseDimensions is null.</exception>
-        public QuantityInfo([NotNull] string name, Type unitType, [NotNull] UnitInfo[] unitInfos, [NotNull] Enum baseUnit, [NotNull] IQuantity zero, [NotNull] BaseDimensions baseDimensions,
+        public QuantityInfo(string name, Type unitType, UnitInfo[] unitInfos, Enum baseUnit, IQuantity zero, BaseDimensions baseDimensions,
            QuantityType quantityType = QuantityType.Undefined)
         {
             if(baseUnit == null) throw new ArgumentNullException(nameof(baseUnit));

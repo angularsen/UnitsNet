@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using JetBrains.Annotations;
+﻿#nullable enable
+using System;
 
 namespace UnitsNet.Tests
 {
@@ -27,22 +25,22 @@ namespace UnitsNet.Tests
             throw new NotImplementedException();
         }
 
-        public string ToString([CanBeNull] IFormatProvider provider)
+        public string ToString(IFormatProvider? provider)
         {
             throw new NotImplementedException();
         }
 
-        public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
+        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
         {
             throw new NotImplementedException();
         }
 
-        public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
+        public string ToString(IFormatProvider? provider, string format, params object[] args)
         {
             throw new NotImplementedException();
         }
 
-        public string ToString(string format, IFormatProvider formatProvider)
+        public string ToString(string? format, IFormatProvider? formatProvider)
         {
             throw new NotImplementedException();
         }

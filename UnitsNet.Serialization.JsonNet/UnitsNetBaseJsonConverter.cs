@@ -5,7 +5,6 @@ using System;
 using System.Collections.Concurrent;
 using System.Globalization;
 using System.Linq;
-using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -150,7 +149,7 @@ namespace UnitsNet.Serialization.JsonNet
                     throw ex;
                 }
             }
-            
+
             var unitValue = (Enum) Enum.Parse(unitEnumType, unitEnumValue); // Ex: MassUnit.Kilogram
             return unitValue;
         }
@@ -251,13 +250,13 @@ namespace UnitsNet.Serialization.JsonNet
             /// <example>MassUnit.Pound</example>
             /// <example>InformationUnit.Kilobyte</example>
             [JsonProperty(Order = 1)]
-            public string Unit { get; [UsedImplicitly] set; }
+            public string Unit { get; set; } = null!;
 
             /// <summary>
             ///     The value.
             /// </summary>
             [JsonProperty(Order = 2)]
-            public double Value { get; [UsedImplicitly] set; }
+            public double Value { get; set; }
         }
 
         /// <summary>
@@ -273,13 +272,13 @@ namespace UnitsNet.Serialization.JsonNet
             ///     The value as a string.
             /// </summary>
             [JsonProperty(Order = 3)]
-            public string ValueString { get; [UsedImplicitly] set; }
+            public string? ValueString { get; set; }
 
             /// <summary>
             ///     The type of the value, e.g. "decimal".
             /// </summary>
             [JsonProperty(Order = 4)]
-            public string ValueType { get; [UsedImplicitly] set; }
+            public string? ValueType { get; set; }
         }
     }
 }

@@ -4,7 +4,6 @@
 using System;
 using System.Threading;
 using System.Globalization;
-using JetBrains.Annotations;
 using UnitsNet.Units;
 
 namespace UnitsNet
