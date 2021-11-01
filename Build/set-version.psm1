@@ -116,13 +116,18 @@ function BumpSuffix([string] $oldSuffix) {
 
   # A suffix is a dash '-', then a sequcence of word characters followed by an optional number
   # Example:
-  # -alpha => -alpha002
-  # -alpha1 => -alpha002
+  # ""      => "-alpha001"
+  # "-beta" => "-beta001"
+  # "-beta1"=> "-beta002"
   $match = [regex]::Match($oldSuffix, '^-([a-zA-Z]+)(\d+)?$');
   $oldSuffix = $match.Groups[1].Value
+  if (!$oldSuffix) {
+    $oldSuffix = "alpha"
+  }
+
   $numberGroup = $match.Groups[2]
 
-  $number = if ($numberGroup.Success) { 1+$match.Groups[2].Value } else { 2 }
+  $number = if ($numberGroup.Success) { 1+$match.Groups[2].Value } else { 1 }
 
   # Use 3 digits for the number "-alpha003", for 999 releases lexically sorted.
   return [string]::Format("-{0}{1:D3}", $oldSuffix, $number)
