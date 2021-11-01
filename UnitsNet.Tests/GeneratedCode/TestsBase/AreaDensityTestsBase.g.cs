@@ -57,7 +57,6 @@ namespace UnitsNet.Tests
             Assert.Equal(AreaDensityUnit.KilogramPerSquareMeter, quantity.Unit);
         }
 
-
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
@@ -389,7 +388,6 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 kg/m²", new AreaDensity(0.123456, AreaDensityUnit.KilogramPerSquareMeter).ToString("s4", culture));
         }
 
-
         [Fact]
         public void ToString_NullFormat_ThrowsArgumentNullException()
         {
@@ -410,7 +408,6 @@ namespace UnitsNet.Tests
             var quantity = AreaDensity.FromKilogramsPerSquareMeter(1.0);
             Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
         }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()

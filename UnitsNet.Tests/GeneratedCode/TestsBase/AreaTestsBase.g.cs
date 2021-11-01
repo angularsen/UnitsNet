@@ -83,7 +83,6 @@ namespace UnitsNet.Tests
             Assert.Equal(AreaUnit.SquareMeter, quantity.Unit);
         }
 
-
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
@@ -584,7 +583,6 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 m²", new Area(0.123456, AreaUnit.SquareMeter).ToString("s4", culture));
         }
 
-
         [Fact]
         public void ToString_NullFormat_ThrowsArgumentNullException()
         {
@@ -605,7 +603,6 @@ namespace UnitsNet.Tests
             var quantity = Area.FromSquareMeters(1.0);
             Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
         }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()

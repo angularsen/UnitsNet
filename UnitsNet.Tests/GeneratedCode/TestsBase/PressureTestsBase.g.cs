@@ -143,7 +143,6 @@ namespace UnitsNet.Tests
             Assert.Equal(PressureUnit.Pascal, quantity.Unit);
         }
 
-
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
@@ -1034,7 +1033,6 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 Pa", new Pressure(0.123456, PressureUnit.Pascal).ToString("s4", culture));
         }
 
-
         [Fact]
         public void ToString_NullFormat_ThrowsArgumentNullException()
         {
@@ -1055,7 +1053,6 @@ namespace UnitsNet.Tests
             var quantity = Pressure.FromPascals(1.0);
             Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
         }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()

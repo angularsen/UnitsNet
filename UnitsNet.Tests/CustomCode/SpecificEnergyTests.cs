@@ -40,7 +40,6 @@ namespace UnitsNet.Tests.CustomCode
         protected override double GigawattDaysPerTonneInOneJoulePerKilogram => 1.15740741E-11;
         protected override double TerawattDaysPerTonneInOneJoulePerKilogram => 1.15740741E-14;
 
-
         [Fact]
         public void MassTimesSpecificEnergyEqualsEnergy()
         {

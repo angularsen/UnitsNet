@@ -91,7 +91,6 @@ namespace UnitsNet.Tests
             Assert.Equal( new[] { "Centimeter", "Kilometer" }, info.UnitNames );
         }
 
-
         [Fact]
         public void GenericsConstructor_AssignsProperties()
         {

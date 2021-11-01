@@ -333,8 +333,7 @@ namespace CodeGen.Generators
 <packages>
   <package id=""nanoFramework.CoreLibrary"" version=""{mscorlibNuGetVersion}"" targetFramework=""netnanoframework10"" />");
 
-
-            if (NanoFrameworkGenerator.ProjectsRequiringMath.Contains(quantityName))
+            if (ProjectsRequiringMath.Contains(quantityName))
             {
                 writer.WL($@"
   <package id=""nanoFramework.System.Math"" version=""{mathNuGetVersion}"" targetFramework=""netnanoframework10"" />");

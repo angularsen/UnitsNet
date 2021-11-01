@@ -191,11 +191,9 @@ namespace UnitsNet
         /// <returns>A Duration with the specified unit.</returns>
         public {_quantity.Name} ToUnit({_unitEnumName} unit)
         {{
-
             var convertedValue = GetValueAs(unit);
             return new {_quantity.Name}(convertedValue, unit);
         }}
-
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

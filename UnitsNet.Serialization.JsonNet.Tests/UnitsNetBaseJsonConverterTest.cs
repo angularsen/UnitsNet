@@ -157,7 +157,6 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             Assert.Null(result);
         }
 
-
         [Fact]
         public void UnitsNetBaseJsonConverter_ReadDoubleValueUnit_works_with_empty_token()
         {
@@ -209,7 +208,6 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 {valueStringPropertyName, 10.2365m.ToString(CultureInfo.InvariantCulture)},
                 {valueTypePropertyName, "decimal"}
             };
-
 
             var result = _sut.Test_ReadDecimalValueUnit(token);
 

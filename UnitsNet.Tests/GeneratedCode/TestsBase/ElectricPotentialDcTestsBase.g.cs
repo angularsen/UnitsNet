@@ -65,7 +65,6 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricPotentialDcUnit.VoltDc, quantity.Unit);
         }
 
-
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
@@ -449,7 +448,6 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 Vdc", new ElectricPotentialDc(0.123456, ElectricPotentialDcUnit.VoltDc).ToString("s4", culture));
         }
 
-
         [Fact]
         public void ToString_NullFormat_ThrowsArgumentNullException()
         {
@@ -470,7 +468,6 @@ namespace UnitsNet.Tests
             var quantity = ElectricPotentialDc.FromVoltsDc(1.0);
             Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
         }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()

@@ -57,7 +57,6 @@ namespace UnitsNet.Tests
             Assert.Equal(LuminousFluxUnit.Lumen, quantity.Unit);
         }
 
-
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
@@ -389,7 +388,6 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 lm", new LuminousFlux(0.123456, LuminousFluxUnit.Lumen).ToString("s4", culture));
         }
 
-
         [Fact]
         public void ToString_NullFormat_ThrowsArgumentNullException()
         {
@@ -410,7 +408,6 @@ namespace UnitsNet.Tests
             var quantity = LuminousFlux.FromLumens(1.0);
             Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
         }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()

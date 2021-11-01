@@ -20,7 +20,6 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double GigaohmsInOneOhm => 1e-9;
 
-
         [Theory]
         [InlineData(1, 1, 1)]
         [InlineData(0, int.MaxValue, 0)]

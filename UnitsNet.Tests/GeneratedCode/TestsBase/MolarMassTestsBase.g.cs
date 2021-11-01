@@ -79,7 +79,6 @@ namespace UnitsNet.Tests
             Assert.Equal(MolarMassUnit.KilogramPerMole, quantity.Unit);
         }
 
-
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
@@ -554,7 +553,6 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 kg/mol", new MolarMass(0.123456, MolarMassUnit.KilogramPerMole).ToString("s4", culture));
         }
 
-
         [Fact]
         public void ToString_NullFormat_ThrowsArgumentNullException()
         {
@@ -575,7 +573,6 @@ namespace UnitsNet.Tests
             var quantity = MolarMass.FromKilogramsPerMole(1.0);
             Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
         }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()

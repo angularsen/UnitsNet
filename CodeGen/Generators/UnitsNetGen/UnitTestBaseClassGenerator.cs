@@ -121,7 +121,6 @@ namespace UnitsNet.Tests
             Writer.WL($@"
             Assert.Equal({_baseUnitFullName}, quantity.Unit);
         }}
-
 ");
             if (_quantity.ValueType == "double") Writer.WL($@"
         [Fact]
@@ -523,7 +522,6 @@ namespace UnitsNet.Tests
             Assert.Equal(""0.1235{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s4"", culture));
         }}
 
-
         [Fact]
         public void ToString_NullFormat_ThrowsArgumentNullException()
         {{
@@ -544,7 +542,6 @@ namespace UnitsNet.Tests
             var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(1.0);
             Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, ""g""), quantity.ToString(null, ""g""));
         }}
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()

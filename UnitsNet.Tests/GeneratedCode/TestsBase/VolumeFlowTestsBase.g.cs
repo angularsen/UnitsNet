@@ -167,7 +167,6 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumeFlowUnit.CubicMeterPerSecond, quantity.Unit);
         }
 
-
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
@@ -1214,7 +1213,6 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 m³/s", new VolumeFlow(0.123456, VolumeFlowUnit.CubicMeterPerSecond).ToString("s4", culture));
         }
 
-
         [Fact]
         public void ToString_NullFormat_ThrowsArgumentNullException()
         {
@@ -1235,7 +1233,6 @@ namespace UnitsNet.Tests
             var quantity = VolumeFlow.FromCubicMetersPerSecond(1.0);
             Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
         }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()

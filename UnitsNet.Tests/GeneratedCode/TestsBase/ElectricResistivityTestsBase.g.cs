@@ -83,7 +83,6 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricResistivityUnit.OhmMeter, quantity.Unit);
         }
 
-
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
@@ -584,7 +583,6 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 Ω·m", new ElectricResistivity(0.123456, ElectricResistivityUnit.OhmMeter).ToString("s4", culture));
         }
 
-
         [Fact]
         public void ToString_NullFormat_ThrowsArgumentNullException()
         {
@@ -605,7 +603,6 @@ namespace UnitsNet.Tests
             var quantity = ElectricResistivity.FromOhmMeters(1.0);
             Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
         }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()

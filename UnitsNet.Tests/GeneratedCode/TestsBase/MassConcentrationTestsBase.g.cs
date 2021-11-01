@@ -153,7 +153,6 @@ namespace UnitsNet.Tests
             Assert.Equal(MassConcentrationUnit.KilogramPerCubicMeter, quantity.Unit);
         }
 
-
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
@@ -1109,7 +1108,6 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 kg/m³", new MassConcentration(0.123456, MassConcentrationUnit.KilogramPerCubicMeter).ToString("s4", culture));
         }
 
-
         [Fact]
         public void ToString_NullFormat_ThrowsArgumentNullException()
         {
@@ -1130,7 +1128,6 @@ namespace UnitsNet.Tests
             var quantity = MassConcentration.FromKilogramsPerCubicMeter(1.0);
             Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
         }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()

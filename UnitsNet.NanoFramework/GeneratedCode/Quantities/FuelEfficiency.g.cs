@@ -148,7 +148,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(FuelEfficiencyUnit unit) => GetValueAs(unit);        
+        public double As(FuelEfficiencyUnit unit) => GetValueAs(unit);
 
         /// <summary>
         ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
@@ -156,11 +156,9 @@ namespace UnitsNet
         /// <returns>A Duration with the specified unit.</returns>
         public FuelEfficiency ToUnit(FuelEfficiencyUnit unit)
         {
-                
             var convertedValue = GetValueAs(unit);
             return new FuelEfficiency(convertedValue, unit);
         }
-
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

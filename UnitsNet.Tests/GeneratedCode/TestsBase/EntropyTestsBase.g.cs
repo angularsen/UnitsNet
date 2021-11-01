@@ -69,7 +69,6 @@ namespace UnitsNet.Tests
             Assert.Equal(EntropyUnit.JoulePerKelvin, quantity.Unit);
         }
 
-
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
@@ -479,7 +478,6 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 J/K", new Entropy(0.123456, EntropyUnit.JoulePerKelvin).ToString("s4", culture));
         }
 
-
         [Fact]
         public void ToString_NullFormat_ThrowsArgumentNullException()
         {
@@ -500,7 +498,6 @@ namespace UnitsNet.Tests
             var quantity = Entropy.FromJoulesPerKelvin(1.0);
             Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
         }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()

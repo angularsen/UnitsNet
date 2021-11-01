@@ -121,7 +121,6 @@ namespace UnitsNet.Tests
             Assert.Equal(RotationalStiffnessUnit.NewtonMeterPerRadian, quantity.Unit);
         }
 
-
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
@@ -869,7 +868,6 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 N·m/rad", new RotationalStiffness(0.123456, RotationalStiffnessUnit.NewtonMeterPerRadian).ToString("s4", culture));
         }
 
-
         [Fact]
         public void ToString_NullFormat_ThrowsArgumentNullException()
         {
@@ -890,7 +888,6 @@ namespace UnitsNet.Tests
             var quantity = RotationalStiffness.FromNewtonMetersPerRadian(1.0);
             Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
         }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()

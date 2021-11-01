@@ -26,7 +26,6 @@ namespace UnitsNet
             return this / componentDensity;
         }
 
-
         #region Static Methods
 
         /// <summary>
@@ -48,7 +47,7 @@ namespace UnitsNet
         #endregion
 
         #region Operators
-        
+
         /// <summary>Get <see cref="Mass" /> from <see cref="MassConcentration" /> times <see cref="Volume" />.</summary>
         public static Mass operator *(MassConcentration density, Volume volume)
         {
@@ -60,7 +59,7 @@ namespace UnitsNet
         {
             return Mass.FromKilograms(density.KilogramsPerCubicMeter * volume.CubicMeters);
         }
-        
+
         /// <summary>Get <see cref="Molarity" /> from <see cref="MassConcentration" /> divided by the component's <see cref="MolarMass" />.</summary>
         public static Molarity operator /(MassConcentration massConcentration, MolarMass componentMass)
         {

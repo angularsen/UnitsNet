@@ -75,7 +75,6 @@ namespace UnitsNet.Tests
             Assert.Equal(ReciprocalLengthUnit.InverseMeter, quantity.Unit);
         }
 
-
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
@@ -524,7 +523,6 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 m⁻¹", new ReciprocalLength(0.123456, ReciprocalLengthUnit.InverseMeter).ToString("s4", culture));
         }
 
-
         [Fact]
         public void ToString_NullFormat_ThrowsArgumentNullException()
         {
@@ -545,7 +543,6 @@ namespace UnitsNet.Tests
             var quantity = ReciprocalLength.FromInverseMeters(1.0);
             Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
         }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()

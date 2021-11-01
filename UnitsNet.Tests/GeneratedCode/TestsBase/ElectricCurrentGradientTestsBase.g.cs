@@ -63,7 +63,6 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricCurrentGradientUnit.AmperePerSecond, quantity.Unit);
         }
 
-
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
@@ -434,7 +433,6 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 A/s", new ElectricCurrentGradient(0.123456, ElectricCurrentGradientUnit.AmperePerSecond).ToString("s4", culture));
         }
 
-
         [Fact]
         public void ToString_NullFormat_ThrowsArgumentNullException()
         {
@@ -455,7 +453,6 @@ namespace UnitsNet.Tests
             var quantity = ElectricCurrentGradient.FromAmperesPerSecond(1.0);
             Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
         }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()

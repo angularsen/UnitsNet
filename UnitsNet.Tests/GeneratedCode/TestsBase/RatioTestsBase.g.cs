@@ -67,7 +67,6 @@ namespace UnitsNet.Tests
             Assert.Equal(RatioUnit.DecimalFraction, quantity.Unit);
         }
 
-
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
@@ -464,7 +463,6 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s4", culture));
         }
 
-
         [Fact]
         public void ToString_NullFormat_ThrowsArgumentNullException()
         {
@@ -485,7 +483,6 @@ namespace UnitsNet.Tests
             var quantity = Ratio.FromDecimalFractions(1.0);
             Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
         }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()

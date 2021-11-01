@@ -77,7 +77,6 @@ namespace UnitsNet.Tests
             Assert.Equal(FrequencyUnit.Hertz, quantity.Unit);
         }
 
-
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
@@ -539,7 +538,6 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 Hz", new Frequency(0.123456, FrequencyUnit.Hertz).ToString("s4", culture));
         }
 
-
         [Fact]
         public void ToString_NullFormat_ThrowsArgumentNullException()
         {
@@ -560,7 +558,6 @@ namespace UnitsNet.Tests
             var quantity = Frequency.FromHertz(1.0);
             Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
         }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()

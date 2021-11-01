@@ -717,7 +717,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(VolumeFlowUnit unit) => GetValueAs(unit);        
+        public double As(VolumeFlowUnit unit) => GetValueAs(unit);
 
         /// <summary>
         ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
@@ -725,11 +725,9 @@ namespace UnitsNet
         /// <returns>A Duration with the specified unit.</returns>
         public VolumeFlow ToUnit(VolumeFlowUnit unit)
         {
-                
             var convertedValue = GetValueAs(unit);
             return new VolumeFlow(convertedValue, unit);
         }
-
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

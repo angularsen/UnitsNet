@@ -16,7 +16,6 @@ namespace CodeGen.Generators.UnitsNetGen
             _quantityName = quantity.Name;
         }
 
-
         public override string Generate()
         {
             Writer.WL(GeneratedFileHeader);

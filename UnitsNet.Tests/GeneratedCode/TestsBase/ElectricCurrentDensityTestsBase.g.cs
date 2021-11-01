@@ -61,7 +61,6 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareMeter, quantity.Unit);
         }
 
-
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
@@ -419,7 +418,6 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 A/m²", new ElectricCurrentDensity(0.123456, ElectricCurrentDensityUnit.AmperePerSquareMeter).ToString("s4", culture));
         }
 
-
         [Fact]
         public void ToString_NullFormat_ThrowsArgumentNullException()
         {
@@ -440,7 +438,6 @@ namespace UnitsNet.Tests
             var quantity = ElectricCurrentDensity.FromAmperesPerSquareMeter(1.0);
             Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
         }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()

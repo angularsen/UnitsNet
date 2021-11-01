@@ -7,7 +7,6 @@ Add strongly typed quantities to your code and get merrily on with your life.
 
 No more magic constants found on Stack Overflow, no more second-guessing the unit of parameters and variables.
 
-
 ### Overview
 
 * [How to install](#how-to-install)
@@ -35,7 +34,6 @@ No more magic constants found on Stack Overflow, no more second-guessing the uni
 Run the following command in the [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) or go to the [NuGet site](https://www.nuget.org/packages/UnitsNet/) for the complete release history.
 
 ![Install-Package UnitsNet](https://raw.githubusercontent.com/angularsen/UnitsNet/master/Docs/Images/install_package_unitsnet.png "Install-Package UnitsNet")
-
 
 #### Build Targets
 
@@ -257,7 +255,6 @@ Console.WriteLine(Convert(HowMuchUnit.Tons)); // 10 tns
 
 ![image](https://user-images.githubusercontent.com/787816/34920961-9b697004-f97b-11e7-9e9a-51ff7142969b.png)
 
-
 This example shows how you can create a dynamic unit converter, where the user selects the quantity to convert, such as `Temperature`, then selects to convert from `DegreeCelsius` to `DegreeFahrenheit` and types in a numeric value for how many degrees Celsius to convert.
 The quantity list box contains `QuantityType` values such as `QuantityType.Length` and the two unit list boxes contain `Enum` values, such as `LengthUnit.Meter`.
 
@@ -309,7 +306,6 @@ The tests accept an error up to 1E-5 for most units added so far. Exceptions inc
 
 For more details, see [Precision](https://github.com/angularsen/UnitsNet/wiki/Precision).
 
-
 ### <a name="serialization"></a>Serialization
 
 * `UnitsNet.Serialization.JsonNet` ([nuget](https://www.nuget.org/packages/UnitsNet.Serialization.JsonNet), [src](https://github.com/angularsen/UnitsNet/tree/master/UnitsNet.Serialization.JsonNet), [tests](https://github.com/angularsen/UnitsNet/tree/master/UnitsNet.Serialization.JsonNet.Tests)) for JSON.NET
@@ -344,7 +340,6 @@ jsonSerializerSettings.Converters.Add(new UnitsNetIComparableJsonConverter());
 We cannot guarantee backwards compatibility, although we will strive to do that on a "best effort" basis and bumping the major nuget version when a change is necessary.
 
 The base unit of any unit should be treated as volatile as we have changed this several times in the history of this library already. Either to reduce precision errors of common units or to simplify code generation. An example is Mass, where the base unit was first Kilogram as this is the SI unit of mass, but in order to use powershell scripts to generate milligrams, nanograms etc. it was easier to choose Gram as the base unit of Mass.
-
 
 ### <a name="contribute"></a>Want To Contribute?
 

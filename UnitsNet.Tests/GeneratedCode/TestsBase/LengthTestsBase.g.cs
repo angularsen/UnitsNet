@@ -121,7 +121,6 @@ namespace UnitsNet.Tests
             Assert.Equal(LengthUnit.Meter, quantity.Unit);
         }
 
-
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
@@ -869,7 +868,6 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 m", new Length(0.123456, LengthUnit.Meter).ToString("s4", culture));
         }
 
-
         [Fact]
         public void ToString_NullFormat_ThrowsArgumentNullException()
         {
@@ -890,7 +888,6 @@ namespace UnitsNet.Tests
             var quantity = Length.FromMeters(1.0);
             Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
         }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()

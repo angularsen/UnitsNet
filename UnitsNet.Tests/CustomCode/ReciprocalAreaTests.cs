@@ -33,7 +33,6 @@ namespace UnitsNet.Tests.CustomCode
         protected override double InverseSquareMillimetersInOneInverseSquareMeter => 1E-6;
         protected override double InverseSquareMicrometersInOneInverseSquareMeter => 1E-12;
 
-
         protected override double InverseSquareMilesInOneInverseSquareMeter => 2.59E6;
         protected override double InverseSquareYardsInOneInverseSquareMeter => 0.836127;
         protected override double InverseSquareFeetInOneInverseSquareMeter => 0.092903;

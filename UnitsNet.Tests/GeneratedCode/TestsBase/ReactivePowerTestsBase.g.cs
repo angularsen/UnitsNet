@@ -63,7 +63,6 @@ namespace UnitsNet.Tests
             Assert.Equal(ReactivePowerUnit.VoltampereReactive, quantity.Unit);
         }
 
-
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {
@@ -434,7 +433,6 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 var", new ReactivePower(0.123456, ReactivePowerUnit.VoltampereReactive).ToString("s4", culture));
         }
 
-
         [Fact]
         public void ToString_NullFormat_ThrowsArgumentNullException()
         {
@@ -455,7 +453,6 @@ namespace UnitsNet.Tests
             var quantity = ReactivePower.FromVoltamperesReactive(1.0);
             Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
         }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()
