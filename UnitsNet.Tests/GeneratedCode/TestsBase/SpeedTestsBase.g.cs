@@ -162,7 +162,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Speed.Zero, quantityInfo.Zero);
             Assert.Equal("Speed", quantityInfo.Name);
-            Assert.Equal(QuantityType.Speed, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<SpeedUnit>().Except(new[] {SpeedUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -991,13 +990,6 @@ namespace UnitsNet.Tests
         {
             var quantity = Speed.FromMetersPerSecond(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(SpeedUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = Speed.FromMetersPerSecond(1.0);
-            Assert.Equal(QuantityType.Speed, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

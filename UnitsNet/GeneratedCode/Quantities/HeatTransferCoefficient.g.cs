@@ -59,7 +59,7 @@ namespace UnitsNet
                     new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, "WattsPerSquareMeterCelsius", BaseUnits.Undefined),
                     new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, "WattsPerSquareMeterKelvin", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.HeatTransferCoefficient);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -124,12 +124,6 @@ namespace UnitsNet
         public static HeatTransferCoefficient MinValue { get; } = new HeatTransferCoefficient(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.HeatTransferCoefficient;
-
-        /// <summary>
         ///     All units of measurement for the HeatTransferCoefficient quantity.
         /// </summary>
         public static HeatTransferCoefficientUnit[] Units { get; } = Enum.GetValues(typeof(HeatTransferCoefficientUnit)).Cast<HeatTransferCoefficientUnit>().Except(new HeatTransferCoefficientUnit[]{ HeatTransferCoefficientUnit.Undefined }).ToArray();
@@ -158,11 +152,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => HeatTransferCoefficient.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -864,8 +853,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(HeatTransferCoefficientUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return HeatTransferCoefficient.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return HeatTransferCoefficient.Info;
             else if(conversionType == typeof(BaseDimensions))

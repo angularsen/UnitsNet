@@ -100,7 +100,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(RelativeHumidity.Zero, quantityInfo.Zero);
             Assert.Equal("RelativeHumidity", quantityInfo.Name);
-            Assert.Equal(QuantityType.RelativeHumidity, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<RelativeHumidityUnit>().Except(new[] {RelativeHumidityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -526,13 +525,6 @@ namespace UnitsNet.Tests
         {
             var quantity = RelativeHumidity.FromPercent(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(RelativeHumidityUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = RelativeHumidity.FromPercent(1.0);
-            Assert.Equal(QuantityType.RelativeHumidity, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

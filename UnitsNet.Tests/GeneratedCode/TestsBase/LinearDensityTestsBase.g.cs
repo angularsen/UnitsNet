@@ -126,7 +126,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(LinearDensity.Zero, quantityInfo.Zero);
             Assert.Equal("LinearDensity", quantityInfo.Name);
-            Assert.Equal(QuantityType.LinearDensity, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<LinearDensityUnit>().Except(new[] {LinearDensityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -721,13 +720,6 @@ namespace UnitsNet.Tests
         {
             var quantity = LinearDensity.FromKilogramsPerMeter(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(LinearDensityUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = LinearDensity.FromKilogramsPerMeter(1.0);
-            Assert.Equal(QuantityType.LinearDensity, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

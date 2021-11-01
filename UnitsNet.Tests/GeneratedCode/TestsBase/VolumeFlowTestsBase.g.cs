@@ -210,7 +210,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(VolumeFlow.Zero, quantityInfo.Zero);
             Assert.Equal("VolumeFlow", quantityInfo.Name);
-            Assert.Equal(QuantityType.VolumeFlow, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<VolumeFlowUnit>().Except(new[] {VolumeFlowUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -1351,13 +1350,6 @@ namespace UnitsNet.Tests
         {
             var quantity = VolumeFlow.FromCubicMetersPerSecond(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(VolumeFlowUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = VolumeFlow.FromCubicMetersPerSecond(1.0);
-            Assert.Equal(QuantityType.VolumeFlow, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

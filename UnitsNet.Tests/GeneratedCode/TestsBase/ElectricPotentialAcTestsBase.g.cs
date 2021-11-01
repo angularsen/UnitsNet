@@ -108,7 +108,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ElectricPotentialAc.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricPotentialAc", quantityInfo.Name);
-            Assert.Equal(QuantityType.ElectricPotentialAc, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ElectricPotentialAcUnit>().Except(new[] {ElectricPotentialAcUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -586,13 +585,6 @@ namespace UnitsNet.Tests
         {
             var quantity = ElectricPotentialAc.FromVoltsAc(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ElectricPotentialAcUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = ElectricPotentialAc.FromVoltsAc(1.0);
-            Assert.Equal(QuantityType.ElectricPotentialAc, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

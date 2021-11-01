@@ -126,7 +126,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ElectricResistivity.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricResistivity", quantityInfo.Name);
-            Assert.Equal(QuantityType.ElectricResistivity, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ElectricResistivityUnit>().Except(new[] {ElectricResistivityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -721,13 +720,6 @@ namespace UnitsNet.Tests
         {
             var quantity = ElectricResistivity.FromOhmMeters(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ElectricResistivityUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = ElectricResistivity.FromOhmMeters(1.0);
-            Assert.Equal(QuantityType.ElectricResistivity, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

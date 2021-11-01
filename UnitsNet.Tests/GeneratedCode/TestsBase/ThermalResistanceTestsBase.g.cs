@@ -108,7 +108,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ThermalResistance.Zero, quantityInfo.Zero);
             Assert.Equal("ThermalResistance", quantityInfo.Name);
-            Assert.Equal(QuantityType.ThermalResistance, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ThermalResistanceUnit>().Except(new[] {ThermalResistanceUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -586,13 +585,6 @@ namespace UnitsNet.Tests
         {
             var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ThermalResistanceUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
-            Assert.Equal(QuantityType.ThermalResistance, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

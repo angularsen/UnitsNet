@@ -124,7 +124,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(RotationalSpeed.Zero, quantityInfo.Zero);
             Assert.Equal("RotationalSpeed", quantityInfo.Name);
-            Assert.Equal(QuantityType.RotationalSpeed, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<RotationalSpeedUnit>().Except(new[] {RotationalSpeedUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -706,13 +705,6 @@ namespace UnitsNet.Tests
         {
             var quantity = RotationalSpeed.FromRadiansPerSecond(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(RotationalSpeedUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = RotationalSpeed.FromRadiansPerSecond(1.0);
-            Assert.Equal(QuantityType.RotationalSpeed, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

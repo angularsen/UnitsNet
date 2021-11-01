@@ -100,7 +100,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(MagneticFlux.Zero, quantityInfo.Zero);
             Assert.Equal("MagneticFlux", quantityInfo.Name);
-            Assert.Equal(QuantityType.MagneticFlux, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<MagneticFluxUnit>().Except(new[] {MagneticFluxUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -526,13 +525,6 @@ namespace UnitsNet.Tests
         {
             var quantity = MagneticFlux.FromWebers(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(MagneticFluxUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = MagneticFlux.FromWebers(1.0);
-            Assert.Equal(QuantityType.MagneticFlux, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

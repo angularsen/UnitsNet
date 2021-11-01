@@ -140,7 +140,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(TorquePerLength.Zero, quantityInfo.Zero);
             Assert.Equal("TorquePerLength", quantityInfo.Name);
-            Assert.Equal(QuantityType.TorquePerLength, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<TorquePerLengthUnit>().Except(new[] {TorquePerLengthUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -826,13 +825,6 @@ namespace UnitsNet.Tests
         {
             var quantity = TorquePerLength.FromNewtonMetersPerMeter(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(TorquePerLengthUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = TorquePerLength.FromNewtonMetersPerMeter(1.0);
-            Assert.Equal(QuantityType.TorquePerLength, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

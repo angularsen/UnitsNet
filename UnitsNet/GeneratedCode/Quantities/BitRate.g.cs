@@ -85,7 +85,7 @@ namespace UnitsNet
                     new UnitInfo<BitRateUnit>(BitRateUnit.TerabitPerSecond, "TerabitsPerSecond", BaseUnits.Undefined),
                     new UnitInfo<BitRateUnit>(BitRateUnit.TerabytePerSecond, "TerabytesPerSecond", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.BitRate);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -150,12 +150,6 @@ namespace UnitsNet
         public static BitRate MinValue { get; } = new BitRate(decimal.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.BitRate;
-
-        /// <summary>
         ///     All units of measurement for the BitRate quantity.
         /// </summary>
         public static BitRateUnit[] Units { get; } = Enum.GetValues(typeof(BitRateUnit)).Cast<BitRateUnit>().Except(new BitRateUnit[]{ BitRateUnit.Undefined }).ToArray();
@@ -189,11 +183,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => BitRate.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1263,8 +1252,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(BitRateUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return BitRate.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return BitRate.Info;
             else if(conversionType == typeof(BaseDimensions))

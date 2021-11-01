@@ -62,7 +62,7 @@ namespace UnitsNet
                     new UnitInfo<RatioUnit>(RatioUnit.PartPerTrillion, "PartsPerTrillion", BaseUnits.Undefined),
                     new UnitInfo<RatioUnit>(RatioUnit.Percent, "Percent", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Ratio);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -127,12 +127,6 @@ namespace UnitsNet
         public static Ratio MinValue { get; } = new Ratio(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Ratio;
-
-        /// <summary>
         ///     All units of measurement for the Ratio quantity.
         /// </summary>
         public static RatioUnit[] Units { get; } = Enum.GetValues(typeof(RatioUnit)).Cast<RatioUnit>().Except(new RatioUnit[]{ RatioUnit.Undefined }).ToArray();
@@ -161,11 +155,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Ratio.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -915,8 +904,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(RatioUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Ratio.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Ratio.Info;
             else if(conversionType == typeof(BaseDimensions))

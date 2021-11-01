@@ -64,7 +64,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Nanoampere, "Nanoamperes", BaseUnits.Undefined),
                     new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Picoampere, "Picoamperes", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.ElectricCurrent);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -129,12 +129,6 @@ namespace UnitsNet
         public static ElectricCurrent MinValue { get; } = new ElectricCurrent(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricCurrent;
-
-        /// <summary>
         ///     All units of measurement for the ElectricCurrent quantity.
         /// </summary>
         public static ElectricCurrentUnit[] Units { get; } = Enum.GetValues(typeof(ElectricCurrentUnit)).Cast<ElectricCurrentUnit>().Except(new ElectricCurrentUnit[]{ ElectricCurrentUnit.Undefined }).ToArray();
@@ -163,11 +157,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => ElectricCurrent.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -949,8 +938,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ElectricCurrentUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return ElectricCurrent.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return ElectricCurrent.Info;
             else if(conversionType == typeof(BaseDimensions))

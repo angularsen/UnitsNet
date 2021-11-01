@@ -68,7 +68,7 @@ namespace UnitsNet
                     new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareMeter, "KilogramsPerSecondPerSquareMeter", BaseUnits.Undefined),
                     new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, "KilogramsPerSecondPerSquareMillimeter", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.MassFlux);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -133,12 +133,6 @@ namespace UnitsNet
         public static MassFlux MinValue { get; } = new MassFlux(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.MassFlux;
-
-        /// <summary>
         ///     All units of measurement for the MassFlux quantity.
         /// </summary>
         public static MassFluxUnit[] Units { get; } = Enum.GetValues(typeof(MassFluxUnit)).Cast<MassFluxUnit>().Except(new MassFluxUnit[]{ MassFluxUnit.Undefined }).ToArray();
@@ -167,11 +161,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => MassFlux.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1017,8 +1006,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MassFluxUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return MassFlux.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return MassFlux.Info;
             else if(conversionType == typeof(BaseDimensions))

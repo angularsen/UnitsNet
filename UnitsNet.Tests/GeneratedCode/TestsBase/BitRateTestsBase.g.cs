@@ -138,7 +138,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(BitRate.Zero, quantityInfo.Zero);
             Assert.Equal("BitRate", quantityInfo.Name);
-            Assert.Equal(QuantityType.BitRate, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<BitRateUnit>().Except(new[] {BitRateUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -876,13 +875,6 @@ namespace UnitsNet.Tests
         {
             var quantity = BitRate.FromBitsPerSecond(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(BitRateUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = BitRate.FromBitsPerSecond(1.0);
-            Assert.Equal(QuantityType.BitRate, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

@@ -110,7 +110,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(WarpingMomentOfInertia.Zero, quantityInfo.Zero);
             Assert.Equal("WarpingMomentOfInertia", quantityInfo.Name);
-            Assert.Equal(QuantityType.WarpingMomentOfInertia, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<WarpingMomentOfInertiaUnit>().Except(new[] {WarpingMomentOfInertiaUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -601,13 +600,6 @@ namespace UnitsNet.Tests
         {
             var quantity = WarpingMomentOfInertia.FromMetersToTheSixth(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(WarpingMomentOfInertiaUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = WarpingMomentOfInertia.FromMetersToTheSixth(1.0);
-            Assert.Equal(QuantityType.WarpingMomentOfInertia, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

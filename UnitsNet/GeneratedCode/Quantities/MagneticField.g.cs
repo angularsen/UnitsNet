@@ -65,7 +65,7 @@ namespace UnitsNet
                     new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Nanotesla, "Nanoteslas", BaseUnits.Undefined),
                     new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Tesla, "Teslas", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.MagneticField);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -130,12 +130,6 @@ namespace UnitsNet
         public static MagneticField MinValue { get; } = new MagneticField(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.MagneticField;
-
-        /// <summary>
         ///     All units of measurement for the MagneticField quantity.
         /// </summary>
         public static MagneticFieldUnit[] Units { get; } = Enum.GetValues(typeof(MagneticFieldUnit)).Cast<MagneticFieldUnit>().Except(new MagneticFieldUnit[]{ MagneticFieldUnit.Undefined }).ToArray();
@@ -164,11 +158,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => MagneticField.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -918,8 +907,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MagneticFieldUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return MagneticField.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return MagneticField.Info;
             else if(conversionType == typeof(BaseDimensions))

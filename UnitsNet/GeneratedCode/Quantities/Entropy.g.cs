@@ -63,7 +63,7 @@ namespace UnitsNet
                     new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerKelvin, "KilojoulesPerKelvin", BaseUnits.Undefined),
                     new UnitInfo<EntropyUnit>(EntropyUnit.MegajoulePerKelvin, "MegajoulesPerKelvin", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Entropy);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -128,12 +128,6 @@ namespace UnitsNet
         public static Entropy MinValue { get; } = new Entropy(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Entropy;
-
-        /// <summary>
         ///     All units of measurement for the Entropy quantity.
         /// </summary>
         public static EntropyUnit[] Units { get; } = Enum.GetValues(typeof(EntropyUnit)).Cast<EntropyUnit>().Except(new EntropyUnit[]{ EntropyUnit.Undefined }).ToArray();
@@ -162,11 +156,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Entropy.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -932,8 +921,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(EntropyUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Entropy.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Entropy.Info;
             else if(conversionType == typeof(BaseDimensions))

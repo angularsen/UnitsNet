@@ -61,7 +61,7 @@ namespace UnitsNet
                     new UnitInfo<RotationalStiffnessPerLengthUnit>(RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, "NewtonMetersPerRadianPerMeter", BaseUnits.Undefined),
                     new UnitInfo<RotationalStiffnessPerLengthUnit>(RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, "PoundForceFeetPerDegreesPerFeet", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.RotationalStiffnessPerLength);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -126,12 +126,6 @@ namespace UnitsNet
         public static RotationalStiffnessPerLength MinValue { get; } = new RotationalStiffnessPerLength(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.RotationalStiffnessPerLength;
-
-        /// <summary>
         ///     All units of measurement for the RotationalStiffnessPerLength quantity.
         /// </summary>
         public static RotationalStiffnessPerLengthUnit[] Units { get; } = Enum.GetValues(typeof(RotationalStiffnessPerLengthUnit)).Cast<RotationalStiffnessPerLengthUnit>().Except(new RotationalStiffnessPerLengthUnit[]{ RotationalStiffnessPerLengthUnit.Undefined }).ToArray();
@@ -160,11 +154,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => RotationalStiffnessPerLength.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -898,8 +887,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(RotationalStiffnessPerLengthUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return RotationalStiffnessPerLength.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return RotationalStiffnessPerLength.Info;
             else if(conversionType == typeof(BaseDimensions))

@@ -57,7 +57,7 @@ namespace UnitsNet
                 new UnitInfo<AreaDensityUnit>[] {
                     new UnitInfo<AreaDensityUnit>(AreaDensityUnit.KilogramPerSquareMeter, "KilogramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram)),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.AreaDensity);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -122,12 +122,6 @@ namespace UnitsNet
         public static AreaDensity MinValue { get; } = new AreaDensity(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.AreaDensity;
-
-        /// <summary>
         ///     All units of measurement for the AreaDensity quantity.
         /// </summary>
         public static AreaDensityUnit[] Units { get; } = Enum.GetValues(typeof(AreaDensityUnit)).Cast<AreaDensityUnit>().Except(new AreaDensityUnit[]{ AreaDensityUnit.Undefined }).ToArray();
@@ -156,11 +150,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => AreaDensity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -830,8 +819,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(AreaDensityUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return AreaDensity.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return AreaDensity.Info;
             else if(conversionType == typeof(BaseDimensions))

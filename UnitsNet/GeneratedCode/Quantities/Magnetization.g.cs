@@ -60,7 +60,7 @@ namespace UnitsNet
                 new UnitInfo<MagnetizationUnit>[] {
                     new UnitInfo<MagnetizationUnit>(MagnetizationUnit.AmperePerMeter, "AmperesPerMeter", new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere)),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Magnetization);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -125,12 +125,6 @@ namespace UnitsNet
         public static Magnetization MinValue { get; } = new Magnetization(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Magnetization;
-
-        /// <summary>
         ///     All units of measurement for the Magnetization quantity.
         /// </summary>
         public static MagnetizationUnit[] Units { get; } = Enum.GetValues(typeof(MagnetizationUnit)).Cast<MagnetizationUnit>().Except(new MagnetizationUnit[]{ MagnetizationUnit.Undefined }).ToArray();
@@ -159,11 +153,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Magnetization.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -833,8 +822,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MagnetizationUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Magnetization.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Magnetization.Info;
             else if(conversionType == typeof(BaseDimensions))

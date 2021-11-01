@@ -120,7 +120,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ReciprocalArea.Zero, quantityInfo.Zero);
             Assert.Equal("ReciprocalArea", quantityInfo.Name);
-            Assert.Equal(QuantityType.ReciprocalArea, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ReciprocalAreaUnit>().Except(new[] {ReciprocalAreaUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -676,13 +675,6 @@ namespace UnitsNet.Tests
         {
             var quantity = ReciprocalArea.FromInverseSquareMeters(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ReciprocalAreaUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = ReciprocalArea.FromInverseSquareMeters(1.0);
-            Assert.Equal(QuantityType.ReciprocalArea, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

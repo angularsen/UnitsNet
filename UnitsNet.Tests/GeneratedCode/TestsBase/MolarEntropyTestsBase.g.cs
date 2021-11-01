@@ -104,7 +104,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(MolarEntropy.Zero, quantityInfo.Zero);
             Assert.Equal("MolarEntropy", quantityInfo.Name);
-            Assert.Equal(QuantityType.MolarEntropy, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<MolarEntropyUnit>().Except(new[] {MolarEntropyUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -556,13 +555,6 @@ namespace UnitsNet.Tests
         {
             var quantity = MolarEntropy.FromJoulesPerMoleKelvin(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(MolarEntropyUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = MolarEntropy.FromJoulesPerMoleKelvin(1.0);
-            Assert.Equal(QuantityType.MolarEntropy, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

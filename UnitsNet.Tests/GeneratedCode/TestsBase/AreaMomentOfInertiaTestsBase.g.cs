@@ -110,7 +110,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(AreaMomentOfInertia.Zero, quantityInfo.Zero);
             Assert.Equal("AreaMomentOfInertia", quantityInfo.Name);
-            Assert.Equal(QuantityType.AreaMomentOfInertia, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<AreaMomentOfInertiaUnit>().Except(new[] {AreaMomentOfInertiaUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -601,13 +600,6 @@ namespace UnitsNet.Tests
         {
             var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(AreaMomentOfInertiaUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
-            Assert.Equal(QuantityType.AreaMomentOfInertia, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

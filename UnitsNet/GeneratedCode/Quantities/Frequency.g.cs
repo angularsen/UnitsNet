@@ -67,7 +67,7 @@ namespace UnitsNet
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.RadianPerSecond, "RadiansPerSecond", BaseUnits.Undefined),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.Terahertz, "Terahertz", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Frequency);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -132,12 +132,6 @@ namespace UnitsNet
         public static Frequency MinValue { get; } = new Frequency(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Frequency;
-
-        /// <summary>
         ///     All units of measurement for the Frequency quantity.
         /// </summary>
         public static FrequencyUnit[] Units { get; } = Enum.GetValues(typeof(FrequencyUnit)).Cast<FrequencyUnit>().Except(new FrequencyUnit[]{ FrequencyUnit.Undefined }).ToArray();
@@ -166,11 +160,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Frequency.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1000,8 +989,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(FrequencyUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Frequency.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Frequency.Info;
             else if(conversionType == typeof(BaseDimensions))

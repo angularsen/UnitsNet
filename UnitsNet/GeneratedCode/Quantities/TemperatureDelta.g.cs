@@ -65,7 +65,7 @@ namespace UnitsNet
                     new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.Kelvin, "Kelvins", BaseUnits.Undefined),
                     new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.MillidegreeCelsius, "MillidegreesCelsius", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.TemperatureDelta);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -130,12 +130,6 @@ namespace UnitsNet
         public static TemperatureDelta MinValue { get; } = new TemperatureDelta(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.TemperatureDelta;
-
-        /// <summary>
         ///     All units of measurement for the TemperatureDelta quantity.
         /// </summary>
         public static TemperatureDeltaUnit[] Units { get; } = Enum.GetValues(typeof(TemperatureDeltaUnit)).Cast<TemperatureDeltaUnit>().Except(new TemperatureDeltaUnit[]{ TemperatureDeltaUnit.Undefined }).ToArray();
@@ -164,11 +158,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => TemperatureDelta.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -966,8 +955,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(TemperatureDeltaUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return TemperatureDelta.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return TemperatureDelta.Info;
             else if(conversionType == typeof(BaseDimensions))

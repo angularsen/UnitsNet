@@ -106,7 +106,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ElectricInductance.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricInductance", quantityInfo.Name);
-            Assert.Equal(QuantityType.ElectricInductance, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ElectricInductanceUnit>().Except(new[] {ElectricInductanceUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -571,13 +570,6 @@ namespace UnitsNet.Tests
         {
             var quantity = ElectricInductance.FromHenries(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ElectricInductanceUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = ElectricInductance.FromHenries(1.0);
-            Assert.Equal(QuantityType.ElectricInductance, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

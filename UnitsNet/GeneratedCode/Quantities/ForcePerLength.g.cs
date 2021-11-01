@@ -94,7 +94,7 @@ namespace UnitsNet
                     new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.TonneForcePerMeter, "TonnesForcePerMeter", BaseUnits.Undefined),
                     new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.TonneForcePerMillimeter, "TonnesForcePerMillimeter", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.ForcePerLength);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -159,12 +159,6 @@ namespace UnitsNet
         public static ForcePerLength MinValue { get; } = new ForcePerLength(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ForcePerLength;
-
-        /// <summary>
         ///     All units of measurement for the ForcePerLength quantity.
         /// </summary>
         public static ForcePerLengthUnit[] Units { get; } = Enum.GetValues(typeof(ForcePerLengthUnit)).Cast<ForcePerLengthUnit>().Except(new ForcePerLengthUnit[]{ ForcePerLengthUnit.Undefined }).ToArray();
@@ -193,11 +187,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => ForcePerLength.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1459,8 +1448,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ForcePerLengthUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return ForcePerLength.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return ForcePerLength.Info;
             else if(conversionType == typeof(BaseDimensions))

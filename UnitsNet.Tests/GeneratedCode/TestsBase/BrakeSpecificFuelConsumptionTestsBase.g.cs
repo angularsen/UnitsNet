@@ -104,7 +104,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(BrakeSpecificFuelConsumption.Zero, quantityInfo.Zero);
             Assert.Equal("BrakeSpecificFuelConsumption", quantityInfo.Name);
-            Assert.Equal(QuantityType.BrakeSpecificFuelConsumption, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<BrakeSpecificFuelConsumptionUnit>().Except(new[] {BrakeSpecificFuelConsumptionUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -556,13 +555,6 @@ namespace UnitsNet.Tests
         {
             var quantity = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(BrakeSpecificFuelConsumptionUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1.0);
-            Assert.Equal(QuantityType.BrakeSpecificFuelConsumption, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

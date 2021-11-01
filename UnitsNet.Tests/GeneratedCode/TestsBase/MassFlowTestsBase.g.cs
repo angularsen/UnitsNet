@@ -164,7 +164,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(MassFlow.Zero, quantityInfo.Zero);
             Assert.Equal("MassFlow", quantityInfo.Name);
-            Assert.Equal(QuantityType.MassFlow, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<MassFlowUnit>().Except(new[] {MassFlowUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -1006,13 +1005,6 @@ namespace UnitsNet.Tests
         {
             var quantity = MassFlow.FromGramsPerSecond(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(MassFlowUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = MassFlow.FromGramsPerSecond(1.0);
-            Assert.Equal(QuantityType.MassFlow, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

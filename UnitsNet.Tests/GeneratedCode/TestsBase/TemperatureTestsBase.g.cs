@@ -118,7 +118,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Temperature.Zero, quantityInfo.Zero);
             Assert.Equal("Temperature", quantityInfo.Name);
-            Assert.Equal(QuantityType.Temperature, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<TemperatureUnit>().Except(new[] {TemperatureUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -649,13 +648,6 @@ namespace UnitsNet.Tests
         {
             var quantity = Temperature.FromKelvins(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(TemperatureUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = Temperature.FromKelvins(1.0);
-            Assert.Equal(QuantityType.Temperature, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

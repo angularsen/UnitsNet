@@ -74,7 +74,7 @@ namespace UnitsNet
                     new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareInch, "WattsPerSquareInch", BaseUnits.Undefined),
                     new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareMeter, "WattsPerSquareMeter", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second)),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.HeatFlux);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -139,12 +139,6 @@ namespace UnitsNet
         public static HeatFlux MinValue { get; } = new HeatFlux(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.HeatFlux;
-
-        /// <summary>
         ///     All units of measurement for the HeatFlux quantity.
         /// </summary>
         public static HeatFluxUnit[] Units { get; } = Enum.GetValues(typeof(HeatFluxUnit)).Cast<HeatFluxUnit>().Except(new HeatFluxUnit[]{ HeatFluxUnit.Undefined }).ToArray();
@@ -173,11 +167,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => HeatFlux.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1119,8 +1108,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(HeatFluxUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return HeatFlux.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return HeatFlux.Info;
             else if(conversionType == typeof(BaseDimensions))

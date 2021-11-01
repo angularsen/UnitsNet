@@ -82,7 +82,7 @@ namespace UnitsNet
                     new UnitInfo<InformationUnit>(InformationUnit.Terabit, "Terabits", BaseUnits.Undefined),
                     new UnitInfo<InformationUnit>(InformationUnit.Terabyte, "Terabytes", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Information);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -147,12 +147,6 @@ namespace UnitsNet
         public static Information MinValue { get; } = new Information(decimal.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Information;
-
-        /// <summary>
         ///     All units of measurement for the Information quantity.
         /// </summary>
         public static InformationUnit[] Units { get; } = Enum.GetValues(typeof(InformationUnit)).Cast<InformationUnit>().Except(new InformationUnit[]{ InformationUnit.Undefined }).ToArray();
@@ -186,11 +180,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Information.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1260,8 +1249,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(InformationUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Information.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Information.Info;
             else if(conversionType == typeof(BaseDimensions))

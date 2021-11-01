@@ -100,7 +100,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(LuminousFlux.Zero, quantityInfo.Zero);
             Assert.Equal("LuminousFlux", quantityInfo.Name);
-            Assert.Equal(QuantityType.LuminousFlux, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<LuminousFluxUnit>().Except(new[] {LuminousFluxUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -526,13 +525,6 @@ namespace UnitsNet.Tests
         {
             var quantity = LuminousFlux.FromLumens(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(LuminousFluxUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = LuminousFlux.FromLumens(1.0);
-            Assert.Equal(QuantityType.LuminousFlux, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

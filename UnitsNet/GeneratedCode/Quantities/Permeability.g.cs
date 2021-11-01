@@ -60,7 +60,7 @@ namespace UnitsNet
                 new UnitInfo<PermeabilityUnit>[] {
                     new UnitInfo<PermeabilityUnit>(PermeabilityUnit.HenryPerMeter, "HenriesPerMeter", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Permeability);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -125,12 +125,6 @@ namespace UnitsNet
         public static Permeability MinValue { get; } = new Permeability(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Permeability;
-
-        /// <summary>
         ///     All units of measurement for the Permeability quantity.
         /// </summary>
         public static PermeabilityUnit[] Units { get; } = Enum.GetValues(typeof(PermeabilityUnit)).Cast<PermeabilityUnit>().Except(new PermeabilityUnit[]{ PermeabilityUnit.Undefined }).ToArray();
@@ -159,11 +153,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Permeability.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -833,8 +822,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(PermeabilityUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Permeability.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Permeability.Info;
             else if(conversionType == typeof(BaseDimensions))

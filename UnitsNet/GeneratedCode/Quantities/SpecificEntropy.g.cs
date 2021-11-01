@@ -65,7 +65,7 @@ namespace UnitsNet
                     new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, "MegajoulesPerKilogramDegreeCelsius", BaseUnits.Undefined),
                     new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.MegajoulePerKilogramKelvin, "MegajoulesPerKilogramKelvin", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.SpecificEntropy);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -130,12 +130,6 @@ namespace UnitsNet
         public static SpecificEntropy MinValue { get; } = new SpecificEntropy(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.SpecificEntropy;
-
-        /// <summary>
         ///     All units of measurement for the SpecificEntropy quantity.
         /// </summary>
         public static SpecificEntropyUnit[] Units { get; } = Enum.GetValues(typeof(SpecificEntropyUnit)).Cast<SpecificEntropyUnit>().Except(new SpecificEntropyUnit[]{ SpecificEntropyUnit.Undefined }).ToArray();
@@ -164,11 +158,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => SpecificEntropy.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -966,8 +955,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(SpecificEntropyUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return SpecificEntropy.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return SpecificEntropy.Info;
             else if(conversionType == typeof(BaseDimensions))

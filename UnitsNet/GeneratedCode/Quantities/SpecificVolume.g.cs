@@ -59,7 +59,7 @@ namespace UnitsNet
                     new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.CubicMeterPerKilogram, "CubicMetersPerKilogram", BaseUnits.Undefined),
                     new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.MillicubicMeterPerKilogram, "MillicubicMetersPerKilogram", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.SpecificVolume);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -124,12 +124,6 @@ namespace UnitsNet
         public static SpecificVolume MinValue { get; } = new SpecificVolume(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.SpecificVolume;
-
-        /// <summary>
         ///     All units of measurement for the SpecificVolume quantity.
         /// </summary>
         public static SpecificVolumeUnit[] Units { get; } = Enum.GetValues(typeof(SpecificVolumeUnit)).Cast<SpecificVolumeUnit>().Except(new SpecificVolumeUnit[]{ SpecificVolumeUnit.Undefined }).ToArray();
@@ -158,11 +152,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => SpecificVolume.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -864,8 +853,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(SpecificVolumeUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return SpecificVolume.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return SpecificVolume.Info;
             else if(conversionType == typeof(BaseDimensions))

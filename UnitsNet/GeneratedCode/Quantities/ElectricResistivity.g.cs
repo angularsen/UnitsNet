@@ -73,7 +73,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.PicoohmCentimeter, "PicoohmsCentimeter", BaseUnits.Undefined),
                     new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.PicoohmMeter, "PicoohmMeters", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.ElectricResistivity);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -138,12 +138,6 @@ namespace UnitsNet
         public static ElectricResistivity MinValue { get; } = new ElectricResistivity(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricResistivity;
-
-        /// <summary>
         ///     All units of measurement for the ElectricResistivity quantity.
         /// </summary>
         public static ElectricResistivityUnit[] Units { get; } = Enum.GetValues(typeof(ElectricResistivityUnit)).Cast<ElectricResistivityUnit>().Except(new ElectricResistivityUnit[]{ ElectricResistivityUnit.Undefined }).ToArray();
@@ -172,11 +166,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => ElectricResistivity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1054,8 +1043,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ElectricResistivityUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return ElectricResistivity.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return ElectricResistivity.Info;
             else if(conversionType == typeof(BaseDimensions))

@@ -57,7 +57,7 @@ namespace UnitsNet
                 new UnitInfo<ScalarUnit>[] {
                     new UnitInfo<ScalarUnit>(ScalarUnit.Amount, "Amount", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Scalar);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -122,12 +122,6 @@ namespace UnitsNet
         public static Scalar MinValue { get; } = new Scalar(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Scalar;
-
-        /// <summary>
         ///     All units of measurement for the Scalar quantity.
         /// </summary>
         public static ScalarUnit[] Units { get; } = Enum.GetValues(typeof(ScalarUnit)).Cast<ScalarUnit>().Except(new ScalarUnit[]{ ScalarUnit.Undefined }).ToArray();
@@ -156,11 +150,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Scalar.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -830,8 +819,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ScalarUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Scalar.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Scalar.Info;
             else if(conversionType == typeof(BaseDimensions))

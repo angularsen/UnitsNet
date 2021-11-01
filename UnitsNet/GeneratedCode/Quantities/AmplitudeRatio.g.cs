@@ -60,7 +60,7 @@ namespace UnitsNet
                     new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelUnloaded, "DecibelsUnloaded", BaseUnits.Undefined),
                     new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelVolt, "DecibelVolts", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.AmplitudeRatio);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -125,12 +125,6 @@ namespace UnitsNet
         public static AmplitudeRatio MinValue { get; } = new AmplitudeRatio(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.AmplitudeRatio;
-
-        /// <summary>
         ///     All units of measurement for the AmplitudeRatio quantity.
         /// </summary>
         public static AmplitudeRatioUnit[] Units { get; } = Enum.GetValues(typeof(AmplitudeRatioUnit)).Cast<AmplitudeRatioUnit>().Except(new AmplitudeRatioUnit[]{ AmplitudeRatioUnit.Undefined }).ToArray();
@@ -159,11 +153,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => AmplitudeRatio.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -889,8 +878,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(AmplitudeRatioUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return AmplitudeRatio.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return AmplitudeRatio.Info;
             else if(conversionType == typeof(BaseDimensions))

@@ -64,7 +64,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MegaampereHour, "MegaampereHours", BaseUnits.Undefined),
                     new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MilliampereHour, "MilliampereHours", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.ElectricCharge);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -129,12 +129,6 @@ namespace UnitsNet
         public static ElectricCharge MinValue { get; } = new ElectricCharge(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricCharge;
-
-        /// <summary>
         ///     All units of measurement for the ElectricCharge quantity.
         /// </summary>
         public static ElectricChargeUnit[] Units { get; } = Enum.GetValues(typeof(ElectricChargeUnit)).Cast<ElectricChargeUnit>().Except(new ElectricChargeUnit[]{ ElectricChargeUnit.Undefined }).ToArray();
@@ -163,11 +157,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => ElectricCharge.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -901,8 +890,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ElectricChargeUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return ElectricCharge.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return ElectricCharge.Info;
             else if(conversionType == typeof(BaseDimensions))

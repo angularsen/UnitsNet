@@ -57,7 +57,7 @@ namespace UnitsNet
                 new UnitInfo<RelativeHumidityUnit>[] {
                     new UnitInfo<RelativeHumidityUnit>(RelativeHumidityUnit.Percent, "Percent", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.RelativeHumidity);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -122,12 +122,6 @@ namespace UnitsNet
         public static RelativeHumidity MinValue { get; } = new RelativeHumidity(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.RelativeHumidity;
-
-        /// <summary>
         ///     All units of measurement for the RelativeHumidity quantity.
         /// </summary>
         public static RelativeHumidityUnit[] Units { get; } = Enum.GetValues(typeof(RelativeHumidityUnit)).Cast<RelativeHumidityUnit>().Except(new RelativeHumidityUnit[]{ RelativeHumidityUnit.Undefined }).ToArray();
@@ -156,11 +150,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => RelativeHumidity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -830,8 +819,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(RelativeHumidityUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return RelativeHumidity.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return RelativeHumidity.Info;
             else if(conversionType == typeof(BaseDimensions))

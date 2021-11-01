@@ -77,7 +77,7 @@ namespace UnitsNet
                     new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.TonneForceMeterPerMeter, "TonneForceMetersPerMeter", BaseUnits.Undefined),
                     new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.TonneForceMillimeterPerMeter, "TonneForceMillimetersPerMeter", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.TorquePerLength);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -142,12 +142,6 @@ namespace UnitsNet
         public static TorquePerLength MinValue { get; } = new TorquePerLength(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.TorquePerLength;
-
-        /// <summary>
         ///     All units of measurement for the TorquePerLength quantity.
         /// </summary>
         public static TorquePerLengthUnit[] Units { get; } = Enum.GetValues(typeof(TorquePerLengthUnit)).Cast<TorquePerLengthUnit>().Except(new TorquePerLengthUnit[]{ TorquePerLengthUnit.Undefined }).ToArray();
@@ -176,11 +170,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => TorquePerLength.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1170,8 +1159,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(TorquePerLengthUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return TorquePerLength.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return TorquePerLength.Info;
             else if(conversionType == typeof(BaseDimensions))

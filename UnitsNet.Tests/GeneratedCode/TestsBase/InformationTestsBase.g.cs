@@ -138,7 +138,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Information.Zero, quantityInfo.Zero);
             Assert.Equal("Information", quantityInfo.Name);
-            Assert.Equal(QuantityType.Information, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<InformationUnit>().Except(new[] {InformationUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -876,13 +875,6 @@ namespace UnitsNet.Tests
         {
             var quantity = Information.FromBits(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(InformationUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = Information.FromBits(1.0);
-            Assert.Equal(QuantityType.Information, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

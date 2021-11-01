@@ -60,7 +60,7 @@ namespace UnitsNet
                 new UnitInfo<ElectricChargeDensityUnit>[] {
                     new UnitInfo<ElectricChargeDensityUnit>(ElectricChargeDensityUnit.CoulombPerCubicMeter, "CoulombsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.ElectricChargeDensity);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -125,12 +125,6 @@ namespace UnitsNet
         public static ElectricChargeDensity MinValue { get; } = new ElectricChargeDensity(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricChargeDensity;
-
-        /// <summary>
         ///     All units of measurement for the ElectricChargeDensity quantity.
         /// </summary>
         public static ElectricChargeDensityUnit[] Units { get; } = Enum.GetValues(typeof(ElectricChargeDensityUnit)).Cast<ElectricChargeDensityUnit>().Except(new ElectricChargeDensityUnit[]{ ElectricChargeDensityUnit.Undefined }).ToArray();
@@ -159,11 +153,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => ElectricChargeDensity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -833,8 +822,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ElectricChargeDensityUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return ElectricChargeDensity.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return ElectricChargeDensity.Info;
             else if(conversionType == typeof(BaseDimensions))

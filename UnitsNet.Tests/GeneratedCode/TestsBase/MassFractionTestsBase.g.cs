@@ -146,7 +146,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(MassFraction.Zero, quantityInfo.Zero);
             Assert.Equal("MassFraction", quantityInfo.Name);
-            Assert.Equal(QuantityType.MassFraction, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<MassFractionUnit>().Except(new[] {MassFractionUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -871,13 +870,6 @@ namespace UnitsNet.Tests
         {
             var quantity = MassFraction.FromDecimalFractions(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(MassFractionUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = MassFraction.FromDecimalFractions(1.0);
-            Assert.Equal(QuantityType.MassFraction, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

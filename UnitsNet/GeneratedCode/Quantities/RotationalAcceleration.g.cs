@@ -60,7 +60,7 @@ namespace UnitsNet
                     new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, "RevolutionsPerMinutePerSecond", BaseUnits.Undefined),
                     new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RevolutionPerSecondSquared, "RevolutionsPerSecondSquared", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.RotationalAcceleration);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -125,12 +125,6 @@ namespace UnitsNet
         public static RotationalAcceleration MinValue { get; } = new RotationalAcceleration(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.RotationalAcceleration;
-
-        /// <summary>
         ///     All units of measurement for the RotationalAcceleration quantity.
         /// </summary>
         public static RotationalAccelerationUnit[] Units { get; } = Enum.GetValues(typeof(RotationalAccelerationUnit)).Cast<RotationalAccelerationUnit>().Except(new RotationalAccelerationUnit[]{ RotationalAccelerationUnit.Undefined }).ToArray();
@@ -159,11 +153,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => RotationalAcceleration.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -881,8 +870,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(RotationalAccelerationUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return RotationalAcceleration.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return RotationalAcceleration.Info;
             else if(conversionType == typeof(BaseDimensions))

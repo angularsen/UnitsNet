@@ -5,8 +5,6 @@ namespace UnitsNet.Tests
 {
     internal class DummyIQuantity : IQuantity
     {
-        public QuantityType Type => throw new NotImplementedException();
-
         public BaseDimensions Dimensions => throw new NotImplementedException();
 
         public QuantityInfo QuantityInfo => throw new NotImplementedException();

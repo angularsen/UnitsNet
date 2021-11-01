@@ -174,7 +174,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ForcePerLength.Zero, quantityInfo.Zero);
             Assert.Equal("ForcePerLength", quantityInfo.Name);
-            Assert.Equal(QuantityType.ForcePerLength, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ForcePerLengthUnit>().Except(new[] {ForcePerLengthUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -1081,13 +1080,6 @@ namespace UnitsNet.Tests
         {
             var quantity = ForcePerLength.FromNewtonsPerMeter(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ForcePerLengthUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = ForcePerLength.FromNewtonsPerMeter(1.0);
-            Assert.Equal(QuantityType.ForcePerLength, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

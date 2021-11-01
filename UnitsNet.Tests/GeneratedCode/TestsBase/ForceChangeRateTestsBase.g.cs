@@ -128,7 +128,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ForceChangeRate.Zero, quantityInfo.Zero);
             Assert.Equal("ForceChangeRate", quantityInfo.Name);
-            Assert.Equal(QuantityType.ForceChangeRate, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ForceChangeRateUnit>().Except(new[] {ForceChangeRateUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -736,13 +735,6 @@ namespace UnitsNet.Tests
         {
             var quantity = ForceChangeRate.FromNewtonsPerSecond(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ForceChangeRateUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = ForceChangeRate.FromNewtonsPerSecond(1.0);
-            Assert.Equal(QuantityType.ForceChangeRate, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

@@ -108,7 +108,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ElectricCharge.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricCharge", quantityInfo.Name);
-            Assert.Equal(QuantityType.ElectricCharge, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ElectricChargeUnit>().Except(new[] {ElectricChargeUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -586,13 +585,6 @@ namespace UnitsNet.Tests
         {
             var quantity = ElectricCharge.FromCoulombs(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ElectricChargeUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = ElectricCharge.FromCoulombs(1.0);
-            Assert.Equal(QuantityType.ElectricCharge, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

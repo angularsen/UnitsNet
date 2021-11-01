@@ -63,7 +63,7 @@ namespace UnitsNet
                     new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Megalux, "Megalux", BaseUnits.Undefined),
                     new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Millilux, "Millilux", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Illuminance);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -128,12 +128,6 @@ namespace UnitsNet
         public static Illuminance MinValue { get; } = new Illuminance(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Illuminance;
-
-        /// <summary>
         ///     All units of measurement for the Illuminance quantity.
         /// </summary>
         public static IlluminanceUnit[] Units { get; } = Enum.GetValues(typeof(IlluminanceUnit)).Cast<IlluminanceUnit>().Except(new IlluminanceUnit[]{ IlluminanceUnit.Undefined }).ToArray();
@@ -162,11 +156,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Illuminance.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -884,8 +873,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(IlluminanceUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Illuminance.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Illuminance.Info;
             else if(conversionType == typeof(BaseDimensions))

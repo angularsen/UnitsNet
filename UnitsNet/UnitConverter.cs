@@ -278,8 +278,7 @@ namespace UnitsNet
         ///     convert from.
         /// </param>
         /// <param name="quantityName">
-        ///     Name of quantity, such as "Length" and "Mass". <see cref="QuantityType" /> for all
-        ///     values.
+        ///     Name of quantity, such as "Length" and "Mass". <see cref="UnitsNet.Quantity.Infos" /> for all quantities.
         /// </param>
         /// <param name="fromUnit">
         ///     Name of unit, such as "Meter" or "Centimeter" if "Length" was passed as
@@ -328,8 +327,7 @@ namespace UnitsNet
         ///     convert from.
         /// </param>
         /// <param name="quantityName">
-        ///     Name of quantity, such as "Length" and "Mass". <see cref="QuantityType" /> for all
-        ///     values.
+        ///     Name of quantity, such as "Length" and "Mass". <see cref="UnitsNet.Quantity.Infos" /> for all quantities.
         /// </param>
         /// <param name="fromUnit">
         ///     Name of unit, such as "Meter" or "Centimeter" if "Length" was passed as
@@ -403,8 +401,7 @@ namespace UnitsNet
         ///     convert from.
         /// </param>
         /// <param name="quantityName">
-        ///     Name of quantity, such as "Length" and "Mass". <see cref="QuantityType" /> for all
-        ///     values.
+        ///     Name of quantity, such as "Length" and "Mass". <see cref="UnitsNet.Quantity.Infos" /> for all quantities.
         /// </param>
         /// <param name="fromUnitAbbrev">
         ///     Name of unit, such as "Meter" or "Centimeter" if "Length" was passed as
@@ -449,8 +446,7 @@ namespace UnitsNet
         ///     convert from.
         /// </param>
         /// <param name="quantityName">
-        ///     Name of quantity, such as "Length" and "Mass". <see cref="QuantityType" /> for all
-        ///     values.
+        ///     Name of quantity, such as "Length" and "Mass". <see cref="UnitsNet.Quantity.Infos" /> for all quantities.
         /// </param>
         /// <param name="fromUnitAbbrev">
         ///     Name of unit, such as "Meter" or "Centimeter" if "Length" was passed as
@@ -481,8 +477,7 @@ namespace UnitsNet
         ///     convert from.
         /// </param>
         /// <param name="quantityName">
-        ///     Name of quantity, such as "Length" and "Mass". <see cref="QuantityType" /> for all
-        ///     values.
+        ///     Name of quantity, such as "Length" and "Mass". <see cref="UnitsNet.Quantity.Infos" /> for all quantities.
         /// </param>
         /// <param name="fromUnitAbbrev">
         ///     Name of unit, such as "Meter" or "Centimeter" if "Length" was passed as

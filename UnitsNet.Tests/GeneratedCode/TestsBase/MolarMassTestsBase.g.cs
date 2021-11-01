@@ -122,7 +122,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(MolarMass.Zero, quantityInfo.Zero);
             Assert.Equal("MolarMass", quantityInfo.Name);
-            Assert.Equal(QuantityType.MolarMass, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<MolarMassUnit>().Except(new[] {MolarMassUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -691,13 +690,6 @@ namespace UnitsNet.Tests
         {
             var quantity = MolarMass.FromKilogramsPerMole(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(MolarMassUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = MolarMass.FromKilogramsPerMole(1.0);
-            Assert.Equal(QuantityType.MolarMass, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

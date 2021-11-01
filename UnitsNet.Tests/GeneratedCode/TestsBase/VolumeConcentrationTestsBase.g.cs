@@ -138,7 +138,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(VolumeConcentration.Zero, quantityInfo.Zero);
             Assert.Equal("VolumeConcentration", quantityInfo.Name);
-            Assert.Equal(QuantityType.VolumeConcentration, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<VolumeConcentrationUnit>().Except(new[] {VolumeConcentrationUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -811,13 +810,6 @@ namespace UnitsNet.Tests
         {
             var quantity = VolumeConcentration.FromDecimalFractions(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(VolumeConcentrationUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = VolumeConcentration.FromDecimalFractions(1.0);
-            Assert.Equal(QuantityType.VolumeConcentration, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

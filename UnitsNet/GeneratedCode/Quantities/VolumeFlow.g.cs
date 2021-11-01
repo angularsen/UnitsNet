@@ -112,7 +112,7 @@ namespace UnitsNet
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerMinute, "UsGallonsPerMinute", BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerSecond, "UsGallonsPerSecond", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.VolumeFlow);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -177,12 +177,6 @@ namespace UnitsNet
         public static VolumeFlow MinValue { get; } = new VolumeFlow(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.VolumeFlow;
-
-        /// <summary>
         ///     All units of measurement for the VolumeFlow quantity.
         /// </summary>
         public static VolumeFlowUnit[] Units { get; } = Enum.GetValues(typeof(VolumeFlowUnit)).Cast<VolumeFlowUnit>().Except(new VolumeFlowUnit[]{ VolumeFlowUnit.Undefined }).ToArray();
@@ -211,11 +205,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => VolumeFlow.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1765,8 +1754,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(VolumeFlowUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return VolumeFlow.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return VolumeFlow.Info;
             else if(conversionType == typeof(BaseDimensions))

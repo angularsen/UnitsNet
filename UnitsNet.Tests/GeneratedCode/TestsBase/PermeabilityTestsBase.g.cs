@@ -100,7 +100,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Permeability.Zero, quantityInfo.Zero);
             Assert.Equal("Permeability", quantityInfo.Name);
-            Assert.Equal(QuantityType.Permeability, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<PermeabilityUnit>().Except(new[] {PermeabilityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -526,13 +525,6 @@ namespace UnitsNet.Tests
         {
             var quantity = Permeability.FromHenriesPerMeter(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(PermeabilityUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = Permeability.FromHenriesPerMeter(1.0);
-            Assert.Equal(QuantityType.Permeability, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

@@ -107,7 +107,7 @@ namespace UnitsNet
                     new UnitInfo<VolumeUnit>(VolumeUnit.UsTablespoon, "UsTablespoons", BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.UsTeaspoon, "UsTeaspoons", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Volume);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -172,12 +172,6 @@ namespace UnitsNet
         public static Volume MinValue { get; } = new Volume(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Volume;
-
-        /// <summary>
         ///     All units of measurement for the Volume quantity.
         /// </summary>
         public static VolumeUnit[] Units { get; } = Enum.GetValues(typeof(VolumeUnit)).Cast<VolumeUnit>().Except(new VolumeUnit[]{ VolumeUnit.Undefined }).ToArray();
@@ -206,11 +200,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Volume.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1680,8 +1669,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(VolumeUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Volume.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Volume.Info;
             else if(conversionType == typeof(BaseDimensions))

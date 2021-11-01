@@ -60,7 +60,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Nanosiemens, "Nanosiemens", BaseUnits.Undefined),
                     new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Siemens, "Siemens", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.ElectricAdmittance);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -125,12 +125,6 @@ namespace UnitsNet
         public static ElectricAdmittance MinValue { get; } = new ElectricAdmittance(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricAdmittance;
-
-        /// <summary>
         ///     All units of measurement for the ElectricAdmittance quantity.
         /// </summary>
         public static ElectricAdmittanceUnit[] Units { get; } = Enum.GetValues(typeof(ElectricAdmittanceUnit)).Cast<ElectricAdmittanceUnit>().Except(new ElectricAdmittanceUnit[]{ ElectricAdmittanceUnit.Undefined }).ToArray();
@@ -159,11 +153,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => ElectricAdmittance.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -881,8 +870,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ElectricAdmittanceUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return ElectricAdmittance.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return ElectricAdmittance.Info;
             else if(conversionType == typeof(BaseDimensions))

@@ -68,7 +68,7 @@ namespace UnitsNet
                     new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, "MegajoulesPerCubicMeterDegreeCelsius", BaseUnits.Undefined),
                     new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, "MegajoulesPerCubicMeterKelvin", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.VolumetricHeatCapacity);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -133,12 +133,6 @@ namespace UnitsNet
         public static VolumetricHeatCapacity MinValue { get; } = new VolumetricHeatCapacity(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.VolumetricHeatCapacity;
-
-        /// <summary>
         ///     All units of measurement for the VolumetricHeatCapacity quantity.
         /// </summary>
         public static VolumetricHeatCapacityUnit[] Units { get; } = Enum.GetValues(typeof(VolumetricHeatCapacityUnit)).Cast<VolumetricHeatCapacityUnit>().Except(new VolumetricHeatCapacityUnit[]{ VolumetricHeatCapacityUnit.Undefined }).ToArray();
@@ -167,11 +161,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => VolumetricHeatCapacity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -969,8 +958,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(VolumetricHeatCapacityUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return VolumetricHeatCapacity.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return VolumetricHeatCapacity.Info;
             else if(conversionType == typeof(BaseDimensions))

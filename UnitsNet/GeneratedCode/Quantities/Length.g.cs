@@ -89,7 +89,7 @@ namespace UnitsNet
                     new UnitInfo<LengthUnit>(LengthUnit.UsSurveyFoot, "UsSurveyFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot)),
                     new UnitInfo<LengthUnit>(LengthUnit.Yard, "Yards", new BaseUnits(length: LengthUnit.Yard)),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Length);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -154,12 +154,6 @@ namespace UnitsNet
         public static Length MinValue { get; } = new Length(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Length;
-
-        /// <summary>
         ///     All units of measurement for the Length quantity.
         /// </summary>
         public static LengthUnit[] Units { get; } = Enum.GetValues(typeof(LengthUnit)).Cast<LengthUnit>().Except(new LengthUnit[]{ LengthUnit.Undefined }).ToArray();
@@ -188,11 +182,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Length.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1374,8 +1363,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(LengthUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Length.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Length.Info;
             else if(conversionType == typeof(BaseDimensions))

@@ -106,7 +106,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(SpecificFuelConsumption.Zero, quantityInfo.Zero);
             Assert.Equal("SpecificFuelConsumption", quantityInfo.Name);
-            Assert.Equal(QuantityType.SpecificFuelConsumption, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<SpecificFuelConsumptionUnit>().Except(new[] {SpecificFuelConsumptionUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -571,13 +570,6 @@ namespace UnitsNet.Tests
         {
             var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(SpecificFuelConsumptionUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
-            Assert.Equal(QuantityType.SpecificFuelConsumption, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

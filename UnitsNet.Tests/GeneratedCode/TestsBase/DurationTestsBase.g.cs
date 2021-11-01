@@ -118,7 +118,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Duration.Zero, quantityInfo.Zero);
             Assert.Equal("Duration", quantityInfo.Name);
-            Assert.Equal(QuantityType.Duration, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<DurationUnit>().Except(new[] {DurationUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -661,13 +660,6 @@ namespace UnitsNet.Tests
         {
             var quantity = Duration.FromSeconds(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(DurationUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = Duration.FromSeconds(1.0);
-            Assert.Equal(QuantityType.Duration, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

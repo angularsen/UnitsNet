@@ -104,7 +104,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ElectricConductivity.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricConductivity", quantityInfo.Name);
-            Assert.Equal(QuantityType.ElectricConductivity, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ElectricConductivityUnit>().Except(new[] {ElectricConductivityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -556,13 +555,6 @@ namespace UnitsNet.Tests
         {
             var quantity = ElectricConductivity.FromSiemensPerMeter(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ElectricConductivityUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = ElectricConductivity.FromSiemensPerMeter(1.0);
-            Assert.Equal(QuantityType.ElectricConductivity, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

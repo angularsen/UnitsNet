@@ -100,7 +100,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ElectricChargeDensity.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricChargeDensity", quantityInfo.Name);
-            Assert.Equal(QuantityType.ElectricChargeDensity, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ElectricChargeDensityUnit>().Except(new[] {ElectricChargeDensityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -526,13 +525,6 @@ namespace UnitsNet.Tests
         {
             var quantity = ElectricChargeDensity.FromCoulombsPerCubicMeter(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ElectricChargeDensityUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = ElectricChargeDensity.FromCoulombsPerCubicMeter(1.0);
-            Assert.Equal(QuantityType.ElectricChargeDensity, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

@@ -99,7 +99,7 @@ namespace UnitsNet
                     new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicMeter, "TonnesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Tonne)),
                     new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicMillimeter, "TonnesPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Tonne)),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Density);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -164,12 +164,6 @@ namespace UnitsNet
         public static Density MinValue { get; } = new Density(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Density;
-
-        /// <summary>
         ///     All units of measurement for the Density quantity.
         /// </summary>
         public static DensityUnit[] Units { get; } = Enum.GetValues(typeof(DensityUnit)).Cast<DensityUnit>().Except(new DensityUnit[]{ DensityUnit.Undefined }).ToArray();
@@ -198,11 +192,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Density.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1496,8 +1485,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(DensityUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Density.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Density.Info;
             else if(conversionType == typeof(BaseDimensions))

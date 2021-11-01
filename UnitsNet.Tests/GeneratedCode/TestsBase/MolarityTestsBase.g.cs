@@ -114,7 +114,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Molarity.Zero, quantityInfo.Zero);
             Assert.Equal("Molarity", quantityInfo.Name);
-            Assert.Equal(QuantityType.Molarity, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<MolarityUnit>().Except(new[] {MolarityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -631,13 +630,6 @@ namespace UnitsNet.Tests
         {
             var quantity = Molarity.FromMolesPerCubicMeter(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(MolarityUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = Molarity.FromMolesPerCubicMeter(1.0);
-            Assert.Equal(QuantityType.Molarity, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

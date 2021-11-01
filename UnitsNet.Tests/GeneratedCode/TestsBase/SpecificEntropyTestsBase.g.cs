@@ -116,7 +116,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(SpecificEntropy.Zero, quantityInfo.Zero);
             Assert.Equal("SpecificEntropy", quantityInfo.Name);
-            Assert.Equal(QuantityType.SpecificEntropy, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<SpecificEntropyUnit>().Except(new[] {SpecificEntropyUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -646,13 +645,6 @@ namespace UnitsNet.Tests
         {
             var quantity = SpecificEntropy.FromJoulesPerKilogramKelvin(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(SpecificEntropyUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = SpecificEntropy.FromJoulesPerKilogramKelvin(1.0);
-            Assert.Equal(QuantityType.SpecificEntropy, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

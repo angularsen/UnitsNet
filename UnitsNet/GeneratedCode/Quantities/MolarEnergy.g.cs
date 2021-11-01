@@ -59,7 +59,7 @@ namespace UnitsNet
                     new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.KilojoulePerMole, "KilojoulesPerMole", BaseUnits.Undefined),
                     new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.MegajoulePerMole, "MegajoulesPerMole", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.MolarEnergy);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -124,12 +124,6 @@ namespace UnitsNet
         public static MolarEnergy MinValue { get; } = new MolarEnergy(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.MolarEnergy;
-
-        /// <summary>
         ///     All units of measurement for the MolarEnergy quantity.
         /// </summary>
         public static MolarEnergyUnit[] Units { get; } = Enum.GetValues(typeof(MolarEnergyUnit)).Cast<MolarEnergyUnit>().Except(new MolarEnergyUnit[]{ MolarEnergyUnit.Undefined }).ToArray();
@@ -158,11 +152,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => MolarEnergy.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -864,8 +853,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MolarEnergyUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return MolarEnergy.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return MolarEnergy.Info;
             else if(conversionType == typeof(BaseDimensions))

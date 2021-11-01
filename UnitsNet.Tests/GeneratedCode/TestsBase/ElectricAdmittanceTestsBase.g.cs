@@ -106,7 +106,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ElectricAdmittance.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricAdmittance", quantityInfo.Name);
-            Assert.Equal(QuantityType.ElectricAdmittance, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ElectricAdmittanceUnit>().Except(new[] {ElectricAdmittanceUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -571,13 +570,6 @@ namespace UnitsNet.Tests
         {
             var quantity = ElectricAdmittance.FromSiemens(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ElectricAdmittanceUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = ElectricAdmittance.FromSiemens(1.0);
-            Assert.Equal(QuantityType.ElectricAdmittance, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

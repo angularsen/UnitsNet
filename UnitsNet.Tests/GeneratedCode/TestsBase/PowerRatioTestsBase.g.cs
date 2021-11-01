@@ -102,7 +102,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(PowerRatio.Zero, quantityInfo.Zero);
             Assert.Equal("PowerRatio", quantityInfo.Name);
-            Assert.Equal(QuantityType.PowerRatio, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<PowerRatioUnit>().Except(new[] {PowerRatioUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -545,13 +544,6 @@ namespace UnitsNet.Tests
         {
             var quantity = PowerRatio.FromDecibelWatts(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(PowerRatioUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = PowerRatio.FromDecibelWatts(1.0);
-            Assert.Equal(QuantityType.PowerRatio, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

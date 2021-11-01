@@ -81,7 +81,7 @@ namespace UnitsNet
                     new UnitInfo<MassUnit>(MassUnit.Stone, "Stone", new BaseUnits(mass: MassUnit.Stone)),
                     new UnitInfo<MassUnit>(MassUnit.Tonne, "Tonnes", new BaseUnits(mass: MassUnit.Tonne)),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Mass);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -146,12 +146,6 @@ namespace UnitsNet
         public static Mass MinValue { get; } = new Mass(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Mass;
-
-        /// <summary>
         ///     All units of measurement for the Mass quantity.
         /// </summary>
         public static MassUnit[] Units { get; } = Enum.GetValues(typeof(MassUnit)).Cast<MassUnit>().Except(new MassUnit[]{ MassUnit.Undefined }).ToArray();
@@ -180,11 +174,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Mass.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1238,8 +1227,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MassUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Mass.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Mass.Info;
             else if(conversionType == typeof(BaseDimensions))

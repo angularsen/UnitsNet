@@ -100,7 +100,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(AreaDensity.Zero, quantityInfo.Zero);
             Assert.Equal("AreaDensity", quantityInfo.Name);
-            Assert.Equal(QuantityType.AreaDensity, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<AreaDensityUnit>().Except(new[] {AreaDensityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -526,13 +525,6 @@ namespace UnitsNet.Tests
         {
             var quantity = AreaDensity.FromKilogramsPerSquareMeter(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(AreaDensityUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = AreaDensity.FromKilogramsPerSquareMeter(1.0);
-            Assert.Equal(QuantityType.AreaDensity, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

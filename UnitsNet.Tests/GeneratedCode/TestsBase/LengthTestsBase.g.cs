@@ -164,7 +164,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Length.Zero, quantityInfo.Zero);
             Assert.Equal("Length", quantityInfo.Name);
-            Assert.Equal(QuantityType.Length, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<LengthUnit>().Except(new[] {LengthUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -1006,13 +1005,6 @@ namespace UnitsNet.Tests
         {
             var quantity = Length.FromMeters(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(LengthUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = Length.FromMeters(1.0);
-            Assert.Equal(QuantityType.Length, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

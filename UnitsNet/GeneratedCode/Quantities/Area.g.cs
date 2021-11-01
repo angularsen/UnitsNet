@@ -70,7 +70,7 @@ namespace UnitsNet
                     new UnitInfo<AreaUnit>(AreaUnit.SquareYard, "SquareYards", new BaseUnits(length: LengthUnit.Yard)),
                     new UnitInfo<AreaUnit>(AreaUnit.UsSurveySquareFoot, "UsSurveySquareFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot)),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Area);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -135,12 +135,6 @@ namespace UnitsNet
         public static Area MinValue { get; } = new Area(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Area;
-
-        /// <summary>
         ///     All units of measurement for the Area quantity.
         /// </summary>
         public static AreaUnit[] Units { get; } = Enum.GetValues(typeof(AreaUnit)).Cast<AreaUnit>().Except(new AreaUnit[]{ AreaUnit.Undefined }).ToArray();
@@ -169,11 +163,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Area.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1051,8 +1040,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(AreaUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Area.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Area.Info;
             else if(conversionType == typeof(BaseDimensions))

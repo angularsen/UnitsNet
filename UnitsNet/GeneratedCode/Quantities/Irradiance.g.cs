@@ -70,7 +70,7 @@ namespace UnitsNet
                     new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareCentimeter, "WattsPerSquareCentimeter", BaseUnits.Undefined),
                     new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareMeter, "WattsPerSquareMeter", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Irradiance);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -135,12 +135,6 @@ namespace UnitsNet
         public static Irradiance MinValue { get; } = new Irradiance(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Irradiance;
-
-        /// <summary>
         ///     All units of measurement for the Irradiance quantity.
         /// </summary>
         public static IrradianceUnit[] Units { get; } = Enum.GetValues(typeof(IrradianceUnit)).Cast<IrradianceUnit>().Except(new IrradianceUnit[]{ IrradianceUnit.Undefined }).ToArray();
@@ -169,11 +163,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Irradiance.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1051,8 +1040,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(IrradianceUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Irradiance.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Irradiance.Info;
             else if(conversionType == typeof(BaseDimensions))

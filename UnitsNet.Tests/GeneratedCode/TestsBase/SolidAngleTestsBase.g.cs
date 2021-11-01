@@ -100,7 +100,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(SolidAngle.Zero, quantityInfo.Zero);
             Assert.Equal("SolidAngle", quantityInfo.Name);
-            Assert.Equal(QuantityType.SolidAngle, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<SolidAngleUnit>().Except(new[] {SolidAngleUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -526,13 +525,6 @@ namespace UnitsNet.Tests
         {
             var quantity = SolidAngle.FromSteradians(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(SolidAngleUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = SolidAngle.FromSteradians(1.0);
-            Assert.Equal(QuantityType.SolidAngle, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

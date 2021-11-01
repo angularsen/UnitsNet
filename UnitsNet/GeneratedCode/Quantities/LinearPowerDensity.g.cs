@@ -84,7 +84,7 @@ namespace UnitsNet
                     new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerMeter, "WattsPerMeter", BaseUnits.Undefined),
                     new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerMillimeter, "WattsPerMillimeter", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.LinearPowerDensity);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -149,12 +149,6 @@ namespace UnitsNet
         public static LinearPowerDensity MinValue { get; } = new LinearPowerDensity(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.LinearPowerDensity;
-
-        /// <summary>
         ///     All units of measurement for the LinearPowerDensity quantity.
         /// </summary>
         public static LinearPowerDensityUnit[] Units { get; } = Enum.GetValues(typeof(LinearPowerDensityUnit)).Cast<LinearPowerDensityUnit>().Except(new LinearPowerDensityUnit[]{ LinearPowerDensityUnit.Undefined }).ToArray();
@@ -183,11 +177,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => LinearPowerDensity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1241,8 +1230,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(LinearPowerDensityUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return LinearPowerDensity.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return LinearPowerDensity.Info;
             else if(conversionType == typeof(BaseDimensions))

@@ -62,7 +62,7 @@ namespace UnitsNet
                     new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.MeterToTheSixth, "MetersToTheSixth", new BaseUnits(length: LengthUnit.Meter)),
                     new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, "MillimetersToTheSixth", new BaseUnits(length: LengthUnit.Millimeter)),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.WarpingMomentOfInertia);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -127,12 +127,6 @@ namespace UnitsNet
         public static WarpingMomentOfInertia MinValue { get; } = new WarpingMomentOfInertia(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.WarpingMomentOfInertia;
-
-        /// <summary>
         ///     All units of measurement for the WarpingMomentOfInertia quantity.
         /// </summary>
         public static WarpingMomentOfInertiaUnit[] Units { get; } = Enum.GetValues(typeof(WarpingMomentOfInertiaUnit)).Cast<WarpingMomentOfInertiaUnit>().Except(new WarpingMomentOfInertiaUnit[]{ WarpingMomentOfInertiaUnit.Undefined }).ToArray();
@@ -161,11 +155,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => WarpingMomentOfInertia.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -915,8 +904,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(WarpingMomentOfInertiaUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return WarpingMomentOfInertia.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return WarpingMomentOfInertia.Info;
             else if(conversionType == typeof(BaseDimensions))

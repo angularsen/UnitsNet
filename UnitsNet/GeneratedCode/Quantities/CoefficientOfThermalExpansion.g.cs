@@ -59,7 +59,7 @@ namespace UnitsNet
                     new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, "InverseDegreeFahrenheit", new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit)),
                     new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseKelvin, "InverseKelvin", new BaseUnits(temperature: TemperatureUnit.Kelvin)),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.CoefficientOfThermalExpansion);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -124,12 +124,6 @@ namespace UnitsNet
         public static CoefficientOfThermalExpansion MinValue { get; } = new CoefficientOfThermalExpansion(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.CoefficientOfThermalExpansion;
-
-        /// <summary>
         ///     All units of measurement for the CoefficientOfThermalExpansion quantity.
         /// </summary>
         public static CoefficientOfThermalExpansionUnit[] Units { get; } = Enum.GetValues(typeof(CoefficientOfThermalExpansionUnit)).Cast<CoefficientOfThermalExpansionUnit>().Except(new CoefficientOfThermalExpansionUnit[]{ CoefficientOfThermalExpansionUnit.Undefined }).ToArray();
@@ -158,11 +152,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => CoefficientOfThermalExpansion.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -864,8 +853,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(CoefficientOfThermalExpansionUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return CoefficientOfThermalExpansion.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return CoefficientOfThermalExpansion.Info;
             else if(conversionType == typeof(BaseDimensions))

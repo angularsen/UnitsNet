@@ -112,7 +112,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Irradiation.Zero, quantityInfo.Zero);
             Assert.Equal("Irradiation", quantityInfo.Name);
-            Assert.Equal(QuantityType.Irradiation, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<IrradiationUnit>().Except(new[] {IrradiationUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -616,13 +615,6 @@ namespace UnitsNet.Tests
         {
             var quantity = Irradiation.FromJoulesPerSquareMeter(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(IrradiationUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = Irradiation.FromJoulesPerSquareMeter(1.0);
-            Assert.Equal(QuantityType.Irradiation, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

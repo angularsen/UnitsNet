@@ -83,7 +83,7 @@ namespace UnitsNet
                     new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerTrillion, "PartsPerTrillion", BaseUnits.Undefined),
                     new UnitInfo<MassFractionUnit>(MassFractionUnit.Percent, "Percent", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.MassFraction);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -148,12 +148,6 @@ namespace UnitsNet
         public static MassFraction MinValue { get; } = new MassFraction(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.MassFraction;
-
-        /// <summary>
         ///     All units of measurement for the MassFraction quantity.
         /// </summary>
         public static MassFractionUnit[] Units { get; } = Enum.GetValues(typeof(MassFractionUnit)).Cast<MassFractionUnit>().Except(new MassFractionUnit[]{ MassFractionUnit.Undefined }).ToArray();
@@ -182,11 +176,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => MassFraction.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1224,8 +1213,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MassFractionUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return MassFraction.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return MassFraction.Info;
             else if(conversionType == typeof(BaseDimensions))

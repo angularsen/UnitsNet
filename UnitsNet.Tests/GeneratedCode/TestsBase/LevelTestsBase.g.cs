@@ -102,7 +102,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Level.Zero, quantityInfo.Zero);
             Assert.Equal("Level", quantityInfo.Name);
-            Assert.Equal(QuantityType.Level, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<LevelUnit>().Except(new[] {LevelUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -545,13 +544,6 @@ namespace UnitsNet.Tests
         {
             var quantity = Level.FromDecibels(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(LevelUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = Level.FromDecibels(1.0);
-            Assert.Equal(QuantityType.Level, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

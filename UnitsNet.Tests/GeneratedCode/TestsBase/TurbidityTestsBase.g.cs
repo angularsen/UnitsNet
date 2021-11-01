@@ -100,7 +100,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Turbidity.Zero, quantityInfo.Zero);
             Assert.Equal("Turbidity", quantityInfo.Name);
-            Assert.Equal(QuantityType.Turbidity, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<TurbidityUnit>().Except(new[] {TurbidityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -526,13 +525,6 @@ namespace UnitsNet.Tests
         {
             var quantity = Turbidity.FromNTU(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(TurbidityUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = Turbidity.FromNTU(1.0);
-            Assert.Equal(QuantityType.Turbidity, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

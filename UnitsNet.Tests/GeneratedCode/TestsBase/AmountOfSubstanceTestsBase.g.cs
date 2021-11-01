@@ -128,7 +128,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(AmountOfSubstance.Zero, quantityInfo.Zero);
             Assert.Equal("AmountOfSubstance", quantityInfo.Name);
-            Assert.Equal(QuantityType.AmountOfSubstance, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<AmountOfSubstanceUnit>().Except(new[] {AmountOfSubstanceUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -736,13 +735,6 @@ namespace UnitsNet.Tests
         {
             var quantity = AmountOfSubstance.FromMoles(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(AmountOfSubstanceUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = AmountOfSubstance.FromMoles(1.0);
-            Assert.Equal(QuantityType.AmountOfSubstance, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

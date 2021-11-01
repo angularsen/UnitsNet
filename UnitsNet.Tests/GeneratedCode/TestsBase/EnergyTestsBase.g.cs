@@ -170,7 +170,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Energy.Zero, quantityInfo.Zero);
             Assert.Equal("Energy", quantityInfo.Name);
-            Assert.Equal(QuantityType.Energy, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<EnergyUnit>().Except(new[] {EnergyUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -1051,13 +1050,6 @@ namespace UnitsNet.Tests
         {
             var quantity = Energy.FromJoules(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(EnergyUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = Energy.FromJoules(1.0);
-            Assert.Equal(QuantityType.Energy, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

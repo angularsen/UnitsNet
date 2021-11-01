@@ -19,19 +19,16 @@ namespace CodeGen
         ///             <description>Quantity types (Length, Mass, ...)</description>
         ///         </item>
         ///         <item>
-        ///             <description>UnitsNet.QuantityType enum type (QuantityType.Length, QuantityType.Mass, ...)</description>
+        ///             <description>Unit enum types (LengthUnit, MassUnit, ...)</description>
         ///         </item>
         ///         <item>
-        ///             <description>UnitsNet.Quantity type</description>
+        ///             <description>UnitsNet.Quantity class.</description>
         ///         </item>
         ///         <item>
-        ///             <description>UnitsNet.UnitAbbreviationsCache</description>
+        ///             <description>UnitsNet.UnitAbbreviationsCache class.</description>
         ///         </item>
         ///         <item>
         ///             <description>Test stubs for testing conversion functions of all units, to be fleshed out by a human later</description>
-        ///         </item>
-        ///         <item>
-        ///             <description>Unit enum types (LengthUnit, MassUnit, ...)</description>
         ///         </item>
         ///     </list>
         /// </summary>

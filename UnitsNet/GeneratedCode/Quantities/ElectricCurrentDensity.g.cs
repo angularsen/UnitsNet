@@ -62,7 +62,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareInch, "AmperesPerSquareInch", new BaseUnits(length: LengthUnit.Inch, current: ElectricCurrentUnit.Ampere)),
                     new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareMeter, "AmperesPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere)),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.ElectricCurrentDensity);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -127,12 +127,6 @@ namespace UnitsNet
         public static ElectricCurrentDensity MinValue { get; } = new ElectricCurrentDensity(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricCurrentDensity;
-
-        /// <summary>
         ///     All units of measurement for the ElectricCurrentDensity quantity.
         /// </summary>
         public static ElectricCurrentDensityUnit[] Units { get; } = Enum.GetValues(typeof(ElectricCurrentDensityUnit)).Cast<ElectricCurrentDensityUnit>().Except(new ElectricCurrentDensityUnit[]{ ElectricCurrentDensityUnit.Undefined }).ToArray();
@@ -161,11 +155,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => ElectricCurrentDensity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -867,8 +856,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ElectricCurrentDensityUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return ElectricCurrentDensity.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return ElectricCurrentDensity.Info;
             else if(conversionType == typeof(BaseDimensions))

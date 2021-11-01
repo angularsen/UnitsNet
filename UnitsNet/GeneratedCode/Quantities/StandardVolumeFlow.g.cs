@@ -65,7 +65,7 @@ namespace UnitsNet
                     new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicMeterPerSecond, "StandardCubicMetersPerSecond", BaseUnits.Undefined),
                     new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardLiterPerMinute, "StandardLitersPerMinute", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.StandardVolumeFlow);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -130,12 +130,6 @@ namespace UnitsNet
         public static StandardVolumeFlow MinValue { get; } = new StandardVolumeFlow(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.StandardVolumeFlow;
-
-        /// <summary>
         ///     All units of measurement for the StandardVolumeFlow quantity.
         /// </summary>
         public static StandardVolumeFlowUnit[] Units { get; } = Enum.GetValues(typeof(StandardVolumeFlowUnit)).Cast<StandardVolumeFlowUnit>().Except(new StandardVolumeFlowUnit[]{ StandardVolumeFlowUnit.Undefined }).ToArray();
@@ -164,11 +158,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => StandardVolumeFlow.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -966,8 +955,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(StandardVolumeFlowUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return StandardVolumeFlow.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return StandardVolumeFlow.Info;
             else if(conversionType == typeof(BaseDimensions))

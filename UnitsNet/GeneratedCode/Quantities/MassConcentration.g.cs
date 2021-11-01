@@ -108,7 +108,7 @@ namespace UnitsNet
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.TonnePerCubicMeter, "TonnesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Tonne)),
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.TonnePerCubicMillimeter, "TonnesPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Tonne)),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.MassConcentration);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -173,12 +173,6 @@ namespace UnitsNet
         public static MassConcentration MinValue { get; } = new MassConcentration(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.MassConcentration;
-
-        /// <summary>
         ///     All units of measurement for the MassConcentration quantity.
         /// </summary>
         public static MassConcentrationUnit[] Units { get; } = Enum.GetValues(typeof(MassConcentrationUnit)).Cast<MassConcentrationUnit>().Except(new MassConcentrationUnit[]{ MassConcentrationUnit.Undefined }).ToArray();
@@ -207,11 +201,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => MassConcentration.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1649,8 +1638,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MassConcentrationUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return MassConcentration.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return MassConcentration.Info;
             else if(conversionType == typeof(BaseDimensions))

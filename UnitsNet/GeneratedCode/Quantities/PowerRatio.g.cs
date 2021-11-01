@@ -58,7 +58,7 @@ namespace UnitsNet
                     new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelMilliwatt, "DecibelMilliwatts", BaseUnits.Undefined),
                     new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelWatt, "DecibelWatts", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.PowerRatio);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -123,12 +123,6 @@ namespace UnitsNet
         public static PowerRatio MinValue { get; } = new PowerRatio(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.PowerRatio;
-
-        /// <summary>
         ///     All units of measurement for the PowerRatio quantity.
         /// </summary>
         public static PowerRatioUnit[] Units { get; } = Enum.GetValues(typeof(PowerRatioUnit)).Cast<PowerRatioUnit>().Except(new PowerRatioUnit[]{ PowerRatioUnit.Undefined }).ToArray();
@@ -157,11 +151,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => PowerRatio.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -855,8 +844,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(PowerRatioUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return PowerRatio.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return PowerRatio.Info;
             else if(conversionType == typeof(BaseDimensions))

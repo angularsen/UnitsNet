@@ -66,7 +66,7 @@ namespace UnitsNet
                     new UnitInfo<IrradiationUnit>(IrradiationUnit.MillijoulePerSquareCentimeter, "MillijoulesPerSquareCentimeter", BaseUnits.Undefined),
                     new UnitInfo<IrradiationUnit>(IrradiationUnit.WattHourPerSquareMeter, "WattHoursPerSquareMeter", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Irradiation);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -131,12 +131,6 @@ namespace UnitsNet
         public static Irradiation MinValue { get; } = new Irradiation(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Irradiation;
-
-        /// <summary>
         ///     All units of measurement for the Irradiation quantity.
         /// </summary>
         public static IrradiationUnit[] Units { get; } = Enum.GetValues(typeof(IrradiationUnit)).Cast<IrradiationUnit>().Except(new IrradiationUnit[]{ IrradiationUnit.Undefined }).ToArray();
@@ -165,11 +159,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Irradiation.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -935,8 +924,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(IrradiationUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Irradiation.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Irradiation.Info;
             else if(conversionType == typeof(BaseDimensions))

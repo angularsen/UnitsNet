@@ -110,7 +110,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Ratio.Zero, quantityInfo.Zero);
             Assert.Equal("Ratio", quantityInfo.Name);
-            Assert.Equal(QuantityType.Ratio, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<RatioUnit>().Except(new[] {RatioUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -601,13 +600,6 @@ namespace UnitsNet.Tests
         {
             var quantity = Ratio.FromDecimalFractions(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(RatioUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = Ratio.FromDecimalFractions(1.0);
-            Assert.Equal(QuantityType.Ratio, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

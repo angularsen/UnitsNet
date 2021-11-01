@@ -100,7 +100,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ElectricField.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricField", quantityInfo.Name);
-            Assert.Equal(QuantityType.ElectricField, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ElectricFieldUnit>().Except(new[] {ElectricFieldUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -526,13 +525,6 @@ namespace UnitsNet.Tests
         {
             var quantity = ElectricField.FromVoltsPerMeter(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ElectricFieldUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = ElectricField.FromVoltsPerMeter(1.0);
-            Assert.Equal(QuantityType.ElectricField, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

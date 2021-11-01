@@ -134,7 +134,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(HeatFlux.Zero, quantityInfo.Zero);
             Assert.Equal("HeatFlux", quantityInfo.Name);
-            Assert.Equal(QuantityType.HeatFlux, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<HeatFluxUnit>().Except(new[] {HeatFluxUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -781,13 +780,6 @@ namespace UnitsNet.Tests
         {
             var quantity = HeatFlux.FromWattsPerSquareMeter(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(HeatFluxUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = HeatFlux.FromWattsPerSquareMeter(1.0);
-            Assert.Equal(QuantityType.HeatFlux, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

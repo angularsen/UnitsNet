@@ -104,7 +104,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ApparentEnergy.Zero, quantityInfo.Zero);
             Assert.Equal("ApparentEnergy", quantityInfo.Name);
-            Assert.Equal(QuantityType.ApparentEnergy, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ApparentEnergyUnit>().Except(new[] {ApparentEnergyUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -556,13 +555,6 @@ namespace UnitsNet.Tests
         {
             var quantity = ApparentEnergy.FromVoltampereHours(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ApparentEnergyUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = ApparentEnergy.FromVoltampereHours(1.0);
-            Assert.Equal(QuantityType.ApparentEnergy, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

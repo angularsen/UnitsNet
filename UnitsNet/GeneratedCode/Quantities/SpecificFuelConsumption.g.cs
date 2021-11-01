@@ -63,7 +63,7 @@ namespace UnitsNet
                     new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, "KilogramsPerKiloNewtonSecond", BaseUnits.Undefined),
                     new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, "PoundsMassPerPoundForceHour", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.SpecificFuelConsumption);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -128,12 +128,6 @@ namespace UnitsNet
         public static SpecificFuelConsumption MinValue { get; } = new SpecificFuelConsumption(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.SpecificFuelConsumption;
-
-        /// <summary>
         ///     All units of measurement for the SpecificFuelConsumption quantity.
         /// </summary>
         public static SpecificFuelConsumptionUnit[] Units { get; } = Enum.GetValues(typeof(SpecificFuelConsumptionUnit)).Cast<SpecificFuelConsumptionUnit>().Except(new SpecificFuelConsumptionUnit[]{ SpecificFuelConsumptionUnit.Undefined }).ToArray();
@@ -162,11 +156,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => SpecificFuelConsumption.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -884,8 +873,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(SpecificFuelConsumptionUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return SpecificFuelConsumption.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return SpecificFuelConsumption.Info;
             else if(conversionType == typeof(BaseDimensions))

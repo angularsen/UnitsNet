@@ -61,7 +61,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.MillivoltDc, "MillivoltsDc", BaseUnits.Undefined),
                     new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.VoltDc, "VoltsDc", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.ElectricPotentialDc);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -126,12 +126,6 @@ namespace UnitsNet
         public static ElectricPotentialDc MinValue { get; } = new ElectricPotentialDc(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricPotentialDc;
-
-        /// <summary>
         ///     All units of measurement for the ElectricPotentialDc quantity.
         /// </summary>
         public static ElectricPotentialDcUnit[] Units { get; } = Enum.GetValues(typeof(ElectricPotentialDcUnit)).Cast<ElectricPotentialDcUnit>().Except(new ElectricPotentialDcUnit[]{ ElectricPotentialDcUnit.Undefined }).ToArray();
@@ -160,11 +154,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => ElectricPotentialDc.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -898,8 +887,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ElectricPotentialDcUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return ElectricPotentialDc.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return ElectricPotentialDc.Info;
             else if(conversionType == typeof(BaseDimensions))

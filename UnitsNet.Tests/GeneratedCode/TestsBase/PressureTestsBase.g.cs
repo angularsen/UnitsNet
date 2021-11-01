@@ -186,7 +186,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Pressure.Zero, quantityInfo.Zero);
             Assert.Equal("Pressure", quantityInfo.Name);
-            Assert.Equal(QuantityType.Pressure, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<PressureUnit>().Except(new[] {PressureUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -1171,13 +1170,6 @@ namespace UnitsNet.Tests
         {
             var quantity = Pressure.FromPascals(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(PressureUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = Pressure.FromPascals(1.0);
-            Assert.Equal(QuantityType.Pressure, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

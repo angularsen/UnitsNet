@@ -118,7 +118,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(TemperatureChangeRate.Zero, quantityInfo.Zero);
             Assert.Equal("TemperatureChangeRate", quantityInfo.Name);
-            Assert.Equal(QuantityType.TemperatureChangeRate, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<TemperatureChangeRateUnit>().Except(new[] {TemperatureChangeRateUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -661,13 +660,6 @@ namespace UnitsNet.Tests
         {
             var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(TemperatureChangeRateUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
-            Assert.Equal(QuantityType.TemperatureChangeRate, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

@@ -100,7 +100,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Scalar.Zero, quantityInfo.Zero);
             Assert.Equal("Scalar", quantityInfo.Name);
-            Assert.Equal(QuantityType.Scalar, quantityInfo.QuantityType);
 
             var units = EnumUtils.GetEnumValues<ScalarUnit>().Except(new[] {ScalarUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
@@ -526,13 +525,6 @@ namespace UnitsNet.Tests
         {
             var quantity = Scalar.FromAmount(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ScalarUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = Scalar.FromAmount(1.0);
-            Assert.Equal(QuantityType.Scalar, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

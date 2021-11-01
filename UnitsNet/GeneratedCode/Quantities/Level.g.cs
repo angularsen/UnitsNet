@@ -58,7 +58,7 @@ namespace UnitsNet
                     new UnitInfo<LevelUnit>(LevelUnit.Decibel, "Decibels", BaseUnits.Undefined),
                     new UnitInfo<LevelUnit>(LevelUnit.Neper, "Nepers", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions, QuantityType.Level);
+                ConversionBaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -123,12 +123,6 @@ namespace UnitsNet
         public static Level MinValue { get; } = new Level(double.MinValue, ConversionBaseUnit);
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Level;
-
-        /// <summary>
         ///     All units of measurement for the Level quantity.
         /// </summary>
         public static LevelUnit[] Units { get; } = Enum.GetValues(typeof(LevelUnit)).Cast<LevelUnit>().Except(new LevelUnit[]{ LevelUnit.Undefined }).ToArray();
@@ -157,11 +151,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => Level.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -855,8 +844,6 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(LevelUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
-                return Level.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Level.Info;
             else if(conversionType == typeof(BaseDimensions))
