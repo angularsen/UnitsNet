@@ -48,11 +48,6 @@
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
   </ItemGroup>
 
-  <!-- System.ValueTuple is only required for net40 target. -->
-  <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
-    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
-  </ItemGroup>
-
   <!-- Link in common unit definition .json files -->
   <ItemGroup>
     <None Include="..\Common\**\*">
