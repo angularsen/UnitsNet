@@ -70,15 +70,15 @@ artifacts:
 - path: 'Artifacts\NuGet\*.nupkg' # find all NuGet packages recursively
 - path: Artifacts\Coverage
 
-deploy:
-- provider: NuGet
-  api_key:
-    secure: wUADhxnlTxLj2ge4k459gEuu6tLtVBD1lN2MacpH1glEvA2LKyM2QbJYKlNTu6vg
-  on:
-    branch: master
+for:
+  -
+    branches:
+      only:
+        - master
+        - /release\/.+/
+        - /support\/.+/
 
-- provider: NuGet
-  api_key:
-    secure: wUADhxnlTxLj2ge4k459gEuu6tLtVBD1lN2MacpH1glEvA2LKyM2QbJYKlNTu6vg
-  on:
-    branch: release/*
+    deploy:
+      - provider: NuGet
+        api_key:
+          secure: wUADhxnlTxLj2ge4k459gEuu6tLtVBD1lN2MacpH1glEvA2LKyM2QbJYKlNTu6vg
