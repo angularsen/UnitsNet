@@ -529,7 +529,7 @@ namespace UnitsNet
             if (matchedUnitName == null)
                 return false;
 
-            unitValue = (Enum) Enum.Parse(unitType, unitName);
+            unitValue = (Enum) Enum.Parse(unitType, matchedUnitName);
             return true;
         }
 

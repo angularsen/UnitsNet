@@ -112,7 +112,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void IsSubsetOfReturnsFalseWithNull()
         {
-            Assert.False(SIBaseUnits.IsSubsetOf(null!));
+            Assert.Throws<ArgumentNullException>(() => SIBaseUnits.IsSubsetOf(null!));
         }
 
         [Fact]

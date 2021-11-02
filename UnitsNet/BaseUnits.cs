@@ -90,6 +90,8 @@ namespace UnitsNet
         /// <returns>True if the base units are a subset of other, otherwise false.</returns>
         public bool IsSubsetOf(BaseUnits other)
         {
+            if (other == null) throw new ArgumentNullException(nameof(other));
+
             // If all base units are undefined, can only be a subset of another where all base units are undefined.
             if (Equals(Undefined))
                 return other.Equals(Undefined);
