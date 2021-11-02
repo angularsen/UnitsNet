@@ -35,7 +35,7 @@ namespace UnitsNet
     ///     In physics, mass (from Greek μᾶζα "barley cake, lump [of dough]") is a property of a physical system or body, giving rise to the phenomena of the body's resistance to being accelerated by a force and the strength of its mutual gravitational attraction with other bodies. Instruments such as mass balances or scales use those phenomena to measure mass. The SI unit of mass is the kilogram (kg).
     /// </summary>
     [DataContract]
-    public partial struct Mass : IQuantity<MassUnit>, IEquatable<Mass>, IComparable, IComparable<Mass>, IConvertible, IFormattable
+    public partial struct Mass : IQuantity<MassUnit>, IComparable, IComparable<Mass>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -781,20 +781,6 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Mass, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(Mass left, Mass right)
-        {
-            return left.Equals(right);
-        }
-
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Mass, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(Mass left, Mass right)
-        {
-            return !(left == right);
-        }
-
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -808,23 +794,6 @@ namespace UnitsNet
         public int CompareTo(Mass other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Mass, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public override bool Equals(object obj)
-        {
-            if(obj is null || !(obj is Mass objMass))
-                return false;
-
-            return Equals(objMass);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Mass, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(Mass other)
-        {
-            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>

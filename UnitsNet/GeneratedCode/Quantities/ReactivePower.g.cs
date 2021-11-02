@@ -35,7 +35,7 @@ namespace UnitsNet
     ///     Volt-ampere reactive (var) is a unit by which reactive power is expressed in an AC electric power system. Reactive power exists in an AC circuit when the current and voltage are not in phase.
     /// </summary>
     [DataContract]
-    public partial struct ReactivePower : IQuantity<ReactivePowerUnit>, IEquatable<ReactivePower>, IComparable, IComparable<ReactivePower>, IConvertible, IFormattable
+    public partial struct ReactivePower : IQuantity<ReactivePowerUnit>, IComparable, IComparable<ReactivePower>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -466,20 +466,6 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ReactivePower, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(ReactivePower left, ReactivePower right)
-        {
-            return left.Equals(right);
-        }
-
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ReactivePower, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(ReactivePower left, ReactivePower right)
-        {
-            return !(left == right);
-        }
-
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -493,23 +479,6 @@ namespace UnitsNet
         public int CompareTo(ReactivePower other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(ReactivePower, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public override bool Equals(object obj)
-        {
-            if(obj is null || !(obj is ReactivePower objReactivePower))
-                return false;
-
-            return Equals(objReactivePower);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(ReactivePower, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(ReactivePower other)
-        {
-            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>

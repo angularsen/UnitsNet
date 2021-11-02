@@ -35,7 +35,7 @@ namespace UnitsNet
     ///     Mass flux is the mass flow rate per unit area.
     /// </summary>
     [DataContract]
-    public partial struct MassFlux : IQuantity<MassFluxUnit>, IEquatable<MassFlux>, IComparable, IComparable<MassFlux>, IConvertible, IFormattable
+    public partial struct MassFlux : IQuantity<MassFluxUnit>, IComparable, IComparable<MassFlux>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -586,20 +586,6 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(MassFlux, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(MassFlux left, MassFlux right)
-        {
-            return left.Equals(right);
-        }
-
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(MassFlux, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(MassFlux left, MassFlux right)
-        {
-            return !(left == right);
-        }
-
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -613,23 +599,6 @@ namespace UnitsNet
         public int CompareTo(MassFlux other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(MassFlux, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public override bool Equals(object obj)
-        {
-            if(obj is null || !(obj is MassFlux objMassFlux))
-                return false;
-
-            return Equals(objMassFlux);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(MassFlux, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(MassFlux other)
-        {
-            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>

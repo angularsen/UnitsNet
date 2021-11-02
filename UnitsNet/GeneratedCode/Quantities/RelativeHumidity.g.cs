@@ -35,7 +35,7 @@ namespace UnitsNet
     ///     Relative humidity is a ratio of the actual water vapor present in the air to the maximum water vapor in the air at the given temperature.
     /// </summary>
     [DataContract]
-    public partial struct RelativeHumidity : IQuantity<RelativeHumidityUnit>, IEquatable<RelativeHumidity>, IComparable, IComparable<RelativeHumidity>, IConvertible, IFormattable
+    public partial struct RelativeHumidity : IQuantity<RelativeHumidityUnit>, IComparable, IComparable<RelativeHumidity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -421,20 +421,6 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(RelativeHumidity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(RelativeHumidity left, RelativeHumidity right)
-        {
-            return left.Equals(right);
-        }
-
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(RelativeHumidity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(RelativeHumidity left, RelativeHumidity right)
-        {
-            return !(left == right);
-        }
-
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -448,23 +434,6 @@ namespace UnitsNet
         public int CompareTo(RelativeHumidity other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(RelativeHumidity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public override bool Equals(object obj)
-        {
-            if(obj is null || !(obj is RelativeHumidity objRelativeHumidity))
-                return false;
-
-            return Equals(objRelativeHumidity);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(RelativeHumidity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(RelativeHumidity other)
-        {
-            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>

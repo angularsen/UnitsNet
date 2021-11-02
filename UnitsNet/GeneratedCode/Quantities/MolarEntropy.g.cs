@@ -35,7 +35,7 @@ namespace UnitsNet
     ///     Molar entropy is amount of energy required to increase temperature of 1 mole substance by 1 Kelvin.
     /// </summary>
     [DataContract]
-    public partial struct MolarEntropy : IQuantity<MolarEntropyUnit>, IEquatable<MolarEntropy>, IComparable, IComparable<MolarEntropy>, IConvertible, IFormattable
+    public partial struct MolarEntropy : IQuantity<MolarEntropyUnit>, IComparable, IComparable<MolarEntropy>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -451,20 +451,6 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(MolarEntropy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(MolarEntropy left, MolarEntropy right)
-        {
-            return left.Equals(right);
-        }
-
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(MolarEntropy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(MolarEntropy left, MolarEntropy right)
-        {
-            return !(left == right);
-        }
-
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -478,23 +464,6 @@ namespace UnitsNet
         public int CompareTo(MolarEntropy other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(MolarEntropy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public override bool Equals(object obj)
-        {
-            if(obj is null || !(obj is MolarEntropy objMolarEntropy))
-                return false;
-
-            return Equals(objMolarEntropy);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(MolarEntropy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(MolarEntropy other)
-        {
-            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>

@@ -35,7 +35,7 @@ namespace UnitsNet
     ///     Heat flux is the flow of energy per unit of area per unit of time
     /// </summary>
     [DataContract]
-    public partial struct HeatFlux : IQuantity<HeatFluxUnit>, IEquatable<HeatFlux>, IComparable, IComparable<HeatFlux>, IConvertible, IFormattable
+    public partial struct HeatFlux : IQuantity<HeatFluxUnit>, IComparable, IComparable<HeatFlux>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -676,20 +676,6 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(HeatFlux, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(HeatFlux left, HeatFlux right)
-        {
-            return left.Equals(right);
-        }
-
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(HeatFlux, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(HeatFlux left, HeatFlux right)
-        {
-            return !(left == right);
-        }
-
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -703,23 +689,6 @@ namespace UnitsNet
         public int CompareTo(HeatFlux other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(HeatFlux, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public override bool Equals(object obj)
-        {
-            if(obj is null || !(obj is HeatFlux objHeatFlux))
-                return false;
-
-            return Equals(objHeatFlux);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(HeatFlux, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(HeatFlux other)
-        {
-            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>

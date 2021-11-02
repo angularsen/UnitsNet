@@ -77,7 +77,7 @@ namespace UnitsNet
                 Writer.W("IDecimalQuantity, ");
             }
 
-            Writer.WL($"IEquatable<{_quantity.Name}>, IComparable, IComparable<{_quantity.Name}>, IConvertible, IFormattable");
+            Writer.WL($"IComparable, IComparable<{_quantity.Name}>, IConvertible, IFormattable");
             Writer.WL($@"
     {{
         /// <summary>
@@ -684,20 +684,6 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }}
 
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, double, ComparisonType)""/> for safely comparing floating point values.</remarks>
-        public static bool operator ==({_quantity.Name} left, {_quantity.Name} right)
-        {{
-            return left.Equals(right);
-        }}
-
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, double, ComparisonType)""/> for safely comparing floating point values.</remarks>
-        public static bool operator !=({_quantity.Name} left, {_quantity.Name} right)
-        {{
-            return !(left == right);
-        }}
-
         /// <inheritdoc />
         public int CompareTo(object obj)
         {{
@@ -711,23 +697,6 @@ namespace UnitsNet
         public int CompareTo({_quantity.Name} other)
         {{
             return _value.CompareTo(other.GetValueAs(this.Unit));
-        }}
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, double, ComparisonType)""/> for safely comparing floating point values.</remarks>
-        public override bool Equals(object obj)
-        {{
-            if(obj is null || !(obj is {_quantity.Name} obj{_quantity.Name}))
-                return false;
-
-            return Equals(obj{_quantity.Name});
-        }}
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, double, ComparisonType)""/> for safely comparing floating point values.</remarks>
-        public bool Equals({_quantity.Name} other)
-        {{
-            return _value.Equals(other.GetValueAs(this.Unit));
         }}
 
         /// <summary>

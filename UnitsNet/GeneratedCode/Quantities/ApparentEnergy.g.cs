@@ -35,7 +35,7 @@ namespace UnitsNet
     ///     A unit for expressing the integral of apparent power over time, equal to the product of 1 volt-ampere and 1 hour, or to 3600 joules.
     /// </summary>
     [DataContract]
-    public partial struct ApparentEnergy : IQuantity<ApparentEnergyUnit>, IEquatable<ApparentEnergy>, IComparable, IComparable<ApparentEnergy>, IConvertible, IFormattable
+    public partial struct ApparentEnergy : IQuantity<ApparentEnergyUnit>, IComparable, IComparable<ApparentEnergy>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -451,20 +451,6 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ApparentEnergy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(ApparentEnergy left, ApparentEnergy right)
-        {
-            return left.Equals(right);
-        }
-
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ApparentEnergy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(ApparentEnergy left, ApparentEnergy right)
-        {
-            return !(left == right);
-        }
-
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -478,23 +464,6 @@ namespace UnitsNet
         public int CompareTo(ApparentEnergy other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(ApparentEnergy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public override bool Equals(object obj)
-        {
-            if(obj is null || !(obj is ApparentEnergy objApparentEnergy))
-                return false;
-
-            return Equals(objApparentEnergy);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(ApparentEnergy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(ApparentEnergy other)
-        {
-            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>

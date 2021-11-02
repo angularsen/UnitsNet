@@ -35,7 +35,7 @@ namespace UnitsNet
     ///     The molar flow rate of a gas corrected to standardized conditions of temperature and pressure thus representing a fixed number of moles of gas regardless of composition and actual flow conditions.
     /// </summary>
     [DataContract]
-    public partial struct StandardVolumeFlow : IQuantity<StandardVolumeFlowUnit>, IEquatable<StandardVolumeFlow>, IComparable, IComparable<StandardVolumeFlow>, IConvertible, IFormattable
+    public partial struct StandardVolumeFlow : IQuantity<StandardVolumeFlowUnit>, IComparable, IComparable<StandardVolumeFlow>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -541,20 +541,6 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(StandardVolumeFlow, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(StandardVolumeFlow left, StandardVolumeFlow right)
-        {
-            return left.Equals(right);
-        }
-
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(StandardVolumeFlow, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(StandardVolumeFlow left, StandardVolumeFlow right)
-        {
-            return !(left == right);
-        }
-
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -568,23 +554,6 @@ namespace UnitsNet
         public int CompareTo(StandardVolumeFlow other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(StandardVolumeFlow, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public override bool Equals(object obj)
-        {
-            if(obj is null || !(obj is StandardVolumeFlow objStandardVolumeFlow))
-                return false;
-
-            return Equals(objStandardVolumeFlow);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(StandardVolumeFlow, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(StandardVolumeFlow other)
-        {
-            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>

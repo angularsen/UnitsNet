@@ -35,7 +35,7 @@ namespace UnitsNet
     ///     Brake specific fuel consumption (BSFC) is a measure of the fuel efficiency of any prime mover that burns fuel and produces rotational, or shaft, power. It is typically used for comparing the efficiency of internal combustion engines with a shaft output.
     /// </summary>
     [DataContract]
-    public partial struct BrakeSpecificFuelConsumption : IQuantity<BrakeSpecificFuelConsumptionUnit>, IEquatable<BrakeSpecificFuelConsumption>, IComparable, IComparable<BrakeSpecificFuelConsumption>, IConvertible, IFormattable
+    public partial struct BrakeSpecificFuelConsumption : IQuantity<BrakeSpecificFuelConsumptionUnit>, IComparable, IComparable<BrakeSpecificFuelConsumption>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -451,20 +451,6 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(BrakeSpecificFuelConsumption, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(BrakeSpecificFuelConsumption left, BrakeSpecificFuelConsumption right)
-        {
-            return left.Equals(right);
-        }
-
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(BrakeSpecificFuelConsumption, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(BrakeSpecificFuelConsumption left, BrakeSpecificFuelConsumption right)
-        {
-            return !(left == right);
-        }
-
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -478,23 +464,6 @@ namespace UnitsNet
         public int CompareTo(BrakeSpecificFuelConsumption other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(BrakeSpecificFuelConsumption, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public override bool Equals(object obj)
-        {
-            if(obj is null || !(obj is BrakeSpecificFuelConsumption objBrakeSpecificFuelConsumption))
-                return false;
-
-            return Equals(objBrakeSpecificFuelConsumption);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(BrakeSpecificFuelConsumption, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(BrakeSpecificFuelConsumption other)
-        {
-            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>

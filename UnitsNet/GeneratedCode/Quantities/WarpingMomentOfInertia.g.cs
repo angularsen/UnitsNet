@@ -35,7 +35,7 @@ namespace UnitsNet
     ///     A geometric property of an area that is used to determine the warping stress.
     /// </summary>
     [DataContract]
-    public partial struct WarpingMomentOfInertia : IQuantity<WarpingMomentOfInertiaUnit>, IEquatable<WarpingMomentOfInertia>, IComparable, IComparable<WarpingMomentOfInertia>, IConvertible, IFormattable
+    public partial struct WarpingMomentOfInertia : IQuantity<WarpingMomentOfInertiaUnit>, IComparable, IComparable<WarpingMomentOfInertia>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -496,20 +496,6 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(WarpingMomentOfInertia, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(WarpingMomentOfInertia left, WarpingMomentOfInertia right)
-        {
-            return left.Equals(right);
-        }
-
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(WarpingMomentOfInertia, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(WarpingMomentOfInertia left, WarpingMomentOfInertia right)
-        {
-            return !(left == right);
-        }
-
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -523,23 +509,6 @@ namespace UnitsNet
         public int CompareTo(WarpingMomentOfInertia other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(WarpingMomentOfInertia, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public override bool Equals(object obj)
-        {
-            if(obj is null || !(obj is WarpingMomentOfInertia objWarpingMomentOfInertia))
-                return false;
-
-            return Equals(objWarpingMomentOfInertia);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(WarpingMomentOfInertia, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(WarpingMomentOfInertia other)
-        {
-            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
