@@ -164,7 +164,7 @@ namespace UnitsNet.Wrappers
                 {
                     if (Pressure.Value < 0)
                     {
-                        throw new ArgumentOutOfRangeException("Absolute pressure cannot be less than zero.");
+                        throw new ArgumentOutOfRangeException(nameof(Pressure), "Absolute pressure cannot be less than zero.");
                     }
 
                     return Pressure.Value;
@@ -173,7 +173,7 @@ namespace UnitsNet.Wrappers
                 {
                     if (Pressure.Value * -1 > AtmosphericPressure.ToUnit(Pressure.Unit).Value)
                     {
-                        throw new ArgumentOutOfRangeException("Absolute pressure cannot be less than zero.");
+                        throw new ArgumentOutOfRangeException(nameof(Pressure), "Absolute pressure cannot be less than zero.");
                     }
 
                     return AtmosphericPressure.ToUnit(Pressure.Unit).Value + Pressure.Value;
@@ -182,7 +182,7 @@ namespace UnitsNet.Wrappers
                 {
                     if (Pressure.Value > AtmosphericPressure.ToUnit(Pressure.Unit).Value)
                     {
-                        throw new ArgumentOutOfRangeException("Absolute pressure cannot be less than zero.");
+                        throw new ArgumentOutOfRangeException(nameof(Pressure), "Absolute pressure cannot be less than zero.");
                     }
 
                     return AtmosphericPressure.ToUnit(Pressure.Unit).Value - Pressure.Value;
