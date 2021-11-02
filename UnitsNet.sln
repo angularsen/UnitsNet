@@ -44,6 +44,8 @@ ProjectSection(SolutionItems) = preProject
 	UnitsNet.snk = UnitsNet.snk
 EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleNet6", "ConsoleNet6\ConsoleNet6.csproj", "{D7B159A9-AA85-406E-BE88-B5B0B6370124}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,6 +88,10 @@ Global
 		{B4996AF5-9A8B-481A-9018-EC7F5B1605FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4996AF5-9A8B-481A-9018-EC7F5B1605FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4996AF5-9A8B-481A-9018-EC7F5B1605FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7B159A9-AA85-406E-BE88-B5B0B6370124}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7B159A9-AA85-406E-BE88-B5B0B6370124}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7B159A9-AA85-406E-BE88-B5B0B6370124}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7B159A9-AA85-406E-BE88-B5B0B6370124}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
