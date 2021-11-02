@@ -280,7 +280,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow in MillionUsGallonsPerDay.
         /// </summary>
-        public double MillionUsGallonsPerDay => As(VolumeFlowUnit.MillionUsGallonsPerDay);
+        public double MillionUsGallonsPerDay => As(VolumeFlowUnit.MillionUsGallonPerDay);
 
         /// <summary>
         ///     Get VolumeFlow in NanolitersPerDay.
@@ -605,7 +605,7 @@ namespace UnitsNet
         ///     Get VolumeFlow from MillionUsGallonsPerDay.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromMillionUsGallonsPerDay(double millionusgallonsperday) => new VolumeFlow(millionusgallonsperday, VolumeFlowUnit.MillionUsGallonsPerDay);
+        public static VolumeFlow FromMillionUsGallonsPerDay(double millionusgallonsperday) => new VolumeFlow(millionusgallonsperday, VolumeFlowUnit.MillionUsGallonPerDay);
 
         /// <summary>
         ///     Get VolumeFlow from NanolitersPerDay.
@@ -778,7 +778,7 @@ namespace UnitsNet
                 case VolumeFlowUnit.MilliliterPerDay: return (_value/86400000) * 1e-3d;
                 case VolumeFlowUnit.MilliliterPerMinute: return (_value/60000.00000) * 1e-3d;
                 case VolumeFlowUnit.MilliliterPerSecond: return (_value/1000) * 1e-3d;
-                case VolumeFlowUnit.MillionUsGallonsPerDay: return _value/22.824465227;
+                case VolumeFlowUnit.MillionUsGallonPerDay: return _value/22.824465227;
                 case VolumeFlowUnit.NanoliterPerDay: return (_value/86400000) * 1e-9d;
                 case VolumeFlowUnit.NanoliterPerMinute: return (_value/60000.00000) * 1e-9d;
                 case VolumeFlowUnit.NanoliterPerSecond: return (_value/1000) * 1e-9d;
@@ -848,7 +848,7 @@ namespace UnitsNet
                 case VolumeFlowUnit.MilliliterPerDay: return (baseUnitValue*86400000) / 1e-3d;
                 case VolumeFlowUnit.MilliliterPerMinute: return (baseUnitValue*60000.00000) / 1e-3d;
                 case VolumeFlowUnit.MilliliterPerSecond: return (baseUnitValue*1000) / 1e-3d;
-                case VolumeFlowUnit.MillionUsGallonsPerDay: return baseUnitValue*22.824465227;
+                case VolumeFlowUnit.MillionUsGallonPerDay: return baseUnitValue*22.824465227;
                 case VolumeFlowUnit.NanoliterPerDay: return (baseUnitValue*86400000) / 1e-9d;
                 case VolumeFlowUnit.NanoliterPerMinute: return (baseUnitValue*60000.00000) / 1e-9d;
                 case VolumeFlowUnit.NanoliterPerSecond: return (baseUnitValue*1000) / 1e-9d;

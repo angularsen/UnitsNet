@@ -440,9 +440,9 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity39.MillilitersPerSecond, MillilitersPerSecondTolerance);
             Assert.Equal(VolumeFlowUnit.MilliliterPerSecond, quantity39.Unit);
 
-            var quantity40 = VolumeFlow.From(1, VolumeFlowUnit.MillionUsGallonsPerDay);
+            var quantity40 = VolumeFlow.From(1, VolumeFlowUnit.MillionUsGallonPerDay);
             AssertEx.EqualTolerance(1, quantity40.MillionUsGallonsPerDay, MillionUsGallonsPerDayTolerance);
-            Assert.Equal(VolumeFlowUnit.MillionUsGallonsPerDay, quantity40.Unit);
+            Assert.Equal(VolumeFlowUnit.MillionUsGallonPerDay, quantity40.Unit);
 
             var quantity41 = VolumeFlow.From(1, VolumeFlowUnit.NanoliterPerDay);
             AssertEx.EqualTolerance(1, quantity41.NanolitersPerDay, NanolitersPerDayTolerance);
@@ -563,7 +563,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MillilitersPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.MilliliterPerDay), MillilitersPerDayTolerance);
             AssertEx.EqualTolerance(MillilitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.MilliliterPerMinute), MillilitersPerMinuteTolerance);
             AssertEx.EqualTolerance(MillilitersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.MilliliterPerSecond), MillilitersPerSecondTolerance);
-            AssertEx.EqualTolerance(MillionUsGallonsPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.MillionUsGallonsPerDay), MillionUsGallonsPerDayTolerance);
+            AssertEx.EqualTolerance(MillionUsGallonsPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.MillionUsGallonPerDay), MillionUsGallonsPerDayTolerance);
             AssertEx.EqualTolerance(NanolitersPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.NanoliterPerDay), NanolitersPerDayTolerance);
             AssertEx.EqualTolerance(NanolitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.NanoliterPerMinute), NanolitersPerMinuteTolerance);
             AssertEx.EqualTolerance(NanolitersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.NanoliterPerSecond), NanolitersPerSecondTolerance);
@@ -763,9 +763,9 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MillilitersPerSecondInOneCubicMeterPerSecond, (double)milliliterpersecondQuantity.Value, MillilitersPerSecondTolerance);
             Assert.Equal(VolumeFlowUnit.MilliliterPerSecond, milliliterpersecondQuantity.Unit);
 
-            var millionusgallonsperdayQuantity = cubicmeterpersecond.ToUnit(VolumeFlowUnit.MillionUsGallonsPerDay);
-            AssertEx.EqualTolerance(MillionUsGallonsPerDayInOneCubicMeterPerSecond, (double)millionusgallonsperdayQuantity.Value, MillionUsGallonsPerDayTolerance);
-            Assert.Equal(VolumeFlowUnit.MillionUsGallonsPerDay, millionusgallonsperdayQuantity.Unit);
+            var millionusgallonperdayQuantity = cubicmeterpersecond.ToUnit(VolumeFlowUnit.MillionUsGallonPerDay);
+            AssertEx.EqualTolerance(MillionUsGallonsPerDayInOneCubicMeterPerSecond, (double)millionusgallonperdayQuantity.Value, MillionUsGallonsPerDayTolerance);
+            Assert.Equal(VolumeFlowUnit.MillionUsGallonPerDay, millionusgallonperdayQuantity.Unit);
 
             var nanoliterperdayQuantity = cubicmeterpersecond.ToUnit(VolumeFlowUnit.NanoliterPerDay);
             AssertEx.EqualTolerance(NanolitersPerDayInOneCubicMeterPerSecond, (double)nanoliterperdayQuantity.Value, NanolitersPerDayTolerance);
@@ -1050,7 +1050,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 ml/day", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerDay).ToString());
                 Assert.Equal("1 mL/min", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerMinute).ToString());
                 Assert.Equal("1 mL/s", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerSecond).ToString());
-                Assert.Equal("1 MGD", new VolumeFlow(1, VolumeFlowUnit.MillionUsGallonsPerDay).ToString());
+                Assert.Equal("1 MGD", new VolumeFlow(1, VolumeFlowUnit.MillionUsGallonPerDay).ToString());
                 Assert.Equal("1 nl/day", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerDay).ToString());
                 Assert.Equal("1 nL/min", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerMinute).ToString());
                 Assert.Equal("1 nL/s", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerSecond).ToString());
@@ -1119,7 +1119,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 ml/day", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerDay).ToString(swedishCulture));
             Assert.Equal("1 mL/min", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerMinute).ToString(swedishCulture));
             Assert.Equal("1 mL/s", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 MGD", new VolumeFlow(1, VolumeFlowUnit.MillionUsGallonsPerDay).ToString(swedishCulture));
+            Assert.Equal("1 MGD", new VolumeFlow(1, VolumeFlowUnit.MillionUsGallonPerDay).ToString(swedishCulture));
             Assert.Equal("1 nl/day", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerDay).ToString(swedishCulture));
             Assert.Equal("1 nL/min", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerMinute).ToString(swedishCulture));
             Assert.Equal("1 nL/s", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerSecond).ToString(swedishCulture));

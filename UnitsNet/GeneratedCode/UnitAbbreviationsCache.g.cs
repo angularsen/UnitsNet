@@ -1677,7 +1677,7 @@ namespace UnitsNet
                 ("ru-RU", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.MilliliterPerMinute, new string[]{"мл/мин"}),
                 ("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.MilliliterPerSecond, new string[]{"mL/s", "mLPS"}),
                 ("ru-RU", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.MilliliterPerSecond, new string[]{"мл/c"}),
-                ("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.MillionUsGallonsPerDay, new string[]{"MGD"}),
+                ("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.MillionUsGallonPerDay, new string[]{"MGD"}),
                 ("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.NanoliterPerDay, new string[]{"nl/day", "nL/d", "nLPD"}),
                 ("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.NanoliterPerMinute, new string[]{"nL/min", "nLPM"}),
                 ("ru-RU", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.NanoliterPerMinute, new string[]{"нл/мин"}),

@@ -2501,8 +2501,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.MilliliterPerMinute, VolumeFlow.ConversionBaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlow.ConversionBaseUnit, VolumeFlowUnit.MilliliterPerSecond, q => q.ToUnit(VolumeFlowUnit.MilliliterPerSecond));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.MilliliterPerSecond, VolumeFlow.ConversionBaseUnit, q => q.ToBaseUnit());
-            unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlow.ConversionBaseUnit, VolumeFlowUnit.MillionUsGallonsPerDay, q => q.ToUnit(VolumeFlowUnit.MillionUsGallonsPerDay));
-            unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.MillionUsGallonsPerDay, VolumeFlow.ConversionBaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlow.ConversionBaseUnit, VolumeFlowUnit.MillionUsGallonPerDay, q => q.ToUnit(VolumeFlowUnit.MillionUsGallonPerDay));
+            unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.MillionUsGallonPerDay, VolumeFlow.ConversionBaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlow.ConversionBaseUnit, VolumeFlowUnit.NanoliterPerDay, q => q.ToUnit(VolumeFlowUnit.NanoliterPerDay));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.NanoliterPerDay, VolumeFlow.ConversionBaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlow.ConversionBaseUnit, VolumeFlowUnit.NanoliterPerMinute, q => q.ToUnit(VolumeFlowUnit.NanoliterPerMinute));

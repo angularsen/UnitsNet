@@ -152,7 +152,7 @@
       ]
     },
     {
-      "SingularName": "MillionUsGallonsPerDay",
+      "SingularName": "MillionUsGallonPerDay",
       "PluralName": "MillionUsGallonsPerDay",
       "FromUnitToBaseFunc": "x/22.824465227",
       "FromBaseToUnitFunc": "x*22.824465227",

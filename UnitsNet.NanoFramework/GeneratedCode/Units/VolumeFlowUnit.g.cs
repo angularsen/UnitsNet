@@ -66,7 +66,7 @@ namespace UnitsNet.Units
         MilliliterPerDay,
         MilliliterPerMinute,
         MilliliterPerSecond,
-        MillionUsGallonsPerDay,
+        MillionUsGallonPerDay,
         NanoliterPerDay,
         NanoliterPerMinute,
         NanoliterPerSecond,
