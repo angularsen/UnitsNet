@@ -58,7 +58,7 @@ namespace UnitsNet
     public class DisplayAsUnitAttribute : DefaultUnitAttribute
     {
         /// <summary>
-        /// The formating used when the quantity is converted to string. See <see cref="IQuantity.ToString(System.IFormatProvider)"/>
+        /// The formatting used when the quantity is converted to string. See <see cref="IQuantity.ToString(System.IFormatProvider)"/>
         /// </summary>
         public string Format { get; set; }
 
@@ -66,7 +66,7 @@ namespace UnitsNet
         /// Initializes a new instance of the <see cref="DisplayAsUnitAttribute"/> class.
         /// </summary>
         /// <param name="unitType">The unit the quantity should be displayed in</param>
-        /// <param name="format">Formating string <see cref="IQuantity.ToString(System.IFormatProvider)"/> </param>
+        /// <param name="format">Formatting string <see cref="IQuantity.ToString(System.IFormatProvider)"/> </param>
         public DisplayAsUnitAttribute(object unitType, string format = "") : base(unitType)
         {
             Format = format;
@@ -76,7 +76,7 @@ namespace UnitsNet
     /// <summary>
     /// <para>
     ///     Converts between IQuantity and string.
-    ///     Implements a TypeConverter for IQuantitys. This allows eg the PropertyGrid to read and write properties of type IQuantity.
+    ///     Implements a TypeConverter for IQuantities. This allows eg the PropertyGrid to read and write properties of type IQuantity.
     /// </para>
     ///   <para>For basic understanding of TypeConverters consult the .NET documentation.</para>
     /// </summary>
@@ -107,7 +107,7 @@ namespace UnitsNet
     ///     Units.Length Length { get; set; }
     /// </code>
     ///
-    /// <code title="Using the TypeConverter with DisplayAsUnit attribute with formating">
+    /// <code title="Using the TypeConverter with DisplayAsUnit attribute with formatting">
     ///     [DisplayAsUnit(UnitsNet.Units.LengthUnit.Meter, "g")]
     ///     [TypeConverter(typeof(UnitsNetTypeConverter{Length}))]
     ///     Units.Length Length { get; set; }

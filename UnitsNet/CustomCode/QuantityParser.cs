@@ -170,7 +170,7 @@ namespace UnitsNet
             // the regex coming in contains all allowed units as strings.
             // That means if the unit in str is not formatted right
             // the regex.Match will ether put str or string.empty into Groups[0] and Groups[1]
-            // Therefor a mismatch can be detected by comparing the values of this two groups.
+            // Therefore a mismatch can be detected by comparing the values of this two groups.
             if (match.Groups[0].Value == match.Groups[1].Value)
             {
                 str = UnitParser.NormalizeUnitString(str);
