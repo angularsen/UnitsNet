@@ -28,6 +28,7 @@ namespace UnitsNet.Units
         Undefined = 0,
         Day,
         Hour,
+        JulianYear,
         Microsecond,
         Millisecond,
         Minute,

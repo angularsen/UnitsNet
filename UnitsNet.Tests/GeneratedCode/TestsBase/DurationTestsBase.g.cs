@@ -39,6 +39,7 @@ namespace UnitsNet.Tests
     {
         protected abstract double DaysInOneSecond { get; }
         protected abstract double HoursInOneSecond { get; }
+        protected abstract double JulianYearsInOneSecond { get; }
         protected abstract double MicrosecondsInOneSecond { get; }
         protected abstract double MillisecondsInOneSecond { get; }
         protected abstract double MinutesInOneSecond { get; }
@@ -51,6 +52,7 @@ namespace UnitsNet.Tests
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double DaysTolerance { get { return 1e-5; } }
         protected virtual double HoursTolerance { get { return 1e-5; } }
+        protected virtual double JulianYearsTolerance { get { return 1e-5; } }
         protected virtual double MicrosecondsTolerance { get { return 1e-5; } }
         protected virtual double MillisecondsTolerance { get { return 1e-5; } }
         protected virtual double MinutesTolerance { get { return 1e-5; } }
@@ -135,6 +137,7 @@ namespace UnitsNet.Tests
             Duration second = Duration.FromSeconds(1);
             AssertEx.EqualTolerance(DaysInOneSecond, second.Days, DaysTolerance);
             AssertEx.EqualTolerance(HoursInOneSecond, second.Hours, HoursTolerance);
+            AssertEx.EqualTolerance(JulianYearsInOneSecond, second.JulianYears, JulianYearsTolerance);
             AssertEx.EqualTolerance(MicrosecondsInOneSecond, second.Microseconds, MicrosecondsTolerance);
             AssertEx.EqualTolerance(MillisecondsInOneSecond, second.Milliseconds, MillisecondsTolerance);
             AssertEx.EqualTolerance(MinutesInOneSecond, second.Minutes, MinutesTolerance);
@@ -156,37 +159,41 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity01.Hours, HoursTolerance);
             Assert.Equal(DurationUnit.Hour, quantity01.Unit);
 
-            var quantity02 = Duration.From(1, DurationUnit.Microsecond);
-            AssertEx.EqualTolerance(1, quantity02.Microseconds, MicrosecondsTolerance);
-            Assert.Equal(DurationUnit.Microsecond, quantity02.Unit);
+            var quantity02 = Duration.From(1, DurationUnit.JulianYear);
+            AssertEx.EqualTolerance(1, quantity02.JulianYears, JulianYearsTolerance);
+            Assert.Equal(DurationUnit.JulianYear, quantity02.Unit);
 
-            var quantity03 = Duration.From(1, DurationUnit.Millisecond);
-            AssertEx.EqualTolerance(1, quantity03.Milliseconds, MillisecondsTolerance);
-            Assert.Equal(DurationUnit.Millisecond, quantity03.Unit);
+            var quantity03 = Duration.From(1, DurationUnit.Microsecond);
+            AssertEx.EqualTolerance(1, quantity03.Microseconds, MicrosecondsTolerance);
+            Assert.Equal(DurationUnit.Microsecond, quantity03.Unit);
 
-            var quantity04 = Duration.From(1, DurationUnit.Minute);
-            AssertEx.EqualTolerance(1, quantity04.Minutes, MinutesTolerance);
-            Assert.Equal(DurationUnit.Minute, quantity04.Unit);
+            var quantity04 = Duration.From(1, DurationUnit.Millisecond);
+            AssertEx.EqualTolerance(1, quantity04.Milliseconds, MillisecondsTolerance);
+            Assert.Equal(DurationUnit.Millisecond, quantity04.Unit);
 
-            var quantity05 = Duration.From(1, DurationUnit.Month30);
-            AssertEx.EqualTolerance(1, quantity05.Months30, Months30Tolerance);
-            Assert.Equal(DurationUnit.Month30, quantity05.Unit);
+            var quantity05 = Duration.From(1, DurationUnit.Minute);
+            AssertEx.EqualTolerance(1, quantity05.Minutes, MinutesTolerance);
+            Assert.Equal(DurationUnit.Minute, quantity05.Unit);
 
-            var quantity06 = Duration.From(1, DurationUnit.Nanosecond);
-            AssertEx.EqualTolerance(1, quantity06.Nanoseconds, NanosecondsTolerance);
-            Assert.Equal(DurationUnit.Nanosecond, quantity06.Unit);
+            var quantity06 = Duration.From(1, DurationUnit.Month30);
+            AssertEx.EqualTolerance(1, quantity06.Months30, Months30Tolerance);
+            Assert.Equal(DurationUnit.Month30, quantity06.Unit);
 
-            var quantity07 = Duration.From(1, DurationUnit.Second);
-            AssertEx.EqualTolerance(1, quantity07.Seconds, SecondsTolerance);
-            Assert.Equal(DurationUnit.Second, quantity07.Unit);
+            var quantity07 = Duration.From(1, DurationUnit.Nanosecond);
+            AssertEx.EqualTolerance(1, quantity07.Nanoseconds, NanosecondsTolerance);
+            Assert.Equal(DurationUnit.Nanosecond, quantity07.Unit);
 
-            var quantity08 = Duration.From(1, DurationUnit.Week);
-            AssertEx.EqualTolerance(1, quantity08.Weeks, WeeksTolerance);
-            Assert.Equal(DurationUnit.Week, quantity08.Unit);
+            var quantity08 = Duration.From(1, DurationUnit.Second);
+            AssertEx.EqualTolerance(1, quantity08.Seconds, SecondsTolerance);
+            Assert.Equal(DurationUnit.Second, quantity08.Unit);
 
-            var quantity09 = Duration.From(1, DurationUnit.Year365);
-            AssertEx.EqualTolerance(1, quantity09.Years365, Years365Tolerance);
-            Assert.Equal(DurationUnit.Year365, quantity09.Unit);
+            var quantity09 = Duration.From(1, DurationUnit.Week);
+            AssertEx.EqualTolerance(1, quantity09.Weeks, WeeksTolerance);
+            Assert.Equal(DurationUnit.Week, quantity09.Unit);
+
+            var quantity10 = Duration.From(1, DurationUnit.Year365);
+            AssertEx.EqualTolerance(1, quantity10.Years365, Years365Tolerance);
+            Assert.Equal(DurationUnit.Year365, quantity10.Unit);
 
         }
 
@@ -209,6 +216,7 @@ namespace UnitsNet.Tests
             var second = Duration.FromSeconds(1);
             AssertEx.EqualTolerance(DaysInOneSecond, second.As(DurationUnit.Day), DaysTolerance);
             AssertEx.EqualTolerance(HoursInOneSecond, second.As(DurationUnit.Hour), HoursTolerance);
+            AssertEx.EqualTolerance(JulianYearsInOneSecond, second.As(DurationUnit.JulianYear), JulianYearsTolerance);
             AssertEx.EqualTolerance(MicrosecondsInOneSecond, second.As(DurationUnit.Microsecond), MicrosecondsTolerance);
             AssertEx.EqualTolerance(MillisecondsInOneSecond, second.As(DurationUnit.Millisecond), MillisecondsTolerance);
             AssertEx.EqualTolerance(MinutesInOneSecond, second.As(DurationUnit.Minute), MinutesTolerance);
@@ -248,6 +256,10 @@ namespace UnitsNet.Tests
             var hourQuantity = second.ToUnit(DurationUnit.Hour);
             AssertEx.EqualTolerance(HoursInOneSecond, (double)hourQuantity.Value, HoursTolerance);
             Assert.Equal(DurationUnit.Hour, hourQuantity.Unit);
+
+            var julianyearQuantity = second.ToUnit(DurationUnit.JulianYear);
+            AssertEx.EqualTolerance(JulianYearsInOneSecond, (double)julianyearQuantity.Value, JulianYearsTolerance);
+            Assert.Equal(DurationUnit.JulianYear, julianyearQuantity.Unit);
 
             var microsecondQuantity = second.ToUnit(DurationUnit.Microsecond);
             AssertEx.EqualTolerance(MicrosecondsInOneSecond, (double)microsecondQuantity.Value, MicrosecondsTolerance);
@@ -295,6 +307,7 @@ namespace UnitsNet.Tests
             Duration second = Duration.FromSeconds(1);
             AssertEx.EqualTolerance(1, Duration.FromDays(second.Days).Seconds, DaysTolerance);
             AssertEx.EqualTolerance(1, Duration.FromHours(second.Hours).Seconds, HoursTolerance);
+            AssertEx.EqualTolerance(1, Duration.FromJulianYears(second.JulianYears).Seconds, JulianYearsTolerance);
             AssertEx.EqualTolerance(1, Duration.FromMicroseconds(second.Microseconds).Seconds, MicrosecondsTolerance);
             AssertEx.EqualTolerance(1, Duration.FromMilliseconds(second.Milliseconds).Seconds, MillisecondsTolerance);
             AssertEx.EqualTolerance(1, Duration.FromMinutes(second.Minutes).Seconds, MinutesTolerance);
@@ -463,6 +476,7 @@ namespace UnitsNet.Tests
             try {
                 Assert.Equal("1 d", new Duration(1, DurationUnit.Day).ToString());
                 Assert.Equal("1 h", new Duration(1, DurationUnit.Hour).ToString());
+                Assert.Equal("1 jyr", new Duration(1, DurationUnit.JulianYear).ToString());
                 Assert.Equal("1 µs", new Duration(1, DurationUnit.Microsecond).ToString());
                 Assert.Equal("1 ms", new Duration(1, DurationUnit.Millisecond).ToString());
                 Assert.Equal("1 m", new Duration(1, DurationUnit.Minute).ToString());
@@ -486,6 +500,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal("1 d", new Duration(1, DurationUnit.Day).ToString(swedishCulture));
             Assert.Equal("1 h", new Duration(1, DurationUnit.Hour).ToString(swedishCulture));
+            Assert.Equal("1 jyr", new Duration(1, DurationUnit.JulianYear).ToString(swedishCulture));
             Assert.Equal("1 µs", new Duration(1, DurationUnit.Microsecond).ToString(swedishCulture));
             Assert.Equal("1 ms", new Duration(1, DurationUnit.Millisecond).ToString(swedishCulture));
             Assert.Equal("1 m", new Duration(1, DurationUnit.Minute).ToString(swedishCulture));

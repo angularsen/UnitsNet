@@ -246,6 +246,7 @@ namespace UnitsNet
                 ("ru-RU", typeof(DurationUnit), (int)DurationUnit.Day, new string[]{"сут", "д"}),
                 ("en-US", typeof(DurationUnit), (int)DurationUnit.Hour, new string[]{"h", "hr", "hrs", "hour", "hours"}),
                 ("ru-RU", typeof(DurationUnit), (int)DurationUnit.Hour, new string[]{"ч", "час"}),
+                ("en-US", typeof(DurationUnit), (int)DurationUnit.JulianYear, new string[]{"jyr", "jyear", "jyears"}),
                 ("en-US", typeof(DurationUnit), (int)DurationUnit.Microsecond, new string[]{"µs", "µsec", "µsecs", "µsecond", "µseconds"}),
                 ("ru-RU", typeof(DurationUnit), (int)DurationUnit.Microsecond, new string[]{"мксек", "мкс"}),
                 ("en-US", typeof(DurationUnit), (int)DurationUnit.Millisecond, new string[]{"ms", "msec", "msecs", "msecond", "mseconds"}),
