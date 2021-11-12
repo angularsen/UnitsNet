@@ -1,8 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <!-- NuGet properties -->
   <PropertyGroup>
     <PackageId>UnitsNet.NumberExtensions</PackageId>
-    <Version>4.102.0</Version>
+    <Version>4.103.0</Version>
     <Authors>Andreas Gullberg Larsen, Lu Li, Jon Suda</Authors>
     <Title>Units.NET NumberExtensions</Title>
     <Description>Adds extension methods to number types to more easily create quantities, such as 5.Meters() instead of Length.FromMeters(5).</Description>
