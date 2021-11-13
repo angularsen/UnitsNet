@@ -56,12 +56,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Capacitance((double)0.0, CapacitanceUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new Capacitance();
@@ -113,7 +107,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Capacitance.Zero, quantityInfo.Zero);
             Assert.Equal("Capacitance", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<CapacitanceUnit>().Except(new[] {CapacitanceUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<CapacitanceUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -343,20 +337,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(CapacitanceUnit.Undefined, Capacitance.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(CapacitanceUnit)).Cast<CapacitanceUnit>();
             foreach(var unit in units)
             {
-                if(unit == CapacitanceUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

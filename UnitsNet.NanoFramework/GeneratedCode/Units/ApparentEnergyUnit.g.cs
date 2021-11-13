@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum ApparentEnergyUnit
     {
-        Undefined = 0,
         KilovoltampereHour,
         MegavoltampereHour,
         VoltampereHour,

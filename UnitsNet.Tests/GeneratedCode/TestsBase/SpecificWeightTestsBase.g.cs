@@ -76,12 +76,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new SpecificWeight((double)0.0, SpecificWeightUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new SpecificWeight();
@@ -133,7 +127,7 @@ namespace UnitsNet.Tests
             Assert.Equal(SpecificWeight.Zero, quantityInfo.Zero);
             Assert.Equal("SpecificWeight", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<SpecificWeightUnit>().Except(new[] {SpecificWeightUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<SpecificWeightUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -473,20 +467,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(SpecificWeightUnit.Undefined, SpecificWeight.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(SpecificWeightUnit)).Cast<SpecificWeightUnit>();
             foreach(var unit in units)
             {
-                if(unit == SpecificWeightUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

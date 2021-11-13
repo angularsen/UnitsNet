@@ -2,7 +2,6 @@
 using CodeGen.JsonTypes;
 
 namespace CodeGen.Generators.NanoFrameworkGen
-
 {
     internal class UnitTypeGenerator : GeneratorBase
     {
@@ -26,9 +25,7 @@ namespace UnitsNet.Units
     #pragma warning disable 1591
 
     public enum {_unitEnumName}
-    {{
-        Undefined = 0,");
-
+    {{");
             foreach (var unit in _quantity.Units)
             {
                 if (unit.XmlDocSummary.HasText())

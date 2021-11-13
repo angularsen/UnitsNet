@@ -60,12 +60,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new StandardVolumeFlow((double)0.0, StandardVolumeFlowUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new StandardVolumeFlow();
@@ -117,7 +111,7 @@ namespace UnitsNet.Tests
             Assert.Equal(StandardVolumeFlow.Zero, quantityInfo.Zero);
             Assert.Equal("StandardVolumeFlow", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<StandardVolumeFlowUnit>().Except(new[] {StandardVolumeFlowUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<StandardVolumeFlowUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -369,20 +363,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(StandardVolumeFlowUnit.Undefined, StandardVolumeFlow.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(StandardVolumeFlowUnit)).Cast<StandardVolumeFlowUnit>();
             foreach(var unit in units)
             {
-                if(unit == StandardVolumeFlowUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

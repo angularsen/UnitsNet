@@ -44,12 +44,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Permittivity((double)0.0, PermittivityUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new Permittivity();
@@ -101,7 +95,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Permittivity.Zero, quantityInfo.Zero);
             Assert.Equal("Permittivity", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<PermittivityUnit>().Except(new[] {PermittivityUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<PermittivityUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -265,20 +259,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(PermittivityUnit.Undefined, Permittivity.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(PermittivityUnit)).Cast<PermittivityUnit>();
             foreach(var unit in units)
             {
-                if(unit == PermittivityUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

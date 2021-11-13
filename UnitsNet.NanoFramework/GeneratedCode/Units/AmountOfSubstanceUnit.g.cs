@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum AmountOfSubstanceUnit
     {
-        Undefined = 0,
         Centimole,
         CentipoundMole,
         Decimole,

@@ -106,12 +106,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {{
-            Assert.Throws<ArgumentException>(() => new {_quantity.Name}(({_quantity.ValueType})0.0, {_unitEnumName}.Undefined));
-        }}
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {{
             var quantity = new {_quantity.Name}();
@@ -168,7 +162,7 @@ namespace UnitsNet.Tests
             Assert.Equal({_quantity.Name}.Zero, quantityInfo.Zero);
             Assert.Equal(""{_quantity.Name}"", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<{_unitEnumName}>().Except(new[] {{{_unitEnumName}.Undefined}}).ToArray();
+            var units = EnumUtils.GetEnumValues<{_unitEnumName}>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }}
 
@@ -389,20 +383,11 @@ namespace UnitsNet.Tests
         }}
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {{
-            Assert.DoesNotContain({_unitEnumName}.Undefined, {_quantity.Name}.Units);
-        }}
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {{
             var units = Enum.GetValues(typeof({_unitEnumName})).Cast<{_unitEnumName}>();
             foreach(var unit in units)
             {{
-                if(unit == {_unitEnumName}.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }}
         }}

@@ -174,11 +174,7 @@ namespace UnitsNet
         /// <param name=""unit"">The unit representation to construct this quantity with.</param>
         /// <exception cref=""ArgumentException"">If value is NaN or Infinity.</exception>
         public {_quantity.Name}({_quantity.ValueType} value, {_unitEnumName} unit)
-        {{
-            if(unit == {_unitEnumName}.Undefined)
-              throw new ArgumentException(""The quantity can not be created with an undefined unit."", nameof(unit));
-");
-
+        {{");
             Writer.WL(_quantity.ValueType == "double"
                 ? @"
             _value = Guard.EnsureValidNumber(value, nameof(value));"
@@ -236,7 +232,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the {_quantity.Name} quantity.
         /// </summary>
-        public static {_unitEnumName}[] Units {{ get; }} = Enum.GetValues(typeof({_unitEnumName})).Cast<{_unitEnumName}>().Except(new {_unitEnumName}[]{{ {_unitEnumName}.Undefined }}).ToArray();
+        public static {_unitEnumName}[] Units {{ get; }} = Enum.GetValues(typeof({_unitEnumName})).Cast<{_unitEnumName}>().ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit {_quantity.ConversionBaseUnit}.

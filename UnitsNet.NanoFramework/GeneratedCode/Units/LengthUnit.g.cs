@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum LengthUnit
     {
-        Undefined = 0,
 
         /// <summary>
         ///     One Astronomical Unit is the distance from the solar system Star, the sun, to planet Earth.

@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum SpecificWeightUnit
     {
-        Undefined = 0,
         KilogramForcePerCubicCentimeter,
         KilogramForcePerCubicMeter,
         KilogramForcePerCubicMillimeter,

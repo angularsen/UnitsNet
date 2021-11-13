@@ -50,12 +50,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new SpecificFuelConsumption((double)0.0, SpecificFuelConsumptionUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new SpecificFuelConsumption();
@@ -107,7 +101,7 @@ namespace UnitsNet.Tests
             Assert.Equal(SpecificFuelConsumption.Zero, quantityInfo.Zero);
             Assert.Equal("SpecificFuelConsumption", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<SpecificFuelConsumptionUnit>().Except(new[] {SpecificFuelConsumptionUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<SpecificFuelConsumptionUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -304,20 +298,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(SpecificFuelConsumptionUnit.Undefined, SpecificFuelConsumption.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(SpecificFuelConsumptionUnit)).Cast<SpecificFuelConsumptionUnit>();
             foreach(var unit in units)
             {
-                if(unit == SpecificFuelConsumptionUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

@@ -122,12 +122,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Density((double)0.0, DensityUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new Density();
@@ -179,7 +173,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Density.Zero, quantityInfo.Zero);
             Assert.Equal("Density", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<DensityUnit>().Except(new[] {DensityUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<DensityUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -772,20 +766,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(DensityUnit.Undefined, Density.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(DensityUnit)).Cast<DensityUnit>();
             foreach(var unit in units)
             {
-                if(unit == DensityUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

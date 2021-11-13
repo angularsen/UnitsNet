@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum LinearDensityUnit
     {
-        Undefined = 0,
         GramPerCentimeter,
         GramPerMeter,
         GramPerMillimeter,

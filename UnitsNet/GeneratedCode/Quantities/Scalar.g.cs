@@ -68,9 +68,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Scalar(double value, ScalarUnit unit)
         {
-            if(unit == ScalarUnit.Undefined)
-              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
-
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
@@ -112,7 +109,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the Scalar quantity.
         /// </summary>
-        public static ScalarUnit[] Units { get; } = Enum.GetValues(typeof(ScalarUnit)).Cast<ScalarUnit>().Except(new ScalarUnit[]{ ScalarUnit.Undefined }).ToArray();
+        public static ScalarUnit[] Units { get; } = Enum.GetValues(typeof(ScalarUnit)).Cast<ScalarUnit>().ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Amount.

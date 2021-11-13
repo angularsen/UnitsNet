@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum StandardVolumeFlowUnit
     {
-        Undefined = 0,
         StandardCubicCentimeterPerMinute,
         StandardCubicFootPerHour,
         StandardCubicFootPerMinute,

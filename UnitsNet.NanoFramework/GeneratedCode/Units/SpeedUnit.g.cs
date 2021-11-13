@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum SpeedUnit
     {
-        Undefined = 0,
         CentimeterPerHour,
         CentimeterPerMinute,
         CentimeterPerSecond,

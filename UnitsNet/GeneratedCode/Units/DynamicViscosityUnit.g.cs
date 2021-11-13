@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum DynamicViscosityUnit
     {
-        Undefined = 0,
         Centipoise,
         MicropascalSecond,
         MillipascalSecond,

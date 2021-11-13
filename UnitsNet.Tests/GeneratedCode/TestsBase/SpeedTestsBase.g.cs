@@ -106,12 +106,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Speed((double)0.0, SpeedUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new Speed();
@@ -163,7 +157,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Speed.Zero, quantityInfo.Zero);
             Assert.Equal("Speed", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<SpeedUnit>().Except(new[] {SpeedUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<SpeedUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -668,20 +662,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(SpeedUnit.Undefined, Speed.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(SpeedUnit)).Cast<SpeedUnit>();
             foreach(var unit in units)
             {
-                if(unit == SpeedUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

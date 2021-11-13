@@ -68,12 +68,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new PressureChangeRate((double)0.0, PressureChangeRateUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new PressureChangeRate();
@@ -125,7 +119,7 @@ namespace UnitsNet.Tests
             Assert.Equal(PressureChangeRate.Zero, quantityInfo.Zero);
             Assert.Equal("PressureChangeRate", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<PressureChangeRateUnit>().Except(new[] {PressureChangeRateUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<PressureChangeRateUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -421,20 +415,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(PressureChangeRateUnit.Undefined, PressureChangeRate.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(PressureChangeRateUnit)).Cast<PressureChangeRateUnit>();
             foreach(var unit in units)
             {
-                if(unit == PressureChangeRateUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

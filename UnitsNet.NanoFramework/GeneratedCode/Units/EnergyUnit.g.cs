@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum EnergyUnit
     {
-        Undefined = 0,
         BritishThermalUnit,
         Calorie,
         DecathermEc,

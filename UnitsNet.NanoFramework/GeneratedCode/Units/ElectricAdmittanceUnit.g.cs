@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum ElectricAdmittanceUnit
     {
-        Undefined = 0,
         Microsiemens,
         Millisiemens,
         Nanosiemens,

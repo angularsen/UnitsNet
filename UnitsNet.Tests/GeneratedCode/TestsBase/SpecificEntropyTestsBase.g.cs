@@ -60,12 +60,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new SpecificEntropy((double)0.0, SpecificEntropyUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new SpecificEntropy();
@@ -117,7 +111,7 @@ namespace UnitsNet.Tests
             Assert.Equal(SpecificEntropy.Zero, quantityInfo.Zero);
             Assert.Equal("SpecificEntropy", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<SpecificEntropyUnit>().Except(new[] {SpecificEntropyUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<SpecificEntropyUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -369,20 +363,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(SpecificEntropyUnit.Undefined, SpecificEntropy.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(SpecificEntropyUnit)).Cast<SpecificEntropyUnit>();
             foreach(var unit in units)
             {
-                if(unit == SpecificEntropyUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

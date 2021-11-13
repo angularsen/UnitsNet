@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum ElectricResistivityUnit
     {
-        Undefined = 0,
         KiloohmCentimeter,
         KiloohmMeter,
         MegaohmCentimeter,

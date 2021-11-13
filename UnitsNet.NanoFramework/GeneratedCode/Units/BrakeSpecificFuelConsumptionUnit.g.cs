@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum BrakeSpecificFuelConsumptionUnit
     {
-        Undefined = 0,
         GramPerKiloWattHour,
         KilogramPerJoule,
 

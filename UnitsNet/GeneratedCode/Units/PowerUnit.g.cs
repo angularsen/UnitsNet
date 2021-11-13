@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum PowerUnit
     {
-        Undefined = 0,
         BoilerHorsepower,
         BritishThermalUnitPerHour,
         Decawatt,

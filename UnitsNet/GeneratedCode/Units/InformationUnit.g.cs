@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum InformationUnit
     {
-        Undefined = 0,
         Bit,
         Byte,
         Exabit,

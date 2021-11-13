@@ -66,12 +66,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new MassFlux((double)0.0, MassFluxUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new MassFlux();
@@ -123,7 +117,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MassFlux.Zero, quantityInfo.Zero);
             Assert.Equal("MassFlux", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<MassFluxUnit>().Except(new[] {MassFluxUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<MassFluxUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -408,20 +402,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(MassFluxUnit.Undefined, MassFlux.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(MassFluxUnit)).Cast<MassFluxUnit>();
             foreach(var unit in units)
             {
-                if(unit == MassFluxUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

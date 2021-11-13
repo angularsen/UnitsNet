@@ -44,12 +44,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new LapseRate((double)0.0, LapseRateUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new LapseRate();
@@ -101,7 +95,7 @@ namespace UnitsNet.Tests
             Assert.Equal(LapseRate.Zero, quantityInfo.Zero);
             Assert.Equal("LapseRate", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<LapseRateUnit>().Except(new[] {LapseRateUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<LapseRateUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -265,20 +259,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(LapseRateUnit.Undefined, LapseRate.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(LapseRateUnit)).Cast<LapseRateUnit>();
             foreach(var unit in units)
             {
-                if(unit == LapseRateUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

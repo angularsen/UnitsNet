@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum AreaUnit
     {
-        Undefined = 0,
         Acre,
         Hectare,
         SquareCentimeter,

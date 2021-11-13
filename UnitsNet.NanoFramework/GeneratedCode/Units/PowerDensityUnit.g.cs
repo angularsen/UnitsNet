@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum PowerDensityUnit
     {
-        Undefined = 0,
         DecawattPerCubicFoot,
         DecawattPerCubicInch,
         DecawattPerCubicMeter,

@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum WarpingMomentOfInertiaUnit
     {
-        Undefined = 0,
         CentimeterToTheSixth,
         DecimeterToTheSixth,
         FootToTheSixth,

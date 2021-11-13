@@ -60,12 +60,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new VolumetricHeatCapacity((double)0.0, VolumetricHeatCapacityUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new VolumetricHeatCapacity();
@@ -117,7 +111,7 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumetricHeatCapacity.Zero, quantityInfo.Zero);
             Assert.Equal("VolumetricHeatCapacity", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<VolumetricHeatCapacityUnit>().Except(new[] {VolumetricHeatCapacityUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<VolumetricHeatCapacityUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -369,20 +363,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(VolumetricHeatCapacityUnit.Undefined, VolumetricHeatCapacity.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(VolumetricHeatCapacityUnit)).Cast<VolumetricHeatCapacityUnit>();
             foreach(var unit in units)
             {
-                if(unit == VolumetricHeatCapacityUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

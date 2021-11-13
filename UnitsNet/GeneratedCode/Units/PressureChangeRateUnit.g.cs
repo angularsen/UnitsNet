@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum PressureChangeRateUnit
     {
-        Undefined = 0,
         AtmospherePerSecond,
         KilopascalPerMinute,
         KilopascalPerSecond,

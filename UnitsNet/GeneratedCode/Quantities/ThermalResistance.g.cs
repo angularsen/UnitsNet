@@ -72,9 +72,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ThermalResistance(double value, ThermalResistanceUnit unit)
         {
-            if(unit == ThermalResistanceUnit.Undefined)
-              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
-
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
@@ -116,7 +113,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the ThermalResistance quantity.
         /// </summary>
-        public static ThermalResistanceUnit[] Units { get; } = Enum.GetValues(typeof(ThermalResistanceUnit)).Cast<ThermalResistanceUnit>().Except(new ThermalResistanceUnit[]{ ThermalResistanceUnit.Undefined }).ToArray();
+        public static ThermalResistanceUnit[] Units { get; } = Enum.GetValues(typeof(ThermalResistanceUnit)).Cast<ThermalResistanceUnit>().ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit SquareMeterKelvinPerKilowatt.

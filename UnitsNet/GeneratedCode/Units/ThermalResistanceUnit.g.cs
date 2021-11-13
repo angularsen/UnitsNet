@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum ThermalResistanceUnit
     {
-        Undefined = 0,
         HourSquareFeetDegreeFahrenheitPerBtu,
         SquareCentimeterHourDegreeCelsiusPerKilocalorie,
         SquareCentimeterKelvinPerWatt,

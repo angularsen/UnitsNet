@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum ForcePerLengthUnit
     {
-        Undefined = 0,
         CentinewtonPerCentimeter,
         CentinewtonPerMeter,
         CentinewtonPerMillimeter,

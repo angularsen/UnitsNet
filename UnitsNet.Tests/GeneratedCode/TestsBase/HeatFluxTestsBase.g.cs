@@ -78,12 +78,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new HeatFlux((double)0.0, HeatFluxUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new HeatFlux();
@@ -135,7 +129,7 @@ namespace UnitsNet.Tests
             Assert.Equal(HeatFlux.Zero, quantityInfo.Zero);
             Assert.Equal("HeatFlux", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<HeatFluxUnit>().Except(new[] {HeatFluxUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<HeatFluxUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -486,20 +480,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(HeatFluxUnit.Undefined, HeatFlux.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(HeatFluxUnit)).Cast<HeatFluxUnit>();
             foreach(var unit in units)
             {
-                if(unit == HeatFluxUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

@@ -84,12 +84,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new TorquePerLength((double)0.0, TorquePerLengthUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new TorquePerLength();
@@ -141,7 +135,7 @@ namespace UnitsNet.Tests
             Assert.Equal(TorquePerLength.Zero, quantityInfo.Zero);
             Assert.Equal("TorquePerLength", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<TorquePerLengthUnit>().Except(new[] {TorquePerLengthUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<TorquePerLengthUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -525,20 +519,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(TorquePerLengthUnit.Undefined, TorquePerLength.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(TorquePerLengthUnit)).Cast<TorquePerLengthUnit>();
             foreach(var unit in units)
             {
-                if(unit == TorquePerLengthUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

@@ -44,12 +44,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Scalar((double)0.0, ScalarUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new Scalar();
@@ -101,7 +95,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Scalar.Zero, quantityInfo.Zero);
             Assert.Equal("Scalar", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ScalarUnit>().Except(new[] {ScalarUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ScalarUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -265,20 +259,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(ScalarUnit.Undefined, Scalar.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(ScalarUnit)).Cast<ScalarUnit>();
             foreach(var unit in units)
             {
-                if(unit == ScalarUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

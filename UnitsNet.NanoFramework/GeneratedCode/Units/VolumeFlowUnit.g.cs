@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum VolumeFlowUnit
     {
-        Undefined = 0,
         AcreFootPerDay,
         AcreFootPerHour,
         AcreFootPerMinute,

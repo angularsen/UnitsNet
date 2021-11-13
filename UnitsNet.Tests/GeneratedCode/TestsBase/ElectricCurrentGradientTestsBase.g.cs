@@ -50,12 +50,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new ElectricCurrentGradient((double)0.0, ElectricCurrentGradientUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new ElectricCurrentGradient();
@@ -107,7 +101,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricCurrentGradient.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricCurrentGradient", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ElectricCurrentGradientUnit>().Except(new[] {ElectricCurrentGradientUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ElectricCurrentGradientUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -304,20 +298,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(ElectricCurrentGradientUnit.Undefined, ElectricCurrentGradient.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(ElectricCurrentGradientUnit)).Cast<ElectricCurrentGradientUnit>();
             foreach(var unit in units)
             {
-                if(unit == ElectricCurrentGradientUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

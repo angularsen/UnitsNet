@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum KinematicViscosityUnit
     {
-        Undefined = 0,
         Centistokes,
         Decistokes,
         Kilostokes,

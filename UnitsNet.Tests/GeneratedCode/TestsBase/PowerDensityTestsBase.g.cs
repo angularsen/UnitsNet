@@ -130,12 +130,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new PowerDensity((double)0.0, PowerDensityUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new PowerDensity();
@@ -187,7 +181,7 @@ namespace UnitsNet.Tests
             Assert.Equal(PowerDensity.Zero, quantityInfo.Zero);
             Assert.Equal("PowerDensity", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<PowerDensityUnit>().Except(new[] {PowerDensityUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<PowerDensityUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -824,20 +818,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(PowerDensityUnit.Undefined, PowerDensity.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(PowerDensityUnit)).Cast<PowerDensityUnit>();
             foreach(var unit in units)
             {
-                if(unit == PowerDensityUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

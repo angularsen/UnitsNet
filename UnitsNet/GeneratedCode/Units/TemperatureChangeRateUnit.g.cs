@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum TemperatureChangeRateUnit
     {
-        Undefined = 0,
         CentidegreeCelsiusPerSecond,
         DecadegreeCelsiusPerSecond,
         DecidegreeCelsiusPerSecond,

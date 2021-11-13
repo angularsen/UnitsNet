@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum ElectricCurrentUnit
     {
-        Undefined = 0,
         Ampere,
         Centiampere,
         Kiloampere,

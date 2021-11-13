@@ -140,12 +140,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new MassConcentration((double)0.0, MassConcentrationUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new MassConcentration();
@@ -197,7 +191,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MassConcentration.Zero, quantityInfo.Zero);
             Assert.Equal("MassConcentration", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<MassConcentrationUnit>().Except(new[] {MassConcentrationUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<MassConcentrationUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -889,20 +883,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(MassConcentrationUnit.Undefined, MassConcentration.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(MassConcentrationUnit)).Cast<MassConcentrationUnit>();
             foreach(var unit in units)
             {
-                if(unit == MassConcentrationUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

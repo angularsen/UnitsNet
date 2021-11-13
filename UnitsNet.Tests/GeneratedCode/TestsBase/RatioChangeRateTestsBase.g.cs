@@ -46,12 +46,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new RatioChangeRate((double)0.0, RatioChangeRateUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new RatioChangeRate();
@@ -103,7 +97,7 @@ namespace UnitsNet.Tests
             Assert.Equal(RatioChangeRate.Zero, quantityInfo.Zero);
             Assert.Equal("RatioChangeRate", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<RatioChangeRateUnit>().Except(new[] {RatioChangeRateUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<RatioChangeRateUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -278,20 +272,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(RatioChangeRateUnit.Undefined, RatioChangeRate.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(RatioChangeRateUnit)).Cast<RatioChangeRateUnit>();
             foreach(var unit in units)
             {
-                if(unit == RatioChangeRateUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

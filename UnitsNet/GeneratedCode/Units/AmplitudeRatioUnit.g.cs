@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum AmplitudeRatioUnit
     {
-        Undefined = 0,
         DecibelMicrovolt,
         DecibelMillivolt,
         DecibelUnloaded,

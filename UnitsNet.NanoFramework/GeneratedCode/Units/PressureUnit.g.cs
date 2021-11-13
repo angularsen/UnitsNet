@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum PressureUnit
     {
-        Undefined = 0,
         Atmosphere,
         Bar,
         Centibar,

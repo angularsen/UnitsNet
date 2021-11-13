@@ -82,12 +82,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new ElectricPotentialChangeRate((double)0.0, ElectricPotentialChangeRateUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new ElectricPotentialChangeRate();
@@ -139,7 +133,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricPotentialChangeRate.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricPotentialChangeRate", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ElectricPotentialChangeRateUnit>().Except(new[] {ElectricPotentialChangeRateUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ElectricPotentialChangeRateUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -512,20 +506,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(ElectricPotentialChangeRateUnit.Undefined, ElectricPotentialChangeRate.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(ElectricPotentialChangeRateUnit)).Cast<ElectricPotentialChangeRateUnit>();
             foreach(var unit in units)
             {
-                if(unit == ElectricPotentialChangeRateUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

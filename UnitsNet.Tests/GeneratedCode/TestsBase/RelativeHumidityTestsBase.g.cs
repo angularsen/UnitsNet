@@ -44,12 +44,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new RelativeHumidity((double)0.0, RelativeHumidityUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new RelativeHumidity();
@@ -101,7 +95,7 @@ namespace UnitsNet.Tests
             Assert.Equal(RelativeHumidity.Zero, quantityInfo.Zero);
             Assert.Equal("RelativeHumidity", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<RelativeHumidityUnit>().Except(new[] {RelativeHumidityUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<RelativeHumidityUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -265,20 +259,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(RelativeHumidityUnit.Undefined, RelativeHumidity.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(RelativeHumidityUnit)).Cast<RelativeHumidityUnit>();
             foreach(var unit in units)
             {
-                if(unit == RelativeHumidityUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

@@ -50,12 +50,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new ReactivePower((double)0.0, ReactivePowerUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new ReactivePower();
@@ -107,7 +101,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ReactivePower.Zero, quantityInfo.Zero);
             Assert.Equal("ReactivePower", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ReactivePowerUnit>().Except(new[] {ReactivePowerUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ReactivePowerUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -304,20 +298,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(ReactivePowerUnit.Undefined, ReactivePower.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(ReactivePowerUnit)).Cast<ReactivePowerUnit>();
             foreach(var unit in units)
             {
-                if(unit == ReactivePowerUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

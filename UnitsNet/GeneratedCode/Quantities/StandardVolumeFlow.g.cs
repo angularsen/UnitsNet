@@ -76,9 +76,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public StandardVolumeFlow(double value, StandardVolumeFlowUnit unit)
         {
-            if(unit == StandardVolumeFlowUnit.Undefined)
-              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
-
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
@@ -120,7 +117,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the StandardVolumeFlow quantity.
         /// </summary>
-        public static StandardVolumeFlowUnit[] Units { get; } = Enum.GetValues(typeof(StandardVolumeFlowUnit)).Cast<StandardVolumeFlowUnit>().Except(new StandardVolumeFlowUnit[]{ StandardVolumeFlowUnit.Undefined }).ToArray();
+        public static StandardVolumeFlowUnit[] Units { get; } = Enum.GetValues(typeof(StandardVolumeFlowUnit)).Cast<StandardVolumeFlowUnit>().ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit StandardCubicMeterPerSecond.

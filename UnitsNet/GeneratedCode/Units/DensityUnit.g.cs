@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum DensityUnit
     {
-        Undefined = 0,
         CentigramPerDeciliter,
         CentigramPerLiter,
         CentigramPerMilliliter,

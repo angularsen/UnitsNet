@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum SpecificFuelConsumptionUnit
     {
-        Undefined = 0,
         GramPerKiloNewtonSecond,
         KilogramPerKilogramForceHour,
         KilogramPerKiloNewtonSecond,

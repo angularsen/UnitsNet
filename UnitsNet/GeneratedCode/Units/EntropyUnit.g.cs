@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum EntropyUnit
     {
-        Undefined = 0,
         CaloriePerKelvin,
         JoulePerDegreeCelsius,
         JoulePerKelvin,

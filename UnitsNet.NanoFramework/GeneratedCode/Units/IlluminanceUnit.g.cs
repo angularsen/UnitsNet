@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum IlluminanceUnit
     {
-        Undefined = 0,
         Kilolux,
         Lux,
         Megalux,

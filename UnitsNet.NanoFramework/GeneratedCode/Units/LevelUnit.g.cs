@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum LevelUnit
     {
-        Undefined = 0,
         Decibel,
         Neper,
     }

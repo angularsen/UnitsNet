@@ -52,12 +52,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new ThermalResistance((double)0.0, ThermalResistanceUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new ThermalResistance();
@@ -109,7 +103,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ThermalResistance.Zero, quantityInfo.Zero);
             Assert.Equal("ThermalResistance", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ThermalResistanceUnit>().Except(new[] {ThermalResistanceUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ThermalResistanceUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -317,20 +311,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(ThermalResistanceUnit.Undefined, ThermalResistance.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(ThermalResistanceUnit)).Cast<ThermalResistanceUnit>();
             foreach(var unit in units)
             {
-                if(unit == ThermalResistanceUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

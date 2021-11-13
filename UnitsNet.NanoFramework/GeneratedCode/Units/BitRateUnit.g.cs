@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum BitRateUnit
     {
-        Undefined = 0,
         BitPerSecond,
         BytePerSecond,
         ExabitPerSecond,

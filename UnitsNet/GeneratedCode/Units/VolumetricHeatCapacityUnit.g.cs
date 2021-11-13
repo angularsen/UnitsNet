@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum VolumetricHeatCapacityUnit
     {
-        Undefined = 0,
         BtuPerCubicFootDegreeFahrenheit,
         CaloriePerCubicCentimeterDegreeCelsius,
         JoulePerCubicMeterDegreeCelsius,

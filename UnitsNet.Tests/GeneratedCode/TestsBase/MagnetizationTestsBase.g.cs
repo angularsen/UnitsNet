@@ -44,12 +44,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Magnetization((double)0.0, MagnetizationUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new Magnetization();
@@ -101,7 +95,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Magnetization.Zero, quantityInfo.Zero);
             Assert.Equal("Magnetization", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<MagnetizationUnit>().Except(new[] {MagnetizationUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<MagnetizationUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -265,20 +259,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(MagnetizationUnit.Undefined, Magnetization.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(MagnetizationUnit)).Cast<MagnetizationUnit>();
             foreach(var unit in units)
             {
-                if(unit == MagnetizationUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

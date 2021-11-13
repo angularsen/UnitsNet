@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum CoefficientOfThermalExpansionUnit
     {
-        Undefined = 0,
         InverseDegreeCelsius,
         InverseDegreeFahrenheit,
         InverseKelvin,

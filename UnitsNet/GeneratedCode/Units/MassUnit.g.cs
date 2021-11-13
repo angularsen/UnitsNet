@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum MassUnit
     {
-        Undefined = 0,
         Centigram,
         Decagram,
         Decigram,

@@ -50,12 +50,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new ElectricInductance((double)0.0, ElectricInductanceUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new ElectricInductance();
@@ -107,7 +101,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricInductance.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricInductance", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ElectricInductanceUnit>().Except(new[] {ElectricInductanceUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ElectricInductanceUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -304,20 +298,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(ElectricInductanceUnit.Undefined, ElectricInductance.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(ElectricInductanceUnit)).Cast<ElectricInductanceUnit>();
             foreach(var unit in units)
             {
-                if(unit == ElectricInductanceUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum ReciprocalAreaUnit
     {
-        Undefined = 0,
         InverseSquareCentimeter,
         InverseSquareDecimeter,
         InverseSquareFoot,

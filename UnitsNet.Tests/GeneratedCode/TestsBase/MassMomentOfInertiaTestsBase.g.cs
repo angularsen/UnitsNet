@@ -98,12 +98,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new MassMomentOfInertia((double)0.0, MassMomentOfInertiaUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new MassMomentOfInertia();
@@ -155,7 +149,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MassMomentOfInertia.Zero, quantityInfo.Zero);
             Assert.Equal("MassMomentOfInertia", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<MassMomentOfInertiaUnit>().Except(new[] {MassMomentOfInertiaUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<MassMomentOfInertiaUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -616,20 +610,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(MassMomentOfInertiaUnit.Undefined, MassMomentOfInertia.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(MassMomentOfInertiaUnit)).Cast<MassMomentOfInertiaUnit>();
             foreach(var unit in units)
             {
-                if(unit == MassMomentOfInertiaUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

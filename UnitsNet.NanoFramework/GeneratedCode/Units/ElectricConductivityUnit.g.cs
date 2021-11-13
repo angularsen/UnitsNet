@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum ElectricConductivityUnit
     {
-        Undefined = 0,
         SiemensPerFoot,
         SiemensPerInch,
         SiemensPerMeter,

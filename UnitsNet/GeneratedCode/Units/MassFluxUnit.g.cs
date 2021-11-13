@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum MassFluxUnit
     {
-        Undefined = 0,
         GramPerHourPerSquareCentimeter,
         GramPerHourPerSquareMeter,
         GramPerHourPerSquareMillimeter,

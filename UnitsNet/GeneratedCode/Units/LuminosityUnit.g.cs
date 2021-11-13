@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum LuminosityUnit
     {
-        Undefined = 0,
         Decawatt,
         Deciwatt,
         Femtowatt,

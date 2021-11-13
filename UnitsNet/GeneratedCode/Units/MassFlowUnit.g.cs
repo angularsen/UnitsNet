@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum MassFlowUnit
     {
-        Undefined = 0,
         CentigramPerDay,
         CentigramPerSecond,
         DecagramPerDay,

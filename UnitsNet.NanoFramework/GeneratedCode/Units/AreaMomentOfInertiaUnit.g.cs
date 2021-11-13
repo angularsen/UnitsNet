@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum AreaMomentOfInertiaUnit
     {
-        Undefined = 0,
         CentimeterToTheFourth,
         DecimeterToTheFourth,
         FootToTheFourth,

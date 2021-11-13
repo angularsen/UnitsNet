@@ -80,9 +80,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ReciprocalLength(double value, ReciprocalLengthUnit unit)
         {
-            if(unit == ReciprocalLengthUnit.Undefined)
-              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
-
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
@@ -124,7 +121,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the ReciprocalLength quantity.
         /// </summary>
-        public static ReciprocalLengthUnit[] Units { get; } = Enum.GetValues(typeof(ReciprocalLengthUnit)).Cast<ReciprocalLengthUnit>().Except(new ReciprocalLengthUnit[]{ ReciprocalLengthUnit.Undefined }).ToArray();
+        public static ReciprocalLengthUnit[] Units { get; } = Enum.GetValues(typeof(ReciprocalLengthUnit)).Cast<ReciprocalLengthUnit>().ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit InverseMeter.

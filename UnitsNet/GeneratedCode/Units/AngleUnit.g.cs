@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum AngleUnit
     {
-        Undefined = 0,
         Arcminute,
         Arcsecond,
         Centiradian,

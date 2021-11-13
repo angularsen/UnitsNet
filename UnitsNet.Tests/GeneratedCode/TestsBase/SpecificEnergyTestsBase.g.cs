@@ -92,12 +92,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new SpecificEnergy((double)0.0, SpecificEnergyUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new SpecificEnergy();
@@ -149,7 +143,7 @@ namespace UnitsNet.Tests
             Assert.Equal(SpecificEnergy.Zero, quantityInfo.Zero);
             Assert.Equal("SpecificEnergy", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<SpecificEnergyUnit>().Except(new[] {SpecificEnergyUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<SpecificEnergyUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -577,20 +571,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(SpecificEnergyUnit.Undefined, SpecificEnergy.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(SpecificEnergyUnit)).Cast<SpecificEnergyUnit>();
             foreach(var unit in units)
             {
-                if(unit == SpecificEnergyUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

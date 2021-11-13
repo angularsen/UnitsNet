@@ -64,12 +64,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new ReciprocalArea((double)0.0, ReciprocalAreaUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new ReciprocalArea();
@@ -121,7 +115,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ReciprocalArea.Zero, quantityInfo.Zero);
             Assert.Equal("ReciprocalArea", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ReciprocalAreaUnit>().Except(new[] {ReciprocalAreaUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ReciprocalAreaUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -395,20 +389,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(ReciprocalAreaUnit.Undefined, ReciprocalArea.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(ReciprocalAreaUnit)).Cast<ReciprocalAreaUnit>();
             foreach(var unit in units)
             {
-                if(unit == ReciprocalAreaUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

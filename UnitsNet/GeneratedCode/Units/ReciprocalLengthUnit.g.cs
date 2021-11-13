@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum ReciprocalLengthUnit
     {
-        Undefined = 0,
         InverseCentimeter,
         InverseFoot,
         InverseInch,

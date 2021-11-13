@@ -118,12 +118,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new ForcePerLength((double)0.0, ForcePerLengthUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new ForcePerLength();
@@ -175,7 +169,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ForcePerLength.Zero, quantityInfo.Zero);
             Assert.Equal("ForcePerLength", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ForcePerLengthUnit>().Except(new[] {ForcePerLengthUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ForcePerLengthUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -746,20 +740,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(ForcePerLengthUnit.Undefined, ForcePerLength.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(ForcePerLengthUnit)).Cast<ForcePerLengthUnit>();
             foreach(var unit in units)
             {
-                if(unit == ForcePerLengthUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

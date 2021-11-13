@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum MolarEnergyUnit
     {
-        Undefined = 0,
         JoulePerMole,
         KilojoulePerMole,
         MegajoulePerMole,

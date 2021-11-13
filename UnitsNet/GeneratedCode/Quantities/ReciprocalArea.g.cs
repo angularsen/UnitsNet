@@ -81,9 +81,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ReciprocalArea(double value, ReciprocalAreaUnit unit)
         {
-            if(unit == ReciprocalAreaUnit.Undefined)
-              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
-
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
@@ -125,7 +122,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the ReciprocalArea quantity.
         /// </summary>
-        public static ReciprocalAreaUnit[] Units { get; } = Enum.GetValues(typeof(ReciprocalAreaUnit)).Cast<ReciprocalAreaUnit>().Except(new ReciprocalAreaUnit[]{ ReciprocalAreaUnit.Undefined }).ToArray();
+        public static ReciprocalAreaUnit[] Units { get; } = Enum.GetValues(typeof(ReciprocalAreaUnit)).Cast<ReciprocalAreaUnit>().ToArray();
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit InverseSquareMeter.

@@ -64,12 +64,6 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Frequency((double)0.0, FrequencyUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new Frequency();
@@ -121,7 +115,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Frequency.Zero, quantityInfo.Zero);
             Assert.Equal("Frequency", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<FrequencyUnit>().Except(new[] {FrequencyUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<FrequencyUnit>().ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -395,20 +389,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(FrequencyUnit.Undefined, Frequency.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(FrequencyUnit)).Cast<FrequencyUnit>();
             foreach(var unit in units)
             {
-                if(unit == FrequencyUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }

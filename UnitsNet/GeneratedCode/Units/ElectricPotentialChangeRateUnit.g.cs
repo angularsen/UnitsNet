@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum ElectricPotentialChangeRateUnit
     {
-        Undefined = 0,
         KilovoltPerHour,
         KilovoltPerMicrosecond,
         KilovoltPerMinute,
