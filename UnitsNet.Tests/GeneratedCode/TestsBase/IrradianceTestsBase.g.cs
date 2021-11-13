@@ -461,8 +461,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentUICulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            var prevCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 kW/cm²", new Irradiance(1, IrradianceUnit.KilowattPerSquareCentimeter).ToString());
                 Assert.Equal("1 kW/m²", new Irradiance(1, IrradianceUnit.KilowattPerSquareMeter).ToString());
@@ -481,7 +481,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                Thread.CurrentThread.CurrentUICulture = prevCulture;
+                Thread.CurrentThread.CurrentCulture = prevCulture;
             }
         }
 
@@ -510,10 +510,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentUICulture;
+            var oldCulture = CultureInfo.CurrentCulture;
             try
             {
-                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
                 Assert.Equal("0.1 W/m²", new Irradiance(0.123456, IrradianceUnit.WattPerSquareMeter).ToString("s1"));
                 Assert.Equal("0.12 W/m²", new Irradiance(0.123456, IrradianceUnit.WattPerSquareMeter).ToString("s2"));
                 Assert.Equal("0.123 W/m²", new Irradiance(0.123456, IrradianceUnit.WattPerSquareMeter).ToString("s3"));
@@ -521,7 +521,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                CultureInfo.CurrentUICulture = oldCulture;
+                CultureInfo.CurrentCulture = oldCulture;
             }
         }
 
@@ -551,10 +551,10 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(null)]
         [InlineData("g")]
-        public void ToString_NullProvider_EqualsCurrentUICulture(string format)
+        public void ToString_NullProvider_EqualsCurrentCulture(string format)
         {
             var quantity = Irradiance.FromWattsPerSquareMeter(1.0);
-            Assert.Equal(quantity.ToString(format, CultureInfo.CurrentUICulture), quantity.ToString(format, null));
+            Assert.Equal(quantity.ToString(format, CultureInfo.CurrentCulture), quantity.ToString(format, null));
         }
 
         [Fact]

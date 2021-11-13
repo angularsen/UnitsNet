@@ -222,11 +222,11 @@ namespace UnitsNet
         /// <example>Length.FromFeetInches(3,2).FeetInches.ToString() outputs: "3 ft 2 in"</example>
         /// <param name="cultureInfo">
         ///     Optional culture to format number and localize unit abbreviations.
-        ///     If null, defaults to <see cref="Thread.CurrentUICulture"/>.
+        ///     If null, defaults to <see cref="Thread.CurrentCulture"/>.
         /// </param>
         public string ToString(IFormatProvider? cultureInfo)
         {
-            cultureInfo = cultureInfo ?? CultureInfo.CurrentUICulture;
+            cultureInfo = cultureInfo ?? CultureInfo.CurrentCulture;
 
             var footUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(LengthUnit.Foot, cultureInfo);
             var inchUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(LengthUnit.Inch, cultureInfo);

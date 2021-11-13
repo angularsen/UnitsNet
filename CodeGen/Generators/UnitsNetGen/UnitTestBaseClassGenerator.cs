@@ -416,8 +416,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {{
-            var prevCulture = Thread.CurrentThread.CurrentUICulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(""en-US"");
+            var prevCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo(""en-US"");
             try {{");
             foreach (var unit in _quantity.Units)
             {
@@ -428,7 +428,7 @@ namespace UnitsNet.Tests
             }}
             finally
             {{
-                Thread.CurrentThread.CurrentUICulture = prevCulture;
+                Thread.CurrentThread.CurrentCulture = prevCulture;
             }}
         }}
 
@@ -449,10 +449,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {{
-            var oldCulture = CultureInfo.CurrentUICulture;
+            var oldCulture = CultureInfo.CurrentCulture;
             try
             {{
-                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
                 Assert.Equal(""0.1{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s1""));
                 Assert.Equal(""0.12{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s2""));
                 Assert.Equal(""0.123{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s3""));
@@ -460,7 +460,7 @@ namespace UnitsNet.Tests
             }}
             finally
             {{
-                CultureInfo.CurrentUICulture = oldCulture;
+                CultureInfo.CurrentCulture = oldCulture;
             }}
         }}
 
@@ -490,10 +490,10 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(null)]
         [InlineData(""g"")]
-        public void ToString_NullProvider_EqualsCurrentUICulture(string format)
+        public void ToString_NullProvider_EqualsCurrentCulture(string format)
         {{
             var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(1.0);
-            Assert.Equal(quantity.ToString(format, CultureInfo.CurrentUICulture), quantity.ToString(format, null));
+            Assert.Equal(quantity.ToString(format, CultureInfo.CurrentCulture), quantity.ToString(format, null));
         }}
 
         [Fact]

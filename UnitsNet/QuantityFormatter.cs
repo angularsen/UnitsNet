@@ -69,7 +69,7 @@ namespace UnitsNet
         public static string Format<TUnitType>(IQuantity<TUnitType> quantity, string format)
             where TUnitType : Enum
         {
-            return Format(quantity, format, CultureInfo.CurrentUICulture);
+            return Format(quantity, format, CultureInfo.CurrentCulture);
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace UnitsNet
         /// <param name="quantity">The quantity to format.</param>
         /// <param name="format">The format string.</param>
         /// <param name="formatProvider">The format provider to use for localization and number formatting. Defaults to
-        /// <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <remarks>
         /// The valid format strings are as follows:
         /// <list type="bullet">
@@ -125,13 +125,14 @@ namespace UnitsNet
         public static string Format<TUnitType>(IQuantity<TUnitType> quantity, string format, IFormatProvider? formatProvider)
             where TUnitType : Enum
         {
+            formatProvider = formatProvider ?? CultureInfo.CurrentCulture;
             return FormatUntrimmed(quantity, format, formatProvider).TrimEnd();
         }
 
         private static string FormatUntrimmed<TUnitType>(IQuantity<TUnitType> quantity, string format, IFormatProvider? formatProvider)
             where TUnitType : Enum
         {
-            formatProvider ??= CultureInfo.CurrentUICulture;
+            formatProvider ??= CultureInfo.CurrentCulture;
 
             if(string.IsNullOrWhiteSpace(format))
                 format = "g";

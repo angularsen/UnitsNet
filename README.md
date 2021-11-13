@@ -82,7 +82,7 @@ RotationalSpeed r = Angle.FromDegrees(90) / TimeSpan.FromSeconds(2);
 
 ### <a name="culture"></a>Culture and Localization
 
-The culture for abbreviations defaults to Thread.CurrentUICulture and falls back to US English if not defined. Thread.CurrentCulture affects number formatting unless a custom culture is specified. The relevant methods are:
+The culture for abbreviations defaults to Thread.CurrentCulture and falls back to US English if not defined. Thread.CurrentCulture affects number formatting unless a custom culture is specified. The relevant methods are:
 
 * ToString()
 * GetAbbreviation()
@@ -93,8 +93,9 @@ var usEnglish = new CultureInfo("en-US");
 var russian = new CultureInfo("ru-RU");
 var oneKg = Mass.FromKilograms(1);
 
-// ToString() uses CurrentUICulture for abbreviation language and CurrentCulture for number formatting
-Thread.CurrentThread.CurrentUICulture = russian;
+// ToString() uses CurrentCulture for abbreviation language number formatting. This is consistent with the behavior of the .NET Framework,
+// where DateTime.ToString() uses CurrentCulture for the whole string, likely because mixing an english date format with a russian month name might be confusing.
+Thread.CurrentThread.CurrentCulture = russian;
 string kgRu = oneKg.ToString(); // "1 кг"
 
 // ToString() with specific culture and custom string format pattern
