@@ -29,7 +29,7 @@ namespace UnitsNet
         ///     culture, but no translation is defined, so we return the US English definition as a last resort. If it's not
         ///     defined there either, an exception is thrown.
         /// </example>
-        private static readonly CultureInfo FallbackCulture = new("en-US");
+        internal static readonly CultureInfo FallbackCulture = new("en-US");
 
         /// <summary>
         ///     The static instance used internally for ToString() and Parse() of quantities and units.
@@ -162,7 +162,7 @@ namespace UnitsNet
             if (abbreviations == null)
                 throw new ArgumentNullException(nameof(abbreviations));
 
-            formatProvider = formatProvider ?? CultureInfo.CurrentCulture;
+            formatProvider ??= CultureInfo.CurrentCulture;
 
             if (!_lookupsForCulture.TryGetValue(formatProvider, out var quantitiesForProvider))
                 quantitiesForProvider = _lookupsForCulture[formatProvider] = new UnitTypeToLookup();
@@ -256,7 +256,7 @@ namespace UnitsNet
         /// <returns>Unit abbreviations associated with unit.</returns>
         public string[] GetUnitAbbreviations(Type unitType, int unitValue, IFormatProvider? formatProvider = null)
         {
-            formatProvider = formatProvider ?? CultureInfo.CurrentCulture;
+            formatProvider ??= CultureInfo.CurrentCulture;
 
             if (!TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var lookup))
             {
@@ -284,7 +284,7 @@ namespace UnitsNet
         /// <returns>Unit abbreviations associated with unit.</returns>
         public string[] GetAllUnitAbbreviationsForQuantity(Type unitEnumType, IFormatProvider? formatProvider = null)
         {
-            formatProvider = formatProvider ?? CultureInfo.CurrentCulture;
+            formatProvider ??= CultureInfo.CurrentCulture;
 
             if (!TryGetUnitValueAbbreviationLookup(unitEnumType, formatProvider, out var lookup))
             {
@@ -300,7 +300,7 @@ namespace UnitsNet
         {
             unitToAbbreviations = null;
 
-            formatProvider = formatProvider ?? CultureInfo.CurrentCulture;
+            formatProvider ??= CultureInfo.CurrentCulture;
 
             if (!_lookupsForCulture.TryGetValue(formatProvider, out var quantitiesForProvider))
             {

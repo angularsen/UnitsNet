@@ -31,13 +31,13 @@ namespace UnitsNet
         /// <param name="amount">The amount of substance unit (N).</param>
         /// <param name="luminousIntensity">The luminous intensity unit (J).</param>
         public BaseUnits(
-            LengthUnit length = LengthUnit.Undefined,
-            MassUnit mass = MassUnit.Undefined,
-            DurationUnit time = DurationUnit.Undefined,
-            ElectricCurrentUnit current = ElectricCurrentUnit.Undefined,
-            TemperatureUnit temperature = TemperatureUnit.Undefined,
-            AmountOfSubstanceUnit amount = AmountOfSubstanceUnit.Undefined,
-            LuminousIntensityUnit luminousIntensity = LuminousIntensityUnit.Undefined)
+            LengthUnit? length = null,
+            MassUnit? mass = null,
+            DurationUnit? time = null,
+            ElectricCurrentUnit? current = null,
+            TemperatureUnit? temperature = null,
+            AmountOfSubstanceUnit? amount = null,
+            LuminousIntensityUnit? luminousIntensity = null)
         {
             Length = length;
             Mass = mass;
@@ -47,13 +47,13 @@ namespace UnitsNet
             Amount = amount;
             LuminousIntensity = luminousIntensity;
 
-            IsFullyDefined = Length != LengthUnit.Undefined &&
-                Mass != MassUnit.Undefined &&
-                Time != DurationUnit.Undefined &&
-                Current != ElectricCurrentUnit.Undefined &&
-                Temperature != TemperatureUnit.Undefined &&
-                Amount != AmountOfSubstanceUnit.Undefined &&
-                LuminousIntensity != LuminousIntensityUnit.Undefined;
+            IsFullyDefined = Length is not null &&
+                             Mass is not null &
+                             Time is not null &&
+                             Current is not null &&
+                             Temperature is not null &&
+                             Amount is not null &&
+                             LuminousIntensity is not null;
         }
 
         /// <inheritdoc />
@@ -96,13 +96,13 @@ namespace UnitsNet
             if (Equals(Undefined))
                 return other.Equals(Undefined);
 
-            return (Length == LengthUnit.Undefined || Length == other.Length) &&
-                (Mass == MassUnit.Undefined || Mass == other.Mass) &&
-                (Time == DurationUnit.Undefined || Time == other.Time) &&
-                (Current == ElectricCurrentUnit.Undefined || Current == other.Current) &&
-                (Temperature == TemperatureUnit.Undefined || Temperature == other.Temperature) &&
-                (Amount == AmountOfSubstanceUnit.Undefined || Amount == other.Amount) &&
-                (LuminousIntensity == LuminousIntensityUnit.Undefined || LuminousIntensity == other.LuminousIntensity);
+            return (Length == null || Length == other.Length) &&
+                (Mass == null || Mass == other.Mass) &&
+                (Time == null || Time == other.Time) &&
+                (Current == null || Current == other.Current) &&
+                (Temperature == null || Temperature == other.Temperature) &&
+                (Amount == null || Amount == other.Amount) &&
+                (LuminousIntensity == null || LuminousIntensity == other.LuminousIntensity);
         }
 
         /// <inheritdoc />
@@ -140,13 +140,17 @@ namespace UnitsNet
         {
             var sb = new StringBuilder();
 
-            sb.AppendFormat("[Length]: {0}, ", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(Length));
-            sb.AppendFormat("[Mass]: {0}, ", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(Mass));
-            sb.AppendFormat("[Time]: {0}, ", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(Time));
-            sb.AppendFormat("[Current]: {0}, ", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(Current));
-            sb.AppendFormat("[Temperature]: {0}, ", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(Temperature));
-            sb.AppendFormat("[Amount]: {0}, ", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(Amount));
-            sb.AppendFormat("[LuminousIntensity]: {0}", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(LuminousIntensity));
+            string GetDefaultAbbreviation<TUnitType>(TUnitType? unitOrNull) where TUnitType : struct, Enum => unitOrNull is { } unit
+                ? UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit)
+                : "N/A";
+
+            sb.AppendFormat("[Length]: {0}, ", GetDefaultAbbreviation(Length));
+            sb.AppendFormat("[Mass]: {0}, ", GetDefaultAbbreviation(Mass));
+            sb.AppendFormat("[Time]: {0}, ", GetDefaultAbbreviation(Time));
+            sb.AppendFormat("[Current]: {0}, ", GetDefaultAbbreviation(Current));
+            sb.AppendFormat("[Temperature]: {0}, ", GetDefaultAbbreviation(Temperature));
+            sb.AppendFormat("[Amount]: {0}, ", GetDefaultAbbreviation(Amount));
+            sb.AppendFormat("[LuminousIntensity]: {0}", GetDefaultAbbreviation(LuminousIntensity));
 
             return sb.ToString();
         }
@@ -154,37 +158,37 @@ namespace UnitsNet
         /// <summary>
         /// Gets the length unit (L).
         /// </summary>
-        public LengthUnit Length { get; }
+        public LengthUnit? Length { get; }
 
         /// <summary>
         /// Gets the mass unit (M).
         /// </summary>
-        public MassUnit Mass{ get; }
+        public MassUnit? Mass{ get; }
 
         /// <summary>
         /// Gets the time unit (T).
         /// </summary>
-        public DurationUnit Time{ get; }
+        public DurationUnit? Time{ get; }
 
         /// <summary>
         /// Gets the electric current unit (I).
         /// </summary>
-        public ElectricCurrentUnit Current{ get; }
+        public ElectricCurrentUnit? Current{ get; }
 
         /// <summary>
         /// Gets the temperature unit (Θ).
         /// </summary>
-        public TemperatureUnit Temperature{ get; }
+        public TemperatureUnit? Temperature{ get; }
 
         /// <summary>
         /// Gets the amount of substance unit (N).
         /// </summary>
-        public AmountOfSubstanceUnit Amount{ get; }
+        public AmountOfSubstanceUnit? Amount{ get; }
 
         /// <summary>
         /// Gets the luminous intensity unit (J).
         /// </summary>
-        public LuminousIntensityUnit LuminousIntensity{ get; }
+        public LuminousIntensityUnit? LuminousIntensity{ get; }
 
         /// <summary>
         /// Gets whether or not all of the base units are defined.

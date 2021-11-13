@@ -69,7 +69,7 @@ namespace UnitsNet
             if (unitAbbreviation == null) throw new ArgumentNullException(nameof(unitAbbreviation));
             unitAbbreviation = unitAbbreviation.Trim();
 
-            if(!_unitAbbreviationsCache.TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var abbreviations))
+            if (!_unitAbbreviationsCache.TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var abbreviations))
                 throw new UnitNotFoundException($"No abbreviations defined for unit type [{unitType}] for culture [{formatProvider}].");
 
             var unitIntValues = abbreviations!.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
@@ -89,6 +89,12 @@ namespace UnitsNet
                 case 1:
                     return (Enum) Enum.ToObject(unitType, unitIntValues[0]);
                 case 0:
+                    // Retry with fallback culture, if different.
+                    if (!Equals(formatProvider, UnitAbbreviationsCache.FallbackCulture))
+                    {
+                        return Parse(unitAbbreviation, unitType, UnitAbbreviationsCache.FallbackCulture);
+                    }
+
                     throw new UnitNotFoundException($"Unit not found with abbreviation [{unitAbbreviation}] for unit type [{unitType}].");
                 default:
                     string unitsCsv = string.Join(", ", unitIntValues.Select(x => Enum.GetName(unitType, x)).ToArray());

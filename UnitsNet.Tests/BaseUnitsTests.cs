@@ -94,13 +94,13 @@ namespace UnitsNet.Tests
         [Fact]
         public void UndefinedHasAllBaseUnitsAsUndefined()
         {
-            Assert.Equal(LengthUnit.Undefined, BaseUnits.Undefined.Length);
-            Assert.Equal(MassUnit.Undefined, BaseUnits.Undefined.Mass);
-            Assert.Equal(DurationUnit.Undefined, BaseUnits.Undefined.Time);
-            Assert.Equal(ElectricCurrentUnit.Undefined, BaseUnits.Undefined.Current);
-            Assert.Equal(TemperatureUnit.Undefined, BaseUnits.Undefined.Temperature);
-            Assert.Equal(AmountOfSubstanceUnit.Undefined, BaseUnits.Undefined.Amount);
-            Assert.Equal(LuminousIntensityUnit.Undefined, BaseUnits.Undefined.LuminousIntensity);
+            Assert.Null(BaseUnits.Undefined.Length);
+            Assert.Null(BaseUnits.Undefined.Mass);
+            Assert.Null(BaseUnits.Undefined.Time);
+            Assert.Null(BaseUnits.Undefined.Current);
+            Assert.Null(BaseUnits.Undefined.Temperature);
+            Assert.Null(BaseUnits.Undefined.Amount);
+            Assert.Null(BaseUnits.Undefined.LuminousIntensity);
         }
 
         [Fact]

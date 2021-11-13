@@ -117,10 +117,9 @@ namespace UnitsNet.Tests
         public static void StandardNumericFormatStringsAsPartOfLongerFormatStringsWork()
         {
             var length = Length.FromMeters(123.321);
-
             var expected = "The distance is 123.3 m";
-            var actual = string.Format(CultureInfo.InvariantCulture, $"The distance is {length:F1}");
-                        Assert.Equal(expected, actual);
+            var actual = $"The distance is {length.ToString("F1", CultureInfo.InvariantCulture)}";
+            Assert.Equal(expected, actual);
         }
 
         [Theory]
