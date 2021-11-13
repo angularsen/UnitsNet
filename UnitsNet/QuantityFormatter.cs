@@ -29,8 +29,9 @@ namespace UnitsNet
         /// <list type="bullet">
         ///     <item>
         ///         <term>A standard numeric format string.</term>
-        ///         <description>Any of the standard numeric format for <see cref="IQuantity.Value" /> except for "G" or "g".
+        ///         <description>Any of the standard numeric format for <see cref="IQuantity.Value" />, except for "G" or "g", which have a special implementation.
         ///         "C" or "c", "E" or "e", "F" or "f", "N" or "n", "P" or "p", "R" or "r" are all accepted.
+        ///         See https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings#standard-format-specifiers.
         ///         </description>
         ///     </item>
         ///     <item>
@@ -47,21 +48,12 @@ namespace UnitsNet
         ///         A <see cref="FormatException"/> will be thrown if the requested abbreviation index does not exist.</description>
         ///     </item>
         ///     <item>
-        ///         <term>"V" or "v".</term>
-        ///         <description>The string representation of <see cref="IQuantity.Value" /> using the default ToString method.</description>
-        ///     </item>
-        ///     <item>
         ///         <term>"U" or "u".</term>
         ///         <description>The enum name of <see cref="IQuantity{TUnitType}.Unit" />, such as "Meter".</description>
         ///     </item>
         ///     <item>
         ///         <term>"Q" or "q".</term>
         ///         <description>The quantity name, such as "Length".</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>"S1", "S2", ..., "Sn" or "s1", "s2", ..., "sn".</term>
-        ///         <description>The value with n significant digits after the radix followed by the unit abbreviation. For example,
-        ///         "s4" would return "1.2345 m" if <see cref="IQuantity.Value" /> is 1.2345678. Trailing zeros are omitted.</description>
         ///     </item>
         /// </list>
         /// </remarks>
@@ -85,8 +77,9 @@ namespace UnitsNet
         /// <list type="bullet">
         ///     <item>
         ///         <term>A standard numeric format string.</term>
-        ///         <description>Any of the standard numeric format for <see cref="IQuantity.Value" /> except for "G" or "g".
+        ///         <description>Any of the standard numeric format for <see cref="IQuantity.Value" />, except for "G" or "g", which have a special implementation.
         ///         "C" or "c", "E" or "e", "F" or "f", "N" or "n", "P" or "p", "R" or "r" are all accepted.
+        ///         See https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings#standard-format-specifiers.
         ///         </description>
         ///     </item>
         ///     <item>
@@ -103,21 +96,12 @@ namespace UnitsNet
         ///         A <see cref="FormatException"/> will be thrown if the requested abbreviation index does not exist.</description>
         ///     </item>
         ///     <item>
-        ///         <term>"V" or "v".</term>
-        ///         <description>The string representation of <see cref="IQuantity.Value" /> using the default ToString method.</description>
-        ///     </item>
-        ///     <item>
         ///         <term>"U" or "u".</term>
         ///         <description>The enum name of <see cref="IQuantity{TUnitType}.Unit" />, such as "Meter".</description>
         ///     </item>
         ///     <item>
         ///         <term>"Q" or "q".</term>
         ///         <description>The quantity name, such as "Length".</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>"S1", "S2", ..., "Sn" or "s1", "s2", ..., "sn".</term>
-        ///         <description>The value with n significant digits after the radix followed by the unit abbreviation. For example,
-        ///         "s4" would return "1.2345 m" if <see cref="IQuantity.Value" /> is 1.2345678. Trailing zeros are omitted.</description>
         ///     </item>
         /// </list>
         /// </remarks>
