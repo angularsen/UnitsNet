@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfMVVMSample", "WpfMVVMSample\WpfMVVMSample.csproj", "{B72F9215-70FF-4155-89BC-9A02CC550447}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmSample.Wpf", "MvvmSample.Wpf\MvvmSample.Wpf.csproj", "{B72F9215-70FF-4155-89BC-9A02CC550447}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
