@@ -636,15 +636,15 @@ namespace UnitsNet.Tests
                 : CultureInfo.GetCultureInfo(cultureName);
 
             Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
-    }
+        }
 
         [Theory]
         [InlineData(null)]
         [InlineData("g")]
-        public void ToString_NullProvider_EqualsCurrentUICulture(string format)
+        public void ToString_NullProvider_EqualsCurrentCulture(string format)
         {
             var quantity = VolumeConcentration.FromDecimalFractions(1.0);
-            Assert.Equal(quantity.ToString(format, CultureInfo.CurrentUICulture), quantity.ToString(format, null));
+            Assert.Equal(quantity.ToString(format, CultureInfo.CurrentCulture), quantity.ToString(format, null));
         }
 
         [Fact]

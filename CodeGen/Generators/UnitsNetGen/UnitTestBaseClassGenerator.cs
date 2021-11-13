@@ -485,7 +485,7 @@ namespace UnitsNet.Tests
                 : CultureInfo.GetCultureInfo(cultureName);
 
             Assert.Equal(quantity.ToString(""g"", formatProvider), quantity.ToString(null, formatProvider));
-    }}
+        }}
 
         [Theory]
         [InlineData(null)]

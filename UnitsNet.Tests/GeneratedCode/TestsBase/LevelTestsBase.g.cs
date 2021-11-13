@@ -375,10 +375,10 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(null)]
         [InlineData("g")]
-        public void ToString_NullProvider_EqualsCurrentUICulture(string format)
+        public void ToString_NullProvider_EqualsCurrentCulture(string format)
         {
             var quantity = Level.FromDecibels(1.0);
-            Assert.Equal(quantity.ToString(format, CultureInfo.CurrentUICulture), quantity.ToString(format, null));
+            Assert.Equal(quantity.ToString(format, CultureInfo.CurrentCulture), quantity.ToString(format, null));
         }
 
         [Fact]
