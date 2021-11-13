@@ -931,40 +931,6 @@ namespace UnitsNet
             return ToString(""g"", provider);
         }}
 
-        /// <summary>
-        ///     Get string representation of value and unit.
-        /// </summary>
-        /// <param name=""significantDigitsAfterRadix"">The number of significant digits after the radix point.</param>
-        /// <returns>String representation.</returns>
-        /// <param name=""provider"">Format to use for localization and number formatting. Defaults to <see cref=""CultureInfo.CurrentCulture"" /> if null.</param>
-        [Obsolete(@""This method is deprecated and will be removed at a future release. Please use ToString(""""s2"""") or ToString(""""s2"""", provider) where 2 is an example of the number passed to significantDigitsAfterRadix."")]
-        public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
-        {{
-            var value = Convert.ToDouble(Value);
-            var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(provider, format);
-        }}
-
-        /// <summary>
-        ///     Get string representation of value and unit.
-        /// </summary>
-        /// <param name=""format"">String format to use. Default:  ""{{0:0.##}} {{1}} for value and unit abbreviation respectively.""</param>
-        /// <param name=""args"">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
-        /// <returns>String representation.</returns>
-        /// <param name=""provider"">Format to use for localization and number formatting. Defaults to <see cref=""CultureInfo.CurrentCulture"" /> if null.</param>
-        [Obsolete(""This method is deprecated and will be removed at a future release. Please use string.Format()."")]
-        public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
-        {{
-            if (format == null) throw new ArgumentNullException(nameof(format));
-            if (args == null) throw new ArgumentNullException(nameof(args));
-
-            provider = provider ?? CultureInfo.CurrentCulture;
-
-            var value = Convert.ToDouble(Value);
-            var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
-            return string.Format(provider, format, formatArgs);
-        }}
-
         /// <inheritdoc cref=""QuantityFormatter.Format{{TUnitType}}(IQuantity{{TUnitType}}, string, IFormatProvider)""/>
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using <see cref=""CultureInfo.CurrentCulture"" />.
