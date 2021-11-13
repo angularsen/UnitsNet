@@ -71,7 +71,10 @@ namespace UnitsNet.Serialization.JsonNet
                     return null;
                 }
 
-                return new ValueUnit {Unit = unit.Value<string>(), Value = value.Value<double>()};
+                return new ValueUnit {
+                    Unit = unit.Value<string>() ?? throw new InvalidOperationException("Unit was not a string."),
+                    Value = value.Value<double>()
+                };
             }
 
             if (valueType.Type != JTokenType.String)
@@ -81,7 +84,7 @@ namespace UnitsNet.Serialization.JsonNet
 
             return new ExtendedValueUnit
             {
-                Unit = unit.Value<string>(),
+                Unit = unit.Value<string>() ?? throw new InvalidOperationException("Unit was not a string."),
                 Value = value.Value<double>(),
                 ValueType = valueType.Value<string>(),
                 ValueString = valueString?.Value<string>()
