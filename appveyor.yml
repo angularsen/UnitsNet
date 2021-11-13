@@ -2,7 +2,7 @@ version: '{build}'
 image: Visual Studio 2022
 
 # Don't build PR commits twice
-skip_branch_with_pr: true
+skip_branch_with_pr: false
 
 # Don't build tags, avoid duplicate builds on master when bumping version
 skip_tags: true
