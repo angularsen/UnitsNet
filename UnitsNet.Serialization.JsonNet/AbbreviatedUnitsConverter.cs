@@ -30,9 +30,11 @@ namespace UnitsNet.Serialization.JsonNet
             : this(StringComparer.OrdinalIgnoreCase)
         {
         }
+
         /// <summary>
         ///     Construct a converter using the default list of quantities and unit abbreviation provider
         /// </summary>
+        /// <param name="comparer">The comparer used to compare the property/quantity names (e.g. StringComparer.OrdinalIgnoreCase) </param>
         public AbbreviatedUnitsConverter(IEqualityComparer<string> comparer)
             : this(new Dictionary<string, QuantityInfo>(Quantity.ByName, comparer), UnitAbbreviationsCache.Default, comparer)
         {
@@ -178,8 +180,7 @@ namespace UnitsNet.Serialization.JsonNet
         ///     Attempt to find an a unique (non-ambiguous) unit matching the provided abbreviation.
         ///     <remarks>
         ///         An exhaustive search using all quantities is very likely to fail with an
-        ///         <exception cref="AmbiguousUnitParseException" />, so make sure you're using the minimum set of quantities
-        ///         supported quantities.
+        ///         <exception cref="AmbiguousUnitParseException" />, so make sure you're using the minimum set of supported quantities.
         ///     </remarks>
         /// </summary>
         /// <param name="unitAbbreviation">The unit abbreviation </param>

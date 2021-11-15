@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using Newtonsoft.Json;
 using UnitsNet.Tests.Serialization;
 using UnitsNet.Units;
 using Xunit;
@@ -25,7 +26,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void DecimalQuantity_SerializedWithDecimalValueValueAndAbbreviatedUnit()
+        public void DecimalQuantity_SerializedWithDecimalValueAndAbbreviatedUnit()
         {
             var quantity = new Information(1.20m, InformationUnit.Exabyte);
             var expectedJson = "{\"Value\":1.20,\"Unit\":\"EB\",\"Type\":\"Information\"}";
@@ -357,5 +358,48 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         #endregion
+
+        #region Compatability
+
+        [JsonObject]
+        class PlainOldDoubleQuantity
+        {
+            public double Value { get; set; }
+            public string Unit { get; set; }
+        }
+
+        [JsonObject]
+        class PlainOldDecimalQuantity
+        {
+            public decimal Value { get; set; }
+            public string Unit { get; set; }
+        }
+
+        [Fact]
+        public void LargeDecimalQuantity_DeserializedTo_PlainOldDecimalQuantity()
+        {
+            var quantity = new Information(2m * long.MaxValue, InformationUnit.Exabyte);
+
+            var json = SerializeObject(quantity);
+            var plainOldQuantity = JsonConvert.DeserializeObject<PlainOldDecimalQuantity>(json);
+
+            Assert.Equal(2m * long.MaxValue, plainOldQuantity.Value);
+            Assert.Equal("EB", plainOldQuantity.Unit);
+        }
+
+        [Fact]
+        public void LargeDecimalQuantity_DeserializedTo_PlainOldDoubleQuantity()
+        {
+            var quantity = Information.FromExabytes(2m * long.MaxValue);
+
+            var json = SerializeObject(quantity);
+            var plainOldQuantity = JsonConvert.DeserializeObject<PlainOldDoubleQuantity>(json);
+
+            Assert.Equal(2.0 * long.MaxValue, plainOldQuantity.Value);
+            Assert.Equal("EB", plainOldQuantity.Unit);
+        }
+
+        #endregion
+
     }
 }
