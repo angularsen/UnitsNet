@@ -192,5 +192,12 @@ namespace UnitsNet.Tests.CustomCode
             ElectricCharge ah = Duration.FromHours(5) * ElectricCurrent.FromAmperes(4);
             Assert.Equal(20, ah.AmpereHours);
         }
+
+        [Fact]
+        public void DurationTimesAcceleration()
+        {
+            Speed speed = Duration.FromSeconds(10) * Acceleration.FromMetersPerSecondSquared(10);
+            Assert.Equal(Speed.FromMetersPerSecond(100), speed);
+        }
     }
 }

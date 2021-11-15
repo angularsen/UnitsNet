@@ -103,5 +103,13 @@ namespace UnitsNet
         {
             return ElectricCharge.FromAmpereHours(current.Amperes * time.Hours);
         }
+
+        /// <summary>
+        /// Multiply <see cref="Duration"/> and <see cref="Acceleration"/> to get <see cref="Speed"/>.
+        /// </summary>
+        public static Speed operator *(Duration duration, Acceleration acceleration)
+        {
+            return new Speed(acceleration.MetersPerSecondSquared * duration.Seconds, UnitsNet.Units.SpeedUnit.MeterPerSecond);
+        }
     }
 }
