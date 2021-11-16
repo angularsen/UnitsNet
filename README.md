@@ -7,38 +7,39 @@ Add strongly typed quantities to your code and get merrily on with your life.
 
 No more magic constants found on Stack Overflow, no more second-guessing the unit of parameters and variables.
 
+[Upgrading from 4.x to 5.x](https://github.com/angularsen/UnitsNet/wiki/Upgrading-from-4.x-to-5.x)
+
 ### Overview
 
 * [How to install](#how-to-install)
-* [100+ quantities with 1200+ units](UnitsNet/GeneratedCode/Units) generated from [JSON](Common/UnitDefinitions/) by [C# CLI app](CodeGen)
+* [100+ quantities with 1300+ units](UnitsNet/GeneratedCode/Units) generated from [JSON](Common/UnitDefinitions/) by [C# CLI app](CodeGen)
 * [8000+ unit tests](https://ci.appveyor.com/project/angularsen/unitsnet) on conversions and localizations
-* Conforms to [Microsoft's open-source library guidance](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/), in particular:
-  * [SourceLink](https://github.com/dotnet/sourcelink) to step into source code of NuGet package while debugging
-  * [Strong naming](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/get-started#strong-naming) to make the library available to all developers
-* Immutable structs that implement `IEquatable`, `IComparable`
 * [Statically typed quantities and units](#static-typing) to avoid mistakes and communicate intent
-* [Operator overloads](#operator-overloads) for arithmetic on quantities
-* [Parse and ToString()](#culture) supports cultures and localization
+* Immutable structs
+* [Operator overloads](#operator-overloads) for arithmetic
+* [Parse and ToString()](#culture) supports localization
 * [Dynamically parse and convert](#dynamic-parsing) quantities and units
 * [Extensible with custom units](#custom-units)
 * [Example: Creating a unit converter app](#example-app)
 * [Example: WPF app using IValueConverter to parse quantities from input](#example-wpf-app-using-ivalueconverter-to-parse-quantities-from-input)
 * [Precision and accuracy](#precision)
-* [Serialize with JSON.NET](#serialization)
+* [Serialize to JSON, XML and more](#serialization)
 * [Contribute](#contribute) if you are missing some units
 * [Continuous integration](#ci) posts status reports to pull requests and commits
 * [Who are using this?](#who-are-using)
 
-### <a name="how-to-install"></a>How to install
+### <a name="how-to-install"></a>Installing via NuGet
 
-Run the following command in the [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) or go to the [NuGet site](https://www.nuget.org/packages/UnitsNet/) for the complete release history.
+Add it via CLI
 
-![Install-Package UnitsNet](https://raw.githubusercontent.com/angularsen/UnitsNet/master/Docs/Images/install_package_unitsnet.png "Install-Package UnitsNet")
+    dotnet add package UnitsNet
+
+or go to [NuGet Gallery | UnitsNet](https://www.nuget.org/packages/UnitsNet) for detailed instructions.
+
 
 #### Build Targets
 
 * .NET Standard 2.0
-* .NET 4.0
 * [.NET nanoFramework](https://www.nanoframework.net/)
 
 ### <a name="static-typing"></a>Static Typing
@@ -250,7 +251,7 @@ Console.WriteLine(Convert(HowMuchUnit.Lots)); // 100 lts
 Console.WriteLine(Convert(HowMuchUnit.Tons)); // 10 tns
 ```
 
-### <a name="example-app"></a>Example: Creating a dynamic unit converter app
+### <a name="example-app"></a>Example: Unit converter app
 [Source code](https://github.com/angularsen/UnitsNet/tree/master/Samples/UnitConverter.Wpf) for `Samples/UnitConverter.Wpf`<br/>
 [Download](https://github.com/angularsen/UnitsNet/releases/tag/UnitConverterWpf%2F2018-11-09) (release 2018-11-09 for Windows)
 
@@ -307,40 +308,14 @@ The tests accept an error up to 1E-5 for most units added so far. Exceptions inc
 
 For more details, see [Precision](https://github.com/angularsen/UnitsNet/wiki/Precision).
 
-### <a name="serialization"></a>Serialization
+### <a name="serialization"></a>Serialize to JSON, XML and more
 
-* `UnitsNet.Serialization.JsonNet` ([nuget](https://www.nuget.org/packages/UnitsNet.Serialization.JsonNet), [src](https://github.com/angularsen/UnitsNet/tree/master/UnitsNet.Serialization.JsonNet), [tests](https://github.com/angularsen/UnitsNet/tree/master/UnitsNet.Serialization.JsonNet.Tests)) for JSON.NET
+* [UnitsNet.Serialization.JsonNet](https://www.nuget.org/packages/UnitsNet.Serialization.JsonNet) with Json.NET (Newtonsoft)
+* [DataContractSerializer](https://docs.microsoft.com/en-us/dotnet/api/system.runtime.serialization.datacontractserializer) XML
+* [DataContractJsonSerializer](https://docs.microsoft.com/en-us/dotnet/api/system.runtime.serialization.json.datacontractjsonserializer) JSON (not recommended*)
 
-#### Example of JSON Serialization
-```c#
-var jsonSerializerSettings = new JsonSerializerSettings {Formatting = Formatting.Indented};
-jsonSerializerSettings.Converters.Add(new UnitsNetIQuantityJsonConverter());
+Read more at [Serializing to JSON, XML and more](https://github.com/angularsen/UnitsNet/wiki/Serializing-to-JSON,-XML-and-more).
 
-string json = JsonConvert.SerializeObject(new { Name = "Raiden", Weight = Mass.FromKilograms(90) }, jsonSerializerSettings);
-
-object obj = JsonConvert.DeserializeObject(json);
-```
-
-JSON output:
-```json
-{
-  "Name": "Raiden",
-  "Weight": {
-    "Unit": "MassUnit.Kilogram",
-    "Value": 90.0
-  }
-}
-```
-
-If you need to support deserializing into properties/fields of type `IComparable` instead of type `IQuantity`, then you can add
-```c#
-jsonSerializerSettings.Converters.Add(new UnitsNetIComparableJsonConverter());
-```
-
-**Important!**
-We cannot guarantee backwards compatibility, although we will strive to do that on a "best effort" basis and bumping the major nuget version when a change is necessary.
-
-The base unit of any unit should be treated as volatile as we have changed this several times in the history of this library already. Either to reduce precision errors of common units or to simplify code generation. An example is Mass, where the base unit was first Kilogram as this is the SI unit of mass, but in order to use powershell scripts to generate milligrams, nanograms etc. it was easier to choose Gram as the base unit of Mass.
 
 ### <a name="contribute"></a>Want To Contribute?
 
