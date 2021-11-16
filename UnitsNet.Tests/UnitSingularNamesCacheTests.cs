@@ -116,6 +116,12 @@ namespace UnitsNet.Tests
             cache.MapUnitToDefaultSingularName(LengthUnit.Centimeter, AmericanCulture, "mycentimeter");
             Assert.Equal("mycentimeter", cache.GetDefaultSingularName(LengthUnit.Centimeter, AmericanCulture));
         }
+        [Fact]
+        public void TestParse()
+        {
+            var result=Information.Parse("1 m");
+            _output.WriteLine(result.ToString());
+        }
 
         /// <summary>
         ///     Convenience method to the proper culture parameter type.
