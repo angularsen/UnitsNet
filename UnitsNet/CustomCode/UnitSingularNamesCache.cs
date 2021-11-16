@@ -37,7 +37,7 @@ namespace UnitsNet
         /// <summary>
         /// Adds one or more unit singularName for the given unit enum value.
         /// This is used to dynamically add singularNames for existing unit enums such as <see cref="UnitsNet.Units.LengthUnit"/> or to extend with third-party unit enums
-        /// in order to <see cref="UnitParser.Parse{TUnitType}"/> or <see cref="GetDefaultSingularName{TUnitType}"/> on them later.
+        /// in order to <see cref="UnitParser.Parse{TUnitType}"/> or <see cref="GetUnitSingularName(Type, int, IFormatProvider?)"/> on them later.
         /// </summary>
         /// <param name="unit">The unit enum value.</param>
         /// <param name="singularNames">Unit singularNames to add.</param>
@@ -46,21 +46,11 @@ namespace UnitsNet
         public void MapUnitToSingularName<TUnitType>(TUnitType unit, params string[] singularNames) where TUnitType : Enum =>
             _cache.MapUnitToStrings(unit, singularNames);
 
-        /// <summary>
-        /// Adds a unit singularName for the given unit enum value and sets it as the default.
-        /// This is used to dynamically add singularNames for existing unit enums such as <see cref="UnitsNet.Units.LengthUnit"/> or to extend with third-party unit enums
-        /// in order to <see cref="UnitParser.Parse{TUnitType}"/> or <see cref="GetDefaultSingularName{TUnitType}"/> on them later.
-        /// </summary>
-        /// <param name="unit">The unit enum value.</param>
-        /// <param name="singularName">Unit singularNames to add as default.</param>
-        /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
-        public void MapUnitToDefaultSingularName<TUnitType>(TUnitType unit, string singularName) where TUnitType : Enum =>
-            _cache.MapUnitToDefaultString(unit, singularName);
 
         /// <summary>
         /// Adds one or more unit singularName for the given unit enum value.
         /// This is used to dynamically add singularNames for existing unit enums such as <see cref="LengthUnit"/> or to extend with third-party unit enums
-        /// in order to <see cref="UnitParser.Parse{TUnitType}"/> or <see cref="GetDefaultSingularName{TUnitType}"/> on them later.
+        /// in order to <see cref="UnitParser.Parse{TUnitType}"/> or <see cref="GetUnitSingularName(Type, int, IFormatProvider?)"/> on them later.
         /// </summary>
         /// <param name="unit">The unit enum value.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
@@ -71,22 +61,9 @@ namespace UnitsNet
             MapUnitToSingularName(unit, formatProvider, singularNames);
 
         /// <summary>
-        /// Adds a unit singularName for the given unit enum value and sets it as the default.
-        /// This is used to dynamically add singularNames for existing unit enums such as <see cref="LengthUnit"/> or to extend with third-party unit enums
-        /// in order to <see cref="UnitParser.Parse{TUnitType}"/> or <see cref="GetDefaultSingularName{TUnitType}"/> on them later.
-        /// </summary>
-        /// <param name="unit">The unit enum value.</param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        /// <param name="singularName">Unit singularName to add as default.</param>
-        /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
-        [PublicAPI]
-        public void MapUnitToDefaultSingularName<TUnitType>(TUnitType unit, IFormatProvider formatProvider, string singularName) where TUnitType : Enum =>
-            _cache.MapUnitToDefaultString(unit, formatProvider, singularName);
-
-        /// <summary>
         /// Adds one or more unit singularName for the given unit enum value.
         /// This is used to dynamically add singularNames for existing unit enums such as <see cref="LengthUnit"/> or to extend with third-party unit enums
-        /// in order to <see cref="UnitParser.Parse{TUnitType}"/> or <see cref="GetDefaultSingularName{TUnitType}"/> on them later.
+        /// in order to <see cref="UnitParser.Parse{TUnitType}"/> or <see cref="GetUnitSingularName(Type, int, IFormatProvider?)"/> on them later.
         /// </summary>
         /// <param name="unitType">The unit enum type.</param>
         /// <param name="unitValue">The unit enum value.</param>
@@ -96,43 +73,6 @@ namespace UnitsNet
         public void MapUnitToSingularName(Type unitType, int unitValue, IFormatProvider formatProvider, [NotNull] params string[] singularNames) =>
             _cache.MapUnitToStrings(unitType, unitValue, formatProvider, singularNames);
 
-        /// <summary>
-        /// Adds a unit singularName for the given unit enum value and sets it as the default.
-        /// This is used to dynamically add singularNames for existing unit enums such as <see cref="LengthUnit"/> or to extend with third-party unit enums
-        /// in order to <see cref="UnitParser.Parse{TUnitType}"/> or <see cref="GetDefaultSingularName{TUnitType}"/> on them later.
-        /// </summary>
-        /// <param name="unitType">The unit enum type.</param>
-        /// <param name="unitValue">The unit enum value.</param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        /// <param name="singularName">Unit singularName to add as default.</param>
-        [PublicAPI]
-        public void MapUnitToDefaultSingularName(Type unitType, int unitValue, IFormatProvider formatProvider, [NotNull] string singularName) =>
-            _cache.MapUnitToDefaultString(unitType, unitValue, formatProvider, singularName);
-
-        /// <summary>
-        /// Gets the default singularName for a given unit. If a unit has more than one singularName defined, then it returns the first one.
-        /// Example: GetDefaultSingularName&lt;LengthUnit&gt;(LengthUnit.Kilometer) => "km"
-        /// </summary>
-        /// <param name="unit">The unit enum value.</param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
-        /// <returns>The default unit singularName string.</returns>
-        [PublicAPI]
-        public string GetDefaultSingularName<TUnitType>(TUnitType unit, IFormatProvider? formatProvider = null) where TUnitType : Enum =>
-            _cache.GetDefaultString(unit, formatProvider);
-
-        /// <summary>
-        /// Gets the default singularName for a given unit type and its numeric enum value.
-        /// If a unit has more than one singularName defined, then it returns the first one.
-        /// Example: GetDefaultSingularName&lt;LengthUnit&gt;(typeof(LengthUnit), 1) => "cm"
-        /// </summary>
-        /// <param name="unitType">The unit enum type.</param>
-        /// <param name="unitValue">The unit enum value.</param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        /// <returns>The default unit singularName string.</returns>
-        [PublicAPI]
-        public string GetDefaultSingularName(Type unitType, int unitValue, IFormatProvider? formatProvider = null) =>
-            _cache.GetDefaultString(unitType, unitValue, formatProvider);
 
         /// <summary>
         ///     Get the singular Name of a given unit.
@@ -142,8 +82,8 @@ namespace UnitsNet
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>The singular name associated with the unit.</returns>
         [PublicAPI]
-        public string GetUnitSingularNames<TUnitType>(TUnitType unit, IFormatProvider? formatProvider = null) where TUnitType : Enum =>
-            _cache.GetUnitStrings(unit, formatProvider)[0];
+        public string GetUnitSingularName<TUnitType>(TUnitType unit, IFormatProvider? formatProvider = null) where TUnitType : Enum =>
+            _cache.GetUnitStrings(unit, formatProvider)[0]; //only one singular name is supported
 
         /// <summary>
         ///     Get the singular Name of a given unit.
@@ -153,8 +93,8 @@ namespace UnitsNet
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>The singular name associated with the unit.</returns>
         [PublicAPI]
-        public string GetUnitSingularNames(Type unitType, int unitValue, IFormatProvider? formatProvider = null) =>
-            _cache.GetUnitStrings(unitType, unitValue, formatProvider)[0];
+        public string GetUnitSingularName(Type unitType, int unitValue, IFormatProvider? formatProvider = null) =>
+            _cache.GetUnitStrings(unitType, unitValue, formatProvider)[0]; //only one singular name is supported
 
         /// <summary>
         ///     Get all singularNames for all units of a quantity.
