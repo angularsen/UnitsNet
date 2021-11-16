@@ -46,10 +46,6 @@ namespace UnitsNet.Tests
         [Fact]
         public void SingularName_WithRussianCulture()
         {
-            _output.WriteLine(UnitSingularNamesCache.Default.GetDefaultSingularName(LengthUnit.Meter, RussianCulture));
-            _output.WriteLine(UnitSingularNamesCache.Default.GetDefaultSingularName(LengthUnit.Decimeter, RussianCulture));
-            _output.WriteLine(UnitSingularNamesCache.Default.GetDefaultSingularName(LengthUnit.Kilometer, RussianCulture));
-
             Assert.Equal("метр", UnitSingularNamesCache.Default.GetDefaultSingularName(LengthUnit.Meter, RussianCulture));
             Assert.Equal("Децигметр", UnitSingularNamesCache.Default.GetDefaultSingularName(LengthUnit.Decimeter, RussianCulture));
             Assert.Equal("Килогметр", UnitSingularNamesCache.Default.GetDefaultSingularName(LengthUnit.Kilometer, RussianCulture));
@@ -71,7 +67,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void GetDefaultASingularNameFallsBackToUsEnglishCulture()
+        public void GetDefaultSingularNameFallsBackToUsEnglishCulture()
         {
             var oldCurrentCulture = CultureInfo.CurrentCulture;
             var oldCurrentUICulture = CultureInfo.CurrentUICulture;

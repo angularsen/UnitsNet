@@ -39,7 +39,7 @@ namespace UnitsNet
         /// Create an instance of the cache
         /// </summary>
         /// <param name="stringName">Information about what the stored strings represents (abbreviation, singular name, ...). It could be useful for error messages or debug logs</param>
-        /// <param name="generatedLocalizedStrings">For each culture, for each unit type, for each vlaue, give a localized representation of the unit value</param>
+        /// <param name="generatedLocalizedStrings">For each culture, for each unit type, for each value, give a localized representation of the unit value</param>
         public UnitLocalizationCache(string stringName, (string CultureName, Type UnitType, int UnitValue, string[] Strings)[] generatedLocalizedStrings)
         {
             _stringName = stringName;
@@ -50,7 +50,7 @@ namespace UnitsNet
         /// <summary>
         /// Create an instance of the cache
         /// </summary>
-        /// <param name="generatedLocalizedStrings">For each culture, for each unit type, for each vlaue, give a localized representation of the unit value</param>
+        /// <param name="generatedLocalizedStrings">For each culture, for each unit type, for each value, give a localized representation of the unit value</param>
         public UnitLocalizationCache((string CultureName, Type UnitType, int UnitValue, string[] Strings)[] generatedLocalizedStrings) :
             this("localized string", generatedLocalizedStrings)
         {

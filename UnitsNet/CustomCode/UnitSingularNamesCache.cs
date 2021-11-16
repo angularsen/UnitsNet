@@ -11,8 +11,6 @@ namespace UnitsNet
 {
     /// <summary>
     ///     Cache of the mapping between unit enum values and unit singular names for one or more cultures.
-    ///
-    ///     TODO It may be a good thing to remove all unesfull methods MapXXX from the public API. MapXXX should be only used for internal purpose of the cache <see cref="UnitLocalizationCache"/>
     /// </summary>
     public sealed partial class UnitSingularNamesCache
     {
@@ -137,26 +135,26 @@ namespace UnitsNet
             _cache.GetDefaultString(unitType, unitValue, formatProvider);
 
         /// <summary>
-        ///     Get all singularNames for unit.
+        ///     Get the singular Name of a given unit.
         /// </summary>
         /// <typeparam name="TUnitType">Enum type for units.</typeparam>
         /// <param name="unit">Enum value for unit.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        /// <returns>Unit singularNames associated with unit.</returns>
+        /// <returns>The singular name associated with the unit.</returns>
         [PublicAPI]
-        public string[] GetUnitSingularNames<TUnitType>(TUnitType unit, IFormatProvider? formatProvider = null) where TUnitType : Enum =>
-            _cache.GetUnitStrings(unit, formatProvider);
+        public string GetUnitSingularNames<TUnitType>(TUnitType unit, IFormatProvider? formatProvider = null) where TUnitType : Enum =>
+            _cache.GetUnitStrings(unit, formatProvider)[0];
 
         /// <summary>
-        ///     Get all singularNames for unit.
+        ///     Get the singular Name of a given unit.
         /// </summary>
         /// <param name="unitType">Enum type for unit.</param>
         /// <param name="unitValue">Enum value for unit.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        /// <returns>Unit singularNames associated with unit.</returns>
+        /// <returns>The singular name associated with the unit.</returns>
         [PublicAPI]
-        public string[] GetUnitSingularNames(Type unitType, int unitValue, IFormatProvider? formatProvider = null) =>
-            _cache.GetUnitStrings(unitType, unitValue, formatProvider);
+        public string GetUnitSingularNames(Type unitType, int unitValue, IFormatProvider? formatProvider = null) =>
+            _cache.GetUnitStrings(unitType, unitValue, formatProvider)[0];
 
         /// <summary>
         ///     Get all singularNames for all units of a quantity.
