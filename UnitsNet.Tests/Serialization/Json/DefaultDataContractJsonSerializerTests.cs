@@ -39,6 +39,8 @@ namespace UnitsNet.Tests.Serialization.Json
             return (T)serializer.ReadObject(stream);
         }
 
+        #region Serialization tests
+
         [Fact]
         public void DoubleQuantity_SerializedWithDoubleValueAndIntegerUnit()
         {
@@ -60,29 +62,30 @@ namespace UnitsNet.Tests.Serialization.Json
 
             Assert.Equal(expectedJson, json);
         }
-
+        
         [Fact]
-        public void DoubleQuantity_InScientificNotation_SerializedWithExpandedValueAndIntegerUnit()
+        public void InterfaceObject_IncludesTypeInformation()
         {
-            var quantity = new Mass(1E+9, MassUnit.Milligram);
-            var expectedJson = "{\"Value\":1000000000,\"Unit\":16}";
+            var testObject = new TestInterfaceObject { Quantity = new Information(1.20m, InformationUnit.Exabyte) };
+            var expectedJson = "{\"Quantity\":{\"__type\":\"Information:#UnitsNet\",\"Value\":1.20,\"Unit\":4}}";
 
-            var json = SerializeObject(quantity);
-
-            Assert.Equal(expectedJson, json);
-        }
-
-        [Fact]
-        public void DecimalQuantity_InScientificNotation_SerializedWithExpandedValueAndIntegerUnit()
-        {
-            var quantity = new Information(1E+9m, InformationUnit.Exabyte);
-            var expectedJson = "{\"Value\":1000000000,\"Unit\":4}";
-
-            var json = SerializeObject(quantity);
+            var json = SerializeObject(testObject);
 
             Assert.Equal(expectedJson, json);
         }
         
+        [Fact]
+        public void InterfaceObject_WithMissingKnownTypeInformation_ThrowsSerializationException()
+        {
+            var testObject = new TestInterfaceObject { Quantity = new Volume(1.2, VolumeUnit.Microliter) };
+
+            Assert.Throws<SerializationException>(() => SerializeObject(testObject));
+        }
+
+        #endregion
+
+        #region Deserialization tests
+
         [Fact]
         public void DoubleQuantity_DeserializedFromDoubleValueAndIntegerUnit()
         {
@@ -196,23 +199,6 @@ namespace UnitsNet.Tests.Serialization.Json
             Assert.Equal(Information.BaseUnit, quantity.Unit);
         }
 
-        [Fact]
-        public void InterfaceObject_IncludesTypeInformation()
-        {
-            var testObject = new TestInterfaceObject { Quantity = new Information(1.20m, InformationUnit.Exabyte) };
-            var expectedJson = "{\"Quantity\":{\"__type\":\"Information:#UnitsNet\",\"Value\":1.20,\"Unit\":4}}";
-
-            var json = SerializeObject(testObject);
-
-            Assert.Equal(expectedJson, json);
-        }
-
-        [Fact]
-        public void InterfaceObject_WithMissingKnownTypeInformation_ThrowsSerializationException()
-        {
-            var testObject = new TestInterfaceObject { Quantity = new Volume(1.2, VolumeUnit.Microliter) };
-
-            Assert.Throws<SerializationException>(() => SerializeObject(testObject));
-        }
+        #endregion
     }
 }
