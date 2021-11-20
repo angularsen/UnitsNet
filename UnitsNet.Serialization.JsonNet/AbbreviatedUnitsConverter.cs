@@ -6,12 +6,20 @@ using UnitsNet.Units;
 
 namespace UnitsNet.Serialization.JsonNet
 {
-    /// <inheritdoc />
     /// <summary>
-    ///     JSON.net converter for IQuantity types (e.g. all units in UnitsNet)
-    ///     Use this converter to serialize and deserialize UnitsNet types to and from JSON using the unit abbreviation schema
-    ///     (e.g. 1, "kg", "Mass")
+    ///     JSON.net converter for all <see cref="IQuantity" /> types (e.g. all units in UnitsNet)
+    ///     Use this converter to serialize and deserialize UnitsNet types to and from JSON using the unit abbreviation schema.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// {
+    ///     "Value": 1.20,
+    ///     "Unit": "mg",
+    ///     "Type": "Mass"
+    /// }
+    /// </code>
+    /// </example>
+    /// <inheritdoc />
     public class AbbreviatedUnitsConverter : JsonConverter<IQuantity>
     {
         private const string ValueProperty = "Value";

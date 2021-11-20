@@ -62,28 +62,6 @@ namespace UnitsNet.Tests.Serialization.Json
 
             Assert.Equal(expectedJson, json);
         }
-
-        [Fact]
-        public void DoubleQuantity_InScientificNotation_SerializedWithExpandedValueAndIntegerUnit()
-        {
-            var quantity = new Mass(1E+9, MassUnit.Milligram);
-            var expectedJson = "{\"Value\":1000000000,\"Unit\":16}";
-
-            var json = SerializeObject(quantity);
-
-            Assert.Equal(expectedJson, json);
-        }
-
-        [Fact]
-        public void DecimalQuantity_InScientificNotation_SerializedWithExpandedValueAndIntegerUnit()
-        {
-            var quantity = new Information(1E+9m, InformationUnit.Exabyte);
-            var expectedJson = "{\"Value\":1000000000,\"Unit\":4}";
-
-            var json = SerializeObject(quantity);
-
-            Assert.Equal(expectedJson, json);
-        }
         
         [Fact]
         public void InterfaceObject_IncludesTypeInformation()

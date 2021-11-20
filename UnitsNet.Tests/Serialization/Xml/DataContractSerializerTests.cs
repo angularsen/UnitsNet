@@ -58,28 +58,6 @@ namespace UnitsNet.Tests.Serialization.Xml
         }
 
         [Fact]
-        public void DoubleQuantity_InScientificNotation_SerializedWithExpandedValueAndMemberName()
-        {
-            var quantity = new Mass(1E+9, MassUnit.Milligram);
-            var expectedXml = $"<Mass {Namespace} {XmlSchema}><Value>1000000000</Value><Unit>Milligram</Unit></Mass>";
-
-            var xml = SerializeObject(quantity);
-
-            Assert.Equal(expectedXml, xml);
-        }
-
-        [Fact]
-        public void DecimalQuantity_InScientificNotation_SerializedWithExpandedValueAndMemberName()
-        {
-            var quantity = new Information(1E+9m, InformationUnit.Exabyte);
-            var expectedXml = $"<Information {Namespace} {XmlSchema}><Value>1000000000</Value><Unit>Exabyte</Unit></Information>";
-
-            var xml = SerializeObject(quantity);
-
-            Assert.Equal(expectedXml, xml);
-        }
-
-        [Fact]
         public void InterfaceObject_IncludesTypeInformation()
         {
             var testObject = new TestInterfaceObject { Quantity = new Information(1.20m, InformationUnit.Exabyte) };

@@ -37,28 +37,6 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void DoubleQuantity_InScientificNotation_SerializedWithExpandedValueAndAbbreviatedUnit()
-        {
-            var quantity = new Mass(1E+9, MassUnit.Milligram);
-            var expectedJson = "{\"Value\":1000000000.0,\"Unit\":\"mg\",\"Type\":\"Mass\"}";
-
-            var json = SerializeObject(quantity);
-
-            Assert.Equal(expectedJson, json);
-        }
-
-        [Fact]
-        public void DecimalQuantity_InScientificNotation_SerializedWithExpandedValueAndAbbreviatedUnit()
-        {
-            var quantity = new Information(1E+9m, InformationUnit.Exabyte);
-            var expectedJson = "{\"Value\":1000000000,\"Unit\":\"EB\",\"Type\":\"Information\"}";
-
-            var json = SerializeObject(quantity);
-
-            Assert.Equal(expectedJson, json);
-        }
-
-        [Fact]
         public void InterfaceObject_IncludesTypeInformation()
         {
             var testObject = new TestInterfaceObject { Quantity = new Information(1.20m, InformationUnit.Exabyte) };
@@ -119,7 +97,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void AmbiguousUnitParseExceptionUnitsNetExceptionThrown_WhenDeserializing_WithoutQuantityType()
+        public void ThrowsAmbiguousUnitParseException_WhenDeserializingAmbiguousAbbreviation_WithoutQuantityType()
         {
             var json = "{\"Value\":1.2,\"Unit\":\"mg\"}";
 
@@ -135,6 +113,20 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             Assert.Equal(1.2, quantity.Value);
             Assert.Equal(MassUnit.Milligram, quantity.Unit);
+        }
+
+        [Fact]
+        public void DoubleIQuantity_DeserializedFromDoubleValueAndAbbreviatedUnit_CaseSensitiveUnits()
+        {
+            var json = "{\"value\":1.2,\"unit\":\"Mbar\",\"type\":\"pressure\"}";
+
+            var megabar = DeserializeObject<IQuantity>(json);
+            var millibar = DeserializeObject<IQuantity>(json.ToLower());
+
+            Assert.Equal(1.2, megabar.Value);
+            Assert.Equal(1.2, millibar.Value);
+            Assert.Equal(PressureUnit.Megabar, megabar.Unit);
+            Assert.Equal(PressureUnit.Millibar, millibar.Unit);
         }
 
         [Fact]
@@ -359,7 +351,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
         #endregion
 
-        #region Compatability
+        #region Compatibility
 
         [JsonObject]
         class PlainOldDoubleQuantity
