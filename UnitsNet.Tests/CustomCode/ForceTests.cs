@@ -97,5 +97,12 @@ namespace UnitsNet.Tests.CustomCode
             Pressure pressure = Force.FromNewtons(2) * ReciprocalArea.FromInverseSquareMeters(25);
             Assert.Equal(pressure, Pressure.FromNewtonsPerSquareMeter(50));
         }
+
+        [Fact]
+        public void ForceDividedByForceChangeRateEqualsDuration()
+        {
+            Duration duration = Force.FromNewtons(200) / ForceChangeRate.FromNewtonsPerSecond(50);
+            Assert.Equal(duration, Duration.FromSeconds(4));
+        }
     }
 }

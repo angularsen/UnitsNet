@@ -67,5 +67,11 @@ namespace UnitsNet
         {
             return ForcePerLength.FromNewtonsPerMeter(force.Newtons / length.Meters);
         }
+
+        /// <summary>Get <see cref="Duration"/> from <see cref="Force"/> divided by <see cref="ForceChangeRate"/>.</summary>
+        public static Duration operator /(Force force, ForceChangeRate forceChangeRate)
+        {
+            return new Duration(force.Newtons / forceChangeRate.NewtonsPerSecond, DurationUnit.Second);
+        }
     }
 }

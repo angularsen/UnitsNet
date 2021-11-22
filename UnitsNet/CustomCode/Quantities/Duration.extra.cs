@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using UnitsNet.Units;
 
 namespace UnitsNet
 {
@@ -92,24 +93,28 @@ namespace UnitsNet
             return timeSpan.TotalSeconds >= duration.Seconds;
         }
 
-        /// <summary>Get <see cref="Volume"/> from <see cref="Duration"/> times <see cref="VolumeFlow"/>.</summary>
+        /// <summary>Get <see cref="Volume"/> from <see cref="Duration"/> multiplied by <see cref="VolumeFlow"/>.</summary>
         public static Volume operator *(Duration duration, VolumeFlow volumeFlow)
         {
             return Volume.FromCubicMeters(volumeFlow.CubicMetersPerSecond * duration.Seconds);
         }
 
-        /// <summary>Calculate <see cref="ElectricCharge"/> from <see cref="Duration"/> multiplied by <see cref="ElectricCurrent"/>.</summary>
+        /// <summary>Get <see cref="ElectricCharge"/> from <see cref="Duration"/> multiplied by <see cref="ElectricCurrent"/>.</summary>
         public static ElectricCharge operator *(Duration time, ElectricCurrent current)
         {
             return ElectricCharge.FromAmpereHours(current.Amperes * time.Hours);
         }
 
-        /// <summary>
-        /// Multiply <see cref="Duration"/> and <see cref="Acceleration"/> to get <see cref="Speed"/>.
-        /// </summary>
+        /// <summary>Get <see cref="Speed"/> from <see cref="Duration"/> multiplied by <see cref="Acceleration"/>.</summary>
         public static Speed operator *(Duration duration, Acceleration acceleration)
         {
-            return new Speed(acceleration.MetersPerSecondSquared * duration.Seconds, UnitsNet.Units.SpeedUnit.MeterPerSecond);
+            return new Speed(acceleration.MetersPerSecondSquared * duration.Seconds, SpeedUnit.MeterPerSecond);
+        }
+
+        /// <summary>Get <see cref="Force"/> from <see cref="Duration"/> multiplied by <see cref="ForceChangeRate"/>.</summary>
+        public static Force operator *(Duration duration, ForceChangeRate forceChangeRate)
+        {
+            return new Force(forceChangeRate.NewtonsPerSecond * duration.Seconds, ForceUnit.Newton);
         }
     }
 }
