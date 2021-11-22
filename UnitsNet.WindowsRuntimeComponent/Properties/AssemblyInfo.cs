@@ -17,6 +17,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("")]
-[assembly: AssemblyVersion("4.104.0")]
-[assembly: AssemblyFileVersion("4.104.0")]
+[assembly: AssemblyVersion("4.105.0")]
+[assembly: AssemblyFileVersion("4.105.0")]
 [assembly: InternalsVisibleTo("UnitsNet.WindowsRuntimeComponent.Tests")]
