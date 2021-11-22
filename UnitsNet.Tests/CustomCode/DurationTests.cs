@@ -199,5 +199,12 @@ namespace UnitsNet.Tests.CustomCode
             Speed speed = Duration.FromSeconds(10) * Acceleration.FromMetersPerSecondSquared(10);
             Assert.Equal(Speed.FromMetersPerSecond(100), speed);
         }
+
+        [Fact]
+        public void DurationTimesForceChangeRate()
+        {
+            Force force = Duration.FromSeconds(10) * ForceChangeRate.FromNewtonsPerSecond(100);
+            Assert.Equal(Force.FromNewtons(1000), force);
+        }
     }
 }
