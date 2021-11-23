@@ -44,8 +44,8 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void TemperatureDeltaDividedByLengthEqualsTemperatureGradient()
         {
-            TemperatureGradient lapseRate = TemperatureDelta.FromDegreesCelsius(50) / Length.FromKilometers(10);
-            Assert.Equal(lapseRate, TemperatureGradient.FromDegreesCelciusPerKilometer(5));
+            TemperatureGradient temperatureGradient = TemperatureDelta.FromDegreesCelsius(50) / Length.FromKilometers(10);
+            Assert.Equal(temperatureGradient, TemperatureGradient.FromDegreesCelciusPerKilometer(5));
         }
 
         [Fact]
