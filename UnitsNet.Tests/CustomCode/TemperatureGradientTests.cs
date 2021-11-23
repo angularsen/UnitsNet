@@ -33,5 +33,33 @@ namespace UnitsNet.Tests.CustomCode
         protected override double DegreesFahrenheitPerFootInOneKelvinPerMeter => 0.54864;
 
         protected override double KelvinsPerMeterInOneKelvinPerMeter => 1;
+
+        [Fact]
+        public void TemperatureDeltaDividedByTemperatureGradientEqualsLength()
+        {
+            Length length = TemperatureDelta.FromDegreesCelsius(50) / TemperatureGradient.FromDegreesCelciusPerKilometer(5);
+            Assert.Equal(length, Length.FromKilometers(10));
+        }
+
+        [Fact]
+        public void TemperatureDeltaDividedByLengthEqualsTemperatureGradient()
+        {
+            TemperatureGradient lapseRate = TemperatureDelta.FromDegreesCelsius(50) / Length.FromKilometers(10);
+            Assert.Equal(lapseRate, TemperatureGradient.FromDegreesCelciusPerKilometer(5));
+        }
+
+        [Fact]
+        public void LengthMultipliedByTemperatureGradientEqualsTemperatureDelta()
+        {
+            TemperatureDelta temperatureDelta = Length.FromKilometers(10) * TemperatureGradient.FromDegreesCelciusPerKilometer(5);
+            Assert.Equal(temperatureDelta, TemperatureDelta.FromDegreesCelsius(50));
+        }
+
+        [Fact]
+        public void TemperatureGradientMultipliedByLengthEqualsTemperatureDelta()
+        {
+            TemperatureDelta temperatureDelta = TemperatureGradient.FromDegreesCelciusPerKilometer(5) * Length.FromKilometers(10);
+            Assert.Equal(temperatureDelta, TemperatureDelta.FromDegreesCelsius(50));
+        }
     }
 }
