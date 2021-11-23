@@ -129,6 +129,7 @@ namespace UnitsNet
         Temperature,
         TemperatureChangeRate,
         TemperatureDelta,
+        TemperatureGradient,
         ThermalConductivity,
         ThermalResistance,
         Torque,

@@ -2186,6 +2186,13 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDelta.BaseUnit, TemperatureDelta.BaseUnit, q => q);
             unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDelta.BaseUnit, TemperatureDeltaUnit.MillidegreeCelsius, q => q.ToUnit(TemperatureDeltaUnit.MillidegreeCelsius));
             unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.MillidegreeCelsius, TemperatureDelta.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradient.BaseUnit, TemperatureGradientUnit.DegreeCelsiusPerKilometer, q => q.ToUnit(TemperatureGradientUnit.DegreeCelsiusPerKilometer));
+            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.DegreeCelsiusPerKilometer, TemperatureGradient.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradient.BaseUnit, TemperatureGradientUnit.DegreeCelsiusPerMeter, q => q.ToUnit(TemperatureGradientUnit.DegreeCelsiusPerMeter));
+            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.DegreeCelsiusPerMeter, TemperatureGradient.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradient.BaseUnit, TemperatureGradientUnit.DegreeFahrenheitPerFoot, q => q.ToUnit(TemperatureGradientUnit.DegreeFahrenheitPerFoot));
+            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.DegreeFahrenheitPerFoot, TemperatureGradient.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradient.BaseUnit, TemperatureGradient.BaseUnit, q => q);
             unitConverter.SetConversionFunction<ThermalConductivity>(ThermalConductivity.BaseUnit, ThermalConductivityUnit.BtuPerHourFootFahrenheit, q => q.ToUnit(ThermalConductivityUnit.BtuPerHourFootFahrenheit));
             unitConverter.SetConversionFunction<ThermalConductivity>(ThermalConductivityUnit.BtuPerHourFootFahrenheit, ThermalConductivity.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<ThermalConductivity>(ThermalConductivity.BaseUnit, ThermalConductivity.BaseUnit, q => q);

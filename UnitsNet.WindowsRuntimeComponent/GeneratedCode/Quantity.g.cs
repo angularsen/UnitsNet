@@ -335,6 +335,9 @@ namespace UnitsNet
                 case TemperatureDeltaUnit temperatureDeltaUnit:
                     quantity = TemperatureDelta.From(value, temperatureDeltaUnit);
                     return true;
+                case TemperatureGradientUnit temperatureGradientUnit:
+                    quantity = TemperatureGradient.From(value, temperatureGradientUnit);
+                    return true;
                 case ThermalConductivityUnit thermalConductivityUnit:
                     quantity = ThermalConductivity.From(value, thermalConductivityUnit);
                     return true;
@@ -714,6 +717,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(TemperatureDelta))
                 return parser.TryParse<TemperatureDelta, TemperatureDeltaUnit>(quantityString, formatProvider, TemperatureDelta.From, out quantity);
+
+            if (quantityType == typeof(TemperatureGradient))
+                return parser.TryParse<TemperatureGradient, TemperatureGradientUnit>(quantityString, formatProvider, TemperatureGradient.From, out quantity);
 
             if (quantityType == typeof(ThermalConductivity))
                 return parser.TryParse<ThermalConductivity, ThermalConductivityUnit>(quantityString, formatProvider, ThermalConductivity.From, out quantity);

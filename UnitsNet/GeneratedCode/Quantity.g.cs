@@ -136,6 +136,7 @@ namespace UnitsNet
             { "Temperature", Temperature.Info },
             { "TemperatureChangeRate", TemperatureChangeRate.Info },
             { "TemperatureDelta", TemperatureDelta.Info },
+            { "TemperatureGradient", TemperatureGradient.Info },
             { "ThermalConductivity", ThermalConductivity.Info },
             { "ThermalResistance", ThermalResistance.Info },
             { "Torque", Torque.Info },
@@ -252,6 +253,7 @@ namespace UnitsNet
             { "Temperature", QuantityType.Temperature },
             { "TemperatureChangeRate", QuantityType.TemperatureChangeRate },
             { "TemperatureDelta", QuantityType.TemperatureDelta },
+            { "TemperatureGradient", QuantityType.TemperatureGradient },
             { "ThermalConductivity", QuantityType.ThermalConductivity },
             { "ThermalResistance", QuantityType.ThermalResistance },
             { "Torque", QuantityType.Torque },
@@ -473,6 +475,8 @@ namespace UnitsNet
                     return TemperatureChangeRate.From(value, TemperatureChangeRate.BaseUnit);
                 case QuantityType.TemperatureDelta:
                     return TemperatureDelta.From(value, TemperatureDelta.BaseUnit);
+                case QuantityType.TemperatureGradient:
+                    return TemperatureGradient.From(value, TemperatureGradient.BaseUnit);
                 case QuantityType.ThermalConductivity:
                     return ThermalConductivity.From(value, ThermalConductivity.BaseUnit);
                 case QuantityType.ThermalResistance:
@@ -708,6 +712,8 @@ namespace UnitsNet
                     return TemperatureChangeRate.From(value, TemperatureChangeRate.BaseUnit);
                 case "TemperatureDelta":
                     return TemperatureDelta.From(value, TemperatureDelta.BaseUnit);
+                case "TemperatureGradient":
+                    return TemperatureGradient.From(value, TemperatureGradient.BaseUnit);
                 case "ThermalConductivity":
                     return ThermalConductivity.From(value, ThermalConductivity.BaseUnit);
                 case "ThermalResistance":
@@ -1042,6 +1048,9 @@ namespace UnitsNet
                 case TemperatureDeltaUnit temperatureDeltaUnit:
                     quantity = TemperatureDelta.From(value, temperatureDeltaUnit);
                     return true;
+                case TemperatureGradientUnit temperatureGradientUnit:
+                    quantity = TemperatureGradient.From(value, temperatureGradientUnit);
+                    return true;
                 case ThermalConductivityUnit thermalConductivityUnit:
                     quantity = ThermalConductivity.From(value, thermalConductivityUnit);
                     return true;
@@ -1301,6 +1310,8 @@ namespace UnitsNet
                     return parser.TryParse<TemperatureChangeRate, TemperatureChangeRateUnit>(quantityString, formatProvider, TemperatureChangeRate.From, out quantity);
                 case Type _ when quantityType == typeof(TemperatureDelta):
                     return parser.TryParse<TemperatureDelta, TemperatureDeltaUnit>(quantityString, formatProvider, TemperatureDelta.From, out quantity);
+                case Type _ when quantityType == typeof(TemperatureGradient):
+                    return parser.TryParse<TemperatureGradient, TemperatureGradientUnit>(quantityString, formatProvider, TemperatureGradient.From, out quantity);
                 case Type _ when quantityType == typeof(ThermalConductivity):
                     return parser.TryParse<ThermalConductivity, ThermalConductivityUnit>(quantityString, formatProvider, ThermalConductivity.From, out quantity);
                 case Type _ when quantityType == typeof(ThermalResistance):
