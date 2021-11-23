@@ -60,9 +60,6 @@
     <Compile Remove="UnitDefinitions\**" />
     <EmbeddedResource Remove="UnitDefinitions\**" />
     <None Remove="UnitDefinitions\**" />
-    <None Include="..\Common\UnitDefinitions\TemperatureGradient.json">
-      <Link>Common\UnitDefinitions\TemperatureGradient.json</Link>
-    </None>
   </ItemGroup>
 
   <!-- Files to include in nuget package -->
