@@ -132,6 +132,7 @@ namespace UnitsNet.Tests
             Assertion(3, TemperatureUnit.SolarTemperature, Quantity.From(3, TemperatureUnit.SolarTemperature));
             Assertion(3, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, Quantity.From(3, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond));
             Assertion(3, TemperatureDeltaUnit.MillidegreeCelsius, Quantity.From(3, TemperatureDeltaUnit.MillidegreeCelsius));
+            Assertion(3, TemperatureGradientUnit.KelvinPerMeter, Quantity.From(3, TemperatureGradientUnit.KelvinPerMeter));
             Assertion(3, ThermalConductivityUnit.WattPerMeterKelvin, Quantity.From(3, ThermalConductivityUnit.WattPerMeterKelvin));
             Assertion(3, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, Quantity.From(3, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt));
             Assertion(3, TorqueUnit.TonneForceMillimeter, Quantity.From(3, TorqueUnit.TonneForceMillimeter));
@@ -249,6 +250,7 @@ namespace UnitsNet.Tests
             Assertion(Temperature.Info, Temperature.Zero);
             Assertion(TemperatureChangeRate.Info, TemperatureChangeRate.Zero);
             Assertion(TemperatureDelta.Info, TemperatureDelta.Zero);
+            Assertion(TemperatureGradient.Info, TemperatureGradient.Zero);
             Assertion(ThermalConductivity.Info, ThermalConductivity.Zero);
             Assertion(ThermalResistance.Info, ThermalResistance.Zero);
             Assertion(Torque.Info, Torque.Zero);
@@ -366,6 +368,7 @@ namespace UnitsNet.Tests
             Assertion(Temperature.QuantityType, Temperature.Zero);
             Assertion(TemperatureChangeRate.QuantityType, TemperatureChangeRate.Zero);
             Assertion(TemperatureDelta.QuantityType, TemperatureDelta.Zero);
+            Assertion(TemperatureGradient.QuantityType, TemperatureGradient.Zero);
             Assertion(ThermalConductivity.QuantityType, ThermalConductivity.Zero);
             Assertion(ThermalResistance.QuantityType, ThermalResistance.Zero);
             Assertion(Torque.QuantityType, Torque.Zero);
@@ -483,6 +486,7 @@ namespace UnitsNet.Tests
             Assertion(Temperature.BaseDimensions, Temperature.Zero);
             Assertion(TemperatureChangeRate.BaseDimensions, TemperatureChangeRate.Zero);
             Assertion(TemperatureDelta.BaseDimensions, TemperatureDelta.Zero);
+            Assertion(TemperatureGradient.BaseDimensions, TemperatureGradient.Zero);
             Assertion(ThermalConductivity.BaseDimensions, ThermalConductivity.Zero);
             Assertion(ThermalResistance.BaseDimensions, ThermalResistance.Zero);
             Assertion(Torque.BaseDimensions, Torque.Zero);

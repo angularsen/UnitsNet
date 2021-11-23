@@ -39,13 +39,6 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
-        public void TemperatureDeltaDividedByLengthEqualsLapseRate()
-        {
-            LapseRate lapseRate = TemperatureDelta.FromDegreesCelsius(50) / Length.FromKilometers(10);
-            Assert.Equal(lapseRate, LapseRate.FromDegreesCelciusPerKilometer(5));
-        }
-
-        [Fact]
         public void LengthMultipliedByLapseRateEqualsTemperatureDelta()
         {
             TemperatureDelta temperatureDelta = Length.FromKilometers(10) * LapseRate.FromDegreesCelciusPerKilometer(5);

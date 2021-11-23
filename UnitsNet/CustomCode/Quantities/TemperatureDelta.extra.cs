@@ -5,10 +5,10 @@ namespace UnitsNet
 {
     public partial struct TemperatureDelta
     {
-        /// <summary>Get <see cref="LapseRate"/> from <see cref="TemperatureDelta"/> divided by <see cref="Length"/>.</summary>
-        public static LapseRate operator /(TemperatureDelta left, Length right)
+        /// <summary>Get <see cref="TemperatureGradient"/> from <see cref="TemperatureDelta"/> divided by <see cref="Length"/>.</summary>
+        public static TemperatureGradient operator /(TemperatureDelta left, Length right)
         {
-            return LapseRate.FromDegreesCelciusPerKilometer(left.DegreesCelsius / right.Kilometers);
+            return TemperatureGradient.FromKelvinsPerMeter(left.Kelvins / right.Meters);
         }
 
         /// <summary>Get <see cref="SpecificEnergy"/> from <see cref="SpecificEntropy"/> times <see cref="TemperatureDelta"/>.</summary>

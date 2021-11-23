@@ -29,13 +29,12 @@ using UnitsNet.InternalHelpers;
 namespace UnitsNet
 {
     /// <summary>
-    ///     Lapse rate is the rate at which Earth's atmospheric temperature decreases with an increase in altitude, or increases with the decrease in altitude.
+    ///     The rate of change of temperature with displacement in a given direction (as with increase of height)
     /// </summary>
-    [System.Obsolete("Use TemperatureGradient instead.")]
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-    public sealed partial class LapseRate : IQuantity
+    public sealed partial class TemperatureGradient : IQuantity
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -45,21 +44,21 @@ namespace UnitsNet
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        private readonly LapseRateUnit? _unit;
+        private readonly TemperatureGradientUnit? _unit;
 
-        static LapseRate()
+        static TemperatureGradient()
         {
             BaseDimensions = new BaseDimensions(-1, 0, 0, 0, 1, 0, 0);
-            Info = new QuantityInfo(QuantityType.LapseRate, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.TemperatureGradient, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
-        ///     Creates the quantity with a value of 0 in the base unit DegreeCelsiusPerKilometer.
+        ///     Creates the quantity with a value of 0 in the base unit KelvinPerMeter.
         /// </summary>
         /// <remarks>
         ///     Windows Runtime Component requires a default constructor.
         /// </remarks>
-        public LapseRate()
+        public TemperatureGradient()
         {
             _value = 0;
             _unit = BaseUnit;
@@ -72,9 +71,9 @@ namespace UnitsNet
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        private LapseRate(double value, LapseRateUnit unit)
+        private TemperatureGradient(double value, TemperatureGradientUnit unit)
         {
-            if(unit == LapseRateUnit.Undefined)
+            if(unit == TemperatureGradientUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
@@ -94,34 +93,34 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of LapseRate, which is DegreeCelsiusPerKilometer. All conversions go via this value.
+        ///     The base unit of TemperatureGradient, which is KelvinPerMeter. All conversions go via this value.
         /// </summary>
-        public static LapseRateUnit BaseUnit { get; } = LapseRateUnit.DegreeCelsiusPerKilometer;
+        public static TemperatureGradientUnit BaseUnit { get; } = TemperatureGradientUnit.KelvinPerMeter;
 
         /// <summary>
-        /// Represents the largest possible value of LapseRate
+        /// Represents the largest possible value of TemperatureGradient
         /// </summary>
-        public static LapseRate MaxValue { get; } = new LapseRate(double.MaxValue, BaseUnit);
+        public static TemperatureGradient MaxValue { get; } = new TemperatureGradient(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of LapseRate
+        /// Represents the smallest possible value of TemperatureGradient
         /// </summary>
-        public static LapseRate MinValue { get; } = new LapseRate(double.MinValue, BaseUnit);
+        public static TemperatureGradient MinValue { get; } = new TemperatureGradient(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.LapseRate;
+        public static QuantityType QuantityType { get; } = QuantityType.TemperatureGradient;
 
         /// <summary>
-        ///     All units of measurement for the LapseRate quantity.
+        ///     All units of measurement for the TemperatureGradient quantity.
         /// </summary>
-        public static LapseRateUnit[] Units { get; } = Enum.GetValues(typeof(LapseRateUnit)).Cast<LapseRateUnit>().Except(new LapseRateUnit[]{ LapseRateUnit.Undefined }).ToArray();
+        public static TemperatureGradientUnit[] Units { get; } = Enum.GetValues(typeof(TemperatureGradientUnit)).Cast<TemperatureGradientUnit>().Except(new TemperatureGradientUnit[]{ TemperatureGradientUnit.Undefined }).ToArray();
 
         /// <summary>
-        ///     Gets an instance of this quantity with a value of 0 in the base unit DegreeCelsiusPerKilometer.
+        ///     Gets an instance of this quantity with a value of 0 in the base unit KelvinPerMeter.
         /// </summary>
-        public static LapseRate Zero { get; } = new LapseRate(0, BaseUnit);
+        public static TemperatureGradient Zero { get; } = new TemperatureGradient(0, BaseUnit);
 
         #endregion
 
@@ -138,28 +137,43 @@ namespace UnitsNet
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
-        public LapseRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public TemperatureGradientUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => LapseRate.QuantityType;
+        public QuantityType Type => TemperatureGradient.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => LapseRate.BaseDimensions;
+        public BaseDimensions Dimensions => TemperatureGradient.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Get LapseRate in DegreesCelciusPerKilometer.
+        ///     Get TemperatureGradient in DegreesCelciusPerKilometer.
         /// </summary>
-        public double DegreesCelciusPerKilometer => As(LapseRateUnit.DegreeCelsiusPerKilometer);
+        public double DegreesCelciusPerKilometer => As(TemperatureGradientUnit.DegreeCelsiusPerKilometer);
+
+        /// <summary>
+        ///     Get TemperatureGradient in DegreesCelciusPerMeter.
+        /// </summary>
+        public double DegreesCelciusPerMeter => As(TemperatureGradientUnit.DegreeCelsiusPerMeter);
+
+        /// <summary>
+        ///     Get TemperatureGradient in DegreesFahrenheitPerFoot.
+        /// </summary>
+        public double DegreesFahrenheitPerFoot => As(TemperatureGradientUnit.DegreeFahrenheitPerFoot);
+
+        /// <summary>
+        ///     Get TemperatureGradient in KelvinsPerMeter.
+        /// </summary>
+        public double KelvinsPerMeter => As(TemperatureGradientUnit.KelvinPerMeter);
 
         #endregion
 
@@ -170,7 +184,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        public static string GetAbbreviation(LapseRateUnit unit)
+        public static string GetAbbreviation(TemperatureGradientUnit unit)
         {
             return GetAbbreviation(unit, null);
         }
@@ -181,7 +195,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static string GetAbbreviation(LapseRateUnit unit, [CanBeNull] string cultureName)
+        public static string GetAbbreviation(TemperatureGradientUnit unit, [CanBeNull] string cultureName)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
@@ -192,27 +206,57 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get LapseRate from DegreesCelciusPerKilometer.
+        ///     Get TemperatureGradient from DegreesCelciusPerKilometer.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static LapseRate FromDegreesCelciusPerKilometer(double degreescelciusperkilometer)
+        public static TemperatureGradient FromDegreesCelciusPerKilometer(double degreescelciusperkilometer)
         {
             double value = (double) degreescelciusperkilometer;
-            return new LapseRate(value, LapseRateUnit.DegreeCelsiusPerKilometer);
+            return new TemperatureGradient(value, TemperatureGradientUnit.DegreeCelsiusPerKilometer);
+        }
+        /// <summary>
+        ///     Get TemperatureGradient from DegreesCelciusPerMeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static TemperatureGradient FromDegreesCelciusPerMeter(double degreescelciuspermeter)
+        {
+            double value = (double) degreescelciuspermeter;
+            return new TemperatureGradient(value, TemperatureGradientUnit.DegreeCelsiusPerMeter);
+        }
+        /// <summary>
+        ///     Get TemperatureGradient from DegreesFahrenheitPerFoot.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static TemperatureGradient FromDegreesFahrenheitPerFoot(double degreesfahrenheitperfoot)
+        {
+            double value = (double) degreesfahrenheitperfoot;
+            return new TemperatureGradient(value, TemperatureGradientUnit.DegreeFahrenheitPerFoot);
+        }
+        /// <summary>
+        ///     Get TemperatureGradient from KelvinsPerMeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static TemperatureGradient FromKelvinsPerMeter(double kelvinspermeter)
+        {
+            double value = (double) kelvinspermeter;
+            return new TemperatureGradient(value, TemperatureGradientUnit.KelvinPerMeter);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="LapseRateUnit" /> to <see cref="LapseRate" />.
+        ///     Dynamically convert from value and unit enum <see cref="TemperatureGradientUnit" /> to <see cref="TemperatureGradient" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>LapseRate unit value.</returns>
+        /// <returns>TemperatureGradient unit value.</returns>
         // Fix name conflict with parameter "value"
         [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
-        public static LapseRate From(double value, LapseRateUnit fromUnit)
+        public static TemperatureGradient From(double value, TemperatureGradientUnit fromUnit)
         {
-            return new LapseRate((double)value, fromUnit);
+            return new TemperatureGradient((double)value, fromUnit);
         }
 
         #endregion
@@ -241,7 +285,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static LapseRate Parse(string str)
+        public static TemperatureGradient Parse(string str)
         {
             return Parse(str, null);
         }
@@ -269,10 +313,10 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static LapseRate Parse(string str, [CanBeNull] string cultureName)
+        public static TemperatureGradient Parse(string str, [CanBeNull] string cultureName)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return QuantityParser.Default.Parse<LapseRate, LapseRateUnit>(
+            return QuantityParser.Default.Parse<TemperatureGradient, TemperatureGradientUnit>(
                 str,
                 provider,
                 From);
@@ -286,7 +330,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, out LapseRate result)
+        public static bool TryParse([CanBeNull] string str, out TemperatureGradient result)
         {
             return TryParse(str, null, out result);
         }
@@ -301,10 +345,10 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] string cultureName, out LapseRate result)
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] string cultureName, out TemperatureGradient result)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return QuantityParser.Default.TryParse<LapseRate, LapseRateUnit>(
+            return QuantityParser.Default.TryParse<TemperatureGradient, TemperatureGradientUnit>(
                 str,
                 provider,
                 From,
@@ -320,7 +364,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static LapseRateUnit ParseUnit(string str)
+        public static TemperatureGradientUnit ParseUnit(string str)
         {
             return ParseUnit(str, null);
         }
@@ -335,13 +379,13 @@ namespace UnitsNet
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static LapseRateUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        public static TemperatureGradientUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return UnitParser.Default.Parse<LapseRateUnit>(str, provider);
+            return UnitParser.Default.Parse<TemperatureGradientUnit>(str, provider);
         }
 
-        public static bool TryParseUnit(string str, out LapseRateUnit unit)
+        public static bool TryParseUnit(string str, out TemperatureGradientUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -356,10 +400,10 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, [CanBeNull] string cultureName, out LapseRateUnit unit)
+        public static bool TryParseUnit(string str, [CanBeNull] string cultureName, out TemperatureGradientUnit unit)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return UnitParser.Default.TryParse<LapseRateUnit>(str, provider, out unit);
+            return UnitParser.Default.TryParse<TemperatureGradientUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -369,13 +413,13 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is LapseRate objLapseRate)) throw new ArgumentException("Expected type LapseRate.", nameof(obj));
+            if(!(obj is TemperatureGradient objTemperatureGradient)) throw new ArgumentException("Expected type TemperatureGradient.", nameof(obj));
 
-            return CompareTo(objLapseRate);
+            return CompareTo(objTemperatureGradient);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-        internal int CompareTo(LapseRate other)
+        internal int CompareTo(TemperatureGradient other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
@@ -383,20 +427,20 @@ namespace UnitsNet
         [Windows.Foundation.Metadata.DefaultOverload]
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is LapseRate objLapseRate))
+            if(obj is null || !(obj is TemperatureGradient objTemperatureGradient))
                 return false;
 
-            return Equals(objLapseRate);
+            return Equals(objTemperatureGradient);
         }
 
-        public bool Equals(LapseRate other)
+        public bool Equals(TemperatureGradient other)
         {
             return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another LapseRate within the given absolute or relative tolerance.
+        ///     Compare equality to another TemperatureGradient within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -434,7 +478,7 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(LapseRate other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(TemperatureGradient other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
@@ -448,7 +492,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current LapseRate.</returns>
+        /// <returns>A hash code for the current TemperatureGradient.</returns>
         public override int GetHashCode()
         {
             return new { QuantityType, Value, Unit }.GetHashCode();
@@ -458,13 +502,13 @@ namespace UnitsNet
 
         #region Conversion Methods
 
-        double IQuantity.As(object unit) => As((LapseRateUnit)unit);
+        double IQuantity.As(object unit) => As((TemperatureGradientUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(LapseRateUnit unit)
+        public double As(TemperatureGradientUnit unit)
         {
             if(Unit == unit)
                 return Convert.ToDouble(Value);
@@ -474,13 +518,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this LapseRate to another LapseRate with the unit representation <paramref name="unit" />.
+        ///     Converts this TemperatureGradient to another TemperatureGradient with the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>A LapseRate with the specified unit.</returns>
-        public LapseRate ToUnit(LapseRateUnit unit)
+        /// <returns>A TemperatureGradient with the specified unit.</returns>
+        public TemperatureGradient ToUnit(TemperatureGradientUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
-            return new LapseRate(convertedValue, unit);
+            return new TemperatureGradient(convertedValue, unit);
         }
 
         /// <summary>
@@ -492,13 +536,16 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case LapseRateUnit.DegreeCelsiusPerKilometer: return _value;
+                case TemperatureGradientUnit.DegreeCelsiusPerKilometer: return _value / 1e3;
+                case TemperatureGradientUnit.DegreeCelsiusPerMeter: return _value;
+                case TemperatureGradientUnit.DegreeFahrenheitPerFoot: return (_value / 0.3048) * 5/9;
+                case TemperatureGradientUnit.KelvinPerMeter: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(LapseRateUnit unit)
+        private double AsBaseNumericType(TemperatureGradientUnit unit)
         {
             if(Unit == unit)
                 return _value;
@@ -507,7 +554,10 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case LapseRateUnit.DegreeCelsiusPerKilometer: return baseUnitValue;
+                case TemperatureGradientUnit.DegreeCelsiusPerKilometer: return baseUnitValue * 1e3;
+                case TemperatureGradientUnit.DegreeCelsiusPerMeter: return baseUnitValue;
+                case TemperatureGradientUnit.DegreeFahrenheitPerFoot: return (baseUnitValue * 0.3048) * 9/5;
+                case TemperatureGradientUnit.KelvinPerMeter: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
