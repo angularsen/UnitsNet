@@ -42,6 +42,7 @@ namespace UnitsNet.Tests
         protected abstract double AcreFeetPerMinuteInOneCubicMeterPerSecond { get; }
         protected abstract double AcreFeetPerSecondInOneCubicMeterPerSecond { get; }
         protected abstract double CentilitersPerDayInOneCubicMeterPerSecond { get; }
+        protected abstract double CentilitersPerHourInOneCubicMeterPerSecond { get; }
         protected abstract double CentilitersPerMinuteInOneCubicMeterPerSecond { get; }
         protected abstract double CentilitersPerSecondInOneCubicMeterPerSecond { get; }
         protected abstract double CubicCentimetersPerMinuteInOneCubicMeterPerSecond { get; }
@@ -59,9 +60,11 @@ namespace UnitsNet.Tests
         protected abstract double CubicYardsPerMinuteInOneCubicMeterPerSecond { get; }
         protected abstract double CubicYardsPerSecondInOneCubicMeterPerSecond { get; }
         protected abstract double DecilitersPerDayInOneCubicMeterPerSecond { get; }
+        protected abstract double DecilitersPerHourInOneCubicMeterPerSecond { get; }
         protected abstract double DecilitersPerMinuteInOneCubicMeterPerSecond { get; }
         protected abstract double DecilitersPerSecondInOneCubicMeterPerSecond { get; }
         protected abstract double KilolitersPerDayInOneCubicMeterPerSecond { get; }
+        protected abstract double KilolitersPerHourInOneCubicMeterPerSecond { get; }
         protected abstract double KilolitersPerMinuteInOneCubicMeterPerSecond { get; }
         protected abstract double KilolitersPerSecondInOneCubicMeterPerSecond { get; }
         protected abstract double KilousGallonsPerMinuteInOneCubicMeterPerSecond { get; }
@@ -72,13 +75,16 @@ namespace UnitsNet.Tests
         protected abstract double MegalitersPerDayInOneCubicMeterPerSecond { get; }
         protected abstract double MegaukGallonsPerSecondInOneCubicMeterPerSecond { get; }
         protected abstract double MicrolitersPerDayInOneCubicMeterPerSecond { get; }
+        protected abstract double MicrolitersPerHourInOneCubicMeterPerSecond { get; }
         protected abstract double MicrolitersPerMinuteInOneCubicMeterPerSecond { get; }
         protected abstract double MicrolitersPerSecondInOneCubicMeterPerSecond { get; }
         protected abstract double MillilitersPerDayInOneCubicMeterPerSecond { get; }
+        protected abstract double MillilitersPerHourInOneCubicMeterPerSecond { get; }
         protected abstract double MillilitersPerMinuteInOneCubicMeterPerSecond { get; }
         protected abstract double MillilitersPerSecondInOneCubicMeterPerSecond { get; }
         protected abstract double MillionUsGallonsPerDayInOneCubicMeterPerSecond { get; }
         protected abstract double NanolitersPerDayInOneCubicMeterPerSecond { get; }
+        protected abstract double NanolitersPerHourInOneCubicMeterPerSecond { get; }
         protected abstract double NanolitersPerMinuteInOneCubicMeterPerSecond { get; }
         protected abstract double NanolitersPerSecondInOneCubicMeterPerSecond { get; }
         protected abstract double OilBarrelsPerDayInOneCubicMeterPerSecond { get; }
@@ -100,6 +106,7 @@ namespace UnitsNet.Tests
         protected virtual double AcreFeetPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double AcreFeetPerSecondTolerance { get { return 1e-5; } }
         protected virtual double CentilitersPerDayTolerance { get { return 1e-5; } }
+        protected virtual double CentilitersPerHourTolerance { get { return 1e-5; } }
         protected virtual double CentilitersPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double CentilitersPerSecondTolerance { get { return 1e-5; } }
         protected virtual double CubicCentimetersPerMinuteTolerance { get { return 1e-5; } }
@@ -117,9 +124,11 @@ namespace UnitsNet.Tests
         protected virtual double CubicYardsPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double CubicYardsPerSecondTolerance { get { return 1e-5; } }
         protected virtual double DecilitersPerDayTolerance { get { return 1e-5; } }
+        protected virtual double DecilitersPerHourTolerance { get { return 1e-5; } }
         protected virtual double DecilitersPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double DecilitersPerSecondTolerance { get { return 1e-5; } }
         protected virtual double KilolitersPerDayTolerance { get { return 1e-5; } }
+        protected virtual double KilolitersPerHourTolerance { get { return 1e-5; } }
         protected virtual double KilolitersPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double KilolitersPerSecondTolerance { get { return 1e-5; } }
         protected virtual double KilousGallonsPerMinuteTolerance { get { return 1e-5; } }
@@ -130,13 +139,16 @@ namespace UnitsNet.Tests
         protected virtual double MegalitersPerDayTolerance { get { return 1e-5; } }
         protected virtual double MegaukGallonsPerSecondTolerance { get { return 1e-5; } }
         protected virtual double MicrolitersPerDayTolerance { get { return 1e-5; } }
+        protected virtual double MicrolitersPerHourTolerance { get { return 1e-5; } }
         protected virtual double MicrolitersPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double MicrolitersPerSecondTolerance { get { return 1e-5; } }
         protected virtual double MillilitersPerDayTolerance { get { return 1e-5; } }
+        protected virtual double MillilitersPerHourTolerance { get { return 1e-5; } }
         protected virtual double MillilitersPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double MillilitersPerSecondTolerance { get { return 1e-5; } }
         protected virtual double MillionUsGallonsPerDayTolerance { get { return 1e-5; } }
         protected virtual double NanolitersPerDayTolerance { get { return 1e-5; } }
+        protected virtual double NanolitersPerHourTolerance { get { return 1e-5; } }
         protected virtual double NanolitersPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double NanolitersPerSecondTolerance { get { return 1e-5; } }
         protected virtual double OilBarrelsPerDayTolerance { get { return 1e-5; } }
@@ -230,6 +242,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(AcreFeetPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.AcreFeetPerMinute, AcreFeetPerMinuteTolerance);
             AssertEx.EqualTolerance(AcreFeetPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.AcreFeetPerSecond, AcreFeetPerSecondTolerance);
             AssertEx.EqualTolerance(CentilitersPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.CentilitersPerDay, CentilitersPerDayTolerance);
+            AssertEx.EqualTolerance(CentilitersPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.CentilitersPerHour, CentilitersPerHourTolerance);
             AssertEx.EqualTolerance(CentilitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.CentilitersPerMinute, CentilitersPerMinuteTolerance);
             AssertEx.EqualTolerance(CentilitersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.CentilitersPerSecond, CentilitersPerSecondTolerance);
             AssertEx.EqualTolerance(CubicCentimetersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.CubicCentimetersPerMinute, CubicCentimetersPerMinuteTolerance);
@@ -247,9 +260,11 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(CubicYardsPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.CubicYardsPerMinute, CubicYardsPerMinuteTolerance);
             AssertEx.EqualTolerance(CubicYardsPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.CubicYardsPerSecond, CubicYardsPerSecondTolerance);
             AssertEx.EqualTolerance(DecilitersPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.DecilitersPerDay, DecilitersPerDayTolerance);
+            AssertEx.EqualTolerance(DecilitersPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.DecilitersPerHour, DecilitersPerHourTolerance);
             AssertEx.EqualTolerance(DecilitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.DecilitersPerMinute, DecilitersPerMinuteTolerance);
             AssertEx.EqualTolerance(DecilitersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.DecilitersPerSecond, DecilitersPerSecondTolerance);
             AssertEx.EqualTolerance(KilolitersPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.KilolitersPerDay, KilolitersPerDayTolerance);
+            AssertEx.EqualTolerance(KilolitersPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.KilolitersPerHour, KilolitersPerHourTolerance);
             AssertEx.EqualTolerance(KilolitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.KilolitersPerMinute, KilolitersPerMinuteTolerance);
             AssertEx.EqualTolerance(KilolitersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.KilolitersPerSecond, KilolitersPerSecondTolerance);
             AssertEx.EqualTolerance(KilousGallonsPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.KilousGallonsPerMinute, KilousGallonsPerMinuteTolerance);
@@ -260,13 +275,16 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MegalitersPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.MegalitersPerDay, MegalitersPerDayTolerance);
             AssertEx.EqualTolerance(MegaukGallonsPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.MegaukGallonsPerSecond, MegaukGallonsPerSecondTolerance);
             AssertEx.EqualTolerance(MicrolitersPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.MicrolitersPerDay, MicrolitersPerDayTolerance);
+            AssertEx.EqualTolerance(MicrolitersPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.MicrolitersPerHour, MicrolitersPerHourTolerance);
             AssertEx.EqualTolerance(MicrolitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.MicrolitersPerMinute, MicrolitersPerMinuteTolerance);
             AssertEx.EqualTolerance(MicrolitersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.MicrolitersPerSecond, MicrolitersPerSecondTolerance);
             AssertEx.EqualTolerance(MillilitersPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.MillilitersPerDay, MillilitersPerDayTolerance);
+            AssertEx.EqualTolerance(MillilitersPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.MillilitersPerHour, MillilitersPerHourTolerance);
             AssertEx.EqualTolerance(MillilitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.MillilitersPerMinute, MillilitersPerMinuteTolerance);
             AssertEx.EqualTolerance(MillilitersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.MillilitersPerSecond, MillilitersPerSecondTolerance);
             AssertEx.EqualTolerance(MillionUsGallonsPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.MillionUsGallonsPerDay, MillionUsGallonsPerDayTolerance);
             AssertEx.EqualTolerance(NanolitersPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.NanolitersPerDay, NanolitersPerDayTolerance);
+            AssertEx.EqualTolerance(NanolitersPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.NanolitersPerHour, NanolitersPerHourTolerance);
             AssertEx.EqualTolerance(NanolitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.NanolitersPerMinute, NanolitersPerMinuteTolerance);
             AssertEx.EqualTolerance(NanolitersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.NanolitersPerSecond, NanolitersPerSecondTolerance);
             AssertEx.EqualTolerance(OilBarrelsPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.OilBarrelsPerDay, OilBarrelsPerDayTolerance);
@@ -306,209 +324,233 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity04.CentilitersPerDay, CentilitersPerDayTolerance);
             Assert.Equal(VolumeFlowUnit.CentiliterPerDay, quantity04.Unit);
 
-            var quantity05 = VolumeFlow.From(1, VolumeFlowUnit.CentiliterPerMinute);
-            AssertEx.EqualTolerance(1, quantity05.CentilitersPerMinute, CentilitersPerMinuteTolerance);
-            Assert.Equal(VolumeFlowUnit.CentiliterPerMinute, quantity05.Unit);
+            var quantity05 = VolumeFlow.From(1, VolumeFlowUnit.CentiliterPerHour);
+            AssertEx.EqualTolerance(1, quantity05.CentilitersPerHour, CentilitersPerHourTolerance);
+            Assert.Equal(VolumeFlowUnit.CentiliterPerHour, quantity05.Unit);
 
-            var quantity06 = VolumeFlow.From(1, VolumeFlowUnit.CentiliterPerSecond);
-            AssertEx.EqualTolerance(1, quantity06.CentilitersPerSecond, CentilitersPerSecondTolerance);
-            Assert.Equal(VolumeFlowUnit.CentiliterPerSecond, quantity06.Unit);
+            var quantity06 = VolumeFlow.From(1, VolumeFlowUnit.CentiliterPerMinute);
+            AssertEx.EqualTolerance(1, quantity06.CentilitersPerMinute, CentilitersPerMinuteTolerance);
+            Assert.Equal(VolumeFlowUnit.CentiliterPerMinute, quantity06.Unit);
 
-            var quantity07 = VolumeFlow.From(1, VolumeFlowUnit.CubicCentimeterPerMinute);
-            AssertEx.EqualTolerance(1, quantity07.CubicCentimetersPerMinute, CubicCentimetersPerMinuteTolerance);
-            Assert.Equal(VolumeFlowUnit.CubicCentimeterPerMinute, quantity07.Unit);
+            var quantity07 = VolumeFlow.From(1, VolumeFlowUnit.CentiliterPerSecond);
+            AssertEx.EqualTolerance(1, quantity07.CentilitersPerSecond, CentilitersPerSecondTolerance);
+            Assert.Equal(VolumeFlowUnit.CentiliterPerSecond, quantity07.Unit);
 
-            var quantity08 = VolumeFlow.From(1, VolumeFlowUnit.CubicDecimeterPerMinute);
-            AssertEx.EqualTolerance(1, quantity08.CubicDecimetersPerMinute, CubicDecimetersPerMinuteTolerance);
-            Assert.Equal(VolumeFlowUnit.CubicDecimeterPerMinute, quantity08.Unit);
+            var quantity08 = VolumeFlow.From(1, VolumeFlowUnit.CubicCentimeterPerMinute);
+            AssertEx.EqualTolerance(1, quantity08.CubicCentimetersPerMinute, CubicCentimetersPerMinuteTolerance);
+            Assert.Equal(VolumeFlowUnit.CubicCentimeterPerMinute, quantity08.Unit);
 
-            var quantity09 = VolumeFlow.From(1, VolumeFlowUnit.CubicFootPerHour);
-            AssertEx.EqualTolerance(1, quantity09.CubicFeetPerHour, CubicFeetPerHourTolerance);
-            Assert.Equal(VolumeFlowUnit.CubicFootPerHour, quantity09.Unit);
+            var quantity09 = VolumeFlow.From(1, VolumeFlowUnit.CubicDecimeterPerMinute);
+            AssertEx.EqualTolerance(1, quantity09.CubicDecimetersPerMinute, CubicDecimetersPerMinuteTolerance);
+            Assert.Equal(VolumeFlowUnit.CubicDecimeterPerMinute, quantity09.Unit);
 
-            var quantity10 = VolumeFlow.From(1, VolumeFlowUnit.CubicFootPerMinute);
-            AssertEx.EqualTolerance(1, quantity10.CubicFeetPerMinute, CubicFeetPerMinuteTolerance);
-            Assert.Equal(VolumeFlowUnit.CubicFootPerMinute, quantity10.Unit);
+            var quantity10 = VolumeFlow.From(1, VolumeFlowUnit.CubicFootPerHour);
+            AssertEx.EqualTolerance(1, quantity10.CubicFeetPerHour, CubicFeetPerHourTolerance);
+            Assert.Equal(VolumeFlowUnit.CubicFootPerHour, quantity10.Unit);
 
-            var quantity11 = VolumeFlow.From(1, VolumeFlowUnit.CubicFootPerSecond);
-            AssertEx.EqualTolerance(1, quantity11.CubicFeetPerSecond, CubicFeetPerSecondTolerance);
-            Assert.Equal(VolumeFlowUnit.CubicFootPerSecond, quantity11.Unit);
+            var quantity11 = VolumeFlow.From(1, VolumeFlowUnit.CubicFootPerMinute);
+            AssertEx.EqualTolerance(1, quantity11.CubicFeetPerMinute, CubicFeetPerMinuteTolerance);
+            Assert.Equal(VolumeFlowUnit.CubicFootPerMinute, quantity11.Unit);
 
-            var quantity12 = VolumeFlow.From(1, VolumeFlowUnit.CubicMeterPerDay);
-            AssertEx.EqualTolerance(1, quantity12.CubicMetersPerDay, CubicMetersPerDayTolerance);
-            Assert.Equal(VolumeFlowUnit.CubicMeterPerDay, quantity12.Unit);
+            var quantity12 = VolumeFlow.From(1, VolumeFlowUnit.CubicFootPerSecond);
+            AssertEx.EqualTolerance(1, quantity12.CubicFeetPerSecond, CubicFeetPerSecondTolerance);
+            Assert.Equal(VolumeFlowUnit.CubicFootPerSecond, quantity12.Unit);
 
-            var quantity13 = VolumeFlow.From(1, VolumeFlowUnit.CubicMeterPerHour);
-            AssertEx.EqualTolerance(1, quantity13.CubicMetersPerHour, CubicMetersPerHourTolerance);
-            Assert.Equal(VolumeFlowUnit.CubicMeterPerHour, quantity13.Unit);
+            var quantity13 = VolumeFlow.From(1, VolumeFlowUnit.CubicMeterPerDay);
+            AssertEx.EqualTolerance(1, quantity13.CubicMetersPerDay, CubicMetersPerDayTolerance);
+            Assert.Equal(VolumeFlowUnit.CubicMeterPerDay, quantity13.Unit);
 
-            var quantity14 = VolumeFlow.From(1, VolumeFlowUnit.CubicMeterPerMinute);
-            AssertEx.EqualTolerance(1, quantity14.CubicMetersPerMinute, CubicMetersPerMinuteTolerance);
-            Assert.Equal(VolumeFlowUnit.CubicMeterPerMinute, quantity14.Unit);
+            var quantity14 = VolumeFlow.From(1, VolumeFlowUnit.CubicMeterPerHour);
+            AssertEx.EqualTolerance(1, quantity14.CubicMetersPerHour, CubicMetersPerHourTolerance);
+            Assert.Equal(VolumeFlowUnit.CubicMeterPerHour, quantity14.Unit);
 
-            var quantity15 = VolumeFlow.From(1, VolumeFlowUnit.CubicMeterPerSecond);
-            AssertEx.EqualTolerance(1, quantity15.CubicMetersPerSecond, CubicMetersPerSecondTolerance);
-            Assert.Equal(VolumeFlowUnit.CubicMeterPerSecond, quantity15.Unit);
+            var quantity15 = VolumeFlow.From(1, VolumeFlowUnit.CubicMeterPerMinute);
+            AssertEx.EqualTolerance(1, quantity15.CubicMetersPerMinute, CubicMetersPerMinuteTolerance);
+            Assert.Equal(VolumeFlowUnit.CubicMeterPerMinute, quantity15.Unit);
 
-            var quantity16 = VolumeFlow.From(1, VolumeFlowUnit.CubicMillimeterPerSecond);
-            AssertEx.EqualTolerance(1, quantity16.CubicMillimetersPerSecond, CubicMillimetersPerSecondTolerance);
-            Assert.Equal(VolumeFlowUnit.CubicMillimeterPerSecond, quantity16.Unit);
+            var quantity16 = VolumeFlow.From(1, VolumeFlowUnit.CubicMeterPerSecond);
+            AssertEx.EqualTolerance(1, quantity16.CubicMetersPerSecond, CubicMetersPerSecondTolerance);
+            Assert.Equal(VolumeFlowUnit.CubicMeterPerSecond, quantity16.Unit);
 
-            var quantity17 = VolumeFlow.From(1, VolumeFlowUnit.CubicYardPerDay);
-            AssertEx.EqualTolerance(1, quantity17.CubicYardsPerDay, CubicYardsPerDayTolerance);
-            Assert.Equal(VolumeFlowUnit.CubicYardPerDay, quantity17.Unit);
+            var quantity17 = VolumeFlow.From(1, VolumeFlowUnit.CubicMillimeterPerSecond);
+            AssertEx.EqualTolerance(1, quantity17.CubicMillimetersPerSecond, CubicMillimetersPerSecondTolerance);
+            Assert.Equal(VolumeFlowUnit.CubicMillimeterPerSecond, quantity17.Unit);
 
-            var quantity18 = VolumeFlow.From(1, VolumeFlowUnit.CubicYardPerHour);
-            AssertEx.EqualTolerance(1, quantity18.CubicYardsPerHour, CubicYardsPerHourTolerance);
-            Assert.Equal(VolumeFlowUnit.CubicYardPerHour, quantity18.Unit);
+            var quantity18 = VolumeFlow.From(1, VolumeFlowUnit.CubicYardPerDay);
+            AssertEx.EqualTolerance(1, quantity18.CubicYardsPerDay, CubicYardsPerDayTolerance);
+            Assert.Equal(VolumeFlowUnit.CubicYardPerDay, quantity18.Unit);
 
-            var quantity19 = VolumeFlow.From(1, VolumeFlowUnit.CubicYardPerMinute);
-            AssertEx.EqualTolerance(1, quantity19.CubicYardsPerMinute, CubicYardsPerMinuteTolerance);
-            Assert.Equal(VolumeFlowUnit.CubicYardPerMinute, quantity19.Unit);
+            var quantity19 = VolumeFlow.From(1, VolumeFlowUnit.CubicYardPerHour);
+            AssertEx.EqualTolerance(1, quantity19.CubicYardsPerHour, CubicYardsPerHourTolerance);
+            Assert.Equal(VolumeFlowUnit.CubicYardPerHour, quantity19.Unit);
 
-            var quantity20 = VolumeFlow.From(1, VolumeFlowUnit.CubicYardPerSecond);
-            AssertEx.EqualTolerance(1, quantity20.CubicYardsPerSecond, CubicYardsPerSecondTolerance);
-            Assert.Equal(VolumeFlowUnit.CubicYardPerSecond, quantity20.Unit);
+            var quantity20 = VolumeFlow.From(1, VolumeFlowUnit.CubicYardPerMinute);
+            AssertEx.EqualTolerance(1, quantity20.CubicYardsPerMinute, CubicYardsPerMinuteTolerance);
+            Assert.Equal(VolumeFlowUnit.CubicYardPerMinute, quantity20.Unit);
 
-            var quantity21 = VolumeFlow.From(1, VolumeFlowUnit.DeciliterPerDay);
-            AssertEx.EqualTolerance(1, quantity21.DecilitersPerDay, DecilitersPerDayTolerance);
-            Assert.Equal(VolumeFlowUnit.DeciliterPerDay, quantity21.Unit);
+            var quantity21 = VolumeFlow.From(1, VolumeFlowUnit.CubicYardPerSecond);
+            AssertEx.EqualTolerance(1, quantity21.CubicYardsPerSecond, CubicYardsPerSecondTolerance);
+            Assert.Equal(VolumeFlowUnit.CubicYardPerSecond, quantity21.Unit);
 
-            var quantity22 = VolumeFlow.From(1, VolumeFlowUnit.DeciliterPerMinute);
-            AssertEx.EqualTolerance(1, quantity22.DecilitersPerMinute, DecilitersPerMinuteTolerance);
-            Assert.Equal(VolumeFlowUnit.DeciliterPerMinute, quantity22.Unit);
+            var quantity22 = VolumeFlow.From(1, VolumeFlowUnit.DeciliterPerDay);
+            AssertEx.EqualTolerance(1, quantity22.DecilitersPerDay, DecilitersPerDayTolerance);
+            Assert.Equal(VolumeFlowUnit.DeciliterPerDay, quantity22.Unit);
 
-            var quantity23 = VolumeFlow.From(1, VolumeFlowUnit.DeciliterPerSecond);
-            AssertEx.EqualTolerance(1, quantity23.DecilitersPerSecond, DecilitersPerSecondTolerance);
-            Assert.Equal(VolumeFlowUnit.DeciliterPerSecond, quantity23.Unit);
+            var quantity23 = VolumeFlow.From(1, VolumeFlowUnit.DeciliterPerHour);
+            AssertEx.EqualTolerance(1, quantity23.DecilitersPerHour, DecilitersPerHourTolerance);
+            Assert.Equal(VolumeFlowUnit.DeciliterPerHour, quantity23.Unit);
 
-            var quantity24 = VolumeFlow.From(1, VolumeFlowUnit.KiloliterPerDay);
-            AssertEx.EqualTolerance(1, quantity24.KilolitersPerDay, KilolitersPerDayTolerance);
-            Assert.Equal(VolumeFlowUnit.KiloliterPerDay, quantity24.Unit);
+            var quantity24 = VolumeFlow.From(1, VolumeFlowUnit.DeciliterPerMinute);
+            AssertEx.EqualTolerance(1, quantity24.DecilitersPerMinute, DecilitersPerMinuteTolerance);
+            Assert.Equal(VolumeFlowUnit.DeciliterPerMinute, quantity24.Unit);
 
-            var quantity25 = VolumeFlow.From(1, VolumeFlowUnit.KiloliterPerMinute);
-            AssertEx.EqualTolerance(1, quantity25.KilolitersPerMinute, KilolitersPerMinuteTolerance);
-            Assert.Equal(VolumeFlowUnit.KiloliterPerMinute, quantity25.Unit);
+            var quantity25 = VolumeFlow.From(1, VolumeFlowUnit.DeciliterPerSecond);
+            AssertEx.EqualTolerance(1, quantity25.DecilitersPerSecond, DecilitersPerSecondTolerance);
+            Assert.Equal(VolumeFlowUnit.DeciliterPerSecond, quantity25.Unit);
 
-            var quantity26 = VolumeFlow.From(1, VolumeFlowUnit.KiloliterPerSecond);
-            AssertEx.EqualTolerance(1, quantity26.KilolitersPerSecond, KilolitersPerSecondTolerance);
-            Assert.Equal(VolumeFlowUnit.KiloliterPerSecond, quantity26.Unit);
+            var quantity26 = VolumeFlow.From(1, VolumeFlowUnit.KiloliterPerDay);
+            AssertEx.EqualTolerance(1, quantity26.KilolitersPerDay, KilolitersPerDayTolerance);
+            Assert.Equal(VolumeFlowUnit.KiloliterPerDay, quantity26.Unit);
 
-            var quantity27 = VolumeFlow.From(1, VolumeFlowUnit.KilousGallonPerMinute);
-            AssertEx.EqualTolerance(1, quantity27.KilousGallonsPerMinute, KilousGallonsPerMinuteTolerance);
-            Assert.Equal(VolumeFlowUnit.KilousGallonPerMinute, quantity27.Unit);
+            var quantity27 = VolumeFlow.From(1, VolumeFlowUnit.KiloliterPerHour);
+            AssertEx.EqualTolerance(1, quantity27.KilolitersPerHour, KilolitersPerHourTolerance);
+            Assert.Equal(VolumeFlowUnit.KiloliterPerHour, quantity27.Unit);
 
-            var quantity28 = VolumeFlow.From(1, VolumeFlowUnit.LiterPerDay);
-            AssertEx.EqualTolerance(1, quantity28.LitersPerDay, LitersPerDayTolerance);
-            Assert.Equal(VolumeFlowUnit.LiterPerDay, quantity28.Unit);
+            var quantity28 = VolumeFlow.From(1, VolumeFlowUnit.KiloliterPerMinute);
+            AssertEx.EqualTolerance(1, quantity28.KilolitersPerMinute, KilolitersPerMinuteTolerance);
+            Assert.Equal(VolumeFlowUnit.KiloliterPerMinute, quantity28.Unit);
 
-            var quantity29 = VolumeFlow.From(1, VolumeFlowUnit.LiterPerHour);
-            AssertEx.EqualTolerance(1, quantity29.LitersPerHour, LitersPerHourTolerance);
-            Assert.Equal(VolumeFlowUnit.LiterPerHour, quantity29.Unit);
+            var quantity29 = VolumeFlow.From(1, VolumeFlowUnit.KiloliterPerSecond);
+            AssertEx.EqualTolerance(1, quantity29.KilolitersPerSecond, KilolitersPerSecondTolerance);
+            Assert.Equal(VolumeFlowUnit.KiloliterPerSecond, quantity29.Unit);
 
-            var quantity30 = VolumeFlow.From(1, VolumeFlowUnit.LiterPerMinute);
-            AssertEx.EqualTolerance(1, quantity30.LitersPerMinute, LitersPerMinuteTolerance);
-            Assert.Equal(VolumeFlowUnit.LiterPerMinute, quantity30.Unit);
+            var quantity30 = VolumeFlow.From(1, VolumeFlowUnit.KilousGallonPerMinute);
+            AssertEx.EqualTolerance(1, quantity30.KilousGallonsPerMinute, KilousGallonsPerMinuteTolerance);
+            Assert.Equal(VolumeFlowUnit.KilousGallonPerMinute, quantity30.Unit);
 
-            var quantity31 = VolumeFlow.From(1, VolumeFlowUnit.LiterPerSecond);
-            AssertEx.EqualTolerance(1, quantity31.LitersPerSecond, LitersPerSecondTolerance);
-            Assert.Equal(VolumeFlowUnit.LiterPerSecond, quantity31.Unit);
+            var quantity31 = VolumeFlow.From(1, VolumeFlowUnit.LiterPerDay);
+            AssertEx.EqualTolerance(1, quantity31.LitersPerDay, LitersPerDayTolerance);
+            Assert.Equal(VolumeFlowUnit.LiterPerDay, quantity31.Unit);
 
-            var quantity32 = VolumeFlow.From(1, VolumeFlowUnit.MegaliterPerDay);
-            AssertEx.EqualTolerance(1, quantity32.MegalitersPerDay, MegalitersPerDayTolerance);
-            Assert.Equal(VolumeFlowUnit.MegaliterPerDay, quantity32.Unit);
+            var quantity32 = VolumeFlow.From(1, VolumeFlowUnit.LiterPerHour);
+            AssertEx.EqualTolerance(1, quantity32.LitersPerHour, LitersPerHourTolerance);
+            Assert.Equal(VolumeFlowUnit.LiterPerHour, quantity32.Unit);
 
-            var quantity33 = VolumeFlow.From(1, VolumeFlowUnit.MegaukGallonPerSecond);
-            AssertEx.EqualTolerance(1, quantity33.MegaukGallonsPerSecond, MegaukGallonsPerSecondTolerance);
-            Assert.Equal(VolumeFlowUnit.MegaukGallonPerSecond, quantity33.Unit);
+            var quantity33 = VolumeFlow.From(1, VolumeFlowUnit.LiterPerMinute);
+            AssertEx.EqualTolerance(1, quantity33.LitersPerMinute, LitersPerMinuteTolerance);
+            Assert.Equal(VolumeFlowUnit.LiterPerMinute, quantity33.Unit);
 
-            var quantity34 = VolumeFlow.From(1, VolumeFlowUnit.MicroliterPerDay);
-            AssertEx.EqualTolerance(1, quantity34.MicrolitersPerDay, MicrolitersPerDayTolerance);
-            Assert.Equal(VolumeFlowUnit.MicroliterPerDay, quantity34.Unit);
+            var quantity34 = VolumeFlow.From(1, VolumeFlowUnit.LiterPerSecond);
+            AssertEx.EqualTolerance(1, quantity34.LitersPerSecond, LitersPerSecondTolerance);
+            Assert.Equal(VolumeFlowUnit.LiterPerSecond, quantity34.Unit);
 
-            var quantity35 = VolumeFlow.From(1, VolumeFlowUnit.MicroliterPerMinute);
-            AssertEx.EqualTolerance(1, quantity35.MicrolitersPerMinute, MicrolitersPerMinuteTolerance);
-            Assert.Equal(VolumeFlowUnit.MicroliterPerMinute, quantity35.Unit);
+            var quantity35 = VolumeFlow.From(1, VolumeFlowUnit.MegaliterPerDay);
+            AssertEx.EqualTolerance(1, quantity35.MegalitersPerDay, MegalitersPerDayTolerance);
+            Assert.Equal(VolumeFlowUnit.MegaliterPerDay, quantity35.Unit);
 
-            var quantity36 = VolumeFlow.From(1, VolumeFlowUnit.MicroliterPerSecond);
-            AssertEx.EqualTolerance(1, quantity36.MicrolitersPerSecond, MicrolitersPerSecondTolerance);
-            Assert.Equal(VolumeFlowUnit.MicroliterPerSecond, quantity36.Unit);
+            var quantity36 = VolumeFlow.From(1, VolumeFlowUnit.MegaukGallonPerSecond);
+            AssertEx.EqualTolerance(1, quantity36.MegaukGallonsPerSecond, MegaukGallonsPerSecondTolerance);
+            Assert.Equal(VolumeFlowUnit.MegaukGallonPerSecond, quantity36.Unit);
 
-            var quantity37 = VolumeFlow.From(1, VolumeFlowUnit.MilliliterPerDay);
-            AssertEx.EqualTolerance(1, quantity37.MillilitersPerDay, MillilitersPerDayTolerance);
-            Assert.Equal(VolumeFlowUnit.MilliliterPerDay, quantity37.Unit);
+            var quantity37 = VolumeFlow.From(1, VolumeFlowUnit.MicroliterPerDay);
+            AssertEx.EqualTolerance(1, quantity37.MicrolitersPerDay, MicrolitersPerDayTolerance);
+            Assert.Equal(VolumeFlowUnit.MicroliterPerDay, quantity37.Unit);
 
-            var quantity38 = VolumeFlow.From(1, VolumeFlowUnit.MilliliterPerMinute);
-            AssertEx.EqualTolerance(1, quantity38.MillilitersPerMinute, MillilitersPerMinuteTolerance);
-            Assert.Equal(VolumeFlowUnit.MilliliterPerMinute, quantity38.Unit);
+            var quantity38 = VolumeFlow.From(1, VolumeFlowUnit.MicroliterPerHour);
+            AssertEx.EqualTolerance(1, quantity38.MicrolitersPerHour, MicrolitersPerHourTolerance);
+            Assert.Equal(VolumeFlowUnit.MicroliterPerHour, quantity38.Unit);
 
-            var quantity39 = VolumeFlow.From(1, VolumeFlowUnit.MilliliterPerSecond);
-            AssertEx.EqualTolerance(1, quantity39.MillilitersPerSecond, MillilitersPerSecondTolerance);
-            Assert.Equal(VolumeFlowUnit.MilliliterPerSecond, quantity39.Unit);
+            var quantity39 = VolumeFlow.From(1, VolumeFlowUnit.MicroliterPerMinute);
+            AssertEx.EqualTolerance(1, quantity39.MicrolitersPerMinute, MicrolitersPerMinuteTolerance);
+            Assert.Equal(VolumeFlowUnit.MicroliterPerMinute, quantity39.Unit);
 
-            var quantity40 = VolumeFlow.From(1, VolumeFlowUnit.MillionUsGallonsPerDay);
-            AssertEx.EqualTolerance(1, quantity40.MillionUsGallonsPerDay, MillionUsGallonsPerDayTolerance);
-            Assert.Equal(VolumeFlowUnit.MillionUsGallonsPerDay, quantity40.Unit);
+            var quantity40 = VolumeFlow.From(1, VolumeFlowUnit.MicroliterPerSecond);
+            AssertEx.EqualTolerance(1, quantity40.MicrolitersPerSecond, MicrolitersPerSecondTolerance);
+            Assert.Equal(VolumeFlowUnit.MicroliterPerSecond, quantity40.Unit);
 
-            var quantity41 = VolumeFlow.From(1, VolumeFlowUnit.NanoliterPerDay);
-            AssertEx.EqualTolerance(1, quantity41.NanolitersPerDay, NanolitersPerDayTolerance);
-            Assert.Equal(VolumeFlowUnit.NanoliterPerDay, quantity41.Unit);
+            var quantity41 = VolumeFlow.From(1, VolumeFlowUnit.MilliliterPerDay);
+            AssertEx.EqualTolerance(1, quantity41.MillilitersPerDay, MillilitersPerDayTolerance);
+            Assert.Equal(VolumeFlowUnit.MilliliterPerDay, quantity41.Unit);
 
-            var quantity42 = VolumeFlow.From(1, VolumeFlowUnit.NanoliterPerMinute);
-            AssertEx.EqualTolerance(1, quantity42.NanolitersPerMinute, NanolitersPerMinuteTolerance);
-            Assert.Equal(VolumeFlowUnit.NanoliterPerMinute, quantity42.Unit);
+            var quantity42 = VolumeFlow.From(1, VolumeFlowUnit.MilliliterPerHour);
+            AssertEx.EqualTolerance(1, quantity42.MillilitersPerHour, MillilitersPerHourTolerance);
+            Assert.Equal(VolumeFlowUnit.MilliliterPerHour, quantity42.Unit);
 
-            var quantity43 = VolumeFlow.From(1, VolumeFlowUnit.NanoliterPerSecond);
-            AssertEx.EqualTolerance(1, quantity43.NanolitersPerSecond, NanolitersPerSecondTolerance);
-            Assert.Equal(VolumeFlowUnit.NanoliterPerSecond, quantity43.Unit);
+            var quantity43 = VolumeFlow.From(1, VolumeFlowUnit.MilliliterPerMinute);
+            AssertEx.EqualTolerance(1, quantity43.MillilitersPerMinute, MillilitersPerMinuteTolerance);
+            Assert.Equal(VolumeFlowUnit.MilliliterPerMinute, quantity43.Unit);
 
-            var quantity44 = VolumeFlow.From(1, VolumeFlowUnit.OilBarrelPerDay);
-            AssertEx.EqualTolerance(1, quantity44.OilBarrelsPerDay, OilBarrelsPerDayTolerance);
-            Assert.Equal(VolumeFlowUnit.OilBarrelPerDay, quantity44.Unit);
+            var quantity44 = VolumeFlow.From(1, VolumeFlowUnit.MilliliterPerSecond);
+            AssertEx.EqualTolerance(1, quantity44.MillilitersPerSecond, MillilitersPerSecondTolerance);
+            Assert.Equal(VolumeFlowUnit.MilliliterPerSecond, quantity44.Unit);
 
-            var quantity45 = VolumeFlow.From(1, VolumeFlowUnit.OilBarrelPerHour);
-            AssertEx.EqualTolerance(1, quantity45.OilBarrelsPerHour, OilBarrelsPerHourTolerance);
-            Assert.Equal(VolumeFlowUnit.OilBarrelPerHour, quantity45.Unit);
+            var quantity45 = VolumeFlow.From(1, VolumeFlowUnit.MillionUsGallonsPerDay);
+            AssertEx.EqualTolerance(1, quantity45.MillionUsGallonsPerDay, MillionUsGallonsPerDayTolerance);
+            Assert.Equal(VolumeFlowUnit.MillionUsGallonsPerDay, quantity45.Unit);
 
-            var quantity46 = VolumeFlow.From(1, VolumeFlowUnit.OilBarrelPerMinute);
-            AssertEx.EqualTolerance(1, quantity46.OilBarrelsPerMinute, OilBarrelsPerMinuteTolerance);
-            Assert.Equal(VolumeFlowUnit.OilBarrelPerMinute, quantity46.Unit);
+            var quantity46 = VolumeFlow.From(1, VolumeFlowUnit.NanoliterPerDay);
+            AssertEx.EqualTolerance(1, quantity46.NanolitersPerDay, NanolitersPerDayTolerance);
+            Assert.Equal(VolumeFlowUnit.NanoliterPerDay, quantity46.Unit);
 
-            var quantity47 = VolumeFlow.From(1, VolumeFlowUnit.OilBarrelPerSecond);
-            AssertEx.EqualTolerance(1, quantity47.OilBarrelsPerSecond, OilBarrelsPerSecondTolerance);
-            Assert.Equal(VolumeFlowUnit.OilBarrelPerSecond, quantity47.Unit);
+            var quantity47 = VolumeFlow.From(1, VolumeFlowUnit.NanoliterPerHour);
+            AssertEx.EqualTolerance(1, quantity47.NanolitersPerHour, NanolitersPerHourTolerance);
+            Assert.Equal(VolumeFlowUnit.NanoliterPerHour, quantity47.Unit);
 
-            var quantity48 = VolumeFlow.From(1, VolumeFlowUnit.UkGallonPerDay);
-            AssertEx.EqualTolerance(1, quantity48.UkGallonsPerDay, UkGallonsPerDayTolerance);
-            Assert.Equal(VolumeFlowUnit.UkGallonPerDay, quantity48.Unit);
+            var quantity48 = VolumeFlow.From(1, VolumeFlowUnit.NanoliterPerMinute);
+            AssertEx.EqualTolerance(1, quantity48.NanolitersPerMinute, NanolitersPerMinuteTolerance);
+            Assert.Equal(VolumeFlowUnit.NanoliterPerMinute, quantity48.Unit);
 
-            var quantity49 = VolumeFlow.From(1, VolumeFlowUnit.UkGallonPerHour);
-            AssertEx.EqualTolerance(1, quantity49.UkGallonsPerHour, UkGallonsPerHourTolerance);
-            Assert.Equal(VolumeFlowUnit.UkGallonPerHour, quantity49.Unit);
+            var quantity49 = VolumeFlow.From(1, VolumeFlowUnit.NanoliterPerSecond);
+            AssertEx.EqualTolerance(1, quantity49.NanolitersPerSecond, NanolitersPerSecondTolerance);
+            Assert.Equal(VolumeFlowUnit.NanoliterPerSecond, quantity49.Unit);
 
-            var quantity50 = VolumeFlow.From(1, VolumeFlowUnit.UkGallonPerMinute);
-            AssertEx.EqualTolerance(1, quantity50.UkGallonsPerMinute, UkGallonsPerMinuteTolerance);
-            Assert.Equal(VolumeFlowUnit.UkGallonPerMinute, quantity50.Unit);
+            var quantity50 = VolumeFlow.From(1, VolumeFlowUnit.OilBarrelPerDay);
+            AssertEx.EqualTolerance(1, quantity50.OilBarrelsPerDay, OilBarrelsPerDayTolerance);
+            Assert.Equal(VolumeFlowUnit.OilBarrelPerDay, quantity50.Unit);
 
-            var quantity51 = VolumeFlow.From(1, VolumeFlowUnit.UkGallonPerSecond);
-            AssertEx.EqualTolerance(1, quantity51.UkGallonsPerSecond, UkGallonsPerSecondTolerance);
-            Assert.Equal(VolumeFlowUnit.UkGallonPerSecond, quantity51.Unit);
+            var quantity51 = VolumeFlow.From(1, VolumeFlowUnit.OilBarrelPerHour);
+            AssertEx.EqualTolerance(1, quantity51.OilBarrelsPerHour, OilBarrelsPerHourTolerance);
+            Assert.Equal(VolumeFlowUnit.OilBarrelPerHour, quantity51.Unit);
 
-            var quantity52 = VolumeFlow.From(1, VolumeFlowUnit.UsGallonPerDay);
-            AssertEx.EqualTolerance(1, quantity52.UsGallonsPerDay, UsGallonsPerDayTolerance);
-            Assert.Equal(VolumeFlowUnit.UsGallonPerDay, quantity52.Unit);
+            var quantity52 = VolumeFlow.From(1, VolumeFlowUnit.OilBarrelPerMinute);
+            AssertEx.EqualTolerance(1, quantity52.OilBarrelsPerMinute, OilBarrelsPerMinuteTolerance);
+            Assert.Equal(VolumeFlowUnit.OilBarrelPerMinute, quantity52.Unit);
 
-            var quantity53 = VolumeFlow.From(1, VolumeFlowUnit.UsGallonPerHour);
-            AssertEx.EqualTolerance(1, quantity53.UsGallonsPerHour, UsGallonsPerHourTolerance);
-            Assert.Equal(VolumeFlowUnit.UsGallonPerHour, quantity53.Unit);
+            var quantity53 = VolumeFlow.From(1, VolumeFlowUnit.OilBarrelPerSecond);
+            AssertEx.EqualTolerance(1, quantity53.OilBarrelsPerSecond, OilBarrelsPerSecondTolerance);
+            Assert.Equal(VolumeFlowUnit.OilBarrelPerSecond, quantity53.Unit);
 
-            var quantity54 = VolumeFlow.From(1, VolumeFlowUnit.UsGallonPerMinute);
-            AssertEx.EqualTolerance(1, quantity54.UsGallonsPerMinute, UsGallonsPerMinuteTolerance);
-            Assert.Equal(VolumeFlowUnit.UsGallonPerMinute, quantity54.Unit);
+            var quantity54 = VolumeFlow.From(1, VolumeFlowUnit.UkGallonPerDay);
+            AssertEx.EqualTolerance(1, quantity54.UkGallonsPerDay, UkGallonsPerDayTolerance);
+            Assert.Equal(VolumeFlowUnit.UkGallonPerDay, quantity54.Unit);
 
-            var quantity55 = VolumeFlow.From(1, VolumeFlowUnit.UsGallonPerSecond);
-            AssertEx.EqualTolerance(1, quantity55.UsGallonsPerSecond, UsGallonsPerSecondTolerance);
-            Assert.Equal(VolumeFlowUnit.UsGallonPerSecond, quantity55.Unit);
+            var quantity55 = VolumeFlow.From(1, VolumeFlowUnit.UkGallonPerHour);
+            AssertEx.EqualTolerance(1, quantity55.UkGallonsPerHour, UkGallonsPerHourTolerance);
+            Assert.Equal(VolumeFlowUnit.UkGallonPerHour, quantity55.Unit);
+
+            var quantity56 = VolumeFlow.From(1, VolumeFlowUnit.UkGallonPerMinute);
+            AssertEx.EqualTolerance(1, quantity56.UkGallonsPerMinute, UkGallonsPerMinuteTolerance);
+            Assert.Equal(VolumeFlowUnit.UkGallonPerMinute, quantity56.Unit);
+
+            var quantity57 = VolumeFlow.From(1, VolumeFlowUnit.UkGallonPerSecond);
+            AssertEx.EqualTolerance(1, quantity57.UkGallonsPerSecond, UkGallonsPerSecondTolerance);
+            Assert.Equal(VolumeFlowUnit.UkGallonPerSecond, quantity57.Unit);
+
+            var quantity58 = VolumeFlow.From(1, VolumeFlowUnit.UsGallonPerDay);
+            AssertEx.EqualTolerance(1, quantity58.UsGallonsPerDay, UsGallonsPerDayTolerance);
+            Assert.Equal(VolumeFlowUnit.UsGallonPerDay, quantity58.Unit);
+
+            var quantity59 = VolumeFlow.From(1, VolumeFlowUnit.UsGallonPerHour);
+            AssertEx.EqualTolerance(1, quantity59.UsGallonsPerHour, UsGallonsPerHourTolerance);
+            Assert.Equal(VolumeFlowUnit.UsGallonPerHour, quantity59.Unit);
+
+            var quantity60 = VolumeFlow.From(1, VolumeFlowUnit.UsGallonPerMinute);
+            AssertEx.EqualTolerance(1, quantity60.UsGallonsPerMinute, UsGallonsPerMinuteTolerance);
+            Assert.Equal(VolumeFlowUnit.UsGallonPerMinute, quantity60.Unit);
+
+            var quantity61 = VolumeFlow.From(1, VolumeFlowUnit.UsGallonPerSecond);
+            AssertEx.EqualTolerance(1, quantity61.UsGallonsPerSecond, UsGallonsPerSecondTolerance);
+            Assert.Equal(VolumeFlowUnit.UsGallonPerSecond, quantity61.Unit);
 
         }
 
@@ -534,6 +576,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(AcreFeetPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.AcreFootPerMinute), AcreFeetPerMinuteTolerance);
             AssertEx.EqualTolerance(AcreFeetPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.AcreFootPerSecond), AcreFeetPerSecondTolerance);
             AssertEx.EqualTolerance(CentilitersPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.CentiliterPerDay), CentilitersPerDayTolerance);
+            AssertEx.EqualTolerance(CentilitersPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.CentiliterPerHour), CentilitersPerHourTolerance);
             AssertEx.EqualTolerance(CentilitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.CentiliterPerMinute), CentilitersPerMinuteTolerance);
             AssertEx.EqualTolerance(CentilitersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.CentiliterPerSecond), CentilitersPerSecondTolerance);
             AssertEx.EqualTolerance(CubicCentimetersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.CubicCentimeterPerMinute), CubicCentimetersPerMinuteTolerance);
@@ -551,9 +594,11 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(CubicYardsPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.CubicYardPerMinute), CubicYardsPerMinuteTolerance);
             AssertEx.EqualTolerance(CubicYardsPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.CubicYardPerSecond), CubicYardsPerSecondTolerance);
             AssertEx.EqualTolerance(DecilitersPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.DeciliterPerDay), DecilitersPerDayTolerance);
+            AssertEx.EqualTolerance(DecilitersPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.DeciliterPerHour), DecilitersPerHourTolerance);
             AssertEx.EqualTolerance(DecilitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.DeciliterPerMinute), DecilitersPerMinuteTolerance);
             AssertEx.EqualTolerance(DecilitersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.DeciliterPerSecond), DecilitersPerSecondTolerance);
             AssertEx.EqualTolerance(KilolitersPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.KiloliterPerDay), KilolitersPerDayTolerance);
+            AssertEx.EqualTolerance(KilolitersPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.KiloliterPerHour), KilolitersPerHourTolerance);
             AssertEx.EqualTolerance(KilolitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.KiloliterPerMinute), KilolitersPerMinuteTolerance);
             AssertEx.EqualTolerance(KilolitersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.KiloliterPerSecond), KilolitersPerSecondTolerance);
             AssertEx.EqualTolerance(KilousGallonsPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.KilousGallonPerMinute), KilousGallonsPerMinuteTolerance);
@@ -564,13 +609,16 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MegalitersPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.MegaliterPerDay), MegalitersPerDayTolerance);
             AssertEx.EqualTolerance(MegaukGallonsPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.MegaukGallonPerSecond), MegaukGallonsPerSecondTolerance);
             AssertEx.EqualTolerance(MicrolitersPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.MicroliterPerDay), MicrolitersPerDayTolerance);
+            AssertEx.EqualTolerance(MicrolitersPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.MicroliterPerHour), MicrolitersPerHourTolerance);
             AssertEx.EqualTolerance(MicrolitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.MicroliterPerMinute), MicrolitersPerMinuteTolerance);
             AssertEx.EqualTolerance(MicrolitersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.MicroliterPerSecond), MicrolitersPerSecondTolerance);
             AssertEx.EqualTolerance(MillilitersPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.MilliliterPerDay), MillilitersPerDayTolerance);
+            AssertEx.EqualTolerance(MillilitersPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.MilliliterPerHour), MillilitersPerHourTolerance);
             AssertEx.EqualTolerance(MillilitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.MilliliterPerMinute), MillilitersPerMinuteTolerance);
             AssertEx.EqualTolerance(MillilitersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.MilliliterPerSecond), MillilitersPerSecondTolerance);
             AssertEx.EqualTolerance(MillionUsGallonsPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.MillionUsGallonsPerDay), MillionUsGallonsPerDayTolerance);
             AssertEx.EqualTolerance(NanolitersPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.NanoliterPerDay), NanolitersPerDayTolerance);
+            AssertEx.EqualTolerance(NanolitersPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.NanoliterPerHour), NanolitersPerHourTolerance);
             AssertEx.EqualTolerance(NanolitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.NanoliterPerMinute), NanolitersPerMinuteTolerance);
             AssertEx.EqualTolerance(NanolitersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.NanoliterPerSecond), NanolitersPerSecondTolerance);
             AssertEx.EqualTolerance(OilBarrelsPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.OilBarrelPerDay), OilBarrelsPerDayTolerance);
@@ -628,6 +676,10 @@ namespace UnitsNet.Tests
             var centiliterperdayQuantity = cubicmeterpersecond.ToUnit(VolumeFlowUnit.CentiliterPerDay);
             AssertEx.EqualTolerance(CentilitersPerDayInOneCubicMeterPerSecond, (double)centiliterperdayQuantity.Value, CentilitersPerDayTolerance);
             Assert.Equal(VolumeFlowUnit.CentiliterPerDay, centiliterperdayQuantity.Unit);
+
+            var centiliterperhourQuantity = cubicmeterpersecond.ToUnit(VolumeFlowUnit.CentiliterPerHour);
+            AssertEx.EqualTolerance(CentilitersPerHourInOneCubicMeterPerSecond, (double)centiliterperhourQuantity.Value, CentilitersPerHourTolerance);
+            Assert.Equal(VolumeFlowUnit.CentiliterPerHour, centiliterperhourQuantity.Unit);
 
             var centiliterperminuteQuantity = cubicmeterpersecond.ToUnit(VolumeFlowUnit.CentiliterPerMinute);
             AssertEx.EqualTolerance(CentilitersPerMinuteInOneCubicMeterPerSecond, (double)centiliterperminuteQuantity.Value, CentilitersPerMinuteTolerance);
@@ -697,6 +749,10 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(DecilitersPerDayInOneCubicMeterPerSecond, (double)deciliterperdayQuantity.Value, DecilitersPerDayTolerance);
             Assert.Equal(VolumeFlowUnit.DeciliterPerDay, deciliterperdayQuantity.Unit);
 
+            var deciliterperhourQuantity = cubicmeterpersecond.ToUnit(VolumeFlowUnit.DeciliterPerHour);
+            AssertEx.EqualTolerance(DecilitersPerHourInOneCubicMeterPerSecond, (double)deciliterperhourQuantity.Value, DecilitersPerHourTolerance);
+            Assert.Equal(VolumeFlowUnit.DeciliterPerHour, deciliterperhourQuantity.Unit);
+
             var deciliterperminuteQuantity = cubicmeterpersecond.ToUnit(VolumeFlowUnit.DeciliterPerMinute);
             AssertEx.EqualTolerance(DecilitersPerMinuteInOneCubicMeterPerSecond, (double)deciliterperminuteQuantity.Value, DecilitersPerMinuteTolerance);
             Assert.Equal(VolumeFlowUnit.DeciliterPerMinute, deciliterperminuteQuantity.Unit);
@@ -708,6 +764,10 @@ namespace UnitsNet.Tests
             var kiloliterperdayQuantity = cubicmeterpersecond.ToUnit(VolumeFlowUnit.KiloliterPerDay);
             AssertEx.EqualTolerance(KilolitersPerDayInOneCubicMeterPerSecond, (double)kiloliterperdayQuantity.Value, KilolitersPerDayTolerance);
             Assert.Equal(VolumeFlowUnit.KiloliterPerDay, kiloliterperdayQuantity.Unit);
+
+            var kiloliterperhourQuantity = cubicmeterpersecond.ToUnit(VolumeFlowUnit.KiloliterPerHour);
+            AssertEx.EqualTolerance(KilolitersPerHourInOneCubicMeterPerSecond, (double)kiloliterperhourQuantity.Value, KilolitersPerHourTolerance);
+            Assert.Equal(VolumeFlowUnit.KiloliterPerHour, kiloliterperhourQuantity.Unit);
 
             var kiloliterperminuteQuantity = cubicmeterpersecond.ToUnit(VolumeFlowUnit.KiloliterPerMinute);
             AssertEx.EqualTolerance(KilolitersPerMinuteInOneCubicMeterPerSecond, (double)kiloliterperminuteQuantity.Value, KilolitersPerMinuteTolerance);
@@ -749,6 +809,10 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MicrolitersPerDayInOneCubicMeterPerSecond, (double)microliterperdayQuantity.Value, MicrolitersPerDayTolerance);
             Assert.Equal(VolumeFlowUnit.MicroliterPerDay, microliterperdayQuantity.Unit);
 
+            var microliterperhourQuantity = cubicmeterpersecond.ToUnit(VolumeFlowUnit.MicroliterPerHour);
+            AssertEx.EqualTolerance(MicrolitersPerHourInOneCubicMeterPerSecond, (double)microliterperhourQuantity.Value, MicrolitersPerHourTolerance);
+            Assert.Equal(VolumeFlowUnit.MicroliterPerHour, microliterperhourQuantity.Unit);
+
             var microliterperminuteQuantity = cubicmeterpersecond.ToUnit(VolumeFlowUnit.MicroliterPerMinute);
             AssertEx.EqualTolerance(MicrolitersPerMinuteInOneCubicMeterPerSecond, (double)microliterperminuteQuantity.Value, MicrolitersPerMinuteTolerance);
             Assert.Equal(VolumeFlowUnit.MicroliterPerMinute, microliterperminuteQuantity.Unit);
@@ -760,6 +824,10 @@ namespace UnitsNet.Tests
             var milliliterperdayQuantity = cubicmeterpersecond.ToUnit(VolumeFlowUnit.MilliliterPerDay);
             AssertEx.EqualTolerance(MillilitersPerDayInOneCubicMeterPerSecond, (double)milliliterperdayQuantity.Value, MillilitersPerDayTolerance);
             Assert.Equal(VolumeFlowUnit.MilliliterPerDay, milliliterperdayQuantity.Unit);
+
+            var milliliterperhourQuantity = cubicmeterpersecond.ToUnit(VolumeFlowUnit.MilliliterPerHour);
+            AssertEx.EqualTolerance(MillilitersPerHourInOneCubicMeterPerSecond, (double)milliliterperhourQuantity.Value, MillilitersPerHourTolerance);
+            Assert.Equal(VolumeFlowUnit.MilliliterPerHour, milliliterperhourQuantity.Unit);
 
             var milliliterperminuteQuantity = cubicmeterpersecond.ToUnit(VolumeFlowUnit.MilliliterPerMinute);
             AssertEx.EqualTolerance(MillilitersPerMinuteInOneCubicMeterPerSecond, (double)milliliterperminuteQuantity.Value, MillilitersPerMinuteTolerance);
@@ -776,6 +844,10 @@ namespace UnitsNet.Tests
             var nanoliterperdayQuantity = cubicmeterpersecond.ToUnit(VolumeFlowUnit.NanoliterPerDay);
             AssertEx.EqualTolerance(NanolitersPerDayInOneCubicMeterPerSecond, (double)nanoliterperdayQuantity.Value, NanolitersPerDayTolerance);
             Assert.Equal(VolumeFlowUnit.NanoliterPerDay, nanoliterperdayQuantity.Unit);
+
+            var nanoliterperhourQuantity = cubicmeterpersecond.ToUnit(VolumeFlowUnit.NanoliterPerHour);
+            AssertEx.EqualTolerance(NanolitersPerHourInOneCubicMeterPerSecond, (double)nanoliterperhourQuantity.Value, NanolitersPerHourTolerance);
+            Assert.Equal(VolumeFlowUnit.NanoliterPerHour, nanoliterperhourQuantity.Unit);
 
             var nanoliterperminuteQuantity = cubicmeterpersecond.ToUnit(VolumeFlowUnit.NanoliterPerMinute);
             AssertEx.EqualTolerance(NanolitersPerMinuteInOneCubicMeterPerSecond, (double)nanoliterperminuteQuantity.Value, NanolitersPerMinuteTolerance);
@@ -850,6 +922,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, VolumeFlow.FromAcreFeetPerMinute(cubicmeterpersecond.AcreFeetPerMinute).CubicMetersPerSecond, AcreFeetPerMinuteTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromAcreFeetPerSecond(cubicmeterpersecond.AcreFeetPerSecond).CubicMetersPerSecond, AcreFeetPerSecondTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromCentilitersPerDay(cubicmeterpersecond.CentilitersPerDay).CubicMetersPerSecond, CentilitersPerDayTolerance);
+            AssertEx.EqualTolerance(1, VolumeFlow.FromCentilitersPerHour(cubicmeterpersecond.CentilitersPerHour).CubicMetersPerSecond, CentilitersPerHourTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromCentilitersPerMinute(cubicmeterpersecond.CentilitersPerMinute).CubicMetersPerSecond, CentilitersPerMinuteTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromCentilitersPerSecond(cubicmeterpersecond.CentilitersPerSecond).CubicMetersPerSecond, CentilitersPerSecondTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromCubicCentimetersPerMinute(cubicmeterpersecond.CubicCentimetersPerMinute).CubicMetersPerSecond, CubicCentimetersPerMinuteTolerance);
@@ -867,9 +940,11 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, VolumeFlow.FromCubicYardsPerMinute(cubicmeterpersecond.CubicYardsPerMinute).CubicMetersPerSecond, CubicYardsPerMinuteTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromCubicYardsPerSecond(cubicmeterpersecond.CubicYardsPerSecond).CubicMetersPerSecond, CubicYardsPerSecondTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromDecilitersPerDay(cubicmeterpersecond.DecilitersPerDay).CubicMetersPerSecond, DecilitersPerDayTolerance);
+            AssertEx.EqualTolerance(1, VolumeFlow.FromDecilitersPerHour(cubicmeterpersecond.DecilitersPerHour).CubicMetersPerSecond, DecilitersPerHourTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromDecilitersPerMinute(cubicmeterpersecond.DecilitersPerMinute).CubicMetersPerSecond, DecilitersPerMinuteTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromDecilitersPerSecond(cubicmeterpersecond.DecilitersPerSecond).CubicMetersPerSecond, DecilitersPerSecondTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromKilolitersPerDay(cubicmeterpersecond.KilolitersPerDay).CubicMetersPerSecond, KilolitersPerDayTolerance);
+            AssertEx.EqualTolerance(1, VolumeFlow.FromKilolitersPerHour(cubicmeterpersecond.KilolitersPerHour).CubicMetersPerSecond, KilolitersPerHourTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromKilolitersPerMinute(cubicmeterpersecond.KilolitersPerMinute).CubicMetersPerSecond, KilolitersPerMinuteTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromKilolitersPerSecond(cubicmeterpersecond.KilolitersPerSecond).CubicMetersPerSecond, KilolitersPerSecondTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromKilousGallonsPerMinute(cubicmeterpersecond.KilousGallonsPerMinute).CubicMetersPerSecond, KilousGallonsPerMinuteTolerance);
@@ -880,13 +955,16 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, VolumeFlow.FromMegalitersPerDay(cubicmeterpersecond.MegalitersPerDay).CubicMetersPerSecond, MegalitersPerDayTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromMegaukGallonsPerSecond(cubicmeterpersecond.MegaukGallonsPerSecond).CubicMetersPerSecond, MegaukGallonsPerSecondTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromMicrolitersPerDay(cubicmeterpersecond.MicrolitersPerDay).CubicMetersPerSecond, MicrolitersPerDayTolerance);
+            AssertEx.EqualTolerance(1, VolumeFlow.FromMicrolitersPerHour(cubicmeterpersecond.MicrolitersPerHour).CubicMetersPerSecond, MicrolitersPerHourTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromMicrolitersPerMinute(cubicmeterpersecond.MicrolitersPerMinute).CubicMetersPerSecond, MicrolitersPerMinuteTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromMicrolitersPerSecond(cubicmeterpersecond.MicrolitersPerSecond).CubicMetersPerSecond, MicrolitersPerSecondTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromMillilitersPerDay(cubicmeterpersecond.MillilitersPerDay).CubicMetersPerSecond, MillilitersPerDayTolerance);
+            AssertEx.EqualTolerance(1, VolumeFlow.FromMillilitersPerHour(cubicmeterpersecond.MillilitersPerHour).CubicMetersPerSecond, MillilitersPerHourTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromMillilitersPerMinute(cubicmeterpersecond.MillilitersPerMinute).CubicMetersPerSecond, MillilitersPerMinuteTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromMillilitersPerSecond(cubicmeterpersecond.MillilitersPerSecond).CubicMetersPerSecond, MillilitersPerSecondTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromMillionUsGallonsPerDay(cubicmeterpersecond.MillionUsGallonsPerDay).CubicMetersPerSecond, MillionUsGallonsPerDayTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromNanolitersPerDay(cubicmeterpersecond.NanolitersPerDay).CubicMetersPerSecond, NanolitersPerDayTolerance);
+            AssertEx.EqualTolerance(1, VolumeFlow.FromNanolitersPerHour(cubicmeterpersecond.NanolitersPerHour).CubicMetersPerSecond, NanolitersPerHourTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromNanolitersPerMinute(cubicmeterpersecond.NanolitersPerMinute).CubicMetersPerSecond, NanolitersPerMinuteTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromNanolitersPerSecond(cubicmeterpersecond.NanolitersPerSecond).CubicMetersPerSecond, NanolitersPerSecondTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromOilBarrelsPerDay(cubicmeterpersecond.OilBarrelsPerDay).CubicMetersPerSecond, OilBarrelsPerDayTolerance);
@@ -1064,6 +1142,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 af/m", new VolumeFlow(1, VolumeFlowUnit.AcreFootPerMinute).ToString());
                 Assert.Equal("1 af/s", new VolumeFlow(1, VolumeFlowUnit.AcreFootPerSecond).ToString());
                 Assert.Equal("1 cl/day", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerDay).ToString());
+                Assert.Equal("1 cL/h", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerHour).ToString());
                 Assert.Equal("1 cL/min", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerMinute).ToString());
                 Assert.Equal("1 cL/s", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerSecond).ToString());
                 Assert.Equal("1 cm³/min", new VolumeFlow(1, VolumeFlowUnit.CubicCentimeterPerMinute).ToString());
@@ -1081,9 +1160,11 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 yd³/min", new VolumeFlow(1, VolumeFlowUnit.CubicYardPerMinute).ToString());
                 Assert.Equal("1 yd³/s", new VolumeFlow(1, VolumeFlowUnit.CubicYardPerSecond).ToString());
                 Assert.Equal("1 dl/day", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerDay).ToString());
+                Assert.Equal("1 dL/h", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerHour).ToString());
                 Assert.Equal("1 dL/min", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerMinute).ToString());
                 Assert.Equal("1 dL/s", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerSecond).ToString());
                 Assert.Equal("1 kl/day", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerDay).ToString());
+                Assert.Equal("1 kL/h", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerHour).ToString());
                 Assert.Equal("1 kL/min", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerMinute).ToString());
                 Assert.Equal("1 kL/s", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerSecond).ToString());
                 Assert.Equal("1 kgal (U.S.)/min", new VolumeFlow(1, VolumeFlowUnit.KilousGallonPerMinute).ToString());
@@ -1094,13 +1175,16 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 Ml/day", new VolumeFlow(1, VolumeFlowUnit.MegaliterPerDay).ToString());
                 Assert.Equal("1 Mgal (imp.)/s", new VolumeFlow(1, VolumeFlowUnit.MegaukGallonPerSecond).ToString());
                 Assert.Equal("1 µl/day", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerDay).ToString());
+                Assert.Equal("1 µL/h", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerHour).ToString());
                 Assert.Equal("1 µL/min", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerMinute).ToString());
                 Assert.Equal("1 µL/s", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerSecond).ToString());
                 Assert.Equal("1 ml/day", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerDay).ToString());
+                Assert.Equal("1 mL/h", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerHour).ToString());
                 Assert.Equal("1 mL/min", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerMinute).ToString());
                 Assert.Equal("1 mL/s", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerSecond).ToString());
                 Assert.Equal("1 MGD", new VolumeFlow(1, VolumeFlowUnit.MillionUsGallonsPerDay).ToString());
                 Assert.Equal("1 nl/day", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerDay).ToString());
+                Assert.Equal("1 nL/h", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerHour).ToString());
                 Assert.Equal("1 nL/min", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerMinute).ToString());
                 Assert.Equal("1 nL/s", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerSecond).ToString());
                 Assert.Equal("1 bbl/d", new VolumeFlow(1, VolumeFlowUnit.OilBarrelPerDay).ToString());
@@ -1133,6 +1217,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 af/m", new VolumeFlow(1, VolumeFlowUnit.AcreFootPerMinute).ToString(swedishCulture));
             Assert.Equal("1 af/s", new VolumeFlow(1, VolumeFlowUnit.AcreFootPerSecond).ToString(swedishCulture));
             Assert.Equal("1 cl/day", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerDay).ToString(swedishCulture));
+            Assert.Equal("1 cL/h", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerHour).ToString(swedishCulture));
             Assert.Equal("1 cL/min", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerMinute).ToString(swedishCulture));
             Assert.Equal("1 cL/s", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 cm³/min", new VolumeFlow(1, VolumeFlowUnit.CubicCentimeterPerMinute).ToString(swedishCulture));
@@ -1150,9 +1235,11 @@ namespace UnitsNet.Tests
             Assert.Equal("1 yd³/min", new VolumeFlow(1, VolumeFlowUnit.CubicYardPerMinute).ToString(swedishCulture));
             Assert.Equal("1 yd³/s", new VolumeFlow(1, VolumeFlowUnit.CubicYardPerSecond).ToString(swedishCulture));
             Assert.Equal("1 dl/day", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerDay).ToString(swedishCulture));
+            Assert.Equal("1 dL/h", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerHour).ToString(swedishCulture));
             Assert.Equal("1 dL/min", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerMinute).ToString(swedishCulture));
             Assert.Equal("1 dL/s", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 kl/day", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerDay).ToString(swedishCulture));
+            Assert.Equal("1 kL/h", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerHour).ToString(swedishCulture));
             Assert.Equal("1 kL/min", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerMinute).ToString(swedishCulture));
             Assert.Equal("1 kL/s", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 kgal (U.S.)/min", new VolumeFlow(1, VolumeFlowUnit.KilousGallonPerMinute).ToString(swedishCulture));
@@ -1163,13 +1250,16 @@ namespace UnitsNet.Tests
             Assert.Equal("1 Ml/day", new VolumeFlow(1, VolumeFlowUnit.MegaliterPerDay).ToString(swedishCulture));
             Assert.Equal("1 Mgal (imp.)/s", new VolumeFlow(1, VolumeFlowUnit.MegaukGallonPerSecond).ToString(swedishCulture));
             Assert.Equal("1 µl/day", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerDay).ToString(swedishCulture));
+            Assert.Equal("1 µL/h", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerHour).ToString(swedishCulture));
             Assert.Equal("1 µL/min", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerMinute).ToString(swedishCulture));
             Assert.Equal("1 µL/s", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 ml/day", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerDay).ToString(swedishCulture));
+            Assert.Equal("1 mL/h", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerHour).ToString(swedishCulture));
             Assert.Equal("1 mL/min", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerMinute).ToString(swedishCulture));
             Assert.Equal("1 mL/s", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 MGD", new VolumeFlow(1, VolumeFlowUnit.MillionUsGallonsPerDay).ToString(swedishCulture));
             Assert.Equal("1 nl/day", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerDay).ToString(swedishCulture));
+            Assert.Equal("1 nL/h", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerHour).ToString(swedishCulture));
             Assert.Equal("1 nL/min", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerMinute).ToString(swedishCulture));
             Assert.Equal("1 nL/s", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 bbl/d", new VolumeFlow(1, VolumeFlowUnit.OilBarrelPerDay).ToString(swedishCulture));

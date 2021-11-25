@@ -133,6 +133,18 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double CubicCentimetersPerMinuteInOneCubicMeterPerSecond => 6e7;
 
+        protected override double CentilitersPerHourInOneCubicMeterPerSecond => 3.6e8;
+
+        protected override double DecilitersPerHourInOneCubicMeterPerSecond => 3.6e7;
+
+        protected override double KilolitersPerHourInOneCubicMeterPerSecond => 3.6e3;
+
+        protected override double MicrolitersPerHourInOneCubicMeterPerSecond => 3.6e12;
+
+        protected override double MillilitersPerHourInOneCubicMeterPerSecond => 3.6e9;
+
+        protected override double NanolitersPerHourInOneCubicMeterPerSecond => 3.6e15;
+
         [Theory]
         [InlineData(20, 2, 40)]
         [InlineData(20, 62, 1240)]
