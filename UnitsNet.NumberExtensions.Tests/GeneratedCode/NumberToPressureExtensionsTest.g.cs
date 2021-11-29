@@ -149,6 +149,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Pressure.FromMillimetersOfMercury(2), 2.MillimetersOfMercury());
 
         [Fact]
+        public void NumberToMillimeterOfWaterColumnTest() =>
+            Assert.Equal(Pressure.FromMillimeterOfWaterColumn(2), 2.MillimeterOfWaterColumn());
+
+        [Fact]
         public void NumberToMillipascalsTest() =>
             Assert.Equal(Pressure.FromMillipascals(2), 2.Millipascals());
 

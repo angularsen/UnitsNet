@@ -233,6 +233,11 @@ namespace UnitsNet
         public double MillimetersOfMercury => As(PressureUnit.MillimeterOfMercury);
 
         /// <summary>
+        ///     Get Pressure in MillimeterOfWaterColumn.
+        /// </summary>
+        public double MillimeterOfWaterColumn => As(PressureUnit.MillimeterOfWaterColumn);
+
+        /// <summary>
         ///     Get Pressure in Millipascals.
         /// </summary>
         public double Millipascals => As(PressureUnit.Millipascal);
@@ -488,6 +493,12 @@ namespace UnitsNet
         public static Pressure FromMillimetersOfMercury(double millimetersofmercury) => new Pressure(millimetersofmercury, PressureUnit.MillimeterOfMercury);
 
         /// <summary>
+        ///     Get Pressure from MillimeterOfWaterColumn.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Pressure FromMillimeterOfWaterColumn(double millimeterofwatercolumn) => new Pressure(millimeterofwatercolumn, PressureUnit.MillimeterOfWaterColumn);
+
+        /// <summary>
         ///     Get Pressure from Millipascals.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -639,6 +650,7 @@ namespace UnitsNet
                 case PressureUnit.Micropascal: return (_value) * 1e-6d;
                 case PressureUnit.Millibar: return (_value*1e5) * 1e-3d;
                 case PressureUnit.MillimeterOfMercury: return _value/7.50061561302643e-3;
+                case PressureUnit.MillimeterOfWaterColumn: return _value*9.806650000000272e0;
                 case PressureUnit.Millipascal: return (_value) * 1e-3d;
                 case PressureUnit.NewtonPerSquareCentimeter: return _value*1e4;
                 case PressureUnit.NewtonPerSquareMeter: return _value;
@@ -697,6 +709,7 @@ namespace UnitsNet
                 case PressureUnit.Micropascal: return (baseUnitValue) / 1e-6d;
                 case PressureUnit.Millibar: return (baseUnitValue/1e5) / 1e-3d;
                 case PressureUnit.MillimeterOfMercury: return baseUnitValue*7.50061561302643e-3;
+                case PressureUnit.MillimeterOfWaterColumn: return baseUnitValue/9.806650000000272e0;
                 case PressureUnit.Millipascal: return (baseUnitValue) / 1e-3d;
                 case PressureUnit.NewtonPerSquareCentimeter: return baseUnitValue/1e4;
                 case PressureUnit.NewtonPerSquareMeter: return baseUnitValue;

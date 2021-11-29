@@ -1715,6 +1715,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Millibar, Pressure.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Pressure>(Pressure.BaseUnit, PressureUnit.MillimeterOfMercury, q => q.ToUnit(PressureUnit.MillimeterOfMercury));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.MillimeterOfMercury, Pressure.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<Pressure>(Pressure.BaseUnit, PressureUnit.MillimeterOfWaterColumn, q => q.ToUnit(PressureUnit.MillimeterOfWaterColumn));
+            unitConverter.SetConversionFunction<Pressure>(PressureUnit.MillimeterOfWaterColumn, Pressure.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Pressure>(Pressure.BaseUnit, PressureUnit.Millipascal, q => q.ToUnit(PressureUnit.Millipascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Millipascal, Pressure.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Pressure>(Pressure.BaseUnit, PressureUnit.NewtonPerSquareCentimeter, q => q.ToUnit(PressureUnit.NewtonPerSquareCentimeter));
