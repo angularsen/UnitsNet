@@ -347,7 +347,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "mm H2O" ]
+          "Abbreviations": [ "mmH2O", "mm wc" ]
         }
       ]
     },
@@ -359,7 +359,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "in H2O" ]
+          "Abbreviations": [ "inH2O", "inch wc", "wc" ]
         }
       ]
     },

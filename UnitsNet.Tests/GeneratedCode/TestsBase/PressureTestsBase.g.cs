@@ -927,7 +927,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 GPa", new Pressure(1, PressureUnit.Gigapascal).ToString());
                 Assert.Equal("1 hPa", new Pressure(1, PressureUnit.Hectopascal).ToString());
                 Assert.Equal("1 inHg", new Pressure(1, PressureUnit.InchOfMercury).ToString());
-                Assert.Equal("1 in H2O", new Pressure(1, PressureUnit.InchOfWaterColumn).ToString());
+                Assert.Equal("1 inH2O", new Pressure(1, PressureUnit.InchOfWaterColumn).ToString());
                 Assert.Equal("1 kbar", new Pressure(1, PressureUnit.Kilobar).ToString());
                 Assert.Equal("1 kgf/cm²", new Pressure(1, PressureUnit.KilogramForcePerSquareCentimeter).ToString());
                 Assert.Equal("1 kgf/m²", new Pressure(1, PressureUnit.KilogramForcePerSquareMeter).ToString());
@@ -947,7 +947,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 µPa", new Pressure(1, PressureUnit.Micropascal).ToString());
                 Assert.Equal("1 mbar", new Pressure(1, PressureUnit.Millibar).ToString());
                 Assert.Equal("1 mmHg", new Pressure(1, PressureUnit.MillimeterOfMercury).ToString());
-                Assert.Equal("1 mm H2O", new Pressure(1, PressureUnit.MillimeterOfWaterColumn).ToString());
+                Assert.Equal("1 mmH2O", new Pressure(1, PressureUnit.MillimeterOfWaterColumn).ToString());
                 Assert.Equal("1 mPa", new Pressure(1, PressureUnit.Millipascal).ToString());
                 Assert.Equal("1 N/cm²", new Pressure(1, PressureUnit.NewtonPerSquareCentimeter).ToString());
                 Assert.Equal("1 N/m²", new Pressure(1, PressureUnit.NewtonPerSquareMeter).ToString());
@@ -985,7 +985,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 GPa", new Pressure(1, PressureUnit.Gigapascal).ToString(swedishCulture));
             Assert.Equal("1 hPa", new Pressure(1, PressureUnit.Hectopascal).ToString(swedishCulture));
             Assert.Equal("1 inHg", new Pressure(1, PressureUnit.InchOfMercury).ToString(swedishCulture));
-            Assert.Equal("1 in H2O", new Pressure(1, PressureUnit.InchOfWaterColumn).ToString(swedishCulture));
+            Assert.Equal("1 inH2O", new Pressure(1, PressureUnit.InchOfWaterColumn).ToString(swedishCulture));
             Assert.Equal("1 kbar", new Pressure(1, PressureUnit.Kilobar).ToString(swedishCulture));
             Assert.Equal("1 kgf/cm²", new Pressure(1, PressureUnit.KilogramForcePerSquareCentimeter).ToString(swedishCulture));
             Assert.Equal("1 kgf/m²", new Pressure(1, PressureUnit.KilogramForcePerSquareMeter).ToString(swedishCulture));
@@ -1005,7 +1005,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 µPa", new Pressure(1, PressureUnit.Micropascal).ToString(swedishCulture));
             Assert.Equal("1 mbar", new Pressure(1, PressureUnit.Millibar).ToString(swedishCulture));
             Assert.Equal("1 mmHg", new Pressure(1, PressureUnit.MillimeterOfMercury).ToString(swedishCulture));
-            Assert.Equal("1 mm H2O", new Pressure(1, PressureUnit.MillimeterOfWaterColumn).ToString(swedishCulture));
+            Assert.Equal("1 mmH2O", new Pressure(1, PressureUnit.MillimeterOfWaterColumn).ToString(swedishCulture));
             Assert.Equal("1 mPa", new Pressure(1, PressureUnit.Millipascal).ToString(swedishCulture));
             Assert.Equal("1 N/cm²", new Pressure(1, PressureUnit.NewtonPerSquareCentimeter).ToString(swedishCulture));
             Assert.Equal("1 N/m²", new Pressure(1, PressureUnit.NewtonPerSquareMeter).ToString(swedishCulture));
