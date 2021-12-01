@@ -84,6 +84,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MillimetersOfMercuryInOnePascal => 7.50061561302643e-3;
 
+        protected override double MillimeterOfWaterColumnInOnePascal => 1.0197162129779283e-1;
+
         protected override double InchesOfMercuryInOnePascal => 2.95299830714159e-4;
 
         protected override double InchesOfWaterColumnInOnePascal => 4.014630786617777e-3;

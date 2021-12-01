@@ -204,12 +204,12 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "psi", "lb/in²" ],
-          "AbbreviationsForPrefixes": { "Kilo": [ "ksi", "kipf/in²" ]}
+          "AbbreviationsForPrefixes": { "Kilo": [ "ksi", "kipf/in²" ] }
         },
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "psi", "lb/in²" ],
-          "AbbreviationsForPrefixes": { "Kilo": [ "ksi", "kipf/in²" ]}
+          "AbbreviationsForPrefixes": { "Kilo": [ "ksi", "kipf/in²" ] }
         }
       ]
     },
@@ -340,6 +340,18 @@
       ]
     },
     {
+      "SingularName": "MillimeterOfWaterColumn",
+      "PluralName": "MillimeterOfWaterColumn",
+      "FromUnitToBaseFunc": "x*9.806650000000272e0",
+      "FromBaseToUnitFunc": "x/9.806650000000272e0",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mmH2O", "mm wc" ]
+        }
+      ]
+    },
+    {
       "SingularName": "InchOfWaterColumn",
       "PluralName": "InchesOfWaterColumn",
       "FromUnitToBaseFunc": "x*249.08890833333",
@@ -347,7 +359,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "wc" ]
+          "Abbreviations": [ "inH2O", "inch wc", "wc" ]
         }
       ]
     },
