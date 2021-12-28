@@ -29,9 +29,17 @@ if (!(Test-Path "$msbuildPath/nanoFramework")) {
   $webClient.DownloadFile("http://vsixgallery.com/feed/author/nanoframework", $vsixFeedXml)
   [xml]$feedDetails = Get-Content $vsixFeedXml
 
-  $extensionUrl = $feedDetails.feed.entry[1].content.src
+  foreach ($entry in $feedDetails.feed.entry)
+  {
+      if($entry.id -eq '455f2be5-bb07-451e-b351-a9faf3018dc9')
+      {
+          $extensionUrl = $entry.content.src
+          $extensionVersion = $entry.Vsix.Version
+          break
+      }
+  }
+
   $vsixPath = Join-Path -Path $tempDir -ChildPath "nf-extension.zip"
-  $extensionVersion = $feedDetails.feed.entry[0].Vsix.Version
   $webClient.DownloadFile($extensionUrl,$vsixPath)
   Expand-Archive -LiteralPath $vsixPath -DestinationPath $tempDir\nf-extension\ | Write-Host
 
