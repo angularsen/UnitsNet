@@ -218,6 +218,8 @@ Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "VolumeConcentration", "Volu
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "VolumeFlow", "VolumeFlow\VolumeFlow.nfproj", "{b22e47e1-9506-56e6-3d19-780b887d8cb3}"
 EndProject
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "VolumeFlowPerArea", "VolumeFlowPerArea\VolumeFlowPerArea.nfproj", "{753bcc52-c451-8b29-6ae7-520b02ee6960}"
+EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "VolumePerLength", "VolumePerLength\VolumePerLength.nfproj", "{b66e3a3e-7945-3d40-24ef-73fa6e1b8d41}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "VolumetricHeatCapacity", "VolumetricHeatCapacity\VolumetricHeatCapacity.nfproj", "{cd2b60c1-a4b5-36f2-afa3-6cf1031f9e7f}"
@@ -878,6 +880,12 @@ Global
 {b22e47e1-9506-56e6-3d19-780b887d8cb3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 {b22e47e1-9506-56e6-3d19-780b887d8cb3}.Release|Any CPU.Build.0 = Release|Any CPU
 {b22e47e1-9506-56e6-3d19-780b887d8cb3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+{753bcc52-c451-8b29-6ae7-520b02ee6960}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{753bcc52-c451-8b29-6ae7-520b02ee6960}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{753bcc52-c451-8b29-6ae7-520b02ee6960}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+{753bcc52-c451-8b29-6ae7-520b02ee6960}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{753bcc52-c451-8b29-6ae7-520b02ee6960}.Release|Any CPU.Build.0 = Release|Any CPU
+{753bcc52-c451-8b29-6ae7-520b02ee6960}.Release|Any CPU.Deploy.0 = Release|Any CPU
 {b66e3a3e-7945-3d40-24ef-73fa6e1b8d41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {b66e3a3e-7945-3d40-24ef-73fa6e1b8d41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {b66e3a3e-7945-3d40-24ef-73fa6e1b8d41}.Debug|Any CPU.Deploy.0 = Debug|Any CPU

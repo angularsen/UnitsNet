@@ -142,6 +142,7 @@ namespace UnitsNet.Tests
             Assertion(3, VolumeUnit.UsTeaspoon, Quantity.From(3, VolumeUnit.UsTeaspoon));
             Assertion(3, VolumeConcentrationUnit.PicolitersPerMililiter, Quantity.From(3, VolumeConcentrationUnit.PicolitersPerMililiter));
             Assertion(3, VolumeFlowUnit.UsGallonPerSecond, Quantity.From(3, VolumeFlowUnit.UsGallonPerSecond));
+            Assertion(3, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, Quantity.From(3, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter));
             Assertion(3, VolumePerLengthUnit.OilBarrelPerFoot, Quantity.From(3, VolumePerLengthUnit.OilBarrelPerFoot));
             Assertion(3, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, Quantity.From(3, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin));
             Assertion(3, WarpingMomentOfInertiaUnit.MillimeterToTheSixth, Quantity.From(3, WarpingMomentOfInertiaUnit.MillimeterToTheSixth));
@@ -260,6 +261,7 @@ namespace UnitsNet.Tests
             Assertion(Volume.Info, Volume.Zero);
             Assertion(VolumeConcentration.Info, VolumeConcentration.Zero);
             Assertion(VolumeFlow.Info, VolumeFlow.Zero);
+            Assertion(VolumeFlowPerArea.Info, VolumeFlowPerArea.Zero);
             Assertion(VolumePerLength.Info, VolumePerLength.Zero);
             Assertion(VolumetricHeatCapacity.Info, VolumetricHeatCapacity.Zero);
             Assertion(WarpingMomentOfInertia.Info, WarpingMomentOfInertia.Zero);
@@ -378,6 +380,7 @@ namespace UnitsNet.Tests
             Assertion(Volume.QuantityType, Volume.Zero);
             Assertion(VolumeConcentration.QuantityType, VolumeConcentration.Zero);
             Assertion(VolumeFlow.QuantityType, VolumeFlow.Zero);
+            Assertion(VolumeFlowPerArea.QuantityType, VolumeFlowPerArea.Zero);
             Assertion(VolumePerLength.QuantityType, VolumePerLength.Zero);
             Assertion(VolumetricHeatCapacity.QuantityType, VolumetricHeatCapacity.Zero);
             Assertion(WarpingMomentOfInertia.QuantityType, WarpingMomentOfInertia.Zero);
@@ -496,6 +499,7 @@ namespace UnitsNet.Tests
             Assertion(Volume.BaseDimensions, Volume.Zero);
             Assertion(VolumeConcentration.BaseDimensions, VolumeConcentration.Zero);
             Assertion(VolumeFlow.BaseDimensions, VolumeFlow.Zero);
+            Assertion(VolumeFlowPerArea.BaseDimensions, VolumeFlowPerArea.Zero);
             Assertion(VolumePerLength.BaseDimensions, VolumePerLength.Zero);
             Assertion(VolumetricHeatCapacity.BaseDimensions, VolumetricHeatCapacity.Zero);
             Assertion(WarpingMomentOfInertia.BaseDimensions, WarpingMomentOfInertia.Zero);

@@ -365,6 +365,9 @@ namespace UnitsNet
                 case VolumeFlowUnit volumeFlowUnit:
                     quantity = VolumeFlow.From(value, volumeFlowUnit);
                     return true;
+                case VolumeFlowPerAreaUnit volumeFlowPerAreaUnit:
+                    quantity = VolumeFlowPerArea.From(value, volumeFlowPerAreaUnit);
+                    return true;
                 case VolumePerLengthUnit volumePerLengthUnit:
                     quantity = VolumePerLength.From(value, volumePerLengthUnit);
                     return true;
@@ -747,6 +750,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(VolumeFlow))
                 return parser.TryParse<VolumeFlow, VolumeFlowUnit>(quantityString, formatProvider, VolumeFlow.From, out quantity);
+
+            if (quantityType == typeof(VolumeFlowPerArea))
+                return parser.TryParse<VolumeFlowPerArea, VolumeFlowPerAreaUnit>(quantityString, formatProvider, VolumeFlowPerArea.From, out quantity);
 
             if (quantityType == typeof(VolumePerLength))
                 return parser.TryParse<VolumePerLength, VolumePerLengthUnit>(quantityString, formatProvider, VolumePerLength.From, out quantity);
