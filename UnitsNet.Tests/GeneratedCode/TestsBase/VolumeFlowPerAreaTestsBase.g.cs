@@ -358,7 +358,7 @@ namespace UnitsNet.Tests
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 CFM/ft²", new VolumeFlowPerArea(1, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot).ToString());
-                Assert.Equal("1 m³/s·m²", new VolumeFlowPerArea(1, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter).ToString());
+                Assert.Equal("1 m³/(s·m²)", new VolumeFlowPerArea(1, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter).ToString());
             }
             finally
             {
@@ -373,7 +373,7 @@ namespace UnitsNet.Tests
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
             Assert.Equal("1 CFM/ft²", new VolumeFlowPerArea(1, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot).ToString(swedishCulture));
-            Assert.Equal("1 m³/s·m²", new VolumeFlowPerArea(1, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter).ToString(swedishCulture));
+            Assert.Equal("1 m³/(s·m²)", new VolumeFlowPerArea(1, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter).ToString(swedishCulture));
         }
 
         [Fact]
@@ -383,10 +383,10 @@ namespace UnitsNet.Tests
             try
             {
                 CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 m³/s·m²", new VolumeFlowPerArea(0.123456, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter).ToString("s1"));
-                Assert.Equal("0.12 m³/s·m²", new VolumeFlowPerArea(0.123456, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter).ToString("s2"));
-                Assert.Equal("0.123 m³/s·m²", new VolumeFlowPerArea(0.123456, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter).ToString("s3"));
-                Assert.Equal("0.1235 m³/s·m²", new VolumeFlowPerArea(0.123456, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter).ToString("s4"));
+                Assert.Equal("0.1 m³/(s·m²)", new VolumeFlowPerArea(0.123456, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter).ToString("s1"));
+                Assert.Equal("0.12 m³/(s·m²)", new VolumeFlowPerArea(0.123456, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter).ToString("s2"));
+                Assert.Equal("0.123 m³/(s·m²)", new VolumeFlowPerArea(0.123456, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter).ToString("s3"));
+                Assert.Equal("0.1235 m³/(s·m²)", new VolumeFlowPerArea(0.123456, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter).ToString("s4"));
             }
             finally
             {
@@ -398,10 +398,10 @@ namespace UnitsNet.Tests
         public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
         {
             var culture = CultureInfo.InvariantCulture;
-            Assert.Equal("0.1 m³/s·m²", new VolumeFlowPerArea(0.123456, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter).ToString("s1", culture));
-            Assert.Equal("0.12 m³/s·m²", new VolumeFlowPerArea(0.123456, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter).ToString("s2", culture));
-            Assert.Equal("0.123 m³/s·m²", new VolumeFlowPerArea(0.123456, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter).ToString("s3", culture));
-            Assert.Equal("0.1235 m³/s·m²", new VolumeFlowPerArea(0.123456, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter).ToString("s4", culture));
+            Assert.Equal("0.1 m³/(s·m²)", new VolumeFlowPerArea(0.123456, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter).ToString("s1", culture));
+            Assert.Equal("0.12 m³/(s·m²)", new VolumeFlowPerArea(0.123456, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter).ToString("s2", culture));
+            Assert.Equal("0.123 m³/(s·m²)", new VolumeFlowPerArea(0.123456, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter).ToString("s3", culture));
+            Assert.Equal("0.1235 m³/(s·m²)", new VolumeFlowPerArea(0.123456, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter).ToString("s4", culture));
         }
 
 

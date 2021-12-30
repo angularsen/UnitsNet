@@ -48,7 +48,7 @@ namespace UnitsNet
 
         static VolumeFlowPerArea()
         {
-            BaseDimensions = new BaseDimensions(3, 0, -1, 0, 0, 0, 0);
+            BaseDimensions = new BaseDimensions(1, 0, -1, 0, 0, 0, 0);
             Info = new QuantityInfo(QuantityType.VolumeFlowPerArea, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 

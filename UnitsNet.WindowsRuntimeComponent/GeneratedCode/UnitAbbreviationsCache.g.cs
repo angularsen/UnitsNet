@@ -1714,7 +1714,7 @@ namespace UnitsNet
                 ("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.UsGallonPerMinute, new string[]{"gal (U.S.)/min", "GPM"}),
                 ("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.UsGallonPerSecond, new string[]{"gal (U.S.)/s"}),
                 ("en-US", typeof(VolumeFlowPerAreaUnit), (int)VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, new string[]{"CFM/ft²"}),
-                ("en-US", typeof(VolumeFlowPerAreaUnit), (int)VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, new string[]{"m³/s·m²"}),
+                ("en-US", typeof(VolumeFlowPerAreaUnit), (int)VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, new string[]{"m³/(s·m²)"}),
                 ("en-US", typeof(VolumePerLengthUnit), (int)VolumePerLengthUnit.CubicMeterPerMeter, new string[]{"m³/m"}),
                 ("en-US", typeof(VolumePerLengthUnit), (int)VolumePerLengthUnit.CubicYardPerFoot, new string[]{"yd³/ft"}),
                 ("en-US", typeof(VolumePerLengthUnit), (int)VolumePerLengthUnit.CubicYardPerUsSurveyFoot, new string[]{"yd³/ftUS"}),

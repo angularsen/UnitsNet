@@ -3,7 +3,7 @@
   "BaseUnit": "CubicMeterPerSecondPerSquareMeter",
   "XmlDoc": "The volumetric flow rate per area is the volume of fluid which passes through a given unit surface area per unit time.",
   "BaseDimensions": {
-    "L": 3,
+    "L": 1,
     "T": -1
   },
   "Units": [
@@ -13,14 +13,13 @@
       "BaseUnits": {
         "L": "Meter",
         "T": "Second"
-
       },
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "m³/s·m²" ]
+          "Abbreviations": [ "m³/(s·m²)" ]
         }
       ]
     },
