@@ -2556,6 +2556,9 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.UsGallonPerMinute, VolumeFlow.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlow.BaseUnit, VolumeFlowUnit.UsGallonPerSecond, q => q.ToUnit(VolumeFlowUnit.UsGallonPerSecond));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.UsGallonPerSecond, VolumeFlow.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerArea.BaseUnit, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, q => q.ToUnit(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot));
+            unitConverter.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, VolumeFlowPerArea.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerArea.BaseUnit, VolumeFlowPerArea.BaseUnit, q => q);
             unitConverter.SetConversionFunction<VolumePerLength>(VolumePerLength.BaseUnit, VolumePerLength.BaseUnit, q => q);
             unitConverter.SetConversionFunction<VolumePerLength>(VolumePerLength.BaseUnit, VolumePerLengthUnit.CubicYardPerFoot, q => q.ToUnit(VolumePerLengthUnit.CubicYardPerFoot));
             unitConverter.SetConversionFunction<VolumePerLength>(VolumePerLengthUnit.CubicYardPerFoot, VolumePerLength.BaseUnit, q => q.ToBaseUnit());

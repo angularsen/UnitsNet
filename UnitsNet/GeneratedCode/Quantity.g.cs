@@ -146,6 +146,7 @@ namespace UnitsNet
             { "Volume", Volume.Info },
             { "VolumeConcentration", VolumeConcentration.Info },
             { "VolumeFlow", VolumeFlow.Info },
+            { "VolumeFlowPerArea", VolumeFlowPerArea.Info },
             { "VolumePerLength", VolumePerLength.Info },
             { "VolumetricHeatCapacity", VolumetricHeatCapacity.Info },
             { "WarpingMomentOfInertia", WarpingMomentOfInertia.Info },
@@ -263,6 +264,7 @@ namespace UnitsNet
             { "Volume", QuantityType.Volume },
             { "VolumeConcentration", QuantityType.VolumeConcentration },
             { "VolumeFlow", QuantityType.VolumeFlow },
+            { "VolumeFlowPerArea", QuantityType.VolumeFlowPerArea },
             { "VolumePerLength", QuantityType.VolumePerLength },
             { "VolumetricHeatCapacity", QuantityType.VolumetricHeatCapacity },
             { "WarpingMomentOfInertia", QuantityType.WarpingMomentOfInertia },
@@ -495,6 +497,8 @@ namespace UnitsNet
                     return VolumeConcentration.From(value, VolumeConcentration.BaseUnit);
                 case QuantityType.VolumeFlow:
                     return VolumeFlow.From(value, VolumeFlow.BaseUnit);
+                case QuantityType.VolumeFlowPerArea:
+                    return VolumeFlowPerArea.From(value, VolumeFlowPerArea.BaseUnit);
                 case QuantityType.VolumePerLength:
                     return VolumePerLength.From(value, VolumePerLength.BaseUnit);
                 case QuantityType.VolumetricHeatCapacity:
@@ -732,6 +736,8 @@ namespace UnitsNet
                     return VolumeConcentration.From(value, VolumeConcentration.BaseUnit);
                 case "VolumeFlow":
                     return VolumeFlow.From(value, VolumeFlow.BaseUnit);
+                case "VolumeFlowPerArea":
+                    return VolumeFlowPerArea.From(value, VolumeFlowPerArea.BaseUnit);
                 case "VolumePerLength":
                     return VolumePerLength.From(value, VolumePerLength.BaseUnit);
                 case "VolumetricHeatCapacity":
@@ -1078,6 +1084,9 @@ namespace UnitsNet
                 case VolumeFlowUnit volumeFlowUnit:
                     quantity = VolumeFlow.From(value, volumeFlowUnit);
                     return true;
+                case VolumeFlowPerAreaUnit volumeFlowPerAreaUnit:
+                    quantity = VolumeFlowPerArea.From(value, volumeFlowPerAreaUnit);
+                    return true;
                 case VolumePerLengthUnit volumePerLengthUnit:
                     quantity = VolumePerLength.From(value, volumePerLengthUnit);
                     return true;
@@ -1330,6 +1339,8 @@ namespace UnitsNet
                     return parser.TryParse<VolumeConcentration, VolumeConcentrationUnit>(quantityString, formatProvider, VolumeConcentration.From, out quantity);
                 case Type _ when quantityType == typeof(VolumeFlow):
                     return parser.TryParse<VolumeFlow, VolumeFlowUnit>(quantityString, formatProvider, VolumeFlow.From, out quantity);
+                case Type _ when quantityType == typeof(VolumeFlowPerArea):
+                    return parser.TryParse<VolumeFlowPerArea, VolumeFlowPerAreaUnit>(quantityString, formatProvider, VolumeFlowPerArea.From, out quantity);
                 case Type _ when quantityType == typeof(VolumePerLength):
                     return parser.TryParse<VolumePerLength, VolumePerLengthUnit>(quantityString, formatProvider, VolumePerLength.From, out quantity);
                 case Type _ when quantityType == typeof(VolumetricHeatCapacity):
