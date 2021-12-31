@@ -134,7 +134,7 @@ namespace UnitsNet.Tests
             Assertion(3, TemperatureDeltaUnit.MillidegreeCelsius, Quantity.From(3, TemperatureDeltaUnit.MillidegreeCelsius));
             Assertion(3, TemperatureGradientUnit.KelvinPerMeter, Quantity.From(3, TemperatureGradientUnit.KelvinPerMeter));
             Assertion(3, ThermalConductivityUnit.WattPerMeterKelvin, Quantity.From(3, ThermalConductivityUnit.WattPerMeterKelvin));
-            Assertion(3, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, Quantity.From(3, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt));
+            Assertion(3, ThermalResistanceUnit.SquareMeterKelvinPerWatt, Quantity.From(3, ThermalResistanceUnit.SquareMeterKelvinPerWatt));
             Assertion(3, TorqueUnit.TonneForceMillimeter, Quantity.From(3, TorqueUnit.TonneForceMillimeter));
             Assertion(3, TorquePerLengthUnit.TonneForceMillimeterPerMeter, Quantity.From(3, TorquePerLengthUnit.TonneForceMillimeterPerMeter));
             Assertion(3, TurbidityUnit.NTU, Quantity.From(3, TurbidityUnit.NTU));

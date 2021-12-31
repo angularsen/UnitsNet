@@ -21,6 +21,18 @@
       ]
     },
     {
+      "SingularName": "SquareMeterKelvinPerWatt",
+      "PluralName": "SquareMeterKelvinsPerWatt",
+      "FromUnitToBaseFunc": "x*1000",
+      "FromBaseToUnitFunc": "x/1000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m²K/W" ]
+        }
+      ]
+    },
+    {
       "SingularName": "SquareMeterDegreeCelsiusPerWatt",
       "PluralName": "SquareMeterDegreesCelsiusPerWatt",
       "FromUnitToBaseFunc": "x*1000.088056074108",

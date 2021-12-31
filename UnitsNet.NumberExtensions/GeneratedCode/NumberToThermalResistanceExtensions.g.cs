@@ -48,5 +48,9 @@ namespace UnitsNet.NumberExtensions.NumberToThermalResistance
         public static ThermalResistance SquareMeterKelvinsPerKilowatt<T>(this T value) =>
             ThermalResistance.FromSquareMeterKelvinsPerKilowatt(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="ThermalResistance.FromSquareMeterKelvinsPerWatt(UnitsNet.QuantityValue)" />
+        public static ThermalResistance SquareMeterKelvinsPerWatt<T>(this T value) =>
+            ThermalResistance.FromSquareMeterKelvinsPerWatt(Convert.ToDouble(value));
+
     }
 }

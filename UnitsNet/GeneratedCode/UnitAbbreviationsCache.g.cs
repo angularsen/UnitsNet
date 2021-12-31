@@ -1456,6 +1456,7 @@ namespace UnitsNet
                 ("en-US", typeof(ThermalResistanceUnit), (int)ThermalResistanceUnit.SquareCentimeterKelvinPerWatt, new string[]{"cm²K/W"}),
                 ("en-US", typeof(ThermalResistanceUnit), (int)ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, new string[]{"m²°C/W"}),
                 ("en-US", typeof(ThermalResistanceUnit), (int)ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, new string[]{"m²K/kW"}),
+                ("en-US", typeof(ThermalResistanceUnit), (int)ThermalResistanceUnit.SquareMeterKelvinPerWatt, new string[]{"m²K/W"}),
                 ("en-US", typeof(TorqueUnit), (int)TorqueUnit.KilogramForceCentimeter, new string[]{"kgf·cm"}),
                 ("en-US", typeof(TorqueUnit), (int)TorqueUnit.KilogramForceMeter, new string[]{"kgf·m"}),
                 ("en-US", typeof(TorqueUnit), (int)TorqueUnit.KilogramForceMillimeter, new string[]{"kgf·mm"}),
