@@ -2209,6 +2209,12 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistance.BaseUnit, ThermalResistance.BaseUnit, q => q);
             unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistance.BaseUnit, ThermalResistanceUnit.SquareMeterKelvinPerWatt, q => q.ToUnit(ThermalResistanceUnit.SquareMeterKelvinPerWatt));
             unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerWatt, ThermalResistance.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.GramForceCentimeter, q => q.ToUnit(TorqueUnit.GramForceCentimeter));
+            unitConverter.SetConversionFunction<Torque>(TorqueUnit.GramForceCentimeter, Torque.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.GramForceMeter, q => q.ToUnit(TorqueUnit.GramForceMeter));
+            unitConverter.SetConversionFunction<Torque>(TorqueUnit.GramForceMeter, Torque.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.GramForceMillimeter, q => q.ToUnit(TorqueUnit.GramForceMillimeter));
+            unitConverter.SetConversionFunction<Torque>(TorqueUnit.GramForceMillimeter, Torque.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.KilogramForceCentimeter, q => q.ToUnit(TorqueUnit.KilogramForceCentimeter));
             unitConverter.SetConversionFunction<Torque>(TorqueUnit.KilogramForceCentimeter, Torque.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.KilogramForceMeter, q => q.ToUnit(TorqueUnit.KilogramForceMeter));

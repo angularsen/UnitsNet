@@ -78,6 +78,21 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get Torque in GramForceCentimeters.
+        /// </summary>
+        public double GramForceCentimeters => As(TorqueUnit.GramForceCentimeter);
+
+        /// <summary>
+        ///     Get Torque in GramForceMeters.
+        /// </summary>
+        public double GramForceMeters => As(TorqueUnit.GramForceMeter);
+
+        /// <summary>
+        ///     Get Torque in GramForceMillimeters.
+        /// </summary>
+        public double GramForceMillimeters => As(TorqueUnit.GramForceMillimeter);
+
+        /// <summary>
         ///     Get Torque in KilogramForceCentimeters.
         /// </summary>
         public double KilogramForceCentimeters => As(TorqueUnit.KilogramForceCentimeter);
@@ -190,6 +205,24 @@ namespace UnitsNet
         #endregion
 
         #region Static Factory Methods
+
+        /// <summary>
+        ///     Get Torque from GramForceCentimeters.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Torque FromGramForceCentimeters(double gramforcecentimeters) => new Torque(gramforcecentimeters, TorqueUnit.GramForceCentimeter);
+
+        /// <summary>
+        ///     Get Torque from GramForceMeters.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Torque FromGramForceMeters(double gramforcemeters) => new Torque(gramforcemeters, TorqueUnit.GramForceMeter);
+
+        /// <summary>
+        ///     Get Torque from GramForceMillimeters.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Torque FromGramForceMillimeters(double gramforcemillimeters) => new Torque(gramforcemillimeters, TorqueUnit.GramForceMillimeter);
 
         /// <summary>
         ///     Get Torque from KilogramForceCentimeters.
@@ -366,6 +399,9 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case TorqueUnit.GramForceCentimeter: return _value*0.000098066501996;
+                case TorqueUnit.GramForceMeter: return _value*0.009806650199607;
+                case TorqueUnit.GramForceMillimeter: return _value*0.0000098066502;
                 case TorqueUnit.KilogramForceCentimeter: return _value*0.0980665019960652;
                 case TorqueUnit.KilogramForceMeter: return _value*9.80665019960652;
                 case TorqueUnit.KilogramForceMillimeter: return _value*0.00980665019960652;
@@ -402,6 +438,9 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case TorqueUnit.GramForceCentimeter: return baseUnitValue*0.010197161922224;
+                case TorqueUnit.GramForceMeter: return baseUnitValue*0.000101971619222;
+                case TorqueUnit.GramForceMillimeter: return baseUnitValue*0.101971619222242;
                 case TorqueUnit.KilogramForceCentimeter: return baseUnitValue*10.1971619222242;
                 case TorqueUnit.KilogramForceMeter: return baseUnitValue*0.101971619222242;
                 case TorqueUnit.KilogramForceMillimeter: return baseUnitValue*101.971619222242;

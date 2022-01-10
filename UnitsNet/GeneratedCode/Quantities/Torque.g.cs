@@ -56,6 +56,9 @@ namespace UnitsNet
 
             Info = new QuantityInfo<TorqueUnit>("Torque",
                 new UnitInfo<TorqueUnit>[] {
+                    new UnitInfo<TorqueUnit>(TorqueUnit.GramForceCentimeter, "GramForceCentimeters", BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.GramForceMeter, "GramForceMeters", BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.GramForceMillimeter, "GramForceMillimeters", BaseUnits.Undefined),
                     new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceCentimeter, "KilogramForceCentimeters", BaseUnits.Undefined),
                     new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceMeter, "KilogramForceMeters", BaseUnits.Undefined),
                     new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceMillimeter, "KilogramForceMillimeters", BaseUnits.Undefined),
@@ -192,6 +195,21 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Properties
+
+        /// <summary>
+        ///     Get Torque in GramForceCentimeters.
+        /// </summary>
+        public double GramForceCentimeters => As(TorqueUnit.GramForceCentimeter);
+
+        /// <summary>
+        ///     Get Torque in GramForceMeters.
+        /// </summary>
+        public double GramForceMeters => As(TorqueUnit.GramForceMeter);
+
+        /// <summary>
+        ///     Get Torque in GramForceMillimeters.
+        /// </summary>
+        public double GramForceMillimeters => As(TorqueUnit.GramForceMillimeter);
 
         /// <summary>
         ///     Get Torque in KilogramForceCentimeters.
@@ -332,6 +350,33 @@ namespace UnitsNet
 
         #region Static Factory Methods
 
+        /// <summary>
+        ///     Get Torque from GramForceCentimeters.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Torque FromGramForceCentimeters(QuantityValue gramforcecentimeters)
+        {
+            double value = (double) gramforcecentimeters;
+            return new Torque(value, TorqueUnit.GramForceCentimeter);
+        }
+        /// <summary>
+        ///     Get Torque from GramForceMeters.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Torque FromGramForceMeters(QuantityValue gramforcemeters)
+        {
+            double value = (double) gramforcemeters;
+            return new Torque(value, TorqueUnit.GramForceMeter);
+        }
+        /// <summary>
+        ///     Get Torque from GramForceMillimeters.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Torque FromGramForceMillimeters(QuantityValue gramforcemillimeters)
+        {
+            double value = (double) gramforcemillimeters;
+            return new Torque(value, TorqueUnit.GramForceMillimeter);
+        }
         /// <summary>
         ///     Get Torque from KilogramForceCentimeters.
         /// </summary>
@@ -959,6 +1004,9 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case TorqueUnit.GramForceCentimeter: return _value*0.000098066501996;
+                case TorqueUnit.GramForceMeter: return _value*0.009806650199607;
+                case TorqueUnit.GramForceMillimeter: return _value*0.0000098066502;
                 case TorqueUnit.KilogramForceCentimeter: return _value*0.0980665019960652;
                 case TorqueUnit.KilogramForceMeter: return _value*9.80665019960652;
                 case TorqueUnit.KilogramForceMillimeter: return _value*0.00980665019960652;
@@ -1006,6 +1054,9 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case TorqueUnit.GramForceCentimeter: return baseUnitValue*0.010197161922224;
+                case TorqueUnit.GramForceMeter: return baseUnitValue*0.000101971619222;
+                case TorqueUnit.GramForceMillimeter: return baseUnitValue*0.101971619222242;
                 case TorqueUnit.KilogramForceCentimeter: return baseUnitValue*10.1971619222242;
                 case TorqueUnit.KilogramForceMeter: return baseUnitValue*0.101971619222242;
                 case TorqueUnit.KilogramForceMillimeter: return baseUnitValue*101.971619222242;

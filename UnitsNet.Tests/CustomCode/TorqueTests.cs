@@ -52,6 +52,12 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double PoundalFeetInOneNewtonMeter => 23.730360404231938;
 
+        protected override double GramForceCentimetersInOneNewtonMeter => KilogramForceCentimetersInOneNewtonMeter / 1000;
+
+        protected override double GramForceMetersInOneNewtonMeter => KilogramForceMetersInOneNewtonMeter / 1000;
+
+        protected override double GramForceMillimetersInOneNewtonMeter => KilogramForceMillimetersInOneNewtonMeter / 1000;
+
         [Fact]
         public void TorqueDividedByForceEqualsLength()
         {

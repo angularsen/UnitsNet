@@ -92,6 +92,42 @@
       ]
     },
     {
+      "SingularName": "GramForceMillimeter",
+      "PluralName": "GramForceMillimeters",
+      "FromUnitToBaseFunc": "x*0.0000098066502",
+      "FromBaseToUnitFunc": "x*0.101971619222242",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "gf·mm" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramForceCentimeter",
+      "PluralName": "GramForceCentimeters",
+      "FromUnitToBaseFunc": "x*0.000098066501996",
+      "FromBaseToUnitFunc": "x*0.010197161922224",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "gf·cm" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramForceMeter",
+      "PluralName": "GramForceMeters",
+      "FromUnitToBaseFunc": "x*0.009806650199607",
+      "FromBaseToUnitFunc": "x*0.000101971619222",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "gf·m" ]
+        }
+      ]
+    },
+    {
       "SingularName": "KilogramForceMillimeter",
       "PluralName": "KilogramForceMillimeters",
       "FromUnitToBaseFunc": "x*0.00980665019960652",
