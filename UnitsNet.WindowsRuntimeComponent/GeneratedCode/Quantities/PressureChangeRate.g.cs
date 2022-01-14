@@ -201,6 +201,11 @@ namespace UnitsNet
         public double MegapoundsForcePerSquareInchPerSecond => As(PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond);
 
         /// <summary>
+        ///     Get PressureChangeRate in MillimetersOfMercuryPerSecond.
+        /// </summary>
+        public double MillimetersOfMercuryPerSecond => As(PressureChangeRateUnit.MillimeterOfMercuryPerSecond);
+
+        /// <summary>
         ///     Get PressureChangeRate in PascalsPerMinute.
         /// </summary>
         public double PascalsPerMinute => As(PressureChangeRateUnit.PascalPerMinute);
@@ -339,6 +344,16 @@ namespace UnitsNet
         {
             double value = (double) megapoundsforcepersquareinchpersecond;
             return new PressureChangeRate(value, PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond);
+        }
+        /// <summary>
+        ///     Get PressureChangeRate from MillimetersOfMercuryPerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static PressureChangeRate FromMillimetersOfMercuryPerSecond(double millimetersofmercurypersecond)
+        {
+            double value = (double) millimetersofmercurypersecond;
+            return new PressureChangeRate(value, PressureChangeRateUnit.MillimeterOfMercuryPerSecond);
         }
         /// <summary>
         ///     Get PressureChangeRate from PascalsPerMinute.
@@ -680,6 +695,7 @@ namespace UnitsNet
                 case PressureChangeRateUnit.MegapascalPerSecond: return (_value) * 1e6d;
                 case PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute: return (_value*6.894757293168361e3/60) * 1e6d;
                 case PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond: return (_value*6.894757293168361e3) * 1e6d;
+                case PressureChangeRateUnit.MillimeterOfMercuryPerSecond: return _value*133.322;
                 case PressureChangeRateUnit.PascalPerMinute: return _value/60;
                 case PressureChangeRateUnit.PascalPerSecond: return _value;
                 case PressureChangeRateUnit.PoundForcePerSquareInchPerMinute: return _value*6.894757293168361e3/60;
@@ -707,6 +723,7 @@ namespace UnitsNet
                 case PressureChangeRateUnit.MegapascalPerSecond: return (baseUnitValue) / 1e6d;
                 case PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute: return (baseUnitValue/6.894757293168361e3*60) / 1e6d;
                 case PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond: return (baseUnitValue/6.894757293168361e3) / 1e6d;
+                case PressureChangeRateUnit.MillimeterOfMercuryPerSecond: return baseUnitValue/133.322;
                 case PressureChangeRateUnit.PascalPerMinute: return baseUnitValue*60;
                 case PressureChangeRateUnit.PascalPerSecond: return baseUnitValue;
                 case PressureChangeRateUnit.PoundForcePerSquareInchPerMinute: return baseUnitValue/6.894757293168361e3*60;

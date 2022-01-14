@@ -1180,6 +1180,8 @@ namespace UnitsNet
                 ("ru-RU", typeof(PressureChangeRateUnit), (int)PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute, new string[]{"Мpsi/мин", "Мlb/in²/мин"}),
                 ("en-US", typeof(PressureChangeRateUnit), (int)PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond, new string[]{"Mpsi/s", "Mlb/in²/s"}),
                 ("ru-RU", typeof(PressureChangeRateUnit), (int)PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond, new string[]{"Мpsi/с", "Мlb/in²/с"}),
+                ("en-US", typeof(PressureChangeRateUnit), (int)PressureChangeRateUnit.MillimeterOfMercuryPerSecond, new string[]{"mmHg/s"}),
+                ("ru-RU", typeof(PressureChangeRateUnit), (int)PressureChangeRateUnit.MillimeterOfMercuryPerSecond, new string[]{"mmHg/с"}),
                 ("en-US", typeof(PressureChangeRateUnit), (int)PressureChangeRateUnit.PascalPerMinute, new string[]{"Pa/min"}),
                 ("ru-RU", typeof(PressureChangeRateUnit), (int)PressureChangeRateUnit.PascalPerMinute, new string[]{"Па/мин"}),
                 ("en-US", typeof(PressureChangeRateUnit), (int)PressureChangeRateUnit.PascalPerSecond, new string[]{"Pa/s"}),

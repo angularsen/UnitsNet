@@ -61,6 +61,10 @@ namespace UnitsNet.Tests
             Assert.Equal(PressureChangeRate.FromMegapoundsForcePerSquareInchPerSecond(2), 2.MegapoundsForcePerSquareInchPerSecond());
 
         [Fact]
+        public void NumberToMillimetersOfMercuryPerSecondTest() =>
+            Assert.Equal(PressureChangeRate.FromMillimetersOfMercuryPerSecond(2), 2.MillimetersOfMercuryPerSecond());
+
+        [Fact]
         public void NumberToPascalsPerMinuteTest() =>
             Assert.Equal(PressureChangeRate.FromPascalsPerMinute(2), 2.PascalsPerMinute());
 

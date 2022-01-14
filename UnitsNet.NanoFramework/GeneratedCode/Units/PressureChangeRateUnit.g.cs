@@ -35,6 +35,7 @@ namespace UnitsNet.Units
         MegapascalPerSecond,
         MegapoundForcePerSquareInchPerMinute,
         MegapoundForcePerSquareInchPerSecond,
+        MillimeterOfMercuryPerSecond,
         PascalPerMinute,
         PascalPerSecond,
         PoundForcePerSquareInchPerMinute,

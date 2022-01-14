@@ -1760,6 +1760,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute, PressureChangeRate.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRate.BaseUnit, PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond, q => q.ToUnit(PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond));
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond, PressureChangeRate.BaseUnit, q => q.ToBaseUnit());
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRate.BaseUnit, PressureChangeRateUnit.MillimeterOfMercuryPerSecond, q => q.ToUnit(PressureChangeRateUnit.MillimeterOfMercuryPerSecond));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.MillimeterOfMercuryPerSecond, PressureChangeRate.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRate.BaseUnit, PressureChangeRateUnit.PascalPerMinute, q => q.ToUnit(PressureChangeRateUnit.PascalPerMinute));
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerMinute, PressureChangeRate.BaseUnit, q => q.ToBaseUnit());
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRate.BaseUnit, PressureChangeRate.BaseUnit, q => q);
