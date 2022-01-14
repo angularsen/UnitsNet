@@ -399,9 +399,9 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case TorqueUnit.GramForceCentimeter: return _value*0.000098066501996;
-                case TorqueUnit.GramForceMeter: return _value*0.009806650199607;
-                case TorqueUnit.GramForceMillimeter: return _value*0.0000098066502;
+                case TorqueUnit.GramForceCentimeter: return _value*0.0000980665;
+                case TorqueUnit.GramForceMeter: return _value*0.00980665;
+                case TorqueUnit.GramForceMillimeter: return _value*0.0000098066;
                 case TorqueUnit.KilogramForceCentimeter: return _value*0.0980665019960652;
                 case TorqueUnit.KilogramForceMeter: return _value*9.80665019960652;
                 case TorqueUnit.KilogramForceMillimeter: return _value*0.00980665019960652;
@@ -438,9 +438,9 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case TorqueUnit.GramForceCentimeter: return baseUnitValue*0.010197161922224;
-                case TorqueUnit.GramForceMeter: return baseUnitValue*0.000101971619222;
-                case TorqueUnit.GramForceMillimeter: return baseUnitValue*0.101971619222242;
+                case TorqueUnit.GramForceCentimeter: return baseUnitValue*10197.16213;
+                case TorqueUnit.GramForceMeter: return baseUnitValue*101.9716213;
+                case TorqueUnit.GramForceMillimeter: return baseUnitValue*101971.6213;
                 case TorqueUnit.KilogramForceCentimeter: return baseUnitValue*10.1971619222242;
                 case TorqueUnit.KilogramForceMeter: return baseUnitValue*0.101971619222242;
                 case TorqueUnit.KilogramForceMillimeter: return baseUnitValue*101.971619222242;

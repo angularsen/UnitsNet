@@ -94,8 +94,8 @@
     {
       "SingularName": "GramForceMillimeter",
       "PluralName": "GramForceMillimeters",
-      "FromUnitToBaseFunc": "x*0.0000098066502",
-      "FromBaseToUnitFunc": "x*0.101971619222242",
+      "FromUnitToBaseFunc": "x*0.0000098066",
+      "FromBaseToUnitFunc": "x*101971.6213",
       "Localization": [
         {
           "Culture": "en-US",
@@ -106,8 +106,8 @@
     {
       "SingularName": "GramForceCentimeter",
       "PluralName": "GramForceCentimeters",
-      "FromUnitToBaseFunc": "x*0.000098066501996",
-      "FromBaseToUnitFunc": "x*0.010197161922224",
+      "FromUnitToBaseFunc": "x*0.0000980665",
+      "FromBaseToUnitFunc": "x*10197.16213",
       "Localization": [
         {
           "Culture": "en-US",
@@ -118,8 +118,8 @@
     {
       "SingularName": "GramForceMeter",
       "PluralName": "GramForceMeters",
-      "FromUnitToBaseFunc": "x*0.009806650199607",
-      "FromBaseToUnitFunc": "x*0.000101971619222",
+      "FromUnitToBaseFunc": "x*0.00980665",
+      "FromBaseToUnitFunc": "x*101.9716213",
       "Localization": [
         {
           "Culture": "en-US",
