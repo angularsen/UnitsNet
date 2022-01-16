@@ -8,6 +8,13 @@ namespace UnitsNet.Tests.CustomCode
     public class TorqueTests : TorqueTestsBase
     {
         protected override bool SupportsSIUnitSystem => false;
+
+        protected override double GramForceCentimetersInOneNewtonMeter => 10197.16213;
+
+        protected override double GramForceMetersInOneNewtonMeter => 101.9716213;
+
+        protected override double GramForceMillimetersInOneNewtonMeter => 101971.6213;
+
         protected override double KilogramForceCentimetersInOneNewtonMeter => 10.1971621;
 
         protected override double KilogramForceMetersInOneNewtonMeter => 0.101971621;

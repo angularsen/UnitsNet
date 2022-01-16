@@ -156,6 +156,21 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get Torque in GramForceCentimeters.
+        /// </summary>
+        public double GramForceCentimeters => As(TorqueUnit.GramForceCentimeter);
+
+        /// <summary>
+        ///     Get Torque in GramForceMeters.
+        /// </summary>
+        public double GramForceMeters => As(TorqueUnit.GramForceMeter);
+
+        /// <summary>
+        ///     Get Torque in GramForceMillimeters.
+        /// </summary>
+        public double GramForceMillimeters => As(TorqueUnit.GramForceMillimeter);
+
+        /// <summary>
         ///     Get Torque in KilogramForceCentimeters.
         /// </summary>
         public double KilogramForceCentimeters => As(TorqueUnit.KilogramForceCentimeter);
@@ -295,6 +310,36 @@ namespace UnitsNet
 
         #region Static Factory Methods
 
+        /// <summary>
+        ///     Get Torque from GramForceCentimeters.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Torque FromGramForceCentimeters(double gramforcecentimeters)
+        {
+            double value = (double) gramforcecentimeters;
+            return new Torque(value, TorqueUnit.GramForceCentimeter);
+        }
+        /// <summary>
+        ///     Get Torque from GramForceMeters.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Torque FromGramForceMeters(double gramforcemeters)
+        {
+            double value = (double) gramforcemeters;
+            return new Torque(value, TorqueUnit.GramForceMeter);
+        }
+        /// <summary>
+        ///     Get Torque from GramForceMillimeters.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Torque FromGramForceMillimeters(double gramforcemillimeters)
+        {
+            double value = (double) gramforcemillimeters;
+            return new Torque(value, TorqueUnit.GramForceMillimeter);
+        }
         /// <summary>
         ///     Get Torque from KilogramForceCentimeters.
         /// </summary>
@@ -806,6 +851,9 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case TorqueUnit.GramForceCentimeter: return _value*9.80665E-5;
+                case TorqueUnit.GramForceMeter: return _value*9.80665e-3;
+                case TorqueUnit.GramForceMillimeter: return _value*9.80665e-6;
                 case TorqueUnit.KilogramForceCentimeter: return _value*0.0980665019960652;
                 case TorqueUnit.KilogramForceMeter: return _value*9.80665019960652;
                 case TorqueUnit.KilogramForceMillimeter: return _value*0.00980665019960652;
@@ -842,6 +890,9 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case TorqueUnit.GramForceCentimeter: return baseUnitValue/9.80665E-5;
+                case TorqueUnit.GramForceMeter: return baseUnitValue/9.80665e-3;
+                case TorqueUnit.GramForceMillimeter: return baseUnitValue/9.80665e-6;
                 case TorqueUnit.KilogramForceCentimeter: return baseUnitValue*10.1971619222242;
                 case TorqueUnit.KilogramForceMeter: return baseUnitValue*0.101971619222242;
                 case TorqueUnit.KilogramForceMillimeter: return baseUnitValue*101.971619222242;
