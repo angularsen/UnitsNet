@@ -46,6 +46,7 @@ namespace UnitsNet.Tests
         protected abstract double MegapascalsPerSecondInOnePascalPerSecond { get; }
         protected abstract double MegapoundsForcePerSquareInchPerMinuteInOnePascalPerSecond { get; }
         protected abstract double MegapoundsForcePerSquareInchPerSecondInOnePascalPerSecond { get; }
+        protected abstract double MillimetersOfMercuryPerSecondInOnePascalPerSecond { get; }
         protected abstract double PascalsPerMinuteInOnePascalPerSecond { get; }
         protected abstract double PascalsPerSecondInOnePascalPerSecond { get; }
         protected abstract double PoundsForcePerSquareInchPerMinuteInOnePascalPerSecond { get; }
@@ -61,6 +62,7 @@ namespace UnitsNet.Tests
         protected virtual double MegapascalsPerSecondTolerance { get { return 1e-5; } }
         protected virtual double MegapoundsForcePerSquareInchPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double MegapoundsForcePerSquareInchPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double MillimetersOfMercuryPerSecondTolerance { get { return 1e-5; } }
         protected virtual double PascalsPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double PascalsPerSecondTolerance { get { return 1e-5; } }
         protected virtual double PoundsForcePerSquareInchPerMinuteTolerance { get { return 1e-5; } }
@@ -148,6 +150,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MegapascalsPerSecondInOnePascalPerSecond, pascalpersecond.MegapascalsPerSecond, MegapascalsPerSecondTolerance);
             AssertEx.EqualTolerance(MegapoundsForcePerSquareInchPerMinuteInOnePascalPerSecond, pascalpersecond.MegapoundsForcePerSquareInchPerMinute, MegapoundsForcePerSquareInchPerMinuteTolerance);
             AssertEx.EqualTolerance(MegapoundsForcePerSquareInchPerSecondInOnePascalPerSecond, pascalpersecond.MegapoundsForcePerSquareInchPerSecond, MegapoundsForcePerSquareInchPerSecondTolerance);
+            AssertEx.EqualTolerance(MillimetersOfMercuryPerSecondInOnePascalPerSecond, pascalpersecond.MillimetersOfMercuryPerSecond, MillimetersOfMercuryPerSecondTolerance);
             AssertEx.EqualTolerance(PascalsPerMinuteInOnePascalPerSecond, pascalpersecond.PascalsPerMinute, PascalsPerMinuteTolerance);
             AssertEx.EqualTolerance(PascalsPerSecondInOnePascalPerSecond, pascalpersecond.PascalsPerSecond, PascalsPerSecondTolerance);
             AssertEx.EqualTolerance(PoundsForcePerSquareInchPerMinuteInOnePascalPerSecond, pascalpersecond.PoundsForcePerSquareInchPerMinute, PoundsForcePerSquareInchPerMinuteTolerance);
@@ -193,21 +196,25 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity08.MegapoundsForcePerSquareInchPerSecond, MegapoundsForcePerSquareInchPerSecondTolerance);
             Assert.Equal(PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond, quantity08.Unit);
 
-            var quantity09 = PressureChangeRate.From(1, PressureChangeRateUnit.PascalPerMinute);
-            AssertEx.EqualTolerance(1, quantity09.PascalsPerMinute, PascalsPerMinuteTolerance);
-            Assert.Equal(PressureChangeRateUnit.PascalPerMinute, quantity09.Unit);
+            var quantity09 = PressureChangeRate.From(1, PressureChangeRateUnit.MillimeterOfMercuryPerSecond);
+            AssertEx.EqualTolerance(1, quantity09.MillimetersOfMercuryPerSecond, MillimetersOfMercuryPerSecondTolerance);
+            Assert.Equal(PressureChangeRateUnit.MillimeterOfMercuryPerSecond, quantity09.Unit);
 
-            var quantity10 = PressureChangeRate.From(1, PressureChangeRateUnit.PascalPerSecond);
-            AssertEx.EqualTolerance(1, quantity10.PascalsPerSecond, PascalsPerSecondTolerance);
-            Assert.Equal(PressureChangeRateUnit.PascalPerSecond, quantity10.Unit);
+            var quantity10 = PressureChangeRate.From(1, PressureChangeRateUnit.PascalPerMinute);
+            AssertEx.EqualTolerance(1, quantity10.PascalsPerMinute, PascalsPerMinuteTolerance);
+            Assert.Equal(PressureChangeRateUnit.PascalPerMinute, quantity10.Unit);
 
-            var quantity11 = PressureChangeRate.From(1, PressureChangeRateUnit.PoundForcePerSquareInchPerMinute);
-            AssertEx.EqualTolerance(1, quantity11.PoundsForcePerSquareInchPerMinute, PoundsForcePerSquareInchPerMinuteTolerance);
-            Assert.Equal(PressureChangeRateUnit.PoundForcePerSquareInchPerMinute, quantity11.Unit);
+            var quantity11 = PressureChangeRate.From(1, PressureChangeRateUnit.PascalPerSecond);
+            AssertEx.EqualTolerance(1, quantity11.PascalsPerSecond, PascalsPerSecondTolerance);
+            Assert.Equal(PressureChangeRateUnit.PascalPerSecond, quantity11.Unit);
 
-            var quantity12 = PressureChangeRate.From(1, PressureChangeRateUnit.PoundForcePerSquareInchPerSecond);
-            AssertEx.EqualTolerance(1, quantity12.PoundsForcePerSquareInchPerSecond, PoundsForcePerSquareInchPerSecondTolerance);
-            Assert.Equal(PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, quantity12.Unit);
+            var quantity12 = PressureChangeRate.From(1, PressureChangeRateUnit.PoundForcePerSquareInchPerMinute);
+            AssertEx.EqualTolerance(1, quantity12.PoundsForcePerSquareInchPerMinute, PoundsForcePerSquareInchPerMinuteTolerance);
+            Assert.Equal(PressureChangeRateUnit.PoundForcePerSquareInchPerMinute, quantity12.Unit);
+
+            var quantity13 = PressureChangeRate.From(1, PressureChangeRateUnit.PoundForcePerSquareInchPerSecond);
+            AssertEx.EqualTolerance(1, quantity13.PoundsForcePerSquareInchPerSecond, PoundsForcePerSquareInchPerSecondTolerance);
+            Assert.Equal(PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, quantity13.Unit);
 
         }
 
@@ -237,6 +244,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MegapascalsPerSecondInOnePascalPerSecond, pascalpersecond.As(PressureChangeRateUnit.MegapascalPerSecond), MegapascalsPerSecondTolerance);
             AssertEx.EqualTolerance(MegapoundsForcePerSquareInchPerMinuteInOnePascalPerSecond, pascalpersecond.As(PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute), MegapoundsForcePerSquareInchPerMinuteTolerance);
             AssertEx.EqualTolerance(MegapoundsForcePerSquareInchPerSecondInOnePascalPerSecond, pascalpersecond.As(PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond), MegapoundsForcePerSquareInchPerSecondTolerance);
+            AssertEx.EqualTolerance(MillimetersOfMercuryPerSecondInOnePascalPerSecond, pascalpersecond.As(PressureChangeRateUnit.MillimeterOfMercuryPerSecond), MillimetersOfMercuryPerSecondTolerance);
             AssertEx.EqualTolerance(PascalsPerMinuteInOnePascalPerSecond, pascalpersecond.As(PressureChangeRateUnit.PascalPerMinute), PascalsPerMinuteTolerance);
             AssertEx.EqualTolerance(PascalsPerSecondInOnePascalPerSecond, pascalpersecond.As(PressureChangeRateUnit.PascalPerSecond), PascalsPerSecondTolerance);
             AssertEx.EqualTolerance(PoundsForcePerSquareInchPerMinuteInOnePascalPerSecond, pascalpersecond.As(PressureChangeRateUnit.PoundForcePerSquareInchPerMinute), PoundsForcePerSquareInchPerMinuteTolerance);
@@ -301,6 +309,10 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MegapoundsForcePerSquareInchPerSecondInOnePascalPerSecond, (double)megapoundforcepersquareinchpersecondQuantity.Value, MegapoundsForcePerSquareInchPerSecondTolerance);
             Assert.Equal(PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond, megapoundforcepersquareinchpersecondQuantity.Unit);
 
+            var millimeterofmercurypersecondQuantity = pascalpersecond.ToUnit(PressureChangeRateUnit.MillimeterOfMercuryPerSecond);
+            AssertEx.EqualTolerance(MillimetersOfMercuryPerSecondInOnePascalPerSecond, (double)millimeterofmercurypersecondQuantity.Value, MillimetersOfMercuryPerSecondTolerance);
+            Assert.Equal(PressureChangeRateUnit.MillimeterOfMercuryPerSecond, millimeterofmercurypersecondQuantity.Unit);
+
             var pascalperminuteQuantity = pascalpersecond.ToUnit(PressureChangeRateUnit.PascalPerMinute);
             AssertEx.EqualTolerance(PascalsPerMinuteInOnePascalPerSecond, (double)pascalperminuteQuantity.Value, PascalsPerMinuteTolerance);
             Assert.Equal(PressureChangeRateUnit.PascalPerMinute, pascalperminuteQuantity.Unit);
@@ -338,6 +350,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, PressureChangeRate.FromMegapascalsPerSecond(pascalpersecond.MegapascalsPerSecond).PascalsPerSecond, MegapascalsPerSecondTolerance);
             AssertEx.EqualTolerance(1, PressureChangeRate.FromMegapoundsForcePerSquareInchPerMinute(pascalpersecond.MegapoundsForcePerSquareInchPerMinute).PascalsPerSecond, MegapoundsForcePerSquareInchPerMinuteTolerance);
             AssertEx.EqualTolerance(1, PressureChangeRate.FromMegapoundsForcePerSquareInchPerSecond(pascalpersecond.MegapoundsForcePerSquareInchPerSecond).PascalsPerSecond, MegapoundsForcePerSquareInchPerSecondTolerance);
+            AssertEx.EqualTolerance(1, PressureChangeRate.FromMillimetersOfMercuryPerSecond(pascalpersecond.MillimetersOfMercuryPerSecond).PascalsPerSecond, MillimetersOfMercuryPerSecondTolerance);
             AssertEx.EqualTolerance(1, PressureChangeRate.FromPascalsPerMinute(pascalpersecond.PascalsPerMinute).PascalsPerSecond, PascalsPerMinuteTolerance);
             AssertEx.EqualTolerance(1, PressureChangeRate.FromPascalsPerSecond(pascalpersecond.PascalsPerSecond).PascalsPerSecond, PascalsPerSecondTolerance);
             AssertEx.EqualTolerance(1, PressureChangeRate.FromPoundsForcePerSquareInchPerMinute(pascalpersecond.PoundsForcePerSquareInchPerMinute).PascalsPerSecond, PoundsForcePerSquareInchPerMinuteTolerance);
@@ -509,6 +522,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 MPa/s", new PressureChangeRate(1, PressureChangeRateUnit.MegapascalPerSecond).ToString());
                 Assert.Equal("1 Mpsi/min", new PressureChangeRate(1, PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute).ToString());
                 Assert.Equal("1 Mpsi/s", new PressureChangeRate(1, PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond).ToString());
+                Assert.Equal("1 mmHg/s", new PressureChangeRate(1, PressureChangeRateUnit.MillimeterOfMercuryPerSecond).ToString());
                 Assert.Equal("1 Pa/min", new PressureChangeRate(1, PressureChangeRateUnit.PascalPerMinute).ToString());
                 Assert.Equal("1 Pa/s", new PressureChangeRate(1, PressureChangeRateUnit.PascalPerSecond).ToString());
                 Assert.Equal("1 psi/min", new PressureChangeRate(1, PressureChangeRateUnit.PoundForcePerSquareInchPerMinute).ToString());
@@ -535,6 +549,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 MPa/s", new PressureChangeRate(1, PressureChangeRateUnit.MegapascalPerSecond).ToString(swedishCulture));
             Assert.Equal("1 Mpsi/min", new PressureChangeRate(1, PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute).ToString(swedishCulture));
             Assert.Equal("1 Mpsi/s", new PressureChangeRate(1, PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 mmHg/s", new PressureChangeRate(1, PressureChangeRateUnit.MillimeterOfMercuryPerSecond).ToString(swedishCulture));
             Assert.Equal("1 Pa/min", new PressureChangeRate(1, PressureChangeRateUnit.PascalPerMinute).ToString(swedishCulture));
             Assert.Equal("1 Pa/s", new PressureChangeRate(1, PressureChangeRateUnit.PascalPerSecond).ToString(swedishCulture));
             Assert.Equal("1 psi/min", new PressureChangeRate(1, PressureChangeRateUnit.PoundForcePerSquareInchPerMinute).ToString(swedishCulture));

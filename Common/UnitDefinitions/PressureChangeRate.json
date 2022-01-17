@@ -42,6 +42,22 @@
         }
       ]
     },
+	{
+      "SingularName": "MillimeterOfMercuryPerSecond",
+      "PluralName": "MillimetersOfMercuryPerSecond",
+      "FromUnitToBaseFunc": "x*133.322",
+      "FromBaseToUnitFunc": "x/133.322",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mmHg/s" ],
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "mmHg/с" ],
+        }
+      ]
+    },
     {
       "SingularName": "AtmospherePerSecond",
       "PluralName": "AtmospheresPerSecond",
