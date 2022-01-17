@@ -53,6 +53,14 @@ namespace UnitsNet.Tests
             Assert.Equal(Density.FromGramsPerCubicCentimeter(2), 2.GramsPerCubicCentimeter());
 
         [Fact]
+        public void NumberToGramsPerCubicFootTest() =>
+            Assert.Equal(Density.FromGramsPerCubicFoot(2), 2.GramsPerCubicFoot());
+
+        [Fact]
+        public void NumberToGramsPerCubicInchTest() =>
+            Assert.Equal(Density.FromGramsPerCubicInch(2), 2.GramsPerCubicInch());
+
+        [Fact]
         public void NumberToGramsPerCubicMeterTest() =>
             Assert.Equal(Density.FromGramsPerCubicMeter(2), 2.GramsPerCubicMeter());
 
@@ -153,12 +161,24 @@ namespace UnitsNet.Tests
             Assert.Equal(Density.FromPicogramsPerMilliliter(2), 2.PicogramsPerMilliliter());
 
         [Fact]
+        public void NumberToPoundsPerCubicCentimeterTest() =>
+            Assert.Equal(Density.FromPoundsPerCubicCentimeter(2), 2.PoundsPerCubicCentimeter());
+
+        [Fact]
         public void NumberToPoundsPerCubicFootTest() =>
             Assert.Equal(Density.FromPoundsPerCubicFoot(2), 2.PoundsPerCubicFoot());
 
         [Fact]
         public void NumberToPoundsPerCubicInchTest() =>
             Assert.Equal(Density.FromPoundsPerCubicInch(2), 2.PoundsPerCubicInch());
+
+        [Fact]
+        public void NumberToPoundsPerCubicMeterTest() =>
+            Assert.Equal(Density.FromPoundsPerCubicMeter(2), 2.PoundsPerCubicMeter());
+
+        [Fact]
+        public void NumberToPoundsPerCubicMillimeterTest() =>
+            Assert.Equal(Density.FromPoundsPerCubicMillimeter(2), 2.PoundsPerCubicMillimeter());
 
         [Fact]
         public void NumberToPoundsPerImperialGallonTest() =>
@@ -169,12 +189,36 @@ namespace UnitsNet.Tests
             Assert.Equal(Density.FromPoundsPerUSGallon(2), 2.PoundsPerUSGallon());
 
         [Fact]
+        public void NumberToSlugsPerCubicCentimeterTest() =>
+            Assert.Equal(Density.FromSlugsPerCubicCentimeter(2), 2.SlugsPerCubicCentimeter());
+
+        [Fact]
         public void NumberToSlugsPerCubicFootTest() =>
             Assert.Equal(Density.FromSlugsPerCubicFoot(2), 2.SlugsPerCubicFoot());
 
         [Fact]
+        public void NumberToSlugsPerCubicInchTest() =>
+            Assert.Equal(Density.FromSlugsPerCubicInch(2), 2.SlugsPerCubicInch());
+
+        [Fact]
+        public void NumberToSlugsPerCubicMeterTest() =>
+            Assert.Equal(Density.FromSlugsPerCubicMeter(2), 2.SlugsPerCubicMeter());
+
+        [Fact]
+        public void NumberToSlugsPerCubicMillimeterTest() =>
+            Assert.Equal(Density.FromSlugsPerCubicMillimeter(2), 2.SlugsPerCubicMillimeter());
+
+        [Fact]
         public void NumberToTonnesPerCubicCentimeterTest() =>
             Assert.Equal(Density.FromTonnesPerCubicCentimeter(2), 2.TonnesPerCubicCentimeter());
+
+        [Fact]
+        public void NumberToTonnesPerCubicFootTest() =>
+            Assert.Equal(Density.FromTonnesPerCubicFoot(2), 2.TonnesPerCubicFoot());
+
+        [Fact]
+        public void NumberToTonnesPerCubicInchTest() =>
+            Assert.Equal(Density.FromTonnesPerCubicInch(2), 2.TonnesPerCubicInch());
 
         [Fact]
         public void NumberToTonnesPerCubicMeterTest() =>

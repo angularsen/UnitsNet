@@ -241,6 +241,182 @@
           "Abbreviations": [ "kg/l" ]
         }
       ]
+    },
+    {
+      "SingularName": "TonnePerCubicFoot",
+      "PluralName": "TonnesPerCubicFoot",
+      "BaseUnits": {
+        "L": "Foot",
+        "M": "Tonne"
+      },
+      "FromUnitToBaseFunc": "x*3.53146667214886e4",
+      "FromBaseToUnitFunc": "x/3.53146667214886e4",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "t/ft³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "TonnePerCubicInch",
+      "PluralName": "TonnesPerCubicInch",
+      "BaseUnits": {
+        "L": "Inch",
+        "M": "Tonne"
+      },
+      "FromUnitToBaseFunc": "x*6.10237440947323e7",
+      "FromBaseToUnitFunc": "x/6.10237440947323e7",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "t/in³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramPerCubicFoot",
+      "PluralName": "GramsPerCubicFoot",
+      "BaseUnits": {
+        "L": "Foot",
+        "M": "Gram"
+      },
+      "FromUnitToBaseFunc": "x*0.0353146667214886",
+      "FromBaseToUnitFunc": "x/0.0353146667214886",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/ft³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramPerCubicInch",
+      "PluralName": "GramsPerCubicInch",
+      "BaseUnits": {
+        "L": "Inch",
+        "M": "Gram"
+      },
+      "FromUnitToBaseFunc": "x*61.0237440947323",
+      "FromBaseToUnitFunc": "x/61.0237440947323",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/in³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerCubicMeter",
+      "PluralName": "PoundsPerCubicMeter",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Pound"
+      },
+      "FromUnitToBaseFunc": "x/2.204622621848775",
+      "FromBaseToUnitFunc": "x*2.204622621848775",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lb/m³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerCubicCentimeter",
+      "PluralName": "PoundsPerCubicCentimeter",
+      "BaseUnits": {
+        "L": "Centimeter",
+        "M": "Pound"
+      },
+      "FromUnitToBaseFunc": "x/2.204622621848775e-6",
+      "FromBaseToUnitFunc": "x*2.204622621848775e-6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lb/cm³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerCubicMillimeter",
+      "PluralName": "PoundsPerCubicMillimeter",
+      "BaseUnits": {
+        "L": "Millimeter",
+        "M": "Pound"
+      },
+      "FromUnitToBaseFunc": "x/2.204622621848775e-9",
+      "FromBaseToUnitFunc": "x*2.204622621848775e-9",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lb/mm³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SlugPerCubicMeter",
+      "PluralName": "SlugsPerCubicMeter",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Slug"
+      },
+      "FromUnitToBaseFunc": "x*14.5939",
+      "FromBaseToUnitFunc": "x/14.5939",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "slug/m³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SlugPerCubicCentimeter",
+      "PluralName": "SlugsPerCubicCentimeter",
+      "BaseUnits": {
+        "L": "Centimeter",
+        "M": "Slug"
+      },
+      "FromUnitToBaseFunc": "x*14593903",
+      "FromBaseToUnitFunc": "x/14593903",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "slug/cm³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SlugPerCubicMillimeter",
+      "PluralName": "SlugsPerCubicMillimeter",
+      "BaseUnits": {
+        "L": "Millimeter",
+        "M": "Slug"
+      },
+      "FromUnitToBaseFunc": "x*14593903000",
+      "FromBaseToUnitFunc": "x/14593903000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "slug/mm³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SlugPerCubicInch",
+      "PluralName": "SlugsPerCubicInch",
+      "BaseUnits": {
+        "L": "Inch",
+        "M": "Slug"
+      },
+      "FromUnitToBaseFunc": "x*890574.60201535",
+      "FromBaseToUnitFunc": "x/890574.60201535",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "slug/in³" ]
+        }
+      ]
     }
   ]
 }
