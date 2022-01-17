@@ -71,7 +71,7 @@ C:/rtools40/mingw32/bin/gcc -shared -s -static-libgcc -o fansi.dll fansi-win.def
 "C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c has.c -o has.o
 "C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c carry.c -o carry.o
 "C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c assumptions.c -o assumptions.o
-	C:\Users\runneradmin\AppData\Local\Temp\RtmpOyE1kH\downloaded_packages
+	C:\Users\runneradmin\AppData\Local\Temp\RtmpUhkRDK\downloaded_packages
 The downloaded binary packages are in
 package 'R.devices' successfully unpacked and MD5 sums checked
 package 'Rcpp' successfully unpacked and MD5 sums checked
@@ -118,7 +118,7 @@ fansi  0.5.0  1.0.2              TRUE
   There is a binary version available but the source version is later:
 Execution halted
 Error in library(ggplot2) : there is no package called 'ggplot2'
-	'C:\Users\runneradmin\AppData\Local\Temp\RtmpOyE1kH\downloaded_packages'
+	'C:\Users\runneradmin\AppData\Local\Temp\RtmpUhkRDK\downloaded_packages'
 The downloaded source packages are in
 * DONE (fansi)
 ** testing if installed package keeps a record of temporary installation path
