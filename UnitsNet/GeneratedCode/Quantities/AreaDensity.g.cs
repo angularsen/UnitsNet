@@ -63,7 +63,7 @@ namespace UnitsNet
             // Register in default unit converter: BaseUnit -> AreaDensityUnit
             
             // Register in default unit converter: BaseUnit <-> BaseUnit
-            UnitConverter.Default.SetConversionFunction<AreaDensity>(AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.KilogramPerSquareMeter, q => q);
+            UnitConverter.Default.SetConversionFunction<AreaDensity>(AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.KilogramPerSquareMeter, quantity => quantity);
 
             // Register in default unit converter: AreaDensityUnit -> BaseUnit
         }

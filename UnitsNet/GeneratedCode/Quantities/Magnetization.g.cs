@@ -66,7 +66,7 @@ namespace UnitsNet
             // Register in default unit converter: BaseUnit -> MagnetizationUnit
             
             // Register in default unit converter: BaseUnit <-> BaseUnit
-            UnitConverter.Default.SetConversionFunction<Magnetization>(MagnetizationUnit.AmperePerMeter, MagnetizationUnit.AmperePerMeter, q => q);
+            UnitConverter.Default.SetConversionFunction<Magnetization>(MagnetizationUnit.AmperePerMeter, MagnetizationUnit.AmperePerMeter, quantity => quantity);
 
             // Register in default unit converter: MagnetizationUnit -> BaseUnit
         }

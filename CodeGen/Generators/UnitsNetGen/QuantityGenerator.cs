@@ -170,13 +170,13 @@ namespace UnitsNet
                 continue;
 
             Writer.WL( $@"
-            UnitConverter.Default.SetConversionFunction<{_quantity.Name}>({_unitEnumName}.{_quantity.BaseUnit}, {_quantity.Name}Unit.{unit.SingularName}, q => q.ToUnit({_quantity.Name}Unit.{unit.SingularName}));");
+            UnitConverter.Default.SetConversionFunction<{_quantity.Name}>({_unitEnumName}.{_quantity.BaseUnit}, {_quantity.Name}Unit.{unit.SingularName}, quantity => quantity.ToUnit({_quantity.Name}Unit.{unit.SingularName}));");
         }
 
         Writer.WL( $@"
             
             // Register in default unit converter: BaseUnit <-> BaseUnit
-            UnitConverter.Default.SetConversionFunction<{_quantity.Name}>({_unitEnumName}.{_quantity.BaseUnit}, {_unitEnumName}.{_quantity.BaseUnit}, q => q);
+            UnitConverter.Default.SetConversionFunction<{_quantity.Name}>({_unitEnumName}.{_quantity.BaseUnit}, {_unitEnumName}.{_quantity.BaseUnit}, quantity => quantity);
 
             // Register in default unit converter: {_quantity.Name}Unit -> BaseUnit" );
 
@@ -186,7 +186,7 @@ namespace UnitsNet
                 continue;
 
             Writer.WL($@"
-            UnitConverter.Default.SetConversionFunction<{_quantity.Name}>({_quantity.Name}Unit.{unit.SingularName}, {_unitEnumName}.{_quantity.BaseUnit}, q => q.ToBaseUnit());");
+            UnitConverter.Default.SetConversionFunction<{_quantity.Name}>({_quantity.Name}Unit.{unit.SingularName}, {_unitEnumName}.{_quantity.BaseUnit}, quantity => quantity.ToBaseUnit());" );
         }
 
             Writer.WL($@"

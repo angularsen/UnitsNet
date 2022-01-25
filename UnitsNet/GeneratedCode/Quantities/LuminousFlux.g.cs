@@ -66,7 +66,7 @@ namespace UnitsNet
             // Register in default unit converter: BaseUnit -> LuminousFluxUnit
             
             // Register in default unit converter: BaseUnit <-> BaseUnit
-            UnitConverter.Default.SetConversionFunction<LuminousFlux>(LuminousFluxUnit.Lumen, LuminousFluxUnit.Lumen, q => q);
+            UnitConverter.Default.SetConversionFunction<LuminousFlux>(LuminousFluxUnit.Lumen, LuminousFluxUnit.Lumen, quantity => quantity);
 
             // Register in default unit converter: LuminousFluxUnit -> BaseUnit
         }

@@ -66,7 +66,7 @@ namespace UnitsNet
             // Register in default unit converter: BaseUnit -> PermeabilityUnit
             
             // Register in default unit converter: BaseUnit <-> BaseUnit
-            UnitConverter.Default.SetConversionFunction<Permeability>(PermeabilityUnit.HenryPerMeter, PermeabilityUnit.HenryPerMeter, q => q);
+            UnitConverter.Default.SetConversionFunction<Permeability>(PermeabilityUnit.HenryPerMeter, PermeabilityUnit.HenryPerMeter, quantity => quantity);
 
             // Register in default unit converter: PermeabilityUnit -> BaseUnit
         }

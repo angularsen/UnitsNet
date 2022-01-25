@@ -62,13 +62,13 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.PowerRatio);
 
             // Register in default unit converter: BaseUnit -> PowerRatioUnit
-            UnitConverter.Default.SetConversionFunction<PowerRatio>(PowerRatioUnit.DecibelWatt, PowerRatioUnit.DecibelMilliwatt, q => q.ToUnit(PowerRatioUnit.DecibelMilliwatt));
+            UnitConverter.Default.SetConversionFunction<PowerRatio>(PowerRatioUnit.DecibelWatt, PowerRatioUnit.DecibelMilliwatt, quantity => quantity.ToUnit(PowerRatioUnit.DecibelMilliwatt));
             
             // Register in default unit converter: BaseUnit <-> BaseUnit
-            UnitConverter.Default.SetConversionFunction<PowerRatio>(PowerRatioUnit.DecibelWatt, PowerRatioUnit.DecibelWatt, q => q);
+            UnitConverter.Default.SetConversionFunction<PowerRatio>(PowerRatioUnit.DecibelWatt, PowerRatioUnit.DecibelWatt, quantity => quantity);
 
             // Register in default unit converter: PowerRatioUnit -> BaseUnit
-            UnitConverter.Default.SetConversionFunction<PowerRatio>(PowerRatioUnit.DecibelMilliwatt, PowerRatioUnit.DecibelWatt, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<PowerRatio>(PowerRatioUnit.DecibelMilliwatt, PowerRatioUnit.DecibelWatt, quantity => quantity.ToBaseUnit());
         }
 
         /// <summary>

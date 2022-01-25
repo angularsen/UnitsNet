@@ -66,7 +66,7 @@ namespace UnitsNet
             // Register in default unit converter: BaseUnit -> TurbidityUnit
             
             // Register in default unit converter: BaseUnit <-> BaseUnit
-            UnitConverter.Default.SetConversionFunction<Turbidity>(TurbidityUnit.NTU, TurbidityUnit.NTU, q => q);
+            UnitConverter.Default.SetConversionFunction<Turbidity>(TurbidityUnit.NTU, TurbidityUnit.NTU, quantity => quantity);
 
             // Register in default unit converter: TurbidityUnit -> BaseUnit
         }

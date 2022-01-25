@@ -64,17 +64,17 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.ApparentPower);
 
             // Register in default unit converter: BaseUnit -> ApparentPowerUnit
-            UnitConverter.Default.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Voltampere, ApparentPowerUnit.Gigavoltampere, q => q.ToUnit(ApparentPowerUnit.Gigavoltampere));
-            UnitConverter.Default.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Voltampere, ApparentPowerUnit.Kilovoltampere, q => q.ToUnit(ApparentPowerUnit.Kilovoltampere));
-            UnitConverter.Default.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Voltampere, ApparentPowerUnit.Megavoltampere, q => q.ToUnit(ApparentPowerUnit.Megavoltampere));
+            UnitConverter.Default.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Voltampere, ApparentPowerUnit.Gigavoltampere, quantity => quantity.ToUnit(ApparentPowerUnit.Gigavoltampere));
+            UnitConverter.Default.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Voltampere, ApparentPowerUnit.Kilovoltampere, quantity => quantity.ToUnit(ApparentPowerUnit.Kilovoltampere));
+            UnitConverter.Default.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Voltampere, ApparentPowerUnit.Megavoltampere, quantity => quantity.ToUnit(ApparentPowerUnit.Megavoltampere));
             
             // Register in default unit converter: BaseUnit <-> BaseUnit
-            UnitConverter.Default.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Voltampere, ApparentPowerUnit.Voltampere, q => q);
+            UnitConverter.Default.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Voltampere, ApparentPowerUnit.Voltampere, quantity => quantity);
 
             // Register in default unit converter: ApparentPowerUnit -> BaseUnit
-            UnitConverter.Default.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Gigavoltampere, ApparentPowerUnit.Voltampere, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Kilovoltampere, ApparentPowerUnit.Voltampere, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Megavoltampere, ApparentPowerUnit.Voltampere, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Gigavoltampere, ApparentPowerUnit.Voltampere, quantity => quantity.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Kilovoltampere, ApparentPowerUnit.Voltampere, quantity => quantity.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Megavoltampere, ApparentPowerUnit.Voltampere, quantity => quantity.ToBaseUnit());
         }
 
         /// <summary>

@@ -63,7 +63,7 @@ namespace UnitsNet
             // Register in default unit converter: BaseUnit -> ScalarUnit
             
             // Register in default unit converter: BaseUnit <-> BaseUnit
-            UnitConverter.Default.SetConversionFunction<Scalar>(ScalarUnit.Amount, ScalarUnit.Amount, q => q);
+            UnitConverter.Default.SetConversionFunction<Scalar>(ScalarUnit.Amount, ScalarUnit.Amount, quantity => quantity);
 
             // Register in default unit converter: ScalarUnit -> BaseUnit
         }

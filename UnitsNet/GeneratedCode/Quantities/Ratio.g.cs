@@ -66,21 +66,21 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.Ratio);
 
             // Register in default unit converter: BaseUnit -> RatioUnit
-            UnitConverter.Default.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerBillion, q => q.ToUnit(RatioUnit.PartPerBillion));
-            UnitConverter.Default.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerMillion, q => q.ToUnit(RatioUnit.PartPerMillion));
-            UnitConverter.Default.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerThousand, q => q.ToUnit(RatioUnit.PartPerThousand));
-            UnitConverter.Default.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerTrillion, q => q.ToUnit(RatioUnit.PartPerTrillion));
-            UnitConverter.Default.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.Percent, q => q.ToUnit(RatioUnit.Percent));
+            UnitConverter.Default.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerBillion, quantity => quantity.ToUnit(RatioUnit.PartPerBillion));
+            UnitConverter.Default.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerMillion, quantity => quantity.ToUnit(RatioUnit.PartPerMillion));
+            UnitConverter.Default.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerThousand, quantity => quantity.ToUnit(RatioUnit.PartPerThousand));
+            UnitConverter.Default.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerTrillion, quantity => quantity.ToUnit(RatioUnit.PartPerTrillion));
+            UnitConverter.Default.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.Percent, quantity => quantity.ToUnit(RatioUnit.Percent));
             
             // Register in default unit converter: BaseUnit <-> BaseUnit
-            UnitConverter.Default.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.DecimalFraction, q => q);
+            UnitConverter.Default.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.DecimalFraction, quantity => quantity);
 
             // Register in default unit converter: RatioUnit -> BaseUnit
-            UnitConverter.Default.SetConversionFunction<Ratio>(RatioUnit.PartPerBillion, RatioUnit.DecimalFraction, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Ratio>(RatioUnit.PartPerMillion, RatioUnit.DecimalFraction, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Ratio>(RatioUnit.PartPerThousand, RatioUnit.DecimalFraction, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Ratio>(RatioUnit.PartPerTrillion, RatioUnit.DecimalFraction, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Ratio>(RatioUnit.Percent, RatioUnit.DecimalFraction, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Ratio>(RatioUnit.PartPerBillion, RatioUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Ratio>(RatioUnit.PartPerMillion, RatioUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Ratio>(RatioUnit.PartPerThousand, RatioUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Ratio>(RatioUnit.PartPerTrillion, RatioUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Ratio>(RatioUnit.Percent, RatioUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
         }
 
         /// <summary>

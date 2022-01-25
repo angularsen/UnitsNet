@@ -66,7 +66,7 @@ namespace UnitsNet
             // Register in default unit converter: BaseUnit -> ElectricFieldUnit
             
             // Register in default unit converter: BaseUnit <-> BaseUnit
-            UnitConverter.Default.SetConversionFunction<ElectricField>(ElectricFieldUnit.VoltPerMeter, ElectricFieldUnit.VoltPerMeter, q => q);
+            UnitConverter.Default.SetConversionFunction<ElectricField>(ElectricFieldUnit.VoltPerMeter, ElectricFieldUnit.VoltPerMeter, quantity => quantity);
 
             // Register in default unit converter: ElectricFieldUnit -> BaseUnit
         }
