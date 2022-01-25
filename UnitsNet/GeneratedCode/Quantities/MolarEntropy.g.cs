@@ -61,6 +61,12 @@ namespace UnitsNet
                     new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.MegajoulePerMoleKelvin, "MegajoulesPerMoleKelvin", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.MolarEntropy);
+
+            UnitConverter.Default.SetConversionFunction<MolarEntropy>(MolarEntropy.BaseUnit, MolarEntropy.BaseUnit, q => q);
+            UnitConverter.Default.SetConversionFunction<MolarEntropy>(MolarEntropy.BaseUnit, MolarEntropyUnit.KilojoulePerMoleKelvin, q => q.ToUnit(MolarEntropyUnit.KilojoulePerMoleKelvin));
+            UnitConverter.Default.SetConversionFunction<MolarEntropy>(MolarEntropyUnit.KilojoulePerMoleKelvin, MolarEntropy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MolarEntropy>(MolarEntropy.BaseUnit, MolarEntropyUnit.MegajoulePerMoleKelvin, q => q.ToUnit(MolarEntropyUnit.MegajoulePerMoleKelvin));
+            UnitConverter.Default.SetConversionFunction<MolarEntropy>(MolarEntropyUnit.MegajoulePerMoleKelvin, MolarEntropy.BaseUnit, q => q.ToBaseUnit());
         }
 
         /// <summary>

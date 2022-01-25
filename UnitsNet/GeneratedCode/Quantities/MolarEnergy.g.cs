@@ -61,6 +61,12 @@ namespace UnitsNet
                     new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.MegajoulePerMole, "MegajoulesPerMole", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.MolarEnergy);
+
+            UnitConverter.Default.SetConversionFunction<MolarEnergy>(MolarEnergy.BaseUnit, MolarEnergy.BaseUnit, q => q);
+            UnitConverter.Default.SetConversionFunction<MolarEnergy>(MolarEnergy.BaseUnit, MolarEnergyUnit.KilojoulePerMole, q => q.ToUnit(MolarEnergyUnit.KilojoulePerMole));
+            UnitConverter.Default.SetConversionFunction<MolarEnergy>(MolarEnergyUnit.KilojoulePerMole, MolarEnergy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MolarEnergy>(MolarEnergy.BaseUnit, MolarEnergyUnit.MegajoulePerMole, q => q.ToUnit(MolarEnergyUnit.MegajoulePerMole));
+            UnitConverter.Default.SetConversionFunction<MolarEnergy>(MolarEnergyUnit.MegajoulePerMole, MolarEnergy.BaseUnit, q => q.ToBaseUnit());
         }
 
         /// <summary>

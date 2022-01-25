@@ -60,6 +60,10 @@ namespace UnitsNet
                     new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelWatt, "DecibelWatts", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.PowerRatio);
+
+            UnitConverter.Default.SetConversionFunction<PowerRatio>(PowerRatio.BaseUnit, PowerRatioUnit.DecibelMilliwatt, q => q.ToUnit(PowerRatioUnit.DecibelMilliwatt));
+            UnitConverter.Default.SetConversionFunction<PowerRatio>(PowerRatioUnit.DecibelMilliwatt, PowerRatio.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<PowerRatio>(PowerRatio.BaseUnit, PowerRatio.BaseUnit, q => q);
         }
 
         /// <summary>

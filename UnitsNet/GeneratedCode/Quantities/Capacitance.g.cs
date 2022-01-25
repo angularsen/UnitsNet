@@ -68,6 +68,20 @@ namespace UnitsNet
                     new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Picofarad, "Picofarads", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Capacitance);
+
+            UnitConverter.Default.SetConversionFunction<Capacitance>(Capacitance.BaseUnit, Capacitance.BaseUnit, q => q);
+            UnitConverter.Default.SetConversionFunction<Capacitance>(Capacitance.BaseUnit, CapacitanceUnit.Kilofarad, q => q.ToUnit(CapacitanceUnit.Kilofarad));
+            UnitConverter.Default.SetConversionFunction<Capacitance>(CapacitanceUnit.Kilofarad, Capacitance.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Capacitance>(Capacitance.BaseUnit, CapacitanceUnit.Megafarad, q => q.ToUnit(CapacitanceUnit.Megafarad));
+            UnitConverter.Default.SetConversionFunction<Capacitance>(CapacitanceUnit.Megafarad, Capacitance.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Capacitance>(Capacitance.BaseUnit, CapacitanceUnit.Microfarad, q => q.ToUnit(CapacitanceUnit.Microfarad));
+            UnitConverter.Default.SetConversionFunction<Capacitance>(CapacitanceUnit.Microfarad, Capacitance.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Capacitance>(Capacitance.BaseUnit, CapacitanceUnit.Millifarad, q => q.ToUnit(CapacitanceUnit.Millifarad));
+            UnitConverter.Default.SetConversionFunction<Capacitance>(CapacitanceUnit.Millifarad, Capacitance.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Capacitance>(Capacitance.BaseUnit, CapacitanceUnit.Nanofarad, q => q.ToUnit(CapacitanceUnit.Nanofarad));
+            UnitConverter.Default.SetConversionFunction<Capacitance>(CapacitanceUnit.Nanofarad, Capacitance.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Capacitance>(Capacitance.BaseUnit, CapacitanceUnit.Picofarad, q => q.ToUnit(CapacitanceUnit.Picofarad));
+            UnitConverter.Default.SetConversionFunction<Capacitance>(CapacitanceUnit.Picofarad, Capacitance.BaseUnit, q => q.ToBaseUnit());
         }
 
         /// <summary>

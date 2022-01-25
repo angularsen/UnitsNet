@@ -60,6 +60,10 @@ namespace UnitsNet
                     new UnitInfo<VolumeFlowPerAreaUnit>(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, "CubicMetersPerSecondPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second)),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.VolumeFlowPerArea);
+
+            UnitConverter.Default.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerArea.BaseUnit, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, q => q.ToUnit(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot));
+            UnitConverter.Default.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, VolumeFlowPerArea.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerArea.BaseUnit, VolumeFlowPerArea.BaseUnit, q => q);
         }
 
         /// <summary>

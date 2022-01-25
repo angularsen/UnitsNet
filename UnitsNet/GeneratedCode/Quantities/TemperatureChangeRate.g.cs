@@ -68,6 +68,26 @@ namespace UnitsNet
                     new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, "NanodegreesCelsiusPerSecond", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.TemperatureChangeRate);
+
+            UnitConverter.Default.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRate.BaseUnit, TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, q => q.ToUnit(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond));
+            UnitConverter.Default.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, TemperatureChangeRate.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRate.BaseUnit, TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, q => q.ToUnit(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond));
+            UnitConverter.Default.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, TemperatureChangeRate.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRate.BaseUnit, TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond, q => q.ToUnit(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond));
+            UnitConverter.Default.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond, TemperatureChangeRate.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRate.BaseUnit, TemperatureChangeRateUnit.DegreeCelsiusPerMinute, q => q.ToUnit(TemperatureChangeRateUnit.DegreeCelsiusPerMinute));
+            UnitConverter.Default.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DegreeCelsiusPerMinute, TemperatureChangeRate.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRate.BaseUnit, TemperatureChangeRate.BaseUnit, q => q);
+            UnitConverter.Default.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRate.BaseUnit, TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond, q => q.ToUnit(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond));
+            UnitConverter.Default.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond, TemperatureChangeRate.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRate.BaseUnit, TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond, q => q.ToUnit(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond));
+            UnitConverter.Default.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond, TemperatureChangeRate.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRate.BaseUnit, TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, q => q.ToUnit(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond));
+            UnitConverter.Default.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, TemperatureChangeRate.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRate.BaseUnit, TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, q => q.ToUnit(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond));
+            UnitConverter.Default.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, TemperatureChangeRate.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRate.BaseUnit, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, q => q.ToUnit(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond));
+            UnitConverter.Default.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, TemperatureChangeRate.BaseUnit, q => q.ToBaseUnit());
         }
 
         /// <summary>

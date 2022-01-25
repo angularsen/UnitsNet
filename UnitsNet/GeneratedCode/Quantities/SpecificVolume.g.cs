@@ -61,6 +61,12 @@ namespace UnitsNet
                     new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.MillicubicMeterPerKilogram, "MillicubicMetersPerKilogram", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.SpecificVolume);
+
+            UnitConverter.Default.SetConversionFunction<SpecificVolume>(SpecificVolume.BaseUnit, SpecificVolumeUnit.CubicFootPerPound, q => q.ToUnit(SpecificVolumeUnit.CubicFootPerPound));
+            UnitConverter.Default.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicFootPerPound, SpecificVolume.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<SpecificVolume>(SpecificVolume.BaseUnit, SpecificVolume.BaseUnit, q => q);
+            UnitConverter.Default.SetConversionFunction<SpecificVolume>(SpecificVolume.BaseUnit, SpecificVolumeUnit.MillicubicMeterPerKilogram, q => q.ToUnit(SpecificVolumeUnit.MillicubicMeterPerKilogram));
+            UnitConverter.Default.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.MillicubicMeterPerKilogram, SpecificVolume.BaseUnit, q => q.ToBaseUnit());
         }
 
         /// <summary>

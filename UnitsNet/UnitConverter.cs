@@ -45,7 +45,6 @@ namespace UnitsNet
         static UnitConverter()
         {
             Default = new UnitConverter();
-            RegisterDefaultConversions(Default);
         }
 
         /// <summary>

@@ -70,6 +70,24 @@ namespace UnitsNet
                     new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Stokes, "Stokes", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.KinematicViscosity);
+
+            UnitConverter.Default.SetConversionFunction<KinematicViscosity>(KinematicViscosity.BaseUnit, KinematicViscosityUnit.Centistokes, q => q.ToUnit(KinematicViscosityUnit.Centistokes));
+            UnitConverter.Default.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.Centistokes, KinematicViscosity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<KinematicViscosity>(KinematicViscosity.BaseUnit, KinematicViscosityUnit.Decistokes, q => q.ToUnit(KinematicViscosityUnit.Decistokes));
+            UnitConverter.Default.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.Decistokes, KinematicViscosity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<KinematicViscosity>(KinematicViscosity.BaseUnit, KinematicViscosityUnit.Kilostokes, q => q.ToUnit(KinematicViscosityUnit.Kilostokes));
+            UnitConverter.Default.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.Kilostokes, KinematicViscosity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<KinematicViscosity>(KinematicViscosity.BaseUnit, KinematicViscosityUnit.Microstokes, q => q.ToUnit(KinematicViscosityUnit.Microstokes));
+            UnitConverter.Default.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.Microstokes, KinematicViscosity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<KinematicViscosity>(KinematicViscosity.BaseUnit, KinematicViscosityUnit.Millistokes, q => q.ToUnit(KinematicViscosityUnit.Millistokes));
+            UnitConverter.Default.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.Millistokes, KinematicViscosity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<KinematicViscosity>(KinematicViscosity.BaseUnit, KinematicViscosityUnit.Nanostokes, q => q.ToUnit(KinematicViscosityUnit.Nanostokes));
+            UnitConverter.Default.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.Nanostokes, KinematicViscosity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<KinematicViscosity>(KinematicViscosity.BaseUnit, KinematicViscosityUnit.SquareFootPerSecond, q => q.ToUnit(KinematicViscosityUnit.SquareFootPerSecond));
+            UnitConverter.Default.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.SquareFootPerSecond, KinematicViscosity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<KinematicViscosity>(KinematicViscosity.BaseUnit, KinematicViscosity.BaseUnit, q => q);
+            UnitConverter.Default.SetConversionFunction<KinematicViscosity>(KinematicViscosity.BaseUnit, KinematicViscosityUnit.Stokes, q => q.ToUnit(KinematicViscosityUnit.Stokes));
+            UnitConverter.Default.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.Stokes, KinematicViscosity.BaseUnit, q => q.ToBaseUnit());
         }
 
         /// <summary>

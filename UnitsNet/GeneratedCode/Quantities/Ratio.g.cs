@@ -64,6 +64,18 @@ namespace UnitsNet
                     new UnitInfo<RatioUnit>(RatioUnit.Percent, "Percent", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Ratio);
+
+            UnitConverter.Default.SetConversionFunction<Ratio>(Ratio.BaseUnit, Ratio.BaseUnit, q => q);
+            UnitConverter.Default.SetConversionFunction<Ratio>(Ratio.BaseUnit, RatioUnit.PartPerBillion, q => q.ToUnit(RatioUnit.PartPerBillion));
+            UnitConverter.Default.SetConversionFunction<Ratio>(RatioUnit.PartPerBillion, Ratio.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Ratio>(Ratio.BaseUnit, RatioUnit.PartPerMillion, q => q.ToUnit(RatioUnit.PartPerMillion));
+            UnitConverter.Default.SetConversionFunction<Ratio>(RatioUnit.PartPerMillion, Ratio.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Ratio>(Ratio.BaseUnit, RatioUnit.PartPerThousand, q => q.ToUnit(RatioUnit.PartPerThousand));
+            UnitConverter.Default.SetConversionFunction<Ratio>(RatioUnit.PartPerThousand, Ratio.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Ratio>(Ratio.BaseUnit, RatioUnit.PartPerTrillion, q => q.ToUnit(RatioUnit.PartPerTrillion));
+            UnitConverter.Default.SetConversionFunction<Ratio>(RatioUnit.PartPerTrillion, Ratio.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Ratio>(Ratio.BaseUnit, RatioUnit.Percent, q => q.ToUnit(RatioUnit.Percent));
+            UnitConverter.Default.SetConversionFunction<Ratio>(RatioUnit.Percent, Ratio.BaseUnit, q => q.ToBaseUnit());
         }
 
         /// <summary>

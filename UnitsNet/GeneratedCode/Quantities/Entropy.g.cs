@@ -65,6 +65,20 @@ namespace UnitsNet
                     new UnitInfo<EntropyUnit>(EntropyUnit.MegajoulePerKelvin, "MegajoulesPerKelvin", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Entropy);
+
+            UnitConverter.Default.SetConversionFunction<Entropy>(Entropy.BaseUnit, EntropyUnit.CaloriePerKelvin, q => q.ToUnit(EntropyUnit.CaloriePerKelvin));
+            UnitConverter.Default.SetConversionFunction<Entropy>(EntropyUnit.CaloriePerKelvin, Entropy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Entropy>(Entropy.BaseUnit, EntropyUnit.JoulePerDegreeCelsius, q => q.ToUnit(EntropyUnit.JoulePerDegreeCelsius));
+            UnitConverter.Default.SetConversionFunction<Entropy>(EntropyUnit.JoulePerDegreeCelsius, Entropy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Entropy>(Entropy.BaseUnit, Entropy.BaseUnit, q => q);
+            UnitConverter.Default.SetConversionFunction<Entropy>(Entropy.BaseUnit, EntropyUnit.KilocaloriePerKelvin, q => q.ToUnit(EntropyUnit.KilocaloriePerKelvin));
+            UnitConverter.Default.SetConversionFunction<Entropy>(EntropyUnit.KilocaloriePerKelvin, Entropy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Entropy>(Entropy.BaseUnit, EntropyUnit.KilojoulePerDegreeCelsius, q => q.ToUnit(EntropyUnit.KilojoulePerDegreeCelsius));
+            UnitConverter.Default.SetConversionFunction<Entropy>(EntropyUnit.KilojoulePerDegreeCelsius, Entropy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Entropy>(Entropy.BaseUnit, EntropyUnit.KilojoulePerKelvin, q => q.ToUnit(EntropyUnit.KilojoulePerKelvin));
+            UnitConverter.Default.SetConversionFunction<Entropy>(EntropyUnit.KilojoulePerKelvin, Entropy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Entropy>(Entropy.BaseUnit, EntropyUnit.MegajoulePerKelvin, q => q.ToUnit(EntropyUnit.MegajoulePerKelvin));
+            UnitConverter.Default.SetConversionFunction<Entropy>(EntropyUnit.MegajoulePerKelvin, Entropy.BaseUnit, q => q.ToBaseUnit());
         }
 
         /// <summary>

@@ -62,6 +62,8 @@ namespace UnitsNet
                     new UnitInfo<PermittivityUnit>(PermittivityUnit.FaradPerMeter, "FaradsPerMeter", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Permittivity);
+
+            UnitConverter.Default.SetConversionFunction<Permittivity>(Permittivity.BaseUnit, Permittivity.BaseUnit, q => q);
         }
 
         /// <summary>

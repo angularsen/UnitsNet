@@ -74,6 +74,38 @@ namespace UnitsNet
                     new UnitInfo<AngleUnit>(AngleUnit.Tilt, "Tilt", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Angle);
+
+            UnitConverter.Default.SetConversionFunction<Angle>(Angle.BaseUnit, AngleUnit.Arcminute, q => q.ToUnit(AngleUnit.Arcminute));
+            UnitConverter.Default.SetConversionFunction<Angle>(AngleUnit.Arcminute, Angle.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Angle>(Angle.BaseUnit, AngleUnit.Arcsecond, q => q.ToUnit(AngleUnit.Arcsecond));
+            UnitConverter.Default.SetConversionFunction<Angle>(AngleUnit.Arcsecond, Angle.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Angle>(Angle.BaseUnit, AngleUnit.Centiradian, q => q.ToUnit(AngleUnit.Centiradian));
+            UnitConverter.Default.SetConversionFunction<Angle>(AngleUnit.Centiradian, Angle.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Angle>(Angle.BaseUnit, AngleUnit.Deciradian, q => q.ToUnit(AngleUnit.Deciradian));
+            UnitConverter.Default.SetConversionFunction<Angle>(AngleUnit.Deciradian, Angle.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Angle>(Angle.BaseUnit, Angle.BaseUnit, q => q);
+            UnitConverter.Default.SetConversionFunction<Angle>(Angle.BaseUnit, AngleUnit.Gradian, q => q.ToUnit(AngleUnit.Gradian));
+            UnitConverter.Default.SetConversionFunction<Angle>(AngleUnit.Gradian, Angle.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Angle>(Angle.BaseUnit, AngleUnit.Microdegree, q => q.ToUnit(AngleUnit.Microdegree));
+            UnitConverter.Default.SetConversionFunction<Angle>(AngleUnit.Microdegree, Angle.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Angle>(Angle.BaseUnit, AngleUnit.Microradian, q => q.ToUnit(AngleUnit.Microradian));
+            UnitConverter.Default.SetConversionFunction<Angle>(AngleUnit.Microradian, Angle.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Angle>(Angle.BaseUnit, AngleUnit.Millidegree, q => q.ToUnit(AngleUnit.Millidegree));
+            UnitConverter.Default.SetConversionFunction<Angle>(AngleUnit.Millidegree, Angle.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Angle>(Angle.BaseUnit, AngleUnit.Milliradian, q => q.ToUnit(AngleUnit.Milliradian));
+            UnitConverter.Default.SetConversionFunction<Angle>(AngleUnit.Milliradian, Angle.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Angle>(Angle.BaseUnit, AngleUnit.Nanodegree, q => q.ToUnit(AngleUnit.Nanodegree));
+            UnitConverter.Default.SetConversionFunction<Angle>(AngleUnit.Nanodegree, Angle.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Angle>(Angle.BaseUnit, AngleUnit.Nanoradian, q => q.ToUnit(AngleUnit.Nanoradian));
+            UnitConverter.Default.SetConversionFunction<Angle>(AngleUnit.Nanoradian, Angle.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Angle>(Angle.BaseUnit, AngleUnit.NatoMil, q => q.ToUnit(AngleUnit.NatoMil));
+            UnitConverter.Default.SetConversionFunction<Angle>(AngleUnit.NatoMil, Angle.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Angle>(Angle.BaseUnit, AngleUnit.Radian, q => q.ToUnit(AngleUnit.Radian));
+            UnitConverter.Default.SetConversionFunction<Angle>(AngleUnit.Radian, Angle.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Angle>(Angle.BaseUnit, AngleUnit.Revolution, q => q.ToUnit(AngleUnit.Revolution));
+            UnitConverter.Default.SetConversionFunction<Angle>(AngleUnit.Revolution, Angle.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Angle>(Angle.BaseUnit, AngleUnit.Tilt, q => q.ToUnit(AngleUnit.Tilt));
+            UnitConverter.Default.SetConversionFunction<Angle>(AngleUnit.Tilt, Angle.BaseUnit, q => q.ToBaseUnit());
         }
 
         /// <summary>

@@ -59,6 +59,8 @@ namespace UnitsNet
                     new UnitInfo<ScalarUnit>(ScalarUnit.Amount, "Amount", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Scalar);
+
+            UnitConverter.Default.SetConversionFunction<Scalar>(Scalar.BaseUnit, Scalar.BaseUnit, q => q);
         }
 
         /// <summary>

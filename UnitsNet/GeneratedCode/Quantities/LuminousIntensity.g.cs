@@ -62,6 +62,8 @@ namespace UnitsNet
                     new UnitInfo<LuminousIntensityUnit>(LuminousIntensityUnit.Candela, "Candela", new BaseUnits(luminousIntensity: LuminousIntensityUnit.Candela)),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.LuminousIntensity);
+
+            UnitConverter.Default.SetConversionFunction<LuminousIntensity>(LuminousIntensity.BaseUnit, LuminousIntensity.BaseUnit, q => q);
         }
 
         /// <summary>

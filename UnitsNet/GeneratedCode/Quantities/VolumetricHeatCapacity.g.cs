@@ -70,6 +70,24 @@ namespace UnitsNet
                     new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, "MegajoulesPerCubicMeterKelvin", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.VolumetricHeatCapacity);
+
+            UnitConverter.Default.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacity.BaseUnit, VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, q => q.ToUnit(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit));
+            UnitConverter.Default.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, VolumetricHeatCapacity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacity.BaseUnit, VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius, q => q.ToUnit(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius));
+            UnitConverter.Default.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius, VolumetricHeatCapacity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacity.BaseUnit, VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius, q => q.ToUnit(VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius));
+            UnitConverter.Default.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius, VolumetricHeatCapacity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacity.BaseUnit, VolumetricHeatCapacity.BaseUnit, q => q);
+            UnitConverter.Default.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacity.BaseUnit, VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius, q => q.ToUnit(VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius));
+            UnitConverter.Default.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius, VolumetricHeatCapacity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacity.BaseUnit, VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius, q => q.ToUnit(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius));
+            UnitConverter.Default.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius, VolumetricHeatCapacity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacity.BaseUnit, VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, q => q.ToUnit(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin));
+            UnitConverter.Default.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, VolumetricHeatCapacity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacity.BaseUnit, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, q => q.ToUnit(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius));
+            UnitConverter.Default.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, VolumetricHeatCapacity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacity.BaseUnit, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, q => q.ToUnit(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin));
+            UnitConverter.Default.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, VolumetricHeatCapacity.BaseUnit, q => q.ToBaseUnit());
         }
 
         /// <summary>

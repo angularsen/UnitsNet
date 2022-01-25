@@ -64,6 +64,18 @@ namespace UnitsNet
                     new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Ohm, "Ohms", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricResistance);
+
+            UnitConverter.Default.SetConversionFunction<ElectricResistance>(ElectricResistance.BaseUnit, ElectricResistanceUnit.Gigaohm, q => q.ToUnit(ElectricResistanceUnit.Gigaohm));
+            UnitConverter.Default.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Gigaohm, ElectricResistance.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricResistance>(ElectricResistance.BaseUnit, ElectricResistanceUnit.Kiloohm, q => q.ToUnit(ElectricResistanceUnit.Kiloohm));
+            UnitConverter.Default.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Kiloohm, ElectricResistance.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricResistance>(ElectricResistance.BaseUnit, ElectricResistanceUnit.Megaohm, q => q.ToUnit(ElectricResistanceUnit.Megaohm));
+            UnitConverter.Default.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Megaohm, ElectricResistance.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricResistance>(ElectricResistance.BaseUnit, ElectricResistanceUnit.Microohm, q => q.ToUnit(ElectricResistanceUnit.Microohm));
+            UnitConverter.Default.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Microohm, ElectricResistance.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricResistance>(ElectricResistance.BaseUnit, ElectricResistanceUnit.Milliohm, q => q.ToUnit(ElectricResistanceUnit.Milliohm));
+            UnitConverter.Default.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Milliohm, ElectricResistance.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricResistance>(ElectricResistance.BaseUnit, ElectricResistance.BaseUnit, q => q);
         }
 
         /// <summary>

@@ -61,6 +61,12 @@ namespace UnitsNet
                     new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseKelvin, "InverseKelvin", new BaseUnits(temperature: TemperatureUnit.Kelvin)),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.CoefficientOfThermalExpansion);
+
+            UnitConverter.Default.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansion.BaseUnit, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, q => q.ToUnit(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius));
+            UnitConverter.Default.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, CoefficientOfThermalExpansion.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansion.BaseUnit, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, q => q.ToUnit(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit));
+            UnitConverter.Default.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, CoefficientOfThermalExpansion.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansion.BaseUnit, CoefficientOfThermalExpansion.BaseUnit, q => q);
         }
 
         /// <summary>

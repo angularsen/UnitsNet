@@ -75,6 +75,34 @@ namespace UnitsNet
                     new UnitInfo<LinearDensityUnit>(LinearDensityUnit.PoundPerInch, "PoundsPerInch", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.LinearDensity);
+
+            UnitConverter.Default.SetConversionFunction<LinearDensity>(LinearDensity.BaseUnit, LinearDensityUnit.GramPerCentimeter, q => q.ToUnit(LinearDensityUnit.GramPerCentimeter));
+            UnitConverter.Default.SetConversionFunction<LinearDensity>(LinearDensityUnit.GramPerCentimeter, LinearDensity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<LinearDensity>(LinearDensity.BaseUnit, LinearDensityUnit.GramPerMeter, q => q.ToUnit(LinearDensityUnit.GramPerMeter));
+            UnitConverter.Default.SetConversionFunction<LinearDensity>(LinearDensityUnit.GramPerMeter, LinearDensity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<LinearDensity>(LinearDensity.BaseUnit, LinearDensityUnit.GramPerMillimeter, q => q.ToUnit(LinearDensityUnit.GramPerMillimeter));
+            UnitConverter.Default.SetConversionFunction<LinearDensity>(LinearDensityUnit.GramPerMillimeter, LinearDensity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<LinearDensity>(LinearDensity.BaseUnit, LinearDensityUnit.KilogramPerCentimeter, q => q.ToUnit(LinearDensityUnit.KilogramPerCentimeter));
+            UnitConverter.Default.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerCentimeter, LinearDensity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<LinearDensity>(LinearDensity.BaseUnit, LinearDensity.BaseUnit, q => q);
+            UnitConverter.Default.SetConversionFunction<LinearDensity>(LinearDensity.BaseUnit, LinearDensityUnit.KilogramPerMillimeter, q => q.ToUnit(LinearDensityUnit.KilogramPerMillimeter));
+            UnitConverter.Default.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMillimeter, LinearDensity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<LinearDensity>(LinearDensity.BaseUnit, LinearDensityUnit.MicrogramPerCentimeter, q => q.ToUnit(LinearDensityUnit.MicrogramPerCentimeter));
+            UnitConverter.Default.SetConversionFunction<LinearDensity>(LinearDensityUnit.MicrogramPerCentimeter, LinearDensity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<LinearDensity>(LinearDensity.BaseUnit, LinearDensityUnit.MicrogramPerMeter, q => q.ToUnit(LinearDensityUnit.MicrogramPerMeter));
+            UnitConverter.Default.SetConversionFunction<LinearDensity>(LinearDensityUnit.MicrogramPerMeter, LinearDensity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<LinearDensity>(LinearDensity.BaseUnit, LinearDensityUnit.MicrogramPerMillimeter, q => q.ToUnit(LinearDensityUnit.MicrogramPerMillimeter));
+            UnitConverter.Default.SetConversionFunction<LinearDensity>(LinearDensityUnit.MicrogramPerMillimeter, LinearDensity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<LinearDensity>(LinearDensity.BaseUnit, LinearDensityUnit.MilligramPerCentimeter, q => q.ToUnit(LinearDensityUnit.MilligramPerCentimeter));
+            UnitConverter.Default.SetConversionFunction<LinearDensity>(LinearDensityUnit.MilligramPerCentimeter, LinearDensity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<LinearDensity>(LinearDensity.BaseUnit, LinearDensityUnit.MilligramPerMeter, q => q.ToUnit(LinearDensityUnit.MilligramPerMeter));
+            UnitConverter.Default.SetConversionFunction<LinearDensity>(LinearDensityUnit.MilligramPerMeter, LinearDensity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<LinearDensity>(LinearDensity.BaseUnit, LinearDensityUnit.MilligramPerMillimeter, q => q.ToUnit(LinearDensityUnit.MilligramPerMillimeter));
+            UnitConverter.Default.SetConversionFunction<LinearDensity>(LinearDensityUnit.MilligramPerMillimeter, LinearDensity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<LinearDensity>(LinearDensity.BaseUnit, LinearDensityUnit.PoundPerFoot, q => q.ToUnit(LinearDensityUnit.PoundPerFoot));
+            UnitConverter.Default.SetConversionFunction<LinearDensity>(LinearDensityUnit.PoundPerFoot, LinearDensity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<LinearDensity>(LinearDensity.BaseUnit, LinearDensityUnit.PoundPerInch, q => q.ToUnit(LinearDensityUnit.PoundPerInch));
+            UnitConverter.Default.SetConversionFunction<LinearDensity>(LinearDensityUnit.PoundPerInch, LinearDensity.BaseUnit, q => q.ToBaseUnit());
         }
 
         /// <summary>

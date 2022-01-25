@@ -67,6 +67,24 @@ namespace UnitsNet
                     new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardLiterPerMinute, "StandardLitersPerMinute", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.StandardVolumeFlow);
+
+            UnitConverter.Default.SetConversionFunction<StandardVolumeFlow>(StandardVolumeFlow.BaseUnit, StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, q => q.ToUnit(StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute));
+            UnitConverter.Default.SetConversionFunction<StandardVolumeFlow>(StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, StandardVolumeFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<StandardVolumeFlow>(StandardVolumeFlow.BaseUnit, StandardVolumeFlowUnit.StandardCubicFootPerHour, q => q.ToUnit(StandardVolumeFlowUnit.StandardCubicFootPerHour));
+            UnitConverter.Default.SetConversionFunction<StandardVolumeFlow>(StandardVolumeFlowUnit.StandardCubicFootPerHour, StandardVolumeFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<StandardVolumeFlow>(StandardVolumeFlow.BaseUnit, StandardVolumeFlowUnit.StandardCubicFootPerMinute, q => q.ToUnit(StandardVolumeFlowUnit.StandardCubicFootPerMinute));
+            UnitConverter.Default.SetConversionFunction<StandardVolumeFlow>(StandardVolumeFlowUnit.StandardCubicFootPerMinute, StandardVolumeFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<StandardVolumeFlow>(StandardVolumeFlow.BaseUnit, StandardVolumeFlowUnit.StandardCubicFootPerSecond, q => q.ToUnit(StandardVolumeFlowUnit.StandardCubicFootPerSecond));
+            UnitConverter.Default.SetConversionFunction<StandardVolumeFlow>(StandardVolumeFlowUnit.StandardCubicFootPerSecond, StandardVolumeFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<StandardVolumeFlow>(StandardVolumeFlow.BaseUnit, StandardVolumeFlowUnit.StandardCubicMeterPerDay, q => q.ToUnit(StandardVolumeFlowUnit.StandardCubicMeterPerDay));
+            UnitConverter.Default.SetConversionFunction<StandardVolumeFlow>(StandardVolumeFlowUnit.StandardCubicMeterPerDay, StandardVolumeFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<StandardVolumeFlow>(StandardVolumeFlow.BaseUnit, StandardVolumeFlowUnit.StandardCubicMeterPerHour, q => q.ToUnit(StandardVolumeFlowUnit.StandardCubicMeterPerHour));
+            UnitConverter.Default.SetConversionFunction<StandardVolumeFlow>(StandardVolumeFlowUnit.StandardCubicMeterPerHour, StandardVolumeFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<StandardVolumeFlow>(StandardVolumeFlow.BaseUnit, StandardVolumeFlowUnit.StandardCubicMeterPerMinute, q => q.ToUnit(StandardVolumeFlowUnit.StandardCubicMeterPerMinute));
+            UnitConverter.Default.SetConversionFunction<StandardVolumeFlow>(StandardVolumeFlowUnit.StandardCubicMeterPerMinute, StandardVolumeFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<StandardVolumeFlow>(StandardVolumeFlow.BaseUnit, StandardVolumeFlow.BaseUnit, q => q);
+            UnitConverter.Default.SetConversionFunction<StandardVolumeFlow>(StandardVolumeFlow.BaseUnit, StandardVolumeFlowUnit.StandardLiterPerMinute, q => q.ToUnit(StandardVolumeFlowUnit.StandardLiterPerMinute));
+            UnitConverter.Default.SetConversionFunction<StandardVolumeFlow>(StandardVolumeFlowUnit.StandardLiterPerMinute, StandardVolumeFlow.BaseUnit, q => q.ToBaseUnit());
         }
 
         /// <summary>

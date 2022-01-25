@@ -60,6 +60,10 @@ namespace UnitsNet
                     new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.PercentPerSecond, "PercentsPerSecond", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.RatioChangeRate);
+
+            UnitConverter.Default.SetConversionFunction<RatioChangeRate>(RatioChangeRate.BaseUnit, RatioChangeRate.BaseUnit, q => q);
+            UnitConverter.Default.SetConversionFunction<RatioChangeRate>(RatioChangeRate.BaseUnit, RatioChangeRateUnit.PercentPerSecond, q => q.ToUnit(RatioChangeRateUnit.PercentPerSecond));
+            UnitConverter.Default.SetConversionFunction<RatioChangeRate>(RatioChangeRateUnit.PercentPerSecond, RatioChangeRate.BaseUnit, q => q.ToBaseUnit());
         }
 
         /// <summary>

@@ -86,6 +86,56 @@ namespace UnitsNet
                     new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattHourPerKilogram, "WattHoursPerKilogram", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.SpecificEnergy);
+
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergy.BaseUnit, SpecificEnergyUnit.BtuPerPound, q => q.ToUnit(SpecificEnergyUnit.BtuPerPound));
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.BtuPerPound, SpecificEnergy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergy.BaseUnit, SpecificEnergyUnit.CaloriePerGram, q => q.ToUnit(SpecificEnergyUnit.CaloriePerGram));
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.CaloriePerGram, SpecificEnergy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergy.BaseUnit, SpecificEnergyUnit.GigawattDayPerKilogram, q => q.ToUnit(SpecificEnergyUnit.GigawattDayPerKilogram));
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.GigawattDayPerKilogram, SpecificEnergy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergy.BaseUnit, SpecificEnergyUnit.GigawattDayPerShortTon, q => q.ToUnit(SpecificEnergyUnit.GigawattDayPerShortTon));
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.GigawattDayPerShortTon, SpecificEnergy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergy.BaseUnit, SpecificEnergyUnit.GigawattDayPerTonne, q => q.ToUnit(SpecificEnergyUnit.GigawattDayPerTonne));
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.GigawattDayPerTonne, SpecificEnergy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergy.BaseUnit, SpecificEnergyUnit.GigawattHourPerKilogram, q => q.ToUnit(SpecificEnergyUnit.GigawattHourPerKilogram));
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.GigawattHourPerKilogram, SpecificEnergy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergy.BaseUnit, SpecificEnergy.BaseUnit, q => q);
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergy.BaseUnit, SpecificEnergyUnit.KilocaloriePerGram, q => q.ToUnit(SpecificEnergyUnit.KilocaloriePerGram));
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.KilocaloriePerGram, SpecificEnergy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergy.BaseUnit, SpecificEnergyUnit.KilojoulePerKilogram, q => q.ToUnit(SpecificEnergyUnit.KilojoulePerKilogram));
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.KilojoulePerKilogram, SpecificEnergy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergy.BaseUnit, SpecificEnergyUnit.KilowattDayPerKilogram, q => q.ToUnit(SpecificEnergyUnit.KilowattDayPerKilogram));
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.KilowattDayPerKilogram, SpecificEnergy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergy.BaseUnit, SpecificEnergyUnit.KilowattDayPerShortTon, q => q.ToUnit(SpecificEnergyUnit.KilowattDayPerShortTon));
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.KilowattDayPerShortTon, SpecificEnergy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergy.BaseUnit, SpecificEnergyUnit.KilowattDayPerTonne, q => q.ToUnit(SpecificEnergyUnit.KilowattDayPerTonne));
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.KilowattDayPerTonne, SpecificEnergy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergy.BaseUnit, SpecificEnergyUnit.KilowattHourPerKilogram, q => q.ToUnit(SpecificEnergyUnit.KilowattHourPerKilogram));
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.KilowattHourPerKilogram, SpecificEnergy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergy.BaseUnit, SpecificEnergyUnit.MegajoulePerKilogram, q => q.ToUnit(SpecificEnergyUnit.MegajoulePerKilogram));
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.MegajoulePerKilogram, SpecificEnergy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergy.BaseUnit, SpecificEnergyUnit.MegawattDayPerKilogram, q => q.ToUnit(SpecificEnergyUnit.MegawattDayPerKilogram));
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.MegawattDayPerKilogram, SpecificEnergy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergy.BaseUnit, SpecificEnergyUnit.MegawattDayPerShortTon, q => q.ToUnit(SpecificEnergyUnit.MegawattDayPerShortTon));
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.MegawattDayPerShortTon, SpecificEnergy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergy.BaseUnit, SpecificEnergyUnit.MegawattDayPerTonne, q => q.ToUnit(SpecificEnergyUnit.MegawattDayPerTonne));
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.MegawattDayPerTonne, SpecificEnergy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergy.BaseUnit, SpecificEnergyUnit.MegawattHourPerKilogram, q => q.ToUnit(SpecificEnergyUnit.MegawattHourPerKilogram));
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.MegawattHourPerKilogram, SpecificEnergy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergy.BaseUnit, SpecificEnergyUnit.TerawattDayPerKilogram, q => q.ToUnit(SpecificEnergyUnit.TerawattDayPerKilogram));
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.TerawattDayPerKilogram, SpecificEnergy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergy.BaseUnit, SpecificEnergyUnit.TerawattDayPerShortTon, q => q.ToUnit(SpecificEnergyUnit.TerawattDayPerShortTon));
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.TerawattDayPerShortTon, SpecificEnergy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergy.BaseUnit, SpecificEnergyUnit.TerawattDayPerTonne, q => q.ToUnit(SpecificEnergyUnit.TerawattDayPerTonne));
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.TerawattDayPerTonne, SpecificEnergy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergy.BaseUnit, SpecificEnergyUnit.WattDayPerKilogram, q => q.ToUnit(SpecificEnergyUnit.WattDayPerKilogram));
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.WattDayPerKilogram, SpecificEnergy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergy.BaseUnit, SpecificEnergyUnit.WattDayPerShortTon, q => q.ToUnit(SpecificEnergyUnit.WattDayPerShortTon));
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.WattDayPerShortTon, SpecificEnergy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergy.BaseUnit, SpecificEnergyUnit.WattDayPerTonne, q => q.ToUnit(SpecificEnergyUnit.WattDayPerTonne));
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.WattDayPerTonne, SpecificEnergy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergy.BaseUnit, SpecificEnergyUnit.WattHourPerKilogram, q => q.ToUnit(SpecificEnergyUnit.WattHourPerKilogram));
+            UnitConverter.Default.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.WattHourPerKilogram, SpecificEnergy.BaseUnit, q => q.ToBaseUnit());
         }
 
         /// <summary>

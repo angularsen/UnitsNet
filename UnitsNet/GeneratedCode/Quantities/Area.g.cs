@@ -72,6 +72,34 @@ namespace UnitsNet
                     new UnitInfo<AreaUnit>(AreaUnit.UsSurveySquareFoot, "UsSurveySquareFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot)),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Area);
+
+            UnitConverter.Default.SetConversionFunction<Area>(Area.BaseUnit, AreaUnit.Acre, q => q.ToUnit(AreaUnit.Acre));
+            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.Acre, Area.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Area>(Area.BaseUnit, AreaUnit.Hectare, q => q.ToUnit(AreaUnit.Hectare));
+            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.Hectare, Area.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Area>(Area.BaseUnit, AreaUnit.SquareCentimeter, q => q.ToUnit(AreaUnit.SquareCentimeter));
+            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareCentimeter, Area.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Area>(Area.BaseUnit, AreaUnit.SquareDecimeter, q => q.ToUnit(AreaUnit.SquareDecimeter));
+            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareDecimeter, Area.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Area>(Area.BaseUnit, AreaUnit.SquareFoot, q => q.ToUnit(AreaUnit.SquareFoot));
+            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareFoot, Area.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Area>(Area.BaseUnit, AreaUnit.SquareInch, q => q.ToUnit(AreaUnit.SquareInch));
+            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareInch, Area.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Area>(Area.BaseUnit, AreaUnit.SquareKilometer, q => q.ToUnit(AreaUnit.SquareKilometer));
+            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareKilometer, Area.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Area>(Area.BaseUnit, Area.BaseUnit, q => q);
+            UnitConverter.Default.SetConversionFunction<Area>(Area.BaseUnit, AreaUnit.SquareMicrometer, q => q.ToUnit(AreaUnit.SquareMicrometer));
+            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareMicrometer, Area.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Area>(Area.BaseUnit, AreaUnit.SquareMile, q => q.ToUnit(AreaUnit.SquareMile));
+            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareMile, Area.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Area>(Area.BaseUnit, AreaUnit.SquareMillimeter, q => q.ToUnit(AreaUnit.SquareMillimeter));
+            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareMillimeter, Area.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Area>(Area.BaseUnit, AreaUnit.SquareNauticalMile, q => q.ToUnit(AreaUnit.SquareNauticalMile));
+            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareNauticalMile, Area.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Area>(Area.BaseUnit, AreaUnit.SquareYard, q => q.ToUnit(AreaUnit.SquareYard));
+            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareYard, Area.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Area>(Area.BaseUnit, AreaUnit.UsSurveySquareFoot, q => q.ToUnit(AreaUnit.UsSurveySquareFoot));
+            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.UsSurveySquareFoot, Area.BaseUnit, q => q.ToBaseUnit());
         }
 
         /// <summary>

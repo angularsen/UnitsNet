@@ -62,6 +62,8 @@ namespace UnitsNet
                     new UnitInfo<LuminousFluxUnit>(LuminousFluxUnit.Lumen, "Lumens", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.LuminousFlux);
+
+            UnitConverter.Default.SetConversionFunction<LuminousFlux>(LuminousFlux.BaseUnit, LuminousFlux.BaseUnit, q => q);
         }
 
         /// <summary>

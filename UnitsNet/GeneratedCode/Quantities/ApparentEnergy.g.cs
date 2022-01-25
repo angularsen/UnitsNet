@@ -61,6 +61,12 @@ namespace UnitsNet
                     new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.VoltampereHour, "VoltampereHours", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ApparentEnergy);
+
+            UnitConverter.Default.SetConversionFunction<ApparentEnergy>(ApparentEnergy.BaseUnit, ApparentEnergyUnit.KilovoltampereHour, q => q.ToUnit(ApparentEnergyUnit.KilovoltampereHour));
+            UnitConverter.Default.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.KilovoltampereHour, ApparentEnergy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ApparentEnergy>(ApparentEnergy.BaseUnit, ApparentEnergyUnit.MegavoltampereHour, q => q.ToUnit(ApparentEnergyUnit.MegavoltampereHour));
+            UnitConverter.Default.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.MegavoltampereHour, ApparentEnergy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ApparentEnergy>(ApparentEnergy.BaseUnit, ApparentEnergy.BaseUnit, q => q);
         }
 
         /// <summary>

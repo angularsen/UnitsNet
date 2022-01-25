@@ -59,6 +59,8 @@ namespace UnitsNet
                     new UnitInfo<VitaminAUnit>(VitaminAUnit.InternationalUnit, "InternationalUnits", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.VitaminA);
+
+            UnitConverter.Default.SetConversionFunction<VitaminA>(VitaminA.BaseUnit, VitaminA.BaseUnit, q => q);
         }
 
         /// <summary>

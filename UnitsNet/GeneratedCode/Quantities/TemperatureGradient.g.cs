@@ -62,6 +62,14 @@ namespace UnitsNet
                     new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.KelvinPerMeter, "KelvinsPerMeter", new BaseUnits(length: LengthUnit.Meter, temperature: TemperatureUnit.Kelvin)),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.TemperatureGradient);
+
+            UnitConverter.Default.SetConversionFunction<TemperatureGradient>(TemperatureGradient.BaseUnit, TemperatureGradientUnit.DegreeCelsiusPerKilometer, q => q.ToUnit(TemperatureGradientUnit.DegreeCelsiusPerKilometer));
+            UnitConverter.Default.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.DegreeCelsiusPerKilometer, TemperatureGradient.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<TemperatureGradient>(TemperatureGradient.BaseUnit, TemperatureGradientUnit.DegreeCelsiusPerMeter, q => q.ToUnit(TemperatureGradientUnit.DegreeCelsiusPerMeter));
+            UnitConverter.Default.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.DegreeCelsiusPerMeter, TemperatureGradient.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<TemperatureGradient>(TemperatureGradient.BaseUnit, TemperatureGradientUnit.DegreeFahrenheitPerFoot, q => q.ToUnit(TemperatureGradientUnit.DegreeFahrenheitPerFoot));
+            UnitConverter.Default.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.DegreeFahrenheitPerFoot, TemperatureGradient.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<TemperatureGradient>(TemperatureGradient.BaseUnit, TemperatureGradient.BaseUnit, q => q);
         }
 
         /// <summary>

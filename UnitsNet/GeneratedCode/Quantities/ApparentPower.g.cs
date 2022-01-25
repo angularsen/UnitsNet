@@ -62,6 +62,14 @@ namespace UnitsNet
                     new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Voltampere, "Voltamperes", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ApparentPower);
+
+            UnitConverter.Default.SetConversionFunction<ApparentPower>(ApparentPower.BaseUnit, ApparentPowerUnit.Gigavoltampere, q => q.ToUnit(ApparentPowerUnit.Gigavoltampere));
+            UnitConverter.Default.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Gigavoltampere, ApparentPower.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ApparentPower>(ApparentPower.BaseUnit, ApparentPowerUnit.Kilovoltampere, q => q.ToUnit(ApparentPowerUnit.Kilovoltampere));
+            UnitConverter.Default.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Kilovoltampere, ApparentPower.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ApparentPower>(ApparentPower.BaseUnit, ApparentPowerUnit.Megavoltampere, q => q.ToUnit(ApparentPowerUnit.Megavoltampere));
+            UnitConverter.Default.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Megavoltampere, ApparentPower.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ApparentPower>(ApparentPower.BaseUnit, ApparentPower.BaseUnit, q => q);
         }
 
         /// <summary>

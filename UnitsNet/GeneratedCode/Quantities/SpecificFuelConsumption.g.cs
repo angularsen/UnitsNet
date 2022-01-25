@@ -65,6 +65,14 @@ namespace UnitsNet
                     new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, "PoundsMassPerPoundForceHour", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.SpecificFuelConsumption);
+
+            UnitConverter.Default.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumption.BaseUnit, SpecificFuelConsumption.BaseUnit, q => q);
+            UnitConverter.Default.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumption.BaseUnit, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, q => q.ToUnit(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour));
+            UnitConverter.Default.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, SpecificFuelConsumption.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumption.BaseUnit, SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, q => q.ToUnit(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond));
+            UnitConverter.Default.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, SpecificFuelConsumption.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumption.BaseUnit, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, q => q.ToUnit(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour));
+            UnitConverter.Default.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, SpecificFuelConsumption.BaseUnit, q => q.ToBaseUnit());
         }
 
         /// <summary>

@@ -62,6 +62,8 @@ namespace UnitsNet
                     new UnitInfo<PermeabilityUnit>(PermeabilityUnit.HenryPerMeter, "HenriesPerMeter", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Permeability);
+
+            UnitConverter.Default.SetConversionFunction<Permeability>(Permeability.BaseUnit, Permeability.BaseUnit, q => q);
         }
 
         /// <summary>

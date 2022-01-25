@@ -62,6 +62,8 @@ namespace UnitsNet
                     new UnitInfo<SolidAngleUnit>(SolidAngleUnit.Steradian, "Steradians", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.SolidAngle);
+
+            UnitConverter.Default.SetConversionFunction<SolidAngle>(SolidAngle.BaseUnit, SolidAngle.BaseUnit, q => q);
         }
 
         /// <summary>

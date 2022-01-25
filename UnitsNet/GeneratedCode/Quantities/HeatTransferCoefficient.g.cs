@@ -61,6 +61,12 @@ namespace UnitsNet
                     new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, "WattsPerSquareMeterKelvin", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.HeatTransferCoefficient);
+
+            UnitConverter.Default.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficient.BaseUnit, HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, q => q.ToUnit(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit));
+            UnitConverter.Default.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, HeatTransferCoefficient.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficient.BaseUnit, HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, q => q.ToUnit(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius));
+            UnitConverter.Default.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, HeatTransferCoefficient.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficient.BaseUnit, HeatTransferCoefficient.BaseUnit, q => q);
         }
 
         /// <summary>

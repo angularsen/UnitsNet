@@ -65,6 +65,14 @@ namespace UnitsNet
                     new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Millilux, "Millilux", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Illuminance);
+
+            UnitConverter.Default.SetConversionFunction<Illuminance>(Illuminance.BaseUnit, IlluminanceUnit.Kilolux, q => q.ToUnit(IlluminanceUnit.Kilolux));
+            UnitConverter.Default.SetConversionFunction<Illuminance>(IlluminanceUnit.Kilolux, Illuminance.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Illuminance>(Illuminance.BaseUnit, Illuminance.BaseUnit, q => q);
+            UnitConverter.Default.SetConversionFunction<Illuminance>(Illuminance.BaseUnit, IlluminanceUnit.Megalux, q => q.ToUnit(IlluminanceUnit.Megalux));
+            UnitConverter.Default.SetConversionFunction<Illuminance>(IlluminanceUnit.Megalux, Illuminance.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Illuminance>(Illuminance.BaseUnit, IlluminanceUnit.Millilux, q => q.ToUnit(IlluminanceUnit.Millilux));
+            UnitConverter.Default.SetConversionFunction<Illuminance>(IlluminanceUnit.Millilux, Illuminance.BaseUnit, q => q.ToBaseUnit());
         }
 
         /// <summary>

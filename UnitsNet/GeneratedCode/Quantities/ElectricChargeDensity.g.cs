@@ -62,6 +62,8 @@ namespace UnitsNet
                     new UnitInfo<ElectricChargeDensityUnit>(ElectricChargeDensityUnit.CoulombPerCubicMeter, "CoulombsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricChargeDensity);
+
+            UnitConverter.Default.SetConversionFunction<ElectricChargeDensity>(ElectricChargeDensity.BaseUnit, ElectricChargeDensity.BaseUnit, q => q);
         }
 
         /// <summary>

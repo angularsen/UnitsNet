@@ -63,6 +63,10 @@ namespace UnitsNet
                     new UnitInfo<ThermalConductivityUnit>(ThermalConductivityUnit.WattPerMeterKelvin, "WattsPerMeterKelvin", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ThermalConductivity);
+
+            UnitConverter.Default.SetConversionFunction<ThermalConductivity>(ThermalConductivity.BaseUnit, ThermalConductivityUnit.BtuPerHourFootFahrenheit, q => q.ToUnit(ThermalConductivityUnit.BtuPerHourFootFahrenheit));
+            UnitConverter.Default.SetConversionFunction<ThermalConductivity>(ThermalConductivityUnit.BtuPerHourFootFahrenheit, ThermalConductivity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ThermalConductivity>(ThermalConductivity.BaseUnit, ThermalConductivity.BaseUnit, q => q);
         }
 
         /// <summary>

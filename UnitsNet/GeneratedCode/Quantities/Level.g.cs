@@ -60,6 +60,10 @@ namespace UnitsNet
                     new UnitInfo<LevelUnit>(LevelUnit.Neper, "Nepers", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Level);
+
+            UnitConverter.Default.SetConversionFunction<Level>(Level.BaseUnit, Level.BaseUnit, q => q);
+            UnitConverter.Default.SetConversionFunction<Level>(Level.BaseUnit, LevelUnit.Neper, q => q.ToUnit(LevelUnit.Neper));
+            UnitConverter.Default.SetConversionFunction<Level>(LevelUnit.Neper, Level.BaseUnit, q => q.ToBaseUnit());
         }
 
         /// <summary>

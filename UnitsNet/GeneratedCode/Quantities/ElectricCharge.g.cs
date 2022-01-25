@@ -66,6 +66,16 @@ namespace UnitsNet
                     new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MilliampereHour, "MilliampereHours", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricCharge);
+
+            UnitConverter.Default.SetConversionFunction<ElectricCharge>(ElectricCharge.BaseUnit, ElectricChargeUnit.AmpereHour, q => q.ToUnit(ElectricChargeUnit.AmpereHour));
+            UnitConverter.Default.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.AmpereHour, ElectricCharge.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricCharge>(ElectricCharge.BaseUnit, ElectricCharge.BaseUnit, q => q);
+            UnitConverter.Default.SetConversionFunction<ElectricCharge>(ElectricCharge.BaseUnit, ElectricChargeUnit.KiloampereHour, q => q.ToUnit(ElectricChargeUnit.KiloampereHour));
+            UnitConverter.Default.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.KiloampereHour, ElectricCharge.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricCharge>(ElectricCharge.BaseUnit, ElectricChargeUnit.MegaampereHour, q => q.ToUnit(ElectricChargeUnit.MegaampereHour));
+            UnitConverter.Default.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.MegaampereHour, ElectricCharge.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricCharge>(ElectricCharge.BaseUnit, ElectricChargeUnit.MilliampereHour, q => q.ToUnit(ElectricChargeUnit.MilliampereHour));
+            UnitConverter.Default.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.MilliampereHour, ElectricCharge.BaseUnit, q => q.ToBaseUnit());
         }
 
         /// <summary>

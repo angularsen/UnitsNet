@@ -62,6 +62,8 @@ namespace UnitsNet
                     new UnitInfo<TurbidityUnit>(TurbidityUnit.NTU, "NTU", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Turbidity);
+
+            UnitConverter.Default.SetConversionFunction<Turbidity>(Turbidity.BaseUnit, Turbidity.BaseUnit, q => q);
         }
 
         /// <summary>

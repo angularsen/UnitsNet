@@ -71,6 +71,32 @@ namespace UnitsNet
                     new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.RevolutionPerSecond, "RevolutionsPerSecond", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.RotationalSpeed);
+
+            UnitConverter.Default.SetConversionFunction<RotationalSpeed>(RotationalSpeed.BaseUnit, RotationalSpeedUnit.CentiradianPerSecond, q => q.ToUnit(RotationalSpeedUnit.CentiradianPerSecond));
+            UnitConverter.Default.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.CentiradianPerSecond, RotationalSpeed.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<RotationalSpeed>(RotationalSpeed.BaseUnit, RotationalSpeedUnit.DeciradianPerSecond, q => q.ToUnit(RotationalSpeedUnit.DeciradianPerSecond));
+            UnitConverter.Default.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.DeciradianPerSecond, RotationalSpeed.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<RotationalSpeed>(RotationalSpeed.BaseUnit, RotationalSpeedUnit.DegreePerMinute, q => q.ToUnit(RotationalSpeedUnit.DegreePerMinute));
+            UnitConverter.Default.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.DegreePerMinute, RotationalSpeed.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<RotationalSpeed>(RotationalSpeed.BaseUnit, RotationalSpeedUnit.DegreePerSecond, q => q.ToUnit(RotationalSpeedUnit.DegreePerSecond));
+            UnitConverter.Default.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.DegreePerSecond, RotationalSpeed.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<RotationalSpeed>(RotationalSpeed.BaseUnit, RotationalSpeedUnit.MicrodegreePerSecond, q => q.ToUnit(RotationalSpeedUnit.MicrodegreePerSecond));
+            UnitConverter.Default.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.MicrodegreePerSecond, RotationalSpeed.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<RotationalSpeed>(RotationalSpeed.BaseUnit, RotationalSpeedUnit.MicroradianPerSecond, q => q.ToUnit(RotationalSpeedUnit.MicroradianPerSecond));
+            UnitConverter.Default.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.MicroradianPerSecond, RotationalSpeed.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<RotationalSpeed>(RotationalSpeed.BaseUnit, RotationalSpeedUnit.MillidegreePerSecond, q => q.ToUnit(RotationalSpeedUnit.MillidegreePerSecond));
+            UnitConverter.Default.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.MillidegreePerSecond, RotationalSpeed.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<RotationalSpeed>(RotationalSpeed.BaseUnit, RotationalSpeedUnit.MilliradianPerSecond, q => q.ToUnit(RotationalSpeedUnit.MilliradianPerSecond));
+            UnitConverter.Default.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.MilliradianPerSecond, RotationalSpeed.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<RotationalSpeed>(RotationalSpeed.BaseUnit, RotationalSpeedUnit.NanodegreePerSecond, q => q.ToUnit(RotationalSpeedUnit.NanodegreePerSecond));
+            UnitConverter.Default.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.NanodegreePerSecond, RotationalSpeed.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<RotationalSpeed>(RotationalSpeed.BaseUnit, RotationalSpeedUnit.NanoradianPerSecond, q => q.ToUnit(RotationalSpeedUnit.NanoradianPerSecond));
+            UnitConverter.Default.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.NanoradianPerSecond, RotationalSpeed.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<RotationalSpeed>(RotationalSpeed.BaseUnit, RotationalSpeed.BaseUnit, q => q);
+            UnitConverter.Default.SetConversionFunction<RotationalSpeed>(RotationalSpeed.BaseUnit, RotationalSpeedUnit.RevolutionPerMinute, q => q.ToUnit(RotationalSpeedUnit.RevolutionPerMinute));
+            UnitConverter.Default.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RevolutionPerMinute, RotationalSpeed.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<RotationalSpeed>(RotationalSpeed.BaseUnit, RotationalSpeedUnit.RevolutionPerSecond, q => q.ToUnit(RotationalSpeedUnit.RevolutionPerSecond));
+            UnitConverter.Default.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RevolutionPerSecond, RotationalSpeed.BaseUnit, q => q.ToBaseUnit());
         }
 
         /// <summary>

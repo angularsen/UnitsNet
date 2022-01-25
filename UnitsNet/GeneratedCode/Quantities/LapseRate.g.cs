@@ -60,6 +60,8 @@ namespace UnitsNet
                     new UnitInfo<LapseRateUnit>(LapseRateUnit.DegreeCelsiusPerKilometer, "DegreesCelciusPerKilometer", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.LapseRate);
+
+            UnitConverter.Default.SetConversionFunction<LapseRate>(LapseRate.BaseUnit, LapseRate.BaseUnit, q => q);
         }
 
         /// <summary>

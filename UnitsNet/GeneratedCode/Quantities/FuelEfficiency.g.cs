@@ -65,6 +65,14 @@ namespace UnitsNet
                     new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.MilePerUsGallon, "MilesPerUsGallon", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.FuelEfficiency);
+
+            UnitConverter.Default.SetConversionFunction<FuelEfficiency>(FuelEfficiency.BaseUnit, FuelEfficiencyUnit.KilometerPerLiter, q => q.ToUnit(FuelEfficiencyUnit.KilometerPerLiter));
+            UnitConverter.Default.SetConversionFunction<FuelEfficiency>(FuelEfficiencyUnit.KilometerPerLiter, FuelEfficiency.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<FuelEfficiency>(FuelEfficiency.BaseUnit, FuelEfficiency.BaseUnit, q => q);
+            UnitConverter.Default.SetConversionFunction<FuelEfficiency>(FuelEfficiency.BaseUnit, FuelEfficiencyUnit.MilePerUkGallon, q => q.ToUnit(FuelEfficiencyUnit.MilePerUkGallon));
+            UnitConverter.Default.SetConversionFunction<FuelEfficiency>(FuelEfficiencyUnit.MilePerUkGallon, FuelEfficiency.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<FuelEfficiency>(FuelEfficiency.BaseUnit, FuelEfficiencyUnit.MilePerUsGallon, q => q.ToUnit(FuelEfficiencyUnit.MilePerUsGallon));
+            UnitConverter.Default.SetConversionFunction<FuelEfficiency>(FuelEfficiencyUnit.MilePerUsGallon, FuelEfficiency.BaseUnit, q => q.ToBaseUnit());
         }
 
         /// <summary>

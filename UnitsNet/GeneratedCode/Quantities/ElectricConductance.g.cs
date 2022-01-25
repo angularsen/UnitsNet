@@ -64,6 +64,12 @@ namespace UnitsNet
                     new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Siemens, "Siemens", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricConductance);
+
+            UnitConverter.Default.SetConversionFunction<ElectricConductance>(ElectricConductance.BaseUnit, ElectricConductanceUnit.Microsiemens, q => q.ToUnit(ElectricConductanceUnit.Microsiemens));
+            UnitConverter.Default.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Microsiemens, ElectricConductance.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricConductance>(ElectricConductance.BaseUnit, ElectricConductanceUnit.Millisiemens, q => q.ToUnit(ElectricConductanceUnit.Millisiemens));
+            UnitConverter.Default.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Millisiemens, ElectricConductance.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricConductance>(ElectricConductance.BaseUnit, ElectricConductance.BaseUnit, q => q);
         }
 
         /// <summary>

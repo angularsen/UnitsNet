@@ -68,6 +68,20 @@ namespace UnitsNet
                     new UnitInfo<IrradiationUnit>(IrradiationUnit.WattHourPerSquareMeter, "WattHoursPerSquareMeter", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Irradiation);
+
+            UnitConverter.Default.SetConversionFunction<Irradiation>(Irradiation.BaseUnit, IrradiationUnit.JoulePerSquareCentimeter, q => q.ToUnit(IrradiationUnit.JoulePerSquareCentimeter));
+            UnitConverter.Default.SetConversionFunction<Irradiation>(IrradiationUnit.JoulePerSquareCentimeter, Irradiation.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Irradiation>(Irradiation.BaseUnit, Irradiation.BaseUnit, q => q);
+            UnitConverter.Default.SetConversionFunction<Irradiation>(Irradiation.BaseUnit, IrradiationUnit.JoulePerSquareMillimeter, q => q.ToUnit(IrradiationUnit.JoulePerSquareMillimeter));
+            UnitConverter.Default.SetConversionFunction<Irradiation>(IrradiationUnit.JoulePerSquareMillimeter, Irradiation.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Irradiation>(Irradiation.BaseUnit, IrradiationUnit.KilojoulePerSquareMeter, q => q.ToUnit(IrradiationUnit.KilojoulePerSquareMeter));
+            UnitConverter.Default.SetConversionFunction<Irradiation>(IrradiationUnit.KilojoulePerSquareMeter, Irradiation.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Irradiation>(Irradiation.BaseUnit, IrradiationUnit.KilowattHourPerSquareMeter, q => q.ToUnit(IrradiationUnit.KilowattHourPerSquareMeter));
+            UnitConverter.Default.SetConversionFunction<Irradiation>(IrradiationUnit.KilowattHourPerSquareMeter, Irradiation.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Irradiation>(Irradiation.BaseUnit, IrradiationUnit.MillijoulePerSquareCentimeter, q => q.ToUnit(IrradiationUnit.MillijoulePerSquareCentimeter));
+            UnitConverter.Default.SetConversionFunction<Irradiation>(IrradiationUnit.MillijoulePerSquareCentimeter, Irradiation.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Irradiation>(Irradiation.BaseUnit, IrradiationUnit.WattHourPerSquareMeter, q => q.ToUnit(IrradiationUnit.WattHourPerSquareMeter));
+            UnitConverter.Default.SetConversionFunction<Irradiation>(IrradiationUnit.WattHourPerSquareMeter, Irradiation.BaseUnit, q => q.ToBaseUnit());
         }
 
         /// <summary>

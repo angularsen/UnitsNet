@@ -69,7 +69,6 @@ namespace CodeGen.Generators
             GenerateUnitAbbreviationsCache(quantities, $"{outputDir}/UnitAbbreviationsCache.g.cs");
             GenerateQuantityType(quantities, $"{outputDir}/QuantityType.g.cs");
             GenerateStaticQuantity(quantities, $"{outputDir}/Quantity.g.cs");
-            GenerateUnitConverter(quantities, $"{outputDir}/UnitConverter.g.cs");
 
             var unitCount = quantities.SelectMany(q => q.Units).Count();
             Log.Information("");
@@ -142,13 +141,6 @@ namespace CodeGen.Generators
             var content = new StaticQuantityGenerator(quantities).Generate();
             File.WriteAllText(filePath, content);
             Log.Information("✅ Quantity.g.cs");
-        }
-
-        private static void GenerateUnitConverter(Quantity[] quantities, string filePath)
-        {
-            var content = new UnitConverterGenerator(quantities).Generate();
-            File.WriteAllText(filePath, content);
-            Log.Information("✅ UnitConverter.g.cs");
         }
     }
 }

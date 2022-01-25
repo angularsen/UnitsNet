@@ -61,6 +61,12 @@ namespace UnitsNet
                     new UnitInfo<ReactiveEnergyUnit>(ReactiveEnergyUnit.VoltampereReactiveHour, "VoltampereReactiveHours", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ReactiveEnergy);
+
+            UnitConverter.Default.SetConversionFunction<ReactiveEnergy>(ReactiveEnergy.BaseUnit, ReactiveEnergyUnit.KilovoltampereReactiveHour, q => q.ToUnit(ReactiveEnergyUnit.KilovoltampereReactiveHour));
+            UnitConverter.Default.SetConversionFunction<ReactiveEnergy>(ReactiveEnergyUnit.KilovoltampereReactiveHour, ReactiveEnergy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ReactiveEnergy>(ReactiveEnergy.BaseUnit, ReactiveEnergyUnit.MegavoltampereReactiveHour, q => q.ToUnit(ReactiveEnergyUnit.MegavoltampereReactiveHour));
+            UnitConverter.Default.SetConversionFunction<ReactiveEnergy>(ReactiveEnergyUnit.MegavoltampereReactiveHour, ReactiveEnergy.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ReactiveEnergy>(ReactiveEnergy.BaseUnit, ReactiveEnergy.BaseUnit, q => q);
         }
 
         /// <summary>

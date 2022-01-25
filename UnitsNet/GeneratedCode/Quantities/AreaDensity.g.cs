@@ -59,6 +59,8 @@ namespace UnitsNet
                     new UnitInfo<AreaDensityUnit>(AreaDensityUnit.KilogramPerSquareMeter, "KilogramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram)),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.AreaDensity);
+
+            UnitConverter.Default.SetConversionFunction<AreaDensity>(AreaDensity.BaseUnit, AreaDensity.BaseUnit, q => q);
         }
 
         /// <summary>

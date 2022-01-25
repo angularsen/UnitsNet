@@ -62,6 +62,14 @@ namespace UnitsNet
                     new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RevolutionPerSecondSquared, "RevolutionsPerSecondSquared", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.RotationalAcceleration);
+
+            UnitConverter.Default.SetConversionFunction<RotationalAcceleration>(RotationalAcceleration.BaseUnit, RotationalAccelerationUnit.DegreePerSecondSquared, q => q.ToUnit(RotationalAccelerationUnit.DegreePerSecondSquared));
+            UnitConverter.Default.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.DegreePerSecondSquared, RotationalAcceleration.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<RotationalAcceleration>(RotationalAcceleration.BaseUnit, RotationalAcceleration.BaseUnit, q => q);
+            UnitConverter.Default.SetConversionFunction<RotationalAcceleration>(RotationalAcceleration.BaseUnit, RotationalAccelerationUnit.RevolutionPerMinutePerSecond, q => q.ToUnit(RotationalAccelerationUnit.RevolutionPerMinutePerSecond));
+            UnitConverter.Default.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, RotationalAcceleration.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<RotationalAcceleration>(RotationalAcceleration.BaseUnit, RotationalAccelerationUnit.RevolutionPerSecondSquared, q => q.ToUnit(RotationalAccelerationUnit.RevolutionPerSecondSquared));
+            UnitConverter.Default.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.RevolutionPerSecondSquared, RotationalAcceleration.BaseUnit, q => q.ToBaseUnit());
         }
 
         /// <summary>

@@ -69,6 +69,28 @@ namespace UnitsNet
                     new UnitInfo<DurationUnit>(DurationUnit.Year365, "Years365", new BaseUnits(time: DurationUnit.Year365)),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Duration);
+
+            UnitConverter.Default.SetConversionFunction<Duration>(Duration.BaseUnit, DurationUnit.Day, q => q.ToUnit(DurationUnit.Day));
+            UnitConverter.Default.SetConversionFunction<Duration>(DurationUnit.Day, Duration.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Duration>(Duration.BaseUnit, DurationUnit.Hour, q => q.ToUnit(DurationUnit.Hour));
+            UnitConverter.Default.SetConversionFunction<Duration>(DurationUnit.Hour, Duration.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Duration>(Duration.BaseUnit, DurationUnit.JulianYear, q => q.ToUnit(DurationUnit.JulianYear));
+            UnitConverter.Default.SetConversionFunction<Duration>(DurationUnit.JulianYear, Duration.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Duration>(Duration.BaseUnit, DurationUnit.Microsecond, q => q.ToUnit(DurationUnit.Microsecond));
+            UnitConverter.Default.SetConversionFunction<Duration>(DurationUnit.Microsecond, Duration.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Duration>(Duration.BaseUnit, DurationUnit.Millisecond, q => q.ToUnit(DurationUnit.Millisecond));
+            UnitConverter.Default.SetConversionFunction<Duration>(DurationUnit.Millisecond, Duration.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Duration>(Duration.BaseUnit, DurationUnit.Minute, q => q.ToUnit(DurationUnit.Minute));
+            UnitConverter.Default.SetConversionFunction<Duration>(DurationUnit.Minute, Duration.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Duration>(Duration.BaseUnit, DurationUnit.Month30, q => q.ToUnit(DurationUnit.Month30));
+            UnitConverter.Default.SetConversionFunction<Duration>(DurationUnit.Month30, Duration.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Duration>(Duration.BaseUnit, DurationUnit.Nanosecond, q => q.ToUnit(DurationUnit.Nanosecond));
+            UnitConverter.Default.SetConversionFunction<Duration>(DurationUnit.Nanosecond, Duration.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Duration>(Duration.BaseUnit, Duration.BaseUnit, q => q);
+            UnitConverter.Default.SetConversionFunction<Duration>(Duration.BaseUnit, DurationUnit.Week, q => q.ToUnit(DurationUnit.Week));
+            UnitConverter.Default.SetConversionFunction<Duration>(DurationUnit.Week, Duration.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Duration>(Duration.BaseUnit, DurationUnit.Year365, q => q.ToUnit(DurationUnit.Year365));
+            UnitConverter.Default.SetConversionFunction<Duration>(DurationUnit.Year365, Duration.BaseUnit, q => q.ToBaseUnit());
         }
 
         /// <summary>

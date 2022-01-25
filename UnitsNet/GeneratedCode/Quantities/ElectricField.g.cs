@@ -62,6 +62,8 @@ namespace UnitsNet
                     new UnitInfo<ElectricFieldUnit>(ElectricFieldUnit.VoltPerMeter, "VoltsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricField);
+
+            UnitConverter.Default.SetConversionFunction<ElectricField>(ElectricField.BaseUnit, ElectricField.BaseUnit, q => q);
         }
 
         /// <summary>

@@ -91,6 +91,72 @@ namespace UnitsNet
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerHour, "TonnesPerHour", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.MassFlow);
+
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.CentigramPerDay, q => q.ToUnit(MassFlowUnit.CentigramPerDay));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.CentigramPerDay, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.CentigramPerSecond, q => q.ToUnit(MassFlowUnit.CentigramPerSecond));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.CentigramPerSecond, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.DecagramPerDay, q => q.ToUnit(MassFlowUnit.DecagramPerDay));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.DecagramPerDay, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.DecagramPerSecond, q => q.ToUnit(MassFlowUnit.DecagramPerSecond));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.DecagramPerSecond, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.DecigramPerDay, q => q.ToUnit(MassFlowUnit.DecigramPerDay));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.DecigramPerDay, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.DecigramPerSecond, q => q.ToUnit(MassFlowUnit.DecigramPerSecond));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.DecigramPerSecond, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.GramPerDay, q => q.ToUnit(MassFlowUnit.GramPerDay));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerDay, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.GramPerHour, q => q.ToUnit(MassFlowUnit.GramPerHour));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerHour, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlow.BaseUnit, q => q);
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.HectogramPerDay, q => q.ToUnit(MassFlowUnit.HectogramPerDay));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.HectogramPerDay, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.HectogramPerSecond, q => q.ToUnit(MassFlowUnit.HectogramPerSecond));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.HectogramPerSecond, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.KilogramPerDay, q => q.ToUnit(MassFlowUnit.KilogramPerDay));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.KilogramPerDay, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.KilogramPerHour, q => q.ToUnit(MassFlowUnit.KilogramPerHour));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.KilogramPerHour, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.KilogramPerMinute, q => q.ToUnit(MassFlowUnit.KilogramPerMinute));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.KilogramPerMinute, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.KilogramPerSecond, q => q.ToUnit(MassFlowUnit.KilogramPerSecond));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.KilogramPerSecond, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.MegagramPerDay, q => q.ToUnit(MassFlowUnit.MegagramPerDay));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.MegagramPerDay, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.MegapoundPerDay, q => q.ToUnit(MassFlowUnit.MegapoundPerDay));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.MegapoundPerDay, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.MegapoundPerHour, q => q.ToUnit(MassFlowUnit.MegapoundPerHour));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.MegapoundPerHour, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.MegapoundPerMinute, q => q.ToUnit(MassFlowUnit.MegapoundPerMinute));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.MegapoundPerMinute, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.MegapoundPerSecond, q => q.ToUnit(MassFlowUnit.MegapoundPerSecond));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.MegapoundPerSecond, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.MicrogramPerDay, q => q.ToUnit(MassFlowUnit.MicrogramPerDay));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.MicrogramPerDay, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.MicrogramPerSecond, q => q.ToUnit(MassFlowUnit.MicrogramPerSecond));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.MicrogramPerSecond, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.MilligramPerDay, q => q.ToUnit(MassFlowUnit.MilligramPerDay));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.MilligramPerDay, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.MilligramPerSecond, q => q.ToUnit(MassFlowUnit.MilligramPerSecond));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.MilligramPerSecond, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.NanogramPerDay, q => q.ToUnit(MassFlowUnit.NanogramPerDay));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.NanogramPerDay, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.NanogramPerSecond, q => q.ToUnit(MassFlowUnit.NanogramPerSecond));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.NanogramPerSecond, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.PoundPerDay, q => q.ToUnit(MassFlowUnit.PoundPerDay));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.PoundPerDay, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.PoundPerHour, q => q.ToUnit(MassFlowUnit.PoundPerHour));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.PoundPerHour, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.PoundPerMinute, q => q.ToUnit(MassFlowUnit.PoundPerMinute));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.PoundPerMinute, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.PoundPerSecond, q => q.ToUnit(MassFlowUnit.PoundPerSecond));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.PoundPerSecond, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.ShortTonPerHour, q => q.ToUnit(MassFlowUnit.ShortTonPerHour));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.ShortTonPerHour, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.TonnePerDay, q => q.ToUnit(MassFlowUnit.TonnePerDay));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.TonnePerDay, MassFlow.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlow.BaseUnit, MassFlowUnit.TonnePerHour, q => q.ToUnit(MassFlowUnit.TonnePerHour));
+            UnitConverter.Default.SetConversionFunction<MassFlow>(MassFlowUnit.TonnePerHour, MassFlow.BaseUnit, q => q.ToBaseUnit());
         }
 
         /// <summary>

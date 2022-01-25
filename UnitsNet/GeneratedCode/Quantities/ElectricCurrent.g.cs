@@ -66,6 +66,22 @@ namespace UnitsNet
                     new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Picoampere, "Picoamperes", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricCurrent);
+
+            UnitConverter.Default.SetConversionFunction<ElectricCurrent>(ElectricCurrent.BaseUnit, ElectricCurrent.BaseUnit, q => q);
+            UnitConverter.Default.SetConversionFunction<ElectricCurrent>(ElectricCurrent.BaseUnit, ElectricCurrentUnit.Centiampere, q => q.ToUnit(ElectricCurrentUnit.Centiampere));
+            UnitConverter.Default.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Centiampere, ElectricCurrent.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricCurrent>(ElectricCurrent.BaseUnit, ElectricCurrentUnit.Kiloampere, q => q.ToUnit(ElectricCurrentUnit.Kiloampere));
+            UnitConverter.Default.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Kiloampere, ElectricCurrent.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricCurrent>(ElectricCurrent.BaseUnit, ElectricCurrentUnit.Megaampere, q => q.ToUnit(ElectricCurrentUnit.Megaampere));
+            UnitConverter.Default.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Megaampere, ElectricCurrent.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricCurrent>(ElectricCurrent.BaseUnit, ElectricCurrentUnit.Microampere, q => q.ToUnit(ElectricCurrentUnit.Microampere));
+            UnitConverter.Default.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Microampere, ElectricCurrent.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricCurrent>(ElectricCurrent.BaseUnit, ElectricCurrentUnit.Milliampere, q => q.ToUnit(ElectricCurrentUnit.Milliampere));
+            UnitConverter.Default.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Milliampere, ElectricCurrent.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricCurrent>(ElectricCurrent.BaseUnit, ElectricCurrentUnit.Nanoampere, q => q.ToUnit(ElectricCurrentUnit.Nanoampere));
+            UnitConverter.Default.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Nanoampere, ElectricCurrent.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricCurrent>(ElectricCurrent.BaseUnit, ElectricCurrentUnit.Picoampere, q => q.ToUnit(ElectricCurrentUnit.Picoampere));
+            UnitConverter.Default.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Picoampere, ElectricCurrent.BaseUnit, q => q.ToBaseUnit());
         }
 
         /// <summary>

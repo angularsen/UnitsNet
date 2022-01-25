@@ -62,6 +62,8 @@ namespace UnitsNet
                     new UnitInfo<MagnetizationUnit>(MagnetizationUnit.AmperePerMeter, "AmperesPerMeter", new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere)),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Magnetization);
+
+            UnitConverter.Default.SetConversionFunction<Magnetization>(Magnetization.BaseUnit, Magnetization.BaseUnit, q => q);
         }
 
         /// <summary>

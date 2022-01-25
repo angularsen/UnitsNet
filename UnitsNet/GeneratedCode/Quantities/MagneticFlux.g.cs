@@ -62,6 +62,8 @@ namespace UnitsNet
                     new UnitInfo<MagneticFluxUnit>(MagneticFluxUnit.Weber, "Webers", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.MagneticFlux);
+
+            UnitConverter.Default.SetConversionFunction<MagneticFlux>(MagneticFlux.BaseUnit, MagneticFlux.BaseUnit, q => q);
         }
 
         /// <summary>

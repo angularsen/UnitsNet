@@ -61,6 +61,12 @@ namespace UnitsNet
                     new UnitInfo<BrakeSpecificFuelConsumptionUnit>(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, "PoundsPerMechanicalHorsepowerHour", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.BrakeSpecificFuelConsumption);
+
+            UnitConverter.Default.SetConversionFunction<BrakeSpecificFuelConsumption>(BrakeSpecificFuelConsumption.BaseUnit, BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, q => q.ToUnit(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour));
+            UnitConverter.Default.SetConversionFunction<BrakeSpecificFuelConsumption>(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, BrakeSpecificFuelConsumption.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<BrakeSpecificFuelConsumption>(BrakeSpecificFuelConsumption.BaseUnit, BrakeSpecificFuelConsumption.BaseUnit, q => q);
+            UnitConverter.Default.SetConversionFunction<BrakeSpecificFuelConsumption>(BrakeSpecificFuelConsumption.BaseUnit, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, q => q.ToUnit(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour));
+            UnitConverter.Default.SetConversionFunction<BrakeSpecificFuelConsumption>(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, BrakeSpecificFuelConsumption.BaseUnit, q => q.ToBaseUnit());
         }
 
         /// <summary>

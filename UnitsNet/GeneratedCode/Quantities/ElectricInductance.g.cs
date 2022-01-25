@@ -65,6 +65,14 @@ namespace UnitsNet
                     new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Nanohenry, "Nanohenries", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricInductance);
+
+            UnitConverter.Default.SetConversionFunction<ElectricInductance>(ElectricInductance.BaseUnit, ElectricInductance.BaseUnit, q => q);
+            UnitConverter.Default.SetConversionFunction<ElectricInductance>(ElectricInductance.BaseUnit, ElectricInductanceUnit.Microhenry, q => q.ToUnit(ElectricInductanceUnit.Microhenry));
+            UnitConverter.Default.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Microhenry, ElectricInductance.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricInductance>(ElectricInductance.BaseUnit, ElectricInductanceUnit.Millihenry, q => q.ToUnit(ElectricInductanceUnit.Millihenry));
+            UnitConverter.Default.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Millihenry, ElectricInductance.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricInductance>(ElectricInductance.BaseUnit, ElectricInductanceUnit.Nanohenry, q => q.ToUnit(ElectricInductanceUnit.Nanohenry));
+            UnitConverter.Default.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Nanohenry, ElectricInductance.BaseUnit, q => q.ToBaseUnit());
         }
 
         /// <summary>

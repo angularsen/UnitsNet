@@ -64,6 +64,12 @@ namespace UnitsNet
                     new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerMeter, "SiemensPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricConductivity);
+
+            UnitConverter.Default.SetConversionFunction<ElectricConductivity>(ElectricConductivity.BaseUnit, ElectricConductivityUnit.SiemensPerFoot, q => q.ToUnit(ElectricConductivityUnit.SiemensPerFoot));
+            UnitConverter.Default.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerFoot, ElectricConductivity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricConductivity>(ElectricConductivity.BaseUnit, ElectricConductivityUnit.SiemensPerInch, q => q.ToUnit(ElectricConductivityUnit.SiemensPerInch));
+            UnitConverter.Default.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerInch, ElectricConductivity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricConductivity>(ElectricConductivity.BaseUnit, ElectricConductivity.BaseUnit, q => q);
         }
 
         /// <summary>

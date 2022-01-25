@@ -161,6 +161,19 @@ namespace UnitsNet
             Writer.WL($@"
                 }},
                 BaseUnit, Zero, BaseDimensions, QuantityType.{_quantity.Name});
+");
+
+            foreach (var unit in _quantity.Units)
+            {
+                Writer.WL( _quantity.BaseUnit == unit.SingularName
+                    ? $@"
+            UnitConverter.Default.SetConversionFunction<{_quantity.Name}>({_quantity.Name}.BaseUnit, {_quantity.Name}.BaseUnit, q => q);"
+                    : $@"
+            UnitConverter.Default.SetConversionFunction<{_quantity.Name}>({_quantity.Name}.BaseUnit, {_quantity.Name}Unit.{unit.SingularName}, q => q.ToUnit({_quantity.Name}Unit.{unit.SingularName}));
+            UnitConverter.Default.SetConversionFunction<{_quantity.Name}>({_quantity.Name}Unit.{unit.SingularName}, {_quantity.Name}.BaseUnit, q => q.ToBaseUnit());" );
+            }
+
+            Writer.WL($@"
         }}
 ");
         }

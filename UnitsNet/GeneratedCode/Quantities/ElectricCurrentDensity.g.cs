@@ -64,6 +64,12 @@ namespace UnitsNet
                     new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareMeter, "AmperesPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere)),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricCurrentDensity);
+
+            UnitConverter.Default.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensity.BaseUnit, ElectricCurrentDensityUnit.AmperePerSquareFoot, q => q.ToUnit(ElectricCurrentDensityUnit.AmperePerSquareFoot));
+            UnitConverter.Default.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareFoot, ElectricCurrentDensity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensity.BaseUnit, ElectricCurrentDensityUnit.AmperePerSquareInch, q => q.ToUnit(ElectricCurrentDensityUnit.AmperePerSquareInch));
+            UnitConverter.Default.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareInch, ElectricCurrentDensity.BaseUnit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensity.BaseUnit, ElectricCurrentDensity.BaseUnit, q => q);
         }
 
         /// <summary>
