@@ -63,7 +63,12 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Permittivity);
 
-            UnitConverter.Default.SetConversionFunction<Permittivity>(Permittivity.BaseUnit, Permittivity.BaseUnit, q => q);
+            // Register in default unit converter: BaseUnit -> PermittivityUnit
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<Permittivity>(PermittivityUnit.FaradPerMeter, PermittivityUnit.FaradPerMeter, q => q);
+
+            // Register in default unit converter: PermittivityUnit -> BaseUnit
         }
 
         /// <summary>

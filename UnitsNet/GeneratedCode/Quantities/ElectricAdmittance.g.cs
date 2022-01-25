@@ -63,13 +63,18 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricAdmittance);
 
-            UnitConverter.Default.SetConversionFunction<ElectricAdmittance>(ElectricAdmittance.BaseUnit, ElectricAdmittanceUnit.Microsiemens, q => q.ToUnit(ElectricAdmittanceUnit.Microsiemens));
-            UnitConverter.Default.SetConversionFunction<ElectricAdmittance>(ElectricAdmittanceUnit.Microsiemens, ElectricAdmittance.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricAdmittance>(ElectricAdmittance.BaseUnit, ElectricAdmittanceUnit.Millisiemens, q => q.ToUnit(ElectricAdmittanceUnit.Millisiemens));
-            UnitConverter.Default.SetConversionFunction<ElectricAdmittance>(ElectricAdmittanceUnit.Millisiemens, ElectricAdmittance.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricAdmittance>(ElectricAdmittance.BaseUnit, ElectricAdmittanceUnit.Nanosiemens, q => q.ToUnit(ElectricAdmittanceUnit.Nanosiemens));
-            UnitConverter.Default.SetConversionFunction<ElectricAdmittance>(ElectricAdmittanceUnit.Nanosiemens, ElectricAdmittance.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricAdmittance>(ElectricAdmittance.BaseUnit, ElectricAdmittance.BaseUnit, q => q);
+            // Register in default unit converter: BaseUnit -> ElectricAdmittanceUnit
+            UnitConverter.Default.SetConversionFunction<ElectricAdmittance>(ElectricAdmittanceUnit.Siemens, ElectricAdmittanceUnit.Microsiemens, q => q.ToUnit(ElectricAdmittanceUnit.Microsiemens));
+            UnitConverter.Default.SetConversionFunction<ElectricAdmittance>(ElectricAdmittanceUnit.Siemens, ElectricAdmittanceUnit.Millisiemens, q => q.ToUnit(ElectricAdmittanceUnit.Millisiemens));
+            UnitConverter.Default.SetConversionFunction<ElectricAdmittance>(ElectricAdmittanceUnit.Siemens, ElectricAdmittanceUnit.Nanosiemens, q => q.ToUnit(ElectricAdmittanceUnit.Nanosiemens));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ElectricAdmittance>(ElectricAdmittanceUnit.Siemens, ElectricAdmittanceUnit.Siemens, q => q);
+
+            // Register in default unit converter: ElectricAdmittanceUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ElectricAdmittance>(ElectricAdmittanceUnit.Microsiemens, ElectricAdmittanceUnit.Siemens, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricAdmittance>(ElectricAdmittanceUnit.Millisiemens, ElectricAdmittanceUnit.Siemens, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricAdmittance>(ElectricAdmittanceUnit.Nanosiemens, ElectricAdmittanceUnit.Siemens, q => q.ToBaseUnit());
         }
 
         /// <summary>

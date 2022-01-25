@@ -61,9 +61,14 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Level);
 
-            UnitConverter.Default.SetConversionFunction<Level>(Level.BaseUnit, Level.BaseUnit, q => q);
-            UnitConverter.Default.SetConversionFunction<Level>(Level.BaseUnit, LevelUnit.Neper, q => q.ToUnit(LevelUnit.Neper));
-            UnitConverter.Default.SetConversionFunction<Level>(LevelUnit.Neper, Level.BaseUnit, q => q.ToBaseUnit());
+            // Register in default unit converter: BaseUnit -> LevelUnit
+            UnitConverter.Default.SetConversionFunction<Level>(LevelUnit.Decibel, LevelUnit.Neper, q => q.ToUnit(LevelUnit.Neper));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<Level>(LevelUnit.Decibel, LevelUnit.Decibel, q => q);
+
+            // Register in default unit converter: LevelUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<Level>(LevelUnit.Neper, LevelUnit.Decibel, q => q.ToBaseUnit());
         }
 
         /// <summary>

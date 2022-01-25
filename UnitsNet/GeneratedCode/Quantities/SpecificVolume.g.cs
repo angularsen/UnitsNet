@@ -62,11 +62,16 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.SpecificVolume);
 
-            UnitConverter.Default.SetConversionFunction<SpecificVolume>(SpecificVolume.BaseUnit, SpecificVolumeUnit.CubicFootPerPound, q => q.ToUnit(SpecificVolumeUnit.CubicFootPerPound));
-            UnitConverter.Default.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicFootPerPound, SpecificVolume.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<SpecificVolume>(SpecificVolume.BaseUnit, SpecificVolume.BaseUnit, q => q);
-            UnitConverter.Default.SetConversionFunction<SpecificVolume>(SpecificVolume.BaseUnit, SpecificVolumeUnit.MillicubicMeterPerKilogram, q => q.ToUnit(SpecificVolumeUnit.MillicubicMeterPerKilogram));
-            UnitConverter.Default.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.MillicubicMeterPerKilogram, SpecificVolume.BaseUnit, q => q.ToBaseUnit());
+            // Register in default unit converter: BaseUnit -> SpecificVolumeUnit
+            UnitConverter.Default.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicFootPerPound, q => q.ToUnit(SpecificVolumeUnit.CubicFootPerPound));
+            UnitConverter.Default.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.MillicubicMeterPerKilogram, q => q.ToUnit(SpecificVolumeUnit.MillicubicMeterPerKilogram));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram, q => q);
+
+            // Register in default unit converter: SpecificVolumeUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicFootPerPound, SpecificVolumeUnit.CubicMeterPerKilogram, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.MillicubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram, q => q.ToBaseUnit());
         }
 
         /// <summary>

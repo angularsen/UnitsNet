@@ -60,7 +60,12 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.RelativeHumidity);
 
-            UnitConverter.Default.SetConversionFunction<RelativeHumidity>(RelativeHumidity.BaseUnit, RelativeHumidity.BaseUnit, q => q);
+            // Register in default unit converter: BaseUnit -> RelativeHumidityUnit
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<RelativeHumidity>(RelativeHumidityUnit.Percent, RelativeHumidityUnit.Percent, q => q);
+
+            // Register in default unit converter: RelativeHumidityUnit -> BaseUnit
         }
 
         /// <summary>

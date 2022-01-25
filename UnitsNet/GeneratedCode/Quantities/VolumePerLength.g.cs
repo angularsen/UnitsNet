@@ -66,19 +66,24 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.VolumePerLength);
 
-            UnitConverter.Default.SetConversionFunction<VolumePerLength>(VolumePerLength.BaseUnit, VolumePerLength.BaseUnit, q => q);
-            UnitConverter.Default.SetConversionFunction<VolumePerLength>(VolumePerLength.BaseUnit, VolumePerLengthUnit.CubicYardPerFoot, q => q.ToUnit(VolumePerLengthUnit.CubicYardPerFoot));
-            UnitConverter.Default.SetConversionFunction<VolumePerLength>(VolumePerLengthUnit.CubicYardPerFoot, VolumePerLength.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<VolumePerLength>(VolumePerLength.BaseUnit, VolumePerLengthUnit.CubicYardPerUsSurveyFoot, q => q.ToUnit(VolumePerLengthUnit.CubicYardPerUsSurveyFoot));
-            UnitConverter.Default.SetConversionFunction<VolumePerLength>(VolumePerLengthUnit.CubicYardPerUsSurveyFoot, VolumePerLength.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<VolumePerLength>(VolumePerLength.BaseUnit, VolumePerLengthUnit.LiterPerKilometer, q => q.ToUnit(VolumePerLengthUnit.LiterPerKilometer));
-            UnitConverter.Default.SetConversionFunction<VolumePerLength>(VolumePerLengthUnit.LiterPerKilometer, VolumePerLength.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<VolumePerLength>(VolumePerLength.BaseUnit, VolumePerLengthUnit.LiterPerMeter, q => q.ToUnit(VolumePerLengthUnit.LiterPerMeter));
-            UnitConverter.Default.SetConversionFunction<VolumePerLength>(VolumePerLengthUnit.LiterPerMeter, VolumePerLength.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<VolumePerLength>(VolumePerLength.BaseUnit, VolumePerLengthUnit.LiterPerMillimeter, q => q.ToUnit(VolumePerLengthUnit.LiterPerMillimeter));
-            UnitConverter.Default.SetConversionFunction<VolumePerLength>(VolumePerLengthUnit.LiterPerMillimeter, VolumePerLength.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<VolumePerLength>(VolumePerLength.BaseUnit, VolumePerLengthUnit.OilBarrelPerFoot, q => q.ToUnit(VolumePerLengthUnit.OilBarrelPerFoot));
-            UnitConverter.Default.SetConversionFunction<VolumePerLength>(VolumePerLengthUnit.OilBarrelPerFoot, VolumePerLength.BaseUnit, q => q.ToBaseUnit());
+            // Register in default unit converter: BaseUnit -> VolumePerLengthUnit
+            UnitConverter.Default.SetConversionFunction<VolumePerLength>(VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.CubicYardPerFoot, q => q.ToUnit(VolumePerLengthUnit.CubicYardPerFoot));
+            UnitConverter.Default.SetConversionFunction<VolumePerLength>(VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.CubicYardPerUsSurveyFoot, q => q.ToUnit(VolumePerLengthUnit.CubicYardPerUsSurveyFoot));
+            UnitConverter.Default.SetConversionFunction<VolumePerLength>(VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.LiterPerKilometer, q => q.ToUnit(VolumePerLengthUnit.LiterPerKilometer));
+            UnitConverter.Default.SetConversionFunction<VolumePerLength>(VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.LiterPerMeter, q => q.ToUnit(VolumePerLengthUnit.LiterPerMeter));
+            UnitConverter.Default.SetConversionFunction<VolumePerLength>(VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.LiterPerMillimeter, q => q.ToUnit(VolumePerLengthUnit.LiterPerMillimeter));
+            UnitConverter.Default.SetConversionFunction<VolumePerLength>(VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.OilBarrelPerFoot, q => q.ToUnit(VolumePerLengthUnit.OilBarrelPerFoot));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<VolumePerLength>(VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.CubicMeterPerMeter, q => q);
+
+            // Register in default unit converter: VolumePerLengthUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<VolumePerLength>(VolumePerLengthUnit.CubicYardPerFoot, VolumePerLengthUnit.CubicMeterPerMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<VolumePerLength>(VolumePerLengthUnit.CubicYardPerUsSurveyFoot, VolumePerLengthUnit.CubicMeterPerMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<VolumePerLength>(VolumePerLengthUnit.LiterPerKilometer, VolumePerLengthUnit.CubicMeterPerMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<VolumePerLength>(VolumePerLengthUnit.LiterPerMeter, VolumePerLengthUnit.CubicMeterPerMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<VolumePerLength>(VolumePerLengthUnit.LiterPerMillimeter, VolumePerLengthUnit.CubicMeterPerMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<VolumePerLength>(VolumePerLengthUnit.OilBarrelPerFoot, VolumePerLengthUnit.CubicMeterPerMeter, q => q.ToBaseUnit());
         }
 
         /// <summary>

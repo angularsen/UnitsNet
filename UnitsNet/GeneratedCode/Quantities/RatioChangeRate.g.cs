@@ -61,9 +61,14 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.RatioChangeRate);
 
-            UnitConverter.Default.SetConversionFunction<RatioChangeRate>(RatioChangeRate.BaseUnit, RatioChangeRate.BaseUnit, q => q);
-            UnitConverter.Default.SetConversionFunction<RatioChangeRate>(RatioChangeRate.BaseUnit, RatioChangeRateUnit.PercentPerSecond, q => q.ToUnit(RatioChangeRateUnit.PercentPerSecond));
-            UnitConverter.Default.SetConversionFunction<RatioChangeRate>(RatioChangeRateUnit.PercentPerSecond, RatioChangeRate.BaseUnit, q => q.ToBaseUnit());
+            // Register in default unit converter: BaseUnit -> RatioChangeRateUnit
+            UnitConverter.Default.SetConversionFunction<RatioChangeRate>(RatioChangeRateUnit.DecimalFractionPerSecond, RatioChangeRateUnit.PercentPerSecond, q => q.ToUnit(RatioChangeRateUnit.PercentPerSecond));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<RatioChangeRate>(RatioChangeRateUnit.DecimalFractionPerSecond, RatioChangeRateUnit.DecimalFractionPerSecond, q => q);
+
+            // Register in default unit converter: RatioChangeRateUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<RatioChangeRate>(RatioChangeRateUnit.PercentPerSecond, RatioChangeRateUnit.DecimalFractionPerSecond, q => q.ToBaseUnit());
         }
 
         /// <summary>

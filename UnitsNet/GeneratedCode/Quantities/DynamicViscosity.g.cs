@@ -72,25 +72,30 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.DynamicViscosity);
 
-            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosity.BaseUnit, DynamicViscosityUnit.Centipoise, q => q.ToUnit(DynamicViscosityUnit.Centipoise));
-            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.Centipoise, DynamicViscosity.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosity.BaseUnit, DynamicViscosityUnit.MicropascalSecond, q => q.ToUnit(DynamicViscosityUnit.MicropascalSecond));
-            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.MicropascalSecond, DynamicViscosity.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosity.BaseUnit, DynamicViscosityUnit.MillipascalSecond, q => q.ToUnit(DynamicViscosityUnit.MillipascalSecond));
-            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.MillipascalSecond, DynamicViscosity.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosity.BaseUnit, DynamicViscosity.BaseUnit, q => q);
-            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosity.BaseUnit, DynamicViscosityUnit.PascalSecond, q => q.ToUnit(DynamicViscosityUnit.PascalSecond));
-            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.PascalSecond, DynamicViscosity.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosity.BaseUnit, DynamicViscosityUnit.Poise, q => q.ToUnit(DynamicViscosityUnit.Poise));
-            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.Poise, DynamicViscosity.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosity.BaseUnit, DynamicViscosityUnit.PoundForceSecondPerSquareFoot, q => q.ToUnit(DynamicViscosityUnit.PoundForceSecondPerSquareFoot));
-            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.PoundForceSecondPerSquareFoot, DynamicViscosity.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosity.BaseUnit, DynamicViscosityUnit.PoundForceSecondPerSquareInch, q => q.ToUnit(DynamicViscosityUnit.PoundForceSecondPerSquareInch));
-            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.PoundForceSecondPerSquareInch, DynamicViscosity.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosity.BaseUnit, DynamicViscosityUnit.PoundPerFootSecond, q => q.ToUnit(DynamicViscosityUnit.PoundPerFootSecond));
-            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.PoundPerFootSecond, DynamicViscosity.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosity.BaseUnit, DynamicViscosityUnit.Reyn, q => q.ToUnit(DynamicViscosityUnit.Reyn));
-            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.Reyn, DynamicViscosity.BaseUnit, q => q.ToBaseUnit());
+            // Register in default unit converter: BaseUnit -> DynamicViscosityUnit
+            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.NewtonSecondPerMeterSquared, DynamicViscosityUnit.Centipoise, q => q.ToUnit(DynamicViscosityUnit.Centipoise));
+            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.NewtonSecondPerMeterSquared, DynamicViscosityUnit.MicropascalSecond, q => q.ToUnit(DynamicViscosityUnit.MicropascalSecond));
+            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.NewtonSecondPerMeterSquared, DynamicViscosityUnit.MillipascalSecond, q => q.ToUnit(DynamicViscosityUnit.MillipascalSecond));
+            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.NewtonSecondPerMeterSquared, DynamicViscosityUnit.PascalSecond, q => q.ToUnit(DynamicViscosityUnit.PascalSecond));
+            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.NewtonSecondPerMeterSquared, DynamicViscosityUnit.Poise, q => q.ToUnit(DynamicViscosityUnit.Poise));
+            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.NewtonSecondPerMeterSquared, DynamicViscosityUnit.PoundForceSecondPerSquareFoot, q => q.ToUnit(DynamicViscosityUnit.PoundForceSecondPerSquareFoot));
+            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.NewtonSecondPerMeterSquared, DynamicViscosityUnit.PoundForceSecondPerSquareInch, q => q.ToUnit(DynamicViscosityUnit.PoundForceSecondPerSquareInch));
+            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.NewtonSecondPerMeterSquared, DynamicViscosityUnit.PoundPerFootSecond, q => q.ToUnit(DynamicViscosityUnit.PoundPerFootSecond));
+            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.NewtonSecondPerMeterSquared, DynamicViscosityUnit.Reyn, q => q.ToUnit(DynamicViscosityUnit.Reyn));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.NewtonSecondPerMeterSquared, DynamicViscosityUnit.NewtonSecondPerMeterSquared, q => q);
+
+            // Register in default unit converter: DynamicViscosityUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.Centipoise, DynamicViscosityUnit.NewtonSecondPerMeterSquared, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.MicropascalSecond, DynamicViscosityUnit.NewtonSecondPerMeterSquared, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.MillipascalSecond, DynamicViscosityUnit.NewtonSecondPerMeterSquared, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.PascalSecond, DynamicViscosityUnit.NewtonSecondPerMeterSquared, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.Poise, DynamicViscosityUnit.NewtonSecondPerMeterSquared, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.PoundForceSecondPerSquareFoot, DynamicViscosityUnit.NewtonSecondPerMeterSquared, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.PoundForceSecondPerSquareInch, DynamicViscosityUnit.NewtonSecondPerMeterSquared, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.PoundPerFootSecond, DynamicViscosityUnit.NewtonSecondPerMeterSquared, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.Reyn, DynamicViscosityUnit.NewtonSecondPerMeterSquared, q => q.ToBaseUnit());
         }
 
         /// <summary>

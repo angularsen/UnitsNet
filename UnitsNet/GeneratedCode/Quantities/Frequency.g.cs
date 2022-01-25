@@ -70,27 +70,32 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Frequency);
 
-            UnitConverter.Default.SetConversionFunction<Frequency>(Frequency.BaseUnit, FrequencyUnit.BeatPerMinute, q => q.ToUnit(FrequencyUnit.BeatPerMinute));
-            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.BeatPerMinute, Frequency.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Frequency>(Frequency.BaseUnit, FrequencyUnit.BUnit, q => q.ToUnit(FrequencyUnit.BUnit));
-            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.BUnit, Frequency.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Frequency>(Frequency.BaseUnit, FrequencyUnit.CyclePerHour, q => q.ToUnit(FrequencyUnit.CyclePerHour));
-            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.CyclePerHour, Frequency.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Frequency>(Frequency.BaseUnit, FrequencyUnit.CyclePerMinute, q => q.ToUnit(FrequencyUnit.CyclePerMinute));
-            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.CyclePerMinute, Frequency.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Frequency>(Frequency.BaseUnit, FrequencyUnit.Gigahertz, q => q.ToUnit(FrequencyUnit.Gigahertz));
-            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.Gigahertz, Frequency.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Frequency>(Frequency.BaseUnit, Frequency.BaseUnit, q => q);
-            UnitConverter.Default.SetConversionFunction<Frequency>(Frequency.BaseUnit, FrequencyUnit.Kilohertz, q => q.ToUnit(FrequencyUnit.Kilohertz));
-            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.Kilohertz, Frequency.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Frequency>(Frequency.BaseUnit, FrequencyUnit.Megahertz, q => q.ToUnit(FrequencyUnit.Megahertz));
-            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.Megahertz, Frequency.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Frequency>(Frequency.BaseUnit, FrequencyUnit.PerSecond, q => q.ToUnit(FrequencyUnit.PerSecond));
-            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.PerSecond, Frequency.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Frequency>(Frequency.BaseUnit, FrequencyUnit.RadianPerSecond, q => q.ToUnit(FrequencyUnit.RadianPerSecond));
-            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.RadianPerSecond, Frequency.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Frequency>(Frequency.BaseUnit, FrequencyUnit.Terahertz, q => q.ToUnit(FrequencyUnit.Terahertz));
-            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.Terahertz, Frequency.BaseUnit, q => q.ToBaseUnit());
+            // Register in default unit converter: BaseUnit -> FrequencyUnit
+            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.BeatPerMinute, q => q.ToUnit(FrequencyUnit.BeatPerMinute));
+            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.BUnit, q => q.ToUnit(FrequencyUnit.BUnit));
+            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.CyclePerHour, q => q.ToUnit(FrequencyUnit.CyclePerHour));
+            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.CyclePerMinute, q => q.ToUnit(FrequencyUnit.CyclePerMinute));
+            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.Gigahertz, q => q.ToUnit(FrequencyUnit.Gigahertz));
+            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.Kilohertz, q => q.ToUnit(FrequencyUnit.Kilohertz));
+            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.Megahertz, q => q.ToUnit(FrequencyUnit.Megahertz));
+            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.PerSecond, q => q.ToUnit(FrequencyUnit.PerSecond));
+            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.RadianPerSecond, q => q.ToUnit(FrequencyUnit.RadianPerSecond));
+            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.Terahertz, q => q.ToUnit(FrequencyUnit.Terahertz));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.Hertz, q => q);
+
+            // Register in default unit converter: FrequencyUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.BeatPerMinute, FrequencyUnit.Hertz, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.BUnit, FrequencyUnit.Hertz, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.CyclePerHour, FrequencyUnit.Hertz, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.CyclePerMinute, FrequencyUnit.Hertz, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.Gigahertz, FrequencyUnit.Hertz, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.Kilohertz, FrequencyUnit.Hertz, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.Megahertz, FrequencyUnit.Hertz, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.PerSecond, FrequencyUnit.Hertz, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.RadianPerSecond, FrequencyUnit.Hertz, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Frequency>(FrequencyUnit.Terahertz, FrequencyUnit.Hertz, q => q.ToBaseUnit());
         }
 
         /// <summary>

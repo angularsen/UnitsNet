@@ -64,15 +64,20 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricPotentialAc);
 
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialAc>(ElectricPotentialAc.BaseUnit, ElectricPotentialAcUnit.KilovoltAc, q => q.ToUnit(ElectricPotentialAcUnit.KilovoltAc));
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialAc>(ElectricPotentialAcUnit.KilovoltAc, ElectricPotentialAc.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialAc>(ElectricPotentialAc.BaseUnit, ElectricPotentialAcUnit.MegavoltAc, q => q.ToUnit(ElectricPotentialAcUnit.MegavoltAc));
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialAc>(ElectricPotentialAcUnit.MegavoltAc, ElectricPotentialAc.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialAc>(ElectricPotentialAc.BaseUnit, ElectricPotentialAcUnit.MicrovoltAc, q => q.ToUnit(ElectricPotentialAcUnit.MicrovoltAc));
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialAc>(ElectricPotentialAcUnit.MicrovoltAc, ElectricPotentialAc.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialAc>(ElectricPotentialAc.BaseUnit, ElectricPotentialAcUnit.MillivoltAc, q => q.ToUnit(ElectricPotentialAcUnit.MillivoltAc));
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialAc>(ElectricPotentialAcUnit.MillivoltAc, ElectricPotentialAc.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialAc>(ElectricPotentialAc.BaseUnit, ElectricPotentialAc.BaseUnit, q => q);
+            // Register in default unit converter: BaseUnit -> ElectricPotentialAcUnit
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialAc>(ElectricPotentialAcUnit.VoltAc, ElectricPotentialAcUnit.KilovoltAc, q => q.ToUnit(ElectricPotentialAcUnit.KilovoltAc));
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialAc>(ElectricPotentialAcUnit.VoltAc, ElectricPotentialAcUnit.MegavoltAc, q => q.ToUnit(ElectricPotentialAcUnit.MegavoltAc));
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialAc>(ElectricPotentialAcUnit.VoltAc, ElectricPotentialAcUnit.MicrovoltAc, q => q.ToUnit(ElectricPotentialAcUnit.MicrovoltAc));
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialAc>(ElectricPotentialAcUnit.VoltAc, ElectricPotentialAcUnit.MillivoltAc, q => q.ToUnit(ElectricPotentialAcUnit.MillivoltAc));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialAc>(ElectricPotentialAcUnit.VoltAc, ElectricPotentialAcUnit.VoltAc, q => q);
+
+            // Register in default unit converter: ElectricPotentialAcUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialAc>(ElectricPotentialAcUnit.KilovoltAc, ElectricPotentialAcUnit.VoltAc, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialAc>(ElectricPotentialAcUnit.MegavoltAc, ElectricPotentialAcUnit.VoltAc, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialAc>(ElectricPotentialAcUnit.MicrovoltAc, ElectricPotentialAcUnit.VoltAc, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialAc>(ElectricPotentialAcUnit.MillivoltAc, ElectricPotentialAcUnit.VoltAc, q => q.ToBaseUnit());
         }
 
         /// <summary>

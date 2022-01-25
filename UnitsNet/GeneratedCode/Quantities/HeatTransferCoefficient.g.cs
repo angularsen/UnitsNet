@@ -62,11 +62,16 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.HeatTransferCoefficient);
 
-            UnitConverter.Default.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficient.BaseUnit, HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, q => q.ToUnit(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit));
-            UnitConverter.Default.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, HeatTransferCoefficient.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficient.BaseUnit, HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, q => q.ToUnit(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius));
-            UnitConverter.Default.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, HeatTransferCoefficient.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficient.BaseUnit, HeatTransferCoefficient.BaseUnit, q => q);
+            // Register in default unit converter: BaseUnit -> HeatTransferCoefficientUnit
+            UnitConverter.Default.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, q => q.ToUnit(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit));
+            UnitConverter.Default.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, q => q.ToUnit(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, q => q);
+
+            // Register in default unit converter: HeatTransferCoefficientUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, q => q.ToBaseUnit());
         }
 
         /// <summary>

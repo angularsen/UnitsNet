@@ -84,55 +84,60 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Torque);
 
-            UnitConverter.Default.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.GramForceCentimeter, q => q.ToUnit(TorqueUnit.GramForceCentimeter));
-            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.GramForceCentimeter, Torque.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.GramForceMeter, q => q.ToUnit(TorqueUnit.GramForceMeter));
-            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.GramForceMeter, Torque.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.GramForceMillimeter, q => q.ToUnit(TorqueUnit.GramForceMillimeter));
-            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.GramForceMillimeter, Torque.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.KilogramForceCentimeter, q => q.ToUnit(TorqueUnit.KilogramForceCentimeter));
-            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.KilogramForceCentimeter, Torque.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.KilogramForceMeter, q => q.ToUnit(TorqueUnit.KilogramForceMeter));
-            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.KilogramForceMeter, Torque.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.KilogramForceMillimeter, q => q.ToUnit(TorqueUnit.KilogramForceMillimeter));
-            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.KilogramForceMillimeter, Torque.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.KilonewtonCentimeter, q => q.ToUnit(TorqueUnit.KilonewtonCentimeter));
-            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.KilonewtonCentimeter, Torque.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.KilonewtonMeter, q => q.ToUnit(TorqueUnit.KilonewtonMeter));
-            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.KilonewtonMeter, Torque.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.KilonewtonMillimeter, q => q.ToUnit(TorqueUnit.KilonewtonMillimeter));
-            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.KilonewtonMillimeter, Torque.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.KilopoundForceFoot, q => q.ToUnit(TorqueUnit.KilopoundForceFoot));
-            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.KilopoundForceFoot, Torque.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.KilopoundForceInch, q => q.ToUnit(TorqueUnit.KilopoundForceInch));
-            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.KilopoundForceInch, Torque.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.MeganewtonCentimeter, q => q.ToUnit(TorqueUnit.MeganewtonCentimeter));
-            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.MeganewtonCentimeter, Torque.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.MeganewtonMeter, q => q.ToUnit(TorqueUnit.MeganewtonMeter));
-            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.MeganewtonMeter, Torque.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.MeganewtonMillimeter, q => q.ToUnit(TorqueUnit.MeganewtonMillimeter));
-            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.MeganewtonMillimeter, Torque.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.MegapoundForceFoot, q => q.ToUnit(TorqueUnit.MegapoundForceFoot));
-            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.MegapoundForceFoot, Torque.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.MegapoundForceInch, q => q.ToUnit(TorqueUnit.MegapoundForceInch));
-            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.MegapoundForceInch, Torque.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.NewtonCentimeter, q => q.ToUnit(TorqueUnit.NewtonCentimeter));
-            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.NewtonCentimeter, Torque.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Torque>(Torque.BaseUnit, Torque.BaseUnit, q => q);
-            UnitConverter.Default.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.NewtonMillimeter, q => q.ToUnit(TorqueUnit.NewtonMillimeter));
-            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.NewtonMillimeter, Torque.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.PoundalFoot, q => q.ToUnit(TorqueUnit.PoundalFoot));
-            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.PoundalFoot, Torque.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.PoundForceFoot, q => q.ToUnit(TorqueUnit.PoundForceFoot));
-            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.PoundForceFoot, Torque.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.PoundForceInch, q => q.ToUnit(TorqueUnit.PoundForceInch));
-            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.PoundForceInch, Torque.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.TonneForceCentimeter, q => q.ToUnit(TorqueUnit.TonneForceCentimeter));
-            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.TonneForceCentimeter, Torque.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.TonneForceMeter, q => q.ToUnit(TorqueUnit.TonneForceMeter));
-            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.TonneForceMeter, Torque.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Torque>(Torque.BaseUnit, TorqueUnit.TonneForceMillimeter, q => q.ToUnit(TorqueUnit.TonneForceMillimeter));
-            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.TonneForceMillimeter, Torque.BaseUnit, q => q.ToBaseUnit());
+            // Register in default unit converter: BaseUnit -> TorqueUnit
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.NewtonMeter, TorqueUnit.GramForceCentimeter, q => q.ToUnit(TorqueUnit.GramForceCentimeter));
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.NewtonMeter, TorqueUnit.GramForceMeter, q => q.ToUnit(TorqueUnit.GramForceMeter));
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.NewtonMeter, TorqueUnit.GramForceMillimeter, q => q.ToUnit(TorqueUnit.GramForceMillimeter));
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.NewtonMeter, TorqueUnit.KilogramForceCentimeter, q => q.ToUnit(TorqueUnit.KilogramForceCentimeter));
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.NewtonMeter, TorqueUnit.KilogramForceMeter, q => q.ToUnit(TorqueUnit.KilogramForceMeter));
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.NewtonMeter, TorqueUnit.KilogramForceMillimeter, q => q.ToUnit(TorqueUnit.KilogramForceMillimeter));
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.NewtonMeter, TorqueUnit.KilonewtonCentimeter, q => q.ToUnit(TorqueUnit.KilonewtonCentimeter));
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.NewtonMeter, TorqueUnit.KilonewtonMeter, q => q.ToUnit(TorqueUnit.KilonewtonMeter));
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.NewtonMeter, TorqueUnit.KilonewtonMillimeter, q => q.ToUnit(TorqueUnit.KilonewtonMillimeter));
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.NewtonMeter, TorqueUnit.KilopoundForceFoot, q => q.ToUnit(TorqueUnit.KilopoundForceFoot));
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.NewtonMeter, TorqueUnit.KilopoundForceInch, q => q.ToUnit(TorqueUnit.KilopoundForceInch));
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.NewtonMeter, TorqueUnit.MeganewtonCentimeter, q => q.ToUnit(TorqueUnit.MeganewtonCentimeter));
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.NewtonMeter, TorqueUnit.MeganewtonMeter, q => q.ToUnit(TorqueUnit.MeganewtonMeter));
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.NewtonMeter, TorqueUnit.MeganewtonMillimeter, q => q.ToUnit(TorqueUnit.MeganewtonMillimeter));
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.NewtonMeter, TorqueUnit.MegapoundForceFoot, q => q.ToUnit(TorqueUnit.MegapoundForceFoot));
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.NewtonMeter, TorqueUnit.MegapoundForceInch, q => q.ToUnit(TorqueUnit.MegapoundForceInch));
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.NewtonMeter, TorqueUnit.NewtonCentimeter, q => q.ToUnit(TorqueUnit.NewtonCentimeter));
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.NewtonMeter, TorqueUnit.NewtonMillimeter, q => q.ToUnit(TorqueUnit.NewtonMillimeter));
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.NewtonMeter, TorqueUnit.PoundalFoot, q => q.ToUnit(TorqueUnit.PoundalFoot));
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.NewtonMeter, TorqueUnit.PoundForceFoot, q => q.ToUnit(TorqueUnit.PoundForceFoot));
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.NewtonMeter, TorqueUnit.PoundForceInch, q => q.ToUnit(TorqueUnit.PoundForceInch));
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.NewtonMeter, TorqueUnit.TonneForceCentimeter, q => q.ToUnit(TorqueUnit.TonneForceCentimeter));
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.NewtonMeter, TorqueUnit.TonneForceMeter, q => q.ToUnit(TorqueUnit.TonneForceMeter));
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.NewtonMeter, TorqueUnit.TonneForceMillimeter, q => q.ToUnit(TorqueUnit.TonneForceMillimeter));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.NewtonMeter, TorqueUnit.NewtonMeter, q => q);
+
+            // Register in default unit converter: TorqueUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.GramForceCentimeter, TorqueUnit.NewtonMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.GramForceMeter, TorqueUnit.NewtonMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.GramForceMillimeter, TorqueUnit.NewtonMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.KilogramForceCentimeter, TorqueUnit.NewtonMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.KilogramForceMeter, TorqueUnit.NewtonMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.KilogramForceMillimeter, TorqueUnit.NewtonMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.KilonewtonCentimeter, TorqueUnit.NewtonMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.KilonewtonMeter, TorqueUnit.NewtonMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.KilonewtonMillimeter, TorqueUnit.NewtonMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.KilopoundForceFoot, TorqueUnit.NewtonMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.KilopoundForceInch, TorqueUnit.NewtonMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.MeganewtonCentimeter, TorqueUnit.NewtonMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.MeganewtonMeter, TorqueUnit.NewtonMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.MeganewtonMillimeter, TorqueUnit.NewtonMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.MegapoundForceFoot, TorqueUnit.NewtonMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.MegapoundForceInch, TorqueUnit.NewtonMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.NewtonCentimeter, TorqueUnit.NewtonMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.NewtonMillimeter, TorqueUnit.NewtonMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.PoundalFoot, TorqueUnit.NewtonMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.PoundForceFoot, TorqueUnit.NewtonMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.PoundForceInch, TorqueUnit.NewtonMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.TonneForceCentimeter, TorqueUnit.NewtonMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.TonneForceMeter, TorqueUnit.NewtonMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Torque>(TorqueUnit.TonneForceMillimeter, TorqueUnit.NewtonMeter, q => q.ToBaseUnit());
         }
 
         /// <summary>

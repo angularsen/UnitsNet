@@ -65,11 +65,16 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricCurrentDensity);
 
-            UnitConverter.Default.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensity.BaseUnit, ElectricCurrentDensityUnit.AmperePerSquareFoot, q => q.ToUnit(ElectricCurrentDensityUnit.AmperePerSquareFoot));
-            UnitConverter.Default.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareFoot, ElectricCurrentDensity.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensity.BaseUnit, ElectricCurrentDensityUnit.AmperePerSquareInch, q => q.ToUnit(ElectricCurrentDensityUnit.AmperePerSquareInch));
-            UnitConverter.Default.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareInch, ElectricCurrentDensity.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensity.BaseUnit, ElectricCurrentDensity.BaseUnit, q => q);
+            // Register in default unit converter: BaseUnit -> ElectricCurrentDensityUnit
+            UnitConverter.Default.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareMeter, ElectricCurrentDensityUnit.AmperePerSquareFoot, q => q.ToUnit(ElectricCurrentDensityUnit.AmperePerSquareFoot));
+            UnitConverter.Default.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareMeter, ElectricCurrentDensityUnit.AmperePerSquareInch, q => q.ToUnit(ElectricCurrentDensityUnit.AmperePerSquareInch));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareMeter, ElectricCurrentDensityUnit.AmperePerSquareMeter, q => q);
+
+            // Register in default unit converter: ElectricCurrentDensityUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareFoot, ElectricCurrentDensityUnit.AmperePerSquareMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareInch, ElectricCurrentDensityUnit.AmperePerSquareMeter, q => q.ToBaseUnit());
         }
 
         /// <summary>

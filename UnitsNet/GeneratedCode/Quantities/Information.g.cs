@@ -85,57 +85,62 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Information);
 
-            UnitConverter.Default.SetConversionFunction<Information>(Information.BaseUnit, Information.BaseUnit, q => q);
-            UnitConverter.Default.SetConversionFunction<Information>(Information.BaseUnit, InformationUnit.Byte, q => q.ToUnit(InformationUnit.Byte));
-            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Byte, Information.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Information>(Information.BaseUnit, InformationUnit.Exabit, q => q.ToUnit(InformationUnit.Exabit));
-            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Exabit, Information.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Information>(Information.BaseUnit, InformationUnit.Exabyte, q => q.ToUnit(InformationUnit.Exabyte));
-            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Exabyte, Information.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Information>(Information.BaseUnit, InformationUnit.Exbibit, q => q.ToUnit(InformationUnit.Exbibit));
-            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Exbibit, Information.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Information>(Information.BaseUnit, InformationUnit.Exbibyte, q => q.ToUnit(InformationUnit.Exbibyte));
-            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Exbibyte, Information.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Information>(Information.BaseUnit, InformationUnit.Gibibit, q => q.ToUnit(InformationUnit.Gibibit));
-            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Gibibit, Information.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Information>(Information.BaseUnit, InformationUnit.Gibibyte, q => q.ToUnit(InformationUnit.Gibibyte));
-            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Gibibyte, Information.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Information>(Information.BaseUnit, InformationUnit.Gigabit, q => q.ToUnit(InformationUnit.Gigabit));
-            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Gigabit, Information.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Information>(Information.BaseUnit, InformationUnit.Gigabyte, q => q.ToUnit(InformationUnit.Gigabyte));
-            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Gigabyte, Information.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Information>(Information.BaseUnit, InformationUnit.Kibibit, q => q.ToUnit(InformationUnit.Kibibit));
-            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Kibibit, Information.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Information>(Information.BaseUnit, InformationUnit.Kibibyte, q => q.ToUnit(InformationUnit.Kibibyte));
-            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Kibibyte, Information.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Information>(Information.BaseUnit, InformationUnit.Kilobit, q => q.ToUnit(InformationUnit.Kilobit));
-            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Kilobit, Information.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Information>(Information.BaseUnit, InformationUnit.Kilobyte, q => q.ToUnit(InformationUnit.Kilobyte));
-            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Kilobyte, Information.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Information>(Information.BaseUnit, InformationUnit.Mebibit, q => q.ToUnit(InformationUnit.Mebibit));
-            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Mebibit, Information.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Information>(Information.BaseUnit, InformationUnit.Mebibyte, q => q.ToUnit(InformationUnit.Mebibyte));
-            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Mebibyte, Information.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Information>(Information.BaseUnit, InformationUnit.Megabit, q => q.ToUnit(InformationUnit.Megabit));
-            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Megabit, Information.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Information>(Information.BaseUnit, InformationUnit.Megabyte, q => q.ToUnit(InformationUnit.Megabyte));
-            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Megabyte, Information.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Information>(Information.BaseUnit, InformationUnit.Pebibit, q => q.ToUnit(InformationUnit.Pebibit));
-            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Pebibit, Information.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Information>(Information.BaseUnit, InformationUnit.Pebibyte, q => q.ToUnit(InformationUnit.Pebibyte));
-            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Pebibyte, Information.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Information>(Information.BaseUnit, InformationUnit.Petabit, q => q.ToUnit(InformationUnit.Petabit));
-            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Petabit, Information.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Information>(Information.BaseUnit, InformationUnit.Petabyte, q => q.ToUnit(InformationUnit.Petabyte));
-            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Petabyte, Information.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Information>(Information.BaseUnit, InformationUnit.Tebibit, q => q.ToUnit(InformationUnit.Tebibit));
-            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Tebibit, Information.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Information>(Information.BaseUnit, InformationUnit.Tebibyte, q => q.ToUnit(InformationUnit.Tebibyte));
-            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Tebibyte, Information.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Information>(Information.BaseUnit, InformationUnit.Terabit, q => q.ToUnit(InformationUnit.Terabit));
-            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Terabit, Information.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Information>(Information.BaseUnit, InformationUnit.Terabyte, q => q.ToUnit(InformationUnit.Terabyte));
-            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Terabyte, Information.BaseUnit, q => q.ToBaseUnit());
+            // Register in default unit converter: BaseUnit -> InformationUnit
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Byte, q => q.ToUnit(InformationUnit.Byte));
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Exabit, q => q.ToUnit(InformationUnit.Exabit));
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Exabyte, q => q.ToUnit(InformationUnit.Exabyte));
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Exbibit, q => q.ToUnit(InformationUnit.Exbibit));
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Exbibyte, q => q.ToUnit(InformationUnit.Exbibyte));
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Gibibit, q => q.ToUnit(InformationUnit.Gibibit));
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Gibibyte, q => q.ToUnit(InformationUnit.Gibibyte));
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Gigabit, q => q.ToUnit(InformationUnit.Gigabit));
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Gigabyte, q => q.ToUnit(InformationUnit.Gigabyte));
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Kibibit, q => q.ToUnit(InformationUnit.Kibibit));
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Kibibyte, q => q.ToUnit(InformationUnit.Kibibyte));
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Kilobit, q => q.ToUnit(InformationUnit.Kilobit));
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Kilobyte, q => q.ToUnit(InformationUnit.Kilobyte));
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Mebibit, q => q.ToUnit(InformationUnit.Mebibit));
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Mebibyte, q => q.ToUnit(InformationUnit.Mebibyte));
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Megabit, q => q.ToUnit(InformationUnit.Megabit));
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Megabyte, q => q.ToUnit(InformationUnit.Megabyte));
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Pebibit, q => q.ToUnit(InformationUnit.Pebibit));
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Pebibyte, q => q.ToUnit(InformationUnit.Pebibyte));
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Petabit, q => q.ToUnit(InformationUnit.Petabit));
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Petabyte, q => q.ToUnit(InformationUnit.Petabyte));
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Tebibit, q => q.ToUnit(InformationUnit.Tebibit));
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Tebibyte, q => q.ToUnit(InformationUnit.Tebibyte));
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Terabit, q => q.ToUnit(InformationUnit.Terabit));
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Terabyte, q => q.ToUnit(InformationUnit.Terabyte));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Bit, InformationUnit.Bit, q => q);
+
+            // Register in default unit converter: InformationUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Byte, InformationUnit.Bit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Exabit, InformationUnit.Bit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Exabyte, InformationUnit.Bit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Exbibit, InformationUnit.Bit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Exbibyte, InformationUnit.Bit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Gibibit, InformationUnit.Bit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Gibibyte, InformationUnit.Bit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Gigabit, InformationUnit.Bit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Gigabyte, InformationUnit.Bit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Kibibit, InformationUnit.Bit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Kibibyte, InformationUnit.Bit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Kilobit, InformationUnit.Bit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Kilobyte, InformationUnit.Bit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Mebibit, InformationUnit.Bit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Mebibyte, InformationUnit.Bit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Megabit, InformationUnit.Bit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Megabyte, InformationUnit.Bit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Pebibit, InformationUnit.Bit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Pebibyte, InformationUnit.Bit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Petabit, InformationUnit.Bit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Petabyte, InformationUnit.Bit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Tebibit, InformationUnit.Bit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Tebibyte, InformationUnit.Bit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Terabit, InformationUnit.Bit, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Information>(InformationUnit.Terabyte, InformationUnit.Bit, q => q.ToBaseUnit());
         }
 
         /// <summary>

@@ -66,13 +66,18 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.SpecificFuelConsumption);
 
-            UnitConverter.Default.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumption.BaseUnit, SpecificFuelConsumption.BaseUnit, q => q);
-            UnitConverter.Default.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumption.BaseUnit, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, q => q.ToUnit(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour));
-            UnitConverter.Default.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, SpecificFuelConsumption.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumption.BaseUnit, SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, q => q.ToUnit(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond));
-            UnitConverter.Default.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, SpecificFuelConsumption.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumption.BaseUnit, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, q => q.ToUnit(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour));
-            UnitConverter.Default.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, SpecificFuelConsumption.BaseUnit, q => q.ToBaseUnit());
+            // Register in default unit converter: BaseUnit -> SpecificFuelConsumptionUnit
+            UnitConverter.Default.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, q => q.ToUnit(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour));
+            UnitConverter.Default.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, q => q.ToUnit(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond));
+            UnitConverter.Default.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, q => q.ToUnit(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, q => q);
+
+            // Register in default unit converter: SpecificFuelConsumptionUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, q => q.ToBaseUnit());
         }
 
         /// <summary>

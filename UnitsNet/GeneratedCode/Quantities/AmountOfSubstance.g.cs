@@ -74,35 +74,40 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.AmountOfSubstance);
 
-            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstance.BaseUnit, AmountOfSubstanceUnit.Centimole, q => q.ToUnit(AmountOfSubstanceUnit.Centimole));
-            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Centimole, AmountOfSubstance.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstance.BaseUnit, AmountOfSubstanceUnit.CentipoundMole, q => q.ToUnit(AmountOfSubstanceUnit.CentipoundMole));
-            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.CentipoundMole, AmountOfSubstance.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstance.BaseUnit, AmountOfSubstanceUnit.Decimole, q => q.ToUnit(AmountOfSubstanceUnit.Decimole));
-            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Decimole, AmountOfSubstance.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstance.BaseUnit, AmountOfSubstanceUnit.DecipoundMole, q => q.ToUnit(AmountOfSubstanceUnit.DecipoundMole));
-            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.DecipoundMole, AmountOfSubstance.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstance.BaseUnit, AmountOfSubstanceUnit.Kilomole, q => q.ToUnit(AmountOfSubstanceUnit.Kilomole));
-            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Kilomole, AmountOfSubstance.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstance.BaseUnit, AmountOfSubstanceUnit.KilopoundMole, q => q.ToUnit(AmountOfSubstanceUnit.KilopoundMole));
-            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.KilopoundMole, AmountOfSubstance.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstance.BaseUnit, AmountOfSubstanceUnit.Megamole, q => q.ToUnit(AmountOfSubstanceUnit.Megamole));
-            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Megamole, AmountOfSubstance.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstance.BaseUnit, AmountOfSubstanceUnit.Micromole, q => q.ToUnit(AmountOfSubstanceUnit.Micromole));
-            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Micromole, AmountOfSubstance.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstance.BaseUnit, AmountOfSubstanceUnit.MicropoundMole, q => q.ToUnit(AmountOfSubstanceUnit.MicropoundMole));
-            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.MicropoundMole, AmountOfSubstance.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstance.BaseUnit, AmountOfSubstanceUnit.Millimole, q => q.ToUnit(AmountOfSubstanceUnit.Millimole));
-            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Millimole, AmountOfSubstance.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstance.BaseUnit, AmountOfSubstanceUnit.MillipoundMole, q => q.ToUnit(AmountOfSubstanceUnit.MillipoundMole));
-            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.MillipoundMole, AmountOfSubstance.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstance.BaseUnit, AmountOfSubstance.BaseUnit, q => q);
-            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstance.BaseUnit, AmountOfSubstanceUnit.Nanomole, q => q.ToUnit(AmountOfSubstanceUnit.Nanomole));
-            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Nanomole, AmountOfSubstance.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstance.BaseUnit, AmountOfSubstanceUnit.NanopoundMole, q => q.ToUnit(AmountOfSubstanceUnit.NanopoundMole));
-            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.NanopoundMole, AmountOfSubstance.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstance.BaseUnit, AmountOfSubstanceUnit.PoundMole, q => q.ToUnit(AmountOfSubstanceUnit.PoundMole));
-            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.PoundMole, AmountOfSubstance.BaseUnit, q => q.ToBaseUnit());
+            // Register in default unit converter: BaseUnit -> AmountOfSubstanceUnit
+            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Centimole, q => q.ToUnit(AmountOfSubstanceUnit.Centimole));
+            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.CentipoundMole, q => q.ToUnit(AmountOfSubstanceUnit.CentipoundMole));
+            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Decimole, q => q.ToUnit(AmountOfSubstanceUnit.Decimole));
+            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.DecipoundMole, q => q.ToUnit(AmountOfSubstanceUnit.DecipoundMole));
+            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Kilomole, q => q.ToUnit(AmountOfSubstanceUnit.Kilomole));
+            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.KilopoundMole, q => q.ToUnit(AmountOfSubstanceUnit.KilopoundMole));
+            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Megamole, q => q.ToUnit(AmountOfSubstanceUnit.Megamole));
+            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Micromole, q => q.ToUnit(AmountOfSubstanceUnit.Micromole));
+            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.MicropoundMole, q => q.ToUnit(AmountOfSubstanceUnit.MicropoundMole));
+            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Millimole, q => q.ToUnit(AmountOfSubstanceUnit.Millimole));
+            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.MillipoundMole, q => q.ToUnit(AmountOfSubstanceUnit.MillipoundMole));
+            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Nanomole, q => q.ToUnit(AmountOfSubstanceUnit.Nanomole));
+            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.NanopoundMole, q => q.ToUnit(AmountOfSubstanceUnit.NanopoundMole));
+            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.PoundMole, q => q.ToUnit(AmountOfSubstanceUnit.PoundMole));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Mole, q => q);
+
+            // Register in default unit converter: AmountOfSubstanceUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Centimole, AmountOfSubstanceUnit.Mole, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.CentipoundMole, AmountOfSubstanceUnit.Mole, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Decimole, AmountOfSubstanceUnit.Mole, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.DecipoundMole, AmountOfSubstanceUnit.Mole, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Kilomole, AmountOfSubstanceUnit.Mole, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.KilopoundMole, AmountOfSubstanceUnit.Mole, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Megamole, AmountOfSubstanceUnit.Mole, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Micromole, AmountOfSubstanceUnit.Mole, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.MicropoundMole, AmountOfSubstanceUnit.Mole, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Millimole, AmountOfSubstanceUnit.Mole, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.MillipoundMole, AmountOfSubstanceUnit.Mole, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Nanomole, AmountOfSubstanceUnit.Mole, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.NanopoundMole, AmountOfSubstanceUnit.Mole, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.PoundMole, AmountOfSubstanceUnit.Mole, q => q.ToBaseUnit());
         }
 
         /// <summary>

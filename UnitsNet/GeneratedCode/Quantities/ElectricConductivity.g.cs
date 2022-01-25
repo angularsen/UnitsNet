@@ -65,11 +65,16 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricConductivity);
 
-            UnitConverter.Default.SetConversionFunction<ElectricConductivity>(ElectricConductivity.BaseUnit, ElectricConductivityUnit.SiemensPerFoot, q => q.ToUnit(ElectricConductivityUnit.SiemensPerFoot));
-            UnitConverter.Default.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerFoot, ElectricConductivity.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricConductivity>(ElectricConductivity.BaseUnit, ElectricConductivityUnit.SiemensPerInch, q => q.ToUnit(ElectricConductivityUnit.SiemensPerInch));
-            UnitConverter.Default.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerInch, ElectricConductivity.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricConductivity>(ElectricConductivity.BaseUnit, ElectricConductivity.BaseUnit, q => q);
+            // Register in default unit converter: BaseUnit -> ElectricConductivityUnit
+            UnitConverter.Default.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerFoot, q => q.ToUnit(ElectricConductivityUnit.SiemensPerFoot));
+            UnitConverter.Default.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerInch, q => q.ToUnit(ElectricConductivityUnit.SiemensPerInch));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerMeter, q => q);
+
+            // Register in default unit converter: ElectricConductivityUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerFoot, ElectricConductivityUnit.SiemensPerMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerInch, ElectricConductivityUnit.SiemensPerMeter, q => q.ToBaseUnit());
         }
 
         /// <summary>

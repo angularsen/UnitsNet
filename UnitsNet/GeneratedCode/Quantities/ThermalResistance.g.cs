@@ -65,17 +65,22 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ThermalResistance);
 
-            UnitConverter.Default.SetConversionFunction<ThermalResistance>(ThermalResistance.BaseUnit, ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, q => q.ToUnit(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu));
-            UnitConverter.Default.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, ThermalResistance.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ThermalResistance>(ThermalResistance.BaseUnit, ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, q => q.ToUnit(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie));
-            UnitConverter.Default.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, ThermalResistance.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ThermalResistance>(ThermalResistance.BaseUnit, ThermalResistanceUnit.SquareCentimeterKelvinPerWatt, q => q.ToUnit(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt));
-            UnitConverter.Default.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt, ThermalResistance.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ThermalResistance>(ThermalResistance.BaseUnit, ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, q => q.ToUnit(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt));
-            UnitConverter.Default.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, ThermalResistance.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ThermalResistance>(ThermalResistance.BaseUnit, ThermalResistance.BaseUnit, q => q);
-            UnitConverter.Default.SetConversionFunction<ThermalResistance>(ThermalResistance.BaseUnit, ThermalResistanceUnit.SquareMeterKelvinPerWatt, q => q.ToUnit(ThermalResistanceUnit.SquareMeterKelvinPerWatt));
-            UnitConverter.Default.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerWatt, ThermalResistance.BaseUnit, q => q.ToBaseUnit());
+            // Register in default unit converter: BaseUnit -> ThermalResistanceUnit
+            UnitConverter.Default.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, q => q.ToUnit(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu));
+            UnitConverter.Default.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, q => q.ToUnit(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie));
+            UnitConverter.Default.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareCentimeterKelvinPerWatt, q => q.ToUnit(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt));
+            UnitConverter.Default.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, q => q.ToUnit(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt));
+            UnitConverter.Default.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareMeterKelvinPerWatt, q => q.ToUnit(ThermalResistanceUnit.SquareMeterKelvinPerWatt));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, q => q);
+
+            // Register in default unit converter: ThermalResistanceUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerWatt, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, q => q.ToBaseUnit());
         }
 
         /// <summary>

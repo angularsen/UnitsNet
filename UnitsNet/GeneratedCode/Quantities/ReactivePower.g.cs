@@ -63,13 +63,18 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ReactivePower);
 
-            UnitConverter.Default.SetConversionFunction<ReactivePower>(ReactivePower.BaseUnit, ReactivePowerUnit.GigavoltampereReactive, q => q.ToUnit(ReactivePowerUnit.GigavoltampereReactive));
-            UnitConverter.Default.SetConversionFunction<ReactivePower>(ReactivePowerUnit.GigavoltampereReactive, ReactivePower.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ReactivePower>(ReactivePower.BaseUnit, ReactivePowerUnit.KilovoltampereReactive, q => q.ToUnit(ReactivePowerUnit.KilovoltampereReactive));
-            UnitConverter.Default.SetConversionFunction<ReactivePower>(ReactivePowerUnit.KilovoltampereReactive, ReactivePower.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ReactivePower>(ReactivePower.BaseUnit, ReactivePowerUnit.MegavoltampereReactive, q => q.ToUnit(ReactivePowerUnit.MegavoltampereReactive));
-            UnitConverter.Default.SetConversionFunction<ReactivePower>(ReactivePowerUnit.MegavoltampereReactive, ReactivePower.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ReactivePower>(ReactivePower.BaseUnit, ReactivePower.BaseUnit, q => q);
+            // Register in default unit converter: BaseUnit -> ReactivePowerUnit
+            UnitConverter.Default.SetConversionFunction<ReactivePower>(ReactivePowerUnit.VoltampereReactive, ReactivePowerUnit.GigavoltampereReactive, q => q.ToUnit(ReactivePowerUnit.GigavoltampereReactive));
+            UnitConverter.Default.SetConversionFunction<ReactivePower>(ReactivePowerUnit.VoltampereReactive, ReactivePowerUnit.KilovoltampereReactive, q => q.ToUnit(ReactivePowerUnit.KilovoltampereReactive));
+            UnitConverter.Default.SetConversionFunction<ReactivePower>(ReactivePowerUnit.VoltampereReactive, ReactivePowerUnit.MegavoltampereReactive, q => q.ToUnit(ReactivePowerUnit.MegavoltampereReactive));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ReactivePower>(ReactivePowerUnit.VoltampereReactive, ReactivePowerUnit.VoltampereReactive, q => q);
+
+            // Register in default unit converter: ReactivePowerUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ReactivePower>(ReactivePowerUnit.GigavoltampereReactive, ReactivePowerUnit.VoltampereReactive, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ReactivePower>(ReactivePowerUnit.KilovoltampereReactive, ReactivePowerUnit.VoltampereReactive, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ReactivePower>(ReactivePowerUnit.MegavoltampereReactive, ReactivePowerUnit.VoltampereReactive, q => q.ToBaseUnit());
         }
 
         /// <summary>

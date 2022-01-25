@@ -65,11 +65,16 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricSurfaceChargeDensity);
 
-            UnitConverter.Default.SetConversionFunction<ElectricSurfaceChargeDensity>(ElectricSurfaceChargeDensity.BaseUnit, ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, q => q.ToUnit(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter));
-            UnitConverter.Default.SetConversionFunction<ElectricSurfaceChargeDensity>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, ElectricSurfaceChargeDensity.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricSurfaceChargeDensity>(ElectricSurfaceChargeDensity.BaseUnit, ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, q => q.ToUnit(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch));
-            UnitConverter.Default.SetConversionFunction<ElectricSurfaceChargeDensity>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, ElectricSurfaceChargeDensity.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricSurfaceChargeDensity>(ElectricSurfaceChargeDensity.BaseUnit, ElectricSurfaceChargeDensity.BaseUnit, q => q);
+            // Register in default unit converter: BaseUnit -> ElectricSurfaceChargeDensityUnit
+            UnitConverter.Default.SetConversionFunction<ElectricSurfaceChargeDensity>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, q => q.ToUnit(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter));
+            UnitConverter.Default.SetConversionFunction<ElectricSurfaceChargeDensity>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, q => q.ToUnit(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ElectricSurfaceChargeDensity>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, q => q);
+
+            // Register in default unit converter: ElectricSurfaceChargeDensityUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ElectricSurfaceChargeDensity>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricSurfaceChargeDensity>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, q => q.ToBaseUnit());
         }
 
         /// <summary>

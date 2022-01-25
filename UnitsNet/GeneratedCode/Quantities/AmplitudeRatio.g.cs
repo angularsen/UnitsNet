@@ -63,13 +63,18 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.AmplitudeRatio);
 
-            UnitConverter.Default.SetConversionFunction<AmplitudeRatio>(AmplitudeRatio.BaseUnit, AmplitudeRatioUnit.DecibelMicrovolt, q => q.ToUnit(AmplitudeRatioUnit.DecibelMicrovolt));
-            UnitConverter.Default.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelMicrovolt, AmplitudeRatio.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<AmplitudeRatio>(AmplitudeRatio.BaseUnit, AmplitudeRatioUnit.DecibelMillivolt, q => q.ToUnit(AmplitudeRatioUnit.DecibelMillivolt));
-            UnitConverter.Default.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelMillivolt, AmplitudeRatio.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<AmplitudeRatio>(AmplitudeRatio.BaseUnit, AmplitudeRatioUnit.DecibelUnloaded, q => q.ToUnit(AmplitudeRatioUnit.DecibelUnloaded));
-            UnitConverter.Default.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelUnloaded, AmplitudeRatio.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<AmplitudeRatio>(AmplitudeRatio.BaseUnit, AmplitudeRatio.BaseUnit, q => q);
+            // Register in default unit converter: BaseUnit -> AmplitudeRatioUnit
+            UnitConverter.Default.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelMicrovolt, q => q.ToUnit(AmplitudeRatioUnit.DecibelMicrovolt));
+            UnitConverter.Default.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelMillivolt, q => q.ToUnit(AmplitudeRatioUnit.DecibelMillivolt));
+            UnitConverter.Default.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelUnloaded, q => q.ToUnit(AmplitudeRatioUnit.DecibelUnloaded));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelVolt, q => q);
+
+            // Register in default unit converter: AmplitudeRatioUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelMicrovolt, AmplitudeRatioUnit.DecibelVolt, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelMillivolt, AmplitudeRatioUnit.DecibelVolt, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelUnloaded, AmplitudeRatioUnit.DecibelVolt, q => q.ToBaseUnit());
         }
 
         /// <summary>

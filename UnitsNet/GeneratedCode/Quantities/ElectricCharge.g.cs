@@ -67,15 +67,20 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricCharge);
 
-            UnitConverter.Default.SetConversionFunction<ElectricCharge>(ElectricCharge.BaseUnit, ElectricChargeUnit.AmpereHour, q => q.ToUnit(ElectricChargeUnit.AmpereHour));
-            UnitConverter.Default.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.AmpereHour, ElectricCharge.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricCharge>(ElectricCharge.BaseUnit, ElectricCharge.BaseUnit, q => q);
-            UnitConverter.Default.SetConversionFunction<ElectricCharge>(ElectricCharge.BaseUnit, ElectricChargeUnit.KiloampereHour, q => q.ToUnit(ElectricChargeUnit.KiloampereHour));
-            UnitConverter.Default.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.KiloampereHour, ElectricCharge.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricCharge>(ElectricCharge.BaseUnit, ElectricChargeUnit.MegaampereHour, q => q.ToUnit(ElectricChargeUnit.MegaampereHour));
-            UnitConverter.Default.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.MegaampereHour, ElectricCharge.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricCharge>(ElectricCharge.BaseUnit, ElectricChargeUnit.MilliampereHour, q => q.ToUnit(ElectricChargeUnit.MilliampereHour));
-            UnitConverter.Default.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.MilliampereHour, ElectricCharge.BaseUnit, q => q.ToBaseUnit());
+            // Register in default unit converter: BaseUnit -> ElectricChargeUnit
+            UnitConverter.Default.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.Coulomb, ElectricChargeUnit.AmpereHour, q => q.ToUnit(ElectricChargeUnit.AmpereHour));
+            UnitConverter.Default.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.Coulomb, ElectricChargeUnit.KiloampereHour, q => q.ToUnit(ElectricChargeUnit.KiloampereHour));
+            UnitConverter.Default.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.Coulomb, ElectricChargeUnit.MegaampereHour, q => q.ToUnit(ElectricChargeUnit.MegaampereHour));
+            UnitConverter.Default.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.Coulomb, ElectricChargeUnit.MilliampereHour, q => q.ToUnit(ElectricChargeUnit.MilliampereHour));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.Coulomb, ElectricChargeUnit.Coulomb, q => q);
+
+            // Register in default unit converter: ElectricChargeUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.AmpereHour, ElectricChargeUnit.Coulomb, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.KiloampereHour, ElectricChargeUnit.Coulomb, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.MegaampereHour, ElectricChargeUnit.Coulomb, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.MilliampereHour, ElectricChargeUnit.Coulomb, q => q.ToBaseUnit());
         }
 
         /// <summary>

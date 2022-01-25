@@ -64,9 +64,14 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ThermalConductivity);
 
-            UnitConverter.Default.SetConversionFunction<ThermalConductivity>(ThermalConductivity.BaseUnit, ThermalConductivityUnit.BtuPerHourFootFahrenheit, q => q.ToUnit(ThermalConductivityUnit.BtuPerHourFootFahrenheit));
-            UnitConverter.Default.SetConversionFunction<ThermalConductivity>(ThermalConductivityUnit.BtuPerHourFootFahrenheit, ThermalConductivity.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ThermalConductivity>(ThermalConductivity.BaseUnit, ThermalConductivity.BaseUnit, q => q);
+            // Register in default unit converter: BaseUnit -> ThermalConductivityUnit
+            UnitConverter.Default.SetConversionFunction<ThermalConductivity>(ThermalConductivityUnit.WattPerMeterKelvin, ThermalConductivityUnit.BtuPerHourFootFahrenheit, q => q.ToUnit(ThermalConductivityUnit.BtuPerHourFootFahrenheit));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ThermalConductivity>(ThermalConductivityUnit.WattPerMeterKelvin, ThermalConductivityUnit.WattPerMeterKelvin, q => q);
+
+            // Register in default unit converter: ThermalConductivityUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ThermalConductivity>(ThermalConductivityUnit.BtuPerHourFootFahrenheit, ThermalConductivityUnit.WattPerMeterKelvin, q => q.ToBaseUnit());
         }
 
         /// <summary>

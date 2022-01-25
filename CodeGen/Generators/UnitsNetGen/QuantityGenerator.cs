@@ -161,17 +161,33 @@ namespace UnitsNet
             Writer.WL($@"
                 }},
                 BaseUnit, Zero, BaseDimensions, QuantityType.{_quantity.Name});
-");
 
-            foreach (var unit in _quantity.Units)
-            {
-                Writer.WL( _quantity.BaseUnit == unit.SingularName
-                    ? $@"
-            UnitConverter.Default.SetConversionFunction<{_quantity.Name}>({_quantity.Name}.BaseUnit, {_quantity.Name}.BaseUnit, q => q);"
-                    : $@"
-            UnitConverter.Default.SetConversionFunction<{_quantity.Name}>({_quantity.Name}.BaseUnit, {_quantity.Name}Unit.{unit.SingularName}, q => q.ToUnit({_quantity.Name}Unit.{unit.SingularName}));
-            UnitConverter.Default.SetConversionFunction<{_quantity.Name}>({_quantity.Name}Unit.{unit.SingularName}, {_quantity.Name}.BaseUnit, q => q.ToBaseUnit());" );
-            }
+            // Register in default unit converter: BaseUnit -> {_quantity.Name}Unit");
+
+        foreach(var unit in _quantity.Units)
+        {
+            if(unit.SingularName == _quantity.BaseUnit)
+                continue;
+
+            Writer.WL( $@"
+            UnitConverter.Default.SetConversionFunction<{_quantity.Name}>({_unitEnumName}.{_quantity.BaseUnit}, {_quantity.Name}Unit.{unit.SingularName}, q => q.ToUnit({_quantity.Name}Unit.{unit.SingularName}));");
+        }
+
+        Writer.WL( $@"
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<{_quantity.Name}>({_unitEnumName}.{_quantity.BaseUnit}, {_unitEnumName}.{_quantity.BaseUnit}, q => q);
+
+            // Register in default unit converter: {_quantity.Name}Unit -> BaseUnit" );
+
+        foreach(var unit in _quantity.Units)
+        {
+            if(unit.SingularName == _quantity.BaseUnit)
+                continue;
+
+            Writer.WL($@"
+            UnitConverter.Default.SetConversionFunction<{_quantity.Name}>({_quantity.Name}Unit.{unit.SingularName}, {_unitEnumName}.{_quantity.BaseUnit}, q => q.ToBaseUnit());");
+        }
 
             Writer.WL($@"
         }}

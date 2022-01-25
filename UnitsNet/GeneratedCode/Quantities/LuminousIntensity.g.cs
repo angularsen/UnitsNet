@@ -63,7 +63,12 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.LuminousIntensity);
 
-            UnitConverter.Default.SetConversionFunction<LuminousIntensity>(LuminousIntensity.BaseUnit, LuminousIntensity.BaseUnit, q => q);
+            // Register in default unit converter: BaseUnit -> LuminousIntensityUnit
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<LuminousIntensity>(LuminousIntensityUnit.Candela, LuminousIntensityUnit.Candela, q => q);
+
+            // Register in default unit converter: LuminousIntensityUnit -> BaseUnit
         }
 
         /// <summary>

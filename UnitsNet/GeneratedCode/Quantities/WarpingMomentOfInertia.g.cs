@@ -65,17 +65,22 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.WarpingMomentOfInertia);
 
-            UnitConverter.Default.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertia.BaseUnit, WarpingMomentOfInertiaUnit.CentimeterToTheSixth, q => q.ToUnit(WarpingMomentOfInertiaUnit.CentimeterToTheSixth));
-            UnitConverter.Default.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertiaUnit.CentimeterToTheSixth, WarpingMomentOfInertia.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertia.BaseUnit, WarpingMomentOfInertiaUnit.DecimeterToTheSixth, q => q.ToUnit(WarpingMomentOfInertiaUnit.DecimeterToTheSixth));
-            UnitConverter.Default.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertiaUnit.DecimeterToTheSixth, WarpingMomentOfInertia.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertia.BaseUnit, WarpingMomentOfInertiaUnit.FootToTheSixth, q => q.ToUnit(WarpingMomentOfInertiaUnit.FootToTheSixth));
-            UnitConverter.Default.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertiaUnit.FootToTheSixth, WarpingMomentOfInertia.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertia.BaseUnit, WarpingMomentOfInertiaUnit.InchToTheSixth, q => q.ToUnit(WarpingMomentOfInertiaUnit.InchToTheSixth));
-            UnitConverter.Default.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertiaUnit.InchToTheSixth, WarpingMomentOfInertia.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertia.BaseUnit, WarpingMomentOfInertia.BaseUnit, q => q);
-            UnitConverter.Default.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertia.BaseUnit, WarpingMomentOfInertiaUnit.MillimeterToTheSixth, q => q.ToUnit(WarpingMomentOfInertiaUnit.MillimeterToTheSixth));
-            UnitConverter.Default.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, WarpingMomentOfInertia.BaseUnit, q => q.ToBaseUnit());
+            // Register in default unit converter: BaseUnit -> WarpingMomentOfInertiaUnit
+            UnitConverter.Default.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertiaUnit.MeterToTheSixth, WarpingMomentOfInertiaUnit.CentimeterToTheSixth, q => q.ToUnit(WarpingMomentOfInertiaUnit.CentimeterToTheSixth));
+            UnitConverter.Default.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertiaUnit.MeterToTheSixth, WarpingMomentOfInertiaUnit.DecimeterToTheSixth, q => q.ToUnit(WarpingMomentOfInertiaUnit.DecimeterToTheSixth));
+            UnitConverter.Default.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertiaUnit.MeterToTheSixth, WarpingMomentOfInertiaUnit.FootToTheSixth, q => q.ToUnit(WarpingMomentOfInertiaUnit.FootToTheSixth));
+            UnitConverter.Default.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertiaUnit.MeterToTheSixth, WarpingMomentOfInertiaUnit.InchToTheSixth, q => q.ToUnit(WarpingMomentOfInertiaUnit.InchToTheSixth));
+            UnitConverter.Default.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertiaUnit.MeterToTheSixth, WarpingMomentOfInertiaUnit.MillimeterToTheSixth, q => q.ToUnit(WarpingMomentOfInertiaUnit.MillimeterToTheSixth));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertiaUnit.MeterToTheSixth, WarpingMomentOfInertiaUnit.MeterToTheSixth, q => q);
+
+            // Register in default unit converter: WarpingMomentOfInertiaUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertiaUnit.CentimeterToTheSixth, WarpingMomentOfInertiaUnit.MeterToTheSixth, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertiaUnit.DecimeterToTheSixth, WarpingMomentOfInertiaUnit.MeterToTheSixth, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertiaUnit.FootToTheSixth, WarpingMomentOfInertiaUnit.MeterToTheSixth, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertiaUnit.InchToTheSixth, WarpingMomentOfInertiaUnit.MeterToTheSixth, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, WarpingMomentOfInertiaUnit.MeterToTheSixth, q => q.ToBaseUnit());
         }
 
         /// <summary>

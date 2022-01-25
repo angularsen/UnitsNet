@@ -79,45 +79,50 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricPotentialChangeRate);
 
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRate.BaseUnit, ElectricPotentialChangeRateUnit.KilovoltPerHour, q => q.ToUnit(ElectricPotentialChangeRateUnit.KilovoltPerHour));
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.KilovoltPerHour, ElectricPotentialChangeRate.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRate.BaseUnit, ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond, q => q.ToUnit(ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond));
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond, ElectricPotentialChangeRate.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRate.BaseUnit, ElectricPotentialChangeRateUnit.KilovoltPerMinute, q => q.ToUnit(ElectricPotentialChangeRateUnit.KilovoltPerMinute));
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.KilovoltPerMinute, ElectricPotentialChangeRate.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRate.BaseUnit, ElectricPotentialChangeRateUnit.KilovoltPerSecond, q => q.ToUnit(ElectricPotentialChangeRateUnit.KilovoltPerSecond));
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.KilovoltPerSecond, ElectricPotentialChangeRate.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRate.BaseUnit, ElectricPotentialChangeRateUnit.MegavoltPerHour, q => q.ToUnit(ElectricPotentialChangeRateUnit.MegavoltPerHour));
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MegavoltPerHour, ElectricPotentialChangeRate.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRate.BaseUnit, ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond, q => q.ToUnit(ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond));
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond, ElectricPotentialChangeRate.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRate.BaseUnit, ElectricPotentialChangeRateUnit.MegavoltPerMinute, q => q.ToUnit(ElectricPotentialChangeRateUnit.MegavoltPerMinute));
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MegavoltPerMinute, ElectricPotentialChangeRate.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRate.BaseUnit, ElectricPotentialChangeRateUnit.MegavoltPerSecond, q => q.ToUnit(ElectricPotentialChangeRateUnit.MegavoltPerSecond));
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MegavoltPerSecond, ElectricPotentialChangeRate.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRate.BaseUnit, ElectricPotentialChangeRateUnit.MicrovoltPerHour, q => q.ToUnit(ElectricPotentialChangeRateUnit.MicrovoltPerHour));
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MicrovoltPerHour, ElectricPotentialChangeRate.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRate.BaseUnit, ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond, q => q.ToUnit(ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond));
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond, ElectricPotentialChangeRate.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRate.BaseUnit, ElectricPotentialChangeRateUnit.MicrovoltPerMinute, q => q.ToUnit(ElectricPotentialChangeRateUnit.MicrovoltPerMinute));
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MicrovoltPerMinute, ElectricPotentialChangeRate.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRate.BaseUnit, ElectricPotentialChangeRateUnit.MicrovoltPerSecond, q => q.ToUnit(ElectricPotentialChangeRateUnit.MicrovoltPerSecond));
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MicrovoltPerSecond, ElectricPotentialChangeRate.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRate.BaseUnit, ElectricPotentialChangeRateUnit.MillivoltPerHour, q => q.ToUnit(ElectricPotentialChangeRateUnit.MillivoltPerHour));
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MillivoltPerHour, ElectricPotentialChangeRate.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRate.BaseUnit, ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond, q => q.ToUnit(ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond));
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond, ElectricPotentialChangeRate.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRate.BaseUnit, ElectricPotentialChangeRateUnit.MillivoltPerMinute, q => q.ToUnit(ElectricPotentialChangeRateUnit.MillivoltPerMinute));
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MillivoltPerMinute, ElectricPotentialChangeRate.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRate.BaseUnit, ElectricPotentialChangeRateUnit.MillivoltPerSecond, q => q.ToUnit(ElectricPotentialChangeRateUnit.MillivoltPerSecond));
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MillivoltPerSecond, ElectricPotentialChangeRate.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRate.BaseUnit, ElectricPotentialChangeRateUnit.VoltPerHour, q => q.ToUnit(ElectricPotentialChangeRateUnit.VoltPerHour));
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerHour, ElectricPotentialChangeRate.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRate.BaseUnit, ElectricPotentialChangeRateUnit.VoltPerMicrosecond, q => q.ToUnit(ElectricPotentialChangeRateUnit.VoltPerMicrosecond));
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerMicrosecond, ElectricPotentialChangeRate.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRate.BaseUnit, ElectricPotentialChangeRateUnit.VoltPerMinute, q => q.ToUnit(ElectricPotentialChangeRateUnit.VoltPerMinute));
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerMinute, ElectricPotentialChangeRate.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRate.BaseUnit, ElectricPotentialChangeRate.BaseUnit, q => q);
+            // Register in default unit converter: BaseUnit -> ElectricPotentialChangeRateUnit
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.KilovoltPerHour, q => q.ToUnit(ElectricPotentialChangeRateUnit.KilovoltPerHour));
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond, q => q.ToUnit(ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond));
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.KilovoltPerMinute, q => q.ToUnit(ElectricPotentialChangeRateUnit.KilovoltPerMinute));
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.KilovoltPerSecond, q => q.ToUnit(ElectricPotentialChangeRateUnit.KilovoltPerSecond));
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MegavoltPerHour, q => q.ToUnit(ElectricPotentialChangeRateUnit.MegavoltPerHour));
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond, q => q.ToUnit(ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond));
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MegavoltPerMinute, q => q.ToUnit(ElectricPotentialChangeRateUnit.MegavoltPerMinute));
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MegavoltPerSecond, q => q.ToUnit(ElectricPotentialChangeRateUnit.MegavoltPerSecond));
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MicrovoltPerHour, q => q.ToUnit(ElectricPotentialChangeRateUnit.MicrovoltPerHour));
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond, q => q.ToUnit(ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond));
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MicrovoltPerMinute, q => q.ToUnit(ElectricPotentialChangeRateUnit.MicrovoltPerMinute));
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MicrovoltPerSecond, q => q.ToUnit(ElectricPotentialChangeRateUnit.MicrovoltPerSecond));
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MillivoltPerHour, q => q.ToUnit(ElectricPotentialChangeRateUnit.MillivoltPerHour));
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond, q => q.ToUnit(ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond));
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MillivoltPerMinute, q => q.ToUnit(ElectricPotentialChangeRateUnit.MillivoltPerMinute));
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MillivoltPerSecond, q => q.ToUnit(ElectricPotentialChangeRateUnit.MillivoltPerSecond));
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerHour, q => q.ToUnit(ElectricPotentialChangeRateUnit.VoltPerHour));
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerMicrosecond, q => q.ToUnit(ElectricPotentialChangeRateUnit.VoltPerMicrosecond));
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerMinute, q => q.ToUnit(ElectricPotentialChangeRateUnit.VoltPerMinute));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerSecond, q => q);
+
+            // Register in default unit converter: ElectricPotentialChangeRateUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.KilovoltPerHour, ElectricPotentialChangeRateUnit.VoltPerSecond, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond, ElectricPotentialChangeRateUnit.VoltPerSecond, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.KilovoltPerMinute, ElectricPotentialChangeRateUnit.VoltPerSecond, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.KilovoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerSecond, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MegavoltPerHour, ElectricPotentialChangeRateUnit.VoltPerSecond, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond, ElectricPotentialChangeRateUnit.VoltPerSecond, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MegavoltPerMinute, ElectricPotentialChangeRateUnit.VoltPerSecond, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MegavoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerSecond, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MicrovoltPerHour, ElectricPotentialChangeRateUnit.VoltPerSecond, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond, ElectricPotentialChangeRateUnit.VoltPerSecond, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MicrovoltPerMinute, ElectricPotentialChangeRateUnit.VoltPerSecond, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MicrovoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerSecond, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MillivoltPerHour, ElectricPotentialChangeRateUnit.VoltPerSecond, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond, ElectricPotentialChangeRateUnit.VoltPerSecond, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MillivoltPerMinute, ElectricPotentialChangeRateUnit.VoltPerSecond, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MillivoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerSecond, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerHour, ElectricPotentialChangeRateUnit.VoltPerSecond, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerMicrosecond, ElectricPotentialChangeRateUnit.VoltPerSecond, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerMinute, ElectricPotentialChangeRateUnit.VoltPerSecond, q => q.ToBaseUnit());
         }
 
         /// <summary>

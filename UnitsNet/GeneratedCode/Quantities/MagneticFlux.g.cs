@@ -63,7 +63,12 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.MagneticFlux);
 
-            UnitConverter.Default.SetConversionFunction<MagneticFlux>(MagneticFlux.BaseUnit, MagneticFlux.BaseUnit, q => q);
+            // Register in default unit converter: BaseUnit -> MagneticFluxUnit
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<MagneticFlux>(MagneticFluxUnit.Weber, MagneticFluxUnit.Weber, q => q);
+
+            // Register in default unit converter: MagneticFluxUnit -> BaseUnit
         }
 
         /// <summary>

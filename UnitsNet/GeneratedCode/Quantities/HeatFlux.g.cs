@@ -77,41 +77,46 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.HeatFlux);
 
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFlux.BaseUnit, HeatFluxUnit.BtuPerHourSquareFoot, q => q.ToUnit(HeatFluxUnit.BtuPerHourSquareFoot));
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.BtuPerHourSquareFoot, HeatFlux.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFlux.BaseUnit, HeatFluxUnit.BtuPerMinuteSquareFoot, q => q.ToUnit(HeatFluxUnit.BtuPerMinuteSquareFoot));
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.BtuPerMinuteSquareFoot, HeatFlux.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFlux.BaseUnit, HeatFluxUnit.BtuPerSecondSquareFoot, q => q.ToUnit(HeatFluxUnit.BtuPerSecondSquareFoot));
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.BtuPerSecondSquareFoot, HeatFlux.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFlux.BaseUnit, HeatFluxUnit.BtuPerSecondSquareInch, q => q.ToUnit(HeatFluxUnit.BtuPerSecondSquareInch));
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.BtuPerSecondSquareInch, HeatFlux.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFlux.BaseUnit, HeatFluxUnit.CaloriePerSecondSquareCentimeter, q => q.ToUnit(HeatFluxUnit.CaloriePerSecondSquareCentimeter));
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.CaloriePerSecondSquareCentimeter, HeatFlux.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFlux.BaseUnit, HeatFluxUnit.CentiwattPerSquareMeter, q => q.ToUnit(HeatFluxUnit.CentiwattPerSquareMeter));
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.CentiwattPerSquareMeter, HeatFlux.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFlux.BaseUnit, HeatFluxUnit.DeciwattPerSquareMeter, q => q.ToUnit(HeatFluxUnit.DeciwattPerSquareMeter));
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.DeciwattPerSquareMeter, HeatFlux.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFlux.BaseUnit, HeatFluxUnit.KilocaloriePerHourSquareMeter, q => q.ToUnit(HeatFluxUnit.KilocaloriePerHourSquareMeter));
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.KilocaloriePerHourSquareMeter, HeatFlux.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFlux.BaseUnit, HeatFluxUnit.KilocaloriePerSecondSquareCentimeter, q => q.ToUnit(HeatFluxUnit.KilocaloriePerSecondSquareCentimeter));
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.KilocaloriePerSecondSquareCentimeter, HeatFlux.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFlux.BaseUnit, HeatFluxUnit.KilowattPerSquareMeter, q => q.ToUnit(HeatFluxUnit.KilowattPerSquareMeter));
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.KilowattPerSquareMeter, HeatFlux.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFlux.BaseUnit, HeatFluxUnit.MicrowattPerSquareMeter, q => q.ToUnit(HeatFluxUnit.MicrowattPerSquareMeter));
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.MicrowattPerSquareMeter, HeatFlux.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFlux.BaseUnit, HeatFluxUnit.MilliwattPerSquareMeter, q => q.ToUnit(HeatFluxUnit.MilliwattPerSquareMeter));
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.MilliwattPerSquareMeter, HeatFlux.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFlux.BaseUnit, HeatFluxUnit.NanowattPerSquareMeter, q => q.ToUnit(HeatFluxUnit.NanowattPerSquareMeter));
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.NanowattPerSquareMeter, HeatFlux.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFlux.BaseUnit, HeatFluxUnit.PoundForcePerFootSecond, q => q.ToUnit(HeatFluxUnit.PoundForcePerFootSecond));
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.PoundForcePerFootSecond, HeatFlux.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFlux.BaseUnit, HeatFluxUnit.PoundPerSecondCubed, q => q.ToUnit(HeatFluxUnit.PoundPerSecondCubed));
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.PoundPerSecondCubed, HeatFlux.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFlux.BaseUnit, HeatFluxUnit.WattPerSquareFoot, q => q.ToUnit(HeatFluxUnit.WattPerSquareFoot));
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareFoot, HeatFlux.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFlux.BaseUnit, HeatFluxUnit.WattPerSquareInch, q => q.ToUnit(HeatFluxUnit.WattPerSquareInch));
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareInch, HeatFlux.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFlux.BaseUnit, HeatFlux.BaseUnit, q => q);
+            // Register in default unit converter: BaseUnit -> HeatFluxUnit
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.BtuPerHourSquareFoot, q => q.ToUnit(HeatFluxUnit.BtuPerHourSquareFoot));
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.BtuPerMinuteSquareFoot, q => q.ToUnit(HeatFluxUnit.BtuPerMinuteSquareFoot));
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.BtuPerSecondSquareFoot, q => q.ToUnit(HeatFluxUnit.BtuPerSecondSquareFoot));
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.BtuPerSecondSquareInch, q => q.ToUnit(HeatFluxUnit.BtuPerSecondSquareInch));
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.CaloriePerSecondSquareCentimeter, q => q.ToUnit(HeatFluxUnit.CaloriePerSecondSquareCentimeter));
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.CentiwattPerSquareMeter, q => q.ToUnit(HeatFluxUnit.CentiwattPerSquareMeter));
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.DeciwattPerSquareMeter, q => q.ToUnit(HeatFluxUnit.DeciwattPerSquareMeter));
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.KilocaloriePerHourSquareMeter, q => q.ToUnit(HeatFluxUnit.KilocaloriePerHourSquareMeter));
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.KilocaloriePerSecondSquareCentimeter, q => q.ToUnit(HeatFluxUnit.KilocaloriePerSecondSquareCentimeter));
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.KilowattPerSquareMeter, q => q.ToUnit(HeatFluxUnit.KilowattPerSquareMeter));
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.MicrowattPerSquareMeter, q => q.ToUnit(HeatFluxUnit.MicrowattPerSquareMeter));
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.MilliwattPerSquareMeter, q => q.ToUnit(HeatFluxUnit.MilliwattPerSquareMeter));
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.NanowattPerSquareMeter, q => q.ToUnit(HeatFluxUnit.NanowattPerSquareMeter));
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.PoundForcePerFootSecond, q => q.ToUnit(HeatFluxUnit.PoundForcePerFootSecond));
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.PoundPerSecondCubed, q => q.ToUnit(HeatFluxUnit.PoundPerSecondCubed));
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.WattPerSquareFoot, q => q.ToUnit(HeatFluxUnit.WattPerSquareFoot));
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.WattPerSquareInch, q => q.ToUnit(HeatFluxUnit.WattPerSquareInch));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.WattPerSquareMeter, q => q);
+
+            // Register in default unit converter: HeatFluxUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.BtuPerHourSquareFoot, HeatFluxUnit.WattPerSquareMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.BtuPerMinuteSquareFoot, HeatFluxUnit.WattPerSquareMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.BtuPerSecondSquareFoot, HeatFluxUnit.WattPerSquareMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.BtuPerSecondSquareInch, HeatFluxUnit.WattPerSquareMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.CaloriePerSecondSquareCentimeter, HeatFluxUnit.WattPerSquareMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.CentiwattPerSquareMeter, HeatFluxUnit.WattPerSquareMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.DeciwattPerSquareMeter, HeatFluxUnit.WattPerSquareMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.KilocaloriePerHourSquareMeter, HeatFluxUnit.WattPerSquareMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.KilocaloriePerSecondSquareCentimeter, HeatFluxUnit.WattPerSquareMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.KilowattPerSquareMeter, HeatFluxUnit.WattPerSquareMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.MicrowattPerSquareMeter, HeatFluxUnit.WattPerSquareMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.MilliwattPerSquareMeter, HeatFluxUnit.WattPerSquareMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.NanowattPerSquareMeter, HeatFluxUnit.WattPerSquareMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.PoundForcePerFootSecond, HeatFluxUnit.WattPerSquareMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.PoundPerSecondCubed, HeatFluxUnit.WattPerSquareMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareFoot, HeatFluxUnit.WattPerSquareMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareInch, HeatFluxUnit.WattPerSquareMeter, q => q.ToBaseUnit());
         }
 
         /// <summary>

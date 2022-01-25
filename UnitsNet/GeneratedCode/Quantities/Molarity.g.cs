@@ -70,21 +70,26 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Molarity);
 
-            UnitConverter.Default.SetConversionFunction<Molarity>(Molarity.BaseUnit, MolarityUnit.CentimolesPerLiter, q => q.ToUnit(MolarityUnit.CentimolesPerLiter));
-            UnitConverter.Default.SetConversionFunction<Molarity>(MolarityUnit.CentimolesPerLiter, Molarity.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Molarity>(Molarity.BaseUnit, MolarityUnit.DecimolesPerLiter, q => q.ToUnit(MolarityUnit.DecimolesPerLiter));
-            UnitConverter.Default.SetConversionFunction<Molarity>(MolarityUnit.DecimolesPerLiter, Molarity.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Molarity>(Molarity.BaseUnit, MolarityUnit.MicromolesPerLiter, q => q.ToUnit(MolarityUnit.MicromolesPerLiter));
-            UnitConverter.Default.SetConversionFunction<Molarity>(MolarityUnit.MicromolesPerLiter, Molarity.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Molarity>(Molarity.BaseUnit, MolarityUnit.MillimolesPerLiter, q => q.ToUnit(MolarityUnit.MillimolesPerLiter));
-            UnitConverter.Default.SetConversionFunction<Molarity>(MolarityUnit.MillimolesPerLiter, Molarity.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Molarity>(Molarity.BaseUnit, Molarity.BaseUnit, q => q);
-            UnitConverter.Default.SetConversionFunction<Molarity>(Molarity.BaseUnit, MolarityUnit.MolesPerLiter, q => q.ToUnit(MolarityUnit.MolesPerLiter));
-            UnitConverter.Default.SetConversionFunction<Molarity>(MolarityUnit.MolesPerLiter, Molarity.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Molarity>(Molarity.BaseUnit, MolarityUnit.NanomolesPerLiter, q => q.ToUnit(MolarityUnit.NanomolesPerLiter));
-            UnitConverter.Default.SetConversionFunction<Molarity>(MolarityUnit.NanomolesPerLiter, Molarity.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Molarity>(Molarity.BaseUnit, MolarityUnit.PicomolesPerLiter, q => q.ToUnit(MolarityUnit.PicomolesPerLiter));
-            UnitConverter.Default.SetConversionFunction<Molarity>(MolarityUnit.PicomolesPerLiter, Molarity.BaseUnit, q => q.ToBaseUnit());
+            // Register in default unit converter: BaseUnit -> MolarityUnit
+            UnitConverter.Default.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.CentimolesPerLiter, q => q.ToUnit(MolarityUnit.CentimolesPerLiter));
+            UnitConverter.Default.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.DecimolesPerLiter, q => q.ToUnit(MolarityUnit.DecimolesPerLiter));
+            UnitConverter.Default.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MicromolesPerLiter, q => q.ToUnit(MolarityUnit.MicromolesPerLiter));
+            UnitConverter.Default.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MillimolesPerLiter, q => q.ToUnit(MolarityUnit.MillimolesPerLiter));
+            UnitConverter.Default.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MolesPerLiter, q => q.ToUnit(MolarityUnit.MolesPerLiter));
+            UnitConverter.Default.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.NanomolesPerLiter, q => q.ToUnit(MolarityUnit.NanomolesPerLiter));
+            UnitConverter.Default.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.PicomolesPerLiter, q => q.ToUnit(MolarityUnit.PicomolesPerLiter));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MolesPerCubicMeter, q => q);
+
+            // Register in default unit converter: MolarityUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<Molarity>(MolarityUnit.CentimolesPerLiter, MolarityUnit.MolesPerCubicMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Molarity>(MolarityUnit.DecimolesPerLiter, MolarityUnit.MolesPerCubicMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Molarity>(MolarityUnit.MicromolesPerLiter, MolarityUnit.MolesPerCubicMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Molarity>(MolarityUnit.MillimolesPerLiter, MolarityUnit.MolesPerCubicMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Molarity>(MolarityUnit.MolesPerLiter, MolarityUnit.MolesPerCubicMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Molarity>(MolarityUnit.NanomolesPerLiter, MolarityUnit.MolesPerCubicMeter, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Molarity>(MolarityUnit.PicomolesPerLiter, MolarityUnit.MolesPerCubicMeter, q => q.ToBaseUnit());
         }
 
         /// <summary>

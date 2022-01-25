@@ -63,13 +63,18 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricCurrentGradient);
 
-            UnitConverter.Default.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradient.BaseUnit, ElectricCurrentGradientUnit.AmperePerMicrosecond, q => q.ToUnit(ElectricCurrentGradientUnit.AmperePerMicrosecond));
-            UnitConverter.Default.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerMicrosecond, ElectricCurrentGradient.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradient.BaseUnit, ElectricCurrentGradientUnit.AmperePerMillisecond, q => q.ToUnit(ElectricCurrentGradientUnit.AmperePerMillisecond));
-            UnitConverter.Default.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerMillisecond, ElectricCurrentGradient.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradient.BaseUnit, ElectricCurrentGradientUnit.AmperePerNanosecond, q => q.ToUnit(ElectricCurrentGradientUnit.AmperePerNanosecond));
-            UnitConverter.Default.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerNanosecond, ElectricCurrentGradient.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradient.BaseUnit, ElectricCurrentGradient.BaseUnit, q => q);
+            // Register in default unit converter: BaseUnit -> ElectricCurrentGradientUnit
+            UnitConverter.Default.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerMicrosecond, q => q.ToUnit(ElectricCurrentGradientUnit.AmperePerMicrosecond));
+            UnitConverter.Default.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerMillisecond, q => q.ToUnit(ElectricCurrentGradientUnit.AmperePerMillisecond));
+            UnitConverter.Default.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerNanosecond, q => q.ToUnit(ElectricCurrentGradientUnit.AmperePerNanosecond));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerSecond, q => q);
+
+            // Register in default unit converter: ElectricCurrentGradientUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerMicrosecond, ElectricCurrentGradientUnit.AmperePerSecond, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerMillisecond, ElectricCurrentGradientUnit.AmperePerSecond, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerNanosecond, ElectricCurrentGradientUnit.AmperePerSecond, q => q.ToBaseUnit());
         }
 
         /// <summary>

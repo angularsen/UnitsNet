@@ -62,11 +62,16 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ReactiveEnergy);
 
-            UnitConverter.Default.SetConversionFunction<ReactiveEnergy>(ReactiveEnergy.BaseUnit, ReactiveEnergyUnit.KilovoltampereReactiveHour, q => q.ToUnit(ReactiveEnergyUnit.KilovoltampereReactiveHour));
-            UnitConverter.Default.SetConversionFunction<ReactiveEnergy>(ReactiveEnergyUnit.KilovoltampereReactiveHour, ReactiveEnergy.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ReactiveEnergy>(ReactiveEnergy.BaseUnit, ReactiveEnergyUnit.MegavoltampereReactiveHour, q => q.ToUnit(ReactiveEnergyUnit.MegavoltampereReactiveHour));
-            UnitConverter.Default.SetConversionFunction<ReactiveEnergy>(ReactiveEnergyUnit.MegavoltampereReactiveHour, ReactiveEnergy.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ReactiveEnergy>(ReactiveEnergy.BaseUnit, ReactiveEnergy.BaseUnit, q => q);
+            // Register in default unit converter: BaseUnit -> ReactiveEnergyUnit
+            UnitConverter.Default.SetConversionFunction<ReactiveEnergy>(ReactiveEnergyUnit.VoltampereReactiveHour, ReactiveEnergyUnit.KilovoltampereReactiveHour, q => q.ToUnit(ReactiveEnergyUnit.KilovoltampereReactiveHour));
+            UnitConverter.Default.SetConversionFunction<ReactiveEnergy>(ReactiveEnergyUnit.VoltampereReactiveHour, ReactiveEnergyUnit.MegavoltampereReactiveHour, q => q.ToUnit(ReactiveEnergyUnit.MegavoltampereReactiveHour));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ReactiveEnergy>(ReactiveEnergyUnit.VoltampereReactiveHour, ReactiveEnergyUnit.VoltampereReactiveHour, q => q);
+
+            // Register in default unit converter: ReactiveEnergyUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ReactiveEnergy>(ReactiveEnergyUnit.KilovoltampereReactiveHour, ReactiveEnergyUnit.VoltampereReactiveHour, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ReactiveEnergy>(ReactiveEnergyUnit.MegavoltampereReactiveHour, ReactiveEnergyUnit.VoltampereReactiveHour, q => q.ToBaseUnit());
         }
 
         /// <summary>

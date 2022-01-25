@@ -61,9 +61,14 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.VolumeFlowPerArea);
 
-            UnitConverter.Default.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerArea.BaseUnit, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, q => q.ToUnit(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot));
-            UnitConverter.Default.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, VolumeFlowPerArea.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerArea.BaseUnit, VolumeFlowPerArea.BaseUnit, q => q);
+            // Register in default unit converter: BaseUnit -> VolumeFlowPerAreaUnit
+            UnitConverter.Default.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, q => q.ToUnit(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, q => q);
+
+            // Register in default unit converter: VolumeFlowPerAreaUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, q => q.ToBaseUnit());
         }
 
         /// <summary>

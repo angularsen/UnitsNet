@@ -68,17 +68,22 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.MagneticField);
 
-            UnitConverter.Default.SetConversionFunction<MagneticField>(MagneticField.BaseUnit, MagneticFieldUnit.Gauss, q => q.ToUnit(MagneticFieldUnit.Gauss));
-            UnitConverter.Default.SetConversionFunction<MagneticField>(MagneticFieldUnit.Gauss, MagneticField.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MagneticField>(MagneticField.BaseUnit, MagneticFieldUnit.Microtesla, q => q.ToUnit(MagneticFieldUnit.Microtesla));
-            UnitConverter.Default.SetConversionFunction<MagneticField>(MagneticFieldUnit.Microtesla, MagneticField.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MagneticField>(MagneticField.BaseUnit, MagneticFieldUnit.Milligauss, q => q.ToUnit(MagneticFieldUnit.Milligauss));
-            UnitConverter.Default.SetConversionFunction<MagneticField>(MagneticFieldUnit.Milligauss, MagneticField.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MagneticField>(MagneticField.BaseUnit, MagneticFieldUnit.Millitesla, q => q.ToUnit(MagneticFieldUnit.Millitesla));
-            UnitConverter.Default.SetConversionFunction<MagneticField>(MagneticFieldUnit.Millitesla, MagneticField.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MagneticField>(MagneticField.BaseUnit, MagneticFieldUnit.Nanotesla, q => q.ToUnit(MagneticFieldUnit.Nanotesla));
-            UnitConverter.Default.SetConversionFunction<MagneticField>(MagneticFieldUnit.Nanotesla, MagneticField.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MagneticField>(MagneticField.BaseUnit, MagneticField.BaseUnit, q => q);
+            // Register in default unit converter: BaseUnit -> MagneticFieldUnit
+            UnitConverter.Default.SetConversionFunction<MagneticField>(MagneticFieldUnit.Tesla, MagneticFieldUnit.Gauss, q => q.ToUnit(MagneticFieldUnit.Gauss));
+            UnitConverter.Default.SetConversionFunction<MagneticField>(MagneticFieldUnit.Tesla, MagneticFieldUnit.Microtesla, q => q.ToUnit(MagneticFieldUnit.Microtesla));
+            UnitConverter.Default.SetConversionFunction<MagneticField>(MagneticFieldUnit.Tesla, MagneticFieldUnit.Milligauss, q => q.ToUnit(MagneticFieldUnit.Milligauss));
+            UnitConverter.Default.SetConversionFunction<MagneticField>(MagneticFieldUnit.Tesla, MagneticFieldUnit.Millitesla, q => q.ToUnit(MagneticFieldUnit.Millitesla));
+            UnitConverter.Default.SetConversionFunction<MagneticField>(MagneticFieldUnit.Tesla, MagneticFieldUnit.Nanotesla, q => q.ToUnit(MagneticFieldUnit.Nanotesla));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<MagneticField>(MagneticFieldUnit.Tesla, MagneticFieldUnit.Tesla, q => q);
+
+            // Register in default unit converter: MagneticFieldUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<MagneticField>(MagneticFieldUnit.Gauss, MagneticFieldUnit.Tesla, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MagneticField>(MagneticFieldUnit.Microtesla, MagneticFieldUnit.Tesla, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MagneticField>(MagneticFieldUnit.Milligauss, MagneticFieldUnit.Tesla, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MagneticField>(MagneticFieldUnit.Millitesla, MagneticFieldUnit.Tesla, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MagneticField>(MagneticFieldUnit.Nanotesla, MagneticFieldUnit.Tesla, q => q.ToBaseUnit());
         }
 
         /// <summary>

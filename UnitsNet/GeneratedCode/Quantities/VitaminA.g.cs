@@ -60,7 +60,12 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.VitaminA);
 
-            UnitConverter.Default.SetConversionFunction<VitaminA>(VitaminA.BaseUnit, VitaminA.BaseUnit, q => q);
+            // Register in default unit converter: BaseUnit -> VitaminAUnit
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<VitaminA>(VitaminAUnit.InternationalUnit, VitaminAUnit.InternationalUnit, q => q);
+
+            // Register in default unit converter: VitaminAUnit -> BaseUnit
         }
 
         /// <summary>

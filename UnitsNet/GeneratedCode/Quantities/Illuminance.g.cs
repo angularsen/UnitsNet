@@ -66,13 +66,18 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Illuminance);
 
-            UnitConverter.Default.SetConversionFunction<Illuminance>(Illuminance.BaseUnit, IlluminanceUnit.Kilolux, q => q.ToUnit(IlluminanceUnit.Kilolux));
-            UnitConverter.Default.SetConversionFunction<Illuminance>(IlluminanceUnit.Kilolux, Illuminance.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Illuminance>(Illuminance.BaseUnit, Illuminance.BaseUnit, q => q);
-            UnitConverter.Default.SetConversionFunction<Illuminance>(Illuminance.BaseUnit, IlluminanceUnit.Megalux, q => q.ToUnit(IlluminanceUnit.Megalux));
-            UnitConverter.Default.SetConversionFunction<Illuminance>(IlluminanceUnit.Megalux, Illuminance.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Illuminance>(Illuminance.BaseUnit, IlluminanceUnit.Millilux, q => q.ToUnit(IlluminanceUnit.Millilux));
-            UnitConverter.Default.SetConversionFunction<Illuminance>(IlluminanceUnit.Millilux, Illuminance.BaseUnit, q => q.ToBaseUnit());
+            // Register in default unit converter: BaseUnit -> IlluminanceUnit
+            UnitConverter.Default.SetConversionFunction<Illuminance>(IlluminanceUnit.Lux, IlluminanceUnit.Kilolux, q => q.ToUnit(IlluminanceUnit.Kilolux));
+            UnitConverter.Default.SetConversionFunction<Illuminance>(IlluminanceUnit.Lux, IlluminanceUnit.Megalux, q => q.ToUnit(IlluminanceUnit.Megalux));
+            UnitConverter.Default.SetConversionFunction<Illuminance>(IlluminanceUnit.Lux, IlluminanceUnit.Millilux, q => q.ToUnit(IlluminanceUnit.Millilux));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<Illuminance>(IlluminanceUnit.Lux, IlluminanceUnit.Lux, q => q);
+
+            // Register in default unit converter: IlluminanceUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<Illuminance>(IlluminanceUnit.Kilolux, IlluminanceUnit.Lux, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Illuminance>(IlluminanceUnit.Megalux, IlluminanceUnit.Lux, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Illuminance>(IlluminanceUnit.Millilux, IlluminanceUnit.Lux, q => q.ToBaseUnit());
         }
 
         /// <summary>

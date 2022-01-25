@@ -65,11 +65,16 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricConductance);
 
-            UnitConverter.Default.SetConversionFunction<ElectricConductance>(ElectricConductance.BaseUnit, ElectricConductanceUnit.Microsiemens, q => q.ToUnit(ElectricConductanceUnit.Microsiemens));
-            UnitConverter.Default.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Microsiemens, ElectricConductance.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricConductance>(ElectricConductance.BaseUnit, ElectricConductanceUnit.Millisiemens, q => q.ToUnit(ElectricConductanceUnit.Millisiemens));
-            UnitConverter.Default.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Millisiemens, ElectricConductance.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricConductance>(ElectricConductance.BaseUnit, ElectricConductance.BaseUnit, q => q);
+            // Register in default unit converter: BaseUnit -> ElectricConductanceUnit
+            UnitConverter.Default.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Microsiemens, q => q.ToUnit(ElectricConductanceUnit.Microsiemens));
+            UnitConverter.Default.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Millisiemens, q => q.ToUnit(ElectricConductanceUnit.Millisiemens));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Siemens, q => q);
+
+            // Register in default unit converter: ElectricConductanceUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Microsiemens, ElectricConductanceUnit.Siemens, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Millisiemens, ElectricConductanceUnit.Siemens, q => q.ToBaseUnit());
         }
 
         /// <summary>

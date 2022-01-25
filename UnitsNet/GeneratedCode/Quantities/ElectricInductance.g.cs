@@ -66,13 +66,18 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricInductance);
 
-            UnitConverter.Default.SetConversionFunction<ElectricInductance>(ElectricInductance.BaseUnit, ElectricInductance.BaseUnit, q => q);
-            UnitConverter.Default.SetConversionFunction<ElectricInductance>(ElectricInductance.BaseUnit, ElectricInductanceUnit.Microhenry, q => q.ToUnit(ElectricInductanceUnit.Microhenry));
-            UnitConverter.Default.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Microhenry, ElectricInductance.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricInductance>(ElectricInductance.BaseUnit, ElectricInductanceUnit.Millihenry, q => q.ToUnit(ElectricInductanceUnit.Millihenry));
-            UnitConverter.Default.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Millihenry, ElectricInductance.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<ElectricInductance>(ElectricInductance.BaseUnit, ElectricInductanceUnit.Nanohenry, q => q.ToUnit(ElectricInductanceUnit.Nanohenry));
-            UnitConverter.Default.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Nanohenry, ElectricInductance.BaseUnit, q => q.ToBaseUnit());
+            // Register in default unit converter: BaseUnit -> ElectricInductanceUnit
+            UnitConverter.Default.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Henry, ElectricInductanceUnit.Microhenry, q => q.ToUnit(ElectricInductanceUnit.Microhenry));
+            UnitConverter.Default.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Henry, ElectricInductanceUnit.Millihenry, q => q.ToUnit(ElectricInductanceUnit.Millihenry));
+            UnitConverter.Default.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Henry, ElectricInductanceUnit.Nanohenry, q => q.ToUnit(ElectricInductanceUnit.Nanohenry));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Henry, ElectricInductanceUnit.Henry, q => q);
+
+            // Register in default unit converter: ElectricInductanceUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Microhenry, ElectricInductanceUnit.Henry, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Millihenry, ElectricInductanceUnit.Henry, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Nanohenry, ElectricInductanceUnit.Henry, q => q.ToBaseUnit());
         }
 
         /// <summary>

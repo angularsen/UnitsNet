@@ -63,7 +63,12 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricChargeDensity);
 
-            UnitConverter.Default.SetConversionFunction<ElectricChargeDensity>(ElectricChargeDensity.BaseUnit, ElectricChargeDensity.BaseUnit, q => q);
+            // Register in default unit converter: BaseUnit -> ElectricChargeDensityUnit
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ElectricChargeDensity>(ElectricChargeDensityUnit.CoulombPerCubicMeter, ElectricChargeDensityUnit.CoulombPerCubicMeter, q => q);
+
+            // Register in default unit converter: ElectricChargeDensityUnit -> BaseUnit
         }
 
         /// <summary>

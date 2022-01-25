@@ -71,29 +71,34 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.MolarMass);
 
-            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMass.BaseUnit, MolarMassUnit.CentigramPerMole, q => q.ToUnit(MolarMassUnit.CentigramPerMole));
-            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.CentigramPerMole, MolarMass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMass.BaseUnit, MolarMassUnit.DecagramPerMole, q => q.ToUnit(MolarMassUnit.DecagramPerMole));
-            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.DecagramPerMole, MolarMass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMass.BaseUnit, MolarMassUnit.DecigramPerMole, q => q.ToUnit(MolarMassUnit.DecigramPerMole));
-            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.DecigramPerMole, MolarMass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMass.BaseUnit, MolarMassUnit.GramPerMole, q => q.ToUnit(MolarMassUnit.GramPerMole));
-            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.GramPerMole, MolarMass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMass.BaseUnit, MolarMassUnit.HectogramPerMole, q => q.ToUnit(MolarMassUnit.HectogramPerMole));
-            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.HectogramPerMole, MolarMass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMass.BaseUnit, MolarMass.BaseUnit, q => q);
-            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMass.BaseUnit, MolarMassUnit.KilopoundPerMole, q => q.ToUnit(MolarMassUnit.KilopoundPerMole));
-            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.KilopoundPerMole, MolarMass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMass.BaseUnit, MolarMassUnit.MegapoundPerMole, q => q.ToUnit(MolarMassUnit.MegapoundPerMole));
-            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.MegapoundPerMole, MolarMass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMass.BaseUnit, MolarMassUnit.MicrogramPerMole, q => q.ToUnit(MolarMassUnit.MicrogramPerMole));
-            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.MicrogramPerMole, MolarMass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMass.BaseUnit, MolarMassUnit.MilligramPerMole, q => q.ToUnit(MolarMassUnit.MilligramPerMole));
-            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.MilligramPerMole, MolarMass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMass.BaseUnit, MolarMassUnit.NanogramPerMole, q => q.ToUnit(MolarMassUnit.NanogramPerMole));
-            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.NanogramPerMole, MolarMass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMass.BaseUnit, MolarMassUnit.PoundPerMole, q => q.ToUnit(MolarMassUnit.PoundPerMole));
-            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.PoundPerMole, MolarMass.BaseUnit, q => q.ToBaseUnit());
+            // Register in default unit converter: BaseUnit -> MolarMassUnit
+            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.CentigramPerMole, q => q.ToUnit(MolarMassUnit.CentigramPerMole));
+            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.DecagramPerMole, q => q.ToUnit(MolarMassUnit.DecagramPerMole));
+            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.DecigramPerMole, q => q.ToUnit(MolarMassUnit.DecigramPerMole));
+            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.GramPerMole, q => q.ToUnit(MolarMassUnit.GramPerMole));
+            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.HectogramPerMole, q => q.ToUnit(MolarMassUnit.HectogramPerMole));
+            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.KilopoundPerMole, q => q.ToUnit(MolarMassUnit.KilopoundPerMole));
+            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.MegapoundPerMole, q => q.ToUnit(MolarMassUnit.MegapoundPerMole));
+            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.MicrogramPerMole, q => q.ToUnit(MolarMassUnit.MicrogramPerMole));
+            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.MilligramPerMole, q => q.ToUnit(MolarMassUnit.MilligramPerMole));
+            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.NanogramPerMole, q => q.ToUnit(MolarMassUnit.NanogramPerMole));
+            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.PoundPerMole, q => q.ToUnit(MolarMassUnit.PoundPerMole));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.KilogramPerMole, q => q);
+
+            // Register in default unit converter: MolarMassUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.CentigramPerMole, MolarMassUnit.KilogramPerMole, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.DecagramPerMole, MolarMassUnit.KilogramPerMole, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.DecigramPerMole, MolarMassUnit.KilogramPerMole, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.GramPerMole, MolarMassUnit.KilogramPerMole, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.HectogramPerMole, MolarMassUnit.KilogramPerMole, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.KilopoundPerMole, MolarMassUnit.KilogramPerMole, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.MegapoundPerMole, MolarMassUnit.KilogramPerMole, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.MicrogramPerMole, MolarMassUnit.KilogramPerMole, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.MilligramPerMole, MolarMassUnit.KilogramPerMole, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.NanogramPerMole, MolarMassUnit.KilogramPerMole, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<MolarMass>(MolarMassUnit.PoundPerMole, MolarMassUnit.KilogramPerMole, q => q.ToBaseUnit());
         }
 
         /// <summary>

@@ -84,55 +84,60 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Mass);
 
-            UnitConverter.Default.SetConversionFunction<Mass>(Mass.BaseUnit, MassUnit.Centigram, q => q.ToUnit(MassUnit.Centigram));
-            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Centigram, Mass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Mass>(Mass.BaseUnit, MassUnit.Decagram, q => q.ToUnit(MassUnit.Decagram));
-            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Decagram, Mass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Mass>(Mass.BaseUnit, MassUnit.Decigram, q => q.ToUnit(MassUnit.Decigram));
-            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Decigram, Mass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Mass>(Mass.BaseUnit, MassUnit.EarthMass, q => q.ToUnit(MassUnit.EarthMass));
-            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.EarthMass, Mass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Mass>(Mass.BaseUnit, MassUnit.Grain, q => q.ToUnit(MassUnit.Grain));
-            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Grain, Mass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Mass>(Mass.BaseUnit, MassUnit.Gram, q => q.ToUnit(MassUnit.Gram));
-            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Gram, Mass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Mass>(Mass.BaseUnit, MassUnit.Hectogram, q => q.ToUnit(MassUnit.Hectogram));
-            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Hectogram, Mass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Mass>(Mass.BaseUnit, Mass.BaseUnit, q => q);
-            UnitConverter.Default.SetConversionFunction<Mass>(Mass.BaseUnit, MassUnit.Kilopound, q => q.ToUnit(MassUnit.Kilopound));
-            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Kilopound, Mass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Mass>(Mass.BaseUnit, MassUnit.Kilotonne, q => q.ToUnit(MassUnit.Kilotonne));
-            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Kilotonne, Mass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Mass>(Mass.BaseUnit, MassUnit.LongHundredweight, q => q.ToUnit(MassUnit.LongHundredweight));
-            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.LongHundredweight, Mass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Mass>(Mass.BaseUnit, MassUnit.LongTon, q => q.ToUnit(MassUnit.LongTon));
-            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.LongTon, Mass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Mass>(Mass.BaseUnit, MassUnit.Megapound, q => q.ToUnit(MassUnit.Megapound));
-            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Megapound, Mass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Mass>(Mass.BaseUnit, MassUnit.Megatonne, q => q.ToUnit(MassUnit.Megatonne));
-            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Megatonne, Mass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Mass>(Mass.BaseUnit, MassUnit.Microgram, q => q.ToUnit(MassUnit.Microgram));
-            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Microgram, Mass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Mass>(Mass.BaseUnit, MassUnit.Milligram, q => q.ToUnit(MassUnit.Milligram));
-            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Milligram, Mass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Mass>(Mass.BaseUnit, MassUnit.Nanogram, q => q.ToUnit(MassUnit.Nanogram));
-            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Nanogram, Mass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Mass>(Mass.BaseUnit, MassUnit.Ounce, q => q.ToUnit(MassUnit.Ounce));
-            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Ounce, Mass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Mass>(Mass.BaseUnit, MassUnit.Pound, q => q.ToUnit(MassUnit.Pound));
-            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Pound, Mass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Mass>(Mass.BaseUnit, MassUnit.ShortHundredweight, q => q.ToUnit(MassUnit.ShortHundredweight));
-            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.ShortHundredweight, Mass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Mass>(Mass.BaseUnit, MassUnit.ShortTon, q => q.ToUnit(MassUnit.ShortTon));
-            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.ShortTon, Mass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Mass>(Mass.BaseUnit, MassUnit.Slug, q => q.ToUnit(MassUnit.Slug));
-            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Slug, Mass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Mass>(Mass.BaseUnit, MassUnit.SolarMass, q => q.ToUnit(MassUnit.SolarMass));
-            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.SolarMass, Mass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Mass>(Mass.BaseUnit, MassUnit.Stone, q => q.ToUnit(MassUnit.Stone));
-            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Stone, Mass.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Mass>(Mass.BaseUnit, MassUnit.Tonne, q => q.ToUnit(MassUnit.Tonne));
-            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Tonne, Mass.BaseUnit, q => q.ToBaseUnit());
+            // Register in default unit converter: BaseUnit -> MassUnit
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Centigram, q => q.ToUnit(MassUnit.Centigram));
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Decagram, q => q.ToUnit(MassUnit.Decagram));
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Decigram, q => q.ToUnit(MassUnit.Decigram));
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.EarthMass, q => q.ToUnit(MassUnit.EarthMass));
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Grain, q => q.ToUnit(MassUnit.Grain));
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Gram, q => q.ToUnit(MassUnit.Gram));
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Hectogram, q => q.ToUnit(MassUnit.Hectogram));
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Kilopound, q => q.ToUnit(MassUnit.Kilopound));
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Kilotonne, q => q.ToUnit(MassUnit.Kilotonne));
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.LongHundredweight, q => q.ToUnit(MassUnit.LongHundredweight));
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.LongTon, q => q.ToUnit(MassUnit.LongTon));
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Megapound, q => q.ToUnit(MassUnit.Megapound));
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Megatonne, q => q.ToUnit(MassUnit.Megatonne));
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Microgram, q => q.ToUnit(MassUnit.Microgram));
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Milligram, q => q.ToUnit(MassUnit.Milligram));
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Nanogram, q => q.ToUnit(MassUnit.Nanogram));
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Ounce, q => q.ToUnit(MassUnit.Ounce));
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Pound, q => q.ToUnit(MassUnit.Pound));
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.ShortHundredweight, q => q.ToUnit(MassUnit.ShortHundredweight));
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.ShortTon, q => q.ToUnit(MassUnit.ShortTon));
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Slug, q => q.ToUnit(MassUnit.Slug));
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.SolarMass, q => q.ToUnit(MassUnit.SolarMass));
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Stone, q => q.ToUnit(MassUnit.Stone));
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Tonne, q => q.ToUnit(MassUnit.Tonne));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Kilogram, q => q);
+
+            // Register in default unit converter: MassUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Centigram, MassUnit.Kilogram, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Decagram, MassUnit.Kilogram, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Decigram, MassUnit.Kilogram, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.EarthMass, MassUnit.Kilogram, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Grain, MassUnit.Kilogram, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Gram, MassUnit.Kilogram, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Hectogram, MassUnit.Kilogram, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Kilopound, MassUnit.Kilogram, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Kilotonne, MassUnit.Kilogram, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.LongHundredweight, MassUnit.Kilogram, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.LongTon, MassUnit.Kilogram, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Megapound, MassUnit.Kilogram, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Megatonne, MassUnit.Kilogram, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Microgram, MassUnit.Kilogram, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Milligram, MassUnit.Kilogram, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Nanogram, MassUnit.Kilogram, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Ounce, MassUnit.Kilogram, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Pound, MassUnit.Kilogram, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.ShortHundredweight, MassUnit.Kilogram, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.ShortTon, MassUnit.Kilogram, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Slug, MassUnit.Kilogram, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.SolarMass, MassUnit.Kilogram, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Stone, MassUnit.Kilogram, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<Mass>(MassUnit.Tonne, MassUnit.Kilogram, q => q.ToBaseUnit());
         }
 
         /// <summary>

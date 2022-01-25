@@ -63,7 +63,12 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricField);
 
-            UnitConverter.Default.SetConversionFunction<ElectricField>(ElectricField.BaseUnit, ElectricField.BaseUnit, q => q);
+            // Register in default unit converter: BaseUnit -> ElectricFieldUnit
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<ElectricField>(ElectricFieldUnit.VoltPerMeter, ElectricFieldUnit.VoltPerMeter, q => q);
+
+            // Register in default unit converter: ElectricFieldUnit -> BaseUnit
         }
 
         /// <summary>

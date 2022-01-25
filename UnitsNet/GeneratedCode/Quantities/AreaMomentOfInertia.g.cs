@@ -65,17 +65,22 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.AreaMomentOfInertia);
 
-            UnitConverter.Default.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertia.BaseUnit, AreaMomentOfInertiaUnit.CentimeterToTheFourth, q => q.ToUnit(AreaMomentOfInertiaUnit.CentimeterToTheFourth));
-            UnitConverter.Default.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.CentimeterToTheFourth, AreaMomentOfInertia.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertia.BaseUnit, AreaMomentOfInertiaUnit.DecimeterToTheFourth, q => q.ToUnit(AreaMomentOfInertiaUnit.DecimeterToTheFourth));
-            UnitConverter.Default.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.DecimeterToTheFourth, AreaMomentOfInertia.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertia.BaseUnit, AreaMomentOfInertiaUnit.FootToTheFourth, q => q.ToUnit(AreaMomentOfInertiaUnit.FootToTheFourth));
-            UnitConverter.Default.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.FootToTheFourth, AreaMomentOfInertia.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertia.BaseUnit, AreaMomentOfInertiaUnit.InchToTheFourth, q => q.ToUnit(AreaMomentOfInertiaUnit.InchToTheFourth));
-            UnitConverter.Default.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.InchToTheFourth, AreaMomentOfInertia.BaseUnit, q => q.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertia.BaseUnit, AreaMomentOfInertia.BaseUnit, q => q);
-            UnitConverter.Default.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertia.BaseUnit, AreaMomentOfInertiaUnit.MillimeterToTheFourth, q => q.ToUnit(AreaMomentOfInertiaUnit.MillimeterToTheFourth));
-            UnitConverter.Default.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MillimeterToTheFourth, AreaMomentOfInertia.BaseUnit, q => q.ToBaseUnit());
+            // Register in default unit converter: BaseUnit -> AreaMomentOfInertiaUnit
+            UnitConverter.Default.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.CentimeterToTheFourth, q => q.ToUnit(AreaMomentOfInertiaUnit.CentimeterToTheFourth));
+            UnitConverter.Default.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.DecimeterToTheFourth, q => q.ToUnit(AreaMomentOfInertiaUnit.DecimeterToTheFourth));
+            UnitConverter.Default.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.FootToTheFourth, q => q.ToUnit(AreaMomentOfInertiaUnit.FootToTheFourth));
+            UnitConverter.Default.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.InchToTheFourth, q => q.ToUnit(AreaMomentOfInertiaUnit.InchToTheFourth));
+            UnitConverter.Default.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.MillimeterToTheFourth, q => q.ToUnit(AreaMomentOfInertiaUnit.MillimeterToTheFourth));
+            
+            // Register in default unit converter: BaseUnit <-> BaseUnit
+            UnitConverter.Default.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth, q => q);
+
+            // Register in default unit converter: AreaMomentOfInertiaUnit -> BaseUnit
+            UnitConverter.Default.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.CentimeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.DecimeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.FootToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.InchToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth, q => q.ToBaseUnit());
+            UnitConverter.Default.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MillimeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth, q => q.ToBaseUnit());
         }
 
         /// <summary>
