@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -40,7 +41,7 @@ namespace UnitsNet
         /// </summary>
         public static UnitConverter Default { get; }
 
-        private readonly Dictionary<ConversionFunctionLookupKey, ConversionFunction> _conversionFunctions = new Dictionary<ConversionFunctionLookupKey, ConversionFunction>();
+        private readonly ConcurrentDictionary<ConversionFunctionLookupKey, ConversionFunction> _conversionFunctions = new ConcurrentDictionary<ConversionFunctionLookupKey, ConversionFunction>();
 
         static UnitConverter()
         {
