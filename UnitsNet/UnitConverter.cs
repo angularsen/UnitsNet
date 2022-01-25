@@ -32,7 +32,7 @@ namespace UnitsNet
     ///     Convert between units of a quantity, such as converting from meters to centimeters of a given length.
     /// </summary>
     [PublicAPI]
-    public sealed partial class UnitConverter
+    public sealed class UnitConverter
     {
         /// <summary>
         /// The static instance used by Units.NET to convert between units. Modify this to add/remove conversion functions at runtime, such
