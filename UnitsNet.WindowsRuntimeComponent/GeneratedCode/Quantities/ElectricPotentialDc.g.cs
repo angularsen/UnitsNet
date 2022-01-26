@@ -110,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.ElectricPotentialDc;
 
         /// <summary>
@@ -144,6 +145,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
         public QuantityType Type => ElectricPotentialDc.QuantityType;
 
         /// <summary>
@@ -510,7 +512,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricPotentialDc.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion

@@ -130,7 +130,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
+        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.Ratio;
 
         /// <summary>
@@ -166,7 +166,8 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => Ratio.QuantityType;
+        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
+        public QuantityType Type => QuantityType.Ratio;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

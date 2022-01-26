@@ -43,16 +43,6 @@ namespace UnitsNet
             Writer.WL(@"
         };
 
-        // Used by the QuantityInfo .ctor to map a name to a QuantityType. Will be removed when QuantityType
-        // will be removed.
-        internal static readonly IDictionary<string, QuantityType> QuantityTypeByName = new Dictionary<string, QuantityType>
-        {");
-            foreach (var quantity in _quantities)
-                Writer.WL($@"
-            {{ ""{quantity.Name}"", QuantityType.{quantity.Name} }},");
-            Writer.WL(@"
-        };
-
         /// <summary>
         /// Dynamically constructs a quantity of the given <see cref=""QuantityType""/> with the value in the quantity's base units.
         /// </summary>
