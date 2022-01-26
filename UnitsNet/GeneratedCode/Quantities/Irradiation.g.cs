@@ -222,6 +222,32 @@ namespace UnitsNet
         #region Static Methods
 
         /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
+        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
+        {
+            // Register in unit converter: BaseUnit -> IrradiationUnit
+            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.JoulePerSquareCentimeter, quantity => quantity.ToUnit(IrradiationUnit.JoulePerSquareCentimeter));
+            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.JoulePerSquareMillimeter, quantity => quantity.ToUnit(IrradiationUnit.JoulePerSquareMillimeter));
+            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.KilojoulePerSquareMeter, quantity => quantity.ToUnit(IrradiationUnit.KilojoulePerSquareMeter));
+            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.KilowattHourPerSquareMeter, quantity => quantity.ToUnit(IrradiationUnit.KilowattHourPerSquareMeter));
+            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.MillijoulePerSquareCentimeter, quantity => quantity.ToUnit(IrradiationUnit.MillijoulePerSquareCentimeter));
+            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.WattHourPerSquareMeter, quantity => quantity.ToUnit(IrradiationUnit.WattHourPerSquareMeter));
+            
+            // Register in unit converter: BaseUnit <-> BaseUnit
+            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.JoulePerSquareMeter, quantity => quantity);
+
+            // Register in unit converter: IrradiationUnit -> BaseUnit
+            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.JoulePerSquareCentimeter, IrradiationUnit.JoulePerSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.JoulePerSquareMillimeter, IrradiationUnit.JoulePerSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.KilojoulePerSquareMeter, IrradiationUnit.JoulePerSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.KilowattHourPerSquareMeter, IrradiationUnit.JoulePerSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.MillijoulePerSquareCentimeter, IrradiationUnit.JoulePerSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.WattHourPerSquareMeter, IrradiationUnit.JoulePerSquareMeter, quantity => quantity.ToBaseUnit());
+        }
+
+        /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>

@@ -330,6 +330,68 @@ namespace UnitsNet
         #region Static Methods
 
         /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
+        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
+        {
+            // Register in unit converter: BaseUnit -> SpecificEnergyUnit
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.BtuPerPound, quantity => quantity.ToUnit(SpecificEnergyUnit.BtuPerPound));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.CaloriePerGram, quantity => quantity.ToUnit(SpecificEnergyUnit.CaloriePerGram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.GigawattDayPerKilogram, quantity => quantity.ToUnit(SpecificEnergyUnit.GigawattDayPerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.GigawattDayPerShortTon, quantity => quantity.ToUnit(SpecificEnergyUnit.GigawattDayPerShortTon));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.GigawattDayPerTonne, quantity => quantity.ToUnit(SpecificEnergyUnit.GigawattDayPerTonne));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.GigawattHourPerKilogram, quantity => quantity.ToUnit(SpecificEnergyUnit.GigawattHourPerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.KilocaloriePerGram, quantity => quantity.ToUnit(SpecificEnergyUnit.KilocaloriePerGram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.KilojoulePerKilogram, quantity => quantity.ToUnit(SpecificEnergyUnit.KilojoulePerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.KilowattDayPerKilogram, quantity => quantity.ToUnit(SpecificEnergyUnit.KilowattDayPerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.KilowattDayPerShortTon, quantity => quantity.ToUnit(SpecificEnergyUnit.KilowattDayPerShortTon));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.KilowattDayPerTonne, quantity => quantity.ToUnit(SpecificEnergyUnit.KilowattDayPerTonne));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.KilowattHourPerKilogram, quantity => quantity.ToUnit(SpecificEnergyUnit.KilowattHourPerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegajoulePerKilogram, quantity => quantity.ToUnit(SpecificEnergyUnit.MegajoulePerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegawattDayPerKilogram, quantity => quantity.ToUnit(SpecificEnergyUnit.MegawattDayPerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegawattDayPerShortTon, quantity => quantity.ToUnit(SpecificEnergyUnit.MegawattDayPerShortTon));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegawattDayPerTonne, quantity => quantity.ToUnit(SpecificEnergyUnit.MegawattDayPerTonne));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegawattHourPerKilogram, quantity => quantity.ToUnit(SpecificEnergyUnit.MegawattHourPerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.TerawattDayPerKilogram, quantity => quantity.ToUnit(SpecificEnergyUnit.TerawattDayPerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.TerawattDayPerShortTon, quantity => quantity.ToUnit(SpecificEnergyUnit.TerawattDayPerShortTon));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.TerawattDayPerTonne, quantity => quantity.ToUnit(SpecificEnergyUnit.TerawattDayPerTonne));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.WattDayPerKilogram, quantity => quantity.ToUnit(SpecificEnergyUnit.WattDayPerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.WattDayPerShortTon, quantity => quantity.ToUnit(SpecificEnergyUnit.WattDayPerShortTon));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.WattDayPerTonne, quantity => quantity.ToUnit(SpecificEnergyUnit.WattDayPerTonne));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.WattHourPerKilogram, quantity => quantity.ToUnit(SpecificEnergyUnit.WattHourPerKilogram));
+            
+            // Register in unit converter: BaseUnit <-> BaseUnit
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity);
+
+            // Register in unit converter: SpecificEnergyUnit -> BaseUnit
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.BtuPerPound, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.CaloriePerGram, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.GigawattDayPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.GigawattDayPerShortTon, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.GigawattDayPerTonne, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.GigawattHourPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.KilocaloriePerGram, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.KilojoulePerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.KilowattDayPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.KilowattDayPerShortTon, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.KilowattDayPerTonne, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.KilowattHourPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.MegajoulePerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.MegawattDayPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.MegawattDayPerShortTon, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.MegawattDayPerTonne, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.MegawattHourPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.TerawattDayPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.TerawattDayPerShortTon, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.TerawattDayPerTonne, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.WattDayPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.WattDayPerShortTon, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.WattDayPerTonne, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.WattHourPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToBaseUnit());
+        }
+
+        /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>

@@ -375,6 +375,84 @@ namespace UnitsNet
         #region Static Methods
 
         /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
+        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
+        {
+            // Register in unit converter: BaseUnit -> LengthUnit
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.AstronomicalUnit, quantity => quantity.ToUnit(LengthUnit.AstronomicalUnit));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Centimeter, quantity => quantity.ToUnit(LengthUnit.Centimeter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Chain, quantity => quantity.ToUnit(LengthUnit.Chain));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Decimeter, quantity => quantity.ToUnit(LengthUnit.Decimeter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.DtpPica, quantity => quantity.ToUnit(LengthUnit.DtpPica));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.DtpPoint, quantity => quantity.ToUnit(LengthUnit.DtpPoint));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Fathom, quantity => quantity.ToUnit(LengthUnit.Fathom));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Foot, quantity => quantity.ToUnit(LengthUnit.Foot));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Hand, quantity => quantity.ToUnit(LengthUnit.Hand));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Hectometer, quantity => quantity.ToUnit(LengthUnit.Hectometer));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Inch, quantity => quantity.ToUnit(LengthUnit.Inch));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.KilolightYear, quantity => quantity.ToUnit(LengthUnit.KilolightYear));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Kilometer, quantity => quantity.ToUnit(LengthUnit.Kilometer));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Kiloparsec, quantity => quantity.ToUnit(LengthUnit.Kiloparsec));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.LightYear, quantity => quantity.ToUnit(LengthUnit.LightYear));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.MegalightYear, quantity => quantity.ToUnit(LengthUnit.MegalightYear));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Megaparsec, quantity => quantity.ToUnit(LengthUnit.Megaparsec));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Microinch, quantity => quantity.ToUnit(LengthUnit.Microinch));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Micrometer, quantity => quantity.ToUnit(LengthUnit.Micrometer));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Mil, quantity => quantity.ToUnit(LengthUnit.Mil));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Mile, quantity => quantity.ToUnit(LengthUnit.Mile));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Millimeter, quantity => quantity.ToUnit(LengthUnit.Millimeter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Nanometer, quantity => quantity.ToUnit(LengthUnit.Nanometer));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.NauticalMile, quantity => quantity.ToUnit(LengthUnit.NauticalMile));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Parsec, quantity => quantity.ToUnit(LengthUnit.Parsec));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.PrinterPica, quantity => quantity.ToUnit(LengthUnit.PrinterPica));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.PrinterPoint, quantity => quantity.ToUnit(LengthUnit.PrinterPoint));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Shackle, quantity => quantity.ToUnit(LengthUnit.Shackle));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.SolarRadius, quantity => quantity.ToUnit(LengthUnit.SolarRadius));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Twip, quantity => quantity.ToUnit(LengthUnit.Twip));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.UsSurveyFoot, quantity => quantity.ToUnit(LengthUnit.UsSurveyFoot));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Yard, quantity => quantity.ToUnit(LengthUnit.Yard));
+            
+            // Register in unit converter: BaseUnit <-> BaseUnit
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Meter, quantity => quantity);
+
+            // Register in unit converter: LengthUnit -> BaseUnit
+            unitConverter.SetConversionFunction<Length>(LengthUnit.AstronomicalUnit, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Centimeter, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Chain, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Decimeter, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.DtpPica, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.DtpPoint, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Fathom, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Foot, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Hand, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Hectometer, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Inch, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.KilolightYear, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Kilometer, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Kiloparsec, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.LightYear, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.MegalightYear, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Megaparsec, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Microinch, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Micrometer, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Mil, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Mile, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Millimeter, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Nanometer, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.NauticalMile, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Parsec, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.PrinterPica, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.PrinterPoint, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Shackle, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.SolarRadius, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Twip, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.UsSurveyFoot, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Yard, LengthUnit.Meter, quantity => quantity.ToBaseUnit());
+        }
+
+        /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>

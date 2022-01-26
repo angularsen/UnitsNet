@@ -282,6 +282,52 @@ namespace UnitsNet
         #region Static Methods
 
         /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
+        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
+        {
+            // Register in unit converter: BaseUnit -> SpecificWeightUnit
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.KilogramForcePerCubicCentimeter, quantity => quantity.ToUnit(SpecificWeightUnit.KilogramForcePerCubicCentimeter));
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.KilogramForcePerCubicMeter, quantity => quantity.ToUnit(SpecificWeightUnit.KilogramForcePerCubicMeter));
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.KilogramForcePerCubicMillimeter, quantity => quantity.ToUnit(SpecificWeightUnit.KilogramForcePerCubicMillimeter));
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.KilonewtonPerCubicCentimeter, quantity => quantity.ToUnit(SpecificWeightUnit.KilonewtonPerCubicCentimeter));
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.KilonewtonPerCubicMeter, quantity => quantity.ToUnit(SpecificWeightUnit.KilonewtonPerCubicMeter));
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.KilonewtonPerCubicMillimeter, quantity => quantity.ToUnit(SpecificWeightUnit.KilonewtonPerCubicMillimeter));
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.KilopoundForcePerCubicFoot, quantity => quantity.ToUnit(SpecificWeightUnit.KilopoundForcePerCubicFoot));
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.KilopoundForcePerCubicInch, quantity => quantity.ToUnit(SpecificWeightUnit.KilopoundForcePerCubicInch));
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.MeganewtonPerCubicMeter, quantity => quantity.ToUnit(SpecificWeightUnit.MeganewtonPerCubicMeter));
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.NewtonPerCubicCentimeter, quantity => quantity.ToUnit(SpecificWeightUnit.NewtonPerCubicCentimeter));
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.NewtonPerCubicMillimeter, quantity => quantity.ToUnit(SpecificWeightUnit.NewtonPerCubicMillimeter));
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.PoundForcePerCubicFoot, quantity => quantity.ToUnit(SpecificWeightUnit.PoundForcePerCubicFoot));
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.PoundForcePerCubicInch, quantity => quantity.ToUnit(SpecificWeightUnit.PoundForcePerCubicInch));
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.TonneForcePerCubicCentimeter, quantity => quantity.ToUnit(SpecificWeightUnit.TonneForcePerCubicCentimeter));
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.TonneForcePerCubicMeter, quantity => quantity.ToUnit(SpecificWeightUnit.TonneForcePerCubicMeter));
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.TonneForcePerCubicMillimeter, quantity => quantity.ToUnit(SpecificWeightUnit.TonneForcePerCubicMillimeter));
+            
+            // Register in unit converter: BaseUnit <-> BaseUnit
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.NewtonPerCubicMeter, quantity => quantity);
+
+            // Register in unit converter: SpecificWeightUnit -> BaseUnit
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.KilogramForcePerCubicCentimeter, SpecificWeightUnit.NewtonPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.KilogramForcePerCubicMeter, SpecificWeightUnit.NewtonPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.KilogramForcePerCubicMillimeter, SpecificWeightUnit.NewtonPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.KilonewtonPerCubicCentimeter, SpecificWeightUnit.NewtonPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.KilonewtonPerCubicMeter, SpecificWeightUnit.NewtonPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.KilonewtonPerCubicMillimeter, SpecificWeightUnit.NewtonPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.KilopoundForcePerCubicFoot, SpecificWeightUnit.NewtonPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.KilopoundForcePerCubicInch, SpecificWeightUnit.NewtonPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.MeganewtonPerCubicMeter, SpecificWeightUnit.NewtonPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.NewtonPerCubicCentimeter, SpecificWeightUnit.NewtonPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.NewtonPerCubicMillimeter, SpecificWeightUnit.NewtonPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.PoundForcePerCubicFoot, SpecificWeightUnit.NewtonPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.PoundForcePerCubicInch, SpecificWeightUnit.NewtonPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.TonneForcePerCubicCentimeter, SpecificWeightUnit.NewtonPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.TonneForcePerCubicMeter, SpecificWeightUnit.NewtonPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.TonneForcePerCubicMillimeter, SpecificWeightUnit.NewtonPerCubicMeter, quantity => quantity.ToBaseUnit());
+        }
+
+        /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>

@@ -405,6 +405,94 @@ namespace UnitsNet
         #region Static Methods
 
         /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
+        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
+        {
+            // Register in unit converter: BaseUnit -> ForcePerLengthUnit
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.CentinewtonPerCentimeter, quantity => quantity.ToUnit(ForcePerLengthUnit.CentinewtonPerCentimeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.CentinewtonPerMeter, quantity => quantity.ToUnit(ForcePerLengthUnit.CentinewtonPerMeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.CentinewtonPerMillimeter, quantity => quantity.ToUnit(ForcePerLengthUnit.CentinewtonPerMillimeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.DecanewtonPerCentimeter, quantity => quantity.ToUnit(ForcePerLengthUnit.DecanewtonPerCentimeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.DecanewtonPerMeter, quantity => quantity.ToUnit(ForcePerLengthUnit.DecanewtonPerMeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.DecanewtonPerMillimeter, quantity => quantity.ToUnit(ForcePerLengthUnit.DecanewtonPerMillimeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.DecinewtonPerCentimeter, quantity => quantity.ToUnit(ForcePerLengthUnit.DecinewtonPerCentimeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.DecinewtonPerMeter, quantity => quantity.ToUnit(ForcePerLengthUnit.DecinewtonPerMeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.DecinewtonPerMillimeter, quantity => quantity.ToUnit(ForcePerLengthUnit.DecinewtonPerMillimeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.KilogramForcePerCentimeter, quantity => quantity.ToUnit(ForcePerLengthUnit.KilogramForcePerCentimeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.KilogramForcePerMeter, quantity => quantity.ToUnit(ForcePerLengthUnit.KilogramForcePerMeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.KilogramForcePerMillimeter, quantity => quantity.ToUnit(ForcePerLengthUnit.KilogramForcePerMillimeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.KilonewtonPerCentimeter, quantity => quantity.ToUnit(ForcePerLengthUnit.KilonewtonPerCentimeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.KilonewtonPerMeter, quantity => quantity.ToUnit(ForcePerLengthUnit.KilonewtonPerMeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.KilonewtonPerMillimeter, quantity => quantity.ToUnit(ForcePerLengthUnit.KilonewtonPerMillimeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.KilopoundForcePerFoot, quantity => quantity.ToUnit(ForcePerLengthUnit.KilopoundForcePerFoot));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.KilopoundForcePerInch, quantity => quantity.ToUnit(ForcePerLengthUnit.KilopoundForcePerInch));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.MeganewtonPerCentimeter, quantity => quantity.ToUnit(ForcePerLengthUnit.MeganewtonPerCentimeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.MeganewtonPerMeter, quantity => quantity.ToUnit(ForcePerLengthUnit.MeganewtonPerMeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.MeganewtonPerMillimeter, quantity => quantity.ToUnit(ForcePerLengthUnit.MeganewtonPerMillimeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.MicronewtonPerCentimeter, quantity => quantity.ToUnit(ForcePerLengthUnit.MicronewtonPerCentimeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.MicronewtonPerMeter, quantity => quantity.ToUnit(ForcePerLengthUnit.MicronewtonPerMeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.MicronewtonPerMillimeter, quantity => quantity.ToUnit(ForcePerLengthUnit.MicronewtonPerMillimeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.MillinewtonPerCentimeter, quantity => quantity.ToUnit(ForcePerLengthUnit.MillinewtonPerCentimeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.MillinewtonPerMeter, quantity => quantity.ToUnit(ForcePerLengthUnit.MillinewtonPerMeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.MillinewtonPerMillimeter, quantity => quantity.ToUnit(ForcePerLengthUnit.MillinewtonPerMillimeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.NanonewtonPerCentimeter, quantity => quantity.ToUnit(ForcePerLengthUnit.NanonewtonPerCentimeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.NanonewtonPerMeter, quantity => quantity.ToUnit(ForcePerLengthUnit.NanonewtonPerMeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.NanonewtonPerMillimeter, quantity => quantity.ToUnit(ForcePerLengthUnit.NanonewtonPerMillimeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.NewtonPerCentimeter, quantity => quantity.ToUnit(ForcePerLengthUnit.NewtonPerCentimeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.NewtonPerMillimeter, quantity => quantity.ToUnit(ForcePerLengthUnit.NewtonPerMillimeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.PoundForcePerFoot, quantity => quantity.ToUnit(ForcePerLengthUnit.PoundForcePerFoot));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.PoundForcePerInch, quantity => quantity.ToUnit(ForcePerLengthUnit.PoundForcePerInch));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.PoundForcePerYard, quantity => quantity.ToUnit(ForcePerLengthUnit.PoundForcePerYard));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.TonneForcePerCentimeter, quantity => quantity.ToUnit(ForcePerLengthUnit.TonneForcePerCentimeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.TonneForcePerMeter, quantity => quantity.ToUnit(ForcePerLengthUnit.TonneForcePerMeter));
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.TonneForcePerMillimeter, quantity => quantity.ToUnit(ForcePerLengthUnit.TonneForcePerMillimeter));
+            
+            // Register in unit converter: BaseUnit <-> BaseUnit
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity);
+
+            // Register in unit converter: ForcePerLengthUnit -> BaseUnit
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.CentinewtonPerCentimeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.CentinewtonPerMeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.CentinewtonPerMillimeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.DecanewtonPerCentimeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.DecanewtonPerMeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.DecanewtonPerMillimeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.DecinewtonPerCentimeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.DecinewtonPerMeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.DecinewtonPerMillimeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.KilogramForcePerCentimeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.KilogramForcePerMeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.KilogramForcePerMillimeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.KilonewtonPerCentimeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.KilonewtonPerMeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.KilonewtonPerMillimeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.KilopoundForcePerFoot, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.KilopoundForcePerInch, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.MeganewtonPerCentimeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.MeganewtonPerMeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.MeganewtonPerMillimeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.MicronewtonPerCentimeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.MicronewtonPerMeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.MicronewtonPerMillimeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.MillinewtonPerCentimeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.MillinewtonPerMeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.MillinewtonPerMillimeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NanonewtonPerCentimeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NanonewtonPerMeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NanonewtonPerMillimeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerCentimeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMillimeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.PoundForcePerFoot, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.PoundForcePerInch, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.PoundForcePerYard, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.TonneForcePerCentimeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.TonneForcePerMeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.TonneForcePerMillimeter, ForcePerLengthUnit.NewtonPerMeter, quantity => quantity.ToBaseUnit());
+        }
+
+        /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>

@@ -330,6 +330,68 @@ namespace UnitsNet
         #region Static Methods
 
         /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
+        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
+        {
+            // Register in unit converter: BaseUnit -> LinearPowerDensityUnit
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.GigawattPerCentimeter, quantity => quantity.ToUnit(LinearPowerDensityUnit.GigawattPerCentimeter));
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.GigawattPerFoot, quantity => quantity.ToUnit(LinearPowerDensityUnit.GigawattPerFoot));
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.GigawattPerInch, quantity => quantity.ToUnit(LinearPowerDensityUnit.GigawattPerInch));
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.GigawattPerMeter, quantity => quantity.ToUnit(LinearPowerDensityUnit.GigawattPerMeter));
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.GigawattPerMillimeter, quantity => quantity.ToUnit(LinearPowerDensityUnit.GigawattPerMillimeter));
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.KilowattPerCentimeter, quantity => quantity.ToUnit(LinearPowerDensityUnit.KilowattPerCentimeter));
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.KilowattPerFoot, quantity => quantity.ToUnit(LinearPowerDensityUnit.KilowattPerFoot));
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.KilowattPerInch, quantity => quantity.ToUnit(LinearPowerDensityUnit.KilowattPerInch));
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.KilowattPerMeter, quantity => quantity.ToUnit(LinearPowerDensityUnit.KilowattPerMeter));
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.KilowattPerMillimeter, quantity => quantity.ToUnit(LinearPowerDensityUnit.KilowattPerMillimeter));
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.MegawattPerCentimeter, quantity => quantity.ToUnit(LinearPowerDensityUnit.MegawattPerCentimeter));
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.MegawattPerFoot, quantity => quantity.ToUnit(LinearPowerDensityUnit.MegawattPerFoot));
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.MegawattPerInch, quantity => quantity.ToUnit(LinearPowerDensityUnit.MegawattPerInch));
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.MegawattPerMeter, quantity => quantity.ToUnit(LinearPowerDensityUnit.MegawattPerMeter));
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.MegawattPerMillimeter, quantity => quantity.ToUnit(LinearPowerDensityUnit.MegawattPerMillimeter));
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.MilliwattPerCentimeter, quantity => quantity.ToUnit(LinearPowerDensityUnit.MilliwattPerCentimeter));
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.MilliwattPerFoot, quantity => quantity.ToUnit(LinearPowerDensityUnit.MilliwattPerFoot));
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.MilliwattPerInch, quantity => quantity.ToUnit(LinearPowerDensityUnit.MilliwattPerInch));
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.MilliwattPerMeter, quantity => quantity.ToUnit(LinearPowerDensityUnit.MilliwattPerMeter));
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.MilliwattPerMillimeter, quantity => quantity.ToUnit(LinearPowerDensityUnit.MilliwattPerMillimeter));
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.WattPerCentimeter, quantity => quantity.ToUnit(LinearPowerDensityUnit.WattPerCentimeter));
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.WattPerFoot, quantity => quantity.ToUnit(LinearPowerDensityUnit.WattPerFoot));
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.WattPerInch, quantity => quantity.ToUnit(LinearPowerDensityUnit.WattPerInch));
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.WattPerMillimeter, quantity => quantity.ToUnit(LinearPowerDensityUnit.WattPerMillimeter));
+            
+            // Register in unit converter: BaseUnit <-> BaseUnit
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.WattPerMeter, quantity => quantity);
+
+            // Register in unit converter: LinearPowerDensityUnit -> BaseUnit
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.GigawattPerCentimeter, LinearPowerDensityUnit.WattPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.GigawattPerFoot, LinearPowerDensityUnit.WattPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.GigawattPerInch, LinearPowerDensityUnit.WattPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.GigawattPerMeter, LinearPowerDensityUnit.WattPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.GigawattPerMillimeter, LinearPowerDensityUnit.WattPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.KilowattPerCentimeter, LinearPowerDensityUnit.WattPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.KilowattPerFoot, LinearPowerDensityUnit.WattPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.KilowattPerInch, LinearPowerDensityUnit.WattPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.KilowattPerMeter, LinearPowerDensityUnit.WattPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.KilowattPerMillimeter, LinearPowerDensityUnit.WattPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.MegawattPerCentimeter, LinearPowerDensityUnit.WattPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.MegawattPerFoot, LinearPowerDensityUnit.WattPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.MegawattPerInch, LinearPowerDensityUnit.WattPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.MegawattPerMeter, LinearPowerDensityUnit.WattPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.MegawattPerMillimeter, LinearPowerDensityUnit.WattPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.MilliwattPerCentimeter, LinearPowerDensityUnit.WattPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.MilliwattPerFoot, LinearPowerDensityUnit.WattPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.MilliwattPerInch, LinearPowerDensityUnit.WattPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.MilliwattPerMeter, LinearPowerDensityUnit.WattPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.MilliwattPerMillimeter, LinearPowerDensityUnit.WattPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerCentimeter, LinearPowerDensityUnit.WattPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerFoot, LinearPowerDensityUnit.WattPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerInch, LinearPowerDensityUnit.WattPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMillimeter, LinearPowerDensityUnit.WattPerMeter, quantity => quantity.ToBaseUnit());
+        }
+
+        /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>

@@ -345,6 +345,74 @@ namespace UnitsNet
         #region Static Methods
 
         /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
+        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
+        {
+            // Register in unit converter: BaseUnit -> MassMomentOfInertiaUnit
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.GramSquareCentimeter, quantity => quantity.ToUnit(MassMomentOfInertiaUnit.GramSquareCentimeter));
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.GramSquareDecimeter, quantity => quantity.ToUnit(MassMomentOfInertiaUnit.GramSquareDecimeter));
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.GramSquareMeter, quantity => quantity.ToUnit(MassMomentOfInertiaUnit.GramSquareMeter));
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.GramSquareMillimeter, quantity => quantity.ToUnit(MassMomentOfInertiaUnit.GramSquareMillimeter));
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.KilogramSquareCentimeter, quantity => quantity.ToUnit(MassMomentOfInertiaUnit.KilogramSquareCentimeter));
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.KilogramSquareDecimeter, quantity => quantity.ToUnit(MassMomentOfInertiaUnit.KilogramSquareDecimeter));
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.KilogramSquareMillimeter, quantity => quantity.ToUnit(MassMomentOfInertiaUnit.KilogramSquareMillimeter));
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.KilotonneSquareCentimeter, quantity => quantity.ToUnit(MassMomentOfInertiaUnit.KilotonneSquareCentimeter));
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.KilotonneSquareDecimeter, quantity => quantity.ToUnit(MassMomentOfInertiaUnit.KilotonneSquareDecimeter));
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.KilotonneSquareMeter, quantity => quantity.ToUnit(MassMomentOfInertiaUnit.KilotonneSquareMeter));
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.KilotonneSquareMilimeter, quantity => quantity.ToUnit(MassMomentOfInertiaUnit.KilotonneSquareMilimeter));
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.MegatonneSquareCentimeter, quantity => quantity.ToUnit(MassMomentOfInertiaUnit.MegatonneSquareCentimeter));
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.MegatonneSquareDecimeter, quantity => quantity.ToUnit(MassMomentOfInertiaUnit.MegatonneSquareDecimeter));
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.MegatonneSquareMeter, quantity => quantity.ToUnit(MassMomentOfInertiaUnit.MegatonneSquareMeter));
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.MegatonneSquareMilimeter, quantity => quantity.ToUnit(MassMomentOfInertiaUnit.MegatonneSquareMilimeter));
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.MilligramSquareCentimeter, quantity => quantity.ToUnit(MassMomentOfInertiaUnit.MilligramSquareCentimeter));
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.MilligramSquareDecimeter, quantity => quantity.ToUnit(MassMomentOfInertiaUnit.MilligramSquareDecimeter));
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.MilligramSquareMeter, quantity => quantity.ToUnit(MassMomentOfInertiaUnit.MilligramSquareMeter));
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.MilligramSquareMillimeter, quantity => quantity.ToUnit(MassMomentOfInertiaUnit.MilligramSquareMillimeter));
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.PoundSquareFoot, quantity => quantity.ToUnit(MassMomentOfInertiaUnit.PoundSquareFoot));
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.PoundSquareInch, quantity => quantity.ToUnit(MassMomentOfInertiaUnit.PoundSquareInch));
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.SlugSquareFoot, quantity => quantity.ToUnit(MassMomentOfInertiaUnit.SlugSquareFoot));
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.SlugSquareInch, quantity => quantity.ToUnit(MassMomentOfInertiaUnit.SlugSquareInch));
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.TonneSquareCentimeter, quantity => quantity.ToUnit(MassMomentOfInertiaUnit.TonneSquareCentimeter));
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.TonneSquareDecimeter, quantity => quantity.ToUnit(MassMomentOfInertiaUnit.TonneSquareDecimeter));
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.TonneSquareMeter, quantity => quantity.ToUnit(MassMomentOfInertiaUnit.TonneSquareMeter));
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.TonneSquareMilimeter, quantity => quantity.ToUnit(MassMomentOfInertiaUnit.TonneSquareMilimeter));
+            
+            // Register in unit converter: BaseUnit <-> BaseUnit
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => quantity);
+
+            // Register in unit converter: MassMomentOfInertiaUnit -> BaseUnit
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.GramSquareCentimeter, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.GramSquareDecimeter, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.GramSquareMeter, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.GramSquareMillimeter, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareCentimeter, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareDecimeter, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMillimeter, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilotonneSquareCentimeter, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilotonneSquareDecimeter, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilotonneSquareMeter, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilotonneSquareMilimeter, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.MegatonneSquareCentimeter, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.MegatonneSquareDecimeter, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.MegatonneSquareMeter, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.MegatonneSquareMilimeter, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.MilligramSquareCentimeter, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.MilligramSquareDecimeter, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.MilligramSquareMeter, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.MilligramSquareMillimeter, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.PoundSquareFoot, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.PoundSquareInch, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.SlugSquareFoot, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.SlugSquareInch, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.TonneSquareCentimeter, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.TonneSquareDecimeter, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.TonneSquareMeter, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.TonneSquareMilimeter, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => quantity.ToBaseUnit());
+        }
+
+        /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>

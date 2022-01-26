@@ -204,6 +204,26 @@ namespace UnitsNet
         #region Static Methods
 
         /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
+        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
+        {
+            // Register in unit converter: BaseUnit -> IlluminanceUnit
+            unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Lux, IlluminanceUnit.Kilolux, quantity => quantity.ToUnit(IlluminanceUnit.Kilolux));
+            unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Lux, IlluminanceUnit.Megalux, quantity => quantity.ToUnit(IlluminanceUnit.Megalux));
+            unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Lux, IlluminanceUnit.Millilux, quantity => quantity.ToUnit(IlluminanceUnit.Millilux));
+            
+            // Register in unit converter: BaseUnit <-> BaseUnit
+            unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Lux, IlluminanceUnit.Lux, quantity => quantity);
+
+            // Register in unit converter: IlluminanceUnit -> BaseUnit
+            unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Kilolux, IlluminanceUnit.Lux, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Megalux, IlluminanceUnit.Lux, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Millilux, IlluminanceUnit.Lux, quantity => quantity.ToBaseUnit());
+        }
+
+        /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>

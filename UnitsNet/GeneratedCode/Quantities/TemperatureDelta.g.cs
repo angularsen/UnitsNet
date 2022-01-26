@@ -231,6 +231,36 @@ namespace UnitsNet
         #region Static Methods
 
         /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
+        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
+        {
+            // Register in unit converter: BaseUnit -> TemperatureDeltaUnit
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeCelsius, quantity => quantity.ToUnit(TemperatureDeltaUnit.DegreeCelsius));
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeDelisle, quantity => quantity.ToUnit(TemperatureDeltaUnit.DegreeDelisle));
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeFahrenheit, quantity => quantity.ToUnit(TemperatureDeltaUnit.DegreeFahrenheit));
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeNewton, quantity => quantity.ToUnit(TemperatureDeltaUnit.DegreeNewton));
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeRankine, quantity => quantity.ToUnit(TemperatureDeltaUnit.DegreeRankine));
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeReaumur, quantity => quantity.ToUnit(TemperatureDeltaUnit.DegreeReaumur));
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeRoemer, quantity => quantity.ToUnit(TemperatureDeltaUnit.DegreeRoemer));
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.MillidegreeCelsius, quantity => quantity.ToUnit(TemperatureDeltaUnit.MillidegreeCelsius));
+            
+            // Register in unit converter: BaseUnit <-> BaseUnit
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.Kelvin, quantity => quantity);
+
+            // Register in unit converter: TemperatureDeltaUnit -> BaseUnit
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.DegreeCelsius, TemperatureDeltaUnit.Kelvin, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.DegreeDelisle, TemperatureDeltaUnit.Kelvin, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.DegreeFahrenheit, TemperatureDeltaUnit.Kelvin, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.DegreeNewton, TemperatureDeltaUnit.Kelvin, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.DegreeRankine, TemperatureDeltaUnit.Kelvin, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.DegreeReaumur, TemperatureDeltaUnit.Kelvin, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.DegreeRoemer, TemperatureDeltaUnit.Kelvin, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.MillidegreeCelsius, TemperatureDeltaUnit.Kelvin, quantity => quantity.ToBaseUnit());
+        }
+
+        /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>

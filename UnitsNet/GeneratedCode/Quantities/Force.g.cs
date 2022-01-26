@@ -267,6 +267,48 @@ namespace UnitsNet
         #region Static Methods
 
         /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
+        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
+        {
+            // Register in unit converter: BaseUnit -> ForceUnit
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Decanewton, quantity => quantity.ToUnit(ForceUnit.Decanewton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Dyn, quantity => quantity.ToUnit(ForceUnit.Dyn));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.KilogramForce, quantity => quantity.ToUnit(ForceUnit.KilogramForce));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Kilonewton, quantity => quantity.ToUnit(ForceUnit.Kilonewton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.KiloPond, quantity => quantity.ToUnit(ForceUnit.KiloPond));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.KilopoundForce, quantity => quantity.ToUnit(ForceUnit.KilopoundForce));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Meganewton, quantity => quantity.ToUnit(ForceUnit.Meganewton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Micronewton, quantity => quantity.ToUnit(ForceUnit.Micronewton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Millinewton, quantity => quantity.ToUnit(ForceUnit.Millinewton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.OunceForce, quantity => quantity.ToUnit(ForceUnit.OunceForce));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Poundal, quantity => quantity.ToUnit(ForceUnit.Poundal));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.PoundForce, quantity => quantity.ToUnit(ForceUnit.PoundForce));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.ShortTonForce, quantity => quantity.ToUnit(ForceUnit.ShortTonForce));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.TonneForce, quantity => quantity.ToUnit(ForceUnit.TonneForce));
+            
+            // Register in unit converter: BaseUnit <-> BaseUnit
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Newton, quantity => quantity);
+
+            // Register in unit converter: ForceUnit -> BaseUnit
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Decanewton, ForceUnit.Newton, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Dyn, ForceUnit.Newton, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Force>(ForceUnit.KilogramForce, ForceUnit.Newton, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Kilonewton, ForceUnit.Newton, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Force>(ForceUnit.KiloPond, ForceUnit.Newton, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Force>(ForceUnit.KilopoundForce, ForceUnit.Newton, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Meganewton, ForceUnit.Newton, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Micronewton, ForceUnit.Newton, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Millinewton, ForceUnit.Newton, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Force>(ForceUnit.OunceForce, ForceUnit.Newton, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Poundal, ForceUnit.Newton, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Force>(ForceUnit.PoundForce, ForceUnit.Newton, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Force>(ForceUnit.ShortTonForce, ForceUnit.Newton, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Force>(ForceUnit.TonneForce, ForceUnit.Newton, quantity => quantity.ToBaseUnit());
+        }
+
+        /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>

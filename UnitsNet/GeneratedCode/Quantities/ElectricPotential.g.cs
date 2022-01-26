@@ -207,6 +207,28 @@ namespace UnitsNet
         #region Static Methods
 
         /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
+        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
+        {
+            // Register in unit converter: BaseUnit -> ElectricPotentialUnit
+            unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Volt, ElectricPotentialUnit.Kilovolt, quantity => quantity.ToUnit(ElectricPotentialUnit.Kilovolt));
+            unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Volt, ElectricPotentialUnit.Megavolt, quantity => quantity.ToUnit(ElectricPotentialUnit.Megavolt));
+            unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Volt, ElectricPotentialUnit.Microvolt, quantity => quantity.ToUnit(ElectricPotentialUnit.Microvolt));
+            unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Volt, ElectricPotentialUnit.Millivolt, quantity => quantity.ToUnit(ElectricPotentialUnit.Millivolt));
+            
+            // Register in unit converter: BaseUnit <-> BaseUnit
+            unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Volt, ElectricPotentialUnit.Volt, quantity => quantity);
+
+            // Register in unit converter: ElectricPotentialUnit -> BaseUnit
+            unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Kilovolt, ElectricPotentialUnit.Volt, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Megavolt, ElectricPotentialUnit.Volt, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Microvolt, ElectricPotentialUnit.Volt, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Millivolt, ElectricPotentialUnit.Volt, quantity => quantity.ToBaseUnit());
+        }
+
+        /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>

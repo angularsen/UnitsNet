@@ -264,6 +264,46 @@ namespace UnitsNet
         #region Static Methods
 
         /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
+        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
+        {
+            // Register in unit converter: BaseUnit -> ElectricResistivityUnit
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.KiloohmCentimeter, quantity => quantity.ToUnit(ElectricResistivityUnit.KiloohmCentimeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.KiloohmMeter, quantity => quantity.ToUnit(ElectricResistivityUnit.KiloohmMeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.MegaohmCentimeter, quantity => quantity.ToUnit(ElectricResistivityUnit.MegaohmCentimeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.MegaohmMeter, quantity => quantity.ToUnit(ElectricResistivityUnit.MegaohmMeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.MicroohmCentimeter, quantity => quantity.ToUnit(ElectricResistivityUnit.MicroohmCentimeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.MicroohmMeter, quantity => quantity.ToUnit(ElectricResistivityUnit.MicroohmMeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.MilliohmCentimeter, quantity => quantity.ToUnit(ElectricResistivityUnit.MilliohmCentimeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.MilliohmMeter, quantity => quantity.ToUnit(ElectricResistivityUnit.MilliohmMeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.NanoohmCentimeter, quantity => quantity.ToUnit(ElectricResistivityUnit.NanoohmCentimeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.NanoohmMeter, quantity => quantity.ToUnit(ElectricResistivityUnit.NanoohmMeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.OhmCentimeter, quantity => quantity.ToUnit(ElectricResistivityUnit.OhmCentimeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.PicoohmCentimeter, quantity => quantity.ToUnit(ElectricResistivityUnit.PicoohmCentimeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.PicoohmMeter, quantity => quantity.ToUnit(ElectricResistivityUnit.PicoohmMeter));
+            
+            // Register in unit converter: BaseUnit <-> BaseUnit
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.OhmMeter, quantity => quantity);
+
+            // Register in unit converter: ElectricResistivityUnit -> BaseUnit
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.KiloohmCentimeter, ElectricResistivityUnit.OhmMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.KiloohmMeter, ElectricResistivityUnit.OhmMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.MegaohmCentimeter, ElectricResistivityUnit.OhmMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.MegaohmMeter, ElectricResistivityUnit.OhmMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.MicroohmCentimeter, ElectricResistivityUnit.OhmMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.MicroohmMeter, ElectricResistivityUnit.OhmMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.MilliohmCentimeter, ElectricResistivityUnit.OhmMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.MilliohmMeter, ElectricResistivityUnit.OhmMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.NanoohmCentimeter, ElectricResistivityUnit.OhmMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.NanoohmMeter, ElectricResistivityUnit.OhmMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmCentimeter, ElectricResistivityUnit.OhmMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.PicoohmCentimeter, ElectricResistivityUnit.OhmMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.PicoohmMeter, ElectricResistivityUnit.OhmMeter, quantity => quantity.ToBaseUnit());
+        }
+
+        /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
