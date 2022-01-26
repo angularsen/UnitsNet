@@ -114,7 +114,7 @@ namespace UnitsNet
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = Info.QuantityType;
+        public static QuantityType QuantityType { get; } = QuantityType.SpecificEnergy;
 
         /// <summary>
         ///     All units of measurement for the SpecificEnergy quantity.
