@@ -1,77 +1,45 @@
-    unhandled_ctl                           html  
-    trimws_ctl                              html  
-    to_html                                 html  
-    term_cap_test                           html  
-    tabs_as_spaces                          html  
-    substr_sgr                              html  
-    substr_ctl                              html  
-    strwrap_sgr                             html  
-    strwrap_ctl                             html  
-    strtrim_sgr                             html  
-    strtrim_ctl                             html  
-    strsplit_sgr                            html  
-    strsplit_ctl                            html  
-    strip_sgr                               html  
-    strip_ctl                               html  
-    state_at_end                            html  
-    sgr_to_html                             html  
-    sgr_256                                 html  
-    set_knit_hooks                          html  
-    normalize_state                         html  
-    nchar_sgr                               html  
-    nchar_ctl                               html  
-    make_styles                             html  
-    in_html                                 html  
-    html_esc                                html  
-    html_code_block                         html  
-    has_sgr                                 html  
-    has_ctl                                 html  
-    fwl                                     html  
-    fansi_lines                             html  
-    fansi                                   html  
-    dflt_term_cap                           html  
-  converting help for package 'fansi'
-C:/rtools40/mingw64/bin/gcc -shared -s -static-libgcc -o fansi.dll fansi-win.def assumptions.o carry.o has.o init.o nchar.o normalize.o read.o rnchar.o state.o strip.o substr.o tabs.o tohtml.o trimws.o unhandled.o utf8.o utils.o wrap.o write.o -LC:/PROGRA~1/R/R-41~1.2/bin/x64 -lR
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c write.c -o write.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c wrap.c -o wrap.o
+    tee                                     html  
+    print.fseq                              html  
+    pipe_eager_lexical                      html  
+    pipe                                    html  
+    pipe-eager                              html  
+    magrittr-package                        html  
+    functions                               html  
+    fseq                                    html  
+    freduce                                 html  
+    faq-pipe-gender                         html  
+    exposition                              html  
+    debug_pipe                              html  
+    debug_fseq                              html  
+    compound                                html  
+    aliases                                 html  
+  converting help for package 'magrittr'
+C:/rtools40/mingw64/bin/gcc -shared -s -static-libgcc -o magrittr.dll tmp.def pipe.o utils.o -LC:/PROGRA~1/R/R-41~1.2/bin/x64 -lR
 "C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c utils.c -o utils.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c utf8.c -o utf8.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c unhandled.c -o unhandled.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c trimws.c -o trimws.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c tohtml.c -o tohtml.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c tabs.c -o tabs.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c substr.c -o substr.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c strip.c -o strip.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c state.c -o state.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c rnchar.c -o rnchar.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c read.c -o read.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c normalize.c -o normalize.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c nchar.c -o nchar.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c init.c -o init.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c has.c -o has.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c carry.c -o carry.o
-"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c assumptions.c -o assumptions.o
-C:/rtools40/mingw32/bin/gcc -shared -s -static-libgcc -o fansi.dll fansi-win.def assumptions.o carry.o has.o init.o nchar.o normalize.o read.o rnchar.o state.o strip.o substr.o tabs.o tohtml.o trimws.o unhandled.o utf8.o utils.o wrap.o write.o -LC:/PROGRA~1/R/R-41~1.2/bin/i386 -lR
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c write.c -o write.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c wrap.c -o wrap.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c pipe.c -o pipe.o
+C:/rtools40/mingw32/bin/gcc -shared -s -static-libgcc -o magrittr.dll tmp.def pipe.o utils.o -LC:/PROGRA~1/R/R-41~1.2/bin/i386 -lR
 "C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c utils.c -o utils.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c utf8.c -o utf8.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c unhandled.c -o unhandled.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c trimws.c -o trimws.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c tohtml.c -o tohtml.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c tabs.c -o tabs.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c substr.c -o substr.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c strip.c -o strip.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c state.c -o state.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c rnchar.c -o rnchar.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c read.c -o read.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c normalize.c -o normalize.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c nchar.c -o nchar.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c pipe.c -o pipe.o
+    trim                                    html  
+    quoting                                 html  
+    identity_transformer                    html  
+    glue_sql                                html  
+    glue_safe                               html  
+    glue_collapse                           html  
+    glue_col                                html  
+    glue                                    html  
+    glue-deprecated                         html  
+    as_glue                                 html  
+  converting help for package 'glue'
+C:/rtools40/mingw64/bin/gcc -shared -s -static-libgcc -o glue.dll tmp.def glue.o init.o trim.o -LC:/PROGRA~1/R/R-41~1.2/bin/x64 -lR
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c trim.c -o trim.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c init.c -o init.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c glue.c -o glue.o
+C:/rtools40/mingw32/bin/gcc -shared -s -static-libgcc -o glue.dll tmp.def glue.o init.o trim.o -LC:/PROGRA~1/R/R-41~1.2/bin/i386 -lR
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c trim.c -o trim.o
 "C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c init.c -o init.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c has.c -o has.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c carry.c -o carry.o
-"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c assumptions.c -o assumptions.o
-	C:\Users\runneradmin\AppData\Local\Temp\RtmpUhkRDK\downloaded_packages
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c glue.c -o glue.o
+	C:\Users\runneradmin\AppData\Local\Temp\RtmpS8DrYk\downloaded_packages
 The downloaded binary packages are in
 package 'R.devices' successfully unpacked and MD5 sums checked
 package 'Rcpp' successfully unpacked and MD5 sums checked
@@ -91,36 +59,39 @@ package 'pillar' successfully unpacked and MD5 sums checked
 package 'vctrs' successfully unpacked and MD5 sums checked
 package 'tidyselect' successfully unpacked and MD5 sums checked
 package 'R6' successfully unpacked and MD5 sums checked
-package 'magrittr' successfully unpacked and MD5 sums checked
 package 'lifecycle' successfully unpacked and MD5 sums checked
 package 'generics' successfully unpacked and MD5 sums checked
 package 'ellipsis' successfully unpacked and MD5 sums checked
 package 'withr' successfully unpacked and MD5 sums checked
 package 'tibble' successfully unpacked and MD5 sums checked
 package 'scales' successfully unpacked and MD5 sums checked
-package 'rlang' successfully unpacked and MD5 sums checked
 package 'isoband' successfully unpacked and MD5 sums checked
 package 'gtable' successfully unpacked and MD5 sums checked
-package 'glue' successfully unpacked and MD5 sums checked
 package 'digest' successfully unpacked and MD5 sums checked
 package 'utf8' successfully unpacked and MD5 sums checked
 package 'crayon' successfully unpacked and MD5 sums checked
 package 'cli' successfully unpacked and MD5 sums checked
 package 'pkgconfig' successfully unpacked and MD5 sums checked
+package 'fansi' successfully unpacked and MD5 sums checked
 package 'viridisLite' successfully unpacked and MD5 sums checked
 package 'RColorBrewer' successfully unpacked and MD5 sums checked
 package 'munsell' successfully unpacked and MD5 sums checked
 package 'labeling' successfully unpacked and MD5 sums checked
 package 'farver' successfully unpacked and MD5 sums checked
 package 'colorspace' successfully unpacked and MD5 sums checked
-fansi  0.5.0  1.0.2              TRUE
-      binary source needs_compilation
-  There is a binary version available but the source version is later:
+magrittr  2.0.1  2.0.2              TRUE
+rlang    0.4.12  1.0.0              TRUE
+glue      1.6.0  1.6.1              TRUE
+         binary source needs_compilation
+  There are binary versions available but the source versions are later:
 Execution halted
 Error in library(ggplot2) : there is no package called 'ggplot2'
-	'C:\Users\runneradmin\AppData\Local\Temp\RtmpUhkRDK\downloaded_packages'
+  installation of package 'rlang' had non-zero exit status
+In install.packages(new.packages, lib = Sys.getenv("R_LIBS_USER"),  :
+Warning message:
+	'C:\Users\runneradmin\AppData\Local\Temp\RtmpS8DrYk\downloaded_packages'
 The downloaded source packages are in
-* DONE (fansi)
+* DONE (magrittr)
 ** testing if installed package keeps a record of temporary installation path
 *** arch - x64
 *** arch - i386
@@ -130,55 +101,103 @@ The downloaded source packages are in
 ** testing if installed package can be loaded from temporary location
 ** installing vignettes
 ** building package indices
+*** copying figures
     finding HTML links ... done
 *** installing help indices
 ** help
 ** byte-compile and prepare package for lazy loading
 ** inst
 ** R
-installing to C:/Users/runneradmin/R/win-library/4.1/00LOCK-fansi/00new/fansi/libs/x64
+installing to C:/Users/runneradmin/R/win-library/4.1/00LOCK-magrittr/00new/magrittr/libs/x64
 *** arch - x64
-installing to C:/Users/runneradmin/R/win-library/4.1/00LOCK-fansi/00new/fansi/libs/i386
+installing to C:/Users/runneradmin/R/win-library/4.1/00LOCK-magrittr/00new/magrittr/libs/i386
 *** arch - i386
 ** libs
 ** using staged installation
-** package 'fansi' successfully unpacked and MD5 sums checked
-* installing *source* package 'fansi' ...
+** package 'magrittr' successfully unpacked and MD5 sums checked
+* installing *source* package 'magrittr' ...
 please set environment variable 'TZ'
   unable to identify current timezone 'C':
 Warning in strptime(xx, f, tz = tz) :
-downloaded 469 KB
+* removing 'C:/Users/runneradmin/R/win-library/4.1/rlang'
+ERROR: compilation failed for package 'rlang'
+mingw32-make: *** No rule to make target '$(CXX11STD)''.  Stop.
+*** arch - i386
+** libs
+** using staged installation
+** package 'rlang' successfully unpacked and MD5 sums checked
+* installing *source* package 'rlang' ...
+please set environment variable 'TZ'
+  unable to identify current timezone 'C':
+Warning in strptime(xx, f, tz = tz) :
+* DONE (glue)
+** testing if installed package keeps a record of temporary installation path
+*** arch - x64
+*** arch - i386
+** testing if installed package can be loaded from final location
+*** arch - x64
+*** arch - i386
+** testing if installed package can be loaded from temporary location
+** installing vignettes
+** building package indices
+*** copying figures
+    finding HTML links ... done
+*** installing help indices
+** help
+** byte-compile and prepare package for lazy loading
+** inst
+** R
+installing to C:/Users/runneradmin/R/win-library/4.1/00LOCK-glue/00new/glue/libs/x64
+*** arch - x64
+installing to C:/Users/runneradmin/R/win-library/4.1/00LOCK-glue/00new/glue/libs/i386
+*** arch - i386
+** libs
+** using staged installation
+** package 'glue' successfully unpacked and MD5 sums checked
+* installing *source* package 'glue' ...
+please set environment variable 'TZ'
+  unable to identify current timezone 'C':
+Warning in strptime(xx, f, tz = tz) :
+downloaded 260 KB
 ==================================================
-Content type 'application/x-gzip' length 480902 bytes (469 KB)
-trying URL 'https://cran.rstudio.com/src/contrib/fansi_1.0.2.tar.gz'
-installing the source package 'fansi'
+Content type 'application/x-gzip' length 267039 bytes (260 KB)
+trying URL 'https://cran.rstudio.com/src/contrib/magrittr_2.0.2.tar.gz'
+downloaded 690 KB
+==================================================
+Content type 'application/x-gzip' length 707509 bytes (690 KB)
+trying URL 'https://cran.rstudio.com/src/contrib/rlang_1.0.0.tar.gz'
+downloaded 108 KB
+==================================================
+Content type 'application/x-gzip' length 110723 bytes (108 KB)
+trying URL 'https://cran.rstudio.com/src/contrib/glue_1.6.1.tar.gz'
+installing the source packages 'glue', 'rlang', 'magrittr'
 downloaded 370 KB
 ==================================================
-Content type 'application/zip' length 379900 bytes (370 KB)
+Content type 'application/zip' length 379551 bytes (370 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/R.devices_2.17.0.zip'
 downloaded 3.2 MB
 ==================================================
-Content type 'application/zip' length 3318116 bytes (3.2 MB)
+Content type 'application/zip' length 3318257 bytes (3.2 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/Rcpp_1.0.8.zip'
 downloaded 1.1 MB
 ==================================================
-Content type 'application/zip' length 1109439 bytes (1.1 MB)
+Content type 'application/zip' length 1109476 bytes (1.1 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/gridExtra_2.3.zip'
 downloaded 1.0 MB
 ==================================================
-Content type 'application/zip' length 1075734 bytes (1.0 MB)
+Content type 'application/zip' length 1075953 bytes (1.0 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/tidyr_1.1.4.zip'
 downloaded 1.2 MB
 ==================================================
-Content type 'application/zip' length 1264221 bytes (1.2 MB)
+Content type 'application/zip' length 1264241 bytes (1.2 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/gdata_2.18.0.zip'
 downloaded 1.3 MB
 ==================================================
-Content type 'application/zip' length 1345496 bytes (1.3 MB)
+Content type 'application/zip' length 1344719 bytes (1.3 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/dplyr_1.0.7.zip'
 downloaded 3.9 MB
 ==================================================
-Content type 'application/zip' length 4130010 bytes (3.9 MB)
+Content type 'application/zip' length 4130764 bytes (3.9 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/ggplot2_3.3.5.zip'
 downloaded 42 KB
 ==================================================
@@ -186,7 +205,7 @@ Content type 'application/zip' length 43156 bytes (42 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/base64enc_0.1-3.zip'
 downloaded 1.3 MB
 ==================================================
-Content type 'application/zip' length 1412986 bytes (1.3 MB)
+Content type 'application/zip' length 1413327 bytes (1.3 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/R.utils_2.11.0.zip'
 downloaded 944 KB
 ==================================================
@@ -198,96 +217,88 @@ Content type 'application/zip' length 81982 bytes (80 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/R.methodsS3_1.8.1.zip'
 downloaded 319 KB
 ==================================================
-Content type 'application/zip' length 327423 bytes (319 KB)
+Content type 'application/zip' length 327426 bytes (319 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/cpp11_0.4.2.zip'
 downloaded 419 KB
 ==================================================
-Content type 'application/zip' length 429580 bytes (419 KB)
+Content type 'application/zip' length 429543 bytes (419 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/purrr_0.3.4.zip'
 downloaded 358 KB
 ==================================================
-Content type 'application/zip' length 367294 bytes (358 KB)
+Content type 'application/zip' length 367322 bytes (358 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/gtools_3.9.2.zip'
-downloaded 1017 KB
+downloaded 732 KB
 ==================================================
-Content type 'application/zip' length 1041922 bytes (1017 KB)
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/pillar_1.6.4.zip'
+Content type 'application/zip' length 750390 bytes (732 KB)
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/pillar_1.6.5.zip'
 downloaded 1.2 MB
 ==================================================
-Content type 'application/zip' length 1253446 bytes (1.2 MB)
+Content type 'application/zip' length 1253103 bytes (1.2 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/vctrs_0.3.8.zip'
 downloaded 199 KB
 ==================================================
-Content type 'application/zip' length 204182 bytes (199 KB)
+Content type 'application/zip' length 204357 bytes (199 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/tidyselect_1.1.1.zip'
 downloaded 82 KB
 ==================================================
-Content type 'application/zip' length 84232 bytes (82 KB)
+Content type 'application/zip' length 84226 bytes (82 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/R6_2.5.1.zip'
-downloaded 230 KB
-==================================================
-Content type 'application/zip' length 235999 bytes (230 KB)
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/magrittr_2.0.1.zip'
 downloaded 120 KB
 ==================================================
-Content type 'application/zip' length 123030 bytes (120 KB)
+Content type 'application/zip' length 123110 bytes (120 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/lifecycle_1.0.1.zip'
 downloaded 74 KB
 ==================================================
-Content type 'application/zip' length 76274 bytes (74 KB)
+Content type 'application/zip' length 76134 bytes (74 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/generics_0.1.1.zip'
 downloaded 48 KB
 ==================================================
-Content type 'application/zip' length 49265 bytes (48 KB)
+Content type 'application/zip' length 49271 bytes (48 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/ellipsis_0.3.2.zip'
 downloaded 212 KB
 ==================================================
-Content type 'application/zip' length 217348 bytes (212 KB)
+Content type 'application/zip' length 217182 bytes (212 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/withr_2.4.3.zip'
 downloaded 851 KB
 ==================================================
-Content type 'application/zip' length 872140 bytes (851 KB)
+Content type 'application/zip' length 871865 bytes (851 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/tibble_3.1.6.zip'
-downloaded 544 KB
+downloaded 545 KB
 ==================================================
-Content type 'application/zip' length 557742 bytes (544 KB)
+Content type 'application/zip' length 558362 bytes (545 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/scales_1.1.1.zip'
-downloaded 1.1 MB
-==================================================
-Content type 'application/zip' length 1201756 bytes (1.1 MB)
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/rlang_0.4.12.zip'
 downloaded 2.6 MB
 ==================================================
-Content type 'application/zip' length 2726728 bytes (2.6 MB)
+Content type 'application/zip' length 2726820 bytes (2.6 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/isoband_0.2.5.zip'
 downloaded 424 KB
 ==================================================
-Content type 'application/zip' length 434368 bytes (424 KB)
+Content type 'application/zip' length 434199 bytes (424 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/gtable_0.3.0.zip'
-downloaded 169 KB
-==================================================
-Content type 'application/zip' length 173665 bytes (169 KB)
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/glue_1.6.0.zip'
 downloaded 260 KB
 ==================================================
-Content type 'application/zip' length 266601 bytes (260 KB)
+Content type 'application/zip' length 266501 bytes (260 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/digest_0.6.29.zip'
-downloaded 204 KB
+downloaded 205 KB
 ==================================================
-Content type 'application/zip' length 209902 bytes (204 KB)
+Content type 'application/zip' length 210012 bytes (205 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/utf8_1.2.2.zip'
 downloaded 153 KB
 ==================================================
-Content type 'application/zip' length 157515 bytes (153 KB)
+Content type 'application/zip' length 157502 bytes (153 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/crayon_1.4.2.zip'
 downloaded 1.2 MB
 ==================================================
-Content type 'application/zip' length 1235586 bytes (1.2 MB)
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/cli_3.1.0.zip'
+Content type 'application/zip' length 1236853 bytes (1.2 MB)
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/cli_3.1.1.zip'
 downloaded 21 KB
 ==================================================
-Content type 'application/zip' length 22473 bytes (21 KB)
+Content type 'application/zip' length 22493 bytes (21 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/pkgconfig_2.0.3.zip'
+downloaded 356 KB
+==================================================
+Content type 'application/zip' length 365078 bytes (356 KB)
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/fansi_1.0.2.zip'
 downloaded 1.2 MB
 ==================================================
 Content type 'application/zip' length 1299510 bytes (1.2 MB)
@@ -298,7 +309,7 @@ Content type 'application/zip' length 55707 bytes (54 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/RColorBrewer_1.1-2.zip'
 downloaded 239 KB
 ==================================================
-Content type 'application/zip' length 245502 bytes (239 KB)
+Content type 'application/zip' length 245401 bytes (239 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/munsell_0.5.0.zip'
 downloaded 61 KB
 ==================================================
@@ -306,10 +317,10 @@ Content type 'application/zip' length 62679 bytes (61 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/labeling_0.4.2.zip'
 downloaded 1.7 MB
 ==================================================
-Content type 'application/zip' length 1752658 bytes (1.7 MB)
+Content type 'application/zip' length 1752612 bytes (1.7 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/farver_2.1.0.zip'
 downloaded 2.5 MB
 ==================================================
-Content type 'application/zip' length 2645094 bytes (2.5 MB)
+Content type 'application/zip' length 2645166 bytes (2.5 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/colorspace_2.0-2.zip'
 also installing the dependencies 'colorspace', 'farver', 'labeling', 'munsell', 'RColorBrewer', 'viridisLite', 'fansi', 'pkgconfig', 'cli', 'crayon', 'utf8', 'digest', 'glue', 'gtable', 'isoband', 'rlang', 'scales', 'tibble', 'withr', 'ellipsis', 'generics', 'lifecycle', 'magrittr', 'R6', 'tidyselect', 'vctrs', 'pillar', 'gtools', 'purrr', 'cpp11', 'R.methodsS3', 'R.oo', 'R.utils', 'base64enc'
