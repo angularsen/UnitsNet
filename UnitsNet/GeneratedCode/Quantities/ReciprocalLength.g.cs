@@ -137,7 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Info property instead.")]
+        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
         public static QuantityType QuantityType { get; } = QuantityType.ReciprocalLength;
 
         /// <summary>
@@ -173,7 +173,8 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => ReciprocalLength.QuantityType;
+        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
+        public QuantityType Type => Info.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

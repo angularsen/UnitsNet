@@ -26,6 +26,7 @@ namespace UnitsNet
     ///     This is useful for populating options in the UI, such as creating a generic conversion
     ///     tool with inputValue, quantityName, fromUnit and toUnit selectors.
     /// </summary>
+    [Obsolete("QuantityType will be removed in the future. Use the QuantityInfo class instead.")]
     public enum QuantityType
     {
         Undefined = 0,
