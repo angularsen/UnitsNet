@@ -89,6 +89,28 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KilogramsPerLiterInOneKilogramPerCubicMeter => 1e-3;
 
+        protected override double TonnesPerCubicFootInOneKilogramPerCubicMeter => 2.8316846591999996e-05;
+
+        protected override double TonnesPerCubicInchInOneKilogramPerCubicMeter => 1.6387063999999997e-08;
+
+        protected override double GramsPerCubicFootInOneKilogramPerCubicMeter => 28.316846591999994;
+
+        protected override double GramsPerCubicInchInOneKilogramPerCubicMeter => 0.016387063999999996;
+
+        protected override double PoundsPerCubicMeterInOneKilogramPerCubicMeter => 2.204622621848775;
+
+        protected override double PoundsPerCubicCentimeterInOneKilogramPerCubicMeter => 2.204622621848775e-6;
+
+        protected override double PoundsPerCubicMillimeterInOneKilogramPerCubicMeter => 2.204622621848775e-9;
+
+        protected override double SlugsPerCubicMeterInOneKilogramPerCubicMeter => 0.068521765561961;
+
+        protected override double SlugsPerCubicCentimeterInOneKilogramPerCubicMeter => 6.8521765561961e-8;
+
+        protected override double SlugsPerCubicMillimeterInOneKilogramPerCubicMeter => 6.8521765561961e-11;
+
+        protected override double SlugsPerCubicInchInOneKilogramPerCubicMeter => 1.1228705576569e-6;
+
         [Fact]
         public static void DensityTimesVolumeEqualsMass()
         {
