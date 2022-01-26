@@ -149,7 +149,7 @@ namespace UnitsNet
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public QuantityType Type => Info.QuantityType;
+        public QuantityType Type => QuantityType.VolumeConcentration;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
