@@ -62,13 +62,6 @@ namespace UnitsNet
                     new UnitInfo<MagneticFluxUnit>(MagneticFluxUnit.Weber, "Webers", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.MagneticFlux);
-
-            // Register in default unit converter: BaseUnit -> MagneticFluxUnit
-            
-            // Register in default unit converter: BaseUnit <-> BaseUnit
-            UnitConverter.Default.SetConversionFunction<MagneticFlux>(MagneticFluxUnit.Weber, MagneticFluxUnit.Weber, quantity => quantity);
-
-            // Register in default unit converter: MagneticFluxUnit -> BaseUnit
         }
 
         /// <summary>
@@ -190,6 +183,23 @@ namespace UnitsNet
         #endregion
 
         #region Static Methods
+
+        /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
+        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
+        {
+            if(unitConverter is null)
+                throw new ArgumentNullException(nameof(unitConverter));
+
+            // Register in unit converter: BaseUnit -> MagneticFluxUnit
+            
+            // Register in unit converter: BaseUnit <-> BaseUnit
+            unitConverter.SetConversionFunction<MagneticFlux>(MagneticFluxUnit.Weber, MagneticFluxUnit.Weber, quantity => quantity);
+
+            // Register in unit converter: MagneticFluxUnit -> BaseUnit
+        }
 
         /// <summary>
         ///     Get unit abbreviation string.

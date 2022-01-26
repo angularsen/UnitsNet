@@ -5,7 +5,9 @@ using System;
 using System.Collections.Concurrent;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using JetBrains.Annotations;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -45,6 +47,30 @@ namespace UnitsNet
         static UnitConverter()
         {
             Default = new UnitConverter();
+
+            RegisterDefaultConversions(Default);
+        }
+
+        /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
+        public static void RegisterDefaultConversions(UnitConverter unitConverter)
+        {
+            if(unitConverter is null)
+                throw new ArgumentNullException(nameof(unitConverter));
+
+            var quantities = typeof(Length)
+                .Wrap()
+                .Assembly
+                .GetExportedTypes()
+                .Where(t => typeof(IQuantity).Wrap().IsAssignableFrom(t));
+
+            foreach(var quantity in quantities)
+            {
+                var registerMethod = quantity.GetMethod(nameof(Length.RegisterDefaultConversions), BindingFlags.NonPublic | BindingFlags.Static);
+                registerMethod?.Invoke(null, new object[]{unitConverter});
+            }
         }
 
         /// <summary>

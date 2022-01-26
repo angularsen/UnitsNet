@@ -110,109 +110,6 @@ namespace UnitsNet
                     new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.TonnePerCubicMillimeter, "TonnesPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Tonne)),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.MassConcentration);
-
-            // Register in default unit converter: BaseUnit -> MassConcentrationUnit
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.CentigramPerDeciliter, quantity => quantity.ToUnit(MassConcentrationUnit.CentigramPerDeciliter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.CentigramPerLiter, quantity => quantity.ToUnit(MassConcentrationUnit.CentigramPerLiter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.CentigramPerMicroliter, quantity => quantity.ToUnit(MassConcentrationUnit.CentigramPerMicroliter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.CentigramPerMilliliter, quantity => quantity.ToUnit(MassConcentrationUnit.CentigramPerMilliliter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.DecigramPerDeciliter, quantity => quantity.ToUnit(MassConcentrationUnit.DecigramPerDeciliter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.DecigramPerLiter, quantity => quantity.ToUnit(MassConcentrationUnit.DecigramPerLiter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.DecigramPerMicroliter, quantity => quantity.ToUnit(MassConcentrationUnit.DecigramPerMicroliter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.DecigramPerMilliliter, quantity => quantity.ToUnit(MassConcentrationUnit.DecigramPerMilliliter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.GramPerCubicCentimeter, quantity => quantity.ToUnit(MassConcentrationUnit.GramPerCubicCentimeter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.GramPerCubicMeter, quantity => quantity.ToUnit(MassConcentrationUnit.GramPerCubicMeter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.GramPerCubicMillimeter, quantity => quantity.ToUnit(MassConcentrationUnit.GramPerCubicMillimeter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.GramPerDeciliter, quantity => quantity.ToUnit(MassConcentrationUnit.GramPerDeciliter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.GramPerLiter, quantity => quantity.ToUnit(MassConcentrationUnit.GramPerLiter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.GramPerMicroliter, quantity => quantity.ToUnit(MassConcentrationUnit.GramPerMicroliter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.GramPerMilliliter, quantity => quantity.ToUnit(MassConcentrationUnit.GramPerMilliliter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.KilogramPerCubicCentimeter, quantity => quantity.ToUnit(MassConcentrationUnit.KilogramPerCubicCentimeter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.KilogramPerCubicMillimeter, quantity => quantity.ToUnit(MassConcentrationUnit.KilogramPerCubicMillimeter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.KilogramPerLiter, quantity => quantity.ToUnit(MassConcentrationUnit.KilogramPerLiter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.KilopoundPerCubicFoot, quantity => quantity.ToUnit(MassConcentrationUnit.KilopoundPerCubicFoot));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.KilopoundPerCubicInch, quantity => quantity.ToUnit(MassConcentrationUnit.KilopoundPerCubicInch));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.MicrogramPerCubicMeter, quantity => quantity.ToUnit(MassConcentrationUnit.MicrogramPerCubicMeter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.MicrogramPerDeciliter, quantity => quantity.ToUnit(MassConcentrationUnit.MicrogramPerDeciliter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.MicrogramPerLiter, quantity => quantity.ToUnit(MassConcentrationUnit.MicrogramPerLiter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.MicrogramPerMicroliter, quantity => quantity.ToUnit(MassConcentrationUnit.MicrogramPerMicroliter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.MicrogramPerMilliliter, quantity => quantity.ToUnit(MassConcentrationUnit.MicrogramPerMilliliter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.MilligramPerCubicMeter, quantity => quantity.ToUnit(MassConcentrationUnit.MilligramPerCubicMeter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.MilligramPerDeciliter, quantity => quantity.ToUnit(MassConcentrationUnit.MilligramPerDeciliter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.MilligramPerLiter, quantity => quantity.ToUnit(MassConcentrationUnit.MilligramPerLiter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.MilligramPerMicroliter, quantity => quantity.ToUnit(MassConcentrationUnit.MilligramPerMicroliter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.MilligramPerMilliliter, quantity => quantity.ToUnit(MassConcentrationUnit.MilligramPerMilliliter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.NanogramPerDeciliter, quantity => quantity.ToUnit(MassConcentrationUnit.NanogramPerDeciliter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.NanogramPerLiter, quantity => quantity.ToUnit(MassConcentrationUnit.NanogramPerLiter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.NanogramPerMicroliter, quantity => quantity.ToUnit(MassConcentrationUnit.NanogramPerMicroliter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.NanogramPerMilliliter, quantity => quantity.ToUnit(MassConcentrationUnit.NanogramPerMilliliter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.OuncePerImperialGallon, quantity => quantity.ToUnit(MassConcentrationUnit.OuncePerImperialGallon));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.OuncePerUSGallon, quantity => quantity.ToUnit(MassConcentrationUnit.OuncePerUSGallon));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.PicogramPerDeciliter, quantity => quantity.ToUnit(MassConcentrationUnit.PicogramPerDeciliter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.PicogramPerLiter, quantity => quantity.ToUnit(MassConcentrationUnit.PicogramPerLiter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.PicogramPerMicroliter, quantity => quantity.ToUnit(MassConcentrationUnit.PicogramPerMicroliter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.PicogramPerMilliliter, quantity => quantity.ToUnit(MassConcentrationUnit.PicogramPerMilliliter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.PoundPerCubicFoot, quantity => quantity.ToUnit(MassConcentrationUnit.PoundPerCubicFoot));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.PoundPerCubicInch, quantity => quantity.ToUnit(MassConcentrationUnit.PoundPerCubicInch));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.PoundPerImperialGallon, quantity => quantity.ToUnit(MassConcentrationUnit.PoundPerImperialGallon));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.PoundPerUSGallon, quantity => quantity.ToUnit(MassConcentrationUnit.PoundPerUSGallon));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.SlugPerCubicFoot, quantity => quantity.ToUnit(MassConcentrationUnit.SlugPerCubicFoot));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.TonnePerCubicCentimeter, quantity => quantity.ToUnit(MassConcentrationUnit.TonnePerCubicCentimeter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.TonnePerCubicMeter, quantity => quantity.ToUnit(MassConcentrationUnit.TonnePerCubicMeter));
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.TonnePerCubicMillimeter, quantity => quantity.ToUnit(MassConcentrationUnit.TonnePerCubicMillimeter));
-            
-            // Register in default unit converter: BaseUnit <-> BaseUnit
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity);
-
-            // Register in default unit converter: MassConcentrationUnit -> BaseUnit
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.CentigramPerDeciliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.CentigramPerLiter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.CentigramPerMicroliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.CentigramPerMilliliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.DecigramPerDeciliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.DecigramPerLiter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.DecigramPerMicroliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.DecigramPerMilliliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.GramPerCubicCentimeter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.GramPerCubicMeter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.GramPerCubicMillimeter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.GramPerDeciliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.GramPerLiter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.GramPerMicroliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.GramPerMilliliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicCentimeter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMillimeter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerLiter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilopoundPerCubicFoot, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilopoundPerCubicInch, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.MicrogramPerCubicMeter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.MicrogramPerDeciliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.MicrogramPerLiter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.MicrogramPerMicroliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.MicrogramPerMilliliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.MilligramPerCubicMeter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.MilligramPerDeciliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.MilligramPerLiter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.MilligramPerMicroliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.MilligramPerMilliliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.NanogramPerDeciliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.NanogramPerLiter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.NanogramPerMicroliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.NanogramPerMilliliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.OuncePerImperialGallon, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.OuncePerUSGallon, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.PicogramPerDeciliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.PicogramPerLiter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.PicogramPerMicroliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.PicogramPerMilliliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.PoundPerCubicFoot, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.PoundPerCubicInch, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.PoundPerImperialGallon, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.PoundPerUSGallon, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.SlugPerCubicFoot, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.TonnePerCubicCentimeter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.TonnePerCubicMeter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<MassConcentration>(MassConcentrationUnit.TonnePerCubicMillimeter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
         }
 
         /// <summary>
@@ -574,6 +471,119 @@ namespace UnitsNet
         #endregion
 
         #region Static Methods
+
+        /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
+        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
+        {
+            if(unitConverter is null)
+                throw new ArgumentNullException(nameof(unitConverter));
+
+            // Register in unit converter: BaseUnit -> MassConcentrationUnit
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.CentigramPerDeciliter, quantity => quantity.ToUnit(MassConcentrationUnit.CentigramPerDeciliter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.CentigramPerLiter, quantity => quantity.ToUnit(MassConcentrationUnit.CentigramPerLiter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.CentigramPerMicroliter, quantity => quantity.ToUnit(MassConcentrationUnit.CentigramPerMicroliter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.CentigramPerMilliliter, quantity => quantity.ToUnit(MassConcentrationUnit.CentigramPerMilliliter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.DecigramPerDeciliter, quantity => quantity.ToUnit(MassConcentrationUnit.DecigramPerDeciliter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.DecigramPerLiter, quantity => quantity.ToUnit(MassConcentrationUnit.DecigramPerLiter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.DecigramPerMicroliter, quantity => quantity.ToUnit(MassConcentrationUnit.DecigramPerMicroliter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.DecigramPerMilliliter, quantity => quantity.ToUnit(MassConcentrationUnit.DecigramPerMilliliter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.GramPerCubicCentimeter, quantity => quantity.ToUnit(MassConcentrationUnit.GramPerCubicCentimeter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.GramPerCubicMeter, quantity => quantity.ToUnit(MassConcentrationUnit.GramPerCubicMeter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.GramPerCubicMillimeter, quantity => quantity.ToUnit(MassConcentrationUnit.GramPerCubicMillimeter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.GramPerDeciliter, quantity => quantity.ToUnit(MassConcentrationUnit.GramPerDeciliter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.GramPerLiter, quantity => quantity.ToUnit(MassConcentrationUnit.GramPerLiter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.GramPerMicroliter, quantity => quantity.ToUnit(MassConcentrationUnit.GramPerMicroliter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.GramPerMilliliter, quantity => quantity.ToUnit(MassConcentrationUnit.GramPerMilliliter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.KilogramPerCubicCentimeter, quantity => quantity.ToUnit(MassConcentrationUnit.KilogramPerCubicCentimeter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.KilogramPerCubicMillimeter, quantity => quantity.ToUnit(MassConcentrationUnit.KilogramPerCubicMillimeter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.KilogramPerLiter, quantity => quantity.ToUnit(MassConcentrationUnit.KilogramPerLiter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.KilopoundPerCubicFoot, quantity => quantity.ToUnit(MassConcentrationUnit.KilopoundPerCubicFoot));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.KilopoundPerCubicInch, quantity => quantity.ToUnit(MassConcentrationUnit.KilopoundPerCubicInch));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.MicrogramPerCubicMeter, quantity => quantity.ToUnit(MassConcentrationUnit.MicrogramPerCubicMeter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.MicrogramPerDeciliter, quantity => quantity.ToUnit(MassConcentrationUnit.MicrogramPerDeciliter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.MicrogramPerLiter, quantity => quantity.ToUnit(MassConcentrationUnit.MicrogramPerLiter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.MicrogramPerMicroliter, quantity => quantity.ToUnit(MassConcentrationUnit.MicrogramPerMicroliter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.MicrogramPerMilliliter, quantity => quantity.ToUnit(MassConcentrationUnit.MicrogramPerMilliliter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.MilligramPerCubicMeter, quantity => quantity.ToUnit(MassConcentrationUnit.MilligramPerCubicMeter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.MilligramPerDeciliter, quantity => quantity.ToUnit(MassConcentrationUnit.MilligramPerDeciliter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.MilligramPerLiter, quantity => quantity.ToUnit(MassConcentrationUnit.MilligramPerLiter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.MilligramPerMicroliter, quantity => quantity.ToUnit(MassConcentrationUnit.MilligramPerMicroliter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.MilligramPerMilliliter, quantity => quantity.ToUnit(MassConcentrationUnit.MilligramPerMilliliter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.NanogramPerDeciliter, quantity => quantity.ToUnit(MassConcentrationUnit.NanogramPerDeciliter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.NanogramPerLiter, quantity => quantity.ToUnit(MassConcentrationUnit.NanogramPerLiter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.NanogramPerMicroliter, quantity => quantity.ToUnit(MassConcentrationUnit.NanogramPerMicroliter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.NanogramPerMilliliter, quantity => quantity.ToUnit(MassConcentrationUnit.NanogramPerMilliliter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.OuncePerImperialGallon, quantity => quantity.ToUnit(MassConcentrationUnit.OuncePerImperialGallon));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.OuncePerUSGallon, quantity => quantity.ToUnit(MassConcentrationUnit.OuncePerUSGallon));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.PicogramPerDeciliter, quantity => quantity.ToUnit(MassConcentrationUnit.PicogramPerDeciliter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.PicogramPerLiter, quantity => quantity.ToUnit(MassConcentrationUnit.PicogramPerLiter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.PicogramPerMicroliter, quantity => quantity.ToUnit(MassConcentrationUnit.PicogramPerMicroliter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.PicogramPerMilliliter, quantity => quantity.ToUnit(MassConcentrationUnit.PicogramPerMilliliter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.PoundPerCubicFoot, quantity => quantity.ToUnit(MassConcentrationUnit.PoundPerCubicFoot));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.PoundPerCubicInch, quantity => quantity.ToUnit(MassConcentrationUnit.PoundPerCubicInch));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.PoundPerImperialGallon, quantity => quantity.ToUnit(MassConcentrationUnit.PoundPerImperialGallon));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.PoundPerUSGallon, quantity => quantity.ToUnit(MassConcentrationUnit.PoundPerUSGallon));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.SlugPerCubicFoot, quantity => quantity.ToUnit(MassConcentrationUnit.SlugPerCubicFoot));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.TonnePerCubicCentimeter, quantity => quantity.ToUnit(MassConcentrationUnit.TonnePerCubicCentimeter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.TonnePerCubicMeter, quantity => quantity.ToUnit(MassConcentrationUnit.TonnePerCubicMeter));
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.TonnePerCubicMillimeter, quantity => quantity.ToUnit(MassConcentrationUnit.TonnePerCubicMillimeter));
+            
+            // Register in unit converter: BaseUnit <-> BaseUnit
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity);
+
+            // Register in unit converter: MassConcentrationUnit -> BaseUnit
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.CentigramPerDeciliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.CentigramPerLiter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.CentigramPerMicroliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.CentigramPerMilliliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.DecigramPerDeciliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.DecigramPerLiter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.DecigramPerMicroliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.DecigramPerMilliliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.GramPerCubicCentimeter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.GramPerCubicMeter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.GramPerCubicMillimeter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.GramPerDeciliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.GramPerLiter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.GramPerMicroliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.GramPerMilliliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicCentimeter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMillimeter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerLiter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilopoundPerCubicFoot, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilopoundPerCubicInch, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.MicrogramPerCubicMeter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.MicrogramPerDeciliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.MicrogramPerLiter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.MicrogramPerMicroliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.MicrogramPerMilliliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.MilligramPerCubicMeter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.MilligramPerDeciliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.MilligramPerLiter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.MilligramPerMicroliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.MilligramPerMilliliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.NanogramPerDeciliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.NanogramPerLiter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.NanogramPerMicroliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.NanogramPerMilliliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.OuncePerImperialGallon, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.OuncePerUSGallon, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.PicogramPerDeciliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.PicogramPerLiter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.PicogramPerMicroliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.PicogramPerMilliliter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.PoundPerCubicFoot, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.PoundPerCubicInch, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.PoundPerImperialGallon, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.PoundPerUSGallon, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.SlugPerCubicFoot, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.TonnePerCubicCentimeter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.TonnePerCubicMeter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.TonnePerCubicMillimeter, MassConcentrationUnit.KilogramPerCubicMeter, quantity => quantity.ToBaseUnit());
+        }
 
         /// <summary>
         ///     Get unit abbreviation string.

@@ -81,51 +81,6 @@ namespace UnitsNet
                     new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PicolitersPerMililiter, "PicolitersPerMililiter", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.VolumeConcentration);
-
-            // Register in default unit converter: BaseUnit -> VolumeConcentrationUnit
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.CentilitersPerLiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.CentilitersPerLiter));
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.CentilitersPerMililiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.CentilitersPerMililiter));
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.DecilitersPerLiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.DecilitersPerLiter));
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.DecilitersPerMililiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.DecilitersPerMililiter));
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.LitersPerLiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.LitersPerLiter));
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.LitersPerMililiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.LitersPerMililiter));
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.MicrolitersPerLiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.MicrolitersPerLiter));
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.MicrolitersPerMililiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.MicrolitersPerMililiter));
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.MillilitersPerLiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.MillilitersPerLiter));
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.MillilitersPerMililiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.MillilitersPerMililiter));
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.NanolitersPerLiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.NanolitersPerLiter));
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.NanolitersPerMililiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.NanolitersPerMililiter));
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PartPerBillion, quantity => quantity.ToUnit(VolumeConcentrationUnit.PartPerBillion));
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PartPerMillion, quantity => quantity.ToUnit(VolumeConcentrationUnit.PartPerMillion));
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PartPerThousand, quantity => quantity.ToUnit(VolumeConcentrationUnit.PartPerThousand));
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PartPerTrillion, quantity => quantity.ToUnit(VolumeConcentrationUnit.PartPerTrillion));
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.Percent, quantity => quantity.ToUnit(VolumeConcentrationUnit.Percent));
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PicolitersPerLiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.PicolitersPerLiter));
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PicolitersPerMililiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.PicolitersPerMililiter));
-            
-            // Register in default unit converter: BaseUnit <-> BaseUnit
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.DecimalFraction, quantity => quantity);
-
-            // Register in default unit converter: VolumeConcentrationUnit -> BaseUnit
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.CentilitersPerLiter, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.CentilitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecilitersPerLiter, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecilitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.LitersPerLiter, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.LitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.MicrolitersPerLiter, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.MicrolitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.MillilitersPerLiter, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.MillilitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.NanolitersPerLiter, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.NanolitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.PartPerBillion, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.PartPerMillion, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.PartPerThousand, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.PartPerTrillion, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.Percent, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.PicolitersPerLiter, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.PicolitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
         }
 
         /// <summary>
@@ -342,6 +297,61 @@ namespace UnitsNet
         #endregion
 
         #region Static Methods
+
+        /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
+        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
+        {
+            if(unitConverter is null)
+                throw new ArgumentNullException(nameof(unitConverter));
+
+            // Register in unit converter: BaseUnit -> VolumeConcentrationUnit
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.CentilitersPerLiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.CentilitersPerLiter));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.CentilitersPerMililiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.CentilitersPerMililiter));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.DecilitersPerLiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.DecilitersPerLiter));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.DecilitersPerMililiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.DecilitersPerMililiter));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.LitersPerLiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.LitersPerLiter));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.LitersPerMililiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.LitersPerMililiter));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.MicrolitersPerLiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.MicrolitersPerLiter));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.MicrolitersPerMililiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.MicrolitersPerMililiter));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.MillilitersPerLiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.MillilitersPerLiter));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.MillilitersPerMililiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.MillilitersPerMililiter));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.NanolitersPerLiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.NanolitersPerLiter));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.NanolitersPerMililiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.NanolitersPerMililiter));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PartPerBillion, quantity => quantity.ToUnit(VolumeConcentrationUnit.PartPerBillion));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PartPerMillion, quantity => quantity.ToUnit(VolumeConcentrationUnit.PartPerMillion));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PartPerThousand, quantity => quantity.ToUnit(VolumeConcentrationUnit.PartPerThousand));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PartPerTrillion, quantity => quantity.ToUnit(VolumeConcentrationUnit.PartPerTrillion));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.Percent, quantity => quantity.ToUnit(VolumeConcentrationUnit.Percent));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PicolitersPerLiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.PicolitersPerLiter));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PicolitersPerMililiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.PicolitersPerMililiter));
+            
+            // Register in unit converter: BaseUnit <-> BaseUnit
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.DecimalFraction, quantity => quantity);
+
+            // Register in unit converter: VolumeConcentrationUnit -> BaseUnit
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.CentilitersPerLiter, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.CentilitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecilitersPerLiter, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecilitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.LitersPerLiter, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.LitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.MicrolitersPerLiter, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.MicrolitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.MillilitersPerLiter, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.MillilitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.NanolitersPerLiter, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.NanolitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.PartPerBillion, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.PartPerMillion, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.PartPerThousand, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.PartPerTrillion, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.Percent, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.PicolitersPerLiter, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.PicolitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
+        }
 
         /// <summary>
         ///     Get unit abbreviation string.

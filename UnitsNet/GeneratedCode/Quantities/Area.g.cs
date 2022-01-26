@@ -72,39 +72,6 @@ namespace UnitsNet
                     new UnitInfo<AreaUnit>(AreaUnit.UsSurveySquareFoot, "UsSurveySquareFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot)),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Area);
-
-            // Register in default unit converter: BaseUnit -> AreaUnit
-            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.Acre, quantity => quantity.ToUnit(AreaUnit.Acre));
-            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.Hectare, quantity => quantity.ToUnit(AreaUnit.Hectare));
-            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareCentimeter, quantity => quantity.ToUnit(AreaUnit.SquareCentimeter));
-            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareDecimeter, quantity => quantity.ToUnit(AreaUnit.SquareDecimeter));
-            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareFoot, quantity => quantity.ToUnit(AreaUnit.SquareFoot));
-            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareInch, quantity => quantity.ToUnit(AreaUnit.SquareInch));
-            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareKilometer, quantity => quantity.ToUnit(AreaUnit.SquareKilometer));
-            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareMicrometer, quantity => quantity.ToUnit(AreaUnit.SquareMicrometer));
-            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareMile, quantity => quantity.ToUnit(AreaUnit.SquareMile));
-            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareMillimeter, quantity => quantity.ToUnit(AreaUnit.SquareMillimeter));
-            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareNauticalMile, quantity => quantity.ToUnit(AreaUnit.SquareNauticalMile));
-            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareYard, quantity => quantity.ToUnit(AreaUnit.SquareYard));
-            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.UsSurveySquareFoot, quantity => quantity.ToUnit(AreaUnit.UsSurveySquareFoot));
-            
-            // Register in default unit converter: BaseUnit <-> BaseUnit
-            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareMeter, quantity => quantity);
-
-            // Register in default unit converter: AreaUnit -> BaseUnit
-            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.Acre, AreaUnit.SquareMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.Hectare, AreaUnit.SquareMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareCentimeter, AreaUnit.SquareMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareDecimeter, AreaUnit.SquareMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareFoot, AreaUnit.SquareMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareInch, AreaUnit.SquareMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareKilometer, AreaUnit.SquareMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareMicrometer, AreaUnit.SquareMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareMile, AreaUnit.SquareMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareMillimeter, AreaUnit.SquareMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareNauticalMile, AreaUnit.SquareMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.SquareYard, AreaUnit.SquareMeter, quantity => quantity.ToBaseUnit());
-            UnitConverter.Default.SetConversionFunction<Area>(AreaUnit.UsSurveySquareFoot, AreaUnit.SquareMeter, quantity => quantity.ToBaseUnit());
         }
 
         /// <summary>
@@ -291,6 +258,49 @@ namespace UnitsNet
         #endregion
 
         #region Static Methods
+
+        /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
+        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
+        {
+            if(unitConverter is null)
+                throw new ArgumentNullException(nameof(unitConverter));
+
+            // Register in unit converter: BaseUnit -> AreaUnit
+            unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.Acre, quantity => quantity.ToUnit(AreaUnit.Acre));
+            unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.Hectare, quantity => quantity.ToUnit(AreaUnit.Hectare));
+            unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareCentimeter, quantity => quantity.ToUnit(AreaUnit.SquareCentimeter));
+            unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareDecimeter, quantity => quantity.ToUnit(AreaUnit.SquareDecimeter));
+            unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareFoot, quantity => quantity.ToUnit(AreaUnit.SquareFoot));
+            unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareInch, quantity => quantity.ToUnit(AreaUnit.SquareInch));
+            unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareKilometer, quantity => quantity.ToUnit(AreaUnit.SquareKilometer));
+            unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareMicrometer, quantity => quantity.ToUnit(AreaUnit.SquareMicrometer));
+            unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareMile, quantity => quantity.ToUnit(AreaUnit.SquareMile));
+            unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareMillimeter, quantity => quantity.ToUnit(AreaUnit.SquareMillimeter));
+            unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareNauticalMile, quantity => quantity.ToUnit(AreaUnit.SquareNauticalMile));
+            unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareYard, quantity => quantity.ToUnit(AreaUnit.SquareYard));
+            unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.UsSurveySquareFoot, quantity => quantity.ToUnit(AreaUnit.UsSurveySquareFoot));
+            
+            // Register in unit converter: BaseUnit <-> BaseUnit
+            unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareMeter, quantity => quantity);
+
+            // Register in unit converter: AreaUnit -> BaseUnit
+            unitConverter.SetConversionFunction<Area>(AreaUnit.Acre, AreaUnit.SquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Area>(AreaUnit.Hectare, AreaUnit.SquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Area>(AreaUnit.SquareCentimeter, AreaUnit.SquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Area>(AreaUnit.SquareDecimeter, AreaUnit.SquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Area>(AreaUnit.SquareFoot, AreaUnit.SquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Area>(AreaUnit.SquareInch, AreaUnit.SquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Area>(AreaUnit.SquareKilometer, AreaUnit.SquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMicrometer, AreaUnit.SquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMile, AreaUnit.SquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMillimeter, AreaUnit.SquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Area>(AreaUnit.SquareNauticalMile, AreaUnit.SquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Area>(AreaUnit.SquareYard, AreaUnit.SquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Area>(AreaUnit.UsSurveySquareFoot, AreaUnit.SquareMeter, quantity => quantity.ToBaseUnit());
+        }
 
         /// <summary>
         ///     Get unit abbreviation string.

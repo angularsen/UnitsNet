@@ -62,13 +62,6 @@ namespace UnitsNet
                     new UnitInfo<LuminousIntensityUnit>(LuminousIntensityUnit.Candela, "Candela", new BaseUnits(luminousIntensity: LuminousIntensityUnit.Candela)),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.LuminousIntensity);
-
-            // Register in default unit converter: BaseUnit -> LuminousIntensityUnit
-            
-            // Register in default unit converter: BaseUnit <-> BaseUnit
-            UnitConverter.Default.SetConversionFunction<LuminousIntensity>(LuminousIntensityUnit.Candela, LuminousIntensityUnit.Candela, quantity => quantity);
-
-            // Register in default unit converter: LuminousIntensityUnit -> BaseUnit
         }
 
         /// <summary>
@@ -190,6 +183,23 @@ namespace UnitsNet
         #endregion
 
         #region Static Methods
+
+        /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
+        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
+        {
+            if(unitConverter is null)
+                throw new ArgumentNullException(nameof(unitConverter));
+
+            // Register in unit converter: BaseUnit -> LuminousIntensityUnit
+            
+            // Register in unit converter: BaseUnit <-> BaseUnit
+            unitConverter.SetConversionFunction<LuminousIntensity>(LuminousIntensityUnit.Candela, LuminousIntensityUnit.Candela, quantity => quantity);
+
+            // Register in unit converter: LuminousIntensityUnit -> BaseUnit
+        }
 
         /// <summary>
         ///     Get unit abbreviation string.
