@@ -113,7 +113,8 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricConductance;
+        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
+        public static QuantityType QuantityType { get; } = Info!.QuantityType;
 
         /// <summary>
         ///     All units of measurement for the ElectricConductance quantity.
@@ -147,7 +148,8 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public QuantityType Type => ElectricConductance.QuantityType;
+        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
+        public QuantityType Type => Info.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -483,7 +485,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricConductance.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
