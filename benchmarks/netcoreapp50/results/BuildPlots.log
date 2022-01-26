@@ -39,7 +39,7 @@ C:/rtools40/mingw32/bin/gcc -shared -s -static-libgcc -o glue.dll tmp.def glue.o
 "C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c trim.c -o trim.o
 "C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c init.c -o init.o
 "C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c glue.c -o glue.o
-	C:\Users\runneradmin\AppData\Local\Temp\RtmpUjxoVN\downloaded_packages
+	C:\Users\runneradmin\AppData\Local\Temp\RtmpIJ69sj\downloaded_packages
 The downloaded binary packages are in
 package 'R.devices' successfully unpacked and MD5 sums checked
 package 'Rcpp' successfully unpacked and MD5 sums checked
@@ -65,7 +65,6 @@ package 'ellipsis' successfully unpacked and MD5 sums checked
 package 'withr' successfully unpacked and MD5 sums checked
 package 'tibble' successfully unpacked and MD5 sums checked
 package 'scales' successfully unpacked and MD5 sums checked
-package 'rlang' successfully unpacked and MD5 sums checked
 package 'isoband' successfully unpacked and MD5 sums checked
 package 'gtable' successfully unpacked and MD5 sums checked
 package 'digest' successfully unpacked and MD5 sums checked
@@ -81,12 +80,16 @@ package 'labeling' successfully unpacked and MD5 sums checked
 package 'farver' successfully unpacked and MD5 sums checked
 package 'colorspace' successfully unpacked and MD5 sums checked
 magrittr  2.0.1  2.0.2              TRUE
+rlang    0.4.12  1.0.0              TRUE
 glue      1.6.0  1.6.1              TRUE
          binary source needs_compilation
   There are binary versions available but the source versions are later:
 Execution halted
 Error in library(ggplot2) : there is no package called 'ggplot2'
-	'C:\Users\runneradmin\AppData\Local\Temp\RtmpUjxoVN\downloaded_packages'
+  installation of package 'rlang' had non-zero exit status
+In install.packages(new.packages, lib = Sys.getenv("R_LIBS_USER"),  :
+Warning message:
+	'C:\Users\runneradmin\AppData\Local\Temp\RtmpIJ69sj\downloaded_packages'
 The downloaded source packages are in
 * DONE (magrittr)
 ** testing if installed package keeps a record of temporary installation path
@@ -113,6 +116,17 @@ installing to C:/Users/runneradmin/R/win-library/4.1/00LOCK-magrittr/00new/magri
 ** using staged installation
 ** package 'magrittr' successfully unpacked and MD5 sums checked
 * installing *source* package 'magrittr' ...
+please set environment variable 'TZ'
+  unable to identify current timezone 'C':
+Warning in strptime(xx, f, tz = tz) :
+* removing 'C:/Users/runneradmin/R/win-library/4.1/rlang'
+ERROR: compilation failed for package 'rlang'
+mingw32-make: *** No rule to make target '$(CXX11STD)''.  Stop.
+*** arch - i386
+** libs
+** using staged installation
+** package 'rlang' successfully unpacked and MD5 sums checked
+* installing *source* package 'rlang' ...
 please set environment variable 'TZ'
   unable to identify current timezone 'C':
 Warning in strptime(xx, f, tz = tz) :
@@ -148,11 +162,15 @@ downloaded 260 KB
 ==================================================
 Content type 'application/x-gzip' length 267039 bytes (260 KB)
 trying URL 'https://cran.rstudio.com/src/contrib/magrittr_2.0.2.tar.gz'
+downloaded 690 KB
+==================================================
+Content type 'application/x-gzip' length 707509 bytes (690 KB)
+trying URL 'https://cran.rstudio.com/src/contrib/rlang_1.0.0.tar.gz'
 downloaded 108 KB
 ==================================================
 Content type 'application/x-gzip' length 110723 bytes (108 KB)
 trying URL 'https://cran.rstudio.com/src/contrib/glue_1.6.1.tar.gz'
-installing the source packages 'glue', 'magrittr'
+installing the source packages 'glue', 'rlang', 'magrittr'
 downloaded 370 KB
 ==================================================
 Content type 'application/zip' length 379551 bytes (370 KB)
@@ -249,10 +267,6 @@ downloaded 545 KB
 ==================================================
 Content type 'application/zip' length 558362 bytes (545 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/scales_1.1.1.zip'
-downloaded 1.1 MB
-==================================================
-Content type 'application/zip' length 1199355 bytes (1.1 MB)
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/rlang_0.4.12.zip'
 downloaded 2.6 MB
 ==================================================
 Content type 'application/zip' length 2726820 bytes (2.6 MB)
