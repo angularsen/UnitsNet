@@ -1,4 +1,4 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -194,6 +194,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref=""QuantityType"" /> of this quantity.
         /// </summary>
+        [Obsolete(""QuantityType will be removed in the future. Use the Info property instead."")]
         public static QuantityType QuantityType {{ get; }} = QuantityType.{_quantity.Name};
 
         /// <summary>
@@ -235,6 +236,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref=""QuantityType"" /> of this quantity.
         /// </summary>
+        [Obsolete(""QuantityType will be removed in the future. Use the Info property instead."")]
         public QuantityType Type => {_quantity.Name}.QuantityType;
 
         /// <summary>
@@ -585,7 +587,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current {_quantity.Name}.</returns>
         public override int GetHashCode()
         {{
-            return new {{ QuantityType, Value, Unit }}.GetHashCode();
+            return new {{ Info.Name, Value, Unit }}.GetHashCode();
         }}
 
         #endregion

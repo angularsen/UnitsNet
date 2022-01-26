@@ -15,6 +15,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
         QuantityType Type { get; }
 
         /// <summary>
