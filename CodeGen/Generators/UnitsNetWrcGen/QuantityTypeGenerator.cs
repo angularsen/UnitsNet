@@ -16,6 +16,9 @@ namespace CodeGen.Generators.UnitsNetWrcGen
             Writer.WL(GeneratedFileHeader);
             Writer.WL(@"
 // ReSharper disable once CheckNamespace
+
+using System;
+
 namespace UnitsNet
 {
     /// <summary>
