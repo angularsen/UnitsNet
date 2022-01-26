@@ -334,9 +334,6 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            if(unitConverter is null)
-                throw new ArgumentNullException(nameof(unitConverter));
-
             // Register in unit converter: BaseUnit -> LinearPowerDensityUnit
             unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.GigawattPerCentimeter, quantity => quantity.ToUnit(LinearPowerDensityUnit.GigawattPerCentimeter));
             unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.GigawattPerFoot, quantity => quantity.ToUnit(LinearPowerDensityUnit.GigawattPerFoot));

@@ -328,9 +328,6 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            if(unitConverter is null)
-                throw new ArgumentNullException(nameof(unitConverter));
-
             // Register in unit converter: BaseUnit -> MassFractionUnit
             unitConverter.SetConversionFunction<MassFraction>(MassFractionUnit.DecimalFraction, MassFractionUnit.CentigramPerGram, quantity => quantity.ToUnit(MassFractionUnit.CentigramPerGram));
             unitConverter.SetConversionFunction<MassFraction>(MassFractionUnit.DecimalFraction, MassFractionUnit.CentigramPerKilogram, quantity => quantity.ToUnit(MassFractionUnit.CentigramPerKilogram));

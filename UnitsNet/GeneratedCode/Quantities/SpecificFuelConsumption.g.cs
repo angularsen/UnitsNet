@@ -208,9 +208,6 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            if(unitConverter is null)
-                throw new ArgumentNullException(nameof(unitConverter));
-
             // Register in unit converter: BaseUnit -> SpecificFuelConsumptionUnit
             unitConverter.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, quantity => quantity.ToUnit(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour));
             unitConverter.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, quantity => quantity.ToUnit(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond));

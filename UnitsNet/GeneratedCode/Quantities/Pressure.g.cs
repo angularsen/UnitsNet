@@ -451,9 +451,6 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            if(unitConverter is null)
-                throw new ArgumentNullException(nameof(unitConverter));
-
             // Register in unit converter: BaseUnit -> PressureUnit
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.Atmosphere, quantity => quantity.ToUnit(PressureUnit.Atmosphere));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.Bar, quantity => quantity.ToUnit(PressureUnit.Bar));

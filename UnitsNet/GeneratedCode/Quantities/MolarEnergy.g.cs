@@ -199,9 +199,6 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            if(unitConverter is null)
-                throw new ArgumentNullException(nameof(unitConverter));
-
             // Register in unit converter: BaseUnit -> MolarEnergyUnit
             unitConverter.SetConversionFunction<MolarEnergy>(MolarEnergyUnit.JoulePerMole, MolarEnergyUnit.KilojoulePerMole, quantity => quantity.ToUnit(MolarEnergyUnit.KilojoulePerMole));
             unitConverter.SetConversionFunction<MolarEnergy>(MolarEnergyUnit.JoulePerMole, MolarEnergyUnit.MegajoulePerMole, quantity => quantity.ToUnit(MolarEnergyUnit.MegajoulePerMole));

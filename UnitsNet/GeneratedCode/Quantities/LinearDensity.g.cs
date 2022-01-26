@@ -268,9 +268,6 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            if(unitConverter is null)
-                throw new ArgumentNullException(nameof(unitConverter));
-
             // Register in unit converter: BaseUnit -> LinearDensityUnit
             unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.GramPerCentimeter, quantity => quantity.ToUnit(LinearDensityUnit.GramPerCentimeter));
             unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.GramPerMeter, quantity => quantity.ToUnit(LinearDensityUnit.GramPerMeter));

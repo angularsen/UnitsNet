@@ -304,9 +304,6 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            if(unitConverter is null)
-                throw new ArgumentNullException(nameof(unitConverter));
-
             // Register in unit converter: BaseUnit -> VolumeConcentrationUnit
             unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.CentilitersPerLiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.CentilitersPerLiter));
             unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.CentilitersPerMililiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.CentilitersPerMililiter));

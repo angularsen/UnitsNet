@@ -247,9 +247,6 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            if(unitConverter is null)
-                throw new ArgumentNullException(nameof(unitConverter));
-
             // Register in unit converter: BaseUnit -> FrequencyUnit
             unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.BeatPerMinute, quantity => quantity.ToUnit(FrequencyUnit.BeatPerMinute));
             unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.BUnit, quantity => quantity.ToUnit(FrequencyUnit.BUnit));

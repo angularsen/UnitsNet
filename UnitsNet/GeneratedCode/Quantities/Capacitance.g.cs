@@ -226,9 +226,6 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            if(unitConverter is null)
-                throw new ArgumentNullException(nameof(unitConverter));
-
             // Register in unit converter: BaseUnit -> CapacitanceUnit
             unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Farad, CapacitanceUnit.Kilofarad, quantity => quantity.ToUnit(CapacitanceUnit.Kilofarad));
             unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Farad, CapacitanceUnit.Megafarad, quantity => quantity.ToUnit(CapacitanceUnit.Megafarad));

@@ -247,9 +247,6 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            if(unitConverter is null)
-                throw new ArgumentNullException(nameof(unitConverter));
-
             // Register in unit converter: BaseUnit -> DurationUnit
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Day, quantity => quantity.ToUnit(DurationUnit.Day));
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Hour, quantity => quantity.ToUnit(DurationUnit.Hour));

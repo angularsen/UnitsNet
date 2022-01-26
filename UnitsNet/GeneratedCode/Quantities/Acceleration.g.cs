@@ -265,9 +265,6 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            if(unitConverter is null)
-                throw new ArgumentNullException(nameof(unitConverter));
-
             // Register in unit converter: BaseUnit -> AccelerationUnit
             unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.CentimeterPerSecondSquared, quantity => quantity.ToUnit(AccelerationUnit.CentimeterPerSecondSquared));
             unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.DecimeterPerSecondSquared, quantity => quantity.ToUnit(AccelerationUnit.DecimeterPerSecondSquared));

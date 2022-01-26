@@ -268,9 +268,6 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            if(unitConverter is null)
-                throw new ArgumentNullException(nameof(unitConverter));
-
             // Register in unit converter: BaseUnit -> ElectricResistivityUnit
             unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.KiloohmCentimeter, quantity => quantity.ToUnit(ElectricResistivityUnit.KiloohmCentimeter));
             unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.KiloohmMeter, quantity => quantity.ToUnit(ElectricResistivityUnit.KiloohmMeter));

@@ -336,9 +336,6 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            if(unitConverter is null)
-                throw new ArgumentNullException(nameof(unitConverter));
-
             // Register in unit converter: BaseUnit -> PowerUnit
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.BoilerHorsepower, quantity => quantity.ToUnit(PowerUnit.BoilerHorsepower));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.BritishThermalUnitPerHour, quantity => quantity.ToUnit(PowerUnit.BritishThermalUnitPerHour));
