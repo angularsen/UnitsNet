@@ -54,11 +54,6 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<VitaminAUnit>("VitaminA",
-                new UnitInfo<VitaminAUnit>[] {
-                    new UnitInfo<VitaminAUnit>(VitaminAUnit.InternationalUnit, "InternationalUnits", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.VitaminA);
         }
 
         /// <summary>
@@ -98,7 +93,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<VitaminAUnit> Info { get; }
+        public static VitaminA.VitaminAQuantityInfo Info { get; } = new VitaminA.VitaminAQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -872,5 +867,25 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class VitaminAQuantityInfo : QuantityInfo<VitaminAUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal VitaminAQuantityInfo() :
+                base("VitaminA", VitaminA.BaseUnit, VitaminA.Zero, VitaminA.BaseDimensions, QuantityType.VitaminA)
+            {
+                InternationalUnit = new UnitInfo<VitaminAUnit>(VitaminAUnit.InternationalUnit, "InternationalUnits", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VitaminAUnit}"/> for <see cref="VitaminAUnit.InternationalUnit"/>
+            /// </summary>
+            public UnitInfo<VitaminAUnit> InternationalUnit { get; }
+
+        }
     }
 }

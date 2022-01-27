@@ -56,15 +56,6 @@ namespace UnitsNet
         static Illuminance()
         {
             BaseDimensions = new BaseDimensions(-2, 0, 0, 0, 0, 0, 1);
-
-            Info = new QuantityInfo<IlluminanceUnit>("Illuminance",
-                new UnitInfo<IlluminanceUnit>[] {
-                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Kilolux, "Kilolux", BaseUnits.Undefined),
-                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Lux, "Lux", BaseUnits.Undefined),
-                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Megalux, "Megalux", BaseUnits.Undefined),
-                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Millilux, "Millilux", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Illuminance);
         }
 
         /// <summary>
@@ -104,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<IlluminanceUnit> Info { get; }
+        public static Illuminance.IlluminanceQuantityInfo Info { get; } = new Illuminance.IlluminanceQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -932,5 +923,43 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class IlluminanceQuantityInfo : QuantityInfo<IlluminanceUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal IlluminanceQuantityInfo() :
+                base("Illuminance", Illuminance.BaseUnit, Illuminance.Zero, Illuminance.BaseDimensions, QuantityType.Illuminance)
+            {
+                Kilolux = new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Kilolux, "Kilolux", BaseUnits.Undefined);
+                Lux = new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Lux, "Lux", BaseUnits.Undefined);
+                Megalux = new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Megalux, "Megalux", BaseUnits.Undefined);
+                Millilux = new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Millilux, "Millilux", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{IlluminanceUnit}"/> for <see cref="IlluminanceUnit.Kilolux"/>
+            /// </summary>
+            public UnitInfo<IlluminanceUnit> Kilolux { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{IlluminanceUnit}"/> for <see cref="IlluminanceUnit.Lux"/>
+            /// </summary>
+            public UnitInfo<IlluminanceUnit> Lux { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{IlluminanceUnit}"/> for <see cref="IlluminanceUnit.Megalux"/>
+            /// </summary>
+            public UnitInfo<IlluminanceUnit> Megalux { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{IlluminanceUnit}"/> for <see cref="IlluminanceUnit.Millilux"/>
+            /// </summary>
+            public UnitInfo<IlluminanceUnit> Millilux { get; }
+
+        }
     }
 }

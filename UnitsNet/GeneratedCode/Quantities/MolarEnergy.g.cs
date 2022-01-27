@@ -53,14 +53,6 @@ namespace UnitsNet
         static MolarEnergy()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, -1, 0);
-
-            Info = new QuantityInfo<MolarEnergyUnit>("MolarEnergy",
-                new UnitInfo<MolarEnergyUnit>[] {
-                    new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.JoulePerMole, "JoulesPerMole", BaseUnits.Undefined),
-                    new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.KilojoulePerMole, "KilojoulesPerMole", BaseUnits.Undefined),
-                    new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.MegajoulePerMole, "MegajoulesPerMole", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.MolarEnergy);
         }
 
         /// <summary>
@@ -100,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<MolarEnergyUnit> Info { get; }
+        public static MolarEnergy.MolarEnergyQuantityInfo Info { get; } = new MolarEnergy.MolarEnergyQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -910,5 +902,37 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class MolarEnergyQuantityInfo : QuantityInfo<MolarEnergyUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal MolarEnergyQuantityInfo() :
+                base("MolarEnergy", MolarEnergy.BaseUnit, MolarEnergy.Zero, MolarEnergy.BaseDimensions, QuantityType.MolarEnergy)
+            {
+                JoulePerMole = new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.JoulePerMole, "JoulesPerMole", BaseUnits.Undefined);
+                KilojoulePerMole = new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.KilojoulePerMole, "KilojoulesPerMole", BaseUnits.Undefined);
+                MegajoulePerMole = new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.MegajoulePerMole, "MegajoulesPerMole", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MolarEnergyUnit}"/> for <see cref="MolarEnergyUnit.JoulePerMole"/>
+            /// </summary>
+            public UnitInfo<MolarEnergyUnit> JoulePerMole { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MolarEnergyUnit}"/> for <see cref="MolarEnergyUnit.KilojoulePerMole"/>
+            /// </summary>
+            public UnitInfo<MolarEnergyUnit> KilojoulePerMole { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MolarEnergyUnit}"/> for <see cref="MolarEnergyUnit.MegajoulePerMole"/>
+            /// </summary>
+            public UnitInfo<MolarEnergyUnit> MegajoulePerMole { get; }
+
+        }
     }
 }

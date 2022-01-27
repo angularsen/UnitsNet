@@ -53,25 +53,6 @@ namespace UnitsNet
         static Irradiance()
         {
             BaseDimensions = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<IrradianceUnit>("Irradiance",
-                new UnitInfo<IrradianceUnit>[] {
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.KilowattPerSquareCentimeter, "KilowattsPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.KilowattPerSquareMeter, "KilowattsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MegawattPerSquareCentimeter, "MegawattsPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MegawattPerSquareMeter, "MegawattsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MicrowattPerSquareCentimeter, "MicrowattsPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MicrowattPerSquareMeter, "MicrowattsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MilliwattPerSquareCentimeter, "MilliwattsPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MilliwattPerSquareMeter, "MilliwattsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.NanowattPerSquareCentimeter, "NanowattsPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.NanowattPerSquareMeter, "NanowattsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.PicowattPerSquareCentimeter, "PicowattsPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.PicowattPerSquareMeter, "PicowattsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareCentimeter, "WattsPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareMeter, "WattsPerSquareMeter", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Irradiance);
         }
 
         /// <summary>
@@ -111,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<IrradianceUnit> Info { get; }
+        public static Irradiance.IrradianceQuantityInfo Info { get; } = new Irradiance.IrradianceQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1119,5 +1100,103 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class IrradianceQuantityInfo : QuantityInfo<IrradianceUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal IrradianceQuantityInfo() :
+                base("Irradiance", Irradiance.BaseUnit, Irradiance.Zero, Irradiance.BaseDimensions, QuantityType.Irradiance)
+            {
+                KilowattPerSquareCentimeter = new UnitInfo<IrradianceUnit>(IrradianceUnit.KilowattPerSquareCentimeter, "KilowattsPerSquareCentimeter", BaseUnits.Undefined);
+                KilowattPerSquareMeter = new UnitInfo<IrradianceUnit>(IrradianceUnit.KilowattPerSquareMeter, "KilowattsPerSquareMeter", BaseUnits.Undefined);
+                MegawattPerSquareCentimeter = new UnitInfo<IrradianceUnit>(IrradianceUnit.MegawattPerSquareCentimeter, "MegawattsPerSquareCentimeter", BaseUnits.Undefined);
+                MegawattPerSquareMeter = new UnitInfo<IrradianceUnit>(IrradianceUnit.MegawattPerSquareMeter, "MegawattsPerSquareMeter", BaseUnits.Undefined);
+                MicrowattPerSquareCentimeter = new UnitInfo<IrradianceUnit>(IrradianceUnit.MicrowattPerSquareCentimeter, "MicrowattsPerSquareCentimeter", BaseUnits.Undefined);
+                MicrowattPerSquareMeter = new UnitInfo<IrradianceUnit>(IrradianceUnit.MicrowattPerSquareMeter, "MicrowattsPerSquareMeter", BaseUnits.Undefined);
+                MilliwattPerSquareCentimeter = new UnitInfo<IrradianceUnit>(IrradianceUnit.MilliwattPerSquareCentimeter, "MilliwattsPerSquareCentimeter", BaseUnits.Undefined);
+                MilliwattPerSquareMeter = new UnitInfo<IrradianceUnit>(IrradianceUnit.MilliwattPerSquareMeter, "MilliwattsPerSquareMeter", BaseUnits.Undefined);
+                NanowattPerSquareCentimeter = new UnitInfo<IrradianceUnit>(IrradianceUnit.NanowattPerSquareCentimeter, "NanowattsPerSquareCentimeter", BaseUnits.Undefined);
+                NanowattPerSquareMeter = new UnitInfo<IrradianceUnit>(IrradianceUnit.NanowattPerSquareMeter, "NanowattsPerSquareMeter", BaseUnits.Undefined);
+                PicowattPerSquareCentimeter = new UnitInfo<IrradianceUnit>(IrradianceUnit.PicowattPerSquareCentimeter, "PicowattsPerSquareCentimeter", BaseUnits.Undefined);
+                PicowattPerSquareMeter = new UnitInfo<IrradianceUnit>(IrradianceUnit.PicowattPerSquareMeter, "PicowattsPerSquareMeter", BaseUnits.Undefined);
+                WattPerSquareCentimeter = new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareCentimeter, "WattsPerSquareCentimeter", BaseUnits.Undefined);
+                WattPerSquareMeter = new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareMeter, "WattsPerSquareMeter", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{IrradianceUnit}"/> for <see cref="IrradianceUnit.KilowattPerSquareCentimeter"/>
+            /// </summary>
+            public UnitInfo<IrradianceUnit> KilowattPerSquareCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{IrradianceUnit}"/> for <see cref="IrradianceUnit.KilowattPerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<IrradianceUnit> KilowattPerSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{IrradianceUnit}"/> for <see cref="IrradianceUnit.MegawattPerSquareCentimeter"/>
+            /// </summary>
+            public UnitInfo<IrradianceUnit> MegawattPerSquareCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{IrradianceUnit}"/> for <see cref="IrradianceUnit.MegawattPerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<IrradianceUnit> MegawattPerSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{IrradianceUnit}"/> for <see cref="IrradianceUnit.MicrowattPerSquareCentimeter"/>
+            /// </summary>
+            public UnitInfo<IrradianceUnit> MicrowattPerSquareCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{IrradianceUnit}"/> for <see cref="IrradianceUnit.MicrowattPerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<IrradianceUnit> MicrowattPerSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{IrradianceUnit}"/> for <see cref="IrradianceUnit.MilliwattPerSquareCentimeter"/>
+            /// </summary>
+            public UnitInfo<IrradianceUnit> MilliwattPerSquareCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{IrradianceUnit}"/> for <see cref="IrradianceUnit.MilliwattPerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<IrradianceUnit> MilliwattPerSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{IrradianceUnit}"/> for <see cref="IrradianceUnit.NanowattPerSquareCentimeter"/>
+            /// </summary>
+            public UnitInfo<IrradianceUnit> NanowattPerSquareCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{IrradianceUnit}"/> for <see cref="IrradianceUnit.NanowattPerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<IrradianceUnit> NanowattPerSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{IrradianceUnit}"/> for <see cref="IrradianceUnit.PicowattPerSquareCentimeter"/>
+            /// </summary>
+            public UnitInfo<IrradianceUnit> PicowattPerSquareCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{IrradianceUnit}"/> for <see cref="IrradianceUnit.PicowattPerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<IrradianceUnit> PicowattPerSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{IrradianceUnit}"/> for <see cref="IrradianceUnit.WattPerSquareCentimeter"/>
+            /// </summary>
+            public UnitInfo<IrradianceUnit> WattPerSquareCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{IrradianceUnit}"/> for <see cref="IrradianceUnit.WattPerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<IrradianceUnit> WattPerSquareMeter { get; }
+
+        }
     }
 }

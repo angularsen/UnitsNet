@@ -56,14 +56,6 @@ namespace UnitsNet
         static ElectricSurfaceChargeDensity()
         {
             BaseDimensions = new BaseDimensions(-2, 0, 1, 1, 0, 0, 0);
-
-            Info = new QuantityInfo<ElectricSurfaceChargeDensityUnit>("ElectricSurfaceChargeDensity",
-                new UnitInfo<ElectricSurfaceChargeDensityUnit>[] {
-                    new UnitInfo<ElectricSurfaceChargeDensityUnit>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, "CoulombsPerSquareCentimeter", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
-                    new UnitInfo<ElectricSurfaceChargeDensityUnit>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, "CoulombsPerSquareInch", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
-                    new UnitInfo<ElectricSurfaceChargeDensityUnit>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, "CoulombsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricSurfaceChargeDensity);
         }
 
         /// <summary>
@@ -103,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricSurfaceChargeDensityUnit> Info { get; }
+        public static ElectricSurfaceChargeDensity.ElectricSurfaceChargeDensityQuantityInfo Info { get; } = new ElectricSurfaceChargeDensity.ElectricSurfaceChargeDensityQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -913,5 +905,37 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class ElectricSurfaceChargeDensityQuantityInfo : QuantityInfo<ElectricSurfaceChargeDensityUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal ElectricSurfaceChargeDensityQuantityInfo() :
+                base("ElectricSurfaceChargeDensity", ElectricSurfaceChargeDensity.BaseUnit, ElectricSurfaceChargeDensity.Zero, ElectricSurfaceChargeDensity.BaseDimensions, QuantityType.ElectricSurfaceChargeDensity)
+            {
+                CoulombPerSquareCentimeter = new UnitInfo<ElectricSurfaceChargeDensityUnit>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, "CoulombsPerSquareCentimeter", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                CoulombPerSquareInch = new UnitInfo<ElectricSurfaceChargeDensityUnit>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, "CoulombsPerSquareInch", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                CoulombPerSquareMeter = new UnitInfo<ElectricSurfaceChargeDensityUnit>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, "CoulombsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricSurfaceChargeDensityUnit}"/> for <see cref="ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter"/>
+            /// </summary>
+            public UnitInfo<ElectricSurfaceChargeDensityUnit> CoulombPerSquareCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricSurfaceChargeDensityUnit}"/> for <see cref="ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch"/>
+            /// </summary>
+            public UnitInfo<ElectricSurfaceChargeDensityUnit> CoulombPerSquareInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricSurfaceChargeDensityUnit}"/> for <see cref="ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<ElectricSurfaceChargeDensityUnit> CoulombPerSquareMeter { get; }
+
+        }
     }
 }

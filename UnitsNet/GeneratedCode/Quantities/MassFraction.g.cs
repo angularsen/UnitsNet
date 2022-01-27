@@ -57,34 +57,6 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<MassFractionUnit>("MassFraction",
-                new UnitInfo<MassFractionUnit>[] {
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.CentigramPerGram, "CentigramsPerGram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.CentigramPerKilogram, "CentigramsPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.DecagramPerGram, "DecagramsPerGram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.DecagramPerKilogram, "DecagramsPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.DecigramPerGram, "DecigramsPerGram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.DecigramPerKilogram, "DecigramsPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.DecimalFraction, "DecimalFractions", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.GramPerGram, "GramsPerGram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.GramPerKilogram, "GramsPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.HectogramPerGram, "HectogramsPerGram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.HectogramPerKilogram, "HectogramsPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.KilogramPerGram, "KilogramsPerGram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.KilogramPerKilogram, "KilogramsPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.MicrogramPerGram, "MicrogramsPerGram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.MicrogramPerKilogram, "MicrogramsPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.MilligramPerGram, "MilligramsPerGram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.MilligramPerKilogram, "MilligramsPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.NanogramPerGram, "NanogramsPerGram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.NanogramPerKilogram, "NanogramsPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerBillion, "PartsPerBillion", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerMillion, "PartsPerMillion", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerThousand, "PartsPerThousand", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerTrillion, "PartsPerTrillion", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.Percent, "Percent", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.MassFraction);
         }
 
         /// <summary>
@@ -124,7 +96,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<MassFractionUnit> Info { get; }
+        public static MassFraction.MassFractionQuantityInfo Info { get; } = new MassFraction.MassFractionQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1312,5 +1284,163 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class MassFractionQuantityInfo : QuantityInfo<MassFractionUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal MassFractionQuantityInfo() :
+                base("MassFraction", MassFraction.BaseUnit, MassFraction.Zero, MassFraction.BaseDimensions, QuantityType.MassFraction)
+            {
+                CentigramPerGram = new UnitInfo<MassFractionUnit>(MassFractionUnit.CentigramPerGram, "CentigramsPerGram", BaseUnits.Undefined);
+                CentigramPerKilogram = new UnitInfo<MassFractionUnit>(MassFractionUnit.CentigramPerKilogram, "CentigramsPerKilogram", BaseUnits.Undefined);
+                DecagramPerGram = new UnitInfo<MassFractionUnit>(MassFractionUnit.DecagramPerGram, "DecagramsPerGram", BaseUnits.Undefined);
+                DecagramPerKilogram = new UnitInfo<MassFractionUnit>(MassFractionUnit.DecagramPerKilogram, "DecagramsPerKilogram", BaseUnits.Undefined);
+                DecigramPerGram = new UnitInfo<MassFractionUnit>(MassFractionUnit.DecigramPerGram, "DecigramsPerGram", BaseUnits.Undefined);
+                DecigramPerKilogram = new UnitInfo<MassFractionUnit>(MassFractionUnit.DecigramPerKilogram, "DecigramsPerKilogram", BaseUnits.Undefined);
+                DecimalFraction = new UnitInfo<MassFractionUnit>(MassFractionUnit.DecimalFraction, "DecimalFractions", BaseUnits.Undefined);
+                GramPerGram = new UnitInfo<MassFractionUnit>(MassFractionUnit.GramPerGram, "GramsPerGram", BaseUnits.Undefined);
+                GramPerKilogram = new UnitInfo<MassFractionUnit>(MassFractionUnit.GramPerKilogram, "GramsPerKilogram", BaseUnits.Undefined);
+                HectogramPerGram = new UnitInfo<MassFractionUnit>(MassFractionUnit.HectogramPerGram, "HectogramsPerGram", BaseUnits.Undefined);
+                HectogramPerKilogram = new UnitInfo<MassFractionUnit>(MassFractionUnit.HectogramPerKilogram, "HectogramsPerKilogram", BaseUnits.Undefined);
+                KilogramPerGram = new UnitInfo<MassFractionUnit>(MassFractionUnit.KilogramPerGram, "KilogramsPerGram", BaseUnits.Undefined);
+                KilogramPerKilogram = new UnitInfo<MassFractionUnit>(MassFractionUnit.KilogramPerKilogram, "KilogramsPerKilogram", BaseUnits.Undefined);
+                MicrogramPerGram = new UnitInfo<MassFractionUnit>(MassFractionUnit.MicrogramPerGram, "MicrogramsPerGram", BaseUnits.Undefined);
+                MicrogramPerKilogram = new UnitInfo<MassFractionUnit>(MassFractionUnit.MicrogramPerKilogram, "MicrogramsPerKilogram", BaseUnits.Undefined);
+                MilligramPerGram = new UnitInfo<MassFractionUnit>(MassFractionUnit.MilligramPerGram, "MilligramsPerGram", BaseUnits.Undefined);
+                MilligramPerKilogram = new UnitInfo<MassFractionUnit>(MassFractionUnit.MilligramPerKilogram, "MilligramsPerKilogram", BaseUnits.Undefined);
+                NanogramPerGram = new UnitInfo<MassFractionUnit>(MassFractionUnit.NanogramPerGram, "NanogramsPerGram", BaseUnits.Undefined);
+                NanogramPerKilogram = new UnitInfo<MassFractionUnit>(MassFractionUnit.NanogramPerKilogram, "NanogramsPerKilogram", BaseUnits.Undefined);
+                PartPerBillion = new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerBillion, "PartsPerBillion", BaseUnits.Undefined);
+                PartPerMillion = new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerMillion, "PartsPerMillion", BaseUnits.Undefined);
+                PartPerThousand = new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerThousand, "PartsPerThousand", BaseUnits.Undefined);
+                PartPerTrillion = new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerTrillion, "PartsPerTrillion", BaseUnits.Undefined);
+                Percent = new UnitInfo<MassFractionUnit>(MassFractionUnit.Percent, "Percent", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFractionUnit}"/> for <see cref="MassFractionUnit.CentigramPerGram"/>
+            /// </summary>
+            public UnitInfo<MassFractionUnit> CentigramPerGram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFractionUnit}"/> for <see cref="MassFractionUnit.CentigramPerKilogram"/>
+            /// </summary>
+            public UnitInfo<MassFractionUnit> CentigramPerKilogram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFractionUnit}"/> for <see cref="MassFractionUnit.DecagramPerGram"/>
+            /// </summary>
+            public UnitInfo<MassFractionUnit> DecagramPerGram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFractionUnit}"/> for <see cref="MassFractionUnit.DecagramPerKilogram"/>
+            /// </summary>
+            public UnitInfo<MassFractionUnit> DecagramPerKilogram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFractionUnit}"/> for <see cref="MassFractionUnit.DecigramPerGram"/>
+            /// </summary>
+            public UnitInfo<MassFractionUnit> DecigramPerGram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFractionUnit}"/> for <see cref="MassFractionUnit.DecigramPerKilogram"/>
+            /// </summary>
+            public UnitInfo<MassFractionUnit> DecigramPerKilogram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFractionUnit}"/> for <see cref="MassFractionUnit.DecimalFraction"/>
+            /// </summary>
+            public UnitInfo<MassFractionUnit> DecimalFraction { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFractionUnit}"/> for <see cref="MassFractionUnit.GramPerGram"/>
+            /// </summary>
+            public UnitInfo<MassFractionUnit> GramPerGram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFractionUnit}"/> for <see cref="MassFractionUnit.GramPerKilogram"/>
+            /// </summary>
+            public UnitInfo<MassFractionUnit> GramPerKilogram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFractionUnit}"/> for <see cref="MassFractionUnit.HectogramPerGram"/>
+            /// </summary>
+            public UnitInfo<MassFractionUnit> HectogramPerGram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFractionUnit}"/> for <see cref="MassFractionUnit.HectogramPerKilogram"/>
+            /// </summary>
+            public UnitInfo<MassFractionUnit> HectogramPerKilogram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFractionUnit}"/> for <see cref="MassFractionUnit.KilogramPerGram"/>
+            /// </summary>
+            public UnitInfo<MassFractionUnit> KilogramPerGram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFractionUnit}"/> for <see cref="MassFractionUnit.KilogramPerKilogram"/>
+            /// </summary>
+            public UnitInfo<MassFractionUnit> KilogramPerKilogram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFractionUnit}"/> for <see cref="MassFractionUnit.MicrogramPerGram"/>
+            /// </summary>
+            public UnitInfo<MassFractionUnit> MicrogramPerGram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFractionUnit}"/> for <see cref="MassFractionUnit.MicrogramPerKilogram"/>
+            /// </summary>
+            public UnitInfo<MassFractionUnit> MicrogramPerKilogram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFractionUnit}"/> for <see cref="MassFractionUnit.MilligramPerGram"/>
+            /// </summary>
+            public UnitInfo<MassFractionUnit> MilligramPerGram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFractionUnit}"/> for <see cref="MassFractionUnit.MilligramPerKilogram"/>
+            /// </summary>
+            public UnitInfo<MassFractionUnit> MilligramPerKilogram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFractionUnit}"/> for <see cref="MassFractionUnit.NanogramPerGram"/>
+            /// </summary>
+            public UnitInfo<MassFractionUnit> NanogramPerGram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFractionUnit}"/> for <see cref="MassFractionUnit.NanogramPerKilogram"/>
+            /// </summary>
+            public UnitInfo<MassFractionUnit> NanogramPerKilogram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFractionUnit}"/> for <see cref="MassFractionUnit.PartPerBillion"/>
+            /// </summary>
+            public UnitInfo<MassFractionUnit> PartPerBillion { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFractionUnit}"/> for <see cref="MassFractionUnit.PartPerMillion"/>
+            /// </summary>
+            public UnitInfo<MassFractionUnit> PartPerMillion { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFractionUnit}"/> for <see cref="MassFractionUnit.PartPerThousand"/>
+            /// </summary>
+            public UnitInfo<MassFractionUnit> PartPerThousand { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFractionUnit}"/> for <see cref="MassFractionUnit.PartPerTrillion"/>
+            /// </summary>
+            public UnitInfo<MassFractionUnit> PartPerTrillion { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFractionUnit}"/> for <see cref="MassFractionUnit.Percent"/>
+            /// </summary>
+            public UnitInfo<MassFractionUnit> Percent { get; }
+
+        }
     }
 }

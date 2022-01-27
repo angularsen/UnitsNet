@@ -53,17 +53,6 @@ namespace UnitsNet
         static AreaMomentOfInertia()
         {
             BaseDimensions = new BaseDimensions(4, 0, 0, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<AreaMomentOfInertiaUnit>("AreaMomentOfInertia",
-                new UnitInfo<AreaMomentOfInertiaUnit>[] {
-                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.CentimeterToTheFourth, "CentimetersToTheFourth", new BaseUnits(length: LengthUnit.Centimeter)),
-                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.DecimeterToTheFourth, "DecimetersToTheFourth", new BaseUnits(length: LengthUnit.Decimeter)),
-                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.FootToTheFourth, "FeetToTheFourth", new BaseUnits(length: LengthUnit.Foot)),
-                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.InchToTheFourth, "InchesToTheFourth", new BaseUnits(length: LengthUnit.Inch)),
-                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.MeterToTheFourth, "MetersToTheFourth", new BaseUnits(length: LengthUnit.Meter)),
-                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.MillimeterToTheFourth, "MillimetersToTheFourth", new BaseUnits(length: LengthUnit.Millimeter)),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.AreaMomentOfInertia);
         }
 
         /// <summary>
@@ -103,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<AreaMomentOfInertiaUnit> Info { get; }
+        public static AreaMomentOfInertia.AreaMomentOfInertiaQuantityInfo Info { get; } = new AreaMomentOfInertia.AreaMomentOfInertiaQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -967,5 +956,55 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class AreaMomentOfInertiaQuantityInfo : QuantityInfo<AreaMomentOfInertiaUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal AreaMomentOfInertiaQuantityInfo() :
+                base("AreaMomentOfInertia", AreaMomentOfInertia.BaseUnit, AreaMomentOfInertia.Zero, AreaMomentOfInertia.BaseDimensions, QuantityType.AreaMomentOfInertia)
+            {
+                CentimeterToTheFourth = new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.CentimeterToTheFourth, "CentimetersToTheFourth", new BaseUnits(length: LengthUnit.Centimeter));
+                DecimeterToTheFourth = new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.DecimeterToTheFourth, "DecimetersToTheFourth", new BaseUnits(length: LengthUnit.Decimeter));
+                FootToTheFourth = new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.FootToTheFourth, "FeetToTheFourth", new BaseUnits(length: LengthUnit.Foot));
+                InchToTheFourth = new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.InchToTheFourth, "InchesToTheFourth", new BaseUnits(length: LengthUnit.Inch));
+                MeterToTheFourth = new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.MeterToTheFourth, "MetersToTheFourth", new BaseUnits(length: LengthUnit.Meter));
+                MillimeterToTheFourth = new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.MillimeterToTheFourth, "MillimetersToTheFourth", new BaseUnits(length: LengthUnit.Millimeter));
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AreaMomentOfInertiaUnit}"/> for <see cref="AreaMomentOfInertiaUnit.CentimeterToTheFourth"/>
+            /// </summary>
+            public UnitInfo<AreaMomentOfInertiaUnit> CentimeterToTheFourth { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AreaMomentOfInertiaUnit}"/> for <see cref="AreaMomentOfInertiaUnit.DecimeterToTheFourth"/>
+            /// </summary>
+            public UnitInfo<AreaMomentOfInertiaUnit> DecimeterToTheFourth { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AreaMomentOfInertiaUnit}"/> for <see cref="AreaMomentOfInertiaUnit.FootToTheFourth"/>
+            /// </summary>
+            public UnitInfo<AreaMomentOfInertiaUnit> FootToTheFourth { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AreaMomentOfInertiaUnit}"/> for <see cref="AreaMomentOfInertiaUnit.InchToTheFourth"/>
+            /// </summary>
+            public UnitInfo<AreaMomentOfInertiaUnit> InchToTheFourth { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AreaMomentOfInertiaUnit}"/> for <see cref="AreaMomentOfInertiaUnit.MeterToTheFourth"/>
+            /// </summary>
+            public UnitInfo<AreaMomentOfInertiaUnit> MeterToTheFourth { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AreaMomentOfInertiaUnit}"/> for <see cref="AreaMomentOfInertiaUnit.MillimeterToTheFourth"/>
+            /// </summary>
+            public UnitInfo<AreaMomentOfInertiaUnit> MillimeterToTheFourth { get; }
+
+        }
     }
 }

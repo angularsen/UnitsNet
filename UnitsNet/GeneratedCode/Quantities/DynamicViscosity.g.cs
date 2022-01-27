@@ -56,21 +56,6 @@ namespace UnitsNet
         static DynamicViscosity()
         {
             BaseDimensions = new BaseDimensions(-1, 1, -1, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<DynamicViscosityUnit>("DynamicViscosity",
-                new UnitInfo<DynamicViscosityUnit>[] {
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Centipoise, "Centipoise", BaseUnits.Undefined),
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.MicropascalSecond, "MicropascalSeconds", BaseUnits.Undefined),
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.MillipascalSecond, "MillipascalSeconds", BaseUnits.Undefined),
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.NewtonSecondPerMeterSquared, "NewtonSecondsPerMeterSquared", BaseUnits.Undefined),
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PascalSecond, "PascalSeconds", BaseUnits.Undefined),
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Poise, "Poise", BaseUnits.Undefined),
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PoundForceSecondPerSquareFoot, "PoundsForceSecondPerSquareFoot", BaseUnits.Undefined),
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PoundForceSecondPerSquareInch, "PoundsForceSecondPerSquareInch", BaseUnits.Undefined),
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PoundPerFootSecond, "PoundsPerFootSecond", BaseUnits.Undefined),
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Reyn, "Reyns", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.DynamicViscosity);
         }
 
         /// <summary>
@@ -110,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<DynamicViscosityUnit> Info { get; }
+        public static DynamicViscosity.DynamicViscosityQuantityInfo Info { get; } = new DynamicViscosity.DynamicViscosityQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1046,5 +1031,79 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class DynamicViscosityQuantityInfo : QuantityInfo<DynamicViscosityUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal DynamicViscosityQuantityInfo() :
+                base("DynamicViscosity", DynamicViscosity.BaseUnit, DynamicViscosity.Zero, DynamicViscosity.BaseDimensions, QuantityType.DynamicViscosity)
+            {
+                Centipoise = new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Centipoise, "Centipoise", BaseUnits.Undefined);
+                MicropascalSecond = new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.MicropascalSecond, "MicropascalSeconds", BaseUnits.Undefined);
+                MillipascalSecond = new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.MillipascalSecond, "MillipascalSeconds", BaseUnits.Undefined);
+                NewtonSecondPerMeterSquared = new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.NewtonSecondPerMeterSquared, "NewtonSecondsPerMeterSquared", BaseUnits.Undefined);
+                PascalSecond = new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PascalSecond, "PascalSeconds", BaseUnits.Undefined);
+                Poise = new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Poise, "Poise", BaseUnits.Undefined);
+                PoundForceSecondPerSquareFoot = new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PoundForceSecondPerSquareFoot, "PoundsForceSecondPerSquareFoot", BaseUnits.Undefined);
+                PoundForceSecondPerSquareInch = new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PoundForceSecondPerSquareInch, "PoundsForceSecondPerSquareInch", BaseUnits.Undefined);
+                PoundPerFootSecond = new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PoundPerFootSecond, "PoundsPerFootSecond", BaseUnits.Undefined);
+                Reyn = new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Reyn, "Reyns", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{DynamicViscosityUnit}"/> for <see cref="DynamicViscosityUnit.Centipoise"/>
+            /// </summary>
+            public UnitInfo<DynamicViscosityUnit> Centipoise { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{DynamicViscosityUnit}"/> for <see cref="DynamicViscosityUnit.MicropascalSecond"/>
+            /// </summary>
+            public UnitInfo<DynamicViscosityUnit> MicropascalSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{DynamicViscosityUnit}"/> for <see cref="DynamicViscosityUnit.MillipascalSecond"/>
+            /// </summary>
+            public UnitInfo<DynamicViscosityUnit> MillipascalSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{DynamicViscosityUnit}"/> for <see cref="DynamicViscosityUnit.NewtonSecondPerMeterSquared"/>
+            /// </summary>
+            public UnitInfo<DynamicViscosityUnit> NewtonSecondPerMeterSquared { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{DynamicViscosityUnit}"/> for <see cref="DynamicViscosityUnit.PascalSecond"/>
+            /// </summary>
+            public UnitInfo<DynamicViscosityUnit> PascalSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{DynamicViscosityUnit}"/> for <see cref="DynamicViscosityUnit.Poise"/>
+            /// </summary>
+            public UnitInfo<DynamicViscosityUnit> Poise { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{DynamicViscosityUnit}"/> for <see cref="DynamicViscosityUnit.PoundForceSecondPerSquareFoot"/>
+            /// </summary>
+            public UnitInfo<DynamicViscosityUnit> PoundForceSecondPerSquareFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{DynamicViscosityUnit}"/> for <see cref="DynamicViscosityUnit.PoundForceSecondPerSquareInch"/>
+            /// </summary>
+            public UnitInfo<DynamicViscosityUnit> PoundForceSecondPerSquareInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{DynamicViscosityUnit}"/> for <see cref="DynamicViscosityUnit.PoundPerFootSecond"/>
+            /// </summary>
+            public UnitInfo<DynamicViscosityUnit> PoundPerFootSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{DynamicViscosityUnit}"/> for <see cref="DynamicViscosityUnit.Reyn"/>
+            /// </summary>
+            public UnitInfo<DynamicViscosityUnit> Reyn { get; }
+
+        }
     }
 }

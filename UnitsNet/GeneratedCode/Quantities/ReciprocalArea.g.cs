@@ -56,22 +56,6 @@ namespace UnitsNet
         static ReciprocalArea()
         {
             BaseDimensions = new BaseDimensions(-2, 0, 0, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<ReciprocalAreaUnit>("ReciprocalArea",
-                new UnitInfo<ReciprocalAreaUnit>[] {
-                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareCentimeter, "InverseSquareCentimeters", BaseUnits.Undefined),
-                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareDecimeter, "InverseSquareDecimeters", BaseUnits.Undefined),
-                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareFoot, "InverseSquareFeet", BaseUnits.Undefined),
-                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareInch, "InverseSquareInches", BaseUnits.Undefined),
-                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareKilometer, "InverseSquareKilometers", BaseUnits.Undefined),
-                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareMeter, "InverseSquareMeters", BaseUnits.Undefined),
-                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareMicrometer, "InverseSquareMicrometers", BaseUnits.Undefined),
-                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareMile, "InverseSquareMiles", BaseUnits.Undefined),
-                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareMillimeter, "InverseSquareMillimeters", BaseUnits.Undefined),
-                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareYard, "InverseSquareYards", BaseUnits.Undefined),
-                    new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseUsSurveySquareFoot, "InverseUsSurveySquareFeet", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ReciprocalArea);
         }
 
         /// <summary>
@@ -111,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ReciprocalAreaUnit> Info { get; }
+        public static ReciprocalArea.ReciprocalAreaQuantityInfo Info { get; } = new ReciprocalArea.ReciprocalAreaQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1065,5 +1049,85 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class ReciprocalAreaQuantityInfo : QuantityInfo<ReciprocalAreaUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal ReciprocalAreaQuantityInfo() :
+                base("ReciprocalArea", ReciprocalArea.BaseUnit, ReciprocalArea.Zero, ReciprocalArea.BaseDimensions, QuantityType.ReciprocalArea)
+            {
+                InverseSquareCentimeter = new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareCentimeter, "InverseSquareCentimeters", BaseUnits.Undefined);
+                InverseSquareDecimeter = new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareDecimeter, "InverseSquareDecimeters", BaseUnits.Undefined);
+                InverseSquareFoot = new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareFoot, "InverseSquareFeet", BaseUnits.Undefined);
+                InverseSquareInch = new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareInch, "InverseSquareInches", BaseUnits.Undefined);
+                InverseSquareKilometer = new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareKilometer, "InverseSquareKilometers", BaseUnits.Undefined);
+                InverseSquareMeter = new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareMeter, "InverseSquareMeters", BaseUnits.Undefined);
+                InverseSquareMicrometer = new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareMicrometer, "InverseSquareMicrometers", BaseUnits.Undefined);
+                InverseSquareMile = new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareMile, "InverseSquareMiles", BaseUnits.Undefined);
+                InverseSquareMillimeter = new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareMillimeter, "InverseSquareMillimeters", BaseUnits.Undefined);
+                InverseSquareYard = new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareYard, "InverseSquareYards", BaseUnits.Undefined);
+                InverseUsSurveySquareFoot = new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseUsSurveySquareFoot, "InverseUsSurveySquareFeet", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ReciprocalAreaUnit}"/> for <see cref="ReciprocalAreaUnit.InverseSquareCentimeter"/>
+            /// </summary>
+            public UnitInfo<ReciprocalAreaUnit> InverseSquareCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ReciprocalAreaUnit}"/> for <see cref="ReciprocalAreaUnit.InverseSquareDecimeter"/>
+            /// </summary>
+            public UnitInfo<ReciprocalAreaUnit> InverseSquareDecimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ReciprocalAreaUnit}"/> for <see cref="ReciprocalAreaUnit.InverseSquareFoot"/>
+            /// </summary>
+            public UnitInfo<ReciprocalAreaUnit> InverseSquareFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ReciprocalAreaUnit}"/> for <see cref="ReciprocalAreaUnit.InverseSquareInch"/>
+            /// </summary>
+            public UnitInfo<ReciprocalAreaUnit> InverseSquareInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ReciprocalAreaUnit}"/> for <see cref="ReciprocalAreaUnit.InverseSquareKilometer"/>
+            /// </summary>
+            public UnitInfo<ReciprocalAreaUnit> InverseSquareKilometer { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ReciprocalAreaUnit}"/> for <see cref="ReciprocalAreaUnit.InverseSquareMeter"/>
+            /// </summary>
+            public UnitInfo<ReciprocalAreaUnit> InverseSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ReciprocalAreaUnit}"/> for <see cref="ReciprocalAreaUnit.InverseSquareMicrometer"/>
+            /// </summary>
+            public UnitInfo<ReciprocalAreaUnit> InverseSquareMicrometer { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ReciprocalAreaUnit}"/> for <see cref="ReciprocalAreaUnit.InverseSquareMile"/>
+            /// </summary>
+            public UnitInfo<ReciprocalAreaUnit> InverseSquareMile { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ReciprocalAreaUnit}"/> for <see cref="ReciprocalAreaUnit.InverseSquareMillimeter"/>
+            /// </summary>
+            public UnitInfo<ReciprocalAreaUnit> InverseSquareMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ReciprocalAreaUnit}"/> for <see cref="ReciprocalAreaUnit.InverseSquareYard"/>
+            /// </summary>
+            public UnitInfo<ReciprocalAreaUnit> InverseSquareYard { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ReciprocalAreaUnit}"/> for <see cref="ReciprocalAreaUnit.InverseUsSurveySquareFoot"/>
+            /// </summary>
+            public UnitInfo<ReciprocalAreaUnit> InverseUsSurveySquareFoot { get; }
+
+        }
     }
 }

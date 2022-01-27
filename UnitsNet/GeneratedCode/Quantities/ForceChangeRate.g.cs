@@ -53,26 +53,6 @@ namespace UnitsNet
         static ForceChangeRate()
         {
             BaseDimensions = new BaseDimensions(1, 1, -3, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<ForceChangeRateUnit>("ForceChangeRate",
-                new UnitInfo<ForceChangeRateUnit>[] {
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.CentinewtonPerSecond, "CentinewtonsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.DecanewtonPerMinute, "DecanewtonsPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.DecanewtonPerSecond, "DecanewtonsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.DecinewtonPerSecond, "DecinewtonsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.KilonewtonPerMinute, "KilonewtonsPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.KilonewtonPerSecond, "KilonewtonsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.KilopoundForcePerMinute, "KilopoundsForcePerMinute", BaseUnits.Undefined),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.KilopoundForcePerSecond, "KilopoundsForcePerSecond", BaseUnits.Undefined),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.MicronewtonPerSecond, "MicronewtonsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.MillinewtonPerSecond, "MillinewtonsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.NanonewtonPerSecond, "NanonewtonsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.NewtonPerMinute, "NewtonsPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.NewtonPerSecond, "NewtonsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.PoundForcePerMinute, "PoundsForcePerMinute", BaseUnits.Undefined),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.PoundForcePerSecond, "PoundsForcePerSecond", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ForceChangeRate);
         }
 
         /// <summary>
@@ -112,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ForceChangeRateUnit> Info { get; }
+        public static ForceChangeRate.ForceChangeRateQuantityInfo Info { get; } = new ForceChangeRate.ForceChangeRateQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1138,5 +1118,109 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class ForceChangeRateQuantityInfo : QuantityInfo<ForceChangeRateUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal ForceChangeRateQuantityInfo() :
+                base("ForceChangeRate", ForceChangeRate.BaseUnit, ForceChangeRate.Zero, ForceChangeRate.BaseDimensions, QuantityType.ForceChangeRate)
+            {
+                CentinewtonPerSecond = new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.CentinewtonPerSecond, "CentinewtonsPerSecond", BaseUnits.Undefined);
+                DecanewtonPerMinute = new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.DecanewtonPerMinute, "DecanewtonsPerMinute", BaseUnits.Undefined);
+                DecanewtonPerSecond = new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.DecanewtonPerSecond, "DecanewtonsPerSecond", BaseUnits.Undefined);
+                DecinewtonPerSecond = new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.DecinewtonPerSecond, "DecinewtonsPerSecond", BaseUnits.Undefined);
+                KilonewtonPerMinute = new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.KilonewtonPerMinute, "KilonewtonsPerMinute", BaseUnits.Undefined);
+                KilonewtonPerSecond = new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.KilonewtonPerSecond, "KilonewtonsPerSecond", BaseUnits.Undefined);
+                KilopoundForcePerMinute = new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.KilopoundForcePerMinute, "KilopoundsForcePerMinute", BaseUnits.Undefined);
+                KilopoundForcePerSecond = new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.KilopoundForcePerSecond, "KilopoundsForcePerSecond", BaseUnits.Undefined);
+                MicronewtonPerSecond = new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.MicronewtonPerSecond, "MicronewtonsPerSecond", BaseUnits.Undefined);
+                MillinewtonPerSecond = new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.MillinewtonPerSecond, "MillinewtonsPerSecond", BaseUnits.Undefined);
+                NanonewtonPerSecond = new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.NanonewtonPerSecond, "NanonewtonsPerSecond", BaseUnits.Undefined);
+                NewtonPerMinute = new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.NewtonPerMinute, "NewtonsPerMinute", BaseUnits.Undefined);
+                NewtonPerSecond = new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.NewtonPerSecond, "NewtonsPerSecond", BaseUnits.Undefined);
+                PoundForcePerMinute = new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.PoundForcePerMinute, "PoundsForcePerMinute", BaseUnits.Undefined);
+                PoundForcePerSecond = new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.PoundForcePerSecond, "PoundsForcePerSecond", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceChangeRateUnit}"/> for <see cref="ForceChangeRateUnit.CentinewtonPerSecond"/>
+            /// </summary>
+            public UnitInfo<ForceChangeRateUnit> CentinewtonPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceChangeRateUnit}"/> for <see cref="ForceChangeRateUnit.DecanewtonPerMinute"/>
+            /// </summary>
+            public UnitInfo<ForceChangeRateUnit> DecanewtonPerMinute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceChangeRateUnit}"/> for <see cref="ForceChangeRateUnit.DecanewtonPerSecond"/>
+            /// </summary>
+            public UnitInfo<ForceChangeRateUnit> DecanewtonPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceChangeRateUnit}"/> for <see cref="ForceChangeRateUnit.DecinewtonPerSecond"/>
+            /// </summary>
+            public UnitInfo<ForceChangeRateUnit> DecinewtonPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceChangeRateUnit}"/> for <see cref="ForceChangeRateUnit.KilonewtonPerMinute"/>
+            /// </summary>
+            public UnitInfo<ForceChangeRateUnit> KilonewtonPerMinute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceChangeRateUnit}"/> for <see cref="ForceChangeRateUnit.KilonewtonPerSecond"/>
+            /// </summary>
+            public UnitInfo<ForceChangeRateUnit> KilonewtonPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceChangeRateUnit}"/> for <see cref="ForceChangeRateUnit.KilopoundForcePerMinute"/>
+            /// </summary>
+            public UnitInfo<ForceChangeRateUnit> KilopoundForcePerMinute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceChangeRateUnit}"/> for <see cref="ForceChangeRateUnit.KilopoundForcePerSecond"/>
+            /// </summary>
+            public UnitInfo<ForceChangeRateUnit> KilopoundForcePerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceChangeRateUnit}"/> for <see cref="ForceChangeRateUnit.MicronewtonPerSecond"/>
+            /// </summary>
+            public UnitInfo<ForceChangeRateUnit> MicronewtonPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceChangeRateUnit}"/> for <see cref="ForceChangeRateUnit.MillinewtonPerSecond"/>
+            /// </summary>
+            public UnitInfo<ForceChangeRateUnit> MillinewtonPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceChangeRateUnit}"/> for <see cref="ForceChangeRateUnit.NanonewtonPerSecond"/>
+            /// </summary>
+            public UnitInfo<ForceChangeRateUnit> NanonewtonPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceChangeRateUnit}"/> for <see cref="ForceChangeRateUnit.NewtonPerMinute"/>
+            /// </summary>
+            public UnitInfo<ForceChangeRateUnit> NewtonPerMinute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceChangeRateUnit}"/> for <see cref="ForceChangeRateUnit.NewtonPerSecond"/>
+            /// </summary>
+            public UnitInfo<ForceChangeRateUnit> NewtonPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceChangeRateUnit}"/> for <see cref="ForceChangeRateUnit.PoundForcePerMinute"/>
+            /// </summary>
+            public UnitInfo<ForceChangeRateUnit> PoundForcePerMinute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceChangeRateUnit}"/> for <see cref="ForceChangeRateUnit.PoundForcePerSecond"/>
+            /// </summary>
+            public UnitInfo<ForceChangeRateUnit> PoundForcePerSecond { get; }
+
+        }
     }
 }

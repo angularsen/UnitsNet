@@ -54,12 +54,6 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<LevelUnit>("Level",
-                new UnitInfo<LevelUnit>[] {
-                    new UnitInfo<LevelUnit>(LevelUnit.Decibel, "Decibels", BaseUnits.Undefined),
-                    new UnitInfo<LevelUnit>(LevelUnit.Neper, "Nepers", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Level);
         }
 
         /// <summary>
@@ -99,7 +93,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<LevelUnit> Info { get; }
+        public static Level.LevelQuantityInfo Info { get; } = new Level.LevelQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -899,5 +893,31 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class LevelQuantityInfo : QuantityInfo<LevelUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal LevelQuantityInfo() :
+                base("Level", Level.BaseUnit, Level.Zero, Level.BaseDimensions, QuantityType.Level)
+            {
+                Decibel = new UnitInfo<LevelUnit>(LevelUnit.Decibel, "Decibels", BaseUnits.Undefined);
+                Neper = new UnitInfo<LevelUnit>(LevelUnit.Neper, "Nepers", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LevelUnit}"/> for <see cref="LevelUnit.Decibel"/>
+            /// </summary>
+            public UnitInfo<LevelUnit> Decibel { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LevelUnit}"/> for <see cref="LevelUnit.Neper"/>
+            /// </summary>
+            public UnitInfo<LevelUnit> Neper { get; }
+
+        }
     }
 }

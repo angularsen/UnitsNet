@@ -53,13 +53,6 @@ namespace UnitsNet
         static RatioChangeRate()
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<RatioChangeRateUnit>("RatioChangeRate",
-                new UnitInfo<RatioChangeRateUnit>[] {
-                    new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.DecimalFractionPerSecond, "DecimalFractionsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.PercentPerSecond, "PercentsPerSecond", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.RatioChangeRate);
         }
 
         /// <summary>
@@ -99,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<RatioChangeRateUnit> Info { get; }
+        public static RatioChangeRate.RatioChangeRateQuantityInfo Info { get; } = new RatioChangeRate.RatioChangeRateQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -891,5 +884,31 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class RatioChangeRateQuantityInfo : QuantityInfo<RatioChangeRateUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal RatioChangeRateQuantityInfo() :
+                base("RatioChangeRate", RatioChangeRate.BaseUnit, RatioChangeRate.Zero, RatioChangeRate.BaseDimensions, QuantityType.RatioChangeRate)
+            {
+                DecimalFractionPerSecond = new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.DecimalFractionPerSecond, "DecimalFractionsPerSecond", BaseUnits.Undefined);
+                PercentPerSecond = new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.PercentPerSecond, "PercentsPerSecond", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RatioChangeRateUnit}"/> for <see cref="RatioChangeRateUnit.DecimalFractionPerSecond"/>
+            /// </summary>
+            public UnitInfo<RatioChangeRateUnit> DecimalFractionPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RatioChangeRateUnit}"/> for <see cref="RatioChangeRateUnit.PercentPerSecond"/>
+            /// </summary>
+            public UnitInfo<RatioChangeRateUnit> PercentPerSecond { get; }
+
+        }
     }
 }

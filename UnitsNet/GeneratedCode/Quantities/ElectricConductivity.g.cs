@@ -56,14 +56,6 @@ namespace UnitsNet
         static ElectricConductivity()
         {
             BaseDimensions = new BaseDimensions(-3, -1, 3, 2, 0, 0, 0);
-
-            Info = new QuantityInfo<ElectricConductivityUnit>("ElectricConductivity",
-                new UnitInfo<ElectricConductivityUnit>[] {
-                    new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerFoot, "SiemensPerFoot", BaseUnits.Undefined),
-                    new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerInch, "SiemensPerInch", BaseUnits.Undefined),
-                    new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerMeter, "SiemensPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricConductivity);
         }
 
         /// <summary>
@@ -103,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricConductivityUnit> Info { get; }
+        public static ElectricConductivity.ElectricConductivityQuantityInfo Info { get; } = new ElectricConductivity.ElectricConductivityQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -913,5 +905,37 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class ElectricConductivityQuantityInfo : QuantityInfo<ElectricConductivityUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal ElectricConductivityQuantityInfo() :
+                base("ElectricConductivity", ElectricConductivity.BaseUnit, ElectricConductivity.Zero, ElectricConductivity.BaseDimensions, QuantityType.ElectricConductivity)
+            {
+                SiemensPerFoot = new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerFoot, "SiemensPerFoot", BaseUnits.Undefined);
+                SiemensPerInch = new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerInch, "SiemensPerInch", BaseUnits.Undefined);
+                SiemensPerMeter = new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerMeter, "SiemensPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricConductivityUnit}"/> for <see cref="ElectricConductivityUnit.SiemensPerFoot"/>
+            /// </summary>
+            public UnitInfo<ElectricConductivityUnit> SiemensPerFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricConductivityUnit}"/> for <see cref="ElectricConductivityUnit.SiemensPerInch"/>
+            /// </summary>
+            public UnitInfo<ElectricConductivityUnit> SiemensPerInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricConductivityUnit}"/> for <see cref="ElectricConductivityUnit.SiemensPerMeter"/>
+            /// </summary>
+            public UnitInfo<ElectricConductivityUnit> SiemensPerMeter { get; }
+
+        }
     }
 }

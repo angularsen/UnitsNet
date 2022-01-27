@@ -56,12 +56,6 @@ namespace UnitsNet
         static LuminousIntensity()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
-
-            Info = new QuantityInfo<LuminousIntensityUnit>("LuminousIntensity",
-                new UnitInfo<LuminousIntensityUnit>[] {
-                    new UnitInfo<LuminousIntensityUnit>(LuminousIntensityUnit.Candela, "Candela", new BaseUnits(luminousIntensity: LuminousIntensityUnit.Candela)),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.LuminousIntensity);
         }
 
         /// <summary>
@@ -101,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<LuminousIntensityUnit> Info { get; }
+        public static LuminousIntensity.LuminousIntensityQuantityInfo Info { get; } = new LuminousIntensity.LuminousIntensityQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -875,5 +869,25 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class LuminousIntensityQuantityInfo : QuantityInfo<LuminousIntensityUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal LuminousIntensityQuantityInfo() :
+                base("LuminousIntensity", LuminousIntensity.BaseUnit, LuminousIntensity.Zero, LuminousIntensity.BaseDimensions, QuantityType.LuminousIntensity)
+            {
+                Candela = new UnitInfo<LuminousIntensityUnit>(LuminousIntensityUnit.Candela, "Candela", new BaseUnits(luminousIntensity: LuminousIntensityUnit.Candela));
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LuminousIntensityUnit}"/> for <see cref="LuminousIntensityUnit.Candela"/>
+            /// </summary>
+            public UnitInfo<LuminousIntensityUnit> Candela { get; }
+
+        }
     }
 }

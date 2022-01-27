@@ -53,15 +53,6 @@ namespace UnitsNet
         static TemperatureGradient()
         {
             BaseDimensions = new BaseDimensions(-1, 0, 0, 0, 1, 0, 0);
-
-            Info = new QuantityInfo<TemperatureGradientUnit>("TemperatureGradient",
-                new UnitInfo<TemperatureGradientUnit>[] {
-                    new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.DegreeCelsiusPerKilometer, "DegreesCelciusPerKilometer", new BaseUnits(length: LengthUnit.Kilometer, temperature: TemperatureUnit.DegreeCelsius)),
-                    new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.DegreeCelsiusPerMeter, "DegreesCelciusPerMeter", new BaseUnits(length: LengthUnit.Meter, temperature: TemperatureUnit.DegreeCelsius)),
-                    new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.DegreeFahrenheitPerFoot, "DegreesFahrenheitPerFoot", new BaseUnits(length: LengthUnit.Foot, temperature: TemperatureUnit.DegreeFahrenheit)),
-                    new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.KelvinPerMeter, "KelvinsPerMeter", new BaseUnits(length: LengthUnit.Meter, temperature: TemperatureUnit.Kelvin)),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.TemperatureGradient);
         }
 
         /// <summary>
@@ -101,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<TemperatureGradientUnit> Info { get; }
+        public static TemperatureGradient.TemperatureGradientQuantityInfo Info { get; } = new TemperatureGradient.TemperatureGradientQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -929,5 +920,43 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class TemperatureGradientQuantityInfo : QuantityInfo<TemperatureGradientUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal TemperatureGradientQuantityInfo() :
+                base("TemperatureGradient", TemperatureGradient.BaseUnit, TemperatureGradient.Zero, TemperatureGradient.BaseDimensions, QuantityType.TemperatureGradient)
+            {
+                DegreeCelsiusPerKilometer = new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.DegreeCelsiusPerKilometer, "DegreesCelciusPerKilometer", new BaseUnits(length: LengthUnit.Kilometer, temperature: TemperatureUnit.DegreeCelsius));
+                DegreeCelsiusPerMeter = new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.DegreeCelsiusPerMeter, "DegreesCelciusPerMeter", new BaseUnits(length: LengthUnit.Meter, temperature: TemperatureUnit.DegreeCelsius));
+                DegreeFahrenheitPerFoot = new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.DegreeFahrenheitPerFoot, "DegreesFahrenheitPerFoot", new BaseUnits(length: LengthUnit.Foot, temperature: TemperatureUnit.DegreeFahrenheit));
+                KelvinPerMeter = new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.KelvinPerMeter, "KelvinsPerMeter", new BaseUnits(length: LengthUnit.Meter, temperature: TemperatureUnit.Kelvin));
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureGradientUnit}"/> for <see cref="TemperatureGradientUnit.DegreeCelsiusPerKilometer"/>
+            /// </summary>
+            public UnitInfo<TemperatureGradientUnit> DegreeCelsiusPerKilometer { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureGradientUnit}"/> for <see cref="TemperatureGradientUnit.DegreeCelsiusPerMeter"/>
+            /// </summary>
+            public UnitInfo<TemperatureGradientUnit> DegreeCelsiusPerMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureGradientUnit}"/> for <see cref="TemperatureGradientUnit.DegreeFahrenheitPerFoot"/>
+            /// </summary>
+            public UnitInfo<TemperatureGradientUnit> DegreeFahrenheitPerFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureGradientUnit}"/> for <see cref="TemperatureGradientUnit.KelvinPerMeter"/>
+            /// </summary>
+            public UnitInfo<TemperatureGradientUnit> KelvinPerMeter { get; }
+
+        }
     }
 }

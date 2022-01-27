@@ -56,12 +56,6 @@ namespace UnitsNet
         static LuminousFlux()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
-
-            Info = new QuantityInfo<LuminousFluxUnit>("LuminousFlux",
-                new UnitInfo<LuminousFluxUnit>[] {
-                    new UnitInfo<LuminousFluxUnit>(LuminousFluxUnit.Lumen, "Lumens", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.LuminousFlux);
         }
 
         /// <summary>
@@ -101,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<LuminousFluxUnit> Info { get; }
+        public static LuminousFlux.LuminousFluxQuantityInfo Info { get; } = new LuminousFlux.LuminousFluxQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -875,5 +869,25 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class LuminousFluxQuantityInfo : QuantityInfo<LuminousFluxUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal LuminousFluxQuantityInfo() :
+                base("LuminousFlux", LuminousFlux.BaseUnit, LuminousFlux.Zero, LuminousFlux.BaseDimensions, QuantityType.LuminousFlux)
+            {
+                Lumen = new UnitInfo<LuminousFluxUnit>(LuminousFluxUnit.Lumen, "Lumens", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LuminousFluxUnit}"/> for <see cref="LuminousFluxUnit.Lumen"/>
+            /// </summary>
+            public UnitInfo<LuminousFluxUnit> Lumen { get; }
+
+        }
     }
 }

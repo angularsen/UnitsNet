@@ -53,22 +53,6 @@ namespace UnitsNet
         static Frequency()
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<FrequencyUnit>("Frequency",
-                new UnitInfo<FrequencyUnit>[] {
-                    new UnitInfo<FrequencyUnit>(FrequencyUnit.BeatPerMinute, "BeatsPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<FrequencyUnit>(FrequencyUnit.BUnit, "BUnits", BaseUnits.Undefined),
-                    new UnitInfo<FrequencyUnit>(FrequencyUnit.CyclePerHour, "CyclesPerHour", BaseUnits.Undefined),
-                    new UnitInfo<FrequencyUnit>(FrequencyUnit.CyclePerMinute, "CyclesPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<FrequencyUnit>(FrequencyUnit.Gigahertz, "Gigahertz", BaseUnits.Undefined),
-                    new UnitInfo<FrequencyUnit>(FrequencyUnit.Hertz, "Hertz", BaseUnits.Undefined),
-                    new UnitInfo<FrequencyUnit>(FrequencyUnit.Kilohertz, "Kilohertz", BaseUnits.Undefined),
-                    new UnitInfo<FrequencyUnit>(FrequencyUnit.Megahertz, "Megahertz", BaseUnits.Undefined),
-                    new UnitInfo<FrequencyUnit>(FrequencyUnit.PerSecond, "PerSecond", BaseUnits.Undefined),
-                    new UnitInfo<FrequencyUnit>(FrequencyUnit.RadianPerSecond, "RadiansPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<FrequencyUnit>(FrequencyUnit.Terahertz, "Terahertz", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Frequency);
         }
 
         /// <summary>
@@ -108,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<FrequencyUnit> Info { get; }
+        public static Frequency.FrequencyQuantityInfo Info { get; } = new Frequency.FrequencyQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1062,5 +1046,85 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class FrequencyQuantityInfo : QuantityInfo<FrequencyUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal FrequencyQuantityInfo() :
+                base("Frequency", Frequency.BaseUnit, Frequency.Zero, Frequency.BaseDimensions, QuantityType.Frequency)
+            {
+                BeatPerMinute = new UnitInfo<FrequencyUnit>(FrequencyUnit.BeatPerMinute, "BeatsPerMinute", BaseUnits.Undefined);
+                BUnit = new UnitInfo<FrequencyUnit>(FrequencyUnit.BUnit, "BUnits", BaseUnits.Undefined);
+                CyclePerHour = new UnitInfo<FrequencyUnit>(FrequencyUnit.CyclePerHour, "CyclesPerHour", BaseUnits.Undefined);
+                CyclePerMinute = new UnitInfo<FrequencyUnit>(FrequencyUnit.CyclePerMinute, "CyclesPerMinute", BaseUnits.Undefined);
+                Gigahertz = new UnitInfo<FrequencyUnit>(FrequencyUnit.Gigahertz, "Gigahertz", BaseUnits.Undefined);
+                Hertz = new UnitInfo<FrequencyUnit>(FrequencyUnit.Hertz, "Hertz", BaseUnits.Undefined);
+                Kilohertz = new UnitInfo<FrequencyUnit>(FrequencyUnit.Kilohertz, "Kilohertz", BaseUnits.Undefined);
+                Megahertz = new UnitInfo<FrequencyUnit>(FrequencyUnit.Megahertz, "Megahertz", BaseUnits.Undefined);
+                PerSecond = new UnitInfo<FrequencyUnit>(FrequencyUnit.PerSecond, "PerSecond", BaseUnits.Undefined);
+                RadianPerSecond = new UnitInfo<FrequencyUnit>(FrequencyUnit.RadianPerSecond, "RadiansPerSecond", BaseUnits.Undefined);
+                Terahertz = new UnitInfo<FrequencyUnit>(FrequencyUnit.Terahertz, "Terahertz", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{FrequencyUnit}"/> for <see cref="FrequencyUnit.BeatPerMinute"/>
+            /// </summary>
+            public UnitInfo<FrequencyUnit> BeatPerMinute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{FrequencyUnit}"/> for <see cref="FrequencyUnit.BUnit"/>
+            /// </summary>
+            public UnitInfo<FrequencyUnit> BUnit { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{FrequencyUnit}"/> for <see cref="FrequencyUnit.CyclePerHour"/>
+            /// </summary>
+            public UnitInfo<FrequencyUnit> CyclePerHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{FrequencyUnit}"/> for <see cref="FrequencyUnit.CyclePerMinute"/>
+            /// </summary>
+            public UnitInfo<FrequencyUnit> CyclePerMinute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{FrequencyUnit}"/> for <see cref="FrequencyUnit.Gigahertz"/>
+            /// </summary>
+            public UnitInfo<FrequencyUnit> Gigahertz { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{FrequencyUnit}"/> for <see cref="FrequencyUnit.Hertz"/>
+            /// </summary>
+            public UnitInfo<FrequencyUnit> Hertz { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{FrequencyUnit}"/> for <see cref="FrequencyUnit.Kilohertz"/>
+            /// </summary>
+            public UnitInfo<FrequencyUnit> Kilohertz { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{FrequencyUnit}"/> for <see cref="FrequencyUnit.Megahertz"/>
+            /// </summary>
+            public UnitInfo<FrequencyUnit> Megahertz { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{FrequencyUnit}"/> for <see cref="FrequencyUnit.PerSecond"/>
+            /// </summary>
+            public UnitInfo<FrequencyUnit> PerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{FrequencyUnit}"/> for <see cref="FrequencyUnit.RadianPerSecond"/>
+            /// </summary>
+            public UnitInfo<FrequencyUnit> RadianPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{FrequencyUnit}"/> for <see cref="FrequencyUnit.Terahertz"/>
+            /// </summary>
+            public UnitInfo<FrequencyUnit> Terahertz { get; }
+
+        }
     }
 }

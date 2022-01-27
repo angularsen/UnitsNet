@@ -53,15 +53,6 @@ namespace UnitsNet
         static ElectricCurrentGradient()
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 1, 0, 0, 0);
-
-            Info = new QuantityInfo<ElectricCurrentGradientUnit>("ElectricCurrentGradient",
-                new UnitInfo<ElectricCurrentGradientUnit>[] {
-                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerMicrosecond, "AmperesPerMicrosecond", new BaseUnits(time: DurationUnit.Microsecond, current: ElectricCurrentUnit.Ampere)),
-                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerMillisecond, "AmperesPerMillisecond", new BaseUnits(time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere)),
-                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerNanosecond, "AmperesPerNanosecond", new BaseUnits(time: DurationUnit.Nanosecond, current: ElectricCurrentUnit.Ampere)),
-                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerSecond, "AmperesPerSecond", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricCurrentGradient);
         }
 
         /// <summary>
@@ -101,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricCurrentGradientUnit> Info { get; }
+        public static ElectricCurrentGradient.ElectricCurrentGradientQuantityInfo Info { get; } = new ElectricCurrentGradient.ElectricCurrentGradientQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -929,5 +920,43 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class ElectricCurrentGradientQuantityInfo : QuantityInfo<ElectricCurrentGradientUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal ElectricCurrentGradientQuantityInfo() :
+                base("ElectricCurrentGradient", ElectricCurrentGradient.BaseUnit, ElectricCurrentGradient.Zero, ElectricCurrentGradient.BaseDimensions, QuantityType.ElectricCurrentGradient)
+            {
+                AmperePerMicrosecond = new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerMicrosecond, "AmperesPerMicrosecond", new BaseUnits(time: DurationUnit.Microsecond, current: ElectricCurrentUnit.Ampere));
+                AmperePerMillisecond = new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerMillisecond, "AmperesPerMillisecond", new BaseUnits(time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere));
+                AmperePerNanosecond = new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerNanosecond, "AmperesPerNanosecond", new BaseUnits(time: DurationUnit.Nanosecond, current: ElectricCurrentUnit.Ampere));
+                AmperePerSecond = new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerSecond, "AmperesPerSecond", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricCurrentGradientUnit}"/> for <see cref="ElectricCurrentGradientUnit.AmperePerMicrosecond"/>
+            /// </summary>
+            public UnitInfo<ElectricCurrentGradientUnit> AmperePerMicrosecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricCurrentGradientUnit}"/> for <see cref="ElectricCurrentGradientUnit.AmperePerMillisecond"/>
+            /// </summary>
+            public UnitInfo<ElectricCurrentGradientUnit> AmperePerMillisecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricCurrentGradientUnit}"/> for <see cref="ElectricCurrentGradientUnit.AmperePerNanosecond"/>
+            /// </summary>
+            public UnitInfo<ElectricCurrentGradientUnit> AmperePerNanosecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricCurrentGradientUnit}"/> for <see cref="ElectricCurrentGradientUnit.AmperePerSecond"/>
+            /// </summary>
+            public UnitInfo<ElectricCurrentGradientUnit> AmperePerSecond { get; }
+
+        }
     }
 }

@@ -56,36 +56,6 @@ namespace UnitsNet
         static SpecificEnergy()
         {
             BaseDimensions = new BaseDimensions(2, 0, -2, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<SpecificEnergyUnit>("SpecificEnergy",
-                new UnitInfo<SpecificEnergyUnit>[] {
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.BtuPerPound, "BtuPerPound", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.CaloriePerGram, "CaloriesPerGram", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.GigawattDayPerKilogram, "GigawattDaysPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.GigawattDayPerShortTon, "GigawattDaysPerShortTon", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.GigawattDayPerTonne, "GigawattDaysPerTonne", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.GigawattHourPerKilogram, "GigawattHoursPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.JoulePerKilogram, "JoulesPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.KilocaloriePerGram, "KilocaloriesPerGram", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.KilojoulePerKilogram, "KilojoulesPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.KilowattDayPerKilogram, "KilowattDaysPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.KilowattDayPerShortTon, "KilowattDaysPerShortTon", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.KilowattDayPerTonne, "KilowattDaysPerTonne", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.KilowattHourPerKilogram, "KilowattHoursPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.MegajoulePerKilogram, "MegajoulesPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.MegawattDayPerKilogram, "MegawattDaysPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.MegawattDayPerShortTon, "MegawattDaysPerShortTon", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.MegawattDayPerTonne, "MegawattDaysPerTonne", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.MegawattHourPerKilogram, "MegawattHoursPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.TerawattDayPerKilogram, "TerawattDaysPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.TerawattDayPerShortTon, "TerawattDaysPerShortTon", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.TerawattDayPerTonne, "TerawattDaysPerTonne", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattDayPerKilogram, "WattDaysPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattDayPerShortTon, "WattDaysPerShortTon", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattDayPerTonne, "WattDaysPerTonne", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattHourPerKilogram, "WattHoursPerKilogram", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.SpecificEnergy);
         }
 
         /// <summary>
@@ -125,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<SpecificEnergyUnit> Info { get; }
+        public static SpecificEnergy.SpecificEnergyQuantityInfo Info { get; } = new SpecificEnergy.SpecificEnergyQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1331,5 +1301,169 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class SpecificEnergyQuantityInfo : QuantityInfo<SpecificEnergyUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal SpecificEnergyQuantityInfo() :
+                base("SpecificEnergy", SpecificEnergy.BaseUnit, SpecificEnergy.Zero, SpecificEnergy.BaseDimensions, QuantityType.SpecificEnergy)
+            {
+                BtuPerPound = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.BtuPerPound, "BtuPerPound", BaseUnits.Undefined);
+                CaloriePerGram = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.CaloriePerGram, "CaloriesPerGram", BaseUnits.Undefined);
+                GigawattDayPerKilogram = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.GigawattDayPerKilogram, "GigawattDaysPerKilogram", BaseUnits.Undefined);
+                GigawattDayPerShortTon = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.GigawattDayPerShortTon, "GigawattDaysPerShortTon", BaseUnits.Undefined);
+                GigawattDayPerTonne = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.GigawattDayPerTonne, "GigawattDaysPerTonne", BaseUnits.Undefined);
+                GigawattHourPerKilogram = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.GigawattHourPerKilogram, "GigawattHoursPerKilogram", BaseUnits.Undefined);
+                JoulePerKilogram = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.JoulePerKilogram, "JoulesPerKilogram", BaseUnits.Undefined);
+                KilocaloriePerGram = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.KilocaloriePerGram, "KilocaloriesPerGram", BaseUnits.Undefined);
+                KilojoulePerKilogram = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.KilojoulePerKilogram, "KilojoulesPerKilogram", BaseUnits.Undefined);
+                KilowattDayPerKilogram = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.KilowattDayPerKilogram, "KilowattDaysPerKilogram", BaseUnits.Undefined);
+                KilowattDayPerShortTon = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.KilowattDayPerShortTon, "KilowattDaysPerShortTon", BaseUnits.Undefined);
+                KilowattDayPerTonne = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.KilowattDayPerTonne, "KilowattDaysPerTonne", BaseUnits.Undefined);
+                KilowattHourPerKilogram = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.KilowattHourPerKilogram, "KilowattHoursPerKilogram", BaseUnits.Undefined);
+                MegajoulePerKilogram = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.MegajoulePerKilogram, "MegajoulesPerKilogram", BaseUnits.Undefined);
+                MegawattDayPerKilogram = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.MegawattDayPerKilogram, "MegawattDaysPerKilogram", BaseUnits.Undefined);
+                MegawattDayPerShortTon = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.MegawattDayPerShortTon, "MegawattDaysPerShortTon", BaseUnits.Undefined);
+                MegawattDayPerTonne = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.MegawattDayPerTonne, "MegawattDaysPerTonne", BaseUnits.Undefined);
+                MegawattHourPerKilogram = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.MegawattHourPerKilogram, "MegawattHoursPerKilogram", BaseUnits.Undefined);
+                TerawattDayPerKilogram = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.TerawattDayPerKilogram, "TerawattDaysPerKilogram", BaseUnits.Undefined);
+                TerawattDayPerShortTon = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.TerawattDayPerShortTon, "TerawattDaysPerShortTon", BaseUnits.Undefined);
+                TerawattDayPerTonne = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.TerawattDayPerTonne, "TerawattDaysPerTonne", BaseUnits.Undefined);
+                WattDayPerKilogram = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattDayPerKilogram, "WattDaysPerKilogram", BaseUnits.Undefined);
+                WattDayPerShortTon = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattDayPerShortTon, "WattDaysPerShortTon", BaseUnits.Undefined);
+                WattDayPerTonne = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattDayPerTonne, "WattDaysPerTonne", BaseUnits.Undefined);
+                WattHourPerKilogram = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattHourPerKilogram, "WattHoursPerKilogram", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificEnergyUnit}"/> for <see cref="SpecificEnergyUnit.BtuPerPound"/>
+            /// </summary>
+            public UnitInfo<SpecificEnergyUnit> BtuPerPound { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificEnergyUnit}"/> for <see cref="SpecificEnergyUnit.CaloriePerGram"/>
+            /// </summary>
+            public UnitInfo<SpecificEnergyUnit> CaloriePerGram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificEnergyUnit}"/> for <see cref="SpecificEnergyUnit.GigawattDayPerKilogram"/>
+            /// </summary>
+            public UnitInfo<SpecificEnergyUnit> GigawattDayPerKilogram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificEnergyUnit}"/> for <see cref="SpecificEnergyUnit.GigawattDayPerShortTon"/>
+            /// </summary>
+            public UnitInfo<SpecificEnergyUnit> GigawattDayPerShortTon { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificEnergyUnit}"/> for <see cref="SpecificEnergyUnit.GigawattDayPerTonne"/>
+            /// </summary>
+            public UnitInfo<SpecificEnergyUnit> GigawattDayPerTonne { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificEnergyUnit}"/> for <see cref="SpecificEnergyUnit.GigawattHourPerKilogram"/>
+            /// </summary>
+            public UnitInfo<SpecificEnergyUnit> GigawattHourPerKilogram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificEnergyUnit}"/> for <see cref="SpecificEnergyUnit.JoulePerKilogram"/>
+            /// </summary>
+            public UnitInfo<SpecificEnergyUnit> JoulePerKilogram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificEnergyUnit}"/> for <see cref="SpecificEnergyUnit.KilocaloriePerGram"/>
+            /// </summary>
+            public UnitInfo<SpecificEnergyUnit> KilocaloriePerGram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificEnergyUnit}"/> for <see cref="SpecificEnergyUnit.KilojoulePerKilogram"/>
+            /// </summary>
+            public UnitInfo<SpecificEnergyUnit> KilojoulePerKilogram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificEnergyUnit}"/> for <see cref="SpecificEnergyUnit.KilowattDayPerKilogram"/>
+            /// </summary>
+            public UnitInfo<SpecificEnergyUnit> KilowattDayPerKilogram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificEnergyUnit}"/> for <see cref="SpecificEnergyUnit.KilowattDayPerShortTon"/>
+            /// </summary>
+            public UnitInfo<SpecificEnergyUnit> KilowattDayPerShortTon { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificEnergyUnit}"/> for <see cref="SpecificEnergyUnit.KilowattDayPerTonne"/>
+            /// </summary>
+            public UnitInfo<SpecificEnergyUnit> KilowattDayPerTonne { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificEnergyUnit}"/> for <see cref="SpecificEnergyUnit.KilowattHourPerKilogram"/>
+            /// </summary>
+            public UnitInfo<SpecificEnergyUnit> KilowattHourPerKilogram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificEnergyUnit}"/> for <see cref="SpecificEnergyUnit.MegajoulePerKilogram"/>
+            /// </summary>
+            public UnitInfo<SpecificEnergyUnit> MegajoulePerKilogram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificEnergyUnit}"/> for <see cref="SpecificEnergyUnit.MegawattDayPerKilogram"/>
+            /// </summary>
+            public UnitInfo<SpecificEnergyUnit> MegawattDayPerKilogram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificEnergyUnit}"/> for <see cref="SpecificEnergyUnit.MegawattDayPerShortTon"/>
+            /// </summary>
+            public UnitInfo<SpecificEnergyUnit> MegawattDayPerShortTon { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificEnergyUnit}"/> for <see cref="SpecificEnergyUnit.MegawattDayPerTonne"/>
+            /// </summary>
+            public UnitInfo<SpecificEnergyUnit> MegawattDayPerTonne { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificEnergyUnit}"/> for <see cref="SpecificEnergyUnit.MegawattHourPerKilogram"/>
+            /// </summary>
+            public UnitInfo<SpecificEnergyUnit> MegawattHourPerKilogram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificEnergyUnit}"/> for <see cref="SpecificEnergyUnit.TerawattDayPerKilogram"/>
+            /// </summary>
+            public UnitInfo<SpecificEnergyUnit> TerawattDayPerKilogram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificEnergyUnit}"/> for <see cref="SpecificEnergyUnit.TerawattDayPerShortTon"/>
+            /// </summary>
+            public UnitInfo<SpecificEnergyUnit> TerawattDayPerShortTon { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificEnergyUnit}"/> for <see cref="SpecificEnergyUnit.TerawattDayPerTonne"/>
+            /// </summary>
+            public UnitInfo<SpecificEnergyUnit> TerawattDayPerTonne { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificEnergyUnit}"/> for <see cref="SpecificEnergyUnit.WattDayPerKilogram"/>
+            /// </summary>
+            public UnitInfo<SpecificEnergyUnit> WattDayPerKilogram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificEnergyUnit}"/> for <see cref="SpecificEnergyUnit.WattDayPerShortTon"/>
+            /// </summary>
+            public UnitInfo<SpecificEnergyUnit> WattDayPerShortTon { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificEnergyUnit}"/> for <see cref="SpecificEnergyUnit.WattDayPerTonne"/>
+            /// </summary>
+            public UnitInfo<SpecificEnergyUnit> WattDayPerTonne { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificEnergyUnit}"/> for <see cref="SpecificEnergyUnit.WattHourPerKilogram"/>
+            /// </summary>
+            public UnitInfo<SpecificEnergyUnit> WattHourPerKilogram { get; }
+
+        }
     }
 }

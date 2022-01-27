@@ -54,11 +54,6 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<RelativeHumidityUnit>("RelativeHumidity",
-                new UnitInfo<RelativeHumidityUnit>[] {
-                    new UnitInfo<RelativeHumidityUnit>(RelativeHumidityUnit.Percent, "Percent", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.RelativeHumidity);
         }
 
         /// <summary>
@@ -98,7 +93,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<RelativeHumidityUnit> Info { get; }
+        public static RelativeHumidity.RelativeHumidityQuantityInfo Info { get; } = new RelativeHumidity.RelativeHumidityQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -872,5 +867,25 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class RelativeHumidityQuantityInfo : QuantityInfo<RelativeHumidityUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal RelativeHumidityQuantityInfo() :
+                base("RelativeHumidity", RelativeHumidity.BaseUnit, RelativeHumidity.Zero, RelativeHumidity.BaseDimensions, QuantityType.RelativeHumidity)
+            {
+                Percent = new UnitInfo<RelativeHumidityUnit>(RelativeHumidityUnit.Percent, "Percent", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RelativeHumidityUnit}"/> for <see cref="RelativeHumidityUnit.Percent"/>
+            /// </summary>
+            public UnitInfo<RelativeHumidityUnit> Percent { get; }
+
+        }
     }
 }

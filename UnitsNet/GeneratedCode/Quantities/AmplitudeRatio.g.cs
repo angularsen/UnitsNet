@@ -54,14 +54,6 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<AmplitudeRatioUnit>("AmplitudeRatio",
-                new UnitInfo<AmplitudeRatioUnit>[] {
-                    new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelMicrovolt, "DecibelMicrovolts", BaseUnits.Undefined),
-                    new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelMillivolt, "DecibelMillivolts", BaseUnits.Undefined),
-                    new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelUnloaded, "DecibelsUnloaded", BaseUnits.Undefined),
-                    new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelVolt, "DecibelVolts", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.AmplitudeRatio);
         }
 
         /// <summary>
@@ -101,7 +93,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<AmplitudeRatioUnit> Info { get; }
+        public static AmplitudeRatio.AmplitudeRatioQuantityInfo Info { get; } = new AmplitudeRatio.AmplitudeRatioQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -937,5 +929,43 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class AmplitudeRatioQuantityInfo : QuantityInfo<AmplitudeRatioUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal AmplitudeRatioQuantityInfo() :
+                base("AmplitudeRatio", AmplitudeRatio.BaseUnit, AmplitudeRatio.Zero, AmplitudeRatio.BaseDimensions, QuantityType.AmplitudeRatio)
+            {
+                DecibelMicrovolt = new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelMicrovolt, "DecibelMicrovolts", BaseUnits.Undefined);
+                DecibelMillivolt = new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelMillivolt, "DecibelMillivolts", BaseUnits.Undefined);
+                DecibelUnloaded = new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelUnloaded, "DecibelsUnloaded", BaseUnits.Undefined);
+                DecibelVolt = new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelVolt, "DecibelVolts", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AmplitudeRatioUnit}"/> for <see cref="AmplitudeRatioUnit.DecibelMicrovolt"/>
+            /// </summary>
+            public UnitInfo<AmplitudeRatioUnit> DecibelMicrovolt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AmplitudeRatioUnit}"/> for <see cref="AmplitudeRatioUnit.DecibelMillivolt"/>
+            /// </summary>
+            public UnitInfo<AmplitudeRatioUnit> DecibelMillivolt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AmplitudeRatioUnit}"/> for <see cref="AmplitudeRatioUnit.DecibelUnloaded"/>
+            /// </summary>
+            public UnitInfo<AmplitudeRatioUnit> DecibelUnloaded { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AmplitudeRatioUnit}"/> for <see cref="AmplitudeRatioUnit.DecibelVolt"/>
+            /// </summary>
+            public UnitInfo<AmplitudeRatioUnit> DecibelVolt { get; }
+
+        }
     }
 }

@@ -57,11 +57,6 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<TurbidityUnit>("Turbidity",
-                new UnitInfo<TurbidityUnit>[] {
-                    new UnitInfo<TurbidityUnit>(TurbidityUnit.NTU, "NTU", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Turbidity);
         }
 
         /// <summary>
@@ -101,7 +96,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<TurbidityUnit> Info { get; }
+        public static Turbidity.TurbidityQuantityInfo Info { get; } = new Turbidity.TurbidityQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -875,5 +870,25 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class TurbidityQuantityInfo : QuantityInfo<TurbidityUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal TurbidityQuantityInfo() :
+                base("Turbidity", Turbidity.BaseUnit, Turbidity.Zero, Turbidity.BaseDimensions, QuantityType.Turbidity)
+            {
+                NTU = new UnitInfo<TurbidityUnit>(TurbidityUnit.NTU, "NTU", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TurbidityUnit}"/> for <see cref="TurbidityUnit.NTU"/>
+            /// </summary>
+            public UnitInfo<TurbidityUnit> NTU { get; }
+
+        }
     }
 }

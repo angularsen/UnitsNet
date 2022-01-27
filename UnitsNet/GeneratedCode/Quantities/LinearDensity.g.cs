@@ -56,25 +56,6 @@ namespace UnitsNet
         static LinearDensity()
         {
             BaseDimensions = new BaseDimensions(-1, 1, 0, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<LinearDensityUnit>("LinearDensity",
-                new UnitInfo<LinearDensityUnit>[] {
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerCentimeter, "GramsPerCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerMeter, "GramsPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerMillimeter, "GramsPerMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.KilogramPerCentimeter, "KilogramsPerCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.KilogramPerMeter, "KilogramsPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.KilogramPerMillimeter, "KilogramsPerMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MicrogramPerCentimeter, "MicrogramsPerCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MicrogramPerMeter, "MicrogramsPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MicrogramPerMillimeter, "MicrogramsPerMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MilligramPerCentimeter, "MilligramsPerCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MilligramPerMeter, "MilligramsPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MilligramPerMillimeter, "MilligramsPerMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.PoundPerFoot, "PoundsPerFoot", BaseUnits.Undefined),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.PoundPerInch, "PoundsPerInch", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.LinearDensity);
         }
 
         /// <summary>
@@ -114,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<LinearDensityUnit> Info { get; }
+        public static LinearDensity.LinearDensityQuantityInfo Info { get; } = new LinearDensity.LinearDensityQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1122,5 +1103,103 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class LinearDensityQuantityInfo : QuantityInfo<LinearDensityUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal LinearDensityQuantityInfo() :
+                base("LinearDensity", LinearDensity.BaseUnit, LinearDensity.Zero, LinearDensity.BaseDimensions, QuantityType.LinearDensity)
+            {
+                GramPerCentimeter = new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerCentimeter, "GramsPerCentimeter", BaseUnits.Undefined);
+                GramPerMeter = new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerMeter, "GramsPerMeter", BaseUnits.Undefined);
+                GramPerMillimeter = new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerMillimeter, "GramsPerMillimeter", BaseUnits.Undefined);
+                KilogramPerCentimeter = new UnitInfo<LinearDensityUnit>(LinearDensityUnit.KilogramPerCentimeter, "KilogramsPerCentimeter", BaseUnits.Undefined);
+                KilogramPerMeter = new UnitInfo<LinearDensityUnit>(LinearDensityUnit.KilogramPerMeter, "KilogramsPerMeter", BaseUnits.Undefined);
+                KilogramPerMillimeter = new UnitInfo<LinearDensityUnit>(LinearDensityUnit.KilogramPerMillimeter, "KilogramsPerMillimeter", BaseUnits.Undefined);
+                MicrogramPerCentimeter = new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MicrogramPerCentimeter, "MicrogramsPerCentimeter", BaseUnits.Undefined);
+                MicrogramPerMeter = new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MicrogramPerMeter, "MicrogramsPerMeter", BaseUnits.Undefined);
+                MicrogramPerMillimeter = new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MicrogramPerMillimeter, "MicrogramsPerMillimeter", BaseUnits.Undefined);
+                MilligramPerCentimeter = new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MilligramPerCentimeter, "MilligramsPerCentimeter", BaseUnits.Undefined);
+                MilligramPerMeter = new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MilligramPerMeter, "MilligramsPerMeter", BaseUnits.Undefined);
+                MilligramPerMillimeter = new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MilligramPerMillimeter, "MilligramsPerMillimeter", BaseUnits.Undefined);
+                PoundPerFoot = new UnitInfo<LinearDensityUnit>(LinearDensityUnit.PoundPerFoot, "PoundsPerFoot", BaseUnits.Undefined);
+                PoundPerInch = new UnitInfo<LinearDensityUnit>(LinearDensityUnit.PoundPerInch, "PoundsPerInch", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearDensityUnit}"/> for <see cref="LinearDensityUnit.GramPerCentimeter"/>
+            /// </summary>
+            public UnitInfo<LinearDensityUnit> GramPerCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearDensityUnit}"/> for <see cref="LinearDensityUnit.GramPerMeter"/>
+            /// </summary>
+            public UnitInfo<LinearDensityUnit> GramPerMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearDensityUnit}"/> for <see cref="LinearDensityUnit.GramPerMillimeter"/>
+            /// </summary>
+            public UnitInfo<LinearDensityUnit> GramPerMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearDensityUnit}"/> for <see cref="LinearDensityUnit.KilogramPerCentimeter"/>
+            /// </summary>
+            public UnitInfo<LinearDensityUnit> KilogramPerCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearDensityUnit}"/> for <see cref="LinearDensityUnit.KilogramPerMeter"/>
+            /// </summary>
+            public UnitInfo<LinearDensityUnit> KilogramPerMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearDensityUnit}"/> for <see cref="LinearDensityUnit.KilogramPerMillimeter"/>
+            /// </summary>
+            public UnitInfo<LinearDensityUnit> KilogramPerMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearDensityUnit}"/> for <see cref="LinearDensityUnit.MicrogramPerCentimeter"/>
+            /// </summary>
+            public UnitInfo<LinearDensityUnit> MicrogramPerCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearDensityUnit}"/> for <see cref="LinearDensityUnit.MicrogramPerMeter"/>
+            /// </summary>
+            public UnitInfo<LinearDensityUnit> MicrogramPerMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearDensityUnit}"/> for <see cref="LinearDensityUnit.MicrogramPerMillimeter"/>
+            /// </summary>
+            public UnitInfo<LinearDensityUnit> MicrogramPerMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearDensityUnit}"/> for <see cref="LinearDensityUnit.MilligramPerCentimeter"/>
+            /// </summary>
+            public UnitInfo<LinearDensityUnit> MilligramPerCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearDensityUnit}"/> for <see cref="LinearDensityUnit.MilligramPerMeter"/>
+            /// </summary>
+            public UnitInfo<LinearDensityUnit> MilligramPerMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearDensityUnit}"/> for <see cref="LinearDensityUnit.MilligramPerMillimeter"/>
+            /// </summary>
+            public UnitInfo<LinearDensityUnit> MilligramPerMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearDensityUnit}"/> for <see cref="LinearDensityUnit.PoundPerFoot"/>
+            /// </summary>
+            public UnitInfo<LinearDensityUnit> PoundPerFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearDensityUnit}"/> for <see cref="LinearDensityUnit.PoundPerInch"/>
+            /// </summary>
+            public UnitInfo<LinearDensityUnit> PoundPerInch { get; }
+
+        }
     }
 }

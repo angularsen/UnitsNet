@@ -53,14 +53,6 @@ namespace UnitsNet
         static ReactiveEnergy()
         {
             BaseDimensions = new BaseDimensions(2, 1, -1, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<ReactiveEnergyUnit>("ReactiveEnergy",
-                new UnitInfo<ReactiveEnergyUnit>[] {
-                    new UnitInfo<ReactiveEnergyUnit>(ReactiveEnergyUnit.KilovoltampereReactiveHour, "KilovoltampereReactiveHours", BaseUnits.Undefined),
-                    new UnitInfo<ReactiveEnergyUnit>(ReactiveEnergyUnit.MegavoltampereReactiveHour, "MegavoltampereReactiveHours", BaseUnits.Undefined),
-                    new UnitInfo<ReactiveEnergyUnit>(ReactiveEnergyUnit.VoltampereReactiveHour, "VoltampereReactiveHours", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ReactiveEnergy);
         }
 
         /// <summary>
@@ -100,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ReactiveEnergyUnit> Info { get; }
+        public static ReactiveEnergy.ReactiveEnergyQuantityInfo Info { get; } = new ReactiveEnergy.ReactiveEnergyQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -910,5 +902,37 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class ReactiveEnergyQuantityInfo : QuantityInfo<ReactiveEnergyUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal ReactiveEnergyQuantityInfo() :
+                base("ReactiveEnergy", ReactiveEnergy.BaseUnit, ReactiveEnergy.Zero, ReactiveEnergy.BaseDimensions, QuantityType.ReactiveEnergy)
+            {
+                KilovoltampereReactiveHour = new UnitInfo<ReactiveEnergyUnit>(ReactiveEnergyUnit.KilovoltampereReactiveHour, "KilovoltampereReactiveHours", BaseUnits.Undefined);
+                MegavoltampereReactiveHour = new UnitInfo<ReactiveEnergyUnit>(ReactiveEnergyUnit.MegavoltampereReactiveHour, "MegavoltampereReactiveHours", BaseUnits.Undefined);
+                VoltampereReactiveHour = new UnitInfo<ReactiveEnergyUnit>(ReactiveEnergyUnit.VoltampereReactiveHour, "VoltampereReactiveHours", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ReactiveEnergyUnit}"/> for <see cref="ReactiveEnergyUnit.KilovoltampereReactiveHour"/>
+            /// </summary>
+            public UnitInfo<ReactiveEnergyUnit> KilovoltampereReactiveHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ReactiveEnergyUnit}"/> for <see cref="ReactiveEnergyUnit.MegavoltampereReactiveHour"/>
+            /// </summary>
+            public UnitInfo<ReactiveEnergyUnit> MegavoltampereReactiveHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ReactiveEnergyUnit}"/> for <see cref="ReactiveEnergyUnit.VoltampereReactiveHour"/>
+            /// </summary>
+            public UnitInfo<ReactiveEnergyUnit> VoltampereReactiveHour { get; }
+
+        }
     }
 }

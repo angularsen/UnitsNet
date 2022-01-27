@@ -56,12 +56,6 @@ namespace UnitsNet
         static Magnetization()
         {
             BaseDimensions = new BaseDimensions(-1, 0, 0, 1, 0, 0, 0);
-
-            Info = new QuantityInfo<MagnetizationUnit>("Magnetization",
-                new UnitInfo<MagnetizationUnit>[] {
-                    new UnitInfo<MagnetizationUnit>(MagnetizationUnit.AmperePerMeter, "AmperesPerMeter", new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere)),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Magnetization);
         }
 
         /// <summary>
@@ -101,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<MagnetizationUnit> Info { get; }
+        public static Magnetization.MagnetizationQuantityInfo Info { get; } = new Magnetization.MagnetizationQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -875,5 +869,25 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class MagnetizationQuantityInfo : QuantityInfo<MagnetizationUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal MagnetizationQuantityInfo() :
+                base("Magnetization", Magnetization.BaseUnit, Magnetization.Zero, Magnetization.BaseDimensions, QuantityType.Magnetization)
+            {
+                AmperePerMeter = new UnitInfo<MagnetizationUnit>(MagnetizationUnit.AmperePerMeter, "AmperesPerMeter", new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere));
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MagnetizationUnit}"/> for <see cref="MagnetizationUnit.AmperePerMeter"/>
+            /// </summary>
+            public UnitInfo<MagnetizationUnit> AmperePerMeter { get; }
+
+        }
     }
 }

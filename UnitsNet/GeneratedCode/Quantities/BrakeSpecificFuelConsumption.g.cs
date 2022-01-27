@@ -53,14 +53,6 @@ namespace UnitsNet
         static BrakeSpecificFuelConsumption()
         {
             BaseDimensions = new BaseDimensions(-2, 0, 2, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<BrakeSpecificFuelConsumptionUnit>("BrakeSpecificFuelConsumption",
-                new UnitInfo<BrakeSpecificFuelConsumptionUnit>[] {
-                    new UnitInfo<BrakeSpecificFuelConsumptionUnit>(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, "GramsPerKiloWattHour", BaseUnits.Undefined),
-                    new UnitInfo<BrakeSpecificFuelConsumptionUnit>(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, "KilogramsPerJoule", BaseUnits.Undefined),
-                    new UnitInfo<BrakeSpecificFuelConsumptionUnit>(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, "PoundsPerMechanicalHorsepowerHour", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.BrakeSpecificFuelConsumption);
         }
 
         /// <summary>
@@ -100,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<BrakeSpecificFuelConsumptionUnit> Info { get; }
+        public static BrakeSpecificFuelConsumption.BrakeSpecificFuelConsumptionQuantityInfo Info { get; } = new BrakeSpecificFuelConsumption.BrakeSpecificFuelConsumptionQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -910,5 +902,37 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class BrakeSpecificFuelConsumptionQuantityInfo : QuantityInfo<BrakeSpecificFuelConsumptionUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal BrakeSpecificFuelConsumptionQuantityInfo() :
+                base("BrakeSpecificFuelConsumption", BrakeSpecificFuelConsumption.BaseUnit, BrakeSpecificFuelConsumption.Zero, BrakeSpecificFuelConsumption.BaseDimensions, QuantityType.BrakeSpecificFuelConsumption)
+            {
+                GramPerKiloWattHour = new UnitInfo<BrakeSpecificFuelConsumptionUnit>(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, "GramsPerKiloWattHour", BaseUnits.Undefined);
+                KilogramPerJoule = new UnitInfo<BrakeSpecificFuelConsumptionUnit>(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, "KilogramsPerJoule", BaseUnits.Undefined);
+                PoundPerMechanicalHorsepowerHour = new UnitInfo<BrakeSpecificFuelConsumptionUnit>(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, "PoundsPerMechanicalHorsepowerHour", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{BrakeSpecificFuelConsumptionUnit}"/> for <see cref="BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour"/>
+            /// </summary>
+            public UnitInfo<BrakeSpecificFuelConsumptionUnit> GramPerKiloWattHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{BrakeSpecificFuelConsumptionUnit}"/> for <see cref="BrakeSpecificFuelConsumptionUnit.KilogramPerJoule"/>
+            /// </summary>
+            public UnitInfo<BrakeSpecificFuelConsumptionUnit> KilogramPerJoule { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{BrakeSpecificFuelConsumptionUnit}"/> for <see cref="BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour"/>
+            /// </summary>
+            public UnitInfo<BrakeSpecificFuelConsumptionUnit> PoundPerMechanicalHorsepowerHour { get; }
+
+        }
     }
 }

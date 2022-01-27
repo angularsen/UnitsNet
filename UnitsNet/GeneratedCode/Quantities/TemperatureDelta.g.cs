@@ -53,20 +53,6 @@ namespace UnitsNet
         static TemperatureDelta()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 1, 0, 0);
-
-            Info = new QuantityInfo<TemperatureDeltaUnit>("TemperatureDelta",
-                new UnitInfo<TemperatureDeltaUnit>[] {
-                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeCelsius, "DegreesCelsius", BaseUnits.Undefined),
-                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeDelisle, "DegreesDelisle", BaseUnits.Undefined),
-                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeFahrenheit, "DegreesFahrenheit", BaseUnits.Undefined),
-                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeNewton, "DegreesNewton", BaseUnits.Undefined),
-                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeRankine, "DegreesRankine", BaseUnits.Undefined),
-                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeReaumur, "DegreesReaumur", BaseUnits.Undefined),
-                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeRoemer, "DegreesRoemer", BaseUnits.Undefined),
-                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.Kelvin, "Kelvins", BaseUnits.Undefined),
-                    new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.MillidegreeCelsius, "MillidegreesCelsius", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.TemperatureDelta);
         }
 
         /// <summary>
@@ -106,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<TemperatureDeltaUnit> Info { get; }
+        public static TemperatureDelta.TemperatureDeltaQuantityInfo Info { get; } = new TemperatureDelta.TemperatureDeltaQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1024,5 +1010,73 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class TemperatureDeltaQuantityInfo : QuantityInfo<TemperatureDeltaUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal TemperatureDeltaQuantityInfo() :
+                base("TemperatureDelta", TemperatureDelta.BaseUnit, TemperatureDelta.Zero, TemperatureDelta.BaseDimensions, QuantityType.TemperatureDelta)
+            {
+                DegreeCelsius = new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeCelsius, "DegreesCelsius", BaseUnits.Undefined);
+                DegreeDelisle = new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeDelisle, "DegreesDelisle", BaseUnits.Undefined);
+                DegreeFahrenheit = new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeFahrenheit, "DegreesFahrenheit", BaseUnits.Undefined);
+                DegreeNewton = new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeNewton, "DegreesNewton", BaseUnits.Undefined);
+                DegreeRankine = new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeRankine, "DegreesRankine", BaseUnits.Undefined);
+                DegreeReaumur = new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeReaumur, "DegreesReaumur", BaseUnits.Undefined);
+                DegreeRoemer = new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeRoemer, "DegreesRoemer", BaseUnits.Undefined);
+                Kelvin = new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.Kelvin, "Kelvins", BaseUnits.Undefined);
+                MillidegreeCelsius = new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.MillidegreeCelsius, "MillidegreesCelsius", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureDeltaUnit}"/> for <see cref="TemperatureDeltaUnit.DegreeCelsius"/>
+            /// </summary>
+            public UnitInfo<TemperatureDeltaUnit> DegreeCelsius { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureDeltaUnit}"/> for <see cref="TemperatureDeltaUnit.DegreeDelisle"/>
+            /// </summary>
+            public UnitInfo<TemperatureDeltaUnit> DegreeDelisle { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureDeltaUnit}"/> for <see cref="TemperatureDeltaUnit.DegreeFahrenheit"/>
+            /// </summary>
+            public UnitInfo<TemperatureDeltaUnit> DegreeFahrenheit { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureDeltaUnit}"/> for <see cref="TemperatureDeltaUnit.DegreeNewton"/>
+            /// </summary>
+            public UnitInfo<TemperatureDeltaUnit> DegreeNewton { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureDeltaUnit}"/> for <see cref="TemperatureDeltaUnit.DegreeRankine"/>
+            /// </summary>
+            public UnitInfo<TemperatureDeltaUnit> DegreeRankine { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureDeltaUnit}"/> for <see cref="TemperatureDeltaUnit.DegreeReaumur"/>
+            /// </summary>
+            public UnitInfo<TemperatureDeltaUnit> DegreeReaumur { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureDeltaUnit}"/> for <see cref="TemperatureDeltaUnit.DegreeRoemer"/>
+            /// </summary>
+            public UnitInfo<TemperatureDeltaUnit> DegreeRoemer { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureDeltaUnit}"/> for <see cref="TemperatureDeltaUnit.Kelvin"/>
+            /// </summary>
+            public UnitInfo<TemperatureDeltaUnit> Kelvin { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureDeltaUnit}"/> for <see cref="TemperatureDeltaUnit.MillidegreeCelsius"/>
+            /// </summary>
+            public UnitInfo<TemperatureDeltaUnit> MillidegreeCelsius { get; }
+
+        }
     }
 }

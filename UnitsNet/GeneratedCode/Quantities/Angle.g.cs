@@ -54,26 +54,6 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<AngleUnit>("Angle",
-                new UnitInfo<AngleUnit>[] {
-                    new UnitInfo<AngleUnit>(AngleUnit.Arcminute, "Arcminutes", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.Arcsecond, "Arcseconds", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.Centiradian, "Centiradians", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.Deciradian, "Deciradians", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.Degree, "Degrees", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.Gradian, "Gradians", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.Microdegree, "Microdegrees", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.Microradian, "Microradians", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.Millidegree, "Millidegrees", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.Milliradian, "Milliradians", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.Nanodegree, "Nanodegrees", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.Nanoradian, "Nanoradians", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.NatoMil, "NatoMils", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.Radian, "Radians", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.Revolution, "Revolutions", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.Tilt, "Tilt", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Angle);
         }
 
         /// <summary>
@@ -113,7 +93,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<AngleUnit> Info { get; }
+        public static Angle.AngleQuantityInfo Info { get; } = new Angle.AngleQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1157,5 +1137,115 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class AngleQuantityInfo : QuantityInfo<AngleUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal AngleQuantityInfo() :
+                base("Angle", Angle.BaseUnit, Angle.Zero, Angle.BaseDimensions, QuantityType.Angle)
+            {
+                Arcminute = new UnitInfo<AngleUnit>(AngleUnit.Arcminute, "Arcminutes", BaseUnits.Undefined);
+                Arcsecond = new UnitInfo<AngleUnit>(AngleUnit.Arcsecond, "Arcseconds", BaseUnits.Undefined);
+                Centiradian = new UnitInfo<AngleUnit>(AngleUnit.Centiradian, "Centiradians", BaseUnits.Undefined);
+                Deciradian = new UnitInfo<AngleUnit>(AngleUnit.Deciradian, "Deciradians", BaseUnits.Undefined);
+                Degree = new UnitInfo<AngleUnit>(AngleUnit.Degree, "Degrees", BaseUnits.Undefined);
+                Gradian = new UnitInfo<AngleUnit>(AngleUnit.Gradian, "Gradians", BaseUnits.Undefined);
+                Microdegree = new UnitInfo<AngleUnit>(AngleUnit.Microdegree, "Microdegrees", BaseUnits.Undefined);
+                Microradian = new UnitInfo<AngleUnit>(AngleUnit.Microradian, "Microradians", BaseUnits.Undefined);
+                Millidegree = new UnitInfo<AngleUnit>(AngleUnit.Millidegree, "Millidegrees", BaseUnits.Undefined);
+                Milliradian = new UnitInfo<AngleUnit>(AngleUnit.Milliradian, "Milliradians", BaseUnits.Undefined);
+                Nanodegree = new UnitInfo<AngleUnit>(AngleUnit.Nanodegree, "Nanodegrees", BaseUnits.Undefined);
+                Nanoradian = new UnitInfo<AngleUnit>(AngleUnit.Nanoradian, "Nanoradians", BaseUnits.Undefined);
+                NatoMil = new UnitInfo<AngleUnit>(AngleUnit.NatoMil, "NatoMils", BaseUnits.Undefined);
+                Radian = new UnitInfo<AngleUnit>(AngleUnit.Radian, "Radians", BaseUnits.Undefined);
+                Revolution = new UnitInfo<AngleUnit>(AngleUnit.Revolution, "Revolutions", BaseUnits.Undefined);
+                Tilt = new UnitInfo<AngleUnit>(AngleUnit.Tilt, "Tilt", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AngleUnit}"/> for <see cref="AngleUnit.Arcminute"/>
+            /// </summary>
+            public UnitInfo<AngleUnit> Arcminute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AngleUnit}"/> for <see cref="AngleUnit.Arcsecond"/>
+            /// </summary>
+            public UnitInfo<AngleUnit> Arcsecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AngleUnit}"/> for <see cref="AngleUnit.Centiradian"/>
+            /// </summary>
+            public UnitInfo<AngleUnit> Centiradian { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AngleUnit}"/> for <see cref="AngleUnit.Deciradian"/>
+            /// </summary>
+            public UnitInfo<AngleUnit> Deciradian { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AngleUnit}"/> for <see cref="AngleUnit.Degree"/>
+            /// </summary>
+            public UnitInfo<AngleUnit> Degree { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AngleUnit}"/> for <see cref="AngleUnit.Gradian"/>
+            /// </summary>
+            public UnitInfo<AngleUnit> Gradian { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AngleUnit}"/> for <see cref="AngleUnit.Microdegree"/>
+            /// </summary>
+            public UnitInfo<AngleUnit> Microdegree { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AngleUnit}"/> for <see cref="AngleUnit.Microradian"/>
+            /// </summary>
+            public UnitInfo<AngleUnit> Microradian { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AngleUnit}"/> for <see cref="AngleUnit.Millidegree"/>
+            /// </summary>
+            public UnitInfo<AngleUnit> Millidegree { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AngleUnit}"/> for <see cref="AngleUnit.Milliradian"/>
+            /// </summary>
+            public UnitInfo<AngleUnit> Milliradian { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AngleUnit}"/> for <see cref="AngleUnit.Nanodegree"/>
+            /// </summary>
+            public UnitInfo<AngleUnit> Nanodegree { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AngleUnit}"/> for <see cref="AngleUnit.Nanoradian"/>
+            /// </summary>
+            public UnitInfo<AngleUnit> Nanoradian { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AngleUnit}"/> for <see cref="AngleUnit.NatoMil"/>
+            /// </summary>
+            public UnitInfo<AngleUnit> NatoMil { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AngleUnit}"/> for <see cref="AngleUnit.Radian"/>
+            /// </summary>
+            public UnitInfo<AngleUnit> Radian { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AngleUnit}"/> for <see cref="AngleUnit.Revolution"/>
+            /// </summary>
+            public UnitInfo<AngleUnit> Revolution { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AngleUnit}"/> for <see cref="AngleUnit.Tilt"/>
+            /// </summary>
+            public UnitInfo<AngleUnit> Tilt { get; }
+
+        }
     }
 }

@@ -56,12 +56,6 @@ namespace UnitsNet
         static ElectricField()
         {
             BaseDimensions = new BaseDimensions(1, 1, -3, -1, 0, 0, 0);
-
-            Info = new QuantityInfo<ElectricFieldUnit>("ElectricField",
-                new UnitInfo<ElectricFieldUnit>[] {
-                    new UnitInfo<ElectricFieldUnit>(ElectricFieldUnit.VoltPerMeter, "VoltsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricField);
         }
 
         /// <summary>
@@ -101,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricFieldUnit> Info { get; }
+        public static ElectricField.ElectricFieldQuantityInfo Info { get; } = new ElectricField.ElectricFieldQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -875,5 +869,25 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class ElectricFieldQuantityInfo : QuantityInfo<ElectricFieldUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal ElectricFieldQuantityInfo() :
+                base("ElectricField", ElectricField.BaseUnit, ElectricField.Zero, ElectricField.BaseDimensions, QuantityType.ElectricField)
+            {
+                VoltPerMeter = new UnitInfo<ElectricFieldUnit>(ElectricFieldUnit.VoltPerMeter, "VoltsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricFieldUnit}"/> for <see cref="ElectricFieldUnit.VoltPerMeter"/>
+            /// </summary>
+            public UnitInfo<ElectricFieldUnit> VoltPerMeter { get; }
+
+        }
     }
 }

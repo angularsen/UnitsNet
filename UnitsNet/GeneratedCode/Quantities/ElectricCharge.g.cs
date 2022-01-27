@@ -56,16 +56,6 @@ namespace UnitsNet
         static ElectricCharge()
         {
             BaseDimensions = new BaseDimensions(0, 0, 1, 1, 0, 0, 0);
-
-            Info = new QuantityInfo<ElectricChargeUnit>("ElectricCharge",
-                new UnitInfo<ElectricChargeUnit>[] {
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.AmpereHour, "AmpereHours", BaseUnits.Undefined),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Coulomb, "Coulombs", BaseUnits.Undefined),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.KiloampereHour, "KiloampereHours", BaseUnits.Undefined),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MegaampereHour, "MegaampereHours", BaseUnits.Undefined),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MilliampereHour, "MilliampereHours", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricCharge);
         }
 
         /// <summary>
@@ -105,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricChargeUnit> Info { get; }
+        public static ElectricCharge.ElectricChargeQuantityInfo Info { get; } = new ElectricCharge.ElectricChargeQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -951,5 +941,49 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class ElectricChargeQuantityInfo : QuantityInfo<ElectricChargeUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal ElectricChargeQuantityInfo() :
+                base("ElectricCharge", ElectricCharge.BaseUnit, ElectricCharge.Zero, ElectricCharge.BaseDimensions, QuantityType.ElectricCharge)
+            {
+                AmpereHour = new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.AmpereHour, "AmpereHours", BaseUnits.Undefined);
+                Coulomb = new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Coulomb, "Coulombs", BaseUnits.Undefined);
+                KiloampereHour = new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.KiloampereHour, "KiloampereHours", BaseUnits.Undefined);
+                MegaampereHour = new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MegaampereHour, "MegaampereHours", BaseUnits.Undefined);
+                MilliampereHour = new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MilliampereHour, "MilliampereHours", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricChargeUnit}"/> for <see cref="ElectricChargeUnit.AmpereHour"/>
+            /// </summary>
+            public UnitInfo<ElectricChargeUnit> AmpereHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricChargeUnit}"/> for <see cref="ElectricChargeUnit.Coulomb"/>
+            /// </summary>
+            public UnitInfo<ElectricChargeUnit> Coulomb { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricChargeUnit}"/> for <see cref="ElectricChargeUnit.KiloampereHour"/>
+            /// </summary>
+            public UnitInfo<ElectricChargeUnit> KiloampereHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricChargeUnit}"/> for <see cref="ElectricChargeUnit.MegaampereHour"/>
+            /// </summary>
+            public UnitInfo<ElectricChargeUnit> MegaampereHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricChargeUnit}"/> for <see cref="ElectricChargeUnit.MilliampereHour"/>
+            /// </summary>
+            public UnitInfo<ElectricChargeUnit> MilliampereHour { get; }
+
+        }
     }
 }

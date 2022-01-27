@@ -53,47 +53,6 @@ namespace UnitsNet
         static Energy()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<EnergyUnit>("Energy",
-                new UnitInfo<EnergyUnit>[] {
-                    new UnitInfo<EnergyUnit>(EnergyUnit.BritishThermalUnit, "BritishThermalUnits", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Calorie, "Calories", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.DecathermEc, "DecathermsEc", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.DecathermImperial, "DecathermsImperial", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.DecathermUs, "DecathermsUs", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.ElectronVolt, "ElectronVolts", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Erg, "Ergs", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.FootPound, "FootPounds", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.GigabritishThermalUnit, "GigabritishThermalUnits", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.GigaelectronVolt, "GigaelectronVolts", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Gigajoule, "Gigajoules", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.GigawattDay, "GigawattDays", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.GigawattHour, "GigawattHours", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.HorsepowerHour, "HorsepowerHours", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Joule, "Joules", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.KilobritishThermalUnit, "KilobritishThermalUnits", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Kilocalorie, "Kilocalories", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.KiloelectronVolt, "KiloelectronVolts", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Kilojoule, "Kilojoules", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.KilowattDay, "KilowattDays", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.KilowattHour, "KilowattHours", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.MegabritishThermalUnit, "MegabritishThermalUnits", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Megacalorie, "Megacalories", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.MegaelectronVolt, "MegaelectronVolts", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Megajoule, "Megajoules", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.MegawattDay, "MegawattDays", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.MegawattHour, "MegawattHours", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Millijoule, "Millijoules", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.TeraelectronVolt, "TeraelectronVolts", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.TerawattDay, "TerawattDays", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.TerawattHour, "TerawattHours", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.ThermEc, "ThermsEc", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.ThermImperial, "ThermsImperial", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.ThermUs, "ThermsUs", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.WattDay, "WattDays", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.WattHour, "WattHours", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Energy);
         }
 
         /// <summary>
@@ -133,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<EnergyUnit> Info { get; }
+        public static Energy.EnergyQuantityInfo Info { get; } = new Energy.EnergyQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1537,5 +1496,235 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class EnergyQuantityInfo : QuantityInfo<EnergyUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal EnergyQuantityInfo() :
+                base("Energy", Energy.BaseUnit, Energy.Zero, Energy.BaseDimensions, QuantityType.Energy)
+            {
+                BritishThermalUnit = new UnitInfo<EnergyUnit>(EnergyUnit.BritishThermalUnit, "BritishThermalUnits", BaseUnits.Undefined);
+                Calorie = new UnitInfo<EnergyUnit>(EnergyUnit.Calorie, "Calories", BaseUnits.Undefined);
+                DecathermEc = new UnitInfo<EnergyUnit>(EnergyUnit.DecathermEc, "DecathermsEc", BaseUnits.Undefined);
+                DecathermImperial = new UnitInfo<EnergyUnit>(EnergyUnit.DecathermImperial, "DecathermsImperial", BaseUnits.Undefined);
+                DecathermUs = new UnitInfo<EnergyUnit>(EnergyUnit.DecathermUs, "DecathermsUs", BaseUnits.Undefined);
+                ElectronVolt = new UnitInfo<EnergyUnit>(EnergyUnit.ElectronVolt, "ElectronVolts", BaseUnits.Undefined);
+                Erg = new UnitInfo<EnergyUnit>(EnergyUnit.Erg, "Ergs", BaseUnits.Undefined);
+                FootPound = new UnitInfo<EnergyUnit>(EnergyUnit.FootPound, "FootPounds", BaseUnits.Undefined);
+                GigabritishThermalUnit = new UnitInfo<EnergyUnit>(EnergyUnit.GigabritishThermalUnit, "GigabritishThermalUnits", BaseUnits.Undefined);
+                GigaelectronVolt = new UnitInfo<EnergyUnit>(EnergyUnit.GigaelectronVolt, "GigaelectronVolts", BaseUnits.Undefined);
+                Gigajoule = new UnitInfo<EnergyUnit>(EnergyUnit.Gigajoule, "Gigajoules", BaseUnits.Undefined);
+                GigawattDay = new UnitInfo<EnergyUnit>(EnergyUnit.GigawattDay, "GigawattDays", BaseUnits.Undefined);
+                GigawattHour = new UnitInfo<EnergyUnit>(EnergyUnit.GigawattHour, "GigawattHours", BaseUnits.Undefined);
+                HorsepowerHour = new UnitInfo<EnergyUnit>(EnergyUnit.HorsepowerHour, "HorsepowerHours", BaseUnits.Undefined);
+                Joule = new UnitInfo<EnergyUnit>(EnergyUnit.Joule, "Joules", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                KilobritishThermalUnit = new UnitInfo<EnergyUnit>(EnergyUnit.KilobritishThermalUnit, "KilobritishThermalUnits", BaseUnits.Undefined);
+                Kilocalorie = new UnitInfo<EnergyUnit>(EnergyUnit.Kilocalorie, "Kilocalories", BaseUnits.Undefined);
+                KiloelectronVolt = new UnitInfo<EnergyUnit>(EnergyUnit.KiloelectronVolt, "KiloelectronVolts", BaseUnits.Undefined);
+                Kilojoule = new UnitInfo<EnergyUnit>(EnergyUnit.Kilojoule, "Kilojoules", BaseUnits.Undefined);
+                KilowattDay = new UnitInfo<EnergyUnit>(EnergyUnit.KilowattDay, "KilowattDays", BaseUnits.Undefined);
+                KilowattHour = new UnitInfo<EnergyUnit>(EnergyUnit.KilowattHour, "KilowattHours", BaseUnits.Undefined);
+                MegabritishThermalUnit = new UnitInfo<EnergyUnit>(EnergyUnit.MegabritishThermalUnit, "MegabritishThermalUnits", BaseUnits.Undefined);
+                Megacalorie = new UnitInfo<EnergyUnit>(EnergyUnit.Megacalorie, "Megacalories", BaseUnits.Undefined);
+                MegaelectronVolt = new UnitInfo<EnergyUnit>(EnergyUnit.MegaelectronVolt, "MegaelectronVolts", BaseUnits.Undefined);
+                Megajoule = new UnitInfo<EnergyUnit>(EnergyUnit.Megajoule, "Megajoules", BaseUnits.Undefined);
+                MegawattDay = new UnitInfo<EnergyUnit>(EnergyUnit.MegawattDay, "MegawattDays", BaseUnits.Undefined);
+                MegawattHour = new UnitInfo<EnergyUnit>(EnergyUnit.MegawattHour, "MegawattHours", BaseUnits.Undefined);
+                Millijoule = new UnitInfo<EnergyUnit>(EnergyUnit.Millijoule, "Millijoules", BaseUnits.Undefined);
+                TeraelectronVolt = new UnitInfo<EnergyUnit>(EnergyUnit.TeraelectronVolt, "TeraelectronVolts", BaseUnits.Undefined);
+                TerawattDay = new UnitInfo<EnergyUnit>(EnergyUnit.TerawattDay, "TerawattDays", BaseUnits.Undefined);
+                TerawattHour = new UnitInfo<EnergyUnit>(EnergyUnit.TerawattHour, "TerawattHours", BaseUnits.Undefined);
+                ThermEc = new UnitInfo<EnergyUnit>(EnergyUnit.ThermEc, "ThermsEc", BaseUnits.Undefined);
+                ThermImperial = new UnitInfo<EnergyUnit>(EnergyUnit.ThermImperial, "ThermsImperial", BaseUnits.Undefined);
+                ThermUs = new UnitInfo<EnergyUnit>(EnergyUnit.ThermUs, "ThermsUs", BaseUnits.Undefined);
+                WattDay = new UnitInfo<EnergyUnit>(EnergyUnit.WattDay, "WattDays", BaseUnits.Undefined);
+                WattHour = new UnitInfo<EnergyUnit>(EnergyUnit.WattHour, "WattHours", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.BritishThermalUnit"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> BritishThermalUnit { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.Calorie"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> Calorie { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.DecathermEc"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> DecathermEc { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.DecathermImperial"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> DecathermImperial { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.DecathermUs"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> DecathermUs { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.ElectronVolt"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> ElectronVolt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.Erg"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> Erg { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.FootPound"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> FootPound { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.GigabritishThermalUnit"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> GigabritishThermalUnit { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.GigaelectronVolt"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> GigaelectronVolt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.Gigajoule"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> Gigajoule { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.GigawattDay"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> GigawattDay { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.GigawattHour"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> GigawattHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.HorsepowerHour"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> HorsepowerHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.Joule"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> Joule { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.KilobritishThermalUnit"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> KilobritishThermalUnit { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.Kilocalorie"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> Kilocalorie { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.KiloelectronVolt"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> KiloelectronVolt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.Kilojoule"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> Kilojoule { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.KilowattDay"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> KilowattDay { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.KilowattHour"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> KilowattHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.MegabritishThermalUnit"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> MegabritishThermalUnit { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.Megacalorie"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> Megacalorie { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.MegaelectronVolt"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> MegaelectronVolt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.Megajoule"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> Megajoule { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.MegawattDay"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> MegawattDay { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.MegawattHour"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> MegawattHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.Millijoule"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> Millijoule { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.TeraelectronVolt"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> TeraelectronVolt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.TerawattDay"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> TerawattDay { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.TerawattHour"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> TerawattHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.ThermEc"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> ThermEc { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.ThermImperial"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> ThermImperial { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.ThermUs"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> ThermUs { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.WattDay"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> WattDay { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EnergyUnit}"/> for <see cref="EnergyUnit.WattHour"/>
+            /// </summary>
+            public UnitInfo<EnergyUnit> WattHour { get; }
+
+        }
     }
 }

@@ -53,18 +53,6 @@ namespace UnitsNet
         static Entropy()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, -1, 0, 0);
-
-            Info = new QuantityInfo<EntropyUnit>("Entropy",
-                new UnitInfo<EntropyUnit>[] {
-                    new UnitInfo<EntropyUnit>(EntropyUnit.CaloriePerKelvin, "CaloriesPerKelvin", BaseUnits.Undefined),
-                    new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerDegreeCelsius, "JoulesPerDegreeCelsius", BaseUnits.Undefined),
-                    new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerKelvin, "JoulesPerKelvin", BaseUnits.Undefined),
-                    new UnitInfo<EntropyUnit>(EntropyUnit.KilocaloriePerKelvin, "KilocaloriesPerKelvin", BaseUnits.Undefined),
-                    new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerDegreeCelsius, "KilojoulesPerDegreeCelsius", BaseUnits.Undefined),
-                    new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerKelvin, "KilojoulesPerKelvin", BaseUnits.Undefined),
-                    new UnitInfo<EntropyUnit>(EntropyUnit.MegajoulePerKelvin, "MegajoulesPerKelvin", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Entropy);
         }
 
         /// <summary>
@@ -104,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<EntropyUnit> Info { get; }
+        public static Entropy.EntropyQuantityInfo Info { get; } = new Entropy.EntropyQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -986,5 +974,61 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class EntropyQuantityInfo : QuantityInfo<EntropyUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal EntropyQuantityInfo() :
+                base("Entropy", Entropy.BaseUnit, Entropy.Zero, Entropy.BaseDimensions, QuantityType.Entropy)
+            {
+                CaloriePerKelvin = new UnitInfo<EntropyUnit>(EntropyUnit.CaloriePerKelvin, "CaloriesPerKelvin", BaseUnits.Undefined);
+                JoulePerDegreeCelsius = new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerDegreeCelsius, "JoulesPerDegreeCelsius", BaseUnits.Undefined);
+                JoulePerKelvin = new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerKelvin, "JoulesPerKelvin", BaseUnits.Undefined);
+                KilocaloriePerKelvin = new UnitInfo<EntropyUnit>(EntropyUnit.KilocaloriePerKelvin, "KilocaloriesPerKelvin", BaseUnits.Undefined);
+                KilojoulePerDegreeCelsius = new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerDegreeCelsius, "KilojoulesPerDegreeCelsius", BaseUnits.Undefined);
+                KilojoulePerKelvin = new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerKelvin, "KilojoulesPerKelvin", BaseUnits.Undefined);
+                MegajoulePerKelvin = new UnitInfo<EntropyUnit>(EntropyUnit.MegajoulePerKelvin, "MegajoulesPerKelvin", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EntropyUnit}"/> for <see cref="EntropyUnit.CaloriePerKelvin"/>
+            /// </summary>
+            public UnitInfo<EntropyUnit> CaloriePerKelvin { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EntropyUnit}"/> for <see cref="EntropyUnit.JoulePerDegreeCelsius"/>
+            /// </summary>
+            public UnitInfo<EntropyUnit> JoulePerDegreeCelsius { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EntropyUnit}"/> for <see cref="EntropyUnit.JoulePerKelvin"/>
+            /// </summary>
+            public UnitInfo<EntropyUnit> JoulePerKelvin { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EntropyUnit}"/> for <see cref="EntropyUnit.KilocaloriePerKelvin"/>
+            /// </summary>
+            public UnitInfo<EntropyUnit> KilocaloriePerKelvin { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EntropyUnit}"/> for <see cref="EntropyUnit.KilojoulePerDegreeCelsius"/>
+            /// </summary>
+            public UnitInfo<EntropyUnit> KilojoulePerDegreeCelsius { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EntropyUnit}"/> for <see cref="EntropyUnit.KilojoulePerKelvin"/>
+            /// </summary>
+            public UnitInfo<EntropyUnit> KilojoulePerKelvin { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{EntropyUnit}"/> for <see cref="EntropyUnit.MegajoulePerKelvin"/>
+            /// </summary>
+            public UnitInfo<EntropyUnit> MegajoulePerKelvin { get; }
+
+        }
     }
 }

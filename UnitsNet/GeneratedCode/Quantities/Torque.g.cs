@@ -53,36 +53,6 @@ namespace UnitsNet
         static Torque()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<TorqueUnit>("Torque",
-                new UnitInfo<TorqueUnit>[] {
-                    new UnitInfo<TorqueUnit>(TorqueUnit.GramForceCentimeter, "GramForceCentimeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.GramForceMeter, "GramForceMeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.GramForceMillimeter, "GramForceMillimeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceCentimeter, "KilogramForceCentimeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceMeter, "KilogramForceMeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceMillimeter, "KilogramForceMillimeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.KilonewtonCentimeter, "KilonewtonCentimeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.KilonewtonMeter, "KilonewtonMeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.KilonewtonMillimeter, "KilonewtonMillimeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.KilopoundForceFoot, "KilopoundForceFeet", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.KilopoundForceInch, "KilopoundForceInches", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.MeganewtonCentimeter, "MeganewtonCentimeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.MeganewtonMeter, "MeganewtonMeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.MeganewtonMillimeter, "MeganewtonMillimeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.MegapoundForceFoot, "MegapoundForceFeet", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.MegapoundForceInch, "MegapoundForceInches", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.NewtonCentimeter, "NewtonCentimeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.NewtonMeter, "NewtonMeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.NewtonMillimeter, "NewtonMillimeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.PoundalFoot, "PoundalFeet", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.PoundForceFoot, "PoundForceFeet", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.PoundForceInch, "PoundForceInches", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceCentimeter, "TonneForceCentimeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceMeter, "TonneForceMeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceMillimeter, "TonneForceMillimeters", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Torque);
         }
 
         /// <summary>
@@ -122,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<TorqueUnit> Info { get; }
+        public static Torque.TorqueQuantityInfo Info { get; } = new Torque.TorqueQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1328,5 +1298,169 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class TorqueQuantityInfo : QuantityInfo<TorqueUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal TorqueQuantityInfo() :
+                base("Torque", Torque.BaseUnit, Torque.Zero, Torque.BaseDimensions, QuantityType.Torque)
+            {
+                GramForceCentimeter = new UnitInfo<TorqueUnit>(TorqueUnit.GramForceCentimeter, "GramForceCentimeters", BaseUnits.Undefined);
+                GramForceMeter = new UnitInfo<TorqueUnit>(TorqueUnit.GramForceMeter, "GramForceMeters", BaseUnits.Undefined);
+                GramForceMillimeter = new UnitInfo<TorqueUnit>(TorqueUnit.GramForceMillimeter, "GramForceMillimeters", BaseUnits.Undefined);
+                KilogramForceCentimeter = new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceCentimeter, "KilogramForceCentimeters", BaseUnits.Undefined);
+                KilogramForceMeter = new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceMeter, "KilogramForceMeters", BaseUnits.Undefined);
+                KilogramForceMillimeter = new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceMillimeter, "KilogramForceMillimeters", BaseUnits.Undefined);
+                KilonewtonCentimeter = new UnitInfo<TorqueUnit>(TorqueUnit.KilonewtonCentimeter, "KilonewtonCentimeters", BaseUnits.Undefined);
+                KilonewtonMeter = new UnitInfo<TorqueUnit>(TorqueUnit.KilonewtonMeter, "KilonewtonMeters", BaseUnits.Undefined);
+                KilonewtonMillimeter = new UnitInfo<TorqueUnit>(TorqueUnit.KilonewtonMillimeter, "KilonewtonMillimeters", BaseUnits.Undefined);
+                KilopoundForceFoot = new UnitInfo<TorqueUnit>(TorqueUnit.KilopoundForceFoot, "KilopoundForceFeet", BaseUnits.Undefined);
+                KilopoundForceInch = new UnitInfo<TorqueUnit>(TorqueUnit.KilopoundForceInch, "KilopoundForceInches", BaseUnits.Undefined);
+                MeganewtonCentimeter = new UnitInfo<TorqueUnit>(TorqueUnit.MeganewtonCentimeter, "MeganewtonCentimeters", BaseUnits.Undefined);
+                MeganewtonMeter = new UnitInfo<TorqueUnit>(TorqueUnit.MeganewtonMeter, "MeganewtonMeters", BaseUnits.Undefined);
+                MeganewtonMillimeter = new UnitInfo<TorqueUnit>(TorqueUnit.MeganewtonMillimeter, "MeganewtonMillimeters", BaseUnits.Undefined);
+                MegapoundForceFoot = new UnitInfo<TorqueUnit>(TorqueUnit.MegapoundForceFoot, "MegapoundForceFeet", BaseUnits.Undefined);
+                MegapoundForceInch = new UnitInfo<TorqueUnit>(TorqueUnit.MegapoundForceInch, "MegapoundForceInches", BaseUnits.Undefined);
+                NewtonCentimeter = new UnitInfo<TorqueUnit>(TorqueUnit.NewtonCentimeter, "NewtonCentimeters", BaseUnits.Undefined);
+                NewtonMeter = new UnitInfo<TorqueUnit>(TorqueUnit.NewtonMeter, "NewtonMeters", BaseUnits.Undefined);
+                NewtonMillimeter = new UnitInfo<TorqueUnit>(TorqueUnit.NewtonMillimeter, "NewtonMillimeters", BaseUnits.Undefined);
+                PoundalFoot = new UnitInfo<TorqueUnit>(TorqueUnit.PoundalFoot, "PoundalFeet", BaseUnits.Undefined);
+                PoundForceFoot = new UnitInfo<TorqueUnit>(TorqueUnit.PoundForceFoot, "PoundForceFeet", BaseUnits.Undefined);
+                PoundForceInch = new UnitInfo<TorqueUnit>(TorqueUnit.PoundForceInch, "PoundForceInches", BaseUnits.Undefined);
+                TonneForceCentimeter = new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceCentimeter, "TonneForceCentimeters", BaseUnits.Undefined);
+                TonneForceMeter = new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceMeter, "TonneForceMeters", BaseUnits.Undefined);
+                TonneForceMillimeter = new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceMillimeter, "TonneForceMillimeters", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TorqueUnit}"/> for <see cref="TorqueUnit.GramForceCentimeter"/>
+            /// </summary>
+            public UnitInfo<TorqueUnit> GramForceCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TorqueUnit}"/> for <see cref="TorqueUnit.GramForceMeter"/>
+            /// </summary>
+            public UnitInfo<TorqueUnit> GramForceMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TorqueUnit}"/> for <see cref="TorqueUnit.GramForceMillimeter"/>
+            /// </summary>
+            public UnitInfo<TorqueUnit> GramForceMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TorqueUnit}"/> for <see cref="TorqueUnit.KilogramForceCentimeter"/>
+            /// </summary>
+            public UnitInfo<TorqueUnit> KilogramForceCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TorqueUnit}"/> for <see cref="TorqueUnit.KilogramForceMeter"/>
+            /// </summary>
+            public UnitInfo<TorqueUnit> KilogramForceMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TorqueUnit}"/> for <see cref="TorqueUnit.KilogramForceMillimeter"/>
+            /// </summary>
+            public UnitInfo<TorqueUnit> KilogramForceMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TorqueUnit}"/> for <see cref="TorqueUnit.KilonewtonCentimeter"/>
+            /// </summary>
+            public UnitInfo<TorqueUnit> KilonewtonCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TorqueUnit}"/> for <see cref="TorqueUnit.KilonewtonMeter"/>
+            /// </summary>
+            public UnitInfo<TorqueUnit> KilonewtonMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TorqueUnit}"/> for <see cref="TorqueUnit.KilonewtonMillimeter"/>
+            /// </summary>
+            public UnitInfo<TorqueUnit> KilonewtonMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TorqueUnit}"/> for <see cref="TorqueUnit.KilopoundForceFoot"/>
+            /// </summary>
+            public UnitInfo<TorqueUnit> KilopoundForceFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TorqueUnit}"/> for <see cref="TorqueUnit.KilopoundForceInch"/>
+            /// </summary>
+            public UnitInfo<TorqueUnit> KilopoundForceInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TorqueUnit}"/> for <see cref="TorqueUnit.MeganewtonCentimeter"/>
+            /// </summary>
+            public UnitInfo<TorqueUnit> MeganewtonCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TorqueUnit}"/> for <see cref="TorqueUnit.MeganewtonMeter"/>
+            /// </summary>
+            public UnitInfo<TorqueUnit> MeganewtonMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TorqueUnit}"/> for <see cref="TorqueUnit.MeganewtonMillimeter"/>
+            /// </summary>
+            public UnitInfo<TorqueUnit> MeganewtonMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TorqueUnit}"/> for <see cref="TorqueUnit.MegapoundForceFoot"/>
+            /// </summary>
+            public UnitInfo<TorqueUnit> MegapoundForceFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TorqueUnit}"/> for <see cref="TorqueUnit.MegapoundForceInch"/>
+            /// </summary>
+            public UnitInfo<TorqueUnit> MegapoundForceInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TorqueUnit}"/> for <see cref="TorqueUnit.NewtonCentimeter"/>
+            /// </summary>
+            public UnitInfo<TorqueUnit> NewtonCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TorqueUnit}"/> for <see cref="TorqueUnit.NewtonMeter"/>
+            /// </summary>
+            public UnitInfo<TorqueUnit> NewtonMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TorqueUnit}"/> for <see cref="TorqueUnit.NewtonMillimeter"/>
+            /// </summary>
+            public UnitInfo<TorqueUnit> NewtonMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TorqueUnit}"/> for <see cref="TorqueUnit.PoundalFoot"/>
+            /// </summary>
+            public UnitInfo<TorqueUnit> PoundalFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TorqueUnit}"/> for <see cref="TorqueUnit.PoundForceFoot"/>
+            /// </summary>
+            public UnitInfo<TorqueUnit> PoundForceFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TorqueUnit}"/> for <see cref="TorqueUnit.PoundForceInch"/>
+            /// </summary>
+            public UnitInfo<TorqueUnit> PoundForceInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TorqueUnit}"/> for <see cref="TorqueUnit.TonneForceCentimeter"/>
+            /// </summary>
+            public UnitInfo<TorqueUnit> TonneForceCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TorqueUnit}"/> for <see cref="TorqueUnit.TonneForceMeter"/>
+            /// </summary>
+            public UnitInfo<TorqueUnit> TonneForceMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TorqueUnit}"/> for <see cref="TorqueUnit.TonneForceMillimeter"/>
+            /// </summary>
+            public UnitInfo<TorqueUnit> TonneForceMillimeter { get; }
+
+        }
     }
 }

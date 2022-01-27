@@ -53,14 +53,6 @@ namespace UnitsNet
         static ApparentEnergy()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<ApparentEnergyUnit>("ApparentEnergy",
-                new UnitInfo<ApparentEnergyUnit>[] {
-                    new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.KilovoltampereHour, "KilovoltampereHours", BaseUnits.Undefined),
-                    new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.MegavoltampereHour, "MegavoltampereHours", BaseUnits.Undefined),
-                    new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.VoltampereHour, "VoltampereHours", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ApparentEnergy);
         }
 
         /// <summary>
@@ -100,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ApparentEnergyUnit> Info { get; }
+        public static ApparentEnergy.ApparentEnergyQuantityInfo Info { get; } = new ApparentEnergy.ApparentEnergyQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -910,5 +902,37 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class ApparentEnergyQuantityInfo : QuantityInfo<ApparentEnergyUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal ApparentEnergyQuantityInfo() :
+                base("ApparentEnergy", ApparentEnergy.BaseUnit, ApparentEnergy.Zero, ApparentEnergy.BaseDimensions, QuantityType.ApparentEnergy)
+            {
+                KilovoltampereHour = new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.KilovoltampereHour, "KilovoltampereHours", BaseUnits.Undefined);
+                MegavoltampereHour = new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.MegavoltampereHour, "MegavoltampereHours", BaseUnits.Undefined);
+                VoltampereHour = new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.VoltampereHour, "VoltampereHours", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ApparentEnergyUnit}"/> for <see cref="ApparentEnergyUnit.KilovoltampereHour"/>
+            /// </summary>
+            public UnitInfo<ApparentEnergyUnit> KilovoltampereHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ApparentEnergyUnit}"/> for <see cref="ApparentEnergyUnit.MegavoltampereHour"/>
+            /// </summary>
+            public UnitInfo<ApparentEnergyUnit> MegavoltampereHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ApparentEnergyUnit}"/> for <see cref="ApparentEnergyUnit.VoltampereHour"/>
+            /// </summary>
+            public UnitInfo<ApparentEnergyUnit> VoltampereHour { get; }
+
+        }
     }
 }

@@ -53,15 +53,6 @@ namespace UnitsNet
         static RotationalAcceleration()
         {
             BaseDimensions = new BaseDimensions(0, 0, -2, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<RotationalAccelerationUnit>("RotationalAcceleration",
-                new UnitInfo<RotationalAccelerationUnit>[] {
-                    new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.DegreePerSecondSquared, "DegreesPerSecondSquared", BaseUnits.Undefined),
-                    new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RadianPerSecondSquared, "RadiansPerSecondSquared", BaseUnits.Undefined),
-                    new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, "RevolutionsPerMinutePerSecond", BaseUnits.Undefined),
-                    new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RevolutionPerSecondSquared, "RevolutionsPerSecondSquared", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.RotationalAcceleration);
         }
 
         /// <summary>
@@ -101,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<RotationalAccelerationUnit> Info { get; }
+        public static RotationalAcceleration.RotationalAccelerationQuantityInfo Info { get; } = new RotationalAcceleration.RotationalAccelerationQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -929,5 +920,43 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class RotationalAccelerationQuantityInfo : QuantityInfo<RotationalAccelerationUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal RotationalAccelerationQuantityInfo() :
+                base("RotationalAcceleration", RotationalAcceleration.BaseUnit, RotationalAcceleration.Zero, RotationalAcceleration.BaseDimensions, QuantityType.RotationalAcceleration)
+            {
+                DegreePerSecondSquared = new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.DegreePerSecondSquared, "DegreesPerSecondSquared", BaseUnits.Undefined);
+                RadianPerSecondSquared = new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RadianPerSecondSquared, "RadiansPerSecondSquared", BaseUnits.Undefined);
+                RevolutionPerMinutePerSecond = new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, "RevolutionsPerMinutePerSecond", BaseUnits.Undefined);
+                RevolutionPerSecondSquared = new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RevolutionPerSecondSquared, "RevolutionsPerSecondSquared", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RotationalAccelerationUnit}"/> for <see cref="RotationalAccelerationUnit.DegreePerSecondSquared"/>
+            /// </summary>
+            public UnitInfo<RotationalAccelerationUnit> DegreePerSecondSquared { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RotationalAccelerationUnit}"/> for <see cref="RotationalAccelerationUnit.RadianPerSecondSquared"/>
+            /// </summary>
+            public UnitInfo<RotationalAccelerationUnit> RadianPerSecondSquared { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RotationalAccelerationUnit}"/> for <see cref="RotationalAccelerationUnit.RevolutionPerMinutePerSecond"/>
+            /// </summary>
+            public UnitInfo<RotationalAccelerationUnit> RevolutionPerMinutePerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RotationalAccelerationUnit}"/> for <see cref="RotationalAccelerationUnit.RevolutionPerSecondSquared"/>
+            /// </summary>
+            public UnitInfo<RotationalAccelerationUnit> RevolutionPerSecondSquared { get; }
+
+        }
     }
 }

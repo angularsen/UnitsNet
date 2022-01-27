@@ -53,25 +53,6 @@ namespace UnitsNet
         static PressureChangeRate()
         {
             BaseDimensions = new BaseDimensions(-1, 1, -3, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<PressureChangeRateUnit>("PressureChangeRate",
-                new UnitInfo<PressureChangeRateUnit>[] {
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.AtmospherePerSecond, "AtmospheresPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.KilopascalPerMinute, "KilopascalsPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.KilopascalPerSecond, "KilopascalsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute, "KilopoundsForcePerSquareInchPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond, "KilopoundsForcePerSquareInchPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MegapascalPerMinute, "MegapascalsPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MegapascalPerSecond, "MegapascalsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute, "MegapoundsForcePerSquareInchPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond, "MegapoundsForcePerSquareInchPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MillimeterOfMercuryPerSecond, "MillimetersOfMercuryPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PascalPerMinute, "PascalsPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PascalPerSecond, "PascalsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PoundForcePerSquareInchPerMinute, "PoundsForcePerSquareInchPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, "PoundsForcePerSquareInchPerSecond", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.PressureChangeRate);
         }
 
         /// <summary>
@@ -111,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<PressureChangeRateUnit> Info { get; }
+        public static PressureChangeRate.PressureChangeRateQuantityInfo Info { get; } = new PressureChangeRate.PressureChangeRateQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1119,5 +1100,103 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class PressureChangeRateQuantityInfo : QuantityInfo<PressureChangeRateUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal PressureChangeRateQuantityInfo() :
+                base("PressureChangeRate", PressureChangeRate.BaseUnit, PressureChangeRate.Zero, PressureChangeRate.BaseDimensions, QuantityType.PressureChangeRate)
+            {
+                AtmospherePerSecond = new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.AtmospherePerSecond, "AtmospheresPerSecond", BaseUnits.Undefined);
+                KilopascalPerMinute = new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.KilopascalPerMinute, "KilopascalsPerMinute", BaseUnits.Undefined);
+                KilopascalPerSecond = new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.KilopascalPerSecond, "KilopascalsPerSecond", BaseUnits.Undefined);
+                KilopoundForcePerSquareInchPerMinute = new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute, "KilopoundsForcePerSquareInchPerMinute", BaseUnits.Undefined);
+                KilopoundForcePerSquareInchPerSecond = new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond, "KilopoundsForcePerSquareInchPerSecond", BaseUnits.Undefined);
+                MegapascalPerMinute = new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MegapascalPerMinute, "MegapascalsPerMinute", BaseUnits.Undefined);
+                MegapascalPerSecond = new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MegapascalPerSecond, "MegapascalsPerSecond", BaseUnits.Undefined);
+                MegapoundForcePerSquareInchPerMinute = new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute, "MegapoundsForcePerSquareInchPerMinute", BaseUnits.Undefined);
+                MegapoundForcePerSquareInchPerSecond = new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond, "MegapoundsForcePerSquareInchPerSecond", BaseUnits.Undefined);
+                MillimeterOfMercuryPerSecond = new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MillimeterOfMercuryPerSecond, "MillimetersOfMercuryPerSecond", BaseUnits.Undefined);
+                PascalPerMinute = new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PascalPerMinute, "PascalsPerMinute", BaseUnits.Undefined);
+                PascalPerSecond = new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PascalPerSecond, "PascalsPerSecond", BaseUnits.Undefined);
+                PoundForcePerSquareInchPerMinute = new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PoundForcePerSquareInchPerMinute, "PoundsForcePerSquareInchPerMinute", BaseUnits.Undefined);
+                PoundForcePerSquareInchPerSecond = new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, "PoundsForcePerSquareInchPerSecond", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureChangeRateUnit}"/> for <see cref="PressureChangeRateUnit.AtmospherePerSecond"/>
+            /// </summary>
+            public UnitInfo<PressureChangeRateUnit> AtmospherePerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureChangeRateUnit}"/> for <see cref="PressureChangeRateUnit.KilopascalPerMinute"/>
+            /// </summary>
+            public UnitInfo<PressureChangeRateUnit> KilopascalPerMinute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureChangeRateUnit}"/> for <see cref="PressureChangeRateUnit.KilopascalPerSecond"/>
+            /// </summary>
+            public UnitInfo<PressureChangeRateUnit> KilopascalPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureChangeRateUnit}"/> for <see cref="PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute"/>
+            /// </summary>
+            public UnitInfo<PressureChangeRateUnit> KilopoundForcePerSquareInchPerMinute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureChangeRateUnit}"/> for <see cref="PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond"/>
+            /// </summary>
+            public UnitInfo<PressureChangeRateUnit> KilopoundForcePerSquareInchPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureChangeRateUnit}"/> for <see cref="PressureChangeRateUnit.MegapascalPerMinute"/>
+            /// </summary>
+            public UnitInfo<PressureChangeRateUnit> MegapascalPerMinute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureChangeRateUnit}"/> for <see cref="PressureChangeRateUnit.MegapascalPerSecond"/>
+            /// </summary>
+            public UnitInfo<PressureChangeRateUnit> MegapascalPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureChangeRateUnit}"/> for <see cref="PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute"/>
+            /// </summary>
+            public UnitInfo<PressureChangeRateUnit> MegapoundForcePerSquareInchPerMinute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureChangeRateUnit}"/> for <see cref="PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond"/>
+            /// </summary>
+            public UnitInfo<PressureChangeRateUnit> MegapoundForcePerSquareInchPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureChangeRateUnit}"/> for <see cref="PressureChangeRateUnit.MillimeterOfMercuryPerSecond"/>
+            /// </summary>
+            public UnitInfo<PressureChangeRateUnit> MillimeterOfMercuryPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureChangeRateUnit}"/> for <see cref="PressureChangeRateUnit.PascalPerMinute"/>
+            /// </summary>
+            public UnitInfo<PressureChangeRateUnit> PascalPerMinute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureChangeRateUnit}"/> for <see cref="PressureChangeRateUnit.PascalPerSecond"/>
+            /// </summary>
+            public UnitInfo<PressureChangeRateUnit> PascalPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureChangeRateUnit}"/> for <see cref="PressureChangeRateUnit.PoundForcePerSquareInchPerMinute"/>
+            /// </summary>
+            public UnitInfo<PressureChangeRateUnit> PoundForcePerSquareInchPerMinute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureChangeRateUnit}"/> for <see cref="PressureChangeRateUnit.PoundForcePerSquareInchPerSecond"/>
+            /// </summary>
+            public UnitInfo<PressureChangeRateUnit> PoundForcePerSquareInchPerSecond { get; }
+
+        }
     }
 }

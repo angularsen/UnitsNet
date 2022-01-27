@@ -56,25 +56,6 @@ namespace UnitsNet
         static Luminosity()
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<LuminosityUnit>("Luminosity",
-                new UnitInfo<LuminosityUnit>[] {
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Decawatt, "Decawatts", BaseUnits.Undefined),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Deciwatt, "Deciwatts", BaseUnits.Undefined),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Femtowatt, "Femtowatts", BaseUnits.Undefined),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Gigawatt, "Gigawatts", BaseUnits.Undefined),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Kilowatt, "Kilowatts", BaseUnits.Undefined),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Megawatt, "Megawatts", BaseUnits.Undefined),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Microwatt, "Microwatts", BaseUnits.Undefined),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Milliwatt, "Milliwatts", BaseUnits.Undefined),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Nanowatt, "Nanowatts", BaseUnits.Undefined),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Petawatt, "Petawatts", BaseUnits.Undefined),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Picowatt, "Picowatts", BaseUnits.Undefined),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.SolarLuminosity, "SolarLuminosities", BaseUnits.Undefined),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Terawatt, "Terawatts", BaseUnits.Undefined),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Watt, "Watts", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Luminosity);
         }
 
         /// <summary>
@@ -114,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<LuminosityUnit> Info { get; }
+        public static Luminosity.LuminosityQuantityInfo Info { get; } = new Luminosity.LuminosityQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1122,5 +1103,103 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class LuminosityQuantityInfo : QuantityInfo<LuminosityUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal LuminosityQuantityInfo() :
+                base("Luminosity", Luminosity.BaseUnit, Luminosity.Zero, Luminosity.BaseDimensions, QuantityType.Luminosity)
+            {
+                Decawatt = new UnitInfo<LuminosityUnit>(LuminosityUnit.Decawatt, "Decawatts", BaseUnits.Undefined);
+                Deciwatt = new UnitInfo<LuminosityUnit>(LuminosityUnit.Deciwatt, "Deciwatts", BaseUnits.Undefined);
+                Femtowatt = new UnitInfo<LuminosityUnit>(LuminosityUnit.Femtowatt, "Femtowatts", BaseUnits.Undefined);
+                Gigawatt = new UnitInfo<LuminosityUnit>(LuminosityUnit.Gigawatt, "Gigawatts", BaseUnits.Undefined);
+                Kilowatt = new UnitInfo<LuminosityUnit>(LuminosityUnit.Kilowatt, "Kilowatts", BaseUnits.Undefined);
+                Megawatt = new UnitInfo<LuminosityUnit>(LuminosityUnit.Megawatt, "Megawatts", BaseUnits.Undefined);
+                Microwatt = new UnitInfo<LuminosityUnit>(LuminosityUnit.Microwatt, "Microwatts", BaseUnits.Undefined);
+                Milliwatt = new UnitInfo<LuminosityUnit>(LuminosityUnit.Milliwatt, "Milliwatts", BaseUnits.Undefined);
+                Nanowatt = new UnitInfo<LuminosityUnit>(LuminosityUnit.Nanowatt, "Nanowatts", BaseUnits.Undefined);
+                Petawatt = new UnitInfo<LuminosityUnit>(LuminosityUnit.Petawatt, "Petawatts", BaseUnits.Undefined);
+                Picowatt = new UnitInfo<LuminosityUnit>(LuminosityUnit.Picowatt, "Picowatts", BaseUnits.Undefined);
+                SolarLuminosity = new UnitInfo<LuminosityUnit>(LuminosityUnit.SolarLuminosity, "SolarLuminosities", BaseUnits.Undefined);
+                Terawatt = new UnitInfo<LuminosityUnit>(LuminosityUnit.Terawatt, "Terawatts", BaseUnits.Undefined);
+                Watt = new UnitInfo<LuminosityUnit>(LuminosityUnit.Watt, "Watts", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LuminosityUnit}"/> for <see cref="LuminosityUnit.Decawatt"/>
+            /// </summary>
+            public UnitInfo<LuminosityUnit> Decawatt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LuminosityUnit}"/> for <see cref="LuminosityUnit.Deciwatt"/>
+            /// </summary>
+            public UnitInfo<LuminosityUnit> Deciwatt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LuminosityUnit}"/> for <see cref="LuminosityUnit.Femtowatt"/>
+            /// </summary>
+            public UnitInfo<LuminosityUnit> Femtowatt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LuminosityUnit}"/> for <see cref="LuminosityUnit.Gigawatt"/>
+            /// </summary>
+            public UnitInfo<LuminosityUnit> Gigawatt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LuminosityUnit}"/> for <see cref="LuminosityUnit.Kilowatt"/>
+            /// </summary>
+            public UnitInfo<LuminosityUnit> Kilowatt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LuminosityUnit}"/> for <see cref="LuminosityUnit.Megawatt"/>
+            /// </summary>
+            public UnitInfo<LuminosityUnit> Megawatt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LuminosityUnit}"/> for <see cref="LuminosityUnit.Microwatt"/>
+            /// </summary>
+            public UnitInfo<LuminosityUnit> Microwatt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LuminosityUnit}"/> for <see cref="LuminosityUnit.Milliwatt"/>
+            /// </summary>
+            public UnitInfo<LuminosityUnit> Milliwatt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LuminosityUnit}"/> for <see cref="LuminosityUnit.Nanowatt"/>
+            /// </summary>
+            public UnitInfo<LuminosityUnit> Nanowatt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LuminosityUnit}"/> for <see cref="LuminosityUnit.Petawatt"/>
+            /// </summary>
+            public UnitInfo<LuminosityUnit> Petawatt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LuminosityUnit}"/> for <see cref="LuminosityUnit.Picowatt"/>
+            /// </summary>
+            public UnitInfo<LuminosityUnit> Picowatt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LuminosityUnit}"/> for <see cref="LuminosityUnit.SolarLuminosity"/>
+            /// </summary>
+            public UnitInfo<LuminosityUnit> SolarLuminosity { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LuminosityUnit}"/> for <see cref="LuminosityUnit.Terawatt"/>
+            /// </summary>
+            public UnitInfo<LuminosityUnit> Terawatt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LuminosityUnit}"/> for <see cref="LuminosityUnit.Watt"/>
+            /// </summary>
+            public UnitInfo<LuminosityUnit> Watt { get; }
+
+        }
     }
 }

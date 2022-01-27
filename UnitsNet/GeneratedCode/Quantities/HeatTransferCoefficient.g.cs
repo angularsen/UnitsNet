@@ -53,14 +53,6 @@ namespace UnitsNet
         static HeatTransferCoefficient()
         {
             BaseDimensions = new BaseDimensions(0, 1, -3, 0, -1, 0, 0);
-
-            Info = new QuantityInfo<HeatTransferCoefficientUnit>("HeatTransferCoefficient",
-                new UnitInfo<HeatTransferCoefficientUnit>[] {
-                    new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, "BtusPerSquareFootDegreeFahrenheit", BaseUnits.Undefined),
-                    new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, "WattsPerSquareMeterCelsius", BaseUnits.Undefined),
-                    new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, "WattsPerSquareMeterKelvin", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.HeatTransferCoefficient);
         }
 
         /// <summary>
@@ -100,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<HeatTransferCoefficientUnit> Info { get; }
+        public static HeatTransferCoefficient.HeatTransferCoefficientQuantityInfo Info { get; } = new HeatTransferCoefficient.HeatTransferCoefficientQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -910,5 +902,37 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class HeatTransferCoefficientQuantityInfo : QuantityInfo<HeatTransferCoefficientUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal HeatTransferCoefficientQuantityInfo() :
+                base("HeatTransferCoefficient", HeatTransferCoefficient.BaseUnit, HeatTransferCoefficient.Zero, HeatTransferCoefficient.BaseDimensions, QuantityType.HeatTransferCoefficient)
+            {
+                BtuPerSquareFootDegreeFahrenheit = new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, "BtusPerSquareFootDegreeFahrenheit", BaseUnits.Undefined);
+                WattPerSquareMeterCelsius = new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, "WattsPerSquareMeterCelsius", BaseUnits.Undefined);
+                WattPerSquareMeterKelvin = new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, "WattsPerSquareMeterKelvin", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{HeatTransferCoefficientUnit}"/> for <see cref="HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit"/>
+            /// </summary>
+            public UnitInfo<HeatTransferCoefficientUnit> BtuPerSquareFootDegreeFahrenheit { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{HeatTransferCoefficientUnit}"/> for <see cref="HeatTransferCoefficientUnit.WattPerSquareMeterCelsius"/>
+            /// </summary>
+            public UnitInfo<HeatTransferCoefficientUnit> WattPerSquareMeterCelsius { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{HeatTransferCoefficientUnit}"/> for <see cref="HeatTransferCoefficientUnit.WattPerSquareMeterKelvin"/>
+            /// </summary>
+            public UnitInfo<HeatTransferCoefficientUnit> WattPerSquareMeterKelvin { get; }
+
+        }
     }
 }

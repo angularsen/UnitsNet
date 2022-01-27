@@ -53,25 +53,6 @@ namespace UnitsNet
         static Acceleration()
         {
             BaseDimensions = new BaseDimensions(1, 0, -2, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<AccelerationUnit>("Acceleration",
-                new UnitInfo<AccelerationUnit>[] {
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.CentimeterPerSecondSquared, "CentimetersPerSecondSquared", BaseUnits.Undefined),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.DecimeterPerSecondSquared, "DecimetersPerSecondSquared", BaseUnits.Undefined),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.FootPerSecondSquared, "FeetPerSecondSquared", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second)),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.InchPerSecondSquared, "InchesPerSecondSquared", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second)),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.KilometerPerSecondSquared, "KilometersPerSecondSquared", BaseUnits.Undefined),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.KnotPerHour, "KnotsPerHour", new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Hour)),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.KnotPerMinute, "KnotsPerMinute", new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Minute)),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.KnotPerSecond, "KnotsPerSecond", new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Second)),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.MeterPerSecondSquared, "MetersPerSecondSquared", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second)),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.MicrometerPerSecondSquared, "MicrometersPerSecondSquared", BaseUnits.Undefined),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.MillimeterPerSecondSquared, "MillimetersPerSecondSquared", BaseUnits.Undefined),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.MillistandardGravity, "MillistandardGravity", BaseUnits.Undefined),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.NanometerPerSecondSquared, "NanometersPerSecondSquared", BaseUnits.Undefined),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.StandardGravity, "StandardGravity", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second)),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Acceleration);
         }
 
         /// <summary>
@@ -111,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<AccelerationUnit> Info { get; }
+        public static Acceleration.AccelerationQuantityInfo Info { get; } = new Acceleration.AccelerationQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1119,5 +1100,103 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class AccelerationQuantityInfo : QuantityInfo<AccelerationUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal AccelerationQuantityInfo() :
+                base("Acceleration", Acceleration.BaseUnit, Acceleration.Zero, Acceleration.BaseDimensions, QuantityType.Acceleration)
+            {
+                CentimeterPerSecondSquared = new UnitInfo<AccelerationUnit>(AccelerationUnit.CentimeterPerSecondSquared, "CentimetersPerSecondSquared", BaseUnits.Undefined);
+                DecimeterPerSecondSquared = new UnitInfo<AccelerationUnit>(AccelerationUnit.DecimeterPerSecondSquared, "DecimetersPerSecondSquared", BaseUnits.Undefined);
+                FootPerSecondSquared = new UnitInfo<AccelerationUnit>(AccelerationUnit.FootPerSecondSquared, "FeetPerSecondSquared", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second));
+                InchPerSecondSquared = new UnitInfo<AccelerationUnit>(AccelerationUnit.InchPerSecondSquared, "InchesPerSecondSquared", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second));
+                KilometerPerSecondSquared = new UnitInfo<AccelerationUnit>(AccelerationUnit.KilometerPerSecondSquared, "KilometersPerSecondSquared", BaseUnits.Undefined);
+                KnotPerHour = new UnitInfo<AccelerationUnit>(AccelerationUnit.KnotPerHour, "KnotsPerHour", new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Hour));
+                KnotPerMinute = new UnitInfo<AccelerationUnit>(AccelerationUnit.KnotPerMinute, "KnotsPerMinute", new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Minute));
+                KnotPerSecond = new UnitInfo<AccelerationUnit>(AccelerationUnit.KnotPerSecond, "KnotsPerSecond", new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Second));
+                MeterPerSecondSquared = new UnitInfo<AccelerationUnit>(AccelerationUnit.MeterPerSecondSquared, "MetersPerSecondSquared", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
+                MicrometerPerSecondSquared = new UnitInfo<AccelerationUnit>(AccelerationUnit.MicrometerPerSecondSquared, "MicrometersPerSecondSquared", BaseUnits.Undefined);
+                MillimeterPerSecondSquared = new UnitInfo<AccelerationUnit>(AccelerationUnit.MillimeterPerSecondSquared, "MillimetersPerSecondSquared", BaseUnits.Undefined);
+                MillistandardGravity = new UnitInfo<AccelerationUnit>(AccelerationUnit.MillistandardGravity, "MillistandardGravity", BaseUnits.Undefined);
+                NanometerPerSecondSquared = new UnitInfo<AccelerationUnit>(AccelerationUnit.NanometerPerSecondSquared, "NanometersPerSecondSquared", BaseUnits.Undefined);
+                StandardGravity = new UnitInfo<AccelerationUnit>(AccelerationUnit.StandardGravity, "StandardGravity", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AccelerationUnit}"/> for <see cref="AccelerationUnit.CentimeterPerSecondSquared"/>
+            /// </summary>
+            public UnitInfo<AccelerationUnit> CentimeterPerSecondSquared { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AccelerationUnit}"/> for <see cref="AccelerationUnit.DecimeterPerSecondSquared"/>
+            /// </summary>
+            public UnitInfo<AccelerationUnit> DecimeterPerSecondSquared { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AccelerationUnit}"/> for <see cref="AccelerationUnit.FootPerSecondSquared"/>
+            /// </summary>
+            public UnitInfo<AccelerationUnit> FootPerSecondSquared { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AccelerationUnit}"/> for <see cref="AccelerationUnit.InchPerSecondSquared"/>
+            /// </summary>
+            public UnitInfo<AccelerationUnit> InchPerSecondSquared { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AccelerationUnit}"/> for <see cref="AccelerationUnit.KilometerPerSecondSquared"/>
+            /// </summary>
+            public UnitInfo<AccelerationUnit> KilometerPerSecondSquared { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AccelerationUnit}"/> for <see cref="AccelerationUnit.KnotPerHour"/>
+            /// </summary>
+            public UnitInfo<AccelerationUnit> KnotPerHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AccelerationUnit}"/> for <see cref="AccelerationUnit.KnotPerMinute"/>
+            /// </summary>
+            public UnitInfo<AccelerationUnit> KnotPerMinute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AccelerationUnit}"/> for <see cref="AccelerationUnit.KnotPerSecond"/>
+            /// </summary>
+            public UnitInfo<AccelerationUnit> KnotPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AccelerationUnit}"/> for <see cref="AccelerationUnit.MeterPerSecondSquared"/>
+            /// </summary>
+            public UnitInfo<AccelerationUnit> MeterPerSecondSquared { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AccelerationUnit}"/> for <see cref="AccelerationUnit.MicrometerPerSecondSquared"/>
+            /// </summary>
+            public UnitInfo<AccelerationUnit> MicrometerPerSecondSquared { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AccelerationUnit}"/> for <see cref="AccelerationUnit.MillimeterPerSecondSquared"/>
+            /// </summary>
+            public UnitInfo<AccelerationUnit> MillimeterPerSecondSquared { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AccelerationUnit}"/> for <see cref="AccelerationUnit.MillistandardGravity"/>
+            /// </summary>
+            public UnitInfo<AccelerationUnit> MillistandardGravity { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AccelerationUnit}"/> for <see cref="AccelerationUnit.NanometerPerSecondSquared"/>
+            /// </summary>
+            public UnitInfo<AccelerationUnit> NanometerPerSecondSquared { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AccelerationUnit}"/> for <see cref="AccelerationUnit.StandardGravity"/>
+            /// </summary>
+            public UnitInfo<AccelerationUnit> StandardGravity { get; }
+
+        }
     }
 }

@@ -53,29 +53,6 @@ namespace UnitsNet
         static HeatFlux()
         {
             BaseDimensions = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<HeatFluxUnit>("HeatFlux",
-                new UnitInfo<HeatFluxUnit>[] {
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.BtuPerHourSquareFoot, "BtusPerHourSquareFoot", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.BtuPerMinuteSquareFoot, "BtusPerMinuteSquareFoot", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.BtuPerSecondSquareFoot, "BtusPerSecondSquareFoot", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.BtuPerSecondSquareInch, "BtusPerSecondSquareInch", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.CaloriePerSecondSquareCentimeter, "CaloriesPerSecondSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.CentiwattPerSquareMeter, "CentiwattsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.DeciwattPerSquareMeter, "DeciwattsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.KilocaloriePerHourSquareMeter, "KilocaloriesPerHourSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.KilocaloriePerSecondSquareCentimeter, "KilocaloriesPerSecondSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.KilowattPerSquareMeter, "KilowattsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.MicrowattPerSquareMeter, "MicrowattsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.MilliwattPerSquareMeter, "MilliwattsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.NanowattPerSquareMeter, "NanowattsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.PoundForcePerFootSecond, "PoundsForcePerFootSecond", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.PoundPerSecondCubed, "PoundsPerSecondCubed", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareFoot, "WattsPerSquareFoot", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareInch, "WattsPerSquareInch", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareMeter, "WattsPerSquareMeter", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second)),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.HeatFlux);
         }
 
         /// <summary>
@@ -115,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<HeatFluxUnit> Info { get; }
+        public static HeatFlux.HeatFluxQuantityInfo Info { get; } = new HeatFlux.HeatFluxQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1195,5 +1172,127 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class HeatFluxQuantityInfo : QuantityInfo<HeatFluxUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal HeatFluxQuantityInfo() :
+                base("HeatFlux", HeatFlux.BaseUnit, HeatFlux.Zero, HeatFlux.BaseDimensions, QuantityType.HeatFlux)
+            {
+                BtuPerHourSquareFoot = new UnitInfo<HeatFluxUnit>(HeatFluxUnit.BtuPerHourSquareFoot, "BtusPerHourSquareFoot", BaseUnits.Undefined);
+                BtuPerMinuteSquareFoot = new UnitInfo<HeatFluxUnit>(HeatFluxUnit.BtuPerMinuteSquareFoot, "BtusPerMinuteSquareFoot", BaseUnits.Undefined);
+                BtuPerSecondSquareFoot = new UnitInfo<HeatFluxUnit>(HeatFluxUnit.BtuPerSecondSquareFoot, "BtusPerSecondSquareFoot", BaseUnits.Undefined);
+                BtuPerSecondSquareInch = new UnitInfo<HeatFluxUnit>(HeatFluxUnit.BtuPerSecondSquareInch, "BtusPerSecondSquareInch", BaseUnits.Undefined);
+                CaloriePerSecondSquareCentimeter = new UnitInfo<HeatFluxUnit>(HeatFluxUnit.CaloriePerSecondSquareCentimeter, "CaloriesPerSecondSquareCentimeter", BaseUnits.Undefined);
+                CentiwattPerSquareMeter = new UnitInfo<HeatFluxUnit>(HeatFluxUnit.CentiwattPerSquareMeter, "CentiwattsPerSquareMeter", BaseUnits.Undefined);
+                DeciwattPerSquareMeter = new UnitInfo<HeatFluxUnit>(HeatFluxUnit.DeciwattPerSquareMeter, "DeciwattsPerSquareMeter", BaseUnits.Undefined);
+                KilocaloriePerHourSquareMeter = new UnitInfo<HeatFluxUnit>(HeatFluxUnit.KilocaloriePerHourSquareMeter, "KilocaloriesPerHourSquareMeter", BaseUnits.Undefined);
+                KilocaloriePerSecondSquareCentimeter = new UnitInfo<HeatFluxUnit>(HeatFluxUnit.KilocaloriePerSecondSquareCentimeter, "KilocaloriesPerSecondSquareCentimeter", BaseUnits.Undefined);
+                KilowattPerSquareMeter = new UnitInfo<HeatFluxUnit>(HeatFluxUnit.KilowattPerSquareMeter, "KilowattsPerSquareMeter", BaseUnits.Undefined);
+                MicrowattPerSquareMeter = new UnitInfo<HeatFluxUnit>(HeatFluxUnit.MicrowattPerSquareMeter, "MicrowattsPerSquareMeter", BaseUnits.Undefined);
+                MilliwattPerSquareMeter = new UnitInfo<HeatFluxUnit>(HeatFluxUnit.MilliwattPerSquareMeter, "MilliwattsPerSquareMeter", BaseUnits.Undefined);
+                NanowattPerSquareMeter = new UnitInfo<HeatFluxUnit>(HeatFluxUnit.NanowattPerSquareMeter, "NanowattsPerSquareMeter", BaseUnits.Undefined);
+                PoundForcePerFootSecond = new UnitInfo<HeatFluxUnit>(HeatFluxUnit.PoundForcePerFootSecond, "PoundsForcePerFootSecond", BaseUnits.Undefined);
+                PoundPerSecondCubed = new UnitInfo<HeatFluxUnit>(HeatFluxUnit.PoundPerSecondCubed, "PoundsPerSecondCubed", BaseUnits.Undefined);
+                WattPerSquareFoot = new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareFoot, "WattsPerSquareFoot", BaseUnits.Undefined);
+                WattPerSquareInch = new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareInch, "WattsPerSquareInch", BaseUnits.Undefined);
+                WattPerSquareMeter = new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareMeter, "WattsPerSquareMeter", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second));
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{HeatFluxUnit}"/> for <see cref="HeatFluxUnit.BtuPerHourSquareFoot"/>
+            /// </summary>
+            public UnitInfo<HeatFluxUnit> BtuPerHourSquareFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{HeatFluxUnit}"/> for <see cref="HeatFluxUnit.BtuPerMinuteSquareFoot"/>
+            /// </summary>
+            public UnitInfo<HeatFluxUnit> BtuPerMinuteSquareFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{HeatFluxUnit}"/> for <see cref="HeatFluxUnit.BtuPerSecondSquareFoot"/>
+            /// </summary>
+            public UnitInfo<HeatFluxUnit> BtuPerSecondSquareFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{HeatFluxUnit}"/> for <see cref="HeatFluxUnit.BtuPerSecondSquareInch"/>
+            /// </summary>
+            public UnitInfo<HeatFluxUnit> BtuPerSecondSquareInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{HeatFluxUnit}"/> for <see cref="HeatFluxUnit.CaloriePerSecondSquareCentimeter"/>
+            /// </summary>
+            public UnitInfo<HeatFluxUnit> CaloriePerSecondSquareCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{HeatFluxUnit}"/> for <see cref="HeatFluxUnit.CentiwattPerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<HeatFluxUnit> CentiwattPerSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{HeatFluxUnit}"/> for <see cref="HeatFluxUnit.DeciwattPerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<HeatFluxUnit> DeciwattPerSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{HeatFluxUnit}"/> for <see cref="HeatFluxUnit.KilocaloriePerHourSquareMeter"/>
+            /// </summary>
+            public UnitInfo<HeatFluxUnit> KilocaloriePerHourSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{HeatFluxUnit}"/> for <see cref="HeatFluxUnit.KilocaloriePerSecondSquareCentimeter"/>
+            /// </summary>
+            public UnitInfo<HeatFluxUnit> KilocaloriePerSecondSquareCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{HeatFluxUnit}"/> for <see cref="HeatFluxUnit.KilowattPerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<HeatFluxUnit> KilowattPerSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{HeatFluxUnit}"/> for <see cref="HeatFluxUnit.MicrowattPerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<HeatFluxUnit> MicrowattPerSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{HeatFluxUnit}"/> for <see cref="HeatFluxUnit.MilliwattPerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<HeatFluxUnit> MilliwattPerSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{HeatFluxUnit}"/> for <see cref="HeatFluxUnit.NanowattPerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<HeatFluxUnit> NanowattPerSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{HeatFluxUnit}"/> for <see cref="HeatFluxUnit.PoundForcePerFootSecond"/>
+            /// </summary>
+            public UnitInfo<HeatFluxUnit> PoundForcePerFootSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{HeatFluxUnit}"/> for <see cref="HeatFluxUnit.PoundPerSecondCubed"/>
+            /// </summary>
+            public UnitInfo<HeatFluxUnit> PoundPerSecondCubed { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{HeatFluxUnit}"/> for <see cref="HeatFluxUnit.WattPerSquareFoot"/>
+            /// </summary>
+            public UnitInfo<HeatFluxUnit> WattPerSquareFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{HeatFluxUnit}"/> for <see cref="HeatFluxUnit.WattPerSquareInch"/>
+            /// </summary>
+            public UnitInfo<HeatFluxUnit> WattPerSquareInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{HeatFluxUnit}"/> for <see cref="HeatFluxUnit.WattPerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<HeatFluxUnit> WattPerSquareMeter { get; }
+
+        }
     }
 }

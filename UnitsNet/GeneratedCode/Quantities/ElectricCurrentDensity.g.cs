@@ -56,14 +56,6 @@ namespace UnitsNet
         static ElectricCurrentDensity()
         {
             BaseDimensions = new BaseDimensions(-2, 0, 0, 1, 0, 0, 0);
-
-            Info = new QuantityInfo<ElectricCurrentDensityUnit>("ElectricCurrentDensity",
-                new UnitInfo<ElectricCurrentDensityUnit>[] {
-                    new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareFoot, "AmperesPerSquareFoot", new BaseUnits(length: LengthUnit.Foot, current: ElectricCurrentUnit.Ampere)),
-                    new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareInch, "AmperesPerSquareInch", new BaseUnits(length: LengthUnit.Inch, current: ElectricCurrentUnit.Ampere)),
-                    new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareMeter, "AmperesPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere)),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricCurrentDensity);
         }
 
         /// <summary>
@@ -103,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricCurrentDensityUnit> Info { get; }
+        public static ElectricCurrentDensity.ElectricCurrentDensityQuantityInfo Info { get; } = new ElectricCurrentDensity.ElectricCurrentDensityQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -913,5 +905,37 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class ElectricCurrentDensityQuantityInfo : QuantityInfo<ElectricCurrentDensityUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal ElectricCurrentDensityQuantityInfo() :
+                base("ElectricCurrentDensity", ElectricCurrentDensity.BaseUnit, ElectricCurrentDensity.Zero, ElectricCurrentDensity.BaseDimensions, QuantityType.ElectricCurrentDensity)
+            {
+                AmperePerSquareFoot = new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareFoot, "AmperesPerSquareFoot", new BaseUnits(length: LengthUnit.Foot, current: ElectricCurrentUnit.Ampere));
+                AmperePerSquareInch = new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareInch, "AmperesPerSquareInch", new BaseUnits(length: LengthUnit.Inch, current: ElectricCurrentUnit.Ampere));
+                AmperePerSquareMeter = new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareMeter, "AmperesPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere));
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricCurrentDensityUnit}"/> for <see cref="ElectricCurrentDensityUnit.AmperePerSquareFoot"/>
+            /// </summary>
+            public UnitInfo<ElectricCurrentDensityUnit> AmperePerSquareFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricCurrentDensityUnit}"/> for <see cref="ElectricCurrentDensityUnit.AmperePerSquareInch"/>
+            /// </summary>
+            public UnitInfo<ElectricCurrentDensityUnit> AmperePerSquareInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricCurrentDensityUnit}"/> for <see cref="ElectricCurrentDensityUnit.AmperePerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<ElectricCurrentDensityUnit> AmperePerSquareMeter { get; }
+
+        }
     }
 }

@@ -56,37 +56,6 @@ namespace UnitsNet
         static BitRate()
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<BitRateUnit>("BitRate",
-                new UnitInfo<BitRateUnit>[] {
-                    new UnitInfo<BitRateUnit>(BitRateUnit.BitPerSecond, "BitsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.BytePerSecond, "BytesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.ExabitPerSecond, "ExabitsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.ExabytePerSecond, "ExabytesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.ExbibitPerSecond, "ExbibitsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.ExbibytePerSecond, "ExbibytesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.GibibitPerSecond, "GibibitsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.GibibytePerSecond, "GibibytesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.GigabitPerSecond, "GigabitsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.GigabytePerSecond, "GigabytesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.KibibitPerSecond, "KibibitsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.KibibytePerSecond, "KibibytesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.KilobitPerSecond, "KilobitsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.KilobytePerSecond, "KilobytesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.MebibitPerSecond, "MebibitsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.MebibytePerSecond, "MebibytesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.MegabitPerSecond, "MegabitsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.MegabytePerSecond, "MegabytesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.PebibitPerSecond, "PebibitsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.PebibytePerSecond, "PebibytesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.PetabitPerSecond, "PetabitsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.PetabytePerSecond, "PetabytesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.TebibitPerSecond, "TebibitsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.TebibytePerSecond, "TebibytesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.TerabitPerSecond, "TerabitsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.TerabytePerSecond, "TerabytesPerSecond", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.BitRate);
         }
 
         /// <summary>
@@ -126,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<BitRateUnit> Info { get; }
+        public static BitRate.BitRateQuantityInfo Info { get; } = new BitRate.BitRateQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1355,5 +1324,175 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class BitRateQuantityInfo : QuantityInfo<BitRateUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal BitRateQuantityInfo() :
+                base("BitRate", BitRate.BaseUnit, BitRate.Zero, BitRate.BaseDimensions, QuantityType.BitRate)
+            {
+                BitPerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.BitPerSecond, "BitsPerSecond", BaseUnits.Undefined);
+                BytePerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.BytePerSecond, "BytesPerSecond", BaseUnits.Undefined);
+                ExabitPerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.ExabitPerSecond, "ExabitsPerSecond", BaseUnits.Undefined);
+                ExabytePerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.ExabytePerSecond, "ExabytesPerSecond", BaseUnits.Undefined);
+                ExbibitPerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.ExbibitPerSecond, "ExbibitsPerSecond", BaseUnits.Undefined);
+                ExbibytePerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.ExbibytePerSecond, "ExbibytesPerSecond", BaseUnits.Undefined);
+                GibibitPerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.GibibitPerSecond, "GibibitsPerSecond", BaseUnits.Undefined);
+                GibibytePerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.GibibytePerSecond, "GibibytesPerSecond", BaseUnits.Undefined);
+                GigabitPerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.GigabitPerSecond, "GigabitsPerSecond", BaseUnits.Undefined);
+                GigabytePerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.GigabytePerSecond, "GigabytesPerSecond", BaseUnits.Undefined);
+                KibibitPerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.KibibitPerSecond, "KibibitsPerSecond", BaseUnits.Undefined);
+                KibibytePerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.KibibytePerSecond, "KibibytesPerSecond", BaseUnits.Undefined);
+                KilobitPerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.KilobitPerSecond, "KilobitsPerSecond", BaseUnits.Undefined);
+                KilobytePerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.KilobytePerSecond, "KilobytesPerSecond", BaseUnits.Undefined);
+                MebibitPerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.MebibitPerSecond, "MebibitsPerSecond", BaseUnits.Undefined);
+                MebibytePerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.MebibytePerSecond, "MebibytesPerSecond", BaseUnits.Undefined);
+                MegabitPerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.MegabitPerSecond, "MegabitsPerSecond", BaseUnits.Undefined);
+                MegabytePerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.MegabytePerSecond, "MegabytesPerSecond", BaseUnits.Undefined);
+                PebibitPerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.PebibitPerSecond, "PebibitsPerSecond", BaseUnits.Undefined);
+                PebibytePerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.PebibytePerSecond, "PebibytesPerSecond", BaseUnits.Undefined);
+                PetabitPerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.PetabitPerSecond, "PetabitsPerSecond", BaseUnits.Undefined);
+                PetabytePerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.PetabytePerSecond, "PetabytesPerSecond", BaseUnits.Undefined);
+                TebibitPerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.TebibitPerSecond, "TebibitsPerSecond", BaseUnits.Undefined);
+                TebibytePerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.TebibytePerSecond, "TebibytesPerSecond", BaseUnits.Undefined);
+                TerabitPerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.TerabitPerSecond, "TerabitsPerSecond", BaseUnits.Undefined);
+                TerabytePerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.TerabytePerSecond, "TerabytesPerSecond", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{BitRateUnit}"/> for <see cref="BitRateUnit.BitPerSecond"/>
+            /// </summary>
+            public UnitInfo<BitRateUnit> BitPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{BitRateUnit}"/> for <see cref="BitRateUnit.BytePerSecond"/>
+            /// </summary>
+            public UnitInfo<BitRateUnit> BytePerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{BitRateUnit}"/> for <see cref="BitRateUnit.ExabitPerSecond"/>
+            /// </summary>
+            public UnitInfo<BitRateUnit> ExabitPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{BitRateUnit}"/> for <see cref="BitRateUnit.ExabytePerSecond"/>
+            /// </summary>
+            public UnitInfo<BitRateUnit> ExabytePerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{BitRateUnit}"/> for <see cref="BitRateUnit.ExbibitPerSecond"/>
+            /// </summary>
+            public UnitInfo<BitRateUnit> ExbibitPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{BitRateUnit}"/> for <see cref="BitRateUnit.ExbibytePerSecond"/>
+            /// </summary>
+            public UnitInfo<BitRateUnit> ExbibytePerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{BitRateUnit}"/> for <see cref="BitRateUnit.GibibitPerSecond"/>
+            /// </summary>
+            public UnitInfo<BitRateUnit> GibibitPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{BitRateUnit}"/> for <see cref="BitRateUnit.GibibytePerSecond"/>
+            /// </summary>
+            public UnitInfo<BitRateUnit> GibibytePerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{BitRateUnit}"/> for <see cref="BitRateUnit.GigabitPerSecond"/>
+            /// </summary>
+            public UnitInfo<BitRateUnit> GigabitPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{BitRateUnit}"/> for <see cref="BitRateUnit.GigabytePerSecond"/>
+            /// </summary>
+            public UnitInfo<BitRateUnit> GigabytePerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{BitRateUnit}"/> for <see cref="BitRateUnit.KibibitPerSecond"/>
+            /// </summary>
+            public UnitInfo<BitRateUnit> KibibitPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{BitRateUnit}"/> for <see cref="BitRateUnit.KibibytePerSecond"/>
+            /// </summary>
+            public UnitInfo<BitRateUnit> KibibytePerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{BitRateUnit}"/> for <see cref="BitRateUnit.KilobitPerSecond"/>
+            /// </summary>
+            public UnitInfo<BitRateUnit> KilobitPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{BitRateUnit}"/> for <see cref="BitRateUnit.KilobytePerSecond"/>
+            /// </summary>
+            public UnitInfo<BitRateUnit> KilobytePerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{BitRateUnit}"/> for <see cref="BitRateUnit.MebibitPerSecond"/>
+            /// </summary>
+            public UnitInfo<BitRateUnit> MebibitPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{BitRateUnit}"/> for <see cref="BitRateUnit.MebibytePerSecond"/>
+            /// </summary>
+            public UnitInfo<BitRateUnit> MebibytePerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{BitRateUnit}"/> for <see cref="BitRateUnit.MegabitPerSecond"/>
+            /// </summary>
+            public UnitInfo<BitRateUnit> MegabitPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{BitRateUnit}"/> for <see cref="BitRateUnit.MegabytePerSecond"/>
+            /// </summary>
+            public UnitInfo<BitRateUnit> MegabytePerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{BitRateUnit}"/> for <see cref="BitRateUnit.PebibitPerSecond"/>
+            /// </summary>
+            public UnitInfo<BitRateUnit> PebibitPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{BitRateUnit}"/> for <see cref="BitRateUnit.PebibytePerSecond"/>
+            /// </summary>
+            public UnitInfo<BitRateUnit> PebibytePerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{BitRateUnit}"/> for <see cref="BitRateUnit.PetabitPerSecond"/>
+            /// </summary>
+            public UnitInfo<BitRateUnit> PetabitPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{BitRateUnit}"/> for <see cref="BitRateUnit.PetabytePerSecond"/>
+            /// </summary>
+            public UnitInfo<BitRateUnit> PetabytePerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{BitRateUnit}"/> for <see cref="BitRateUnit.TebibitPerSecond"/>
+            /// </summary>
+            public UnitInfo<BitRateUnit> TebibitPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{BitRateUnit}"/> for <see cref="BitRateUnit.TebibytePerSecond"/>
+            /// </summary>
+            public UnitInfo<BitRateUnit> TebibytePerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{BitRateUnit}"/> for <see cref="BitRateUnit.TerabitPerSecond"/>
+            /// </summary>
+            public UnitInfo<BitRateUnit> TerabitPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{BitRateUnit}"/> for <see cref="BitRateUnit.TerabytePerSecond"/>
+            /// </summary>
+            public UnitInfo<BitRateUnit> TerabytePerSecond { get; }
+
+        }
     }
 }

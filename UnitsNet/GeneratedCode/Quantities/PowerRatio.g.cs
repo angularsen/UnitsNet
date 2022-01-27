@@ -54,12 +54,6 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<PowerRatioUnit>("PowerRatio",
-                new UnitInfo<PowerRatioUnit>[] {
-                    new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelMilliwatt, "DecibelMilliwatts", BaseUnits.Undefined),
-                    new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelWatt, "DecibelWatts", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.PowerRatio);
         }
 
         /// <summary>
@@ -99,7 +93,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<PowerRatioUnit> Info { get; }
+        public static PowerRatio.PowerRatioQuantityInfo Info { get; } = new PowerRatio.PowerRatioQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -899,5 +893,31 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class PowerRatioQuantityInfo : QuantityInfo<PowerRatioUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal PowerRatioQuantityInfo() :
+                base("PowerRatio", PowerRatio.BaseUnit, PowerRatio.Zero, PowerRatio.BaseDimensions, QuantityType.PowerRatio)
+            {
+                DecibelMilliwatt = new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelMilliwatt, "DecibelMilliwatts", BaseUnits.Undefined);
+                DecibelWatt = new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelWatt, "DecibelWatts", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerRatioUnit}"/> for <see cref="PowerRatioUnit.DecibelMilliwatt"/>
+            /// </summary>
+            public UnitInfo<PowerRatioUnit> DecibelMilliwatt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerRatioUnit}"/> for <see cref="PowerRatioUnit.DecibelWatt"/>
+            /// </summary>
+            public UnitInfo<PowerRatioUnit> DecibelWatt { get; }
+
+        }
     }
 }

@@ -56,19 +56,6 @@ namespace UnitsNet
         static Molarity()
         {
             BaseDimensions = new BaseDimensions(-3, 0, 0, 0, 0, 1, 0);
-
-            Info = new QuantityInfo<MolarityUnit>("Molarity",
-                new UnitInfo<MolarityUnit>[] {
-                    new UnitInfo<MolarityUnit>(MolarityUnit.CentimolesPerLiter, "CentimolesPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.DecimolesPerLiter, "DecimolesPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.MicromolesPerLiter, "MicromolesPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.MillimolesPerLiter, "MillimolesPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.MolesPerCubicMeter, "MolesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, amount: AmountOfSubstanceUnit.Mole)),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.MolesPerLiter, "MolesPerLiter", new BaseUnits(length: LengthUnit.Decimeter, amount: AmountOfSubstanceUnit.Mole)),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.NanomolesPerLiter, "NanomolesPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.PicomolesPerLiter, "PicomolesPerLiter", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Molarity);
         }
 
         /// <summary>
@@ -108,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<MolarityUnit> Info { get; }
+        public static Molarity.MolarityQuantityInfo Info { get; } = new Molarity.MolarityQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1008,5 +995,67 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class MolarityQuantityInfo : QuantityInfo<MolarityUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal MolarityQuantityInfo() :
+                base("Molarity", Molarity.BaseUnit, Molarity.Zero, Molarity.BaseDimensions, QuantityType.Molarity)
+            {
+                CentimolesPerLiter = new UnitInfo<MolarityUnit>(MolarityUnit.CentimolesPerLiter, "CentimolesPerLiter", BaseUnits.Undefined);
+                DecimolesPerLiter = new UnitInfo<MolarityUnit>(MolarityUnit.DecimolesPerLiter, "DecimolesPerLiter", BaseUnits.Undefined);
+                MicromolesPerLiter = new UnitInfo<MolarityUnit>(MolarityUnit.MicromolesPerLiter, "MicromolesPerLiter", BaseUnits.Undefined);
+                MillimolesPerLiter = new UnitInfo<MolarityUnit>(MolarityUnit.MillimolesPerLiter, "MillimolesPerLiter", BaseUnits.Undefined);
+                MolesPerCubicMeter = new UnitInfo<MolarityUnit>(MolarityUnit.MolesPerCubicMeter, "MolesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, amount: AmountOfSubstanceUnit.Mole));
+                MolesPerLiter = new UnitInfo<MolarityUnit>(MolarityUnit.MolesPerLiter, "MolesPerLiter", new BaseUnits(length: LengthUnit.Decimeter, amount: AmountOfSubstanceUnit.Mole));
+                NanomolesPerLiter = new UnitInfo<MolarityUnit>(MolarityUnit.NanomolesPerLiter, "NanomolesPerLiter", BaseUnits.Undefined);
+                PicomolesPerLiter = new UnitInfo<MolarityUnit>(MolarityUnit.PicomolesPerLiter, "PicomolesPerLiter", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MolarityUnit}"/> for <see cref="MolarityUnit.CentimolesPerLiter"/>
+            /// </summary>
+            public UnitInfo<MolarityUnit> CentimolesPerLiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MolarityUnit}"/> for <see cref="MolarityUnit.DecimolesPerLiter"/>
+            /// </summary>
+            public UnitInfo<MolarityUnit> DecimolesPerLiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MolarityUnit}"/> for <see cref="MolarityUnit.MicromolesPerLiter"/>
+            /// </summary>
+            public UnitInfo<MolarityUnit> MicromolesPerLiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MolarityUnit}"/> for <see cref="MolarityUnit.MillimolesPerLiter"/>
+            /// </summary>
+            public UnitInfo<MolarityUnit> MillimolesPerLiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MolarityUnit}"/> for <see cref="MolarityUnit.MolesPerCubicMeter"/>
+            /// </summary>
+            public UnitInfo<MolarityUnit> MolesPerCubicMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MolarityUnit}"/> for <see cref="MolarityUnit.MolesPerLiter"/>
+            /// </summary>
+            public UnitInfo<MolarityUnit> MolesPerLiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MolarityUnit}"/> for <see cref="MolarityUnit.NanomolesPerLiter"/>
+            /// </summary>
+            public UnitInfo<MolarityUnit> NanomolesPerLiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MolarityUnit}"/> for <see cref="MolarityUnit.PicomolesPerLiter"/>
+            /// </summary>
+            public UnitInfo<MolarityUnit> PicomolesPerLiter { get; }
+
+        }
     }
 }

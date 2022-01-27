@@ -53,22 +53,6 @@ namespace UnitsNet
         static Duration()
         {
             BaseDimensions = new BaseDimensions(0, 0, 1, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<DurationUnit>("Duration",
-                new UnitInfo<DurationUnit>[] {
-                    new UnitInfo<DurationUnit>(DurationUnit.Day, "Days", new BaseUnits(time: DurationUnit.Day)),
-                    new UnitInfo<DurationUnit>(DurationUnit.Hour, "Hours", new BaseUnits(time: DurationUnit.Hour)),
-                    new UnitInfo<DurationUnit>(DurationUnit.JulianYear, "JulianYears", new BaseUnits(time: DurationUnit.JulianYear)),
-                    new UnitInfo<DurationUnit>(DurationUnit.Microsecond, "Microseconds", BaseUnits.Undefined),
-                    new UnitInfo<DurationUnit>(DurationUnit.Millisecond, "Milliseconds", BaseUnits.Undefined),
-                    new UnitInfo<DurationUnit>(DurationUnit.Minute, "Minutes", new BaseUnits(time: DurationUnit.Minute)),
-                    new UnitInfo<DurationUnit>(DurationUnit.Month30, "Months30", new BaseUnits(time: DurationUnit.Month30)),
-                    new UnitInfo<DurationUnit>(DurationUnit.Nanosecond, "Nanoseconds", BaseUnits.Undefined),
-                    new UnitInfo<DurationUnit>(DurationUnit.Second, "Seconds", new BaseUnits(time: DurationUnit.Second)),
-                    new UnitInfo<DurationUnit>(DurationUnit.Week, "Weeks", new BaseUnits(time: DurationUnit.Week)),
-                    new UnitInfo<DurationUnit>(DurationUnit.Year365, "Years365", new BaseUnits(time: DurationUnit.Year365)),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Duration);
         }
 
         /// <summary>
@@ -108,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<DurationUnit> Info { get; }
+        public static Duration.DurationQuantityInfo Info { get; } = new Duration.DurationQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1062,5 +1046,85 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class DurationQuantityInfo : QuantityInfo<DurationUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal DurationQuantityInfo() :
+                base("Duration", Duration.BaseUnit, Duration.Zero, Duration.BaseDimensions, QuantityType.Duration)
+            {
+                Day = new UnitInfo<DurationUnit>(DurationUnit.Day, "Days", new BaseUnits(time: DurationUnit.Day));
+                Hour = new UnitInfo<DurationUnit>(DurationUnit.Hour, "Hours", new BaseUnits(time: DurationUnit.Hour));
+                JulianYear = new UnitInfo<DurationUnit>(DurationUnit.JulianYear, "JulianYears", new BaseUnits(time: DurationUnit.JulianYear));
+                Microsecond = new UnitInfo<DurationUnit>(DurationUnit.Microsecond, "Microseconds", BaseUnits.Undefined);
+                Millisecond = new UnitInfo<DurationUnit>(DurationUnit.Millisecond, "Milliseconds", BaseUnits.Undefined);
+                Minute = new UnitInfo<DurationUnit>(DurationUnit.Minute, "Minutes", new BaseUnits(time: DurationUnit.Minute));
+                Month30 = new UnitInfo<DurationUnit>(DurationUnit.Month30, "Months30", new BaseUnits(time: DurationUnit.Month30));
+                Nanosecond = new UnitInfo<DurationUnit>(DurationUnit.Nanosecond, "Nanoseconds", BaseUnits.Undefined);
+                Second = new UnitInfo<DurationUnit>(DurationUnit.Second, "Seconds", new BaseUnits(time: DurationUnit.Second));
+                Week = new UnitInfo<DurationUnit>(DurationUnit.Week, "Weeks", new BaseUnits(time: DurationUnit.Week));
+                Year365 = new UnitInfo<DurationUnit>(DurationUnit.Year365, "Years365", new BaseUnits(time: DurationUnit.Year365));
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{DurationUnit}"/> for <see cref="DurationUnit.Day"/>
+            /// </summary>
+            public UnitInfo<DurationUnit> Day { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{DurationUnit}"/> for <see cref="DurationUnit.Hour"/>
+            /// </summary>
+            public UnitInfo<DurationUnit> Hour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{DurationUnit}"/> for <see cref="DurationUnit.JulianYear"/>
+            /// </summary>
+            public UnitInfo<DurationUnit> JulianYear { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{DurationUnit}"/> for <see cref="DurationUnit.Microsecond"/>
+            /// </summary>
+            public UnitInfo<DurationUnit> Microsecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{DurationUnit}"/> for <see cref="DurationUnit.Millisecond"/>
+            /// </summary>
+            public UnitInfo<DurationUnit> Millisecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{DurationUnit}"/> for <see cref="DurationUnit.Minute"/>
+            /// </summary>
+            public UnitInfo<DurationUnit> Minute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{DurationUnit}"/> for <see cref="DurationUnit.Month30"/>
+            /// </summary>
+            public UnitInfo<DurationUnit> Month30 { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{DurationUnit}"/> for <see cref="DurationUnit.Nanosecond"/>
+            /// </summary>
+            public UnitInfo<DurationUnit> Nanosecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{DurationUnit}"/> for <see cref="DurationUnit.Second"/>
+            /// </summary>
+            public UnitInfo<DurationUnit> Second { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{DurationUnit}"/> for <see cref="DurationUnit.Week"/>
+            /// </summary>
+            public UnitInfo<DurationUnit> Week { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{DurationUnit}"/> for <see cref="DurationUnit.Year365"/>
+            /// </summary>
+            public UnitInfo<DurationUnit> Year365 { get; }
+
+        }
     }
 }

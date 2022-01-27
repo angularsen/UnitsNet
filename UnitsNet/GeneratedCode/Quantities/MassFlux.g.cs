@@ -53,23 +53,6 @@ namespace UnitsNet
         static MassFlux()
         {
             BaseDimensions = new BaseDimensions(-2, 1, -1, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<MassFluxUnit>("MassFlux",
-                new UnitInfo<MassFluxUnit>[] {
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerHourPerSquareCentimeter, "GramsPerHourPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerHourPerSquareMeter, "GramsPerHourPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerHourPerSquareMillimeter, "GramsPerHourPerSquareMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerSecondPerSquareCentimeter, "GramsPerSecondPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerSecondPerSquareMeter, "GramsPerSecondPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerSecondPerSquareMillimeter, "GramsPerSecondPerSquareMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerHourPerSquareCentimeter, "KilogramsPerHourPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerHourPerSquareMeter, "KilogramsPerHourPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerHourPerSquareMillimeter, "KilogramsPerHourPerSquareMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareCentimeter, "KilogramsPerSecondPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareMeter, "KilogramsPerSecondPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, "KilogramsPerSecondPerSquareMillimeter", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.MassFlux);
         }
 
         /// <summary>
@@ -109,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<MassFluxUnit> Info { get; }
+        public static MassFlux.MassFluxQuantityInfo Info { get; } = new MassFlux.MassFluxQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1081,5 +1064,91 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class MassFluxQuantityInfo : QuantityInfo<MassFluxUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal MassFluxQuantityInfo() :
+                base("MassFlux", MassFlux.BaseUnit, MassFlux.Zero, MassFlux.BaseDimensions, QuantityType.MassFlux)
+            {
+                GramPerHourPerSquareCentimeter = new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerHourPerSquareCentimeter, "GramsPerHourPerSquareCentimeter", BaseUnits.Undefined);
+                GramPerHourPerSquareMeter = new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerHourPerSquareMeter, "GramsPerHourPerSquareMeter", BaseUnits.Undefined);
+                GramPerHourPerSquareMillimeter = new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerHourPerSquareMillimeter, "GramsPerHourPerSquareMillimeter", BaseUnits.Undefined);
+                GramPerSecondPerSquareCentimeter = new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerSecondPerSquareCentimeter, "GramsPerSecondPerSquareCentimeter", BaseUnits.Undefined);
+                GramPerSecondPerSquareMeter = new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerSecondPerSquareMeter, "GramsPerSecondPerSquareMeter", BaseUnits.Undefined);
+                GramPerSecondPerSquareMillimeter = new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerSecondPerSquareMillimeter, "GramsPerSecondPerSquareMillimeter", BaseUnits.Undefined);
+                KilogramPerHourPerSquareCentimeter = new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerHourPerSquareCentimeter, "KilogramsPerHourPerSquareCentimeter", BaseUnits.Undefined);
+                KilogramPerHourPerSquareMeter = new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerHourPerSquareMeter, "KilogramsPerHourPerSquareMeter", BaseUnits.Undefined);
+                KilogramPerHourPerSquareMillimeter = new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerHourPerSquareMillimeter, "KilogramsPerHourPerSquareMillimeter", BaseUnits.Undefined);
+                KilogramPerSecondPerSquareCentimeter = new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareCentimeter, "KilogramsPerSecondPerSquareCentimeter", BaseUnits.Undefined);
+                KilogramPerSecondPerSquareMeter = new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareMeter, "KilogramsPerSecondPerSquareMeter", BaseUnits.Undefined);
+                KilogramPerSecondPerSquareMillimeter = new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, "KilogramsPerSecondPerSquareMillimeter", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFluxUnit}"/> for <see cref="MassFluxUnit.GramPerHourPerSquareCentimeter"/>
+            /// </summary>
+            public UnitInfo<MassFluxUnit> GramPerHourPerSquareCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFluxUnit}"/> for <see cref="MassFluxUnit.GramPerHourPerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<MassFluxUnit> GramPerHourPerSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFluxUnit}"/> for <see cref="MassFluxUnit.GramPerHourPerSquareMillimeter"/>
+            /// </summary>
+            public UnitInfo<MassFluxUnit> GramPerHourPerSquareMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFluxUnit}"/> for <see cref="MassFluxUnit.GramPerSecondPerSquareCentimeter"/>
+            /// </summary>
+            public UnitInfo<MassFluxUnit> GramPerSecondPerSquareCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFluxUnit}"/> for <see cref="MassFluxUnit.GramPerSecondPerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<MassFluxUnit> GramPerSecondPerSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFluxUnit}"/> for <see cref="MassFluxUnit.GramPerSecondPerSquareMillimeter"/>
+            /// </summary>
+            public UnitInfo<MassFluxUnit> GramPerSecondPerSquareMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFluxUnit}"/> for <see cref="MassFluxUnit.KilogramPerHourPerSquareCentimeter"/>
+            /// </summary>
+            public UnitInfo<MassFluxUnit> KilogramPerHourPerSquareCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFluxUnit}"/> for <see cref="MassFluxUnit.KilogramPerHourPerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<MassFluxUnit> KilogramPerHourPerSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFluxUnit}"/> for <see cref="MassFluxUnit.KilogramPerHourPerSquareMillimeter"/>
+            /// </summary>
+            public UnitInfo<MassFluxUnit> KilogramPerHourPerSquareMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFluxUnit}"/> for <see cref="MassFluxUnit.KilogramPerSecondPerSquareCentimeter"/>
+            /// </summary>
+            public UnitInfo<MassFluxUnit> KilogramPerSecondPerSquareCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFluxUnit}"/> for <see cref="MassFluxUnit.KilogramPerSecondPerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<MassFluxUnit> KilogramPerSecondPerSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFluxUnit}"/> for <see cref="MassFluxUnit.KilogramPerSecondPerSquareMillimeter"/>
+            /// </summary>
+            public UnitInfo<MassFluxUnit> KilogramPerSecondPerSquareMillimeter { get; }
+
+        }
     }
 }

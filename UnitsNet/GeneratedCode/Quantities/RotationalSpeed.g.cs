@@ -53,24 +53,6 @@ namespace UnitsNet
         static RotationalSpeed()
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<RotationalSpeedUnit>("RotationalSpeed",
-                new UnitInfo<RotationalSpeedUnit>[] {
-                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.CentiradianPerSecond, "CentiradiansPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.DeciradianPerSecond, "DeciradiansPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.DegreePerMinute, "DegreesPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.DegreePerSecond, "DegreesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.MicrodegreePerSecond, "MicrodegreesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.MicroradianPerSecond, "MicroradiansPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.MillidegreePerSecond, "MillidegreesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.MilliradianPerSecond, "MilliradiansPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.NanodegreePerSecond, "NanodegreesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.NanoradianPerSecond, "NanoradiansPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.RadianPerSecond, "RadiansPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.RevolutionPerMinute, "RevolutionsPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.RevolutionPerSecond, "RevolutionsPerSecond", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.RotationalSpeed);
         }
 
         /// <summary>
@@ -110,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<RotationalSpeedUnit> Info { get; }
+        public static RotationalSpeed.RotationalSpeedQuantityInfo Info { get; } = new RotationalSpeed.RotationalSpeedQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1100,5 +1082,97 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class RotationalSpeedQuantityInfo : QuantityInfo<RotationalSpeedUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal RotationalSpeedQuantityInfo() :
+                base("RotationalSpeed", RotationalSpeed.BaseUnit, RotationalSpeed.Zero, RotationalSpeed.BaseDimensions, QuantityType.RotationalSpeed)
+            {
+                CentiradianPerSecond = new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.CentiradianPerSecond, "CentiradiansPerSecond", BaseUnits.Undefined);
+                DeciradianPerSecond = new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.DeciradianPerSecond, "DeciradiansPerSecond", BaseUnits.Undefined);
+                DegreePerMinute = new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.DegreePerMinute, "DegreesPerMinute", BaseUnits.Undefined);
+                DegreePerSecond = new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.DegreePerSecond, "DegreesPerSecond", BaseUnits.Undefined);
+                MicrodegreePerSecond = new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.MicrodegreePerSecond, "MicrodegreesPerSecond", BaseUnits.Undefined);
+                MicroradianPerSecond = new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.MicroradianPerSecond, "MicroradiansPerSecond", BaseUnits.Undefined);
+                MillidegreePerSecond = new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.MillidegreePerSecond, "MillidegreesPerSecond", BaseUnits.Undefined);
+                MilliradianPerSecond = new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.MilliradianPerSecond, "MilliradiansPerSecond", BaseUnits.Undefined);
+                NanodegreePerSecond = new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.NanodegreePerSecond, "NanodegreesPerSecond", BaseUnits.Undefined);
+                NanoradianPerSecond = new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.NanoradianPerSecond, "NanoradiansPerSecond", BaseUnits.Undefined);
+                RadianPerSecond = new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.RadianPerSecond, "RadiansPerSecond", BaseUnits.Undefined);
+                RevolutionPerMinute = new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.RevolutionPerMinute, "RevolutionsPerMinute", BaseUnits.Undefined);
+                RevolutionPerSecond = new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.RevolutionPerSecond, "RevolutionsPerSecond", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RotationalSpeedUnit}"/> for <see cref="RotationalSpeedUnit.CentiradianPerSecond"/>
+            /// </summary>
+            public UnitInfo<RotationalSpeedUnit> CentiradianPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RotationalSpeedUnit}"/> for <see cref="RotationalSpeedUnit.DeciradianPerSecond"/>
+            /// </summary>
+            public UnitInfo<RotationalSpeedUnit> DeciradianPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RotationalSpeedUnit}"/> for <see cref="RotationalSpeedUnit.DegreePerMinute"/>
+            /// </summary>
+            public UnitInfo<RotationalSpeedUnit> DegreePerMinute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RotationalSpeedUnit}"/> for <see cref="RotationalSpeedUnit.DegreePerSecond"/>
+            /// </summary>
+            public UnitInfo<RotationalSpeedUnit> DegreePerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RotationalSpeedUnit}"/> for <see cref="RotationalSpeedUnit.MicrodegreePerSecond"/>
+            /// </summary>
+            public UnitInfo<RotationalSpeedUnit> MicrodegreePerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RotationalSpeedUnit}"/> for <see cref="RotationalSpeedUnit.MicroradianPerSecond"/>
+            /// </summary>
+            public UnitInfo<RotationalSpeedUnit> MicroradianPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RotationalSpeedUnit}"/> for <see cref="RotationalSpeedUnit.MillidegreePerSecond"/>
+            /// </summary>
+            public UnitInfo<RotationalSpeedUnit> MillidegreePerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RotationalSpeedUnit}"/> for <see cref="RotationalSpeedUnit.MilliradianPerSecond"/>
+            /// </summary>
+            public UnitInfo<RotationalSpeedUnit> MilliradianPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RotationalSpeedUnit}"/> for <see cref="RotationalSpeedUnit.NanodegreePerSecond"/>
+            /// </summary>
+            public UnitInfo<RotationalSpeedUnit> NanodegreePerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RotationalSpeedUnit}"/> for <see cref="RotationalSpeedUnit.NanoradianPerSecond"/>
+            /// </summary>
+            public UnitInfo<RotationalSpeedUnit> NanoradianPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RotationalSpeedUnit}"/> for <see cref="RotationalSpeedUnit.RadianPerSecond"/>
+            /// </summary>
+            public UnitInfo<RotationalSpeedUnit> RadianPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RotationalSpeedUnit}"/> for <see cref="RotationalSpeedUnit.RevolutionPerMinute"/>
+            /// </summary>
+            public UnitInfo<RotationalSpeedUnit> RevolutionPerMinute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RotationalSpeedUnit}"/> for <see cref="RotationalSpeedUnit.RevolutionPerSecond"/>
+            /// </summary>
+            public UnitInfo<RotationalSpeedUnit> RevolutionPerSecond { get; }
+
+        }
     }
 }

@@ -54,15 +54,6 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<ElectricPotentialDcUnit>("ElectricPotentialDc",
-                new UnitInfo<ElectricPotentialDcUnit>[] {
-                    new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.KilovoltDc, "KilovoltsDc", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.MegavoltDc, "MegavoltsDc", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.MicrovoltDc, "MicrovoltsDc", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.MillivoltDc, "MillivoltsDc", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.VoltDc, "VoltsDc", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricPotentialDc);
         }
 
         /// <summary>
@@ -102,7 +93,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricPotentialDcUnit> Info { get; }
+        public static ElectricPotentialDc.ElectricPotentialDcQuantityInfo Info { get; } = new ElectricPotentialDc.ElectricPotentialDcQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -948,5 +939,49 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class ElectricPotentialDcQuantityInfo : QuantityInfo<ElectricPotentialDcUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal ElectricPotentialDcQuantityInfo() :
+                base("ElectricPotentialDc", ElectricPotentialDc.BaseUnit, ElectricPotentialDc.Zero, ElectricPotentialDc.BaseDimensions, QuantityType.ElectricPotentialDc)
+            {
+                KilovoltDc = new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.KilovoltDc, "KilovoltsDc", BaseUnits.Undefined);
+                MegavoltDc = new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.MegavoltDc, "MegavoltsDc", BaseUnits.Undefined);
+                MicrovoltDc = new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.MicrovoltDc, "MicrovoltsDc", BaseUnits.Undefined);
+                MillivoltDc = new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.MillivoltDc, "MillivoltsDc", BaseUnits.Undefined);
+                VoltDc = new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.VoltDc, "VoltsDc", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialDcUnit}"/> for <see cref="ElectricPotentialDcUnit.KilovoltDc"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialDcUnit> KilovoltDc { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialDcUnit}"/> for <see cref="ElectricPotentialDcUnit.MegavoltDc"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialDcUnit> MegavoltDc { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialDcUnit}"/> for <see cref="ElectricPotentialDcUnit.MicrovoltDc"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialDcUnit> MicrovoltDc { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialDcUnit}"/> for <see cref="ElectricPotentialDcUnit.MillivoltDc"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialDcUnit> MillivoltDc { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialDcUnit}"/> for <see cref="ElectricPotentialDcUnit.VoltDc"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialDcUnit> VoltDc { get; }
+
+        }
     }
 }

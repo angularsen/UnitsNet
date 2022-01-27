@@ -54,12 +54,6 @@ namespace UnitsNet
         static LapseRate()
         {
             BaseDimensions = new BaseDimensions(-1, 0, 0, 0, 1, 0, 0);
-
-            Info = new QuantityInfo<LapseRateUnit>("LapseRate",
-                new UnitInfo<LapseRateUnit>[] {
-                    new UnitInfo<LapseRateUnit>(LapseRateUnit.DegreeCelsiusPerKilometer, "DegreesCelciusPerKilometer", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.LapseRate);
         }
 
         /// <summary>
@@ -99,7 +93,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<LapseRateUnit> Info { get; }
+        public static LapseRate.LapseRateQuantityInfo Info { get; } = new LapseRate.LapseRateQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -873,5 +867,25 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class LapseRateQuantityInfo : QuantityInfo<LapseRateUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal LapseRateQuantityInfo() :
+                base("LapseRate", LapseRate.BaseUnit, LapseRate.Zero, LapseRate.BaseDimensions, QuantityType.LapseRate)
+            {
+                DegreeCelsiusPerKilometer = new UnitInfo<LapseRateUnit>(LapseRateUnit.DegreeCelsiusPerKilometer, "DegreesCelciusPerKilometer", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LapseRateUnit}"/> for <see cref="LapseRateUnit.DegreeCelsiusPerKilometer"/>
+            /// </summary>
+            public UnitInfo<LapseRateUnit> DegreeCelsiusPerKilometer { get; }
+
+        }
     }
 }

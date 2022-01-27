@@ -57,14 +57,6 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<FuelEfficiencyUnit>("FuelEfficiency",
-                new UnitInfo<FuelEfficiencyUnit>[] {
-                    new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.KilometerPerLiter, "KilometersPerLiters", BaseUnits.Undefined),
-                    new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.LiterPer100Kilometers, "LitersPer100Kilometers", BaseUnits.Undefined),
-                    new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.MilePerUkGallon, "MilesPerUkGallon", BaseUnits.Undefined),
-                    new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.MilePerUsGallon, "MilesPerUsGallon", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.FuelEfficiency);
         }
 
         /// <summary>
@@ -104,7 +96,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<FuelEfficiencyUnit> Info { get; }
+        public static FuelEfficiency.FuelEfficiencyQuantityInfo Info { get; } = new FuelEfficiency.FuelEfficiencyQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -932,5 +924,43 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class FuelEfficiencyQuantityInfo : QuantityInfo<FuelEfficiencyUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal FuelEfficiencyQuantityInfo() :
+                base("FuelEfficiency", FuelEfficiency.BaseUnit, FuelEfficiency.Zero, FuelEfficiency.BaseDimensions, QuantityType.FuelEfficiency)
+            {
+                KilometerPerLiter = new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.KilometerPerLiter, "KilometersPerLiters", BaseUnits.Undefined);
+                LiterPer100Kilometers = new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.LiterPer100Kilometers, "LitersPer100Kilometers", BaseUnits.Undefined);
+                MilePerUkGallon = new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.MilePerUkGallon, "MilesPerUkGallon", BaseUnits.Undefined);
+                MilePerUsGallon = new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.MilePerUsGallon, "MilesPerUsGallon", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{FuelEfficiencyUnit}"/> for <see cref="FuelEfficiencyUnit.KilometerPerLiter"/>
+            /// </summary>
+            public UnitInfo<FuelEfficiencyUnit> KilometerPerLiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{FuelEfficiencyUnit}"/> for <see cref="FuelEfficiencyUnit.LiterPer100Kilometers"/>
+            /// </summary>
+            public UnitInfo<FuelEfficiencyUnit> LiterPer100Kilometers { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{FuelEfficiencyUnit}"/> for <see cref="FuelEfficiencyUnit.MilePerUkGallon"/>
+            /// </summary>
+            public UnitInfo<FuelEfficiencyUnit> MilePerUkGallon { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{FuelEfficiencyUnit}"/> for <see cref="FuelEfficiencyUnit.MilePerUsGallon"/>
+            /// </summary>
+            public UnitInfo<FuelEfficiencyUnit> MilePerUsGallon { get; }
+
+        }
     }
 }

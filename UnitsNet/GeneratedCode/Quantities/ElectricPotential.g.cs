@@ -53,16 +53,6 @@ namespace UnitsNet
         static ElectricPotential()
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, -1, 0, 0, 0);
-
-            Info = new QuantityInfo<ElectricPotentialUnit>("ElectricPotential",
-                new UnitInfo<ElectricPotentialUnit>[] {
-                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Kilovolt, "Kilovolts", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Megavolt, "Megavolts", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Microvolt, "Microvolts", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Millivolt, "Millivolts", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Volt, "Volts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricPotential);
         }
 
         /// <summary>
@@ -102,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricPotentialUnit> Info { get; }
+        public static ElectricPotential.ElectricPotentialQuantityInfo Info { get; } = new ElectricPotential.ElectricPotentialQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -948,5 +938,49 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class ElectricPotentialQuantityInfo : QuantityInfo<ElectricPotentialUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal ElectricPotentialQuantityInfo() :
+                base("ElectricPotential", ElectricPotential.BaseUnit, ElectricPotential.Zero, ElectricPotential.BaseDimensions, QuantityType.ElectricPotential)
+            {
+                Kilovolt = new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Kilovolt, "Kilovolts", BaseUnits.Undefined);
+                Megavolt = new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Megavolt, "Megavolts", BaseUnits.Undefined);
+                Microvolt = new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Microvolt, "Microvolts", BaseUnits.Undefined);
+                Millivolt = new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Millivolt, "Millivolts", BaseUnits.Undefined);
+                Volt = new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Volt, "Volts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialUnit}"/> for <see cref="ElectricPotentialUnit.Kilovolt"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialUnit> Kilovolt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialUnit}"/> for <see cref="ElectricPotentialUnit.Megavolt"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialUnit> Megavolt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialUnit}"/> for <see cref="ElectricPotentialUnit.Microvolt"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialUnit> Microvolt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialUnit}"/> for <see cref="ElectricPotentialUnit.Millivolt"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialUnit> Millivolt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialUnit}"/> for <see cref="ElectricPotentialUnit.Volt"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialUnit> Volt { get; }
+
+        }
     }
 }

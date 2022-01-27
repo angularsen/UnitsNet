@@ -54,16 +54,6 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<RatioUnit>("Ratio",
-                new UnitInfo<RatioUnit>[] {
-                    new UnitInfo<RatioUnit>(RatioUnit.DecimalFraction, "DecimalFractions", BaseUnits.Undefined),
-                    new UnitInfo<RatioUnit>(RatioUnit.PartPerBillion, "PartsPerBillion", BaseUnits.Undefined),
-                    new UnitInfo<RatioUnit>(RatioUnit.PartPerMillion, "PartsPerMillion", BaseUnits.Undefined),
-                    new UnitInfo<RatioUnit>(RatioUnit.PartPerThousand, "PartsPerThousand", BaseUnits.Undefined),
-                    new UnitInfo<RatioUnit>(RatioUnit.PartPerTrillion, "PartsPerTrillion", BaseUnits.Undefined),
-                    new UnitInfo<RatioUnit>(RatioUnit.Percent, "Percent", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Ratio);
         }
 
         /// <summary>
@@ -103,7 +93,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<RatioUnit> Info { get; }
+        public static Ratio.RatioQuantityInfo Info { get; } = new Ratio.RatioQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -967,5 +957,55 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class RatioQuantityInfo : QuantityInfo<RatioUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal RatioQuantityInfo() :
+                base("Ratio", Ratio.BaseUnit, Ratio.Zero, Ratio.BaseDimensions, QuantityType.Ratio)
+            {
+                DecimalFraction = new UnitInfo<RatioUnit>(RatioUnit.DecimalFraction, "DecimalFractions", BaseUnits.Undefined);
+                PartPerBillion = new UnitInfo<RatioUnit>(RatioUnit.PartPerBillion, "PartsPerBillion", BaseUnits.Undefined);
+                PartPerMillion = new UnitInfo<RatioUnit>(RatioUnit.PartPerMillion, "PartsPerMillion", BaseUnits.Undefined);
+                PartPerThousand = new UnitInfo<RatioUnit>(RatioUnit.PartPerThousand, "PartsPerThousand", BaseUnits.Undefined);
+                PartPerTrillion = new UnitInfo<RatioUnit>(RatioUnit.PartPerTrillion, "PartsPerTrillion", BaseUnits.Undefined);
+                Percent = new UnitInfo<RatioUnit>(RatioUnit.Percent, "Percent", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RatioUnit}"/> for <see cref="RatioUnit.DecimalFraction"/>
+            /// </summary>
+            public UnitInfo<RatioUnit> DecimalFraction { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RatioUnit}"/> for <see cref="RatioUnit.PartPerBillion"/>
+            /// </summary>
+            public UnitInfo<RatioUnit> PartPerBillion { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RatioUnit}"/> for <see cref="RatioUnit.PartPerMillion"/>
+            /// </summary>
+            public UnitInfo<RatioUnit> PartPerMillion { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RatioUnit}"/> for <see cref="RatioUnit.PartPerThousand"/>
+            /// </summary>
+            public UnitInfo<RatioUnit> PartPerThousand { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RatioUnit}"/> for <see cref="RatioUnit.PartPerTrillion"/>
+            /// </summary>
+            public UnitInfo<RatioUnit> PartPerTrillion { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RatioUnit}"/> for <see cref="RatioUnit.Percent"/>
+            /// </summary>
+            public UnitInfo<RatioUnit> Percent { get; }
+
+        }
     }
 }

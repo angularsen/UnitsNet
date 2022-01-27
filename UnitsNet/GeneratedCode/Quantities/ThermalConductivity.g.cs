@@ -56,13 +56,6 @@ namespace UnitsNet
         static ThermalConductivity()
         {
             BaseDimensions = new BaseDimensions(1, 1, -3, 0, -1, 0, 0);
-
-            Info = new QuantityInfo<ThermalConductivityUnit>("ThermalConductivity",
-                new UnitInfo<ThermalConductivityUnit>[] {
-                    new UnitInfo<ThermalConductivityUnit>(ThermalConductivityUnit.BtuPerHourFootFahrenheit, "BtusPerHourFootFahrenheit", BaseUnits.Undefined),
-                    new UnitInfo<ThermalConductivityUnit>(ThermalConductivityUnit.WattPerMeterKelvin, "WattsPerMeterKelvin", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ThermalConductivity);
         }
 
         /// <summary>
@@ -102,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ThermalConductivityUnit> Info { get; }
+        public static ThermalConductivity.ThermalConductivityQuantityInfo Info { get; } = new ThermalConductivity.ThermalConductivityQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -894,5 +887,31 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class ThermalConductivityQuantityInfo : QuantityInfo<ThermalConductivityUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal ThermalConductivityQuantityInfo() :
+                base("ThermalConductivity", ThermalConductivity.BaseUnit, ThermalConductivity.Zero, ThermalConductivity.BaseDimensions, QuantityType.ThermalConductivity)
+            {
+                BtuPerHourFootFahrenheit = new UnitInfo<ThermalConductivityUnit>(ThermalConductivityUnit.BtuPerHourFootFahrenheit, "BtusPerHourFootFahrenheit", BaseUnits.Undefined);
+                WattPerMeterKelvin = new UnitInfo<ThermalConductivityUnit>(ThermalConductivityUnit.WattPerMeterKelvin, "WattsPerMeterKelvin", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ThermalConductivityUnit}"/> for <see cref="ThermalConductivityUnit.BtuPerHourFootFahrenheit"/>
+            /// </summary>
+            public UnitInfo<ThermalConductivityUnit> BtuPerHourFootFahrenheit { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ThermalConductivityUnit}"/> for <see cref="ThermalConductivityUnit.WattPerMeterKelvin"/>
+            /// </summary>
+            public UnitInfo<ThermalConductivityUnit> WattPerMeterKelvin { get; }
+
+        }
     }
 }

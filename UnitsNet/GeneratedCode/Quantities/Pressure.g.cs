@@ -53,56 +53,6 @@ namespace UnitsNet
         static Pressure()
         {
             BaseDimensions = new BaseDimensions(-1, 1, -2, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<PressureUnit>("Pressure",
-                new UnitInfo<PressureUnit>[] {
-                    new UnitInfo<PressureUnit>(PressureUnit.Atmosphere, "Atmospheres", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Bar, "Bars", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Centibar, "Centibars", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Decapascal, "Decapascals", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Decibar, "Decibars", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.DynePerSquareCentimeter, "DynesPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.FootOfElevation, "FeetOfElevation", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.FootOfHead, "FeetOfHead", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Gigapascal, "Gigapascals", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Hectopascal, "Hectopascals", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.InchOfMercury, "InchesOfMercury", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.InchOfWaterColumn, "InchesOfWaterColumn", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Kilobar, "Kilobars", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.KilogramForcePerSquareCentimeter, "KilogramsForcePerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.KilogramForcePerSquareMeter, "KilogramsForcePerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.KilogramForcePerSquareMillimeter, "KilogramsForcePerSquareMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.KilonewtonPerSquareCentimeter, "KilonewtonsPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.KilonewtonPerSquareMeter, "KilonewtonsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.KilonewtonPerSquareMillimeter, "KilonewtonsPerSquareMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Kilopascal, "Kilopascals", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.KilopoundForcePerSquareFoot, "KilopoundsForcePerSquareFoot", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.KilopoundForcePerSquareInch, "KilopoundsForcePerSquareInch", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Megabar, "Megabars", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.MeganewtonPerSquareMeter, "MeganewtonsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Megapascal, "Megapascals", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.MeterOfElevation, "MetersOfElevation", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.MeterOfHead, "MetersOfHead", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Microbar, "Microbars", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Micropascal, "Micropascals", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Millibar, "Millibars", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.MillimeterOfMercury, "MillimetersOfMercury", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.MillimeterOfWaterColumn, "MillimeterOfWaterColumn", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Millipascal, "Millipascals", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareCentimeter, "NewtonsPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareMeter, "NewtonsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareMillimeter, "NewtonsPerSquareMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Pascal, "Pascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
-                    new UnitInfo<PressureUnit>(PressureUnit.PoundForcePerSquareFoot, "PoundsForcePerSquareFoot", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.PoundForcePerSquareInch, "PoundsForcePerSquareInch", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.PoundPerInchSecondSquared, "PoundsPerInchSecondSquared", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.TechnicalAtmosphere, "TechnicalAtmospheres", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareCentimeter, "TonnesForcePerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareMeter, "TonnesForcePerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareMillimeter, "TonnesForcePerSquareMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Torr, "Torrs", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Pressure);
         }
 
         /// <summary>
@@ -142,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<PressureUnit> Info { get; }
+        public static Pressure.PressureQuantityInfo Info { get; } = new Pressure.PressureQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1708,5 +1658,289 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class PressureQuantityInfo : QuantityInfo<PressureUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal PressureQuantityInfo() :
+                base("Pressure", Pressure.BaseUnit, Pressure.Zero, Pressure.BaseDimensions, QuantityType.Pressure)
+            {
+                Atmosphere = new UnitInfo<PressureUnit>(PressureUnit.Atmosphere, "Atmospheres", BaseUnits.Undefined);
+                Bar = new UnitInfo<PressureUnit>(PressureUnit.Bar, "Bars", BaseUnits.Undefined);
+                Centibar = new UnitInfo<PressureUnit>(PressureUnit.Centibar, "Centibars", BaseUnits.Undefined);
+                Decapascal = new UnitInfo<PressureUnit>(PressureUnit.Decapascal, "Decapascals", BaseUnits.Undefined);
+                Decibar = new UnitInfo<PressureUnit>(PressureUnit.Decibar, "Decibars", BaseUnits.Undefined);
+                DynePerSquareCentimeter = new UnitInfo<PressureUnit>(PressureUnit.DynePerSquareCentimeter, "DynesPerSquareCentimeter", BaseUnits.Undefined);
+                FootOfElevation = new UnitInfo<PressureUnit>(PressureUnit.FootOfElevation, "FeetOfElevation", BaseUnits.Undefined);
+                FootOfHead = new UnitInfo<PressureUnit>(PressureUnit.FootOfHead, "FeetOfHead", BaseUnits.Undefined);
+                Gigapascal = new UnitInfo<PressureUnit>(PressureUnit.Gigapascal, "Gigapascals", BaseUnits.Undefined);
+                Hectopascal = new UnitInfo<PressureUnit>(PressureUnit.Hectopascal, "Hectopascals", BaseUnits.Undefined);
+                InchOfMercury = new UnitInfo<PressureUnit>(PressureUnit.InchOfMercury, "InchesOfMercury", BaseUnits.Undefined);
+                InchOfWaterColumn = new UnitInfo<PressureUnit>(PressureUnit.InchOfWaterColumn, "InchesOfWaterColumn", BaseUnits.Undefined);
+                Kilobar = new UnitInfo<PressureUnit>(PressureUnit.Kilobar, "Kilobars", BaseUnits.Undefined);
+                KilogramForcePerSquareCentimeter = new UnitInfo<PressureUnit>(PressureUnit.KilogramForcePerSquareCentimeter, "KilogramsForcePerSquareCentimeter", BaseUnits.Undefined);
+                KilogramForcePerSquareMeter = new UnitInfo<PressureUnit>(PressureUnit.KilogramForcePerSquareMeter, "KilogramsForcePerSquareMeter", BaseUnits.Undefined);
+                KilogramForcePerSquareMillimeter = new UnitInfo<PressureUnit>(PressureUnit.KilogramForcePerSquareMillimeter, "KilogramsForcePerSquareMillimeter", BaseUnits.Undefined);
+                KilonewtonPerSquareCentimeter = new UnitInfo<PressureUnit>(PressureUnit.KilonewtonPerSquareCentimeter, "KilonewtonsPerSquareCentimeter", BaseUnits.Undefined);
+                KilonewtonPerSquareMeter = new UnitInfo<PressureUnit>(PressureUnit.KilonewtonPerSquareMeter, "KilonewtonsPerSquareMeter", BaseUnits.Undefined);
+                KilonewtonPerSquareMillimeter = new UnitInfo<PressureUnit>(PressureUnit.KilonewtonPerSquareMillimeter, "KilonewtonsPerSquareMillimeter", BaseUnits.Undefined);
+                Kilopascal = new UnitInfo<PressureUnit>(PressureUnit.Kilopascal, "Kilopascals", BaseUnits.Undefined);
+                KilopoundForcePerSquareFoot = new UnitInfo<PressureUnit>(PressureUnit.KilopoundForcePerSquareFoot, "KilopoundsForcePerSquareFoot", BaseUnits.Undefined);
+                KilopoundForcePerSquareInch = new UnitInfo<PressureUnit>(PressureUnit.KilopoundForcePerSquareInch, "KilopoundsForcePerSquareInch", BaseUnits.Undefined);
+                Megabar = new UnitInfo<PressureUnit>(PressureUnit.Megabar, "Megabars", BaseUnits.Undefined);
+                MeganewtonPerSquareMeter = new UnitInfo<PressureUnit>(PressureUnit.MeganewtonPerSquareMeter, "MeganewtonsPerSquareMeter", BaseUnits.Undefined);
+                Megapascal = new UnitInfo<PressureUnit>(PressureUnit.Megapascal, "Megapascals", BaseUnits.Undefined);
+                MeterOfElevation = new UnitInfo<PressureUnit>(PressureUnit.MeterOfElevation, "MetersOfElevation", BaseUnits.Undefined);
+                MeterOfHead = new UnitInfo<PressureUnit>(PressureUnit.MeterOfHead, "MetersOfHead", BaseUnits.Undefined);
+                Microbar = new UnitInfo<PressureUnit>(PressureUnit.Microbar, "Microbars", BaseUnits.Undefined);
+                Micropascal = new UnitInfo<PressureUnit>(PressureUnit.Micropascal, "Micropascals", BaseUnits.Undefined);
+                Millibar = new UnitInfo<PressureUnit>(PressureUnit.Millibar, "Millibars", BaseUnits.Undefined);
+                MillimeterOfMercury = new UnitInfo<PressureUnit>(PressureUnit.MillimeterOfMercury, "MillimetersOfMercury", BaseUnits.Undefined);
+                MillimeterOfWaterColumn = new UnitInfo<PressureUnit>(PressureUnit.MillimeterOfWaterColumn, "MillimeterOfWaterColumn", BaseUnits.Undefined);
+                Millipascal = new UnitInfo<PressureUnit>(PressureUnit.Millipascal, "Millipascals", BaseUnits.Undefined);
+                NewtonPerSquareCentimeter = new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareCentimeter, "NewtonsPerSquareCentimeter", BaseUnits.Undefined);
+                NewtonPerSquareMeter = new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareMeter, "NewtonsPerSquareMeter", BaseUnits.Undefined);
+                NewtonPerSquareMillimeter = new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareMillimeter, "NewtonsPerSquareMillimeter", BaseUnits.Undefined);
+                Pascal = new UnitInfo<PressureUnit>(PressureUnit.Pascal, "Pascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                PoundForcePerSquareFoot = new UnitInfo<PressureUnit>(PressureUnit.PoundForcePerSquareFoot, "PoundsForcePerSquareFoot", BaseUnits.Undefined);
+                PoundForcePerSquareInch = new UnitInfo<PressureUnit>(PressureUnit.PoundForcePerSquareInch, "PoundsForcePerSquareInch", BaseUnits.Undefined);
+                PoundPerInchSecondSquared = new UnitInfo<PressureUnit>(PressureUnit.PoundPerInchSecondSquared, "PoundsPerInchSecondSquared", BaseUnits.Undefined);
+                TechnicalAtmosphere = new UnitInfo<PressureUnit>(PressureUnit.TechnicalAtmosphere, "TechnicalAtmospheres", BaseUnits.Undefined);
+                TonneForcePerSquareCentimeter = new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareCentimeter, "TonnesForcePerSquareCentimeter", BaseUnits.Undefined);
+                TonneForcePerSquareMeter = new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareMeter, "TonnesForcePerSquareMeter", BaseUnits.Undefined);
+                TonneForcePerSquareMillimeter = new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareMillimeter, "TonnesForcePerSquareMillimeter", BaseUnits.Undefined);
+                Torr = new UnitInfo<PressureUnit>(PressureUnit.Torr, "Torrs", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.Atmosphere"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> Atmosphere { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.Bar"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> Bar { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.Centibar"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> Centibar { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.Decapascal"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> Decapascal { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.Decibar"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> Decibar { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.DynePerSquareCentimeter"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> DynePerSquareCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.FootOfElevation"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> FootOfElevation { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.FootOfHead"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> FootOfHead { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.Gigapascal"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> Gigapascal { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.Hectopascal"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> Hectopascal { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.InchOfMercury"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> InchOfMercury { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.InchOfWaterColumn"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> InchOfWaterColumn { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.Kilobar"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> Kilobar { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.KilogramForcePerSquareCentimeter"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> KilogramForcePerSquareCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.KilogramForcePerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> KilogramForcePerSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.KilogramForcePerSquareMillimeter"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> KilogramForcePerSquareMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.KilonewtonPerSquareCentimeter"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> KilonewtonPerSquareCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.KilonewtonPerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> KilonewtonPerSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.KilonewtonPerSquareMillimeter"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> KilonewtonPerSquareMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.Kilopascal"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> Kilopascal { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.KilopoundForcePerSquareFoot"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> KilopoundForcePerSquareFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.KilopoundForcePerSquareInch"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> KilopoundForcePerSquareInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.Megabar"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> Megabar { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.MeganewtonPerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> MeganewtonPerSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.Megapascal"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> Megapascal { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.MeterOfElevation"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> MeterOfElevation { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.MeterOfHead"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> MeterOfHead { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.Microbar"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> Microbar { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.Micropascal"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> Micropascal { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.Millibar"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> Millibar { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.MillimeterOfMercury"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> MillimeterOfMercury { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.MillimeterOfWaterColumn"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> MillimeterOfWaterColumn { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.Millipascal"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> Millipascal { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.NewtonPerSquareCentimeter"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> NewtonPerSquareCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.NewtonPerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> NewtonPerSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.NewtonPerSquareMillimeter"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> NewtonPerSquareMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.Pascal"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> Pascal { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.PoundForcePerSquareFoot"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> PoundForcePerSquareFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.PoundForcePerSquareInch"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> PoundForcePerSquareInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.PoundPerInchSecondSquared"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> PoundPerInchSecondSquared { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.TechnicalAtmosphere"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> TechnicalAtmosphere { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.TonneForcePerSquareCentimeter"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> TonneForcePerSquareCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.TonneForcePerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> TonneForcePerSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.TonneForcePerSquareMillimeter"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> TonneForcePerSquareMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PressureUnit}"/> for <see cref="PressureUnit.Torr"/>
+            /// </summary>
+            public UnitInfo<PressureUnit> Torr { get; }
+
+        }
     }
 }

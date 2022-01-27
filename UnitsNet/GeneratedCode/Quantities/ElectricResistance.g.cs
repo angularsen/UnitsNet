@@ -53,17 +53,6 @@ namespace UnitsNet
         static ElectricResistance()
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, -2, 0, 0, 0);
-
-            Info = new QuantityInfo<ElectricResistanceUnit>("ElectricResistance",
-                new UnitInfo<ElectricResistanceUnit>[] {
-                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Gigaohm, "Gigaohms", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Kiloohm, "Kiloohms", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Megaohm, "Megaohms", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Microohm, "Microohms", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Milliohm, "Milliohms", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Ohm, "Ohms", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricResistance);
         }
 
         /// <summary>
@@ -103,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricResistanceUnit> Info { get; }
+        public static ElectricResistance.ElectricResistanceQuantityInfo Info { get; } = new ElectricResistance.ElectricResistanceQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -967,5 +956,55 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class ElectricResistanceQuantityInfo : QuantityInfo<ElectricResistanceUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal ElectricResistanceQuantityInfo() :
+                base("ElectricResistance", ElectricResistance.BaseUnit, ElectricResistance.Zero, ElectricResistance.BaseDimensions, QuantityType.ElectricResistance)
+            {
+                Gigaohm = new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Gigaohm, "Gigaohms", BaseUnits.Undefined);
+                Kiloohm = new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Kiloohm, "Kiloohms", BaseUnits.Undefined);
+                Megaohm = new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Megaohm, "Megaohms", BaseUnits.Undefined);
+                Microohm = new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Microohm, "Microohms", BaseUnits.Undefined);
+                Milliohm = new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Milliohm, "Milliohms", BaseUnits.Undefined);
+                Ohm = new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Ohm, "Ohms", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricResistanceUnit}"/> for <see cref="ElectricResistanceUnit.Gigaohm"/>
+            /// </summary>
+            public UnitInfo<ElectricResistanceUnit> Gigaohm { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricResistanceUnit}"/> for <see cref="ElectricResistanceUnit.Kiloohm"/>
+            /// </summary>
+            public UnitInfo<ElectricResistanceUnit> Kiloohm { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricResistanceUnit}"/> for <see cref="ElectricResistanceUnit.Megaohm"/>
+            /// </summary>
+            public UnitInfo<ElectricResistanceUnit> Megaohm { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricResistanceUnit}"/> for <see cref="ElectricResistanceUnit.Microohm"/>
+            /// </summary>
+            public UnitInfo<ElectricResistanceUnit> Microohm { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricResistanceUnit}"/> for <see cref="ElectricResistanceUnit.Milliohm"/>
+            /// </summary>
+            public UnitInfo<ElectricResistanceUnit> Milliohm { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricResistanceUnit}"/> for <see cref="ElectricResistanceUnit.Ohm"/>
+            /// </summary>
+            public UnitInfo<ElectricResistanceUnit> Ohm { get; }
+
+        }
     }
 }

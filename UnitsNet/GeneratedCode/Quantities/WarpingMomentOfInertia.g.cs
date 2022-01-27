@@ -53,17 +53,6 @@ namespace UnitsNet
         static WarpingMomentOfInertia()
         {
             BaseDimensions = new BaseDimensions(6, 0, 0, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<WarpingMomentOfInertiaUnit>("WarpingMomentOfInertia",
-                new UnitInfo<WarpingMomentOfInertiaUnit>[] {
-                    new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.CentimeterToTheSixth, "CentimetersToTheSixth", new BaseUnits(length: LengthUnit.Centimeter)),
-                    new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.DecimeterToTheSixth, "DecimetersToTheSixth", new BaseUnits(length: LengthUnit.Decimeter)),
-                    new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.FootToTheSixth, "FeetToTheSixth", new BaseUnits(length: LengthUnit.Foot)),
-                    new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.InchToTheSixth, "InchesToTheSixth", new BaseUnits(length: LengthUnit.Inch)),
-                    new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.MeterToTheSixth, "MetersToTheSixth", new BaseUnits(length: LengthUnit.Meter)),
-                    new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, "MillimetersToTheSixth", new BaseUnits(length: LengthUnit.Millimeter)),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.WarpingMomentOfInertia);
         }
 
         /// <summary>
@@ -103,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<WarpingMomentOfInertiaUnit> Info { get; }
+        public static WarpingMomentOfInertia.WarpingMomentOfInertiaQuantityInfo Info { get; } = new WarpingMomentOfInertia.WarpingMomentOfInertiaQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -967,5 +956,55 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class WarpingMomentOfInertiaQuantityInfo : QuantityInfo<WarpingMomentOfInertiaUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal WarpingMomentOfInertiaQuantityInfo() :
+                base("WarpingMomentOfInertia", WarpingMomentOfInertia.BaseUnit, WarpingMomentOfInertia.Zero, WarpingMomentOfInertia.BaseDimensions, QuantityType.WarpingMomentOfInertia)
+            {
+                CentimeterToTheSixth = new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.CentimeterToTheSixth, "CentimetersToTheSixth", new BaseUnits(length: LengthUnit.Centimeter));
+                DecimeterToTheSixth = new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.DecimeterToTheSixth, "DecimetersToTheSixth", new BaseUnits(length: LengthUnit.Decimeter));
+                FootToTheSixth = new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.FootToTheSixth, "FeetToTheSixth", new BaseUnits(length: LengthUnit.Foot));
+                InchToTheSixth = new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.InchToTheSixth, "InchesToTheSixth", new BaseUnits(length: LengthUnit.Inch));
+                MeterToTheSixth = new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.MeterToTheSixth, "MetersToTheSixth", new BaseUnits(length: LengthUnit.Meter));
+                MillimeterToTheSixth = new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, "MillimetersToTheSixth", new BaseUnits(length: LengthUnit.Millimeter));
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{WarpingMomentOfInertiaUnit}"/> for <see cref="WarpingMomentOfInertiaUnit.CentimeterToTheSixth"/>
+            /// </summary>
+            public UnitInfo<WarpingMomentOfInertiaUnit> CentimeterToTheSixth { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{WarpingMomentOfInertiaUnit}"/> for <see cref="WarpingMomentOfInertiaUnit.DecimeterToTheSixth"/>
+            /// </summary>
+            public UnitInfo<WarpingMomentOfInertiaUnit> DecimeterToTheSixth { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{WarpingMomentOfInertiaUnit}"/> for <see cref="WarpingMomentOfInertiaUnit.FootToTheSixth"/>
+            /// </summary>
+            public UnitInfo<WarpingMomentOfInertiaUnit> FootToTheSixth { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{WarpingMomentOfInertiaUnit}"/> for <see cref="WarpingMomentOfInertiaUnit.InchToTheSixth"/>
+            /// </summary>
+            public UnitInfo<WarpingMomentOfInertiaUnit> InchToTheSixth { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{WarpingMomentOfInertiaUnit}"/> for <see cref="WarpingMomentOfInertiaUnit.MeterToTheSixth"/>
+            /// </summary>
+            public UnitInfo<WarpingMomentOfInertiaUnit> MeterToTheSixth { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{WarpingMomentOfInertiaUnit}"/> for <see cref="WarpingMomentOfInertiaUnit.MillimeterToTheSixth"/>
+            /// </summary>
+            public UnitInfo<WarpingMomentOfInertiaUnit> MillimeterToTheSixth { get; }
+
+        }
     }
 }

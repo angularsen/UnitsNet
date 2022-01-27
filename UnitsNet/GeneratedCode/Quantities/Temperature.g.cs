@@ -53,21 +53,6 @@ namespace UnitsNet
         static Temperature()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 1, 0, 0);
-
-            Info = new QuantityInfo<TemperatureUnit>("Temperature",
-                new UnitInfo<TemperatureUnit>[] {
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeCelsius, "DegreesCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius)),
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeDelisle, "DegreesDelisle", new BaseUnits(temperature: TemperatureUnit.DegreeDelisle)),
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeFahrenheit, "DegreesFahrenheit", new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit)),
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeNewton, "DegreesNewton", new BaseUnits(temperature: TemperatureUnit.DegreeNewton)),
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeRankine, "DegreesRankine", new BaseUnits(temperature: TemperatureUnit.DegreeRankine)),
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeReaumur, "DegreesReaumur", new BaseUnits(temperature: TemperatureUnit.DegreeReaumur)),
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeRoemer, "DegreesRoemer", new BaseUnits(temperature: TemperatureUnit.DegreeRoemer)),
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.Kelvin, "Kelvins", new BaseUnits(temperature: TemperatureUnit.Kelvin)),
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.MillidegreeCelsius, "MillidegreesCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius)),
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.SolarTemperature, "SolarTemperatures", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Temperature);
         }
 
         /// <summary>
@@ -107,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<TemperatureUnit> Info { get; }
+        public static Temperature.TemperatureQuantityInfo Info { get; } = new Temperature.TemperatureQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -997,5 +982,79 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class TemperatureQuantityInfo : QuantityInfo<TemperatureUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal TemperatureQuantityInfo() :
+                base("Temperature", Temperature.BaseUnit, Temperature.Zero, Temperature.BaseDimensions, QuantityType.Temperature)
+            {
+                DegreeCelsius = new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeCelsius, "DegreesCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius));
+                DegreeDelisle = new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeDelisle, "DegreesDelisle", new BaseUnits(temperature: TemperatureUnit.DegreeDelisle));
+                DegreeFahrenheit = new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeFahrenheit, "DegreesFahrenheit", new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit));
+                DegreeNewton = new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeNewton, "DegreesNewton", new BaseUnits(temperature: TemperatureUnit.DegreeNewton));
+                DegreeRankine = new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeRankine, "DegreesRankine", new BaseUnits(temperature: TemperatureUnit.DegreeRankine));
+                DegreeReaumur = new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeReaumur, "DegreesReaumur", new BaseUnits(temperature: TemperatureUnit.DegreeReaumur));
+                DegreeRoemer = new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeRoemer, "DegreesRoemer", new BaseUnits(temperature: TemperatureUnit.DegreeRoemer));
+                Kelvin = new UnitInfo<TemperatureUnit>(TemperatureUnit.Kelvin, "Kelvins", new BaseUnits(temperature: TemperatureUnit.Kelvin));
+                MillidegreeCelsius = new UnitInfo<TemperatureUnit>(TemperatureUnit.MillidegreeCelsius, "MillidegreesCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius));
+                SolarTemperature = new UnitInfo<TemperatureUnit>(TemperatureUnit.SolarTemperature, "SolarTemperatures", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureUnit}"/> for <see cref="TemperatureUnit.DegreeCelsius"/>
+            /// </summary>
+            public UnitInfo<TemperatureUnit> DegreeCelsius { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureUnit}"/> for <see cref="TemperatureUnit.DegreeDelisle"/>
+            /// </summary>
+            public UnitInfo<TemperatureUnit> DegreeDelisle { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureUnit}"/> for <see cref="TemperatureUnit.DegreeFahrenheit"/>
+            /// </summary>
+            public UnitInfo<TemperatureUnit> DegreeFahrenheit { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureUnit}"/> for <see cref="TemperatureUnit.DegreeNewton"/>
+            /// </summary>
+            public UnitInfo<TemperatureUnit> DegreeNewton { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureUnit}"/> for <see cref="TemperatureUnit.DegreeRankine"/>
+            /// </summary>
+            public UnitInfo<TemperatureUnit> DegreeRankine { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureUnit}"/> for <see cref="TemperatureUnit.DegreeReaumur"/>
+            /// </summary>
+            public UnitInfo<TemperatureUnit> DegreeReaumur { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureUnit}"/> for <see cref="TemperatureUnit.DegreeRoemer"/>
+            /// </summary>
+            public UnitInfo<TemperatureUnit> DegreeRoemer { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureUnit}"/> for <see cref="TemperatureUnit.Kelvin"/>
+            /// </summary>
+            public UnitInfo<TemperatureUnit> Kelvin { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureUnit}"/> for <see cref="TemperatureUnit.MillidegreeCelsius"/>
+            /// </summary>
+            public UnitInfo<TemperatureUnit> MillidegreeCelsius { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureUnit}"/> for <see cref="TemperatureUnit.SolarTemperature"/>
+            /// </summary>
+            public UnitInfo<TemperatureUnit> SolarTemperature { get; }
+
+        }
     }
 }

@@ -54,11 +54,6 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<ScalarUnit>("Scalar",
-                new UnitInfo<ScalarUnit>[] {
-                    new UnitInfo<ScalarUnit>(ScalarUnit.Amount, "Amount", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Scalar);
         }
 
         /// <summary>
@@ -98,7 +93,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ScalarUnit> Info { get; }
+        public static Scalar.ScalarQuantityInfo Info { get; } = new Scalar.ScalarQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -872,5 +867,25 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class ScalarQuantityInfo : QuantityInfo<ScalarUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal ScalarQuantityInfo() :
+                base("Scalar", Scalar.BaseUnit, Scalar.Zero, Scalar.BaseDimensions, QuantityType.Scalar)
+            {
+                Amount = new UnitInfo<ScalarUnit>(ScalarUnit.Amount, "Amount", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ScalarUnit}"/> for <see cref="ScalarUnit.Amount"/>
+            /// </summary>
+            public UnitInfo<ScalarUnit> Amount { get; }
+
+        }
     }
 }

@@ -53,55 +53,6 @@ namespace UnitsNet
         static PowerDensity()
         {
             BaseDimensions = new BaseDimensions(-1, 1, -3, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<PowerDensityUnit>("PowerDensity",
-                new UnitInfo<PowerDensityUnit>[] {
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DecawattPerCubicFoot, "DecawattsPerCubicFoot", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DecawattPerCubicInch, "DecawattsPerCubicInch", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DecawattPerCubicMeter, "DecawattsPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DecawattPerLiter, "DecawattsPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DeciwattPerCubicFoot, "DeciwattsPerCubicFoot", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DeciwattPerCubicInch, "DeciwattsPerCubicInch", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DeciwattPerCubicMeter, "DeciwattsPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DeciwattPerLiter, "DeciwattsPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.GigawattPerCubicFoot, "GigawattsPerCubicFoot", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.GigawattPerCubicInch, "GigawattsPerCubicInch", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.GigawattPerCubicMeter, "GigawattsPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.GigawattPerLiter, "GigawattsPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.KilowattPerCubicFoot, "KilowattsPerCubicFoot", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.KilowattPerCubicInch, "KilowattsPerCubicInch", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.KilowattPerCubicMeter, "KilowattsPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.KilowattPerLiter, "KilowattsPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MegawattPerCubicFoot, "MegawattsPerCubicFoot", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MegawattPerCubicInch, "MegawattsPerCubicInch", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MegawattPerCubicMeter, "MegawattsPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MegawattPerLiter, "MegawattsPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MicrowattPerCubicFoot, "MicrowattsPerCubicFoot", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MicrowattPerCubicInch, "MicrowattsPerCubicInch", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MicrowattPerCubicMeter, "MicrowattsPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MicrowattPerLiter, "MicrowattsPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerCubicFoot, "MilliwattsPerCubicFoot", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerCubicInch, "MilliwattsPerCubicInch", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerCubicMeter, "MilliwattsPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerLiter, "MilliwattsPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.NanowattPerCubicFoot, "NanowattsPerCubicFoot", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.NanowattPerCubicInch, "NanowattsPerCubicInch", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.NanowattPerCubicMeter, "NanowattsPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.NanowattPerLiter, "NanowattsPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.PicowattPerCubicFoot, "PicowattsPerCubicFoot", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.PicowattPerCubicInch, "PicowattsPerCubicInch", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.PicowattPerCubicMeter, "PicowattsPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.PicowattPerLiter, "PicowattsPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.TerawattPerCubicFoot, "TerawattsPerCubicFoot", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.TerawattPerCubicInch, "TerawattsPerCubicInch", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.TerawattPerCubicMeter, "TerawattsPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.TerawattPerLiter, "TerawattsPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerCubicFoot, "WattsPerCubicFoot", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerCubicInch, "WattsPerCubicInch", BaseUnits.Undefined),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerCubicMeter, "WattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
-                    new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerLiter, "WattsPerLiter", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.PowerDensity);
         }
 
         /// <summary>
@@ -141,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<PowerDensityUnit> Info { get; }
+        public static PowerDensity.PowerDensityQuantityInfo Info { get; } = new PowerDensity.PowerDensityQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1689,5 +1640,283 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class PowerDensityQuantityInfo : QuantityInfo<PowerDensityUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal PowerDensityQuantityInfo() :
+                base("PowerDensity", PowerDensity.BaseUnit, PowerDensity.Zero, PowerDensity.BaseDimensions, QuantityType.PowerDensity)
+            {
+                DecawattPerCubicFoot = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DecawattPerCubicFoot, "DecawattsPerCubicFoot", BaseUnits.Undefined);
+                DecawattPerCubicInch = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DecawattPerCubicInch, "DecawattsPerCubicInch", BaseUnits.Undefined);
+                DecawattPerCubicMeter = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DecawattPerCubicMeter, "DecawattsPerCubicMeter", BaseUnits.Undefined);
+                DecawattPerLiter = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DecawattPerLiter, "DecawattsPerLiter", BaseUnits.Undefined);
+                DeciwattPerCubicFoot = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DeciwattPerCubicFoot, "DeciwattsPerCubicFoot", BaseUnits.Undefined);
+                DeciwattPerCubicInch = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DeciwattPerCubicInch, "DeciwattsPerCubicInch", BaseUnits.Undefined);
+                DeciwattPerCubicMeter = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DeciwattPerCubicMeter, "DeciwattsPerCubicMeter", BaseUnits.Undefined);
+                DeciwattPerLiter = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DeciwattPerLiter, "DeciwattsPerLiter", BaseUnits.Undefined);
+                GigawattPerCubicFoot = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.GigawattPerCubicFoot, "GigawattsPerCubicFoot", BaseUnits.Undefined);
+                GigawattPerCubicInch = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.GigawattPerCubicInch, "GigawattsPerCubicInch", BaseUnits.Undefined);
+                GigawattPerCubicMeter = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.GigawattPerCubicMeter, "GigawattsPerCubicMeter", BaseUnits.Undefined);
+                GigawattPerLiter = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.GigawattPerLiter, "GigawattsPerLiter", BaseUnits.Undefined);
+                KilowattPerCubicFoot = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.KilowattPerCubicFoot, "KilowattsPerCubicFoot", BaseUnits.Undefined);
+                KilowattPerCubicInch = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.KilowattPerCubicInch, "KilowattsPerCubicInch", BaseUnits.Undefined);
+                KilowattPerCubicMeter = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.KilowattPerCubicMeter, "KilowattsPerCubicMeter", BaseUnits.Undefined);
+                KilowattPerLiter = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.KilowattPerLiter, "KilowattsPerLiter", BaseUnits.Undefined);
+                MegawattPerCubicFoot = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MegawattPerCubicFoot, "MegawattsPerCubicFoot", BaseUnits.Undefined);
+                MegawattPerCubicInch = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MegawattPerCubicInch, "MegawattsPerCubicInch", BaseUnits.Undefined);
+                MegawattPerCubicMeter = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MegawattPerCubicMeter, "MegawattsPerCubicMeter", BaseUnits.Undefined);
+                MegawattPerLiter = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MegawattPerLiter, "MegawattsPerLiter", BaseUnits.Undefined);
+                MicrowattPerCubicFoot = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MicrowattPerCubicFoot, "MicrowattsPerCubicFoot", BaseUnits.Undefined);
+                MicrowattPerCubicInch = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MicrowattPerCubicInch, "MicrowattsPerCubicInch", BaseUnits.Undefined);
+                MicrowattPerCubicMeter = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MicrowattPerCubicMeter, "MicrowattsPerCubicMeter", BaseUnits.Undefined);
+                MicrowattPerLiter = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MicrowattPerLiter, "MicrowattsPerLiter", BaseUnits.Undefined);
+                MilliwattPerCubicFoot = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerCubicFoot, "MilliwattsPerCubicFoot", BaseUnits.Undefined);
+                MilliwattPerCubicInch = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerCubicInch, "MilliwattsPerCubicInch", BaseUnits.Undefined);
+                MilliwattPerCubicMeter = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerCubicMeter, "MilliwattsPerCubicMeter", BaseUnits.Undefined);
+                MilliwattPerLiter = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.MilliwattPerLiter, "MilliwattsPerLiter", BaseUnits.Undefined);
+                NanowattPerCubicFoot = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.NanowattPerCubicFoot, "NanowattsPerCubicFoot", BaseUnits.Undefined);
+                NanowattPerCubicInch = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.NanowattPerCubicInch, "NanowattsPerCubicInch", BaseUnits.Undefined);
+                NanowattPerCubicMeter = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.NanowattPerCubicMeter, "NanowattsPerCubicMeter", BaseUnits.Undefined);
+                NanowattPerLiter = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.NanowattPerLiter, "NanowattsPerLiter", BaseUnits.Undefined);
+                PicowattPerCubicFoot = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.PicowattPerCubicFoot, "PicowattsPerCubicFoot", BaseUnits.Undefined);
+                PicowattPerCubicInch = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.PicowattPerCubicInch, "PicowattsPerCubicInch", BaseUnits.Undefined);
+                PicowattPerCubicMeter = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.PicowattPerCubicMeter, "PicowattsPerCubicMeter", BaseUnits.Undefined);
+                PicowattPerLiter = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.PicowattPerLiter, "PicowattsPerLiter", BaseUnits.Undefined);
+                TerawattPerCubicFoot = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.TerawattPerCubicFoot, "TerawattsPerCubicFoot", BaseUnits.Undefined);
+                TerawattPerCubicInch = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.TerawattPerCubicInch, "TerawattsPerCubicInch", BaseUnits.Undefined);
+                TerawattPerCubicMeter = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.TerawattPerCubicMeter, "TerawattsPerCubicMeter", BaseUnits.Undefined);
+                TerawattPerLiter = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.TerawattPerLiter, "TerawattsPerLiter", BaseUnits.Undefined);
+                WattPerCubicFoot = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerCubicFoot, "WattsPerCubicFoot", BaseUnits.Undefined);
+                WattPerCubicInch = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerCubicInch, "WattsPerCubicInch", BaseUnits.Undefined);
+                WattPerCubicMeter = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerCubicMeter, "WattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                WattPerLiter = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerLiter, "WattsPerLiter", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.DecawattPerCubicFoot"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> DecawattPerCubicFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.DecawattPerCubicInch"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> DecawattPerCubicInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.DecawattPerCubicMeter"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> DecawattPerCubicMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.DecawattPerLiter"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> DecawattPerLiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.DeciwattPerCubicFoot"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> DeciwattPerCubicFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.DeciwattPerCubicInch"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> DeciwattPerCubicInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.DeciwattPerCubicMeter"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> DeciwattPerCubicMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.DeciwattPerLiter"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> DeciwattPerLiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.GigawattPerCubicFoot"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> GigawattPerCubicFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.GigawattPerCubicInch"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> GigawattPerCubicInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.GigawattPerCubicMeter"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> GigawattPerCubicMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.GigawattPerLiter"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> GigawattPerLiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.KilowattPerCubicFoot"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> KilowattPerCubicFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.KilowattPerCubicInch"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> KilowattPerCubicInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.KilowattPerCubicMeter"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> KilowattPerCubicMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.KilowattPerLiter"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> KilowattPerLiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.MegawattPerCubicFoot"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> MegawattPerCubicFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.MegawattPerCubicInch"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> MegawattPerCubicInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.MegawattPerCubicMeter"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> MegawattPerCubicMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.MegawattPerLiter"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> MegawattPerLiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.MicrowattPerCubicFoot"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> MicrowattPerCubicFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.MicrowattPerCubicInch"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> MicrowattPerCubicInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.MicrowattPerCubicMeter"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> MicrowattPerCubicMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.MicrowattPerLiter"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> MicrowattPerLiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.MilliwattPerCubicFoot"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> MilliwattPerCubicFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.MilliwattPerCubicInch"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> MilliwattPerCubicInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.MilliwattPerCubicMeter"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> MilliwattPerCubicMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.MilliwattPerLiter"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> MilliwattPerLiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.NanowattPerCubicFoot"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> NanowattPerCubicFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.NanowattPerCubicInch"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> NanowattPerCubicInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.NanowattPerCubicMeter"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> NanowattPerCubicMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.NanowattPerLiter"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> NanowattPerLiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.PicowattPerCubicFoot"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> PicowattPerCubicFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.PicowattPerCubicInch"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> PicowattPerCubicInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.PicowattPerCubicMeter"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> PicowattPerCubicMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.PicowattPerLiter"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> PicowattPerLiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.TerawattPerCubicFoot"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> TerawattPerCubicFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.TerawattPerCubicInch"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> TerawattPerCubicInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.TerawattPerCubicMeter"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> TerawattPerCubicMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.TerawattPerLiter"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> TerawattPerLiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.WattPerCubicFoot"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> WattPerCubicFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.WattPerCubicInch"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> WattPerCubicInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.WattPerCubicMeter"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> WattPerCubicMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerDensityUnit}"/> for <see cref="PowerDensityUnit.WattPerLiter"/>
+            /// </summary>
+            public UnitInfo<PowerDensityUnit> WattPerLiter { get; }
+
+        }
     }
 }

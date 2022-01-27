@@ -53,18 +53,6 @@ namespace UnitsNet
         static VolumePerLength()
         {
             BaseDimensions = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<VolumePerLengthUnit>("VolumePerLength",
-                new UnitInfo<VolumePerLengthUnit>[] {
-                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.CubicMeterPerMeter, "CubicMetersPerMeter", new BaseUnits(length: LengthUnit.Meter)),
-                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.CubicYardPerFoot, "CubicYardsPerFoot", BaseUnits.Undefined),
-                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.CubicYardPerUsSurveyFoot, "CubicYardsPerUsSurveyFoot", BaseUnits.Undefined),
-                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.LiterPerKilometer, "LitersPerKilometer", BaseUnits.Undefined),
-                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.LiterPerMeter, "LitersPerMeter", new BaseUnits(length: LengthUnit.Decimeter)),
-                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.LiterPerMillimeter, "LitersPerMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.OilBarrelPerFoot, "OilBarrelsPerFoot", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.VolumePerLength);
         }
 
         /// <summary>
@@ -104,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<VolumePerLengthUnit> Info { get; }
+        public static VolumePerLength.VolumePerLengthQuantityInfo Info { get; } = new VolumePerLength.VolumePerLengthQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -986,5 +974,61 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class VolumePerLengthQuantityInfo : QuantityInfo<VolumePerLengthUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal VolumePerLengthQuantityInfo() :
+                base("VolumePerLength", VolumePerLength.BaseUnit, VolumePerLength.Zero, VolumePerLength.BaseDimensions, QuantityType.VolumePerLength)
+            {
+                CubicMeterPerMeter = new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.CubicMeterPerMeter, "CubicMetersPerMeter", new BaseUnits(length: LengthUnit.Meter));
+                CubicYardPerFoot = new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.CubicYardPerFoot, "CubicYardsPerFoot", BaseUnits.Undefined);
+                CubicYardPerUsSurveyFoot = new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.CubicYardPerUsSurveyFoot, "CubicYardsPerUsSurveyFoot", BaseUnits.Undefined);
+                LiterPerKilometer = new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.LiterPerKilometer, "LitersPerKilometer", BaseUnits.Undefined);
+                LiterPerMeter = new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.LiterPerMeter, "LitersPerMeter", new BaseUnits(length: LengthUnit.Decimeter));
+                LiterPerMillimeter = new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.LiterPerMillimeter, "LitersPerMillimeter", BaseUnits.Undefined);
+                OilBarrelPerFoot = new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.OilBarrelPerFoot, "OilBarrelsPerFoot", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VolumePerLengthUnit}"/> for <see cref="VolumePerLengthUnit.CubicMeterPerMeter"/>
+            /// </summary>
+            public UnitInfo<VolumePerLengthUnit> CubicMeterPerMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VolumePerLengthUnit}"/> for <see cref="VolumePerLengthUnit.CubicYardPerFoot"/>
+            /// </summary>
+            public UnitInfo<VolumePerLengthUnit> CubicYardPerFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VolumePerLengthUnit}"/> for <see cref="VolumePerLengthUnit.CubicYardPerUsSurveyFoot"/>
+            /// </summary>
+            public UnitInfo<VolumePerLengthUnit> CubicYardPerUsSurveyFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VolumePerLengthUnit}"/> for <see cref="VolumePerLengthUnit.LiterPerKilometer"/>
+            /// </summary>
+            public UnitInfo<VolumePerLengthUnit> LiterPerKilometer { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VolumePerLengthUnit}"/> for <see cref="VolumePerLengthUnit.LiterPerMeter"/>
+            /// </summary>
+            public UnitInfo<VolumePerLengthUnit> LiterPerMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VolumePerLengthUnit}"/> for <see cref="VolumePerLengthUnit.LiterPerMillimeter"/>
+            /// </summary>
+            public UnitInfo<VolumePerLengthUnit> LiterPerMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VolumePerLengthUnit}"/> for <see cref="VolumePerLengthUnit.OilBarrelPerFoot"/>
+            /// </summary>
+            public UnitInfo<VolumePerLengthUnit> OilBarrelPerFoot { get; }
+
+        }
     }
 }

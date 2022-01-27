@@ -56,18 +56,6 @@ namespace UnitsNet
         static Irradiation()
         {
             BaseDimensions = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<IrradiationUnit>("Irradiation",
-                new UnitInfo<IrradiationUnit>[] {
-                    new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareCentimeter, "JoulesPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareMeter, "JoulesPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareMillimeter, "JoulesPerSquareMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradiationUnit>(IrradiationUnit.KilojoulePerSquareMeter, "KilojoulesPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradiationUnit>(IrradiationUnit.KilowattHourPerSquareMeter, "KilowattHoursPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradiationUnit>(IrradiationUnit.MillijoulePerSquareCentimeter, "MillijoulesPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradiationUnit>(IrradiationUnit.WattHourPerSquareMeter, "WattHoursPerSquareMeter", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Irradiation);
         }
 
         /// <summary>
@@ -107,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<IrradiationUnit> Info { get; }
+        public static Irradiation.IrradiationQuantityInfo Info { get; } = new Irradiation.IrradiationQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -989,5 +977,61 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class IrradiationQuantityInfo : QuantityInfo<IrradiationUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal IrradiationQuantityInfo() :
+                base("Irradiation", Irradiation.BaseUnit, Irradiation.Zero, Irradiation.BaseDimensions, QuantityType.Irradiation)
+            {
+                JoulePerSquareCentimeter = new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareCentimeter, "JoulesPerSquareCentimeter", BaseUnits.Undefined);
+                JoulePerSquareMeter = new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareMeter, "JoulesPerSquareMeter", BaseUnits.Undefined);
+                JoulePerSquareMillimeter = new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareMillimeter, "JoulesPerSquareMillimeter", BaseUnits.Undefined);
+                KilojoulePerSquareMeter = new UnitInfo<IrradiationUnit>(IrradiationUnit.KilojoulePerSquareMeter, "KilojoulesPerSquareMeter", BaseUnits.Undefined);
+                KilowattHourPerSquareMeter = new UnitInfo<IrradiationUnit>(IrradiationUnit.KilowattHourPerSquareMeter, "KilowattHoursPerSquareMeter", BaseUnits.Undefined);
+                MillijoulePerSquareCentimeter = new UnitInfo<IrradiationUnit>(IrradiationUnit.MillijoulePerSquareCentimeter, "MillijoulesPerSquareCentimeter", BaseUnits.Undefined);
+                WattHourPerSquareMeter = new UnitInfo<IrradiationUnit>(IrradiationUnit.WattHourPerSquareMeter, "WattHoursPerSquareMeter", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{IrradiationUnit}"/> for <see cref="IrradiationUnit.JoulePerSquareCentimeter"/>
+            /// </summary>
+            public UnitInfo<IrradiationUnit> JoulePerSquareCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{IrradiationUnit}"/> for <see cref="IrradiationUnit.JoulePerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<IrradiationUnit> JoulePerSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{IrradiationUnit}"/> for <see cref="IrradiationUnit.JoulePerSquareMillimeter"/>
+            /// </summary>
+            public UnitInfo<IrradiationUnit> JoulePerSquareMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{IrradiationUnit}"/> for <see cref="IrradiationUnit.KilojoulePerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<IrradiationUnit> KilojoulePerSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{IrradiationUnit}"/> for <see cref="IrradiationUnit.KilowattHourPerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<IrradiationUnit> KilowattHourPerSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{IrradiationUnit}"/> for <see cref="IrradiationUnit.MillijoulePerSquareCentimeter"/>
+            /// </summary>
+            public UnitInfo<IrradiationUnit> MillijoulePerSquareCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{IrradiationUnit}"/> for <see cref="IrradiationUnit.WattHourPerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<IrradiationUnit> WattHourPerSquareMeter { get; }
+
+        }
     }
 }

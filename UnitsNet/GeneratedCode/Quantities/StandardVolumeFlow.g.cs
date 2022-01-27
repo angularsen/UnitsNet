@@ -53,20 +53,6 @@ namespace UnitsNet
         static StandardVolumeFlow()
         {
             BaseDimensions = new BaseDimensions(0, 1, -1, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<StandardVolumeFlowUnit>("StandardVolumeFlow",
-                new UnitInfo<StandardVolumeFlowUnit>[] {
-                    new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, "StandardCubicCentimetersPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicFootPerHour, "StandardCubicFeetPerHour", BaseUnits.Undefined),
-                    new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicFootPerMinute, "StandardCubicFeetPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicFootPerSecond, "StandardCubicFeetPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicMeterPerDay, "StandardCubicMetersPerDay", BaseUnits.Undefined),
-                    new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicMeterPerHour, "StandardCubicMetersPerHour", BaseUnits.Undefined),
-                    new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicMeterPerMinute, "StandardCubicMetersPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicMeterPerSecond, "StandardCubicMetersPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardLiterPerMinute, "StandardLitersPerMinute", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.StandardVolumeFlow);
         }
 
         /// <summary>
@@ -106,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<StandardVolumeFlowUnit> Info { get; }
+        public static StandardVolumeFlow.StandardVolumeFlowQuantityInfo Info { get; } = new StandardVolumeFlow.StandardVolumeFlowQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1024,5 +1010,73 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class StandardVolumeFlowQuantityInfo : QuantityInfo<StandardVolumeFlowUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal StandardVolumeFlowQuantityInfo() :
+                base("StandardVolumeFlow", StandardVolumeFlow.BaseUnit, StandardVolumeFlow.Zero, StandardVolumeFlow.BaseDimensions, QuantityType.StandardVolumeFlow)
+            {
+                StandardCubicCentimeterPerMinute = new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, "StandardCubicCentimetersPerMinute", BaseUnits.Undefined);
+                StandardCubicFootPerHour = new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicFootPerHour, "StandardCubicFeetPerHour", BaseUnits.Undefined);
+                StandardCubicFootPerMinute = new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicFootPerMinute, "StandardCubicFeetPerMinute", BaseUnits.Undefined);
+                StandardCubicFootPerSecond = new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicFootPerSecond, "StandardCubicFeetPerSecond", BaseUnits.Undefined);
+                StandardCubicMeterPerDay = new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicMeterPerDay, "StandardCubicMetersPerDay", BaseUnits.Undefined);
+                StandardCubicMeterPerHour = new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicMeterPerHour, "StandardCubicMetersPerHour", BaseUnits.Undefined);
+                StandardCubicMeterPerMinute = new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicMeterPerMinute, "StandardCubicMetersPerMinute", BaseUnits.Undefined);
+                StandardCubicMeterPerSecond = new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicMeterPerSecond, "StandardCubicMetersPerSecond", BaseUnits.Undefined);
+                StandardLiterPerMinute = new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardLiterPerMinute, "StandardLitersPerMinute", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{StandardVolumeFlowUnit}"/> for <see cref="StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute"/>
+            /// </summary>
+            public UnitInfo<StandardVolumeFlowUnit> StandardCubicCentimeterPerMinute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{StandardVolumeFlowUnit}"/> for <see cref="StandardVolumeFlowUnit.StandardCubicFootPerHour"/>
+            /// </summary>
+            public UnitInfo<StandardVolumeFlowUnit> StandardCubicFootPerHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{StandardVolumeFlowUnit}"/> for <see cref="StandardVolumeFlowUnit.StandardCubicFootPerMinute"/>
+            /// </summary>
+            public UnitInfo<StandardVolumeFlowUnit> StandardCubicFootPerMinute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{StandardVolumeFlowUnit}"/> for <see cref="StandardVolumeFlowUnit.StandardCubicFootPerSecond"/>
+            /// </summary>
+            public UnitInfo<StandardVolumeFlowUnit> StandardCubicFootPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{StandardVolumeFlowUnit}"/> for <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerDay"/>
+            /// </summary>
+            public UnitInfo<StandardVolumeFlowUnit> StandardCubicMeterPerDay { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{StandardVolumeFlowUnit}"/> for <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerHour"/>
+            /// </summary>
+            public UnitInfo<StandardVolumeFlowUnit> StandardCubicMeterPerHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{StandardVolumeFlowUnit}"/> for <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerMinute"/>
+            /// </summary>
+            public UnitInfo<StandardVolumeFlowUnit> StandardCubicMeterPerMinute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{StandardVolumeFlowUnit}"/> for <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerSecond"/>
+            /// </summary>
+            public UnitInfo<StandardVolumeFlowUnit> StandardCubicMeterPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{StandardVolumeFlowUnit}"/> for <see cref="StandardVolumeFlowUnit.StandardLiterPerMinute"/>
+            /// </summary>
+            public UnitInfo<StandardVolumeFlowUnit> StandardLiterPerMinute { get; }
+
+        }
     }
 }

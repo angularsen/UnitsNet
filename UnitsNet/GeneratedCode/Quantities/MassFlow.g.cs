@@ -53,44 +53,6 @@ namespace UnitsNet
         static MassFlow()
         {
             BaseDimensions = new BaseDimensions(0, 1, -1, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<MassFlowUnit>("MassFlow",
-                new UnitInfo<MassFlowUnit>[] {
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.CentigramPerDay, "CentigramsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.CentigramPerSecond, "CentigramsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.DecagramPerDay, "DecagramsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.DecagramPerSecond, "DecagramsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.DecigramPerDay, "DecigramsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.DecigramPerSecond, "DecigramsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerDay, "GramsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerHour, "GramsPerHour", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerSecond, "GramsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.HectogramPerDay, "HectogramsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.HectogramPerSecond, "HectogramsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerDay, "KilogramsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerHour, "KilogramsPerHour", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerMinute, "KilogramsPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerSecond, "KilogramsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegagramPerDay, "MegagramsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerDay, "MegapoundsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerHour, "MegapoundsPerHour", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerMinute, "MegapoundsPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerSecond, "MegapoundsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MicrogramPerDay, "MicrogramsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MicrogramPerSecond, "MicrogramsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MilligramPerDay, "MilligramsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MilligramPerSecond, "MilligramsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.NanogramPerDay, "NanogramsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.NanogramPerSecond, "NanogramsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerDay, "PoundsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerHour, "PoundsPerHour", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerMinute, "PoundsPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerSecond, "PoundsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.ShortTonPerHour, "ShortTonsPerHour", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerDay, "TonnesPerDay", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerHour, "TonnesPerHour", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.MassFlow);
         }
 
         /// <summary>
@@ -130,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<MassFlowUnit> Info { get; }
+        public static MassFlow.MassFlowQuantityInfo Info { get; } = new MassFlow.MassFlowQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1480,5 +1442,217 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class MassFlowQuantityInfo : QuantityInfo<MassFlowUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal MassFlowQuantityInfo() :
+                base("MassFlow", MassFlow.BaseUnit, MassFlow.Zero, MassFlow.BaseDimensions, QuantityType.MassFlow)
+            {
+                CentigramPerDay = new UnitInfo<MassFlowUnit>(MassFlowUnit.CentigramPerDay, "CentigramsPerDay", BaseUnits.Undefined);
+                CentigramPerSecond = new UnitInfo<MassFlowUnit>(MassFlowUnit.CentigramPerSecond, "CentigramsPerSecond", BaseUnits.Undefined);
+                DecagramPerDay = new UnitInfo<MassFlowUnit>(MassFlowUnit.DecagramPerDay, "DecagramsPerDay", BaseUnits.Undefined);
+                DecagramPerSecond = new UnitInfo<MassFlowUnit>(MassFlowUnit.DecagramPerSecond, "DecagramsPerSecond", BaseUnits.Undefined);
+                DecigramPerDay = new UnitInfo<MassFlowUnit>(MassFlowUnit.DecigramPerDay, "DecigramsPerDay", BaseUnits.Undefined);
+                DecigramPerSecond = new UnitInfo<MassFlowUnit>(MassFlowUnit.DecigramPerSecond, "DecigramsPerSecond", BaseUnits.Undefined);
+                GramPerDay = new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerDay, "GramsPerDay", BaseUnits.Undefined);
+                GramPerHour = new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerHour, "GramsPerHour", BaseUnits.Undefined);
+                GramPerSecond = new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerSecond, "GramsPerSecond", BaseUnits.Undefined);
+                HectogramPerDay = new UnitInfo<MassFlowUnit>(MassFlowUnit.HectogramPerDay, "HectogramsPerDay", BaseUnits.Undefined);
+                HectogramPerSecond = new UnitInfo<MassFlowUnit>(MassFlowUnit.HectogramPerSecond, "HectogramsPerSecond", BaseUnits.Undefined);
+                KilogramPerDay = new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerDay, "KilogramsPerDay", BaseUnits.Undefined);
+                KilogramPerHour = new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerHour, "KilogramsPerHour", BaseUnits.Undefined);
+                KilogramPerMinute = new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerMinute, "KilogramsPerMinute", BaseUnits.Undefined);
+                KilogramPerSecond = new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerSecond, "KilogramsPerSecond", BaseUnits.Undefined);
+                MegagramPerDay = new UnitInfo<MassFlowUnit>(MassFlowUnit.MegagramPerDay, "MegagramsPerDay", BaseUnits.Undefined);
+                MegapoundPerDay = new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerDay, "MegapoundsPerDay", BaseUnits.Undefined);
+                MegapoundPerHour = new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerHour, "MegapoundsPerHour", BaseUnits.Undefined);
+                MegapoundPerMinute = new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerMinute, "MegapoundsPerMinute", BaseUnits.Undefined);
+                MegapoundPerSecond = new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerSecond, "MegapoundsPerSecond", BaseUnits.Undefined);
+                MicrogramPerDay = new UnitInfo<MassFlowUnit>(MassFlowUnit.MicrogramPerDay, "MicrogramsPerDay", BaseUnits.Undefined);
+                MicrogramPerSecond = new UnitInfo<MassFlowUnit>(MassFlowUnit.MicrogramPerSecond, "MicrogramsPerSecond", BaseUnits.Undefined);
+                MilligramPerDay = new UnitInfo<MassFlowUnit>(MassFlowUnit.MilligramPerDay, "MilligramsPerDay", BaseUnits.Undefined);
+                MilligramPerSecond = new UnitInfo<MassFlowUnit>(MassFlowUnit.MilligramPerSecond, "MilligramsPerSecond", BaseUnits.Undefined);
+                NanogramPerDay = new UnitInfo<MassFlowUnit>(MassFlowUnit.NanogramPerDay, "NanogramsPerDay", BaseUnits.Undefined);
+                NanogramPerSecond = new UnitInfo<MassFlowUnit>(MassFlowUnit.NanogramPerSecond, "NanogramsPerSecond", BaseUnits.Undefined);
+                PoundPerDay = new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerDay, "PoundsPerDay", BaseUnits.Undefined);
+                PoundPerHour = new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerHour, "PoundsPerHour", BaseUnits.Undefined);
+                PoundPerMinute = new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerMinute, "PoundsPerMinute", BaseUnits.Undefined);
+                PoundPerSecond = new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerSecond, "PoundsPerSecond", BaseUnits.Undefined);
+                ShortTonPerHour = new UnitInfo<MassFlowUnit>(MassFlowUnit.ShortTonPerHour, "ShortTonsPerHour", BaseUnits.Undefined);
+                TonnePerDay = new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerDay, "TonnesPerDay", BaseUnits.Undefined);
+                TonnePerHour = new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerHour, "TonnesPerHour", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.CentigramPerDay"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> CentigramPerDay { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.CentigramPerSecond"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> CentigramPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.DecagramPerDay"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> DecagramPerDay { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.DecagramPerSecond"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> DecagramPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.DecigramPerDay"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> DecigramPerDay { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.DecigramPerSecond"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> DecigramPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.GramPerDay"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> GramPerDay { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.GramPerHour"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> GramPerHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.GramPerSecond"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> GramPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.HectogramPerDay"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> HectogramPerDay { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.HectogramPerSecond"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> HectogramPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.KilogramPerDay"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> KilogramPerDay { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.KilogramPerHour"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> KilogramPerHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.KilogramPerMinute"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> KilogramPerMinute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.KilogramPerSecond"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> KilogramPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.MegagramPerDay"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> MegagramPerDay { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.MegapoundPerDay"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> MegapoundPerDay { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.MegapoundPerHour"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> MegapoundPerHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.MegapoundPerMinute"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> MegapoundPerMinute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.MegapoundPerSecond"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> MegapoundPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.MicrogramPerDay"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> MicrogramPerDay { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.MicrogramPerSecond"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> MicrogramPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.MilligramPerDay"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> MilligramPerDay { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.MilligramPerSecond"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> MilligramPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.NanogramPerDay"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> NanogramPerDay { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.NanogramPerSecond"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> NanogramPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.PoundPerDay"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> PoundPerDay { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.PoundPerHour"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> PoundPerHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.PoundPerMinute"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> PoundPerMinute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.PoundPerSecond"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> PoundPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.ShortTonPerHour"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> ShortTonPerHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.TonnePerDay"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> TonnePerDay { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassFlowUnit}"/> for <see cref="MassFlowUnit.TonnePerHour"/>
+            /// </summary>
+            public UnitInfo<MassFlowUnit> TonnePerHour { get; }
+
+        }
     }
 }

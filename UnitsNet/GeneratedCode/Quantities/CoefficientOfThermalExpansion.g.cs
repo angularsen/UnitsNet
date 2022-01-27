@@ -53,14 +53,6 @@ namespace UnitsNet
         static CoefficientOfThermalExpansion()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, -1, 0, 0);
-
-            Info = new QuantityInfo<CoefficientOfThermalExpansionUnit>("CoefficientOfThermalExpansion",
-                new UnitInfo<CoefficientOfThermalExpansionUnit>[] {
-                    new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, "InverseDegreeCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius)),
-                    new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, "InverseDegreeFahrenheit", new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit)),
-                    new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseKelvin, "InverseKelvin", new BaseUnits(temperature: TemperatureUnit.Kelvin)),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.CoefficientOfThermalExpansion);
         }
 
         /// <summary>
@@ -100,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<CoefficientOfThermalExpansionUnit> Info { get; }
+        public static CoefficientOfThermalExpansion.CoefficientOfThermalExpansionQuantityInfo Info { get; } = new CoefficientOfThermalExpansion.CoefficientOfThermalExpansionQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -910,5 +902,37 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class CoefficientOfThermalExpansionQuantityInfo : QuantityInfo<CoefficientOfThermalExpansionUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal CoefficientOfThermalExpansionQuantityInfo() :
+                base("CoefficientOfThermalExpansion", CoefficientOfThermalExpansion.BaseUnit, CoefficientOfThermalExpansion.Zero, CoefficientOfThermalExpansion.BaseDimensions, QuantityType.CoefficientOfThermalExpansion)
+            {
+                InverseDegreeCelsius = new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, "InverseDegreeCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius));
+                InverseDegreeFahrenheit = new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, "InverseDegreeFahrenheit", new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit));
+                InverseKelvin = new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseKelvin, "InverseKelvin", new BaseUnits(temperature: TemperatureUnit.Kelvin));
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{CoefficientOfThermalExpansionUnit}"/> for <see cref="CoefficientOfThermalExpansionUnit.InverseDegreeCelsius"/>
+            /// </summary>
+            public UnitInfo<CoefficientOfThermalExpansionUnit> InverseDegreeCelsius { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{CoefficientOfThermalExpansionUnit}"/> for <see cref="CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit"/>
+            /// </summary>
+            public UnitInfo<CoefficientOfThermalExpansionUnit> InverseDegreeFahrenheit { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{CoefficientOfThermalExpansionUnit}"/> for <see cref="CoefficientOfThermalExpansionUnit.InverseKelvin"/>
+            /// </summary>
+            public UnitInfo<CoefficientOfThermalExpansionUnit> InverseKelvin { get; }
+
+        }
     }
 }

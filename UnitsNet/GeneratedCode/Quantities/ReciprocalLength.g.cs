@@ -56,21 +56,6 @@ namespace UnitsNet
         static ReciprocalLength()
         {
             BaseDimensions = new BaseDimensions(-1, 0, 0, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<ReciprocalLengthUnit>("ReciprocalLength",
-                new UnitInfo<ReciprocalLengthUnit>[] {
-                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseCentimeter, "InverseCentimeters", BaseUnits.Undefined),
-                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseFoot, "InverseFeet", BaseUnits.Undefined),
-                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseInch, "InverseInches", BaseUnits.Undefined),
-                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseMeter, "InverseMeters", BaseUnits.Undefined),
-                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseMicroinch, "InverseMicroinches", BaseUnits.Undefined),
-                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseMil, "InverseMils", BaseUnits.Undefined),
-                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseMile, "InverseMiles", BaseUnits.Undefined),
-                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseMillimeter, "InverseMillimeters", BaseUnits.Undefined),
-                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseUsSurveyFoot, "InverseUsSurveyFeet", BaseUnits.Undefined),
-                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseYard, "InverseYards", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ReciprocalLength);
         }
 
         /// <summary>
@@ -110,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ReciprocalLengthUnit> Info { get; }
+        public static ReciprocalLength.ReciprocalLengthQuantityInfo Info { get; } = new ReciprocalLength.ReciprocalLengthQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1046,5 +1031,79 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class ReciprocalLengthQuantityInfo : QuantityInfo<ReciprocalLengthUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal ReciprocalLengthQuantityInfo() :
+                base("ReciprocalLength", ReciprocalLength.BaseUnit, ReciprocalLength.Zero, ReciprocalLength.BaseDimensions, QuantityType.ReciprocalLength)
+            {
+                InverseCentimeter = new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseCentimeter, "InverseCentimeters", BaseUnits.Undefined);
+                InverseFoot = new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseFoot, "InverseFeet", BaseUnits.Undefined);
+                InverseInch = new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseInch, "InverseInches", BaseUnits.Undefined);
+                InverseMeter = new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseMeter, "InverseMeters", BaseUnits.Undefined);
+                InverseMicroinch = new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseMicroinch, "InverseMicroinches", BaseUnits.Undefined);
+                InverseMil = new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseMil, "InverseMils", BaseUnits.Undefined);
+                InverseMile = new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseMile, "InverseMiles", BaseUnits.Undefined);
+                InverseMillimeter = new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseMillimeter, "InverseMillimeters", BaseUnits.Undefined);
+                InverseUsSurveyFoot = new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseUsSurveyFoot, "InverseUsSurveyFeet", BaseUnits.Undefined);
+                InverseYard = new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseYard, "InverseYards", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ReciprocalLengthUnit}"/> for <see cref="ReciprocalLengthUnit.InverseCentimeter"/>
+            /// </summary>
+            public UnitInfo<ReciprocalLengthUnit> InverseCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ReciprocalLengthUnit}"/> for <see cref="ReciprocalLengthUnit.InverseFoot"/>
+            /// </summary>
+            public UnitInfo<ReciprocalLengthUnit> InverseFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ReciprocalLengthUnit}"/> for <see cref="ReciprocalLengthUnit.InverseInch"/>
+            /// </summary>
+            public UnitInfo<ReciprocalLengthUnit> InverseInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ReciprocalLengthUnit}"/> for <see cref="ReciprocalLengthUnit.InverseMeter"/>
+            /// </summary>
+            public UnitInfo<ReciprocalLengthUnit> InverseMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ReciprocalLengthUnit}"/> for <see cref="ReciprocalLengthUnit.InverseMicroinch"/>
+            /// </summary>
+            public UnitInfo<ReciprocalLengthUnit> InverseMicroinch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ReciprocalLengthUnit}"/> for <see cref="ReciprocalLengthUnit.InverseMil"/>
+            /// </summary>
+            public UnitInfo<ReciprocalLengthUnit> InverseMil { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ReciprocalLengthUnit}"/> for <see cref="ReciprocalLengthUnit.InverseMile"/>
+            /// </summary>
+            public UnitInfo<ReciprocalLengthUnit> InverseMile { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ReciprocalLengthUnit}"/> for <see cref="ReciprocalLengthUnit.InverseMillimeter"/>
+            /// </summary>
+            public UnitInfo<ReciprocalLengthUnit> InverseMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ReciprocalLengthUnit}"/> for <see cref="ReciprocalLengthUnit.InverseUsSurveyFoot"/>
+            /// </summary>
+            public UnitInfo<ReciprocalLengthUnit> InverseUsSurveyFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ReciprocalLengthUnit}"/> for <see cref="ReciprocalLengthUnit.InverseYard"/>
+            /// </summary>
+            public UnitInfo<ReciprocalLengthUnit> InverseYard { get; }
+
+        }
     }
 }

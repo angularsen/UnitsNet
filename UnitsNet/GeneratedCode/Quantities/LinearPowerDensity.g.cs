@@ -56,36 +56,6 @@ namespace UnitsNet
         static LinearPowerDensity()
         {
             BaseDimensions = new BaseDimensions(1, 1, -3, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<LinearPowerDensityUnit>("LinearPowerDensity",
-                new UnitInfo<LinearPowerDensityUnit>[] {
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.GigawattPerCentimeter, "GigawattsPerCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.GigawattPerFoot, "GigawattsPerFoot", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.GigawattPerInch, "GigawattsPerInch", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.GigawattPerMeter, "GigawattsPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.GigawattPerMillimeter, "GigawattsPerMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.KilowattPerCentimeter, "KilowattsPerCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.KilowattPerFoot, "KilowattsPerFoot", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.KilowattPerInch, "KilowattsPerInch", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.KilowattPerMeter, "KilowattsPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.KilowattPerMillimeter, "KilowattsPerMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MegawattPerCentimeter, "MegawattsPerCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MegawattPerFoot, "MegawattsPerFoot", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MegawattPerInch, "MegawattsPerInch", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MegawattPerMeter, "MegawattsPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MegawattPerMillimeter, "MegawattsPerMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MilliwattPerCentimeter, "MilliwattsPerCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MilliwattPerFoot, "MilliwattsPerFoot", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MilliwattPerInch, "MilliwattsPerInch", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MilliwattPerMeter, "MilliwattsPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MilliwattPerMillimeter, "MilliwattsPerMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerCentimeter, "WattsPerCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerFoot, "WattsPerFoot", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerInch, "WattsPerInch", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerMeter, "WattsPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerMillimeter, "WattsPerMillimeter", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.LinearPowerDensity);
         }
 
         /// <summary>
@@ -125,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<LinearPowerDensityUnit> Info { get; }
+        public static LinearPowerDensity.LinearPowerDensityQuantityInfo Info { get; } = new LinearPowerDensity.LinearPowerDensityQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1331,5 +1301,169 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class LinearPowerDensityQuantityInfo : QuantityInfo<LinearPowerDensityUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal LinearPowerDensityQuantityInfo() :
+                base("LinearPowerDensity", LinearPowerDensity.BaseUnit, LinearPowerDensity.Zero, LinearPowerDensity.BaseDimensions, QuantityType.LinearPowerDensity)
+            {
+                GigawattPerCentimeter = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.GigawattPerCentimeter, "GigawattsPerCentimeter", BaseUnits.Undefined);
+                GigawattPerFoot = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.GigawattPerFoot, "GigawattsPerFoot", BaseUnits.Undefined);
+                GigawattPerInch = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.GigawattPerInch, "GigawattsPerInch", BaseUnits.Undefined);
+                GigawattPerMeter = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.GigawattPerMeter, "GigawattsPerMeter", BaseUnits.Undefined);
+                GigawattPerMillimeter = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.GigawattPerMillimeter, "GigawattsPerMillimeter", BaseUnits.Undefined);
+                KilowattPerCentimeter = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.KilowattPerCentimeter, "KilowattsPerCentimeter", BaseUnits.Undefined);
+                KilowattPerFoot = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.KilowattPerFoot, "KilowattsPerFoot", BaseUnits.Undefined);
+                KilowattPerInch = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.KilowattPerInch, "KilowattsPerInch", BaseUnits.Undefined);
+                KilowattPerMeter = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.KilowattPerMeter, "KilowattsPerMeter", BaseUnits.Undefined);
+                KilowattPerMillimeter = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.KilowattPerMillimeter, "KilowattsPerMillimeter", BaseUnits.Undefined);
+                MegawattPerCentimeter = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MegawattPerCentimeter, "MegawattsPerCentimeter", BaseUnits.Undefined);
+                MegawattPerFoot = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MegawattPerFoot, "MegawattsPerFoot", BaseUnits.Undefined);
+                MegawattPerInch = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MegawattPerInch, "MegawattsPerInch", BaseUnits.Undefined);
+                MegawattPerMeter = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MegawattPerMeter, "MegawattsPerMeter", BaseUnits.Undefined);
+                MegawattPerMillimeter = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MegawattPerMillimeter, "MegawattsPerMillimeter", BaseUnits.Undefined);
+                MilliwattPerCentimeter = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MilliwattPerCentimeter, "MilliwattsPerCentimeter", BaseUnits.Undefined);
+                MilliwattPerFoot = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MilliwattPerFoot, "MilliwattsPerFoot", BaseUnits.Undefined);
+                MilliwattPerInch = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MilliwattPerInch, "MilliwattsPerInch", BaseUnits.Undefined);
+                MilliwattPerMeter = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MilliwattPerMeter, "MilliwattsPerMeter", BaseUnits.Undefined);
+                MilliwattPerMillimeter = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MilliwattPerMillimeter, "MilliwattsPerMillimeter", BaseUnits.Undefined);
+                WattPerCentimeter = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerCentimeter, "WattsPerCentimeter", BaseUnits.Undefined);
+                WattPerFoot = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerFoot, "WattsPerFoot", BaseUnits.Undefined);
+                WattPerInch = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerInch, "WattsPerInch", BaseUnits.Undefined);
+                WattPerMeter = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerMeter, "WattsPerMeter", BaseUnits.Undefined);
+                WattPerMillimeter = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerMillimeter, "WattsPerMillimeter", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearPowerDensityUnit}"/> for <see cref="LinearPowerDensityUnit.GigawattPerCentimeter"/>
+            /// </summary>
+            public UnitInfo<LinearPowerDensityUnit> GigawattPerCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearPowerDensityUnit}"/> for <see cref="LinearPowerDensityUnit.GigawattPerFoot"/>
+            /// </summary>
+            public UnitInfo<LinearPowerDensityUnit> GigawattPerFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearPowerDensityUnit}"/> for <see cref="LinearPowerDensityUnit.GigawattPerInch"/>
+            /// </summary>
+            public UnitInfo<LinearPowerDensityUnit> GigawattPerInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearPowerDensityUnit}"/> for <see cref="LinearPowerDensityUnit.GigawattPerMeter"/>
+            /// </summary>
+            public UnitInfo<LinearPowerDensityUnit> GigawattPerMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearPowerDensityUnit}"/> for <see cref="LinearPowerDensityUnit.GigawattPerMillimeter"/>
+            /// </summary>
+            public UnitInfo<LinearPowerDensityUnit> GigawattPerMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearPowerDensityUnit}"/> for <see cref="LinearPowerDensityUnit.KilowattPerCentimeter"/>
+            /// </summary>
+            public UnitInfo<LinearPowerDensityUnit> KilowattPerCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearPowerDensityUnit}"/> for <see cref="LinearPowerDensityUnit.KilowattPerFoot"/>
+            /// </summary>
+            public UnitInfo<LinearPowerDensityUnit> KilowattPerFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearPowerDensityUnit}"/> for <see cref="LinearPowerDensityUnit.KilowattPerInch"/>
+            /// </summary>
+            public UnitInfo<LinearPowerDensityUnit> KilowattPerInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearPowerDensityUnit}"/> for <see cref="LinearPowerDensityUnit.KilowattPerMeter"/>
+            /// </summary>
+            public UnitInfo<LinearPowerDensityUnit> KilowattPerMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearPowerDensityUnit}"/> for <see cref="LinearPowerDensityUnit.KilowattPerMillimeter"/>
+            /// </summary>
+            public UnitInfo<LinearPowerDensityUnit> KilowattPerMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearPowerDensityUnit}"/> for <see cref="LinearPowerDensityUnit.MegawattPerCentimeter"/>
+            /// </summary>
+            public UnitInfo<LinearPowerDensityUnit> MegawattPerCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearPowerDensityUnit}"/> for <see cref="LinearPowerDensityUnit.MegawattPerFoot"/>
+            /// </summary>
+            public UnitInfo<LinearPowerDensityUnit> MegawattPerFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearPowerDensityUnit}"/> for <see cref="LinearPowerDensityUnit.MegawattPerInch"/>
+            /// </summary>
+            public UnitInfo<LinearPowerDensityUnit> MegawattPerInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearPowerDensityUnit}"/> for <see cref="LinearPowerDensityUnit.MegawattPerMeter"/>
+            /// </summary>
+            public UnitInfo<LinearPowerDensityUnit> MegawattPerMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearPowerDensityUnit}"/> for <see cref="LinearPowerDensityUnit.MegawattPerMillimeter"/>
+            /// </summary>
+            public UnitInfo<LinearPowerDensityUnit> MegawattPerMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearPowerDensityUnit}"/> for <see cref="LinearPowerDensityUnit.MilliwattPerCentimeter"/>
+            /// </summary>
+            public UnitInfo<LinearPowerDensityUnit> MilliwattPerCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearPowerDensityUnit}"/> for <see cref="LinearPowerDensityUnit.MilliwattPerFoot"/>
+            /// </summary>
+            public UnitInfo<LinearPowerDensityUnit> MilliwattPerFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearPowerDensityUnit}"/> for <see cref="LinearPowerDensityUnit.MilliwattPerInch"/>
+            /// </summary>
+            public UnitInfo<LinearPowerDensityUnit> MilliwattPerInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearPowerDensityUnit}"/> for <see cref="LinearPowerDensityUnit.MilliwattPerMeter"/>
+            /// </summary>
+            public UnitInfo<LinearPowerDensityUnit> MilliwattPerMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearPowerDensityUnit}"/> for <see cref="LinearPowerDensityUnit.MilliwattPerMillimeter"/>
+            /// </summary>
+            public UnitInfo<LinearPowerDensityUnit> MilliwattPerMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearPowerDensityUnit}"/> for <see cref="LinearPowerDensityUnit.WattPerCentimeter"/>
+            /// </summary>
+            public UnitInfo<LinearPowerDensityUnit> WattPerCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearPowerDensityUnit}"/> for <see cref="LinearPowerDensityUnit.WattPerFoot"/>
+            /// </summary>
+            public UnitInfo<LinearPowerDensityUnit> WattPerFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearPowerDensityUnit}"/> for <see cref="LinearPowerDensityUnit.WattPerInch"/>
+            /// </summary>
+            public UnitInfo<LinearPowerDensityUnit> WattPerInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearPowerDensityUnit}"/> for <see cref="LinearPowerDensityUnit.WattPerMeter"/>
+            /// </summary>
+            public UnitInfo<LinearPowerDensityUnit> WattPerMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LinearPowerDensityUnit}"/> for <see cref="LinearPowerDensityUnit.WattPerMillimeter"/>
+            /// </summary>
+            public UnitInfo<LinearPowerDensityUnit> WattPerMillimeter { get; }
+
+        }
     }
 }

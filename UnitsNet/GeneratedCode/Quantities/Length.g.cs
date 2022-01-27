@@ -53,44 +53,6 @@ namespace UnitsNet
         static Length()
         {
             BaseDimensions = new BaseDimensions(1, 0, 0, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<LengthUnit>("Length",
-                new UnitInfo<LengthUnit>[] {
-                    new UnitInfo<LengthUnit>(LengthUnit.AstronomicalUnit, "AstronomicalUnits", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Centimeter, "Centimeters", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Chain, "Chains", new BaseUnits(length: LengthUnit.Chain)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Decimeter, "Decimeters", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.DtpPica, "DtpPicas", new BaseUnits(length: LengthUnit.DtpPica)),
-                    new UnitInfo<LengthUnit>(LengthUnit.DtpPoint, "DtpPoints", new BaseUnits(length: LengthUnit.DtpPoint)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Fathom, "Fathoms", new BaseUnits(length: LengthUnit.Fathom)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Foot, "Feet", new BaseUnits(length: LengthUnit.Foot)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Hand, "Hands", new BaseUnits(length: LengthUnit.Hand)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Hectometer, "Hectometers", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Inch, "Inches", new BaseUnits(length: LengthUnit.Inch)),
-                    new UnitInfo<LengthUnit>(LengthUnit.KilolightYear, "KilolightYears", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Kilometer, "Kilometers", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Kiloparsec, "Kiloparsecs", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.LightYear, "LightYears", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.MegalightYear, "MegalightYears", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Megaparsec, "Megaparsecs", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Meter, "Meters", new BaseUnits(length: LengthUnit.Meter)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Microinch, "Microinches", new BaseUnits(length: LengthUnit.Microinch)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Micrometer, "Micrometers", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Mil, "Mils", new BaseUnits(length: LengthUnit.Mil)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Mile, "Miles", new BaseUnits(length: LengthUnit.Mile)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Millimeter, "Millimeters", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Nanometer, "Nanometers", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.NauticalMile, "NauticalMiles", new BaseUnits(length: LengthUnit.NauticalMile)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Parsec, "Parsecs", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.PrinterPica, "PrinterPicas", new BaseUnits(length: LengthUnit.PrinterPica)),
-                    new UnitInfo<LengthUnit>(LengthUnit.PrinterPoint, "PrinterPoints", new BaseUnits(length: LengthUnit.PrinterPoint)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Shackle, "Shackles", new BaseUnits(length: LengthUnit.Shackle)),
-                    new UnitInfo<LengthUnit>(LengthUnit.SolarRadius, "SolarRadiuses", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Twip, "Twips", new BaseUnits(length: LengthUnit.Twip)),
-                    new UnitInfo<LengthUnit>(LengthUnit.UsSurveyFoot, "UsSurveyFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Yard, "Yards", new BaseUnits(length: LengthUnit.Yard)),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Length);
         }
 
         /// <summary>
@@ -130,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<LengthUnit> Info { get; }
+        public static Length.LengthQuantityInfo Info { get; } = new Length.LengthQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1480,5 +1442,217 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class LengthQuantityInfo : QuantityInfo<LengthUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal LengthQuantityInfo() :
+                base("Length", Length.BaseUnit, Length.Zero, Length.BaseDimensions, QuantityType.Length)
+            {
+                AstronomicalUnit = new UnitInfo<LengthUnit>(LengthUnit.AstronomicalUnit, "AstronomicalUnits", BaseUnits.Undefined);
+                Centimeter = new UnitInfo<LengthUnit>(LengthUnit.Centimeter, "Centimeters", BaseUnits.Undefined);
+                Chain = new UnitInfo<LengthUnit>(LengthUnit.Chain, "Chains", new BaseUnits(length: LengthUnit.Chain));
+                Decimeter = new UnitInfo<LengthUnit>(LengthUnit.Decimeter, "Decimeters", BaseUnits.Undefined);
+                DtpPica = new UnitInfo<LengthUnit>(LengthUnit.DtpPica, "DtpPicas", new BaseUnits(length: LengthUnit.DtpPica));
+                DtpPoint = new UnitInfo<LengthUnit>(LengthUnit.DtpPoint, "DtpPoints", new BaseUnits(length: LengthUnit.DtpPoint));
+                Fathom = new UnitInfo<LengthUnit>(LengthUnit.Fathom, "Fathoms", new BaseUnits(length: LengthUnit.Fathom));
+                Foot = new UnitInfo<LengthUnit>(LengthUnit.Foot, "Feet", new BaseUnits(length: LengthUnit.Foot));
+                Hand = new UnitInfo<LengthUnit>(LengthUnit.Hand, "Hands", new BaseUnits(length: LengthUnit.Hand));
+                Hectometer = new UnitInfo<LengthUnit>(LengthUnit.Hectometer, "Hectometers", BaseUnits.Undefined);
+                Inch = new UnitInfo<LengthUnit>(LengthUnit.Inch, "Inches", new BaseUnits(length: LengthUnit.Inch));
+                KilolightYear = new UnitInfo<LengthUnit>(LengthUnit.KilolightYear, "KilolightYears", BaseUnits.Undefined);
+                Kilometer = new UnitInfo<LengthUnit>(LengthUnit.Kilometer, "Kilometers", BaseUnits.Undefined);
+                Kiloparsec = new UnitInfo<LengthUnit>(LengthUnit.Kiloparsec, "Kiloparsecs", BaseUnits.Undefined);
+                LightYear = new UnitInfo<LengthUnit>(LengthUnit.LightYear, "LightYears", BaseUnits.Undefined);
+                MegalightYear = new UnitInfo<LengthUnit>(LengthUnit.MegalightYear, "MegalightYears", BaseUnits.Undefined);
+                Megaparsec = new UnitInfo<LengthUnit>(LengthUnit.Megaparsec, "Megaparsecs", BaseUnits.Undefined);
+                Meter = new UnitInfo<LengthUnit>(LengthUnit.Meter, "Meters", new BaseUnits(length: LengthUnit.Meter));
+                Microinch = new UnitInfo<LengthUnit>(LengthUnit.Microinch, "Microinches", new BaseUnits(length: LengthUnit.Microinch));
+                Micrometer = new UnitInfo<LengthUnit>(LengthUnit.Micrometer, "Micrometers", BaseUnits.Undefined);
+                Mil = new UnitInfo<LengthUnit>(LengthUnit.Mil, "Mils", new BaseUnits(length: LengthUnit.Mil));
+                Mile = new UnitInfo<LengthUnit>(LengthUnit.Mile, "Miles", new BaseUnits(length: LengthUnit.Mile));
+                Millimeter = new UnitInfo<LengthUnit>(LengthUnit.Millimeter, "Millimeters", BaseUnits.Undefined);
+                Nanometer = new UnitInfo<LengthUnit>(LengthUnit.Nanometer, "Nanometers", BaseUnits.Undefined);
+                NauticalMile = new UnitInfo<LengthUnit>(LengthUnit.NauticalMile, "NauticalMiles", new BaseUnits(length: LengthUnit.NauticalMile));
+                Parsec = new UnitInfo<LengthUnit>(LengthUnit.Parsec, "Parsecs", BaseUnits.Undefined);
+                PrinterPica = new UnitInfo<LengthUnit>(LengthUnit.PrinterPica, "PrinterPicas", new BaseUnits(length: LengthUnit.PrinterPica));
+                PrinterPoint = new UnitInfo<LengthUnit>(LengthUnit.PrinterPoint, "PrinterPoints", new BaseUnits(length: LengthUnit.PrinterPoint));
+                Shackle = new UnitInfo<LengthUnit>(LengthUnit.Shackle, "Shackles", new BaseUnits(length: LengthUnit.Shackle));
+                SolarRadius = new UnitInfo<LengthUnit>(LengthUnit.SolarRadius, "SolarRadiuses", BaseUnits.Undefined);
+                Twip = new UnitInfo<LengthUnit>(LengthUnit.Twip, "Twips", new BaseUnits(length: LengthUnit.Twip));
+                UsSurveyFoot = new UnitInfo<LengthUnit>(LengthUnit.UsSurveyFoot, "UsSurveyFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot));
+                Yard = new UnitInfo<LengthUnit>(LengthUnit.Yard, "Yards", new BaseUnits(length: LengthUnit.Yard));
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.AstronomicalUnit"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> AstronomicalUnit { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.Centimeter"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> Centimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.Chain"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> Chain { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.Decimeter"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> Decimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.DtpPica"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> DtpPica { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.DtpPoint"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> DtpPoint { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.Fathom"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> Fathom { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.Foot"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> Foot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.Hand"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> Hand { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.Hectometer"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> Hectometer { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.Inch"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> Inch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.KilolightYear"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> KilolightYear { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.Kilometer"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> Kilometer { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.Kiloparsec"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> Kiloparsec { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.LightYear"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> LightYear { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.MegalightYear"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> MegalightYear { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.Megaparsec"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> Megaparsec { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.Meter"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> Meter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.Microinch"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> Microinch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.Micrometer"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> Micrometer { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.Mil"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> Mil { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.Mile"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> Mile { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.Millimeter"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> Millimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.Nanometer"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> Nanometer { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.NauticalMile"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> NauticalMile { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.Parsec"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> Parsec { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.PrinterPica"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> PrinterPica { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.PrinterPoint"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> PrinterPoint { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.Shackle"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> Shackle { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.SolarRadius"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> SolarRadius { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.Twip"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> Twip { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.UsSurveyFoot"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> UsSurveyFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{LengthUnit}"/> for <see cref="LengthUnit.Yard"/>
+            /// </summary>
+            public UnitInfo<LengthUnit> Yard { get; }
+
+        }
     }
 }

@@ -53,15 +53,6 @@ namespace UnitsNet
         static ElectricAdmittance()
         {
             BaseDimensions = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
-
-            Info = new QuantityInfo<ElectricAdmittanceUnit>("ElectricAdmittance",
-                new UnitInfo<ElectricAdmittanceUnit>[] {
-                    new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Microsiemens, "Microsiemens", BaseUnits.Undefined),
-                    new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Millisiemens, "Millisiemens", BaseUnits.Undefined),
-                    new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Nanosiemens, "Nanosiemens", BaseUnits.Undefined),
-                    new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Siemens, "Siemens", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricAdmittance);
         }
 
         /// <summary>
@@ -101,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricAdmittanceUnit> Info { get; }
+        public static ElectricAdmittance.ElectricAdmittanceQuantityInfo Info { get; } = new ElectricAdmittance.ElectricAdmittanceQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -929,5 +920,43 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class ElectricAdmittanceQuantityInfo : QuantityInfo<ElectricAdmittanceUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal ElectricAdmittanceQuantityInfo() :
+                base("ElectricAdmittance", ElectricAdmittance.BaseUnit, ElectricAdmittance.Zero, ElectricAdmittance.BaseDimensions, QuantityType.ElectricAdmittance)
+            {
+                Microsiemens = new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Microsiemens, "Microsiemens", BaseUnits.Undefined);
+                Millisiemens = new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Millisiemens, "Millisiemens", BaseUnits.Undefined);
+                Nanosiemens = new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Nanosiemens, "Nanosiemens", BaseUnits.Undefined);
+                Siemens = new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Siemens, "Siemens", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricAdmittanceUnit}"/> for <see cref="ElectricAdmittanceUnit.Microsiemens"/>
+            /// </summary>
+            public UnitInfo<ElectricAdmittanceUnit> Microsiemens { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricAdmittanceUnit}"/> for <see cref="ElectricAdmittanceUnit.Millisiemens"/>
+            /// </summary>
+            public UnitInfo<ElectricAdmittanceUnit> Millisiemens { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricAdmittanceUnit}"/> for <see cref="ElectricAdmittanceUnit.Nanosiemens"/>
+            /// </summary>
+            public UnitInfo<ElectricAdmittanceUnit> Nanosiemens { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricAdmittanceUnit}"/> for <see cref="ElectricAdmittanceUnit.Siemens"/>
+            /// </summary>
+            public UnitInfo<ElectricAdmittanceUnit> Siemens { get; }
+
+        }
     }
 }

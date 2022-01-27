@@ -53,25 +53,6 @@ namespace UnitsNet
         static Area()
         {
             BaseDimensions = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<AreaUnit>("Area",
-                new UnitInfo<AreaUnit>[] {
-                    new UnitInfo<AreaUnit>(AreaUnit.Acre, "Acres", BaseUnits.Undefined),
-                    new UnitInfo<AreaUnit>(AreaUnit.Hectare, "Hectares", BaseUnits.Undefined),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareCentimeter, "SquareCentimeters", new BaseUnits(length: LengthUnit.Centimeter)),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareDecimeter, "SquareDecimeters", new BaseUnits(length: LengthUnit.Decimeter)),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareFoot, "SquareFeet", new BaseUnits(length: LengthUnit.Foot)),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareInch, "SquareInches", new BaseUnits(length: LengthUnit.Inch)),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareKilometer, "SquareKilometers", new BaseUnits(length: LengthUnit.Kilometer)),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareMeter, "SquareMeters", new BaseUnits(length: LengthUnit.Meter)),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareMicrometer, "SquareMicrometers", new BaseUnits(length: LengthUnit.Micrometer)),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareMile, "SquareMiles", new BaseUnits(length: LengthUnit.Mile)),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareMillimeter, "SquareMillimeters", new BaseUnits(length: LengthUnit.Millimeter)),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareNauticalMile, "SquareNauticalMiles", BaseUnits.Undefined),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareYard, "SquareYards", new BaseUnits(length: LengthUnit.Yard)),
-                    new UnitInfo<AreaUnit>(AreaUnit.UsSurveySquareFoot, "UsSurveySquareFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot)),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Area);
         }
 
         /// <summary>
@@ -111,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<AreaUnit> Info { get; }
+        public static Area.AreaQuantityInfo Info { get; } = new Area.AreaQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1119,5 +1100,103 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class AreaQuantityInfo : QuantityInfo<AreaUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal AreaQuantityInfo() :
+                base("Area", Area.BaseUnit, Area.Zero, Area.BaseDimensions, QuantityType.Area)
+            {
+                Acre = new UnitInfo<AreaUnit>(AreaUnit.Acre, "Acres", BaseUnits.Undefined);
+                Hectare = new UnitInfo<AreaUnit>(AreaUnit.Hectare, "Hectares", BaseUnits.Undefined);
+                SquareCentimeter = new UnitInfo<AreaUnit>(AreaUnit.SquareCentimeter, "SquareCentimeters", new BaseUnits(length: LengthUnit.Centimeter));
+                SquareDecimeter = new UnitInfo<AreaUnit>(AreaUnit.SquareDecimeter, "SquareDecimeters", new BaseUnits(length: LengthUnit.Decimeter));
+                SquareFoot = new UnitInfo<AreaUnit>(AreaUnit.SquareFoot, "SquareFeet", new BaseUnits(length: LengthUnit.Foot));
+                SquareInch = new UnitInfo<AreaUnit>(AreaUnit.SquareInch, "SquareInches", new BaseUnits(length: LengthUnit.Inch));
+                SquareKilometer = new UnitInfo<AreaUnit>(AreaUnit.SquareKilometer, "SquareKilometers", new BaseUnits(length: LengthUnit.Kilometer));
+                SquareMeter = new UnitInfo<AreaUnit>(AreaUnit.SquareMeter, "SquareMeters", new BaseUnits(length: LengthUnit.Meter));
+                SquareMicrometer = new UnitInfo<AreaUnit>(AreaUnit.SquareMicrometer, "SquareMicrometers", new BaseUnits(length: LengthUnit.Micrometer));
+                SquareMile = new UnitInfo<AreaUnit>(AreaUnit.SquareMile, "SquareMiles", new BaseUnits(length: LengthUnit.Mile));
+                SquareMillimeter = new UnitInfo<AreaUnit>(AreaUnit.SquareMillimeter, "SquareMillimeters", new BaseUnits(length: LengthUnit.Millimeter));
+                SquareNauticalMile = new UnitInfo<AreaUnit>(AreaUnit.SquareNauticalMile, "SquareNauticalMiles", BaseUnits.Undefined);
+                SquareYard = new UnitInfo<AreaUnit>(AreaUnit.SquareYard, "SquareYards", new BaseUnits(length: LengthUnit.Yard));
+                UsSurveySquareFoot = new UnitInfo<AreaUnit>(AreaUnit.UsSurveySquareFoot, "UsSurveySquareFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot));
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AreaUnit}"/> for <see cref="AreaUnit.Acre"/>
+            /// </summary>
+            public UnitInfo<AreaUnit> Acre { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AreaUnit}"/> for <see cref="AreaUnit.Hectare"/>
+            /// </summary>
+            public UnitInfo<AreaUnit> Hectare { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AreaUnit}"/> for <see cref="AreaUnit.SquareCentimeter"/>
+            /// </summary>
+            public UnitInfo<AreaUnit> SquareCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AreaUnit}"/> for <see cref="AreaUnit.SquareDecimeter"/>
+            /// </summary>
+            public UnitInfo<AreaUnit> SquareDecimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AreaUnit}"/> for <see cref="AreaUnit.SquareFoot"/>
+            /// </summary>
+            public UnitInfo<AreaUnit> SquareFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AreaUnit}"/> for <see cref="AreaUnit.SquareInch"/>
+            /// </summary>
+            public UnitInfo<AreaUnit> SquareInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AreaUnit}"/> for <see cref="AreaUnit.SquareKilometer"/>
+            /// </summary>
+            public UnitInfo<AreaUnit> SquareKilometer { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AreaUnit}"/> for <see cref="AreaUnit.SquareMeter"/>
+            /// </summary>
+            public UnitInfo<AreaUnit> SquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AreaUnit}"/> for <see cref="AreaUnit.SquareMicrometer"/>
+            /// </summary>
+            public UnitInfo<AreaUnit> SquareMicrometer { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AreaUnit}"/> for <see cref="AreaUnit.SquareMile"/>
+            /// </summary>
+            public UnitInfo<AreaUnit> SquareMile { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AreaUnit}"/> for <see cref="AreaUnit.SquareMillimeter"/>
+            /// </summary>
+            public UnitInfo<AreaUnit> SquareMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AreaUnit}"/> for <see cref="AreaUnit.SquareNauticalMile"/>
+            /// </summary>
+            public UnitInfo<AreaUnit> SquareNauticalMile { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AreaUnit}"/> for <see cref="AreaUnit.SquareYard"/>
+            /// </summary>
+            public UnitInfo<AreaUnit> SquareYard { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AreaUnit}"/> for <see cref="AreaUnit.UsSurveySquareFoot"/>
+            /// </summary>
+            public UnitInfo<AreaUnit> UsSurveySquareFoot { get; }
+
+        }
     }
 }

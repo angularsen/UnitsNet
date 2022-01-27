@@ -57,11 +57,6 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<SolidAngleUnit>("SolidAngle",
-                new UnitInfo<SolidAngleUnit>[] {
-                    new UnitInfo<SolidAngleUnit>(SolidAngleUnit.Steradian, "Steradians", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.SolidAngle);
         }
 
         /// <summary>
@@ -101,7 +96,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<SolidAngleUnit> Info { get; }
+        public static SolidAngle.SolidAngleQuantityInfo Info { get; } = new SolidAngle.SolidAngleQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -875,5 +870,25 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class SolidAngleQuantityInfo : QuantityInfo<SolidAngleUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal SolidAngleQuantityInfo() :
+                base("SolidAngle", SolidAngle.BaseUnit, SolidAngle.Zero, SolidAngle.BaseDimensions, QuantityType.SolidAngle)
+            {
+                Steradian = new UnitInfo<SolidAngleUnit>(SolidAngleUnit.Steradian, "Steradians", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SolidAngleUnit}"/> for <see cref="SolidAngleUnit.Steradian"/>
+            /// </summary>
+            public UnitInfo<SolidAngleUnit> Steradian { get; }
+
+        }
     }
 }

@@ -56,18 +56,6 @@ namespace UnitsNet
         static Capacitance()
         {
             BaseDimensions = new BaseDimensions(-2, -1, 4, 2, 0, 0, 0);
-
-            Info = new QuantityInfo<CapacitanceUnit>("Capacitance",
-                new UnitInfo<CapacitanceUnit>[] {
-                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Farad, "Farads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
-                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Kilofarad, "Kilofarads", BaseUnits.Undefined),
-                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Megafarad, "Megafarads", BaseUnits.Undefined),
-                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Microfarad, "Microfarads", BaseUnits.Undefined),
-                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Millifarad, "Millifarads", BaseUnits.Undefined),
-                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Nanofarad, "Nanofarads", BaseUnits.Undefined),
-                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Picofarad, "Picofarads", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Capacitance);
         }
 
         /// <summary>
@@ -107,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<CapacitanceUnit> Info { get; }
+        public static Capacitance.CapacitanceQuantityInfo Info { get; } = new Capacitance.CapacitanceQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -989,5 +977,61 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class CapacitanceQuantityInfo : QuantityInfo<CapacitanceUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal CapacitanceQuantityInfo() :
+                base("Capacitance", Capacitance.BaseUnit, Capacitance.Zero, Capacitance.BaseDimensions, QuantityType.Capacitance)
+            {
+                Farad = new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Farad, "Farads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                Kilofarad = new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Kilofarad, "Kilofarads", BaseUnits.Undefined);
+                Megafarad = new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Megafarad, "Megafarads", BaseUnits.Undefined);
+                Microfarad = new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Microfarad, "Microfarads", BaseUnits.Undefined);
+                Millifarad = new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Millifarad, "Millifarads", BaseUnits.Undefined);
+                Nanofarad = new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Nanofarad, "Nanofarads", BaseUnits.Undefined);
+                Picofarad = new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Picofarad, "Picofarads", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{CapacitanceUnit}"/> for <see cref="CapacitanceUnit.Farad"/>
+            /// </summary>
+            public UnitInfo<CapacitanceUnit> Farad { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{CapacitanceUnit}"/> for <see cref="CapacitanceUnit.Kilofarad"/>
+            /// </summary>
+            public UnitInfo<CapacitanceUnit> Kilofarad { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{CapacitanceUnit}"/> for <see cref="CapacitanceUnit.Megafarad"/>
+            /// </summary>
+            public UnitInfo<CapacitanceUnit> Megafarad { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{CapacitanceUnit}"/> for <see cref="CapacitanceUnit.Microfarad"/>
+            /// </summary>
+            public UnitInfo<CapacitanceUnit> Microfarad { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{CapacitanceUnit}"/> for <see cref="CapacitanceUnit.Millifarad"/>
+            /// </summary>
+            public UnitInfo<CapacitanceUnit> Millifarad { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{CapacitanceUnit}"/> for <see cref="CapacitanceUnit.Nanofarad"/>
+            /// </summary>
+            public UnitInfo<CapacitanceUnit> Nanofarad { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{CapacitanceUnit}"/> for <see cref="CapacitanceUnit.Picofarad"/>
+            /// </summary>
+            public UnitInfo<CapacitanceUnit> Picofarad { get; }
+
+        }
     }
 }

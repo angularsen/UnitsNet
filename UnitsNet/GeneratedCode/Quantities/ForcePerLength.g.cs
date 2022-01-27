@@ -53,49 +53,6 @@ namespace UnitsNet
         static ForcePerLength()
         {
             BaseDimensions = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<ForcePerLengthUnit>("ForcePerLength",
-                new UnitInfo<ForcePerLengthUnit>[] {
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.CentinewtonPerCentimeter, "CentinewtonsPerCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.CentinewtonPerMeter, "CentinewtonsPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.CentinewtonPerMillimeter, "CentinewtonsPerMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.DecanewtonPerCentimeter, "DecanewtonsPerCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.DecanewtonPerMeter, "DecanewtonsPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.DecanewtonPerMillimeter, "DecanewtonsPerMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.DecinewtonPerCentimeter, "DecinewtonsPerCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.DecinewtonPerMeter, "DecinewtonsPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.DecinewtonPerMillimeter, "DecinewtonsPerMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.KilogramForcePerCentimeter, "KilogramsForcePerCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.KilogramForcePerMeter, "KilogramsForcePerMeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.KilogramForcePerMillimeter, "KilogramsForcePerMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.KilonewtonPerCentimeter, "KilonewtonsPerCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.KilonewtonPerMeter, "KilonewtonsPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.KilonewtonPerMillimeter, "KilonewtonsPerMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.KilopoundForcePerFoot, "KilopoundsForcePerFoot", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.KilopoundForcePerInch, "KilopoundsForcePerInch", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MeganewtonPerCentimeter, "MeganewtonsPerCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MeganewtonPerMeter, "MeganewtonsPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MeganewtonPerMillimeter, "MeganewtonsPerMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MicronewtonPerCentimeter, "MicronewtonsPerCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MicronewtonPerMeter, "MicronewtonsPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MicronewtonPerMillimeter, "MicronewtonsPerMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MillinewtonPerCentimeter, "MillinewtonsPerCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MillinewtonPerMeter, "MillinewtonsPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MillinewtonPerMillimeter, "MillinewtonsPerMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.NanonewtonPerCentimeter, "NanonewtonsPerCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.NanonewtonPerMeter, "NanonewtonsPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.NanonewtonPerMillimeter, "NanonewtonsPerMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.NewtonPerCentimeter, "NewtonsPerCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.NewtonPerMeter, "NewtonsPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.NewtonPerMillimeter, "NewtonsPerMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.PoundForcePerFoot, "PoundsForcePerFoot", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.PoundForcePerInch, "PoundsForcePerInch", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.PoundForcePerYard, "PoundsForcePerYard", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.TonneForcePerCentimeter, "TonnesForcePerCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.TonneForcePerMeter, "TonnesForcePerMeter", BaseUnits.Undefined),
-                    new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.TonneForcePerMillimeter, "TonnesForcePerMillimeter", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ForcePerLength);
         }
 
         /// <summary>
@@ -135,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ForcePerLengthUnit> Info { get; }
+        public static ForcePerLength.ForcePerLengthQuantityInfo Info { get; } = new ForcePerLength.ForcePerLengthQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1575,5 +1532,247 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class ForcePerLengthQuantityInfo : QuantityInfo<ForcePerLengthUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal ForcePerLengthQuantityInfo() :
+                base("ForcePerLength", ForcePerLength.BaseUnit, ForcePerLength.Zero, ForcePerLength.BaseDimensions, QuantityType.ForcePerLength)
+            {
+                CentinewtonPerCentimeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.CentinewtonPerCentimeter, "CentinewtonsPerCentimeter", BaseUnits.Undefined);
+                CentinewtonPerMeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.CentinewtonPerMeter, "CentinewtonsPerMeter", BaseUnits.Undefined);
+                CentinewtonPerMillimeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.CentinewtonPerMillimeter, "CentinewtonsPerMillimeter", BaseUnits.Undefined);
+                DecanewtonPerCentimeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.DecanewtonPerCentimeter, "DecanewtonsPerCentimeter", BaseUnits.Undefined);
+                DecanewtonPerMeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.DecanewtonPerMeter, "DecanewtonsPerMeter", BaseUnits.Undefined);
+                DecanewtonPerMillimeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.DecanewtonPerMillimeter, "DecanewtonsPerMillimeter", BaseUnits.Undefined);
+                DecinewtonPerCentimeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.DecinewtonPerCentimeter, "DecinewtonsPerCentimeter", BaseUnits.Undefined);
+                DecinewtonPerMeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.DecinewtonPerMeter, "DecinewtonsPerMeter", BaseUnits.Undefined);
+                DecinewtonPerMillimeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.DecinewtonPerMillimeter, "DecinewtonsPerMillimeter", BaseUnits.Undefined);
+                KilogramForcePerCentimeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.KilogramForcePerCentimeter, "KilogramsForcePerCentimeter", BaseUnits.Undefined);
+                KilogramForcePerMeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.KilogramForcePerMeter, "KilogramsForcePerMeter", BaseUnits.Undefined);
+                KilogramForcePerMillimeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.KilogramForcePerMillimeter, "KilogramsForcePerMillimeter", BaseUnits.Undefined);
+                KilonewtonPerCentimeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.KilonewtonPerCentimeter, "KilonewtonsPerCentimeter", BaseUnits.Undefined);
+                KilonewtonPerMeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.KilonewtonPerMeter, "KilonewtonsPerMeter", BaseUnits.Undefined);
+                KilonewtonPerMillimeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.KilonewtonPerMillimeter, "KilonewtonsPerMillimeter", BaseUnits.Undefined);
+                KilopoundForcePerFoot = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.KilopoundForcePerFoot, "KilopoundsForcePerFoot", BaseUnits.Undefined);
+                KilopoundForcePerInch = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.KilopoundForcePerInch, "KilopoundsForcePerInch", BaseUnits.Undefined);
+                MeganewtonPerCentimeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MeganewtonPerCentimeter, "MeganewtonsPerCentimeter", BaseUnits.Undefined);
+                MeganewtonPerMeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MeganewtonPerMeter, "MeganewtonsPerMeter", BaseUnits.Undefined);
+                MeganewtonPerMillimeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MeganewtonPerMillimeter, "MeganewtonsPerMillimeter", BaseUnits.Undefined);
+                MicronewtonPerCentimeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MicronewtonPerCentimeter, "MicronewtonsPerCentimeter", BaseUnits.Undefined);
+                MicronewtonPerMeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MicronewtonPerMeter, "MicronewtonsPerMeter", BaseUnits.Undefined);
+                MicronewtonPerMillimeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MicronewtonPerMillimeter, "MicronewtonsPerMillimeter", BaseUnits.Undefined);
+                MillinewtonPerCentimeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MillinewtonPerCentimeter, "MillinewtonsPerCentimeter", BaseUnits.Undefined);
+                MillinewtonPerMeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MillinewtonPerMeter, "MillinewtonsPerMeter", BaseUnits.Undefined);
+                MillinewtonPerMillimeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.MillinewtonPerMillimeter, "MillinewtonsPerMillimeter", BaseUnits.Undefined);
+                NanonewtonPerCentimeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.NanonewtonPerCentimeter, "NanonewtonsPerCentimeter", BaseUnits.Undefined);
+                NanonewtonPerMeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.NanonewtonPerMeter, "NanonewtonsPerMeter", BaseUnits.Undefined);
+                NanonewtonPerMillimeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.NanonewtonPerMillimeter, "NanonewtonsPerMillimeter", BaseUnits.Undefined);
+                NewtonPerCentimeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.NewtonPerCentimeter, "NewtonsPerCentimeter", BaseUnits.Undefined);
+                NewtonPerMeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.NewtonPerMeter, "NewtonsPerMeter", BaseUnits.Undefined);
+                NewtonPerMillimeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.NewtonPerMillimeter, "NewtonsPerMillimeter", BaseUnits.Undefined);
+                PoundForcePerFoot = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.PoundForcePerFoot, "PoundsForcePerFoot", BaseUnits.Undefined);
+                PoundForcePerInch = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.PoundForcePerInch, "PoundsForcePerInch", BaseUnits.Undefined);
+                PoundForcePerYard = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.PoundForcePerYard, "PoundsForcePerYard", BaseUnits.Undefined);
+                TonneForcePerCentimeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.TonneForcePerCentimeter, "TonnesForcePerCentimeter", BaseUnits.Undefined);
+                TonneForcePerMeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.TonneForcePerMeter, "TonnesForcePerMeter", BaseUnits.Undefined);
+                TonneForcePerMillimeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.TonneForcePerMillimeter, "TonnesForcePerMillimeter", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.CentinewtonPerCentimeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> CentinewtonPerCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.CentinewtonPerMeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> CentinewtonPerMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.CentinewtonPerMillimeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> CentinewtonPerMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.DecanewtonPerCentimeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> DecanewtonPerCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.DecanewtonPerMeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> DecanewtonPerMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.DecanewtonPerMillimeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> DecanewtonPerMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.DecinewtonPerCentimeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> DecinewtonPerCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.DecinewtonPerMeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> DecinewtonPerMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.DecinewtonPerMillimeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> DecinewtonPerMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.KilogramForcePerCentimeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> KilogramForcePerCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.KilogramForcePerMeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> KilogramForcePerMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.KilogramForcePerMillimeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> KilogramForcePerMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.KilonewtonPerCentimeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> KilonewtonPerCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.KilonewtonPerMeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> KilonewtonPerMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.KilonewtonPerMillimeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> KilonewtonPerMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.KilopoundForcePerFoot"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> KilopoundForcePerFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.KilopoundForcePerInch"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> KilopoundForcePerInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.MeganewtonPerCentimeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> MeganewtonPerCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.MeganewtonPerMeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> MeganewtonPerMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.MeganewtonPerMillimeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> MeganewtonPerMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.MicronewtonPerCentimeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> MicronewtonPerCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.MicronewtonPerMeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> MicronewtonPerMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.MicronewtonPerMillimeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> MicronewtonPerMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.MillinewtonPerCentimeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> MillinewtonPerCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.MillinewtonPerMeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> MillinewtonPerMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.MillinewtonPerMillimeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> MillinewtonPerMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.NanonewtonPerCentimeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> NanonewtonPerCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.NanonewtonPerMeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> NanonewtonPerMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.NanonewtonPerMillimeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> NanonewtonPerMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.NewtonPerCentimeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> NewtonPerCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.NewtonPerMeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> NewtonPerMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.NewtonPerMillimeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> NewtonPerMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.PoundForcePerFoot"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> PoundForcePerFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.PoundForcePerInch"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> PoundForcePerInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.PoundForcePerYard"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> PoundForcePerYard { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.TonneForcePerCentimeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> TonneForcePerCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.TonneForcePerMeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> TonneForcePerMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForcePerLengthUnit}"/> for <see cref="ForcePerLengthUnit.TonneForcePerMillimeter"/>
+            /// </summary>
+            public UnitInfo<ForcePerLengthUnit> TonneForcePerMillimeter { get; }
+
+        }
     }
 }

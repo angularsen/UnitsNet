@@ -63,9 +63,6 @@ namespace UnitsNet
         {
             if(baseUnit == null) throw new ArgumentNullException(nameof(baseUnit));
 
-            BaseDimensions = baseDimensions ?? throw new ArgumentNullException(nameof(baseDimensions));
-            Zero = zero ?? throw new ArgumentNullException(nameof(zero));
-
             Name = name ?? throw new ArgumentNullException(nameof(name));
             UnitType = unitType ?? throw new ArgumentNullException(nameof(unitType));
             UnitInfos = unitInfos ?? throw new ArgumentNullException(nameof(unitInfos));

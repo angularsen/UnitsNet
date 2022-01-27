@@ -56,14 +56,6 @@ namespace UnitsNet
         static ElectricConductance()
         {
             BaseDimensions = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
-
-            Info = new QuantityInfo<ElectricConductanceUnit>("ElectricConductance",
-                new UnitInfo<ElectricConductanceUnit>[] {
-                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Microsiemens, "Microsiemens", BaseUnits.Undefined),
-                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Millisiemens, "Millisiemens", BaseUnits.Undefined),
-                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Siemens, "Siemens", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricConductance);
         }
 
         /// <summary>
@@ -103,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricConductanceUnit> Info { get; }
+        public static ElectricConductance.ElectricConductanceQuantityInfo Info { get; } = new ElectricConductance.ElectricConductanceQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -913,5 +905,37 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class ElectricConductanceQuantityInfo : QuantityInfo<ElectricConductanceUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal ElectricConductanceQuantityInfo() :
+                base("ElectricConductance", ElectricConductance.BaseUnit, ElectricConductance.Zero, ElectricConductance.BaseDimensions, QuantityType.ElectricConductance)
+            {
+                Microsiemens = new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Microsiemens, "Microsiemens", BaseUnits.Undefined);
+                Millisiemens = new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Millisiemens, "Millisiemens", BaseUnits.Undefined);
+                Siemens = new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Siemens, "Siemens", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricConductanceUnit}"/> for <see cref="ElectricConductanceUnit.Microsiemens"/>
+            /// </summary>
+            public UnitInfo<ElectricConductanceUnit> Microsiemens { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricConductanceUnit}"/> for <see cref="ElectricConductanceUnit.Millisiemens"/>
+            /// </summary>
+            public UnitInfo<ElectricConductanceUnit> Millisiemens { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricConductanceUnit}"/> for <see cref="ElectricConductanceUnit.Siemens"/>
+            /// </summary>
+            public UnitInfo<ElectricConductanceUnit> Siemens { get; }
+
+        }
     }
 }

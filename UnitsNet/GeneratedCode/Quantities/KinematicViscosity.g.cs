@@ -56,20 +56,6 @@ namespace UnitsNet
         static KinematicViscosity()
         {
             BaseDimensions = new BaseDimensions(2, 0, -1, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<KinematicViscosityUnit>("KinematicViscosity",
-                new UnitInfo<KinematicViscosityUnit>[] {
-                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Centistokes, "Centistokes", BaseUnits.Undefined),
-                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Decistokes, "Decistokes", BaseUnits.Undefined),
-                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Kilostokes, "Kilostokes", BaseUnits.Undefined),
-                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Microstokes, "Microstokes", BaseUnits.Undefined),
-                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Millistokes, "Millistokes", BaseUnits.Undefined),
-                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Nanostokes, "Nanostokes", BaseUnits.Undefined),
-                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.SquareFootPerSecond, "SquareFeetPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.SquareMeterPerSecond, "SquareMetersPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Stokes, "Stokes", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.KinematicViscosity);
         }
 
         /// <summary>
@@ -109,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<KinematicViscosityUnit> Info { get; }
+        public static KinematicViscosity.KinematicViscosityQuantityInfo Info { get; } = new KinematicViscosity.KinematicViscosityQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1027,5 +1013,73 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class KinematicViscosityQuantityInfo : QuantityInfo<KinematicViscosityUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal KinematicViscosityQuantityInfo() :
+                base("KinematicViscosity", KinematicViscosity.BaseUnit, KinematicViscosity.Zero, KinematicViscosity.BaseDimensions, QuantityType.KinematicViscosity)
+            {
+                Centistokes = new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Centistokes, "Centistokes", BaseUnits.Undefined);
+                Decistokes = new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Decistokes, "Decistokes", BaseUnits.Undefined);
+                Kilostokes = new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Kilostokes, "Kilostokes", BaseUnits.Undefined);
+                Microstokes = new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Microstokes, "Microstokes", BaseUnits.Undefined);
+                Millistokes = new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Millistokes, "Millistokes", BaseUnits.Undefined);
+                Nanostokes = new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Nanostokes, "Nanostokes", BaseUnits.Undefined);
+                SquareFootPerSecond = new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.SquareFootPerSecond, "SquareFeetPerSecond", BaseUnits.Undefined);
+                SquareMeterPerSecond = new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.SquareMeterPerSecond, "SquareMetersPerSecond", BaseUnits.Undefined);
+                Stokes = new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Stokes, "Stokes", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{KinematicViscosityUnit}"/> for <see cref="KinematicViscosityUnit.Centistokes"/>
+            /// </summary>
+            public UnitInfo<KinematicViscosityUnit> Centistokes { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{KinematicViscosityUnit}"/> for <see cref="KinematicViscosityUnit.Decistokes"/>
+            /// </summary>
+            public UnitInfo<KinematicViscosityUnit> Decistokes { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{KinematicViscosityUnit}"/> for <see cref="KinematicViscosityUnit.Kilostokes"/>
+            /// </summary>
+            public UnitInfo<KinematicViscosityUnit> Kilostokes { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{KinematicViscosityUnit}"/> for <see cref="KinematicViscosityUnit.Microstokes"/>
+            /// </summary>
+            public UnitInfo<KinematicViscosityUnit> Microstokes { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{KinematicViscosityUnit}"/> for <see cref="KinematicViscosityUnit.Millistokes"/>
+            /// </summary>
+            public UnitInfo<KinematicViscosityUnit> Millistokes { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{KinematicViscosityUnit}"/> for <see cref="KinematicViscosityUnit.Nanostokes"/>
+            /// </summary>
+            public UnitInfo<KinematicViscosityUnit> Nanostokes { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{KinematicViscosityUnit}"/> for <see cref="KinematicViscosityUnit.SquareFootPerSecond"/>
+            /// </summary>
+            public UnitInfo<KinematicViscosityUnit> SquareFootPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{KinematicViscosityUnit}"/> for <see cref="KinematicViscosityUnit.SquareMeterPerSecond"/>
+            /// </summary>
+            public UnitInfo<KinematicViscosityUnit> SquareMeterPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{KinematicViscosityUnit}"/> for <see cref="KinematicViscosityUnit.Stokes"/>
+            /// </summary>
+            public UnitInfo<KinematicViscosityUnit> Stokes { get; }
+
+        }
     }
 }

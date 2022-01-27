@@ -57,14 +57,6 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<SpecificFuelConsumptionUnit>("SpecificFuelConsumption",
-                new UnitInfo<SpecificFuelConsumptionUnit>[] {
-                    new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, "GramsPerKiloNewtonSecond", BaseUnits.Undefined),
-                    new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, "KilogramsPerKilogramForceHour", BaseUnits.Undefined),
-                    new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, "KilogramsPerKiloNewtonSecond", BaseUnits.Undefined),
-                    new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, "PoundsMassPerPoundForceHour", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.SpecificFuelConsumption);
         }
 
         /// <summary>
@@ -104,7 +96,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<SpecificFuelConsumptionUnit> Info { get; }
+        public static SpecificFuelConsumption.SpecificFuelConsumptionQuantityInfo Info { get; } = new SpecificFuelConsumption.SpecificFuelConsumptionQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -932,5 +924,43 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class SpecificFuelConsumptionQuantityInfo : QuantityInfo<SpecificFuelConsumptionUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal SpecificFuelConsumptionQuantityInfo() :
+                base("SpecificFuelConsumption", SpecificFuelConsumption.BaseUnit, SpecificFuelConsumption.Zero, SpecificFuelConsumption.BaseDimensions, QuantityType.SpecificFuelConsumption)
+            {
+                GramPerKiloNewtonSecond = new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, "GramsPerKiloNewtonSecond", BaseUnits.Undefined);
+                KilogramPerKilogramForceHour = new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, "KilogramsPerKilogramForceHour", BaseUnits.Undefined);
+                KilogramPerKiloNewtonSecond = new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, "KilogramsPerKiloNewtonSecond", BaseUnits.Undefined);
+                PoundMassPerPoundForceHour = new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, "PoundsMassPerPoundForceHour", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificFuelConsumptionUnit}"/> for <see cref="SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond"/>
+            /// </summary>
+            public UnitInfo<SpecificFuelConsumptionUnit> GramPerKiloNewtonSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificFuelConsumptionUnit}"/> for <see cref="SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour"/>
+            /// </summary>
+            public UnitInfo<SpecificFuelConsumptionUnit> KilogramPerKilogramForceHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificFuelConsumptionUnit}"/> for <see cref="SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond"/>
+            /// </summary>
+            public UnitInfo<SpecificFuelConsumptionUnit> KilogramPerKiloNewtonSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificFuelConsumptionUnit}"/> for <see cref="SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour"/>
+            /// </summary>
+            public UnitInfo<SpecificFuelConsumptionUnit> PoundMassPerPoundForceHour { get; }
+
+        }
     }
 }

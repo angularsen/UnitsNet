@@ -53,26 +53,6 @@ namespace UnitsNet
         static AmountOfSubstance()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 1, 0);
-
-            Info = new QuantityInfo<AmountOfSubstanceUnit>("AmountOfSubstance",
-                new UnitInfo<AmountOfSubstanceUnit>[] {
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Centimole, "Centimoles", BaseUnits.Undefined),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.CentipoundMole, "CentipoundMoles", BaseUnits.Undefined),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Decimole, "Decimoles", BaseUnits.Undefined),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.DecipoundMole, "DecipoundMoles", BaseUnits.Undefined),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Kilomole, "Kilomoles", BaseUnits.Undefined),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.KilopoundMole, "KilopoundMoles", BaseUnits.Undefined),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Megamole, "Megamoles", BaseUnits.Undefined),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Micromole, "Micromoles", BaseUnits.Undefined),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.MicropoundMole, "MicropoundMoles", BaseUnits.Undefined),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Millimole, "Millimoles", BaseUnits.Undefined),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.MillipoundMole, "MillipoundMoles", BaseUnits.Undefined),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Mole, "Moles", new BaseUnits(amount: AmountOfSubstanceUnit.Mole)),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Nanomole, "Nanomoles", BaseUnits.Undefined),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.NanopoundMole, "NanopoundMoles", BaseUnits.Undefined),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.PoundMole, "PoundMoles", new BaseUnits(amount: AmountOfSubstanceUnit.PoundMole)),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.AmountOfSubstance);
         }
 
         /// <summary>
@@ -112,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<AmountOfSubstanceUnit> Info { get; }
+        public static AmountOfSubstance.AmountOfSubstanceQuantityInfo Info { get; } = new AmountOfSubstance.AmountOfSubstanceQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1138,5 +1118,109 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class AmountOfSubstanceQuantityInfo : QuantityInfo<AmountOfSubstanceUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal AmountOfSubstanceQuantityInfo() :
+                base("AmountOfSubstance", AmountOfSubstance.BaseUnit, AmountOfSubstance.Zero, AmountOfSubstance.BaseDimensions, QuantityType.AmountOfSubstance)
+            {
+                Centimole = new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Centimole, "Centimoles", BaseUnits.Undefined);
+                CentipoundMole = new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.CentipoundMole, "CentipoundMoles", BaseUnits.Undefined);
+                Decimole = new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Decimole, "Decimoles", BaseUnits.Undefined);
+                DecipoundMole = new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.DecipoundMole, "DecipoundMoles", BaseUnits.Undefined);
+                Kilomole = new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Kilomole, "Kilomoles", BaseUnits.Undefined);
+                KilopoundMole = new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.KilopoundMole, "KilopoundMoles", BaseUnits.Undefined);
+                Megamole = new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Megamole, "Megamoles", BaseUnits.Undefined);
+                Micromole = new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Micromole, "Micromoles", BaseUnits.Undefined);
+                MicropoundMole = new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.MicropoundMole, "MicropoundMoles", BaseUnits.Undefined);
+                Millimole = new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Millimole, "Millimoles", BaseUnits.Undefined);
+                MillipoundMole = new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.MillipoundMole, "MillipoundMoles", BaseUnits.Undefined);
+                Mole = new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Mole, "Moles", new BaseUnits(amount: AmountOfSubstanceUnit.Mole));
+                Nanomole = new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Nanomole, "Nanomoles", BaseUnits.Undefined);
+                NanopoundMole = new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.NanopoundMole, "NanopoundMoles", BaseUnits.Undefined);
+                PoundMole = new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.PoundMole, "PoundMoles", new BaseUnits(amount: AmountOfSubstanceUnit.PoundMole));
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AmountOfSubstanceUnit}"/> for <see cref="AmountOfSubstanceUnit.Centimole"/>
+            /// </summary>
+            public UnitInfo<AmountOfSubstanceUnit> Centimole { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AmountOfSubstanceUnit}"/> for <see cref="AmountOfSubstanceUnit.CentipoundMole"/>
+            /// </summary>
+            public UnitInfo<AmountOfSubstanceUnit> CentipoundMole { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AmountOfSubstanceUnit}"/> for <see cref="AmountOfSubstanceUnit.Decimole"/>
+            /// </summary>
+            public UnitInfo<AmountOfSubstanceUnit> Decimole { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AmountOfSubstanceUnit}"/> for <see cref="AmountOfSubstanceUnit.DecipoundMole"/>
+            /// </summary>
+            public UnitInfo<AmountOfSubstanceUnit> DecipoundMole { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AmountOfSubstanceUnit}"/> for <see cref="AmountOfSubstanceUnit.Kilomole"/>
+            /// </summary>
+            public UnitInfo<AmountOfSubstanceUnit> Kilomole { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AmountOfSubstanceUnit}"/> for <see cref="AmountOfSubstanceUnit.KilopoundMole"/>
+            /// </summary>
+            public UnitInfo<AmountOfSubstanceUnit> KilopoundMole { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AmountOfSubstanceUnit}"/> for <see cref="AmountOfSubstanceUnit.Megamole"/>
+            /// </summary>
+            public UnitInfo<AmountOfSubstanceUnit> Megamole { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AmountOfSubstanceUnit}"/> for <see cref="AmountOfSubstanceUnit.Micromole"/>
+            /// </summary>
+            public UnitInfo<AmountOfSubstanceUnit> Micromole { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AmountOfSubstanceUnit}"/> for <see cref="AmountOfSubstanceUnit.MicropoundMole"/>
+            /// </summary>
+            public UnitInfo<AmountOfSubstanceUnit> MicropoundMole { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AmountOfSubstanceUnit}"/> for <see cref="AmountOfSubstanceUnit.Millimole"/>
+            /// </summary>
+            public UnitInfo<AmountOfSubstanceUnit> Millimole { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AmountOfSubstanceUnit}"/> for <see cref="AmountOfSubstanceUnit.MillipoundMole"/>
+            /// </summary>
+            public UnitInfo<AmountOfSubstanceUnit> MillipoundMole { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AmountOfSubstanceUnit}"/> for <see cref="AmountOfSubstanceUnit.Mole"/>
+            /// </summary>
+            public UnitInfo<AmountOfSubstanceUnit> Mole { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AmountOfSubstanceUnit}"/> for <see cref="AmountOfSubstanceUnit.Nanomole"/>
+            /// </summary>
+            public UnitInfo<AmountOfSubstanceUnit> Nanomole { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AmountOfSubstanceUnit}"/> for <see cref="AmountOfSubstanceUnit.NanopoundMole"/>
+            /// </summary>
+            public UnitInfo<AmountOfSubstanceUnit> NanopoundMole { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AmountOfSubstanceUnit}"/> for <see cref="AmountOfSubstanceUnit.PoundMole"/>
+            /// </summary>
+            public UnitInfo<AmountOfSubstanceUnit> PoundMole { get; }
+
+        }
     }
 }

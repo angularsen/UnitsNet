@@ -56,12 +56,6 @@ namespace UnitsNet
         static ElectricChargeDensity()
         {
             BaseDimensions = new BaseDimensions(-3, 0, 1, 1, 0, 0, 0);
-
-            Info = new QuantityInfo<ElectricChargeDensityUnit>("ElectricChargeDensity",
-                new UnitInfo<ElectricChargeDensityUnit>[] {
-                    new UnitInfo<ElectricChargeDensityUnit>(ElectricChargeDensityUnit.CoulombPerCubicMeter, "CoulombsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricChargeDensity);
         }
 
         /// <summary>
@@ -101,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricChargeDensityUnit> Info { get; }
+        public static ElectricChargeDensity.ElectricChargeDensityQuantityInfo Info { get; } = new ElectricChargeDensity.ElectricChargeDensityQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -875,5 +869,25 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class ElectricChargeDensityQuantityInfo : QuantityInfo<ElectricChargeDensityUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal ElectricChargeDensityQuantityInfo() :
+                base("ElectricChargeDensity", ElectricChargeDensity.BaseUnit, ElectricChargeDensity.Zero, ElectricChargeDensity.BaseDimensions, QuantityType.ElectricChargeDensity)
+            {
+                CoulombPerCubicMeter = new UnitInfo<ElectricChargeDensityUnit>(ElectricChargeDensityUnit.CoulombPerCubicMeter, "CoulombsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricChargeDensityUnit}"/> for <see cref="ElectricChargeDensityUnit.CoulombPerCubicMeter"/>
+            /// </summary>
+            public UnitInfo<ElectricChargeDensityUnit> CoulombPerCubicMeter { get; }
+
+        }
     }
 }

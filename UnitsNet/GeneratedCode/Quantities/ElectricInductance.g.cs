@@ -56,15 +56,6 @@ namespace UnitsNet
         static ElectricInductance()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, -2, 0, 0, 0);
-
-            Info = new QuantityInfo<ElectricInductanceUnit>("ElectricInductance",
-                new UnitInfo<ElectricInductanceUnit>[] {
-                    new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Henry, "Henries", BaseUnits.Undefined),
-                    new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Microhenry, "Microhenries", BaseUnits.Undefined),
-                    new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Millihenry, "Millihenries", BaseUnits.Undefined),
-                    new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Nanohenry, "Nanohenries", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricInductance);
         }
 
         /// <summary>
@@ -104,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricInductanceUnit> Info { get; }
+        public static ElectricInductance.ElectricInductanceQuantityInfo Info { get; } = new ElectricInductance.ElectricInductanceQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -932,5 +923,43 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class ElectricInductanceQuantityInfo : QuantityInfo<ElectricInductanceUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal ElectricInductanceQuantityInfo() :
+                base("ElectricInductance", ElectricInductance.BaseUnit, ElectricInductance.Zero, ElectricInductance.BaseDimensions, QuantityType.ElectricInductance)
+            {
+                Henry = new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Henry, "Henries", BaseUnits.Undefined);
+                Microhenry = new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Microhenry, "Microhenries", BaseUnits.Undefined);
+                Millihenry = new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Millihenry, "Millihenries", BaseUnits.Undefined);
+                Nanohenry = new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Nanohenry, "Nanohenries", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricInductanceUnit}"/> for <see cref="ElectricInductanceUnit.Henry"/>
+            /// </summary>
+            public UnitInfo<ElectricInductanceUnit> Henry { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricInductanceUnit}"/> for <see cref="ElectricInductanceUnit.Microhenry"/>
+            /// </summary>
+            public UnitInfo<ElectricInductanceUnit> Microhenry { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricInductanceUnit}"/> for <see cref="ElectricInductanceUnit.Millihenry"/>
+            /// </summary>
+            public UnitInfo<ElectricInductanceUnit> Millihenry { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricInductanceUnit}"/> for <see cref="ElectricInductanceUnit.Nanohenry"/>
+            /// </summary>
+            public UnitInfo<ElectricInductanceUnit> Nanohenry { get; }
+
+        }
     }
 }

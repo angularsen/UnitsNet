@@ -53,19 +53,6 @@ namespace UnitsNet
         static ElectricCurrent()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 1, 0, 0, 0);
-
-            Info = new QuantityInfo<ElectricCurrentUnit>("ElectricCurrent",
-                new UnitInfo<ElectricCurrentUnit>[] {
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Ampere, "Amperes", new BaseUnits(current: ElectricCurrentUnit.Ampere)),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Centiampere, "Centiamperes", BaseUnits.Undefined),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Kiloampere, "Kiloamperes", BaseUnits.Undefined),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Megaampere, "Megaamperes", BaseUnits.Undefined),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Microampere, "Microamperes", BaseUnits.Undefined),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Milliampere, "Milliamperes", BaseUnits.Undefined),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Nanoampere, "Nanoamperes", BaseUnits.Undefined),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Picoampere, "Picoamperes", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricCurrent);
         }
 
         /// <summary>
@@ -105,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricCurrentUnit> Info { get; }
+        public static ElectricCurrent.ElectricCurrentQuantityInfo Info { get; } = new ElectricCurrent.ElectricCurrentQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1005,5 +992,67 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class ElectricCurrentQuantityInfo : QuantityInfo<ElectricCurrentUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal ElectricCurrentQuantityInfo() :
+                base("ElectricCurrent", ElectricCurrent.BaseUnit, ElectricCurrent.Zero, ElectricCurrent.BaseDimensions, QuantityType.ElectricCurrent)
+            {
+                Ampere = new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Ampere, "Amperes", new BaseUnits(current: ElectricCurrentUnit.Ampere));
+                Centiampere = new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Centiampere, "Centiamperes", BaseUnits.Undefined);
+                Kiloampere = new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Kiloampere, "Kiloamperes", BaseUnits.Undefined);
+                Megaampere = new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Megaampere, "Megaamperes", BaseUnits.Undefined);
+                Microampere = new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Microampere, "Microamperes", BaseUnits.Undefined);
+                Milliampere = new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Milliampere, "Milliamperes", BaseUnits.Undefined);
+                Nanoampere = new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Nanoampere, "Nanoamperes", BaseUnits.Undefined);
+                Picoampere = new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Picoampere, "Picoamperes", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricCurrentUnit}"/> for <see cref="ElectricCurrentUnit.Ampere"/>
+            /// </summary>
+            public UnitInfo<ElectricCurrentUnit> Ampere { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricCurrentUnit}"/> for <see cref="ElectricCurrentUnit.Centiampere"/>
+            /// </summary>
+            public UnitInfo<ElectricCurrentUnit> Centiampere { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricCurrentUnit}"/> for <see cref="ElectricCurrentUnit.Kiloampere"/>
+            /// </summary>
+            public UnitInfo<ElectricCurrentUnit> Kiloampere { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricCurrentUnit}"/> for <see cref="ElectricCurrentUnit.Megaampere"/>
+            /// </summary>
+            public UnitInfo<ElectricCurrentUnit> Megaampere { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricCurrentUnit}"/> for <see cref="ElectricCurrentUnit.Microampere"/>
+            /// </summary>
+            public UnitInfo<ElectricCurrentUnit> Microampere { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricCurrentUnit}"/> for <see cref="ElectricCurrentUnit.Milliampere"/>
+            /// </summary>
+            public UnitInfo<ElectricCurrentUnit> Milliampere { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricCurrentUnit}"/> for <see cref="ElectricCurrentUnit.Nanoampere"/>
+            /// </summary>
+            public UnitInfo<ElectricCurrentUnit> Nanoampere { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricCurrentUnit}"/> for <see cref="ElectricCurrentUnit.Picoampere"/>
+            /// </summary>
+            public UnitInfo<ElectricCurrentUnit> Picoampere { get; }
+
+        }
     }
 }

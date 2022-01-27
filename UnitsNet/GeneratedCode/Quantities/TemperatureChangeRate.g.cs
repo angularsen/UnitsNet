@@ -53,21 +53,6 @@ namespace UnitsNet
         static TemperatureChangeRate()
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 0, 1, 0, 0);
-
-            Info = new QuantityInfo<TemperatureChangeRateUnit>("TemperatureChangeRate",
-                new UnitInfo<TemperatureChangeRateUnit>[] {
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, "CentidegreesCelsiusPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, "DecadegreesCelsiusPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond, "DecidegreesCelsiusPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeCelsiusPerMinute, "DegreesCelsiusPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, "DegreesCelsiusPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond, "HectodegreesCelsiusPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond, "KilodegreesCelsiusPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, "MicrodegreesCelsiusPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, "MillidegreesCelsiusPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, "NanodegreesCelsiusPerSecond", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.TemperatureChangeRate);
         }
 
         /// <summary>
@@ -107,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<TemperatureChangeRateUnit> Info { get; }
+        public static TemperatureChangeRate.TemperatureChangeRateQuantityInfo Info { get; } = new TemperatureChangeRate.TemperatureChangeRateQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1043,5 +1028,79 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class TemperatureChangeRateQuantityInfo : QuantityInfo<TemperatureChangeRateUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal TemperatureChangeRateQuantityInfo() :
+                base("TemperatureChangeRate", TemperatureChangeRate.BaseUnit, TemperatureChangeRate.Zero, TemperatureChangeRate.BaseDimensions, QuantityType.TemperatureChangeRate)
+            {
+                CentidegreeCelsiusPerSecond = new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, "CentidegreesCelsiusPerSecond", BaseUnits.Undefined);
+                DecadegreeCelsiusPerSecond = new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, "DecadegreesCelsiusPerSecond", BaseUnits.Undefined);
+                DecidegreeCelsiusPerSecond = new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond, "DecidegreesCelsiusPerSecond", BaseUnits.Undefined);
+                DegreeCelsiusPerMinute = new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeCelsiusPerMinute, "DegreesCelsiusPerMinute", BaseUnits.Undefined);
+                DegreeCelsiusPerSecond = new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, "DegreesCelsiusPerSecond", BaseUnits.Undefined);
+                HectodegreeCelsiusPerSecond = new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond, "HectodegreesCelsiusPerSecond", BaseUnits.Undefined);
+                KilodegreeCelsiusPerSecond = new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond, "KilodegreesCelsiusPerSecond", BaseUnits.Undefined);
+                MicrodegreeCelsiusPerSecond = new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, "MicrodegreesCelsiusPerSecond", BaseUnits.Undefined);
+                MillidegreeCelsiusPerSecond = new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, "MillidegreesCelsiusPerSecond", BaseUnits.Undefined);
+                NanodegreeCelsiusPerSecond = new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, "NanodegreesCelsiusPerSecond", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureChangeRateUnit}"/> for <see cref="TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond"/>
+            /// </summary>
+            public UnitInfo<TemperatureChangeRateUnit> CentidegreeCelsiusPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureChangeRateUnit}"/> for <see cref="TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond"/>
+            /// </summary>
+            public UnitInfo<TemperatureChangeRateUnit> DecadegreeCelsiusPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureChangeRateUnit}"/> for <see cref="TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond"/>
+            /// </summary>
+            public UnitInfo<TemperatureChangeRateUnit> DecidegreeCelsiusPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureChangeRateUnit}"/> for <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerMinute"/>
+            /// </summary>
+            public UnitInfo<TemperatureChangeRateUnit> DegreeCelsiusPerMinute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureChangeRateUnit}"/> for <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerSecond"/>
+            /// </summary>
+            public UnitInfo<TemperatureChangeRateUnit> DegreeCelsiusPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureChangeRateUnit}"/> for <see cref="TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond"/>
+            /// </summary>
+            public UnitInfo<TemperatureChangeRateUnit> HectodegreeCelsiusPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureChangeRateUnit}"/> for <see cref="TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond"/>
+            /// </summary>
+            public UnitInfo<TemperatureChangeRateUnit> KilodegreeCelsiusPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureChangeRateUnit}"/> for <see cref="TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond"/>
+            /// </summary>
+            public UnitInfo<TemperatureChangeRateUnit> MicrodegreeCelsiusPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureChangeRateUnit}"/> for <see cref="TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond"/>
+            /// </summary>
+            public UnitInfo<TemperatureChangeRateUnit> MillidegreeCelsiusPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{TemperatureChangeRateUnit}"/> for <see cref="TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond"/>
+            /// </summary>
+            public UnitInfo<TemperatureChangeRateUnit> NanodegreeCelsiusPerSecond { get; }
+
+        }
     }
 }

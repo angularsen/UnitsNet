@@ -53,15 +53,6 @@ namespace UnitsNet
         static ApparentPower()
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<ApparentPowerUnit>("ApparentPower",
-                new UnitInfo<ApparentPowerUnit>[] {
-                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Gigavoltampere, "Gigavoltamperes", BaseUnits.Undefined),
-                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Kilovoltampere, "Kilovoltamperes", BaseUnits.Undefined),
-                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Megavoltampere, "Megavoltamperes", BaseUnits.Undefined),
-                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Voltampere, "Voltamperes", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ApparentPower);
         }
 
         /// <summary>
@@ -101,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ApparentPowerUnit> Info { get; }
+        public static ApparentPower.ApparentPowerQuantityInfo Info { get; } = new ApparentPower.ApparentPowerQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -929,5 +920,43 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class ApparentPowerQuantityInfo : QuantityInfo<ApparentPowerUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal ApparentPowerQuantityInfo() :
+                base("ApparentPower", ApparentPower.BaseUnit, ApparentPower.Zero, ApparentPower.BaseDimensions, QuantityType.ApparentPower)
+            {
+                Gigavoltampere = new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Gigavoltampere, "Gigavoltamperes", BaseUnits.Undefined);
+                Kilovoltampere = new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Kilovoltampere, "Kilovoltamperes", BaseUnits.Undefined);
+                Megavoltampere = new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Megavoltampere, "Megavoltamperes", BaseUnits.Undefined);
+                Voltampere = new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Voltampere, "Voltamperes", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ApparentPowerUnit}"/> for <see cref="ApparentPowerUnit.Gigavoltampere"/>
+            /// </summary>
+            public UnitInfo<ApparentPowerUnit> Gigavoltampere { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ApparentPowerUnit}"/> for <see cref="ApparentPowerUnit.Kilovoltampere"/>
+            /// </summary>
+            public UnitInfo<ApparentPowerUnit> Kilovoltampere { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ApparentPowerUnit}"/> for <see cref="ApparentPowerUnit.Megavoltampere"/>
+            /// </summary>
+            public UnitInfo<ApparentPowerUnit> Megavoltampere { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ApparentPowerUnit}"/> for <see cref="ApparentPowerUnit.Voltampere"/>
+            /// </summary>
+            public UnitInfo<ApparentPowerUnit> Voltampere { get; }
+
+        }
     }
 }

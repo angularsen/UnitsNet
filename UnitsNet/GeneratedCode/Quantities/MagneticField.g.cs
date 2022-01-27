@@ -56,17 +56,6 @@ namespace UnitsNet
         static MagneticField()
         {
             BaseDimensions = new BaseDimensions(0, 1, -2, -1, 0, 0, 0);
-
-            Info = new QuantityInfo<MagneticFieldUnit>("MagneticField",
-                new UnitInfo<MagneticFieldUnit>[] {
-                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Gauss, "Gausses", BaseUnits.Undefined),
-                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Microtesla, "Microteslas", BaseUnits.Undefined),
-                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Milligauss, "Milligausses", BaseUnits.Undefined),
-                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Millitesla, "Milliteslas", BaseUnits.Undefined),
-                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Nanotesla, "Nanoteslas", BaseUnits.Undefined),
-                    new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Tesla, "Teslas", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.MagneticField);
         }
 
         /// <summary>
@@ -106,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<MagneticFieldUnit> Info { get; }
+        public static MagneticField.MagneticFieldQuantityInfo Info { get; } = new MagneticField.MagneticFieldQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -970,5 +959,55 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class MagneticFieldQuantityInfo : QuantityInfo<MagneticFieldUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal MagneticFieldQuantityInfo() :
+                base("MagneticField", MagneticField.BaseUnit, MagneticField.Zero, MagneticField.BaseDimensions, QuantityType.MagneticField)
+            {
+                Gauss = new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Gauss, "Gausses", BaseUnits.Undefined);
+                Microtesla = new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Microtesla, "Microteslas", BaseUnits.Undefined);
+                Milligauss = new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Milligauss, "Milligausses", BaseUnits.Undefined);
+                Millitesla = new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Millitesla, "Milliteslas", BaseUnits.Undefined);
+                Nanotesla = new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Nanotesla, "Nanoteslas", BaseUnits.Undefined);
+                Tesla = new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Tesla, "Teslas", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MagneticFieldUnit}"/> for <see cref="MagneticFieldUnit.Gauss"/>
+            /// </summary>
+            public UnitInfo<MagneticFieldUnit> Gauss { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MagneticFieldUnit}"/> for <see cref="MagneticFieldUnit.Microtesla"/>
+            /// </summary>
+            public UnitInfo<MagneticFieldUnit> Microtesla { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MagneticFieldUnit}"/> for <see cref="MagneticFieldUnit.Milligauss"/>
+            /// </summary>
+            public UnitInfo<MagneticFieldUnit> Milligauss { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MagneticFieldUnit}"/> for <see cref="MagneticFieldUnit.Millitesla"/>
+            /// </summary>
+            public UnitInfo<MagneticFieldUnit> Millitesla { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MagneticFieldUnit}"/> for <see cref="MagneticFieldUnit.Nanotesla"/>
+            /// </summary>
+            public UnitInfo<MagneticFieldUnit> Nanotesla { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MagneticFieldUnit}"/> for <see cref="MagneticFieldUnit.Tesla"/>
+            /// </summary>
+            public UnitInfo<MagneticFieldUnit> Tesla { get; }
+
+        }
     }
 }

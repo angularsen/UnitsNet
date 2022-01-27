@@ -53,36 +53,6 @@ namespace UnitsNet
         static Mass()
         {
             BaseDimensions = new BaseDimensions(0, 1, 0, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<MassUnit>("Mass",
-                new UnitInfo<MassUnit>[] {
-                    new UnitInfo<MassUnit>(MassUnit.Centigram, "Centigrams", BaseUnits.Undefined),
-                    new UnitInfo<MassUnit>(MassUnit.Decagram, "Decagrams", BaseUnits.Undefined),
-                    new UnitInfo<MassUnit>(MassUnit.Decigram, "Decigrams", BaseUnits.Undefined),
-                    new UnitInfo<MassUnit>(MassUnit.EarthMass, "EarthMasses", new BaseUnits(mass: MassUnit.EarthMass)),
-                    new UnitInfo<MassUnit>(MassUnit.Grain, "Grains", new BaseUnits(mass: MassUnit.Grain)),
-                    new UnitInfo<MassUnit>(MassUnit.Gram, "Grams", new BaseUnits(mass: MassUnit.Gram)),
-                    new UnitInfo<MassUnit>(MassUnit.Hectogram, "Hectograms", BaseUnits.Undefined),
-                    new UnitInfo<MassUnit>(MassUnit.Kilogram, "Kilograms", BaseUnits.Undefined),
-                    new UnitInfo<MassUnit>(MassUnit.Kilopound, "Kilopounds", BaseUnits.Undefined),
-                    new UnitInfo<MassUnit>(MassUnit.Kilotonne, "Kilotonnes", BaseUnits.Undefined),
-                    new UnitInfo<MassUnit>(MassUnit.LongHundredweight, "LongHundredweight", new BaseUnits(mass: MassUnit.LongHundredweight)),
-                    new UnitInfo<MassUnit>(MassUnit.LongTon, "LongTons", new BaseUnits(mass: MassUnit.LongTon)),
-                    new UnitInfo<MassUnit>(MassUnit.Megapound, "Megapounds", BaseUnits.Undefined),
-                    new UnitInfo<MassUnit>(MassUnit.Megatonne, "Megatonnes", BaseUnits.Undefined),
-                    new UnitInfo<MassUnit>(MassUnit.Microgram, "Micrograms", BaseUnits.Undefined),
-                    new UnitInfo<MassUnit>(MassUnit.Milligram, "Milligrams", BaseUnits.Undefined),
-                    new UnitInfo<MassUnit>(MassUnit.Nanogram, "Nanograms", BaseUnits.Undefined),
-                    new UnitInfo<MassUnit>(MassUnit.Ounce, "Ounces", new BaseUnits(mass: MassUnit.Ounce)),
-                    new UnitInfo<MassUnit>(MassUnit.Pound, "Pounds", new BaseUnits(mass: MassUnit.Pound)),
-                    new UnitInfo<MassUnit>(MassUnit.ShortHundredweight, "ShortHundredweight", new BaseUnits(mass: MassUnit.ShortHundredweight)),
-                    new UnitInfo<MassUnit>(MassUnit.ShortTon, "ShortTons", new BaseUnits(mass: MassUnit.ShortTon)),
-                    new UnitInfo<MassUnit>(MassUnit.Slug, "Slugs", new BaseUnits(mass: MassUnit.Slug)),
-                    new UnitInfo<MassUnit>(MassUnit.SolarMass, "SolarMasses", new BaseUnits(mass: MassUnit.SolarMass)),
-                    new UnitInfo<MassUnit>(MassUnit.Stone, "Stone", new BaseUnits(mass: MassUnit.Stone)),
-                    new UnitInfo<MassUnit>(MassUnit.Tonne, "Tonnes", new BaseUnits(mass: MassUnit.Tonne)),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Mass);
         }
 
         /// <summary>
@@ -122,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<MassUnit> Info { get; }
+        public static Mass.MassQuantityInfo Info { get; } = new Mass.MassQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1328,5 +1298,169 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class MassQuantityInfo : QuantityInfo<MassUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal MassQuantityInfo() :
+                base("Mass", Mass.BaseUnit, Mass.Zero, Mass.BaseDimensions, QuantityType.Mass)
+            {
+                Centigram = new UnitInfo<MassUnit>(MassUnit.Centigram, "Centigrams", BaseUnits.Undefined);
+                Decagram = new UnitInfo<MassUnit>(MassUnit.Decagram, "Decagrams", BaseUnits.Undefined);
+                Decigram = new UnitInfo<MassUnit>(MassUnit.Decigram, "Decigrams", BaseUnits.Undefined);
+                EarthMass = new UnitInfo<MassUnit>(MassUnit.EarthMass, "EarthMasses", new BaseUnits(mass: MassUnit.EarthMass));
+                Grain = new UnitInfo<MassUnit>(MassUnit.Grain, "Grains", new BaseUnits(mass: MassUnit.Grain));
+                Gram = new UnitInfo<MassUnit>(MassUnit.Gram, "Grams", new BaseUnits(mass: MassUnit.Gram));
+                Hectogram = new UnitInfo<MassUnit>(MassUnit.Hectogram, "Hectograms", BaseUnits.Undefined);
+                Kilogram = new UnitInfo<MassUnit>(MassUnit.Kilogram, "Kilograms", BaseUnits.Undefined);
+                Kilopound = new UnitInfo<MassUnit>(MassUnit.Kilopound, "Kilopounds", BaseUnits.Undefined);
+                Kilotonne = new UnitInfo<MassUnit>(MassUnit.Kilotonne, "Kilotonnes", BaseUnits.Undefined);
+                LongHundredweight = new UnitInfo<MassUnit>(MassUnit.LongHundredweight, "LongHundredweight", new BaseUnits(mass: MassUnit.LongHundredweight));
+                LongTon = new UnitInfo<MassUnit>(MassUnit.LongTon, "LongTons", new BaseUnits(mass: MassUnit.LongTon));
+                Megapound = new UnitInfo<MassUnit>(MassUnit.Megapound, "Megapounds", BaseUnits.Undefined);
+                Megatonne = new UnitInfo<MassUnit>(MassUnit.Megatonne, "Megatonnes", BaseUnits.Undefined);
+                Microgram = new UnitInfo<MassUnit>(MassUnit.Microgram, "Micrograms", BaseUnits.Undefined);
+                Milligram = new UnitInfo<MassUnit>(MassUnit.Milligram, "Milligrams", BaseUnits.Undefined);
+                Nanogram = new UnitInfo<MassUnit>(MassUnit.Nanogram, "Nanograms", BaseUnits.Undefined);
+                Ounce = new UnitInfo<MassUnit>(MassUnit.Ounce, "Ounces", new BaseUnits(mass: MassUnit.Ounce));
+                Pound = new UnitInfo<MassUnit>(MassUnit.Pound, "Pounds", new BaseUnits(mass: MassUnit.Pound));
+                ShortHundredweight = new UnitInfo<MassUnit>(MassUnit.ShortHundredweight, "ShortHundredweight", new BaseUnits(mass: MassUnit.ShortHundredweight));
+                ShortTon = new UnitInfo<MassUnit>(MassUnit.ShortTon, "ShortTons", new BaseUnits(mass: MassUnit.ShortTon));
+                Slug = new UnitInfo<MassUnit>(MassUnit.Slug, "Slugs", new BaseUnits(mass: MassUnit.Slug));
+                SolarMass = new UnitInfo<MassUnit>(MassUnit.SolarMass, "SolarMasses", new BaseUnits(mass: MassUnit.SolarMass));
+                Stone = new UnitInfo<MassUnit>(MassUnit.Stone, "Stone", new BaseUnits(mass: MassUnit.Stone));
+                Tonne = new UnitInfo<MassUnit>(MassUnit.Tonne, "Tonnes", new BaseUnits(mass: MassUnit.Tonne));
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassUnit}"/> for <see cref="MassUnit.Centigram"/>
+            /// </summary>
+            public UnitInfo<MassUnit> Centigram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassUnit}"/> for <see cref="MassUnit.Decagram"/>
+            /// </summary>
+            public UnitInfo<MassUnit> Decagram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassUnit}"/> for <see cref="MassUnit.Decigram"/>
+            /// </summary>
+            public UnitInfo<MassUnit> Decigram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassUnit}"/> for <see cref="MassUnit.EarthMass"/>
+            /// </summary>
+            public UnitInfo<MassUnit> EarthMass { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassUnit}"/> for <see cref="MassUnit.Grain"/>
+            /// </summary>
+            public UnitInfo<MassUnit> Grain { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassUnit}"/> for <see cref="MassUnit.Gram"/>
+            /// </summary>
+            public UnitInfo<MassUnit> Gram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassUnit}"/> for <see cref="MassUnit.Hectogram"/>
+            /// </summary>
+            public UnitInfo<MassUnit> Hectogram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassUnit}"/> for <see cref="MassUnit.Kilogram"/>
+            /// </summary>
+            public UnitInfo<MassUnit> Kilogram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassUnit}"/> for <see cref="MassUnit.Kilopound"/>
+            /// </summary>
+            public UnitInfo<MassUnit> Kilopound { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassUnit}"/> for <see cref="MassUnit.Kilotonne"/>
+            /// </summary>
+            public UnitInfo<MassUnit> Kilotonne { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassUnit}"/> for <see cref="MassUnit.LongHundredweight"/>
+            /// </summary>
+            public UnitInfo<MassUnit> LongHundredweight { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassUnit}"/> for <see cref="MassUnit.LongTon"/>
+            /// </summary>
+            public UnitInfo<MassUnit> LongTon { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassUnit}"/> for <see cref="MassUnit.Megapound"/>
+            /// </summary>
+            public UnitInfo<MassUnit> Megapound { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassUnit}"/> for <see cref="MassUnit.Megatonne"/>
+            /// </summary>
+            public UnitInfo<MassUnit> Megatonne { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassUnit}"/> for <see cref="MassUnit.Microgram"/>
+            /// </summary>
+            public UnitInfo<MassUnit> Microgram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassUnit}"/> for <see cref="MassUnit.Milligram"/>
+            /// </summary>
+            public UnitInfo<MassUnit> Milligram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassUnit}"/> for <see cref="MassUnit.Nanogram"/>
+            /// </summary>
+            public UnitInfo<MassUnit> Nanogram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassUnit}"/> for <see cref="MassUnit.Ounce"/>
+            /// </summary>
+            public UnitInfo<MassUnit> Ounce { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassUnit}"/> for <see cref="MassUnit.Pound"/>
+            /// </summary>
+            public UnitInfo<MassUnit> Pound { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassUnit}"/> for <see cref="MassUnit.ShortHundredweight"/>
+            /// </summary>
+            public UnitInfo<MassUnit> ShortHundredweight { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassUnit}"/> for <see cref="MassUnit.ShortTon"/>
+            /// </summary>
+            public UnitInfo<MassUnit> ShortTon { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassUnit}"/> for <see cref="MassUnit.Slug"/>
+            /// </summary>
+            public UnitInfo<MassUnit> Slug { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassUnit}"/> for <see cref="MassUnit.SolarMass"/>
+            /// </summary>
+            public UnitInfo<MassUnit> SolarMass { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassUnit}"/> for <see cref="MassUnit.Stone"/>
+            /// </summary>
+            public UnitInfo<MassUnit> Stone { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassUnit}"/> for <see cref="MassUnit.Tonne"/>
+            /// </summary>
+            public UnitInfo<MassUnit> Tonne { get; }
+
+        }
     }
 }

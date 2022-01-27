@@ -53,15 +53,6 @@ namespace UnitsNet
         static ReactivePower()
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<ReactivePowerUnit>("ReactivePower",
-                new UnitInfo<ReactivePowerUnit>[] {
-                    new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.GigavoltampereReactive, "GigavoltamperesReactive", BaseUnits.Undefined),
-                    new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.KilovoltampereReactive, "KilovoltamperesReactive", BaseUnits.Undefined),
-                    new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.MegavoltampereReactive, "MegavoltamperesReactive", BaseUnits.Undefined),
-                    new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.VoltampereReactive, "VoltamperesReactive", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ReactivePower);
         }
 
         /// <summary>
@@ -101,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ReactivePowerUnit> Info { get; }
+        public static ReactivePower.ReactivePowerQuantityInfo Info { get; } = new ReactivePower.ReactivePowerQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -929,5 +920,43 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class ReactivePowerQuantityInfo : QuantityInfo<ReactivePowerUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal ReactivePowerQuantityInfo() :
+                base("ReactivePower", ReactivePower.BaseUnit, ReactivePower.Zero, ReactivePower.BaseDimensions, QuantityType.ReactivePower)
+            {
+                GigavoltampereReactive = new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.GigavoltampereReactive, "GigavoltamperesReactive", BaseUnits.Undefined);
+                KilovoltampereReactive = new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.KilovoltampereReactive, "KilovoltamperesReactive", BaseUnits.Undefined);
+                MegavoltampereReactive = new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.MegavoltampereReactive, "MegavoltamperesReactive", BaseUnits.Undefined);
+                VoltampereReactive = new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.VoltampereReactive, "VoltamperesReactive", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ReactivePowerUnit}"/> for <see cref="ReactivePowerUnit.GigavoltampereReactive"/>
+            /// </summary>
+            public UnitInfo<ReactivePowerUnit> GigavoltampereReactive { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ReactivePowerUnit}"/> for <see cref="ReactivePowerUnit.KilovoltampereReactive"/>
+            /// </summary>
+            public UnitInfo<ReactivePowerUnit> KilovoltampereReactive { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ReactivePowerUnit}"/> for <see cref="ReactivePowerUnit.MegavoltampereReactive"/>
+            /// </summary>
+            public UnitInfo<ReactivePowerUnit> MegavoltampereReactive { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ReactivePowerUnit}"/> for <see cref="ReactivePowerUnit.VoltampereReactive"/>
+            /// </summary>
+            public UnitInfo<ReactivePowerUnit> VoltampereReactive { get; }
+
+        }
     }
 }

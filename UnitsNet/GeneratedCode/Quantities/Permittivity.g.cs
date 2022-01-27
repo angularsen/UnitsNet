@@ -56,12 +56,6 @@ namespace UnitsNet
         static Permittivity()
         {
             BaseDimensions = new BaseDimensions(-3, -1, 4, 2, 0, 0, 0);
-
-            Info = new QuantityInfo<PermittivityUnit>("Permittivity",
-                new UnitInfo<PermittivityUnit>[] {
-                    new UnitInfo<PermittivityUnit>(PermittivityUnit.FaradPerMeter, "FaradsPerMeter", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Permittivity);
         }
 
         /// <summary>
@@ -101,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<PermittivityUnit> Info { get; }
+        public static Permittivity.PermittivityQuantityInfo Info { get; } = new Permittivity.PermittivityQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -875,5 +869,25 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class PermittivityQuantityInfo : QuantityInfo<PermittivityUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal PermittivityQuantityInfo() :
+                base("Permittivity", Permittivity.BaseUnit, Permittivity.Zero, Permittivity.BaseDimensions, QuantityType.Permittivity)
+            {
+                FaradPerMeter = new UnitInfo<PermittivityUnit>(PermittivityUnit.FaradPerMeter, "FaradsPerMeter", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PermittivityUnit}"/> for <see cref="PermittivityUnit.FaradPerMeter"/>
+            /// </summary>
+            public UnitInfo<PermittivityUnit> FaradPerMeter { get; }
+
+        }
     }
 }

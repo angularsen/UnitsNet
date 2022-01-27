@@ -53,14 +53,6 @@ namespace UnitsNet
         static MolarEntropy()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, -1, -1, 0);
-
-            Info = new QuantityInfo<MolarEntropyUnit>("MolarEntropy",
-                new UnitInfo<MolarEntropyUnit>[] {
-                    new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.JoulePerMoleKelvin, "JoulesPerMoleKelvin", BaseUnits.Undefined),
-                    new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.KilojoulePerMoleKelvin, "KilojoulesPerMoleKelvin", BaseUnits.Undefined),
-                    new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.MegajoulePerMoleKelvin, "MegajoulesPerMoleKelvin", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.MolarEntropy);
         }
 
         /// <summary>
@@ -100,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<MolarEntropyUnit> Info { get; }
+        public static MolarEntropy.MolarEntropyQuantityInfo Info { get; } = new MolarEntropy.MolarEntropyQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -910,5 +902,37 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class MolarEntropyQuantityInfo : QuantityInfo<MolarEntropyUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal MolarEntropyQuantityInfo() :
+                base("MolarEntropy", MolarEntropy.BaseUnit, MolarEntropy.Zero, MolarEntropy.BaseDimensions, QuantityType.MolarEntropy)
+            {
+                JoulePerMoleKelvin = new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.JoulePerMoleKelvin, "JoulesPerMoleKelvin", BaseUnits.Undefined);
+                KilojoulePerMoleKelvin = new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.KilojoulePerMoleKelvin, "KilojoulesPerMoleKelvin", BaseUnits.Undefined);
+                MegajoulePerMoleKelvin = new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.MegajoulePerMoleKelvin, "MegajoulesPerMoleKelvin", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MolarEntropyUnit}"/> for <see cref="MolarEntropyUnit.JoulePerMoleKelvin"/>
+            /// </summary>
+            public UnitInfo<MolarEntropyUnit> JoulePerMoleKelvin { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MolarEntropyUnit}"/> for <see cref="MolarEntropyUnit.KilojoulePerMoleKelvin"/>
+            /// </summary>
+            public UnitInfo<MolarEntropyUnit> KilojoulePerMoleKelvin { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MolarEntropyUnit}"/> for <see cref="MolarEntropyUnit.MegajoulePerMoleKelvin"/>
+            /// </summary>
+            public UnitInfo<MolarEntropyUnit> MegajoulePerMoleKelvin { get; }
+
+        }
     }
 }

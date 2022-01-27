@@ -53,39 +53,6 @@ namespace UnitsNet
         static MassMomentOfInertia()
         {
             BaseDimensions = new BaseDimensions(2, 1, 0, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<MassMomentOfInertiaUnit>("MassMomentOfInertia",
-                new UnitInfo<MassMomentOfInertiaUnit>[] {
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareCentimeter, "GramSquareCentimeters", BaseUnits.Undefined),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareDecimeter, "GramSquareDecimeters", BaseUnits.Undefined),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareMeter, "GramSquareMeters", BaseUnits.Undefined),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareMillimeter, "GramSquareMillimeters", BaseUnits.Undefined),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilogramSquareCentimeter, "KilogramSquareCentimeters", BaseUnits.Undefined),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilogramSquareDecimeter, "KilogramSquareDecimeters", BaseUnits.Undefined),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilogramSquareMeter, "KilogramSquareMeters", BaseUnits.Undefined),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilogramSquareMillimeter, "KilogramSquareMillimeters", BaseUnits.Undefined),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilotonneSquareCentimeter, "KilotonneSquareCentimeters", BaseUnits.Undefined),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilotonneSquareDecimeter, "KilotonneSquareDecimeters", BaseUnits.Undefined),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilotonneSquareMeter, "KilotonneSquareMeters", BaseUnits.Undefined),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilotonneSquareMilimeter, "KilotonneSquareMilimeters", BaseUnits.Undefined),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MegatonneSquareCentimeter, "MegatonneSquareCentimeters", BaseUnits.Undefined),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MegatonneSquareDecimeter, "MegatonneSquareDecimeters", BaseUnits.Undefined),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MegatonneSquareMeter, "MegatonneSquareMeters", BaseUnits.Undefined),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MegatonneSquareMilimeter, "MegatonneSquareMilimeters", BaseUnits.Undefined),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MilligramSquareCentimeter, "MilligramSquareCentimeters", BaseUnits.Undefined),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MilligramSquareDecimeter, "MilligramSquareDecimeters", BaseUnits.Undefined),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MilligramSquareMeter, "MilligramSquareMeters", BaseUnits.Undefined),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MilligramSquareMillimeter, "MilligramSquareMillimeters", BaseUnits.Undefined),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.PoundSquareFoot, "PoundSquareFeet", BaseUnits.Undefined),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.PoundSquareInch, "PoundSquareInches", BaseUnits.Undefined),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.SlugSquareFoot, "SlugSquareFeet", BaseUnits.Undefined),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.SlugSquareInch, "SlugSquareInches", BaseUnits.Undefined),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareCentimeter, "TonneSquareCentimeters", BaseUnits.Undefined),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareDecimeter, "TonneSquareDecimeters", BaseUnits.Undefined),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareMeter, "TonneSquareMeters", BaseUnits.Undefined),
-                    new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareMilimeter, "TonneSquareMilimeters", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.MassMomentOfInertia);
         }
 
         /// <summary>
@@ -125,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<MassMomentOfInertiaUnit> Info { get; }
+        public static MassMomentOfInertia.MassMomentOfInertiaQuantityInfo Info { get; } = new MassMomentOfInertia.MassMomentOfInertiaQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1385,5 +1352,187 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class MassMomentOfInertiaQuantityInfo : QuantityInfo<MassMomentOfInertiaUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal MassMomentOfInertiaQuantityInfo() :
+                base("MassMomentOfInertia", MassMomentOfInertia.BaseUnit, MassMomentOfInertia.Zero, MassMomentOfInertia.BaseDimensions, QuantityType.MassMomentOfInertia)
+            {
+                GramSquareCentimeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareCentimeter, "GramSquareCentimeters", BaseUnits.Undefined);
+                GramSquareDecimeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareDecimeter, "GramSquareDecimeters", BaseUnits.Undefined);
+                GramSquareMeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareMeter, "GramSquareMeters", BaseUnits.Undefined);
+                GramSquareMillimeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareMillimeter, "GramSquareMillimeters", BaseUnits.Undefined);
+                KilogramSquareCentimeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilogramSquareCentimeter, "KilogramSquareCentimeters", BaseUnits.Undefined);
+                KilogramSquareDecimeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilogramSquareDecimeter, "KilogramSquareDecimeters", BaseUnits.Undefined);
+                KilogramSquareMeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilogramSquareMeter, "KilogramSquareMeters", BaseUnits.Undefined);
+                KilogramSquareMillimeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilogramSquareMillimeter, "KilogramSquareMillimeters", BaseUnits.Undefined);
+                KilotonneSquareCentimeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilotonneSquareCentimeter, "KilotonneSquareCentimeters", BaseUnits.Undefined);
+                KilotonneSquareDecimeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilotonneSquareDecimeter, "KilotonneSquareDecimeters", BaseUnits.Undefined);
+                KilotonneSquareMeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilotonneSquareMeter, "KilotonneSquareMeters", BaseUnits.Undefined);
+                KilotonneSquareMilimeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilotonneSquareMilimeter, "KilotonneSquareMilimeters", BaseUnits.Undefined);
+                MegatonneSquareCentimeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MegatonneSquareCentimeter, "MegatonneSquareCentimeters", BaseUnits.Undefined);
+                MegatonneSquareDecimeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MegatonneSquareDecimeter, "MegatonneSquareDecimeters", BaseUnits.Undefined);
+                MegatonneSquareMeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MegatonneSquareMeter, "MegatonneSquareMeters", BaseUnits.Undefined);
+                MegatonneSquareMilimeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MegatonneSquareMilimeter, "MegatonneSquareMilimeters", BaseUnits.Undefined);
+                MilligramSquareCentimeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MilligramSquareCentimeter, "MilligramSquareCentimeters", BaseUnits.Undefined);
+                MilligramSquareDecimeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MilligramSquareDecimeter, "MilligramSquareDecimeters", BaseUnits.Undefined);
+                MilligramSquareMeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MilligramSquareMeter, "MilligramSquareMeters", BaseUnits.Undefined);
+                MilligramSquareMillimeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MilligramSquareMillimeter, "MilligramSquareMillimeters", BaseUnits.Undefined);
+                PoundSquareFoot = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.PoundSquareFoot, "PoundSquareFeet", BaseUnits.Undefined);
+                PoundSquareInch = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.PoundSquareInch, "PoundSquareInches", BaseUnits.Undefined);
+                SlugSquareFoot = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.SlugSquareFoot, "SlugSquareFeet", BaseUnits.Undefined);
+                SlugSquareInch = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.SlugSquareInch, "SlugSquareInches", BaseUnits.Undefined);
+                TonneSquareCentimeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareCentimeter, "TonneSquareCentimeters", BaseUnits.Undefined);
+                TonneSquareDecimeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareDecimeter, "TonneSquareDecimeters", BaseUnits.Undefined);
+                TonneSquareMeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareMeter, "TonneSquareMeters", BaseUnits.Undefined);
+                TonneSquareMilimeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareMilimeter, "TonneSquareMilimeters", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassMomentOfInertiaUnit}"/> for <see cref="MassMomentOfInertiaUnit.GramSquareCentimeter"/>
+            /// </summary>
+            public UnitInfo<MassMomentOfInertiaUnit> GramSquareCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassMomentOfInertiaUnit}"/> for <see cref="MassMomentOfInertiaUnit.GramSquareDecimeter"/>
+            /// </summary>
+            public UnitInfo<MassMomentOfInertiaUnit> GramSquareDecimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassMomentOfInertiaUnit}"/> for <see cref="MassMomentOfInertiaUnit.GramSquareMeter"/>
+            /// </summary>
+            public UnitInfo<MassMomentOfInertiaUnit> GramSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassMomentOfInertiaUnit}"/> for <see cref="MassMomentOfInertiaUnit.GramSquareMillimeter"/>
+            /// </summary>
+            public UnitInfo<MassMomentOfInertiaUnit> GramSquareMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassMomentOfInertiaUnit}"/> for <see cref="MassMomentOfInertiaUnit.KilogramSquareCentimeter"/>
+            /// </summary>
+            public UnitInfo<MassMomentOfInertiaUnit> KilogramSquareCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassMomentOfInertiaUnit}"/> for <see cref="MassMomentOfInertiaUnit.KilogramSquareDecimeter"/>
+            /// </summary>
+            public UnitInfo<MassMomentOfInertiaUnit> KilogramSquareDecimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassMomentOfInertiaUnit}"/> for <see cref="MassMomentOfInertiaUnit.KilogramSquareMeter"/>
+            /// </summary>
+            public UnitInfo<MassMomentOfInertiaUnit> KilogramSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassMomentOfInertiaUnit}"/> for <see cref="MassMomentOfInertiaUnit.KilogramSquareMillimeter"/>
+            /// </summary>
+            public UnitInfo<MassMomentOfInertiaUnit> KilogramSquareMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassMomentOfInertiaUnit}"/> for <see cref="MassMomentOfInertiaUnit.KilotonneSquareCentimeter"/>
+            /// </summary>
+            public UnitInfo<MassMomentOfInertiaUnit> KilotonneSquareCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassMomentOfInertiaUnit}"/> for <see cref="MassMomentOfInertiaUnit.KilotonneSquareDecimeter"/>
+            /// </summary>
+            public UnitInfo<MassMomentOfInertiaUnit> KilotonneSquareDecimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassMomentOfInertiaUnit}"/> for <see cref="MassMomentOfInertiaUnit.KilotonneSquareMeter"/>
+            /// </summary>
+            public UnitInfo<MassMomentOfInertiaUnit> KilotonneSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassMomentOfInertiaUnit}"/> for <see cref="MassMomentOfInertiaUnit.KilotonneSquareMilimeter"/>
+            /// </summary>
+            public UnitInfo<MassMomentOfInertiaUnit> KilotonneSquareMilimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassMomentOfInertiaUnit}"/> for <see cref="MassMomentOfInertiaUnit.MegatonneSquareCentimeter"/>
+            /// </summary>
+            public UnitInfo<MassMomentOfInertiaUnit> MegatonneSquareCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassMomentOfInertiaUnit}"/> for <see cref="MassMomentOfInertiaUnit.MegatonneSquareDecimeter"/>
+            /// </summary>
+            public UnitInfo<MassMomentOfInertiaUnit> MegatonneSquareDecimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassMomentOfInertiaUnit}"/> for <see cref="MassMomentOfInertiaUnit.MegatonneSquareMeter"/>
+            /// </summary>
+            public UnitInfo<MassMomentOfInertiaUnit> MegatonneSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassMomentOfInertiaUnit}"/> for <see cref="MassMomentOfInertiaUnit.MegatonneSquareMilimeter"/>
+            /// </summary>
+            public UnitInfo<MassMomentOfInertiaUnit> MegatonneSquareMilimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassMomentOfInertiaUnit}"/> for <see cref="MassMomentOfInertiaUnit.MilligramSquareCentimeter"/>
+            /// </summary>
+            public UnitInfo<MassMomentOfInertiaUnit> MilligramSquareCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassMomentOfInertiaUnit}"/> for <see cref="MassMomentOfInertiaUnit.MilligramSquareDecimeter"/>
+            /// </summary>
+            public UnitInfo<MassMomentOfInertiaUnit> MilligramSquareDecimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassMomentOfInertiaUnit}"/> for <see cref="MassMomentOfInertiaUnit.MilligramSquareMeter"/>
+            /// </summary>
+            public UnitInfo<MassMomentOfInertiaUnit> MilligramSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassMomentOfInertiaUnit}"/> for <see cref="MassMomentOfInertiaUnit.MilligramSquareMillimeter"/>
+            /// </summary>
+            public UnitInfo<MassMomentOfInertiaUnit> MilligramSquareMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassMomentOfInertiaUnit}"/> for <see cref="MassMomentOfInertiaUnit.PoundSquareFoot"/>
+            /// </summary>
+            public UnitInfo<MassMomentOfInertiaUnit> PoundSquareFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassMomentOfInertiaUnit}"/> for <see cref="MassMomentOfInertiaUnit.PoundSquareInch"/>
+            /// </summary>
+            public UnitInfo<MassMomentOfInertiaUnit> PoundSquareInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassMomentOfInertiaUnit}"/> for <see cref="MassMomentOfInertiaUnit.SlugSquareFoot"/>
+            /// </summary>
+            public UnitInfo<MassMomentOfInertiaUnit> SlugSquareFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassMomentOfInertiaUnit}"/> for <see cref="MassMomentOfInertiaUnit.SlugSquareInch"/>
+            /// </summary>
+            public UnitInfo<MassMomentOfInertiaUnit> SlugSquareInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassMomentOfInertiaUnit}"/> for <see cref="MassMomentOfInertiaUnit.TonneSquareCentimeter"/>
+            /// </summary>
+            public UnitInfo<MassMomentOfInertiaUnit> TonneSquareCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassMomentOfInertiaUnit}"/> for <see cref="MassMomentOfInertiaUnit.TonneSquareDecimeter"/>
+            /// </summary>
+            public UnitInfo<MassMomentOfInertiaUnit> TonneSquareDecimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassMomentOfInertiaUnit}"/> for <see cref="MassMomentOfInertiaUnit.TonneSquareMeter"/>
+            /// </summary>
+            public UnitInfo<MassMomentOfInertiaUnit> TonneSquareMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MassMomentOfInertiaUnit}"/> for <see cref="MassMomentOfInertiaUnit.TonneSquareMilimeter"/>
+            /// </summary>
+            public UnitInfo<MassMomentOfInertiaUnit> TonneSquareMilimeter { get; }
+
+        }
     }
 }

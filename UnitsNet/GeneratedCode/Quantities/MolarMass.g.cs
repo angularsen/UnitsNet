@@ -53,23 +53,6 @@ namespace UnitsNet
         static MolarMass()
         {
             BaseDimensions = new BaseDimensions(0, 1, 0, 0, 0, -1, 0);
-
-            Info = new QuantityInfo<MolarMassUnit>("MolarMass",
-                new UnitInfo<MolarMassUnit>[] {
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.CentigramPerMole, "CentigramsPerMole", BaseUnits.Undefined),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.DecagramPerMole, "DecagramsPerMole", BaseUnits.Undefined),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.DecigramPerMole, "DecigramsPerMole", BaseUnits.Undefined),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.GramPerMole, "GramsPerMole", BaseUnits.Undefined),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.HectogramPerMole, "HectogramsPerMole", BaseUnits.Undefined),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.KilogramPerMole, "KilogramsPerMole", BaseUnits.Undefined),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.KilopoundPerMole, "KilopoundsPerMole", BaseUnits.Undefined),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.MegapoundPerMole, "MegapoundsPerMole", BaseUnits.Undefined),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.MicrogramPerMole, "MicrogramsPerMole", BaseUnits.Undefined),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.MilligramPerMole, "MilligramsPerMole", BaseUnits.Undefined),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.NanogramPerMole, "NanogramsPerMole", BaseUnits.Undefined),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.PoundPerMole, "PoundsPerMole", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.MolarMass);
         }
 
         /// <summary>
@@ -109,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<MolarMassUnit> Info { get; }
+        public static MolarMass.MolarMassQuantityInfo Info { get; } = new MolarMass.MolarMassQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1081,5 +1064,91 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class MolarMassQuantityInfo : QuantityInfo<MolarMassUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal MolarMassQuantityInfo() :
+                base("MolarMass", MolarMass.BaseUnit, MolarMass.Zero, MolarMass.BaseDimensions, QuantityType.MolarMass)
+            {
+                CentigramPerMole = new UnitInfo<MolarMassUnit>(MolarMassUnit.CentigramPerMole, "CentigramsPerMole", BaseUnits.Undefined);
+                DecagramPerMole = new UnitInfo<MolarMassUnit>(MolarMassUnit.DecagramPerMole, "DecagramsPerMole", BaseUnits.Undefined);
+                DecigramPerMole = new UnitInfo<MolarMassUnit>(MolarMassUnit.DecigramPerMole, "DecigramsPerMole", BaseUnits.Undefined);
+                GramPerMole = new UnitInfo<MolarMassUnit>(MolarMassUnit.GramPerMole, "GramsPerMole", BaseUnits.Undefined);
+                HectogramPerMole = new UnitInfo<MolarMassUnit>(MolarMassUnit.HectogramPerMole, "HectogramsPerMole", BaseUnits.Undefined);
+                KilogramPerMole = new UnitInfo<MolarMassUnit>(MolarMassUnit.KilogramPerMole, "KilogramsPerMole", BaseUnits.Undefined);
+                KilopoundPerMole = new UnitInfo<MolarMassUnit>(MolarMassUnit.KilopoundPerMole, "KilopoundsPerMole", BaseUnits.Undefined);
+                MegapoundPerMole = new UnitInfo<MolarMassUnit>(MolarMassUnit.MegapoundPerMole, "MegapoundsPerMole", BaseUnits.Undefined);
+                MicrogramPerMole = new UnitInfo<MolarMassUnit>(MolarMassUnit.MicrogramPerMole, "MicrogramsPerMole", BaseUnits.Undefined);
+                MilligramPerMole = new UnitInfo<MolarMassUnit>(MolarMassUnit.MilligramPerMole, "MilligramsPerMole", BaseUnits.Undefined);
+                NanogramPerMole = new UnitInfo<MolarMassUnit>(MolarMassUnit.NanogramPerMole, "NanogramsPerMole", BaseUnits.Undefined);
+                PoundPerMole = new UnitInfo<MolarMassUnit>(MolarMassUnit.PoundPerMole, "PoundsPerMole", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MolarMassUnit}"/> for <see cref="MolarMassUnit.CentigramPerMole"/>
+            /// </summary>
+            public UnitInfo<MolarMassUnit> CentigramPerMole { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MolarMassUnit}"/> for <see cref="MolarMassUnit.DecagramPerMole"/>
+            /// </summary>
+            public UnitInfo<MolarMassUnit> DecagramPerMole { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MolarMassUnit}"/> for <see cref="MolarMassUnit.DecigramPerMole"/>
+            /// </summary>
+            public UnitInfo<MolarMassUnit> DecigramPerMole { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MolarMassUnit}"/> for <see cref="MolarMassUnit.GramPerMole"/>
+            /// </summary>
+            public UnitInfo<MolarMassUnit> GramPerMole { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MolarMassUnit}"/> for <see cref="MolarMassUnit.HectogramPerMole"/>
+            /// </summary>
+            public UnitInfo<MolarMassUnit> HectogramPerMole { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MolarMassUnit}"/> for <see cref="MolarMassUnit.KilogramPerMole"/>
+            /// </summary>
+            public UnitInfo<MolarMassUnit> KilogramPerMole { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MolarMassUnit}"/> for <see cref="MolarMassUnit.KilopoundPerMole"/>
+            /// </summary>
+            public UnitInfo<MolarMassUnit> KilopoundPerMole { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MolarMassUnit}"/> for <see cref="MolarMassUnit.MegapoundPerMole"/>
+            /// </summary>
+            public UnitInfo<MolarMassUnit> MegapoundPerMole { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MolarMassUnit}"/> for <see cref="MolarMassUnit.MicrogramPerMole"/>
+            /// </summary>
+            public UnitInfo<MolarMassUnit> MicrogramPerMole { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MolarMassUnit}"/> for <see cref="MolarMassUnit.MilligramPerMole"/>
+            /// </summary>
+            public UnitInfo<MolarMassUnit> MilligramPerMole { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MolarMassUnit}"/> for <see cref="MolarMassUnit.NanogramPerMole"/>
+            /// </summary>
+            public UnitInfo<MolarMassUnit> NanogramPerMole { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MolarMassUnit}"/> for <see cref="MolarMassUnit.PoundPerMole"/>
+            /// </summary>
+            public UnitInfo<MolarMassUnit> PoundPerMole { get; }
+
+        }
     }
 }

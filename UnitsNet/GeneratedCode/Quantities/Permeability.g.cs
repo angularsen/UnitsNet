@@ -56,12 +56,6 @@ namespace UnitsNet
         static Permeability()
         {
             BaseDimensions = new BaseDimensions(1, 1, -2, -2, 0, 0, 0);
-
-            Info = new QuantityInfo<PermeabilityUnit>("Permeability",
-                new UnitInfo<PermeabilityUnit>[] {
-                    new UnitInfo<PermeabilityUnit>(PermeabilityUnit.HenryPerMeter, "HenriesPerMeter", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Permeability);
         }
 
         /// <summary>
@@ -101,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<PermeabilityUnit> Info { get; }
+        public static Permeability.PermeabilityQuantityInfo Info { get; } = new Permeability.PermeabilityQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -875,5 +869,25 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class PermeabilityQuantityInfo : QuantityInfo<PermeabilityUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal PermeabilityQuantityInfo() :
+                base("Permeability", Permeability.BaseUnit, Permeability.Zero, Permeability.BaseDimensions, QuantityType.Permeability)
+            {
+                HenryPerMeter = new UnitInfo<PermeabilityUnit>(PermeabilityUnit.HenryPerMeter, "HenriesPerMeter", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PermeabilityUnit}"/> for <see cref="PermeabilityUnit.HenryPerMeter"/>
+            /// </summary>
+            public UnitInfo<PermeabilityUnit> HenryPerMeter { get; }
+
+        }
     }
 }

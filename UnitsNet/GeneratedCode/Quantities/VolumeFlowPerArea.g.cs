@@ -53,13 +53,6 @@ namespace UnitsNet
         static VolumeFlowPerArea()
         {
             BaseDimensions = new BaseDimensions(1, 0, -1, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<VolumeFlowPerAreaUnit>("VolumeFlowPerArea",
-                new UnitInfo<VolumeFlowPerAreaUnit>[] {
-                    new UnitInfo<VolumeFlowPerAreaUnit>(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, "CubicFeetPerMinutePerSquareFoot", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Minute)),
-                    new UnitInfo<VolumeFlowPerAreaUnit>(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, "CubicMetersPerSecondPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second)),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.VolumeFlowPerArea);
         }
 
         /// <summary>
@@ -99,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<VolumeFlowPerAreaUnit> Info { get; }
+        public static VolumeFlowPerArea.VolumeFlowPerAreaQuantityInfo Info { get; } = new VolumeFlowPerArea.VolumeFlowPerAreaQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -891,5 +884,31 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class VolumeFlowPerAreaQuantityInfo : QuantityInfo<VolumeFlowPerAreaUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal VolumeFlowPerAreaQuantityInfo() :
+                base("VolumeFlowPerArea", VolumeFlowPerArea.BaseUnit, VolumeFlowPerArea.Zero, VolumeFlowPerArea.BaseDimensions, QuantityType.VolumeFlowPerArea)
+            {
+                CubicFootPerMinutePerSquareFoot = new UnitInfo<VolumeFlowPerAreaUnit>(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, "CubicFeetPerMinutePerSquareFoot", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Minute));
+                CubicMeterPerSecondPerSquareMeter = new UnitInfo<VolumeFlowPerAreaUnit>(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, "CubicMetersPerSecondPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VolumeFlowPerAreaUnit}"/> for <see cref="VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot"/>
+            /// </summary>
+            public UnitInfo<VolumeFlowPerAreaUnit> CubicFootPerMinutePerSquareFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VolumeFlowPerAreaUnit}"/> for <see cref="VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<VolumeFlowPerAreaUnit> CubicMeterPerSecondPerSquareMeter { get; }
+
+        }
     }
 }

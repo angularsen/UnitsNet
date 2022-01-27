@@ -56,25 +56,6 @@ namespace UnitsNet
         static ElectricResistivity()
         {
             BaseDimensions = new BaseDimensions(3, 1, -3, -2, 0, 0, 0);
-
-            Info = new QuantityInfo<ElectricResistivityUnit>("ElectricResistivity",
-                new UnitInfo<ElectricResistivityUnit>[] {
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.KiloohmCentimeter, "KiloohmsCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.KiloohmMeter, "KiloohmMeters", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MegaohmCentimeter, "MegaohmsCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MegaohmMeter, "MegaohmMeters", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MicroohmCentimeter, "MicroohmsCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MicroohmMeter, "MicroohmMeters", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MilliohmCentimeter, "MilliohmsCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MilliohmMeter, "MilliohmMeters", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.NanoohmCentimeter, "NanoohmsCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.NanoohmMeter, "NanoohmMeters", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.OhmCentimeter, "OhmsCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.OhmMeter, "OhmMeters", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.PicoohmCentimeter, "PicoohmsCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.PicoohmMeter, "PicoohmMeters", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricResistivity);
         }
 
         /// <summary>
@@ -114,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricResistivityUnit> Info { get; }
+        public static ElectricResistivity.ElectricResistivityQuantityInfo Info { get; } = new ElectricResistivity.ElectricResistivityQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1122,5 +1103,103 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class ElectricResistivityQuantityInfo : QuantityInfo<ElectricResistivityUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal ElectricResistivityQuantityInfo() :
+                base("ElectricResistivity", ElectricResistivity.BaseUnit, ElectricResistivity.Zero, ElectricResistivity.BaseDimensions, QuantityType.ElectricResistivity)
+            {
+                KiloohmCentimeter = new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.KiloohmCentimeter, "KiloohmsCentimeter", BaseUnits.Undefined);
+                KiloohmMeter = new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.KiloohmMeter, "KiloohmMeters", BaseUnits.Undefined);
+                MegaohmCentimeter = new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MegaohmCentimeter, "MegaohmsCentimeter", BaseUnits.Undefined);
+                MegaohmMeter = new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MegaohmMeter, "MegaohmMeters", BaseUnits.Undefined);
+                MicroohmCentimeter = new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MicroohmCentimeter, "MicroohmsCentimeter", BaseUnits.Undefined);
+                MicroohmMeter = new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MicroohmMeter, "MicroohmMeters", BaseUnits.Undefined);
+                MilliohmCentimeter = new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MilliohmCentimeter, "MilliohmsCentimeter", BaseUnits.Undefined);
+                MilliohmMeter = new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MilliohmMeter, "MilliohmMeters", BaseUnits.Undefined);
+                NanoohmCentimeter = new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.NanoohmCentimeter, "NanoohmsCentimeter", BaseUnits.Undefined);
+                NanoohmMeter = new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.NanoohmMeter, "NanoohmMeters", BaseUnits.Undefined);
+                OhmCentimeter = new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.OhmCentimeter, "OhmsCentimeter", BaseUnits.Undefined);
+                OhmMeter = new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.OhmMeter, "OhmMeters", BaseUnits.Undefined);
+                PicoohmCentimeter = new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.PicoohmCentimeter, "PicoohmsCentimeter", BaseUnits.Undefined);
+                PicoohmMeter = new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.PicoohmMeter, "PicoohmMeters", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricResistivityUnit}"/> for <see cref="ElectricResistivityUnit.KiloohmCentimeter"/>
+            /// </summary>
+            public UnitInfo<ElectricResistivityUnit> KiloohmCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricResistivityUnit}"/> for <see cref="ElectricResistivityUnit.KiloohmMeter"/>
+            /// </summary>
+            public UnitInfo<ElectricResistivityUnit> KiloohmMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricResistivityUnit}"/> for <see cref="ElectricResistivityUnit.MegaohmCentimeter"/>
+            /// </summary>
+            public UnitInfo<ElectricResistivityUnit> MegaohmCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricResistivityUnit}"/> for <see cref="ElectricResistivityUnit.MegaohmMeter"/>
+            /// </summary>
+            public UnitInfo<ElectricResistivityUnit> MegaohmMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricResistivityUnit}"/> for <see cref="ElectricResistivityUnit.MicroohmCentimeter"/>
+            /// </summary>
+            public UnitInfo<ElectricResistivityUnit> MicroohmCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricResistivityUnit}"/> for <see cref="ElectricResistivityUnit.MicroohmMeter"/>
+            /// </summary>
+            public UnitInfo<ElectricResistivityUnit> MicroohmMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricResistivityUnit}"/> for <see cref="ElectricResistivityUnit.MilliohmCentimeter"/>
+            /// </summary>
+            public UnitInfo<ElectricResistivityUnit> MilliohmCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricResistivityUnit}"/> for <see cref="ElectricResistivityUnit.MilliohmMeter"/>
+            /// </summary>
+            public UnitInfo<ElectricResistivityUnit> MilliohmMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricResistivityUnit}"/> for <see cref="ElectricResistivityUnit.NanoohmCentimeter"/>
+            /// </summary>
+            public UnitInfo<ElectricResistivityUnit> NanoohmCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricResistivityUnit}"/> for <see cref="ElectricResistivityUnit.NanoohmMeter"/>
+            /// </summary>
+            public UnitInfo<ElectricResistivityUnit> NanoohmMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricResistivityUnit}"/> for <see cref="ElectricResistivityUnit.OhmCentimeter"/>
+            /// </summary>
+            public UnitInfo<ElectricResistivityUnit> OhmCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricResistivityUnit}"/> for <see cref="ElectricResistivityUnit.OhmMeter"/>
+            /// </summary>
+            public UnitInfo<ElectricResistivityUnit> OhmMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricResistivityUnit}"/> for <see cref="ElectricResistivityUnit.PicoohmCentimeter"/>
+            /// </summary>
+            public UnitInfo<ElectricResistivityUnit> PicoohmCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricResistivityUnit}"/> for <see cref="ElectricResistivityUnit.PicoohmMeter"/>
+            /// </summary>
+            public UnitInfo<ElectricResistivityUnit> PicoohmMeter { get; }
+
+        }
     }
 }

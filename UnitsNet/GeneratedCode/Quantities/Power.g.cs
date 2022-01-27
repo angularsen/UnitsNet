@@ -53,36 +53,6 @@ namespace UnitsNet
         static Power()
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<PowerUnit>("Power",
-                new UnitInfo<PowerUnit>[] {
-                    new UnitInfo<PowerUnit>(PowerUnit.BoilerHorsepower, "BoilerHorsepower", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.BritishThermalUnitPerHour, "BritishThermalUnitsPerHour", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.Decawatt, "Decawatts", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.Deciwatt, "Deciwatts", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.ElectricalHorsepower, "ElectricalHorsepower", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.Femtowatt, "Femtowatts", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.GigajoulePerHour, "GigajoulesPerHour", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.Gigawatt, "Gigawatts", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.HydraulicHorsepower, "HydraulicHorsepower", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.JoulePerHour, "JoulesPerHour", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.KilobritishThermalUnitPerHour, "KilobritishThermalUnitsPerHour", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.KilojoulePerHour, "KilojoulesPerHour", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.Kilowatt, "Kilowatts", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.MechanicalHorsepower, "MechanicalHorsepower", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.MegajoulePerHour, "MegajoulesPerHour", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.Megawatt, "Megawatts", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.MetricHorsepower, "MetricHorsepower", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.Microwatt, "Microwatts", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.MillijoulePerHour, "MillijoulesPerHour", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.Milliwatt, "Milliwatts", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.Nanowatt, "Nanowatts", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.Petawatt, "Petawatts", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.Picowatt, "Picowatts", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.Terawatt, "Terawatts", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.Watt, "Watts", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Power);
         }
 
         /// <summary>
@@ -122,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<PowerUnit> Info { get; }
+        public static Power.PowerQuantityInfo Info { get; } = new Power.PowerQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1333,5 +1303,169 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class PowerQuantityInfo : QuantityInfo<PowerUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal PowerQuantityInfo() :
+                base("Power", Power.BaseUnit, Power.Zero, Power.BaseDimensions, QuantityType.Power)
+            {
+                BoilerHorsepower = new UnitInfo<PowerUnit>(PowerUnit.BoilerHorsepower, "BoilerHorsepower", BaseUnits.Undefined);
+                BritishThermalUnitPerHour = new UnitInfo<PowerUnit>(PowerUnit.BritishThermalUnitPerHour, "BritishThermalUnitsPerHour", BaseUnits.Undefined);
+                Decawatt = new UnitInfo<PowerUnit>(PowerUnit.Decawatt, "Decawatts", BaseUnits.Undefined);
+                Deciwatt = new UnitInfo<PowerUnit>(PowerUnit.Deciwatt, "Deciwatts", BaseUnits.Undefined);
+                ElectricalHorsepower = new UnitInfo<PowerUnit>(PowerUnit.ElectricalHorsepower, "ElectricalHorsepower", BaseUnits.Undefined);
+                Femtowatt = new UnitInfo<PowerUnit>(PowerUnit.Femtowatt, "Femtowatts", BaseUnits.Undefined);
+                GigajoulePerHour = new UnitInfo<PowerUnit>(PowerUnit.GigajoulePerHour, "GigajoulesPerHour", BaseUnits.Undefined);
+                Gigawatt = new UnitInfo<PowerUnit>(PowerUnit.Gigawatt, "Gigawatts", BaseUnits.Undefined);
+                HydraulicHorsepower = new UnitInfo<PowerUnit>(PowerUnit.HydraulicHorsepower, "HydraulicHorsepower", BaseUnits.Undefined);
+                JoulePerHour = new UnitInfo<PowerUnit>(PowerUnit.JoulePerHour, "JoulesPerHour", BaseUnits.Undefined);
+                KilobritishThermalUnitPerHour = new UnitInfo<PowerUnit>(PowerUnit.KilobritishThermalUnitPerHour, "KilobritishThermalUnitsPerHour", BaseUnits.Undefined);
+                KilojoulePerHour = new UnitInfo<PowerUnit>(PowerUnit.KilojoulePerHour, "KilojoulesPerHour", BaseUnits.Undefined);
+                Kilowatt = new UnitInfo<PowerUnit>(PowerUnit.Kilowatt, "Kilowatts", BaseUnits.Undefined);
+                MechanicalHorsepower = new UnitInfo<PowerUnit>(PowerUnit.MechanicalHorsepower, "MechanicalHorsepower", BaseUnits.Undefined);
+                MegajoulePerHour = new UnitInfo<PowerUnit>(PowerUnit.MegajoulePerHour, "MegajoulesPerHour", BaseUnits.Undefined);
+                Megawatt = new UnitInfo<PowerUnit>(PowerUnit.Megawatt, "Megawatts", BaseUnits.Undefined);
+                MetricHorsepower = new UnitInfo<PowerUnit>(PowerUnit.MetricHorsepower, "MetricHorsepower", BaseUnits.Undefined);
+                Microwatt = new UnitInfo<PowerUnit>(PowerUnit.Microwatt, "Microwatts", BaseUnits.Undefined);
+                MillijoulePerHour = new UnitInfo<PowerUnit>(PowerUnit.MillijoulePerHour, "MillijoulesPerHour", BaseUnits.Undefined);
+                Milliwatt = new UnitInfo<PowerUnit>(PowerUnit.Milliwatt, "Milliwatts", BaseUnits.Undefined);
+                Nanowatt = new UnitInfo<PowerUnit>(PowerUnit.Nanowatt, "Nanowatts", BaseUnits.Undefined);
+                Petawatt = new UnitInfo<PowerUnit>(PowerUnit.Petawatt, "Petawatts", BaseUnits.Undefined);
+                Picowatt = new UnitInfo<PowerUnit>(PowerUnit.Picowatt, "Picowatts", BaseUnits.Undefined);
+                Terawatt = new UnitInfo<PowerUnit>(PowerUnit.Terawatt, "Terawatts", BaseUnits.Undefined);
+                Watt = new UnitInfo<PowerUnit>(PowerUnit.Watt, "Watts", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerUnit}"/> for <see cref="PowerUnit.BoilerHorsepower"/>
+            /// </summary>
+            public UnitInfo<PowerUnit> BoilerHorsepower { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerUnit}"/> for <see cref="PowerUnit.BritishThermalUnitPerHour"/>
+            /// </summary>
+            public UnitInfo<PowerUnit> BritishThermalUnitPerHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerUnit}"/> for <see cref="PowerUnit.Decawatt"/>
+            /// </summary>
+            public UnitInfo<PowerUnit> Decawatt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerUnit}"/> for <see cref="PowerUnit.Deciwatt"/>
+            /// </summary>
+            public UnitInfo<PowerUnit> Deciwatt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerUnit}"/> for <see cref="PowerUnit.ElectricalHorsepower"/>
+            /// </summary>
+            public UnitInfo<PowerUnit> ElectricalHorsepower { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerUnit}"/> for <see cref="PowerUnit.Femtowatt"/>
+            /// </summary>
+            public UnitInfo<PowerUnit> Femtowatt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerUnit}"/> for <see cref="PowerUnit.GigajoulePerHour"/>
+            /// </summary>
+            public UnitInfo<PowerUnit> GigajoulePerHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerUnit}"/> for <see cref="PowerUnit.Gigawatt"/>
+            /// </summary>
+            public UnitInfo<PowerUnit> Gigawatt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerUnit}"/> for <see cref="PowerUnit.HydraulicHorsepower"/>
+            /// </summary>
+            public UnitInfo<PowerUnit> HydraulicHorsepower { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerUnit}"/> for <see cref="PowerUnit.JoulePerHour"/>
+            /// </summary>
+            public UnitInfo<PowerUnit> JoulePerHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerUnit}"/> for <see cref="PowerUnit.KilobritishThermalUnitPerHour"/>
+            /// </summary>
+            public UnitInfo<PowerUnit> KilobritishThermalUnitPerHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerUnit}"/> for <see cref="PowerUnit.KilojoulePerHour"/>
+            /// </summary>
+            public UnitInfo<PowerUnit> KilojoulePerHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerUnit}"/> for <see cref="PowerUnit.Kilowatt"/>
+            /// </summary>
+            public UnitInfo<PowerUnit> Kilowatt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerUnit}"/> for <see cref="PowerUnit.MechanicalHorsepower"/>
+            /// </summary>
+            public UnitInfo<PowerUnit> MechanicalHorsepower { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerUnit}"/> for <see cref="PowerUnit.MegajoulePerHour"/>
+            /// </summary>
+            public UnitInfo<PowerUnit> MegajoulePerHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerUnit}"/> for <see cref="PowerUnit.Megawatt"/>
+            /// </summary>
+            public UnitInfo<PowerUnit> Megawatt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerUnit}"/> for <see cref="PowerUnit.MetricHorsepower"/>
+            /// </summary>
+            public UnitInfo<PowerUnit> MetricHorsepower { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerUnit}"/> for <see cref="PowerUnit.Microwatt"/>
+            /// </summary>
+            public UnitInfo<PowerUnit> Microwatt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerUnit}"/> for <see cref="PowerUnit.MillijoulePerHour"/>
+            /// </summary>
+            public UnitInfo<PowerUnit> MillijoulePerHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerUnit}"/> for <see cref="PowerUnit.Milliwatt"/>
+            /// </summary>
+            public UnitInfo<PowerUnit> Milliwatt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerUnit}"/> for <see cref="PowerUnit.Nanowatt"/>
+            /// </summary>
+            public UnitInfo<PowerUnit> Nanowatt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerUnit}"/> for <see cref="PowerUnit.Petawatt"/>
+            /// </summary>
+            public UnitInfo<PowerUnit> Petawatt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerUnit}"/> for <see cref="PowerUnit.Picowatt"/>
+            /// </summary>
+            public UnitInfo<PowerUnit> Picowatt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerUnit}"/> for <see cref="PowerUnit.Terawatt"/>
+            /// </summary>
+            public UnitInfo<PowerUnit> Terawatt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{PowerUnit}"/> for <see cref="PowerUnit.Watt"/>
+            /// </summary>
+            public UnitInfo<PowerUnit> Watt { get; }
+
+        }
     }
 }

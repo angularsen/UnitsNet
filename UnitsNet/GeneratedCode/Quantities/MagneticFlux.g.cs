@@ -56,12 +56,6 @@ namespace UnitsNet
         static MagneticFlux()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, -1, 0, 0, 0);
-
-            Info = new QuantityInfo<MagneticFluxUnit>("MagneticFlux",
-                new UnitInfo<MagneticFluxUnit>[] {
-                    new UnitInfo<MagneticFluxUnit>(MagneticFluxUnit.Weber, "Webers", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.MagneticFlux);
         }
 
         /// <summary>
@@ -101,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<MagneticFluxUnit> Info { get; }
+        public static MagneticFlux.MagneticFluxQuantityInfo Info { get; } = new MagneticFlux.MagneticFluxQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -875,5 +869,25 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class MagneticFluxQuantityInfo : QuantityInfo<MagneticFluxUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal MagneticFluxQuantityInfo() :
+                base("MagneticFlux", MagneticFlux.BaseUnit, MagneticFlux.Zero, MagneticFlux.BaseDimensions, QuantityType.MagneticFlux)
+            {
+                Weber = new UnitInfo<MagneticFluxUnit>(MagneticFluxUnit.Weber, "Webers", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{MagneticFluxUnit}"/> for <see cref="MagneticFluxUnit.Weber"/>
+            /// </summary>
+            public UnitInfo<MagneticFluxUnit> Weber { get; }
+
+        }
     }
 }

@@ -106,6 +106,7 @@ namespace UnitsNet
             GenerateConversionMethods();
             GenerateToString();
             GenerateIConvertibleMethods();
+            GenerateQuantityInfoClass();
 
             Writer.WL($@"
     }}
@@ -124,45 +125,11 @@ namespace UnitsNet
             BaseDimensions = BaseDimensions.Dimensionless;
 "
                 : $@"
-            BaseDimensions = new BaseDimensions({baseDimensions.L}, {baseDimensions.M}, {baseDimensions.T}, {baseDimensions.I}, {baseDimensions.Θ}, {baseDimensions.N}, {baseDimensions.J});
-");
+            BaseDimensions = new BaseDimensions({baseDimensions.L}, {baseDimensions.M}, {baseDimensions.T}, {baseDimensions.I}, {baseDimensions.Θ}, {baseDimensions.N}, {baseDimensions.J});" );
 
-            Writer.WL($@"
-            Info = new QuantityInfo<{_unitEnumName}>(""{_quantity.Name}"",
-                new UnitInfo<{_unitEnumName}>[] {{");
-
-            foreach (var unit in _quantity.Units)
-            {
-                var baseUnits = unit.BaseUnits;
-                if (baseUnits == null)
-                {
-                    Writer.WL($@"
-                    new UnitInfo<{_unitEnumName}>({_unitEnumName}.{unit.SingularName}, ""{unit.PluralName}"", BaseUnits.Undefined),");
-                }
-                else
-                {
-                    var baseUnitsCtorArgs = string.Join(", ",
-                        new[]
-                        {
-                            baseUnits.L != null ? $"length: LengthUnit.{baseUnits.L}" : null,
-                            baseUnits.M != null ? $"mass: MassUnit.{baseUnits.M}" : null,
-                            baseUnits.T != null ? $"time: DurationUnit.{baseUnits.T}" : null,
-                            baseUnits.I != null ? $"current: ElectricCurrentUnit.{baseUnits.I}" : null,
-                            baseUnits.Θ != null ? $"temperature: TemperatureUnit.{baseUnits.Θ}" : null,
-                            baseUnits.N != null ? $"amount: AmountOfSubstanceUnit.{baseUnits.N}" : null,
-                            baseUnits.J != null ? $"luminousIntensity: LuminousIntensityUnit.{baseUnits.J}" : null
-                        }.Where(str => str != null));
-
-                    Writer.WL($@"
-                    new UnitInfo<{_unitEnumName}>({_unitEnumName}.{unit.SingularName}, ""{unit.PluralName}"", new BaseUnits({baseUnitsCtorArgs})),");
-                }
-            }
-
-            Writer.WL($@"
-                }},
-                BaseUnit, Zero, BaseDimensions, QuantityType.{_quantity.Name});
+            Writer.WL( $@"
         }}
-");
+" );
         }
 
         private void GenerateInstanceConstructors()
@@ -222,7 +189,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref=""IQuantity.QuantityInfo""/>
-        public static QuantityInfo<{_unitEnumName}> Info {{ get; }}
+        public static {_quantity.Name}.{_quantity.Name}QuantityInfo Info {{ get; }} = new {_quantity.Name}.{_quantity.Name}QuantityInfo();
 
         /// <summary>
         ///     The <see cref=""BaseDimensions"" /> of this quantity.
@@ -1185,7 +1152,68 @@ namespace UnitsNet
             return Convert.ToUInt64(_value);
         }}
 
-        #endregion");
+        #endregion
+");
+        }
+
+        private void GenerateQuantityInfoClass()
+        {
+            Writer.WL($@"
+        /// <summary>
+        /// </summary>
+        public sealed class {_quantity.Name}QuantityInfo : QuantityInfo<{_unitEnumName}>
+        {{
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal {_quantity.Name}QuantityInfo() :
+                base(""{_quantity.Name}"", {_quantity.Name}.BaseUnit, {_quantity.Name}.Zero, {_quantity.Name}.BaseDimensions, QuantityType.{_quantity.Name})
+            {{");
+
+        foreach( var unit in _quantity.Units )
+        {
+            var baseUnits = unit.BaseUnits;
+            if( baseUnits == null )
+            {
+                Writer.WL( $@"
+                {unit.SingularName} = new UnitInfo<{_unitEnumName}>({_unitEnumName}.{unit.SingularName}, ""{unit.PluralName}"", BaseUnits.Undefined);" );
+            }
+            else
+            {
+                var baseUnitsCtorArgs = string.Join( ", ",
+                    new[]
+                    {
+                        baseUnits.L != null ? $"length: LengthUnit.{baseUnits.L}" : null,
+                        baseUnits.M != null ? $"mass: MassUnit.{baseUnits.M}" : null,
+                        baseUnits.T != null ? $"time: DurationUnit.{baseUnits.T}" : null,
+                        baseUnits.I != null ? $"current: ElectricCurrentUnit.{baseUnits.I}" : null,
+                        baseUnits.Θ != null ? $"temperature: TemperatureUnit.{baseUnits.Θ}" : null,
+                        baseUnits.N != null ? $"amount: AmountOfSubstanceUnit.{baseUnits.N}" : null,
+                        baseUnits.J != null ? $"luminousIntensity: LuminousIntensityUnit.{baseUnits.J}" : null
+                    }.Where( str => str != null ) );
+
+                Writer.WL( $@"
+
+                {unit.SingularName} = new UnitInfo<{_unitEnumName}>({_unitEnumName}.{unit.SingularName}, ""{unit.PluralName}"", new BaseUnits({baseUnitsCtorArgs}));" );
+            }
+        }
+
+            Writer.WL( $@"
+            }}
+");
+
+    foreach( var unit in _quantity.Units )
+    {
+        Writer.WL( $@"
+            /// <summary>
+            ///     Gets the <see cref=""UnitInfo{{{_unitEnumName}}}""/> for <see cref=""{_unitEnumName}.{unit.SingularName}""/>
+            /// </summary>
+            public UnitInfo<{_unitEnumName}> {unit.SingularName} {{ get; }}
+" );
+    }
+
+            Writer.WL( $@"
+        }}" );
         }
 
         /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)"/>

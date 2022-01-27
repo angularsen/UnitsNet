@@ -53,14 +53,6 @@ namespace UnitsNet
         static SpecificVolume()
         {
             BaseDimensions = new BaseDimensions(3, -1, 0, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<SpecificVolumeUnit>("SpecificVolume",
-                new UnitInfo<SpecificVolumeUnit>[] {
-                    new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.CubicFootPerPound, "CubicFeetPerPound", BaseUnits.Undefined),
-                    new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.CubicMeterPerKilogram, "CubicMetersPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.MillicubicMeterPerKilogram, "MillicubicMetersPerKilogram", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.SpecificVolume);
         }
 
         /// <summary>
@@ -100,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<SpecificVolumeUnit> Info { get; }
+        public static SpecificVolume.SpecificVolumeQuantityInfo Info { get; } = new SpecificVolume.SpecificVolumeQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -910,5 +902,37 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class SpecificVolumeQuantityInfo : QuantityInfo<SpecificVolumeUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal SpecificVolumeQuantityInfo() :
+                base("SpecificVolume", SpecificVolume.BaseUnit, SpecificVolume.Zero, SpecificVolume.BaseDimensions, QuantityType.SpecificVolume)
+            {
+                CubicFootPerPound = new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.CubicFootPerPound, "CubicFeetPerPound", BaseUnits.Undefined);
+                CubicMeterPerKilogram = new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.CubicMeterPerKilogram, "CubicMetersPerKilogram", BaseUnits.Undefined);
+                MillicubicMeterPerKilogram = new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.MillicubicMeterPerKilogram, "MillicubicMetersPerKilogram", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificVolumeUnit}"/> for <see cref="SpecificVolumeUnit.CubicFootPerPound"/>
+            /// </summary>
+            public UnitInfo<SpecificVolumeUnit> CubicFootPerPound { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificVolumeUnit}"/> for <see cref="SpecificVolumeUnit.CubicMeterPerKilogram"/>
+            /// </summary>
+            public UnitInfo<SpecificVolumeUnit> CubicMeterPerKilogram { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificVolumeUnit}"/> for <see cref="SpecificVolumeUnit.MillicubicMeterPerKilogram"/>
+            /// </summary>
+            public UnitInfo<SpecificVolumeUnit> MillicubicMeterPerKilogram { get; }
+
+        }
     }
 }

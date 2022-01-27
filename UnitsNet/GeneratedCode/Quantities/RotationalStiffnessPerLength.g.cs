@@ -53,16 +53,6 @@ namespace UnitsNet
         static RotationalStiffnessPerLength()
         {
             BaseDimensions = new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<RotationalStiffnessPerLengthUnit>("RotationalStiffnessPerLength",
-                new UnitInfo<RotationalStiffnessPerLengthUnit>[] {
-                    new UnitInfo<RotationalStiffnessPerLengthUnit>(RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter, "KilonewtonMetersPerRadianPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<RotationalStiffnessPerLengthUnit>(RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot, "KilopoundForceFeetPerDegreesPerFeet", BaseUnits.Undefined),
-                    new UnitInfo<RotationalStiffnessPerLengthUnit>(RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter, "MeganewtonMetersPerRadianPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<RotationalStiffnessPerLengthUnit>(RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, "NewtonMetersPerRadianPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<RotationalStiffnessPerLengthUnit>(RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, "PoundForceFeetPerDegreesPerFeet", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.RotationalStiffnessPerLength);
         }
 
         /// <summary>
@@ -102,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<RotationalStiffnessPerLengthUnit> Info { get; }
+        public static RotationalStiffnessPerLength.RotationalStiffnessPerLengthQuantityInfo Info { get; } = new RotationalStiffnessPerLength.RotationalStiffnessPerLengthQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -948,5 +938,49 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class RotationalStiffnessPerLengthQuantityInfo : QuantityInfo<RotationalStiffnessPerLengthUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal RotationalStiffnessPerLengthQuantityInfo() :
+                base("RotationalStiffnessPerLength", RotationalStiffnessPerLength.BaseUnit, RotationalStiffnessPerLength.Zero, RotationalStiffnessPerLength.BaseDimensions, QuantityType.RotationalStiffnessPerLength)
+            {
+                KilonewtonMeterPerRadianPerMeter = new UnitInfo<RotationalStiffnessPerLengthUnit>(RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter, "KilonewtonMetersPerRadianPerMeter", BaseUnits.Undefined);
+                KilopoundForceFootPerDegreesPerFoot = new UnitInfo<RotationalStiffnessPerLengthUnit>(RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot, "KilopoundForceFeetPerDegreesPerFeet", BaseUnits.Undefined);
+                MeganewtonMeterPerRadianPerMeter = new UnitInfo<RotationalStiffnessPerLengthUnit>(RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter, "MeganewtonMetersPerRadianPerMeter", BaseUnits.Undefined);
+                NewtonMeterPerRadianPerMeter = new UnitInfo<RotationalStiffnessPerLengthUnit>(RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, "NewtonMetersPerRadianPerMeter", BaseUnits.Undefined);
+                PoundForceFootPerDegreesPerFoot = new UnitInfo<RotationalStiffnessPerLengthUnit>(RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, "PoundForceFeetPerDegreesPerFeet", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RotationalStiffnessPerLengthUnit}"/> for <see cref="RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter"/>
+            /// </summary>
+            public UnitInfo<RotationalStiffnessPerLengthUnit> KilonewtonMeterPerRadianPerMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RotationalStiffnessPerLengthUnit}"/> for <see cref="RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot"/>
+            /// </summary>
+            public UnitInfo<RotationalStiffnessPerLengthUnit> KilopoundForceFootPerDegreesPerFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RotationalStiffnessPerLengthUnit}"/> for <see cref="RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter"/>
+            /// </summary>
+            public UnitInfo<RotationalStiffnessPerLengthUnit> MeganewtonMeterPerRadianPerMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RotationalStiffnessPerLengthUnit}"/> for <see cref="RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter"/>
+            /// </summary>
+            public UnitInfo<RotationalStiffnessPerLengthUnit> NewtonMeterPerRadianPerMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{RotationalStiffnessPerLengthUnit}"/> for <see cref="RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot"/>
+            /// </summary>
+            public UnitInfo<RotationalStiffnessPerLengthUnit> PoundForceFootPerDegreesPerFoot { get; }
+
+        }
     }
 }

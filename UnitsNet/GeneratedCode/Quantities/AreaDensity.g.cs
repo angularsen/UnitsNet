@@ -53,12 +53,6 @@ namespace UnitsNet
         static AreaDensity()
         {
             BaseDimensions = new BaseDimensions(-2, 1, 0, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<AreaDensityUnit>("AreaDensity",
-                new UnitInfo<AreaDensityUnit>[] {
-                    new UnitInfo<AreaDensityUnit>(AreaDensityUnit.KilogramPerSquareMeter, "KilogramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram)),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.AreaDensity);
         }
 
         /// <summary>
@@ -98,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<AreaDensityUnit> Info { get; }
+        public static AreaDensity.AreaDensityQuantityInfo Info { get; } = new AreaDensity.AreaDensityQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -872,5 +866,25 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class AreaDensityQuantityInfo : QuantityInfo<AreaDensityUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal AreaDensityQuantityInfo() :
+                base("AreaDensity", AreaDensity.BaseUnit, AreaDensity.Zero, AreaDensity.BaseDimensions, QuantityType.AreaDensity)
+            {
+                KilogramPerSquareMeter = new UnitInfo<AreaDensityUnit>(AreaDensityUnit.KilogramPerSquareMeter, "KilogramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram));
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{AreaDensityUnit}"/> for <see cref="AreaDensityUnit.KilogramPerSquareMeter"/>
+            /// </summary>
+            public UnitInfo<AreaDensityUnit> KilogramPerSquareMeter { get; }
+
+        }
     }
 }

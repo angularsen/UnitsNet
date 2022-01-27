@@ -56,28 +56,6 @@ namespace UnitsNet
         static SpecificWeight()
         {
             BaseDimensions = new BaseDimensions(-2, 1, -2, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<SpecificWeightUnit>("SpecificWeight",
-                new UnitInfo<SpecificWeightUnit>[] {
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilogramForcePerCubicCentimeter, "KilogramsForcePerCubicCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilogramForcePerCubicMeter, "KilogramsForcePerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilogramForcePerCubicMillimeter, "KilogramsForcePerCubicMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilonewtonPerCubicCentimeter, "KilonewtonsPerCubicCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilonewtonPerCubicMeter, "KilonewtonsPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilonewtonPerCubicMillimeter, "KilonewtonsPerCubicMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilopoundForcePerCubicFoot, "KilopoundsForcePerCubicFoot", BaseUnits.Undefined),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilopoundForcePerCubicInch, "KilopoundsForcePerCubicInch", BaseUnits.Undefined),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.MeganewtonPerCubicMeter, "MeganewtonsPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.NewtonPerCubicCentimeter, "NewtonsPerCubicCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.NewtonPerCubicMeter, "NewtonsPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.NewtonPerCubicMillimeter, "NewtonsPerCubicMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.PoundForcePerCubicFoot, "PoundsForcePerCubicFoot", BaseUnits.Undefined),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.PoundForcePerCubicInch, "PoundsForcePerCubicInch", BaseUnits.Undefined),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.TonneForcePerCubicCentimeter, "TonnesForcePerCubicCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.TonneForcePerCubicMeter, "TonnesForcePerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.TonneForcePerCubicMillimeter, "TonnesForcePerCubicMillimeter", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.SpecificWeight);
         }
 
         /// <summary>
@@ -117,7 +95,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<SpecificWeightUnit> Info { get; }
+        public static SpecificWeight.SpecificWeightQuantityInfo Info { get; } = new SpecificWeight.SpecificWeightQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1179,5 +1157,121 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class SpecificWeightQuantityInfo : QuantityInfo<SpecificWeightUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal SpecificWeightQuantityInfo() :
+                base("SpecificWeight", SpecificWeight.BaseUnit, SpecificWeight.Zero, SpecificWeight.BaseDimensions, QuantityType.SpecificWeight)
+            {
+                KilogramForcePerCubicCentimeter = new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilogramForcePerCubicCentimeter, "KilogramsForcePerCubicCentimeter", BaseUnits.Undefined);
+                KilogramForcePerCubicMeter = new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilogramForcePerCubicMeter, "KilogramsForcePerCubicMeter", BaseUnits.Undefined);
+                KilogramForcePerCubicMillimeter = new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilogramForcePerCubicMillimeter, "KilogramsForcePerCubicMillimeter", BaseUnits.Undefined);
+                KilonewtonPerCubicCentimeter = new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilonewtonPerCubicCentimeter, "KilonewtonsPerCubicCentimeter", BaseUnits.Undefined);
+                KilonewtonPerCubicMeter = new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilonewtonPerCubicMeter, "KilonewtonsPerCubicMeter", BaseUnits.Undefined);
+                KilonewtonPerCubicMillimeter = new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilonewtonPerCubicMillimeter, "KilonewtonsPerCubicMillimeter", BaseUnits.Undefined);
+                KilopoundForcePerCubicFoot = new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilopoundForcePerCubicFoot, "KilopoundsForcePerCubicFoot", BaseUnits.Undefined);
+                KilopoundForcePerCubicInch = new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilopoundForcePerCubicInch, "KilopoundsForcePerCubicInch", BaseUnits.Undefined);
+                MeganewtonPerCubicMeter = new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.MeganewtonPerCubicMeter, "MeganewtonsPerCubicMeter", BaseUnits.Undefined);
+                NewtonPerCubicCentimeter = new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.NewtonPerCubicCentimeter, "NewtonsPerCubicCentimeter", BaseUnits.Undefined);
+                NewtonPerCubicMeter = new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.NewtonPerCubicMeter, "NewtonsPerCubicMeter", BaseUnits.Undefined);
+                NewtonPerCubicMillimeter = new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.NewtonPerCubicMillimeter, "NewtonsPerCubicMillimeter", BaseUnits.Undefined);
+                PoundForcePerCubicFoot = new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.PoundForcePerCubicFoot, "PoundsForcePerCubicFoot", BaseUnits.Undefined);
+                PoundForcePerCubicInch = new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.PoundForcePerCubicInch, "PoundsForcePerCubicInch", BaseUnits.Undefined);
+                TonneForcePerCubicCentimeter = new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.TonneForcePerCubicCentimeter, "TonnesForcePerCubicCentimeter", BaseUnits.Undefined);
+                TonneForcePerCubicMeter = new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.TonneForcePerCubicMeter, "TonnesForcePerCubicMeter", BaseUnits.Undefined);
+                TonneForcePerCubicMillimeter = new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.TonneForcePerCubicMillimeter, "TonnesForcePerCubicMillimeter", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificWeightUnit}"/> for <see cref="SpecificWeightUnit.KilogramForcePerCubicCentimeter"/>
+            /// </summary>
+            public UnitInfo<SpecificWeightUnit> KilogramForcePerCubicCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificWeightUnit}"/> for <see cref="SpecificWeightUnit.KilogramForcePerCubicMeter"/>
+            /// </summary>
+            public UnitInfo<SpecificWeightUnit> KilogramForcePerCubicMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificWeightUnit}"/> for <see cref="SpecificWeightUnit.KilogramForcePerCubicMillimeter"/>
+            /// </summary>
+            public UnitInfo<SpecificWeightUnit> KilogramForcePerCubicMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificWeightUnit}"/> for <see cref="SpecificWeightUnit.KilonewtonPerCubicCentimeter"/>
+            /// </summary>
+            public UnitInfo<SpecificWeightUnit> KilonewtonPerCubicCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificWeightUnit}"/> for <see cref="SpecificWeightUnit.KilonewtonPerCubicMeter"/>
+            /// </summary>
+            public UnitInfo<SpecificWeightUnit> KilonewtonPerCubicMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificWeightUnit}"/> for <see cref="SpecificWeightUnit.KilonewtonPerCubicMillimeter"/>
+            /// </summary>
+            public UnitInfo<SpecificWeightUnit> KilonewtonPerCubicMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificWeightUnit}"/> for <see cref="SpecificWeightUnit.KilopoundForcePerCubicFoot"/>
+            /// </summary>
+            public UnitInfo<SpecificWeightUnit> KilopoundForcePerCubicFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificWeightUnit}"/> for <see cref="SpecificWeightUnit.KilopoundForcePerCubicInch"/>
+            /// </summary>
+            public UnitInfo<SpecificWeightUnit> KilopoundForcePerCubicInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificWeightUnit}"/> for <see cref="SpecificWeightUnit.MeganewtonPerCubicMeter"/>
+            /// </summary>
+            public UnitInfo<SpecificWeightUnit> MeganewtonPerCubicMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificWeightUnit}"/> for <see cref="SpecificWeightUnit.NewtonPerCubicCentimeter"/>
+            /// </summary>
+            public UnitInfo<SpecificWeightUnit> NewtonPerCubicCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificWeightUnit}"/> for <see cref="SpecificWeightUnit.NewtonPerCubicMeter"/>
+            /// </summary>
+            public UnitInfo<SpecificWeightUnit> NewtonPerCubicMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificWeightUnit}"/> for <see cref="SpecificWeightUnit.NewtonPerCubicMillimeter"/>
+            /// </summary>
+            public UnitInfo<SpecificWeightUnit> NewtonPerCubicMillimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificWeightUnit}"/> for <see cref="SpecificWeightUnit.PoundForcePerCubicFoot"/>
+            /// </summary>
+            public UnitInfo<SpecificWeightUnit> PoundForcePerCubicFoot { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificWeightUnit}"/> for <see cref="SpecificWeightUnit.PoundForcePerCubicInch"/>
+            /// </summary>
+            public UnitInfo<SpecificWeightUnit> PoundForcePerCubicInch { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificWeightUnit}"/> for <see cref="SpecificWeightUnit.TonneForcePerCubicCentimeter"/>
+            /// </summary>
+            public UnitInfo<SpecificWeightUnit> TonneForcePerCubicCentimeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificWeightUnit}"/> for <see cref="SpecificWeightUnit.TonneForcePerCubicMeter"/>
+            /// </summary>
+            public UnitInfo<SpecificWeightUnit> TonneForcePerCubicMeter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{SpecificWeightUnit}"/> for <see cref="SpecificWeightUnit.TonneForcePerCubicMillimeter"/>
+            /// </summary>
+            public UnitInfo<SpecificWeightUnit> TonneForcePerCubicMillimeter { get; }
+
+        }
     }
 }

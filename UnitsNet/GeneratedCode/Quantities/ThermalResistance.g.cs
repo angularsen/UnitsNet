@@ -53,17 +53,6 @@ namespace UnitsNet
         static ThermalResistance()
         {
             BaseDimensions = new BaseDimensions(0, -1, 3, 0, 1, 0, 0);
-
-            Info = new QuantityInfo<ThermalResistanceUnit>("ThermalResistance",
-                new UnitInfo<ThermalResistanceUnit>[] {
-                    new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, "HourSquareFeetDegreesFahrenheitPerBtu", BaseUnits.Undefined),
-                    new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, "SquareCentimeterHourDegreesCelsiusPerKilocalorie", BaseUnits.Undefined),
-                    new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt, "SquareCentimeterKelvinsPerWatt", BaseUnits.Undefined),
-                    new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, "SquareMeterDegreesCelsiusPerWatt", BaseUnits.Undefined),
-                    new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, "SquareMeterKelvinsPerKilowatt", BaseUnits.Undefined),
-                    new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareMeterKelvinPerWatt, "SquareMeterKelvinsPerWatt", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ThermalResistance);
         }
 
         /// <summary>
@@ -103,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ThermalResistanceUnit> Info { get; }
+        public static ThermalResistance.ThermalResistanceQuantityInfo Info { get; } = new ThermalResistance.ThermalResistanceQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -967,5 +956,55 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class ThermalResistanceQuantityInfo : QuantityInfo<ThermalResistanceUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal ThermalResistanceQuantityInfo() :
+                base("ThermalResistance", ThermalResistance.BaseUnit, ThermalResistance.Zero, ThermalResistance.BaseDimensions, QuantityType.ThermalResistance)
+            {
+                HourSquareFeetDegreeFahrenheitPerBtu = new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, "HourSquareFeetDegreesFahrenheitPerBtu", BaseUnits.Undefined);
+                SquareCentimeterHourDegreeCelsiusPerKilocalorie = new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, "SquareCentimeterHourDegreesCelsiusPerKilocalorie", BaseUnits.Undefined);
+                SquareCentimeterKelvinPerWatt = new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt, "SquareCentimeterKelvinsPerWatt", BaseUnits.Undefined);
+                SquareMeterDegreeCelsiusPerWatt = new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, "SquareMeterDegreesCelsiusPerWatt", BaseUnits.Undefined);
+                SquareMeterKelvinPerKilowatt = new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, "SquareMeterKelvinsPerKilowatt", BaseUnits.Undefined);
+                SquareMeterKelvinPerWatt = new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareMeterKelvinPerWatt, "SquareMeterKelvinsPerWatt", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ThermalResistanceUnit}"/> for <see cref="ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu"/>
+            /// </summary>
+            public UnitInfo<ThermalResistanceUnit> HourSquareFeetDegreeFahrenheitPerBtu { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ThermalResistanceUnit}"/> for <see cref="ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie"/>
+            /// </summary>
+            public UnitInfo<ThermalResistanceUnit> SquareCentimeterHourDegreeCelsiusPerKilocalorie { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ThermalResistanceUnit}"/> for <see cref="ThermalResistanceUnit.SquareCentimeterKelvinPerWatt"/>
+            /// </summary>
+            public UnitInfo<ThermalResistanceUnit> SquareCentimeterKelvinPerWatt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ThermalResistanceUnit}"/> for <see cref="ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt"/>
+            /// </summary>
+            public UnitInfo<ThermalResistanceUnit> SquareMeterDegreeCelsiusPerWatt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ThermalResistanceUnit}"/> for <see cref="ThermalResistanceUnit.SquareMeterKelvinPerKilowatt"/>
+            /// </summary>
+            public UnitInfo<ThermalResistanceUnit> SquareMeterKelvinPerKilowatt { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ThermalResistanceUnit}"/> for <see cref="ThermalResistanceUnit.SquareMeterKelvinPerWatt"/>
+            /// </summary>
+            public UnitInfo<ThermalResistanceUnit> SquareMeterKelvinPerWatt { get; }
+
+        }
     }
 }

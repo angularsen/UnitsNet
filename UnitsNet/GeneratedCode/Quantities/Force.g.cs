@@ -53,26 +53,6 @@ namespace UnitsNet
         static Force()
         {
             BaseDimensions = new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
-
-            Info = new QuantityInfo<ForceUnit>("Force",
-                new UnitInfo<ForceUnit>[] {
-                    new UnitInfo<ForceUnit>(ForceUnit.Decanewton, "Decanewtons", BaseUnits.Undefined),
-                    new UnitInfo<ForceUnit>(ForceUnit.Dyn, "Dyne", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram, time: DurationUnit.Second)),
-                    new UnitInfo<ForceUnit>(ForceUnit.KilogramForce, "KilogramsForce", BaseUnits.Undefined),
-                    new UnitInfo<ForceUnit>(ForceUnit.Kilonewton, "Kilonewtons", BaseUnits.Undefined),
-                    new UnitInfo<ForceUnit>(ForceUnit.KiloPond, "KiloPonds", BaseUnits.Undefined),
-                    new UnitInfo<ForceUnit>(ForceUnit.KilopoundForce, "KilopoundsForce", BaseUnits.Undefined),
-                    new UnitInfo<ForceUnit>(ForceUnit.Meganewton, "Meganewtons", BaseUnits.Undefined),
-                    new UnitInfo<ForceUnit>(ForceUnit.Micronewton, "Micronewtons", BaseUnits.Undefined),
-                    new UnitInfo<ForceUnit>(ForceUnit.Millinewton, "Millinewtons", BaseUnits.Undefined),
-                    new UnitInfo<ForceUnit>(ForceUnit.Newton, "Newtons", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
-                    new UnitInfo<ForceUnit>(ForceUnit.OunceForce, "OunceForce", BaseUnits.Undefined),
-                    new UnitInfo<ForceUnit>(ForceUnit.Poundal, "Poundals", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound, time: DurationUnit.Second)),
-                    new UnitInfo<ForceUnit>(ForceUnit.PoundForce, "PoundsForce", BaseUnits.Undefined),
-                    new UnitInfo<ForceUnit>(ForceUnit.ShortTonForce, "ShortTonsForce", BaseUnits.Undefined),
-                    new UnitInfo<ForceUnit>(ForceUnit.TonneForce, "TonnesForce", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Force);
         }
 
         /// <summary>
@@ -112,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ForceUnit> Info { get; }
+        public static Force.ForceQuantityInfo Info { get; } = new Force.ForceQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1138,5 +1118,109 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class ForceQuantityInfo : QuantityInfo<ForceUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal ForceQuantityInfo() :
+                base("Force", Force.BaseUnit, Force.Zero, Force.BaseDimensions, QuantityType.Force)
+            {
+                Decanewton = new UnitInfo<ForceUnit>(ForceUnit.Decanewton, "Decanewtons", BaseUnits.Undefined);
+                Dyn = new UnitInfo<ForceUnit>(ForceUnit.Dyn, "Dyne", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram, time: DurationUnit.Second));
+                KilogramForce = new UnitInfo<ForceUnit>(ForceUnit.KilogramForce, "KilogramsForce", BaseUnits.Undefined);
+                Kilonewton = new UnitInfo<ForceUnit>(ForceUnit.Kilonewton, "Kilonewtons", BaseUnits.Undefined);
+                KiloPond = new UnitInfo<ForceUnit>(ForceUnit.KiloPond, "KiloPonds", BaseUnits.Undefined);
+                KilopoundForce = new UnitInfo<ForceUnit>(ForceUnit.KilopoundForce, "KilopoundsForce", BaseUnits.Undefined);
+                Meganewton = new UnitInfo<ForceUnit>(ForceUnit.Meganewton, "Meganewtons", BaseUnits.Undefined);
+                Micronewton = new UnitInfo<ForceUnit>(ForceUnit.Micronewton, "Micronewtons", BaseUnits.Undefined);
+                Millinewton = new UnitInfo<ForceUnit>(ForceUnit.Millinewton, "Millinewtons", BaseUnits.Undefined);
+                Newton = new UnitInfo<ForceUnit>(ForceUnit.Newton, "Newtons", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                OunceForce = new UnitInfo<ForceUnit>(ForceUnit.OunceForce, "OunceForce", BaseUnits.Undefined);
+                Poundal = new UnitInfo<ForceUnit>(ForceUnit.Poundal, "Poundals", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound, time: DurationUnit.Second));
+                PoundForce = new UnitInfo<ForceUnit>(ForceUnit.PoundForce, "PoundsForce", BaseUnits.Undefined);
+                ShortTonForce = new UnitInfo<ForceUnit>(ForceUnit.ShortTonForce, "ShortTonsForce", BaseUnits.Undefined);
+                TonneForce = new UnitInfo<ForceUnit>(ForceUnit.TonneForce, "TonnesForce", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceUnit}"/> for <see cref="ForceUnit.Decanewton"/>
+            /// </summary>
+            public UnitInfo<ForceUnit> Decanewton { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceUnit}"/> for <see cref="ForceUnit.Dyn"/>
+            /// </summary>
+            public UnitInfo<ForceUnit> Dyn { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceUnit}"/> for <see cref="ForceUnit.KilogramForce"/>
+            /// </summary>
+            public UnitInfo<ForceUnit> KilogramForce { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceUnit}"/> for <see cref="ForceUnit.Kilonewton"/>
+            /// </summary>
+            public UnitInfo<ForceUnit> Kilonewton { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceUnit}"/> for <see cref="ForceUnit.KiloPond"/>
+            /// </summary>
+            public UnitInfo<ForceUnit> KiloPond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceUnit}"/> for <see cref="ForceUnit.KilopoundForce"/>
+            /// </summary>
+            public UnitInfo<ForceUnit> KilopoundForce { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceUnit}"/> for <see cref="ForceUnit.Meganewton"/>
+            /// </summary>
+            public UnitInfo<ForceUnit> Meganewton { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceUnit}"/> for <see cref="ForceUnit.Micronewton"/>
+            /// </summary>
+            public UnitInfo<ForceUnit> Micronewton { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceUnit}"/> for <see cref="ForceUnit.Millinewton"/>
+            /// </summary>
+            public UnitInfo<ForceUnit> Millinewton { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceUnit}"/> for <see cref="ForceUnit.Newton"/>
+            /// </summary>
+            public UnitInfo<ForceUnit> Newton { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceUnit}"/> for <see cref="ForceUnit.OunceForce"/>
+            /// </summary>
+            public UnitInfo<ForceUnit> OunceForce { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceUnit}"/> for <see cref="ForceUnit.Poundal"/>
+            /// </summary>
+            public UnitInfo<ForceUnit> Poundal { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceUnit}"/> for <see cref="ForceUnit.PoundForce"/>
+            /// </summary>
+            public UnitInfo<ForceUnit> PoundForce { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceUnit}"/> for <see cref="ForceUnit.ShortTonForce"/>
+            /// </summary>
+            public UnitInfo<ForceUnit> ShortTonForce { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ForceUnit}"/> for <see cref="ForceUnit.TonneForce"/>
+            /// </summary>
+            public UnitInfo<ForceUnit> TonneForce { get; }
+
+        }
     }
 }

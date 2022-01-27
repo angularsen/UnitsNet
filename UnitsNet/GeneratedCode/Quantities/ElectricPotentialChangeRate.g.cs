@@ -53,31 +53,6 @@ namespace UnitsNet
         static ElectricPotentialChangeRate()
         {
             BaseDimensions = new BaseDimensions(2, 1, -4, -1, 0, 0, 0);
-
-            Info = new QuantityInfo<ElectricPotentialChangeRateUnit>("ElectricPotentialChangeRate",
-                new UnitInfo<ElectricPotentialChangeRateUnit>[] {
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.KilovoltPerHour, "KilovoltsPerHours", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond, "KilovoltsPerMicroseconds", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.KilovoltPerMinute, "KilovoltsPerMinutes", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.KilovoltPerSecond, "KilovoltsPerSeconds", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MegavoltPerHour, "MegavoltsPerHours", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond, "MegavoltsPerMicroseconds", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MegavoltPerMinute, "MegavoltsPerMinutes", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MegavoltPerSecond, "MegavoltsPerSeconds", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MicrovoltPerHour, "MicrovoltsPerHours", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond, "MicrovoltsPerMicroseconds", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MicrovoltPerMinute, "MicrovoltsPerMinutes", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MicrovoltPerSecond, "MicrovoltsPerSeconds", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MillivoltPerHour, "MillivoltsPerHours", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond, "MillivoltsPerMicroseconds", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MillivoltPerMinute, "MillivoltsPerMinutes", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MillivoltPerSecond, "MillivoltsPerSeconds", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.VoltPerHour, "VoltsPerHours", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Hour, current: ElectricCurrentUnit.Ampere)),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.VoltPerMicrosecond, "VoltsPerMicroseconds", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Microsecond, current: ElectricCurrentUnit.Ampere)),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.VoltPerMinute, "VoltsPerMinutes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Minute, current: ElectricCurrentUnit.Ampere)),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.VoltPerSecond, "VoltsPerSeconds", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricPotentialChangeRate);
         }
 
         /// <summary>
@@ -117,7 +92,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricPotentialChangeRateUnit> Info { get; }
+        public static ElectricPotentialChangeRate.ElectricPotentialChangeRateQuantityInfo Info { get; } = new ElectricPotentialChangeRate.ElectricPotentialChangeRateQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1233,5 +1208,139 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class ElectricPotentialChangeRateQuantityInfo : QuantityInfo<ElectricPotentialChangeRateUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal ElectricPotentialChangeRateQuantityInfo() :
+                base("ElectricPotentialChangeRate", ElectricPotentialChangeRate.BaseUnit, ElectricPotentialChangeRate.Zero, ElectricPotentialChangeRate.BaseDimensions, QuantityType.ElectricPotentialChangeRate)
+            {
+                KilovoltPerHour = new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.KilovoltPerHour, "KilovoltsPerHours", BaseUnits.Undefined);
+                KilovoltPerMicrosecond = new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond, "KilovoltsPerMicroseconds", BaseUnits.Undefined);
+                KilovoltPerMinute = new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.KilovoltPerMinute, "KilovoltsPerMinutes", BaseUnits.Undefined);
+                KilovoltPerSecond = new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.KilovoltPerSecond, "KilovoltsPerSeconds", BaseUnits.Undefined);
+                MegavoltPerHour = new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MegavoltPerHour, "MegavoltsPerHours", BaseUnits.Undefined);
+                MegavoltPerMicrosecond = new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond, "MegavoltsPerMicroseconds", BaseUnits.Undefined);
+                MegavoltPerMinute = new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MegavoltPerMinute, "MegavoltsPerMinutes", BaseUnits.Undefined);
+                MegavoltPerSecond = new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MegavoltPerSecond, "MegavoltsPerSeconds", BaseUnits.Undefined);
+                MicrovoltPerHour = new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MicrovoltPerHour, "MicrovoltsPerHours", BaseUnits.Undefined);
+                MicrovoltPerMicrosecond = new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond, "MicrovoltsPerMicroseconds", BaseUnits.Undefined);
+                MicrovoltPerMinute = new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MicrovoltPerMinute, "MicrovoltsPerMinutes", BaseUnits.Undefined);
+                MicrovoltPerSecond = new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MicrovoltPerSecond, "MicrovoltsPerSeconds", BaseUnits.Undefined);
+                MillivoltPerHour = new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MillivoltPerHour, "MillivoltsPerHours", BaseUnits.Undefined);
+                MillivoltPerMicrosecond = new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond, "MillivoltsPerMicroseconds", BaseUnits.Undefined);
+                MillivoltPerMinute = new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MillivoltPerMinute, "MillivoltsPerMinutes", BaseUnits.Undefined);
+                MillivoltPerSecond = new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MillivoltPerSecond, "MillivoltsPerSeconds", BaseUnits.Undefined);
+                VoltPerHour = new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.VoltPerHour, "VoltsPerHours", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Hour, current: ElectricCurrentUnit.Ampere));
+                VoltPerMicrosecond = new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.VoltPerMicrosecond, "VoltsPerMicroseconds", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Microsecond, current: ElectricCurrentUnit.Ampere));
+                VoltPerMinute = new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.VoltPerMinute, "VoltsPerMinutes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Minute, current: ElectricCurrentUnit.Ampere));
+                VoltPerSecond = new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.VoltPerSecond, "VoltsPerSeconds", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialChangeRateUnit}"/> for <see cref="ElectricPotentialChangeRateUnit.KilovoltPerHour"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialChangeRateUnit> KilovoltPerHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialChangeRateUnit}"/> for <see cref="ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialChangeRateUnit> KilovoltPerMicrosecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialChangeRateUnit}"/> for <see cref="ElectricPotentialChangeRateUnit.KilovoltPerMinute"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialChangeRateUnit> KilovoltPerMinute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialChangeRateUnit}"/> for <see cref="ElectricPotentialChangeRateUnit.KilovoltPerSecond"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialChangeRateUnit> KilovoltPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialChangeRateUnit}"/> for <see cref="ElectricPotentialChangeRateUnit.MegavoltPerHour"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialChangeRateUnit> MegavoltPerHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialChangeRateUnit}"/> for <see cref="ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialChangeRateUnit> MegavoltPerMicrosecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialChangeRateUnit}"/> for <see cref="ElectricPotentialChangeRateUnit.MegavoltPerMinute"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialChangeRateUnit> MegavoltPerMinute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialChangeRateUnit}"/> for <see cref="ElectricPotentialChangeRateUnit.MegavoltPerSecond"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialChangeRateUnit> MegavoltPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialChangeRateUnit}"/> for <see cref="ElectricPotentialChangeRateUnit.MicrovoltPerHour"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialChangeRateUnit> MicrovoltPerHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialChangeRateUnit}"/> for <see cref="ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialChangeRateUnit> MicrovoltPerMicrosecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialChangeRateUnit}"/> for <see cref="ElectricPotentialChangeRateUnit.MicrovoltPerMinute"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialChangeRateUnit> MicrovoltPerMinute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialChangeRateUnit}"/> for <see cref="ElectricPotentialChangeRateUnit.MicrovoltPerSecond"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialChangeRateUnit> MicrovoltPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialChangeRateUnit}"/> for <see cref="ElectricPotentialChangeRateUnit.MillivoltPerHour"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialChangeRateUnit> MillivoltPerHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialChangeRateUnit}"/> for <see cref="ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialChangeRateUnit> MillivoltPerMicrosecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialChangeRateUnit}"/> for <see cref="ElectricPotentialChangeRateUnit.MillivoltPerMinute"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialChangeRateUnit> MillivoltPerMinute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialChangeRateUnit}"/> for <see cref="ElectricPotentialChangeRateUnit.MillivoltPerSecond"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialChangeRateUnit> MillivoltPerSecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialChangeRateUnit}"/> for <see cref="ElectricPotentialChangeRateUnit.VoltPerHour"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialChangeRateUnit> VoltPerHour { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialChangeRateUnit}"/> for <see cref="ElectricPotentialChangeRateUnit.VoltPerMicrosecond"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialChangeRateUnit> VoltPerMicrosecond { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialChangeRateUnit}"/> for <see cref="ElectricPotentialChangeRateUnit.VoltPerMinute"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialChangeRateUnit> VoltPerMinute { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{ElectricPotentialChangeRateUnit}"/> for <see cref="ElectricPotentialChangeRateUnit.VoltPerSecond"/>
+            /// </summary>
+            public UnitInfo<ElectricPotentialChangeRateUnit> VoltPerSecond { get; }
+
+        }
     }
 }

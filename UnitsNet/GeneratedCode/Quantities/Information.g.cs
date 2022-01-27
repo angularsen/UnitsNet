@@ -54,36 +54,6 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<InformationUnit>("Information",
-                new UnitInfo<InformationUnit>[] {
-                    new UnitInfo<InformationUnit>(InformationUnit.Bit, "Bits", BaseUnits.Undefined),
-                    new UnitInfo<InformationUnit>(InformationUnit.Byte, "Bytes", BaseUnits.Undefined),
-                    new UnitInfo<InformationUnit>(InformationUnit.Exabit, "Exabits", BaseUnits.Undefined),
-                    new UnitInfo<InformationUnit>(InformationUnit.Exabyte, "Exabytes", BaseUnits.Undefined),
-                    new UnitInfo<InformationUnit>(InformationUnit.Exbibit, "Exbibits", BaseUnits.Undefined),
-                    new UnitInfo<InformationUnit>(InformationUnit.Exbibyte, "Exbibytes", BaseUnits.Undefined),
-                    new UnitInfo<InformationUnit>(InformationUnit.Gibibit, "Gibibits", BaseUnits.Undefined),
-                    new UnitInfo<InformationUnit>(InformationUnit.Gibibyte, "Gibibytes", BaseUnits.Undefined),
-                    new UnitInfo<InformationUnit>(InformationUnit.Gigabit, "Gigabits", BaseUnits.Undefined),
-                    new UnitInfo<InformationUnit>(InformationUnit.Gigabyte, "Gigabytes", BaseUnits.Undefined),
-                    new UnitInfo<InformationUnit>(InformationUnit.Kibibit, "Kibibits", BaseUnits.Undefined),
-                    new UnitInfo<InformationUnit>(InformationUnit.Kibibyte, "Kibibytes", BaseUnits.Undefined),
-                    new UnitInfo<InformationUnit>(InformationUnit.Kilobit, "Kilobits", BaseUnits.Undefined),
-                    new UnitInfo<InformationUnit>(InformationUnit.Kilobyte, "Kilobytes", BaseUnits.Undefined),
-                    new UnitInfo<InformationUnit>(InformationUnit.Mebibit, "Mebibits", BaseUnits.Undefined),
-                    new UnitInfo<InformationUnit>(InformationUnit.Mebibyte, "Mebibytes", BaseUnits.Undefined),
-                    new UnitInfo<InformationUnit>(InformationUnit.Megabit, "Megabits", BaseUnits.Undefined),
-                    new UnitInfo<InformationUnit>(InformationUnit.Megabyte, "Megabytes", BaseUnits.Undefined),
-                    new UnitInfo<InformationUnit>(InformationUnit.Pebibit, "Pebibits", BaseUnits.Undefined),
-                    new UnitInfo<InformationUnit>(InformationUnit.Pebibyte, "Pebibytes", BaseUnits.Undefined),
-                    new UnitInfo<InformationUnit>(InformationUnit.Petabit, "Petabits", BaseUnits.Undefined),
-                    new UnitInfo<InformationUnit>(InformationUnit.Petabyte, "Petabytes", BaseUnits.Undefined),
-                    new UnitInfo<InformationUnit>(InformationUnit.Tebibit, "Tebibits", BaseUnits.Undefined),
-                    new UnitInfo<InformationUnit>(InformationUnit.Tebibyte, "Tebibytes", BaseUnits.Undefined),
-                    new UnitInfo<InformationUnit>(InformationUnit.Terabit, "Terabits", BaseUnits.Undefined),
-                    new UnitInfo<InformationUnit>(InformationUnit.Terabyte, "Terabytes", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.Information);
         }
 
         /// <summary>
@@ -123,7 +93,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<InformationUnit> Info { get; }
+        public static Information.InformationQuantityInfo Info { get; } = new Information.InformationQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1352,5 +1322,175 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class InformationQuantityInfo : QuantityInfo<InformationUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal InformationQuantityInfo() :
+                base("Information", Information.BaseUnit, Information.Zero, Information.BaseDimensions, QuantityType.Information)
+            {
+                Bit = new UnitInfo<InformationUnit>(InformationUnit.Bit, "Bits", BaseUnits.Undefined);
+                Byte = new UnitInfo<InformationUnit>(InformationUnit.Byte, "Bytes", BaseUnits.Undefined);
+                Exabit = new UnitInfo<InformationUnit>(InformationUnit.Exabit, "Exabits", BaseUnits.Undefined);
+                Exabyte = new UnitInfo<InformationUnit>(InformationUnit.Exabyte, "Exabytes", BaseUnits.Undefined);
+                Exbibit = new UnitInfo<InformationUnit>(InformationUnit.Exbibit, "Exbibits", BaseUnits.Undefined);
+                Exbibyte = new UnitInfo<InformationUnit>(InformationUnit.Exbibyte, "Exbibytes", BaseUnits.Undefined);
+                Gibibit = new UnitInfo<InformationUnit>(InformationUnit.Gibibit, "Gibibits", BaseUnits.Undefined);
+                Gibibyte = new UnitInfo<InformationUnit>(InformationUnit.Gibibyte, "Gibibytes", BaseUnits.Undefined);
+                Gigabit = new UnitInfo<InformationUnit>(InformationUnit.Gigabit, "Gigabits", BaseUnits.Undefined);
+                Gigabyte = new UnitInfo<InformationUnit>(InformationUnit.Gigabyte, "Gigabytes", BaseUnits.Undefined);
+                Kibibit = new UnitInfo<InformationUnit>(InformationUnit.Kibibit, "Kibibits", BaseUnits.Undefined);
+                Kibibyte = new UnitInfo<InformationUnit>(InformationUnit.Kibibyte, "Kibibytes", BaseUnits.Undefined);
+                Kilobit = new UnitInfo<InformationUnit>(InformationUnit.Kilobit, "Kilobits", BaseUnits.Undefined);
+                Kilobyte = new UnitInfo<InformationUnit>(InformationUnit.Kilobyte, "Kilobytes", BaseUnits.Undefined);
+                Mebibit = new UnitInfo<InformationUnit>(InformationUnit.Mebibit, "Mebibits", BaseUnits.Undefined);
+                Mebibyte = new UnitInfo<InformationUnit>(InformationUnit.Mebibyte, "Mebibytes", BaseUnits.Undefined);
+                Megabit = new UnitInfo<InformationUnit>(InformationUnit.Megabit, "Megabits", BaseUnits.Undefined);
+                Megabyte = new UnitInfo<InformationUnit>(InformationUnit.Megabyte, "Megabytes", BaseUnits.Undefined);
+                Pebibit = new UnitInfo<InformationUnit>(InformationUnit.Pebibit, "Pebibits", BaseUnits.Undefined);
+                Pebibyte = new UnitInfo<InformationUnit>(InformationUnit.Pebibyte, "Pebibytes", BaseUnits.Undefined);
+                Petabit = new UnitInfo<InformationUnit>(InformationUnit.Petabit, "Petabits", BaseUnits.Undefined);
+                Petabyte = new UnitInfo<InformationUnit>(InformationUnit.Petabyte, "Petabytes", BaseUnits.Undefined);
+                Tebibit = new UnitInfo<InformationUnit>(InformationUnit.Tebibit, "Tebibits", BaseUnits.Undefined);
+                Tebibyte = new UnitInfo<InformationUnit>(InformationUnit.Tebibyte, "Tebibytes", BaseUnits.Undefined);
+                Terabit = new UnitInfo<InformationUnit>(InformationUnit.Terabit, "Terabits", BaseUnits.Undefined);
+                Terabyte = new UnitInfo<InformationUnit>(InformationUnit.Terabyte, "Terabytes", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{InformationUnit}"/> for <see cref="InformationUnit.Bit"/>
+            /// </summary>
+            public UnitInfo<InformationUnit> Bit { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{InformationUnit}"/> for <see cref="InformationUnit.Byte"/>
+            /// </summary>
+            public UnitInfo<InformationUnit> Byte { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{InformationUnit}"/> for <see cref="InformationUnit.Exabit"/>
+            /// </summary>
+            public UnitInfo<InformationUnit> Exabit { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{InformationUnit}"/> for <see cref="InformationUnit.Exabyte"/>
+            /// </summary>
+            public UnitInfo<InformationUnit> Exabyte { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{InformationUnit}"/> for <see cref="InformationUnit.Exbibit"/>
+            /// </summary>
+            public UnitInfo<InformationUnit> Exbibit { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{InformationUnit}"/> for <see cref="InformationUnit.Exbibyte"/>
+            /// </summary>
+            public UnitInfo<InformationUnit> Exbibyte { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{InformationUnit}"/> for <see cref="InformationUnit.Gibibit"/>
+            /// </summary>
+            public UnitInfo<InformationUnit> Gibibit { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{InformationUnit}"/> for <see cref="InformationUnit.Gibibyte"/>
+            /// </summary>
+            public UnitInfo<InformationUnit> Gibibyte { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{InformationUnit}"/> for <see cref="InformationUnit.Gigabit"/>
+            /// </summary>
+            public UnitInfo<InformationUnit> Gigabit { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{InformationUnit}"/> for <see cref="InformationUnit.Gigabyte"/>
+            /// </summary>
+            public UnitInfo<InformationUnit> Gigabyte { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{InformationUnit}"/> for <see cref="InformationUnit.Kibibit"/>
+            /// </summary>
+            public UnitInfo<InformationUnit> Kibibit { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{InformationUnit}"/> for <see cref="InformationUnit.Kibibyte"/>
+            /// </summary>
+            public UnitInfo<InformationUnit> Kibibyte { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{InformationUnit}"/> for <see cref="InformationUnit.Kilobit"/>
+            /// </summary>
+            public UnitInfo<InformationUnit> Kilobit { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{InformationUnit}"/> for <see cref="InformationUnit.Kilobyte"/>
+            /// </summary>
+            public UnitInfo<InformationUnit> Kilobyte { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{InformationUnit}"/> for <see cref="InformationUnit.Mebibit"/>
+            /// </summary>
+            public UnitInfo<InformationUnit> Mebibit { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{InformationUnit}"/> for <see cref="InformationUnit.Mebibyte"/>
+            /// </summary>
+            public UnitInfo<InformationUnit> Mebibyte { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{InformationUnit}"/> for <see cref="InformationUnit.Megabit"/>
+            /// </summary>
+            public UnitInfo<InformationUnit> Megabit { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{InformationUnit}"/> for <see cref="InformationUnit.Megabyte"/>
+            /// </summary>
+            public UnitInfo<InformationUnit> Megabyte { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{InformationUnit}"/> for <see cref="InformationUnit.Pebibit"/>
+            /// </summary>
+            public UnitInfo<InformationUnit> Pebibit { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{InformationUnit}"/> for <see cref="InformationUnit.Pebibyte"/>
+            /// </summary>
+            public UnitInfo<InformationUnit> Pebibyte { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{InformationUnit}"/> for <see cref="InformationUnit.Petabit"/>
+            /// </summary>
+            public UnitInfo<InformationUnit> Petabit { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{InformationUnit}"/> for <see cref="InformationUnit.Petabyte"/>
+            /// </summary>
+            public UnitInfo<InformationUnit> Petabyte { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{InformationUnit}"/> for <see cref="InformationUnit.Tebibit"/>
+            /// </summary>
+            public UnitInfo<InformationUnit> Tebibit { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{InformationUnit}"/> for <see cref="InformationUnit.Tebibyte"/>
+            /// </summary>
+            public UnitInfo<InformationUnit> Tebibyte { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{InformationUnit}"/> for <see cref="InformationUnit.Terabit"/>
+            /// </summary>
+            public UnitInfo<InformationUnit> Terabit { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{InformationUnit}"/> for <see cref="InformationUnit.Terabyte"/>
+            /// </summary>
+            public UnitInfo<InformationUnit> Terabyte { get; }
+
+        }
     }
 }

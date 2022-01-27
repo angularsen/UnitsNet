@@ -57,30 +57,6 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
 
-            Info = new QuantityInfo<VolumeConcentrationUnit>("VolumeConcentration",
-                new UnitInfo<VolumeConcentrationUnit>[] {
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.CentilitersPerLiter, "CentilitersPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.CentilitersPerMililiter, "CentilitersPerMililiter", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.DecilitersPerLiter, "DecilitersPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.DecilitersPerMililiter, "DecilitersPerMililiter", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.DecimalFraction, "DecimalFractions", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.LitersPerLiter, "LitersPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.LitersPerMililiter, "LitersPerMililiter", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.MicrolitersPerLiter, "MicrolitersPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.MicrolitersPerMililiter, "MicrolitersPerMililiter", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.MillilitersPerLiter, "MillilitersPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.MillilitersPerMililiter, "MillilitersPerMililiter", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.NanolitersPerLiter, "NanolitersPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.NanolitersPerMililiter, "NanolitersPerMililiter", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PartPerBillion, "PartsPerBillion", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PartPerMillion, "PartsPerMillion", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PartPerThousand, "PartsPerThousand", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PartPerTrillion, "PartsPerTrillion", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.Percent, "Percent", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PicolitersPerLiter, "PicolitersPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PicolitersPerMililiter, "PicolitersPerMililiter", BaseUnits.Undefined),
-                },
-                BaseUnit, Zero, BaseDimensions, QuantityType.VolumeConcentration);
         }
 
         /// <summary>
@@ -120,7 +96,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<VolumeConcentrationUnit> Info { get; }
+        public static VolumeConcentration.VolumeConcentrationQuantityInfo Info { get; } = new VolumeConcentration.VolumeConcentrationQuantityInfo();
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1236,5 +1212,139 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        public sealed class VolumeConcentrationQuantityInfo : QuantityInfo<VolumeConcentrationUnit>
+        {
+            /// <summary>
+            ///     Constructs an instance.
+            /// </summary>
+            internal VolumeConcentrationQuantityInfo() :
+                base("VolumeConcentration", VolumeConcentration.BaseUnit, VolumeConcentration.Zero, VolumeConcentration.BaseDimensions, QuantityType.VolumeConcentration)
+            {
+                CentilitersPerLiter = new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.CentilitersPerLiter, "CentilitersPerLiter", BaseUnits.Undefined);
+                CentilitersPerMililiter = new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.CentilitersPerMililiter, "CentilitersPerMililiter", BaseUnits.Undefined);
+                DecilitersPerLiter = new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.DecilitersPerLiter, "DecilitersPerLiter", BaseUnits.Undefined);
+                DecilitersPerMililiter = new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.DecilitersPerMililiter, "DecilitersPerMililiter", BaseUnits.Undefined);
+                DecimalFraction = new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.DecimalFraction, "DecimalFractions", BaseUnits.Undefined);
+                LitersPerLiter = new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.LitersPerLiter, "LitersPerLiter", BaseUnits.Undefined);
+                LitersPerMililiter = new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.LitersPerMililiter, "LitersPerMililiter", BaseUnits.Undefined);
+                MicrolitersPerLiter = new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.MicrolitersPerLiter, "MicrolitersPerLiter", BaseUnits.Undefined);
+                MicrolitersPerMililiter = new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.MicrolitersPerMililiter, "MicrolitersPerMililiter", BaseUnits.Undefined);
+                MillilitersPerLiter = new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.MillilitersPerLiter, "MillilitersPerLiter", BaseUnits.Undefined);
+                MillilitersPerMililiter = new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.MillilitersPerMililiter, "MillilitersPerMililiter", BaseUnits.Undefined);
+                NanolitersPerLiter = new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.NanolitersPerLiter, "NanolitersPerLiter", BaseUnits.Undefined);
+                NanolitersPerMililiter = new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.NanolitersPerMililiter, "NanolitersPerMililiter", BaseUnits.Undefined);
+                PartPerBillion = new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PartPerBillion, "PartsPerBillion", BaseUnits.Undefined);
+                PartPerMillion = new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PartPerMillion, "PartsPerMillion", BaseUnits.Undefined);
+                PartPerThousand = new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PartPerThousand, "PartsPerThousand", BaseUnits.Undefined);
+                PartPerTrillion = new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PartPerTrillion, "PartsPerTrillion", BaseUnits.Undefined);
+                Percent = new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.Percent, "Percent", BaseUnits.Undefined);
+                PicolitersPerLiter = new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PicolitersPerLiter, "PicolitersPerLiter", BaseUnits.Undefined);
+                PicolitersPerMililiter = new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PicolitersPerMililiter, "PicolitersPerMililiter", BaseUnits.Undefined);
+            }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VolumeConcentrationUnit}"/> for <see cref="VolumeConcentrationUnit.CentilitersPerLiter"/>
+            /// </summary>
+            public UnitInfo<VolumeConcentrationUnit> CentilitersPerLiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VolumeConcentrationUnit}"/> for <see cref="VolumeConcentrationUnit.CentilitersPerMililiter"/>
+            /// </summary>
+            public UnitInfo<VolumeConcentrationUnit> CentilitersPerMililiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VolumeConcentrationUnit}"/> for <see cref="VolumeConcentrationUnit.DecilitersPerLiter"/>
+            /// </summary>
+            public UnitInfo<VolumeConcentrationUnit> DecilitersPerLiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VolumeConcentrationUnit}"/> for <see cref="VolumeConcentrationUnit.DecilitersPerMililiter"/>
+            /// </summary>
+            public UnitInfo<VolumeConcentrationUnit> DecilitersPerMililiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VolumeConcentrationUnit}"/> for <see cref="VolumeConcentrationUnit.DecimalFraction"/>
+            /// </summary>
+            public UnitInfo<VolumeConcentrationUnit> DecimalFraction { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VolumeConcentrationUnit}"/> for <see cref="VolumeConcentrationUnit.LitersPerLiter"/>
+            /// </summary>
+            public UnitInfo<VolumeConcentrationUnit> LitersPerLiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VolumeConcentrationUnit}"/> for <see cref="VolumeConcentrationUnit.LitersPerMililiter"/>
+            /// </summary>
+            public UnitInfo<VolumeConcentrationUnit> LitersPerMililiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VolumeConcentrationUnit}"/> for <see cref="VolumeConcentrationUnit.MicrolitersPerLiter"/>
+            /// </summary>
+            public UnitInfo<VolumeConcentrationUnit> MicrolitersPerLiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VolumeConcentrationUnit}"/> for <see cref="VolumeConcentrationUnit.MicrolitersPerMililiter"/>
+            /// </summary>
+            public UnitInfo<VolumeConcentrationUnit> MicrolitersPerMililiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VolumeConcentrationUnit}"/> for <see cref="VolumeConcentrationUnit.MillilitersPerLiter"/>
+            /// </summary>
+            public UnitInfo<VolumeConcentrationUnit> MillilitersPerLiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VolumeConcentrationUnit}"/> for <see cref="VolumeConcentrationUnit.MillilitersPerMililiter"/>
+            /// </summary>
+            public UnitInfo<VolumeConcentrationUnit> MillilitersPerMililiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VolumeConcentrationUnit}"/> for <see cref="VolumeConcentrationUnit.NanolitersPerLiter"/>
+            /// </summary>
+            public UnitInfo<VolumeConcentrationUnit> NanolitersPerLiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VolumeConcentrationUnit}"/> for <see cref="VolumeConcentrationUnit.NanolitersPerMililiter"/>
+            /// </summary>
+            public UnitInfo<VolumeConcentrationUnit> NanolitersPerMililiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VolumeConcentrationUnit}"/> for <see cref="VolumeConcentrationUnit.PartPerBillion"/>
+            /// </summary>
+            public UnitInfo<VolumeConcentrationUnit> PartPerBillion { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VolumeConcentrationUnit}"/> for <see cref="VolumeConcentrationUnit.PartPerMillion"/>
+            /// </summary>
+            public UnitInfo<VolumeConcentrationUnit> PartPerMillion { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VolumeConcentrationUnit}"/> for <see cref="VolumeConcentrationUnit.PartPerThousand"/>
+            /// </summary>
+            public UnitInfo<VolumeConcentrationUnit> PartPerThousand { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VolumeConcentrationUnit}"/> for <see cref="VolumeConcentrationUnit.PartPerTrillion"/>
+            /// </summary>
+            public UnitInfo<VolumeConcentrationUnit> PartPerTrillion { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VolumeConcentrationUnit}"/> for <see cref="VolumeConcentrationUnit.Percent"/>
+            /// </summary>
+            public UnitInfo<VolumeConcentrationUnit> Percent { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VolumeConcentrationUnit}"/> for <see cref="VolumeConcentrationUnit.PicolitersPerLiter"/>
+            /// </summary>
+            public UnitInfo<VolumeConcentrationUnit> PicolitersPerLiter { get; }
+
+            /// <summary>
+            ///     Gets the <see cref="UnitInfo{VolumeConcentrationUnit}"/> for <see cref="VolumeConcentrationUnit.PicolitersPerMililiter"/>
+            /// </summary>
+            public UnitInfo<VolumeConcentrationUnit> PicolitersPerMililiter { get; }
+
+        }
     }
 }
