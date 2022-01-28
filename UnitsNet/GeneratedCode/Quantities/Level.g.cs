@@ -61,7 +61,7 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Level);
 
-            RegisterDefaultConversions(ConversionFunctions);
+            RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
         /// <summary>
@@ -101,9 +101,9 @@ namespace UnitsNet
         #region Static Properties
 
         /// <summary>
-        ///     The <see cref="UnitConverter" /> containing conversion functions for <see cref="Level" /> instances.
+        ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Level" /> instances.
         /// </summary>
-        public static UnitConverter ConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<LevelUnit> Info { get; }
@@ -642,15 +642,27 @@ namespace UnitsNet
         /// <summary>
         ///     Converts this Level to another Level with the unit representation <paramref name="unit" />.
         /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
         /// <returns>A Level with the specified unit.</returns>
         public Level ToUnit(LevelUnit unit)
+        {
+            return ToUnit(unit, DefaultConversionFunctions);
+        }
+
+        /// <summary>
+        ///     Converts this Level to another Level using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
+        /// <returns>A Level with the specified unit.</returns>
+        public Level ToUnit(LevelUnit unit, UnitConverter unitConverter)
         {
             if(Unit == unit)
                 return this;
 
             var inBaseUnits = ToUnit(BaseUnit);
 
-            if(!ConversionFunctions.TryGetConversionFunction<Level>(inBaseUnits.Unit, unit, out var conversionFunction))
+            if(!unitConverter.TryGetConversionFunction<Level>(inBaseUnits.Unit, unit, out var conversionFunction))
                 throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
 
             var converted = conversionFunction(inBaseUnits);

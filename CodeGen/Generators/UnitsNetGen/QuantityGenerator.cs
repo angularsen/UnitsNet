@@ -162,7 +162,7 @@ namespace UnitsNet
                 }},
                 BaseUnit, Zero, BaseDimensions, QuantityType.{_quantity.Name});
 
-            RegisterDefaultConversions(ConversionFunctions);
+            RegisterDefaultConversions(DefaultConversionFunctions);
         }}
 " );
         }
@@ -224,9 +224,9 @@ namespace UnitsNet
         #region Static Properties
 
         /// <summary>
-        ///     The <see cref=""UnitConverter"" /> containing conversion functions for <see cref=""{_quantity.Name}"" /> instances.
+        ///     The <see cref=""UnitConverter"" /> containing the default generated conversion functions for <see cref=""{_quantity.Name}"" /> instances.
         /// </summary>
-        public static UnitConverter ConversionFunctions {{ get; }} = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions {{ get; }} = new UnitConverter();
 
         /// <inheritdoc cref=""IQuantity.QuantityInfo""/>
         public static QuantityInfo<{_unitEnumName}> Info {{ get; }}
@@ -909,15 +909,27 @@ namespace UnitsNet
         /// <summary>
         ///     Converts this {_quantity.Name} to another {_quantity.Name} with the unit representation <paramref name=""unit"" />.
         /// </summary>
+        /// <param name=""unit"">The unit to convert to.</param>
         /// <returns>A {_quantity.Name} with the specified unit.</returns>
         public {_quantity.Name} ToUnit({_unitEnumName} unit)
+        {{
+            return ToUnit(unit, DefaultConversionFunctions);
+        }}
+
+        /// <summary>
+        ///     Converts this {_quantity.Name} to another {_quantity.Name} using the given <paramref name=""unitConverter""/> with the unit representation <paramref name=""unit"" />.
+        /// </summary>
+        /// <param name=""unit"">The unit to convert to.</param>
+        /// <param name=""unitConverter"">The <see cref=""UnitConverter""/> to use for the conversion.</param>
+        /// <returns>A {_quantity.Name} with the specified unit.</returns>
+        public {_quantity.Name} ToUnit({_unitEnumName} unit, UnitConverter unitConverter)
         {{
             if(Unit == unit)
                 return this;
 
             var inBaseUnits = ToUnit(BaseUnit);
 
-            if(!ConversionFunctions.TryGetConversionFunction<{_quantity.Name}>(inBaseUnits.Unit, unit, out var conversionFunction))
+            if(!unitConverter.TryGetConversionFunction<{_quantity.Name}>(inBaseUnits.Unit, unit, out var conversionFunction))
                 throw new NotImplementedException($""Can not convert {{inBaseUnits.Unit}} to {{unit}}."");
 
             var converted = conversionFunction(inBaseUnits);

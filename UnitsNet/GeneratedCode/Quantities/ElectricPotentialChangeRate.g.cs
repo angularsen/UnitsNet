@@ -79,7 +79,7 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricPotentialChangeRate);
 
-            RegisterDefaultConversions(ConversionFunctions);
+            RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
         /// <summary>
@@ -119,9 +119,9 @@ namespace UnitsNet
         #region Static Properties
 
         /// <summary>
-        ///     The <see cref="UnitConverter" /> containing conversion functions for <see cref="ElectricPotentialChangeRate" /> instances.
+        ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="ElectricPotentialChangeRate" /> instances.
         /// </summary>
-        public static UnitConverter ConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<ElectricPotentialChangeRateUnit> Info { get; }
@@ -940,15 +940,27 @@ namespace UnitsNet
         /// <summary>
         ///     Converts this ElectricPotentialChangeRate to another ElectricPotentialChangeRate with the unit representation <paramref name="unit" />.
         /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
         /// <returns>A ElectricPotentialChangeRate with the specified unit.</returns>
         public ElectricPotentialChangeRate ToUnit(ElectricPotentialChangeRateUnit unit)
+        {
+            return ToUnit(unit, DefaultConversionFunctions);
+        }
+
+        /// <summary>
+        ///     Converts this ElectricPotentialChangeRate to another ElectricPotentialChangeRate using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
+        /// <returns>A ElectricPotentialChangeRate with the specified unit.</returns>
+        public ElectricPotentialChangeRate ToUnit(ElectricPotentialChangeRateUnit unit, UnitConverter unitConverter)
         {
             if(Unit == unit)
                 return this;
 
             var inBaseUnits = ToUnit(BaseUnit);
 
-            if(!ConversionFunctions.TryGetConversionFunction<ElectricPotentialChangeRate>(inBaseUnits.Unit, unit, out var conversionFunction))
+            if(!unitConverter.TryGetConversionFunction<ElectricPotentialChangeRate>(inBaseUnits.Unit, unit, out var conversionFunction))
                 throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
 
             var converted = conversionFunction(inBaseUnits);

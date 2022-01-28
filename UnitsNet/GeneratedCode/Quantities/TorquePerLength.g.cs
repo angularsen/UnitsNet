@@ -80,7 +80,7 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.TorquePerLength);
 
-            RegisterDefaultConversions(ConversionFunctions);
+            RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
         /// <summary>
@@ -120,9 +120,9 @@ namespace UnitsNet
         #region Static Properties
 
         /// <summary>
-        ///     The <see cref="UnitConverter" /> containing conversion functions for <see cref="TorquePerLength" /> instances.
+        ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="TorquePerLength" /> instances.
         /// </summary>
-        public static UnitConverter ConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<TorquePerLengthUnit> Info { get; }
@@ -957,15 +957,27 @@ namespace UnitsNet
         /// <summary>
         ///     Converts this TorquePerLength to another TorquePerLength with the unit representation <paramref name="unit" />.
         /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
         /// <returns>A TorquePerLength with the specified unit.</returns>
         public TorquePerLength ToUnit(TorquePerLengthUnit unit)
+        {
+            return ToUnit(unit, DefaultConversionFunctions);
+        }
+
+        /// <summary>
+        ///     Converts this TorquePerLength to another TorquePerLength using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
+        /// <returns>A TorquePerLength with the specified unit.</returns>
+        public TorquePerLength ToUnit(TorquePerLengthUnit unit, UnitConverter unitConverter)
         {
             if(Unit == unit)
                 return this;
 
             var inBaseUnits = ToUnit(BaseUnit);
 
-            if(!ConversionFunctions.TryGetConversionFunction<TorquePerLength>(inBaseUnits.Unit, unit, out var conversionFunction))
+            if(!unitConverter.TryGetConversionFunction<TorquePerLength>(inBaseUnits.Unit, unit, out var conversionFunction))
                 throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
 
             var converted = conversionFunction(inBaseUnits);

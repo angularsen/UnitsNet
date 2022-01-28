@@ -74,7 +74,7 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.AmountOfSubstance);
 
-            RegisterDefaultConversions(ConversionFunctions);
+            RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
         /// <summary>
@@ -114,9 +114,9 @@ namespace UnitsNet
         #region Static Properties
 
         /// <summary>
-        ///     The <see cref="UnitConverter" /> containing conversion functions for <see cref="AmountOfSubstance" /> instances.
+        ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="AmountOfSubstance" /> instances.
         /// </summary>
-        public static UnitConverter ConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<AmountOfSubstanceUnit> Info { get; }
@@ -855,15 +855,27 @@ namespace UnitsNet
         /// <summary>
         ///     Converts this AmountOfSubstance to another AmountOfSubstance with the unit representation <paramref name="unit" />.
         /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
         /// <returns>A AmountOfSubstance with the specified unit.</returns>
         public AmountOfSubstance ToUnit(AmountOfSubstanceUnit unit)
+        {
+            return ToUnit(unit, DefaultConversionFunctions);
+        }
+
+        /// <summary>
+        ///     Converts this AmountOfSubstance to another AmountOfSubstance using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
+        /// <returns>A AmountOfSubstance with the specified unit.</returns>
+        public AmountOfSubstance ToUnit(AmountOfSubstanceUnit unit, UnitConverter unitConverter)
         {
             if(Unit == unit)
                 return this;
 
             var inBaseUnits = ToUnit(BaseUnit);
 
-            if(!ConversionFunctions.TryGetConversionFunction<AmountOfSubstance>(inBaseUnits.Unit, unit, out var conversionFunction))
+            if(!unitConverter.TryGetConversionFunction<AmountOfSubstance>(inBaseUnits.Unit, unit, out var conversionFunction))
                 throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
 
             var converted = conversionFunction(inBaseUnits);
