@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly BitRateUnit? _unit;
 
-        static BitRate()
-        {
-            BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of BitRate, which is BitPerSecond. All conversions go via this value.
@@ -1333,7 +1328,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal BitRateQuantityInfo() :
-                base("BitRate", BitRate.BaseUnit, BitRate.Zero, BitRate.BaseDimensions, QuantityType.BitRate)
+                base("BitRate", new UnitInfo<BitRateUnit>[]{}, BitRate.BaseUnit, BitRate.Zero, BitRate.BaseDimensions, QuantityType.BitRate)
             {
                 BitPerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.BitPerSecond, "BitsPerSecond", BaseUnits.Undefined);
                 BytePerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.BytePerSecond, "BytesPerSecond", BaseUnits.Undefined);
@@ -1361,6 +1356,7 @@ namespace UnitsNet
                 TebibytePerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.TebibytePerSecond, "TebibytesPerSecond", BaseUnits.Undefined);
                 TerabitPerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.TerabitPerSecond, "TerabitsPerSecond", BaseUnits.Undefined);
                 TerabytePerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.TerabytePerSecond, "TerabytesPerSecond", BaseUnits.Undefined);
+                BaseUnitInfo = BitPerSecond;
             }
 
             /// <summary>

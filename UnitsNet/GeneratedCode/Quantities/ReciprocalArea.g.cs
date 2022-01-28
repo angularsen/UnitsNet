@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ReciprocalAreaUnit? _unit;
 
-        static ReciprocalArea()
-        {
-            BaseDimensions = new BaseDimensions(-2, 0, 0, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-2, 0, 0, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of ReciprocalArea, which is InverseSquareMeter. All conversions go via this value.
@@ -1058,7 +1053,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ReciprocalAreaQuantityInfo() :
-                base("ReciprocalArea", ReciprocalArea.BaseUnit, ReciprocalArea.Zero, ReciprocalArea.BaseDimensions, QuantityType.ReciprocalArea)
+                base("ReciprocalArea", new UnitInfo<ReciprocalAreaUnit>[]{}, ReciprocalArea.BaseUnit, ReciprocalArea.Zero, ReciprocalArea.BaseDimensions, QuantityType.ReciprocalArea)
             {
                 InverseSquareCentimeter = new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareCentimeter, "InverseSquareCentimeters", BaseUnits.Undefined);
                 InverseSquareDecimeter = new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareDecimeter, "InverseSquareDecimeters", BaseUnits.Undefined);
@@ -1071,6 +1066,7 @@ namespace UnitsNet
                 InverseSquareMillimeter = new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareMillimeter, "InverseSquareMillimeters", BaseUnits.Undefined);
                 InverseSquareYard = new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareYard, "InverseSquareYards", BaseUnits.Undefined);
                 InverseUsSurveySquareFoot = new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseUsSurveySquareFoot, "InverseUsSurveySquareFeet", BaseUnits.Undefined);
+                BaseUnitInfo = InverseSquareMeter;
             }
 
             /// <summary>

@@ -93,7 +93,6 @@ namespace UnitsNet
         [DataMember(Name = ""Unit"", Order = 1)]
         private readonly {_unitEnumName}? _unit;
 ");
-            GenerateStaticConstructor();
             GenerateInstanceConstructors();
             GenerateStaticProperties();
             GenerateProperties();
@@ -112,24 +111,6 @@ namespace UnitsNet
     }}
 }}");
             return Writer.ToString();
-        }
-
-        private void GenerateStaticConstructor()
-        {
-            var baseDimensions = _quantity.BaseDimensions;
-            Writer.WL($@"
-        static {_quantity.Name}()
-        {{");
-            Writer.WL(_isDimensionless
-                ? @"
-            BaseDimensions = BaseDimensions.Dimensionless;
-"
-                : $@"
-            BaseDimensions = new BaseDimensions({baseDimensions.L}, {baseDimensions.M}, {baseDimensions.T}, {baseDimensions.I}, {baseDimensions.Θ}, {baseDimensions.N}, {baseDimensions.J});" );
-
-            Writer.WL( $@"
-        }}
-" );
         }
 
         private void GenerateInstanceConstructors()
@@ -185,7 +166,7 @@ namespace UnitsNet
 
         private void GenerateStaticProperties()
         {
-            Writer.WL($@"
+            Writer.W($@"
         #region Static Properties
 
         /// <inheritdoc cref=""IQuantity.QuantityInfo""/>
@@ -194,8 +175,14 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref=""BaseDimensions"" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions {{ get; }}
+        public static BaseDimensions BaseDimensions {{ get; }} = ");
+            var baseDimensions = _quantity.BaseDimensions;
+            Writer.WLCondition(_isDimensionless, $@"BaseDimensions.Dimensionless;
+");
+            Writer.WLCondition(!_isDimensionless, $@"new BaseDimensions({baseDimensions.L}, {baseDimensions.M}, {baseDimensions.T}, {baseDimensions.I}, {baseDimensions.Θ}, {baseDimensions.N}, {baseDimensions.J});
+" );
 
+Writer.WL($@"
         /// <summary>
         ///     The base unit of {_quantity.Name}, which is {_quantity.BaseUnit}. All conversions go via this value.
         /// </summary>
@@ -1167,7 +1154,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal {_quantity.Name}QuantityInfo() :
-                base(""{_quantity.Name}"", {_quantity.Name}.BaseUnit, {_quantity.Name}.Zero, {_quantity.Name}.BaseDimensions, QuantityType.{_quantity.Name})
+                base(""{_quantity.Name}"", new UnitInfo<{_unitEnumName}>[]{{}}, {_quantity.Name}.BaseUnit, {_quantity.Name}.Zero, {_quantity.Name}.BaseDimensions, QuantityType.{_quantity.Name})
             {{");
 
         foreach( var unit in _quantity.Units )
@@ -1199,8 +1186,10 @@ namespace UnitsNet
         }
 
             Writer.WL( $@"
+
+                BaseUnitInfo = {_quantity.BaseUnit};
             }}
-");
+" );
 
     foreach( var unit in _quantity.Units )
     {

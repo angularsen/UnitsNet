@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly SpecificVolumeUnit? _unit;
 
-        static SpecificVolume()
-        {
-            BaseDimensions = new BaseDimensions(3, -1, 0, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(3, -1, 0, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of SpecificVolume, which is CubicMeterPerKilogram. All conversions go via this value.
@@ -911,11 +906,12 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal SpecificVolumeQuantityInfo() :
-                base("SpecificVolume", SpecificVolume.BaseUnit, SpecificVolume.Zero, SpecificVolume.BaseDimensions, QuantityType.SpecificVolume)
+                base("SpecificVolume", new UnitInfo<SpecificVolumeUnit>[]{}, SpecificVolume.BaseUnit, SpecificVolume.Zero, SpecificVolume.BaseDimensions, QuantityType.SpecificVolume)
             {
                 CubicFootPerPound = new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.CubicFootPerPound, "CubicFeetPerPound", BaseUnits.Undefined);
                 CubicMeterPerKilogram = new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.CubicMeterPerKilogram, "CubicMetersPerKilogram", BaseUnits.Undefined);
                 MillicubicMeterPerKilogram = new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.MillicubicMeterPerKilogram, "MillicubicMetersPerKilogram", BaseUnits.Undefined);
+                BaseUnitInfo = CubicMeterPerKilogram;
             }
 
             /// <summary>

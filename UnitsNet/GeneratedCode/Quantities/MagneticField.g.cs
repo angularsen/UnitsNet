@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly MagneticFieldUnit? _unit;
 
-        static MagneticField()
-        {
-            BaseDimensions = new BaseDimensions(0, 1, -2, -1, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 1, -2, -1, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of MagneticField, which is Tesla. All conversions go via this value.
@@ -968,7 +963,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal MagneticFieldQuantityInfo() :
-                base("MagneticField", MagneticField.BaseUnit, MagneticField.Zero, MagneticField.BaseDimensions, QuantityType.MagneticField)
+                base("MagneticField", new UnitInfo<MagneticFieldUnit>[]{}, MagneticField.BaseUnit, MagneticField.Zero, MagneticField.BaseDimensions, QuantityType.MagneticField)
             {
                 Gauss = new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Gauss, "Gausses", BaseUnits.Undefined);
                 Microtesla = new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Microtesla, "Microteslas", BaseUnits.Undefined);
@@ -976,6 +971,7 @@ namespace UnitsNet
                 Millitesla = new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Millitesla, "Milliteslas", BaseUnits.Undefined);
                 Nanotesla = new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Nanotesla, "Nanoteslas", BaseUnits.Undefined);
                 Tesla = new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Tesla, "Teslas", BaseUnits.Undefined);
+                BaseUnitInfo = Tesla;
             }
 
             /// <summary>

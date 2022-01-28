@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly MassFluxUnit? _unit;
 
-        static MassFlux()
-        {
-            BaseDimensions = new BaseDimensions(-2, 1, -1, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-2, 1, -1, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of MassFlux, which is KilogramPerSecondPerSquareMeter. All conversions go via this value.
@@ -1073,7 +1068,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal MassFluxQuantityInfo() :
-                base("MassFlux", MassFlux.BaseUnit, MassFlux.Zero, MassFlux.BaseDimensions, QuantityType.MassFlux)
+                base("MassFlux", new UnitInfo<MassFluxUnit>[]{}, MassFlux.BaseUnit, MassFlux.Zero, MassFlux.BaseDimensions, QuantityType.MassFlux)
             {
                 GramPerHourPerSquareCentimeter = new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerHourPerSquareCentimeter, "GramsPerHourPerSquareCentimeter", BaseUnits.Undefined);
                 GramPerHourPerSquareMeter = new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerHourPerSquareMeter, "GramsPerHourPerSquareMeter", BaseUnits.Undefined);
@@ -1087,6 +1082,7 @@ namespace UnitsNet
                 KilogramPerSecondPerSquareCentimeter = new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareCentimeter, "KilogramsPerSecondPerSquareCentimeter", BaseUnits.Undefined);
                 KilogramPerSecondPerSquareMeter = new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareMeter, "KilogramsPerSecondPerSquareMeter", BaseUnits.Undefined);
                 KilogramPerSecondPerSquareMillimeter = new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, "KilogramsPerSecondPerSquareMillimeter", BaseUnits.Undefined);
+                BaseUnitInfo = KilogramPerSecondPerSquareMeter;
             }
 
             /// <summary>

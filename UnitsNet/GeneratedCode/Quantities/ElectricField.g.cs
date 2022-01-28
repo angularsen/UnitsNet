@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ElectricFieldUnit? _unit;
 
-        static ElectricField()
-        {
-            BaseDimensions = new BaseDimensions(1, 1, -3, -1, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(1, 1, -3, -1, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of ElectricField, which is VoltPerMeter. All conversions go via this value.
@@ -878,9 +873,10 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ElectricFieldQuantityInfo() :
-                base("ElectricField", ElectricField.BaseUnit, ElectricField.Zero, ElectricField.BaseDimensions, QuantityType.ElectricField)
+                base("ElectricField", new UnitInfo<ElectricFieldUnit>[]{}, ElectricField.BaseUnit, ElectricField.Zero, ElectricField.BaseDimensions, QuantityType.ElectricField)
             {
                 VoltPerMeter = new UnitInfo<ElectricFieldUnit>(ElectricFieldUnit.VoltPerMeter, "VoltsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                BaseUnitInfo = VoltPerMeter;
             }
 
             /// <summary>

@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly IrradiationUnit? _unit;
 
-        static Irradiation()
-        {
-            BaseDimensions = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of Irradiation, which is JoulePerSquareMeter. All conversions go via this value.
@@ -986,7 +981,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal IrradiationQuantityInfo() :
-                base("Irradiation", Irradiation.BaseUnit, Irradiation.Zero, Irradiation.BaseDimensions, QuantityType.Irradiation)
+                base("Irradiation", new UnitInfo<IrradiationUnit>[]{}, Irradiation.BaseUnit, Irradiation.Zero, Irradiation.BaseDimensions, QuantityType.Irradiation)
             {
                 JoulePerSquareCentimeter = new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareCentimeter, "JoulesPerSquareCentimeter", BaseUnits.Undefined);
                 JoulePerSquareMeter = new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareMeter, "JoulesPerSquareMeter", BaseUnits.Undefined);
@@ -995,6 +990,7 @@ namespace UnitsNet
                 KilowattHourPerSquareMeter = new UnitInfo<IrradiationUnit>(IrradiationUnit.KilowattHourPerSquareMeter, "KilowattHoursPerSquareMeter", BaseUnits.Undefined);
                 MillijoulePerSquareCentimeter = new UnitInfo<IrradiationUnit>(IrradiationUnit.MillijoulePerSquareCentimeter, "MillijoulesPerSquareCentimeter", BaseUnits.Undefined);
                 WattHourPerSquareMeter = new UnitInfo<IrradiationUnit>(IrradiationUnit.WattHourPerSquareMeter, "WattHoursPerSquareMeter", BaseUnits.Undefined);
+                BaseUnitInfo = JoulePerSquareMeter;
             }
 
             /// <summary>

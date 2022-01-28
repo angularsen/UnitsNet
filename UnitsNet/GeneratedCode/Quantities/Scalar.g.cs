@@ -50,12 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ScalarUnit? _unit;
 
-        static Scalar()
-        {
-            BaseDimensions = BaseDimensions.Dimensionless;
-
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -98,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = BaseDimensions.Dimensionless;
 
         /// <summary>
         ///     The base unit of Scalar, which is Amount. All conversions go via this value.
@@ -876,9 +870,10 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ScalarQuantityInfo() :
-                base("Scalar", Scalar.BaseUnit, Scalar.Zero, Scalar.BaseDimensions, QuantityType.Scalar)
+                base("Scalar", new UnitInfo<ScalarUnit>[]{}, Scalar.BaseUnit, Scalar.Zero, Scalar.BaseDimensions, QuantityType.Scalar)
             {
                 Amount = new UnitInfo<ScalarUnit>(ScalarUnit.Amount, "Amount", BaseUnits.Undefined);
+                BaseUnitInfo = Amount;
             }
 
             /// <summary>

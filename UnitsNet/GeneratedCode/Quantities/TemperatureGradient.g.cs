@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly TemperatureGradientUnit? _unit;
 
-        static TemperatureGradient()
-        {
-            BaseDimensions = new BaseDimensions(-1, 0, 0, 0, 1, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-1, 0, 0, 0, 1, 0, 0);
 
         /// <summary>
         ///     The base unit of TemperatureGradient, which is KelvinPerMeter. All conversions go via this value.
@@ -929,12 +924,13 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal TemperatureGradientQuantityInfo() :
-                base("TemperatureGradient", TemperatureGradient.BaseUnit, TemperatureGradient.Zero, TemperatureGradient.BaseDimensions, QuantityType.TemperatureGradient)
+                base("TemperatureGradient", new UnitInfo<TemperatureGradientUnit>[]{}, TemperatureGradient.BaseUnit, TemperatureGradient.Zero, TemperatureGradient.BaseDimensions, QuantityType.TemperatureGradient)
             {
                 DegreeCelsiusPerKilometer = new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.DegreeCelsiusPerKilometer, "DegreesCelciusPerKilometer", new BaseUnits(length: LengthUnit.Kilometer, temperature: TemperatureUnit.DegreeCelsius));
                 DegreeCelsiusPerMeter = new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.DegreeCelsiusPerMeter, "DegreesCelciusPerMeter", new BaseUnits(length: LengthUnit.Meter, temperature: TemperatureUnit.DegreeCelsius));
                 DegreeFahrenheitPerFoot = new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.DegreeFahrenheitPerFoot, "DegreesFahrenheitPerFoot", new BaseUnits(length: LengthUnit.Foot, temperature: TemperatureUnit.DegreeFahrenheit));
                 KelvinPerMeter = new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.KelvinPerMeter, "KelvinsPerMeter", new BaseUnits(length: LengthUnit.Meter, temperature: TemperatureUnit.Kelvin));
+                BaseUnitInfo = KelvinPerMeter;
             }
 
             /// <summary>

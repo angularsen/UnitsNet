@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly PermittivityUnit? _unit;
 
-        static Permittivity()
-        {
-            BaseDimensions = new BaseDimensions(-3, -1, 4, 2, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-3, -1, 4, 2, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of Permittivity, which is FaradPerMeter. All conversions go via this value.
@@ -878,9 +873,10 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal PermittivityQuantityInfo() :
-                base("Permittivity", Permittivity.BaseUnit, Permittivity.Zero, Permittivity.BaseDimensions, QuantityType.Permittivity)
+                base("Permittivity", new UnitInfo<PermittivityUnit>[]{}, Permittivity.BaseUnit, Permittivity.Zero, Permittivity.BaseDimensions, QuantityType.Permittivity)
             {
                 FaradPerMeter = new UnitInfo<PermittivityUnit>(PermittivityUnit.FaradPerMeter, "FaradsPerMeter", BaseUnits.Undefined);
+                BaseUnitInfo = FaradPerMeter;
             }
 
             /// <summary>

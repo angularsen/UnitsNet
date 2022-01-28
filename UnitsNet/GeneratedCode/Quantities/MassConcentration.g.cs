@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly MassConcentrationUnit? _unit;
 
-        static MassConcentration()
-        {
-            BaseDimensions = new BaseDimensions(-3, 1, 0, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-3, 1, 0, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of MassConcentration, which is KilogramPerCubicMeter. All conversions go via this value.
@@ -1742,7 +1737,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal MassConcentrationQuantityInfo() :
-                base("MassConcentration", MassConcentration.BaseUnit, MassConcentration.Zero, MassConcentration.BaseDimensions, QuantityType.MassConcentration)
+                base("MassConcentration", new UnitInfo<MassConcentrationUnit>[]{}, MassConcentration.BaseUnit, MassConcentration.Zero, MassConcentration.BaseDimensions, QuantityType.MassConcentration)
             {
                 CentigramPerDeciliter = new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.CentigramPerDeciliter, "CentigramsPerDeciliter", BaseUnits.Undefined);
                 CentigramPerLiter = new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.CentigramPerLiter, "CentigramsPerLiter", BaseUnits.Undefined);
@@ -1793,6 +1788,7 @@ namespace UnitsNet
                 TonnePerCubicCentimeter = new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.TonnePerCubicCentimeter, "TonnesPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Tonne));
                 TonnePerCubicMeter = new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.TonnePerCubicMeter, "TonnesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Tonne));
                 TonnePerCubicMillimeter = new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.TonnePerCubicMillimeter, "TonnesPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Tonne));
+                BaseUnitInfo = KilogramPerCubicMeter;
             }
 
             /// <summary>

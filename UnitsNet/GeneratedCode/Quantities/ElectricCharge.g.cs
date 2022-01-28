@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ElectricChargeUnit? _unit;
 
-        static ElectricCharge()
-        {
-            BaseDimensions = new BaseDimensions(0, 0, 1, 1, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 0, 1, 1, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of ElectricCharge, which is Coulomb. All conversions go via this value.
@@ -950,13 +945,14 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ElectricChargeQuantityInfo() :
-                base("ElectricCharge", ElectricCharge.BaseUnit, ElectricCharge.Zero, ElectricCharge.BaseDimensions, QuantityType.ElectricCharge)
+                base("ElectricCharge", new UnitInfo<ElectricChargeUnit>[]{}, ElectricCharge.BaseUnit, ElectricCharge.Zero, ElectricCharge.BaseDimensions, QuantityType.ElectricCharge)
             {
                 AmpereHour = new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.AmpereHour, "AmpereHours", BaseUnits.Undefined);
                 Coulomb = new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Coulomb, "Coulombs", BaseUnits.Undefined);
                 KiloampereHour = new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.KiloampereHour, "KiloampereHours", BaseUnits.Undefined);
                 MegaampereHour = new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MegaampereHour, "MegaampereHours", BaseUnits.Undefined);
                 MilliampereHour = new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MilliampereHour, "MilliampereHours", BaseUnits.Undefined);
+                BaseUnitInfo = Coulomb;
             }
 
             /// <summary>

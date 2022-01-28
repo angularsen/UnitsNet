@@ -50,12 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly PowerRatioUnit? _unit;
 
-        static PowerRatio()
-        {
-            BaseDimensions = BaseDimensions.Dimensionless;
-
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -98,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = BaseDimensions.Dimensionless;
 
         /// <summary>
         ///     The base unit of PowerRatio, which is DecibelWatt. All conversions go via this value.
@@ -902,10 +896,11 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal PowerRatioQuantityInfo() :
-                base("PowerRatio", PowerRatio.BaseUnit, PowerRatio.Zero, PowerRatio.BaseDimensions, QuantityType.PowerRatio)
+                base("PowerRatio", new UnitInfo<PowerRatioUnit>[]{}, PowerRatio.BaseUnit, PowerRatio.Zero, PowerRatio.BaseDimensions, QuantityType.PowerRatio)
             {
                 DecibelMilliwatt = new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelMilliwatt, "DecibelMilliwatts", BaseUnits.Undefined);
                 DecibelWatt = new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelWatt, "DecibelWatts", BaseUnits.Undefined);
+                BaseUnitInfo = DecibelWatt;
             }
 
             /// <summary>

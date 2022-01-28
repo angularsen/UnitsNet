@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly DurationUnit? _unit;
 
-        static Duration()
-        {
-            BaseDimensions = new BaseDimensions(0, 0, 1, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 0, 1, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
@@ -1055,7 +1050,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal DurationQuantityInfo() :
-                base("Duration", Duration.BaseUnit, Duration.Zero, Duration.BaseDimensions, QuantityType.Duration)
+                base("Duration", new UnitInfo<DurationUnit>[]{}, Duration.BaseUnit, Duration.Zero, Duration.BaseDimensions, QuantityType.Duration)
             {
                 Day = new UnitInfo<DurationUnit>(DurationUnit.Day, "Days", new BaseUnits(time: DurationUnit.Day));
                 Hour = new UnitInfo<DurationUnit>(DurationUnit.Hour, "Hours", new BaseUnits(time: DurationUnit.Hour));
@@ -1068,6 +1063,7 @@ namespace UnitsNet
                 Second = new UnitInfo<DurationUnit>(DurationUnit.Second, "Seconds", new BaseUnits(time: DurationUnit.Second));
                 Week = new UnitInfo<DurationUnit>(DurationUnit.Week, "Weeks", new BaseUnits(time: DurationUnit.Week));
                 Year365 = new UnitInfo<DurationUnit>(DurationUnit.Year365, "Years365", new BaseUnits(time: DurationUnit.Year365));
+                BaseUnitInfo = Second;
             }
 
             /// <summary>

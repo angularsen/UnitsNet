@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly AmountOfSubstanceUnit? _unit;
 
-        static AmountOfSubstance()
-        {
-            BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 1, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 0, 0, 0, 0, 1, 0);
 
         /// <summary>
         ///     The base unit of AmountOfSubstance, which is Mole. All conversions go via this value.
@@ -1127,7 +1122,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal AmountOfSubstanceQuantityInfo() :
-                base("AmountOfSubstance", AmountOfSubstance.BaseUnit, AmountOfSubstance.Zero, AmountOfSubstance.BaseDimensions, QuantityType.AmountOfSubstance)
+                base("AmountOfSubstance", new UnitInfo<AmountOfSubstanceUnit>[]{}, AmountOfSubstance.BaseUnit, AmountOfSubstance.Zero, AmountOfSubstance.BaseDimensions, QuantityType.AmountOfSubstance)
             {
                 Centimole = new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Centimole, "Centimoles", BaseUnits.Undefined);
                 CentipoundMole = new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.CentipoundMole, "CentipoundMoles", BaseUnits.Undefined);
@@ -1144,6 +1139,7 @@ namespace UnitsNet
                 Nanomole = new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Nanomole, "Nanomoles", BaseUnits.Undefined);
                 NanopoundMole = new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.NanopoundMole, "NanopoundMoles", BaseUnits.Undefined);
                 PoundMole = new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.PoundMole, "PoundMoles", new BaseUnits(amount: AmountOfSubstanceUnit.PoundMole));
+                BaseUnitInfo = Mole;
             }
 
             /// <summary>

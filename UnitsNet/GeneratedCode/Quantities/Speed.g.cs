@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly SpeedUnit? _unit;
 
-        static Speed()
-        {
-            BaseDimensions = new BaseDimensions(1, 0, -1, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(1, 0, -1, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of Speed, which is MeterPerSecond. All conversions go via this value.
@@ -1433,7 +1428,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal SpeedQuantityInfo() :
-                base("Speed", Speed.BaseUnit, Speed.Zero, Speed.BaseDimensions, QuantityType.Speed)
+                base("Speed", new UnitInfo<SpeedUnit>[]{}, Speed.BaseUnit, Speed.Zero, Speed.BaseDimensions, QuantityType.Speed)
             {
                 CentimeterPerHour = new UnitInfo<SpeedUnit>(SpeedUnit.CentimeterPerHour, "CentimetersPerHour", BaseUnits.Undefined);
                 CentimeterPerMinute = new UnitInfo<SpeedUnit>(SpeedUnit.CentimeterPerMinute, "CentimetersPerMinutes", BaseUnits.Undefined);
@@ -1467,6 +1462,7 @@ namespace UnitsNet
                 YardPerHour = new UnitInfo<SpeedUnit>(SpeedUnit.YardPerHour, "YardsPerHour", new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Hour));
                 YardPerMinute = new UnitInfo<SpeedUnit>(SpeedUnit.YardPerMinute, "YardsPerMinute", new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Minute));
                 YardPerSecond = new UnitInfo<SpeedUnit>(SpeedUnit.YardPerSecond, "YardsPerSecond", new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Second));
+                BaseUnitInfo = MeterPerSecond;
             }
 
             /// <summary>

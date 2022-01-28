@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly MagneticFluxUnit? _unit;
 
-        static MagneticFlux()
-        {
-            BaseDimensions = new BaseDimensions(2, 1, -2, -1, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 1, -2, -1, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of MagneticFlux, which is Weber. All conversions go via this value.
@@ -878,9 +873,10 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal MagneticFluxQuantityInfo() :
-                base("MagneticFlux", MagneticFlux.BaseUnit, MagneticFlux.Zero, MagneticFlux.BaseDimensions, QuantityType.MagneticFlux)
+                base("MagneticFlux", new UnitInfo<MagneticFluxUnit>[]{}, MagneticFlux.BaseUnit, MagneticFlux.Zero, MagneticFlux.BaseDimensions, QuantityType.MagneticFlux)
             {
                 Weber = new UnitInfo<MagneticFluxUnit>(MagneticFluxUnit.Weber, "Webers", BaseUnits.Undefined);
+                BaseUnitInfo = Weber;
             }
 
             /// <summary>

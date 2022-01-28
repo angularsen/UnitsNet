@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ThermalConductivityUnit? _unit;
 
-        static ThermalConductivity()
-        {
-            BaseDimensions = new BaseDimensions(1, 1, -3, 0, -1, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(1, 1, -3, 0, -1, 0, 0);
 
         /// <summary>
         ///     The base unit of ThermalConductivity, which is WattPerMeterKelvin. All conversions go via this value.
@@ -896,10 +891,11 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ThermalConductivityQuantityInfo() :
-                base("ThermalConductivity", ThermalConductivity.BaseUnit, ThermalConductivity.Zero, ThermalConductivity.BaseDimensions, QuantityType.ThermalConductivity)
+                base("ThermalConductivity", new UnitInfo<ThermalConductivityUnit>[]{}, ThermalConductivity.BaseUnit, ThermalConductivity.Zero, ThermalConductivity.BaseDimensions, QuantityType.ThermalConductivity)
             {
                 BtuPerHourFootFahrenheit = new UnitInfo<ThermalConductivityUnit>(ThermalConductivityUnit.BtuPerHourFootFahrenheit, "BtusPerHourFootFahrenheit", BaseUnits.Undefined);
                 WattPerMeterKelvin = new UnitInfo<ThermalConductivityUnit>(ThermalConductivityUnit.WattPerMeterKelvin, "WattsPerMeterKelvin", BaseUnits.Undefined);
+                BaseUnitInfo = WattPerMeterKelvin;
             }
 
             /// <summary>

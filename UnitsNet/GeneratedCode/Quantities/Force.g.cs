@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ForceUnit? _unit;
 
-        static Force()
-        {
-            BaseDimensions = new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of Force, which is Newton. All conversions go via this value.
@@ -1127,7 +1122,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ForceQuantityInfo() :
-                base("Force", Force.BaseUnit, Force.Zero, Force.BaseDimensions, QuantityType.Force)
+                base("Force", new UnitInfo<ForceUnit>[]{}, Force.BaseUnit, Force.Zero, Force.BaseDimensions, QuantityType.Force)
             {
                 Decanewton = new UnitInfo<ForceUnit>(ForceUnit.Decanewton, "Decanewtons", BaseUnits.Undefined);
                 Dyn = new UnitInfo<ForceUnit>(ForceUnit.Dyn, "Dyne", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram, time: DurationUnit.Second));
@@ -1144,6 +1139,7 @@ namespace UnitsNet
                 PoundForce = new UnitInfo<ForceUnit>(ForceUnit.PoundForce, "PoundsForce", BaseUnits.Undefined);
                 ShortTonForce = new UnitInfo<ForceUnit>(ForceUnit.ShortTonForce, "ShortTonsForce", BaseUnits.Undefined);
                 TonneForce = new UnitInfo<ForceUnit>(ForceUnit.TonneForce, "TonnesForce", BaseUnits.Undefined);
+                BaseUnitInfo = Newton;
             }
 
             /// <summary>

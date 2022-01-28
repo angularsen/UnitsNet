@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly MagnetizationUnit? _unit;
 
-        static Magnetization()
-        {
-            BaseDimensions = new BaseDimensions(-1, 0, 0, 1, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-1, 0, 0, 1, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of Magnetization, which is AmperePerMeter. All conversions go via this value.
@@ -878,9 +873,10 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal MagnetizationQuantityInfo() :
-                base("Magnetization", Magnetization.BaseUnit, Magnetization.Zero, Magnetization.BaseDimensions, QuantityType.Magnetization)
+                base("Magnetization", new UnitInfo<MagnetizationUnit>[]{}, Magnetization.BaseUnit, Magnetization.Zero, Magnetization.BaseDimensions, QuantityType.Magnetization)
             {
                 AmperePerMeter = new UnitInfo<MagnetizationUnit>(MagnetizationUnit.AmperePerMeter, "AmperesPerMeter", new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere));
+                BaseUnitInfo = AmperePerMeter;
             }
 
             /// <summary>

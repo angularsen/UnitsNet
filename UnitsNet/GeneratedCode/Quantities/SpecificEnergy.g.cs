@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly SpecificEnergyUnit? _unit;
 
-        static SpecificEnergy()
-        {
-            BaseDimensions = new BaseDimensions(2, 0, -2, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 0, -2, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of SpecificEnergy, which is JoulePerKilogram. All conversions go via this value.
@@ -1310,7 +1305,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal SpecificEnergyQuantityInfo() :
-                base("SpecificEnergy", SpecificEnergy.BaseUnit, SpecificEnergy.Zero, SpecificEnergy.BaseDimensions, QuantityType.SpecificEnergy)
+                base("SpecificEnergy", new UnitInfo<SpecificEnergyUnit>[]{}, SpecificEnergy.BaseUnit, SpecificEnergy.Zero, SpecificEnergy.BaseDimensions, QuantityType.SpecificEnergy)
             {
                 BtuPerPound = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.BtuPerPound, "BtuPerPound", BaseUnits.Undefined);
                 CaloriePerGram = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.CaloriePerGram, "CaloriesPerGram", BaseUnits.Undefined);
@@ -1337,6 +1332,7 @@ namespace UnitsNet
                 WattDayPerShortTon = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattDayPerShortTon, "WattDaysPerShortTon", BaseUnits.Undefined);
                 WattDayPerTonne = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattDayPerTonne, "WattDaysPerTonne", BaseUnits.Undefined);
                 WattHourPerKilogram = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattHourPerKilogram, "WattHoursPerKilogram", BaseUnits.Undefined);
+                BaseUnitInfo = JoulePerKilogram;
             }
 
             /// <summary>

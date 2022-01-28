@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ElectricResistanceUnit? _unit;
 
-        static ElectricResistance()
-        {
-            BaseDimensions = new BaseDimensions(2, 1, -3, -2, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 1, -3, -2, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of ElectricResistance, which is Ohm. All conversions go via this value.
@@ -965,7 +960,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ElectricResistanceQuantityInfo() :
-                base("ElectricResistance", ElectricResistance.BaseUnit, ElectricResistance.Zero, ElectricResistance.BaseDimensions, QuantityType.ElectricResistance)
+                base("ElectricResistance", new UnitInfo<ElectricResistanceUnit>[]{}, ElectricResistance.BaseUnit, ElectricResistance.Zero, ElectricResistance.BaseDimensions, QuantityType.ElectricResistance)
             {
                 Gigaohm = new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Gigaohm, "Gigaohms", BaseUnits.Undefined);
                 Kiloohm = new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Kiloohm, "Kiloohms", BaseUnits.Undefined);
@@ -973,6 +968,7 @@ namespace UnitsNet
                 Microohm = new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Microohm, "Microohms", BaseUnits.Undefined);
                 Milliohm = new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Milliohm, "Milliohms", BaseUnits.Undefined);
                 Ohm = new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Ohm, "Ohms", BaseUnits.Undefined);
+                BaseUnitInfo = Ohm;
             }
 
             /// <summary>

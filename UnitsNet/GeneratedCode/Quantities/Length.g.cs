@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly LengthUnit? _unit;
 
-        static Length()
-        {
-            BaseDimensions = new BaseDimensions(1, 0, 0, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(1, 0, 0, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of Length, which is Meter. All conversions go via this value.
@@ -1451,7 +1446,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal LengthQuantityInfo() :
-                base("Length", Length.BaseUnit, Length.Zero, Length.BaseDimensions, QuantityType.Length)
+                base("Length", new UnitInfo<LengthUnit>[]{}, Length.BaseUnit, Length.Zero, Length.BaseDimensions, QuantityType.Length)
             {
                 AstronomicalUnit = new UnitInfo<LengthUnit>(LengthUnit.AstronomicalUnit, "AstronomicalUnits", BaseUnits.Undefined);
                 Centimeter = new UnitInfo<LengthUnit>(LengthUnit.Centimeter, "Centimeters", BaseUnits.Undefined);
@@ -1486,6 +1481,7 @@ namespace UnitsNet
                 Twip = new UnitInfo<LengthUnit>(LengthUnit.Twip, "Twips", new BaseUnits(length: LengthUnit.Twip));
                 UsSurveyFoot = new UnitInfo<LengthUnit>(LengthUnit.UsSurveyFoot, "UsSurveyFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot));
                 Yard = new UnitInfo<LengthUnit>(LengthUnit.Yard, "Yards", new BaseUnits(length: LengthUnit.Yard));
+                BaseUnitInfo = Meter;
             }
 
             /// <summary>

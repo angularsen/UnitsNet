@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly RotationalStiffnessUnit? _unit;
 
-        static RotationalStiffness()
-        {
-            BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of RotationalStiffness, which is NewtonMeterPerRadian. All conversions go via this value.
@@ -1451,7 +1446,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal RotationalStiffnessQuantityInfo() :
-                base("RotationalStiffness", RotationalStiffness.BaseUnit, RotationalStiffness.Zero, RotationalStiffness.BaseDimensions, QuantityType.RotationalStiffness)
+                base("RotationalStiffness", new UnitInfo<RotationalStiffnessUnit>[]{}, RotationalStiffness.BaseUnit, RotationalStiffness.Zero, RotationalStiffness.BaseDimensions, QuantityType.RotationalStiffness)
             {
                 CentinewtonMeterPerDegree = new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.CentinewtonMeterPerDegree, "CentinewtonMetersPerDegree", BaseUnits.Undefined);
                 CentinewtonMillimeterPerDegree = new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.CentinewtonMillimeterPerDegree, "CentinewtonMillimetersPerDegree", BaseUnits.Undefined);
@@ -1486,6 +1481,7 @@ namespace UnitsNet
                 NewtonMillimeterPerRadian = new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.NewtonMillimeterPerRadian, "NewtonMillimetersPerRadian", BaseUnits.Undefined);
                 PoundForceFeetPerRadian = new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.PoundForceFeetPerRadian, "PoundForceFeetPerRadian", BaseUnits.Undefined);
                 PoundForceFootPerDegrees = new UnitInfo<RotationalStiffnessUnit>(RotationalStiffnessUnit.PoundForceFootPerDegrees, "PoundForceFeetPerDegrees", BaseUnits.Undefined);
+                BaseUnitInfo = NewtonMeterPerRadian;
             }
 
             /// <summary>

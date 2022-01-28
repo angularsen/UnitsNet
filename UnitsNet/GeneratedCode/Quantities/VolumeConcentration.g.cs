@@ -53,12 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly VolumeConcentrationUnit? _unit;
 
-        static VolumeConcentration()
-        {
-            BaseDimensions = BaseDimensions.Dimensionless;
-
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -101,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = BaseDimensions.Dimensionless;
 
         /// <summary>
         ///     The base unit of VolumeConcentration, which is DecimalFraction. All conversions go via this value.
@@ -1221,7 +1215,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal VolumeConcentrationQuantityInfo() :
-                base("VolumeConcentration", VolumeConcentration.BaseUnit, VolumeConcentration.Zero, VolumeConcentration.BaseDimensions, QuantityType.VolumeConcentration)
+                base("VolumeConcentration", new UnitInfo<VolumeConcentrationUnit>[]{}, VolumeConcentration.BaseUnit, VolumeConcentration.Zero, VolumeConcentration.BaseDimensions, QuantityType.VolumeConcentration)
             {
                 CentilitersPerLiter = new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.CentilitersPerLiter, "CentilitersPerLiter", BaseUnits.Undefined);
                 CentilitersPerMililiter = new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.CentilitersPerMililiter, "CentilitersPerMililiter", BaseUnits.Undefined);
@@ -1243,6 +1237,7 @@ namespace UnitsNet
                 Percent = new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.Percent, "Percent", BaseUnits.Undefined);
                 PicolitersPerLiter = new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PicolitersPerLiter, "PicolitersPerLiter", BaseUnits.Undefined);
                 PicolitersPerMililiter = new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PicolitersPerMililiter, "PicolitersPerMililiter", BaseUnits.Undefined);
+                BaseUnitInfo = DecimalFraction;
             }
 
             /// <summary>

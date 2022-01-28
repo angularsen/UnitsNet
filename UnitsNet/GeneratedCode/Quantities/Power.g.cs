@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly PowerUnit? _unit;
 
-        static Power()
-        {
-            BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of Power, which is Watt. All conversions go via this value.
@@ -1312,7 +1307,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal PowerQuantityInfo() :
-                base("Power", Power.BaseUnit, Power.Zero, Power.BaseDimensions, QuantityType.Power)
+                base("Power", new UnitInfo<PowerUnit>[]{}, Power.BaseUnit, Power.Zero, Power.BaseDimensions, QuantityType.Power)
             {
                 BoilerHorsepower = new UnitInfo<PowerUnit>(PowerUnit.BoilerHorsepower, "BoilerHorsepower", BaseUnits.Undefined);
                 BritishThermalUnitPerHour = new UnitInfo<PowerUnit>(PowerUnit.BritishThermalUnitPerHour, "BritishThermalUnitsPerHour", BaseUnits.Undefined);
@@ -1339,6 +1334,7 @@ namespace UnitsNet
                 Picowatt = new UnitInfo<PowerUnit>(PowerUnit.Picowatt, "Picowatts", BaseUnits.Undefined);
                 Terawatt = new UnitInfo<PowerUnit>(PowerUnit.Terawatt, "Terawatts", BaseUnits.Undefined);
                 Watt = new UnitInfo<PowerUnit>(PowerUnit.Watt, "Watts", BaseUnits.Undefined);
+                BaseUnitInfo = Watt;
             }
 
             /// <summary>

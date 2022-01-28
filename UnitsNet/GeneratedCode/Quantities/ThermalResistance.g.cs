@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ThermalResistanceUnit? _unit;
 
-        static ThermalResistance()
-        {
-            BaseDimensions = new BaseDimensions(0, -1, 3, 0, 1, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, -1, 3, 0, 1, 0, 0);
 
         /// <summary>
         ///     The base unit of ThermalResistance, which is SquareMeterKelvinPerKilowatt. All conversions go via this value.
@@ -965,7 +960,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ThermalResistanceQuantityInfo() :
-                base("ThermalResistance", ThermalResistance.BaseUnit, ThermalResistance.Zero, ThermalResistance.BaseDimensions, QuantityType.ThermalResistance)
+                base("ThermalResistance", new UnitInfo<ThermalResistanceUnit>[]{}, ThermalResistance.BaseUnit, ThermalResistance.Zero, ThermalResistance.BaseDimensions, QuantityType.ThermalResistance)
             {
                 HourSquareFeetDegreeFahrenheitPerBtu = new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, "HourSquareFeetDegreesFahrenheitPerBtu", BaseUnits.Undefined);
                 SquareCentimeterHourDegreeCelsiusPerKilocalorie = new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, "SquareCentimeterHourDegreesCelsiusPerKilocalorie", BaseUnits.Undefined);
@@ -973,6 +968,7 @@ namespace UnitsNet
                 SquareMeterDegreeCelsiusPerWatt = new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, "SquareMeterDegreesCelsiusPerWatt", BaseUnits.Undefined);
                 SquareMeterKelvinPerKilowatt = new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, "SquareMeterKelvinsPerKilowatt", BaseUnits.Undefined);
                 SquareMeterKelvinPerWatt = new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareMeterKelvinPerWatt, "SquareMeterKelvinsPerWatt", BaseUnits.Undefined);
+                BaseUnitInfo = SquareMeterKelvinPerKilowatt;
             }
 
             /// <summary>

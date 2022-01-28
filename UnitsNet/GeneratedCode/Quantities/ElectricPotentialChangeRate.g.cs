@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ElectricPotentialChangeRateUnit? _unit;
 
-        static ElectricPotentialChangeRate()
-        {
-            BaseDimensions = new BaseDimensions(2, 1, -4, -1, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 1, -4, -1, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of ElectricPotentialChangeRate, which is VoltPerSecond. All conversions go via this value.
@@ -1217,7 +1212,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ElectricPotentialChangeRateQuantityInfo() :
-                base("ElectricPotentialChangeRate", ElectricPotentialChangeRate.BaseUnit, ElectricPotentialChangeRate.Zero, ElectricPotentialChangeRate.BaseDimensions, QuantityType.ElectricPotentialChangeRate)
+                base("ElectricPotentialChangeRate", new UnitInfo<ElectricPotentialChangeRateUnit>[]{}, ElectricPotentialChangeRate.BaseUnit, ElectricPotentialChangeRate.Zero, ElectricPotentialChangeRate.BaseDimensions, QuantityType.ElectricPotentialChangeRate)
             {
                 KilovoltPerHour = new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.KilovoltPerHour, "KilovoltsPerHours", BaseUnits.Undefined);
                 KilovoltPerMicrosecond = new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond, "KilovoltsPerMicroseconds", BaseUnits.Undefined);
@@ -1239,6 +1234,7 @@ namespace UnitsNet
                 VoltPerMicrosecond = new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.VoltPerMicrosecond, "VoltsPerMicroseconds", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Microsecond, current: ElectricCurrentUnit.Ampere));
                 VoltPerMinute = new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.VoltPerMinute, "VoltsPerMinutes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Minute, current: ElectricCurrentUnit.Ampere));
                 VoltPerSecond = new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.VoltPerSecond, "VoltsPerSeconds", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                BaseUnitInfo = VoltPerSecond;
             }
 
             /// <summary>

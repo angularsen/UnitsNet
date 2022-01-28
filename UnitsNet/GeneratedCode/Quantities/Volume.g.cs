@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly VolumeUnit? _unit;
 
-        static Volume()
-        {
-            BaseDimensions = new BaseDimensions(3, 0, 0, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(3, 0, 0, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of Volume, which is CubicMeter. All conversions go via this value.
@@ -1775,7 +1770,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal VolumeQuantityInfo() :
-                base("Volume", Volume.BaseUnit, Volume.Zero, Volume.BaseDimensions, QuantityType.Volume)
+                base("Volume", new UnitInfo<VolumeUnit>[]{}, Volume.BaseUnit, Volume.Zero, Volume.BaseDimensions, QuantityType.Volume)
             {
                 AcreFoot = new UnitInfo<VolumeUnit>(VolumeUnit.AcreFoot, "AcreFeet", BaseUnits.Undefined);
                 AuTablespoon = new UnitInfo<VolumeUnit>(VolumeUnit.AuTablespoon, "AuTablespoons", BaseUnits.Undefined);
@@ -1828,6 +1823,7 @@ namespace UnitsNet
                 UsQuart = new UnitInfo<VolumeUnit>(VolumeUnit.UsQuart, "UsQuarts", BaseUnits.Undefined);
                 UsTablespoon = new UnitInfo<VolumeUnit>(VolumeUnit.UsTablespoon, "UsTablespoons", BaseUnits.Undefined);
                 UsTeaspoon = new UnitInfo<VolumeUnit>(VolumeUnit.UsTeaspoon, "UsTeaspoons", BaseUnits.Undefined);
+                BaseUnitInfo = CubicMeter;
             }
 
             /// <summary>

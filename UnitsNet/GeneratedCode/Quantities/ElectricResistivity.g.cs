@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ElectricResistivityUnit? _unit;
 
-        static ElectricResistivity()
-        {
-            BaseDimensions = new BaseDimensions(3, 1, -3, -2, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(3, 1, -3, -2, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of ElectricResistivity, which is OhmMeter. All conversions go via this value.
@@ -1112,7 +1107,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ElectricResistivityQuantityInfo() :
-                base("ElectricResistivity", ElectricResistivity.BaseUnit, ElectricResistivity.Zero, ElectricResistivity.BaseDimensions, QuantityType.ElectricResistivity)
+                base("ElectricResistivity", new UnitInfo<ElectricResistivityUnit>[]{}, ElectricResistivity.BaseUnit, ElectricResistivity.Zero, ElectricResistivity.BaseDimensions, QuantityType.ElectricResistivity)
             {
                 KiloohmCentimeter = new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.KiloohmCentimeter, "KiloohmsCentimeter", BaseUnits.Undefined);
                 KiloohmMeter = new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.KiloohmMeter, "KiloohmMeters", BaseUnits.Undefined);
@@ -1128,6 +1123,7 @@ namespace UnitsNet
                 OhmMeter = new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.OhmMeter, "OhmMeters", BaseUnits.Undefined);
                 PicoohmCentimeter = new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.PicoohmCentimeter, "PicoohmsCentimeter", BaseUnits.Undefined);
                 PicoohmMeter = new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.PicoohmMeter, "PicoohmMeters", BaseUnits.Undefined);
+                BaseUnitInfo = OhmMeter;
             }
 
             /// <summary>

@@ -53,12 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly TurbidityUnit? _unit;
 
-        static Turbidity()
-        {
-            BaseDimensions = BaseDimensions.Dimensionless;
-
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -101,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = BaseDimensions.Dimensionless;
 
         /// <summary>
         ///     The base unit of Turbidity, which is NTU. All conversions go via this value.
@@ -879,9 +873,10 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal TurbidityQuantityInfo() :
-                base("Turbidity", Turbidity.BaseUnit, Turbidity.Zero, Turbidity.BaseDimensions, QuantityType.Turbidity)
+                base("Turbidity", new UnitInfo<TurbidityUnit>[]{}, Turbidity.BaseUnit, Turbidity.Zero, Turbidity.BaseDimensions, QuantityType.Turbidity)
             {
                 NTU = new UnitInfo<TurbidityUnit>(TurbidityUnit.NTU, "NTU", BaseUnits.Undefined);
+                BaseUnitInfo = NTU;
             }
 
             /// <summary>

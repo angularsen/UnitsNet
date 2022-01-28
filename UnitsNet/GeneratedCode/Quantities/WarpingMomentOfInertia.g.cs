@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly WarpingMomentOfInertiaUnit? _unit;
 
-        static WarpingMomentOfInertia()
-        {
-            BaseDimensions = new BaseDimensions(6, 0, 0, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(6, 0, 0, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of WarpingMomentOfInertia, which is MeterToTheSixth. All conversions go via this value.
@@ -965,7 +960,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal WarpingMomentOfInertiaQuantityInfo() :
-                base("WarpingMomentOfInertia", WarpingMomentOfInertia.BaseUnit, WarpingMomentOfInertia.Zero, WarpingMomentOfInertia.BaseDimensions, QuantityType.WarpingMomentOfInertia)
+                base("WarpingMomentOfInertia", new UnitInfo<WarpingMomentOfInertiaUnit>[]{}, WarpingMomentOfInertia.BaseUnit, WarpingMomentOfInertia.Zero, WarpingMomentOfInertia.BaseDimensions, QuantityType.WarpingMomentOfInertia)
             {
                 CentimeterToTheSixth = new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.CentimeterToTheSixth, "CentimetersToTheSixth", new BaseUnits(length: LengthUnit.Centimeter));
                 DecimeterToTheSixth = new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.DecimeterToTheSixth, "DecimetersToTheSixth", new BaseUnits(length: LengthUnit.Decimeter));
@@ -973,6 +968,7 @@ namespace UnitsNet
                 InchToTheSixth = new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.InchToTheSixth, "InchesToTheSixth", new BaseUnits(length: LengthUnit.Inch));
                 MeterToTheSixth = new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.MeterToTheSixth, "MetersToTheSixth", new BaseUnits(length: LengthUnit.Meter));
                 MillimeterToTheSixth = new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, "MillimetersToTheSixth", new BaseUnits(length: LengthUnit.Millimeter));
+                BaseUnitInfo = MeterToTheSixth;
             }
 
             /// <summary>

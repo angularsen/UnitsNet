@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly LinearDensityUnit? _unit;
 
-        static LinearDensity()
-        {
-            BaseDimensions = new BaseDimensions(-1, 1, 0, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-1, 1, 0, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of LinearDensity, which is KilogramPerMeter. All conversions go via this value.
@@ -1112,7 +1107,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal LinearDensityQuantityInfo() :
-                base("LinearDensity", LinearDensity.BaseUnit, LinearDensity.Zero, LinearDensity.BaseDimensions, QuantityType.LinearDensity)
+                base("LinearDensity", new UnitInfo<LinearDensityUnit>[]{}, LinearDensity.BaseUnit, LinearDensity.Zero, LinearDensity.BaseDimensions, QuantityType.LinearDensity)
             {
                 GramPerCentimeter = new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerCentimeter, "GramsPerCentimeter", BaseUnits.Undefined);
                 GramPerMeter = new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerMeter, "GramsPerMeter", BaseUnits.Undefined);
@@ -1128,6 +1123,7 @@ namespace UnitsNet
                 MilligramPerMillimeter = new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MilligramPerMillimeter, "MilligramsPerMillimeter", BaseUnits.Undefined);
                 PoundPerFoot = new UnitInfo<LinearDensityUnit>(LinearDensityUnit.PoundPerFoot, "PoundsPerFoot", BaseUnits.Undefined);
                 PoundPerInch = new UnitInfo<LinearDensityUnit>(LinearDensityUnit.PoundPerInch, "PoundsPerInch", BaseUnits.Undefined);
+                BaseUnitInfo = KilogramPerMeter;
             }
 
             /// <summary>

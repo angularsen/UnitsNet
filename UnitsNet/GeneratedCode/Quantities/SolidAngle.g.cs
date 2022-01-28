@@ -53,12 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly SolidAngleUnit? _unit;
 
-        static SolidAngle()
-        {
-            BaseDimensions = BaseDimensions.Dimensionless;
-
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -101,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = BaseDimensions.Dimensionless;
 
         /// <summary>
         ///     The base unit of SolidAngle, which is Steradian. All conversions go via this value.
@@ -879,9 +873,10 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal SolidAngleQuantityInfo() :
-                base("SolidAngle", SolidAngle.BaseUnit, SolidAngle.Zero, SolidAngle.BaseDimensions, QuantityType.SolidAngle)
+                base("SolidAngle", new UnitInfo<SolidAngleUnit>[]{}, SolidAngle.BaseUnit, SolidAngle.Zero, SolidAngle.BaseDimensions, QuantityType.SolidAngle)
             {
                 Steradian = new UnitInfo<SolidAngleUnit>(SolidAngleUnit.Steradian, "Steradians", BaseUnits.Undefined);
+                BaseUnitInfo = Steradian;
             }
 
             /// <summary>

@@ -51,11 +51,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly LapseRateUnit? _unit;
 
-        static LapseRate()
-        {
-            BaseDimensions = new BaseDimensions(-1, 0, 0, 0, 1, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -98,7 +93,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-1, 0, 0, 0, 1, 0, 0);
 
         /// <summary>
         ///     The base unit of LapseRate, which is DegreeCelsiusPerKilometer. All conversions go via this value.
@@ -876,9 +871,10 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal LapseRateQuantityInfo() :
-                base("LapseRate", LapseRate.BaseUnit, LapseRate.Zero, LapseRate.BaseDimensions, QuantityType.LapseRate)
+                base("LapseRate", new UnitInfo<LapseRateUnit>[]{}, LapseRate.BaseUnit, LapseRate.Zero, LapseRate.BaseDimensions, QuantityType.LapseRate)
             {
                 DegreeCelsiusPerKilometer = new UnitInfo<LapseRateUnit>(LapseRateUnit.DegreeCelsiusPerKilometer, "DegreesCelciusPerKilometer", BaseUnits.Undefined);
+                BaseUnitInfo = DegreeCelsiusPerKilometer;
             }
 
             /// <summary>

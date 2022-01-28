@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly LinearPowerDensityUnit? _unit;
 
-        static LinearPowerDensity()
-        {
-            BaseDimensions = new BaseDimensions(1, 1, -3, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(1, 1, -3, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of LinearPowerDensity, which is WattPerMeter. All conversions go via this value.
@@ -1310,7 +1305,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal LinearPowerDensityQuantityInfo() :
-                base("LinearPowerDensity", LinearPowerDensity.BaseUnit, LinearPowerDensity.Zero, LinearPowerDensity.BaseDimensions, QuantityType.LinearPowerDensity)
+                base("LinearPowerDensity", new UnitInfo<LinearPowerDensityUnit>[]{}, LinearPowerDensity.BaseUnit, LinearPowerDensity.Zero, LinearPowerDensity.BaseDimensions, QuantityType.LinearPowerDensity)
             {
                 GigawattPerCentimeter = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.GigawattPerCentimeter, "GigawattsPerCentimeter", BaseUnits.Undefined);
                 GigawattPerFoot = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.GigawattPerFoot, "GigawattsPerFoot", BaseUnits.Undefined);
@@ -1337,6 +1332,7 @@ namespace UnitsNet
                 WattPerInch = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerInch, "WattsPerInch", BaseUnits.Undefined);
                 WattPerMeter = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerMeter, "WattsPerMeter", BaseUnits.Undefined);
                 WattPerMillimeter = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerMillimeter, "WattsPerMillimeter", BaseUnits.Undefined);
+                BaseUnitInfo = WattPerMeter;
             }
 
             /// <summary>

@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly VolumeFlowPerAreaUnit? _unit;
 
-        static VolumeFlowPerArea()
-        {
-            BaseDimensions = new BaseDimensions(1, 0, -1, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(1, 0, -1, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of VolumeFlowPerArea, which is CubicMeterPerSecondPerSquareMeter. All conversions go via this value.
@@ -893,10 +888,11 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal VolumeFlowPerAreaQuantityInfo() :
-                base("VolumeFlowPerArea", VolumeFlowPerArea.BaseUnit, VolumeFlowPerArea.Zero, VolumeFlowPerArea.BaseDimensions, QuantityType.VolumeFlowPerArea)
+                base("VolumeFlowPerArea", new UnitInfo<VolumeFlowPerAreaUnit>[]{}, VolumeFlowPerArea.BaseUnit, VolumeFlowPerArea.Zero, VolumeFlowPerArea.BaseDimensions, QuantityType.VolumeFlowPerArea)
             {
                 CubicFootPerMinutePerSquareFoot = new UnitInfo<VolumeFlowPerAreaUnit>(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, "CubicFeetPerMinutePerSquareFoot", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Minute));
                 CubicMeterPerSecondPerSquareMeter = new UnitInfo<VolumeFlowPerAreaUnit>(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, "CubicMetersPerSecondPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
+                BaseUnitInfo = CubicMeterPerSecondPerSquareMeter;
             }
 
             /// <summary>

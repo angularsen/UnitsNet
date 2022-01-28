@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly EntropyUnit? _unit;
 
-        static Entropy()
-        {
-            BaseDimensions = new BaseDimensions(2, 1, -2, 0, -1, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 1, -2, 0, -1, 0, 0);
 
         /// <summary>
         ///     The base unit of Entropy, which is JoulePerKelvin. All conversions go via this value.
@@ -983,7 +978,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal EntropyQuantityInfo() :
-                base("Entropy", Entropy.BaseUnit, Entropy.Zero, Entropy.BaseDimensions, QuantityType.Entropy)
+                base("Entropy", new UnitInfo<EntropyUnit>[]{}, Entropy.BaseUnit, Entropy.Zero, Entropy.BaseDimensions, QuantityType.Entropy)
             {
                 CaloriePerKelvin = new UnitInfo<EntropyUnit>(EntropyUnit.CaloriePerKelvin, "CaloriesPerKelvin", BaseUnits.Undefined);
                 JoulePerDegreeCelsius = new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerDegreeCelsius, "JoulesPerDegreeCelsius", BaseUnits.Undefined);
@@ -992,6 +987,7 @@ namespace UnitsNet
                 KilojoulePerDegreeCelsius = new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerDegreeCelsius, "KilojoulesPerDegreeCelsius", BaseUnits.Undefined);
                 KilojoulePerKelvin = new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerKelvin, "KilojoulesPerKelvin", BaseUnits.Undefined);
                 MegajoulePerKelvin = new UnitInfo<EntropyUnit>(EntropyUnit.MegajoulePerKelvin, "MegajoulesPerKelvin", BaseUnits.Undefined);
+                BaseUnitInfo = JoulePerKelvin;
             }
 
             /// <summary>

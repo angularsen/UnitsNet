@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly RatioChangeRateUnit? _unit;
 
-        static RatioChangeRate()
-        {
-            BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of RatioChangeRate, which is DecimalFractionPerSecond. All conversions go via this value.
@@ -893,10 +888,11 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal RatioChangeRateQuantityInfo() :
-                base("RatioChangeRate", RatioChangeRate.BaseUnit, RatioChangeRate.Zero, RatioChangeRate.BaseDimensions, QuantityType.RatioChangeRate)
+                base("RatioChangeRate", new UnitInfo<RatioChangeRateUnit>[]{}, RatioChangeRate.BaseUnit, RatioChangeRate.Zero, RatioChangeRate.BaseDimensions, QuantityType.RatioChangeRate)
             {
                 DecimalFractionPerSecond = new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.DecimalFractionPerSecond, "DecimalFractionsPerSecond", BaseUnits.Undefined);
                 PercentPerSecond = new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.PercentPerSecond, "PercentsPerSecond", BaseUnits.Undefined);
+                BaseUnitInfo = DecimalFractionPerSecond;
             }
 
             /// <summary>

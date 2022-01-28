@@ -50,12 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ElectricPotentialDcUnit? _unit;
 
-        static ElectricPotentialDc()
-        {
-            BaseDimensions = BaseDimensions.Dimensionless;
-
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -98,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = BaseDimensions.Dimensionless;
 
         /// <summary>
         ///     The base unit of ElectricPotentialDc, which is VoltDc. All conversions go via this value.
@@ -948,13 +942,14 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ElectricPotentialDcQuantityInfo() :
-                base("ElectricPotentialDc", ElectricPotentialDc.BaseUnit, ElectricPotentialDc.Zero, ElectricPotentialDc.BaseDimensions, QuantityType.ElectricPotentialDc)
+                base("ElectricPotentialDc", new UnitInfo<ElectricPotentialDcUnit>[]{}, ElectricPotentialDc.BaseUnit, ElectricPotentialDc.Zero, ElectricPotentialDc.BaseDimensions, QuantityType.ElectricPotentialDc)
             {
                 KilovoltDc = new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.KilovoltDc, "KilovoltsDc", BaseUnits.Undefined);
                 MegavoltDc = new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.MegavoltDc, "MegavoltsDc", BaseUnits.Undefined);
                 MicrovoltDc = new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.MicrovoltDc, "MicrovoltsDc", BaseUnits.Undefined);
                 MillivoltDc = new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.MillivoltDc, "MillivoltsDc", BaseUnits.Undefined);
                 VoltDc = new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.VoltDc, "VoltsDc", BaseUnits.Undefined);
+                BaseUnitInfo = VoltDc;
             }
 
             /// <summary>

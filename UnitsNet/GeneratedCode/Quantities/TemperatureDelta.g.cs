@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly TemperatureDeltaUnit? _unit;
 
-        static TemperatureDelta()
-        {
-            BaseDimensions = new BaseDimensions(0, 0, 0, 0, 1, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 0, 0, 0, 1, 0, 0);
 
         /// <summary>
         ///     The base unit of TemperatureDelta, which is Kelvin. All conversions go via this value.
@@ -1019,7 +1014,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal TemperatureDeltaQuantityInfo() :
-                base("TemperatureDelta", TemperatureDelta.BaseUnit, TemperatureDelta.Zero, TemperatureDelta.BaseDimensions, QuantityType.TemperatureDelta)
+                base("TemperatureDelta", new UnitInfo<TemperatureDeltaUnit>[]{}, TemperatureDelta.BaseUnit, TemperatureDelta.Zero, TemperatureDelta.BaseDimensions, QuantityType.TemperatureDelta)
             {
                 DegreeCelsius = new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeCelsius, "DegreesCelsius", BaseUnits.Undefined);
                 DegreeDelisle = new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeDelisle, "DegreesDelisle", BaseUnits.Undefined);
@@ -1030,6 +1025,7 @@ namespace UnitsNet
                 DegreeRoemer = new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeRoemer, "DegreesRoemer", BaseUnits.Undefined);
                 Kelvin = new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.Kelvin, "Kelvins", BaseUnits.Undefined);
                 MillidegreeCelsius = new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.MillidegreeCelsius, "MillidegreesCelsius", BaseUnits.Undefined);
+                BaseUnitInfo = Kelvin;
             }
 
             /// <summary>

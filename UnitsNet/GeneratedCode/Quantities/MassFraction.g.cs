@@ -53,12 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly MassFractionUnit? _unit;
 
-        static MassFraction()
-        {
-            BaseDimensions = BaseDimensions.Dimensionless;
-
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -101,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = BaseDimensions.Dimensionless;
 
         /// <summary>
         ///     The base unit of MassFraction, which is DecimalFraction. All conversions go via this value.
@@ -1293,7 +1287,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal MassFractionQuantityInfo() :
-                base("MassFraction", MassFraction.BaseUnit, MassFraction.Zero, MassFraction.BaseDimensions, QuantityType.MassFraction)
+                base("MassFraction", new UnitInfo<MassFractionUnit>[]{}, MassFraction.BaseUnit, MassFraction.Zero, MassFraction.BaseDimensions, QuantityType.MassFraction)
             {
                 CentigramPerGram = new UnitInfo<MassFractionUnit>(MassFractionUnit.CentigramPerGram, "CentigramsPerGram", BaseUnits.Undefined);
                 CentigramPerKilogram = new UnitInfo<MassFractionUnit>(MassFractionUnit.CentigramPerKilogram, "CentigramsPerKilogram", BaseUnits.Undefined);
@@ -1319,6 +1313,7 @@ namespace UnitsNet
                 PartPerThousand = new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerThousand, "PartsPerThousand", BaseUnits.Undefined);
                 PartPerTrillion = new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerTrillion, "PartsPerTrillion", BaseUnits.Undefined);
                 Percent = new UnitInfo<MassFractionUnit>(MassFractionUnit.Percent, "Percent", BaseUnits.Undefined);
+                BaseUnitInfo = DecimalFraction;
             }
 
             /// <summary>

@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly VolumetricHeatCapacityUnit? _unit;
 
-        static VolumetricHeatCapacity()
-        {
-            BaseDimensions = new BaseDimensions(-1, 1, -2, 0, -1, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-1, 1, -2, 0, -1, 0, 0);
 
         /// <summary>
         ///     The base unit of VolumetricHeatCapacity, which is JoulePerCubicMeterKelvin. All conversions go via this value.
@@ -1022,7 +1017,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal VolumetricHeatCapacityQuantityInfo() :
-                base("VolumetricHeatCapacity", VolumetricHeatCapacity.BaseUnit, VolumetricHeatCapacity.Zero, VolumetricHeatCapacity.BaseDimensions, QuantityType.VolumetricHeatCapacity)
+                base("VolumetricHeatCapacity", new UnitInfo<VolumetricHeatCapacityUnit>[]{}, VolumetricHeatCapacity.BaseUnit, VolumetricHeatCapacity.Zero, VolumetricHeatCapacity.BaseDimensions, QuantityType.VolumetricHeatCapacity)
             {
                 BtuPerCubicFootDegreeFahrenheit = new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, "BtusPerCubicFootDegreeFahrenheit", BaseUnits.Undefined);
                 CaloriePerCubicCentimeterDegreeCelsius = new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius, "CaloriesPerCubicCentimeterDegreeCelsius", BaseUnits.Undefined);
@@ -1033,6 +1028,7 @@ namespace UnitsNet
                 KilojoulePerCubicMeterKelvin = new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, "KilojoulesPerCubicMeterKelvin", BaseUnits.Undefined);
                 MegajoulePerCubicMeterDegreeCelsius = new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, "MegajoulesPerCubicMeterDegreeCelsius", BaseUnits.Undefined);
                 MegajoulePerCubicMeterKelvin = new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, "MegajoulesPerCubicMeterKelvin", BaseUnits.Undefined);
+                BaseUnitInfo = JoulePerCubicMeterKelvin;
             }
 
             /// <summary>

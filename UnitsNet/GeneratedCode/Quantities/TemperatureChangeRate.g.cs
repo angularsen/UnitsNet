@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly TemperatureChangeRateUnit? _unit;
 
-        static TemperatureChangeRate()
-        {
-            BaseDimensions = new BaseDimensions(0, 0, -1, 0, 1, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 0, -1, 0, 1, 0, 0);
 
         /// <summary>
         ///     The base unit of TemperatureChangeRate, which is DegreeCelsiusPerSecond. All conversions go via this value.
@@ -1037,7 +1032,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal TemperatureChangeRateQuantityInfo() :
-                base("TemperatureChangeRate", TemperatureChangeRate.BaseUnit, TemperatureChangeRate.Zero, TemperatureChangeRate.BaseDimensions, QuantityType.TemperatureChangeRate)
+                base("TemperatureChangeRate", new UnitInfo<TemperatureChangeRateUnit>[]{}, TemperatureChangeRate.BaseUnit, TemperatureChangeRate.Zero, TemperatureChangeRate.BaseDimensions, QuantityType.TemperatureChangeRate)
             {
                 CentidegreeCelsiusPerSecond = new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, "CentidegreesCelsiusPerSecond", BaseUnits.Undefined);
                 DecadegreeCelsiusPerSecond = new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, "DecadegreesCelsiusPerSecond", BaseUnits.Undefined);
@@ -1049,6 +1044,7 @@ namespace UnitsNet
                 MicrodegreeCelsiusPerSecond = new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, "MicrodegreesCelsiusPerSecond", BaseUnits.Undefined);
                 MillidegreeCelsiusPerSecond = new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, "MillidegreesCelsiusPerSecond", BaseUnits.Undefined);
                 NanodegreeCelsiusPerSecond = new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, "NanodegreesCelsiusPerSecond", BaseUnits.Undefined);
+                BaseUnitInfo = DegreeCelsiusPerSecond;
             }
 
             /// <summary>

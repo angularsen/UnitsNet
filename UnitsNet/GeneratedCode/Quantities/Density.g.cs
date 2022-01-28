@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly DensityUnit? _unit;
 
-        static Density()
-        {
-            BaseDimensions = new BaseDimensions(-3, 1, 0, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-3, 1, 0, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of Density, which is KilogramPerCubicMeter. All conversions go via this value.
@@ -1778,7 +1773,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal DensityQuantityInfo() :
-                base("Density", Density.BaseUnit, Density.Zero, Density.BaseDimensions, QuantityType.Density)
+                base("Density", new UnitInfo<DensityUnit>[]{}, Density.BaseUnit, Density.Zero, Density.BaseDimensions, QuantityType.Density)
             {
                 CentigramPerDeciliter = new UnitInfo<DensityUnit>(DensityUnit.CentigramPerDeciliter, "CentigramsPerDeciLiter", BaseUnits.Undefined);
                 CentigramPerLiter = new UnitInfo<DensityUnit>(DensityUnit.CentigramPerLiter, "CentigramsPerLiter", BaseUnits.Undefined);
@@ -1831,6 +1826,7 @@ namespace UnitsNet
                 TonnePerCubicInch = new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicInch, "TonnesPerCubicInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Tonne));
                 TonnePerCubicMeter = new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicMeter, "TonnesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Tonne));
                 TonnePerCubicMillimeter = new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicMillimeter, "TonnesPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Tonne));
+                BaseUnitInfo = KilogramPerCubicMeter;
             }
 
             /// <summary>

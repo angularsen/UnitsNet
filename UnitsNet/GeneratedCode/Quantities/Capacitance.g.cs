@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly CapacitanceUnit? _unit;
 
-        static Capacitance()
-        {
-            BaseDimensions = new BaseDimensions(-2, -1, 4, 2, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-2, -1, 4, 2, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of Capacitance, which is Farad. All conversions go via this value.
@@ -986,7 +981,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal CapacitanceQuantityInfo() :
-                base("Capacitance", Capacitance.BaseUnit, Capacitance.Zero, Capacitance.BaseDimensions, QuantityType.Capacitance)
+                base("Capacitance", new UnitInfo<CapacitanceUnit>[]{}, Capacitance.BaseUnit, Capacitance.Zero, Capacitance.BaseDimensions, QuantityType.Capacitance)
             {
                 Farad = new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Farad, "Farads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
                 Kilofarad = new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Kilofarad, "Kilofarads", BaseUnits.Undefined);
@@ -995,6 +990,7 @@ namespace UnitsNet
                 Millifarad = new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Millifarad, "Millifarads", BaseUnits.Undefined);
                 Nanofarad = new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Nanofarad, "Nanofarads", BaseUnits.Undefined);
                 Picofarad = new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Picofarad, "Picofarads", BaseUnits.Undefined);
+                BaseUnitInfo = Farad;
             }
 
             /// <summary>

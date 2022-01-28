@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly VolumeFlowUnit? _unit;
 
-        static VolumeFlow()
-        {
-            BaseDimensions = new BaseDimensions(3, 0, -1, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(3, 0, -1, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of VolumeFlow, which is CubicMeterPerSecond. All conversions go via this value.
@@ -1973,7 +1968,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal VolumeFlowQuantityInfo() :
-                base("VolumeFlow", VolumeFlow.BaseUnit, VolumeFlow.Zero, VolumeFlow.BaseDimensions, QuantityType.VolumeFlow)
+                base("VolumeFlow", new UnitInfo<VolumeFlowUnit>[]{}, VolumeFlow.BaseUnit, VolumeFlow.Zero, VolumeFlow.BaseDimensions, QuantityType.VolumeFlow)
             {
                 AcreFootPerDay = new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.AcreFootPerDay, "AcreFeetPerDay", BaseUnits.Undefined);
                 AcreFootPerHour = new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.AcreFootPerHour, "AcreFeetPerHour", BaseUnits.Undefined);
@@ -2037,6 +2032,7 @@ namespace UnitsNet
                 UsGallonPerHour = new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerHour, "UsGallonsPerHour", BaseUnits.Undefined);
                 UsGallonPerMinute = new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerMinute, "UsGallonsPerMinute", BaseUnits.Undefined);
                 UsGallonPerSecond = new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerSecond, "UsGallonsPerSecond", BaseUnits.Undefined);
+                BaseUnitInfo = CubicMeterPerSecond;
             }
 
             /// <summary>

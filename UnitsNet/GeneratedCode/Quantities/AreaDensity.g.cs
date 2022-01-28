@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly AreaDensityUnit? _unit;
 
-        static AreaDensity()
-        {
-            BaseDimensions = new BaseDimensions(-2, 1, 0, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-2, 1, 0, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of AreaDensity, which is KilogramPerSquareMeter. All conversions go via this value.
@@ -875,9 +870,10 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal AreaDensityQuantityInfo() :
-                base("AreaDensity", AreaDensity.BaseUnit, AreaDensity.Zero, AreaDensity.BaseDimensions, QuantityType.AreaDensity)
+                base("AreaDensity", new UnitInfo<AreaDensityUnit>[]{}, AreaDensity.BaseUnit, AreaDensity.Zero, AreaDensity.BaseDimensions, QuantityType.AreaDensity)
             {
                 KilogramPerSquareMeter = new UnitInfo<AreaDensityUnit>(AreaDensityUnit.KilogramPerSquareMeter, "KilogramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram));
+                BaseUnitInfo = KilogramPerSquareMeter;
             }
 
             /// <summary>

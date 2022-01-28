@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ReciprocalLengthUnit? _unit;
 
-        static ReciprocalLength()
-        {
-            BaseDimensions = new BaseDimensions(-1, 0, 0, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-1, 0, 0, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of ReciprocalLength, which is InverseMeter. All conversions go via this value.
@@ -1040,7 +1035,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ReciprocalLengthQuantityInfo() :
-                base("ReciprocalLength", ReciprocalLength.BaseUnit, ReciprocalLength.Zero, ReciprocalLength.BaseDimensions, QuantityType.ReciprocalLength)
+                base("ReciprocalLength", new UnitInfo<ReciprocalLengthUnit>[]{}, ReciprocalLength.BaseUnit, ReciprocalLength.Zero, ReciprocalLength.BaseDimensions, QuantityType.ReciprocalLength)
             {
                 InverseCentimeter = new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseCentimeter, "InverseCentimeters", BaseUnits.Undefined);
                 InverseFoot = new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseFoot, "InverseFeet", BaseUnits.Undefined);
@@ -1052,6 +1047,7 @@ namespace UnitsNet
                 InverseMillimeter = new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseMillimeter, "InverseMillimeters", BaseUnits.Undefined);
                 InverseUsSurveyFoot = new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseUsSurveyFoot, "InverseUsSurveyFeet", BaseUnits.Undefined);
                 InverseYard = new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseYard, "InverseYards", BaseUnits.Undefined);
+                BaseUnitInfo = InverseMeter;
             }
 
             /// <summary>

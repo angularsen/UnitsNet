@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly AreaUnit? _unit;
 
-        static Area()
-        {
-            BaseDimensions = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of Area, which is SquareMeter. All conversions go via this value.
@@ -1109,7 +1104,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal AreaQuantityInfo() :
-                base("Area", Area.BaseUnit, Area.Zero, Area.BaseDimensions, QuantityType.Area)
+                base("Area", new UnitInfo<AreaUnit>[]{}, Area.BaseUnit, Area.Zero, Area.BaseDimensions, QuantityType.Area)
             {
                 Acre = new UnitInfo<AreaUnit>(AreaUnit.Acre, "Acres", BaseUnits.Undefined);
                 Hectare = new UnitInfo<AreaUnit>(AreaUnit.Hectare, "Hectares", BaseUnits.Undefined);
@@ -1125,6 +1120,7 @@ namespace UnitsNet
                 SquareNauticalMile = new UnitInfo<AreaUnit>(AreaUnit.SquareNauticalMile, "SquareNauticalMiles", BaseUnits.Undefined);
                 SquareYard = new UnitInfo<AreaUnit>(AreaUnit.SquareYard, "SquareYards", new BaseUnits(length: LengthUnit.Yard));
                 UsSurveySquareFoot = new UnitInfo<AreaUnit>(AreaUnit.UsSurveySquareFoot, "UsSurveySquareFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot));
+                BaseUnitInfo = SquareMeter;
             }
 
             /// <summary>

@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly TemperatureUnit? _unit;
 
-        static Temperature()
-        {
-            BaseDimensions = new BaseDimensions(0, 0, 0, 0, 1, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 0, 0, 0, 1, 0, 0);
 
         /// <summary>
         ///     The base unit of Temperature, which is Kelvin. All conversions go via this value.
@@ -991,7 +986,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal TemperatureQuantityInfo() :
-                base("Temperature", Temperature.BaseUnit, Temperature.Zero, Temperature.BaseDimensions, QuantityType.Temperature)
+                base("Temperature", new UnitInfo<TemperatureUnit>[]{}, Temperature.BaseUnit, Temperature.Zero, Temperature.BaseDimensions, QuantityType.Temperature)
             {
                 DegreeCelsius = new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeCelsius, "DegreesCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius));
                 DegreeDelisle = new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeDelisle, "DegreesDelisle", new BaseUnits(temperature: TemperatureUnit.DegreeDelisle));
@@ -1003,6 +998,7 @@ namespace UnitsNet
                 Kelvin = new UnitInfo<TemperatureUnit>(TemperatureUnit.Kelvin, "Kelvins", new BaseUnits(temperature: TemperatureUnit.Kelvin));
                 MillidegreeCelsius = new UnitInfo<TemperatureUnit>(TemperatureUnit.MillidegreeCelsius, "MillidegreesCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius));
                 SolarTemperature = new UnitInfo<TemperatureUnit>(TemperatureUnit.SolarTemperature, "SolarTemperatures", BaseUnits.Undefined);
+                BaseUnitInfo = Kelvin;
             }
 
             /// <summary>

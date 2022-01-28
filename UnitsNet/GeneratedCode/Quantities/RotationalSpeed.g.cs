@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly RotationalSpeedUnit? _unit;
 
-        static RotationalSpeed()
-        {
-            BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of RotationalSpeed, which is RadianPerSecond. All conversions go via this value.
@@ -1091,7 +1086,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal RotationalSpeedQuantityInfo() :
-                base("RotationalSpeed", RotationalSpeed.BaseUnit, RotationalSpeed.Zero, RotationalSpeed.BaseDimensions, QuantityType.RotationalSpeed)
+                base("RotationalSpeed", new UnitInfo<RotationalSpeedUnit>[]{}, RotationalSpeed.BaseUnit, RotationalSpeed.Zero, RotationalSpeed.BaseDimensions, QuantityType.RotationalSpeed)
             {
                 CentiradianPerSecond = new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.CentiradianPerSecond, "CentiradiansPerSecond", BaseUnits.Undefined);
                 DeciradianPerSecond = new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.DeciradianPerSecond, "DeciradiansPerSecond", BaseUnits.Undefined);
@@ -1106,6 +1101,7 @@ namespace UnitsNet
                 RadianPerSecond = new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.RadianPerSecond, "RadiansPerSecond", BaseUnits.Undefined);
                 RevolutionPerMinute = new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.RevolutionPerMinute, "RevolutionsPerMinute", BaseUnits.Undefined);
                 RevolutionPerSecond = new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.RevolutionPerSecond, "RevolutionsPerSecond", BaseUnits.Undefined);
+                BaseUnitInfo = RadianPerSecond;
             }
 
             /// <summary>

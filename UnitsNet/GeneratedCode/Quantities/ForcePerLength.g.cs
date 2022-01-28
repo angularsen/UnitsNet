@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ForcePerLengthUnit? _unit;
 
-        static ForcePerLength()
-        {
-            BaseDimensions = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of ForcePerLength, which is NewtonPerMeter. All conversions go via this value.
@@ -1541,7 +1536,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ForcePerLengthQuantityInfo() :
-                base("ForcePerLength", ForcePerLength.BaseUnit, ForcePerLength.Zero, ForcePerLength.BaseDimensions, QuantityType.ForcePerLength)
+                base("ForcePerLength", new UnitInfo<ForcePerLengthUnit>[]{}, ForcePerLength.BaseUnit, ForcePerLength.Zero, ForcePerLength.BaseDimensions, QuantityType.ForcePerLength)
             {
                 CentinewtonPerCentimeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.CentinewtonPerCentimeter, "CentinewtonsPerCentimeter", BaseUnits.Undefined);
                 CentinewtonPerMeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.CentinewtonPerMeter, "CentinewtonsPerMeter", BaseUnits.Undefined);
@@ -1581,6 +1576,7 @@ namespace UnitsNet
                 TonneForcePerCentimeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.TonneForcePerCentimeter, "TonnesForcePerCentimeter", BaseUnits.Undefined);
                 TonneForcePerMeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.TonneForcePerMeter, "TonnesForcePerMeter", BaseUnits.Undefined);
                 TonneForcePerMillimeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.TonneForcePerMillimeter, "TonnesForcePerMillimeter", BaseUnits.Undefined);
+                BaseUnitInfo = NewtonPerMeter;
             }
 
             /// <summary>

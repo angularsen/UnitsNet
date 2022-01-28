@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly MassUnit? _unit;
 
-        static Mass()
-        {
-            BaseDimensions = new BaseDimensions(0, 1, 0, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 1, 0, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of Mass, which is Kilogram. All conversions go via this value.
@@ -1307,7 +1302,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal MassQuantityInfo() :
-                base("Mass", Mass.BaseUnit, Mass.Zero, Mass.BaseDimensions, QuantityType.Mass)
+                base("Mass", new UnitInfo<MassUnit>[]{}, Mass.BaseUnit, Mass.Zero, Mass.BaseDimensions, QuantityType.Mass)
             {
                 Centigram = new UnitInfo<MassUnit>(MassUnit.Centigram, "Centigrams", BaseUnits.Undefined);
                 Decagram = new UnitInfo<MassUnit>(MassUnit.Decagram, "Decagrams", BaseUnits.Undefined);
@@ -1334,6 +1329,7 @@ namespace UnitsNet
                 SolarMass = new UnitInfo<MassUnit>(MassUnit.SolarMass, "SolarMasses", new BaseUnits(mass: MassUnit.SolarMass));
                 Stone = new UnitInfo<MassUnit>(MassUnit.Stone, "Stone", new BaseUnits(mass: MassUnit.Stone));
                 Tonne = new UnitInfo<MassUnit>(MassUnit.Tonne, "Tonnes", new BaseUnits(mass: MassUnit.Tonne));
+                BaseUnitInfo = Kilogram;
             }
 
             /// <summary>

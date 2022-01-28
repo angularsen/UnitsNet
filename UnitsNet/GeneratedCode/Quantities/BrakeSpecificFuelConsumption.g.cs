@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly BrakeSpecificFuelConsumptionUnit? _unit;
 
-        static BrakeSpecificFuelConsumption()
-        {
-            BaseDimensions = new BaseDimensions(-2, 0, 2, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-2, 0, 2, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of BrakeSpecificFuelConsumption, which is KilogramPerJoule. All conversions go via this value.
@@ -911,11 +906,12 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal BrakeSpecificFuelConsumptionQuantityInfo() :
-                base("BrakeSpecificFuelConsumption", BrakeSpecificFuelConsumption.BaseUnit, BrakeSpecificFuelConsumption.Zero, BrakeSpecificFuelConsumption.BaseDimensions, QuantityType.BrakeSpecificFuelConsumption)
+                base("BrakeSpecificFuelConsumption", new UnitInfo<BrakeSpecificFuelConsumptionUnit>[]{}, BrakeSpecificFuelConsumption.BaseUnit, BrakeSpecificFuelConsumption.Zero, BrakeSpecificFuelConsumption.BaseDimensions, QuantityType.BrakeSpecificFuelConsumption)
             {
                 GramPerKiloWattHour = new UnitInfo<BrakeSpecificFuelConsumptionUnit>(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, "GramsPerKiloWattHour", BaseUnits.Undefined);
                 KilogramPerJoule = new UnitInfo<BrakeSpecificFuelConsumptionUnit>(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, "KilogramsPerJoule", BaseUnits.Undefined);
                 PoundPerMechanicalHorsepowerHour = new UnitInfo<BrakeSpecificFuelConsumptionUnit>(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, "PoundsPerMechanicalHorsepowerHour", BaseUnits.Undefined);
+                BaseUnitInfo = KilogramPerJoule;
             }
 
             /// <summary>

@@ -50,12 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly RatioUnit? _unit;
 
-        static Ratio()
-        {
-            BaseDimensions = BaseDimensions.Dimensionless;
-
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -98,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = BaseDimensions.Dimensionless;
 
         /// <summary>
         ///     The base unit of Ratio, which is DecimalFraction. All conversions go via this value.
@@ -966,7 +960,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal RatioQuantityInfo() :
-                base("Ratio", Ratio.BaseUnit, Ratio.Zero, Ratio.BaseDimensions, QuantityType.Ratio)
+                base("Ratio", new UnitInfo<RatioUnit>[]{}, Ratio.BaseUnit, Ratio.Zero, Ratio.BaseDimensions, QuantityType.Ratio)
             {
                 DecimalFraction = new UnitInfo<RatioUnit>(RatioUnit.DecimalFraction, "DecimalFractions", BaseUnits.Undefined);
                 PartPerBillion = new UnitInfo<RatioUnit>(RatioUnit.PartPerBillion, "PartsPerBillion", BaseUnits.Undefined);
@@ -974,6 +968,7 @@ namespace UnitsNet
                 PartPerThousand = new UnitInfo<RatioUnit>(RatioUnit.PartPerThousand, "PartsPerThousand", BaseUnits.Undefined);
                 PartPerTrillion = new UnitInfo<RatioUnit>(RatioUnit.PartPerTrillion, "PartsPerTrillion", BaseUnits.Undefined);
                 Percent = new UnitInfo<RatioUnit>(RatioUnit.Percent, "Percent", BaseUnits.Undefined);
+                BaseUnitInfo = DecimalFraction;
             }
 
             /// <summary>

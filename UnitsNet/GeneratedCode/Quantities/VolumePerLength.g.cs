@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly VolumePerLengthUnit? _unit;
 
-        static VolumePerLength()
-        {
-            BaseDimensions = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of VolumePerLength, which is CubicMeterPerMeter. All conversions go via this value.
@@ -983,7 +978,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal VolumePerLengthQuantityInfo() :
-                base("VolumePerLength", VolumePerLength.BaseUnit, VolumePerLength.Zero, VolumePerLength.BaseDimensions, QuantityType.VolumePerLength)
+                base("VolumePerLength", new UnitInfo<VolumePerLengthUnit>[]{}, VolumePerLength.BaseUnit, VolumePerLength.Zero, VolumePerLength.BaseDimensions, QuantityType.VolumePerLength)
             {
                 CubicMeterPerMeter = new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.CubicMeterPerMeter, "CubicMetersPerMeter", new BaseUnits(length: LengthUnit.Meter));
                 CubicYardPerFoot = new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.CubicYardPerFoot, "CubicYardsPerFoot", BaseUnits.Undefined);
@@ -992,6 +987,7 @@ namespace UnitsNet
                 LiterPerMeter = new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.LiterPerMeter, "LitersPerMeter", new BaseUnits(length: LengthUnit.Decimeter));
                 LiterPerMillimeter = new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.LiterPerMillimeter, "LitersPerMillimeter", BaseUnits.Undefined);
                 OilBarrelPerFoot = new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.OilBarrelPerFoot, "OilBarrelsPerFoot", BaseUnits.Undefined);
+                BaseUnitInfo = CubicMeterPerMeter;
             }
 
             /// <summary>

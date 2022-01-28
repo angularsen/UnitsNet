@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ElectricCurrentGradientUnit? _unit;
 
-        static ElectricCurrentGradient()
-        {
-            BaseDimensions = new BaseDimensions(0, 0, -1, 1, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 0, -1, 1, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of ElectricCurrentGradient, which is AmperePerSecond. All conversions go via this value.
@@ -929,12 +924,13 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ElectricCurrentGradientQuantityInfo() :
-                base("ElectricCurrentGradient", ElectricCurrentGradient.BaseUnit, ElectricCurrentGradient.Zero, ElectricCurrentGradient.BaseDimensions, QuantityType.ElectricCurrentGradient)
+                base("ElectricCurrentGradient", new UnitInfo<ElectricCurrentGradientUnit>[]{}, ElectricCurrentGradient.BaseUnit, ElectricCurrentGradient.Zero, ElectricCurrentGradient.BaseDimensions, QuantityType.ElectricCurrentGradient)
             {
                 AmperePerMicrosecond = new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerMicrosecond, "AmperesPerMicrosecond", new BaseUnits(time: DurationUnit.Microsecond, current: ElectricCurrentUnit.Ampere));
                 AmperePerMillisecond = new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerMillisecond, "AmperesPerMillisecond", new BaseUnits(time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere));
                 AmperePerNanosecond = new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerNanosecond, "AmperesPerNanosecond", new BaseUnits(time: DurationUnit.Nanosecond, current: ElectricCurrentUnit.Ampere));
                 AmperePerSecond = new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerSecond, "AmperesPerSecond", BaseUnits.Undefined);
+                BaseUnitInfo = AmperePerSecond;
             }
 
             /// <summary>

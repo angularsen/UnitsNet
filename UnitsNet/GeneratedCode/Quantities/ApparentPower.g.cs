@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ApparentPowerUnit? _unit;
 
-        static ApparentPower()
-        {
-            BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of ApparentPower, which is Voltampere. All conversions go via this value.
@@ -929,12 +924,13 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ApparentPowerQuantityInfo() :
-                base("ApparentPower", ApparentPower.BaseUnit, ApparentPower.Zero, ApparentPower.BaseDimensions, QuantityType.ApparentPower)
+                base("ApparentPower", new UnitInfo<ApparentPowerUnit>[]{}, ApparentPower.BaseUnit, ApparentPower.Zero, ApparentPower.BaseDimensions, QuantityType.ApparentPower)
             {
                 Gigavoltampere = new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Gigavoltampere, "Gigavoltamperes", BaseUnits.Undefined);
                 Kilovoltampere = new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Kilovoltampere, "Kilovoltamperes", BaseUnits.Undefined);
                 Megavoltampere = new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Megavoltampere, "Megavoltamperes", BaseUnits.Undefined);
                 Voltampere = new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Voltampere, "Voltamperes", BaseUnits.Undefined);
+                BaseUnitInfo = Voltampere;
             }
 
             /// <summary>

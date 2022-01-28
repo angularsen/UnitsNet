@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ElectricCurrentUnit? _unit;
 
-        static ElectricCurrent()
-        {
-            BaseDimensions = new BaseDimensions(0, 0, 0, 1, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 0, 0, 1, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of ElectricCurrent, which is Ampere. All conversions go via this value.
@@ -1001,7 +996,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ElectricCurrentQuantityInfo() :
-                base("ElectricCurrent", ElectricCurrent.BaseUnit, ElectricCurrent.Zero, ElectricCurrent.BaseDimensions, QuantityType.ElectricCurrent)
+                base("ElectricCurrent", new UnitInfo<ElectricCurrentUnit>[]{}, ElectricCurrent.BaseUnit, ElectricCurrent.Zero, ElectricCurrent.BaseDimensions, QuantityType.ElectricCurrent)
             {
                 Ampere = new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Ampere, "Amperes", new BaseUnits(current: ElectricCurrentUnit.Ampere));
                 Centiampere = new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Centiampere, "Centiamperes", BaseUnits.Undefined);
@@ -1011,6 +1006,7 @@ namespace UnitsNet
                 Milliampere = new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Milliampere, "Milliamperes", BaseUnits.Undefined);
                 Nanoampere = new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Nanoampere, "Nanoamperes", BaseUnits.Undefined);
                 Picoampere = new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Picoampere, "Picoamperes", BaseUnits.Undefined);
+                BaseUnitInfo = Ampere;
             }
 
             /// <summary>

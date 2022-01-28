@@ -50,12 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly RelativeHumidityUnit? _unit;
 
-        static RelativeHumidity()
-        {
-            BaseDimensions = BaseDimensions.Dimensionless;
-
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -98,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = BaseDimensions.Dimensionless;
 
         /// <summary>
         ///     The base unit of RelativeHumidity, which is Percent. All conversions go via this value.
@@ -876,9 +870,10 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal RelativeHumidityQuantityInfo() :
-                base("RelativeHumidity", RelativeHumidity.BaseUnit, RelativeHumidity.Zero, RelativeHumidity.BaseDimensions, QuantityType.RelativeHumidity)
+                base("RelativeHumidity", new UnitInfo<RelativeHumidityUnit>[]{}, RelativeHumidity.BaseUnit, RelativeHumidity.Zero, RelativeHumidity.BaseDimensions, QuantityType.RelativeHumidity)
             {
                 Percent = new UnitInfo<RelativeHumidityUnit>(RelativeHumidityUnit.Percent, "Percent", BaseUnits.Undefined);
+                BaseUnitInfo = Percent;
             }
 
             /// <summary>

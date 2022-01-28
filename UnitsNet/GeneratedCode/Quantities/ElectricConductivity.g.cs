@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ElectricConductivityUnit? _unit;
 
-        static ElectricConductivity()
-        {
-            BaseDimensions = new BaseDimensions(-3, -1, 3, 2, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-3, -1, 3, 2, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of ElectricConductivity, which is SiemensPerMeter. All conversions go via this value.
@@ -914,11 +909,12 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ElectricConductivityQuantityInfo() :
-                base("ElectricConductivity", ElectricConductivity.BaseUnit, ElectricConductivity.Zero, ElectricConductivity.BaseDimensions, QuantityType.ElectricConductivity)
+                base("ElectricConductivity", new UnitInfo<ElectricConductivityUnit>[]{}, ElectricConductivity.BaseUnit, ElectricConductivity.Zero, ElectricConductivity.BaseDimensions, QuantityType.ElectricConductivity)
             {
                 SiemensPerFoot = new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerFoot, "SiemensPerFoot", BaseUnits.Undefined);
                 SiemensPerInch = new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerInch, "SiemensPerInch", BaseUnits.Undefined);
                 SiemensPerMeter = new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerMeter, "SiemensPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                BaseUnitInfo = SiemensPerMeter;
             }
 
             /// <summary>

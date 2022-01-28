@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly SpecificEntropyUnit? _unit;
 
-        static SpecificEntropy()
-        {
-            BaseDimensions = new BaseDimensions(2, 0, -2, 0, -1, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 0, -2, 0, -1, 0, 0);
 
         /// <summary>
         ///     The base unit of SpecificEntropy, which is JoulePerKilogramKelvin. All conversions go via this value.
@@ -1019,7 +1014,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal SpecificEntropyQuantityInfo() :
-                base("SpecificEntropy", SpecificEntropy.BaseUnit, SpecificEntropy.Zero, SpecificEntropy.BaseDimensions, QuantityType.SpecificEntropy)
+                base("SpecificEntropy", new UnitInfo<SpecificEntropyUnit>[]{}, SpecificEntropy.BaseUnit, SpecificEntropy.Zero, SpecificEntropy.BaseDimensions, QuantityType.SpecificEntropy)
             {
                 BtuPerPoundFahrenheit = new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.BtuPerPoundFahrenheit, "BtusPerPoundFahrenheit", BaseUnits.Undefined);
                 CaloriePerGramKelvin = new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.CaloriePerGramKelvin, "CaloriesPerGramKelvin", BaseUnits.Undefined);
@@ -1030,6 +1025,7 @@ namespace UnitsNet
                 KilojoulePerKilogramKelvin = new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.KilojoulePerKilogramKelvin, "KilojoulesPerKilogramKelvin", BaseUnits.Undefined);
                 MegajoulePerKilogramDegreeCelsius = new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, "MegajoulesPerKilogramDegreeCelsius", BaseUnits.Undefined);
                 MegajoulePerKilogramKelvin = new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.MegajoulePerKilogramKelvin, "MegajoulesPerKilogramKelvin", BaseUnits.Undefined);
+                BaseUnitInfo = JoulePerKilogramKelvin;
             }
 
             /// <summary>

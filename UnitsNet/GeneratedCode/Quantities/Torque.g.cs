@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly TorqueUnit? _unit;
 
-        static Torque()
-        {
-            BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of Torque, which is NewtonMeter. All conversions go via this value.
@@ -1307,7 +1302,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal TorqueQuantityInfo() :
-                base("Torque", Torque.BaseUnit, Torque.Zero, Torque.BaseDimensions, QuantityType.Torque)
+                base("Torque", new UnitInfo<TorqueUnit>[]{}, Torque.BaseUnit, Torque.Zero, Torque.BaseDimensions, QuantityType.Torque)
             {
                 GramForceCentimeter = new UnitInfo<TorqueUnit>(TorqueUnit.GramForceCentimeter, "GramForceCentimeters", BaseUnits.Undefined);
                 GramForceMeter = new UnitInfo<TorqueUnit>(TorqueUnit.GramForceMeter, "GramForceMeters", BaseUnits.Undefined);
@@ -1334,6 +1329,7 @@ namespace UnitsNet
                 TonneForceCentimeter = new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceCentimeter, "TonneForceCentimeters", BaseUnits.Undefined);
                 TonneForceMeter = new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceMeter, "TonneForceMeters", BaseUnits.Undefined);
                 TonneForceMillimeter = new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceMillimeter, "TonneForceMillimeters", BaseUnits.Undefined);
+                BaseUnitInfo = NewtonMeter;
             }
 
             /// <summary>

@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly LuminousFluxUnit? _unit;
 
-        static LuminousFlux()
-        {
-            BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
 
         /// <summary>
         ///     The base unit of LuminousFlux, which is Lumen. All conversions go via this value.
@@ -878,9 +873,10 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal LuminousFluxQuantityInfo() :
-                base("LuminousFlux", LuminousFlux.BaseUnit, LuminousFlux.Zero, LuminousFlux.BaseDimensions, QuantityType.LuminousFlux)
+                base("LuminousFlux", new UnitInfo<LuminousFluxUnit>[]{}, LuminousFlux.BaseUnit, LuminousFlux.Zero, LuminousFlux.BaseDimensions, QuantityType.LuminousFlux)
             {
                 Lumen = new UnitInfo<LuminousFluxUnit>(LuminousFluxUnit.Lumen, "Lumens", BaseUnits.Undefined);
+                BaseUnitInfo = Lumen;
             }
 
             /// <summary>

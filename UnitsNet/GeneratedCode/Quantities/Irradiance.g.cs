@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly IrradianceUnit? _unit;
 
-        static Irradiance()
-        {
-            BaseDimensions = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of Irradiance, which is WattPerSquareMeter. All conversions go via this value.
@@ -1109,7 +1104,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal IrradianceQuantityInfo() :
-                base("Irradiance", Irradiance.BaseUnit, Irradiance.Zero, Irradiance.BaseDimensions, QuantityType.Irradiance)
+                base("Irradiance", new UnitInfo<IrradianceUnit>[]{}, Irradiance.BaseUnit, Irradiance.Zero, Irradiance.BaseDimensions, QuantityType.Irradiance)
             {
                 KilowattPerSquareCentimeter = new UnitInfo<IrradianceUnit>(IrradianceUnit.KilowattPerSquareCentimeter, "KilowattsPerSquareCentimeter", BaseUnits.Undefined);
                 KilowattPerSquareMeter = new UnitInfo<IrradianceUnit>(IrradianceUnit.KilowattPerSquareMeter, "KilowattsPerSquareMeter", BaseUnits.Undefined);
@@ -1125,6 +1120,7 @@ namespace UnitsNet
                 PicowattPerSquareMeter = new UnitInfo<IrradianceUnit>(IrradianceUnit.PicowattPerSquareMeter, "PicowattsPerSquareMeter", BaseUnits.Undefined);
                 WattPerSquareCentimeter = new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareCentimeter, "WattsPerSquareCentimeter", BaseUnits.Undefined);
                 WattPerSquareMeter = new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareMeter, "WattsPerSquareMeter", BaseUnits.Undefined);
+                BaseUnitInfo = WattPerSquareMeter;
             }
 
             /// <summary>

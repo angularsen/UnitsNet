@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly HeatFluxUnit? _unit;
 
-        static HeatFlux()
-        {
-            BaseDimensions = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of HeatFlux, which is WattPerSquareMeter. All conversions go via this value.
@@ -1181,7 +1176,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal HeatFluxQuantityInfo() :
-                base("HeatFlux", HeatFlux.BaseUnit, HeatFlux.Zero, HeatFlux.BaseDimensions, QuantityType.HeatFlux)
+                base("HeatFlux", new UnitInfo<HeatFluxUnit>[]{}, HeatFlux.BaseUnit, HeatFlux.Zero, HeatFlux.BaseDimensions, QuantityType.HeatFlux)
             {
                 BtuPerHourSquareFoot = new UnitInfo<HeatFluxUnit>(HeatFluxUnit.BtuPerHourSquareFoot, "BtusPerHourSquareFoot", BaseUnits.Undefined);
                 BtuPerMinuteSquareFoot = new UnitInfo<HeatFluxUnit>(HeatFluxUnit.BtuPerMinuteSquareFoot, "BtusPerMinuteSquareFoot", BaseUnits.Undefined);
@@ -1201,6 +1196,7 @@ namespace UnitsNet
                 WattPerSquareFoot = new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareFoot, "WattsPerSquareFoot", BaseUnits.Undefined);
                 WattPerSquareInch = new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareInch, "WattsPerSquareInch", BaseUnits.Undefined);
                 WattPerSquareMeter = new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareMeter, "WattsPerSquareMeter", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                BaseUnitInfo = WattPerSquareMeter;
             }
 
             /// <summary>

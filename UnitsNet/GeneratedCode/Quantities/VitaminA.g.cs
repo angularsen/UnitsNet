@@ -50,12 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly VitaminAUnit? _unit;
 
-        static VitaminA()
-        {
-            BaseDimensions = BaseDimensions.Dimensionless;
-
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -98,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = BaseDimensions.Dimensionless;
 
         /// <summary>
         ///     The base unit of VitaminA, which is InternationalUnit. All conversions go via this value.
@@ -876,9 +870,10 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal VitaminAQuantityInfo() :
-                base("VitaminA", VitaminA.BaseUnit, VitaminA.Zero, VitaminA.BaseDimensions, QuantityType.VitaminA)
+                base("VitaminA", new UnitInfo<VitaminAUnit>[]{}, VitaminA.BaseUnit, VitaminA.Zero, VitaminA.BaseDimensions, QuantityType.VitaminA)
             {
                 InternationalUnit = new UnitInfo<VitaminAUnit>(VitaminAUnit.InternationalUnit, "InternationalUnits", BaseUnits.Undefined);
+                BaseUnitInfo = InternationalUnit;
             }
 
             /// <summary>

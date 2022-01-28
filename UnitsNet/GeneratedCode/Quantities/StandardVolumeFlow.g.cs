@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly StandardVolumeFlowUnit? _unit;
 
-        static StandardVolumeFlow()
-        {
-            BaseDimensions = new BaseDimensions(0, 1, -1, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 1, -1, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of StandardVolumeFlow, which is StandardCubicMeterPerSecond. All conversions go via this value.
@@ -1019,7 +1014,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal StandardVolumeFlowQuantityInfo() :
-                base("StandardVolumeFlow", StandardVolumeFlow.BaseUnit, StandardVolumeFlow.Zero, StandardVolumeFlow.BaseDimensions, QuantityType.StandardVolumeFlow)
+                base("StandardVolumeFlow", new UnitInfo<StandardVolumeFlowUnit>[]{}, StandardVolumeFlow.BaseUnit, StandardVolumeFlow.Zero, StandardVolumeFlow.BaseDimensions, QuantityType.StandardVolumeFlow)
             {
                 StandardCubicCentimeterPerMinute = new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, "StandardCubicCentimetersPerMinute", BaseUnits.Undefined);
                 StandardCubicFootPerHour = new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicFootPerHour, "StandardCubicFeetPerHour", BaseUnits.Undefined);
@@ -1030,6 +1025,7 @@ namespace UnitsNet
                 StandardCubicMeterPerMinute = new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicMeterPerMinute, "StandardCubicMetersPerMinute", BaseUnits.Undefined);
                 StandardCubicMeterPerSecond = new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardCubicMeterPerSecond, "StandardCubicMetersPerSecond", BaseUnits.Undefined);
                 StandardLiterPerMinute = new UnitInfo<StandardVolumeFlowUnit>(StandardVolumeFlowUnit.StandardLiterPerMinute, "StandardLitersPerMinute", BaseUnits.Undefined);
+                BaseUnitInfo = StandardCubicMeterPerSecond;
             }
 
             /// <summary>

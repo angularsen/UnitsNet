@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly PressureUnit? _unit;
 
-        static Pressure()
-        {
-            BaseDimensions = new BaseDimensions(-1, 1, -2, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-1, 1, -2, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of Pressure, which is Pascal. All conversions go via this value.
@@ -1667,7 +1662,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal PressureQuantityInfo() :
-                base("Pressure", Pressure.BaseUnit, Pressure.Zero, Pressure.BaseDimensions, QuantityType.Pressure)
+                base("Pressure", new UnitInfo<PressureUnit>[]{}, Pressure.BaseUnit, Pressure.Zero, Pressure.BaseDimensions, QuantityType.Pressure)
             {
                 Atmosphere = new UnitInfo<PressureUnit>(PressureUnit.Atmosphere, "Atmospheres", BaseUnits.Undefined);
                 Bar = new UnitInfo<PressureUnit>(PressureUnit.Bar, "Bars", BaseUnits.Undefined);
@@ -1714,6 +1709,7 @@ namespace UnitsNet
                 TonneForcePerSquareMeter = new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareMeter, "TonnesForcePerSquareMeter", BaseUnits.Undefined);
                 TonneForcePerSquareMillimeter = new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareMillimeter, "TonnesForcePerSquareMillimeter", BaseUnits.Undefined);
                 Torr = new UnitInfo<PressureUnit>(PressureUnit.Torr, "Torrs", BaseUnits.Undefined);
+                BaseUnitInfo = Pascal;
             }
 
             /// <summary>

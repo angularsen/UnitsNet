@@ -50,12 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly InformationUnit? _unit;
 
-        static Information()
-        {
-            BaseDimensions = BaseDimensions.Dimensionless;
-
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -98,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = BaseDimensions.Dimensionless;
 
         /// <summary>
         ///     The base unit of Information, which is Bit. All conversions go via this value.
@@ -1331,7 +1325,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal InformationQuantityInfo() :
-                base("Information", Information.BaseUnit, Information.Zero, Information.BaseDimensions, QuantityType.Information)
+                base("Information", new UnitInfo<InformationUnit>[]{}, Information.BaseUnit, Information.Zero, Information.BaseDimensions, QuantityType.Information)
             {
                 Bit = new UnitInfo<InformationUnit>(InformationUnit.Bit, "Bits", BaseUnits.Undefined);
                 Byte = new UnitInfo<InformationUnit>(InformationUnit.Byte, "Bytes", BaseUnits.Undefined);
@@ -1359,6 +1353,7 @@ namespace UnitsNet
                 Tebibyte = new UnitInfo<InformationUnit>(InformationUnit.Tebibyte, "Tebibytes", BaseUnits.Undefined);
                 Terabit = new UnitInfo<InformationUnit>(InformationUnit.Terabit, "Terabits", BaseUnits.Undefined);
                 Terabyte = new UnitInfo<InformationUnit>(InformationUnit.Terabyte, "Terabytes", BaseUnits.Undefined);
+                BaseUnitInfo = Bit;
             }
 
             /// <summary>

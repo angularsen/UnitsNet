@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly MolarMassUnit? _unit;
 
-        static MolarMass()
-        {
-            BaseDimensions = new BaseDimensions(0, 1, 0, 0, 0, -1, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 1, 0, 0, 0, -1, 0);
 
         /// <summary>
         ///     The base unit of MolarMass, which is KilogramPerMole. All conversions go via this value.
@@ -1073,7 +1068,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal MolarMassQuantityInfo() :
-                base("MolarMass", MolarMass.BaseUnit, MolarMass.Zero, MolarMass.BaseDimensions, QuantityType.MolarMass)
+                base("MolarMass", new UnitInfo<MolarMassUnit>[]{}, MolarMass.BaseUnit, MolarMass.Zero, MolarMass.BaseDimensions, QuantityType.MolarMass)
             {
                 CentigramPerMole = new UnitInfo<MolarMassUnit>(MolarMassUnit.CentigramPerMole, "CentigramsPerMole", BaseUnits.Undefined);
                 DecagramPerMole = new UnitInfo<MolarMassUnit>(MolarMassUnit.DecagramPerMole, "DecagramsPerMole", BaseUnits.Undefined);
@@ -1087,6 +1082,7 @@ namespace UnitsNet
                 MilligramPerMole = new UnitInfo<MolarMassUnit>(MolarMassUnit.MilligramPerMole, "MilligramsPerMole", BaseUnits.Undefined);
                 NanogramPerMole = new UnitInfo<MolarMassUnit>(MolarMassUnit.NanogramPerMole, "NanogramsPerMole", BaseUnits.Undefined);
                 PoundPerMole = new UnitInfo<MolarMassUnit>(MolarMassUnit.PoundPerMole, "PoundsPerMole", BaseUnits.Undefined);
+                BaseUnitInfo = KilogramPerMole;
             }
 
             /// <summary>

@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly MassFlowUnit? _unit;
 
-        static MassFlow()
-        {
-            BaseDimensions = new BaseDimensions(0, 1, -1, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 1, -1, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of MassFlow, which is GramPerSecond. All conversions go via this value.
@@ -1451,7 +1446,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal MassFlowQuantityInfo() :
-                base("MassFlow", MassFlow.BaseUnit, MassFlow.Zero, MassFlow.BaseDimensions, QuantityType.MassFlow)
+                base("MassFlow", new UnitInfo<MassFlowUnit>[]{}, MassFlow.BaseUnit, MassFlow.Zero, MassFlow.BaseDimensions, QuantityType.MassFlow)
             {
                 CentigramPerDay = new UnitInfo<MassFlowUnit>(MassFlowUnit.CentigramPerDay, "CentigramsPerDay", BaseUnits.Undefined);
                 CentigramPerSecond = new UnitInfo<MassFlowUnit>(MassFlowUnit.CentigramPerSecond, "CentigramsPerSecond", BaseUnits.Undefined);
@@ -1486,6 +1481,7 @@ namespace UnitsNet
                 ShortTonPerHour = new UnitInfo<MassFlowUnit>(MassFlowUnit.ShortTonPerHour, "ShortTonsPerHour", BaseUnits.Undefined);
                 TonnePerDay = new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerDay, "TonnesPerDay", BaseUnits.Undefined);
                 TonnePerHour = new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerHour, "TonnesPerHour", BaseUnits.Undefined);
+                BaseUnitInfo = GramPerSecond;
             }
 
             /// <summary>

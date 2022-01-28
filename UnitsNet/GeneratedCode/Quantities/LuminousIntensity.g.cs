@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly LuminousIntensityUnit? _unit;
 
-        static LuminousIntensity()
-        {
-            BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
 
         /// <summary>
         ///     The base unit of LuminousIntensity, which is Candela. All conversions go via this value.
@@ -878,9 +873,10 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal LuminousIntensityQuantityInfo() :
-                base("LuminousIntensity", LuminousIntensity.BaseUnit, LuminousIntensity.Zero, LuminousIntensity.BaseDimensions, QuantityType.LuminousIntensity)
+                base("LuminousIntensity", new UnitInfo<LuminousIntensityUnit>[]{}, LuminousIntensity.BaseUnit, LuminousIntensity.Zero, LuminousIntensity.BaseDimensions, QuantityType.LuminousIntensity)
             {
                 Candela = new UnitInfo<LuminousIntensityUnit>(LuminousIntensityUnit.Candela, "Candela", new BaseUnits(luminousIntensity: LuminousIntensityUnit.Candela));
+                BaseUnitInfo = Candela;
             }
 
             /// <summary>

@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly MassMomentOfInertiaUnit? _unit;
 
-        static MassMomentOfInertia()
-        {
-            BaseDimensions = new BaseDimensions(2, 1, 0, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 1, 0, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of MassMomentOfInertia, which is KilogramSquareMeter. All conversions go via this value.
@@ -1361,7 +1356,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal MassMomentOfInertiaQuantityInfo() :
-                base("MassMomentOfInertia", MassMomentOfInertia.BaseUnit, MassMomentOfInertia.Zero, MassMomentOfInertia.BaseDimensions, QuantityType.MassMomentOfInertia)
+                base("MassMomentOfInertia", new UnitInfo<MassMomentOfInertiaUnit>[]{}, MassMomentOfInertia.BaseUnit, MassMomentOfInertia.Zero, MassMomentOfInertia.BaseDimensions, QuantityType.MassMomentOfInertia)
             {
                 GramSquareCentimeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareCentimeter, "GramSquareCentimeters", BaseUnits.Undefined);
                 GramSquareDecimeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareDecimeter, "GramSquareDecimeters", BaseUnits.Undefined);
@@ -1391,6 +1386,7 @@ namespace UnitsNet
                 TonneSquareDecimeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareDecimeter, "TonneSquareDecimeters", BaseUnits.Undefined);
                 TonneSquareMeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareMeter, "TonneSquareMeters", BaseUnits.Undefined);
                 TonneSquareMilimeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareMilimeter, "TonneSquareMilimeters", BaseUnits.Undefined);
+                BaseUnitInfo = KilogramSquareMeter;
             }
 
             /// <summary>

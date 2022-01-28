@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
@@ -40,7 +41,7 @@ namespace UnitsNet
         /// <param name="baseDimensions">The base dimensions of the quantity.</param>
         /// <exception cref="ArgumentException">Quantity type can not be undefined.</exception>
         /// <exception cref="ArgumentNullException">If units -or- baseUnit -or- zero -or- baseDimensions is null.</exception>
-        [Obsolete("QuantityType will be removed in the future. Use QuantityInfo(string, UnitInfo[], Enum, IQuantity, BaseDimensions) instead.")]
+        [Obsolete("QuantityType will be removed in the future. Use the QuantityInfo(string, UnitInfo[], UnitInfo, IQuantity, BaseDimensions) constructor.")]
         public QuantityInfo(QuantityType quantityType, [NotNull] UnitInfo[] unitInfos, [NotNull] Enum baseUnit, [NotNull] IQuantity zero, [NotNull] BaseDimensions baseDimensions)
             : this(quantityType.ToString(), UnitEnumTypes[$"{quantityType}Unit"], unitInfos, baseUnit, zero, baseDimensions, quantityType)
         {
@@ -58,25 +59,41 @@ namespace UnitsNet
         /// <param name="quantityType">The the quantity type. Defaults to Undefined.</param>
         /// <exception cref="ArgumentException">Quantity type can not be undefined.</exception>
         /// <exception cref="ArgumentNullException">If units -or- baseUnit -or- zero -or- baseDimensions is null.</exception>
+        [Obsolete( "Use the QuantityInfo(string, UnitInfo[], UnitInfo, IQuantity, BaseDimensions) constructor." )]
         public QuantityInfo([NotNull] string name, Type unitType, [NotNull] UnitInfo[] unitInfos, [NotNull] Enum baseUnit, [NotNull] IQuantity zero, [NotNull] BaseDimensions baseDimensions,
+           QuantityType quantityType = QuantityType.Undefined) :
+            this(name, unitType, zero, baseDimensions, quantityType)
+        {
+            UnitInfo = new Collection<UnitInfo>(unitInfos ?? throw new ArgumentNullException(nameof(unitInfos)));
+            BaseUnitInfo = unitInfos.First(unitInfo => unitInfo.Value.Equals(baseUnit));
+        }
+
+        /// <summary>
+        ///     Constructs an instance.
+        /// </summary>
+        /// <param name="name">Name of the quantity.</param>
+        /// <param name="unitType">The unit enum type, such as <see cref="LengthUnit" />.</param>
+        /// <param name="zero">The zero quantity.</param>
+        /// <param name="baseDimensions">The base dimensions of the quantity.</param>
+        /// <param name="quantityType">The the quantity type. Defaults to Undefined.</param>
+        /// <exception cref="ArgumentException">Quantity type can not be undefined.</exception>
+        /// <exception cref="ArgumentNullException">If units -or- baseUnit -or- zero -or- baseDimensions is null.</exception>
+        protected QuantityInfo([NotNull] string name, Type unitType, [NotNull] IQuantity zero, [NotNull] BaseDimensions baseDimensions,
            QuantityType quantityType = QuantityType.Undefined)
         {
-            if(baseUnit == null) throw new ArgumentNullException(nameof(baseUnit));
-
-            BaseDimensions = baseDimensions ?? throw new ArgumentNullException(nameof(baseDimensions));
-            Zero = zero ?? throw new ArgumentNullException(nameof(zero));
             Name = name ?? throw new ArgumentNullException(nameof(name));
             UnitType = unitType ?? throw new ArgumentNullException(nameof(unitType));
-            UnitInfos = unitInfos ?? throw new ArgumentNullException(nameof(unitInfos));
+            Zero = zero ?? throw new ArgumentNullException(nameof(zero));
+            BaseDimensions = baseDimensions ?? throw new ArgumentNullException(nameof(baseDimensions));
 
-            BaseUnitInfo = UnitInfos.First(unitInfo => unitInfo.Value.Equals(baseUnit));
             ValueType = zero.GetType();
+            UnitInfo = new Collection<UnitInfo>();
+
+            BaseUnitInfo = null!;
 
             // Obsolete members
-            UnitNames = UnitInfos.Select( unitInfo => unitInfo.Name ).ToArray();
-            Units = UnitInfos.Select( unitInfo => unitInfo.Value ).ToArray();
-            BaseUnit = BaseUnitInfo.Value;
             QuantityType = quantityType;
+            BaseUnit = null!;
         }
 
         /// <summary>
@@ -93,31 +110,45 @@ namespace UnitsNet
         /// <summary>
         ///     The units for this quantity.
         /// </summary>
-        public UnitInfo[] UnitInfos { get; }
+        public UnitInfo[] UnitInfos
+        {
+            get => UnitInfo.ToArray();
+        }
+
+        /// <summary>
+        ///     The units for this quantity.
+        /// </summary>
+        public ICollection<UnitInfo> UnitInfo { get; }
 
         /// <summary>
         ///     All unit names for the quantity, such as ["Centimeter", "Decimeter", "Meter", ...].
         /// </summary>
         [Obsolete("This property is deprecated and will be removed at a future release. Please use the UnitInfos property.")]
-        public string[] UnitNames { get; }
+        public string[] UnitNames
+        {
+            get => UnitInfos.Select(unitInfo => unitInfo.Name).ToArray();
+        }
 
         /// <summary>
         ///     All unit enum values for the quantity, such as [<see cref="LengthUnit.Centimeter" />,
         ///     <see cref="LengthUnit.Decimeter" />, <see cref="LengthUnit.Meter" />, ...].
         /// </summary>
         [Obsolete("This property is deprecated and will be removed at a future release. Please use the UnitInfos property.")]
-        public Enum[] Units { get; }
+        public Enum[] Units
+        {
+            get => UnitInfos.Select( unitInfo => unitInfo.Value ).ToArray();
+        }
 
         /// <summary>
         ///     The base unit of this quantity.
         /// </summary>
-        public UnitInfo BaseUnitInfo { get; }
+        public UnitInfo BaseUnitInfo { get; protected set; }
 
         /// <summary>
         ///     The base unit for the quantity, such as <see cref="LengthUnit.Meter" />.
         /// </summary>
         [Obsolete("This property is deprecated and will be removed at a future release. Please use the BaseUnitInfo property.")]
-        public Enum BaseUnit { get; }
+        public Enum BaseUnit{ get; }
 
         /// <summary>
         ///     Zero value of quantity, such as <see cref="Length.Zero" />.
@@ -202,27 +233,41 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo(string name, UnitInfo<TUnit>[] unitInfos, TUnit baseUnit, IQuantity<TUnit> zero, BaseDimensions baseDimensions,
             QuantityType quantityType = QuantityType.Undefined)
-            : base(name, typeof(TUnit), unitInfos.ToArray<UnitInfo>(), baseUnit, zero, baseDimensions, quantityType)
+            : this(name, zero, baseDimensions, quantityType)
         {
-            Zero = zero;
-            UnitInfos = unitInfos ?? throw new ArgumentNullException(nameof(unitInfos));
-            BaseUnitInfo = UnitInfos.First(unitInfo => unitInfo.Value.Equals(baseUnit));
-            UnitType = baseUnit;
+            UnitInfo = new Collection<UnitInfo<TUnit>>(unitInfos ?? throw new ArgumentNullException(nameof(unitInfos)));
+            BaseUnitInfo = unitInfos.First(unitInfo => unitInfo.Value.Equals(baseUnit));
+        }
 
-            // Obsolete members
-            Units = UnitInfos.Select(unitInfo => unitInfo.Value).ToArray();
-            BaseUnit = BaseUnitInfo.Value;
+        /// <inheritdoc />
+        protected QuantityInfo(string name, IQuantity<TUnit> zero, BaseDimensions baseDimensions,
+            QuantityType quantityType = QuantityType.Undefined)
+            : base(name, typeof(TUnit), zero, baseDimensions, quantityType)
+        {
+            Zero = zero ?? throw new ArgumentNullException(nameof(zero));
+            UnitInfo = new Collection<UnitInfo<TUnit>>();
+            BaseUnitInfo = null!;
+            BaseUnit = default(TUnit)!;
         }
 
         /// <inheritdoc cref="QuantityInfo.UnitInfos" />
-        public new UnitInfo<TUnit>[] UnitInfos { get; }
+        public new UnitInfo<TUnit>[] UnitInfos
+        {
+            get => UnitInfo.ToArray();
+        }
+
+        /// <inheritdoc cref="QuantityInfo.UnitInfo" />
+        public new ICollection<UnitInfo<TUnit>> UnitInfo { get; }
 
         /// <inheritdoc cref="QuantityInfo.Units" />
         [Obsolete("This property is deprecated and will be removed at a future release. Please use the UnitInfos property.")]
-        public new TUnit[] Units { get; }
+        public new TUnit[] Units
+        {
+            get => UnitInfos.Select(unitInfo => unitInfo.Value).ToArray();
+        }
 
         /// <inheritdoc cref="QuantityInfo.BaseUnitInfo" />
-        public new UnitInfo<TUnit> BaseUnitInfo { get; }
+        public new UnitInfo<TUnit> BaseUnitInfo { get; protected set; }
 
         /// <inheritdoc cref="QuantityInfo.BaseUnit" />
         [Obsolete("This property is deprecated and will be removed at a future release. Please use the BaseUnitInfo property.")]
@@ -230,9 +275,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="QuantityInfo.Zero" />
         public new IQuantity<TUnit> Zero { get; }
-
-        /// <inheritdoc cref="QuantityInfo.UnitType" />
-        public new TUnit UnitType { get; }
 
         /// <inheritdoc cref="QuantityInfo.GetUnitInfoFor" />
         public new UnitInfo<TUnit> GetUnitInfoFor(BaseUnits baseUnits)

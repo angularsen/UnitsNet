@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly MolarEntropyUnit? _unit;
 
-        static MolarEntropy()
-        {
-            BaseDimensions = new BaseDimensions(2, 1, -2, 0, -1, -1, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 1, -2, 0, -1, -1, 0);
 
         /// <summary>
         ///     The base unit of MolarEntropy, which is JoulePerMoleKelvin. All conversions go via this value.
@@ -911,11 +906,12 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal MolarEntropyQuantityInfo() :
-                base("MolarEntropy", MolarEntropy.BaseUnit, MolarEntropy.Zero, MolarEntropy.BaseDimensions, QuantityType.MolarEntropy)
+                base("MolarEntropy", new UnitInfo<MolarEntropyUnit>[]{}, MolarEntropy.BaseUnit, MolarEntropy.Zero, MolarEntropy.BaseDimensions, QuantityType.MolarEntropy)
             {
                 JoulePerMoleKelvin = new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.JoulePerMoleKelvin, "JoulesPerMoleKelvin", BaseUnits.Undefined);
                 KilojoulePerMoleKelvin = new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.KilojoulePerMoleKelvin, "KilojoulesPerMoleKelvin", BaseUnits.Undefined);
                 MegajoulePerMoleKelvin = new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.MegajoulePerMoleKelvin, "MegajoulesPerMoleKelvin", BaseUnits.Undefined);
+                BaseUnitInfo = JoulePerMoleKelvin;
             }
 
             /// <summary>

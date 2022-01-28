@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly LuminosityUnit? _unit;
 
-        static Luminosity()
-        {
-            BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of Luminosity, which is Watt. All conversions go via this value.
@@ -1112,7 +1107,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal LuminosityQuantityInfo() :
-                base("Luminosity", Luminosity.BaseUnit, Luminosity.Zero, Luminosity.BaseDimensions, QuantityType.Luminosity)
+                base("Luminosity", new UnitInfo<LuminosityUnit>[]{}, Luminosity.BaseUnit, Luminosity.Zero, Luminosity.BaseDimensions, QuantityType.Luminosity)
             {
                 Decawatt = new UnitInfo<LuminosityUnit>(LuminosityUnit.Decawatt, "Decawatts", BaseUnits.Undefined);
                 Deciwatt = new UnitInfo<LuminosityUnit>(LuminosityUnit.Deciwatt, "Deciwatts", BaseUnits.Undefined);
@@ -1128,6 +1123,7 @@ namespace UnitsNet
                 SolarLuminosity = new UnitInfo<LuminosityUnit>(LuminosityUnit.SolarLuminosity, "SolarLuminosities", BaseUnits.Undefined);
                 Terawatt = new UnitInfo<LuminosityUnit>(LuminosityUnit.Terawatt, "Terawatts", BaseUnits.Undefined);
                 Watt = new UnitInfo<LuminosityUnit>(LuminosityUnit.Watt, "Watts", BaseUnits.Undefined);
+                BaseUnitInfo = Watt;
             }
 
             /// <summary>

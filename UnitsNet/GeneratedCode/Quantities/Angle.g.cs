@@ -50,12 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly AngleUnit? _unit;
 
-        static Angle()
-        {
-            BaseDimensions = BaseDimensions.Dimensionless;
-
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -98,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = BaseDimensions.Dimensionless;
 
         /// <summary>
         ///     The base unit of Angle, which is Degree. All conversions go via this value.
@@ -1146,7 +1140,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal AngleQuantityInfo() :
-                base("Angle", Angle.BaseUnit, Angle.Zero, Angle.BaseDimensions, QuantityType.Angle)
+                base("Angle", new UnitInfo<AngleUnit>[]{}, Angle.BaseUnit, Angle.Zero, Angle.BaseDimensions, QuantityType.Angle)
             {
                 Arcminute = new UnitInfo<AngleUnit>(AngleUnit.Arcminute, "Arcminutes", BaseUnits.Undefined);
                 Arcsecond = new UnitInfo<AngleUnit>(AngleUnit.Arcsecond, "Arcseconds", BaseUnits.Undefined);
@@ -1164,6 +1158,7 @@ namespace UnitsNet
                 Radian = new UnitInfo<AngleUnit>(AngleUnit.Radian, "Radians", BaseUnits.Undefined);
                 Revolution = new UnitInfo<AngleUnit>(AngleUnit.Revolution, "Revolutions", BaseUnits.Undefined);
                 Tilt = new UnitInfo<AngleUnit>(AngleUnit.Tilt, "Tilt", BaseUnits.Undefined);
+                BaseUnitInfo = Degree;
             }
 
             /// <summary>

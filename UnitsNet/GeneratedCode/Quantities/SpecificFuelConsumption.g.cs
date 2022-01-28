@@ -53,12 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly SpecificFuelConsumptionUnit? _unit;
 
-        static SpecificFuelConsumption()
-        {
-            BaseDimensions = BaseDimensions.Dimensionless;
-
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -101,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = BaseDimensions.Dimensionless;
 
         /// <summary>
         ///     The base unit of SpecificFuelConsumption, which is GramPerKiloNewtonSecond. All conversions go via this value.
@@ -933,12 +927,13 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal SpecificFuelConsumptionQuantityInfo() :
-                base("SpecificFuelConsumption", SpecificFuelConsumption.BaseUnit, SpecificFuelConsumption.Zero, SpecificFuelConsumption.BaseDimensions, QuantityType.SpecificFuelConsumption)
+                base("SpecificFuelConsumption", new UnitInfo<SpecificFuelConsumptionUnit>[]{}, SpecificFuelConsumption.BaseUnit, SpecificFuelConsumption.Zero, SpecificFuelConsumption.BaseDimensions, QuantityType.SpecificFuelConsumption)
             {
                 GramPerKiloNewtonSecond = new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, "GramsPerKiloNewtonSecond", BaseUnits.Undefined);
                 KilogramPerKilogramForceHour = new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, "KilogramsPerKilogramForceHour", BaseUnits.Undefined);
                 KilogramPerKiloNewtonSecond = new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, "KilogramsPerKiloNewtonSecond", BaseUnits.Undefined);
                 PoundMassPerPoundForceHour = new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, "PoundsMassPerPoundForceHour", BaseUnits.Undefined);
+                BaseUnitInfo = GramPerKiloNewtonSecond;
             }
 
             /// <summary>

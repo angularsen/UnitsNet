@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ElectricCurrentDensityUnit? _unit;
 
-        static ElectricCurrentDensity()
-        {
-            BaseDimensions = new BaseDimensions(-2, 0, 0, 1, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-2, 0, 0, 1, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of ElectricCurrentDensity, which is AmperePerSquareMeter. All conversions go via this value.
@@ -914,11 +909,12 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ElectricCurrentDensityQuantityInfo() :
-                base("ElectricCurrentDensity", ElectricCurrentDensity.BaseUnit, ElectricCurrentDensity.Zero, ElectricCurrentDensity.BaseDimensions, QuantityType.ElectricCurrentDensity)
+                base("ElectricCurrentDensity", new UnitInfo<ElectricCurrentDensityUnit>[]{}, ElectricCurrentDensity.BaseUnit, ElectricCurrentDensity.Zero, ElectricCurrentDensity.BaseDimensions, QuantityType.ElectricCurrentDensity)
             {
                 AmperePerSquareFoot = new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareFoot, "AmperesPerSquareFoot", new BaseUnits(length: LengthUnit.Foot, current: ElectricCurrentUnit.Ampere));
                 AmperePerSquareInch = new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareInch, "AmperesPerSquareInch", new BaseUnits(length: LengthUnit.Inch, current: ElectricCurrentUnit.Ampere));
                 AmperePerSquareMeter = new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareMeter, "AmperesPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere));
+                BaseUnitInfo = AmperePerSquareMeter;
             }
 
             /// <summary>

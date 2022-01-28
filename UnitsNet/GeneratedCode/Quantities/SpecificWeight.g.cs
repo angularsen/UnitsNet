@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly SpecificWeightUnit? _unit;
 
-        static SpecificWeight()
-        {
-            BaseDimensions = new BaseDimensions(-2, 1, -2, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-2, 1, -2, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of SpecificWeight, which is NewtonPerCubicMeter. All conversions go via this value.
@@ -1166,7 +1161,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal SpecificWeightQuantityInfo() :
-                base("SpecificWeight", SpecificWeight.BaseUnit, SpecificWeight.Zero, SpecificWeight.BaseDimensions, QuantityType.SpecificWeight)
+                base("SpecificWeight", new UnitInfo<SpecificWeightUnit>[]{}, SpecificWeight.BaseUnit, SpecificWeight.Zero, SpecificWeight.BaseDimensions, QuantityType.SpecificWeight)
             {
                 KilogramForcePerCubicCentimeter = new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilogramForcePerCubicCentimeter, "KilogramsForcePerCubicCentimeter", BaseUnits.Undefined);
                 KilogramForcePerCubicMeter = new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.KilogramForcePerCubicMeter, "KilogramsForcePerCubicMeter", BaseUnits.Undefined);
@@ -1185,6 +1180,7 @@ namespace UnitsNet
                 TonneForcePerCubicCentimeter = new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.TonneForcePerCubicCentimeter, "TonnesForcePerCubicCentimeter", BaseUnits.Undefined);
                 TonneForcePerCubicMeter = new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.TonneForcePerCubicMeter, "TonnesForcePerCubicMeter", BaseUnits.Undefined);
                 TonneForcePerCubicMillimeter = new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.TonneForcePerCubicMillimeter, "TonnesForcePerCubicMillimeter", BaseUnits.Undefined);
+                BaseUnitInfo = NewtonPerCubicMeter;
             }
 
             /// <summary>

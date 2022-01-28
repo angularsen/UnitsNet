@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ApparentEnergyUnit? _unit;
 
-        static ApparentEnergy()
-        {
-            BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of ApparentEnergy, which is VoltampereHour. All conversions go via this value.
@@ -911,11 +906,12 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ApparentEnergyQuantityInfo() :
-                base("ApparentEnergy", ApparentEnergy.BaseUnit, ApparentEnergy.Zero, ApparentEnergy.BaseDimensions, QuantityType.ApparentEnergy)
+                base("ApparentEnergy", new UnitInfo<ApparentEnergyUnit>[]{}, ApparentEnergy.BaseUnit, ApparentEnergy.Zero, ApparentEnergy.BaseDimensions, QuantityType.ApparentEnergy)
             {
                 KilovoltampereHour = new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.KilovoltampereHour, "KilovoltampereHours", BaseUnits.Undefined);
                 MegavoltampereHour = new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.MegavoltampereHour, "MegavoltampereHours", BaseUnits.Undefined);
                 VoltampereHour = new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.VoltampereHour, "VoltampereHours", BaseUnits.Undefined);
+                BaseUnitInfo = VoltampereHour;
             }
 
             /// <summary>

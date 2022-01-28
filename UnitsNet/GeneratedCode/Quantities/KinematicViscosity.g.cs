@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly KinematicViscosityUnit? _unit;
 
-        static KinematicViscosity()
-        {
-            BaseDimensions = new BaseDimensions(2, 0, -1, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 0, -1, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of KinematicViscosity, which is SquareMeterPerSecond. All conversions go via this value.
@@ -1022,7 +1017,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal KinematicViscosityQuantityInfo() :
-                base("KinematicViscosity", KinematicViscosity.BaseUnit, KinematicViscosity.Zero, KinematicViscosity.BaseDimensions, QuantityType.KinematicViscosity)
+                base("KinematicViscosity", new UnitInfo<KinematicViscosityUnit>[]{}, KinematicViscosity.BaseUnit, KinematicViscosity.Zero, KinematicViscosity.BaseDimensions, QuantityType.KinematicViscosity)
             {
                 Centistokes = new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Centistokes, "Centistokes", BaseUnits.Undefined);
                 Decistokes = new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Decistokes, "Decistokes", BaseUnits.Undefined);
@@ -1033,6 +1028,7 @@ namespace UnitsNet
                 SquareFootPerSecond = new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.SquareFootPerSecond, "SquareFeetPerSecond", BaseUnits.Undefined);
                 SquareMeterPerSecond = new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.SquareMeterPerSecond, "SquareMetersPerSecond", BaseUnits.Undefined);
                 Stokes = new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Stokes, "Stokes", BaseUnits.Undefined);
+                BaseUnitInfo = SquareMeterPerSecond;
             }
 
             /// <summary>

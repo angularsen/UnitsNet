@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly PowerDensityUnit? _unit;
 
-        static PowerDensity()
-        {
-            BaseDimensions = new BaseDimensions(-1, 1, -3, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-1, 1, -3, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of PowerDensity, which is WattPerCubicMeter. All conversions go via this value.
@@ -1649,7 +1644,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal PowerDensityQuantityInfo() :
-                base("PowerDensity", PowerDensity.BaseUnit, PowerDensity.Zero, PowerDensity.BaseDimensions, QuantityType.PowerDensity)
+                base("PowerDensity", new UnitInfo<PowerDensityUnit>[]{}, PowerDensity.BaseUnit, PowerDensity.Zero, PowerDensity.BaseDimensions, QuantityType.PowerDensity)
             {
                 DecawattPerCubicFoot = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DecawattPerCubicFoot, "DecawattsPerCubicFoot", BaseUnits.Undefined);
                 DecawattPerCubicInch = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.DecawattPerCubicInch, "DecawattsPerCubicInch", BaseUnits.Undefined);
@@ -1695,6 +1690,7 @@ namespace UnitsNet
                 WattPerCubicInch = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerCubicInch, "WattsPerCubicInch", BaseUnits.Undefined);
                 WattPerCubicMeter = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerCubicMeter, "WattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
                 WattPerLiter = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerLiter, "WattsPerLiter", BaseUnits.Undefined);
+                BaseUnitInfo = WattPerCubicMeter;
             }
 
             /// <summary>

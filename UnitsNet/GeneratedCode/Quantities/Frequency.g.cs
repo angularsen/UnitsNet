@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly FrequencyUnit? _unit;
 
-        static Frequency()
-        {
-            BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of Frequency, which is Hertz. All conversions go via this value.
@@ -1055,7 +1050,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal FrequencyQuantityInfo() :
-                base("Frequency", Frequency.BaseUnit, Frequency.Zero, Frequency.BaseDimensions, QuantityType.Frequency)
+                base("Frequency", new UnitInfo<FrequencyUnit>[]{}, Frequency.BaseUnit, Frequency.Zero, Frequency.BaseDimensions, QuantityType.Frequency)
             {
                 BeatPerMinute = new UnitInfo<FrequencyUnit>(FrequencyUnit.BeatPerMinute, "BeatsPerMinute", BaseUnits.Undefined);
                 BUnit = new UnitInfo<FrequencyUnit>(FrequencyUnit.BUnit, "BUnits", BaseUnits.Undefined);
@@ -1068,6 +1063,7 @@ namespace UnitsNet
                 PerSecond = new UnitInfo<FrequencyUnit>(FrequencyUnit.PerSecond, "PerSecond", BaseUnits.Undefined);
                 RadianPerSecond = new UnitInfo<FrequencyUnit>(FrequencyUnit.RadianPerSecond, "RadiansPerSecond", BaseUnits.Undefined);
                 Terahertz = new UnitInfo<FrequencyUnit>(FrequencyUnit.Terahertz, "Terahertz", BaseUnits.Undefined);
+                BaseUnitInfo = Hertz;
             }
 
             /// <summary>

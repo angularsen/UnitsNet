@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly AreaMomentOfInertiaUnit? _unit;
 
-        static AreaMomentOfInertia()
-        {
-            BaseDimensions = new BaseDimensions(4, 0, 0, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(4, 0, 0, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of AreaMomentOfInertia, which is MeterToTheFourth. All conversions go via this value.
@@ -965,7 +960,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal AreaMomentOfInertiaQuantityInfo() :
-                base("AreaMomentOfInertia", AreaMomentOfInertia.BaseUnit, AreaMomentOfInertia.Zero, AreaMomentOfInertia.BaseDimensions, QuantityType.AreaMomentOfInertia)
+                base("AreaMomentOfInertia", new UnitInfo<AreaMomentOfInertiaUnit>[]{}, AreaMomentOfInertia.BaseUnit, AreaMomentOfInertia.Zero, AreaMomentOfInertia.BaseDimensions, QuantityType.AreaMomentOfInertia)
             {
                 CentimeterToTheFourth = new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.CentimeterToTheFourth, "CentimetersToTheFourth", new BaseUnits(length: LengthUnit.Centimeter));
                 DecimeterToTheFourth = new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.DecimeterToTheFourth, "DecimetersToTheFourth", new BaseUnits(length: LengthUnit.Decimeter));
@@ -973,6 +968,7 @@ namespace UnitsNet
                 InchToTheFourth = new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.InchToTheFourth, "InchesToTheFourth", new BaseUnits(length: LengthUnit.Inch));
                 MeterToTheFourth = new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.MeterToTheFourth, "MetersToTheFourth", new BaseUnits(length: LengthUnit.Meter));
                 MillimeterToTheFourth = new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.MillimeterToTheFourth, "MillimetersToTheFourth", new BaseUnits(length: LengthUnit.Millimeter));
+                BaseUnitInfo = MeterToTheFourth;
             }
 
             /// <summary>

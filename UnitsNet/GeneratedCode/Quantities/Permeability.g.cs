@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly PermeabilityUnit? _unit;
 
-        static Permeability()
-        {
-            BaseDimensions = new BaseDimensions(1, 1, -2, -2, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(1, 1, -2, -2, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of Permeability, which is HenryPerMeter. All conversions go via this value.
@@ -878,9 +873,10 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal PermeabilityQuantityInfo() :
-                base("Permeability", Permeability.BaseUnit, Permeability.Zero, Permeability.BaseDimensions, QuantityType.Permeability)
+                base("Permeability", new UnitInfo<PermeabilityUnit>[]{}, Permeability.BaseUnit, Permeability.Zero, Permeability.BaseDimensions, QuantityType.Permeability)
             {
                 HenryPerMeter = new UnitInfo<PermeabilityUnit>(PermeabilityUnit.HenryPerMeter, "HenriesPerMeter", BaseUnits.Undefined);
+                BaseUnitInfo = HenryPerMeter;
             }
 
             /// <summary>

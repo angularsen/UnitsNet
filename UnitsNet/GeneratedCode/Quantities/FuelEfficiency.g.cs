@@ -53,12 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly FuelEfficiencyUnit? _unit;
 
-        static FuelEfficiency()
-        {
-            BaseDimensions = BaseDimensions.Dimensionless;
-
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -101,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = BaseDimensions.Dimensionless;
 
         /// <summary>
         ///     The base unit of FuelEfficiency, which is LiterPer100Kilometers. All conversions go via this value.
@@ -933,12 +927,13 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal FuelEfficiencyQuantityInfo() :
-                base("FuelEfficiency", FuelEfficiency.BaseUnit, FuelEfficiency.Zero, FuelEfficiency.BaseDimensions, QuantityType.FuelEfficiency)
+                base("FuelEfficiency", new UnitInfo<FuelEfficiencyUnit>[]{}, FuelEfficiency.BaseUnit, FuelEfficiency.Zero, FuelEfficiency.BaseDimensions, QuantityType.FuelEfficiency)
             {
                 KilometerPerLiter = new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.KilometerPerLiter, "KilometersPerLiters", BaseUnits.Undefined);
                 LiterPer100Kilometers = new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.LiterPer100Kilometers, "LitersPer100Kilometers", BaseUnits.Undefined);
                 MilePerUkGallon = new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.MilePerUkGallon, "MilesPerUkGallon", BaseUnits.Undefined);
                 MilePerUsGallon = new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.MilePerUsGallon, "MilesPerUsGallon", BaseUnits.Undefined);
+                BaseUnitInfo = LiterPer100Kilometers;
             }
 
             /// <summary>

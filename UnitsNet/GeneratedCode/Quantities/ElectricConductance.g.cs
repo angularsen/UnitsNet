@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ElectricConductanceUnit? _unit;
 
-        static ElectricConductance()
-        {
-            BaseDimensions = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of ElectricConductance, which is Siemens. All conversions go via this value.
@@ -914,11 +909,12 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ElectricConductanceQuantityInfo() :
-                base("ElectricConductance", ElectricConductance.BaseUnit, ElectricConductance.Zero, ElectricConductance.BaseDimensions, QuantityType.ElectricConductance)
+                base("ElectricConductance", new UnitInfo<ElectricConductanceUnit>[]{}, ElectricConductance.BaseUnit, ElectricConductance.Zero, ElectricConductance.BaseDimensions, QuantityType.ElectricConductance)
             {
                 Microsiemens = new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Microsiemens, "Microsiemens", BaseUnits.Undefined);
                 Millisiemens = new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Millisiemens, "Millisiemens", BaseUnits.Undefined);
                 Siemens = new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Siemens, "Siemens", BaseUnits.Undefined);
+                BaseUnitInfo = Siemens;
             }
 
             /// <summary>

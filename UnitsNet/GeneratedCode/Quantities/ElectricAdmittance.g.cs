@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ElectricAdmittanceUnit? _unit;
 
-        static ElectricAdmittance()
-        {
-            BaseDimensions = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of ElectricAdmittance, which is Siemens. All conversions go via this value.
@@ -929,12 +924,13 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ElectricAdmittanceQuantityInfo() :
-                base("ElectricAdmittance", ElectricAdmittance.BaseUnit, ElectricAdmittance.Zero, ElectricAdmittance.BaseDimensions, QuantityType.ElectricAdmittance)
+                base("ElectricAdmittance", new UnitInfo<ElectricAdmittanceUnit>[]{}, ElectricAdmittance.BaseUnit, ElectricAdmittance.Zero, ElectricAdmittance.BaseDimensions, QuantityType.ElectricAdmittance)
             {
                 Microsiemens = new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Microsiemens, "Microsiemens", BaseUnits.Undefined);
                 Millisiemens = new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Millisiemens, "Millisiemens", BaseUnits.Undefined);
                 Nanosiemens = new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Nanosiemens, "Nanosiemens", BaseUnits.Undefined);
                 Siemens = new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Siemens, "Siemens", BaseUnits.Undefined);
+                BaseUnitInfo = Siemens;
             }
 
             /// <summary>

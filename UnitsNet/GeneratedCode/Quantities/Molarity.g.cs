@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly MolarityUnit? _unit;
 
-        static Molarity()
-        {
-            BaseDimensions = new BaseDimensions(-3, 0, 0, 0, 0, 1, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-3, 0, 0, 0, 0, 1, 0);
 
         /// <summary>
         ///     The base unit of Molarity, which is MolesPerCubicMeter. All conversions go via this value.
@@ -1004,7 +999,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal MolarityQuantityInfo() :
-                base("Molarity", Molarity.BaseUnit, Molarity.Zero, Molarity.BaseDimensions, QuantityType.Molarity)
+                base("Molarity", new UnitInfo<MolarityUnit>[]{}, Molarity.BaseUnit, Molarity.Zero, Molarity.BaseDimensions, QuantityType.Molarity)
             {
                 CentimolesPerLiter = new UnitInfo<MolarityUnit>(MolarityUnit.CentimolesPerLiter, "CentimolesPerLiter", BaseUnits.Undefined);
                 DecimolesPerLiter = new UnitInfo<MolarityUnit>(MolarityUnit.DecimolesPerLiter, "DecimolesPerLiter", BaseUnits.Undefined);
@@ -1014,6 +1009,7 @@ namespace UnitsNet
                 MolesPerLiter = new UnitInfo<MolarityUnit>(MolarityUnit.MolesPerLiter, "MolesPerLiter", new BaseUnits(length: LengthUnit.Decimeter, amount: AmountOfSubstanceUnit.Mole));
                 NanomolesPerLiter = new UnitInfo<MolarityUnit>(MolarityUnit.NanomolesPerLiter, "NanomolesPerLiter", BaseUnits.Undefined);
                 PicomolesPerLiter = new UnitInfo<MolarityUnit>(MolarityUnit.PicomolesPerLiter, "PicomolesPerLiter", BaseUnits.Undefined);
+                BaseUnitInfo = MolesPerCubicMeter;
             }
 
             /// <summary>

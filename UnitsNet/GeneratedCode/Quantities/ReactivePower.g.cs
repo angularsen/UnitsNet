@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ReactivePowerUnit? _unit;
 
-        static ReactivePower()
-        {
-            BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of ReactivePower, which is VoltampereReactive. All conversions go via this value.
@@ -929,12 +924,13 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ReactivePowerQuantityInfo() :
-                base("ReactivePower", ReactivePower.BaseUnit, ReactivePower.Zero, ReactivePower.BaseDimensions, QuantityType.ReactivePower)
+                base("ReactivePower", new UnitInfo<ReactivePowerUnit>[]{}, ReactivePower.BaseUnit, ReactivePower.Zero, ReactivePower.BaseDimensions, QuantityType.ReactivePower)
             {
                 GigavoltampereReactive = new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.GigavoltampereReactive, "GigavoltamperesReactive", BaseUnits.Undefined);
                 KilovoltampereReactive = new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.KilovoltampereReactive, "KilovoltamperesReactive", BaseUnits.Undefined);
                 MegavoltampereReactive = new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.MegavoltampereReactive, "MegavoltamperesReactive", BaseUnits.Undefined);
                 VoltampereReactive = new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.VoltampereReactive, "VoltamperesReactive", BaseUnits.Undefined);
+                BaseUnitInfo = VoltampereReactive;
             }
 
             /// <summary>

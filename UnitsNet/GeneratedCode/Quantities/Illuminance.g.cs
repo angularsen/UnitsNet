@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly IlluminanceUnit? _unit;
 
-        static Illuminance()
-        {
-            BaseDimensions = new BaseDimensions(-2, 0, 0, 0, 0, 0, 1);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-2, 0, 0, 0, 0, 0, 1);
 
         /// <summary>
         ///     The base unit of Illuminance, which is Lux. All conversions go via this value.
@@ -932,12 +927,13 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal IlluminanceQuantityInfo() :
-                base("Illuminance", Illuminance.BaseUnit, Illuminance.Zero, Illuminance.BaseDimensions, QuantityType.Illuminance)
+                base("Illuminance", new UnitInfo<IlluminanceUnit>[]{}, Illuminance.BaseUnit, Illuminance.Zero, Illuminance.BaseDimensions, QuantityType.Illuminance)
             {
                 Kilolux = new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Kilolux, "Kilolux", BaseUnits.Undefined);
                 Lux = new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Lux, "Lux", BaseUnits.Undefined);
                 Megalux = new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Megalux, "Megalux", BaseUnits.Undefined);
                 Millilux = new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Millilux, "Millilux", BaseUnits.Undefined);
+                BaseUnitInfo = Lux;
             }
 
             /// <summary>

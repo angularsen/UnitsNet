@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly AccelerationUnit? _unit;
 
-        static Acceleration()
-        {
-            BaseDimensions = new BaseDimensions(1, 0, -2, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(1, 0, -2, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of Acceleration, which is MeterPerSecondSquared. All conversions go via this value.
@@ -1109,7 +1104,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal AccelerationQuantityInfo() :
-                base("Acceleration", Acceleration.BaseUnit, Acceleration.Zero, Acceleration.BaseDimensions, QuantityType.Acceleration)
+                base("Acceleration", new UnitInfo<AccelerationUnit>[]{}, Acceleration.BaseUnit, Acceleration.Zero, Acceleration.BaseDimensions, QuantityType.Acceleration)
             {
                 CentimeterPerSecondSquared = new UnitInfo<AccelerationUnit>(AccelerationUnit.CentimeterPerSecondSquared, "CentimetersPerSecondSquared", BaseUnits.Undefined);
                 DecimeterPerSecondSquared = new UnitInfo<AccelerationUnit>(AccelerationUnit.DecimeterPerSecondSquared, "DecimetersPerSecondSquared", BaseUnits.Undefined);
@@ -1125,6 +1120,7 @@ namespace UnitsNet
                 MillistandardGravity = new UnitInfo<AccelerationUnit>(AccelerationUnit.MillistandardGravity, "MillistandardGravity", BaseUnits.Undefined);
                 NanometerPerSecondSquared = new UnitInfo<AccelerationUnit>(AccelerationUnit.NanometerPerSecondSquared, "NanometersPerSecondSquared", BaseUnits.Undefined);
                 StandardGravity = new UnitInfo<AccelerationUnit>(AccelerationUnit.StandardGravity, "StandardGravity", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
+                BaseUnitInfo = MeterPerSecondSquared;
             }
 
             /// <summary>

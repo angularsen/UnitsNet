@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ElectricSurfaceChargeDensityUnit? _unit;
 
-        static ElectricSurfaceChargeDensity()
-        {
-            BaseDimensions = new BaseDimensions(-2, 0, 1, 1, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-2, 0, 1, 1, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of ElectricSurfaceChargeDensity, which is CoulombPerSquareMeter. All conversions go via this value.
@@ -914,11 +909,12 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ElectricSurfaceChargeDensityQuantityInfo() :
-                base("ElectricSurfaceChargeDensity", ElectricSurfaceChargeDensity.BaseUnit, ElectricSurfaceChargeDensity.Zero, ElectricSurfaceChargeDensity.BaseDimensions, QuantityType.ElectricSurfaceChargeDensity)
+                base("ElectricSurfaceChargeDensity", new UnitInfo<ElectricSurfaceChargeDensityUnit>[]{}, ElectricSurfaceChargeDensity.BaseUnit, ElectricSurfaceChargeDensity.Zero, ElectricSurfaceChargeDensity.BaseDimensions, QuantityType.ElectricSurfaceChargeDensity)
             {
                 CoulombPerSquareCentimeter = new UnitInfo<ElectricSurfaceChargeDensityUnit>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, "CoulombsPerSquareCentimeter", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
                 CoulombPerSquareInch = new UnitInfo<ElectricSurfaceChargeDensityUnit>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, "CoulombsPerSquareInch", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
                 CoulombPerSquareMeter = new UnitInfo<ElectricSurfaceChargeDensityUnit>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, "CoulombsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                BaseUnitInfo = CoulombPerSquareMeter;
             }
 
             /// <summary>

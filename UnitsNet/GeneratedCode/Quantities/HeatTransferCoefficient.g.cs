@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly HeatTransferCoefficientUnit? _unit;
 
-        static HeatTransferCoefficient()
-        {
-            BaseDimensions = new BaseDimensions(0, 1, -3, 0, -1, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 1, -3, 0, -1, 0, 0);
 
         /// <summary>
         ///     The base unit of HeatTransferCoefficient, which is WattPerSquareMeterKelvin. All conversions go via this value.
@@ -911,11 +906,12 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal HeatTransferCoefficientQuantityInfo() :
-                base("HeatTransferCoefficient", HeatTransferCoefficient.BaseUnit, HeatTransferCoefficient.Zero, HeatTransferCoefficient.BaseDimensions, QuantityType.HeatTransferCoefficient)
+                base("HeatTransferCoefficient", new UnitInfo<HeatTransferCoefficientUnit>[]{}, HeatTransferCoefficient.BaseUnit, HeatTransferCoefficient.Zero, HeatTransferCoefficient.BaseDimensions, QuantityType.HeatTransferCoefficient)
             {
                 BtuPerSquareFootDegreeFahrenheit = new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, "BtusPerSquareFootDegreeFahrenheit", BaseUnits.Undefined);
                 WattPerSquareMeterCelsius = new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, "WattsPerSquareMeterCelsius", BaseUnits.Undefined);
                 WattPerSquareMeterKelvin = new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, "WattsPerSquareMeterKelvin", BaseUnits.Undefined);
+                BaseUnitInfo = WattPerSquareMeterKelvin;
             }
 
             /// <summary>

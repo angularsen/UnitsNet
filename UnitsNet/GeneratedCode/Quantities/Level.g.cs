@@ -50,12 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly LevelUnit? _unit;
 
-        static Level()
-        {
-            BaseDimensions = BaseDimensions.Dimensionless;
-
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -98,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = BaseDimensions.Dimensionless;
 
         /// <summary>
         ///     The base unit of Level, which is Decibel. All conversions go via this value.
@@ -902,10 +896,11 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal LevelQuantityInfo() :
-                base("Level", Level.BaseUnit, Level.Zero, Level.BaseDimensions, QuantityType.Level)
+                base("Level", new UnitInfo<LevelUnit>[]{}, Level.BaseUnit, Level.Zero, Level.BaseDimensions, QuantityType.Level)
             {
                 Decibel = new UnitInfo<LevelUnit>(LevelUnit.Decibel, "Decibels", BaseUnits.Undefined);
                 Neper = new UnitInfo<LevelUnit>(LevelUnit.Neper, "Nepers", BaseUnits.Undefined);
+                BaseUnitInfo = Decibel;
             }
 
             /// <summary>

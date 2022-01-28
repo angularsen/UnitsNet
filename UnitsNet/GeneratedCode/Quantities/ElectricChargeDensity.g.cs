@@ -53,11 +53,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ElectricChargeDensityUnit? _unit;
 
-        static ElectricChargeDensity()
-        {
-            BaseDimensions = new BaseDimensions(-3, 0, 1, 1, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -100,7 +95,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-3, 0, 1, 1, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of ElectricChargeDensity, which is CoulombPerCubicMeter. All conversions go via this value.
@@ -878,9 +873,10 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ElectricChargeDensityQuantityInfo() :
-                base("ElectricChargeDensity", ElectricChargeDensity.BaseUnit, ElectricChargeDensity.Zero, ElectricChargeDensity.BaseDimensions, QuantityType.ElectricChargeDensity)
+                base("ElectricChargeDensity", new UnitInfo<ElectricChargeDensityUnit>[]{}, ElectricChargeDensity.BaseUnit, ElectricChargeDensity.Zero, ElectricChargeDensity.BaseDimensions, QuantityType.ElectricChargeDensity)
             {
                 CoulombPerCubicMeter = new UnitInfo<ElectricChargeDensityUnit>(ElectricChargeDensityUnit.CoulombPerCubicMeter, "CoulombsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                BaseUnitInfo = CoulombPerCubicMeter;
             }
 
             /// <summary>

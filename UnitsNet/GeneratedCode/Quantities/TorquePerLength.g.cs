@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly TorquePerLengthUnit? _unit;
 
-        static TorquePerLength()
-        {
-            BaseDimensions = new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of TorquePerLength, which is NewtonMeterPerMeter. All conversions go via this value.
@@ -1235,7 +1230,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal TorquePerLengthQuantityInfo() :
-                base("TorquePerLength", TorquePerLength.BaseUnit, TorquePerLength.Zero, TorquePerLength.BaseDimensions, QuantityType.TorquePerLength)
+                base("TorquePerLength", new UnitInfo<TorquePerLengthUnit>[]{}, TorquePerLength.BaseUnit, TorquePerLength.Zero, TorquePerLength.BaseDimensions, QuantityType.TorquePerLength)
             {
                 KilogramForceCentimeterPerMeter = new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilogramForceCentimeterPerMeter, "KilogramForceCentimetersPerMeter", BaseUnits.Undefined);
                 KilogramForceMeterPerMeter = new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilogramForceMeterPerMeter, "KilogramForceMetersPerMeter", BaseUnits.Undefined);
@@ -1258,6 +1253,7 @@ namespace UnitsNet
                 TonneForceCentimeterPerMeter = new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.TonneForceCentimeterPerMeter, "TonneForceCentimetersPerMeter", BaseUnits.Undefined);
                 TonneForceMeterPerMeter = new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.TonneForceMeterPerMeter, "TonneForceMetersPerMeter", BaseUnits.Undefined);
                 TonneForceMillimeterPerMeter = new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.TonneForceMillimeterPerMeter, "TonneForceMillimetersPerMeter", BaseUnits.Undefined);
+                BaseUnitInfo = NewtonMeterPerMeter;
             }
 
             /// <summary>

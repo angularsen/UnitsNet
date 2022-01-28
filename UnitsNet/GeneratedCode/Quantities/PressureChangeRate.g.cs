@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly PressureChangeRateUnit? _unit;
 
-        static PressureChangeRate()
-        {
-            BaseDimensions = new BaseDimensions(-1, 1, -3, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-1, 1, -3, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of PressureChangeRate, which is PascalPerSecond. All conversions go via this value.
@@ -1109,7 +1104,7 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal PressureChangeRateQuantityInfo() :
-                base("PressureChangeRate", PressureChangeRate.BaseUnit, PressureChangeRate.Zero, PressureChangeRate.BaseDimensions, QuantityType.PressureChangeRate)
+                base("PressureChangeRate", new UnitInfo<PressureChangeRateUnit>[]{}, PressureChangeRate.BaseUnit, PressureChangeRate.Zero, PressureChangeRate.BaseDimensions, QuantityType.PressureChangeRate)
             {
                 AtmospherePerSecond = new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.AtmospherePerSecond, "AtmospheresPerSecond", BaseUnits.Undefined);
                 KilopascalPerMinute = new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.KilopascalPerMinute, "KilopascalsPerMinute", BaseUnits.Undefined);
@@ -1125,6 +1120,7 @@ namespace UnitsNet
                 PascalPerSecond = new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PascalPerSecond, "PascalsPerSecond", BaseUnits.Undefined);
                 PoundForcePerSquareInchPerMinute = new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PoundForcePerSquareInchPerMinute, "PoundsForcePerSquareInchPerMinute", BaseUnits.Undefined);
                 PoundForcePerSquareInchPerSecond = new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, "PoundsForcePerSquareInchPerSecond", BaseUnits.Undefined);
+                BaseUnitInfo = PascalPerSecond;
             }
 
             /// <summary>

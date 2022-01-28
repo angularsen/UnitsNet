@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ElectricPotentialUnit? _unit;
 
-        static ElectricPotential()
-        {
-            BaseDimensions = new BaseDimensions(2, 1, -3, -1, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 1, -3, -1, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of ElectricPotential, which is Volt. All conversions go via this value.
@@ -947,13 +942,14 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ElectricPotentialQuantityInfo() :
-                base("ElectricPotential", ElectricPotential.BaseUnit, ElectricPotential.Zero, ElectricPotential.BaseDimensions, QuantityType.ElectricPotential)
+                base("ElectricPotential", new UnitInfo<ElectricPotentialUnit>[]{}, ElectricPotential.BaseUnit, ElectricPotential.Zero, ElectricPotential.BaseDimensions, QuantityType.ElectricPotential)
             {
                 Kilovolt = new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Kilovolt, "Kilovolts", BaseUnits.Undefined);
                 Megavolt = new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Megavolt, "Megavolts", BaseUnits.Undefined);
                 Microvolt = new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Microvolt, "Microvolts", BaseUnits.Undefined);
                 Millivolt = new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Millivolt, "Millivolts", BaseUnits.Undefined);
                 Volt = new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Volt, "Volts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                BaseUnitInfo = Volt;
             }
 
             /// <summary>

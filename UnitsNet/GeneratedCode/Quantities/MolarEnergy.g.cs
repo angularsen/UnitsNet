@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly MolarEnergyUnit? _unit;
 
-        static MolarEnergy()
-        {
-            BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, -1, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 1, -2, 0, 0, -1, 0);
 
         /// <summary>
         ///     The base unit of MolarEnergy, which is JoulePerMole. All conversions go via this value.
@@ -911,11 +906,12 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal MolarEnergyQuantityInfo() :
-                base("MolarEnergy", MolarEnergy.BaseUnit, MolarEnergy.Zero, MolarEnergy.BaseDimensions, QuantityType.MolarEnergy)
+                base("MolarEnergy", new UnitInfo<MolarEnergyUnit>[]{}, MolarEnergy.BaseUnit, MolarEnergy.Zero, MolarEnergy.BaseDimensions, QuantityType.MolarEnergy)
             {
                 JoulePerMole = new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.JoulePerMole, "JoulesPerMole", BaseUnits.Undefined);
                 KilojoulePerMole = new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.KilojoulePerMole, "KilojoulesPerMole", BaseUnits.Undefined);
                 MegajoulePerMole = new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.MegajoulePerMole, "MegajoulesPerMole", BaseUnits.Undefined);
+                BaseUnitInfo = JoulePerMole;
             }
 
             /// <summary>

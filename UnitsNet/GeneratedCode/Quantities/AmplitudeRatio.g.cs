@@ -50,12 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly AmplitudeRatioUnit? _unit;
 
-        static AmplitudeRatio()
-        {
-            BaseDimensions = BaseDimensions.Dimensionless;
-
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -98,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = BaseDimensions.Dimensionless;
 
         /// <summary>
         ///     The base unit of AmplitudeRatio, which is DecibelVolt. All conversions go via this value.
@@ -938,12 +932,13 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal AmplitudeRatioQuantityInfo() :
-                base("AmplitudeRatio", AmplitudeRatio.BaseUnit, AmplitudeRatio.Zero, AmplitudeRatio.BaseDimensions, QuantityType.AmplitudeRatio)
+                base("AmplitudeRatio", new UnitInfo<AmplitudeRatioUnit>[]{}, AmplitudeRatio.BaseUnit, AmplitudeRatio.Zero, AmplitudeRatio.BaseDimensions, QuantityType.AmplitudeRatio)
             {
                 DecibelMicrovolt = new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelMicrovolt, "DecibelMicrovolts", BaseUnits.Undefined);
                 DecibelMillivolt = new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelMillivolt, "DecibelMillivolts", BaseUnits.Undefined);
                 DecibelUnloaded = new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelUnloaded, "DecibelsUnloaded", BaseUnits.Undefined);
                 DecibelVolt = new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelVolt, "DecibelVolts", BaseUnits.Undefined);
+                BaseUnitInfo = DecibelVolt;
             }
 
             /// <summary>

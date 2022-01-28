@@ -50,11 +50,6 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ReactiveEnergyUnit? _unit;
 
-        static ReactiveEnergy()
-        {
-            BaseDimensions = new BaseDimensions(2, 1, -1, 0, 0, 0, 0);
-        }
-
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -97,7 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 1, -1, 0, 0, 0, 0);
 
         /// <summary>
         ///     The base unit of ReactiveEnergy, which is VoltampereReactiveHour. All conversions go via this value.
@@ -911,11 +906,12 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ReactiveEnergyQuantityInfo() :
-                base("ReactiveEnergy", ReactiveEnergy.BaseUnit, ReactiveEnergy.Zero, ReactiveEnergy.BaseDimensions, QuantityType.ReactiveEnergy)
+                base("ReactiveEnergy", new UnitInfo<ReactiveEnergyUnit>[]{}, ReactiveEnergy.BaseUnit, ReactiveEnergy.Zero, ReactiveEnergy.BaseDimensions, QuantityType.ReactiveEnergy)
             {
                 KilovoltampereReactiveHour = new UnitInfo<ReactiveEnergyUnit>(ReactiveEnergyUnit.KilovoltampereReactiveHour, "KilovoltampereReactiveHours", BaseUnits.Undefined);
                 MegavoltampereReactiveHour = new UnitInfo<ReactiveEnergyUnit>(ReactiveEnergyUnit.MegavoltampereReactiveHour, "MegavoltampereReactiveHours", BaseUnits.Undefined);
                 VoltampereReactiveHour = new UnitInfo<ReactiveEnergyUnit>(ReactiveEnergyUnit.VoltampereReactiveHour, "VoltampereReactiveHours", BaseUnits.Undefined);
+                BaseUnitInfo = VoltampereReactiveHour;
             }
 
             /// <summary>
