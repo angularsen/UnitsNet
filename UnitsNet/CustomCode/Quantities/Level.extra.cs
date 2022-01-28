@@ -29,9 +29,6 @@ namespace UnitsNet
 
             _value = 10*Math.Log10(quantity/reference);
             _unit = LevelUnit.Decibel;
-
-            ConversionFunctions = new UnitConverter();
-            RegisterDefaultConversions(ConversionFunctions);
         }
     }
 }

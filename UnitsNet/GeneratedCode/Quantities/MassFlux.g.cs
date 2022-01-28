@@ -70,6 +70,8 @@ namespace UnitsNet
                     new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, "KilogramsPerSecondPerSquareMillimeter", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.MassFlux);
+
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         /// <summary>
@@ -85,9 +87,6 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
-
-            ConversionFunctions = new UnitConverter();
-            RegisterDefaultConversions(ConversionFunctions);
         }
 
         /// <summary>
@@ -107,12 +106,14 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            ConversionFunctions = new UnitConverter();
-            RegisterDefaultConversions(ConversionFunctions);
         }
 
         #region Static Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing conversion functions for <see cref="MassFlux" /> instances.
+        /// </summary>
+        public static UnitConverter ConversionFunctions { get; } = new UnitConverter();
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<MassFluxUnit> Info { get; }
@@ -158,11 +159,6 @@ namespace UnitsNet
         #endregion
 
         #region Properties
-
-        /// <summary>
-        ///     The <see cref="UnitConverter" /> containing conversion functions for this quantity.
-        /// </summary>
-        public UnitConverter ConversionFunctions { get; }
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.

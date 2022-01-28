@@ -161,8 +161,10 @@ namespace UnitsNet
             Writer.WL($@"
                 }},
                 BaseUnit, Zero, BaseDimensions, QuantityType.{_quantity.Name});
+
+            RegisterDefaultConversions(ConversionFunctions);
         }}
-");
+" );
         }
 
         private void GenerateInstanceConstructors()
@@ -187,9 +189,6 @@ namespace UnitsNet
             _value = value;");
             Writer.WL($@"
             _unit = unit;
-
-            ConversionFunctions = new UnitConverter();
-            RegisterDefaultConversions(ConversionFunctions);
         }}
 
         /// <summary>
@@ -215,9 +214,6 @@ namespace UnitsNet
             _value = value;");
             Writer.WL( $@"
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException(""No units were found for the given UnitSystem."", nameof(unitSystem));
-
-            ConversionFunctions = new UnitConverter();
-            RegisterDefaultConversions(ConversionFunctions);
         }}
 " );
         }
@@ -226,6 +222,11 @@ namespace UnitsNet
         {
             Writer.WL($@"
         #region Static Properties
+
+        /// <summary>
+        ///     The <see cref=""UnitConverter"" /> containing conversion functions for <see cref=""{_quantity.Name}"" /> instances.
+        /// </summary>
+        public static UnitConverter ConversionFunctions {{ get; }} = new UnitConverter();
 
         /// <inheritdoc cref=""IQuantity.QuantityInfo""/>
         public static QuantityInfo<{_unitEnumName}> Info {{ get; }}
@@ -276,11 +277,6 @@ namespace UnitsNet
         {
             Writer.WL($@"
         #region Properties
-
-        /// <summary>
-        ///     The <see cref=""UnitConverter"" /> containing conversion functions for this quantity.
-        /// </summary>
-        public UnitConverter ConversionFunctions {{ get; }}
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.

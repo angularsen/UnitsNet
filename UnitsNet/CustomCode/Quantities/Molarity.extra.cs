@@ -15,9 +15,6 @@ namespace UnitsNet
         {
             _value = density.KilogramsPerCubicMeter / molecularWeight.Kilograms;
             _unit = MolarityUnit.MolesPerCubicMeter;
-
-            ConversionFunctions = new UnitConverter();
-            RegisterDefaultConversions(ConversionFunctions);
         }
 
         /// <summary>
