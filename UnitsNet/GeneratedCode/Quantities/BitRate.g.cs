@@ -102,6 +102,9 @@ namespace UnitsNet
 
             _value = value;
             _unit = unit;
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         /// <summary>
@@ -121,6 +124,9 @@ namespace UnitsNet
 
             _value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         #region Static Properties
@@ -169,6 +175,11 @@ namespace UnitsNet
         #endregion
 
         #region Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing conversion functions for this quantity.
+        /// </summary>
+        public UnitConverter ConversionFunctions { get; }
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -347,61 +358,61 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> BitRateUnit
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.BytePerSecond, quantity => quantity.ToUnit(BitRateUnit.BytePerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.ExabitPerSecond, quantity => quantity.ToUnit(BitRateUnit.ExabitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.ExabytePerSecond, quantity => quantity.ToUnit(BitRateUnit.ExabytePerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.ExbibitPerSecond, quantity => quantity.ToUnit(BitRateUnit.ExbibitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.ExbibytePerSecond, quantity => quantity.ToUnit(BitRateUnit.ExbibytePerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.GibibitPerSecond, quantity => quantity.ToUnit(BitRateUnit.GibibitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.GibibytePerSecond, quantity => quantity.ToUnit(BitRateUnit.GibibytePerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.GigabitPerSecond, quantity => quantity.ToUnit(BitRateUnit.GigabitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.GigabytePerSecond, quantity => quantity.ToUnit(BitRateUnit.GigabytePerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.KibibitPerSecond, quantity => quantity.ToUnit(BitRateUnit.KibibitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.KibibytePerSecond, quantity => quantity.ToUnit(BitRateUnit.KibibytePerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.KilobitPerSecond, quantity => quantity.ToUnit(BitRateUnit.KilobitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.KilobytePerSecond, quantity => quantity.ToUnit(BitRateUnit.KilobytePerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.MebibitPerSecond, quantity => quantity.ToUnit(BitRateUnit.MebibitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.MebibytePerSecond, quantity => quantity.ToUnit(BitRateUnit.MebibytePerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.MegabitPerSecond, quantity => quantity.ToUnit(BitRateUnit.MegabitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.MegabytePerSecond, quantity => quantity.ToUnit(BitRateUnit.MegabytePerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.PebibitPerSecond, quantity => quantity.ToUnit(BitRateUnit.PebibitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.PebibytePerSecond, quantity => quantity.ToUnit(BitRateUnit.PebibytePerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.PetabitPerSecond, quantity => quantity.ToUnit(BitRateUnit.PetabitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.PetabytePerSecond, quantity => quantity.ToUnit(BitRateUnit.PetabytePerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.TebibitPerSecond, quantity => quantity.ToUnit(BitRateUnit.TebibitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.TebibytePerSecond, quantity => quantity.ToUnit(BitRateUnit.TebibytePerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.TerabitPerSecond, quantity => quantity.ToUnit(BitRateUnit.TerabitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.TerabytePerSecond, quantity => quantity.ToUnit(BitRateUnit.TerabytePerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.BytePerSecond, quantity => new BitRate(quantity.Value/8m, BitRateUnit.BytePerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.ExabitPerSecond, quantity => new BitRate((quantity.Value) / 1e18m, BitRateUnit.ExabitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.ExabytePerSecond, quantity => new BitRate((quantity.Value/8m) / 1e18m, BitRateUnit.ExabytePerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.ExbibitPerSecond, quantity => new BitRate((quantity.Value) / (1024m * 1024 * 1024 * 1024 * 1024 * 1024), BitRateUnit.ExbibitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.ExbibytePerSecond, quantity => new BitRate((quantity.Value/8m) / (1024m * 1024 * 1024 * 1024 * 1024 * 1024), BitRateUnit.ExbibytePerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.GibibitPerSecond, quantity => new BitRate((quantity.Value) / (1024m * 1024 * 1024), BitRateUnit.GibibitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.GibibytePerSecond, quantity => new BitRate((quantity.Value/8m) / (1024m * 1024 * 1024), BitRateUnit.GibibytePerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.GigabitPerSecond, quantity => new BitRate((quantity.Value) / 1e9m, BitRateUnit.GigabitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.GigabytePerSecond, quantity => new BitRate((quantity.Value/8m) / 1e9m, BitRateUnit.GigabytePerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.KibibitPerSecond, quantity => new BitRate((quantity.Value) / 1024m, BitRateUnit.KibibitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.KibibytePerSecond, quantity => new BitRate((quantity.Value/8m) / 1024m, BitRateUnit.KibibytePerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.KilobitPerSecond, quantity => new BitRate((quantity.Value) / 1e3m, BitRateUnit.KilobitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.KilobytePerSecond, quantity => new BitRate((quantity.Value/8m) / 1e3m, BitRateUnit.KilobytePerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.MebibitPerSecond, quantity => new BitRate((quantity.Value) / (1024m * 1024), BitRateUnit.MebibitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.MebibytePerSecond, quantity => new BitRate((quantity.Value/8m) / (1024m * 1024), BitRateUnit.MebibytePerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.MegabitPerSecond, quantity => new BitRate((quantity.Value) / 1e6m, BitRateUnit.MegabitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.MegabytePerSecond, quantity => new BitRate((quantity.Value/8m) / 1e6m, BitRateUnit.MegabytePerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.PebibitPerSecond, quantity => new BitRate((quantity.Value) / (1024m * 1024 * 1024 * 1024 * 1024), BitRateUnit.PebibitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.PebibytePerSecond, quantity => new BitRate((quantity.Value/8m) / (1024m * 1024 * 1024 * 1024 * 1024), BitRateUnit.PebibytePerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.PetabitPerSecond, quantity => new BitRate((quantity.Value) / 1e15m, BitRateUnit.PetabitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.PetabytePerSecond, quantity => new BitRate((quantity.Value/8m) / 1e15m, BitRateUnit.PetabytePerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.TebibitPerSecond, quantity => new BitRate((quantity.Value) / (1024m * 1024 * 1024 * 1024), BitRateUnit.TebibitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.TebibytePerSecond, quantity => new BitRate((quantity.Value/8m) / (1024m * 1024 * 1024 * 1024), BitRateUnit.TebibytePerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.TerabitPerSecond, quantity => new BitRate((quantity.Value) / 1e12m, BitRateUnit.TerabitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.TerabytePerSecond, quantity => new BitRate((quantity.Value/8m) / 1e12m, BitRateUnit.TerabytePerSecond));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.BitPerSecond, quantity => quantity);
 
             // Register in unit converter: BitRateUnit -> BaseUnit
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BytePerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.ExabitPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.ExabytePerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.ExbibitPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.ExbibytePerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.GibibitPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.GibibytePerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.GigabitPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.GigabytePerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.KibibitPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.KibibytePerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.KilobitPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.KilobytePerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.MebibitPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.MebibytePerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.MegabitPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.MegabytePerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.PebibitPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.PebibytePerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.PetabitPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.PetabytePerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.TebibitPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.TebibytePerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.TerabitPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.TerabytePerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BytePerSecond, BitRateUnit.BitPerSecond, quantity => new BitRate(quantity.Value*8m, BitRateUnit.BitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.ExabitPerSecond, BitRateUnit.BitPerSecond, quantity => new BitRate((quantity.Value) * 1e18m, BitRateUnit.BitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.ExabytePerSecond, BitRateUnit.BitPerSecond, quantity => new BitRate((quantity.Value*8m) * 1e18m, BitRateUnit.BitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.ExbibitPerSecond, BitRateUnit.BitPerSecond, quantity => new BitRate((quantity.Value) * (1024m * 1024 * 1024 * 1024 * 1024 * 1024), BitRateUnit.BitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.ExbibytePerSecond, BitRateUnit.BitPerSecond, quantity => new BitRate((quantity.Value*8m) * (1024m * 1024 * 1024 * 1024 * 1024 * 1024), BitRateUnit.BitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.GibibitPerSecond, BitRateUnit.BitPerSecond, quantity => new BitRate((quantity.Value) * (1024m * 1024 * 1024), BitRateUnit.BitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.GibibytePerSecond, BitRateUnit.BitPerSecond, quantity => new BitRate((quantity.Value*8m) * (1024m * 1024 * 1024), BitRateUnit.BitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.GigabitPerSecond, BitRateUnit.BitPerSecond, quantity => new BitRate((quantity.Value) * 1e9m, BitRateUnit.BitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.GigabytePerSecond, BitRateUnit.BitPerSecond, quantity => new BitRate((quantity.Value*8m) * 1e9m, BitRateUnit.BitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.KibibitPerSecond, BitRateUnit.BitPerSecond, quantity => new BitRate((quantity.Value) * 1024m, BitRateUnit.BitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.KibibytePerSecond, BitRateUnit.BitPerSecond, quantity => new BitRate((quantity.Value*8m) * 1024m, BitRateUnit.BitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.KilobitPerSecond, BitRateUnit.BitPerSecond, quantity => new BitRate((quantity.Value) * 1e3m, BitRateUnit.BitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.KilobytePerSecond, BitRateUnit.BitPerSecond, quantity => new BitRate((quantity.Value*8m) * 1e3m, BitRateUnit.BitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.MebibitPerSecond, BitRateUnit.BitPerSecond, quantity => new BitRate((quantity.Value) * (1024m * 1024), BitRateUnit.BitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.MebibytePerSecond, BitRateUnit.BitPerSecond, quantity => new BitRate((quantity.Value*8m) * (1024m * 1024), BitRateUnit.BitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.MegabitPerSecond, BitRateUnit.BitPerSecond, quantity => new BitRate((quantity.Value) * 1e6m, BitRateUnit.BitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.MegabytePerSecond, BitRateUnit.BitPerSecond, quantity => new BitRate((quantity.Value*8m) * 1e6m, BitRateUnit.BitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.PebibitPerSecond, BitRateUnit.BitPerSecond, quantity => new BitRate((quantity.Value) * (1024m * 1024 * 1024 * 1024 * 1024), BitRateUnit.BitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.PebibytePerSecond, BitRateUnit.BitPerSecond, quantity => new BitRate((quantity.Value*8m) * (1024m * 1024 * 1024 * 1024 * 1024), BitRateUnit.BitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.PetabitPerSecond, BitRateUnit.BitPerSecond, quantity => new BitRate((quantity.Value) * 1e15m, BitRateUnit.BitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.PetabytePerSecond, BitRateUnit.BitPerSecond, quantity => new BitRate((quantity.Value*8m) * 1e15m, BitRateUnit.BitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.TebibitPerSecond, BitRateUnit.BitPerSecond, quantity => new BitRate((quantity.Value) * (1024m * 1024 * 1024 * 1024), BitRateUnit.BitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.TebibytePerSecond, BitRateUnit.BitPerSecond, quantity => new BitRate((quantity.Value*8m) * (1024m * 1024 * 1024 * 1024), BitRateUnit.BitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.TerabitPerSecond, BitRateUnit.BitPerSecond, quantity => new BitRate((quantity.Value) * 1e12m, BitRateUnit.BitPerSecond));
+            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.TerabytePerSecond, BitRateUnit.BitPerSecond, quantity => new BitRate((quantity.Value*8m) * 1e12m, BitRateUnit.BitPerSecond));
         }
 
         /// <summary>
@@ -1088,50 +1099,12 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private decimal GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case BitRateUnit.BitPerSecond: return _value;
-                case BitRateUnit.BytePerSecond: return _value*8m;
-                case BitRateUnit.ExabitPerSecond: return (_value) * 1e18m;
-                case BitRateUnit.ExabytePerSecond: return (_value*8m) * 1e18m;
-                case BitRateUnit.ExbibitPerSecond: return (_value) * (1024m * 1024 * 1024 * 1024 * 1024 * 1024);
-                case BitRateUnit.ExbibytePerSecond: return (_value*8m) * (1024m * 1024 * 1024 * 1024 * 1024 * 1024);
-                case BitRateUnit.GibibitPerSecond: return (_value) * (1024m * 1024 * 1024);
-                case BitRateUnit.GibibytePerSecond: return (_value*8m) * (1024m * 1024 * 1024);
-                case BitRateUnit.GigabitPerSecond: return (_value) * 1e9m;
-                case BitRateUnit.GigabytePerSecond: return (_value*8m) * 1e9m;
-                case BitRateUnit.KibibitPerSecond: return (_value) * 1024m;
-                case BitRateUnit.KibibytePerSecond: return (_value*8m) * 1024m;
-                case BitRateUnit.KilobitPerSecond: return (_value) * 1e3m;
-                case BitRateUnit.KilobytePerSecond: return (_value*8m) * 1e3m;
-                case BitRateUnit.MebibitPerSecond: return (_value) * (1024m * 1024);
-                case BitRateUnit.MebibytePerSecond: return (_value*8m) * (1024m * 1024);
-                case BitRateUnit.MegabitPerSecond: return (_value) * 1e6m;
-                case BitRateUnit.MegabytePerSecond: return (_value*8m) * 1e6m;
-                case BitRateUnit.PebibitPerSecond: return (_value) * (1024m * 1024 * 1024 * 1024 * 1024);
-                case BitRateUnit.PebibytePerSecond: return (_value*8m) * (1024m * 1024 * 1024 * 1024 * 1024);
-                case BitRateUnit.PetabitPerSecond: return (_value) * 1e15m;
-                case BitRateUnit.PetabytePerSecond: return (_value*8m) * 1e15m;
-                case BitRateUnit.TebibitPerSecond: return (_value) * (1024m * 1024 * 1024 * 1024);
-                case BitRateUnit.TebibytePerSecond: return (_value*8m) * (1024m * 1024 * 1024 * 1024);
-                case BitRateUnit.TerabitPerSecond: return (_value) * 1e12m;
-                case BitRateUnit.TerabytePerSecond: return (_value*8m) * 1e12m;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
         internal BitRate ToBaseUnit()
         {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new BitRate(baseUnitValue, BaseUnit);
+            if(!ConversionFunctions.TryGetConversionFunction<BitRate>(Unit, BaseUnit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
+
+            return (BitRate)conversionFunction(this);
         }
 
         private decimal GetValueAs(BitRateUnit unit)
@@ -1139,39 +1112,13 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+            var inBaseUnits = ToBaseUnit();
 
-            switch(unit)
-            {
-                case BitRateUnit.BitPerSecond: return baseUnitValue;
-                case BitRateUnit.BytePerSecond: return baseUnitValue/8m;
-                case BitRateUnit.ExabitPerSecond: return (baseUnitValue) / 1e18m;
-                case BitRateUnit.ExabytePerSecond: return (baseUnitValue/8m) / 1e18m;
-                case BitRateUnit.ExbibitPerSecond: return (baseUnitValue) / (1024m * 1024 * 1024 * 1024 * 1024 * 1024);
-                case BitRateUnit.ExbibytePerSecond: return (baseUnitValue/8m) / (1024m * 1024 * 1024 * 1024 * 1024 * 1024);
-                case BitRateUnit.GibibitPerSecond: return (baseUnitValue) / (1024m * 1024 * 1024);
-                case BitRateUnit.GibibytePerSecond: return (baseUnitValue/8m) / (1024m * 1024 * 1024);
-                case BitRateUnit.GigabitPerSecond: return (baseUnitValue) / 1e9m;
-                case BitRateUnit.GigabytePerSecond: return (baseUnitValue/8m) / 1e9m;
-                case BitRateUnit.KibibitPerSecond: return (baseUnitValue) / 1024m;
-                case BitRateUnit.KibibytePerSecond: return (baseUnitValue/8m) / 1024m;
-                case BitRateUnit.KilobitPerSecond: return (baseUnitValue) / 1e3m;
-                case BitRateUnit.KilobytePerSecond: return (baseUnitValue/8m) / 1e3m;
-                case BitRateUnit.MebibitPerSecond: return (baseUnitValue) / (1024m * 1024);
-                case BitRateUnit.MebibytePerSecond: return (baseUnitValue/8m) / (1024m * 1024);
-                case BitRateUnit.MegabitPerSecond: return (baseUnitValue) / 1e6m;
-                case BitRateUnit.MegabytePerSecond: return (baseUnitValue/8m) / 1e6m;
-                case BitRateUnit.PebibitPerSecond: return (baseUnitValue) / (1024m * 1024 * 1024 * 1024 * 1024);
-                case BitRateUnit.PebibytePerSecond: return (baseUnitValue/8m) / (1024m * 1024 * 1024 * 1024 * 1024);
-                case BitRateUnit.PetabitPerSecond: return (baseUnitValue) / 1e15m;
-                case BitRateUnit.PetabytePerSecond: return (baseUnitValue/8m) / 1e15m;
-                case BitRateUnit.TebibitPerSecond: return (baseUnitValue) / (1024m * 1024 * 1024 * 1024);
-                case BitRateUnit.TebibytePerSecond: return (baseUnitValue/8m) / (1024m * 1024 * 1024 * 1024);
-                case BitRateUnit.TerabitPerSecond: return (baseUnitValue) / 1e12m;
-                case BitRateUnit.TerabytePerSecond: return (baseUnitValue/8m) / 1e12m;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            if(!ConversionFunctions.TryGetConversionFunction<BitRate>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (decimal)converted.Value;
         }
 
         #endregion

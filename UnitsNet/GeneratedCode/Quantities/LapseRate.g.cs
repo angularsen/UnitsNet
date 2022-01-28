@@ -75,6 +75,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         /// <summary>
@@ -94,6 +97,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         #region Static Properties
@@ -142,6 +148,11 @@ namespace UnitsNet
         #endregion
 
         #region Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing conversion functions for this quantity.
+        /// </summary>
+        public UnitConverter ConversionFunctions { get; }
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -656,25 +667,12 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case LapseRateUnit.DegreeCelsiusPerKilometer: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
         internal LapseRate ToBaseUnit()
         {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new LapseRate(baseUnitValue, BaseUnit);
+            if(!ConversionFunctions.TryGetConversionFunction<LapseRate>(Unit, BaseUnit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
+
+            return (LapseRate)conversionFunction(this);
         }
 
         private double GetValueAs(LapseRateUnit unit)
@@ -682,14 +680,13 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+            var inBaseUnits = ToBaseUnit();
 
-            switch(unit)
-            {
-                case LapseRateUnit.DegreeCelsiusPerKilometer: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            if(!ConversionFunctions.TryGetConversionFunction<LapseRate>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (double)converted.Value;
         }
 
         #endregion

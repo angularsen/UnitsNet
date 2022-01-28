@@ -187,6 +187,9 @@ namespace UnitsNet
             _value = value;");
             Writer.WL($@"
             _unit = unit;
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }}
 
         /// <summary>
@@ -210,10 +213,13 @@ namespace UnitsNet
             _value = Guard.EnsureValidNumber(value, nameof(value));"
                 : @"
             _value = value;");
-            Writer.WL(@"
+            Writer.WL( $@"
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException(""No units were found for the given UnitSystem."", nameof(unitSystem));
-        }
-");
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
+        }}
+" );
         }
 
         private void GenerateStaticProperties()
@@ -270,6 +276,11 @@ namespace UnitsNet
         {
             Writer.WL($@"
         #region Properties
+
+        /// <summary>
+        ///     The <see cref=""UnitConverter"" /> containing conversion functions for this quantity.
+        /// </summary>
+        public UnitConverter ConversionFunctions {{ get; }}
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -357,8 +368,9 @@ namespace UnitsNet
             if(unit.SingularName == _quantity.BaseUnit)
                 continue;
 
-            Writer.WL( $@"
-            unitConverter.SetConversionFunction<{_quantity.Name}>({_unitEnumName}.{_quantity.BaseUnit}, {_quantity.Name}Unit.{unit.SingularName}, quantity => quantity.ToUnit({_quantity.Name}Unit.{unit.SingularName}));");
+        var func = unit.FromBaseToUnitFunc.Replace("x", "quantity.Value" );
+        Writer.WL( $@"
+            unitConverter.SetConversionFunction<{_quantity.Name}>({_unitEnumName}.{_quantity.BaseUnit}, {_quantity.Name}Unit.{unit.SingularName}, quantity => new {_quantity.Name}({func}, {_quantity.Name}Unit.{unit.SingularName}));");
         }
 
         Writer.WL( $@"
@@ -373,8 +385,9 @@ namespace UnitsNet
             if(unit.SingularName == _quantity.BaseUnit)
                 continue;
 
-            Writer.WL($@"
-            unitConverter.SetConversionFunction<{_quantity.Name}>({_quantity.Name}Unit.{unit.SingularName}, {_unitEnumName}.{_quantity.BaseUnit}, quantity => quantity.ToBaseUnit());" );
+        var func = unit.FromUnitToBaseFunc.Replace("x", "quantity.Value");
+        Writer.WL($@"
+            unitConverter.SetConversionFunction<{_quantity.Name}>({_quantity.Name}Unit.{unit.SingularName}, {_unitEnumName}.{_quantity.BaseUnit}, quantity => new {_quantity.Name}({func}, {_unitEnumName}.{_quantity.BaseUnit}));" );
         }
 
         Writer.WL( $@"
@@ -945,32 +958,12 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private {_valueType} GetValueInBaseUnit()
-        {{
-            switch(Unit)
-            {{");
-            foreach (var unit in _quantity.Units)
-            {
-                var func = unit.FromUnitToBaseFunc.Replace("x", "_value");
-                Writer.WL($@"
-                case {_unitEnumName}.{unit.SingularName}: return {func};");
-            }
-
-            Writer.WL($@"
-                default:
-                    throw new NotImplementedException($""Can not convert {{Unit}} to base units."");
-            }}
-        }}
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
         internal {_quantity.Name} ToBaseUnit()
         {{
-            var baseUnitValue = GetValueInBaseUnit();
-            return new {_quantity.Name}(baseUnitValue, BaseUnit);
+            if(!ConversionFunctions.TryGetConversionFunction<{_quantity.Name}>(Unit, BaseUnit, out var conversionFunction))
+                throw new NotImplementedException($""Can not convert {{Unit}} to {{BaseUnit}}."");
+
+            return ({_quantity.Name})conversionFunction(this);
         }}
 
         private {_valueType} GetValueAs({_unitEnumName} unit)
@@ -978,22 +971,14 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+            var inBaseUnits = ToBaseUnit();
 
-            switch(unit)
-            {{");
-            foreach (var unit in _quantity.Units)
-            {
-                var func = unit.FromBaseToUnitFunc.Replace("x", "baseUnitValue");
-                Writer.WL($@"
-                case {_unitEnumName}.{unit.SingularName}: return {func};");
-            }
+            if(!ConversionFunctions.TryGetConversionFunction<{_quantity.Name}>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($""Can not convert {{inBaseUnits.Unit}} to {{unit}}."");
 
-            Writer.WL(@"
-                default:
-                    throw new NotImplementedException($""Can not convert {Unit} to {unit}."");
-            }
-        }
+            var converted = conversionFunction(inBaseUnits);
+            return ({_valueType})converted.Value;
+        }}
 
         #endregion
 ");

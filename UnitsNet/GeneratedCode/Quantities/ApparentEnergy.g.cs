@@ -76,6 +76,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         /// <summary>
@@ -95,6 +98,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         #region Static Properties
@@ -143,6 +149,11 @@ namespace UnitsNet
         #endregion
 
         #region Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing conversion functions for this quantity.
+        /// </summary>
+        public UnitConverter ConversionFunctions { get; }
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -201,15 +212,15 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> ApparentEnergyUnit
-            unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.KilovoltampereHour, quantity => quantity.ToUnit(ApparentEnergyUnit.KilovoltampereHour));
-            unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.MegavoltampereHour, quantity => quantity.ToUnit(ApparentEnergyUnit.MegavoltampereHour));
+            unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.KilovoltampereHour, quantity => new ApparentEnergy((quantity.Value) / 1e3d, ApparentEnergyUnit.KilovoltampereHour));
+            unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.MegavoltampereHour, quantity => new ApparentEnergy((quantity.Value) / 1e6d, ApparentEnergyUnit.MegavoltampereHour));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.VoltampereHour, quantity => quantity);
 
             // Register in unit converter: ApparentEnergyUnit -> BaseUnit
-            unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.KilovoltampereHour, ApparentEnergyUnit.VoltampereHour, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.MegavoltampereHour, ApparentEnergyUnit.VoltampereHour, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.KilovoltampereHour, ApparentEnergyUnit.VoltampereHour, quantity => new ApparentEnergy((quantity.Value) * 1e3d, ApparentEnergyUnit.VoltampereHour));
+            unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.MegavoltampereHour, ApparentEnergyUnit.VoltampereHour, quantity => new ApparentEnergy((quantity.Value) * 1e6d, ApparentEnergyUnit.VoltampereHour));
         }
 
         /// <summary>
@@ -689,27 +700,12 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case ApparentEnergyUnit.KilovoltampereHour: return (_value) * 1e3d;
-                case ApparentEnergyUnit.MegavoltampereHour: return (_value) * 1e6d;
-                case ApparentEnergyUnit.VoltampereHour: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
         internal ApparentEnergy ToBaseUnit()
         {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new ApparentEnergy(baseUnitValue, BaseUnit);
+            if(!ConversionFunctions.TryGetConversionFunction<ApparentEnergy>(Unit, BaseUnit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
+
+            return (ApparentEnergy)conversionFunction(this);
         }
 
         private double GetValueAs(ApparentEnergyUnit unit)
@@ -717,16 +713,13 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+            var inBaseUnits = ToBaseUnit();
 
-            switch(unit)
-            {
-                case ApparentEnergyUnit.KilovoltampereHour: return (baseUnitValue) / 1e3d;
-                case ApparentEnergyUnit.MegavoltampereHour: return (baseUnitValue) / 1e6d;
-                case ApparentEnergyUnit.VoltampereHour: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            if(!ConversionFunctions.TryGetConversionFunction<ApparentEnergy>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (double)converted.Value;
         }
 
         #endregion

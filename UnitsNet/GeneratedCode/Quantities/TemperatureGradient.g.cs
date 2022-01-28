@@ -77,6 +77,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         /// <summary>
@@ -96,6 +99,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         #region Static Properties
@@ -144,6 +150,11 @@ namespace UnitsNet
         #endregion
 
         #region Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing conversion functions for this quantity.
+        /// </summary>
+        public UnitConverter ConversionFunctions { get; }
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -207,17 +218,17 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> TemperatureGradientUnit
-            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.DegreeCelsiusPerKilometer, quantity => quantity.ToUnit(TemperatureGradientUnit.DegreeCelsiusPerKilometer));
-            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.DegreeCelsiusPerMeter, quantity => quantity.ToUnit(TemperatureGradientUnit.DegreeCelsiusPerMeter));
-            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.DegreeFahrenheitPerFoot, quantity => quantity.ToUnit(TemperatureGradientUnit.DegreeFahrenheitPerFoot));
+            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.DegreeCelsiusPerKilometer, quantity => new TemperatureGradient(quantity.Value * 1e3, TemperatureGradientUnit.DegreeCelsiusPerKilometer));
+            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.DegreeCelsiusPerMeter, quantity => new TemperatureGradient(quantity.Value, TemperatureGradientUnit.DegreeCelsiusPerMeter));
+            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.DegreeFahrenheitPerFoot, quantity => new TemperatureGradient((quantity.Value * 0.3048) * 9/5, TemperatureGradientUnit.DegreeFahrenheitPerFoot));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.KelvinPerMeter, quantity => quantity);
 
             // Register in unit converter: TemperatureGradientUnit -> BaseUnit
-            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.DegreeCelsiusPerKilometer, TemperatureGradientUnit.KelvinPerMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.DegreeCelsiusPerMeter, TemperatureGradientUnit.KelvinPerMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.DegreeFahrenheitPerFoot, TemperatureGradientUnit.KelvinPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.DegreeCelsiusPerKilometer, TemperatureGradientUnit.KelvinPerMeter, quantity => new TemperatureGradient(quantity.Value / 1e3, TemperatureGradientUnit.KelvinPerMeter));
+            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.DegreeCelsiusPerMeter, TemperatureGradientUnit.KelvinPerMeter, quantity => new TemperatureGradient(quantity.Value, TemperatureGradientUnit.KelvinPerMeter));
+            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.DegreeFahrenheitPerFoot, TemperatureGradientUnit.KelvinPerMeter, quantity => new TemperatureGradient((quantity.Value / 0.3048) * 5/9, TemperatureGradientUnit.KelvinPerMeter));
         }
 
         /// <summary>
@@ -706,28 +717,12 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case TemperatureGradientUnit.DegreeCelsiusPerKilometer: return _value / 1e3;
-                case TemperatureGradientUnit.DegreeCelsiusPerMeter: return _value;
-                case TemperatureGradientUnit.DegreeFahrenheitPerFoot: return (_value / 0.3048) * 5/9;
-                case TemperatureGradientUnit.KelvinPerMeter: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
         internal TemperatureGradient ToBaseUnit()
         {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new TemperatureGradient(baseUnitValue, BaseUnit);
+            if(!ConversionFunctions.TryGetConversionFunction<TemperatureGradient>(Unit, BaseUnit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
+
+            return (TemperatureGradient)conversionFunction(this);
         }
 
         private double GetValueAs(TemperatureGradientUnit unit)
@@ -735,17 +730,13 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+            var inBaseUnits = ToBaseUnit();
 
-            switch(unit)
-            {
-                case TemperatureGradientUnit.DegreeCelsiusPerKilometer: return baseUnitValue * 1e3;
-                case TemperatureGradientUnit.DegreeCelsiusPerMeter: return baseUnitValue;
-                case TemperatureGradientUnit.DegreeFahrenheitPerFoot: return (baseUnitValue * 0.3048) * 9/5;
-                case TemperatureGradientUnit.KelvinPerMeter: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            if(!ConversionFunctions.TryGetConversionFunction<TemperatureGradient>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (double)converted.Value;
         }
 
         #endregion

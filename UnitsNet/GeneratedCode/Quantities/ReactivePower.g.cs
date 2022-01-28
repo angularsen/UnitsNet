@@ -77,6 +77,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         /// <summary>
@@ -96,6 +99,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         #region Static Properties
@@ -144,6 +150,11 @@ namespace UnitsNet
         #endregion
 
         #region Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing conversion functions for this quantity.
+        /// </summary>
+        public UnitConverter ConversionFunctions { get; }
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -207,17 +218,17 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> ReactivePowerUnit
-            unitConverter.SetConversionFunction<ReactivePower>(ReactivePowerUnit.VoltampereReactive, ReactivePowerUnit.GigavoltampereReactive, quantity => quantity.ToUnit(ReactivePowerUnit.GigavoltampereReactive));
-            unitConverter.SetConversionFunction<ReactivePower>(ReactivePowerUnit.VoltampereReactive, ReactivePowerUnit.KilovoltampereReactive, quantity => quantity.ToUnit(ReactivePowerUnit.KilovoltampereReactive));
-            unitConverter.SetConversionFunction<ReactivePower>(ReactivePowerUnit.VoltampereReactive, ReactivePowerUnit.MegavoltampereReactive, quantity => quantity.ToUnit(ReactivePowerUnit.MegavoltampereReactive));
+            unitConverter.SetConversionFunction<ReactivePower>(ReactivePowerUnit.VoltampereReactive, ReactivePowerUnit.GigavoltampereReactive, quantity => new ReactivePower((quantity.Value) / 1e9d, ReactivePowerUnit.GigavoltampereReactive));
+            unitConverter.SetConversionFunction<ReactivePower>(ReactivePowerUnit.VoltampereReactive, ReactivePowerUnit.KilovoltampereReactive, quantity => new ReactivePower((quantity.Value) / 1e3d, ReactivePowerUnit.KilovoltampereReactive));
+            unitConverter.SetConversionFunction<ReactivePower>(ReactivePowerUnit.VoltampereReactive, ReactivePowerUnit.MegavoltampereReactive, quantity => new ReactivePower((quantity.Value) / 1e6d, ReactivePowerUnit.MegavoltampereReactive));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ReactivePower>(ReactivePowerUnit.VoltampereReactive, ReactivePowerUnit.VoltampereReactive, quantity => quantity);
 
             // Register in unit converter: ReactivePowerUnit -> BaseUnit
-            unitConverter.SetConversionFunction<ReactivePower>(ReactivePowerUnit.GigavoltampereReactive, ReactivePowerUnit.VoltampereReactive, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ReactivePower>(ReactivePowerUnit.KilovoltampereReactive, ReactivePowerUnit.VoltampereReactive, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ReactivePower>(ReactivePowerUnit.MegavoltampereReactive, ReactivePowerUnit.VoltampereReactive, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ReactivePower>(ReactivePowerUnit.GigavoltampereReactive, ReactivePowerUnit.VoltampereReactive, quantity => new ReactivePower((quantity.Value) * 1e9d, ReactivePowerUnit.VoltampereReactive));
+            unitConverter.SetConversionFunction<ReactivePower>(ReactivePowerUnit.KilovoltampereReactive, ReactivePowerUnit.VoltampereReactive, quantity => new ReactivePower((quantity.Value) * 1e3d, ReactivePowerUnit.VoltampereReactive));
+            unitConverter.SetConversionFunction<ReactivePower>(ReactivePowerUnit.MegavoltampereReactive, ReactivePowerUnit.VoltampereReactive, quantity => new ReactivePower((quantity.Value) * 1e6d, ReactivePowerUnit.VoltampereReactive));
         }
 
         /// <summary>
@@ -706,28 +717,12 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case ReactivePowerUnit.GigavoltampereReactive: return (_value) * 1e9d;
-                case ReactivePowerUnit.KilovoltampereReactive: return (_value) * 1e3d;
-                case ReactivePowerUnit.MegavoltampereReactive: return (_value) * 1e6d;
-                case ReactivePowerUnit.VoltampereReactive: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
         internal ReactivePower ToBaseUnit()
         {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new ReactivePower(baseUnitValue, BaseUnit);
+            if(!ConversionFunctions.TryGetConversionFunction<ReactivePower>(Unit, BaseUnit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
+
+            return (ReactivePower)conversionFunction(this);
         }
 
         private double GetValueAs(ReactivePowerUnit unit)
@@ -735,17 +730,13 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+            var inBaseUnits = ToBaseUnit();
 
-            switch(unit)
-            {
-                case ReactivePowerUnit.GigavoltampereReactive: return (baseUnitValue) / 1e9d;
-                case ReactivePowerUnit.KilovoltampereReactive: return (baseUnitValue) / 1e3d;
-                case ReactivePowerUnit.MegavoltampereReactive: return (baseUnitValue) / 1e6d;
-                case ReactivePowerUnit.VoltampereReactive: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            if(!ConversionFunctions.TryGetConversionFunction<ReactivePower>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (double)converted.Value;
         }
 
         #endregion

@@ -77,6 +77,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         /// <summary>
@@ -96,6 +99,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         #region Static Properties
@@ -144,6 +150,11 @@ namespace UnitsNet
         #endregion
 
         #region Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing conversion functions for this quantity.
+        /// </summary>
+        public UnitConverter ConversionFunctions { get; }
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -207,17 +218,17 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> ElectricAdmittanceUnit
-            unitConverter.SetConversionFunction<ElectricAdmittance>(ElectricAdmittanceUnit.Siemens, ElectricAdmittanceUnit.Microsiemens, quantity => quantity.ToUnit(ElectricAdmittanceUnit.Microsiemens));
-            unitConverter.SetConversionFunction<ElectricAdmittance>(ElectricAdmittanceUnit.Siemens, ElectricAdmittanceUnit.Millisiemens, quantity => quantity.ToUnit(ElectricAdmittanceUnit.Millisiemens));
-            unitConverter.SetConversionFunction<ElectricAdmittance>(ElectricAdmittanceUnit.Siemens, ElectricAdmittanceUnit.Nanosiemens, quantity => quantity.ToUnit(ElectricAdmittanceUnit.Nanosiemens));
+            unitConverter.SetConversionFunction<ElectricAdmittance>(ElectricAdmittanceUnit.Siemens, ElectricAdmittanceUnit.Microsiemens, quantity => new ElectricAdmittance((quantity.Value) / 1e-6d, ElectricAdmittanceUnit.Microsiemens));
+            unitConverter.SetConversionFunction<ElectricAdmittance>(ElectricAdmittanceUnit.Siemens, ElectricAdmittanceUnit.Millisiemens, quantity => new ElectricAdmittance((quantity.Value) / 1e-3d, ElectricAdmittanceUnit.Millisiemens));
+            unitConverter.SetConversionFunction<ElectricAdmittance>(ElectricAdmittanceUnit.Siemens, ElectricAdmittanceUnit.Nanosiemens, quantity => new ElectricAdmittance((quantity.Value) / 1e-9d, ElectricAdmittanceUnit.Nanosiemens));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ElectricAdmittance>(ElectricAdmittanceUnit.Siemens, ElectricAdmittanceUnit.Siemens, quantity => quantity);
 
             // Register in unit converter: ElectricAdmittanceUnit -> BaseUnit
-            unitConverter.SetConversionFunction<ElectricAdmittance>(ElectricAdmittanceUnit.Microsiemens, ElectricAdmittanceUnit.Siemens, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricAdmittance>(ElectricAdmittanceUnit.Millisiemens, ElectricAdmittanceUnit.Siemens, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricAdmittance>(ElectricAdmittanceUnit.Nanosiemens, ElectricAdmittanceUnit.Siemens, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ElectricAdmittance>(ElectricAdmittanceUnit.Microsiemens, ElectricAdmittanceUnit.Siemens, quantity => new ElectricAdmittance((quantity.Value) * 1e-6d, ElectricAdmittanceUnit.Siemens));
+            unitConverter.SetConversionFunction<ElectricAdmittance>(ElectricAdmittanceUnit.Millisiemens, ElectricAdmittanceUnit.Siemens, quantity => new ElectricAdmittance((quantity.Value) * 1e-3d, ElectricAdmittanceUnit.Siemens));
+            unitConverter.SetConversionFunction<ElectricAdmittance>(ElectricAdmittanceUnit.Nanosiemens, ElectricAdmittanceUnit.Siemens, quantity => new ElectricAdmittance((quantity.Value) * 1e-9d, ElectricAdmittanceUnit.Siemens));
         }
 
         /// <summary>
@@ -706,28 +717,12 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case ElectricAdmittanceUnit.Microsiemens: return (_value) * 1e-6d;
-                case ElectricAdmittanceUnit.Millisiemens: return (_value) * 1e-3d;
-                case ElectricAdmittanceUnit.Nanosiemens: return (_value) * 1e-9d;
-                case ElectricAdmittanceUnit.Siemens: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
         internal ElectricAdmittance ToBaseUnit()
         {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new ElectricAdmittance(baseUnitValue, BaseUnit);
+            if(!ConversionFunctions.TryGetConversionFunction<ElectricAdmittance>(Unit, BaseUnit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
+
+            return (ElectricAdmittance)conversionFunction(this);
         }
 
         private double GetValueAs(ElectricAdmittanceUnit unit)
@@ -735,17 +730,13 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+            var inBaseUnits = ToBaseUnit();
 
-            switch(unit)
-            {
-                case ElectricAdmittanceUnit.Microsiemens: return (baseUnitValue) / 1e-6d;
-                case ElectricAdmittanceUnit.Millisiemens: return (baseUnitValue) / 1e-3d;
-                case ElectricAdmittanceUnit.Nanosiemens: return (baseUnitValue) / 1e-9d;
-                case ElectricAdmittanceUnit.Siemens: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            if(!ConversionFunctions.TryGetConversionFunction<ElectricAdmittance>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (double)converted.Value;
         }
 
         #endregion

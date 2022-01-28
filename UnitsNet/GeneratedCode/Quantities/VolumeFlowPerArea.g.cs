@@ -75,6 +75,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         /// <summary>
@@ -94,6 +97,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         #region Static Properties
@@ -142,6 +148,11 @@ namespace UnitsNet
         #endregion
 
         #region Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing conversion functions for this quantity.
+        /// </summary>
+        public UnitConverter ConversionFunctions { get; }
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -195,13 +206,13 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> VolumeFlowPerAreaUnit
-            unitConverter.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, quantity => quantity.ToUnit(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot));
+            unitConverter.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, quantity => new VolumeFlowPerArea(quantity.Value*196.850394, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, quantity => quantity);
 
             // Register in unit converter: VolumeFlowPerAreaUnit -> BaseUnit
-            unitConverter.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, quantity => new VolumeFlowPerArea(quantity.Value/196.850394, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter));
         }
 
         /// <summary>
@@ -672,26 +683,12 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot: return _value/196.850394;
-                case VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
         internal VolumeFlowPerArea ToBaseUnit()
         {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new VolumeFlowPerArea(baseUnitValue, BaseUnit);
+            if(!ConversionFunctions.TryGetConversionFunction<VolumeFlowPerArea>(Unit, BaseUnit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
+
+            return (VolumeFlowPerArea)conversionFunction(this);
         }
 
         private double GetValueAs(VolumeFlowPerAreaUnit unit)
@@ -699,15 +696,13 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+            var inBaseUnits = ToBaseUnit();
 
-            switch(unit)
-            {
-                case VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot: return baseUnitValue*196.850394;
-                case VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            if(!ConversionFunctions.TryGetConversionFunction<VolumeFlowPerArea>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (double)converted.Value;
         }
 
         #endregion

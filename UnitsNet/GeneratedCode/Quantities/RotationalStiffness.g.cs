@@ -106,6 +106,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         /// <summary>
@@ -125,6 +128,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         #region Static Properties
@@ -173,6 +179,11 @@ namespace UnitsNet
         #endregion
 
         #region Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing conversion functions for this quantity.
+        /// </summary>
+        public UnitConverter ConversionFunctions { get; }
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -381,75 +392,75 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> RotationalStiffnessUnit
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.CentinewtonMeterPerDegree, quantity => quantity.ToUnit(RotationalStiffnessUnit.CentinewtonMeterPerDegree));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.CentinewtonMillimeterPerDegree, quantity => quantity.ToUnit(RotationalStiffnessUnit.CentinewtonMillimeterPerDegree));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.CentinewtonMillimeterPerRadian, quantity => quantity.ToUnit(RotationalStiffnessUnit.CentinewtonMillimeterPerRadian));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.DecanewtonMeterPerDegree, quantity => quantity.ToUnit(RotationalStiffnessUnit.DecanewtonMeterPerDegree));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.DecanewtonMillimeterPerDegree, quantity => quantity.ToUnit(RotationalStiffnessUnit.DecanewtonMillimeterPerDegree));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.DecanewtonMillimeterPerRadian, quantity => quantity.ToUnit(RotationalStiffnessUnit.DecanewtonMillimeterPerRadian));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.DecinewtonMeterPerDegree, quantity => quantity.ToUnit(RotationalStiffnessUnit.DecinewtonMeterPerDegree));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.DecinewtonMillimeterPerDegree, quantity => quantity.ToUnit(RotationalStiffnessUnit.DecinewtonMillimeterPerDegree));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.DecinewtonMillimeterPerRadian, quantity => quantity.ToUnit(RotationalStiffnessUnit.DecinewtonMillimeterPerRadian));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.KilonewtonMeterPerDegree, quantity => quantity.ToUnit(RotationalStiffnessUnit.KilonewtonMeterPerDegree));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.KilonewtonMeterPerRadian, quantity => quantity.ToUnit(RotationalStiffnessUnit.KilonewtonMeterPerRadian));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.KilonewtonMillimeterPerDegree, quantity => quantity.ToUnit(RotationalStiffnessUnit.KilonewtonMillimeterPerDegree));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.KilonewtonMillimeterPerRadian, quantity => quantity.ToUnit(RotationalStiffnessUnit.KilonewtonMillimeterPerRadian));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.KilopoundForceFootPerDegrees, quantity => quantity.ToUnit(RotationalStiffnessUnit.KilopoundForceFootPerDegrees));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.MeganewtonMeterPerDegree, quantity => quantity.ToUnit(RotationalStiffnessUnit.MeganewtonMeterPerDegree));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.MeganewtonMeterPerRadian, quantity => quantity.ToUnit(RotationalStiffnessUnit.MeganewtonMeterPerRadian));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.MeganewtonMillimeterPerDegree, quantity => quantity.ToUnit(RotationalStiffnessUnit.MeganewtonMillimeterPerDegree));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.MeganewtonMillimeterPerRadian, quantity => quantity.ToUnit(RotationalStiffnessUnit.MeganewtonMillimeterPerRadian));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.MicronewtonMeterPerDegree, quantity => quantity.ToUnit(RotationalStiffnessUnit.MicronewtonMeterPerDegree));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.MicronewtonMillimeterPerDegree, quantity => quantity.ToUnit(RotationalStiffnessUnit.MicronewtonMillimeterPerDegree));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.MicronewtonMillimeterPerRadian, quantity => quantity.ToUnit(RotationalStiffnessUnit.MicronewtonMillimeterPerRadian));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.MillinewtonMeterPerDegree, quantity => quantity.ToUnit(RotationalStiffnessUnit.MillinewtonMeterPerDegree));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.MillinewtonMillimeterPerDegree, quantity => quantity.ToUnit(RotationalStiffnessUnit.MillinewtonMillimeterPerDegree));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.MillinewtonMillimeterPerRadian, quantity => quantity.ToUnit(RotationalStiffnessUnit.MillinewtonMillimeterPerRadian));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.NanonewtonMeterPerDegree, quantity => quantity.ToUnit(RotationalStiffnessUnit.NanonewtonMeterPerDegree));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.NanonewtonMillimeterPerDegree, quantity => quantity.ToUnit(RotationalStiffnessUnit.NanonewtonMillimeterPerDegree));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.NanonewtonMillimeterPerRadian, quantity => quantity.ToUnit(RotationalStiffnessUnit.NanonewtonMillimeterPerRadian));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerDegree, quantity => quantity.ToUnit(RotationalStiffnessUnit.NewtonMeterPerDegree));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.NewtonMillimeterPerDegree, quantity => quantity.ToUnit(RotationalStiffnessUnit.NewtonMillimeterPerDegree));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.NewtonMillimeterPerRadian, quantity => quantity.ToUnit(RotationalStiffnessUnit.NewtonMillimeterPerRadian));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.PoundForceFeetPerRadian, quantity => quantity.ToUnit(RotationalStiffnessUnit.PoundForceFeetPerRadian));
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.PoundForceFootPerDegrees, quantity => quantity.ToUnit(RotationalStiffnessUnit.PoundForceFootPerDegrees));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.CentinewtonMeterPerDegree, quantity => new RotationalStiffness((quantity.Value/(180/Math.PI)) / 1e-2d, RotationalStiffnessUnit.CentinewtonMeterPerDegree));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.CentinewtonMillimeterPerDegree, quantity => new RotationalStiffness((quantity.Value/180*Math.PI*1000) / 1e-2d, RotationalStiffnessUnit.CentinewtonMillimeterPerDegree));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.CentinewtonMillimeterPerRadian, quantity => new RotationalStiffness((quantity.Value*1000) / 1e-2d, RotationalStiffnessUnit.CentinewtonMillimeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.DecanewtonMeterPerDegree, quantity => new RotationalStiffness((quantity.Value/(180/Math.PI)) / 1e1d, RotationalStiffnessUnit.DecanewtonMeterPerDegree));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.DecanewtonMillimeterPerDegree, quantity => new RotationalStiffness((quantity.Value/180*Math.PI*1000) / 1e1d, RotationalStiffnessUnit.DecanewtonMillimeterPerDegree));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.DecanewtonMillimeterPerRadian, quantity => new RotationalStiffness((quantity.Value*1000) / 1e1d, RotationalStiffnessUnit.DecanewtonMillimeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.DecinewtonMeterPerDegree, quantity => new RotationalStiffness((quantity.Value/(180/Math.PI)) / 1e-1d, RotationalStiffnessUnit.DecinewtonMeterPerDegree));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.DecinewtonMillimeterPerDegree, quantity => new RotationalStiffness((quantity.Value/180*Math.PI*1000) / 1e-1d, RotationalStiffnessUnit.DecinewtonMillimeterPerDegree));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.DecinewtonMillimeterPerRadian, quantity => new RotationalStiffness((quantity.Value*1000) / 1e-1d, RotationalStiffnessUnit.DecinewtonMillimeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.KilonewtonMeterPerDegree, quantity => new RotationalStiffness((quantity.Value/(180/Math.PI)) / 1e3d, RotationalStiffnessUnit.KilonewtonMeterPerDegree));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.KilonewtonMeterPerRadian, quantity => new RotationalStiffness((quantity.Value) / 1e3d, RotationalStiffnessUnit.KilonewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.KilonewtonMillimeterPerDegree, quantity => new RotationalStiffness((quantity.Value/180*Math.PI*1000) / 1e3d, RotationalStiffnessUnit.KilonewtonMillimeterPerDegree));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.KilonewtonMillimeterPerRadian, quantity => new RotationalStiffness((quantity.Value*1000) / 1e3d, RotationalStiffnessUnit.KilonewtonMillimeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.KilopoundForceFootPerDegrees, quantity => new RotationalStiffness(quantity.Value/77682.6, RotationalStiffnessUnit.KilopoundForceFootPerDegrees));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.MeganewtonMeterPerDegree, quantity => new RotationalStiffness((quantity.Value/(180/Math.PI)) / 1e6d, RotationalStiffnessUnit.MeganewtonMeterPerDegree));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.MeganewtonMeterPerRadian, quantity => new RotationalStiffness((quantity.Value) / 1e6d, RotationalStiffnessUnit.MeganewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.MeganewtonMillimeterPerDegree, quantity => new RotationalStiffness((quantity.Value/180*Math.PI*1000) / 1e6d, RotationalStiffnessUnit.MeganewtonMillimeterPerDegree));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.MeganewtonMillimeterPerRadian, quantity => new RotationalStiffness((quantity.Value*1000) / 1e6d, RotationalStiffnessUnit.MeganewtonMillimeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.MicronewtonMeterPerDegree, quantity => new RotationalStiffness((quantity.Value/(180/Math.PI)) / 1e-6d, RotationalStiffnessUnit.MicronewtonMeterPerDegree));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.MicronewtonMillimeterPerDegree, quantity => new RotationalStiffness((quantity.Value/180*Math.PI*1000) / 1e-6d, RotationalStiffnessUnit.MicronewtonMillimeterPerDegree));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.MicronewtonMillimeterPerRadian, quantity => new RotationalStiffness((quantity.Value*1000) / 1e-6d, RotationalStiffnessUnit.MicronewtonMillimeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.MillinewtonMeterPerDegree, quantity => new RotationalStiffness((quantity.Value/(180/Math.PI)) / 1e-3d, RotationalStiffnessUnit.MillinewtonMeterPerDegree));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.MillinewtonMillimeterPerDegree, quantity => new RotationalStiffness((quantity.Value/180*Math.PI*1000) / 1e-3d, RotationalStiffnessUnit.MillinewtonMillimeterPerDegree));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.MillinewtonMillimeterPerRadian, quantity => new RotationalStiffness((quantity.Value*1000) / 1e-3d, RotationalStiffnessUnit.MillinewtonMillimeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.NanonewtonMeterPerDegree, quantity => new RotationalStiffness((quantity.Value/(180/Math.PI)) / 1e-9d, RotationalStiffnessUnit.NanonewtonMeterPerDegree));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.NanonewtonMillimeterPerDegree, quantity => new RotationalStiffness((quantity.Value/180*Math.PI*1000) / 1e-9d, RotationalStiffnessUnit.NanonewtonMillimeterPerDegree));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.NanonewtonMillimeterPerRadian, quantity => new RotationalStiffness((quantity.Value*1000) / 1e-9d, RotationalStiffnessUnit.NanonewtonMillimeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerDegree, quantity => new RotationalStiffness(quantity.Value/(180/Math.PI), RotationalStiffnessUnit.NewtonMeterPerDegree));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.NewtonMillimeterPerDegree, quantity => new RotationalStiffness(quantity.Value/180*Math.PI*1000, RotationalStiffnessUnit.NewtonMillimeterPerDegree));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.NewtonMillimeterPerRadian, quantity => new RotationalStiffness(quantity.Value*1000, RotationalStiffnessUnit.NewtonMillimeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.PoundForceFeetPerRadian, quantity => new RotationalStiffness(quantity.Value/1.3558179483314, RotationalStiffnessUnit.PoundForceFeetPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.PoundForceFootPerDegrees, quantity => new RotationalStiffness(quantity.Value/77.6826, RotationalStiffnessUnit.PoundForceFootPerDegrees));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity);
 
             // Register in unit converter: RotationalStiffnessUnit -> BaseUnit
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.CentinewtonMeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.CentinewtonMillimeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.CentinewtonMillimeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.DecanewtonMeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.DecanewtonMillimeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.DecanewtonMillimeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.DecinewtonMeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.DecinewtonMillimeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.DecinewtonMillimeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.KilonewtonMeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.KilonewtonMeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.KilonewtonMillimeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.KilonewtonMillimeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.KilopoundForceFootPerDegrees, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.MeganewtonMeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.MeganewtonMeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.MeganewtonMillimeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.MeganewtonMillimeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.MicronewtonMeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.MicronewtonMillimeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.MicronewtonMillimeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.MillinewtonMeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.MillinewtonMillimeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.MillinewtonMillimeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NanonewtonMeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NanonewtonMillimeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NanonewtonMillimeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMillimeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMillimeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.PoundForceFeetPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.PoundForceFootPerDegrees, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.CentinewtonMeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness((quantity.Value*(180/Math.PI)) * 1e-2d, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.CentinewtonMillimeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness((quantity.Value*180/Math.PI*0.001) * 1e-2d, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.CentinewtonMillimeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness((quantity.Value*0.001) * 1e-2d, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.DecanewtonMeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness((quantity.Value*(180/Math.PI)) * 1e1d, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.DecanewtonMillimeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness((quantity.Value*180/Math.PI*0.001) * 1e1d, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.DecanewtonMillimeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness((quantity.Value*0.001) * 1e1d, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.DecinewtonMeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness((quantity.Value*(180/Math.PI)) * 1e-1d, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.DecinewtonMillimeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness((quantity.Value*180/Math.PI*0.001) * 1e-1d, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.DecinewtonMillimeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness((quantity.Value*0.001) * 1e-1d, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.KilonewtonMeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness((quantity.Value*(180/Math.PI)) * 1e3d, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.KilonewtonMeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness((quantity.Value) * 1e3d, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.KilonewtonMillimeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness((quantity.Value*180/Math.PI*0.001) * 1e3d, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.KilonewtonMillimeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness((quantity.Value*0.001) * 1e3d, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.KilopoundForceFootPerDegrees, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness(quantity.Value*77682.6, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.MeganewtonMeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness((quantity.Value*(180/Math.PI)) * 1e6d, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.MeganewtonMeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness((quantity.Value) * 1e6d, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.MeganewtonMillimeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness((quantity.Value*180/Math.PI*0.001) * 1e6d, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.MeganewtonMillimeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness((quantity.Value*0.001) * 1e6d, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.MicronewtonMeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness((quantity.Value*(180/Math.PI)) * 1e-6d, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.MicronewtonMillimeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness((quantity.Value*180/Math.PI*0.001) * 1e-6d, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.MicronewtonMillimeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness((quantity.Value*0.001) * 1e-6d, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.MillinewtonMeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness((quantity.Value*(180/Math.PI)) * 1e-3d, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.MillinewtonMillimeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness((quantity.Value*180/Math.PI*0.001) * 1e-3d, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.MillinewtonMillimeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness((quantity.Value*0.001) * 1e-3d, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NanonewtonMeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness((quantity.Value*(180/Math.PI)) * 1e-9d, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NanonewtonMillimeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness((quantity.Value*180/Math.PI*0.001) * 1e-9d, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NanonewtonMillimeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness((quantity.Value*0.001) * 1e-9d, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness(quantity.Value*(180/Math.PI), RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMillimeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness(quantity.Value*180/Math.PI*0.001, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.NewtonMillimeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness(quantity.Value*0.001, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.PoundForceFeetPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness(quantity.Value*1.3558179483314, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            unitConverter.SetConversionFunction<RotationalStiffness>(RotationalStiffnessUnit.PoundForceFootPerDegrees, RotationalStiffnessUnit.NewtonMeterPerRadian, quantity => new RotationalStiffness(quantity.Value*77.6826, RotationalStiffnessUnit.NewtonMeterPerRadian));
         }
 
         /// <summary>
@@ -1199,57 +1210,12 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case RotationalStiffnessUnit.CentinewtonMeterPerDegree: return (_value*(180/Math.PI)) * 1e-2d;
-                case RotationalStiffnessUnit.CentinewtonMillimeterPerDegree: return (_value*180/Math.PI*0.001) * 1e-2d;
-                case RotationalStiffnessUnit.CentinewtonMillimeterPerRadian: return (_value*0.001) * 1e-2d;
-                case RotationalStiffnessUnit.DecanewtonMeterPerDegree: return (_value*(180/Math.PI)) * 1e1d;
-                case RotationalStiffnessUnit.DecanewtonMillimeterPerDegree: return (_value*180/Math.PI*0.001) * 1e1d;
-                case RotationalStiffnessUnit.DecanewtonMillimeterPerRadian: return (_value*0.001) * 1e1d;
-                case RotationalStiffnessUnit.DecinewtonMeterPerDegree: return (_value*(180/Math.PI)) * 1e-1d;
-                case RotationalStiffnessUnit.DecinewtonMillimeterPerDegree: return (_value*180/Math.PI*0.001) * 1e-1d;
-                case RotationalStiffnessUnit.DecinewtonMillimeterPerRadian: return (_value*0.001) * 1e-1d;
-                case RotationalStiffnessUnit.KilonewtonMeterPerDegree: return (_value*(180/Math.PI)) * 1e3d;
-                case RotationalStiffnessUnit.KilonewtonMeterPerRadian: return (_value) * 1e3d;
-                case RotationalStiffnessUnit.KilonewtonMillimeterPerDegree: return (_value*180/Math.PI*0.001) * 1e3d;
-                case RotationalStiffnessUnit.KilonewtonMillimeterPerRadian: return (_value*0.001) * 1e3d;
-                case RotationalStiffnessUnit.KilopoundForceFootPerDegrees: return _value*77682.6;
-                case RotationalStiffnessUnit.MeganewtonMeterPerDegree: return (_value*(180/Math.PI)) * 1e6d;
-                case RotationalStiffnessUnit.MeganewtonMeterPerRadian: return (_value) * 1e6d;
-                case RotationalStiffnessUnit.MeganewtonMillimeterPerDegree: return (_value*180/Math.PI*0.001) * 1e6d;
-                case RotationalStiffnessUnit.MeganewtonMillimeterPerRadian: return (_value*0.001) * 1e6d;
-                case RotationalStiffnessUnit.MicronewtonMeterPerDegree: return (_value*(180/Math.PI)) * 1e-6d;
-                case RotationalStiffnessUnit.MicronewtonMillimeterPerDegree: return (_value*180/Math.PI*0.001) * 1e-6d;
-                case RotationalStiffnessUnit.MicronewtonMillimeterPerRadian: return (_value*0.001) * 1e-6d;
-                case RotationalStiffnessUnit.MillinewtonMeterPerDegree: return (_value*(180/Math.PI)) * 1e-3d;
-                case RotationalStiffnessUnit.MillinewtonMillimeterPerDegree: return (_value*180/Math.PI*0.001) * 1e-3d;
-                case RotationalStiffnessUnit.MillinewtonMillimeterPerRadian: return (_value*0.001) * 1e-3d;
-                case RotationalStiffnessUnit.NanonewtonMeterPerDegree: return (_value*(180/Math.PI)) * 1e-9d;
-                case RotationalStiffnessUnit.NanonewtonMillimeterPerDegree: return (_value*180/Math.PI*0.001) * 1e-9d;
-                case RotationalStiffnessUnit.NanonewtonMillimeterPerRadian: return (_value*0.001) * 1e-9d;
-                case RotationalStiffnessUnit.NewtonMeterPerDegree: return _value*(180/Math.PI);
-                case RotationalStiffnessUnit.NewtonMeterPerRadian: return _value;
-                case RotationalStiffnessUnit.NewtonMillimeterPerDegree: return _value*180/Math.PI*0.001;
-                case RotationalStiffnessUnit.NewtonMillimeterPerRadian: return _value*0.001;
-                case RotationalStiffnessUnit.PoundForceFeetPerRadian: return _value*1.3558179483314;
-                case RotationalStiffnessUnit.PoundForceFootPerDegrees: return _value*77.6826;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
         internal RotationalStiffness ToBaseUnit()
         {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new RotationalStiffness(baseUnitValue, BaseUnit);
+            if(!ConversionFunctions.TryGetConversionFunction<RotationalStiffness>(Unit, BaseUnit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
+
+            return (RotationalStiffness)conversionFunction(this);
         }
 
         private double GetValueAs(RotationalStiffnessUnit unit)
@@ -1257,46 +1223,13 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+            var inBaseUnits = ToBaseUnit();
 
-            switch(unit)
-            {
-                case RotationalStiffnessUnit.CentinewtonMeterPerDegree: return (baseUnitValue/(180/Math.PI)) / 1e-2d;
-                case RotationalStiffnessUnit.CentinewtonMillimeterPerDegree: return (baseUnitValue/180*Math.PI*1000) / 1e-2d;
-                case RotationalStiffnessUnit.CentinewtonMillimeterPerRadian: return (baseUnitValue*1000) / 1e-2d;
-                case RotationalStiffnessUnit.DecanewtonMeterPerDegree: return (baseUnitValue/(180/Math.PI)) / 1e1d;
-                case RotationalStiffnessUnit.DecanewtonMillimeterPerDegree: return (baseUnitValue/180*Math.PI*1000) / 1e1d;
-                case RotationalStiffnessUnit.DecanewtonMillimeterPerRadian: return (baseUnitValue*1000) / 1e1d;
-                case RotationalStiffnessUnit.DecinewtonMeterPerDegree: return (baseUnitValue/(180/Math.PI)) / 1e-1d;
-                case RotationalStiffnessUnit.DecinewtonMillimeterPerDegree: return (baseUnitValue/180*Math.PI*1000) / 1e-1d;
-                case RotationalStiffnessUnit.DecinewtonMillimeterPerRadian: return (baseUnitValue*1000) / 1e-1d;
-                case RotationalStiffnessUnit.KilonewtonMeterPerDegree: return (baseUnitValue/(180/Math.PI)) / 1e3d;
-                case RotationalStiffnessUnit.KilonewtonMeterPerRadian: return (baseUnitValue) / 1e3d;
-                case RotationalStiffnessUnit.KilonewtonMillimeterPerDegree: return (baseUnitValue/180*Math.PI*1000) / 1e3d;
-                case RotationalStiffnessUnit.KilonewtonMillimeterPerRadian: return (baseUnitValue*1000) / 1e3d;
-                case RotationalStiffnessUnit.KilopoundForceFootPerDegrees: return baseUnitValue/77682.6;
-                case RotationalStiffnessUnit.MeganewtonMeterPerDegree: return (baseUnitValue/(180/Math.PI)) / 1e6d;
-                case RotationalStiffnessUnit.MeganewtonMeterPerRadian: return (baseUnitValue) / 1e6d;
-                case RotationalStiffnessUnit.MeganewtonMillimeterPerDegree: return (baseUnitValue/180*Math.PI*1000) / 1e6d;
-                case RotationalStiffnessUnit.MeganewtonMillimeterPerRadian: return (baseUnitValue*1000) / 1e6d;
-                case RotationalStiffnessUnit.MicronewtonMeterPerDegree: return (baseUnitValue/(180/Math.PI)) / 1e-6d;
-                case RotationalStiffnessUnit.MicronewtonMillimeterPerDegree: return (baseUnitValue/180*Math.PI*1000) / 1e-6d;
-                case RotationalStiffnessUnit.MicronewtonMillimeterPerRadian: return (baseUnitValue*1000) / 1e-6d;
-                case RotationalStiffnessUnit.MillinewtonMeterPerDegree: return (baseUnitValue/(180/Math.PI)) / 1e-3d;
-                case RotationalStiffnessUnit.MillinewtonMillimeterPerDegree: return (baseUnitValue/180*Math.PI*1000) / 1e-3d;
-                case RotationalStiffnessUnit.MillinewtonMillimeterPerRadian: return (baseUnitValue*1000) / 1e-3d;
-                case RotationalStiffnessUnit.NanonewtonMeterPerDegree: return (baseUnitValue/(180/Math.PI)) / 1e-9d;
-                case RotationalStiffnessUnit.NanonewtonMillimeterPerDegree: return (baseUnitValue/180*Math.PI*1000) / 1e-9d;
-                case RotationalStiffnessUnit.NanonewtonMillimeterPerRadian: return (baseUnitValue*1000) / 1e-9d;
-                case RotationalStiffnessUnit.NewtonMeterPerDegree: return baseUnitValue/(180/Math.PI);
-                case RotationalStiffnessUnit.NewtonMeterPerRadian: return baseUnitValue;
-                case RotationalStiffnessUnit.NewtonMillimeterPerDegree: return baseUnitValue/180*Math.PI*1000;
-                case RotationalStiffnessUnit.NewtonMillimeterPerRadian: return baseUnitValue*1000;
-                case RotationalStiffnessUnit.PoundForceFeetPerRadian: return baseUnitValue/1.3558179483314;
-                case RotationalStiffnessUnit.PoundForceFootPerDegrees: return baseUnitValue/77.6826;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            if(!ConversionFunctions.TryGetConversionFunction<RotationalStiffness>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (double)converted.Value;
         }
 
         #endregion

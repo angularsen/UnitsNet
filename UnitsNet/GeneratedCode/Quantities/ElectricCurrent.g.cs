@@ -81,6 +81,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         /// <summary>
@@ -100,6 +103,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         #region Static Properties
@@ -148,6 +154,11 @@ namespace UnitsNet
         #endregion
 
         #region Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing conversion functions for this quantity.
+        /// </summary>
+        public UnitConverter ConversionFunctions { get; }
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -231,25 +242,25 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> ElectricCurrentUnit
-            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Centiampere, quantity => quantity.ToUnit(ElectricCurrentUnit.Centiampere));
-            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Kiloampere, quantity => quantity.ToUnit(ElectricCurrentUnit.Kiloampere));
-            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Megaampere, quantity => quantity.ToUnit(ElectricCurrentUnit.Megaampere));
-            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Microampere, quantity => quantity.ToUnit(ElectricCurrentUnit.Microampere));
-            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Milliampere, quantity => quantity.ToUnit(ElectricCurrentUnit.Milliampere));
-            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Nanoampere, quantity => quantity.ToUnit(ElectricCurrentUnit.Nanoampere));
-            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Picoampere, quantity => quantity.ToUnit(ElectricCurrentUnit.Picoampere));
+            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Centiampere, quantity => new ElectricCurrent((quantity.Value) / 1e-2d, ElectricCurrentUnit.Centiampere));
+            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Kiloampere, quantity => new ElectricCurrent((quantity.Value) / 1e3d, ElectricCurrentUnit.Kiloampere));
+            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Megaampere, quantity => new ElectricCurrent((quantity.Value) / 1e6d, ElectricCurrentUnit.Megaampere));
+            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Microampere, quantity => new ElectricCurrent((quantity.Value) / 1e-6d, ElectricCurrentUnit.Microampere));
+            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Milliampere, quantity => new ElectricCurrent((quantity.Value) / 1e-3d, ElectricCurrentUnit.Milliampere));
+            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Nanoampere, quantity => new ElectricCurrent((quantity.Value) / 1e-9d, ElectricCurrentUnit.Nanoampere));
+            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Picoampere, quantity => new ElectricCurrent((quantity.Value) / 1e-12d, ElectricCurrentUnit.Picoampere));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Ampere, quantity => quantity);
 
             // Register in unit converter: ElectricCurrentUnit -> BaseUnit
-            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Centiampere, ElectricCurrentUnit.Ampere, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Kiloampere, ElectricCurrentUnit.Ampere, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Megaampere, ElectricCurrentUnit.Ampere, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Microampere, ElectricCurrentUnit.Ampere, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Milliampere, ElectricCurrentUnit.Ampere, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Nanoampere, ElectricCurrentUnit.Ampere, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Picoampere, ElectricCurrentUnit.Ampere, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Centiampere, ElectricCurrentUnit.Ampere, quantity => new ElectricCurrent((quantity.Value) * 1e-2d, ElectricCurrentUnit.Ampere));
+            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Kiloampere, ElectricCurrentUnit.Ampere, quantity => new ElectricCurrent((quantity.Value) * 1e3d, ElectricCurrentUnit.Ampere));
+            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Megaampere, ElectricCurrentUnit.Ampere, quantity => new ElectricCurrent((quantity.Value) * 1e6d, ElectricCurrentUnit.Ampere));
+            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Microampere, ElectricCurrentUnit.Ampere, quantity => new ElectricCurrent((quantity.Value) * 1e-6d, ElectricCurrentUnit.Ampere));
+            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Milliampere, ElectricCurrentUnit.Ampere, quantity => new ElectricCurrent((quantity.Value) * 1e-3d, ElectricCurrentUnit.Ampere));
+            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Nanoampere, ElectricCurrentUnit.Ampere, quantity => new ElectricCurrent((quantity.Value) * 1e-9d, ElectricCurrentUnit.Ampere));
+            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Picoampere, ElectricCurrentUnit.Ampere, quantity => new ElectricCurrent((quantity.Value) * 1e-12d, ElectricCurrentUnit.Ampere));
         }
 
         /// <summary>
@@ -774,32 +785,12 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case ElectricCurrentUnit.Ampere: return _value;
-                case ElectricCurrentUnit.Centiampere: return (_value) * 1e-2d;
-                case ElectricCurrentUnit.Kiloampere: return (_value) * 1e3d;
-                case ElectricCurrentUnit.Megaampere: return (_value) * 1e6d;
-                case ElectricCurrentUnit.Microampere: return (_value) * 1e-6d;
-                case ElectricCurrentUnit.Milliampere: return (_value) * 1e-3d;
-                case ElectricCurrentUnit.Nanoampere: return (_value) * 1e-9d;
-                case ElectricCurrentUnit.Picoampere: return (_value) * 1e-12d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
         internal ElectricCurrent ToBaseUnit()
         {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new ElectricCurrent(baseUnitValue, BaseUnit);
+            if(!ConversionFunctions.TryGetConversionFunction<ElectricCurrent>(Unit, BaseUnit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
+
+            return (ElectricCurrent)conversionFunction(this);
         }
 
         private double GetValueAs(ElectricCurrentUnit unit)
@@ -807,21 +798,13 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+            var inBaseUnits = ToBaseUnit();
 
-            switch(unit)
-            {
-                case ElectricCurrentUnit.Ampere: return baseUnitValue;
-                case ElectricCurrentUnit.Centiampere: return (baseUnitValue) / 1e-2d;
-                case ElectricCurrentUnit.Kiloampere: return (baseUnitValue) / 1e3d;
-                case ElectricCurrentUnit.Megaampere: return (baseUnitValue) / 1e6d;
-                case ElectricCurrentUnit.Microampere: return (baseUnitValue) / 1e-6d;
-                case ElectricCurrentUnit.Milliampere: return (baseUnitValue) / 1e-3d;
-                case ElectricCurrentUnit.Nanoampere: return (baseUnitValue) / 1e-9d;
-                case ElectricCurrentUnit.Picoampere: return (baseUnitValue) / 1e-12d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            if(!ConversionFunctions.TryGetConversionFunction<ElectricCurrent>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (double)converted.Value;
         }
 
         #endregion

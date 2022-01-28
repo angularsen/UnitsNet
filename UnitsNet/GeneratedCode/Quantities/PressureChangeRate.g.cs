@@ -87,6 +87,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         /// <summary>
@@ -106,6 +109,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         #region Static Properties
@@ -154,6 +160,11 @@ namespace UnitsNet
         #endregion
 
         #region Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing conversion functions for this quantity.
+        /// </summary>
+        public UnitConverter ConversionFunctions { get; }
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -267,37 +278,37 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> PressureChangeRateUnit
-            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.AtmospherePerSecond, quantity => quantity.ToUnit(PressureChangeRateUnit.AtmospherePerSecond));
-            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.KilopascalPerMinute, quantity => quantity.ToUnit(PressureChangeRateUnit.KilopascalPerMinute));
-            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.KilopascalPerSecond, quantity => quantity.ToUnit(PressureChangeRateUnit.KilopascalPerSecond));
-            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute, quantity => quantity.ToUnit(PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute));
-            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond, quantity => quantity.ToUnit(PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond));
-            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.MegapascalPerMinute, quantity => quantity.ToUnit(PressureChangeRateUnit.MegapascalPerMinute));
-            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.MegapascalPerSecond, quantity => quantity.ToUnit(PressureChangeRateUnit.MegapascalPerSecond));
-            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute, quantity => quantity.ToUnit(PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute));
-            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond, quantity => quantity.ToUnit(PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond));
-            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.MillimeterOfMercuryPerSecond, quantity => quantity.ToUnit(PressureChangeRateUnit.MillimeterOfMercuryPerSecond));
-            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.PascalPerMinute, quantity => quantity.ToUnit(PressureChangeRateUnit.PascalPerMinute));
-            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.PoundForcePerSquareInchPerMinute, quantity => quantity.ToUnit(PressureChangeRateUnit.PoundForcePerSquareInchPerMinute));
-            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, quantity => quantity.ToUnit(PressureChangeRateUnit.PoundForcePerSquareInchPerSecond));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.AtmospherePerSecond, quantity => new PressureChangeRate(quantity.Value / (1.01325*1e5), PressureChangeRateUnit.AtmospherePerSecond));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.KilopascalPerMinute, quantity => new PressureChangeRate((quantity.Value*60) / 1e3d, PressureChangeRateUnit.KilopascalPerMinute));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.KilopascalPerSecond, quantity => new PressureChangeRate((quantity.Value) / 1e3d, PressureChangeRateUnit.KilopascalPerSecond));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute, quantity => new PressureChangeRate((quantity.Value/6.894757293168361e3*60) / 1e3d, PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond, quantity => new PressureChangeRate((quantity.Value/6.894757293168361e3) / 1e3d, PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.MegapascalPerMinute, quantity => new PressureChangeRate((quantity.Value*60) / 1e6d, PressureChangeRateUnit.MegapascalPerMinute));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.MegapascalPerSecond, quantity => new PressureChangeRate((quantity.Value) / 1e6d, PressureChangeRateUnit.MegapascalPerSecond));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute, quantity => new PressureChangeRate((quantity.Value/6.894757293168361e3*60) / 1e6d, PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond, quantity => new PressureChangeRate((quantity.Value/6.894757293168361e3) / 1e6d, PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.MillimeterOfMercuryPerSecond, quantity => new PressureChangeRate(quantity.Value/133.322, PressureChangeRateUnit.MillimeterOfMercuryPerSecond));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.PascalPerMinute, quantity => new PressureChangeRate(quantity.Value*60, PressureChangeRateUnit.PascalPerMinute));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.PoundForcePerSquareInchPerMinute, quantity => new PressureChangeRate(quantity.Value/6.894757293168361e3*60, PressureChangeRateUnit.PoundForcePerSquareInchPerMinute));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, quantity => new PressureChangeRate(quantity.Value/6.894757293168361e3, PressureChangeRateUnit.PoundForcePerSquareInchPerSecond));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.PascalPerSecond, quantity => quantity);
 
             // Register in unit converter: PressureChangeRateUnit -> BaseUnit
-            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.AtmospherePerSecond, PressureChangeRateUnit.PascalPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.KilopascalPerMinute, PressureChangeRateUnit.PascalPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.KilopascalPerSecond, PressureChangeRateUnit.PascalPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute, PressureChangeRateUnit.PascalPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond, PressureChangeRateUnit.PascalPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.MegapascalPerMinute, PressureChangeRateUnit.PascalPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.MegapascalPerSecond, PressureChangeRateUnit.PascalPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute, PressureChangeRateUnit.PascalPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond, PressureChangeRateUnit.PascalPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.MillimeterOfMercuryPerSecond, PressureChangeRateUnit.PascalPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerMinute, PressureChangeRateUnit.PascalPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PoundForcePerSquareInchPerMinute, PressureChangeRateUnit.PascalPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, PressureChangeRateUnit.PascalPerSecond, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.AtmospherePerSecond, PressureChangeRateUnit.PascalPerSecond, quantity => new PressureChangeRate(quantity.Value * 1.01325*1e5, PressureChangeRateUnit.PascalPerSecond));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.KilopascalPerMinute, PressureChangeRateUnit.PascalPerSecond, quantity => new PressureChangeRate((quantity.Value/60) * 1e3d, PressureChangeRateUnit.PascalPerSecond));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.KilopascalPerSecond, PressureChangeRateUnit.PascalPerSecond, quantity => new PressureChangeRate((quantity.Value) * 1e3d, PressureChangeRateUnit.PascalPerSecond));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute, PressureChangeRateUnit.PascalPerSecond, quantity => new PressureChangeRate((quantity.Value*6.894757293168361e3/60) * 1e3d, PressureChangeRateUnit.PascalPerSecond));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond, PressureChangeRateUnit.PascalPerSecond, quantity => new PressureChangeRate((quantity.Value*6.894757293168361e3) * 1e3d, PressureChangeRateUnit.PascalPerSecond));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.MegapascalPerMinute, PressureChangeRateUnit.PascalPerSecond, quantity => new PressureChangeRate((quantity.Value/60) * 1e6d, PressureChangeRateUnit.PascalPerSecond));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.MegapascalPerSecond, PressureChangeRateUnit.PascalPerSecond, quantity => new PressureChangeRate((quantity.Value) * 1e6d, PressureChangeRateUnit.PascalPerSecond));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute, PressureChangeRateUnit.PascalPerSecond, quantity => new PressureChangeRate((quantity.Value*6.894757293168361e3/60) * 1e6d, PressureChangeRateUnit.PascalPerSecond));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond, PressureChangeRateUnit.PascalPerSecond, quantity => new PressureChangeRate((quantity.Value*6.894757293168361e3) * 1e6d, PressureChangeRateUnit.PascalPerSecond));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.MillimeterOfMercuryPerSecond, PressureChangeRateUnit.PascalPerSecond, quantity => new PressureChangeRate(quantity.Value*133.322, PressureChangeRateUnit.PascalPerSecond));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerMinute, PressureChangeRateUnit.PascalPerSecond, quantity => new PressureChangeRate(quantity.Value/60, PressureChangeRateUnit.PascalPerSecond));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PoundForcePerSquareInchPerMinute, PressureChangeRateUnit.PascalPerSecond, quantity => new PressureChangeRate(quantity.Value*6.894757293168361e3/60, PressureChangeRateUnit.PascalPerSecond));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, PressureChangeRateUnit.PascalPerSecond, quantity => new PressureChangeRate(quantity.Value*6.894757293168361e3, PressureChangeRateUnit.PascalPerSecond));
         }
 
         /// <summary>
@@ -876,38 +887,12 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case PressureChangeRateUnit.AtmospherePerSecond: return _value * 1.01325*1e5;
-                case PressureChangeRateUnit.KilopascalPerMinute: return (_value/60) * 1e3d;
-                case PressureChangeRateUnit.KilopascalPerSecond: return (_value) * 1e3d;
-                case PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute: return (_value*6.894757293168361e3/60) * 1e3d;
-                case PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond: return (_value*6.894757293168361e3) * 1e3d;
-                case PressureChangeRateUnit.MegapascalPerMinute: return (_value/60) * 1e6d;
-                case PressureChangeRateUnit.MegapascalPerSecond: return (_value) * 1e6d;
-                case PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute: return (_value*6.894757293168361e3/60) * 1e6d;
-                case PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond: return (_value*6.894757293168361e3) * 1e6d;
-                case PressureChangeRateUnit.MillimeterOfMercuryPerSecond: return _value*133.322;
-                case PressureChangeRateUnit.PascalPerMinute: return _value/60;
-                case PressureChangeRateUnit.PascalPerSecond: return _value;
-                case PressureChangeRateUnit.PoundForcePerSquareInchPerMinute: return _value*6.894757293168361e3/60;
-                case PressureChangeRateUnit.PoundForcePerSquareInchPerSecond: return _value*6.894757293168361e3;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
         internal PressureChangeRate ToBaseUnit()
         {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new PressureChangeRate(baseUnitValue, BaseUnit);
+            if(!ConversionFunctions.TryGetConversionFunction<PressureChangeRate>(Unit, BaseUnit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
+
+            return (PressureChangeRate)conversionFunction(this);
         }
 
         private double GetValueAs(PressureChangeRateUnit unit)
@@ -915,27 +900,13 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+            var inBaseUnits = ToBaseUnit();
 
-            switch(unit)
-            {
-                case PressureChangeRateUnit.AtmospherePerSecond: return baseUnitValue / (1.01325*1e5);
-                case PressureChangeRateUnit.KilopascalPerMinute: return (baseUnitValue*60) / 1e3d;
-                case PressureChangeRateUnit.KilopascalPerSecond: return (baseUnitValue) / 1e3d;
-                case PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute: return (baseUnitValue/6.894757293168361e3*60) / 1e3d;
-                case PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond: return (baseUnitValue/6.894757293168361e3) / 1e3d;
-                case PressureChangeRateUnit.MegapascalPerMinute: return (baseUnitValue*60) / 1e6d;
-                case PressureChangeRateUnit.MegapascalPerSecond: return (baseUnitValue) / 1e6d;
-                case PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute: return (baseUnitValue/6.894757293168361e3*60) / 1e6d;
-                case PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond: return (baseUnitValue/6.894757293168361e3) / 1e6d;
-                case PressureChangeRateUnit.MillimeterOfMercuryPerSecond: return baseUnitValue/133.322;
-                case PressureChangeRateUnit.PascalPerMinute: return baseUnitValue*60;
-                case PressureChangeRateUnit.PascalPerSecond: return baseUnitValue;
-                case PressureChangeRateUnit.PoundForcePerSquareInchPerMinute: return baseUnitValue/6.894757293168361e3*60;
-                case PressureChangeRateUnit.PoundForcePerSquareInchPerSecond: return baseUnitValue/6.894757293168361e3;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            if(!ConversionFunctions.TryGetConversionFunction<PressureChangeRate>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (double)converted.Value;
         }
 
         #endregion

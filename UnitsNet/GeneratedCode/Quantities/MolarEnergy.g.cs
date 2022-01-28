@@ -76,6 +76,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         /// <summary>
@@ -95,6 +98,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         #region Static Properties
@@ -143,6 +149,11 @@ namespace UnitsNet
         #endregion
 
         #region Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing conversion functions for this quantity.
+        /// </summary>
+        public UnitConverter ConversionFunctions { get; }
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -201,15 +212,15 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> MolarEnergyUnit
-            unitConverter.SetConversionFunction<MolarEnergy>(MolarEnergyUnit.JoulePerMole, MolarEnergyUnit.KilojoulePerMole, quantity => quantity.ToUnit(MolarEnergyUnit.KilojoulePerMole));
-            unitConverter.SetConversionFunction<MolarEnergy>(MolarEnergyUnit.JoulePerMole, MolarEnergyUnit.MegajoulePerMole, quantity => quantity.ToUnit(MolarEnergyUnit.MegajoulePerMole));
+            unitConverter.SetConversionFunction<MolarEnergy>(MolarEnergyUnit.JoulePerMole, MolarEnergyUnit.KilojoulePerMole, quantity => new MolarEnergy((quantity.Value) / 1e3d, MolarEnergyUnit.KilojoulePerMole));
+            unitConverter.SetConversionFunction<MolarEnergy>(MolarEnergyUnit.JoulePerMole, MolarEnergyUnit.MegajoulePerMole, quantity => new MolarEnergy((quantity.Value) / 1e6d, MolarEnergyUnit.MegajoulePerMole));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<MolarEnergy>(MolarEnergyUnit.JoulePerMole, MolarEnergyUnit.JoulePerMole, quantity => quantity);
 
             // Register in unit converter: MolarEnergyUnit -> BaseUnit
-            unitConverter.SetConversionFunction<MolarEnergy>(MolarEnergyUnit.KilojoulePerMole, MolarEnergyUnit.JoulePerMole, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MolarEnergy>(MolarEnergyUnit.MegajoulePerMole, MolarEnergyUnit.JoulePerMole, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MolarEnergy>(MolarEnergyUnit.KilojoulePerMole, MolarEnergyUnit.JoulePerMole, quantity => new MolarEnergy((quantity.Value) * 1e3d, MolarEnergyUnit.JoulePerMole));
+            unitConverter.SetConversionFunction<MolarEnergy>(MolarEnergyUnit.MegajoulePerMole, MolarEnergyUnit.JoulePerMole, quantity => new MolarEnergy((quantity.Value) * 1e6d, MolarEnergyUnit.JoulePerMole));
         }
 
         /// <summary>
@@ -689,27 +700,12 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case MolarEnergyUnit.JoulePerMole: return _value;
-                case MolarEnergyUnit.KilojoulePerMole: return (_value) * 1e3d;
-                case MolarEnergyUnit.MegajoulePerMole: return (_value) * 1e6d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
         internal MolarEnergy ToBaseUnit()
         {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new MolarEnergy(baseUnitValue, BaseUnit);
+            if(!ConversionFunctions.TryGetConversionFunction<MolarEnergy>(Unit, BaseUnit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
+
+            return (MolarEnergy)conversionFunction(this);
         }
 
         private double GetValueAs(MolarEnergyUnit unit)
@@ -717,16 +713,13 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+            var inBaseUnits = ToBaseUnit();
 
-            switch(unit)
-            {
-                case MolarEnergyUnit.JoulePerMole: return baseUnitValue;
-                case MolarEnergyUnit.KilojoulePerMole: return (baseUnitValue) / 1e3d;
-                case MolarEnergyUnit.MegajoulePerMole: return (baseUnitValue) / 1e6d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            if(!ConversionFunctions.TryGetConversionFunction<MolarEnergy>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (double)converted.Value;
         }
 
         #endregion

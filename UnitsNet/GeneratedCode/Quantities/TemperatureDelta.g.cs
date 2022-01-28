@@ -82,6 +82,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         /// <summary>
@@ -101,6 +104,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         #region Static Properties
@@ -149,6 +155,11 @@ namespace UnitsNet
         #endregion
 
         #region Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing conversion functions for this quantity.
+        /// </summary>
+        public UnitConverter ConversionFunctions { get; }
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -237,27 +248,27 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> TemperatureDeltaUnit
-            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeCelsius, quantity => quantity.ToUnit(TemperatureDeltaUnit.DegreeCelsius));
-            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeDelisle, quantity => quantity.ToUnit(TemperatureDeltaUnit.DegreeDelisle));
-            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeFahrenheit, quantity => quantity.ToUnit(TemperatureDeltaUnit.DegreeFahrenheit));
-            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeNewton, quantity => quantity.ToUnit(TemperatureDeltaUnit.DegreeNewton));
-            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeRankine, quantity => quantity.ToUnit(TemperatureDeltaUnit.DegreeRankine));
-            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeReaumur, quantity => quantity.ToUnit(TemperatureDeltaUnit.DegreeReaumur));
-            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeRoemer, quantity => quantity.ToUnit(TemperatureDeltaUnit.DegreeRoemer));
-            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.MillidegreeCelsius, quantity => quantity.ToUnit(TemperatureDeltaUnit.MillidegreeCelsius));
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeCelsius, quantity => new TemperatureDelta(quantity.Value, TemperatureDeltaUnit.DegreeCelsius));
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeDelisle, quantity => new TemperatureDelta(quantity.Value*-3/2, TemperatureDeltaUnit.DegreeDelisle));
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeFahrenheit, quantity => new TemperatureDelta(quantity.Value*9/5, TemperatureDeltaUnit.DegreeFahrenheit));
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeNewton, quantity => new TemperatureDelta(quantity.Value*33/100, TemperatureDeltaUnit.DegreeNewton));
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeRankine, quantity => new TemperatureDelta(quantity.Value*9/5, TemperatureDeltaUnit.DegreeRankine));
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeReaumur, quantity => new TemperatureDelta(quantity.Value*4/5, TemperatureDeltaUnit.DegreeReaumur));
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeRoemer, quantity => new TemperatureDelta(quantity.Value*21/40, TemperatureDeltaUnit.DegreeRoemer));
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.MillidegreeCelsius, quantity => new TemperatureDelta((quantity.Value) / 1e-3d, TemperatureDeltaUnit.MillidegreeCelsius));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.Kelvin, quantity => quantity);
 
             // Register in unit converter: TemperatureDeltaUnit -> BaseUnit
-            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.DegreeCelsius, TemperatureDeltaUnit.Kelvin, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.DegreeDelisle, TemperatureDeltaUnit.Kelvin, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.DegreeFahrenheit, TemperatureDeltaUnit.Kelvin, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.DegreeNewton, TemperatureDeltaUnit.Kelvin, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.DegreeRankine, TemperatureDeltaUnit.Kelvin, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.DegreeReaumur, TemperatureDeltaUnit.Kelvin, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.DegreeRoemer, TemperatureDeltaUnit.Kelvin, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.MillidegreeCelsius, TemperatureDeltaUnit.Kelvin, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.DegreeCelsius, TemperatureDeltaUnit.Kelvin, quantity => new TemperatureDelta(quantity.Value, TemperatureDeltaUnit.Kelvin));
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.DegreeDelisle, TemperatureDeltaUnit.Kelvin, quantity => new TemperatureDelta(quantity.Value*-2/3, TemperatureDeltaUnit.Kelvin));
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.DegreeFahrenheit, TemperatureDeltaUnit.Kelvin, quantity => new TemperatureDelta(quantity.Value*5/9, TemperatureDeltaUnit.Kelvin));
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.DegreeNewton, TemperatureDeltaUnit.Kelvin, quantity => new TemperatureDelta(quantity.Value*100/33, TemperatureDeltaUnit.Kelvin));
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.DegreeRankine, TemperatureDeltaUnit.Kelvin, quantity => new TemperatureDelta(quantity.Value*5/9, TemperatureDeltaUnit.Kelvin));
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.DegreeReaumur, TemperatureDeltaUnit.Kelvin, quantity => new TemperatureDelta(quantity.Value*5/4, TemperatureDeltaUnit.Kelvin));
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.DegreeRoemer, TemperatureDeltaUnit.Kelvin, quantity => new TemperatureDelta(quantity.Value*40/21, TemperatureDeltaUnit.Kelvin));
+            unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.MillidegreeCelsius, TemperatureDeltaUnit.Kelvin, quantity => new TemperatureDelta((quantity.Value) * 1e-3d, TemperatureDeltaUnit.Kelvin));
         }
 
         /// <summary>
@@ -791,33 +802,12 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case TemperatureDeltaUnit.DegreeCelsius: return _value;
-                case TemperatureDeltaUnit.DegreeDelisle: return _value*-2/3;
-                case TemperatureDeltaUnit.DegreeFahrenheit: return _value*5/9;
-                case TemperatureDeltaUnit.DegreeNewton: return _value*100/33;
-                case TemperatureDeltaUnit.DegreeRankine: return _value*5/9;
-                case TemperatureDeltaUnit.DegreeReaumur: return _value*5/4;
-                case TemperatureDeltaUnit.DegreeRoemer: return _value*40/21;
-                case TemperatureDeltaUnit.Kelvin: return _value;
-                case TemperatureDeltaUnit.MillidegreeCelsius: return (_value) * 1e-3d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
         internal TemperatureDelta ToBaseUnit()
         {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new TemperatureDelta(baseUnitValue, BaseUnit);
+            if(!ConversionFunctions.TryGetConversionFunction<TemperatureDelta>(Unit, BaseUnit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
+
+            return (TemperatureDelta)conversionFunction(this);
         }
 
         private double GetValueAs(TemperatureDeltaUnit unit)
@@ -825,22 +815,13 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+            var inBaseUnits = ToBaseUnit();
 
-            switch(unit)
-            {
-                case TemperatureDeltaUnit.DegreeCelsius: return baseUnitValue;
-                case TemperatureDeltaUnit.DegreeDelisle: return baseUnitValue*-3/2;
-                case TemperatureDeltaUnit.DegreeFahrenheit: return baseUnitValue*9/5;
-                case TemperatureDeltaUnit.DegreeNewton: return baseUnitValue*33/100;
-                case TemperatureDeltaUnit.DegreeRankine: return baseUnitValue*9/5;
-                case TemperatureDeltaUnit.DegreeReaumur: return baseUnitValue*4/5;
-                case TemperatureDeltaUnit.DegreeRoemer: return baseUnitValue*21/40;
-                case TemperatureDeltaUnit.Kelvin: return baseUnitValue;
-                case TemperatureDeltaUnit.MillidegreeCelsius: return (baseUnitValue) / 1e-3d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            if(!ConversionFunctions.TryGetConversionFunction<TemperatureDelta>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (double)converted.Value;
         }
 
         #endregion

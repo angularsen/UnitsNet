@@ -88,6 +88,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         /// <summary>
@@ -107,6 +110,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         #region Static Properties
@@ -155,6 +161,11 @@ namespace UnitsNet
         #endregion
 
         #region Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing conversion functions for this quantity.
+        /// </summary>
+        public UnitConverter ConversionFunctions { get; }
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -273,39 +284,39 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> AmountOfSubstanceUnit
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Centimole, quantity => quantity.ToUnit(AmountOfSubstanceUnit.Centimole));
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.CentipoundMole, quantity => quantity.ToUnit(AmountOfSubstanceUnit.CentipoundMole));
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Decimole, quantity => quantity.ToUnit(AmountOfSubstanceUnit.Decimole));
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.DecipoundMole, quantity => quantity.ToUnit(AmountOfSubstanceUnit.DecipoundMole));
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Kilomole, quantity => quantity.ToUnit(AmountOfSubstanceUnit.Kilomole));
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.KilopoundMole, quantity => quantity.ToUnit(AmountOfSubstanceUnit.KilopoundMole));
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Megamole, quantity => quantity.ToUnit(AmountOfSubstanceUnit.Megamole));
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Micromole, quantity => quantity.ToUnit(AmountOfSubstanceUnit.Micromole));
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.MicropoundMole, quantity => quantity.ToUnit(AmountOfSubstanceUnit.MicropoundMole));
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Millimole, quantity => quantity.ToUnit(AmountOfSubstanceUnit.Millimole));
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.MillipoundMole, quantity => quantity.ToUnit(AmountOfSubstanceUnit.MillipoundMole));
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Nanomole, quantity => quantity.ToUnit(AmountOfSubstanceUnit.Nanomole));
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.NanopoundMole, quantity => quantity.ToUnit(AmountOfSubstanceUnit.NanopoundMole));
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.PoundMole, quantity => quantity.ToUnit(AmountOfSubstanceUnit.PoundMole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Centimole, quantity => new AmountOfSubstance((quantity.Value) / 1e-2d, AmountOfSubstanceUnit.Centimole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.CentipoundMole, quantity => new AmountOfSubstance((quantity.Value/453.59237) / 1e-2d, AmountOfSubstanceUnit.CentipoundMole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Decimole, quantity => new AmountOfSubstance((quantity.Value) / 1e-1d, AmountOfSubstanceUnit.Decimole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.DecipoundMole, quantity => new AmountOfSubstance((quantity.Value/453.59237) / 1e-1d, AmountOfSubstanceUnit.DecipoundMole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Kilomole, quantity => new AmountOfSubstance((quantity.Value) / 1e3d, AmountOfSubstanceUnit.Kilomole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.KilopoundMole, quantity => new AmountOfSubstance((quantity.Value/453.59237) / 1e3d, AmountOfSubstanceUnit.KilopoundMole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Megamole, quantity => new AmountOfSubstance((quantity.Value) / 1e6d, AmountOfSubstanceUnit.Megamole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Micromole, quantity => new AmountOfSubstance((quantity.Value) / 1e-6d, AmountOfSubstanceUnit.Micromole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.MicropoundMole, quantity => new AmountOfSubstance((quantity.Value/453.59237) / 1e-6d, AmountOfSubstanceUnit.MicropoundMole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Millimole, quantity => new AmountOfSubstance((quantity.Value) / 1e-3d, AmountOfSubstanceUnit.Millimole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.MillipoundMole, quantity => new AmountOfSubstance((quantity.Value/453.59237) / 1e-3d, AmountOfSubstanceUnit.MillipoundMole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Nanomole, quantity => new AmountOfSubstance((quantity.Value) / 1e-9d, AmountOfSubstanceUnit.Nanomole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.NanopoundMole, quantity => new AmountOfSubstance((quantity.Value/453.59237) / 1e-9d, AmountOfSubstanceUnit.NanopoundMole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.PoundMole, quantity => new AmountOfSubstance(quantity.Value/453.59237, AmountOfSubstanceUnit.PoundMole));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Mole, quantity => quantity);
 
             // Register in unit converter: AmountOfSubstanceUnit -> BaseUnit
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Centimole, AmountOfSubstanceUnit.Mole, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.CentipoundMole, AmountOfSubstanceUnit.Mole, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Decimole, AmountOfSubstanceUnit.Mole, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.DecipoundMole, AmountOfSubstanceUnit.Mole, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Kilomole, AmountOfSubstanceUnit.Mole, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.KilopoundMole, AmountOfSubstanceUnit.Mole, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Megamole, AmountOfSubstanceUnit.Mole, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Micromole, AmountOfSubstanceUnit.Mole, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.MicropoundMole, AmountOfSubstanceUnit.Mole, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Millimole, AmountOfSubstanceUnit.Mole, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.MillipoundMole, AmountOfSubstanceUnit.Mole, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Nanomole, AmountOfSubstanceUnit.Mole, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.NanopoundMole, AmountOfSubstanceUnit.Mole, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.PoundMole, AmountOfSubstanceUnit.Mole, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Centimole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value) * 1e-2d, AmountOfSubstanceUnit.Mole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.CentipoundMole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value*453.59237) * 1e-2d, AmountOfSubstanceUnit.Mole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Decimole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value) * 1e-1d, AmountOfSubstanceUnit.Mole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.DecipoundMole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value*453.59237) * 1e-1d, AmountOfSubstanceUnit.Mole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Kilomole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value) * 1e3d, AmountOfSubstanceUnit.Mole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.KilopoundMole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value*453.59237) * 1e3d, AmountOfSubstanceUnit.Mole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Megamole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value) * 1e6d, AmountOfSubstanceUnit.Mole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Micromole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value) * 1e-6d, AmountOfSubstanceUnit.Mole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.MicropoundMole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value*453.59237) * 1e-6d, AmountOfSubstanceUnit.Mole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Millimole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value) * 1e-3d, AmountOfSubstanceUnit.Mole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.MillipoundMole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value*453.59237) * 1e-3d, AmountOfSubstanceUnit.Mole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Nanomole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value) * 1e-9d, AmountOfSubstanceUnit.Mole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.NanopoundMole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value*453.59237) * 1e-9d, AmountOfSubstanceUnit.Mole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.PoundMole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance(quantity.Value*453.59237, AmountOfSubstanceUnit.Mole));
         }
 
         /// <summary>
@@ -893,39 +904,12 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case AmountOfSubstanceUnit.Centimole: return (_value) * 1e-2d;
-                case AmountOfSubstanceUnit.CentipoundMole: return (_value*453.59237) * 1e-2d;
-                case AmountOfSubstanceUnit.Decimole: return (_value) * 1e-1d;
-                case AmountOfSubstanceUnit.DecipoundMole: return (_value*453.59237) * 1e-1d;
-                case AmountOfSubstanceUnit.Kilomole: return (_value) * 1e3d;
-                case AmountOfSubstanceUnit.KilopoundMole: return (_value*453.59237) * 1e3d;
-                case AmountOfSubstanceUnit.Megamole: return (_value) * 1e6d;
-                case AmountOfSubstanceUnit.Micromole: return (_value) * 1e-6d;
-                case AmountOfSubstanceUnit.MicropoundMole: return (_value*453.59237) * 1e-6d;
-                case AmountOfSubstanceUnit.Millimole: return (_value) * 1e-3d;
-                case AmountOfSubstanceUnit.MillipoundMole: return (_value*453.59237) * 1e-3d;
-                case AmountOfSubstanceUnit.Mole: return _value;
-                case AmountOfSubstanceUnit.Nanomole: return (_value) * 1e-9d;
-                case AmountOfSubstanceUnit.NanopoundMole: return (_value*453.59237) * 1e-9d;
-                case AmountOfSubstanceUnit.PoundMole: return _value*453.59237;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
         internal AmountOfSubstance ToBaseUnit()
         {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new AmountOfSubstance(baseUnitValue, BaseUnit);
+            if(!ConversionFunctions.TryGetConversionFunction<AmountOfSubstance>(Unit, BaseUnit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
+
+            return (AmountOfSubstance)conversionFunction(this);
         }
 
         private double GetValueAs(AmountOfSubstanceUnit unit)
@@ -933,28 +917,13 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+            var inBaseUnits = ToBaseUnit();
 
-            switch(unit)
-            {
-                case AmountOfSubstanceUnit.Centimole: return (baseUnitValue) / 1e-2d;
-                case AmountOfSubstanceUnit.CentipoundMole: return (baseUnitValue/453.59237) / 1e-2d;
-                case AmountOfSubstanceUnit.Decimole: return (baseUnitValue) / 1e-1d;
-                case AmountOfSubstanceUnit.DecipoundMole: return (baseUnitValue/453.59237) / 1e-1d;
-                case AmountOfSubstanceUnit.Kilomole: return (baseUnitValue) / 1e3d;
-                case AmountOfSubstanceUnit.KilopoundMole: return (baseUnitValue/453.59237) / 1e3d;
-                case AmountOfSubstanceUnit.Megamole: return (baseUnitValue) / 1e6d;
-                case AmountOfSubstanceUnit.Micromole: return (baseUnitValue) / 1e-6d;
-                case AmountOfSubstanceUnit.MicropoundMole: return (baseUnitValue/453.59237) / 1e-6d;
-                case AmountOfSubstanceUnit.Millimole: return (baseUnitValue) / 1e-3d;
-                case AmountOfSubstanceUnit.MillipoundMole: return (baseUnitValue/453.59237) / 1e-3d;
-                case AmountOfSubstanceUnit.Mole: return baseUnitValue;
-                case AmountOfSubstanceUnit.Nanomole: return (baseUnitValue) / 1e-9d;
-                case AmountOfSubstanceUnit.NanopoundMole: return (baseUnitValue/453.59237) / 1e-9d;
-                case AmountOfSubstanceUnit.PoundMole: return baseUnitValue/453.59237;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            if(!ConversionFunctions.TryGetConversionFunction<AmountOfSubstance>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (double)converted.Value;
         }
 
         #endregion

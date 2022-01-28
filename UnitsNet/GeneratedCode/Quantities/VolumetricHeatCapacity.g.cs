@@ -85,6 +85,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         /// <summary>
@@ -104,6 +107,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         #region Static Properties
@@ -152,6 +158,11 @@ namespace UnitsNet
         #endregion
 
         #region Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing conversion functions for this quantity.
+        /// </summary>
+        public UnitConverter ConversionFunctions { get; }
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -240,27 +251,27 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> VolumetricHeatCapacityUnit
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, quantity => quantity.ToUnit(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit));
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius, quantity => quantity.ToUnit(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius));
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius, quantity => quantity.ToUnit(VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius));
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius, quantity => quantity.ToUnit(VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius));
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius, quantity => quantity.ToUnit(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius));
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, quantity => quantity.ToUnit(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin));
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, quantity => quantity.ToUnit(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius));
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, quantity => quantity.ToUnit(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin));
+            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, quantity => new VolumetricHeatCapacity(quantity.Value * 1.4910660e-5, VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit));
+            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius, quantity => new VolumetricHeatCapacity(quantity.Value * 2.388459e-7, VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius));
+            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius, quantity => new VolumetricHeatCapacity(quantity.Value, VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius));
+            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius, quantity => new VolumetricHeatCapacity((quantity.Value * 2.388459e-7) / 1e3d, VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius));
+            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius, quantity => new VolumetricHeatCapacity((quantity.Value) / 1e3d, VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius));
+            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, quantity => new VolumetricHeatCapacity((quantity.Value) / 1e3d, VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin));
+            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, quantity => new VolumetricHeatCapacity((quantity.Value) / 1e6d, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius));
+            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, quantity => new VolumetricHeatCapacity((quantity.Value) / 1e6d, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, quantity => quantity);
 
             // Register in unit converter: VolumetricHeatCapacityUnit -> BaseUnit
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, quantity => new VolumetricHeatCapacity(quantity.Value / 1.4910660e-5, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin));
+            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, quantity => new VolumetricHeatCapacity(quantity.Value / 2.388459e-7, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin));
+            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, quantity => new VolumetricHeatCapacity(quantity.Value, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin));
+            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, quantity => new VolumetricHeatCapacity((quantity.Value / 2.388459e-7) * 1e3d, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin));
+            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, quantity => new VolumetricHeatCapacity((quantity.Value) * 1e3d, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin));
+            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, quantity => new VolumetricHeatCapacity((quantity.Value) * 1e3d, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin));
+            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, quantity => new VolumetricHeatCapacity((quantity.Value) * 1e6d, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin));
+            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, quantity => new VolumetricHeatCapacity((quantity.Value) * 1e6d, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin));
         }
 
         /// <summary>
@@ -794,33 +805,12 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit: return _value / 1.4910660e-5;
-                case VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius: return _value / 2.388459e-7;
-                case VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius: return _value;
-                case VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin: return _value;
-                case VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius: return (_value / 2.388459e-7) * 1e3d;
-                case VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius: return (_value) * 1e3d;
-                case VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin: return (_value) * 1e3d;
-                case VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius: return (_value) * 1e6d;
-                case VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin: return (_value) * 1e6d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
         internal VolumetricHeatCapacity ToBaseUnit()
         {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new VolumetricHeatCapacity(baseUnitValue, BaseUnit);
+            if(!ConversionFunctions.TryGetConversionFunction<VolumetricHeatCapacity>(Unit, BaseUnit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
+
+            return (VolumetricHeatCapacity)conversionFunction(this);
         }
 
         private double GetValueAs(VolumetricHeatCapacityUnit unit)
@@ -828,22 +818,13 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+            var inBaseUnits = ToBaseUnit();
 
-            switch(unit)
-            {
-                case VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit: return baseUnitValue * 1.4910660e-5;
-                case VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius: return baseUnitValue * 2.388459e-7;
-                case VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius: return baseUnitValue;
-                case VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin: return baseUnitValue;
-                case VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius: return (baseUnitValue * 2.388459e-7) / 1e3d;
-                case VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius: return (baseUnitValue) / 1e3d;
-                case VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin: return (baseUnitValue) / 1e3d;
-                case VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius: return (baseUnitValue) / 1e6d;
-                case VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin: return (baseUnitValue) / 1e6d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            if(!ConversionFunctions.TryGetConversionFunction<VolumetricHeatCapacity>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (double)converted.Value;
         }
 
         #endregion

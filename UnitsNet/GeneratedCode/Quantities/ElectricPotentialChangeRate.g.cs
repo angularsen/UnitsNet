@@ -93,6 +93,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         /// <summary>
@@ -112,6 +115,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         #region Static Properties
@@ -160,6 +166,11 @@ namespace UnitsNet
         #endregion
 
         #region Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing conversion functions for this quantity.
+        /// </summary>
+        public UnitConverter ConversionFunctions { get; }
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -303,49 +314,49 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> ElectricPotentialChangeRateUnit
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.KilovoltPerHour, quantity => quantity.ToUnit(ElectricPotentialChangeRateUnit.KilovoltPerHour));
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond, quantity => quantity.ToUnit(ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond));
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.KilovoltPerMinute, quantity => quantity.ToUnit(ElectricPotentialChangeRateUnit.KilovoltPerMinute));
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.KilovoltPerSecond, quantity => quantity.ToUnit(ElectricPotentialChangeRateUnit.KilovoltPerSecond));
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MegavoltPerHour, quantity => quantity.ToUnit(ElectricPotentialChangeRateUnit.MegavoltPerHour));
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond, quantity => quantity.ToUnit(ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond));
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MegavoltPerMinute, quantity => quantity.ToUnit(ElectricPotentialChangeRateUnit.MegavoltPerMinute));
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MegavoltPerSecond, quantity => quantity.ToUnit(ElectricPotentialChangeRateUnit.MegavoltPerSecond));
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MicrovoltPerHour, quantity => quantity.ToUnit(ElectricPotentialChangeRateUnit.MicrovoltPerHour));
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond, quantity => quantity.ToUnit(ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond));
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MicrovoltPerMinute, quantity => quantity.ToUnit(ElectricPotentialChangeRateUnit.MicrovoltPerMinute));
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MicrovoltPerSecond, quantity => quantity.ToUnit(ElectricPotentialChangeRateUnit.MicrovoltPerSecond));
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MillivoltPerHour, quantity => quantity.ToUnit(ElectricPotentialChangeRateUnit.MillivoltPerHour));
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond, quantity => quantity.ToUnit(ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond));
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MillivoltPerMinute, quantity => quantity.ToUnit(ElectricPotentialChangeRateUnit.MillivoltPerMinute));
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MillivoltPerSecond, quantity => quantity.ToUnit(ElectricPotentialChangeRateUnit.MillivoltPerSecond));
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerHour, quantity => quantity.ToUnit(ElectricPotentialChangeRateUnit.VoltPerHour));
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerMicrosecond, quantity => quantity.ToUnit(ElectricPotentialChangeRateUnit.VoltPerMicrosecond));
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerMinute, quantity => quantity.ToUnit(ElectricPotentialChangeRateUnit.VoltPerMinute));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.KilovoltPerHour, quantity => new ElectricPotentialChangeRate((quantity.Value*3600) / 1e3d, ElectricPotentialChangeRateUnit.KilovoltPerHour));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond, quantity => new ElectricPotentialChangeRate((quantity.Value/1E6) / 1e3d, ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.KilovoltPerMinute, quantity => new ElectricPotentialChangeRate((quantity.Value*60) / 1e3d, ElectricPotentialChangeRateUnit.KilovoltPerMinute));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.KilovoltPerSecond, quantity => new ElectricPotentialChangeRate((quantity.Value) / 1e3d, ElectricPotentialChangeRateUnit.KilovoltPerSecond));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MegavoltPerHour, quantity => new ElectricPotentialChangeRate((quantity.Value*3600) / 1e6d, ElectricPotentialChangeRateUnit.MegavoltPerHour));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond, quantity => new ElectricPotentialChangeRate((quantity.Value/1E6) / 1e6d, ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MegavoltPerMinute, quantity => new ElectricPotentialChangeRate((quantity.Value*60) / 1e6d, ElectricPotentialChangeRateUnit.MegavoltPerMinute));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MegavoltPerSecond, quantity => new ElectricPotentialChangeRate((quantity.Value) / 1e6d, ElectricPotentialChangeRateUnit.MegavoltPerSecond));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MicrovoltPerHour, quantity => new ElectricPotentialChangeRate((quantity.Value*3600) / 1e-6d, ElectricPotentialChangeRateUnit.MicrovoltPerHour));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond, quantity => new ElectricPotentialChangeRate((quantity.Value/1E6) / 1e-6d, ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MicrovoltPerMinute, quantity => new ElectricPotentialChangeRate((quantity.Value*60) / 1e-6d, ElectricPotentialChangeRateUnit.MicrovoltPerMinute));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MicrovoltPerSecond, quantity => new ElectricPotentialChangeRate((quantity.Value) / 1e-6d, ElectricPotentialChangeRateUnit.MicrovoltPerSecond));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MillivoltPerHour, quantity => new ElectricPotentialChangeRate((quantity.Value*3600) / 1e-3d, ElectricPotentialChangeRateUnit.MillivoltPerHour));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond, quantity => new ElectricPotentialChangeRate((quantity.Value/1E6) / 1e-3d, ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MillivoltPerMinute, quantity => new ElectricPotentialChangeRate((quantity.Value*60) / 1e-3d, ElectricPotentialChangeRateUnit.MillivoltPerMinute));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.MillivoltPerSecond, quantity => new ElectricPotentialChangeRate((quantity.Value) / 1e-3d, ElectricPotentialChangeRateUnit.MillivoltPerSecond));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerHour, quantity => new ElectricPotentialChangeRate(quantity.Value*3600, ElectricPotentialChangeRateUnit.VoltPerHour));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerMicrosecond, quantity => new ElectricPotentialChangeRate(quantity.Value/1E6, ElectricPotentialChangeRateUnit.VoltPerMicrosecond));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerMinute, quantity => new ElectricPotentialChangeRate(quantity.Value*60, ElectricPotentialChangeRateUnit.VoltPerMinute));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => quantity);
 
             // Register in unit converter: ElectricPotentialChangeRateUnit -> BaseUnit
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.KilovoltPerHour, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.KilovoltPerMinute, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.KilovoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MegavoltPerHour, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MegavoltPerMinute, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MegavoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MicrovoltPerHour, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MicrovoltPerMinute, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MicrovoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MillivoltPerHour, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MillivoltPerMinute, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MillivoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerHour, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerMicrosecond, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerMinute, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.KilovoltPerHour, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => new ElectricPotentialChangeRate((quantity.Value/3600) * 1e3d, ElectricPotentialChangeRateUnit.VoltPerSecond));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => new ElectricPotentialChangeRate((quantity.Value*1E6) * 1e3d, ElectricPotentialChangeRateUnit.VoltPerSecond));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.KilovoltPerMinute, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => new ElectricPotentialChangeRate((quantity.Value/60) * 1e3d, ElectricPotentialChangeRateUnit.VoltPerSecond));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.KilovoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => new ElectricPotentialChangeRate((quantity.Value) * 1e3d, ElectricPotentialChangeRateUnit.VoltPerSecond));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MegavoltPerHour, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => new ElectricPotentialChangeRate((quantity.Value/3600) * 1e6d, ElectricPotentialChangeRateUnit.VoltPerSecond));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => new ElectricPotentialChangeRate((quantity.Value*1E6) * 1e6d, ElectricPotentialChangeRateUnit.VoltPerSecond));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MegavoltPerMinute, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => new ElectricPotentialChangeRate((quantity.Value/60) * 1e6d, ElectricPotentialChangeRateUnit.VoltPerSecond));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MegavoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => new ElectricPotentialChangeRate((quantity.Value) * 1e6d, ElectricPotentialChangeRateUnit.VoltPerSecond));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MicrovoltPerHour, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => new ElectricPotentialChangeRate((quantity.Value/3600) * 1e-6d, ElectricPotentialChangeRateUnit.VoltPerSecond));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => new ElectricPotentialChangeRate((quantity.Value*1E6) * 1e-6d, ElectricPotentialChangeRateUnit.VoltPerSecond));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MicrovoltPerMinute, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => new ElectricPotentialChangeRate((quantity.Value/60) * 1e-6d, ElectricPotentialChangeRateUnit.VoltPerSecond));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MicrovoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => new ElectricPotentialChangeRate((quantity.Value) * 1e-6d, ElectricPotentialChangeRateUnit.VoltPerSecond));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MillivoltPerHour, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => new ElectricPotentialChangeRate((quantity.Value/3600) * 1e-3d, ElectricPotentialChangeRateUnit.VoltPerSecond));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => new ElectricPotentialChangeRate((quantity.Value*1E6) * 1e-3d, ElectricPotentialChangeRateUnit.VoltPerSecond));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MillivoltPerMinute, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => new ElectricPotentialChangeRate((quantity.Value/60) * 1e-3d, ElectricPotentialChangeRateUnit.VoltPerSecond));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.MillivoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => new ElectricPotentialChangeRate((quantity.Value) * 1e-3d, ElectricPotentialChangeRateUnit.VoltPerSecond));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerHour, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => new ElectricPotentialChangeRate(quantity.Value/3600, ElectricPotentialChangeRateUnit.VoltPerSecond));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerMicrosecond, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => new ElectricPotentialChangeRate(quantity.Value*1E6, ElectricPotentialChangeRateUnit.VoltPerSecond));
+            unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerMinute, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => new ElectricPotentialChangeRate(quantity.Value/60, ElectricPotentialChangeRateUnit.VoltPerSecond));
         }
 
         /// <summary>
@@ -978,44 +989,12 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case ElectricPotentialChangeRateUnit.KilovoltPerHour: return (_value/3600) * 1e3d;
-                case ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond: return (_value*1E6) * 1e3d;
-                case ElectricPotentialChangeRateUnit.KilovoltPerMinute: return (_value/60) * 1e3d;
-                case ElectricPotentialChangeRateUnit.KilovoltPerSecond: return (_value) * 1e3d;
-                case ElectricPotentialChangeRateUnit.MegavoltPerHour: return (_value/3600) * 1e6d;
-                case ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond: return (_value*1E6) * 1e6d;
-                case ElectricPotentialChangeRateUnit.MegavoltPerMinute: return (_value/60) * 1e6d;
-                case ElectricPotentialChangeRateUnit.MegavoltPerSecond: return (_value) * 1e6d;
-                case ElectricPotentialChangeRateUnit.MicrovoltPerHour: return (_value/3600) * 1e-6d;
-                case ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond: return (_value*1E6) * 1e-6d;
-                case ElectricPotentialChangeRateUnit.MicrovoltPerMinute: return (_value/60) * 1e-6d;
-                case ElectricPotentialChangeRateUnit.MicrovoltPerSecond: return (_value) * 1e-6d;
-                case ElectricPotentialChangeRateUnit.MillivoltPerHour: return (_value/3600) * 1e-3d;
-                case ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond: return (_value*1E6) * 1e-3d;
-                case ElectricPotentialChangeRateUnit.MillivoltPerMinute: return (_value/60) * 1e-3d;
-                case ElectricPotentialChangeRateUnit.MillivoltPerSecond: return (_value) * 1e-3d;
-                case ElectricPotentialChangeRateUnit.VoltPerHour: return _value/3600;
-                case ElectricPotentialChangeRateUnit.VoltPerMicrosecond: return _value*1E6;
-                case ElectricPotentialChangeRateUnit.VoltPerMinute: return _value/60;
-                case ElectricPotentialChangeRateUnit.VoltPerSecond: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
         internal ElectricPotentialChangeRate ToBaseUnit()
         {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new ElectricPotentialChangeRate(baseUnitValue, BaseUnit);
+            if(!ConversionFunctions.TryGetConversionFunction<ElectricPotentialChangeRate>(Unit, BaseUnit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
+
+            return (ElectricPotentialChangeRate)conversionFunction(this);
         }
 
         private double GetValueAs(ElectricPotentialChangeRateUnit unit)
@@ -1023,33 +1002,13 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+            var inBaseUnits = ToBaseUnit();
 
-            switch(unit)
-            {
-                case ElectricPotentialChangeRateUnit.KilovoltPerHour: return (baseUnitValue*3600) / 1e3d;
-                case ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond: return (baseUnitValue/1E6) / 1e3d;
-                case ElectricPotentialChangeRateUnit.KilovoltPerMinute: return (baseUnitValue*60) / 1e3d;
-                case ElectricPotentialChangeRateUnit.KilovoltPerSecond: return (baseUnitValue) / 1e3d;
-                case ElectricPotentialChangeRateUnit.MegavoltPerHour: return (baseUnitValue*3600) / 1e6d;
-                case ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond: return (baseUnitValue/1E6) / 1e6d;
-                case ElectricPotentialChangeRateUnit.MegavoltPerMinute: return (baseUnitValue*60) / 1e6d;
-                case ElectricPotentialChangeRateUnit.MegavoltPerSecond: return (baseUnitValue) / 1e6d;
-                case ElectricPotentialChangeRateUnit.MicrovoltPerHour: return (baseUnitValue*3600) / 1e-6d;
-                case ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond: return (baseUnitValue/1E6) / 1e-6d;
-                case ElectricPotentialChangeRateUnit.MicrovoltPerMinute: return (baseUnitValue*60) / 1e-6d;
-                case ElectricPotentialChangeRateUnit.MicrovoltPerSecond: return (baseUnitValue) / 1e-6d;
-                case ElectricPotentialChangeRateUnit.MillivoltPerHour: return (baseUnitValue*3600) / 1e-3d;
-                case ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond: return (baseUnitValue/1E6) / 1e-3d;
-                case ElectricPotentialChangeRateUnit.MillivoltPerMinute: return (baseUnitValue*60) / 1e-3d;
-                case ElectricPotentialChangeRateUnit.MillivoltPerSecond: return (baseUnitValue) / 1e-3d;
-                case ElectricPotentialChangeRateUnit.VoltPerHour: return baseUnitValue*3600;
-                case ElectricPotentialChangeRateUnit.VoltPerMicrosecond: return baseUnitValue/1E6;
-                case ElectricPotentialChangeRateUnit.VoltPerMinute: return baseUnitValue*60;
-                case ElectricPotentialChangeRateUnit.VoltPerSecond: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            if(!ConversionFunctions.TryGetConversionFunction<ElectricPotentialChangeRate>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (double)converted.Value;
         }
 
         #endregion

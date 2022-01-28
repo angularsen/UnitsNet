@@ -87,6 +87,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         /// <summary>
@@ -106,6 +109,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         #region Static Properties
@@ -154,6 +160,11 @@ namespace UnitsNet
         #endregion
 
         #region Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing conversion functions for this quantity.
+        /// </summary>
+        public UnitConverter ConversionFunctions { get; }
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -267,37 +278,37 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> IrradianceUnit
-            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.KilowattPerSquareCentimeter, quantity => quantity.ToUnit(IrradianceUnit.KilowattPerSquareCentimeter));
-            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.KilowattPerSquareMeter, quantity => quantity.ToUnit(IrradianceUnit.KilowattPerSquareMeter));
-            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.MegawattPerSquareCentimeter, quantity => quantity.ToUnit(IrradianceUnit.MegawattPerSquareCentimeter));
-            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.MegawattPerSquareMeter, quantity => quantity.ToUnit(IrradianceUnit.MegawattPerSquareMeter));
-            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.MicrowattPerSquareCentimeter, quantity => quantity.ToUnit(IrradianceUnit.MicrowattPerSquareCentimeter));
-            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.MicrowattPerSquareMeter, quantity => quantity.ToUnit(IrradianceUnit.MicrowattPerSquareMeter));
-            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.MilliwattPerSquareCentimeter, quantity => quantity.ToUnit(IrradianceUnit.MilliwattPerSquareCentimeter));
-            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.MilliwattPerSquareMeter, quantity => quantity.ToUnit(IrradianceUnit.MilliwattPerSquareMeter));
-            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.NanowattPerSquareCentimeter, quantity => quantity.ToUnit(IrradianceUnit.NanowattPerSquareCentimeter));
-            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.NanowattPerSquareMeter, quantity => quantity.ToUnit(IrradianceUnit.NanowattPerSquareMeter));
-            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.PicowattPerSquareCentimeter, quantity => quantity.ToUnit(IrradianceUnit.PicowattPerSquareCentimeter));
-            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.PicowattPerSquareMeter, quantity => quantity.ToUnit(IrradianceUnit.PicowattPerSquareMeter));
-            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.WattPerSquareCentimeter, quantity => quantity.ToUnit(IrradianceUnit.WattPerSquareCentimeter));
+            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.KilowattPerSquareCentimeter, quantity => new Irradiance((quantity.Value*0.0001) / 1e3d, IrradianceUnit.KilowattPerSquareCentimeter));
+            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.KilowattPerSquareMeter, quantity => new Irradiance((quantity.Value) / 1e3d, IrradianceUnit.KilowattPerSquareMeter));
+            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.MegawattPerSquareCentimeter, quantity => new Irradiance((quantity.Value*0.0001) / 1e6d, IrradianceUnit.MegawattPerSquareCentimeter));
+            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.MegawattPerSquareMeter, quantity => new Irradiance((quantity.Value) / 1e6d, IrradianceUnit.MegawattPerSquareMeter));
+            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.MicrowattPerSquareCentimeter, quantity => new Irradiance((quantity.Value*0.0001) / 1e-6d, IrradianceUnit.MicrowattPerSquareCentimeter));
+            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.MicrowattPerSquareMeter, quantity => new Irradiance((quantity.Value) / 1e-6d, IrradianceUnit.MicrowattPerSquareMeter));
+            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.MilliwattPerSquareCentimeter, quantity => new Irradiance((quantity.Value*0.0001) / 1e-3d, IrradianceUnit.MilliwattPerSquareCentimeter));
+            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.MilliwattPerSquareMeter, quantity => new Irradiance((quantity.Value) / 1e-3d, IrradianceUnit.MilliwattPerSquareMeter));
+            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.NanowattPerSquareCentimeter, quantity => new Irradiance((quantity.Value*0.0001) / 1e-9d, IrradianceUnit.NanowattPerSquareCentimeter));
+            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.NanowattPerSquareMeter, quantity => new Irradiance((quantity.Value) / 1e-9d, IrradianceUnit.NanowattPerSquareMeter));
+            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.PicowattPerSquareCentimeter, quantity => new Irradiance((quantity.Value*0.0001) / 1e-12d, IrradianceUnit.PicowattPerSquareCentimeter));
+            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.PicowattPerSquareMeter, quantity => new Irradiance((quantity.Value) / 1e-12d, IrradianceUnit.PicowattPerSquareMeter));
+            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.WattPerSquareCentimeter, quantity => new Irradiance(quantity.Value*0.0001, IrradianceUnit.WattPerSquareCentimeter));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.WattPerSquareMeter, quantity => quantity);
 
             // Register in unit converter: IrradianceUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.KilowattPerSquareCentimeter, IrradianceUnit.WattPerSquareMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.KilowattPerSquareMeter, IrradianceUnit.WattPerSquareMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.MegawattPerSquareCentimeter, IrradianceUnit.WattPerSquareMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.MegawattPerSquareMeter, IrradianceUnit.WattPerSquareMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.MicrowattPerSquareCentimeter, IrradianceUnit.WattPerSquareMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.MicrowattPerSquareMeter, IrradianceUnit.WattPerSquareMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.MilliwattPerSquareCentimeter, IrradianceUnit.WattPerSquareMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.MilliwattPerSquareMeter, IrradianceUnit.WattPerSquareMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.NanowattPerSquareCentimeter, IrradianceUnit.WattPerSquareMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.NanowattPerSquareMeter, IrradianceUnit.WattPerSquareMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.PicowattPerSquareCentimeter, IrradianceUnit.WattPerSquareMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.PicowattPerSquareMeter, IrradianceUnit.WattPerSquareMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareCentimeter, IrradianceUnit.WattPerSquareMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.KilowattPerSquareCentimeter, IrradianceUnit.WattPerSquareMeter, quantity => new Irradiance((quantity.Value*10000) * 1e3d, IrradianceUnit.WattPerSquareMeter));
+            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.KilowattPerSquareMeter, IrradianceUnit.WattPerSquareMeter, quantity => new Irradiance((quantity.Value) * 1e3d, IrradianceUnit.WattPerSquareMeter));
+            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.MegawattPerSquareCentimeter, IrradianceUnit.WattPerSquareMeter, quantity => new Irradiance((quantity.Value*10000) * 1e6d, IrradianceUnit.WattPerSquareMeter));
+            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.MegawattPerSquareMeter, IrradianceUnit.WattPerSquareMeter, quantity => new Irradiance((quantity.Value) * 1e6d, IrradianceUnit.WattPerSquareMeter));
+            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.MicrowattPerSquareCentimeter, IrradianceUnit.WattPerSquareMeter, quantity => new Irradiance((quantity.Value*10000) * 1e-6d, IrradianceUnit.WattPerSquareMeter));
+            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.MicrowattPerSquareMeter, IrradianceUnit.WattPerSquareMeter, quantity => new Irradiance((quantity.Value) * 1e-6d, IrradianceUnit.WattPerSquareMeter));
+            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.MilliwattPerSquareCentimeter, IrradianceUnit.WattPerSquareMeter, quantity => new Irradiance((quantity.Value*10000) * 1e-3d, IrradianceUnit.WattPerSquareMeter));
+            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.MilliwattPerSquareMeter, IrradianceUnit.WattPerSquareMeter, quantity => new Irradiance((quantity.Value) * 1e-3d, IrradianceUnit.WattPerSquareMeter));
+            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.NanowattPerSquareCentimeter, IrradianceUnit.WattPerSquareMeter, quantity => new Irradiance((quantity.Value*10000) * 1e-9d, IrradianceUnit.WattPerSquareMeter));
+            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.NanowattPerSquareMeter, IrradianceUnit.WattPerSquareMeter, quantity => new Irradiance((quantity.Value) * 1e-9d, IrradianceUnit.WattPerSquareMeter));
+            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.PicowattPerSquareCentimeter, IrradianceUnit.WattPerSquareMeter, quantity => new Irradiance((quantity.Value*10000) * 1e-12d, IrradianceUnit.WattPerSquareMeter));
+            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.PicowattPerSquareMeter, IrradianceUnit.WattPerSquareMeter, quantity => new Irradiance((quantity.Value) * 1e-12d, IrradianceUnit.WattPerSquareMeter));
+            unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareCentimeter, IrradianceUnit.WattPerSquareMeter, quantity => new Irradiance(quantity.Value*10000, IrradianceUnit.WattPerSquareMeter));
         }
 
         /// <summary>
@@ -876,38 +887,12 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case IrradianceUnit.KilowattPerSquareCentimeter: return (_value*10000) * 1e3d;
-                case IrradianceUnit.KilowattPerSquareMeter: return (_value) * 1e3d;
-                case IrradianceUnit.MegawattPerSquareCentimeter: return (_value*10000) * 1e6d;
-                case IrradianceUnit.MegawattPerSquareMeter: return (_value) * 1e6d;
-                case IrradianceUnit.MicrowattPerSquareCentimeter: return (_value*10000) * 1e-6d;
-                case IrradianceUnit.MicrowattPerSquareMeter: return (_value) * 1e-6d;
-                case IrradianceUnit.MilliwattPerSquareCentimeter: return (_value*10000) * 1e-3d;
-                case IrradianceUnit.MilliwattPerSquareMeter: return (_value) * 1e-3d;
-                case IrradianceUnit.NanowattPerSquareCentimeter: return (_value*10000) * 1e-9d;
-                case IrradianceUnit.NanowattPerSquareMeter: return (_value) * 1e-9d;
-                case IrradianceUnit.PicowattPerSquareCentimeter: return (_value*10000) * 1e-12d;
-                case IrradianceUnit.PicowattPerSquareMeter: return (_value) * 1e-12d;
-                case IrradianceUnit.WattPerSquareCentimeter: return _value*10000;
-                case IrradianceUnit.WattPerSquareMeter: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
         internal Irradiance ToBaseUnit()
         {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new Irradiance(baseUnitValue, BaseUnit);
+            if(!ConversionFunctions.TryGetConversionFunction<Irradiance>(Unit, BaseUnit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
+
+            return (Irradiance)conversionFunction(this);
         }
 
         private double GetValueAs(IrradianceUnit unit)
@@ -915,27 +900,13 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+            var inBaseUnits = ToBaseUnit();
 
-            switch(unit)
-            {
-                case IrradianceUnit.KilowattPerSquareCentimeter: return (baseUnitValue*0.0001) / 1e3d;
-                case IrradianceUnit.KilowattPerSquareMeter: return (baseUnitValue) / 1e3d;
-                case IrradianceUnit.MegawattPerSquareCentimeter: return (baseUnitValue*0.0001) / 1e6d;
-                case IrradianceUnit.MegawattPerSquareMeter: return (baseUnitValue) / 1e6d;
-                case IrradianceUnit.MicrowattPerSquareCentimeter: return (baseUnitValue*0.0001) / 1e-6d;
-                case IrradianceUnit.MicrowattPerSquareMeter: return (baseUnitValue) / 1e-6d;
-                case IrradianceUnit.MilliwattPerSquareCentimeter: return (baseUnitValue*0.0001) / 1e-3d;
-                case IrradianceUnit.MilliwattPerSquareMeter: return (baseUnitValue) / 1e-3d;
-                case IrradianceUnit.NanowattPerSquareCentimeter: return (baseUnitValue*0.0001) / 1e-9d;
-                case IrradianceUnit.NanowattPerSquareMeter: return (baseUnitValue) / 1e-9d;
-                case IrradianceUnit.PicowattPerSquareCentimeter: return (baseUnitValue*0.0001) / 1e-12d;
-                case IrradianceUnit.PicowattPerSquareMeter: return (baseUnitValue) / 1e-12d;
-                case IrradianceUnit.WattPerSquareCentimeter: return baseUnitValue*0.0001;
-                case IrradianceUnit.WattPerSquareMeter: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            if(!ConversionFunctions.TryGetConversionFunction<Irradiance>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (double)converted.Value;
         }
 
         #endregion

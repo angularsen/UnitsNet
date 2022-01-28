@@ -23,6 +23,9 @@ namespace UnitsNet
             // P(dBW) = 10*log10(value(W)/reference(W))
             _value = 10 * Math.Log10(power.Watts / 1);
             _unit = PowerRatioUnit.DecibelWatt;
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         /// <summary>

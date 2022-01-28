@@ -82,6 +82,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         /// <summary>
@@ -101,6 +104,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         #region Static Properties
@@ -149,6 +155,11 @@ namespace UnitsNet
         #endregion
 
         #region Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing conversion functions for this quantity.
+        /// </summary>
+        public UnitConverter ConversionFunctions { get; }
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -222,21 +233,21 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> MagneticFieldUnit
-            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Tesla, MagneticFieldUnit.Gauss, quantity => quantity.ToUnit(MagneticFieldUnit.Gauss));
-            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Tesla, MagneticFieldUnit.Microtesla, quantity => quantity.ToUnit(MagneticFieldUnit.Microtesla));
-            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Tesla, MagneticFieldUnit.Milligauss, quantity => quantity.ToUnit(MagneticFieldUnit.Milligauss));
-            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Tesla, MagneticFieldUnit.Millitesla, quantity => quantity.ToUnit(MagneticFieldUnit.Millitesla));
-            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Tesla, MagneticFieldUnit.Nanotesla, quantity => quantity.ToUnit(MagneticFieldUnit.Nanotesla));
+            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Tesla, MagneticFieldUnit.Gauss, quantity => new MagneticField(quantity.Value*1e4, MagneticFieldUnit.Gauss));
+            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Tesla, MagneticFieldUnit.Microtesla, quantity => new MagneticField((quantity.Value) / 1e-6d, MagneticFieldUnit.Microtesla));
+            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Tesla, MagneticFieldUnit.Milligauss, quantity => new MagneticField((quantity.Value*1e4) / 1e-3d, MagneticFieldUnit.Milligauss));
+            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Tesla, MagneticFieldUnit.Millitesla, quantity => new MagneticField((quantity.Value) / 1e-3d, MagneticFieldUnit.Millitesla));
+            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Tesla, MagneticFieldUnit.Nanotesla, quantity => new MagneticField((quantity.Value) / 1e-9d, MagneticFieldUnit.Nanotesla));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Tesla, MagneticFieldUnit.Tesla, quantity => quantity);
 
             // Register in unit converter: MagneticFieldUnit -> BaseUnit
-            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Gauss, MagneticFieldUnit.Tesla, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Microtesla, MagneticFieldUnit.Tesla, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Milligauss, MagneticFieldUnit.Tesla, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Millitesla, MagneticFieldUnit.Tesla, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Nanotesla, MagneticFieldUnit.Tesla, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Gauss, MagneticFieldUnit.Tesla, quantity => new MagneticField(quantity.Value/1e4, MagneticFieldUnit.Tesla));
+            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Microtesla, MagneticFieldUnit.Tesla, quantity => new MagneticField((quantity.Value) * 1e-6d, MagneticFieldUnit.Tesla));
+            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Milligauss, MagneticFieldUnit.Tesla, quantity => new MagneticField((quantity.Value/1e4) * 1e-3d, MagneticFieldUnit.Tesla));
+            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Millitesla, MagneticFieldUnit.Tesla, quantity => new MagneticField((quantity.Value) * 1e-3d, MagneticFieldUnit.Tesla));
+            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Nanotesla, MagneticFieldUnit.Tesla, quantity => new MagneticField((quantity.Value) * 1e-9d, MagneticFieldUnit.Tesla));
         }
 
         /// <summary>
@@ -743,30 +754,12 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case MagneticFieldUnit.Gauss: return _value/1e4;
-                case MagneticFieldUnit.Microtesla: return (_value) * 1e-6d;
-                case MagneticFieldUnit.Milligauss: return (_value/1e4) * 1e-3d;
-                case MagneticFieldUnit.Millitesla: return (_value) * 1e-3d;
-                case MagneticFieldUnit.Nanotesla: return (_value) * 1e-9d;
-                case MagneticFieldUnit.Tesla: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
         internal MagneticField ToBaseUnit()
         {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new MagneticField(baseUnitValue, BaseUnit);
+            if(!ConversionFunctions.TryGetConversionFunction<MagneticField>(Unit, BaseUnit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
+
+            return (MagneticField)conversionFunction(this);
         }
 
         private double GetValueAs(MagneticFieldUnit unit)
@@ -774,19 +767,13 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+            var inBaseUnits = ToBaseUnit();
 
-            switch(unit)
-            {
-                case MagneticFieldUnit.Gauss: return baseUnitValue*1e4;
-                case MagneticFieldUnit.Microtesla: return (baseUnitValue) / 1e-6d;
-                case MagneticFieldUnit.Milligauss: return (baseUnitValue*1e4) / 1e-3d;
-                case MagneticFieldUnit.Millitesla: return (baseUnitValue) / 1e-3d;
-                case MagneticFieldUnit.Nanotesla: return (baseUnitValue) / 1e-9d;
-                case MagneticFieldUnit.Tesla: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            if(!ConversionFunctions.TryGetConversionFunction<MagneticField>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (double)converted.Value;
         }
 
         #endregion

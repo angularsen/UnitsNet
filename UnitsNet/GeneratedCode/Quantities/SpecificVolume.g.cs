@@ -76,6 +76,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         /// <summary>
@@ -95,6 +98,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         #region Static Properties
@@ -143,6 +149,11 @@ namespace UnitsNet
         #endregion
 
         #region Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing conversion functions for this quantity.
+        /// </summary>
+        public UnitConverter ConversionFunctions { get; }
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -201,15 +212,15 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> SpecificVolumeUnit
-            unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicFootPerPound, quantity => quantity.ToUnit(SpecificVolumeUnit.CubicFootPerPound));
-            unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.MillicubicMeterPerKilogram, quantity => quantity.ToUnit(SpecificVolumeUnit.MillicubicMeterPerKilogram));
+            unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicFootPerPound, quantity => new SpecificVolume(quantity.Value*16.01846353, SpecificVolumeUnit.CubicFootPerPound));
+            unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.MillicubicMeterPerKilogram, quantity => new SpecificVolume((quantity.Value) / 1e-3d, SpecificVolumeUnit.MillicubicMeterPerKilogram));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram, quantity => quantity);
 
             // Register in unit converter: SpecificVolumeUnit -> BaseUnit
-            unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicFootPerPound, SpecificVolumeUnit.CubicMeterPerKilogram, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.MillicubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicFootPerPound, SpecificVolumeUnit.CubicMeterPerKilogram, quantity => new SpecificVolume(quantity.Value/16.01846353, SpecificVolumeUnit.CubicMeterPerKilogram));
+            unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.MillicubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram, quantity => new SpecificVolume((quantity.Value) * 1e-3d, SpecificVolumeUnit.CubicMeterPerKilogram));
         }
 
         /// <summary>
@@ -689,27 +700,12 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case SpecificVolumeUnit.CubicFootPerPound: return _value/16.01846353;
-                case SpecificVolumeUnit.CubicMeterPerKilogram: return _value;
-                case SpecificVolumeUnit.MillicubicMeterPerKilogram: return (_value) * 1e-3d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
         internal SpecificVolume ToBaseUnit()
         {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new SpecificVolume(baseUnitValue, BaseUnit);
+            if(!ConversionFunctions.TryGetConversionFunction<SpecificVolume>(Unit, BaseUnit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
+
+            return (SpecificVolume)conversionFunction(this);
         }
 
         private double GetValueAs(SpecificVolumeUnit unit)
@@ -717,16 +713,13 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+            var inBaseUnits = ToBaseUnit();
 
-            switch(unit)
-            {
-                case SpecificVolumeUnit.CubicFootPerPound: return baseUnitValue*16.01846353;
-                case SpecificVolumeUnit.CubicMeterPerKilogram: return baseUnitValue;
-                case SpecificVolumeUnit.MillicubicMeterPerKilogram: return (baseUnitValue) / 1e-3d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            if(!ConversionFunctions.TryGetConversionFunction<SpecificVolume>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (double)converted.Value;
         }
 
         #endregion

@@ -85,6 +85,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         /// <summary>
@@ -104,6 +107,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         #region Static Properties
@@ -152,6 +158,11 @@ namespace UnitsNet
         #endregion
 
         #region Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing conversion functions for this quantity.
+        /// </summary>
+        public UnitConverter ConversionFunctions { get; }
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -240,27 +251,27 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> KinematicViscosityUnit
-            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Centistokes, quantity => quantity.ToUnit(KinematicViscosityUnit.Centistokes));
-            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Decistokes, quantity => quantity.ToUnit(KinematicViscosityUnit.Decistokes));
-            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Kilostokes, quantity => quantity.ToUnit(KinematicViscosityUnit.Kilostokes));
-            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Microstokes, quantity => quantity.ToUnit(KinematicViscosityUnit.Microstokes));
-            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Millistokes, quantity => quantity.ToUnit(KinematicViscosityUnit.Millistokes));
-            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Nanostokes, quantity => quantity.ToUnit(KinematicViscosityUnit.Nanostokes));
-            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.SquareFootPerSecond, quantity => quantity.ToUnit(KinematicViscosityUnit.SquareFootPerSecond));
-            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Stokes, quantity => quantity.ToUnit(KinematicViscosityUnit.Stokes));
+            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Centistokes, quantity => new KinematicViscosity((quantity.Value*1e4) / 1e-2d, KinematicViscosityUnit.Centistokes));
+            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Decistokes, quantity => new KinematicViscosity((quantity.Value*1e4) / 1e-1d, KinematicViscosityUnit.Decistokes));
+            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Kilostokes, quantity => new KinematicViscosity((quantity.Value*1e4) / 1e3d, KinematicViscosityUnit.Kilostokes));
+            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Microstokes, quantity => new KinematicViscosity((quantity.Value*1e4) / 1e-6d, KinematicViscosityUnit.Microstokes));
+            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Millistokes, quantity => new KinematicViscosity((quantity.Value*1e4) / 1e-3d, KinematicViscosityUnit.Millistokes));
+            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Nanostokes, quantity => new KinematicViscosity((quantity.Value*1e4) / 1e-9d, KinematicViscosityUnit.Nanostokes));
+            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.SquareFootPerSecond, quantity => new KinematicViscosity(quantity.Value*10.7639, KinematicViscosityUnit.SquareFootPerSecond));
+            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Stokes, quantity => new KinematicViscosity(quantity.Value*1e4, KinematicViscosityUnit.Stokes));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.SquareMeterPerSecond, quantity => quantity);
 
             // Register in unit converter: KinematicViscosityUnit -> BaseUnit
-            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.Centistokes, KinematicViscosityUnit.SquareMeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.Decistokes, KinematicViscosityUnit.SquareMeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.Kilostokes, KinematicViscosityUnit.SquareMeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.Microstokes, KinematicViscosityUnit.SquareMeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.Millistokes, KinematicViscosityUnit.SquareMeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.Nanostokes, KinematicViscosityUnit.SquareMeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.SquareFootPerSecond, KinematicViscosityUnit.SquareMeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.Stokes, KinematicViscosityUnit.SquareMeterPerSecond, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.Centistokes, KinematicViscosityUnit.SquareMeterPerSecond, quantity => new KinematicViscosity((quantity.Value/1e4) * 1e-2d, KinematicViscosityUnit.SquareMeterPerSecond));
+            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.Decistokes, KinematicViscosityUnit.SquareMeterPerSecond, quantity => new KinematicViscosity((quantity.Value/1e4) * 1e-1d, KinematicViscosityUnit.SquareMeterPerSecond));
+            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.Kilostokes, KinematicViscosityUnit.SquareMeterPerSecond, quantity => new KinematicViscosity((quantity.Value/1e4) * 1e3d, KinematicViscosityUnit.SquareMeterPerSecond));
+            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.Microstokes, KinematicViscosityUnit.SquareMeterPerSecond, quantity => new KinematicViscosity((quantity.Value/1e4) * 1e-6d, KinematicViscosityUnit.SquareMeterPerSecond));
+            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.Millistokes, KinematicViscosityUnit.SquareMeterPerSecond, quantity => new KinematicViscosity((quantity.Value/1e4) * 1e-3d, KinematicViscosityUnit.SquareMeterPerSecond));
+            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.Nanostokes, KinematicViscosityUnit.SquareMeterPerSecond, quantity => new KinematicViscosity((quantity.Value/1e4) * 1e-9d, KinematicViscosityUnit.SquareMeterPerSecond));
+            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.SquareFootPerSecond, KinematicViscosityUnit.SquareMeterPerSecond, quantity => new KinematicViscosity(quantity.Value/10.7639, KinematicViscosityUnit.SquareMeterPerSecond));
+            unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.Stokes, KinematicViscosityUnit.SquareMeterPerSecond, quantity => new KinematicViscosity(quantity.Value/1e4, KinematicViscosityUnit.SquareMeterPerSecond));
         }
 
         /// <summary>
@@ -794,33 +805,12 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case KinematicViscosityUnit.Centistokes: return (_value/1e4) * 1e-2d;
-                case KinematicViscosityUnit.Decistokes: return (_value/1e4) * 1e-1d;
-                case KinematicViscosityUnit.Kilostokes: return (_value/1e4) * 1e3d;
-                case KinematicViscosityUnit.Microstokes: return (_value/1e4) * 1e-6d;
-                case KinematicViscosityUnit.Millistokes: return (_value/1e4) * 1e-3d;
-                case KinematicViscosityUnit.Nanostokes: return (_value/1e4) * 1e-9d;
-                case KinematicViscosityUnit.SquareFootPerSecond: return _value/10.7639;
-                case KinematicViscosityUnit.SquareMeterPerSecond: return _value;
-                case KinematicViscosityUnit.Stokes: return _value/1e4;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
         internal KinematicViscosity ToBaseUnit()
         {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new KinematicViscosity(baseUnitValue, BaseUnit);
+            if(!ConversionFunctions.TryGetConversionFunction<KinematicViscosity>(Unit, BaseUnit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
+
+            return (KinematicViscosity)conversionFunction(this);
         }
 
         private double GetValueAs(KinematicViscosityUnit unit)
@@ -828,22 +818,13 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+            var inBaseUnits = ToBaseUnit();
 
-            switch(unit)
-            {
-                case KinematicViscosityUnit.Centistokes: return (baseUnitValue*1e4) / 1e-2d;
-                case KinematicViscosityUnit.Decistokes: return (baseUnitValue*1e4) / 1e-1d;
-                case KinematicViscosityUnit.Kilostokes: return (baseUnitValue*1e4) / 1e3d;
-                case KinematicViscosityUnit.Microstokes: return (baseUnitValue*1e4) / 1e-6d;
-                case KinematicViscosityUnit.Millistokes: return (baseUnitValue*1e4) / 1e-3d;
-                case KinematicViscosityUnit.Nanostokes: return (baseUnitValue*1e4) / 1e-9d;
-                case KinematicViscosityUnit.SquareFootPerSecond: return baseUnitValue*10.7639;
-                case KinematicViscosityUnit.SquareMeterPerSecond: return baseUnitValue;
-                case KinematicViscosityUnit.Stokes: return baseUnitValue*1e4;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            if(!ConversionFunctions.TryGetConversionFunction<KinematicViscosity>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (double)converted.Value;
         }
 
         #endregion

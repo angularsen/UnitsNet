@@ -75,6 +75,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         /// <summary>
@@ -94,6 +97,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         #region Static Properties
@@ -142,6 +148,11 @@ namespace UnitsNet
         #endregion
 
         #region Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing conversion functions for this quantity.
+        /// </summary>
+        public UnitConverter ConversionFunctions { get; }
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -195,13 +206,13 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> LevelUnit
-            unitConverter.SetConversionFunction<Level>(LevelUnit.Decibel, LevelUnit.Neper, quantity => quantity.ToUnit(LevelUnit.Neper));
+            unitConverter.SetConversionFunction<Level>(LevelUnit.Decibel, LevelUnit.Neper, quantity => new Level(0.115129254*quantity.Value, LevelUnit.Neper));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Level>(LevelUnit.Decibel, LevelUnit.Decibel, quantity => quantity);
 
             // Register in unit converter: LevelUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Level>(LevelUnit.Neper, LevelUnit.Decibel, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Level>(LevelUnit.Neper, LevelUnit.Decibel, quantity => new Level((1/0.115129254)*quantity.Value, LevelUnit.Decibel));
         }
 
         /// <summary>
@@ -680,26 +691,12 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case LevelUnit.Decibel: return _value;
-                case LevelUnit.Neper: return (1/0.115129254)*_value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
         internal Level ToBaseUnit()
         {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new Level(baseUnitValue, BaseUnit);
+            if(!ConversionFunctions.TryGetConversionFunction<Level>(Unit, BaseUnit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
+
+            return (Level)conversionFunction(this);
         }
 
         private double GetValueAs(LevelUnit unit)
@@ -707,15 +704,13 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+            var inBaseUnits = ToBaseUnit();
 
-            switch(unit)
-            {
-                case LevelUnit.Decibel: return baseUnitValue;
-                case LevelUnit.Neper: return 0.115129254*baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            if(!ConversionFunctions.TryGetConversionFunction<Level>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (double)converted.Value;
         }
 
         #endregion

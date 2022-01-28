@@ -77,6 +77,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         /// <summary>
@@ -96,6 +99,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         #region Static Properties
@@ -144,6 +150,11 @@ namespace UnitsNet
         #endregion
 
         #region Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing conversion functions for this quantity.
+        /// </summary>
+        public UnitConverter ConversionFunctions { get; }
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -207,17 +218,17 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> ElectricCurrentGradientUnit
-            unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerMicrosecond, quantity => quantity.ToUnit(ElectricCurrentGradientUnit.AmperePerMicrosecond));
-            unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerMillisecond, quantity => quantity.ToUnit(ElectricCurrentGradientUnit.AmperePerMillisecond));
-            unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerNanosecond, quantity => quantity.ToUnit(ElectricCurrentGradientUnit.AmperePerNanosecond));
+            unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerMicrosecond, quantity => new ElectricCurrentGradient(quantity.Value/1E6, ElectricCurrentGradientUnit.AmperePerMicrosecond));
+            unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerMillisecond, quantity => new ElectricCurrentGradient(quantity.Value/1E3, ElectricCurrentGradientUnit.AmperePerMillisecond));
+            unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerNanosecond, quantity => new ElectricCurrentGradient(quantity.Value/1E9, ElectricCurrentGradientUnit.AmperePerNanosecond));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerSecond, quantity => quantity);
 
             // Register in unit converter: ElectricCurrentGradientUnit -> BaseUnit
-            unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerMicrosecond, ElectricCurrentGradientUnit.AmperePerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerMillisecond, ElectricCurrentGradientUnit.AmperePerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerNanosecond, ElectricCurrentGradientUnit.AmperePerSecond, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerMicrosecond, ElectricCurrentGradientUnit.AmperePerSecond, quantity => new ElectricCurrentGradient(quantity.Value*1E6, ElectricCurrentGradientUnit.AmperePerSecond));
+            unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerMillisecond, ElectricCurrentGradientUnit.AmperePerSecond, quantity => new ElectricCurrentGradient(quantity.Value*1E3, ElectricCurrentGradientUnit.AmperePerSecond));
+            unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerNanosecond, ElectricCurrentGradientUnit.AmperePerSecond, quantity => new ElectricCurrentGradient(quantity.Value*1E9, ElectricCurrentGradientUnit.AmperePerSecond));
         }
 
         /// <summary>
@@ -706,28 +717,12 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case ElectricCurrentGradientUnit.AmperePerMicrosecond: return _value*1E6;
-                case ElectricCurrentGradientUnit.AmperePerMillisecond: return _value*1E3;
-                case ElectricCurrentGradientUnit.AmperePerNanosecond: return _value*1E9;
-                case ElectricCurrentGradientUnit.AmperePerSecond: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
         internal ElectricCurrentGradient ToBaseUnit()
         {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new ElectricCurrentGradient(baseUnitValue, BaseUnit);
+            if(!ConversionFunctions.TryGetConversionFunction<ElectricCurrentGradient>(Unit, BaseUnit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
+
+            return (ElectricCurrentGradient)conversionFunction(this);
         }
 
         private double GetValueAs(ElectricCurrentGradientUnit unit)
@@ -735,17 +730,13 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+            var inBaseUnits = ToBaseUnit();
 
-            switch(unit)
-            {
-                case ElectricCurrentGradientUnit.AmperePerMicrosecond: return baseUnitValue/1E6;
-                case ElectricCurrentGradientUnit.AmperePerMillisecond: return baseUnitValue/1E3;
-                case ElectricCurrentGradientUnit.AmperePerNanosecond: return baseUnitValue/1E9;
-                case ElectricCurrentGradientUnit.AmperePerSecond: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            if(!ConversionFunctions.TryGetConversionFunction<ElectricCurrentGradient>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (double)converted.Value;
         }
 
         #endregion

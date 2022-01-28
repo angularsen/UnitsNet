@@ -87,6 +87,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         /// <summary>
@@ -106,6 +109,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         #region Static Properties
@@ -154,6 +160,11 @@ namespace UnitsNet
         #endregion
 
         #region Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing conversion functions for this quantity.
+        /// </summary>
+        public UnitConverter ConversionFunctions { get; }
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -267,37 +278,37 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> AccelerationUnit
-            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.CentimeterPerSecondSquared, quantity => quantity.ToUnit(AccelerationUnit.CentimeterPerSecondSquared));
-            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.DecimeterPerSecondSquared, quantity => quantity.ToUnit(AccelerationUnit.DecimeterPerSecondSquared));
-            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.FootPerSecondSquared, quantity => quantity.ToUnit(AccelerationUnit.FootPerSecondSquared));
-            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.InchPerSecondSquared, quantity => quantity.ToUnit(AccelerationUnit.InchPerSecondSquared));
-            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.KilometerPerSecondSquared, quantity => quantity.ToUnit(AccelerationUnit.KilometerPerSecondSquared));
-            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.KnotPerHour, quantity => quantity.ToUnit(AccelerationUnit.KnotPerHour));
-            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.KnotPerMinute, quantity => quantity.ToUnit(AccelerationUnit.KnotPerMinute));
-            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.KnotPerSecond, quantity => quantity.ToUnit(AccelerationUnit.KnotPerSecond));
-            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.MicrometerPerSecondSquared, quantity => quantity.ToUnit(AccelerationUnit.MicrometerPerSecondSquared));
-            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.MillimeterPerSecondSquared, quantity => quantity.ToUnit(AccelerationUnit.MillimeterPerSecondSquared));
-            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.MillistandardGravity, quantity => quantity.ToUnit(AccelerationUnit.MillistandardGravity));
-            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.NanometerPerSecondSquared, quantity => quantity.ToUnit(AccelerationUnit.NanometerPerSecondSquared));
-            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.StandardGravity, quantity => quantity.ToUnit(AccelerationUnit.StandardGravity));
+            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.CentimeterPerSecondSquared, quantity => new Acceleration((quantity.Value) / 1e-2d, AccelerationUnit.CentimeterPerSecondSquared));
+            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.DecimeterPerSecondSquared, quantity => new Acceleration((quantity.Value) / 1e-1d, AccelerationUnit.DecimeterPerSecondSquared));
+            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.FootPerSecondSquared, quantity => new Acceleration(quantity.Value/0.304800, AccelerationUnit.FootPerSecondSquared));
+            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.InchPerSecondSquared, quantity => new Acceleration(quantity.Value/0.0254, AccelerationUnit.InchPerSecondSquared));
+            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.KilometerPerSecondSquared, quantity => new Acceleration((quantity.Value) / 1e3d, AccelerationUnit.KilometerPerSecondSquared));
+            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.KnotPerHour, quantity => new Acceleration(quantity.Value/0.5144444444444*3600, AccelerationUnit.KnotPerHour));
+            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.KnotPerMinute, quantity => new Acceleration(quantity.Value/0.5144444444444*60, AccelerationUnit.KnotPerMinute));
+            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.KnotPerSecond, quantity => new Acceleration(quantity.Value/0.5144444444444, AccelerationUnit.KnotPerSecond));
+            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.MicrometerPerSecondSquared, quantity => new Acceleration((quantity.Value) / 1e-6d, AccelerationUnit.MicrometerPerSecondSquared));
+            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.MillimeterPerSecondSquared, quantity => new Acceleration((quantity.Value) / 1e-3d, AccelerationUnit.MillimeterPerSecondSquared));
+            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.MillistandardGravity, quantity => new Acceleration((quantity.Value/9.80665) / 1e-3d, AccelerationUnit.MillistandardGravity));
+            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.NanometerPerSecondSquared, quantity => new Acceleration((quantity.Value) / 1e-9d, AccelerationUnit.NanometerPerSecondSquared));
+            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.StandardGravity, quantity => new Acceleration(quantity.Value/9.80665, AccelerationUnit.StandardGravity));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.MeterPerSecondSquared, quantity => quantity);
 
             // Register in unit converter: AccelerationUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.CentimeterPerSecondSquared, AccelerationUnit.MeterPerSecondSquared, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.DecimeterPerSecondSquared, AccelerationUnit.MeterPerSecondSquared, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.FootPerSecondSquared, AccelerationUnit.MeterPerSecondSquared, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.InchPerSecondSquared, AccelerationUnit.MeterPerSecondSquared, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.KilometerPerSecondSquared, AccelerationUnit.MeterPerSecondSquared, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.KnotPerHour, AccelerationUnit.MeterPerSecondSquared, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.KnotPerMinute, AccelerationUnit.MeterPerSecondSquared, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.KnotPerSecond, AccelerationUnit.MeterPerSecondSquared, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MicrometerPerSecondSquared, AccelerationUnit.MeterPerSecondSquared, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MillimeterPerSecondSquared, AccelerationUnit.MeterPerSecondSquared, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MillistandardGravity, AccelerationUnit.MeterPerSecondSquared, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.NanometerPerSecondSquared, AccelerationUnit.MeterPerSecondSquared, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.StandardGravity, AccelerationUnit.MeterPerSecondSquared, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.CentimeterPerSecondSquared, AccelerationUnit.MeterPerSecondSquared, quantity => new Acceleration((quantity.Value) * 1e-2d, AccelerationUnit.MeterPerSecondSquared));
+            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.DecimeterPerSecondSquared, AccelerationUnit.MeterPerSecondSquared, quantity => new Acceleration((quantity.Value) * 1e-1d, AccelerationUnit.MeterPerSecondSquared));
+            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.FootPerSecondSquared, AccelerationUnit.MeterPerSecondSquared, quantity => new Acceleration(quantity.Value*0.304800, AccelerationUnit.MeterPerSecondSquared));
+            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.InchPerSecondSquared, AccelerationUnit.MeterPerSecondSquared, quantity => new Acceleration(quantity.Value*0.0254, AccelerationUnit.MeterPerSecondSquared));
+            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.KilometerPerSecondSquared, AccelerationUnit.MeterPerSecondSquared, quantity => new Acceleration((quantity.Value) * 1e3d, AccelerationUnit.MeterPerSecondSquared));
+            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.KnotPerHour, AccelerationUnit.MeterPerSecondSquared, quantity => new Acceleration(quantity.Value*0.5144444444444/3600, AccelerationUnit.MeterPerSecondSquared));
+            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.KnotPerMinute, AccelerationUnit.MeterPerSecondSquared, quantity => new Acceleration(quantity.Value*0.5144444444444/60, AccelerationUnit.MeterPerSecondSquared));
+            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.KnotPerSecond, AccelerationUnit.MeterPerSecondSquared, quantity => new Acceleration(quantity.Value*0.5144444444444, AccelerationUnit.MeterPerSecondSquared));
+            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MicrometerPerSecondSquared, AccelerationUnit.MeterPerSecondSquared, quantity => new Acceleration((quantity.Value) * 1e-6d, AccelerationUnit.MeterPerSecondSquared));
+            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MillimeterPerSecondSquared, AccelerationUnit.MeterPerSecondSquared, quantity => new Acceleration((quantity.Value) * 1e-3d, AccelerationUnit.MeterPerSecondSquared));
+            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MillistandardGravity, AccelerationUnit.MeterPerSecondSquared, quantity => new Acceleration((quantity.Value*9.80665) * 1e-3d, AccelerationUnit.MeterPerSecondSquared));
+            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.NanometerPerSecondSquared, AccelerationUnit.MeterPerSecondSquared, quantity => new Acceleration((quantity.Value) * 1e-9d, AccelerationUnit.MeterPerSecondSquared));
+            unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.StandardGravity, AccelerationUnit.MeterPerSecondSquared, quantity => new Acceleration(quantity.Value*9.80665, AccelerationUnit.MeterPerSecondSquared));
         }
 
         /// <summary>
@@ -876,38 +887,12 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case AccelerationUnit.CentimeterPerSecondSquared: return (_value) * 1e-2d;
-                case AccelerationUnit.DecimeterPerSecondSquared: return (_value) * 1e-1d;
-                case AccelerationUnit.FootPerSecondSquared: return _value*0.304800;
-                case AccelerationUnit.InchPerSecondSquared: return _value*0.0254;
-                case AccelerationUnit.KilometerPerSecondSquared: return (_value) * 1e3d;
-                case AccelerationUnit.KnotPerHour: return _value*0.5144444444444/3600;
-                case AccelerationUnit.KnotPerMinute: return _value*0.5144444444444/60;
-                case AccelerationUnit.KnotPerSecond: return _value*0.5144444444444;
-                case AccelerationUnit.MeterPerSecondSquared: return _value;
-                case AccelerationUnit.MicrometerPerSecondSquared: return (_value) * 1e-6d;
-                case AccelerationUnit.MillimeterPerSecondSquared: return (_value) * 1e-3d;
-                case AccelerationUnit.MillistandardGravity: return (_value*9.80665) * 1e-3d;
-                case AccelerationUnit.NanometerPerSecondSquared: return (_value) * 1e-9d;
-                case AccelerationUnit.StandardGravity: return _value*9.80665;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
         internal Acceleration ToBaseUnit()
         {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new Acceleration(baseUnitValue, BaseUnit);
+            if(!ConversionFunctions.TryGetConversionFunction<Acceleration>(Unit, BaseUnit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
+
+            return (Acceleration)conversionFunction(this);
         }
 
         private double GetValueAs(AccelerationUnit unit)
@@ -915,27 +900,13 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+            var inBaseUnits = ToBaseUnit();
 
-            switch(unit)
-            {
-                case AccelerationUnit.CentimeterPerSecondSquared: return (baseUnitValue) / 1e-2d;
-                case AccelerationUnit.DecimeterPerSecondSquared: return (baseUnitValue) / 1e-1d;
-                case AccelerationUnit.FootPerSecondSquared: return baseUnitValue/0.304800;
-                case AccelerationUnit.InchPerSecondSquared: return baseUnitValue/0.0254;
-                case AccelerationUnit.KilometerPerSecondSquared: return (baseUnitValue) / 1e3d;
-                case AccelerationUnit.KnotPerHour: return baseUnitValue/0.5144444444444*3600;
-                case AccelerationUnit.KnotPerMinute: return baseUnitValue/0.5144444444444*60;
-                case AccelerationUnit.KnotPerSecond: return baseUnitValue/0.5144444444444;
-                case AccelerationUnit.MeterPerSecondSquared: return baseUnitValue;
-                case AccelerationUnit.MicrometerPerSecondSquared: return (baseUnitValue) / 1e-6d;
-                case AccelerationUnit.MillimeterPerSecondSquared: return (baseUnitValue) / 1e-3d;
-                case AccelerationUnit.MillistandardGravity: return (baseUnitValue/9.80665) / 1e-3d;
-                case AccelerationUnit.NanometerPerSecondSquared: return (baseUnitValue) / 1e-9d;
-                case AccelerationUnit.StandardGravity: return baseUnitValue/9.80665;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            if(!ConversionFunctions.TryGetConversionFunction<Acceleration>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (double)converted.Value;
         }
 
         #endregion

@@ -79,6 +79,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         /// <summary>
@@ -98,6 +101,9 @@ namespace UnitsNet
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+
+            ConversionFunctions = new UnitConverter();
+            RegisterDefaultConversions(ConversionFunctions);
         }
 
         #region Static Properties
@@ -146,6 +152,11 @@ namespace UnitsNet
         #endregion
 
         #region Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing conversion functions for this quantity.
+        /// </summary>
+        public UnitConverter ConversionFunctions { get; }
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -204,15 +215,15 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> ElectricConductanceUnit
-            unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Microsiemens, quantity => quantity.ToUnit(ElectricConductanceUnit.Microsiemens));
-            unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Millisiemens, quantity => quantity.ToUnit(ElectricConductanceUnit.Millisiemens));
+            unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Microsiemens, quantity => new ElectricConductance((quantity.Value) / 1e-6d, ElectricConductanceUnit.Microsiemens));
+            unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Millisiemens, quantity => new ElectricConductance((quantity.Value) / 1e-3d, ElectricConductanceUnit.Millisiemens));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Siemens, quantity => quantity);
 
             // Register in unit converter: ElectricConductanceUnit -> BaseUnit
-            unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Microsiemens, ElectricConductanceUnit.Siemens, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Millisiemens, ElectricConductanceUnit.Siemens, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Microsiemens, ElectricConductanceUnit.Siemens, quantity => new ElectricConductance((quantity.Value) * 1e-6d, ElectricConductanceUnit.Siemens));
+            unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Millisiemens, ElectricConductanceUnit.Siemens, quantity => new ElectricConductance((quantity.Value) * 1e-3d, ElectricConductanceUnit.Siemens));
         }
 
         /// <summary>
@@ -692,27 +703,12 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case ElectricConductanceUnit.Microsiemens: return (_value) * 1e-6d;
-                case ElectricConductanceUnit.Millisiemens: return (_value) * 1e-3d;
-                case ElectricConductanceUnit.Siemens: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
         internal ElectricConductance ToBaseUnit()
         {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new ElectricConductance(baseUnitValue, BaseUnit);
+            if(!ConversionFunctions.TryGetConversionFunction<ElectricConductance>(Unit, BaseUnit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
+
+            return (ElectricConductance)conversionFunction(this);
         }
 
         private double GetValueAs(ElectricConductanceUnit unit)
@@ -720,16 +716,13 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+            var inBaseUnits = ToBaseUnit();
 
-            switch(unit)
-            {
-                case ElectricConductanceUnit.Microsiemens: return (baseUnitValue) / 1e-6d;
-                case ElectricConductanceUnit.Millisiemens: return (baseUnitValue) / 1e-3d;
-                case ElectricConductanceUnit.Siemens: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            if(!ConversionFunctions.TryGetConversionFunction<ElectricConductance>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (double)converted.Value;
         }
 
         #endregion
