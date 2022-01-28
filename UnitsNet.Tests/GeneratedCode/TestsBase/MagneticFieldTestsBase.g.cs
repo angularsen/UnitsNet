@@ -235,9 +235,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = MagneticField.FromTeslas(1).ToBaseUnit();
+            var quantityInBaseUnit = MagneticField.FromTeslas(1).ToUnit(MagneticField.BaseUnit);
             Assert.Equal(MagneticField.BaseUnit, quantityInBaseUnit.Unit);
         }
 

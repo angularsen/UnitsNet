@@ -199,9 +199,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = ElectricCurrentDensity.FromAmperesPerSquareMeter(1).ToBaseUnit();
+            var quantityInBaseUnit = ElectricCurrentDensity.FromAmperesPerSquareMeter(1).ToUnit(ElectricCurrentDensity.BaseUnit);
             Assert.Equal(ElectricCurrentDensity.BaseUnit, quantityInBaseUnit.Unit);
         }
 

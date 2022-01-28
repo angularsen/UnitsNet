@@ -175,9 +175,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = LuminousFlux.FromLumens(1).ToBaseUnit();
+            var quantityInBaseUnit = LuminousFlux.FromLumens(1).ToUnit(LuminousFlux.BaseUnit);
             Assert.Equal(LuminousFlux.BaseUnit, quantityInBaseUnit.Unit);
         }
 

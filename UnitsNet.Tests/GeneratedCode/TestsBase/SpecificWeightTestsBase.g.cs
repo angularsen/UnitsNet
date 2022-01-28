@@ -367,9 +367,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = SpecificWeight.FromNewtonsPerCubicMeter(1).ToBaseUnit();
+            var quantityInBaseUnit = SpecificWeight.FromNewtonsPerCubicMeter(1).ToUnit(SpecificWeight.BaseUnit);
             Assert.Equal(SpecificWeight.BaseUnit, quantityInBaseUnit.Unit);
         }
 

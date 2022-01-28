@@ -691,28 +691,12 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<CoefficientOfThermalExpansionUnit> IQuantity<CoefficientOfThermalExpansionUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal CoefficientOfThermalExpansion ToBaseUnit()
-        {
-            if(Unit == BaseUnit)
-                return this;
-
-            if(!ConversionFunctions.TryGetConversionFunction<CoefficientOfThermalExpansion>(Unit, BaseUnit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
-
-            return (CoefficientOfThermalExpansion)conversionFunction(this);
-        }
-
         private double GetValueAs(CoefficientOfThermalExpansionUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var inBaseUnits = ToBaseUnit();
+            var inBaseUnits = ToUnit(BaseUnit);
 
             if(!ConversionFunctions.TryGetConversionFunction<CoefficientOfThermalExpansion>(inBaseUnits.Unit, unit, out var conversionFunction))
                 throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");

@@ -450,9 +450,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = Information.FromBits(1).ToBaseUnit();
+            var quantityInBaseUnit = Information.FromBits(1).ToUnit(Information.BaseUnit);
             Assert.Equal(Information.BaseUnit, quantityInBaseUnit.Unit);
         }
 

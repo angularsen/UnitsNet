@@ -830,28 +830,12 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<ReciprocalAreaUnit> IQuantity<ReciprocalAreaUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal ReciprocalArea ToBaseUnit()
-        {
-            if(Unit == BaseUnit)
-                return this;
-
-            if(!ConversionFunctions.TryGetConversionFunction<ReciprocalArea>(Unit, BaseUnit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
-
-            return (ReciprocalArea)conversionFunction(this);
-        }
-
         private double GetValueAs(ReciprocalAreaUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var inBaseUnits = ToBaseUnit();
+            var inBaseUnits = ToUnit(BaseUnit);
 
             if(!ConversionFunctions.TryGetConversionFunction<ReciprocalArea>(inBaseUnits.Unit, unit, out var conversionFunction))
                 throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");

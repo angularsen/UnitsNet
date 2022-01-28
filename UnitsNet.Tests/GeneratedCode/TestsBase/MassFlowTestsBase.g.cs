@@ -559,9 +559,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = MassFlow.FromGramsPerSecond(1).ToBaseUnit();
+            var quantityInBaseUnit = MassFlow.FromGramsPerSecond(1).ToUnit(MassFlow.BaseUnit);
             Assert.Equal(MassFlow.BaseUnit, quantityInBaseUnit.Unit);
         }
 

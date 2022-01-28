@@ -199,9 +199,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = MolarEntropy.FromJoulesPerMoleKelvin(1).ToBaseUnit();
+            var quantityInBaseUnit = MolarEntropy.FromJoulesPerMoleKelvin(1).ToUnit(MolarEntropy.BaseUnit);
             Assert.Equal(MolarEntropy.BaseUnit, quantityInBaseUnit.Unit);
         }
 

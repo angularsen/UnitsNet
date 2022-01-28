@@ -175,9 +175,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = VitaminA.FromInternationalUnits(1).ToBaseUnit();
+            var quantityInBaseUnit = VitaminA.FromInternationalUnits(1).ToUnit(VitaminA.BaseUnit);
             Assert.Equal(VitaminA.BaseUnit, quantityInBaseUnit.Unit);
         }
 

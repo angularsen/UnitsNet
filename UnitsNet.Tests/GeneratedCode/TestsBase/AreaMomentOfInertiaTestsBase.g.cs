@@ -235,9 +235,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = AreaMomentOfInertia.FromMetersToTheFourth(1).ToBaseUnit();
+            var quantityInBaseUnit = AreaMomentOfInertia.FromMetersToTheFourth(1).ToUnit(AreaMomentOfInertia.BaseUnit);
             Assert.Equal(AreaMomentOfInertia.BaseUnit, quantityInBaseUnit.Unit);
         }
 

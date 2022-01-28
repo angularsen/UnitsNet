@@ -895,28 +895,12 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<AmountOfSubstanceUnit> IQuantity<AmountOfSubstanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal AmountOfSubstance ToBaseUnit()
-        {
-            if(Unit == BaseUnit)
-                return this;
-
-            if(!ConversionFunctions.TryGetConversionFunction<AmountOfSubstance>(Unit, BaseUnit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
-
-            return (AmountOfSubstance)conversionFunction(this);
-        }
-
         private double GetValueAs(AmountOfSubstanceUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var inBaseUnits = ToBaseUnit();
+            var inBaseUnits = ToUnit(BaseUnit);
 
             if(!ConversionFunctions.TryGetConversionFunction<AmountOfSubstance>(inBaseUnits.Unit, unit, out var conversionFunction))
                 throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");

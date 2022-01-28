@@ -691,9 +691,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = PowerDensity.FromWattsPerCubicMeter(1).ToBaseUnit();
+            var quantityInBaseUnit = PowerDensity.FromWattsPerCubicMeter(1).ToUnit(PowerDensity.BaseUnit);
             Assert.Equal(PowerDensity.BaseUnit, quantityInBaseUnit.Unit);
         }
 

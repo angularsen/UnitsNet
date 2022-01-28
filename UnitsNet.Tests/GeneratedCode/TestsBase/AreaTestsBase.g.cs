@@ -331,9 +331,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = Area.FromSquareMeters(1).ToBaseUnit();
+            var quantityInBaseUnit = Area.FromSquareMeters(1).ToUnit(Area.BaseUnit);
             Assert.Equal(Area.BaseUnit, quantityInBaseUnit.Unit);
         }
 

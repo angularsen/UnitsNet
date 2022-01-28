@@ -1201,28 +1201,12 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<RotationalStiffnessUnit> IQuantity<RotationalStiffnessUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal RotationalStiffness ToBaseUnit()
-        {
-            if(Unit == BaseUnit)
-                return this;
-
-            if(!ConversionFunctions.TryGetConversionFunction<RotationalStiffness>(Unit, BaseUnit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
-
-            return (RotationalStiffness)conversionFunction(this);
-        }
-
         private double GetValueAs(RotationalStiffnessUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var inBaseUnits = ToBaseUnit();
+            var inBaseUnits = ToUnit(BaseUnit);
 
             if(!ConversionFunctions.TryGetConversionFunction<RotationalStiffness>(inBaseUnits.Unit, unit, out var conversionFunction))
                 throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");

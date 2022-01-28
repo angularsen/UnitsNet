@@ -283,9 +283,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = Temperature.FromKelvins(1).ToBaseUnit();
+            var quantityInBaseUnit = Temperature.FromKelvins(1).ToUnit(Temperature.BaseUnit);
             Assert.Equal(Temperature.BaseUnit, quantityInBaseUnit.Unit);
         }
 

@@ -211,9 +211,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1).ToBaseUnit();
+            var quantityInBaseUnit = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1).ToUnit(SpecificFuelConsumption.BaseUnit);
             Assert.Equal(SpecificFuelConsumption.BaseUnit, quantityInBaseUnit.Unit);
         }
 

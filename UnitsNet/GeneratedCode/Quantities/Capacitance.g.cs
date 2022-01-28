@@ -762,28 +762,12 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<CapacitanceUnit> IQuantity<CapacitanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal Capacitance ToBaseUnit()
-        {
-            if(Unit == BaseUnit)
-                return this;
-
-            if(!ConversionFunctions.TryGetConversionFunction<Capacitance>(Unit, BaseUnit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
-
-            return (Capacitance)conversionFunction(this);
-        }
-
         private double GetValueAs(CapacitanceUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var inBaseUnits = ToBaseUnit();
+            var inBaseUnits = ToUnit(BaseUnit);
 
             if(!ConversionFunctions.TryGetConversionFunction<Capacitance>(inBaseUnits.Unit, unit, out var conversionFunction))
                 throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");

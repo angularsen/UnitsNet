@@ -264,9 +264,9 @@ namespace UnitsNet.Tests
         }}
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {{
-            var quantityInBaseUnit = {_quantity.Name}.From{_baseUnit.PluralName}(1).ToBaseUnit();
+            var quantityInBaseUnit = {_quantity.Name}.From{_baseUnit.PluralName}(1).ToUnit({_quantity.Name}.BaseUnit);
             Assert.Equal({_quantity.Name}.BaseUnit, quantityInBaseUnit.Unit);");
             Writer.WL($@"
         }}

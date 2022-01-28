@@ -559,9 +559,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = Length.FromMeters(1).ToBaseUnit();
+            var quantityInBaseUnit = Length.FromMeters(1).ToUnit(Length.BaseUnit);
             Assert.Equal(Length.BaseUnit, quantityInBaseUnit.Unit);
         }
 

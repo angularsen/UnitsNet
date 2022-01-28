@@ -187,9 +187,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = RatioChangeRate.FromDecimalFractionsPerSecond(1).ToBaseUnit();
+            var quantityInBaseUnit = RatioChangeRate.FromDecimalFractionsPerSecond(1).ToUnit(RatioChangeRate.BaseUnit);
             Assert.Equal(RatioChangeRate.BaseUnit, quantityInBaseUnit.Unit);
         }
 

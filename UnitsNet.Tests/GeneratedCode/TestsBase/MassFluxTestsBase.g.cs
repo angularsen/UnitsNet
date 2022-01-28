@@ -307,9 +307,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = MassFlux.FromKilogramsPerSecondPerSquareMeter(1).ToBaseUnit();
+            var quantityInBaseUnit = MassFlux.FromKilogramsPerSecondPerSquareMeter(1).ToUnit(MassFlux.BaseUnit);
             Assert.Equal(MassFlux.BaseUnit, quantityInBaseUnit.Unit);
         }
 

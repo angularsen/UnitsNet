@@ -907,9 +907,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = VolumeFlow.FromCubicMetersPerSecond(1).ToBaseUnit();
+            var quantityInBaseUnit = VolumeFlow.FromCubicMetersPerSecond(1).ToUnit(VolumeFlow.BaseUnit);
             Assert.Equal(VolumeFlow.BaseUnit, quantityInBaseUnit.Unit);
         }
 

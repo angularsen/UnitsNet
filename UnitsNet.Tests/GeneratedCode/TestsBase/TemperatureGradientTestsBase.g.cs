@@ -211,9 +211,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = TemperatureGradient.FromKelvinsPerMeter(1).ToBaseUnit();
+            var quantityInBaseUnit = TemperatureGradient.FromKelvinsPerMeter(1).ToUnit(TemperatureGradient.BaseUnit);
             Assert.Equal(TemperatureGradient.BaseUnit, quantityInBaseUnit.Unit);
         }
 

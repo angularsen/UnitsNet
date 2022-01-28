@@ -499,9 +499,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = MassMomentOfInertia.FromKilogramSquareMeters(1).ToBaseUnit();
+            var quantityInBaseUnit = MassMomentOfInertia.FromKilogramSquareMeters(1).ToUnit(MassMomentOfInertia.BaseUnit);
             Assert.Equal(MassMomentOfInertia.BaseUnit, quantityInBaseUnit.Unit);
         }
 

@@ -331,9 +331,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = LinearDensity.FromKilogramsPerMeter(1).ToBaseUnit();
+            var quantityInBaseUnit = LinearDensity.FromKilogramsPerMeter(1).ToUnit(LinearDensity.BaseUnit);
             Assert.Equal(LinearDensity.BaseUnit, quantityInBaseUnit.Unit);
         }
 

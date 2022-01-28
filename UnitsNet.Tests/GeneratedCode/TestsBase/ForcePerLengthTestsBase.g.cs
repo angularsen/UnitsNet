@@ -619,9 +619,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = ForcePerLength.FromNewtonsPerMeter(1).ToBaseUnit();
+            var quantityInBaseUnit = ForcePerLength.FromNewtonsPerMeter(1).ToUnit(ForcePerLength.BaseUnit);
             Assert.Equal(ForcePerLength.BaseUnit, quantityInBaseUnit.Unit);
         }
 

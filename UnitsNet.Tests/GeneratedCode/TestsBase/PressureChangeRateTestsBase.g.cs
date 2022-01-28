@@ -331,9 +331,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = PressureChangeRate.FromPascalsPerSecond(1).ToBaseUnit();
+            var quantityInBaseUnit = PressureChangeRate.FromPascalsPerSecond(1).ToUnit(PressureChangeRate.BaseUnit);
             Assert.Equal(PressureChangeRate.BaseUnit, quantityInBaseUnit.Unit);
         }
 

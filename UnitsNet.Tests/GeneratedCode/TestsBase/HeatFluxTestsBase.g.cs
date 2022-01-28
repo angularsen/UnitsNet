@@ -379,9 +379,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = HeatFlux.FromWattsPerSquareMeter(1).ToBaseUnit();
+            var quantityInBaseUnit = HeatFlux.FromWattsPerSquareMeter(1).ToUnit(HeatFlux.BaseUnit);
             Assert.Equal(HeatFlux.BaseUnit, quantityInBaseUnit.Unit);
         }
 

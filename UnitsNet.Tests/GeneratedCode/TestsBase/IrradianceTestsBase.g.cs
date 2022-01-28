@@ -331,9 +331,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = Irradiance.FromWattsPerSquareMeter(1).ToBaseUnit();
+            var quantityInBaseUnit = Irradiance.FromWattsPerSquareMeter(1).ToUnit(Irradiance.BaseUnit);
             Assert.Equal(Irradiance.BaseUnit, quantityInBaseUnit.Unit);
         }
 

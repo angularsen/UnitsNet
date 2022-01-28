@@ -595,9 +595,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = Energy.FromJoules(1).ToBaseUnit();
+            var quantityInBaseUnit = Energy.FromJoules(1).ToUnit(Energy.BaseUnit);
             Assert.Equal(Energy.BaseUnit, quantityInBaseUnit.Unit);
         }
 

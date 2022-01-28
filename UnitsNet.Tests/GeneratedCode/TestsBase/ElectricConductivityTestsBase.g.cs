@@ -199,9 +199,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = ElectricConductivity.FromSiemensPerMeter(1).ToBaseUnit();
+            var quantityInBaseUnit = ElectricConductivity.FromSiemensPerMeter(1).ToUnit(ElectricConductivity.BaseUnit);
             Assert.Equal(ElectricConductivity.BaseUnit, quantityInBaseUnit.Unit);
         }
 

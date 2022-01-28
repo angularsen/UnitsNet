@@ -547,9 +547,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = Speed.FromMetersPerSecond(1).ToBaseUnit();
+            var quantityInBaseUnit = Speed.FromMetersPerSecond(1).ToUnit(Speed.BaseUnit);
             Assert.Equal(Speed.BaseUnit, quantityInBaseUnit.Unit);
         }
 

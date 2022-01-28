@@ -235,9 +235,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = WarpingMomentOfInertia.FromMetersToTheSixth(1).ToBaseUnit();
+            var quantityInBaseUnit = WarpingMomentOfInertia.FromMetersToTheSixth(1).ToUnit(WarpingMomentOfInertia.BaseUnit);
             Assert.Equal(WarpingMomentOfInertia.BaseUnit, quantityInBaseUnit.Unit);
         }
 

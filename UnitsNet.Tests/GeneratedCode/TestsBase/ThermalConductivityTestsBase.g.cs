@@ -187,9 +187,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = ThermalConductivity.FromWattsPerMeterKelvin(1).ToBaseUnit();
+            var quantityInBaseUnit = ThermalConductivity.FromWattsPerMeterKelvin(1).ToUnit(ThermalConductivity.BaseUnit);
             Assert.Equal(ThermalConductivity.BaseUnit, quantityInBaseUnit.Unit);
         }
 

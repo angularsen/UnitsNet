@@ -295,9 +295,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = ReciprocalArea.FromInverseSquareMeters(1).ToBaseUnit();
+            var quantityInBaseUnit = ReciprocalArea.FromInverseSquareMeters(1).ToUnit(ReciprocalArea.BaseUnit);
             Assert.Equal(ReciprocalArea.BaseUnit, quantityInBaseUnit.Unit);
         }
 

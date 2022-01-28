@@ -211,9 +211,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = RotationalAcceleration.FromRadiansPerSecondSquared(1).ToBaseUnit();
+            var quantityInBaseUnit = RotationalAcceleration.FromRadiansPerSecondSquared(1).ToUnit(RotationalAcceleration.BaseUnit);
             Assert.Equal(RotationalAcceleration.BaseUnit, quantityInBaseUnit.Unit);
         }
 

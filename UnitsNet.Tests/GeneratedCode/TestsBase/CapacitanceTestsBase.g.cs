@@ -247,9 +247,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = Capacitance.FromFarads(1).ToBaseUnit();
+            var quantityInBaseUnit = Capacitance.FromFarads(1).ToUnit(Capacitance.BaseUnit);
             Assert.Equal(Capacitance.BaseUnit, quantityInBaseUnit.Unit);
         }
 

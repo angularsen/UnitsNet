@@ -463,9 +463,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = SpecificEnergy.FromJoulesPerKilogram(1).ToBaseUnit();
+            var quantityInBaseUnit = SpecificEnergy.FromJoulesPerKilogram(1).ToUnit(SpecificEnergy.BaseUnit);
             Assert.Equal(SpecificEnergy.BaseUnit, quantityInBaseUnit.Unit);
         }
 

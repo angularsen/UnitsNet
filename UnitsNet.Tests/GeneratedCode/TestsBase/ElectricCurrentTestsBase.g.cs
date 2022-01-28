@@ -259,9 +259,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = ElectricCurrent.FromAmperes(1).ToBaseUnit();
+            var quantityInBaseUnit = ElectricCurrent.FromAmperes(1).ToUnit(ElectricCurrent.BaseUnit);
             Assert.Equal(ElectricCurrent.BaseUnit, quantityInBaseUnit.Unit);
         }
 

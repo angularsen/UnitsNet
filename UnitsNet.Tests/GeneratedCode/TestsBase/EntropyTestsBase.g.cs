@@ -247,9 +247,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = Entropy.FromJoulesPerKelvin(1).ToBaseUnit();
+            var quantityInBaseUnit = Entropy.FromJoulesPerKelvin(1).ToUnit(Entropy.BaseUnit);
             Assert.Equal(Entropy.BaseUnit, quantityInBaseUnit.Unit);
         }
 

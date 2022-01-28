@@ -775,9 +775,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = Density.FromKilogramsPerCubicMeter(1).ToBaseUnit();
+            var quantityInBaseUnit = Density.FromKilogramsPerCubicMeter(1).ToUnit(Density.BaseUnit);
             Assert.Equal(Density.BaseUnit, quantityInBaseUnit.Unit);
         }
 

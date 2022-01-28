@@ -295,9 +295,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = Frequency.FromHertz(1).ToBaseUnit();
+            var quantityInBaseUnit = Frequency.FromHertz(1).ToUnit(Frequency.BaseUnit);
             Assert.Equal(Frequency.BaseUnit, quantityInBaseUnit.Unit);
         }
 

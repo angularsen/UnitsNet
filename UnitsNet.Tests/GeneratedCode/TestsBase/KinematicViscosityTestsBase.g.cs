@@ -271,9 +271,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = KinematicViscosity.FromSquareMetersPerSecond(1).ToBaseUnit();
+            var quantityInBaseUnit = KinematicViscosity.FromSquareMetersPerSecond(1).ToUnit(KinematicViscosity.BaseUnit);
             Assert.Equal(KinematicViscosity.BaseUnit, quantityInBaseUnit.Unit);
         }
 

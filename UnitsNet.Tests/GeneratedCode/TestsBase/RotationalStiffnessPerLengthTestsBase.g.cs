@@ -223,9 +223,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1).ToBaseUnit();
+            var quantityInBaseUnit = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1).ToUnit(RotationalStiffnessPerLength.BaseUnit);
             Assert.Equal(RotationalStiffnessPerLength.BaseUnit, quantityInBaseUnit.Unit);
         }
 

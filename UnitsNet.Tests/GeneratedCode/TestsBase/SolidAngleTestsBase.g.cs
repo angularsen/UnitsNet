@@ -175,9 +175,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = SolidAngle.FromSteradians(1).ToBaseUnit();
+            var quantityInBaseUnit = SolidAngle.FromSteradians(1).ToUnit(SolidAngle.BaseUnit);
             Assert.Equal(SolidAngle.BaseUnit, quantityInBaseUnit.Unit);
         }
 

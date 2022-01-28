@@ -175,9 +175,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = Turbidity.FromNTU(1).ToBaseUnit();
+            var quantityInBaseUnit = Turbidity.FromNTU(1).ToUnit(Turbidity.BaseUnit);
             Assert.Equal(Turbidity.BaseUnit, quantityInBaseUnit.Unit);
         }
 

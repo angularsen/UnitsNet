@@ -175,9 +175,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = LapseRate.FromDegreesCelciusPerKilometer(1).ToBaseUnit();
+            var quantityInBaseUnit = LapseRate.FromDegreesCelciusPerKilometer(1).ToUnit(LapseRate.BaseUnit);
             Assert.Equal(LapseRate.BaseUnit, quantityInBaseUnit.Unit);
         }
 

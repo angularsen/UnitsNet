@@ -199,9 +199,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = CoefficientOfThermalExpansion.FromInverseKelvin(1).ToBaseUnit();
+            var quantityInBaseUnit = CoefficientOfThermalExpansion.FromInverseKelvin(1).ToUnit(CoefficientOfThermalExpansion.BaseUnit);
             Assert.Equal(CoefficientOfThermalExpansion.BaseUnit, quantityInBaseUnit.Unit);
         }
 

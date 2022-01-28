@@ -235,9 +235,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1).ToBaseUnit();
+            var quantityInBaseUnit = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1).ToUnit(ThermalResistance.BaseUnit);
             Assert.Equal(ThermalResistance.BaseUnit, quantityInBaseUnit.Unit);
         }
 

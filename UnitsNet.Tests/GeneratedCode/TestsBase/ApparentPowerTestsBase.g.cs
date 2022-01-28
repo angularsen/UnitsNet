@@ -211,9 +211,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = ApparentPower.FromVoltamperes(1).ToBaseUnit();
+            var quantityInBaseUnit = ApparentPower.FromVoltamperes(1).ToUnit(ApparentPower.BaseUnit);
             Assert.Equal(ApparentPower.BaseUnit, quantityInBaseUnit.Unit);
         }
 

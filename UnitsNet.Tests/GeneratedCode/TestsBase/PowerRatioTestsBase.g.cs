@@ -187,9 +187,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = PowerRatio.FromDecibelWatts(1).ToBaseUnit();
+            var quantityInBaseUnit = PowerRatio.FromDecibelWatts(1).ToUnit(PowerRatio.BaseUnit);
             Assert.Equal(PowerRatio.BaseUnit, quantityInBaseUnit.Unit);
         }
 

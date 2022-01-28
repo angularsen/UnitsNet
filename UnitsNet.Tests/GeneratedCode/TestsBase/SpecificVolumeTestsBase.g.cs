@@ -199,9 +199,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = SpecificVolume.FromCubicMetersPerKilogram(1).ToBaseUnit();
+            var quantityInBaseUnit = SpecificVolume.FromCubicMetersPerKilogram(1).ToUnit(SpecificVolume.BaseUnit);
             Assert.Equal(SpecificVolume.BaseUnit, quantityInBaseUnit.Unit);
         }
 

@@ -199,9 +199,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(1).ToBaseUnit();
+            var quantityInBaseUnit = ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(1).ToUnit(ElectricSurfaceChargeDensity.BaseUnit);
             Assert.Equal(ElectricSurfaceChargeDensity.BaseUnit, quantityInBaseUnit.Unit);
         }
 

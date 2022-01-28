@@ -283,9 +283,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1).ToBaseUnit();
+            var quantityInBaseUnit = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1).ToUnit(DynamicViscosity.BaseUnit);
             Assert.Equal(DynamicViscosity.BaseUnit, quantityInBaseUnit.Unit);
         }
 

@@ -331,9 +331,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = Luminosity.FromWatts(1).ToBaseUnit();
+            var quantityInBaseUnit = Luminosity.FromWatts(1).ToUnit(Luminosity.BaseUnit);
             Assert.Equal(Luminosity.BaseUnit, quantityInBaseUnit.Unit);
         }
 

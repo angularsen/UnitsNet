@@ -211,9 +211,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = ElectricInductance.FromHenries(1).ToBaseUnit();
+            var quantityInBaseUnit = ElectricInductance.FromHenries(1).ToUnit(ElectricInductance.BaseUnit);
             Assert.Equal(ElectricInductance.BaseUnit, quantityInBaseUnit.Unit);
         }
 

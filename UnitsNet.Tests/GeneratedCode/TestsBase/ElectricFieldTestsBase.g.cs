@@ -175,9 +175,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = ElectricField.FromVoltsPerMeter(1).ToBaseUnit();
+            var quantityInBaseUnit = ElectricField.FromVoltsPerMeter(1).ToUnit(ElectricField.BaseUnit);
             Assert.Equal(ElectricField.BaseUnit, quantityInBaseUnit.Unit);
         }
 

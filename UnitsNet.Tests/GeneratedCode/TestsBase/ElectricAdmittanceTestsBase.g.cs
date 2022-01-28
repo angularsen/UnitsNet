@@ -211,9 +211,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = ElectricAdmittance.FromSiemens(1).ToBaseUnit();
+            var quantityInBaseUnit = ElectricAdmittance.FromSiemens(1).ToUnit(ElectricAdmittance.BaseUnit);
             Assert.Equal(ElectricAdmittance.BaseUnit, quantityInBaseUnit.Unit);
         }
 

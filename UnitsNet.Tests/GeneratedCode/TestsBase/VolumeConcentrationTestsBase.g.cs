@@ -403,9 +403,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = VolumeConcentration.FromDecimalFractions(1).ToBaseUnit();
+            var quantityInBaseUnit = VolumeConcentration.FromDecimalFractions(1).ToUnit(VolumeConcentration.BaseUnit);
             Assert.Equal(VolumeConcentration.BaseUnit, quantityInBaseUnit.Unit);
         }
 

@@ -775,9 +775,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = Volume.FromCubicMeters(1).ToBaseUnit();
+            var quantityInBaseUnit = Volume.FromCubicMeters(1).ToUnit(Volume.BaseUnit);
             Assert.Equal(Volume.BaseUnit, quantityInBaseUnit.Unit);
         }
 

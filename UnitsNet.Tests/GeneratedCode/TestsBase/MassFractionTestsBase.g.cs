@@ -451,9 +451,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = MassFraction.FromDecimalFractions(1).ToBaseUnit();
+            var quantityInBaseUnit = MassFraction.FromDecimalFractions(1).ToUnit(MassFraction.BaseUnit);
             Assert.Equal(MassFraction.BaseUnit, quantityInBaseUnit.Unit);
         }
 

@@ -175,9 +175,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
         {
-            var quantityInBaseUnit = Permeability.FromHenriesPerMeter(1).ToBaseUnit();
+            var quantityInBaseUnit = Permeability.FromHenriesPerMeter(1).ToUnit(Permeability.BaseUnit);
             Assert.Equal(Permeability.BaseUnit, quantityInBaseUnit.Unit);
         }
 
