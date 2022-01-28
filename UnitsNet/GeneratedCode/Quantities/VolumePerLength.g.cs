@@ -722,8 +722,16 @@ namespace UnitsNet
         /// <returns>A VolumePerLength with the specified unit.</returns>
         public VolumePerLength ToUnit(VolumePerLengthUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new VolumePerLength(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<VolumePerLength>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (VolumePerLength)converted;
         }
 
         /// <inheritdoc />
@@ -761,15 +769,7 @@ namespace UnitsNet
 
         private double GetValueAs(VolumePerLengthUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<VolumePerLength>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

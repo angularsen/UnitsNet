@@ -705,8 +705,16 @@ namespace UnitsNet
         /// <returns>A WarpingMomentOfInertia with the specified unit.</returns>
         public WarpingMomentOfInertia ToUnit(WarpingMomentOfInertiaUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new WarpingMomentOfInertia(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<WarpingMomentOfInertia>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (WarpingMomentOfInertia)converted;
         }
 
         /// <inheritdoc />
@@ -744,15 +752,7 @@ namespace UnitsNet
 
         private double GetValueAs(WarpingMomentOfInertiaUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<WarpingMomentOfInertia>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

@@ -674,8 +674,16 @@ namespace UnitsNet
         /// <returns>A SpecificFuelConsumption with the specified unit.</returns>
         public SpecificFuelConsumption ToUnit(SpecificFuelConsumptionUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new SpecificFuelConsumption(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<SpecificFuelConsumption>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (SpecificFuelConsumption)converted;
         }
 
         /// <inheritdoc />
@@ -713,15 +721,7 @@ namespace UnitsNet
 
         private double GetValueAs(SpecificFuelConsumptionUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<SpecificFuelConsumption>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

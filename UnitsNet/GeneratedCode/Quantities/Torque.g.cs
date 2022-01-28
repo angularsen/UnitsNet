@@ -1028,8 +1028,16 @@ namespace UnitsNet
         /// <returns>A Torque with the specified unit.</returns>
         public Torque ToUnit(TorqueUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new Torque(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<Torque>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (Torque)converted;
         }
 
         /// <inheritdoc />
@@ -1067,15 +1075,7 @@ namespace UnitsNet
 
         private double GetValueAs(TorqueUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<Torque>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

@@ -790,8 +790,16 @@ namespace UnitsNet
         /// <returns>A Duration with the specified unit.</returns>
         public Duration ToUnit(DurationUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new Duration(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<Duration>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (Duration)converted;
         }
 
         /// <inheritdoc />
@@ -829,15 +837,7 @@ namespace UnitsNet
 
         private double GetValueAs(DurationUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<Duration>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

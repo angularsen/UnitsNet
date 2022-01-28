@@ -645,8 +645,16 @@ namespace UnitsNet
         /// <returns>A PowerRatio with the specified unit.</returns>
         public PowerRatio ToUnit(PowerRatioUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new PowerRatio(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<PowerRatio>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (PowerRatio)converted;
         }
 
         /// <inheritdoc />
@@ -684,15 +692,7 @@ namespace UnitsNet
 
         private double GetValueAs(PowerRatioUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<PowerRatio>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

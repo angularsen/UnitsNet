@@ -674,8 +674,16 @@ namespace UnitsNet
         /// <returns>A FuelEfficiency with the specified unit.</returns>
         public FuelEfficiency ToUnit(FuelEfficiencyUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new FuelEfficiency(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<FuelEfficiency>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (FuelEfficiency)converted;
         }
 
         /// <inheritdoc />
@@ -713,15 +721,7 @@ namespace UnitsNet
 
         private double GetValueAs(FuelEfficiencyUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<FuelEfficiency>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

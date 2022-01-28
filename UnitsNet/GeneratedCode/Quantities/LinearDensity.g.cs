@@ -844,8 +844,16 @@ namespace UnitsNet
         /// <returns>A LinearDensity with the specified unit.</returns>
         public LinearDensity ToUnit(LinearDensityUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new LinearDensity(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<LinearDensity>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (LinearDensity)converted;
         }
 
         /// <inheritdoc />
@@ -883,15 +891,7 @@ namespace UnitsNet
 
         private double GetValueAs(LinearDensityUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<LinearDensity>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

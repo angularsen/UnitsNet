@@ -912,8 +912,16 @@ namespace UnitsNet
         /// <returns>A {_quantity.Name} with the specified unit.</returns>
         public {_quantity.Name} ToUnit({_unitEnumName} unit)
         {{
-            var convertedValue = GetValueAs(unit);
-            return new {_quantity.Name}(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<{_quantity.Name}>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($""Can not convert {{inBaseUnits.Unit}} to {{unit}}."");
+
+            var converted = conversionFunction(inBaseUnits);
+            return ({_quantity.Name})converted;
         }}
 
         /// <inheritdoc />
@@ -951,15 +959,7 @@ namespace UnitsNet
 
         private {_valueType} GetValueAs({_unitEnumName} unit)
         {{
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<{_quantity.Name}>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($""Can not convert {{inBaseUnits.Unit}} to {{unit}}."");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return ({_valueType})converted.Value;
         }}
 

@@ -1014,8 +1014,16 @@ namespace UnitsNet
         /// <returns>A MassFraction with the specified unit.</returns>
         public MassFraction ToUnit(MassFractionUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new MassFraction(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<MassFraction>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (MassFraction)converted;
         }
 
         /// <inheritdoc />
@@ -1053,15 +1061,7 @@ namespace UnitsNet
 
         private double GetValueAs(MassFractionUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<MassFraction>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

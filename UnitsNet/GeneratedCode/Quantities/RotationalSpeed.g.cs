@@ -824,8 +824,16 @@ namespace UnitsNet
         /// <returns>A RotationalSpeed with the specified unit.</returns>
         public RotationalSpeed ToUnit(RotationalSpeedUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new RotationalSpeed(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<RotationalSpeed>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (RotationalSpeed)converted;
         }
 
         /// <inheritdoc />
@@ -863,15 +871,7 @@ namespace UnitsNet
 
         private double GetValueAs(RotationalSpeedUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<RotationalSpeed>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

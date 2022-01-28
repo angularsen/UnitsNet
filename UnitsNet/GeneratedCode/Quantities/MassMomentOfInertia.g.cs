@@ -1079,8 +1079,16 @@ namespace UnitsNet
         /// <returns>A MassMomentOfInertia with the specified unit.</returns>
         public MassMomentOfInertia ToUnit(MassMomentOfInertiaUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new MassMomentOfInertia(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<MassMomentOfInertia>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (MassMomentOfInertia)converted;
         }
 
         /// <inheritdoc />
@@ -1118,15 +1126,7 @@ namespace UnitsNet
 
         private double GetValueAs(MassMomentOfInertiaUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<MassMomentOfInertia>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

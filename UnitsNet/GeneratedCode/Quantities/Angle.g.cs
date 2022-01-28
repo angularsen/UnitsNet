@@ -875,8 +875,16 @@ namespace UnitsNet
         /// <returns>A Angle with the specified unit.</returns>
         public Angle ToUnit(AngleUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new Angle(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<Angle>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (Angle)converted;
         }
 
         /// <inheritdoc />
@@ -914,15 +922,7 @@ namespace UnitsNet
 
         private double GetValueAs(AngleUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<Angle>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

@@ -790,8 +790,16 @@ namespace UnitsNet
         /// <returns>A Frequency with the specified unit.</returns>
         public Frequency ToUnit(FrequencyUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new Frequency(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<Frequency>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (Frequency)converted;
         }
 
         /// <inheritdoc />
@@ -829,15 +837,7 @@ namespace UnitsNet
 
         private double GetValueAs(FrequencyUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<Frequency>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

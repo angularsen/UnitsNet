@@ -858,8 +858,16 @@ namespace UnitsNet
         /// <returns>A Force with the specified unit.</returns>
         public Force ToUnit(ForceUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new Force(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<Force>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (Force)converted;
         }
 
         /// <inheritdoc />
@@ -897,15 +905,7 @@ namespace UnitsNet
 
         private double GetValueAs(ForceUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<Force>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

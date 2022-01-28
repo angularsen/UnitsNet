@@ -688,8 +688,16 @@ namespace UnitsNet
         /// <returns>A ElectricPotentialDc with the specified unit.</returns>
         public ElectricPotentialDc ToUnit(ElectricPotentialDcUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new ElectricPotentialDc(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<ElectricPotentialDc>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (ElectricPotentialDc)converted;
         }
 
         /// <inheritdoc />
@@ -727,15 +735,7 @@ namespace UnitsNet
 
         private double GetValueAs(ElectricPotentialDcUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<ElectricPotentialDc>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

@@ -1147,8 +1147,16 @@ namespace UnitsNet
         /// <returns>A Speed with the specified unit.</returns>
         public Speed ToUnit(SpeedUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new Speed(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<Speed>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (Speed)converted;
         }
 
         /// <inheritdoc />
@@ -1186,15 +1194,7 @@ namespace UnitsNet
 
         private double GetValueAs(SpeedUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<Speed>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

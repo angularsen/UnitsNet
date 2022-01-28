@@ -620,8 +620,16 @@ namespace UnitsNet
         /// <returns>A VitaminA with the specified unit.</returns>
         public VitaminA ToUnit(VitaminAUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new VitaminA(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<VitaminA>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (VitaminA)converted;
         }
 
         /// <inheritdoc />
@@ -659,15 +667,7 @@ namespace UnitsNet
 
         private double GetValueAs(VitaminAUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<VitaminA>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

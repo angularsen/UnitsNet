@@ -654,8 +654,16 @@ namespace UnitsNet
         /// <returns>A HeatTransferCoefficient with the specified unit.</returns>
         public HeatTransferCoefficient ToUnit(HeatTransferCoefficientUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new HeatTransferCoefficient(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<HeatTransferCoefficient>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (HeatTransferCoefficient)converted;
         }
 
         /// <inheritdoc />
@@ -693,15 +701,7 @@ namespace UnitsNet
 
         private double GetValueAs(HeatTransferCoefficientUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<HeatTransferCoefficient>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

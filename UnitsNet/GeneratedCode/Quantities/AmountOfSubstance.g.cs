@@ -858,8 +858,16 @@ namespace UnitsNet
         /// <returns>A AmountOfSubstance with the specified unit.</returns>
         public AmountOfSubstance ToUnit(AmountOfSubstanceUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new AmountOfSubstance(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<AmountOfSubstance>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (AmountOfSubstance)converted;
         }
 
         /// <inheritdoc />
@@ -897,15 +905,7 @@ namespace UnitsNet
 
         private double GetValueAs(AmountOfSubstanceUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<AmountOfSubstance>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

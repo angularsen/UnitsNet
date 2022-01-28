@@ -705,8 +705,16 @@ namespace UnitsNet
         /// <returns>A Ratio with the specified unit.</returns>
         public Ratio ToUnit(RatioUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new Ratio(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<Ratio>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (Ratio)converted;
         }
 
         /// <inheritdoc />
@@ -744,15 +752,7 @@ namespace UnitsNet
 
         private double GetValueAs(RatioUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<Ratio>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

@@ -946,8 +946,16 @@ namespace UnitsNet
         /// <returns>A VolumeConcentration with the specified unit.</returns>
         public VolumeConcentration ToUnit(VolumeConcentrationUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new VolumeConcentration(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<VolumeConcentration>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (VolumeConcentration)converted;
         }
 
         /// <inheritdoc />
@@ -985,15 +993,7 @@ namespace UnitsNet
 
         private double GetValueAs(VolumeConcentrationUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<VolumeConcentration>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

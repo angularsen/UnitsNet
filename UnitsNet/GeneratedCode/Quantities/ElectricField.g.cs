@@ -623,8 +623,16 @@ namespace UnitsNet
         /// <returns>A ElectricField with the specified unit.</returns>
         public ElectricField ToUnit(ElectricFieldUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new ElectricField(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<ElectricField>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (ElectricField)converted;
         }
 
         /// <inheritdoc />
@@ -662,15 +670,7 @@ namespace UnitsNet
 
         private double GetValueAs(ElectricFieldUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<ElectricField>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

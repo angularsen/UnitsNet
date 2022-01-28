@@ -620,8 +620,16 @@ namespace UnitsNet
         /// <returns>A Scalar with the specified unit.</returns>
         public Scalar ToUnit(ScalarUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new Scalar(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<Scalar>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (Scalar)converted;
         }
 
         /// <inheritdoc />
@@ -659,15 +667,7 @@ namespace UnitsNet
 
         private double GetValueAs(ScalarUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<Scalar>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

@@ -637,8 +637,16 @@ namespace UnitsNet
         /// <returns>A VolumeFlowPerArea with the specified unit.</returns>
         public VolumeFlowPerArea ToUnit(VolumeFlowPerAreaUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new VolumeFlowPerArea(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<VolumeFlowPerArea>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (VolumeFlowPerArea)converted;
         }
 
         /// <inheritdoc />
@@ -676,15 +684,7 @@ namespace UnitsNet
 
         private double GetValueAs(VolumeFlowPerAreaUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<VolumeFlowPerArea>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

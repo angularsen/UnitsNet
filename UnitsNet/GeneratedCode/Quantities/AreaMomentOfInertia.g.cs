@@ -705,8 +705,16 @@ namespace UnitsNet
         /// <returns>A AreaMomentOfInertia with the specified unit.</returns>
         public AreaMomentOfInertia ToUnit(AreaMomentOfInertiaUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new AreaMomentOfInertia(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<AreaMomentOfInertia>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (AreaMomentOfInertia)converted;
         }
 
         /// <inheritdoc />
@@ -744,15 +752,7 @@ namespace UnitsNet
 
         private double GetValueAs(AreaMomentOfInertiaUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<AreaMomentOfInertia>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

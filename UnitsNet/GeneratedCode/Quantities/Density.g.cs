@@ -1473,8 +1473,16 @@ namespace UnitsNet
         /// <returns>A Density with the specified unit.</returns>
         public Density ToUnit(DensityUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new Density(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<Density>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (Density)converted;
         }
 
         /// <inheritdoc />
@@ -1512,15 +1520,7 @@ namespace UnitsNet
 
         private double GetValueAs(DensityUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<Density>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

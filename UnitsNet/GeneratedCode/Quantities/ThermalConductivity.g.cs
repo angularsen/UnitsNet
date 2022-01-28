@@ -640,8 +640,16 @@ namespace UnitsNet
         /// <returns>A ThermalConductivity with the specified unit.</returns>
         public ThermalConductivity ToUnit(ThermalConductivityUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new ThermalConductivity(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<ThermalConductivity>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (ThermalConductivity)converted;
         }
 
         /// <inheritdoc />
@@ -679,15 +687,7 @@ namespace UnitsNet
 
         private double GetValueAs(ThermalConductivityUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<ThermalConductivity>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

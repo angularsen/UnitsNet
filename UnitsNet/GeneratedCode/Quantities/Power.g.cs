@@ -1033,8 +1033,16 @@ namespace UnitsNet
         /// <returns>A Power with the specified unit.</returns>
         public Power ToUnit(PowerUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new Power(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<Power>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (Power)converted;
         }
 
         /// <inheritdoc />
@@ -1072,15 +1080,7 @@ namespace UnitsNet
 
         private decimal GetValueAs(PowerUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<Power>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (decimal)converted.Value;
         }
 

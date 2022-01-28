@@ -793,8 +793,16 @@ namespace UnitsNet
         /// <returns>A ReciprocalArea with the specified unit.</returns>
         public ReciprocalArea ToUnit(ReciprocalAreaUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new ReciprocalArea(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<ReciprocalArea>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (ReciprocalArea)converted;
         }
 
         /// <inheritdoc />
@@ -832,15 +840,7 @@ namespace UnitsNet
 
         private double GetValueAs(ReciprocalAreaUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<ReciprocalArea>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

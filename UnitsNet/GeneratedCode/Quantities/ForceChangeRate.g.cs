@@ -858,8 +858,16 @@ namespace UnitsNet
         /// <returns>A ForceChangeRate with the specified unit.</returns>
         public ForceChangeRate ToUnit(ForceChangeRateUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new ForceChangeRate(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<ForceChangeRate>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (ForceChangeRate)converted;
         }
 
         /// <inheritdoc />
@@ -897,15 +905,7 @@ namespace UnitsNet
 
         private double GetValueAs(ForceChangeRateUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<ForceChangeRate>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

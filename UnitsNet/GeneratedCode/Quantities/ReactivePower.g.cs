@@ -671,8 +671,16 @@ namespace UnitsNet
         /// <returns>A ReactivePower with the specified unit.</returns>
         public ReactivePower ToUnit(ReactivePowerUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new ReactivePower(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<ReactivePower>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (ReactivePower)converted;
         }
 
         /// <inheritdoc />
@@ -710,15 +718,7 @@ namespace UnitsNet
 
         private double GetValueAs(ReactivePowerUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<ReactivePower>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

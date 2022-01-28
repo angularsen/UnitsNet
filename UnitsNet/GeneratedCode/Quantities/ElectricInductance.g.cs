@@ -674,8 +674,16 @@ namespace UnitsNet
         /// <returns>A ElectricInductance with the specified unit.</returns>
         public ElectricInductance ToUnit(ElectricInductanceUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new ElectricInductance(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<ElectricInductance>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (ElectricInductance)converted;
         }
 
         /// <inheritdoc />
@@ -713,15 +721,7 @@ namespace UnitsNet
 
         private double GetValueAs(ElectricInductanceUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<ElectricInductance>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

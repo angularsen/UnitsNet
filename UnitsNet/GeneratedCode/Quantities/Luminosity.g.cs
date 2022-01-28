@@ -844,8 +844,16 @@ namespace UnitsNet
         /// <returns>A Luminosity with the specified unit.</returns>
         public Luminosity ToUnit(LuminosityUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new Luminosity(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<Luminosity>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (Luminosity)converted;
         }
 
         /// <inheritdoc />
@@ -883,15 +891,7 @@ namespace UnitsNet
 
         private double GetValueAs(LuminosityUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<Luminosity>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

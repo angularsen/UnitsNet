@@ -1215,8 +1215,16 @@ namespace UnitsNet
         /// <returns>A Energy with the specified unit.</returns>
         public Energy ToUnit(EnergyUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new Energy(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<Energy>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (Energy)converted;
         }
 
         /// <inheritdoc />
@@ -1254,15 +1262,7 @@ namespace UnitsNet
 
         private double GetValueAs(EnergyUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<Energy>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

@@ -637,8 +637,16 @@ namespace UnitsNet
         /// <returns>A RatioChangeRate with the specified unit.</returns>
         public RatioChangeRate ToUnit(RatioChangeRateUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new RatioChangeRate(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<RatioChangeRate>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (RatioChangeRate)converted;
         }
 
         /// <inheritdoc />
@@ -676,15 +684,7 @@ namespace UnitsNet
 
         private double GetValueAs(RatioChangeRateUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<RatioChangeRate>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

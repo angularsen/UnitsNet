@@ -623,8 +623,16 @@ namespace UnitsNet
         /// <returns>A Magnetization with the specified unit.</returns>
         public Magnetization ToUnit(MagnetizationUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new Magnetization(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<Magnetization>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (Magnetization)converted;
         }
 
         /// <inheritdoc />
@@ -662,15 +670,7 @@ namespace UnitsNet
 
         private double GetValueAs(MagnetizationUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<Magnetization>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

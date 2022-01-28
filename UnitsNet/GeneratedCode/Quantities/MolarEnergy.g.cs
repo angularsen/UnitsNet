@@ -654,8 +654,16 @@ namespace UnitsNet
         /// <returns>A MolarEnergy with the specified unit.</returns>
         public MolarEnergy ToUnit(MolarEnergyUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new MolarEnergy(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<MolarEnergy>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (MolarEnergy)converted;
         }
 
         /// <inheritdoc />
@@ -693,15 +701,7 @@ namespace UnitsNet
 
         private double GetValueAs(MolarEnergyUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<MolarEnergy>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

@@ -1470,8 +1470,16 @@ namespace UnitsNet
         /// <returns>A Volume with the specified unit.</returns>
         public Volume ToUnit(VolumeUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new Volume(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<Volume>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (Volume)converted;
         }
 
         /// <inheritdoc />
@@ -1509,15 +1517,7 @@ namespace UnitsNet
 
         private double GetValueAs(VolumeUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<Volume>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 

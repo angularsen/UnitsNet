@@ -674,8 +674,16 @@ namespace UnitsNet
         /// <returns>A Illuminance with the specified unit.</returns>
         public Illuminance ToUnit(IlluminanceUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new Illuminance(convertedValue, unit);
+            if(Unit == unit)
+                return this;
+
+            var inBaseUnits = ToUnit(BaseUnit);
+
+            if(!ConversionFunctions.TryGetConversionFunction<Illuminance>(inBaseUnits.Unit, unit, out var conversionFunction))
+                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
+
+            var converted = conversionFunction(inBaseUnits);
+            return (Illuminance)converted;
         }
 
         /// <inheritdoc />
@@ -713,15 +721,7 @@ namespace UnitsNet
 
         private double GetValueAs(IlluminanceUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!ConversionFunctions.TryGetConversionFunction<Illuminance>(inBaseUnits.Unit, unit, out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
+            var converted = ToUnit(unit);
             return (double)converted.Value;
         }
 
