@@ -74,11 +74,14 @@ namespace CodeGen
                     UnitsNetWrcGenerator.Generate(rootDir, quantities);
                 }
 
-                if(updateNanoFrameworkDependencies)
+                if (updateNanoFrameworkDependencies)
                 {
-                    NanoFrameworkGenerator.UpdateNanoFrameworkDependencies(
+                    if (!NanoFrameworkGenerator.UpdateNanoFrameworkDependencies(
                         rootDir,
-                        quantities);
+                        quantities))
+                    {
+                        return 1;
+                    }
                 }
 
                 if (!skipNanoFramework)
