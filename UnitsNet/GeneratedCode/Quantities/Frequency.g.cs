@@ -834,6 +834,9 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         internal Frequency ToBaseUnit()
         {
+            if(Unit == BaseUnit)
+                return this;
+
             if(!ConversionFunctions.TryGetConversionFunction<Frequency>(Unit, BaseUnit, out var conversionFunction))
                 throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
 

@@ -888,6 +888,9 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         internal Luminosity ToBaseUnit()
         {
+            if(Unit == BaseUnit)
+                return this;
+
             if(!ConversionFunctions.TryGetConversionFunction<Luminosity>(Unit, BaseUnit, out var conversionFunction))
                 throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
 

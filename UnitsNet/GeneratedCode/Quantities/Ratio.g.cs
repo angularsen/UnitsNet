@@ -749,6 +749,9 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         internal Ratio ToBaseUnit()
         {
+            if(Unit == BaseUnit)
+                return this;
+
             if(!ConversionFunctions.TryGetConversionFunction<Ratio>(Unit, BaseUnit, out var conversionFunction))
                 throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
 

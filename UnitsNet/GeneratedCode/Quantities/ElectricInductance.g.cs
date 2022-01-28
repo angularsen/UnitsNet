@@ -718,6 +718,9 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         internal ElectricInductance ToBaseUnit()
         {
+            if(Unit == BaseUnit)
+                return this;
+
             if(!ConversionFunctions.TryGetConversionFunction<ElectricInductance>(Unit, BaseUnit, out var conversionFunction))
                 throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
 

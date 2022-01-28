@@ -800,6 +800,9 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         internal StandardVolumeFlow ToBaseUnit()
         {
+            if(Unit == BaseUnit)
+                return this;
+
             if(!ConversionFunctions.TryGetConversionFunction<StandardVolumeFlow>(Unit, BaseUnit, out var conversionFunction))
                 throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
 

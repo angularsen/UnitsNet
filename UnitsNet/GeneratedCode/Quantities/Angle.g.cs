@@ -919,6 +919,9 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         internal Angle ToBaseUnit()
         {
+            if(Unit == BaseUnit)
+                return this;
+
             if(!ConversionFunctions.TryGetConversionFunction<Angle>(Unit, BaseUnit, out var conversionFunction))
                 throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
 

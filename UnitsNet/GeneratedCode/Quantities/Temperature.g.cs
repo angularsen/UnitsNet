@@ -771,6 +771,9 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         internal Temperature ToBaseUnit()
         {
+            if(Unit == BaseUnit)
+                return this;
+
             if(!ConversionFunctions.TryGetConversionFunction<Temperature>(Unit, BaseUnit, out var conversionFunction))
                 throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
 

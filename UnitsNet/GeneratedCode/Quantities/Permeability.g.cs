@@ -667,6 +667,9 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         internal Permeability ToBaseUnit()
         {
+            if(Unit == BaseUnit)
+                return this;
+
             if(!ConversionFunctions.TryGetConversionFunction<Permeability>(Unit, BaseUnit, out var conversionFunction))
                 throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
 

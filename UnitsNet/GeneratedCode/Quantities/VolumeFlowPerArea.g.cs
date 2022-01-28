@@ -681,6 +681,9 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         internal VolumeFlowPerArea ToBaseUnit()
         {
+            if(Unit == BaseUnit)
+                return this;
+
             if(!ConversionFunctions.TryGetConversionFunction<VolumeFlowPerArea>(Unit, BaseUnit, out var conversionFunction))
                 throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
 

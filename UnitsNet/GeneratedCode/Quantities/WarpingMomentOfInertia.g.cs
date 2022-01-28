@@ -749,6 +749,9 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         internal WarpingMomentOfInertia ToBaseUnit()
         {
+            if(Unit == BaseUnit)
+                return this;
+
             if(!ConversionFunctions.TryGetConversionFunction<WarpingMomentOfInertia>(Unit, BaseUnit, out var conversionFunction))
                 throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
 

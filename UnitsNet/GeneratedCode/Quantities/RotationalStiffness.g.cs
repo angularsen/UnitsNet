@@ -1208,6 +1208,9 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         internal RotationalStiffness ToBaseUnit()
         {
+            if(Unit == BaseUnit)
+                return this;
+
             if(!ConversionFunctions.TryGetConversionFunction<RotationalStiffness>(Unit, BaseUnit, out var conversionFunction))
                 throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
 

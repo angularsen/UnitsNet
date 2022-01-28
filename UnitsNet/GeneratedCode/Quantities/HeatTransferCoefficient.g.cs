@@ -698,6 +698,9 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         internal HeatTransferCoefficient ToBaseUnit()
         {
+            if(Unit == BaseUnit)
+                return this;
+
             if(!ConversionFunctions.TryGetConversionFunction<HeatTransferCoefficient>(Unit, BaseUnit, out var conversionFunction))
                 throw new NotImplementedException($"Can not convert {Unit} to {BaseUnit}.");
 
