@@ -42,13 +42,33 @@ namespace UnitsNet
         /// </summary>
         public static UnitConverter Default { get; }
 
-        private readonly Dictionary<ConversionFunctionLookupKey, ConversionFunction> _conversionFunctions = new Dictionary<ConversionFunctionLookupKey, ConversionFunction>();
-
         static UnitConverter()
         {
             Default = new UnitConverter();
 
             RegisterDefaultConversions(Default);
+        }
+
+        /// <summary>
+        /// Creates a new <see cref="UnitConverter"/> instance.
+        /// </summary>
+        public UnitConverter()
+        {
+            ConversionFunctions = new Dictionary<ConversionFunctionLookupKey, ConversionFunction>();
+        }
+
+        /// <summary>
+        /// Creates a new <see cref="UnitConverter"/> instance with the <see cref="ConversionFunction"/> copied from <paramref name="other"/>.
+        /// </summary>
+        /// <param name="other">The <see cref="UnitConverter"/> to copy from.</param>
+        public UnitConverter(UnitConverter other)
+        {
+            ConversionFunctions = new Dictionary<ConversionFunctionLookupKey, ConversionFunction>(other.ConversionFunctions);
+        }
+
+        private Dictionary<ConversionFunctionLookupKey, ConversionFunction> ConversionFunctions
+        {
+            get;
         }
 
         /// <summary>
@@ -124,7 +144,7 @@ namespace UnitsNet
         /// <param name="conversionFunction">The quantity conversion function.</param>
         internal void SetConversionFunction(ConversionFunctionLookupKey lookupKey, ConversionFunction conversionFunction)
         {
-            _conversionFunctions[lookupKey] = conversionFunction;
+            ConversionFunctions[lookupKey] = conversionFunction;
         }
 
         /// <summary>
@@ -138,7 +158,7 @@ namespace UnitsNet
         {
             IQuantity TypelessConversionFunction(IQuantity quantity) => conversionFunction((TQuantity) quantity);
 
-            _conversionFunctions[conversionLookup] = TypelessConversionFunction;
+            ConversionFunctions[conversionLookup] = TypelessConversionFunction;
         }
 
         /// <summary>
@@ -194,7 +214,7 @@ namespace UnitsNet
             if (lookupKey.Item1 == lookupKey.Item3 && Equals(lookupKey.Item2, lookupKey.Item4))
                 return EchoFunction;
 
-            return _conversionFunctions[lookupKey];
+            return ConversionFunctions[lookupKey];
         }
 
         /// <summary>
@@ -249,7 +269,7 @@ namespace UnitsNet
         /// <returns>true if set; otherwise, false.</returns>
         public bool TryGetConversionFunction(ConversionFunctionLookupKey lookupKey, out ConversionFunction conversionFunction)
         {
-            return _conversionFunctions.TryGetValue(lookupKey, out conversionFunction);
+            return ConversionFunctions.TryGetValue(lookupKey, out conversionFunction);
         }
 
         /// <summary>
