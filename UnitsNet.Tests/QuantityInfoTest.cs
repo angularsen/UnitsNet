@@ -138,7 +138,7 @@ namespace UnitsNet.Tests
         public void Constructor_GivenNullAsBaseUnit_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(() => new QuantityInfo(nameof(Length), typeof(LengthUnit),
-                Length.Info.UnitInfos, (Enum)null, Length.Zero, Length.BaseDimensions, QuantityType.Length));
+                Length.Info.UnitInfos, null, Length.Zero, Length.BaseDimensions, QuantityType.Length));
         }
 
         [Fact]
@@ -193,7 +193,7 @@ namespace UnitsNet.Tests
         public void Constructor2_GivenNullAsBaseUnit_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(() => new QuantityInfo(Length.Info.Name, typeof(LengthUnit),
-                Length.Info.UnitInfos, (Enum)null, Length.Zero, Length.BaseDimensions));
+                Length.Info.UnitInfos, null, Length.Zero, Length.BaseDimensions));
         }
 
         [Fact]
