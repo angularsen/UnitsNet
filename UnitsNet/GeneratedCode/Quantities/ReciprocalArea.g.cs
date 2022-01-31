@@ -1094,7 +1094,6 @@ namespace UnitsNet
                 InverseSquareMillimeter = new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareMillimeter, "InverseSquareMillimeters", BaseUnits.Undefined);
                 InverseSquareYard = new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareYard, "InverseSquareYards", BaseUnits.Undefined);
                 InverseUsSurveySquareFoot = new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseUsSurveySquareFoot, "InverseUsSurveySquareFeet", BaseUnits.Undefined);
-                //BaseUnitInfo = InverseSquareMeter;
             }
 
             /// <summary>

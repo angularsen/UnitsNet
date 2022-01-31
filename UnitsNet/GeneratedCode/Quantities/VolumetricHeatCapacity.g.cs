@@ -1054,7 +1054,6 @@ namespace UnitsNet
                 KilojoulePerCubicMeterKelvin = new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, "KilojoulesPerCubicMeterKelvin", BaseUnits.Undefined);
                 MegajoulePerCubicMeterDegreeCelsius = new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, "MegajoulesPerCubicMeterDegreeCelsius", BaseUnits.Undefined);
                 MegajoulePerCubicMeterKelvin = new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, "MegajoulesPerCubicMeterKelvin", BaseUnits.Undefined);
-                //BaseUnitInfo = JoulePerCubicMeterKelvin;
             }
 
             /// <summary>

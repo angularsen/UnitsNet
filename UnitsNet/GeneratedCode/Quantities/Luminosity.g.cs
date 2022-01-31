@@ -1154,7 +1154,6 @@ namespace UnitsNet
                 SolarLuminosity = new UnitInfo<LuminosityUnit>(LuminosityUnit.SolarLuminosity, "SolarLuminosities", BaseUnits.Undefined);
                 Terawatt = new UnitInfo<LuminosityUnit>(LuminosityUnit.Terawatt, "Terawatts", BaseUnits.Undefined);
                 Watt = new UnitInfo<LuminosityUnit>(LuminosityUnit.Watt, "Watts", BaseUnits.Undefined);
-                //BaseUnitInfo = Watt;
             }
 
             /// <summary>

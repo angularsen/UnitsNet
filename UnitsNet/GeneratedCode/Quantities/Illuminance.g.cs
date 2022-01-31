@@ -954,7 +954,6 @@ namespace UnitsNet
                 Lux = new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Lux, "Lux", BaseUnits.Undefined);
                 Megalux = new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Megalux, "Megalux", BaseUnits.Undefined);
                 Millilux = new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Millilux, "Millilux", BaseUnits.Undefined);
-                //BaseUnitInfo = Lux;
             }
 
             /// <summary>

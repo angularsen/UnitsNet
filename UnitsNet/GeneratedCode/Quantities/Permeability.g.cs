@@ -894,7 +894,6 @@ namespace UnitsNet
                     Permeability.BaseUnit, Permeability.Zero, Permeability.BaseDimensions, QuantityType.Permeability)
             {
                 HenryPerMeter = new UnitInfo<PermeabilityUnit>(PermeabilityUnit.HenryPerMeter, "HenriesPerMeter", BaseUnits.Undefined);
-                //BaseUnitInfo = HenryPerMeter;
             }
 
             /// <summary>

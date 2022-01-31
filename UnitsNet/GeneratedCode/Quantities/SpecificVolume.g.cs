@@ -931,7 +931,6 @@ namespace UnitsNet
                 CubicFootPerPound = new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.CubicFootPerPound, "CubicFeetPerPound", BaseUnits.Undefined);
                 CubicMeterPerKilogram = new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.CubicMeterPerKilogram, "CubicMetersPerKilogram", BaseUnits.Undefined);
                 MillicubicMeterPerKilogram = new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.MillicubicMeterPerKilogram, "MillicubicMetersPerKilogram", BaseUnits.Undefined);
-                //BaseUnitInfo = CubicMeterPerKilogram;
             }
 
             /// <summary>

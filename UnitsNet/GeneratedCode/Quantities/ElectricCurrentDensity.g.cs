@@ -934,7 +934,6 @@ namespace UnitsNet
                 AmperePerSquareFoot = new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareFoot, "AmperesPerSquareFoot", new BaseUnits(length: LengthUnit.Foot, current: ElectricCurrentUnit.Ampere));
                 AmperePerSquareInch = new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareInch, "AmperesPerSquareInch", new BaseUnits(length: LengthUnit.Inch, current: ElectricCurrentUnit.Ampere));
                 AmperePerSquareMeter = new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareMeter, "AmperesPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere));
-                //BaseUnitInfo = AmperePerSquareMeter;
             }
 
             /// <summary>

@@ -991,7 +991,6 @@ namespace UnitsNet
                 PartPerThousand = new UnitInfo<RatioUnit>(RatioUnit.PartPerThousand, "PartsPerThousand", BaseUnits.Undefined);
                 PartPerTrillion = new UnitInfo<RatioUnit>(RatioUnit.PartPerTrillion, "PartsPerTrillion", BaseUnits.Undefined);
                 Percent = new UnitInfo<RatioUnit>(RatioUnit.Percent, "Percent", BaseUnits.Undefined);
-                //BaseUnitInfo = DecimalFraction;
             }
 
             /// <summary>

@@ -1376,7 +1376,6 @@ namespace UnitsNet
                 Picowatt = new UnitInfo<PowerUnit>(PowerUnit.Picowatt, "Picowatts", BaseUnits.Undefined);
                 Terawatt = new UnitInfo<PowerUnit>(PowerUnit.Terawatt, "Terawatts", BaseUnits.Undefined);
                 Watt = new UnitInfo<PowerUnit>(PowerUnit.Watt, "Watts", BaseUnits.Undefined);
-                //BaseUnitInfo = Watt;
             }
 
             /// <summary>

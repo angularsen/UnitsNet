@@ -911,7 +911,6 @@ namespace UnitsNet
             {
                 DecimalFractionPerSecond = new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.DecimalFractionPerSecond, "DecimalFractionsPerSecond", BaseUnits.Undefined);
                 PercentPerSecond = new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.PercentPerSecond, "PercentsPerSecond", BaseUnits.Undefined);
-                //BaseUnitInfo = DecimalFractionPerSecond;
             }
 
             /// <summary>

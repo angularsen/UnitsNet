@@ -1374,7 +1374,6 @@ namespace UnitsNet
                 WattDayPerShortTon = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattDayPerShortTon, "WattDaysPerShortTon", BaseUnits.Undefined);
                 WattDayPerTonne = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattDayPerTonne, "WattDaysPerTonne", BaseUnits.Undefined);
                 WattHourPerKilogram = new UnitInfo<SpecificEnergyUnit>(SpecificEnergyUnit.WattHourPerKilogram, "WattHoursPerKilogram", BaseUnits.Undefined);
-                //BaseUnitInfo = JoulePerKilogram;
             }
 
             /// <summary>

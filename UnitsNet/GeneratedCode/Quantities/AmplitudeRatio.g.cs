@@ -959,7 +959,6 @@ namespace UnitsNet
                 DecibelMillivolt = new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelMillivolt, "DecibelMillivolts", BaseUnits.Undefined);
                 DecibelUnloaded = new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelUnloaded, "DecibelsUnloaded", BaseUnits.Undefined);
                 DecibelVolt = new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelVolt, "DecibelVolts", BaseUnits.Undefined);
-                //BaseUnitInfo = DecibelVolt;
             }
 
             /// <summary>

@@ -894,7 +894,6 @@ namespace UnitsNet
                     ElectricField.BaseUnit, ElectricField.Zero, ElectricField.BaseDimensions, QuantityType.ElectricField)
             {
                 VoltPerMeter = new UnitInfo<ElectricFieldUnit>(ElectricFieldUnit.VoltPerMeter, "VoltsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
-                //BaseUnitInfo = VoltPerMeter;
             }
 
             /// <summary>

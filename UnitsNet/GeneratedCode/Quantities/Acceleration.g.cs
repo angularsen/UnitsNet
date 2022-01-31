@@ -1151,7 +1151,6 @@ namespace UnitsNet
                 MillistandardGravity = new UnitInfo<AccelerationUnit>(AccelerationUnit.MillistandardGravity, "MillistandardGravity", BaseUnits.Undefined);
                 NanometerPerSecondSquared = new UnitInfo<AccelerationUnit>(AccelerationUnit.NanometerPerSecondSquared, "NanometersPerSecondSquared", BaseUnits.Undefined);
                 StandardGravity = new UnitInfo<AccelerationUnit>(AccelerationUnit.StandardGravity, "StandardGravity", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
-                //BaseUnitInfo = MeterPerSecondSquared;
             }
 
             /// <summary>

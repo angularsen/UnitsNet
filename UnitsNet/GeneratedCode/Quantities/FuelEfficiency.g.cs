@@ -954,7 +954,6 @@ namespace UnitsNet
                 LiterPer100Kilometers = new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.LiterPer100Kilometers, "LitersPer100Kilometers", BaseUnits.Undefined);
                 MilePerUkGallon = new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.MilePerUkGallon, "MilesPerUkGallon", BaseUnits.Undefined);
                 MilePerUsGallon = new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.MilePerUsGallon, "MilesPerUsGallon", BaseUnits.Undefined);
-                //BaseUnitInfo = LiterPer100Kilometers;
             }
 
             /// <summary>

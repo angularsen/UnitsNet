@@ -892,7 +892,6 @@ namespace UnitsNet
                     LapseRate.BaseUnit, LapseRate.Zero, LapseRate.BaseDimensions, QuantityType.LapseRate)
             {
                 DegreeCelsiusPerKilometer = new UnitInfo<LapseRateUnit>(LapseRateUnit.DegreeCelsiusPerKilometer, "DegreesCelciusPerKilometer", BaseUnits.Undefined);
-                //BaseUnitInfo = DegreeCelsiusPerKilometer;
             }
 
             /// <summary>

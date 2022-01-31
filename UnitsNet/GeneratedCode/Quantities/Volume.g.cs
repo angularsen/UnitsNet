@@ -1891,7 +1891,6 @@ namespace UnitsNet
                 UsQuart = new UnitInfo<VolumeUnit>(VolumeUnit.UsQuart, "UsQuarts", BaseUnits.Undefined);
                 UsTablespoon = new UnitInfo<VolumeUnit>(VolumeUnit.UsTablespoon, "UsTablespoons", BaseUnits.Undefined);
                 UsTeaspoon = new UnitInfo<VolumeUnit>(VolumeUnit.UsTeaspoon, "UsTeaspoons", BaseUnits.Undefined);
-                //BaseUnitInfo = CubicMeter;
             }
 
             /// <summary>

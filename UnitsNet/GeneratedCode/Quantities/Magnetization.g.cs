@@ -894,7 +894,6 @@ namespace UnitsNet
                     Magnetization.BaseUnit, Magnetization.Zero, Magnetization.BaseDimensions, QuantityType.Magnetization)
             {
                 AmperePerMeter = new UnitInfo<MagnetizationUnit>(MagnetizationUnit.AmperePerMeter, "AmperesPerMeter", new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere));
-                //BaseUnitInfo = AmperePerMeter;
             }
 
             /// <summary>

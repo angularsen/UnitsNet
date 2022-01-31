@@ -1071,7 +1071,6 @@ namespace UnitsNet
                 MicrodegreeCelsiusPerSecond = new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, "MicrodegreesCelsiusPerSecond", BaseUnits.Undefined);
                 MillidegreeCelsiusPerSecond = new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, "MillidegreesCelsiusPerSecond", BaseUnits.Undefined);
                 NanodegreeCelsiusPerSecond = new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, "NanodegreesCelsiusPerSecond", BaseUnits.Undefined);
-                //BaseUnitInfo = DegreeCelsiusPerSecond;
             }
 
             /// <summary>

@@ -911,7 +911,6 @@ namespace UnitsNet
             {
                 CubicFootPerMinutePerSquareFoot = new UnitInfo<VolumeFlowPerAreaUnit>(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, "CubicFeetPerMinutePerSquareFoot", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Minute));
                 CubicMeterPerSecondPerSquareMeter = new UnitInfo<VolumeFlowPerAreaUnit>(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, "CubicMetersPerSecondPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
-                //BaseUnitInfo = CubicMeterPerSecondPerSquareMeter;
             }
 
             /// <summary>

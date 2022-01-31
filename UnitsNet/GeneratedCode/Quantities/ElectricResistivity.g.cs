@@ -1154,7 +1154,6 @@ namespace UnitsNet
                 OhmMeter = new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.OhmMeter, "OhmMeters", BaseUnits.Undefined);
                 PicoohmCentimeter = new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.PicoohmCentimeter, "PicoohmsCentimeter", BaseUnits.Undefined);
                 PicoohmMeter = new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.PicoohmMeter, "PicoohmMeters", BaseUnits.Undefined);
-                //BaseUnitInfo = OhmMeter;
             }
 
             /// <summary>

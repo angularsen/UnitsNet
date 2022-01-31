@@ -2111,7 +2111,6 @@ namespace UnitsNet
                 UsGallonPerHour = new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerHour, "UsGallonsPerHour", BaseUnits.Undefined);
                 UsGallonPerMinute = new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerMinute, "UsGallonsPerMinute", BaseUnits.Undefined);
                 UsGallonPerSecond = new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerSecond, "UsGallonsPerSecond", BaseUnits.Undefined);
-                //BaseUnitInfo = CubicMeterPerSecond;
             }
 
             /// <summary>

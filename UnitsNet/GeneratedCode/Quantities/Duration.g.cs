@@ -1091,7 +1091,6 @@ namespace UnitsNet
                 Second = new UnitInfo<DurationUnit>(DurationUnit.Second, "Seconds", new BaseUnits(time: DurationUnit.Second));
                 Week = new UnitInfo<DurationUnit>(DurationUnit.Week, "Weeks", new BaseUnits(time: DurationUnit.Week));
                 Year365 = new UnitInfo<DurationUnit>(DurationUnit.Year365, "Years365", new BaseUnits(time: DurationUnit.Year365));
-                //BaseUnitInfo = Second;
             }
 
             /// <summary>

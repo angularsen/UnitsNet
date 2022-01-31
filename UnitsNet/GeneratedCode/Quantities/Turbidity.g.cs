@@ -894,7 +894,6 @@ namespace UnitsNet
                     Turbidity.BaseUnit, Turbidity.Zero, Turbidity.BaseDimensions, QuantityType.Turbidity)
             {
                 NTU = new UnitInfo<TurbidityUnit>(TurbidityUnit.NTU, "NTU", BaseUnits.Undefined);
-                //BaseUnitInfo = NTU;
             }
 
             /// <summary>

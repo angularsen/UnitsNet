@@ -891,7 +891,6 @@ namespace UnitsNet
                     Scalar.BaseUnit, Scalar.Zero, Scalar.BaseDimensions, QuantityType.Scalar)
             {
                 Amount = new UnitInfo<ScalarUnit>(ScalarUnit.Amount, "Amount", BaseUnits.Undefined);
-                //BaseUnitInfo = Amount;
             }
 
             /// <summary>

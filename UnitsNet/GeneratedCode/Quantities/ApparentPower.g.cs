@@ -951,7 +951,6 @@ namespace UnitsNet
                 Kilovoltampere = new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Kilovoltampere, "Kilovoltamperes", BaseUnits.Undefined);
                 Megavoltampere = new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Megavoltampere, "Megavoltamperes", BaseUnits.Undefined);
                 Voltampere = new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Voltampere, "Voltamperes", BaseUnits.Undefined);
-                //BaseUnitInfo = Voltampere;
             }
 
             /// <summary>

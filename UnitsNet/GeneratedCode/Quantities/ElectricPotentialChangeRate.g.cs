@@ -1271,7 +1271,6 @@ namespace UnitsNet
                 VoltPerMicrosecond = new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.VoltPerMicrosecond, "VoltsPerMicroseconds", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Microsecond, current: ElectricCurrentUnit.Ampere));
                 VoltPerMinute = new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.VoltPerMinute, "VoltsPerMinutes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Minute, current: ElectricCurrentUnit.Ampere));
                 VoltPerSecond = new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.VoltPerSecond, "VoltsPerSeconds", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
-                //BaseUnitInfo = VoltPerSecond;
             }
 
             /// <summary>

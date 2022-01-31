@@ -894,7 +894,6 @@ namespace UnitsNet
                     MagneticFlux.BaseUnit, MagneticFlux.Zero, MagneticFlux.BaseDimensions, QuantityType.MagneticFlux)
             {
                 Weber = new UnitInfo<MagneticFluxUnit>(MagneticFluxUnit.Weber, "Webers", BaseUnits.Undefined);
-                //BaseUnitInfo = Weber;
             }
 
             /// <summary>

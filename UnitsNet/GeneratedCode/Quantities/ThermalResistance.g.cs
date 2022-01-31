@@ -991,7 +991,6 @@ namespace UnitsNet
                 SquareMeterDegreeCelsiusPerWatt = new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, "SquareMeterDegreesCelsiusPerWatt", BaseUnits.Undefined);
                 SquareMeterKelvinPerKilowatt = new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, "SquareMeterKelvinsPerKilowatt", BaseUnits.Undefined);
                 SquareMeterKelvinPerWatt = new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareMeterKelvinPerWatt, "SquareMeterKelvinsPerWatt", BaseUnits.Undefined);
-                //BaseUnitInfo = SquareMeterKelvinPerKilowatt;
             }
 
             /// <summary>

@@ -1151,7 +1151,6 @@ namespace UnitsNet
                 SquareNauticalMile = new UnitInfo<AreaUnit>(AreaUnit.SquareNauticalMile, "SquareNauticalMiles", BaseUnits.Undefined);
                 SquareYard = new UnitInfo<AreaUnit>(AreaUnit.SquareYard, "SquareYards", new BaseUnits(length: LengthUnit.Yard));
                 UsSurveySquareFoot = new UnitInfo<AreaUnit>(AreaUnit.UsSurveySquareFoot, "UsSurveySquareFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot));
-                //BaseUnitInfo = SquareMeter;
             }
 
             /// <summary>

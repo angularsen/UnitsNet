@@ -954,7 +954,6 @@ namespace UnitsNet
                 KilogramPerKilogramForceHour = new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, "KilogramsPerKilogramForceHour", BaseUnits.Undefined);
                 KilogramPerKiloNewtonSecond = new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, "KilogramsPerKiloNewtonSecond", BaseUnits.Undefined);
                 PoundMassPerPoundForceHour = new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, "PoundsMassPerPoundForceHour", BaseUnits.Undefined);
-                //BaseUnitInfo = GramPerKiloNewtonSecond;
             }
 
             /// <summary>

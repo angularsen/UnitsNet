@@ -934,7 +934,6 @@ namespace UnitsNet
                 CoulombPerSquareCentimeter = new UnitInfo<ElectricSurfaceChargeDensityUnit>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, "CoulombsPerSquareCentimeter", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
                 CoulombPerSquareInch = new UnitInfo<ElectricSurfaceChargeDensityUnit>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, "CoulombsPerSquareInch", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
                 CoulombPerSquareMeter = new UnitInfo<ElectricSurfaceChargeDensityUnit>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, "CoulombsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
-                //BaseUnitInfo = CoulombPerSquareMeter;
             }
 
             /// <summary>

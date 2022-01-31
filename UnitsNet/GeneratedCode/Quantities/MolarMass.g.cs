@@ -1111,7 +1111,6 @@ namespace UnitsNet
                 MilligramPerMole = new UnitInfo<MolarMassUnit>(MolarMassUnit.MilligramPerMole, "MilligramsPerMole", BaseUnits.Undefined);
                 NanogramPerMole = new UnitInfo<MolarMassUnit>(MolarMassUnit.NanogramPerMole, "NanogramsPerMole", BaseUnits.Undefined);
                 PoundPerMole = new UnitInfo<MolarMassUnit>(MolarMassUnit.PoundPerMole, "PoundsPerMole", BaseUnits.Undefined);
-                //BaseUnitInfo = KilogramPerMole;
             }
 
             /// <summary>

@@ -971,7 +971,6 @@ namespace UnitsNet
                 Microvolt = new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Microvolt, "Microvolts", BaseUnits.Undefined);
                 Millivolt = new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Millivolt, "Millivolts", BaseUnits.Undefined);
                 Volt = new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Volt, "Volts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
-                //BaseUnitInfo = Volt;
             }
 
             /// <summary>

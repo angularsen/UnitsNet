@@ -934,7 +934,6 @@ namespace UnitsNet
                 Microsiemens = new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Microsiemens, "Microsiemens", BaseUnits.Undefined);
                 Millisiemens = new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Millisiemens, "Millisiemens", BaseUnits.Undefined);
                 Siemens = new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Siemens, "Siemens", BaseUnits.Undefined);
-                //BaseUnitInfo = Siemens;
             }
 
             /// <summary>

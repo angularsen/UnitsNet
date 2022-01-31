@@ -1011,7 +1011,6 @@ namespace UnitsNet
                 LiterPerMeter = new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.LiterPerMeter, "LitersPerMeter", new BaseUnits(length: LengthUnit.Decimeter));
                 LiterPerMillimeter = new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.LiterPerMillimeter, "LitersPerMillimeter", BaseUnits.Undefined);
                 OilBarrelPerFoot = new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.OilBarrelPerFoot, "OilBarrelsPerFoot", BaseUnits.Undefined);
-                //BaseUnitInfo = CubicMeterPerMeter;
             }
 
             /// <summary>

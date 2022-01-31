@@ -919,7 +919,6 @@ namespace UnitsNet
             {
                 DecibelMilliwatt = new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelMilliwatt, "DecibelMilliwatts", BaseUnits.Undefined);
                 DecibelWatt = new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelWatt, "DecibelWatts", BaseUnits.Undefined);
-                //BaseUnitInfo = DecibelWatt;
             }
 
             /// <summary>

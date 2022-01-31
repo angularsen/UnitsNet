@@ -951,7 +951,6 @@ namespace UnitsNet
                 KilovoltampereReactive = new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.KilovoltampereReactive, "KilovoltamperesReactive", BaseUnits.Undefined);
                 MegavoltampereReactive = new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.MegavoltampereReactive, "MegavoltamperesReactive", BaseUnits.Undefined);
                 VoltampereReactive = new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.VoltampereReactive, "VoltamperesReactive", BaseUnits.Undefined);
-                //BaseUnitInfo = VoltampereReactive;
             }
 
             /// <summary>

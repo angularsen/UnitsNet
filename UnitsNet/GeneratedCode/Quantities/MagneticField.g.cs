@@ -994,7 +994,6 @@ namespace UnitsNet
                 Millitesla = new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Millitesla, "Milliteslas", BaseUnits.Undefined);
                 Nanotesla = new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Nanotesla, "Nanoteslas", BaseUnits.Undefined);
                 Tesla = new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Tesla, "Teslas", BaseUnits.Undefined);
-                //BaseUnitInfo = Tesla;
             }
 
             /// <summary>

@@ -1631,7 +1631,6 @@ namespace UnitsNet
                 TonneForcePerCentimeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.TonneForcePerCentimeter, "TonnesForcePerCentimeter", BaseUnits.Undefined);
                 TonneForcePerMeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.TonneForcePerMeter, "TonnesForcePerMeter", BaseUnits.Undefined);
                 TonneForcePerMillimeter = new UnitInfo<ForcePerLengthUnit>(ForcePerLengthUnit.TonneForcePerMillimeter, "TonnesForcePerMillimeter", BaseUnits.Undefined);
-                //BaseUnitInfo = NewtonPerMeter;
             }
 
             /// <summary>

@@ -891,7 +891,6 @@ namespace UnitsNet
                     VitaminA.BaseUnit, VitaminA.Zero, VitaminA.BaseDimensions, QuantityType.VitaminA)
             {
                 InternationalUnit = new UnitInfo<VitaminAUnit>(VitaminAUnit.InternationalUnit, "InternationalUnits", BaseUnits.Undefined);
-                //BaseUnitInfo = InternationalUnit;
             }
 
             /// <summary>

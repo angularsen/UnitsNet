@@ -894,7 +894,6 @@ namespace UnitsNet
                     SolidAngle.BaseUnit, SolidAngle.Zero, SolidAngle.BaseDimensions, QuantityType.SolidAngle)
             {
                 Steradian = new UnitInfo<SolidAngleUnit>(SolidAngleUnit.Steradian, "Steradians", BaseUnits.Undefined);
-                //BaseUnitInfo = Steradian;
             }
 
             /// <summary>

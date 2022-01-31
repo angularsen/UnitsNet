@@ -1531,7 +1531,6 @@ namespace UnitsNet
                 Twip = new UnitInfo<LengthUnit>(LengthUnit.Twip, "Twips", new BaseUnits(length: LengthUnit.Twip));
                 UsSurveyFoot = new UnitInfo<LengthUnit>(LengthUnit.UsSurveyFoot, "UsSurveyFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot));
                 Yard = new UnitInfo<LengthUnit>(LengthUnit.Yard, "Yards", new BaseUnits(length: LengthUnit.Yard));
-                //BaseUnitInfo = Meter;
             }
 
             /// <summary>

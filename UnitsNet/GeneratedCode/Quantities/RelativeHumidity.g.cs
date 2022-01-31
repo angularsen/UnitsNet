@@ -891,7 +891,6 @@ namespace UnitsNet
                     RelativeHumidity.BaseUnit, RelativeHumidity.Zero, RelativeHumidity.BaseDimensions, QuantityType.RelativeHumidity)
             {
                 Percent = new UnitInfo<RelativeHumidityUnit>(RelativeHumidityUnit.Percent, "Percent", BaseUnits.Undefined);
-                //BaseUnitInfo = Percent;
             }
 
             /// <summary>

@@ -894,7 +894,6 @@ namespace UnitsNet
                     Permittivity.BaseUnit, Permittivity.Zero, Permittivity.BaseDimensions, QuantityType.Permittivity)
             {
                 FaradPerMeter = new UnitInfo<PermittivityUnit>(PermittivityUnit.FaradPerMeter, "FaradsPerMeter", BaseUnits.Undefined);
-                //BaseUnitInfo = FaradPerMeter;
             }
 
             /// <summary>

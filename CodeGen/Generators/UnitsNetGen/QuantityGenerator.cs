@@ -1239,11 +1239,9 @@ namespace UnitsNet
             }
         }
 
-            Writer.WL( $@"
-
-                //BaseUnitInfo = {_quantity.BaseUnit};
+        Writer.WL($@"
             }}
-" );
+");
 
     foreach( var unit in _quantity.Units )
     {
@@ -1255,7 +1253,7 @@ namespace UnitsNet
 " );
     }
 
-            Writer.WL( $@"
+    Writer.WL( $@"
         }}" );
         }
 

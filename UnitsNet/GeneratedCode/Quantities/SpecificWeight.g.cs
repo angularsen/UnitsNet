@@ -1214,7 +1214,6 @@ namespace UnitsNet
                 TonneForcePerCubicCentimeter = new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.TonneForcePerCubicCentimeter, "TonnesForcePerCubicCentimeter", BaseUnits.Undefined);
                 TonneForcePerCubicMeter = new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.TonneForcePerCubicMeter, "TonnesForcePerCubicMeter", BaseUnits.Undefined);
                 TonneForcePerCubicMillimeter = new UnitInfo<SpecificWeightUnit>(SpecificWeightUnit.TonneForcePerCubicMillimeter, "TonnesForcePerCubicMillimeter", BaseUnits.Undefined);
-                //BaseUnitInfo = NewtonPerCubicMeter;
             }
 
             /// <summary>

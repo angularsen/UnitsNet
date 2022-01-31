@@ -1274,7 +1274,6 @@ namespace UnitsNet
                 Percent = new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.Percent, "Percent", BaseUnits.Undefined);
                 PicolitersPerLiter = new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PicolitersPerLiter, "PicolitersPerLiter", BaseUnits.Undefined);
                 PicolitersPerMililiter = new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PicolitersPerMililiter, "PicolitersPerMililiter", BaseUnits.Undefined);
-                //BaseUnitInfo = DecimalFraction;
             }
 
             /// <summary>

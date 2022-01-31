@@ -1511,7 +1511,6 @@ namespace UnitsNet
                 YardPerHour = new UnitInfo<SpeedUnit>(SpeedUnit.YardPerHour, "YardsPerHour", new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Hour));
                 YardPerMinute = new UnitInfo<SpeedUnit>(SpeedUnit.YardPerMinute, "YardsPerMinute", new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Minute));
                 YardPerSecond = new UnitInfo<SpeedUnit>(SpeedUnit.YardPerSecond, "YardsPerSecond", new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Second));
-                //BaseUnitInfo = MeterPerSecond;
             }
 
             /// <summary>

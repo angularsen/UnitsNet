@@ -1751,7 +1751,6 @@ namespace UnitsNet
                 WattPerCubicInch = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerCubicInch, "WattsPerCubicInch", BaseUnits.Undefined);
                 WattPerCubicMeter = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerCubicMeter, "WattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
                 WattPerLiter = new UnitInfo<PowerDensityUnit>(PowerDensityUnit.WattPerLiter, "WattsPerLiter", BaseUnits.Undefined);
-                //BaseUnitInfo = WattPerCubicMeter;
             }
 
             /// <summary>

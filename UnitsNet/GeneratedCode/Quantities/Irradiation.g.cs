@@ -1014,7 +1014,6 @@ namespace UnitsNet
                 KilowattHourPerSquareMeter = new UnitInfo<IrradiationUnit>(IrradiationUnit.KilowattHourPerSquareMeter, "KilowattHoursPerSquareMeter", BaseUnits.Undefined);
                 MillijoulePerSquareCentimeter = new UnitInfo<IrradiationUnit>(IrradiationUnit.MillijoulePerSquareCentimeter, "MillijoulesPerSquareCentimeter", BaseUnits.Undefined);
                 WattHourPerSquareMeter = new UnitInfo<IrradiationUnit>(IrradiationUnit.WattHourPerSquareMeter, "WattHoursPerSquareMeter", BaseUnits.Undefined);
-                //BaseUnitInfo = JoulePerSquareMeter;
             }
 
             /// <summary>

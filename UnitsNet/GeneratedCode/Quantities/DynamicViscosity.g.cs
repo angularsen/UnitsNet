@@ -1074,7 +1074,6 @@ namespace UnitsNet
                 PoundForceSecondPerSquareInch = new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PoundForceSecondPerSquareInch, "PoundsForceSecondPerSquareInch", BaseUnits.Undefined);
                 PoundPerFootSecond = new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PoundPerFootSecond, "PoundsPerFootSecond", BaseUnits.Undefined);
                 Reyn = new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Reyn, "Reyns", BaseUnits.Undefined);
-                //BaseUnitInfo = NewtonSecondPerMeterSquared;
             }
 
             /// <summary>

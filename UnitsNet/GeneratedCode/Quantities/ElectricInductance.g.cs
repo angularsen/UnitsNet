@@ -954,7 +954,6 @@ namespace UnitsNet
                 Microhenry = new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Microhenry, "Microhenries", BaseUnits.Undefined);
                 Millihenry = new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Millihenry, "Millihenries", BaseUnits.Undefined);
                 Nanohenry = new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Nanohenry, "Nanohenries", BaseUnits.Undefined);
-                //BaseUnitInfo = Henry;
             }
 
             /// <summary>

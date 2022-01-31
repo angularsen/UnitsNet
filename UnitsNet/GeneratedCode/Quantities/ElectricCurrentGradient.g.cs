@@ -951,7 +951,6 @@ namespace UnitsNet
                 AmperePerMillisecond = new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerMillisecond, "AmperesPerMillisecond", new BaseUnits(time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere));
                 AmperePerNanosecond = new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerNanosecond, "AmperesPerNanosecond", new BaseUnits(time: DurationUnit.Nanosecond, current: ElectricCurrentUnit.Ampere));
                 AmperePerSecond = new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerSecond, "AmperesPerSecond", BaseUnits.Undefined);
-                //BaseUnitInfo = AmperePerSecond;
             }
 
             /// <summary>

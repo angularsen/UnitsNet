@@ -931,7 +931,6 @@ namespace UnitsNet
                 GramPerKiloWattHour = new UnitInfo<BrakeSpecificFuelConsumptionUnit>(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, "GramsPerKiloWattHour", BaseUnits.Undefined);
                 KilogramPerJoule = new UnitInfo<BrakeSpecificFuelConsumptionUnit>(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, "KilogramsPerJoule", BaseUnits.Undefined);
                 PoundPerMechanicalHorsepowerHour = new UnitInfo<BrakeSpecificFuelConsumptionUnit>(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, "PoundsPerMechanicalHorsepowerHour", BaseUnits.Undefined);
-                //BaseUnitInfo = KilogramPerJoule;
             }
 
             /// <summary>

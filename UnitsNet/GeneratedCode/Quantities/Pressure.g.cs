@@ -1771,7 +1771,6 @@ namespace UnitsNet
                 TonneForcePerSquareMeter = new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareMeter, "TonnesForcePerSquareMeter", BaseUnits.Undefined);
                 TonneForcePerSquareMillimeter = new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareMillimeter, "TonnesForcePerSquareMillimeter", BaseUnits.Undefined);
                 Torr = new UnitInfo<PressureUnit>(PressureUnit.Torr, "Torrs", BaseUnits.Undefined);
-                //BaseUnitInfo = Pascal;
             }
 
             /// <summary>

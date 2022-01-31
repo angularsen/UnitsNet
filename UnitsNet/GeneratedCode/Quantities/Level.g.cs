@@ -919,7 +919,6 @@ namespace UnitsNet
             {
                 Decibel = new UnitInfo<LevelUnit>(LevelUnit.Decibel, "Decibels", BaseUnits.Undefined);
                 Neper = new UnitInfo<LevelUnit>(LevelUnit.Neper, "Nepers", BaseUnits.Undefined);
-                //BaseUnitInfo = Decibel;
             }
 
             /// <summary>

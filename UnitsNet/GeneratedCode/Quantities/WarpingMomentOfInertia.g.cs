@@ -991,7 +991,6 @@ namespace UnitsNet
                 InchToTheSixth = new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.InchToTheSixth, "InchesToTheSixth", new BaseUnits(length: LengthUnit.Inch));
                 MeterToTheSixth = new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.MeterToTheSixth, "MetersToTheSixth", new BaseUnits(length: LengthUnit.Meter));
                 MillimeterToTheSixth = new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, "MillimetersToTheSixth", new BaseUnits(length: LengthUnit.Millimeter));
-                //BaseUnitInfo = MeterToTheSixth;
             }
 
             /// <summary>

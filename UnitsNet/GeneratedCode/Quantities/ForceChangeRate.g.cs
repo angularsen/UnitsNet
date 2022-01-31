@@ -1171,7 +1171,6 @@ namespace UnitsNet
                 NewtonPerSecond = new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.NewtonPerSecond, "NewtonsPerSecond", BaseUnits.Undefined);
                 PoundForcePerMinute = new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.PoundForcePerMinute, "PoundsForcePerMinute", BaseUnits.Undefined);
                 PoundForcePerSecond = new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.PoundForcePerSecond, "PoundsForcePerSecond", BaseUnits.Undefined);
-                //BaseUnitInfo = NewtonPerSecond;
             }
 
             /// <summary>

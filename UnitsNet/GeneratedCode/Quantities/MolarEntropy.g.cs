@@ -931,7 +931,6 @@ namespace UnitsNet
                 JoulePerMoleKelvin = new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.JoulePerMoleKelvin, "JoulesPerMoleKelvin", BaseUnits.Undefined);
                 KilojoulePerMoleKelvin = new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.KilojoulePerMoleKelvin, "KilojoulesPerMoleKelvin", BaseUnits.Undefined);
                 MegajoulePerMoleKelvin = new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.MegajoulePerMoleKelvin, "MegajoulesPerMoleKelvin", BaseUnits.Undefined);
-                //BaseUnitInfo = JoulePerMoleKelvin;
             }
 
             /// <summary>

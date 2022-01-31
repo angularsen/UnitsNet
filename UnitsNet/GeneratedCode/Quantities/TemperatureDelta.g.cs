@@ -1051,7 +1051,6 @@ namespace UnitsNet
                 DegreeRoemer = new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.DegreeRoemer, "DegreesRoemer", BaseUnits.Undefined);
                 Kelvin = new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.Kelvin, "Kelvins", BaseUnits.Undefined);
                 MillidegreeCelsius = new UnitInfo<TemperatureDeltaUnit>(TemperatureDeltaUnit.MillidegreeCelsius, "MillidegreesCelsius", BaseUnits.Undefined);
-                //BaseUnitInfo = Kelvin;
             }
 
             /// <summary>

@@ -1191,7 +1191,6 @@ namespace UnitsNet
                 Radian = new UnitInfo<AngleUnit>(AngleUnit.Radian, "Radians", BaseUnits.Undefined);
                 Revolution = new UnitInfo<AngleUnit>(AngleUnit.Revolution, "Revolutions", BaseUnits.Undefined);
                 Tilt = new UnitInfo<AngleUnit>(AngleUnit.Tilt, "Tilt", BaseUnits.Undefined);
-                //BaseUnitInfo = Degree;
             }
 
             /// <summary>

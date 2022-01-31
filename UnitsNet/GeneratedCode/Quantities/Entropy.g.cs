@@ -1011,7 +1011,6 @@ namespace UnitsNet
                 KilojoulePerDegreeCelsius = new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerDegreeCelsius, "KilojoulesPerDegreeCelsius", BaseUnits.Undefined);
                 KilojoulePerKelvin = new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerKelvin, "KilojoulesPerKelvin", BaseUnits.Undefined);
                 MegajoulePerKelvin = new UnitInfo<EntropyUnit>(EntropyUnit.MegajoulePerKelvin, "MegajoulesPerKelvin", BaseUnits.Undefined);
-                //BaseUnitInfo = JoulePerKelvin;
             }
 
             /// <summary>

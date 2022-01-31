@@ -1074,7 +1074,6 @@ namespace UnitsNet
                 InverseMillimeter = new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseMillimeter, "InverseMillimeters", BaseUnits.Undefined);
                 InverseUsSurveyFoot = new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseUsSurveyFoot, "InverseUsSurveyFeet", BaseUnits.Undefined);
                 InverseYard = new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseYard, "InverseYards", BaseUnits.Undefined);
-                //BaseUnitInfo = InverseMeter;
             }
 
             /// <summary>

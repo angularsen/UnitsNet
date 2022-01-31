@@ -1054,7 +1054,6 @@ namespace UnitsNet
                 SquareFootPerSecond = new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.SquareFootPerSecond, "SquareFeetPerSecond", BaseUnits.Undefined);
                 SquareMeterPerSecond = new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.SquareMeterPerSecond, "SquareMetersPerSecond", BaseUnits.Undefined);
                 Stokes = new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Stokes, "Stokes", BaseUnits.Undefined);
-                //BaseUnitInfo = SquareMeterPerSecond;
             }
 
             /// <summary>

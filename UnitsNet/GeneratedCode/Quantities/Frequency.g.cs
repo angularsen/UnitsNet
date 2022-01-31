@@ -1091,7 +1091,6 @@ namespace UnitsNet
                 PerSecond = new UnitInfo<FrequencyUnit>(FrequencyUnit.PerSecond, "PerSecond", BaseUnits.Undefined);
                 RadianPerSecond = new UnitInfo<FrequencyUnit>(FrequencyUnit.RadianPerSecond, "RadiansPerSecond", BaseUnits.Undefined);
                 Terahertz = new UnitInfo<FrequencyUnit>(FrequencyUnit.Terahertz, "Terahertz", BaseUnits.Undefined);
-                //BaseUnitInfo = Hertz;
             }
 
             /// <summary>

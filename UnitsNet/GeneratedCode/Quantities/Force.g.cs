@@ -1171,7 +1171,6 @@ namespace UnitsNet
                 PoundForce = new UnitInfo<ForceUnit>(ForceUnit.PoundForce, "PoundsForce", BaseUnits.Undefined);
                 ShortTonForce = new UnitInfo<ForceUnit>(ForceUnit.ShortTonForce, "ShortTonsForce", BaseUnits.Undefined);
                 TonneForce = new UnitInfo<ForceUnit>(ForceUnit.TonneForce, "TonnesForce", BaseUnits.Undefined);
-                //BaseUnitInfo = Newton;
             }
 
             /// <summary>

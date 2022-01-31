@@ -1894,7 +1894,6 @@ namespace UnitsNet
                 TonnePerCubicInch = new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicInch, "TonnesPerCubicInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Tonne));
                 TonnePerCubicMeter = new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicMeter, "TonnesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Tonne));
                 TonnePerCubicMillimeter = new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicMillimeter, "TonnesPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Tonne));
-                //BaseUnitInfo = KilogramPerCubicMeter;
             }
 
             /// <summary>

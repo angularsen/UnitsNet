@@ -1014,7 +1014,6 @@ namespace UnitsNet
                 Millifarad = new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Millifarad, "Millifarads", BaseUnits.Undefined);
                 Nanofarad = new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Nanofarad, "Nanofarads", BaseUnits.Undefined);
                 Picofarad = new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Picofarad, "Picofarads", BaseUnits.Undefined);
-                //BaseUnitInfo = Farad;
             }
 
             /// <summary>

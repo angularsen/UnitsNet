@@ -1154,7 +1154,6 @@ namespace UnitsNet
                 MilligramPerMillimeter = new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MilligramPerMillimeter, "MilligramsPerMillimeter", BaseUnits.Undefined);
                 PoundPerFoot = new UnitInfo<LinearDensityUnit>(LinearDensityUnit.PoundPerFoot, "PoundsPerFoot", BaseUnits.Undefined);
                 PoundPerInch = new UnitInfo<LinearDensityUnit>(LinearDensityUnit.PoundPerInch, "PoundsPerInch", BaseUnits.Undefined);
-                //BaseUnitInfo = KilogramPerMeter;
             }
 
             /// <summary>

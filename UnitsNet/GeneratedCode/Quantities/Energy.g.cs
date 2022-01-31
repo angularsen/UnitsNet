@@ -1591,7 +1591,6 @@ namespace UnitsNet
                 ThermUs = new UnitInfo<EnergyUnit>(EnergyUnit.ThermUs, "ThermsUs", BaseUnits.Undefined);
                 WattDay = new UnitInfo<EnergyUnit>(EnergyUnit.WattDay, "WattDays", BaseUnits.Undefined);
                 WattHour = new UnitInfo<EnergyUnit>(EnergyUnit.WattHour, "WattHours", BaseUnits.Undefined);
-                //BaseUnitInfo = Joule;
             }
 
             /// <summary>

@@ -971,7 +971,6 @@ namespace UnitsNet
                 MicrovoltAc = new UnitInfo<ElectricPotentialAcUnit>(ElectricPotentialAcUnit.MicrovoltAc, "MicrovoltsAc", BaseUnits.Undefined);
                 MillivoltAc = new UnitInfo<ElectricPotentialAcUnit>(ElectricPotentialAcUnit.MillivoltAc, "MillivoltsAc", BaseUnits.Undefined);
                 VoltAc = new UnitInfo<ElectricPotentialAcUnit>(ElectricPotentialAcUnit.VoltAc, "VoltsAc", BaseUnits.Undefined);
-                //BaseUnitInfo = VoltAc;
             }
 
             /// <summary>

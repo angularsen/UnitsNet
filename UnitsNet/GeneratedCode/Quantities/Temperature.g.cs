@@ -1025,7 +1025,6 @@ namespace UnitsNet
                 Kelvin = new UnitInfo<TemperatureUnit>(TemperatureUnit.Kelvin, "Kelvins", new BaseUnits(temperature: TemperatureUnit.Kelvin));
                 MillidegreeCelsius = new UnitInfo<TemperatureUnit>(TemperatureUnit.MillidegreeCelsius, "MillidegreesCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius));
                 SolarTemperature = new UnitInfo<TemperatureUnit>(TemperatureUnit.SolarTemperature, "SolarTemperatures", BaseUnits.Undefined);
-                //BaseUnitInfo = Kelvin;
             }
 
             /// <summary>

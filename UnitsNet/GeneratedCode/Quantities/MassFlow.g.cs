@@ -1531,7 +1531,6 @@ namespace UnitsNet
                 ShortTonPerHour = new UnitInfo<MassFlowUnit>(MassFlowUnit.ShortTonPerHour, "ShortTonsPerHour", BaseUnits.Undefined);
                 TonnePerDay = new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerDay, "TonnesPerDay", BaseUnits.Undefined);
                 TonnePerHour = new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerHour, "TonnesPerHour", BaseUnits.Undefined);
-                //BaseUnitInfo = GramPerSecond;
             }
 
             /// <summary>

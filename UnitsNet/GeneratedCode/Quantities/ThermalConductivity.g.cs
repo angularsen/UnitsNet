@@ -914,7 +914,6 @@ namespace UnitsNet
             {
                 BtuPerHourFootFahrenheit = new UnitInfo<ThermalConductivityUnit>(ThermalConductivityUnit.BtuPerHourFootFahrenheit, "BtusPerHourFootFahrenheit", BaseUnits.Undefined);
                 WattPerMeterKelvin = new UnitInfo<ThermalConductivityUnit>(ThermalConductivityUnit.WattPerMeterKelvin, "WattsPerMeterKelvin", BaseUnits.Undefined);
-                //BaseUnitInfo = WattPerMeterKelvin;
             }
 
             /// <summary>

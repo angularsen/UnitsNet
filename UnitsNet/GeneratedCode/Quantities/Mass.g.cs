@@ -1371,7 +1371,6 @@ namespace UnitsNet
                 SolarMass = new UnitInfo<MassUnit>(MassUnit.SolarMass, "SolarMasses", new BaseUnits(mass: MassUnit.SolarMass));
                 Stone = new UnitInfo<MassUnit>(MassUnit.Stone, "Stone", new BaseUnits(mass: MassUnit.Stone));
                 Tonne = new UnitInfo<MassUnit>(MassUnit.Tonne, "Tonnes", new BaseUnits(mass: MassUnit.Tonne));
-                //BaseUnitInfo = Kilogram;
             }
 
             /// <summary>

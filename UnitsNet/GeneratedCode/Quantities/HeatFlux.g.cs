@@ -1231,7 +1231,6 @@ namespace UnitsNet
                 WattPerSquareFoot = new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareFoot, "WattsPerSquareFoot", BaseUnits.Undefined);
                 WattPerSquareInch = new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareInch, "WattsPerSquareInch", BaseUnits.Undefined);
                 WattPerSquareMeter = new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareMeter, "WattsPerSquareMeter", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second));
-                //BaseUnitInfo = WattPerSquareMeter;
             }
 
             /// <summary>

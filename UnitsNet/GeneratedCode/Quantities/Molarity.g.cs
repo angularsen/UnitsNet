@@ -1034,7 +1034,6 @@ namespace UnitsNet
                 MolesPerLiter = new UnitInfo<MolarityUnit>(MolarityUnit.MolesPerLiter, "MolesPerLiter", new BaseUnits(length: LengthUnit.Decimeter, amount: AmountOfSubstanceUnit.Mole));
                 NanomolesPerLiter = new UnitInfo<MolarityUnit>(MolarityUnit.NanomolesPerLiter, "NanomolesPerLiter", BaseUnits.Undefined);
                 PicomolesPerLiter = new UnitInfo<MolarityUnit>(MolarityUnit.PicomolesPerLiter, "PicomolesPerLiter", BaseUnits.Undefined);
-                //BaseUnitInfo = MolesPerCubicMeter;
             }
 
             /// <summary>

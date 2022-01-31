@@ -931,7 +931,6 @@ namespace UnitsNet
                 JoulePerMole = new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.JoulePerMole, "JoulesPerMole", BaseUnits.Undefined);
                 KilojoulePerMole = new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.KilojoulePerMole, "KilojoulesPerMole", BaseUnits.Undefined);
                 MegajoulePerMole = new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.MegajoulePerMole, "MegajoulesPerMole", BaseUnits.Undefined);
-                //BaseUnitInfo = JoulePerMole;
             }
 
             /// <summary>

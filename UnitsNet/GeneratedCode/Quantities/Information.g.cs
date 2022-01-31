@@ -1396,7 +1396,6 @@ namespace UnitsNet
                 Tebibyte = new UnitInfo<InformationUnit>(InformationUnit.Tebibyte, "Tebibytes", BaseUnits.Undefined);
                 Terabit = new UnitInfo<InformationUnit>(InformationUnit.Terabit, "Terabits", BaseUnits.Undefined);
                 Terabyte = new UnitInfo<InformationUnit>(InformationUnit.Terabyte, "Terabytes", BaseUnits.Undefined);
-                //BaseUnitInfo = Bit;
             }
 
             /// <summary>

@@ -991,7 +991,6 @@ namespace UnitsNet
                 InchToTheFourth = new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.InchToTheFourth, "InchesToTheFourth", new BaseUnits(length: LengthUnit.Inch));
                 MeterToTheFourth = new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.MeterToTheFourth, "MetersToTheFourth", new BaseUnits(length: LengthUnit.Meter));
                 MillimeterToTheFourth = new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.MillimeterToTheFourth, "MillimetersToTheFourth", new BaseUnits(length: LengthUnit.Millimeter));
-                //BaseUnitInfo = MeterToTheFourth;
             }
 
             /// <summary>

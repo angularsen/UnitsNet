@@ -931,7 +931,6 @@ namespace UnitsNet
                 BtuPerSquareFootDegreeFahrenheit = new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, "BtusPerSquareFootDegreeFahrenheit", BaseUnits.Undefined);
                 WattPerSquareMeterCelsius = new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, "WattsPerSquareMeterCelsius", BaseUnits.Undefined);
                 WattPerSquareMeterKelvin = new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, "WattsPerSquareMeterKelvin", BaseUnits.Undefined);
-                //BaseUnitInfo = WattPerSquareMeterKelvin;
             }
 
             /// <summary>

@@ -951,7 +951,6 @@ namespace UnitsNet
                 DegreeCelsiusPerMeter = new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.DegreeCelsiusPerMeter, "DegreesCelciusPerMeter", new BaseUnits(length: LengthUnit.Meter, temperature: TemperatureUnit.DegreeCelsius));
                 DegreeFahrenheitPerFoot = new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.DegreeFahrenheitPerFoot, "DegreesFahrenheitPerFoot", new BaseUnits(length: LengthUnit.Foot, temperature: TemperatureUnit.DegreeFahrenheit));
                 KelvinPerMeter = new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.KelvinPerMeter, "KelvinsPerMeter", new BaseUnits(length: LengthUnit.Meter, temperature: TemperatureUnit.Kelvin));
-                //BaseUnitInfo = KelvinPerMeter;
             }
 
             /// <summary>

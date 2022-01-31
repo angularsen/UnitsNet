@@ -951,7 +951,6 @@ namespace UnitsNet
                 RadianPerSecondSquared = new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RadianPerSecondSquared, "RadiansPerSecondSquared", BaseUnits.Undefined);
                 RevolutionPerMinutePerSecond = new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, "RevolutionsPerMinutePerSecond", BaseUnits.Undefined);
                 RevolutionPerSecondSquared = new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RevolutionPerSecondSquared, "RevolutionsPerSecondSquared", BaseUnits.Undefined);
-                //BaseUnitInfo = RadianPerSecondSquared;
             }
 
             /// <summary>

@@ -1111,7 +1111,6 @@ namespace UnitsNet
                 KilogramPerSecondPerSquareCentimeter = new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareCentimeter, "KilogramsPerSecondPerSquareCentimeter", BaseUnits.Undefined);
                 KilogramPerSecondPerSquareMeter = new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareMeter, "KilogramsPerSecondPerSquareMeter", BaseUnits.Undefined);
                 KilogramPerSecondPerSquareMillimeter = new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, "KilogramsPerSecondPerSquareMillimeter", BaseUnits.Undefined);
-                //BaseUnitInfo = KilogramPerSecondPerSquareMeter;
             }
 
             /// <summary>

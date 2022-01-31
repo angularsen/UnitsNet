@@ -931,7 +931,6 @@ namespace UnitsNet
                 KilovoltampereHour = new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.KilovoltampereHour, "KilovoltampereHours", BaseUnits.Undefined);
                 MegavoltampereHour = new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.MegavoltampereHour, "MegavoltampereHours", BaseUnits.Undefined);
                 VoltampereHour = new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.VoltampereHour, "VoltampereHours", BaseUnits.Undefined);
-                //BaseUnitInfo = VoltampereHour;
             }
 
             /// <summary>

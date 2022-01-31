@@ -1374,7 +1374,6 @@ namespace UnitsNet
                 WattPerInch = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerInch, "WattsPerInch", BaseUnits.Undefined);
                 WattPerMeter = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerMeter, "WattsPerMeter", BaseUnits.Undefined);
                 WattPerMillimeter = new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerMillimeter, "WattsPerMillimeter", BaseUnits.Undefined);
-                //BaseUnitInfo = WattPerMeter;
             }
 
             /// <summary>

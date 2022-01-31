@@ -1031,7 +1031,6 @@ namespace UnitsNet
                 Milliampere = new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Milliampere, "Milliamperes", BaseUnits.Undefined);
                 Nanoampere = new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Nanoampere, "Nanoamperes", BaseUnits.Undefined);
                 Picoampere = new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Picoampere, "Picoamperes", BaseUnits.Undefined);
-                //BaseUnitInfo = Ampere;
             }
 
             /// <summary>

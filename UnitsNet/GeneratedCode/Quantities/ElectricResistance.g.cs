@@ -991,7 +991,6 @@ namespace UnitsNet
                 Microohm = new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Microohm, "Microohms", BaseUnits.Undefined);
                 Milliohm = new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Milliohm, "Milliohms", BaseUnits.Undefined);
                 Ohm = new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Ohm, "Ohms", BaseUnits.Undefined);
-                //BaseUnitInfo = Ohm;
             }
 
             /// <summary>

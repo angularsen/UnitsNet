@@ -934,7 +934,6 @@ namespace UnitsNet
                 SiemensPerFoot = new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerFoot, "SiemensPerFoot", BaseUnits.Undefined);
                 SiemensPerInch = new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerInch, "SiemensPerInch", BaseUnits.Undefined);
                 SiemensPerMeter = new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerMeter, "SiemensPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
-                //BaseUnitInfo = SiemensPerMeter;
             }
 
             /// <summary>

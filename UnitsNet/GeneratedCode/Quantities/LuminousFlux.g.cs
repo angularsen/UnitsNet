@@ -894,7 +894,6 @@ namespace UnitsNet
                     LuminousFlux.BaseUnit, LuminousFlux.Zero, LuminousFlux.BaseDimensions, QuantityType.LuminousFlux)
             {
                 Lumen = new UnitInfo<LuminousFluxUnit>(LuminousFluxUnit.Lumen, "Lumens", BaseUnits.Undefined);
-                //BaseUnitInfo = Lumen;
             }
 
             /// <summary>

@@ -1371,7 +1371,6 @@ namespace UnitsNet
                 TonneForceCentimeter = new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceCentimeter, "TonneForceCentimeters", BaseUnits.Undefined);
                 TonneForceMeter = new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceMeter, "TonneForceMeters", BaseUnits.Undefined);
                 TonneForceMillimeter = new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceMillimeter, "TonneForceMillimeters", BaseUnits.Undefined);
-                //BaseUnitInfo = NewtonMeter;
             }
 
             /// <summary>

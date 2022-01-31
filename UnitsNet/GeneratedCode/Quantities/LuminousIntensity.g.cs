@@ -894,7 +894,6 @@ namespace UnitsNet
                     LuminousIntensity.BaseUnit, LuminousIntensity.Zero, LuminousIntensity.BaseDimensions, QuantityType.LuminousIntensity)
             {
                 Candela = new UnitInfo<LuminousIntensityUnit>(LuminousIntensityUnit.Candela, "Candela", new BaseUnits(luminousIntensity: LuminousIntensityUnit.Candela));
-                //BaseUnitInfo = Candela;
             }
 
             /// <summary>

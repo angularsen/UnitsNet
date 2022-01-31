@@ -1171,7 +1171,6 @@ namespace UnitsNet
                 Nanomole = new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Nanomole, "Nanomoles", BaseUnits.Undefined);
                 NanopoundMole = new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.NanopoundMole, "NanopoundMoles", BaseUnits.Undefined);
                 PoundMole = new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.PoundMole, "PoundMoles", new BaseUnits(amount: AmountOfSubstanceUnit.PoundMole));
-                //BaseUnitInfo = Mole;
             }
 
             /// <summary>

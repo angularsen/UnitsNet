@@ -1431,7 +1431,6 @@ namespace UnitsNet
                 TonneSquareDecimeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareDecimeter, "TonneSquareDecimeters", BaseUnits.Undefined);
                 TonneSquareMeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareMeter, "TonneSquareMeters", BaseUnits.Undefined);
                 TonneSquareMilimeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareMilimeter, "TonneSquareMilimeters", BaseUnits.Undefined);
-                //BaseUnitInfo = KilogramSquareMeter;
             }
 
             /// <summary>

@@ -951,7 +951,6 @@ namespace UnitsNet
                 Millisiemens = new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Millisiemens, "Millisiemens", BaseUnits.Undefined);
                 Nanosiemens = new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Nanosiemens, "Nanosiemens", BaseUnits.Undefined);
                 Siemens = new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Siemens, "Siemens", BaseUnits.Undefined);
-                //BaseUnitInfo = Siemens;
             }
 
             /// <summary>

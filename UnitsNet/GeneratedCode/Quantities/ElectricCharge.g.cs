@@ -974,7 +974,6 @@ namespace UnitsNet
                 KiloampereHour = new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.KiloampereHour, "KiloampereHours", BaseUnits.Undefined);
                 MegaampereHour = new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MegaampereHour, "MegaampereHours", BaseUnits.Undefined);
                 MilliampereHour = new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MilliampereHour, "MilliampereHours", BaseUnits.Undefined);
-                //BaseUnitInfo = Coulomb;
             }
 
             /// <summary>

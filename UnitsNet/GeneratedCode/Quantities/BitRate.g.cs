@@ -1399,7 +1399,6 @@ namespace UnitsNet
                 TebibytePerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.TebibytePerSecond, "TebibytesPerSecond", BaseUnits.Undefined);
                 TerabitPerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.TerabitPerSecond, "TerabitsPerSecond", BaseUnits.Undefined);
                 TerabytePerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.TerabytePerSecond, "TerabytesPerSecond", BaseUnits.Undefined);
-                //BaseUnitInfo = BitPerSecond;
             }
 
             /// <summary>

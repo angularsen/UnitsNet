@@ -931,7 +931,6 @@ namespace UnitsNet
                 InverseDegreeCelsius = new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, "InverseDegreeCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius));
                 InverseDegreeFahrenheit = new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, "InverseDegreeFahrenheit", new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit));
                 InverseKelvin = new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseKelvin, "InverseKelvin", new BaseUnits(temperature: TemperatureUnit.Kelvin));
-                //BaseUnitInfo = InverseKelvin;
             }
 
             /// <summary>

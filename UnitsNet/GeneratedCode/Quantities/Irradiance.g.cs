@@ -1151,7 +1151,6 @@ namespace UnitsNet
                 PicowattPerSquareMeter = new UnitInfo<IrradianceUnit>(IrradianceUnit.PicowattPerSquareMeter, "PicowattsPerSquareMeter", BaseUnits.Undefined);
                 WattPerSquareCentimeter = new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareCentimeter, "WattsPerSquareCentimeter", BaseUnits.Undefined);
                 WattPerSquareMeter = new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareMeter, "WattsPerSquareMeter", BaseUnits.Undefined);
-                //BaseUnitInfo = WattPerSquareMeter;
             }
 
             /// <summary>

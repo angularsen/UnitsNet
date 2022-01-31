@@ -1354,7 +1354,6 @@ namespace UnitsNet
                 PartPerThousand = new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerThousand, "PartsPerThousand", BaseUnits.Undefined);
                 PartPerTrillion = new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerTrillion, "PartsPerTrillion", BaseUnits.Undefined);
                 Percent = new UnitInfo<MassFractionUnit>(MassFractionUnit.Percent, "Percent", BaseUnits.Undefined);
-                //BaseUnitInfo = DecimalFraction;
             }
 
             /// <summary>
