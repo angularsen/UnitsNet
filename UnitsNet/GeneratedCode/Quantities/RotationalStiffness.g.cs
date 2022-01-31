@@ -59,7 +59,6 @@ namespace UnitsNet
             QuantityType = QuantityType.RotationalStiffness;
             Units = Enum.GetValues(typeof(RotationalStiffnessUnit)).Cast<RotationalStiffnessUnit>().Except(new RotationalStiffnessUnit[]{ RotationalStiffnessUnit.Undefined }).ToArray();
             Zero = new RotationalStiffness(0, BaseUnit);
-
             Info = new RotationalStiffness.RotationalStiffnessQuantityInfo();
         }
 

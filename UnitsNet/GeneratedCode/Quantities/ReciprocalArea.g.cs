@@ -62,7 +62,6 @@ namespace UnitsNet
             QuantityType = QuantityType.ReciprocalArea;
             Units = Enum.GetValues(typeof(ReciprocalAreaUnit)).Cast<ReciprocalAreaUnit>().Except(new ReciprocalAreaUnit[]{ ReciprocalAreaUnit.Undefined }).ToArray();
             Zero = new ReciprocalArea(0, BaseUnit);
-
             Info = new ReciprocalArea.ReciprocalAreaQuantityInfo();
         }
 

@@ -59,7 +59,6 @@ namespace UnitsNet
             QuantityType = QuantityType.RotationalStiffnessPerLength;
             Units = Enum.GetValues(typeof(RotationalStiffnessPerLengthUnit)).Cast<RotationalStiffnessPerLengthUnit>().Except(new RotationalStiffnessPerLengthUnit[]{ RotationalStiffnessPerLengthUnit.Undefined }).ToArray();
             Zero = new RotationalStiffnessPerLength(0, BaseUnit);
-
             Info = new RotationalStiffnessPerLength.RotationalStiffnessPerLengthQuantityInfo();
         }
 

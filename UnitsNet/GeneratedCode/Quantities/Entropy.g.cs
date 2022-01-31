@@ -59,7 +59,6 @@ namespace UnitsNet
             QuantityType = QuantityType.Entropy;
             Units = Enum.GetValues(typeof(EntropyUnit)).Cast<EntropyUnit>().Except(new EntropyUnit[]{ EntropyUnit.Undefined }).ToArray();
             Zero = new Entropy(0, BaseUnit);
-
             Info = new Entropy.EntropyQuantityInfo();
         }
 

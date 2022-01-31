@@ -62,7 +62,6 @@ namespace UnitsNet
             QuantityType = QuantityType.Capacitance;
             Units = Enum.GetValues(typeof(CapacitanceUnit)).Cast<CapacitanceUnit>().Except(new CapacitanceUnit[]{ CapacitanceUnit.Undefined }).ToArray();
             Zero = new Capacitance(0, BaseUnit);
-
             Info = new Capacitance.CapacitanceQuantityInfo();
         }
 

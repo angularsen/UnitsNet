@@ -59,7 +59,6 @@ namespace UnitsNet
             QuantityType = QuantityType.ElectricPotentialChangeRate;
             Units = Enum.GetValues(typeof(ElectricPotentialChangeRateUnit)).Cast<ElectricPotentialChangeRateUnit>().Except(new ElectricPotentialChangeRateUnit[]{ ElectricPotentialChangeRateUnit.Undefined }).ToArray();
             Zero = new ElectricPotentialChangeRate(0, BaseUnit);
-
             Info = new ElectricPotentialChangeRate.ElectricPotentialChangeRateQuantityInfo();
         }
 

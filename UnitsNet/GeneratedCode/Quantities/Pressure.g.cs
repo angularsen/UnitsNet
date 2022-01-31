@@ -59,7 +59,6 @@ namespace UnitsNet
             QuantityType = QuantityType.Pressure;
             Units = Enum.GetValues(typeof(PressureUnit)).Cast<PressureUnit>().Except(new PressureUnit[]{ PressureUnit.Undefined }).ToArray();
             Zero = new Pressure(0, BaseUnit);
-
             Info = new Pressure.PressureQuantityInfo();
         }
 

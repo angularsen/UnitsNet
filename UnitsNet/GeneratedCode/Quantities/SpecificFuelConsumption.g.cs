@@ -62,7 +62,6 @@ namespace UnitsNet
             QuantityType = QuantityType.SpecificFuelConsumption;
             Units = Enum.GetValues(typeof(SpecificFuelConsumptionUnit)).Cast<SpecificFuelConsumptionUnit>().Except(new SpecificFuelConsumptionUnit[]{ SpecificFuelConsumptionUnit.Undefined }).ToArray();
             Zero = new SpecificFuelConsumption(0, BaseUnit);
-
             Info = new SpecificFuelConsumption.SpecificFuelConsumptionQuantityInfo();
         }
 

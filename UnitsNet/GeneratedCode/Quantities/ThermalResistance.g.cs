@@ -59,7 +59,6 @@ namespace UnitsNet
             QuantityType = QuantityType.ThermalResistance;
             Units = Enum.GetValues(typeof(ThermalResistanceUnit)).Cast<ThermalResistanceUnit>().Except(new ThermalResistanceUnit[]{ ThermalResistanceUnit.Undefined }).ToArray();
             Zero = new ThermalResistance(0, BaseUnit);
-
             Info = new ThermalResistance.ThermalResistanceQuantityInfo();
         }
 

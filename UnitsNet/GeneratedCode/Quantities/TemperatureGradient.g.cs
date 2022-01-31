@@ -59,7 +59,6 @@ namespace UnitsNet
             QuantityType = QuantityType.TemperatureGradient;
             Units = Enum.GetValues(typeof(TemperatureGradientUnit)).Cast<TemperatureGradientUnit>().Except(new TemperatureGradientUnit[]{ TemperatureGradientUnit.Undefined }).ToArray();
             Zero = new TemperatureGradient(0, BaseUnit);
-
             Info = new TemperatureGradient.TemperatureGradientQuantityInfo();
         }
 

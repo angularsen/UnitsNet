@@ -59,7 +59,6 @@ namespace UnitsNet
             QuantityType = QuantityType.Mass;
             Units = Enum.GetValues(typeof(MassUnit)).Cast<MassUnit>().Except(new MassUnit[]{ MassUnit.Undefined }).ToArray();
             Zero = new Mass(0, BaseUnit);
-
             Info = new Mass.MassQuantityInfo();
         }
 

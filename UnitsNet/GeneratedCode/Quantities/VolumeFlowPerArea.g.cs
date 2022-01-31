@@ -59,7 +59,6 @@ namespace UnitsNet
             QuantityType = QuantityType.VolumeFlowPerArea;
             Units = Enum.GetValues(typeof(VolumeFlowPerAreaUnit)).Cast<VolumeFlowPerAreaUnit>().Except(new VolumeFlowPerAreaUnit[]{ VolumeFlowPerAreaUnit.Undefined }).ToArray();
             Zero = new VolumeFlowPerArea(0, BaseUnit);
-
             Info = new VolumeFlowPerArea.VolumeFlowPerAreaQuantityInfo();
         }
 

@@ -62,7 +62,6 @@ namespace UnitsNet
             QuantityType = QuantityType.Turbidity;
             Units = Enum.GetValues(typeof(TurbidityUnit)).Cast<TurbidityUnit>().Except(new TurbidityUnit[]{ TurbidityUnit.Undefined }).ToArray();
             Zero = new Turbidity(0, BaseUnit);
-
             Info = new Turbidity.TurbidityQuantityInfo();
         }
 

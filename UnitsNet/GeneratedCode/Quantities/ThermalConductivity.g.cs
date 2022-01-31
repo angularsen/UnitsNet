@@ -62,7 +62,6 @@ namespace UnitsNet
             QuantityType = QuantityType.ThermalConductivity;
             Units = Enum.GetValues(typeof(ThermalConductivityUnit)).Cast<ThermalConductivityUnit>().Except(new ThermalConductivityUnit[]{ ThermalConductivityUnit.Undefined }).ToArray();
             Zero = new ThermalConductivity(0, BaseUnit);
-
             Info = new ThermalConductivity.ThermalConductivityQuantityInfo();
         }
 

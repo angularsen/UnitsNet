@@ -59,7 +59,6 @@ namespace UnitsNet
             QuantityType = QuantityType.CoefficientOfThermalExpansion;
             Units = Enum.GetValues(typeof(CoefficientOfThermalExpansionUnit)).Cast<CoefficientOfThermalExpansionUnit>().Except(new CoefficientOfThermalExpansionUnit[]{ CoefficientOfThermalExpansionUnit.Undefined }).ToArray();
             Zero = new CoefficientOfThermalExpansion(0, BaseUnit);
-
             Info = new CoefficientOfThermalExpansion.CoefficientOfThermalExpansionQuantityInfo();
         }
 

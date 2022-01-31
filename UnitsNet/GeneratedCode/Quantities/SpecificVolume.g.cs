@@ -59,7 +59,6 @@ namespace UnitsNet
             QuantityType = QuantityType.SpecificVolume;
             Units = Enum.GetValues(typeof(SpecificVolumeUnit)).Cast<SpecificVolumeUnit>().Except(new SpecificVolumeUnit[]{ SpecificVolumeUnit.Undefined }).ToArray();
             Zero = new SpecificVolume(0, BaseUnit);
-
             Info = new SpecificVolume.SpecificVolumeQuantityInfo();
         }
 

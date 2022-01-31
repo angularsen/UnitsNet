@@ -62,7 +62,6 @@ namespace UnitsNet
             QuantityType = QuantityType.LinearPowerDensity;
             Units = Enum.GetValues(typeof(LinearPowerDensityUnit)).Cast<LinearPowerDensityUnit>().Except(new LinearPowerDensityUnit[]{ LinearPowerDensityUnit.Undefined }).ToArray();
             Zero = new LinearPowerDensity(0, BaseUnit);
-
             Info = new LinearPowerDensity.LinearPowerDensityQuantityInfo();
         }
 

@@ -59,7 +59,6 @@ namespace UnitsNet
             QuantityType = QuantityType.Energy;
             Units = Enum.GetValues(typeof(EnergyUnit)).Cast<EnergyUnit>().Except(new EnergyUnit[]{ EnergyUnit.Undefined }).ToArray();
             Zero = new Energy(0, BaseUnit);
-
             Info = new Energy.EnergyQuantityInfo();
         }
 

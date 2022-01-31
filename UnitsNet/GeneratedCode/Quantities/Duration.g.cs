@@ -59,7 +59,6 @@ namespace UnitsNet
             QuantityType = QuantityType.Duration;
             Units = Enum.GetValues(typeof(DurationUnit)).Cast<DurationUnit>().Except(new DurationUnit[]{ DurationUnit.Undefined }).ToArray();
             Zero = new Duration(0, BaseUnit);
-
             Info = new Duration.DurationQuantityInfo();
         }
 

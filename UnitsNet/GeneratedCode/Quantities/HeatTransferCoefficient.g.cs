@@ -59,7 +59,6 @@ namespace UnitsNet
             QuantityType = QuantityType.HeatTransferCoefficient;
             Units = Enum.GetValues(typeof(HeatTransferCoefficientUnit)).Cast<HeatTransferCoefficientUnit>().Except(new HeatTransferCoefficientUnit[]{ HeatTransferCoefficientUnit.Undefined }).ToArray();
             Zero = new HeatTransferCoefficient(0, BaseUnit);
-
             Info = new HeatTransferCoefficient.HeatTransferCoefficientQuantityInfo();
         }
 

@@ -59,7 +59,6 @@ namespace UnitsNet
             QuantityType = QuantityType.PowerRatio;
             Units = Enum.GetValues(typeof(PowerRatioUnit)).Cast<PowerRatioUnit>().Except(new PowerRatioUnit[]{ PowerRatioUnit.Undefined }).ToArray();
             Zero = new PowerRatio(0, BaseUnit);
-
             Info = new PowerRatio.PowerRatioQuantityInfo();
         }
 

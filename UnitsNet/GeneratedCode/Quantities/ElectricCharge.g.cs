@@ -62,7 +62,6 @@ namespace UnitsNet
             QuantityType = QuantityType.ElectricCharge;
             Units = Enum.GetValues(typeof(ElectricChargeUnit)).Cast<ElectricChargeUnit>().Except(new ElectricChargeUnit[]{ ElectricChargeUnit.Undefined }).ToArray();
             Zero = new ElectricCharge(0, BaseUnit);
-
             Info = new ElectricCharge.ElectricChargeQuantityInfo();
         }
 

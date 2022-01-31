@@ -59,7 +59,6 @@ namespace UnitsNet
             QuantityType = QuantityType.ApparentPower;
             Units = Enum.GetValues(typeof(ApparentPowerUnit)).Cast<ApparentPowerUnit>().Except(new ApparentPowerUnit[]{ ApparentPowerUnit.Undefined }).ToArray();
             Zero = new ApparentPower(0, BaseUnit);
-
             Info = new ApparentPower.ApparentPowerQuantityInfo();
         }
 

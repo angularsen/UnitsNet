@@ -59,7 +59,6 @@ namespace UnitsNet
             QuantityType = QuantityType.Force;
             Units = Enum.GetValues(typeof(ForceUnit)).Cast<ForceUnit>().Except(new ForceUnit[]{ ForceUnit.Undefined }).ToArray();
             Zero = new Force(0, BaseUnit);
-
             Info = new Force.ForceQuantityInfo();
         }
 

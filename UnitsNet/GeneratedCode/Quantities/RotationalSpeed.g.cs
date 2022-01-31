@@ -59,7 +59,6 @@ namespace UnitsNet
             QuantityType = QuantityType.RotationalSpeed;
             Units = Enum.GetValues(typeof(RotationalSpeedUnit)).Cast<RotationalSpeedUnit>().Except(new RotationalSpeedUnit[]{ RotationalSpeedUnit.Undefined }).ToArray();
             Zero = new RotationalSpeed(0, BaseUnit);
-
             Info = new RotationalSpeed.RotationalSpeedQuantityInfo();
         }
 

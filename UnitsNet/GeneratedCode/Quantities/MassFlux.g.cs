@@ -59,7 +59,6 @@ namespace UnitsNet
             QuantityType = QuantityType.MassFlux;
             Units = Enum.GetValues(typeof(MassFluxUnit)).Cast<MassFluxUnit>().Except(new MassFluxUnit[]{ MassFluxUnit.Undefined }).ToArray();
             Zero = new MassFlux(0, BaseUnit);
-
             Info = new MassFlux.MassFluxQuantityInfo();
         }
 

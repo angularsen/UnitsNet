@@ -62,7 +62,6 @@ namespace UnitsNet
             QuantityType = QuantityType.BitRate;
             Units = Enum.GetValues(typeof(BitRateUnit)).Cast<BitRateUnit>().Except(new BitRateUnit[]{ BitRateUnit.Undefined }).ToArray();
             Zero = new BitRate(0, BaseUnit);
-
             Info = new BitRate.BitRateQuantityInfo();
         }
 

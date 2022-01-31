@@ -59,7 +59,6 @@ namespace UnitsNet
             QuantityType = QuantityType.RatioChangeRate;
             Units = Enum.GetValues(typeof(RatioChangeRateUnit)).Cast<RatioChangeRateUnit>().Except(new RatioChangeRateUnit[]{ RatioChangeRateUnit.Undefined }).ToArray();
             Zero = new RatioChangeRate(0, BaseUnit);
-
             Info = new RatioChangeRate.RatioChangeRateQuantityInfo();
         }
 

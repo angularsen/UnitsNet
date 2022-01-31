@@ -62,7 +62,6 @@ namespace UnitsNet
             QuantityType = QuantityType.ElectricField;
             Units = Enum.GetValues(typeof(ElectricFieldUnit)).Cast<ElectricFieldUnit>().Except(new ElectricFieldUnit[]{ ElectricFieldUnit.Undefined }).ToArray();
             Zero = new ElectricField(0, BaseUnit);
-
             Info = new ElectricField.ElectricFieldQuantityInfo();
         }
 

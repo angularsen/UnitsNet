@@ -59,7 +59,6 @@ namespace UnitsNet
             QuantityType = QuantityType.WarpingMomentOfInertia;
             Units = Enum.GetValues(typeof(WarpingMomentOfInertiaUnit)).Cast<WarpingMomentOfInertiaUnit>().Except(new WarpingMomentOfInertiaUnit[]{ WarpingMomentOfInertiaUnit.Undefined }).ToArray();
             Zero = new WarpingMomentOfInertia(0, BaseUnit);
-
             Info = new WarpingMomentOfInertia.WarpingMomentOfInertiaQuantityInfo();
         }
 

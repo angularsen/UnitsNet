@@ -59,7 +59,6 @@ namespace UnitsNet
             QuantityType = QuantityType.Frequency;
             Units = Enum.GetValues(typeof(FrequencyUnit)).Cast<FrequencyUnit>().Except(new FrequencyUnit[]{ FrequencyUnit.Undefined }).ToArray();
             Zero = new Frequency(0, BaseUnit);
-
             Info = new Frequency.FrequencyQuantityInfo();
         }
 

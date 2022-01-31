@@ -62,7 +62,6 @@ namespace UnitsNet
             QuantityType = QuantityType.Permittivity;
             Units = Enum.GetValues(typeof(PermittivityUnit)).Cast<PermittivityUnit>().Except(new PermittivityUnit[]{ PermittivityUnit.Undefined }).ToArray();
             Zero = new Permittivity(0, BaseUnit);
-
             Info = new Permittivity.PermittivityQuantityInfo();
         }
 

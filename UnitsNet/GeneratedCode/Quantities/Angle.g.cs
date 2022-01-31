@@ -59,7 +59,6 @@ namespace UnitsNet
             QuantityType = QuantityType.Angle;
             Units = Enum.GetValues(typeof(AngleUnit)).Cast<AngleUnit>().Except(new AngleUnit[]{ AngleUnit.Undefined }).ToArray();
             Zero = new Angle(0, BaseUnit);
-
             Info = new Angle.AngleQuantityInfo();
         }
 

@@ -59,7 +59,6 @@ namespace UnitsNet
             QuantityType = QuantityType.Acceleration;
             Units = Enum.GetValues(typeof(AccelerationUnit)).Cast<AccelerationUnit>().Except(new AccelerationUnit[]{ AccelerationUnit.Undefined }).ToArray();
             Zero = new Acceleration(0, BaseUnit);
-
             Info = new Acceleration.AccelerationQuantityInfo();
         }
 

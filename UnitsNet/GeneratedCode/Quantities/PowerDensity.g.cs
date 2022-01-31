@@ -59,7 +59,6 @@ namespace UnitsNet
             QuantityType = QuantityType.PowerDensity;
             Units = Enum.GetValues(typeof(PowerDensityUnit)).Cast<PowerDensityUnit>().Except(new PowerDensityUnit[]{ PowerDensityUnit.Undefined }).ToArray();
             Zero = new PowerDensity(0, BaseUnit);
-
             Info = new PowerDensity.PowerDensityQuantityInfo();
         }
 

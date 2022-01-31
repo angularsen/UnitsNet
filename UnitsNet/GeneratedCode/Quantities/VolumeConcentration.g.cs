@@ -62,7 +62,6 @@ namespace UnitsNet
             QuantityType = QuantityType.VolumeConcentration;
             Units = Enum.GetValues(typeof(VolumeConcentrationUnit)).Cast<VolumeConcentrationUnit>().Except(new VolumeConcentrationUnit[]{ VolumeConcentrationUnit.Undefined }).ToArray();
             Zero = new VolumeConcentration(0, BaseUnit);
-
             Info = new VolumeConcentration.VolumeConcentrationQuantityInfo();
         }
 

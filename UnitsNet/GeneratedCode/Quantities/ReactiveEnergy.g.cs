@@ -59,7 +59,6 @@ namespace UnitsNet
             QuantityType = QuantityType.ReactiveEnergy;
             Units = Enum.GetValues(typeof(ReactiveEnergyUnit)).Cast<ReactiveEnergyUnit>().Except(new ReactiveEnergyUnit[]{ ReactiveEnergyUnit.Undefined }).ToArray();
             Zero = new ReactiveEnergy(0, BaseUnit);
-
             Info = new ReactiveEnergy.ReactiveEnergyQuantityInfo();
         }
 

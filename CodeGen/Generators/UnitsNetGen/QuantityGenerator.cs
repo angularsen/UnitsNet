@@ -133,7 +133,6 @@ namespace UnitsNet
             QuantityType = QuantityType.{_quantity.Name};
             Units = Enum.GetValues(typeof({_unitEnumName})).Cast<{_unitEnumName}>().Except(new {_unitEnumName}[]{{ {_unitEnumName}.Undefined }}).ToArray();
             Zero = new {_quantity.Name}(0, BaseUnit);
-
             Info = new {_quantity.Name}.{_quantity.Name}QuantityInfo();
         }}
 " );

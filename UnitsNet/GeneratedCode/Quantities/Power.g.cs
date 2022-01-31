@@ -59,7 +59,6 @@ namespace UnitsNet
             QuantityType = QuantityType.Power;
             Units = Enum.GetValues(typeof(PowerUnit)).Cast<PowerUnit>().Except(new PowerUnit[]{ PowerUnit.Undefined }).ToArray();
             Zero = new Power(0, BaseUnit);
-
             Info = new Power.PowerQuantityInfo();
         }
 

@@ -62,7 +62,6 @@ namespace UnitsNet
             QuantityType = QuantityType.Luminosity;
             Units = Enum.GetValues(typeof(LuminosityUnit)).Cast<LuminosityUnit>().Except(new LuminosityUnit[]{ LuminosityUnit.Undefined }).ToArray();
             Zero = new Luminosity(0, BaseUnit);
-
             Info = new Luminosity.LuminosityQuantityInfo();
         }
 

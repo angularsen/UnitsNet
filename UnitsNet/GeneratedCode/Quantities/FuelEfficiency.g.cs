@@ -62,7 +62,6 @@ namespace UnitsNet
             QuantityType = QuantityType.FuelEfficiency;
             Units = Enum.GetValues(typeof(FuelEfficiencyUnit)).Cast<FuelEfficiencyUnit>().Except(new FuelEfficiencyUnit[]{ FuelEfficiencyUnit.Undefined }).ToArray();
             Zero = new FuelEfficiency(0, BaseUnit);
-
             Info = new FuelEfficiency.FuelEfficiencyQuantityInfo();
         }
 

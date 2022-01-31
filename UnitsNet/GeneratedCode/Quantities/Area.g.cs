@@ -59,7 +59,6 @@ namespace UnitsNet
             QuantityType = QuantityType.Area;
             Units = Enum.GetValues(typeof(AreaUnit)).Cast<AreaUnit>().Except(new AreaUnit[]{ AreaUnit.Undefined }).ToArray();
             Zero = new Area(0, BaseUnit);
-
             Info = new Area.AreaQuantityInfo();
         }
 

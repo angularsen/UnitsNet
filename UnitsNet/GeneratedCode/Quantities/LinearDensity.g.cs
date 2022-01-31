@@ -62,7 +62,6 @@ namespace UnitsNet
             QuantityType = QuantityType.LinearDensity;
             Units = Enum.GetValues(typeof(LinearDensityUnit)).Cast<LinearDensityUnit>().Except(new LinearDensityUnit[]{ LinearDensityUnit.Undefined }).ToArray();
             Zero = new LinearDensity(0, BaseUnit);
-
             Info = new LinearDensity.LinearDensityQuantityInfo();
         }
 

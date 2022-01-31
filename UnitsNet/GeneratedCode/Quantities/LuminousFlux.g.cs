@@ -62,7 +62,6 @@ namespace UnitsNet
             QuantityType = QuantityType.LuminousFlux;
             Units = Enum.GetValues(typeof(LuminousFluxUnit)).Cast<LuminousFluxUnit>().Except(new LuminousFluxUnit[]{ LuminousFluxUnit.Undefined }).ToArray();
             Zero = new LuminousFlux(0, BaseUnit);
-
             Info = new LuminousFlux.LuminousFluxQuantityInfo();
         }
 

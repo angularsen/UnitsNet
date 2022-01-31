@@ -59,7 +59,6 @@ namespace UnitsNet
             QuantityType = QuantityType.TemperatureDelta;
             Units = Enum.GetValues(typeof(TemperatureDeltaUnit)).Cast<TemperatureDeltaUnit>().Except(new TemperatureDeltaUnit[]{ TemperatureDeltaUnit.Undefined }).ToArray();
             Zero = new TemperatureDelta(0, BaseUnit);
-
             Info = new TemperatureDelta.TemperatureDeltaQuantityInfo();
         }
 
