@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly MassUnit? _unit;
 
+        static Mass()
+        {
+            BaseDimensions = new BaseDimensions(0, 1, 0, 0, 0, 0, 0);
+            BaseUnit = MassUnit.Kilogram;
+            MaxValue = new Mass(double.MaxValue, BaseUnit);
+            MinValue = new Mass(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Mass;
+            Units = Enum.GetValues(typeof(MassUnit)).Cast<MassUnit>().Except(new MassUnit[]{ MassUnit.Undefined }).ToArray();
+            Zero = new Mass(0, BaseUnit);
+
+            Info = new Mass.MassQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Mass.MassQuantityInfo Info { get; } = new Mass.MassQuantityInfo();
+        public static Mass.MassQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 1, 0, 0, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of Mass, which is Kilogram. All conversions go via this value.
         /// </summary>
-        public static MassUnit BaseUnit { get; } = MassUnit.Kilogram;
+        public static MassUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Mass
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Mass MaxValue { get; } = new Mass(double.MaxValue, BaseUnit);
+        public static Mass MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Mass
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Mass MinValue { get; } = new Mass(double.MinValue, BaseUnit);
+        public static Mass MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Mass;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Mass quantity.
         /// </summary>
-        public static MassUnit[] Units { get; } = Enum.GetValues(typeof(MassUnit)).Cast<MassUnit>().Except(new MassUnit[]{ MassUnit.Undefined }).ToArray();
+        public static MassUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Kilogram.
         /// </summary>
-        public static Mass Zero { get; } = new Mass(0, BaseUnit);
+        public static Mass Zero { get; }
 
         #endregion
 
@@ -1302,7 +1315,36 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal MassQuantityInfo() :
-                base("Mass", new UnitInfo<MassUnit>[]{}, Mass.BaseUnit, Mass.Zero, Mass.BaseDimensions, QuantityType.Mass)
+                base("Mass",
+                    new UnitInfo<MassUnit>[]
+                    {
+                        new UnitInfo<MassUnit>(MassUnit.Centigram, "Centigrams", BaseUnits.Undefined),
+                        new UnitInfo<MassUnit>(MassUnit.Decagram, "Decagrams", BaseUnits.Undefined),
+                        new UnitInfo<MassUnit>(MassUnit.Decigram, "Decigrams", BaseUnits.Undefined),
+                        new UnitInfo<MassUnit>(MassUnit.EarthMass, "EarthMasses", new BaseUnits(mass: MassUnit.EarthMass)),
+                        new UnitInfo<MassUnit>(MassUnit.Grain, "Grains", new BaseUnits(mass: MassUnit.Grain)),
+                        new UnitInfo<MassUnit>(MassUnit.Gram, "Grams", new BaseUnits(mass: MassUnit.Gram)),
+                        new UnitInfo<MassUnit>(MassUnit.Hectogram, "Hectograms", BaseUnits.Undefined),
+                        new UnitInfo<MassUnit>(MassUnit.Kilogram, "Kilograms", BaseUnits.Undefined),
+                        new UnitInfo<MassUnit>(MassUnit.Kilopound, "Kilopounds", BaseUnits.Undefined),
+                        new UnitInfo<MassUnit>(MassUnit.Kilotonne, "Kilotonnes", BaseUnits.Undefined),
+                        new UnitInfo<MassUnit>(MassUnit.LongHundredweight, "LongHundredweight", new BaseUnits(mass: MassUnit.LongHundredweight)),
+                        new UnitInfo<MassUnit>(MassUnit.LongTon, "LongTons", new BaseUnits(mass: MassUnit.LongTon)),
+                        new UnitInfo<MassUnit>(MassUnit.Megapound, "Megapounds", BaseUnits.Undefined),
+                        new UnitInfo<MassUnit>(MassUnit.Megatonne, "Megatonnes", BaseUnits.Undefined),
+                        new UnitInfo<MassUnit>(MassUnit.Microgram, "Micrograms", BaseUnits.Undefined),
+                        new UnitInfo<MassUnit>(MassUnit.Milligram, "Milligrams", BaseUnits.Undefined),
+                        new UnitInfo<MassUnit>(MassUnit.Nanogram, "Nanograms", BaseUnits.Undefined),
+                        new UnitInfo<MassUnit>(MassUnit.Ounce, "Ounces", new BaseUnits(mass: MassUnit.Ounce)),
+                        new UnitInfo<MassUnit>(MassUnit.Pound, "Pounds", new BaseUnits(mass: MassUnit.Pound)),
+                        new UnitInfo<MassUnit>(MassUnit.ShortHundredweight, "ShortHundredweight", new BaseUnits(mass: MassUnit.ShortHundredweight)),
+                        new UnitInfo<MassUnit>(MassUnit.ShortTon, "ShortTons", new BaseUnits(mass: MassUnit.ShortTon)),
+                        new UnitInfo<MassUnit>(MassUnit.Slug, "Slugs", new BaseUnits(mass: MassUnit.Slug)),
+                        new UnitInfo<MassUnit>(MassUnit.SolarMass, "SolarMasses", new BaseUnits(mass: MassUnit.SolarMass)),
+                        new UnitInfo<MassUnit>(MassUnit.Stone, "Stone", new BaseUnits(mass: MassUnit.Stone)),
+                        new UnitInfo<MassUnit>(MassUnit.Tonne, "Tonnes", new BaseUnits(mass: MassUnit.Tonne)),
+                    },
+                    Mass.BaseUnit, Mass.Zero, Mass.BaseDimensions, QuantityType.Mass)
             {
                 Centigram = new UnitInfo<MassUnit>(MassUnit.Centigram, "Centigrams", BaseUnits.Undefined);
                 Decagram = new UnitInfo<MassUnit>(MassUnit.Decagram, "Decagrams", BaseUnits.Undefined);
@@ -1329,7 +1371,7 @@ namespace UnitsNet
                 SolarMass = new UnitInfo<MassUnit>(MassUnit.SolarMass, "SolarMasses", new BaseUnits(mass: MassUnit.SolarMass));
                 Stone = new UnitInfo<MassUnit>(MassUnit.Stone, "Stone", new BaseUnits(mass: MassUnit.Stone));
                 Tonne = new UnitInfo<MassUnit>(MassUnit.Tonne, "Tonnes", new BaseUnits(mass: MassUnit.Tonne));
-                BaseUnitInfo = Kilogram;
+                //BaseUnitInfo = Kilogram;
             }
 
             /// <summary>

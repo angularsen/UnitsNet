@@ -53,6 +53,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly CapacitanceUnit? _unit;
 
+        static Capacitance()
+        {
+            BaseDimensions = new BaseDimensions(-2, -1, 4, 2, 0, 0, 0);
+            BaseUnit = CapacitanceUnit.Farad;
+            MaxValue = new Capacitance(double.MaxValue, BaseUnit);
+            MinValue = new Capacitance(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Capacitance;
+            Units = Enum.GetValues(typeof(CapacitanceUnit)).Cast<CapacitanceUnit>().Except(new CapacitanceUnit[]{ CapacitanceUnit.Undefined }).ToArray();
+            Zero = new Capacitance(0, BaseUnit);
+
+            Info = new Capacitance.CapacitanceQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -90,45 +103,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Capacitance.CapacitanceQuantityInfo Info { get; } = new Capacitance.CapacitanceQuantityInfo();
+        public static Capacitance.CapacitanceQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-2, -1, 4, 2, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of Capacitance, which is Farad. All conversions go via this value.
         /// </summary>
-        public static CapacitanceUnit BaseUnit { get; } = CapacitanceUnit.Farad;
+        public static CapacitanceUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Capacitance
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Capacitance MaxValue { get; } = new Capacitance(double.MaxValue, BaseUnit);
+        public static Capacitance MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Capacitance
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Capacitance MinValue { get; } = new Capacitance(double.MinValue, BaseUnit);
+        public static Capacitance MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Capacitance;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Capacitance quantity.
         /// </summary>
-        public static CapacitanceUnit[] Units { get; } = Enum.GetValues(typeof(CapacitanceUnit)).Cast<CapacitanceUnit>().Except(new CapacitanceUnit[]{ CapacitanceUnit.Undefined }).ToArray();
+        public static CapacitanceUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Farad.
         /// </summary>
-        public static Capacitance Zero { get; } = new Capacitance(0, BaseUnit);
+        public static Capacitance Zero { get; }
 
         #endregion
 
@@ -981,7 +994,18 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal CapacitanceQuantityInfo() :
-                base("Capacitance", new UnitInfo<CapacitanceUnit>[]{}, Capacitance.BaseUnit, Capacitance.Zero, Capacitance.BaseDimensions, QuantityType.Capacitance)
+                base("Capacitance",
+                    new UnitInfo<CapacitanceUnit>[]
+                    {
+                        new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Farad, "Farads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
+                        new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Kilofarad, "Kilofarads", BaseUnits.Undefined),
+                        new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Megafarad, "Megafarads", BaseUnits.Undefined),
+                        new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Microfarad, "Microfarads", BaseUnits.Undefined),
+                        new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Millifarad, "Millifarads", BaseUnits.Undefined),
+                        new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Nanofarad, "Nanofarads", BaseUnits.Undefined),
+                        new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Picofarad, "Picofarads", BaseUnits.Undefined),
+                    },
+                    Capacitance.BaseUnit, Capacitance.Zero, Capacitance.BaseDimensions, QuantityType.Capacitance)
             {
                 Farad = new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Farad, "Farads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
                 Kilofarad = new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Kilofarad, "Kilofarads", BaseUnits.Undefined);
@@ -990,7 +1014,7 @@ namespace UnitsNet
                 Millifarad = new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Millifarad, "Millifarads", BaseUnits.Undefined);
                 Nanofarad = new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Nanofarad, "Nanofarads", BaseUnits.Undefined);
                 Picofarad = new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Picofarad, "Picofarads", BaseUnits.Undefined);
-                BaseUnitInfo = Farad;
+                //BaseUnitInfo = Farad;
             }
 
             /// <summary>

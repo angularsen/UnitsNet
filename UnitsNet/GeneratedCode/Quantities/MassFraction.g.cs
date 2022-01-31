@@ -53,6 +53,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly MassFractionUnit? _unit;
 
+        static MassFraction()
+        {
+            BaseDimensions = BaseDimensions.Dimensionless;
+            BaseUnit = MassFractionUnit.DecimalFraction;
+            MaxValue = new MassFraction(double.MaxValue, BaseUnit);
+            MinValue = new MassFraction(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.MassFraction;
+            Units = Enum.GetValues(typeof(MassFractionUnit)).Cast<MassFractionUnit>().Except(new MassFractionUnit[]{ MassFractionUnit.Undefined }).ToArray();
+            Zero = new MassFraction(0, BaseUnit);
+
+            Info = new MassFraction.MassFractionQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -90,45 +103,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static MassFraction.MassFractionQuantityInfo Info { get; } = new MassFraction.MassFractionQuantityInfo();
+        public static MassFraction.MassFractionQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = BaseDimensions.Dimensionless;
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of MassFraction, which is DecimalFraction. All conversions go via this value.
         /// </summary>
-        public static MassFractionUnit BaseUnit { get; } = MassFractionUnit.DecimalFraction;
+        public static MassFractionUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of MassFraction
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static MassFraction MaxValue { get; } = new MassFraction(double.MaxValue, BaseUnit);
+        public static MassFraction MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of MassFraction
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static MassFraction MinValue { get; } = new MassFraction(double.MinValue, BaseUnit);
+        public static MassFraction MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.MassFraction;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the MassFraction quantity.
         /// </summary>
-        public static MassFractionUnit[] Units { get; } = Enum.GetValues(typeof(MassFractionUnit)).Cast<MassFractionUnit>().Except(new MassFractionUnit[]{ MassFractionUnit.Undefined }).ToArray();
+        public static MassFractionUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DecimalFraction.
         /// </summary>
-        public static MassFraction Zero { get; } = new MassFraction(0, BaseUnit);
+        public static MassFraction Zero { get; }
 
         #endregion
 
@@ -1287,7 +1300,35 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal MassFractionQuantityInfo() :
-                base("MassFraction", new UnitInfo<MassFractionUnit>[]{}, MassFraction.BaseUnit, MassFraction.Zero, MassFraction.BaseDimensions, QuantityType.MassFraction)
+                base("MassFraction",
+                    new UnitInfo<MassFractionUnit>[]
+                    {
+                        new UnitInfo<MassFractionUnit>(MassFractionUnit.CentigramPerGram, "CentigramsPerGram", BaseUnits.Undefined),
+                        new UnitInfo<MassFractionUnit>(MassFractionUnit.CentigramPerKilogram, "CentigramsPerKilogram", BaseUnits.Undefined),
+                        new UnitInfo<MassFractionUnit>(MassFractionUnit.DecagramPerGram, "DecagramsPerGram", BaseUnits.Undefined),
+                        new UnitInfo<MassFractionUnit>(MassFractionUnit.DecagramPerKilogram, "DecagramsPerKilogram", BaseUnits.Undefined),
+                        new UnitInfo<MassFractionUnit>(MassFractionUnit.DecigramPerGram, "DecigramsPerGram", BaseUnits.Undefined),
+                        new UnitInfo<MassFractionUnit>(MassFractionUnit.DecigramPerKilogram, "DecigramsPerKilogram", BaseUnits.Undefined),
+                        new UnitInfo<MassFractionUnit>(MassFractionUnit.DecimalFraction, "DecimalFractions", BaseUnits.Undefined),
+                        new UnitInfo<MassFractionUnit>(MassFractionUnit.GramPerGram, "GramsPerGram", BaseUnits.Undefined),
+                        new UnitInfo<MassFractionUnit>(MassFractionUnit.GramPerKilogram, "GramsPerKilogram", BaseUnits.Undefined),
+                        new UnitInfo<MassFractionUnit>(MassFractionUnit.HectogramPerGram, "HectogramsPerGram", BaseUnits.Undefined),
+                        new UnitInfo<MassFractionUnit>(MassFractionUnit.HectogramPerKilogram, "HectogramsPerKilogram", BaseUnits.Undefined),
+                        new UnitInfo<MassFractionUnit>(MassFractionUnit.KilogramPerGram, "KilogramsPerGram", BaseUnits.Undefined),
+                        new UnitInfo<MassFractionUnit>(MassFractionUnit.KilogramPerKilogram, "KilogramsPerKilogram", BaseUnits.Undefined),
+                        new UnitInfo<MassFractionUnit>(MassFractionUnit.MicrogramPerGram, "MicrogramsPerGram", BaseUnits.Undefined),
+                        new UnitInfo<MassFractionUnit>(MassFractionUnit.MicrogramPerKilogram, "MicrogramsPerKilogram", BaseUnits.Undefined),
+                        new UnitInfo<MassFractionUnit>(MassFractionUnit.MilligramPerGram, "MilligramsPerGram", BaseUnits.Undefined),
+                        new UnitInfo<MassFractionUnit>(MassFractionUnit.MilligramPerKilogram, "MilligramsPerKilogram", BaseUnits.Undefined),
+                        new UnitInfo<MassFractionUnit>(MassFractionUnit.NanogramPerGram, "NanogramsPerGram", BaseUnits.Undefined),
+                        new UnitInfo<MassFractionUnit>(MassFractionUnit.NanogramPerKilogram, "NanogramsPerKilogram", BaseUnits.Undefined),
+                        new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerBillion, "PartsPerBillion", BaseUnits.Undefined),
+                        new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerMillion, "PartsPerMillion", BaseUnits.Undefined),
+                        new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerThousand, "PartsPerThousand", BaseUnits.Undefined),
+                        new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerTrillion, "PartsPerTrillion", BaseUnits.Undefined),
+                        new UnitInfo<MassFractionUnit>(MassFractionUnit.Percent, "Percent", BaseUnits.Undefined),
+                    },
+                    MassFraction.BaseUnit, MassFraction.Zero, MassFraction.BaseDimensions, QuantityType.MassFraction)
             {
                 CentigramPerGram = new UnitInfo<MassFractionUnit>(MassFractionUnit.CentigramPerGram, "CentigramsPerGram", BaseUnits.Undefined);
                 CentigramPerKilogram = new UnitInfo<MassFractionUnit>(MassFractionUnit.CentigramPerKilogram, "CentigramsPerKilogram", BaseUnits.Undefined);
@@ -1313,7 +1354,7 @@ namespace UnitsNet
                 PartPerThousand = new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerThousand, "PartsPerThousand", BaseUnits.Undefined);
                 PartPerTrillion = new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerTrillion, "PartsPerTrillion", BaseUnits.Undefined);
                 Percent = new UnitInfo<MassFractionUnit>(MassFractionUnit.Percent, "Percent", BaseUnits.Undefined);
-                BaseUnitInfo = DecimalFraction;
+                //BaseUnitInfo = DecimalFraction;
             }
 
             /// <summary>

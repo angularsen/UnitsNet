@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly PowerUnit? _unit;
 
+        static Power()
+        {
+            BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
+            BaseUnit = PowerUnit.Watt;
+            MaxValue = new Power(decimal.MaxValue, BaseUnit);
+            MinValue = new Power(decimal.MinValue, BaseUnit);
+            QuantityType = QuantityType.Power;
+            Units = Enum.GetValues(typeof(PowerUnit)).Cast<PowerUnit>().Except(new PowerUnit[]{ PowerUnit.Undefined }).ToArray();
+            Zero = new Power(0, BaseUnit);
+
+            Info = new Power.PowerQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Power.PowerQuantityInfo Info { get; } = new Power.PowerQuantityInfo();
+        public static Power.PowerQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of Power, which is Watt. All conversions go via this value.
         /// </summary>
-        public static PowerUnit BaseUnit { get; } = PowerUnit.Watt;
+        public static PowerUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Power
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Power MaxValue { get; } = new Power(decimal.MaxValue, BaseUnit);
+        public static Power MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Power
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Power MinValue { get; } = new Power(decimal.MinValue, BaseUnit);
+        public static Power MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Power;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Power quantity.
         /// </summary>
-        public static PowerUnit[] Units { get; } = Enum.GetValues(typeof(PowerUnit)).Cast<PowerUnit>().Except(new PowerUnit[]{ PowerUnit.Undefined }).ToArray();
+        public static PowerUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Watt.
         /// </summary>
-        public static Power Zero { get; } = new Power(0, BaseUnit);
+        public static Power Zero { get; }
 
         #endregion
 
@@ -1307,7 +1320,36 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal PowerQuantityInfo() :
-                base("Power", new UnitInfo<PowerUnit>[]{}, Power.BaseUnit, Power.Zero, Power.BaseDimensions, QuantityType.Power)
+                base("Power",
+                    new UnitInfo<PowerUnit>[]
+                    {
+                        new UnitInfo<PowerUnit>(PowerUnit.BoilerHorsepower, "BoilerHorsepower", BaseUnits.Undefined),
+                        new UnitInfo<PowerUnit>(PowerUnit.BritishThermalUnitPerHour, "BritishThermalUnitsPerHour", BaseUnits.Undefined),
+                        new UnitInfo<PowerUnit>(PowerUnit.Decawatt, "Decawatts", BaseUnits.Undefined),
+                        new UnitInfo<PowerUnit>(PowerUnit.Deciwatt, "Deciwatts", BaseUnits.Undefined),
+                        new UnitInfo<PowerUnit>(PowerUnit.ElectricalHorsepower, "ElectricalHorsepower", BaseUnits.Undefined),
+                        new UnitInfo<PowerUnit>(PowerUnit.Femtowatt, "Femtowatts", BaseUnits.Undefined),
+                        new UnitInfo<PowerUnit>(PowerUnit.GigajoulePerHour, "GigajoulesPerHour", BaseUnits.Undefined),
+                        new UnitInfo<PowerUnit>(PowerUnit.Gigawatt, "Gigawatts", BaseUnits.Undefined),
+                        new UnitInfo<PowerUnit>(PowerUnit.HydraulicHorsepower, "HydraulicHorsepower", BaseUnits.Undefined),
+                        new UnitInfo<PowerUnit>(PowerUnit.JoulePerHour, "JoulesPerHour", BaseUnits.Undefined),
+                        new UnitInfo<PowerUnit>(PowerUnit.KilobritishThermalUnitPerHour, "KilobritishThermalUnitsPerHour", BaseUnits.Undefined),
+                        new UnitInfo<PowerUnit>(PowerUnit.KilojoulePerHour, "KilojoulesPerHour", BaseUnits.Undefined),
+                        new UnitInfo<PowerUnit>(PowerUnit.Kilowatt, "Kilowatts", BaseUnits.Undefined),
+                        new UnitInfo<PowerUnit>(PowerUnit.MechanicalHorsepower, "MechanicalHorsepower", BaseUnits.Undefined),
+                        new UnitInfo<PowerUnit>(PowerUnit.MegajoulePerHour, "MegajoulesPerHour", BaseUnits.Undefined),
+                        new UnitInfo<PowerUnit>(PowerUnit.Megawatt, "Megawatts", BaseUnits.Undefined),
+                        new UnitInfo<PowerUnit>(PowerUnit.MetricHorsepower, "MetricHorsepower", BaseUnits.Undefined),
+                        new UnitInfo<PowerUnit>(PowerUnit.Microwatt, "Microwatts", BaseUnits.Undefined),
+                        new UnitInfo<PowerUnit>(PowerUnit.MillijoulePerHour, "MillijoulesPerHour", BaseUnits.Undefined),
+                        new UnitInfo<PowerUnit>(PowerUnit.Milliwatt, "Milliwatts", BaseUnits.Undefined),
+                        new UnitInfo<PowerUnit>(PowerUnit.Nanowatt, "Nanowatts", BaseUnits.Undefined),
+                        new UnitInfo<PowerUnit>(PowerUnit.Petawatt, "Petawatts", BaseUnits.Undefined),
+                        new UnitInfo<PowerUnit>(PowerUnit.Picowatt, "Picowatts", BaseUnits.Undefined),
+                        new UnitInfo<PowerUnit>(PowerUnit.Terawatt, "Terawatts", BaseUnits.Undefined),
+                        new UnitInfo<PowerUnit>(PowerUnit.Watt, "Watts", BaseUnits.Undefined),
+                    },
+                    Power.BaseUnit, Power.Zero, Power.BaseDimensions, QuantityType.Power)
             {
                 BoilerHorsepower = new UnitInfo<PowerUnit>(PowerUnit.BoilerHorsepower, "BoilerHorsepower", BaseUnits.Undefined);
                 BritishThermalUnitPerHour = new UnitInfo<PowerUnit>(PowerUnit.BritishThermalUnitPerHour, "BritishThermalUnitsPerHour", BaseUnits.Undefined);
@@ -1334,7 +1376,7 @@ namespace UnitsNet
                 Picowatt = new UnitInfo<PowerUnit>(PowerUnit.Picowatt, "Picowatts", BaseUnits.Undefined);
                 Terawatt = new UnitInfo<PowerUnit>(PowerUnit.Terawatt, "Terawatts", BaseUnits.Undefined);
                 Watt = new UnitInfo<PowerUnit>(PowerUnit.Watt, "Watts", BaseUnits.Undefined);
-                BaseUnitInfo = Watt;
+                //BaseUnitInfo = Watt;
             }
 
             /// <summary>

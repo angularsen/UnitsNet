@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ElectricPotentialUnit? _unit;
 
+        static ElectricPotential()
+        {
+            BaseDimensions = new BaseDimensions(2, 1, -3, -1, 0, 0, 0);
+            BaseUnit = ElectricPotentialUnit.Volt;
+            MaxValue = new ElectricPotential(double.MaxValue, BaseUnit);
+            MinValue = new ElectricPotential(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.ElectricPotential;
+            Units = Enum.GetValues(typeof(ElectricPotentialUnit)).Cast<ElectricPotentialUnit>().Except(new ElectricPotentialUnit[]{ ElectricPotentialUnit.Undefined }).ToArray();
+            Zero = new ElectricPotential(0, BaseUnit);
+
+            Info = new ElectricPotential.ElectricPotentialQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static ElectricPotential.ElectricPotentialQuantityInfo Info { get; } = new ElectricPotential.ElectricPotentialQuantityInfo();
+        public static ElectricPotential.ElectricPotentialQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 1, -3, -1, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of ElectricPotential, which is Volt. All conversions go via this value.
         /// </summary>
-        public static ElectricPotentialUnit BaseUnit { get; } = ElectricPotentialUnit.Volt;
+        public static ElectricPotentialUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of ElectricPotential
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricPotential MaxValue { get; } = new ElectricPotential(double.MaxValue, BaseUnit);
+        public static ElectricPotential MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of ElectricPotential
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricPotential MinValue { get; } = new ElectricPotential(double.MinValue, BaseUnit);
+        public static ElectricPotential MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricPotential;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the ElectricPotential quantity.
         /// </summary>
-        public static ElectricPotentialUnit[] Units { get; } = Enum.GetValues(typeof(ElectricPotentialUnit)).Cast<ElectricPotentialUnit>().Except(new ElectricPotentialUnit[]{ ElectricPotentialUnit.Undefined }).ToArray();
+        public static ElectricPotentialUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Volt.
         /// </summary>
-        public static ElectricPotential Zero { get; } = new ElectricPotential(0, BaseUnit);
+        public static ElectricPotential Zero { get; }
 
         #endregion
 
@@ -942,14 +955,23 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ElectricPotentialQuantityInfo() :
-                base("ElectricPotential", new UnitInfo<ElectricPotentialUnit>[]{}, ElectricPotential.BaseUnit, ElectricPotential.Zero, ElectricPotential.BaseDimensions, QuantityType.ElectricPotential)
+                base("ElectricPotential",
+                    new UnitInfo<ElectricPotentialUnit>[]
+                    {
+                        new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Kilovolt, "Kilovolts", BaseUnits.Undefined),
+                        new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Megavolt, "Megavolts", BaseUnits.Undefined),
+                        new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Microvolt, "Microvolts", BaseUnits.Undefined),
+                        new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Millivolt, "Millivolts", BaseUnits.Undefined),
+                        new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Volt, "Volts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
+                    },
+                    ElectricPotential.BaseUnit, ElectricPotential.Zero, ElectricPotential.BaseDimensions, QuantityType.ElectricPotential)
             {
                 Kilovolt = new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Kilovolt, "Kilovolts", BaseUnits.Undefined);
                 Megavolt = new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Megavolt, "Megavolts", BaseUnits.Undefined);
                 Microvolt = new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Microvolt, "Microvolts", BaseUnits.Undefined);
                 Millivolt = new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Millivolt, "Millivolts", BaseUnits.Undefined);
                 Volt = new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Volt, "Volts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
-                BaseUnitInfo = Volt;
+                //BaseUnitInfo = Volt;
             }
 
             /// <summary>

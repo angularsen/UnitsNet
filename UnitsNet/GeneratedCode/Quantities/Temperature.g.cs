@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly TemperatureUnit? _unit;
 
+        static Temperature()
+        {
+            BaseDimensions = new BaseDimensions(0, 0, 0, 0, 1, 0, 0);
+            BaseUnit = TemperatureUnit.Kelvin;
+            MaxValue = new Temperature(double.MaxValue, BaseUnit);
+            MinValue = new Temperature(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Temperature;
+            Units = Enum.GetValues(typeof(TemperatureUnit)).Cast<TemperatureUnit>().Except(new TemperatureUnit[]{ TemperatureUnit.Undefined }).ToArray();
+            Zero = new Temperature(0, BaseUnit);
+
+            Info = new Temperature.TemperatureQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Temperature.TemperatureQuantityInfo Info { get; } = new Temperature.TemperatureQuantityInfo();
+        public static Temperature.TemperatureQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 0, 0, 0, 1, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of Temperature, which is Kelvin. All conversions go via this value.
         /// </summary>
-        public static TemperatureUnit BaseUnit { get; } = TemperatureUnit.Kelvin;
+        public static TemperatureUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Temperature
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Temperature MaxValue { get; } = new Temperature(double.MaxValue, BaseUnit);
+        public static Temperature MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Temperature
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Temperature MinValue { get; } = new Temperature(double.MinValue, BaseUnit);
+        public static Temperature MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Temperature;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Temperature quantity.
         /// </summary>
-        public static TemperatureUnit[] Units { get; } = Enum.GetValues(typeof(TemperatureUnit)).Cast<TemperatureUnit>().Except(new TemperatureUnit[]{ TemperatureUnit.Undefined }).ToArray();
+        public static TemperatureUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Kelvin.
         /// </summary>
-        public static Temperature Zero { get; } = new Temperature(0, BaseUnit);
+        public static Temperature Zero { get; }
 
         #endregion
 
@@ -986,7 +999,21 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal TemperatureQuantityInfo() :
-                base("Temperature", new UnitInfo<TemperatureUnit>[]{}, Temperature.BaseUnit, Temperature.Zero, Temperature.BaseDimensions, QuantityType.Temperature)
+                base("Temperature",
+                    new UnitInfo<TemperatureUnit>[]
+                    {
+                        new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeCelsius, "DegreesCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius)),
+                        new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeDelisle, "DegreesDelisle", new BaseUnits(temperature: TemperatureUnit.DegreeDelisle)),
+                        new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeFahrenheit, "DegreesFahrenheit", new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit)),
+                        new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeNewton, "DegreesNewton", new BaseUnits(temperature: TemperatureUnit.DegreeNewton)),
+                        new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeRankine, "DegreesRankine", new BaseUnits(temperature: TemperatureUnit.DegreeRankine)),
+                        new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeReaumur, "DegreesReaumur", new BaseUnits(temperature: TemperatureUnit.DegreeReaumur)),
+                        new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeRoemer, "DegreesRoemer", new BaseUnits(temperature: TemperatureUnit.DegreeRoemer)),
+                        new UnitInfo<TemperatureUnit>(TemperatureUnit.Kelvin, "Kelvins", new BaseUnits(temperature: TemperatureUnit.Kelvin)),
+                        new UnitInfo<TemperatureUnit>(TemperatureUnit.MillidegreeCelsius, "MillidegreesCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius)),
+                        new UnitInfo<TemperatureUnit>(TemperatureUnit.SolarTemperature, "SolarTemperatures", BaseUnits.Undefined),
+                    },
+                    Temperature.BaseUnit, Temperature.Zero, Temperature.BaseDimensions, QuantityType.Temperature)
             {
                 DegreeCelsius = new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeCelsius, "DegreesCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius));
                 DegreeDelisle = new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeDelisle, "DegreesDelisle", new BaseUnits(temperature: TemperatureUnit.DegreeDelisle));
@@ -998,7 +1025,7 @@ namespace UnitsNet
                 Kelvin = new UnitInfo<TemperatureUnit>(TemperatureUnit.Kelvin, "Kelvins", new BaseUnits(temperature: TemperatureUnit.Kelvin));
                 MillidegreeCelsius = new UnitInfo<TemperatureUnit>(TemperatureUnit.MillidegreeCelsius, "MillidegreesCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius));
                 SolarTemperature = new UnitInfo<TemperatureUnit>(TemperatureUnit.SolarTemperature, "SolarTemperatures", BaseUnits.Undefined);
-                BaseUnitInfo = Kelvin;
+                //BaseUnitInfo = Kelvin;
             }
 
             /// <summary>

@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly AreaDensityUnit? _unit;
 
+        static AreaDensity()
+        {
+            BaseDimensions = new BaseDimensions(-2, 1, 0, 0, 0, 0, 0);
+            BaseUnit = AreaDensityUnit.KilogramPerSquareMeter;
+            MaxValue = new AreaDensity(double.MaxValue, BaseUnit);
+            MinValue = new AreaDensity(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.AreaDensity;
+            Units = Enum.GetValues(typeof(AreaDensityUnit)).Cast<AreaDensityUnit>().Except(new AreaDensityUnit[]{ AreaDensityUnit.Undefined }).ToArray();
+            Zero = new AreaDensity(0, BaseUnit);
+
+            Info = new AreaDensity.AreaDensityQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static AreaDensity.AreaDensityQuantityInfo Info { get; } = new AreaDensity.AreaDensityQuantityInfo();
+        public static AreaDensity.AreaDensityQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-2, 1, 0, 0, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of AreaDensity, which is KilogramPerSquareMeter. All conversions go via this value.
         /// </summary>
-        public static AreaDensityUnit BaseUnit { get; } = AreaDensityUnit.KilogramPerSquareMeter;
+        public static AreaDensityUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of AreaDensity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static AreaDensity MaxValue { get; } = new AreaDensity(double.MaxValue, BaseUnit);
+        public static AreaDensity MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of AreaDensity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static AreaDensity MinValue { get; } = new AreaDensity(double.MinValue, BaseUnit);
+        public static AreaDensity MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.AreaDensity;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the AreaDensity quantity.
         /// </summary>
-        public static AreaDensityUnit[] Units { get; } = Enum.GetValues(typeof(AreaDensityUnit)).Cast<AreaDensityUnit>().Except(new AreaDensityUnit[]{ AreaDensityUnit.Undefined }).ToArray();
+        public static AreaDensityUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerSquareMeter.
         /// </summary>
-        public static AreaDensity Zero { get; } = new AreaDensity(0, BaseUnit);
+        public static AreaDensity Zero { get; }
 
         #endregion
 
@@ -870,10 +883,15 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal AreaDensityQuantityInfo() :
-                base("AreaDensity", new UnitInfo<AreaDensityUnit>[]{}, AreaDensity.BaseUnit, AreaDensity.Zero, AreaDensity.BaseDimensions, QuantityType.AreaDensity)
+                base("AreaDensity",
+                    new UnitInfo<AreaDensityUnit>[]
+                    {
+                        new UnitInfo<AreaDensityUnit>(AreaDensityUnit.KilogramPerSquareMeter, "KilogramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram)),
+                    },
+                    AreaDensity.BaseUnit, AreaDensity.Zero, AreaDensity.BaseDimensions, QuantityType.AreaDensity)
             {
                 KilogramPerSquareMeter = new UnitInfo<AreaDensityUnit>(AreaDensityUnit.KilogramPerSquareMeter, "KilogramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram));
-                BaseUnitInfo = KilogramPerSquareMeter;
+                //BaseUnitInfo = KilogramPerSquareMeter;
             }
 
             /// <summary>

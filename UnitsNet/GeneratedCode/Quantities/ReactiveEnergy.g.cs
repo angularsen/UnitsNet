@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ReactiveEnergyUnit? _unit;
 
+        static ReactiveEnergy()
+        {
+            BaseDimensions = new BaseDimensions(2, 1, -1, 0, 0, 0, 0);
+            BaseUnit = ReactiveEnergyUnit.VoltampereReactiveHour;
+            MaxValue = new ReactiveEnergy(double.MaxValue, BaseUnit);
+            MinValue = new ReactiveEnergy(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.ReactiveEnergy;
+            Units = Enum.GetValues(typeof(ReactiveEnergyUnit)).Cast<ReactiveEnergyUnit>().Except(new ReactiveEnergyUnit[]{ ReactiveEnergyUnit.Undefined }).ToArray();
+            Zero = new ReactiveEnergy(0, BaseUnit);
+
+            Info = new ReactiveEnergy.ReactiveEnergyQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static ReactiveEnergy.ReactiveEnergyQuantityInfo Info { get; } = new ReactiveEnergy.ReactiveEnergyQuantityInfo();
+        public static ReactiveEnergy.ReactiveEnergyQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 1, -1, 0, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of ReactiveEnergy, which is VoltampereReactiveHour. All conversions go via this value.
         /// </summary>
-        public static ReactiveEnergyUnit BaseUnit { get; } = ReactiveEnergyUnit.VoltampereReactiveHour;
+        public static ReactiveEnergyUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of ReactiveEnergy
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ReactiveEnergy MaxValue { get; } = new ReactiveEnergy(double.MaxValue, BaseUnit);
+        public static ReactiveEnergy MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of ReactiveEnergy
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ReactiveEnergy MinValue { get; } = new ReactiveEnergy(double.MinValue, BaseUnit);
+        public static ReactiveEnergy MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ReactiveEnergy;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the ReactiveEnergy quantity.
         /// </summary>
-        public static ReactiveEnergyUnit[] Units { get; } = Enum.GetValues(typeof(ReactiveEnergyUnit)).Cast<ReactiveEnergyUnit>().Except(new ReactiveEnergyUnit[]{ ReactiveEnergyUnit.Undefined }).ToArray();
+        public static ReactiveEnergyUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit VoltampereReactiveHour.
         /// </summary>
-        public static ReactiveEnergy Zero { get; } = new ReactiveEnergy(0, BaseUnit);
+        public static ReactiveEnergy Zero { get; }
 
         #endregion
 
@@ -906,12 +919,19 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ReactiveEnergyQuantityInfo() :
-                base("ReactiveEnergy", new UnitInfo<ReactiveEnergyUnit>[]{}, ReactiveEnergy.BaseUnit, ReactiveEnergy.Zero, ReactiveEnergy.BaseDimensions, QuantityType.ReactiveEnergy)
+                base("ReactiveEnergy",
+                    new UnitInfo<ReactiveEnergyUnit>[]
+                    {
+                        new UnitInfo<ReactiveEnergyUnit>(ReactiveEnergyUnit.KilovoltampereReactiveHour, "KilovoltampereReactiveHours", BaseUnits.Undefined),
+                        new UnitInfo<ReactiveEnergyUnit>(ReactiveEnergyUnit.MegavoltampereReactiveHour, "MegavoltampereReactiveHours", BaseUnits.Undefined),
+                        new UnitInfo<ReactiveEnergyUnit>(ReactiveEnergyUnit.VoltampereReactiveHour, "VoltampereReactiveHours", BaseUnits.Undefined),
+                    },
+                    ReactiveEnergy.BaseUnit, ReactiveEnergy.Zero, ReactiveEnergy.BaseDimensions, QuantityType.ReactiveEnergy)
             {
                 KilovoltampereReactiveHour = new UnitInfo<ReactiveEnergyUnit>(ReactiveEnergyUnit.KilovoltampereReactiveHour, "KilovoltampereReactiveHours", BaseUnits.Undefined);
                 MegavoltampereReactiveHour = new UnitInfo<ReactiveEnergyUnit>(ReactiveEnergyUnit.MegavoltampereReactiveHour, "MegavoltampereReactiveHours", BaseUnits.Undefined);
                 VoltampereReactiveHour = new UnitInfo<ReactiveEnergyUnit>(ReactiveEnergyUnit.VoltampereReactiveHour, "VoltampereReactiveHours", BaseUnits.Undefined);
-                BaseUnitInfo = VoltampereReactiveHour;
+                //BaseUnitInfo = VoltampereReactiveHour;
             }
 
             /// <summary>

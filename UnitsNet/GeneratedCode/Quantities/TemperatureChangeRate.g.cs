@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly TemperatureChangeRateUnit? _unit;
 
+        static TemperatureChangeRate()
+        {
+            BaseDimensions = new BaseDimensions(0, 0, -1, 0, 1, 0, 0);
+            BaseUnit = TemperatureChangeRateUnit.DegreeCelsiusPerSecond;
+            MaxValue = new TemperatureChangeRate(double.MaxValue, BaseUnit);
+            MinValue = new TemperatureChangeRate(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.TemperatureChangeRate;
+            Units = Enum.GetValues(typeof(TemperatureChangeRateUnit)).Cast<TemperatureChangeRateUnit>().Except(new TemperatureChangeRateUnit[]{ TemperatureChangeRateUnit.Undefined }).ToArray();
+            Zero = new TemperatureChangeRate(0, BaseUnit);
+
+            Info = new TemperatureChangeRate.TemperatureChangeRateQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static TemperatureChangeRate.TemperatureChangeRateQuantityInfo Info { get; } = new TemperatureChangeRate.TemperatureChangeRateQuantityInfo();
+        public static TemperatureChangeRate.TemperatureChangeRateQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 0, -1, 0, 1, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of TemperatureChangeRate, which is DegreeCelsiusPerSecond. All conversions go via this value.
         /// </summary>
-        public static TemperatureChangeRateUnit BaseUnit { get; } = TemperatureChangeRateUnit.DegreeCelsiusPerSecond;
+        public static TemperatureChangeRateUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of TemperatureChangeRate
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static TemperatureChangeRate MaxValue { get; } = new TemperatureChangeRate(double.MaxValue, BaseUnit);
+        public static TemperatureChangeRate MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of TemperatureChangeRate
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static TemperatureChangeRate MinValue { get; } = new TemperatureChangeRate(double.MinValue, BaseUnit);
+        public static TemperatureChangeRate MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.TemperatureChangeRate;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the TemperatureChangeRate quantity.
         /// </summary>
-        public static TemperatureChangeRateUnit[] Units { get; } = Enum.GetValues(typeof(TemperatureChangeRateUnit)).Cast<TemperatureChangeRateUnit>().Except(new TemperatureChangeRateUnit[]{ TemperatureChangeRateUnit.Undefined }).ToArray();
+        public static TemperatureChangeRateUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DegreeCelsiusPerSecond.
         /// </summary>
-        public static TemperatureChangeRate Zero { get; } = new TemperatureChangeRate(0, BaseUnit);
+        public static TemperatureChangeRate Zero { get; }
 
         #endregion
 
@@ -1032,7 +1045,21 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal TemperatureChangeRateQuantityInfo() :
-                base("TemperatureChangeRate", new UnitInfo<TemperatureChangeRateUnit>[]{}, TemperatureChangeRate.BaseUnit, TemperatureChangeRate.Zero, TemperatureChangeRate.BaseDimensions, QuantityType.TemperatureChangeRate)
+                base("TemperatureChangeRate",
+                    new UnitInfo<TemperatureChangeRateUnit>[]
+                    {
+                        new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, "CentidegreesCelsiusPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, "DecadegreesCelsiusPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond, "DecidegreesCelsiusPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeCelsiusPerMinute, "DegreesCelsiusPerMinute", BaseUnits.Undefined),
+                        new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, "DegreesCelsiusPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond, "HectodegreesCelsiusPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond, "KilodegreesCelsiusPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, "MicrodegreesCelsiusPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, "MillidegreesCelsiusPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, "NanodegreesCelsiusPerSecond", BaseUnits.Undefined),
+                    },
+                    TemperatureChangeRate.BaseUnit, TemperatureChangeRate.Zero, TemperatureChangeRate.BaseDimensions, QuantityType.TemperatureChangeRate)
             {
                 CentidegreeCelsiusPerSecond = new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, "CentidegreesCelsiusPerSecond", BaseUnits.Undefined);
                 DecadegreeCelsiusPerSecond = new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, "DecadegreesCelsiusPerSecond", BaseUnits.Undefined);
@@ -1044,7 +1071,7 @@ namespace UnitsNet
                 MicrodegreeCelsiusPerSecond = new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, "MicrodegreesCelsiusPerSecond", BaseUnits.Undefined);
                 MillidegreeCelsiusPerSecond = new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, "MillidegreesCelsiusPerSecond", BaseUnits.Undefined);
                 NanodegreeCelsiusPerSecond = new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, "NanodegreesCelsiusPerSecond", BaseUnits.Undefined);
-                BaseUnitInfo = DegreeCelsiusPerSecond;
+                //BaseUnitInfo = DegreeCelsiusPerSecond;
             }
 
             /// <summary>

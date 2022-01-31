@@ -53,6 +53,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ElectricCurrentDensityUnit? _unit;
 
+        static ElectricCurrentDensity()
+        {
+            BaseDimensions = new BaseDimensions(-2, 0, 0, 1, 0, 0, 0);
+            BaseUnit = ElectricCurrentDensityUnit.AmperePerSquareMeter;
+            MaxValue = new ElectricCurrentDensity(double.MaxValue, BaseUnit);
+            MinValue = new ElectricCurrentDensity(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.ElectricCurrentDensity;
+            Units = Enum.GetValues(typeof(ElectricCurrentDensityUnit)).Cast<ElectricCurrentDensityUnit>().Except(new ElectricCurrentDensityUnit[]{ ElectricCurrentDensityUnit.Undefined }).ToArray();
+            Zero = new ElectricCurrentDensity(0, BaseUnit);
+
+            Info = new ElectricCurrentDensity.ElectricCurrentDensityQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -90,45 +103,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static ElectricCurrentDensity.ElectricCurrentDensityQuantityInfo Info { get; } = new ElectricCurrentDensity.ElectricCurrentDensityQuantityInfo();
+        public static ElectricCurrentDensity.ElectricCurrentDensityQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-2, 0, 0, 1, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of ElectricCurrentDensity, which is AmperePerSquareMeter. All conversions go via this value.
         /// </summary>
-        public static ElectricCurrentDensityUnit BaseUnit { get; } = ElectricCurrentDensityUnit.AmperePerSquareMeter;
+        public static ElectricCurrentDensityUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of ElectricCurrentDensity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricCurrentDensity MaxValue { get; } = new ElectricCurrentDensity(double.MaxValue, BaseUnit);
+        public static ElectricCurrentDensity MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of ElectricCurrentDensity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricCurrentDensity MinValue { get; } = new ElectricCurrentDensity(double.MinValue, BaseUnit);
+        public static ElectricCurrentDensity MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricCurrentDensity;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the ElectricCurrentDensity quantity.
         /// </summary>
-        public static ElectricCurrentDensityUnit[] Units { get; } = Enum.GetValues(typeof(ElectricCurrentDensityUnit)).Cast<ElectricCurrentDensityUnit>().Except(new ElectricCurrentDensityUnit[]{ ElectricCurrentDensityUnit.Undefined }).ToArray();
+        public static ElectricCurrentDensityUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit AmperePerSquareMeter.
         /// </summary>
-        public static ElectricCurrentDensity Zero { get; } = new ElectricCurrentDensity(0, BaseUnit);
+        public static ElectricCurrentDensity Zero { get; }
 
         #endregion
 
@@ -909,12 +922,19 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ElectricCurrentDensityQuantityInfo() :
-                base("ElectricCurrentDensity", new UnitInfo<ElectricCurrentDensityUnit>[]{}, ElectricCurrentDensity.BaseUnit, ElectricCurrentDensity.Zero, ElectricCurrentDensity.BaseDimensions, QuantityType.ElectricCurrentDensity)
+                base("ElectricCurrentDensity",
+                    new UnitInfo<ElectricCurrentDensityUnit>[]
+                    {
+                        new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareFoot, "AmperesPerSquareFoot", new BaseUnits(length: LengthUnit.Foot, current: ElectricCurrentUnit.Ampere)),
+                        new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareInch, "AmperesPerSquareInch", new BaseUnits(length: LengthUnit.Inch, current: ElectricCurrentUnit.Ampere)),
+                        new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareMeter, "AmperesPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere)),
+                    },
+                    ElectricCurrentDensity.BaseUnit, ElectricCurrentDensity.Zero, ElectricCurrentDensity.BaseDimensions, QuantityType.ElectricCurrentDensity)
             {
                 AmperePerSquareFoot = new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareFoot, "AmperesPerSquareFoot", new BaseUnits(length: LengthUnit.Foot, current: ElectricCurrentUnit.Ampere));
                 AmperePerSquareInch = new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareInch, "AmperesPerSquareInch", new BaseUnits(length: LengthUnit.Inch, current: ElectricCurrentUnit.Ampere));
                 AmperePerSquareMeter = new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareMeter, "AmperesPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere));
-                BaseUnitInfo = AmperePerSquareMeter;
+                //BaseUnitInfo = AmperePerSquareMeter;
             }
 
             /// <summary>

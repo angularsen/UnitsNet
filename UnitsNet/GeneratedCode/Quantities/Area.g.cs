@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly AreaUnit? _unit;
 
+        static Area()
+        {
+            BaseDimensions = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
+            BaseUnit = AreaUnit.SquareMeter;
+            MaxValue = new Area(double.MaxValue, BaseUnit);
+            MinValue = new Area(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Area;
+            Units = Enum.GetValues(typeof(AreaUnit)).Cast<AreaUnit>().Except(new AreaUnit[]{ AreaUnit.Undefined }).ToArray();
+            Zero = new Area(0, BaseUnit);
+
+            Info = new Area.AreaQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Area.AreaQuantityInfo Info { get; } = new Area.AreaQuantityInfo();
+        public static Area.AreaQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of Area, which is SquareMeter. All conversions go via this value.
         /// </summary>
-        public static AreaUnit BaseUnit { get; } = AreaUnit.SquareMeter;
+        public static AreaUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Area
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Area MaxValue { get; } = new Area(double.MaxValue, BaseUnit);
+        public static Area MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Area
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Area MinValue { get; } = new Area(double.MinValue, BaseUnit);
+        public static Area MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Area;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Area quantity.
         /// </summary>
-        public static AreaUnit[] Units { get; } = Enum.GetValues(typeof(AreaUnit)).Cast<AreaUnit>().Except(new AreaUnit[]{ AreaUnit.Undefined }).ToArray();
+        public static AreaUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit SquareMeter.
         /// </summary>
-        public static Area Zero { get; } = new Area(0, BaseUnit);
+        public static Area Zero { get; }
 
         #endregion
 
@@ -1104,7 +1117,25 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal AreaQuantityInfo() :
-                base("Area", new UnitInfo<AreaUnit>[]{}, Area.BaseUnit, Area.Zero, Area.BaseDimensions, QuantityType.Area)
+                base("Area",
+                    new UnitInfo<AreaUnit>[]
+                    {
+                        new UnitInfo<AreaUnit>(AreaUnit.Acre, "Acres", BaseUnits.Undefined),
+                        new UnitInfo<AreaUnit>(AreaUnit.Hectare, "Hectares", BaseUnits.Undefined),
+                        new UnitInfo<AreaUnit>(AreaUnit.SquareCentimeter, "SquareCentimeters", new BaseUnits(length: LengthUnit.Centimeter)),
+                        new UnitInfo<AreaUnit>(AreaUnit.SquareDecimeter, "SquareDecimeters", new BaseUnits(length: LengthUnit.Decimeter)),
+                        new UnitInfo<AreaUnit>(AreaUnit.SquareFoot, "SquareFeet", new BaseUnits(length: LengthUnit.Foot)),
+                        new UnitInfo<AreaUnit>(AreaUnit.SquareInch, "SquareInches", new BaseUnits(length: LengthUnit.Inch)),
+                        new UnitInfo<AreaUnit>(AreaUnit.SquareKilometer, "SquareKilometers", new BaseUnits(length: LengthUnit.Kilometer)),
+                        new UnitInfo<AreaUnit>(AreaUnit.SquareMeter, "SquareMeters", new BaseUnits(length: LengthUnit.Meter)),
+                        new UnitInfo<AreaUnit>(AreaUnit.SquareMicrometer, "SquareMicrometers", new BaseUnits(length: LengthUnit.Micrometer)),
+                        new UnitInfo<AreaUnit>(AreaUnit.SquareMile, "SquareMiles", new BaseUnits(length: LengthUnit.Mile)),
+                        new UnitInfo<AreaUnit>(AreaUnit.SquareMillimeter, "SquareMillimeters", new BaseUnits(length: LengthUnit.Millimeter)),
+                        new UnitInfo<AreaUnit>(AreaUnit.SquareNauticalMile, "SquareNauticalMiles", BaseUnits.Undefined),
+                        new UnitInfo<AreaUnit>(AreaUnit.SquareYard, "SquareYards", new BaseUnits(length: LengthUnit.Yard)),
+                        new UnitInfo<AreaUnit>(AreaUnit.UsSurveySquareFoot, "UsSurveySquareFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot)),
+                    },
+                    Area.BaseUnit, Area.Zero, Area.BaseDimensions, QuantityType.Area)
             {
                 Acre = new UnitInfo<AreaUnit>(AreaUnit.Acre, "Acres", BaseUnits.Undefined);
                 Hectare = new UnitInfo<AreaUnit>(AreaUnit.Hectare, "Hectares", BaseUnits.Undefined);
@@ -1120,7 +1151,7 @@ namespace UnitsNet
                 SquareNauticalMile = new UnitInfo<AreaUnit>(AreaUnit.SquareNauticalMile, "SquareNauticalMiles", BaseUnits.Undefined);
                 SquareYard = new UnitInfo<AreaUnit>(AreaUnit.SquareYard, "SquareYards", new BaseUnits(length: LengthUnit.Yard));
                 UsSurveySquareFoot = new UnitInfo<AreaUnit>(AreaUnit.UsSurveySquareFoot, "UsSurveySquareFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot));
-                BaseUnitInfo = SquareMeter;
+                //BaseUnitInfo = SquareMeter;
             }
 
             /// <summary>

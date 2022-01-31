@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly AccelerationUnit? _unit;
 
+        static Acceleration()
+        {
+            BaseDimensions = new BaseDimensions(1, 0, -2, 0, 0, 0, 0);
+            BaseUnit = AccelerationUnit.MeterPerSecondSquared;
+            MaxValue = new Acceleration(double.MaxValue, BaseUnit);
+            MinValue = new Acceleration(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Acceleration;
+            Units = Enum.GetValues(typeof(AccelerationUnit)).Cast<AccelerationUnit>().Except(new AccelerationUnit[]{ AccelerationUnit.Undefined }).ToArray();
+            Zero = new Acceleration(0, BaseUnit);
+
+            Info = new Acceleration.AccelerationQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Acceleration.AccelerationQuantityInfo Info { get; } = new Acceleration.AccelerationQuantityInfo();
+        public static Acceleration.AccelerationQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(1, 0, -2, 0, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of Acceleration, which is MeterPerSecondSquared. All conversions go via this value.
         /// </summary>
-        public static AccelerationUnit BaseUnit { get; } = AccelerationUnit.MeterPerSecondSquared;
+        public static AccelerationUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Acceleration
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Acceleration MaxValue { get; } = new Acceleration(double.MaxValue, BaseUnit);
+        public static Acceleration MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Acceleration
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Acceleration MinValue { get; } = new Acceleration(double.MinValue, BaseUnit);
+        public static Acceleration MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Acceleration;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Acceleration quantity.
         /// </summary>
-        public static AccelerationUnit[] Units { get; } = Enum.GetValues(typeof(AccelerationUnit)).Cast<AccelerationUnit>().Except(new AccelerationUnit[]{ AccelerationUnit.Undefined }).ToArray();
+        public static AccelerationUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit MeterPerSecondSquared.
         /// </summary>
-        public static Acceleration Zero { get; } = new Acceleration(0, BaseUnit);
+        public static Acceleration Zero { get; }
 
         #endregion
 
@@ -1104,7 +1117,25 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal AccelerationQuantityInfo() :
-                base("Acceleration", new UnitInfo<AccelerationUnit>[]{}, Acceleration.BaseUnit, Acceleration.Zero, Acceleration.BaseDimensions, QuantityType.Acceleration)
+                base("Acceleration",
+                    new UnitInfo<AccelerationUnit>[]
+                    {
+                        new UnitInfo<AccelerationUnit>(AccelerationUnit.CentimeterPerSecondSquared, "CentimetersPerSecondSquared", BaseUnits.Undefined),
+                        new UnitInfo<AccelerationUnit>(AccelerationUnit.DecimeterPerSecondSquared, "DecimetersPerSecondSquared", BaseUnits.Undefined),
+                        new UnitInfo<AccelerationUnit>(AccelerationUnit.FootPerSecondSquared, "FeetPerSecondSquared", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second)),
+                        new UnitInfo<AccelerationUnit>(AccelerationUnit.InchPerSecondSquared, "InchesPerSecondSquared", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second)),
+                        new UnitInfo<AccelerationUnit>(AccelerationUnit.KilometerPerSecondSquared, "KilometersPerSecondSquared", BaseUnits.Undefined),
+                        new UnitInfo<AccelerationUnit>(AccelerationUnit.KnotPerHour, "KnotsPerHour", new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Hour)),
+                        new UnitInfo<AccelerationUnit>(AccelerationUnit.KnotPerMinute, "KnotsPerMinute", new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Minute)),
+                        new UnitInfo<AccelerationUnit>(AccelerationUnit.KnotPerSecond, "KnotsPerSecond", new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Second)),
+                        new UnitInfo<AccelerationUnit>(AccelerationUnit.MeterPerSecondSquared, "MetersPerSecondSquared", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second)),
+                        new UnitInfo<AccelerationUnit>(AccelerationUnit.MicrometerPerSecondSquared, "MicrometersPerSecondSquared", BaseUnits.Undefined),
+                        new UnitInfo<AccelerationUnit>(AccelerationUnit.MillimeterPerSecondSquared, "MillimetersPerSecondSquared", BaseUnits.Undefined),
+                        new UnitInfo<AccelerationUnit>(AccelerationUnit.MillistandardGravity, "MillistandardGravity", BaseUnits.Undefined),
+                        new UnitInfo<AccelerationUnit>(AccelerationUnit.NanometerPerSecondSquared, "NanometersPerSecondSquared", BaseUnits.Undefined),
+                        new UnitInfo<AccelerationUnit>(AccelerationUnit.StandardGravity, "StandardGravity", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second)),
+                    },
+                    Acceleration.BaseUnit, Acceleration.Zero, Acceleration.BaseDimensions, QuantityType.Acceleration)
             {
                 CentimeterPerSecondSquared = new UnitInfo<AccelerationUnit>(AccelerationUnit.CentimeterPerSecondSquared, "CentimetersPerSecondSquared", BaseUnits.Undefined);
                 DecimeterPerSecondSquared = new UnitInfo<AccelerationUnit>(AccelerationUnit.DecimeterPerSecondSquared, "DecimetersPerSecondSquared", BaseUnits.Undefined);
@@ -1120,7 +1151,7 @@ namespace UnitsNet
                 MillistandardGravity = new UnitInfo<AccelerationUnit>(AccelerationUnit.MillistandardGravity, "MillistandardGravity", BaseUnits.Undefined);
                 NanometerPerSecondSquared = new UnitInfo<AccelerationUnit>(AccelerationUnit.NanometerPerSecondSquared, "NanometersPerSecondSquared", BaseUnits.Undefined);
                 StandardGravity = new UnitInfo<AccelerationUnit>(AccelerationUnit.StandardGravity, "StandardGravity", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
-                BaseUnitInfo = MeterPerSecondSquared;
+                //BaseUnitInfo = MeterPerSecondSquared;
             }
 
             /// <summary>

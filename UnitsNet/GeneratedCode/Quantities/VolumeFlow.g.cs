@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly VolumeFlowUnit? _unit;
 
+        static VolumeFlow()
+        {
+            BaseDimensions = new BaseDimensions(3, 0, -1, 0, 0, 0, 0);
+            BaseUnit = VolumeFlowUnit.CubicMeterPerSecond;
+            MaxValue = new VolumeFlow(double.MaxValue, BaseUnit);
+            MinValue = new VolumeFlow(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.VolumeFlow;
+            Units = Enum.GetValues(typeof(VolumeFlowUnit)).Cast<VolumeFlowUnit>().Except(new VolumeFlowUnit[]{ VolumeFlowUnit.Undefined }).ToArray();
+            Zero = new VolumeFlow(0, BaseUnit);
+
+            Info = new VolumeFlow.VolumeFlowQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static VolumeFlow.VolumeFlowQuantityInfo Info { get; } = new VolumeFlow.VolumeFlowQuantityInfo();
+        public static VolumeFlow.VolumeFlowQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(3, 0, -1, 0, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of VolumeFlow, which is CubicMeterPerSecond. All conversions go via this value.
         /// </summary>
-        public static VolumeFlowUnit BaseUnit { get; } = VolumeFlowUnit.CubicMeterPerSecond;
+        public static VolumeFlowUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of VolumeFlow
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static VolumeFlow MaxValue { get; } = new VolumeFlow(double.MaxValue, BaseUnit);
+        public static VolumeFlow MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of VolumeFlow
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static VolumeFlow MinValue { get; } = new VolumeFlow(double.MinValue, BaseUnit);
+        public static VolumeFlow MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.VolumeFlow;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the VolumeFlow quantity.
         /// </summary>
-        public static VolumeFlowUnit[] Units { get; } = Enum.GetValues(typeof(VolumeFlowUnit)).Cast<VolumeFlowUnit>().Except(new VolumeFlowUnit[]{ VolumeFlowUnit.Undefined }).ToArray();
+        public static VolumeFlowUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit CubicMeterPerSecond.
         /// </summary>
-        public static VolumeFlow Zero { get; } = new VolumeFlow(0, BaseUnit);
+        public static VolumeFlow Zero { get; }
 
         #endregion
 
@@ -1968,7 +1981,73 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal VolumeFlowQuantityInfo() :
-                base("VolumeFlow", new UnitInfo<VolumeFlowUnit>[]{}, VolumeFlow.BaseUnit, VolumeFlow.Zero, VolumeFlow.BaseDimensions, QuantityType.VolumeFlow)
+                base("VolumeFlow",
+                    new UnitInfo<VolumeFlowUnit>[]
+                    {
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.AcreFootPerDay, "AcreFeetPerDay", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.AcreFootPerHour, "AcreFeetPerHour", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.AcreFootPerMinute, "AcreFeetPerMinute", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.AcreFootPerSecond, "AcreFeetPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CentiliterPerDay, "CentilitersPerDay", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CentiliterPerHour, "CentilitersPerHour", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CentiliterPerMinute, "CentilitersPerMinute", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CentiliterPerSecond, "CentilitersPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicCentimeterPerMinute, "CubicCentimetersPerMinute", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicDecimeterPerMinute, "CubicDecimetersPerMinute", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicFootPerHour, "CubicFeetPerHour", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicFootPerMinute, "CubicFeetPerMinute", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicFootPerSecond, "CubicFeetPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMeterPerDay, "CubicMetersPerDay", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMeterPerHour, "CubicMetersPerHour", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMeterPerMinute, "CubicMetersPerMinute", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMeterPerSecond, "CubicMetersPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMillimeterPerSecond, "CubicMillimetersPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerDay, "CubicYardsPerDay", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerHour, "CubicYardsPerHour", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerMinute, "CubicYardsPerMinute", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerSecond, "CubicYardsPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.DeciliterPerDay, "DecilitersPerDay", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.DeciliterPerHour, "DecilitersPerHour", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.DeciliterPerMinute, "DecilitersPerMinute", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.DeciliterPerSecond, "DecilitersPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.KiloliterPerDay, "KilolitersPerDay", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.KiloliterPerHour, "KilolitersPerHour", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.KiloliterPerMinute, "KilolitersPerMinute", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.KiloliterPerSecond, "KilolitersPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.KilousGallonPerMinute, "KilousGallonsPerMinute", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.LiterPerDay, "LitersPerDay", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.LiterPerHour, "LitersPerHour", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.LiterPerMinute, "LitersPerMinute", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.LiterPerSecond, "LitersPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MegaliterPerDay, "MegalitersPerDay", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MegaukGallonPerSecond, "MegaukGallonsPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MicroliterPerDay, "MicrolitersPerDay", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MicroliterPerHour, "MicrolitersPerHour", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MicroliterPerMinute, "MicrolitersPerMinute", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MicroliterPerSecond, "MicrolitersPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MilliliterPerDay, "MillilitersPerDay", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MilliliterPerHour, "MillilitersPerHour", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MilliliterPerMinute, "MillilitersPerMinute", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MilliliterPerSecond, "MillilitersPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MillionUsGallonsPerDay, "MillionUsGallonsPerDay", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.NanoliterPerDay, "NanolitersPerDay", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.NanoliterPerHour, "NanolitersPerHour", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.NanoliterPerMinute, "NanolitersPerMinute", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.NanoliterPerSecond, "NanolitersPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.OilBarrelPerDay, "OilBarrelsPerDay", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.OilBarrelPerHour, "OilBarrelsPerHour", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.OilBarrelPerMinute, "OilBarrelsPerMinute", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.OilBarrelPerSecond, "OilBarrelsPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UkGallonPerDay, "UkGallonsPerDay", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UkGallonPerHour, "UkGallonsPerHour", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UkGallonPerMinute, "UkGallonsPerMinute", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UkGallonPerSecond, "UkGallonsPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerDay, "UsGallonsPerDay", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerHour, "UsGallonsPerHour", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerMinute, "UsGallonsPerMinute", BaseUnits.Undefined),
+                        new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerSecond, "UsGallonsPerSecond", BaseUnits.Undefined),
+                    },
+                    VolumeFlow.BaseUnit, VolumeFlow.Zero, VolumeFlow.BaseDimensions, QuantityType.VolumeFlow)
             {
                 AcreFootPerDay = new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.AcreFootPerDay, "AcreFeetPerDay", BaseUnits.Undefined);
                 AcreFootPerHour = new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.AcreFootPerHour, "AcreFeetPerHour", BaseUnits.Undefined);
@@ -2032,7 +2111,7 @@ namespace UnitsNet
                 UsGallonPerHour = new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerHour, "UsGallonsPerHour", BaseUnits.Undefined);
                 UsGallonPerMinute = new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerMinute, "UsGallonsPerMinute", BaseUnits.Undefined);
                 UsGallonPerSecond = new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerSecond, "UsGallonsPerSecond", BaseUnits.Undefined);
-                BaseUnitInfo = CubicMeterPerSecond;
+                //BaseUnitInfo = CubicMeterPerSecond;
             }
 
             /// <summary>

@@ -53,6 +53,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly IrradiationUnit? _unit;
 
+        static Irradiation()
+        {
+            BaseDimensions = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
+            BaseUnit = IrradiationUnit.JoulePerSquareMeter;
+            MaxValue = new Irradiation(double.MaxValue, BaseUnit);
+            MinValue = new Irradiation(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Irradiation;
+            Units = Enum.GetValues(typeof(IrradiationUnit)).Cast<IrradiationUnit>().Except(new IrradiationUnit[]{ IrradiationUnit.Undefined }).ToArray();
+            Zero = new Irradiation(0, BaseUnit);
+
+            Info = new Irradiation.IrradiationQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -90,45 +103,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Irradiation.IrradiationQuantityInfo Info { get; } = new Irradiation.IrradiationQuantityInfo();
+        public static Irradiation.IrradiationQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of Irradiation, which is JoulePerSquareMeter. All conversions go via this value.
         /// </summary>
-        public static IrradiationUnit BaseUnit { get; } = IrradiationUnit.JoulePerSquareMeter;
+        public static IrradiationUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Irradiation
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Irradiation MaxValue { get; } = new Irradiation(double.MaxValue, BaseUnit);
+        public static Irradiation MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Irradiation
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Irradiation MinValue { get; } = new Irradiation(double.MinValue, BaseUnit);
+        public static Irradiation MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Irradiation;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Irradiation quantity.
         /// </summary>
-        public static IrradiationUnit[] Units { get; } = Enum.GetValues(typeof(IrradiationUnit)).Cast<IrradiationUnit>().Except(new IrradiationUnit[]{ IrradiationUnit.Undefined }).ToArray();
+        public static IrradiationUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit JoulePerSquareMeter.
         /// </summary>
-        public static Irradiation Zero { get; } = new Irradiation(0, BaseUnit);
+        public static Irradiation Zero { get; }
 
         #endregion
 
@@ -981,7 +994,18 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal IrradiationQuantityInfo() :
-                base("Irradiation", new UnitInfo<IrradiationUnit>[]{}, Irradiation.BaseUnit, Irradiation.Zero, Irradiation.BaseDimensions, QuantityType.Irradiation)
+                base("Irradiation",
+                    new UnitInfo<IrradiationUnit>[]
+                    {
+                        new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareCentimeter, "JoulesPerSquareCentimeter", BaseUnits.Undefined),
+                        new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareMeter, "JoulesPerSquareMeter", BaseUnits.Undefined),
+                        new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareMillimeter, "JoulesPerSquareMillimeter", BaseUnits.Undefined),
+                        new UnitInfo<IrradiationUnit>(IrradiationUnit.KilojoulePerSquareMeter, "KilojoulesPerSquareMeter", BaseUnits.Undefined),
+                        new UnitInfo<IrradiationUnit>(IrradiationUnit.KilowattHourPerSquareMeter, "KilowattHoursPerSquareMeter", BaseUnits.Undefined),
+                        new UnitInfo<IrradiationUnit>(IrradiationUnit.MillijoulePerSquareCentimeter, "MillijoulesPerSquareCentimeter", BaseUnits.Undefined),
+                        new UnitInfo<IrradiationUnit>(IrradiationUnit.WattHourPerSquareMeter, "WattHoursPerSquareMeter", BaseUnits.Undefined),
+                    },
+                    Irradiation.BaseUnit, Irradiation.Zero, Irradiation.BaseDimensions, QuantityType.Irradiation)
             {
                 JoulePerSquareCentimeter = new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareCentimeter, "JoulesPerSquareCentimeter", BaseUnits.Undefined);
                 JoulePerSquareMeter = new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareMeter, "JoulesPerSquareMeter", BaseUnits.Undefined);
@@ -990,7 +1014,7 @@ namespace UnitsNet
                 KilowattHourPerSquareMeter = new UnitInfo<IrradiationUnit>(IrradiationUnit.KilowattHourPerSquareMeter, "KilowattHoursPerSquareMeter", BaseUnits.Undefined);
                 MillijoulePerSquareCentimeter = new UnitInfo<IrradiationUnit>(IrradiationUnit.MillijoulePerSquareCentimeter, "MillijoulesPerSquareCentimeter", BaseUnits.Undefined);
                 WattHourPerSquareMeter = new UnitInfo<IrradiationUnit>(IrradiationUnit.WattHourPerSquareMeter, "WattHoursPerSquareMeter", BaseUnits.Undefined);
-                BaseUnitInfo = JoulePerSquareMeter;
+                //BaseUnitInfo = JoulePerSquareMeter;
             }
 
             /// <summary>

@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ElectricPotentialAcUnit? _unit;
 
+        static ElectricPotentialAc()
+        {
+            BaseDimensions = BaseDimensions.Dimensionless;
+            BaseUnit = ElectricPotentialAcUnit.VoltAc;
+            MaxValue = new ElectricPotentialAc(double.MaxValue, BaseUnit);
+            MinValue = new ElectricPotentialAc(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.ElectricPotentialAc;
+            Units = Enum.GetValues(typeof(ElectricPotentialAcUnit)).Cast<ElectricPotentialAcUnit>().Except(new ElectricPotentialAcUnit[]{ ElectricPotentialAcUnit.Undefined }).ToArray();
+            Zero = new ElectricPotentialAc(0, BaseUnit);
+
+            Info = new ElectricPotentialAc.ElectricPotentialAcQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static ElectricPotentialAc.ElectricPotentialAcQuantityInfo Info { get; } = new ElectricPotentialAc.ElectricPotentialAcQuantityInfo();
+        public static ElectricPotentialAc.ElectricPotentialAcQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = BaseDimensions.Dimensionless;
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of ElectricPotentialAc, which is VoltAc. All conversions go via this value.
         /// </summary>
-        public static ElectricPotentialAcUnit BaseUnit { get; } = ElectricPotentialAcUnit.VoltAc;
+        public static ElectricPotentialAcUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of ElectricPotentialAc
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricPotentialAc MaxValue { get; } = new ElectricPotentialAc(double.MaxValue, BaseUnit);
+        public static ElectricPotentialAc MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of ElectricPotentialAc
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricPotentialAc MinValue { get; } = new ElectricPotentialAc(double.MinValue, BaseUnit);
+        public static ElectricPotentialAc MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricPotentialAc;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the ElectricPotentialAc quantity.
         /// </summary>
-        public static ElectricPotentialAcUnit[] Units { get; } = Enum.GetValues(typeof(ElectricPotentialAcUnit)).Cast<ElectricPotentialAcUnit>().Except(new ElectricPotentialAcUnit[]{ ElectricPotentialAcUnit.Undefined }).ToArray();
+        public static ElectricPotentialAcUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit VoltAc.
         /// </summary>
-        public static ElectricPotentialAc Zero { get; } = new ElectricPotentialAc(0, BaseUnit);
+        public static ElectricPotentialAc Zero { get; }
 
         #endregion
 
@@ -942,14 +955,23 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ElectricPotentialAcQuantityInfo() :
-                base("ElectricPotentialAc", new UnitInfo<ElectricPotentialAcUnit>[]{}, ElectricPotentialAc.BaseUnit, ElectricPotentialAc.Zero, ElectricPotentialAc.BaseDimensions, QuantityType.ElectricPotentialAc)
+                base("ElectricPotentialAc",
+                    new UnitInfo<ElectricPotentialAcUnit>[]
+                    {
+                        new UnitInfo<ElectricPotentialAcUnit>(ElectricPotentialAcUnit.KilovoltAc, "KilovoltsAc", BaseUnits.Undefined),
+                        new UnitInfo<ElectricPotentialAcUnit>(ElectricPotentialAcUnit.MegavoltAc, "MegavoltsAc", BaseUnits.Undefined),
+                        new UnitInfo<ElectricPotentialAcUnit>(ElectricPotentialAcUnit.MicrovoltAc, "MicrovoltsAc", BaseUnits.Undefined),
+                        new UnitInfo<ElectricPotentialAcUnit>(ElectricPotentialAcUnit.MillivoltAc, "MillivoltsAc", BaseUnits.Undefined),
+                        new UnitInfo<ElectricPotentialAcUnit>(ElectricPotentialAcUnit.VoltAc, "VoltsAc", BaseUnits.Undefined),
+                    },
+                    ElectricPotentialAc.BaseUnit, ElectricPotentialAc.Zero, ElectricPotentialAc.BaseDimensions, QuantityType.ElectricPotentialAc)
             {
                 KilovoltAc = new UnitInfo<ElectricPotentialAcUnit>(ElectricPotentialAcUnit.KilovoltAc, "KilovoltsAc", BaseUnits.Undefined);
                 MegavoltAc = new UnitInfo<ElectricPotentialAcUnit>(ElectricPotentialAcUnit.MegavoltAc, "MegavoltsAc", BaseUnits.Undefined);
                 MicrovoltAc = new UnitInfo<ElectricPotentialAcUnit>(ElectricPotentialAcUnit.MicrovoltAc, "MicrovoltsAc", BaseUnits.Undefined);
                 MillivoltAc = new UnitInfo<ElectricPotentialAcUnit>(ElectricPotentialAcUnit.MillivoltAc, "MillivoltsAc", BaseUnits.Undefined);
                 VoltAc = new UnitInfo<ElectricPotentialAcUnit>(ElectricPotentialAcUnit.VoltAc, "VoltsAc", BaseUnits.Undefined);
-                BaseUnitInfo = VoltAc;
+                //BaseUnitInfo = VoltAc;
             }
 
             /// <summary>

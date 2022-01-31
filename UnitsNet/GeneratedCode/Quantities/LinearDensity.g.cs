@@ -53,6 +53,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly LinearDensityUnit? _unit;
 
+        static LinearDensity()
+        {
+            BaseDimensions = new BaseDimensions(-1, 1, 0, 0, 0, 0, 0);
+            BaseUnit = LinearDensityUnit.KilogramPerMeter;
+            MaxValue = new LinearDensity(double.MaxValue, BaseUnit);
+            MinValue = new LinearDensity(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.LinearDensity;
+            Units = Enum.GetValues(typeof(LinearDensityUnit)).Cast<LinearDensityUnit>().Except(new LinearDensityUnit[]{ LinearDensityUnit.Undefined }).ToArray();
+            Zero = new LinearDensity(0, BaseUnit);
+
+            Info = new LinearDensity.LinearDensityQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -90,45 +103,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static LinearDensity.LinearDensityQuantityInfo Info { get; } = new LinearDensity.LinearDensityQuantityInfo();
+        public static LinearDensity.LinearDensityQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-1, 1, 0, 0, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of LinearDensity, which is KilogramPerMeter. All conversions go via this value.
         /// </summary>
-        public static LinearDensityUnit BaseUnit { get; } = LinearDensityUnit.KilogramPerMeter;
+        public static LinearDensityUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of LinearDensity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static LinearDensity MaxValue { get; } = new LinearDensity(double.MaxValue, BaseUnit);
+        public static LinearDensity MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of LinearDensity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static LinearDensity MinValue { get; } = new LinearDensity(double.MinValue, BaseUnit);
+        public static LinearDensity MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.LinearDensity;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the LinearDensity quantity.
         /// </summary>
-        public static LinearDensityUnit[] Units { get; } = Enum.GetValues(typeof(LinearDensityUnit)).Cast<LinearDensityUnit>().Except(new LinearDensityUnit[]{ LinearDensityUnit.Undefined }).ToArray();
+        public static LinearDensityUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerMeter.
         /// </summary>
-        public static LinearDensity Zero { get; } = new LinearDensity(0, BaseUnit);
+        public static LinearDensity Zero { get; }
 
         #endregion
 
@@ -1107,7 +1120,25 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal LinearDensityQuantityInfo() :
-                base("LinearDensity", new UnitInfo<LinearDensityUnit>[]{}, LinearDensity.BaseUnit, LinearDensity.Zero, LinearDensity.BaseDimensions, QuantityType.LinearDensity)
+                base("LinearDensity",
+                    new UnitInfo<LinearDensityUnit>[]
+                    {
+                        new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerCentimeter, "GramsPerCentimeter", BaseUnits.Undefined),
+                        new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerMeter, "GramsPerMeter", BaseUnits.Undefined),
+                        new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerMillimeter, "GramsPerMillimeter", BaseUnits.Undefined),
+                        new UnitInfo<LinearDensityUnit>(LinearDensityUnit.KilogramPerCentimeter, "KilogramsPerCentimeter", BaseUnits.Undefined),
+                        new UnitInfo<LinearDensityUnit>(LinearDensityUnit.KilogramPerMeter, "KilogramsPerMeter", BaseUnits.Undefined),
+                        new UnitInfo<LinearDensityUnit>(LinearDensityUnit.KilogramPerMillimeter, "KilogramsPerMillimeter", BaseUnits.Undefined),
+                        new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MicrogramPerCentimeter, "MicrogramsPerCentimeter", BaseUnits.Undefined),
+                        new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MicrogramPerMeter, "MicrogramsPerMeter", BaseUnits.Undefined),
+                        new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MicrogramPerMillimeter, "MicrogramsPerMillimeter", BaseUnits.Undefined),
+                        new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MilligramPerCentimeter, "MilligramsPerCentimeter", BaseUnits.Undefined),
+                        new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MilligramPerMeter, "MilligramsPerMeter", BaseUnits.Undefined),
+                        new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MilligramPerMillimeter, "MilligramsPerMillimeter", BaseUnits.Undefined),
+                        new UnitInfo<LinearDensityUnit>(LinearDensityUnit.PoundPerFoot, "PoundsPerFoot", BaseUnits.Undefined),
+                        new UnitInfo<LinearDensityUnit>(LinearDensityUnit.PoundPerInch, "PoundsPerInch", BaseUnits.Undefined),
+                    },
+                    LinearDensity.BaseUnit, LinearDensity.Zero, LinearDensity.BaseDimensions, QuantityType.LinearDensity)
             {
                 GramPerCentimeter = new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerCentimeter, "GramsPerCentimeter", BaseUnits.Undefined);
                 GramPerMeter = new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerMeter, "GramsPerMeter", BaseUnits.Undefined);
@@ -1123,7 +1154,7 @@ namespace UnitsNet
                 MilligramPerMillimeter = new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MilligramPerMillimeter, "MilligramsPerMillimeter", BaseUnits.Undefined);
                 PoundPerFoot = new UnitInfo<LinearDensityUnit>(LinearDensityUnit.PoundPerFoot, "PoundsPerFoot", BaseUnits.Undefined);
                 PoundPerInch = new UnitInfo<LinearDensityUnit>(LinearDensityUnit.PoundPerInch, "PoundsPerInch", BaseUnits.Undefined);
-                BaseUnitInfo = KilogramPerMeter;
+                //BaseUnitInfo = KilogramPerMeter;
             }
 
             /// <summary>

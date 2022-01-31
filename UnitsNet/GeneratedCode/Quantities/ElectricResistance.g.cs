@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ElectricResistanceUnit? _unit;
 
+        static ElectricResistance()
+        {
+            BaseDimensions = new BaseDimensions(2, 1, -3, -2, 0, 0, 0);
+            BaseUnit = ElectricResistanceUnit.Ohm;
+            MaxValue = new ElectricResistance(double.MaxValue, BaseUnit);
+            MinValue = new ElectricResistance(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.ElectricResistance;
+            Units = Enum.GetValues(typeof(ElectricResistanceUnit)).Cast<ElectricResistanceUnit>().Except(new ElectricResistanceUnit[]{ ElectricResistanceUnit.Undefined }).ToArray();
+            Zero = new ElectricResistance(0, BaseUnit);
+
+            Info = new ElectricResistance.ElectricResistanceQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static ElectricResistance.ElectricResistanceQuantityInfo Info { get; } = new ElectricResistance.ElectricResistanceQuantityInfo();
+        public static ElectricResistance.ElectricResistanceQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 1, -3, -2, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of ElectricResistance, which is Ohm. All conversions go via this value.
         /// </summary>
-        public static ElectricResistanceUnit BaseUnit { get; } = ElectricResistanceUnit.Ohm;
+        public static ElectricResistanceUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of ElectricResistance
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricResistance MaxValue { get; } = new ElectricResistance(double.MaxValue, BaseUnit);
+        public static ElectricResistance MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of ElectricResistance
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricResistance MinValue { get; } = new ElectricResistance(double.MinValue, BaseUnit);
+        public static ElectricResistance MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricResistance;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the ElectricResistance quantity.
         /// </summary>
-        public static ElectricResistanceUnit[] Units { get; } = Enum.GetValues(typeof(ElectricResistanceUnit)).Cast<ElectricResistanceUnit>().Except(new ElectricResistanceUnit[]{ ElectricResistanceUnit.Undefined }).ToArray();
+        public static ElectricResistanceUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Ohm.
         /// </summary>
-        public static ElectricResistance Zero { get; } = new ElectricResistance(0, BaseUnit);
+        public static ElectricResistance Zero { get; }
 
         #endregion
 
@@ -960,7 +973,17 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ElectricResistanceQuantityInfo() :
-                base("ElectricResistance", new UnitInfo<ElectricResistanceUnit>[]{}, ElectricResistance.BaseUnit, ElectricResistance.Zero, ElectricResistance.BaseDimensions, QuantityType.ElectricResistance)
+                base("ElectricResistance",
+                    new UnitInfo<ElectricResistanceUnit>[]
+                    {
+                        new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Gigaohm, "Gigaohms", BaseUnits.Undefined),
+                        new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Kiloohm, "Kiloohms", BaseUnits.Undefined),
+                        new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Megaohm, "Megaohms", BaseUnits.Undefined),
+                        new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Microohm, "Microohms", BaseUnits.Undefined),
+                        new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Milliohm, "Milliohms", BaseUnits.Undefined),
+                        new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Ohm, "Ohms", BaseUnits.Undefined),
+                    },
+                    ElectricResistance.BaseUnit, ElectricResistance.Zero, ElectricResistance.BaseDimensions, QuantityType.ElectricResistance)
             {
                 Gigaohm = new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Gigaohm, "Gigaohms", BaseUnits.Undefined);
                 Kiloohm = new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Kiloohm, "Kiloohms", BaseUnits.Undefined);
@@ -968,7 +991,7 @@ namespace UnitsNet
                 Microohm = new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Microohm, "Microohms", BaseUnits.Undefined);
                 Milliohm = new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Milliohm, "Milliohms", BaseUnits.Undefined);
                 Ohm = new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Ohm, "Ohms", BaseUnits.Undefined);
-                BaseUnitInfo = Ohm;
+                //BaseUnitInfo = Ohm;
             }
 
             /// <summary>

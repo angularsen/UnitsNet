@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ForceUnit? _unit;
 
+        static Force()
+        {
+            BaseDimensions = new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
+            BaseUnit = ForceUnit.Newton;
+            MaxValue = new Force(double.MaxValue, BaseUnit);
+            MinValue = new Force(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Force;
+            Units = Enum.GetValues(typeof(ForceUnit)).Cast<ForceUnit>().Except(new ForceUnit[]{ ForceUnit.Undefined }).ToArray();
+            Zero = new Force(0, BaseUnit);
+
+            Info = new Force.ForceQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Force.ForceQuantityInfo Info { get; } = new Force.ForceQuantityInfo();
+        public static Force.ForceQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of Force, which is Newton. All conversions go via this value.
         /// </summary>
-        public static ForceUnit BaseUnit { get; } = ForceUnit.Newton;
+        public static ForceUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Force
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Force MaxValue { get; } = new Force(double.MaxValue, BaseUnit);
+        public static Force MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Force
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Force MinValue { get; } = new Force(double.MinValue, BaseUnit);
+        public static Force MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Force;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Force quantity.
         /// </summary>
-        public static ForceUnit[] Units { get; } = Enum.GetValues(typeof(ForceUnit)).Cast<ForceUnit>().Except(new ForceUnit[]{ ForceUnit.Undefined }).ToArray();
+        public static ForceUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Newton.
         /// </summary>
-        public static Force Zero { get; } = new Force(0, BaseUnit);
+        public static Force Zero { get; }
 
         #endregion
 
@@ -1122,7 +1135,26 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ForceQuantityInfo() :
-                base("Force", new UnitInfo<ForceUnit>[]{}, Force.BaseUnit, Force.Zero, Force.BaseDimensions, QuantityType.Force)
+                base("Force",
+                    new UnitInfo<ForceUnit>[]
+                    {
+                        new UnitInfo<ForceUnit>(ForceUnit.Decanewton, "Decanewtons", BaseUnits.Undefined),
+                        new UnitInfo<ForceUnit>(ForceUnit.Dyn, "Dyne", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram, time: DurationUnit.Second)),
+                        new UnitInfo<ForceUnit>(ForceUnit.KilogramForce, "KilogramsForce", BaseUnits.Undefined),
+                        new UnitInfo<ForceUnit>(ForceUnit.Kilonewton, "Kilonewtons", BaseUnits.Undefined),
+                        new UnitInfo<ForceUnit>(ForceUnit.KiloPond, "KiloPonds", BaseUnits.Undefined),
+                        new UnitInfo<ForceUnit>(ForceUnit.KilopoundForce, "KilopoundsForce", BaseUnits.Undefined),
+                        new UnitInfo<ForceUnit>(ForceUnit.Meganewton, "Meganewtons", BaseUnits.Undefined),
+                        new UnitInfo<ForceUnit>(ForceUnit.Micronewton, "Micronewtons", BaseUnits.Undefined),
+                        new UnitInfo<ForceUnit>(ForceUnit.Millinewton, "Millinewtons", BaseUnits.Undefined),
+                        new UnitInfo<ForceUnit>(ForceUnit.Newton, "Newtons", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
+                        new UnitInfo<ForceUnit>(ForceUnit.OunceForce, "OunceForce", BaseUnits.Undefined),
+                        new UnitInfo<ForceUnit>(ForceUnit.Poundal, "Poundals", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound, time: DurationUnit.Second)),
+                        new UnitInfo<ForceUnit>(ForceUnit.PoundForce, "PoundsForce", BaseUnits.Undefined),
+                        new UnitInfo<ForceUnit>(ForceUnit.ShortTonForce, "ShortTonsForce", BaseUnits.Undefined),
+                        new UnitInfo<ForceUnit>(ForceUnit.TonneForce, "TonnesForce", BaseUnits.Undefined),
+                    },
+                    Force.BaseUnit, Force.Zero, Force.BaseDimensions, QuantityType.Force)
             {
                 Decanewton = new UnitInfo<ForceUnit>(ForceUnit.Decanewton, "Decanewtons", BaseUnits.Undefined);
                 Dyn = new UnitInfo<ForceUnit>(ForceUnit.Dyn, "Dyne", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram, time: DurationUnit.Second));
@@ -1139,7 +1171,7 @@ namespace UnitsNet
                 PoundForce = new UnitInfo<ForceUnit>(ForceUnit.PoundForce, "PoundsForce", BaseUnits.Undefined);
                 ShortTonForce = new UnitInfo<ForceUnit>(ForceUnit.ShortTonForce, "ShortTonsForce", BaseUnits.Undefined);
                 TonneForce = new UnitInfo<ForceUnit>(ForceUnit.TonneForce, "TonnesForce", BaseUnits.Undefined);
-                BaseUnitInfo = Newton;
+                //BaseUnitInfo = Newton;
             }
 
             /// <summary>

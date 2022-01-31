@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly RatioUnit? _unit;
 
+        static Ratio()
+        {
+            BaseDimensions = BaseDimensions.Dimensionless;
+            BaseUnit = RatioUnit.DecimalFraction;
+            MaxValue = new Ratio(double.MaxValue, BaseUnit);
+            MinValue = new Ratio(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Ratio;
+            Units = Enum.GetValues(typeof(RatioUnit)).Cast<RatioUnit>().Except(new RatioUnit[]{ RatioUnit.Undefined }).ToArray();
+            Zero = new Ratio(0, BaseUnit);
+
+            Info = new Ratio.RatioQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Ratio.RatioQuantityInfo Info { get; } = new Ratio.RatioQuantityInfo();
+        public static Ratio.RatioQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = BaseDimensions.Dimensionless;
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of Ratio, which is DecimalFraction. All conversions go via this value.
         /// </summary>
-        public static RatioUnit BaseUnit { get; } = RatioUnit.DecimalFraction;
+        public static RatioUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Ratio
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Ratio MaxValue { get; } = new Ratio(double.MaxValue, BaseUnit);
+        public static Ratio MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Ratio
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Ratio MinValue { get; } = new Ratio(double.MinValue, BaseUnit);
+        public static Ratio MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Ratio;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Ratio quantity.
         /// </summary>
-        public static RatioUnit[] Units { get; } = Enum.GetValues(typeof(RatioUnit)).Cast<RatioUnit>().Except(new RatioUnit[]{ RatioUnit.Undefined }).ToArray();
+        public static RatioUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DecimalFraction.
         /// </summary>
-        public static Ratio Zero { get; } = new Ratio(0, BaseUnit);
+        public static Ratio Zero { get; }
 
         #endregion
 
@@ -960,7 +973,17 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal RatioQuantityInfo() :
-                base("Ratio", new UnitInfo<RatioUnit>[]{}, Ratio.BaseUnit, Ratio.Zero, Ratio.BaseDimensions, QuantityType.Ratio)
+                base("Ratio",
+                    new UnitInfo<RatioUnit>[]
+                    {
+                        new UnitInfo<RatioUnit>(RatioUnit.DecimalFraction, "DecimalFractions", BaseUnits.Undefined),
+                        new UnitInfo<RatioUnit>(RatioUnit.PartPerBillion, "PartsPerBillion", BaseUnits.Undefined),
+                        new UnitInfo<RatioUnit>(RatioUnit.PartPerMillion, "PartsPerMillion", BaseUnits.Undefined),
+                        new UnitInfo<RatioUnit>(RatioUnit.PartPerThousand, "PartsPerThousand", BaseUnits.Undefined),
+                        new UnitInfo<RatioUnit>(RatioUnit.PartPerTrillion, "PartsPerTrillion", BaseUnits.Undefined),
+                        new UnitInfo<RatioUnit>(RatioUnit.Percent, "Percent", BaseUnits.Undefined),
+                    },
+                    Ratio.BaseUnit, Ratio.Zero, Ratio.BaseDimensions, QuantityType.Ratio)
             {
                 DecimalFraction = new UnitInfo<RatioUnit>(RatioUnit.DecimalFraction, "DecimalFractions", BaseUnits.Undefined);
                 PartPerBillion = new UnitInfo<RatioUnit>(RatioUnit.PartPerBillion, "PartsPerBillion", BaseUnits.Undefined);
@@ -968,7 +991,7 @@ namespace UnitsNet
                 PartPerThousand = new UnitInfo<RatioUnit>(RatioUnit.PartPerThousand, "PartsPerThousand", BaseUnits.Undefined);
                 PartPerTrillion = new UnitInfo<RatioUnit>(RatioUnit.PartPerTrillion, "PartsPerTrillion", BaseUnits.Undefined);
                 Percent = new UnitInfo<RatioUnit>(RatioUnit.Percent, "Percent", BaseUnits.Undefined);
-                BaseUnitInfo = DecimalFraction;
+                //BaseUnitInfo = DecimalFraction;
             }
 
             /// <summary>

@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly MassFluxUnit? _unit;
 
+        static MassFlux()
+        {
+            BaseDimensions = new BaseDimensions(-2, 1, -1, 0, 0, 0, 0);
+            BaseUnit = MassFluxUnit.KilogramPerSecondPerSquareMeter;
+            MaxValue = new MassFlux(double.MaxValue, BaseUnit);
+            MinValue = new MassFlux(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.MassFlux;
+            Units = Enum.GetValues(typeof(MassFluxUnit)).Cast<MassFluxUnit>().Except(new MassFluxUnit[]{ MassFluxUnit.Undefined }).ToArray();
+            Zero = new MassFlux(0, BaseUnit);
+
+            Info = new MassFlux.MassFluxQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static MassFlux.MassFluxQuantityInfo Info { get; } = new MassFlux.MassFluxQuantityInfo();
+        public static MassFlux.MassFluxQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-2, 1, -1, 0, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of MassFlux, which is KilogramPerSecondPerSquareMeter. All conversions go via this value.
         /// </summary>
-        public static MassFluxUnit BaseUnit { get; } = MassFluxUnit.KilogramPerSecondPerSquareMeter;
+        public static MassFluxUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of MassFlux
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static MassFlux MaxValue { get; } = new MassFlux(double.MaxValue, BaseUnit);
+        public static MassFlux MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of MassFlux
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static MassFlux MinValue { get; } = new MassFlux(double.MinValue, BaseUnit);
+        public static MassFlux MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.MassFlux;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the MassFlux quantity.
         /// </summary>
-        public static MassFluxUnit[] Units { get; } = Enum.GetValues(typeof(MassFluxUnit)).Cast<MassFluxUnit>().Except(new MassFluxUnit[]{ MassFluxUnit.Undefined }).ToArray();
+        public static MassFluxUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerSecondPerSquareMeter.
         /// </summary>
-        public static MassFlux Zero { get; } = new MassFlux(0, BaseUnit);
+        public static MassFlux Zero { get; }
 
         #endregion
 
@@ -1068,7 +1081,23 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal MassFluxQuantityInfo() :
-                base("MassFlux", new UnitInfo<MassFluxUnit>[]{}, MassFlux.BaseUnit, MassFlux.Zero, MassFlux.BaseDimensions, QuantityType.MassFlux)
+                base("MassFlux",
+                    new UnitInfo<MassFluxUnit>[]
+                    {
+                        new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerHourPerSquareCentimeter, "GramsPerHourPerSquareCentimeter", BaseUnits.Undefined),
+                        new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerHourPerSquareMeter, "GramsPerHourPerSquareMeter", BaseUnits.Undefined),
+                        new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerHourPerSquareMillimeter, "GramsPerHourPerSquareMillimeter", BaseUnits.Undefined),
+                        new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerSecondPerSquareCentimeter, "GramsPerSecondPerSquareCentimeter", BaseUnits.Undefined),
+                        new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerSecondPerSquareMeter, "GramsPerSecondPerSquareMeter", BaseUnits.Undefined),
+                        new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerSecondPerSquareMillimeter, "GramsPerSecondPerSquareMillimeter", BaseUnits.Undefined),
+                        new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerHourPerSquareCentimeter, "KilogramsPerHourPerSquareCentimeter", BaseUnits.Undefined),
+                        new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerHourPerSquareMeter, "KilogramsPerHourPerSquareMeter", BaseUnits.Undefined),
+                        new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerHourPerSquareMillimeter, "KilogramsPerHourPerSquareMillimeter", BaseUnits.Undefined),
+                        new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareCentimeter, "KilogramsPerSecondPerSquareCentimeter", BaseUnits.Undefined),
+                        new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareMeter, "KilogramsPerSecondPerSquareMeter", BaseUnits.Undefined),
+                        new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, "KilogramsPerSecondPerSquareMillimeter", BaseUnits.Undefined),
+                    },
+                    MassFlux.BaseUnit, MassFlux.Zero, MassFlux.BaseDimensions, QuantityType.MassFlux)
             {
                 GramPerHourPerSquareCentimeter = new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerHourPerSquareCentimeter, "GramsPerHourPerSquareCentimeter", BaseUnits.Undefined);
                 GramPerHourPerSquareMeter = new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerHourPerSquareMeter, "GramsPerHourPerSquareMeter", BaseUnits.Undefined);
@@ -1082,7 +1111,7 @@ namespace UnitsNet
                 KilogramPerSecondPerSquareCentimeter = new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareCentimeter, "KilogramsPerSecondPerSquareCentimeter", BaseUnits.Undefined);
                 KilogramPerSecondPerSquareMeter = new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareMeter, "KilogramsPerSecondPerSquareMeter", BaseUnits.Undefined);
                 KilogramPerSecondPerSquareMillimeter = new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, "KilogramsPerSecondPerSquareMillimeter", BaseUnits.Undefined);
-                BaseUnitInfo = KilogramPerSecondPerSquareMeter;
+                //BaseUnitInfo = KilogramPerSecondPerSquareMeter;
             }
 
             /// <summary>

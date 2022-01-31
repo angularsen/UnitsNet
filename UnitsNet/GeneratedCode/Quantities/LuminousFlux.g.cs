@@ -53,6 +53,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly LuminousFluxUnit? _unit;
 
+        static LuminousFlux()
+        {
+            BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
+            BaseUnit = LuminousFluxUnit.Lumen;
+            MaxValue = new LuminousFlux(double.MaxValue, BaseUnit);
+            MinValue = new LuminousFlux(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.LuminousFlux;
+            Units = Enum.GetValues(typeof(LuminousFluxUnit)).Cast<LuminousFluxUnit>().Except(new LuminousFluxUnit[]{ LuminousFluxUnit.Undefined }).ToArray();
+            Zero = new LuminousFlux(0, BaseUnit);
+
+            Info = new LuminousFlux.LuminousFluxQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -90,45 +103,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static LuminousFlux.LuminousFluxQuantityInfo Info { get; } = new LuminousFlux.LuminousFluxQuantityInfo();
+        public static LuminousFlux.LuminousFluxQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of LuminousFlux, which is Lumen. All conversions go via this value.
         /// </summary>
-        public static LuminousFluxUnit BaseUnit { get; } = LuminousFluxUnit.Lumen;
+        public static LuminousFluxUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of LuminousFlux
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static LuminousFlux MaxValue { get; } = new LuminousFlux(double.MaxValue, BaseUnit);
+        public static LuminousFlux MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of LuminousFlux
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static LuminousFlux MinValue { get; } = new LuminousFlux(double.MinValue, BaseUnit);
+        public static LuminousFlux MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.LuminousFlux;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the LuminousFlux quantity.
         /// </summary>
-        public static LuminousFluxUnit[] Units { get; } = Enum.GetValues(typeof(LuminousFluxUnit)).Cast<LuminousFluxUnit>().Except(new LuminousFluxUnit[]{ LuminousFluxUnit.Undefined }).ToArray();
+        public static LuminousFluxUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Lumen.
         /// </summary>
-        public static LuminousFlux Zero { get; } = new LuminousFlux(0, BaseUnit);
+        public static LuminousFlux Zero { get; }
 
         #endregion
 
@@ -873,10 +886,15 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal LuminousFluxQuantityInfo() :
-                base("LuminousFlux", new UnitInfo<LuminousFluxUnit>[]{}, LuminousFlux.BaseUnit, LuminousFlux.Zero, LuminousFlux.BaseDimensions, QuantityType.LuminousFlux)
+                base("LuminousFlux",
+                    new UnitInfo<LuminousFluxUnit>[]
+                    {
+                        new UnitInfo<LuminousFluxUnit>(LuminousFluxUnit.Lumen, "Lumens", BaseUnits.Undefined),
+                    },
+                    LuminousFlux.BaseUnit, LuminousFlux.Zero, LuminousFlux.BaseDimensions, QuantityType.LuminousFlux)
             {
                 Lumen = new UnitInfo<LuminousFluxUnit>(LuminousFluxUnit.Lumen, "Lumens", BaseUnits.Undefined);
-                BaseUnitInfo = Lumen;
+                //BaseUnitInfo = Lumen;
             }
 
             /// <summary>

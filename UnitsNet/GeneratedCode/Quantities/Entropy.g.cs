@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly EntropyUnit? _unit;
 
+        static Entropy()
+        {
+            BaseDimensions = new BaseDimensions(2, 1, -2, 0, -1, 0, 0);
+            BaseUnit = EntropyUnit.JoulePerKelvin;
+            MaxValue = new Entropy(double.MaxValue, BaseUnit);
+            MinValue = new Entropy(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Entropy;
+            Units = Enum.GetValues(typeof(EntropyUnit)).Cast<EntropyUnit>().Except(new EntropyUnit[]{ EntropyUnit.Undefined }).ToArray();
+            Zero = new Entropy(0, BaseUnit);
+
+            Info = new Entropy.EntropyQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Entropy.EntropyQuantityInfo Info { get; } = new Entropy.EntropyQuantityInfo();
+        public static Entropy.EntropyQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 1, -2, 0, -1, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of Entropy, which is JoulePerKelvin. All conversions go via this value.
         /// </summary>
-        public static EntropyUnit BaseUnit { get; } = EntropyUnit.JoulePerKelvin;
+        public static EntropyUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Entropy
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Entropy MaxValue { get; } = new Entropy(double.MaxValue, BaseUnit);
+        public static Entropy MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Entropy
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Entropy MinValue { get; } = new Entropy(double.MinValue, BaseUnit);
+        public static Entropy MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Entropy;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Entropy quantity.
         /// </summary>
-        public static EntropyUnit[] Units { get; } = Enum.GetValues(typeof(EntropyUnit)).Cast<EntropyUnit>().Except(new EntropyUnit[]{ EntropyUnit.Undefined }).ToArray();
+        public static EntropyUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit JoulePerKelvin.
         /// </summary>
-        public static Entropy Zero { get; } = new Entropy(0, BaseUnit);
+        public static Entropy Zero { get; }
 
         #endregion
 
@@ -978,7 +991,18 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal EntropyQuantityInfo() :
-                base("Entropy", new UnitInfo<EntropyUnit>[]{}, Entropy.BaseUnit, Entropy.Zero, Entropy.BaseDimensions, QuantityType.Entropy)
+                base("Entropy",
+                    new UnitInfo<EntropyUnit>[]
+                    {
+                        new UnitInfo<EntropyUnit>(EntropyUnit.CaloriePerKelvin, "CaloriesPerKelvin", BaseUnits.Undefined),
+                        new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerDegreeCelsius, "JoulesPerDegreeCelsius", BaseUnits.Undefined),
+                        new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerKelvin, "JoulesPerKelvin", BaseUnits.Undefined),
+                        new UnitInfo<EntropyUnit>(EntropyUnit.KilocaloriePerKelvin, "KilocaloriesPerKelvin", BaseUnits.Undefined),
+                        new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerDegreeCelsius, "KilojoulesPerDegreeCelsius", BaseUnits.Undefined),
+                        new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerKelvin, "KilojoulesPerKelvin", BaseUnits.Undefined),
+                        new UnitInfo<EntropyUnit>(EntropyUnit.MegajoulePerKelvin, "MegajoulesPerKelvin", BaseUnits.Undefined),
+                    },
+                    Entropy.BaseUnit, Entropy.Zero, Entropy.BaseDimensions, QuantityType.Entropy)
             {
                 CaloriePerKelvin = new UnitInfo<EntropyUnit>(EntropyUnit.CaloriePerKelvin, "CaloriesPerKelvin", BaseUnits.Undefined);
                 JoulePerDegreeCelsius = new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerDegreeCelsius, "JoulesPerDegreeCelsius", BaseUnits.Undefined);
@@ -987,7 +1011,7 @@ namespace UnitsNet
                 KilojoulePerDegreeCelsius = new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerDegreeCelsius, "KilojoulesPerDegreeCelsius", BaseUnits.Undefined);
                 KilojoulePerKelvin = new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerKelvin, "KilojoulesPerKelvin", BaseUnits.Undefined);
                 MegajoulePerKelvin = new UnitInfo<EntropyUnit>(EntropyUnit.MegajoulePerKelvin, "MegajoulesPerKelvin", BaseUnits.Undefined);
-                BaseUnitInfo = JoulePerKelvin;
+                //BaseUnitInfo = JoulePerKelvin;
             }
 
             /// <summary>

@@ -53,6 +53,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly BitRateUnit? _unit;
 
+        static BitRate()
+        {
+            BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
+            BaseUnit = BitRateUnit.BitPerSecond;
+            MaxValue = new BitRate(decimal.MaxValue, BaseUnit);
+            MinValue = new BitRate(decimal.MinValue, BaseUnit);
+            QuantityType = QuantityType.BitRate;
+            Units = Enum.GetValues(typeof(BitRateUnit)).Cast<BitRateUnit>().Except(new BitRateUnit[]{ BitRateUnit.Undefined }).ToArray();
+            Zero = new BitRate(0, BaseUnit);
+
+            Info = new BitRate.BitRateQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -90,45 +103,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static BitRate.BitRateQuantityInfo Info { get; } = new BitRate.BitRateQuantityInfo();
+        public static BitRate.BitRateQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of BitRate, which is BitPerSecond. All conversions go via this value.
         /// </summary>
-        public static BitRateUnit BaseUnit { get; } = BitRateUnit.BitPerSecond;
+        public static BitRateUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of BitRate
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static BitRate MaxValue { get; } = new BitRate(decimal.MaxValue, BaseUnit);
+        public static BitRate MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of BitRate
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static BitRate MinValue { get; } = new BitRate(decimal.MinValue, BaseUnit);
+        public static BitRate MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.BitRate;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the BitRate quantity.
         /// </summary>
-        public static BitRateUnit[] Units { get; } = Enum.GetValues(typeof(BitRateUnit)).Cast<BitRateUnit>().Except(new BitRateUnit[]{ BitRateUnit.Undefined }).ToArray();
+        public static BitRateUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit BitPerSecond.
         /// </summary>
-        public static BitRate Zero { get; } = new BitRate(0, BaseUnit);
+        public static BitRate Zero { get; }
 
         #endregion
 
@@ -1328,7 +1341,37 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal BitRateQuantityInfo() :
-                base("BitRate", new UnitInfo<BitRateUnit>[]{}, BitRate.BaseUnit, BitRate.Zero, BitRate.BaseDimensions, QuantityType.BitRate)
+                base("BitRate",
+                    new UnitInfo<BitRateUnit>[]
+                    {
+                        new UnitInfo<BitRateUnit>(BitRateUnit.BitPerSecond, "BitsPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<BitRateUnit>(BitRateUnit.BytePerSecond, "BytesPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<BitRateUnit>(BitRateUnit.ExabitPerSecond, "ExabitsPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<BitRateUnit>(BitRateUnit.ExabytePerSecond, "ExabytesPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<BitRateUnit>(BitRateUnit.ExbibitPerSecond, "ExbibitsPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<BitRateUnit>(BitRateUnit.ExbibytePerSecond, "ExbibytesPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<BitRateUnit>(BitRateUnit.GibibitPerSecond, "GibibitsPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<BitRateUnit>(BitRateUnit.GibibytePerSecond, "GibibytesPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<BitRateUnit>(BitRateUnit.GigabitPerSecond, "GigabitsPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<BitRateUnit>(BitRateUnit.GigabytePerSecond, "GigabytesPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<BitRateUnit>(BitRateUnit.KibibitPerSecond, "KibibitsPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<BitRateUnit>(BitRateUnit.KibibytePerSecond, "KibibytesPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<BitRateUnit>(BitRateUnit.KilobitPerSecond, "KilobitsPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<BitRateUnit>(BitRateUnit.KilobytePerSecond, "KilobytesPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<BitRateUnit>(BitRateUnit.MebibitPerSecond, "MebibitsPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<BitRateUnit>(BitRateUnit.MebibytePerSecond, "MebibytesPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<BitRateUnit>(BitRateUnit.MegabitPerSecond, "MegabitsPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<BitRateUnit>(BitRateUnit.MegabytePerSecond, "MegabytesPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<BitRateUnit>(BitRateUnit.PebibitPerSecond, "PebibitsPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<BitRateUnit>(BitRateUnit.PebibytePerSecond, "PebibytesPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<BitRateUnit>(BitRateUnit.PetabitPerSecond, "PetabitsPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<BitRateUnit>(BitRateUnit.PetabytePerSecond, "PetabytesPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<BitRateUnit>(BitRateUnit.TebibitPerSecond, "TebibitsPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<BitRateUnit>(BitRateUnit.TebibytePerSecond, "TebibytesPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<BitRateUnit>(BitRateUnit.TerabitPerSecond, "TerabitsPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<BitRateUnit>(BitRateUnit.TerabytePerSecond, "TerabytesPerSecond", BaseUnits.Undefined),
+                    },
+                    BitRate.BaseUnit, BitRate.Zero, BitRate.BaseDimensions, QuantityType.BitRate)
             {
                 BitPerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.BitPerSecond, "BitsPerSecond", BaseUnits.Undefined);
                 BytePerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.BytePerSecond, "BytesPerSecond", BaseUnits.Undefined);
@@ -1356,7 +1399,7 @@ namespace UnitsNet
                 TebibytePerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.TebibytePerSecond, "TebibytesPerSecond", BaseUnits.Undefined);
                 TerabitPerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.TerabitPerSecond, "TerabitsPerSecond", BaseUnits.Undefined);
                 TerabytePerSecond = new UnitInfo<BitRateUnit>(BitRateUnit.TerabytePerSecond, "TerabytesPerSecond", BaseUnits.Undefined);
-                BaseUnitInfo = BitPerSecond;
+                //BaseUnitInfo = BitPerSecond;
             }
 
             /// <summary>

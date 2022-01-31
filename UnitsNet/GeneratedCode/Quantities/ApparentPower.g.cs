@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ApparentPowerUnit? _unit;
 
+        static ApparentPower()
+        {
+            BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
+            BaseUnit = ApparentPowerUnit.Voltampere;
+            MaxValue = new ApparentPower(double.MaxValue, BaseUnit);
+            MinValue = new ApparentPower(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.ApparentPower;
+            Units = Enum.GetValues(typeof(ApparentPowerUnit)).Cast<ApparentPowerUnit>().Except(new ApparentPowerUnit[]{ ApparentPowerUnit.Undefined }).ToArray();
+            Zero = new ApparentPower(0, BaseUnit);
+
+            Info = new ApparentPower.ApparentPowerQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static ApparentPower.ApparentPowerQuantityInfo Info { get; } = new ApparentPower.ApparentPowerQuantityInfo();
+        public static ApparentPower.ApparentPowerQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of ApparentPower, which is Voltampere. All conversions go via this value.
         /// </summary>
-        public static ApparentPowerUnit BaseUnit { get; } = ApparentPowerUnit.Voltampere;
+        public static ApparentPowerUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of ApparentPower
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ApparentPower MaxValue { get; } = new ApparentPower(double.MaxValue, BaseUnit);
+        public static ApparentPower MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of ApparentPower
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ApparentPower MinValue { get; } = new ApparentPower(double.MinValue, BaseUnit);
+        public static ApparentPower MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ApparentPower;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the ApparentPower quantity.
         /// </summary>
-        public static ApparentPowerUnit[] Units { get; } = Enum.GetValues(typeof(ApparentPowerUnit)).Cast<ApparentPowerUnit>().Except(new ApparentPowerUnit[]{ ApparentPowerUnit.Undefined }).ToArray();
+        public static ApparentPowerUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Voltampere.
         /// </summary>
-        public static ApparentPower Zero { get; } = new ApparentPower(0, BaseUnit);
+        public static ApparentPower Zero { get; }
 
         #endregion
 
@@ -924,13 +937,21 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ApparentPowerQuantityInfo() :
-                base("ApparentPower", new UnitInfo<ApparentPowerUnit>[]{}, ApparentPower.BaseUnit, ApparentPower.Zero, ApparentPower.BaseDimensions, QuantityType.ApparentPower)
+                base("ApparentPower",
+                    new UnitInfo<ApparentPowerUnit>[]
+                    {
+                        new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Gigavoltampere, "Gigavoltamperes", BaseUnits.Undefined),
+                        new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Kilovoltampere, "Kilovoltamperes", BaseUnits.Undefined),
+                        new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Megavoltampere, "Megavoltamperes", BaseUnits.Undefined),
+                        new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Voltampere, "Voltamperes", BaseUnits.Undefined),
+                    },
+                    ApparentPower.BaseUnit, ApparentPower.Zero, ApparentPower.BaseDimensions, QuantityType.ApparentPower)
             {
                 Gigavoltampere = new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Gigavoltampere, "Gigavoltamperes", BaseUnits.Undefined);
                 Kilovoltampere = new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Kilovoltampere, "Kilovoltamperes", BaseUnits.Undefined);
                 Megavoltampere = new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Megavoltampere, "Megavoltamperes", BaseUnits.Undefined);
                 Voltampere = new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Voltampere, "Voltamperes", BaseUnits.Undefined);
-                BaseUnitInfo = Voltampere;
+                //BaseUnitInfo = Voltampere;
             }
 
             /// <summary>

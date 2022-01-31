@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly WarpingMomentOfInertiaUnit? _unit;
 
+        static WarpingMomentOfInertia()
+        {
+            BaseDimensions = new BaseDimensions(6, 0, 0, 0, 0, 0, 0);
+            BaseUnit = WarpingMomentOfInertiaUnit.MeterToTheSixth;
+            MaxValue = new WarpingMomentOfInertia(double.MaxValue, BaseUnit);
+            MinValue = new WarpingMomentOfInertia(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.WarpingMomentOfInertia;
+            Units = Enum.GetValues(typeof(WarpingMomentOfInertiaUnit)).Cast<WarpingMomentOfInertiaUnit>().Except(new WarpingMomentOfInertiaUnit[]{ WarpingMomentOfInertiaUnit.Undefined }).ToArray();
+            Zero = new WarpingMomentOfInertia(0, BaseUnit);
+
+            Info = new WarpingMomentOfInertia.WarpingMomentOfInertiaQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static WarpingMomentOfInertia.WarpingMomentOfInertiaQuantityInfo Info { get; } = new WarpingMomentOfInertia.WarpingMomentOfInertiaQuantityInfo();
+        public static WarpingMomentOfInertia.WarpingMomentOfInertiaQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(6, 0, 0, 0, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of WarpingMomentOfInertia, which is MeterToTheSixth. All conversions go via this value.
         /// </summary>
-        public static WarpingMomentOfInertiaUnit BaseUnit { get; } = WarpingMomentOfInertiaUnit.MeterToTheSixth;
+        public static WarpingMomentOfInertiaUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of WarpingMomentOfInertia
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static WarpingMomentOfInertia MaxValue { get; } = new WarpingMomentOfInertia(double.MaxValue, BaseUnit);
+        public static WarpingMomentOfInertia MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of WarpingMomentOfInertia
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static WarpingMomentOfInertia MinValue { get; } = new WarpingMomentOfInertia(double.MinValue, BaseUnit);
+        public static WarpingMomentOfInertia MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.WarpingMomentOfInertia;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the WarpingMomentOfInertia quantity.
         /// </summary>
-        public static WarpingMomentOfInertiaUnit[] Units { get; } = Enum.GetValues(typeof(WarpingMomentOfInertiaUnit)).Cast<WarpingMomentOfInertiaUnit>().Except(new WarpingMomentOfInertiaUnit[]{ WarpingMomentOfInertiaUnit.Undefined }).ToArray();
+        public static WarpingMomentOfInertiaUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit MeterToTheSixth.
         /// </summary>
-        public static WarpingMomentOfInertia Zero { get; } = new WarpingMomentOfInertia(0, BaseUnit);
+        public static WarpingMomentOfInertia Zero { get; }
 
         #endregion
 
@@ -960,7 +973,17 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal WarpingMomentOfInertiaQuantityInfo() :
-                base("WarpingMomentOfInertia", new UnitInfo<WarpingMomentOfInertiaUnit>[]{}, WarpingMomentOfInertia.BaseUnit, WarpingMomentOfInertia.Zero, WarpingMomentOfInertia.BaseDimensions, QuantityType.WarpingMomentOfInertia)
+                base("WarpingMomentOfInertia",
+                    new UnitInfo<WarpingMomentOfInertiaUnit>[]
+                    {
+                        new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.CentimeterToTheSixth, "CentimetersToTheSixth", new BaseUnits(length: LengthUnit.Centimeter)),
+                        new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.DecimeterToTheSixth, "DecimetersToTheSixth", new BaseUnits(length: LengthUnit.Decimeter)),
+                        new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.FootToTheSixth, "FeetToTheSixth", new BaseUnits(length: LengthUnit.Foot)),
+                        new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.InchToTheSixth, "InchesToTheSixth", new BaseUnits(length: LengthUnit.Inch)),
+                        new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.MeterToTheSixth, "MetersToTheSixth", new BaseUnits(length: LengthUnit.Meter)),
+                        new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, "MillimetersToTheSixth", new BaseUnits(length: LengthUnit.Millimeter)),
+                    },
+                    WarpingMomentOfInertia.BaseUnit, WarpingMomentOfInertia.Zero, WarpingMomentOfInertia.BaseDimensions, QuantityType.WarpingMomentOfInertia)
             {
                 CentimeterToTheSixth = new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.CentimeterToTheSixth, "CentimetersToTheSixth", new BaseUnits(length: LengthUnit.Centimeter));
                 DecimeterToTheSixth = new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.DecimeterToTheSixth, "DecimetersToTheSixth", new BaseUnits(length: LengthUnit.Decimeter));
@@ -968,7 +991,7 @@ namespace UnitsNet
                 InchToTheSixth = new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.InchToTheSixth, "InchesToTheSixth", new BaseUnits(length: LengthUnit.Inch));
                 MeterToTheSixth = new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.MeterToTheSixth, "MetersToTheSixth", new BaseUnits(length: LengthUnit.Meter));
                 MillimeterToTheSixth = new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, "MillimetersToTheSixth", new BaseUnits(length: LengthUnit.Millimeter));
-                BaseUnitInfo = MeterToTheSixth;
+                //BaseUnitInfo = MeterToTheSixth;
             }
 
             /// <summary>

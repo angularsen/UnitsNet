@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly MassMomentOfInertiaUnit? _unit;
 
+        static MassMomentOfInertia()
+        {
+            BaseDimensions = new BaseDimensions(2, 1, 0, 0, 0, 0, 0);
+            BaseUnit = MassMomentOfInertiaUnit.KilogramSquareMeter;
+            MaxValue = new MassMomentOfInertia(double.MaxValue, BaseUnit);
+            MinValue = new MassMomentOfInertia(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.MassMomentOfInertia;
+            Units = Enum.GetValues(typeof(MassMomentOfInertiaUnit)).Cast<MassMomentOfInertiaUnit>().Except(new MassMomentOfInertiaUnit[]{ MassMomentOfInertiaUnit.Undefined }).ToArray();
+            Zero = new MassMomentOfInertia(0, BaseUnit);
+
+            Info = new MassMomentOfInertia.MassMomentOfInertiaQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static MassMomentOfInertia.MassMomentOfInertiaQuantityInfo Info { get; } = new MassMomentOfInertia.MassMomentOfInertiaQuantityInfo();
+        public static MassMomentOfInertia.MassMomentOfInertiaQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 1, 0, 0, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of MassMomentOfInertia, which is KilogramSquareMeter. All conversions go via this value.
         /// </summary>
-        public static MassMomentOfInertiaUnit BaseUnit { get; } = MassMomentOfInertiaUnit.KilogramSquareMeter;
+        public static MassMomentOfInertiaUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of MassMomentOfInertia
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static MassMomentOfInertia MaxValue { get; } = new MassMomentOfInertia(double.MaxValue, BaseUnit);
+        public static MassMomentOfInertia MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of MassMomentOfInertia
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static MassMomentOfInertia MinValue { get; } = new MassMomentOfInertia(double.MinValue, BaseUnit);
+        public static MassMomentOfInertia MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.MassMomentOfInertia;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the MassMomentOfInertia quantity.
         /// </summary>
-        public static MassMomentOfInertiaUnit[] Units { get; } = Enum.GetValues(typeof(MassMomentOfInertiaUnit)).Cast<MassMomentOfInertiaUnit>().Except(new MassMomentOfInertiaUnit[]{ MassMomentOfInertiaUnit.Undefined }).ToArray();
+        public static MassMomentOfInertiaUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramSquareMeter.
         /// </summary>
-        public static MassMomentOfInertia Zero { get; } = new MassMomentOfInertia(0, BaseUnit);
+        public static MassMomentOfInertia Zero { get; }
 
         #endregion
 
@@ -1356,7 +1369,39 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal MassMomentOfInertiaQuantityInfo() :
-                base("MassMomentOfInertia", new UnitInfo<MassMomentOfInertiaUnit>[]{}, MassMomentOfInertia.BaseUnit, MassMomentOfInertia.Zero, MassMomentOfInertia.BaseDimensions, QuantityType.MassMomentOfInertia)
+                base("MassMomentOfInertia",
+                    new UnitInfo<MassMomentOfInertiaUnit>[]
+                    {
+                        new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareCentimeter, "GramSquareCentimeters", BaseUnits.Undefined),
+                        new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareDecimeter, "GramSquareDecimeters", BaseUnits.Undefined),
+                        new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareMeter, "GramSquareMeters", BaseUnits.Undefined),
+                        new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareMillimeter, "GramSquareMillimeters", BaseUnits.Undefined),
+                        new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilogramSquareCentimeter, "KilogramSquareCentimeters", BaseUnits.Undefined),
+                        new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilogramSquareDecimeter, "KilogramSquareDecimeters", BaseUnits.Undefined),
+                        new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilogramSquareMeter, "KilogramSquareMeters", BaseUnits.Undefined),
+                        new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilogramSquareMillimeter, "KilogramSquareMillimeters", BaseUnits.Undefined),
+                        new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilotonneSquareCentimeter, "KilotonneSquareCentimeters", BaseUnits.Undefined),
+                        new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilotonneSquareDecimeter, "KilotonneSquareDecimeters", BaseUnits.Undefined),
+                        new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilotonneSquareMeter, "KilotonneSquareMeters", BaseUnits.Undefined),
+                        new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilotonneSquareMilimeter, "KilotonneSquareMilimeters", BaseUnits.Undefined),
+                        new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MegatonneSquareCentimeter, "MegatonneSquareCentimeters", BaseUnits.Undefined),
+                        new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MegatonneSquareDecimeter, "MegatonneSquareDecimeters", BaseUnits.Undefined),
+                        new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MegatonneSquareMeter, "MegatonneSquareMeters", BaseUnits.Undefined),
+                        new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MegatonneSquareMilimeter, "MegatonneSquareMilimeters", BaseUnits.Undefined),
+                        new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MilligramSquareCentimeter, "MilligramSquareCentimeters", BaseUnits.Undefined),
+                        new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MilligramSquareDecimeter, "MilligramSquareDecimeters", BaseUnits.Undefined),
+                        new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MilligramSquareMeter, "MilligramSquareMeters", BaseUnits.Undefined),
+                        new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MilligramSquareMillimeter, "MilligramSquareMillimeters", BaseUnits.Undefined),
+                        new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.PoundSquareFoot, "PoundSquareFeet", BaseUnits.Undefined),
+                        new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.PoundSquareInch, "PoundSquareInches", BaseUnits.Undefined),
+                        new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.SlugSquareFoot, "SlugSquareFeet", BaseUnits.Undefined),
+                        new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.SlugSquareInch, "SlugSquareInches", BaseUnits.Undefined),
+                        new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareCentimeter, "TonneSquareCentimeters", BaseUnits.Undefined),
+                        new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareDecimeter, "TonneSquareDecimeters", BaseUnits.Undefined),
+                        new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareMeter, "TonneSquareMeters", BaseUnits.Undefined),
+                        new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareMilimeter, "TonneSquareMilimeters", BaseUnits.Undefined),
+                    },
+                    MassMomentOfInertia.BaseUnit, MassMomentOfInertia.Zero, MassMomentOfInertia.BaseDimensions, QuantityType.MassMomentOfInertia)
             {
                 GramSquareCentimeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareCentimeter, "GramSquareCentimeters", BaseUnits.Undefined);
                 GramSquareDecimeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareDecimeter, "GramSquareDecimeters", BaseUnits.Undefined);
@@ -1386,7 +1431,7 @@ namespace UnitsNet
                 TonneSquareDecimeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareDecimeter, "TonneSquareDecimeters", BaseUnits.Undefined);
                 TonneSquareMeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareMeter, "TonneSquareMeters", BaseUnits.Undefined);
                 TonneSquareMilimeter = new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareMilimeter, "TonneSquareMilimeters", BaseUnits.Undefined);
-                BaseUnitInfo = KilogramSquareMeter;
+                //BaseUnitInfo = KilogramSquareMeter;
             }
 
             /// <summary>

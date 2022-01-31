@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly InformationUnit? _unit;
 
+        static Information()
+        {
+            BaseDimensions = BaseDimensions.Dimensionless;
+            BaseUnit = InformationUnit.Bit;
+            MaxValue = new Information(decimal.MaxValue, BaseUnit);
+            MinValue = new Information(decimal.MinValue, BaseUnit);
+            QuantityType = QuantityType.Information;
+            Units = Enum.GetValues(typeof(InformationUnit)).Cast<InformationUnit>().Except(new InformationUnit[]{ InformationUnit.Undefined }).ToArray();
+            Zero = new Information(0, BaseUnit);
+
+            Info = new Information.InformationQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Information.InformationQuantityInfo Info { get; } = new Information.InformationQuantityInfo();
+        public static Information.InformationQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = BaseDimensions.Dimensionless;
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of Information, which is Bit. All conversions go via this value.
         /// </summary>
-        public static InformationUnit BaseUnit { get; } = InformationUnit.Bit;
+        public static InformationUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Information
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Information MaxValue { get; } = new Information(decimal.MaxValue, BaseUnit);
+        public static Information MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Information
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Information MinValue { get; } = new Information(decimal.MinValue, BaseUnit);
+        public static Information MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Information;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Information quantity.
         /// </summary>
-        public static InformationUnit[] Units { get; } = Enum.GetValues(typeof(InformationUnit)).Cast<InformationUnit>().Except(new InformationUnit[]{ InformationUnit.Undefined }).ToArray();
+        public static InformationUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Bit.
         /// </summary>
-        public static Information Zero { get; } = new Information(0, BaseUnit);
+        public static Information Zero { get; }
 
         #endregion
 
@@ -1325,7 +1338,37 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal InformationQuantityInfo() :
-                base("Information", new UnitInfo<InformationUnit>[]{}, Information.BaseUnit, Information.Zero, Information.BaseDimensions, QuantityType.Information)
+                base("Information",
+                    new UnitInfo<InformationUnit>[]
+                    {
+                        new UnitInfo<InformationUnit>(InformationUnit.Bit, "Bits", BaseUnits.Undefined),
+                        new UnitInfo<InformationUnit>(InformationUnit.Byte, "Bytes", BaseUnits.Undefined),
+                        new UnitInfo<InformationUnit>(InformationUnit.Exabit, "Exabits", BaseUnits.Undefined),
+                        new UnitInfo<InformationUnit>(InformationUnit.Exabyte, "Exabytes", BaseUnits.Undefined),
+                        new UnitInfo<InformationUnit>(InformationUnit.Exbibit, "Exbibits", BaseUnits.Undefined),
+                        new UnitInfo<InformationUnit>(InformationUnit.Exbibyte, "Exbibytes", BaseUnits.Undefined),
+                        new UnitInfo<InformationUnit>(InformationUnit.Gibibit, "Gibibits", BaseUnits.Undefined),
+                        new UnitInfo<InformationUnit>(InformationUnit.Gibibyte, "Gibibytes", BaseUnits.Undefined),
+                        new UnitInfo<InformationUnit>(InformationUnit.Gigabit, "Gigabits", BaseUnits.Undefined),
+                        new UnitInfo<InformationUnit>(InformationUnit.Gigabyte, "Gigabytes", BaseUnits.Undefined),
+                        new UnitInfo<InformationUnit>(InformationUnit.Kibibit, "Kibibits", BaseUnits.Undefined),
+                        new UnitInfo<InformationUnit>(InformationUnit.Kibibyte, "Kibibytes", BaseUnits.Undefined),
+                        new UnitInfo<InformationUnit>(InformationUnit.Kilobit, "Kilobits", BaseUnits.Undefined),
+                        new UnitInfo<InformationUnit>(InformationUnit.Kilobyte, "Kilobytes", BaseUnits.Undefined),
+                        new UnitInfo<InformationUnit>(InformationUnit.Mebibit, "Mebibits", BaseUnits.Undefined),
+                        new UnitInfo<InformationUnit>(InformationUnit.Mebibyte, "Mebibytes", BaseUnits.Undefined),
+                        new UnitInfo<InformationUnit>(InformationUnit.Megabit, "Megabits", BaseUnits.Undefined),
+                        new UnitInfo<InformationUnit>(InformationUnit.Megabyte, "Megabytes", BaseUnits.Undefined),
+                        new UnitInfo<InformationUnit>(InformationUnit.Pebibit, "Pebibits", BaseUnits.Undefined),
+                        new UnitInfo<InformationUnit>(InformationUnit.Pebibyte, "Pebibytes", BaseUnits.Undefined),
+                        new UnitInfo<InformationUnit>(InformationUnit.Petabit, "Petabits", BaseUnits.Undefined),
+                        new UnitInfo<InformationUnit>(InformationUnit.Petabyte, "Petabytes", BaseUnits.Undefined),
+                        new UnitInfo<InformationUnit>(InformationUnit.Tebibit, "Tebibits", BaseUnits.Undefined),
+                        new UnitInfo<InformationUnit>(InformationUnit.Tebibyte, "Tebibytes", BaseUnits.Undefined),
+                        new UnitInfo<InformationUnit>(InformationUnit.Terabit, "Terabits", BaseUnits.Undefined),
+                        new UnitInfo<InformationUnit>(InformationUnit.Terabyte, "Terabytes", BaseUnits.Undefined),
+                    },
+                    Information.BaseUnit, Information.Zero, Information.BaseDimensions, QuantityType.Information)
             {
                 Bit = new UnitInfo<InformationUnit>(InformationUnit.Bit, "Bits", BaseUnits.Undefined);
                 Byte = new UnitInfo<InformationUnit>(InformationUnit.Byte, "Bytes", BaseUnits.Undefined);
@@ -1353,7 +1396,7 @@ namespace UnitsNet
                 Tebibyte = new UnitInfo<InformationUnit>(InformationUnit.Tebibyte, "Tebibytes", BaseUnits.Undefined);
                 Terabit = new UnitInfo<InformationUnit>(InformationUnit.Terabit, "Terabits", BaseUnits.Undefined);
                 Terabyte = new UnitInfo<InformationUnit>(InformationUnit.Terabyte, "Terabytes", BaseUnits.Undefined);
-                BaseUnitInfo = Bit;
+                //BaseUnitInfo = Bit;
             }
 
             /// <summary>

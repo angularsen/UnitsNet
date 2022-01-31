@@ -53,6 +53,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ReciprocalAreaUnit? _unit;
 
+        static ReciprocalArea()
+        {
+            BaseDimensions = new BaseDimensions(-2, 0, 0, 0, 0, 0, 0);
+            BaseUnit = ReciprocalAreaUnit.InverseSquareMeter;
+            MaxValue = new ReciprocalArea(double.MaxValue, BaseUnit);
+            MinValue = new ReciprocalArea(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.ReciprocalArea;
+            Units = Enum.GetValues(typeof(ReciprocalAreaUnit)).Cast<ReciprocalAreaUnit>().Except(new ReciprocalAreaUnit[]{ ReciprocalAreaUnit.Undefined }).ToArray();
+            Zero = new ReciprocalArea(0, BaseUnit);
+
+            Info = new ReciprocalArea.ReciprocalAreaQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -90,45 +103,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static ReciprocalArea.ReciprocalAreaQuantityInfo Info { get; } = new ReciprocalArea.ReciprocalAreaQuantityInfo();
+        public static ReciprocalArea.ReciprocalAreaQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-2, 0, 0, 0, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of ReciprocalArea, which is InverseSquareMeter. All conversions go via this value.
         /// </summary>
-        public static ReciprocalAreaUnit BaseUnit { get; } = ReciprocalAreaUnit.InverseSquareMeter;
+        public static ReciprocalAreaUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of ReciprocalArea
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ReciprocalArea MaxValue { get; } = new ReciprocalArea(double.MaxValue, BaseUnit);
+        public static ReciprocalArea MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of ReciprocalArea
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ReciprocalArea MinValue { get; } = new ReciprocalArea(double.MinValue, BaseUnit);
+        public static ReciprocalArea MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ReciprocalArea;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the ReciprocalArea quantity.
         /// </summary>
-        public static ReciprocalAreaUnit[] Units { get; } = Enum.GetValues(typeof(ReciprocalAreaUnit)).Cast<ReciprocalAreaUnit>().Except(new ReciprocalAreaUnit[]{ ReciprocalAreaUnit.Undefined }).ToArray();
+        public static ReciprocalAreaUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit InverseSquareMeter.
         /// </summary>
-        public static ReciprocalArea Zero { get; } = new ReciprocalArea(0, BaseUnit);
+        public static ReciprocalArea Zero { get; }
 
         #endregion
 
@@ -1053,7 +1066,22 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ReciprocalAreaQuantityInfo() :
-                base("ReciprocalArea", new UnitInfo<ReciprocalAreaUnit>[]{}, ReciprocalArea.BaseUnit, ReciprocalArea.Zero, ReciprocalArea.BaseDimensions, QuantityType.ReciprocalArea)
+                base("ReciprocalArea",
+                    new UnitInfo<ReciprocalAreaUnit>[]
+                    {
+                        new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareCentimeter, "InverseSquareCentimeters", BaseUnits.Undefined),
+                        new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareDecimeter, "InverseSquareDecimeters", BaseUnits.Undefined),
+                        new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareFoot, "InverseSquareFeet", BaseUnits.Undefined),
+                        new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareInch, "InverseSquareInches", BaseUnits.Undefined),
+                        new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareKilometer, "InverseSquareKilometers", BaseUnits.Undefined),
+                        new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareMeter, "InverseSquareMeters", BaseUnits.Undefined),
+                        new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareMicrometer, "InverseSquareMicrometers", BaseUnits.Undefined),
+                        new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareMile, "InverseSquareMiles", BaseUnits.Undefined),
+                        new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareMillimeter, "InverseSquareMillimeters", BaseUnits.Undefined),
+                        new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareYard, "InverseSquareYards", BaseUnits.Undefined),
+                        new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseUsSurveySquareFoot, "InverseUsSurveySquareFeet", BaseUnits.Undefined),
+                    },
+                    ReciprocalArea.BaseUnit, ReciprocalArea.Zero, ReciprocalArea.BaseDimensions, QuantityType.ReciprocalArea)
             {
                 InverseSquareCentimeter = new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareCentimeter, "InverseSquareCentimeters", BaseUnits.Undefined);
                 InverseSquareDecimeter = new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareDecimeter, "InverseSquareDecimeters", BaseUnits.Undefined);
@@ -1066,7 +1094,7 @@ namespace UnitsNet
                 InverseSquareMillimeter = new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareMillimeter, "InverseSquareMillimeters", BaseUnits.Undefined);
                 InverseSquareYard = new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseSquareYard, "InverseSquareYards", BaseUnits.Undefined);
                 InverseUsSurveySquareFoot = new UnitInfo<ReciprocalAreaUnit>(ReciprocalAreaUnit.InverseUsSurveySquareFoot, "InverseUsSurveySquareFeet", BaseUnits.Undefined);
-                BaseUnitInfo = InverseSquareMeter;
+                //BaseUnitInfo = InverseSquareMeter;
             }
 
             /// <summary>

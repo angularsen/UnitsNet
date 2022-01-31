@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly MolarEnergyUnit? _unit;
 
+        static MolarEnergy()
+        {
+            BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, -1, 0);
+            BaseUnit = MolarEnergyUnit.JoulePerMole;
+            MaxValue = new MolarEnergy(double.MaxValue, BaseUnit);
+            MinValue = new MolarEnergy(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.MolarEnergy;
+            Units = Enum.GetValues(typeof(MolarEnergyUnit)).Cast<MolarEnergyUnit>().Except(new MolarEnergyUnit[]{ MolarEnergyUnit.Undefined }).ToArray();
+            Zero = new MolarEnergy(0, BaseUnit);
+
+            Info = new MolarEnergy.MolarEnergyQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static MolarEnergy.MolarEnergyQuantityInfo Info { get; } = new MolarEnergy.MolarEnergyQuantityInfo();
+        public static MolarEnergy.MolarEnergyQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 1, -2, 0, 0, -1, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of MolarEnergy, which is JoulePerMole. All conversions go via this value.
         /// </summary>
-        public static MolarEnergyUnit BaseUnit { get; } = MolarEnergyUnit.JoulePerMole;
+        public static MolarEnergyUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of MolarEnergy
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static MolarEnergy MaxValue { get; } = new MolarEnergy(double.MaxValue, BaseUnit);
+        public static MolarEnergy MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of MolarEnergy
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static MolarEnergy MinValue { get; } = new MolarEnergy(double.MinValue, BaseUnit);
+        public static MolarEnergy MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.MolarEnergy;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the MolarEnergy quantity.
         /// </summary>
-        public static MolarEnergyUnit[] Units { get; } = Enum.GetValues(typeof(MolarEnergyUnit)).Cast<MolarEnergyUnit>().Except(new MolarEnergyUnit[]{ MolarEnergyUnit.Undefined }).ToArray();
+        public static MolarEnergyUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit JoulePerMole.
         /// </summary>
-        public static MolarEnergy Zero { get; } = new MolarEnergy(0, BaseUnit);
+        public static MolarEnergy Zero { get; }
 
         #endregion
 
@@ -906,12 +919,19 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal MolarEnergyQuantityInfo() :
-                base("MolarEnergy", new UnitInfo<MolarEnergyUnit>[]{}, MolarEnergy.BaseUnit, MolarEnergy.Zero, MolarEnergy.BaseDimensions, QuantityType.MolarEnergy)
+                base("MolarEnergy",
+                    new UnitInfo<MolarEnergyUnit>[]
+                    {
+                        new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.JoulePerMole, "JoulesPerMole", BaseUnits.Undefined),
+                        new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.KilojoulePerMole, "KilojoulesPerMole", BaseUnits.Undefined),
+                        new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.MegajoulePerMole, "MegajoulesPerMole", BaseUnits.Undefined),
+                    },
+                    MolarEnergy.BaseUnit, MolarEnergy.Zero, MolarEnergy.BaseDimensions, QuantityType.MolarEnergy)
             {
                 JoulePerMole = new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.JoulePerMole, "JoulesPerMole", BaseUnits.Undefined);
                 KilojoulePerMole = new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.KilojoulePerMole, "KilojoulesPerMole", BaseUnits.Undefined);
                 MegajoulePerMole = new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.MegajoulePerMole, "MegajoulesPerMole", BaseUnits.Undefined);
-                BaseUnitInfo = JoulePerMole;
+                //BaseUnitInfo = JoulePerMole;
             }
 
             /// <summary>

@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly IrradianceUnit? _unit;
 
+        static Irradiance()
+        {
+            BaseDimensions = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
+            BaseUnit = IrradianceUnit.WattPerSquareMeter;
+            MaxValue = new Irradiance(double.MaxValue, BaseUnit);
+            MinValue = new Irradiance(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Irradiance;
+            Units = Enum.GetValues(typeof(IrradianceUnit)).Cast<IrradianceUnit>().Except(new IrradianceUnit[]{ IrradianceUnit.Undefined }).ToArray();
+            Zero = new Irradiance(0, BaseUnit);
+
+            Info = new Irradiance.IrradianceQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Irradiance.IrradianceQuantityInfo Info { get; } = new Irradiance.IrradianceQuantityInfo();
+        public static Irradiance.IrradianceQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of Irradiance, which is WattPerSquareMeter. All conversions go via this value.
         /// </summary>
-        public static IrradianceUnit BaseUnit { get; } = IrradianceUnit.WattPerSquareMeter;
+        public static IrradianceUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Irradiance
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Irradiance MaxValue { get; } = new Irradiance(double.MaxValue, BaseUnit);
+        public static Irradiance MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Irradiance
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Irradiance MinValue { get; } = new Irradiance(double.MinValue, BaseUnit);
+        public static Irradiance MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Irradiance;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Irradiance quantity.
         /// </summary>
-        public static IrradianceUnit[] Units { get; } = Enum.GetValues(typeof(IrradianceUnit)).Cast<IrradianceUnit>().Except(new IrradianceUnit[]{ IrradianceUnit.Undefined }).ToArray();
+        public static IrradianceUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit WattPerSquareMeter.
         /// </summary>
-        public static Irradiance Zero { get; } = new Irradiance(0, BaseUnit);
+        public static Irradiance Zero { get; }
 
         #endregion
 
@@ -1104,7 +1117,25 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal IrradianceQuantityInfo() :
-                base("Irradiance", new UnitInfo<IrradianceUnit>[]{}, Irradiance.BaseUnit, Irradiance.Zero, Irradiance.BaseDimensions, QuantityType.Irradiance)
+                base("Irradiance",
+                    new UnitInfo<IrradianceUnit>[]
+                    {
+                        new UnitInfo<IrradianceUnit>(IrradianceUnit.KilowattPerSquareCentimeter, "KilowattsPerSquareCentimeter", BaseUnits.Undefined),
+                        new UnitInfo<IrradianceUnit>(IrradianceUnit.KilowattPerSquareMeter, "KilowattsPerSquareMeter", BaseUnits.Undefined),
+                        new UnitInfo<IrradianceUnit>(IrradianceUnit.MegawattPerSquareCentimeter, "MegawattsPerSquareCentimeter", BaseUnits.Undefined),
+                        new UnitInfo<IrradianceUnit>(IrradianceUnit.MegawattPerSquareMeter, "MegawattsPerSquareMeter", BaseUnits.Undefined),
+                        new UnitInfo<IrradianceUnit>(IrradianceUnit.MicrowattPerSquareCentimeter, "MicrowattsPerSquareCentimeter", BaseUnits.Undefined),
+                        new UnitInfo<IrradianceUnit>(IrradianceUnit.MicrowattPerSquareMeter, "MicrowattsPerSquareMeter", BaseUnits.Undefined),
+                        new UnitInfo<IrradianceUnit>(IrradianceUnit.MilliwattPerSquareCentimeter, "MilliwattsPerSquareCentimeter", BaseUnits.Undefined),
+                        new UnitInfo<IrradianceUnit>(IrradianceUnit.MilliwattPerSquareMeter, "MilliwattsPerSquareMeter", BaseUnits.Undefined),
+                        new UnitInfo<IrradianceUnit>(IrradianceUnit.NanowattPerSquareCentimeter, "NanowattsPerSquareCentimeter", BaseUnits.Undefined),
+                        new UnitInfo<IrradianceUnit>(IrradianceUnit.NanowattPerSquareMeter, "NanowattsPerSquareMeter", BaseUnits.Undefined),
+                        new UnitInfo<IrradianceUnit>(IrradianceUnit.PicowattPerSquareCentimeter, "PicowattsPerSquareCentimeter", BaseUnits.Undefined),
+                        new UnitInfo<IrradianceUnit>(IrradianceUnit.PicowattPerSquareMeter, "PicowattsPerSquareMeter", BaseUnits.Undefined),
+                        new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareCentimeter, "WattsPerSquareCentimeter", BaseUnits.Undefined),
+                        new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareMeter, "WattsPerSquareMeter", BaseUnits.Undefined),
+                    },
+                    Irradiance.BaseUnit, Irradiance.Zero, Irradiance.BaseDimensions, QuantityType.Irradiance)
             {
                 KilowattPerSquareCentimeter = new UnitInfo<IrradianceUnit>(IrradianceUnit.KilowattPerSquareCentimeter, "KilowattsPerSquareCentimeter", BaseUnits.Undefined);
                 KilowattPerSquareMeter = new UnitInfo<IrradianceUnit>(IrradianceUnit.KilowattPerSquareMeter, "KilowattsPerSquareMeter", BaseUnits.Undefined);
@@ -1120,7 +1151,7 @@ namespace UnitsNet
                 PicowattPerSquareMeter = new UnitInfo<IrradianceUnit>(IrradianceUnit.PicowattPerSquareMeter, "PicowattsPerSquareMeter", BaseUnits.Undefined);
                 WattPerSquareCentimeter = new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareCentimeter, "WattsPerSquareCentimeter", BaseUnits.Undefined);
                 WattPerSquareMeter = new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareMeter, "WattsPerSquareMeter", BaseUnits.Undefined);
-                BaseUnitInfo = WattPerSquareMeter;
+                //BaseUnitInfo = WattPerSquareMeter;
             }
 
             /// <summary>

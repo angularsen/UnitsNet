@@ -53,6 +53,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly VolumetricHeatCapacityUnit? _unit;
 
+        static VolumetricHeatCapacity()
+        {
+            BaseDimensions = new BaseDimensions(-1, 1, -2, 0, -1, 0, 0);
+            BaseUnit = VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin;
+            MaxValue = new VolumetricHeatCapacity(double.MaxValue, BaseUnit);
+            MinValue = new VolumetricHeatCapacity(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.VolumetricHeatCapacity;
+            Units = Enum.GetValues(typeof(VolumetricHeatCapacityUnit)).Cast<VolumetricHeatCapacityUnit>().Except(new VolumetricHeatCapacityUnit[]{ VolumetricHeatCapacityUnit.Undefined }).ToArray();
+            Zero = new VolumetricHeatCapacity(0, BaseUnit);
+
+            Info = new VolumetricHeatCapacity.VolumetricHeatCapacityQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -90,45 +103,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static VolumetricHeatCapacity.VolumetricHeatCapacityQuantityInfo Info { get; } = new VolumetricHeatCapacity.VolumetricHeatCapacityQuantityInfo();
+        public static VolumetricHeatCapacity.VolumetricHeatCapacityQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-1, 1, -2, 0, -1, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of VolumetricHeatCapacity, which is JoulePerCubicMeterKelvin. All conversions go via this value.
         /// </summary>
-        public static VolumetricHeatCapacityUnit BaseUnit { get; } = VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin;
+        public static VolumetricHeatCapacityUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of VolumetricHeatCapacity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static VolumetricHeatCapacity MaxValue { get; } = new VolumetricHeatCapacity(double.MaxValue, BaseUnit);
+        public static VolumetricHeatCapacity MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of VolumetricHeatCapacity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static VolumetricHeatCapacity MinValue { get; } = new VolumetricHeatCapacity(double.MinValue, BaseUnit);
+        public static VolumetricHeatCapacity MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.VolumetricHeatCapacity;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the VolumetricHeatCapacity quantity.
         /// </summary>
-        public static VolumetricHeatCapacityUnit[] Units { get; } = Enum.GetValues(typeof(VolumetricHeatCapacityUnit)).Cast<VolumetricHeatCapacityUnit>().Except(new VolumetricHeatCapacityUnit[]{ VolumetricHeatCapacityUnit.Undefined }).ToArray();
+        public static VolumetricHeatCapacityUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit JoulePerCubicMeterKelvin.
         /// </summary>
-        public static VolumetricHeatCapacity Zero { get; } = new VolumetricHeatCapacity(0, BaseUnit);
+        public static VolumetricHeatCapacity Zero { get; }
 
         #endregion
 
@@ -1017,7 +1030,20 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal VolumetricHeatCapacityQuantityInfo() :
-                base("VolumetricHeatCapacity", new UnitInfo<VolumetricHeatCapacityUnit>[]{}, VolumetricHeatCapacity.BaseUnit, VolumetricHeatCapacity.Zero, VolumetricHeatCapacity.BaseDimensions, QuantityType.VolumetricHeatCapacity)
+                base("VolumetricHeatCapacity",
+                    new UnitInfo<VolumetricHeatCapacityUnit>[]
+                    {
+                        new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, "BtusPerCubicFootDegreeFahrenheit", BaseUnits.Undefined),
+                        new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius, "CaloriesPerCubicCentimeterDegreeCelsius", BaseUnits.Undefined),
+                        new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius, "JoulesPerCubicMeterDegreeCelsius", BaseUnits.Undefined),
+                        new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, "JoulesPerCubicMeterKelvin", BaseUnits.Undefined),
+                        new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius, "KilocaloriesPerCubicCentimeterDegreeCelsius", BaseUnits.Undefined),
+                        new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius, "KilojoulesPerCubicMeterDegreeCelsius", BaseUnits.Undefined),
+                        new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, "KilojoulesPerCubicMeterKelvin", BaseUnits.Undefined),
+                        new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, "MegajoulesPerCubicMeterDegreeCelsius", BaseUnits.Undefined),
+                        new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, "MegajoulesPerCubicMeterKelvin", BaseUnits.Undefined),
+                    },
+                    VolumetricHeatCapacity.BaseUnit, VolumetricHeatCapacity.Zero, VolumetricHeatCapacity.BaseDimensions, QuantityType.VolumetricHeatCapacity)
             {
                 BtuPerCubicFootDegreeFahrenheit = new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, "BtusPerCubicFootDegreeFahrenheit", BaseUnits.Undefined);
                 CaloriePerCubicCentimeterDegreeCelsius = new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius, "CaloriesPerCubicCentimeterDegreeCelsius", BaseUnits.Undefined);
@@ -1028,7 +1054,7 @@ namespace UnitsNet
                 KilojoulePerCubicMeterKelvin = new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, "KilojoulesPerCubicMeterKelvin", BaseUnits.Undefined);
                 MegajoulePerCubicMeterDegreeCelsius = new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, "MegajoulesPerCubicMeterDegreeCelsius", BaseUnits.Undefined);
                 MegajoulePerCubicMeterKelvin = new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, "MegajoulesPerCubicMeterKelvin", BaseUnits.Undefined);
-                BaseUnitInfo = JoulePerCubicMeterKelvin;
+                //BaseUnitInfo = JoulePerCubicMeterKelvin;
             }
 
             /// <summary>

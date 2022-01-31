@@ -53,6 +53,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly LuminosityUnit? _unit;
 
+        static Luminosity()
+        {
+            BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
+            BaseUnit = LuminosityUnit.Watt;
+            MaxValue = new Luminosity(double.MaxValue, BaseUnit);
+            MinValue = new Luminosity(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Luminosity;
+            Units = Enum.GetValues(typeof(LuminosityUnit)).Cast<LuminosityUnit>().Except(new LuminosityUnit[]{ LuminosityUnit.Undefined }).ToArray();
+            Zero = new Luminosity(0, BaseUnit);
+
+            Info = new Luminosity.LuminosityQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -90,45 +103,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Luminosity.LuminosityQuantityInfo Info { get; } = new Luminosity.LuminosityQuantityInfo();
+        public static Luminosity.LuminosityQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of Luminosity, which is Watt. All conversions go via this value.
         /// </summary>
-        public static LuminosityUnit BaseUnit { get; } = LuminosityUnit.Watt;
+        public static LuminosityUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Luminosity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Luminosity MaxValue { get; } = new Luminosity(double.MaxValue, BaseUnit);
+        public static Luminosity MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Luminosity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Luminosity MinValue { get; } = new Luminosity(double.MinValue, BaseUnit);
+        public static Luminosity MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Luminosity;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Luminosity quantity.
         /// </summary>
-        public static LuminosityUnit[] Units { get; } = Enum.GetValues(typeof(LuminosityUnit)).Cast<LuminosityUnit>().Except(new LuminosityUnit[]{ LuminosityUnit.Undefined }).ToArray();
+        public static LuminosityUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Watt.
         /// </summary>
-        public static Luminosity Zero { get; } = new Luminosity(0, BaseUnit);
+        public static Luminosity Zero { get; }
 
         #endregion
 
@@ -1107,7 +1120,25 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal LuminosityQuantityInfo() :
-                base("Luminosity", new UnitInfo<LuminosityUnit>[]{}, Luminosity.BaseUnit, Luminosity.Zero, Luminosity.BaseDimensions, QuantityType.Luminosity)
+                base("Luminosity",
+                    new UnitInfo<LuminosityUnit>[]
+                    {
+                        new UnitInfo<LuminosityUnit>(LuminosityUnit.Decawatt, "Decawatts", BaseUnits.Undefined),
+                        new UnitInfo<LuminosityUnit>(LuminosityUnit.Deciwatt, "Deciwatts", BaseUnits.Undefined),
+                        new UnitInfo<LuminosityUnit>(LuminosityUnit.Femtowatt, "Femtowatts", BaseUnits.Undefined),
+                        new UnitInfo<LuminosityUnit>(LuminosityUnit.Gigawatt, "Gigawatts", BaseUnits.Undefined),
+                        new UnitInfo<LuminosityUnit>(LuminosityUnit.Kilowatt, "Kilowatts", BaseUnits.Undefined),
+                        new UnitInfo<LuminosityUnit>(LuminosityUnit.Megawatt, "Megawatts", BaseUnits.Undefined),
+                        new UnitInfo<LuminosityUnit>(LuminosityUnit.Microwatt, "Microwatts", BaseUnits.Undefined),
+                        new UnitInfo<LuminosityUnit>(LuminosityUnit.Milliwatt, "Milliwatts", BaseUnits.Undefined),
+                        new UnitInfo<LuminosityUnit>(LuminosityUnit.Nanowatt, "Nanowatts", BaseUnits.Undefined),
+                        new UnitInfo<LuminosityUnit>(LuminosityUnit.Petawatt, "Petawatts", BaseUnits.Undefined),
+                        new UnitInfo<LuminosityUnit>(LuminosityUnit.Picowatt, "Picowatts", BaseUnits.Undefined),
+                        new UnitInfo<LuminosityUnit>(LuminosityUnit.SolarLuminosity, "SolarLuminosities", BaseUnits.Undefined),
+                        new UnitInfo<LuminosityUnit>(LuminosityUnit.Terawatt, "Terawatts", BaseUnits.Undefined),
+                        new UnitInfo<LuminosityUnit>(LuminosityUnit.Watt, "Watts", BaseUnits.Undefined),
+                    },
+                    Luminosity.BaseUnit, Luminosity.Zero, Luminosity.BaseDimensions, QuantityType.Luminosity)
             {
                 Decawatt = new UnitInfo<LuminosityUnit>(LuminosityUnit.Decawatt, "Decawatts", BaseUnits.Undefined);
                 Deciwatt = new UnitInfo<LuminosityUnit>(LuminosityUnit.Deciwatt, "Deciwatts", BaseUnits.Undefined);
@@ -1123,7 +1154,7 @@ namespace UnitsNet
                 SolarLuminosity = new UnitInfo<LuminosityUnit>(LuminosityUnit.SolarLuminosity, "SolarLuminosities", BaseUnits.Undefined);
                 Terawatt = new UnitInfo<LuminosityUnit>(LuminosityUnit.Terawatt, "Terawatts", BaseUnits.Undefined);
                 Watt = new UnitInfo<LuminosityUnit>(LuminosityUnit.Watt, "Watts", BaseUnits.Undefined);
-                BaseUnitInfo = Watt;
+                //BaseUnitInfo = Watt;
             }
 
             /// <summary>

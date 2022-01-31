@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ScalarUnit? _unit;
 
+        static Scalar()
+        {
+            BaseDimensions = BaseDimensions.Dimensionless;
+            BaseUnit = ScalarUnit.Amount;
+            MaxValue = new Scalar(double.MaxValue, BaseUnit);
+            MinValue = new Scalar(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Scalar;
+            Units = Enum.GetValues(typeof(ScalarUnit)).Cast<ScalarUnit>().Except(new ScalarUnit[]{ ScalarUnit.Undefined }).ToArray();
+            Zero = new Scalar(0, BaseUnit);
+
+            Info = new Scalar.ScalarQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Scalar.ScalarQuantityInfo Info { get; } = new Scalar.ScalarQuantityInfo();
+        public static Scalar.ScalarQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = BaseDimensions.Dimensionless;
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of Scalar, which is Amount. All conversions go via this value.
         /// </summary>
-        public static ScalarUnit BaseUnit { get; } = ScalarUnit.Amount;
+        public static ScalarUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Scalar
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Scalar MaxValue { get; } = new Scalar(double.MaxValue, BaseUnit);
+        public static Scalar MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Scalar
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Scalar MinValue { get; } = new Scalar(double.MinValue, BaseUnit);
+        public static Scalar MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Scalar;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Scalar quantity.
         /// </summary>
-        public static ScalarUnit[] Units { get; } = Enum.GetValues(typeof(ScalarUnit)).Cast<ScalarUnit>().Except(new ScalarUnit[]{ ScalarUnit.Undefined }).ToArray();
+        public static ScalarUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Amount.
         /// </summary>
-        public static Scalar Zero { get; } = new Scalar(0, BaseUnit);
+        public static Scalar Zero { get; }
 
         #endregion
 
@@ -870,10 +883,15 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ScalarQuantityInfo() :
-                base("Scalar", new UnitInfo<ScalarUnit>[]{}, Scalar.BaseUnit, Scalar.Zero, Scalar.BaseDimensions, QuantityType.Scalar)
+                base("Scalar",
+                    new UnitInfo<ScalarUnit>[]
+                    {
+                        new UnitInfo<ScalarUnit>(ScalarUnit.Amount, "Amount", BaseUnits.Undefined),
+                    },
+                    Scalar.BaseUnit, Scalar.Zero, Scalar.BaseDimensions, QuantityType.Scalar)
             {
                 Amount = new UnitInfo<ScalarUnit>(ScalarUnit.Amount, "Amount", BaseUnits.Undefined);
-                BaseUnitInfo = Amount;
+                //BaseUnitInfo = Amount;
             }
 
             /// <summary>

@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly AngleUnit? _unit;
 
+        static Angle()
+        {
+            BaseDimensions = BaseDimensions.Dimensionless;
+            BaseUnit = AngleUnit.Degree;
+            MaxValue = new Angle(double.MaxValue, BaseUnit);
+            MinValue = new Angle(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Angle;
+            Units = Enum.GetValues(typeof(AngleUnit)).Cast<AngleUnit>().Except(new AngleUnit[]{ AngleUnit.Undefined }).ToArray();
+            Zero = new Angle(0, BaseUnit);
+
+            Info = new Angle.AngleQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Angle.AngleQuantityInfo Info { get; } = new Angle.AngleQuantityInfo();
+        public static Angle.AngleQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = BaseDimensions.Dimensionless;
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of Angle, which is Degree. All conversions go via this value.
         /// </summary>
-        public static AngleUnit BaseUnit { get; } = AngleUnit.Degree;
+        public static AngleUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Angle
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Angle MaxValue { get; } = new Angle(double.MaxValue, BaseUnit);
+        public static Angle MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Angle
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Angle MinValue { get; } = new Angle(double.MinValue, BaseUnit);
+        public static Angle MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Angle;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Angle quantity.
         /// </summary>
-        public static AngleUnit[] Units { get; } = Enum.GetValues(typeof(AngleUnit)).Cast<AngleUnit>().Except(new AngleUnit[]{ AngleUnit.Undefined }).ToArray();
+        public static AngleUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Degree.
         /// </summary>
-        public static Angle Zero { get; } = new Angle(0, BaseUnit);
+        public static Angle Zero { get; }
 
         #endregion
 
@@ -1140,7 +1153,27 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal AngleQuantityInfo() :
-                base("Angle", new UnitInfo<AngleUnit>[]{}, Angle.BaseUnit, Angle.Zero, Angle.BaseDimensions, QuantityType.Angle)
+                base("Angle",
+                    new UnitInfo<AngleUnit>[]
+                    {
+                        new UnitInfo<AngleUnit>(AngleUnit.Arcminute, "Arcminutes", BaseUnits.Undefined),
+                        new UnitInfo<AngleUnit>(AngleUnit.Arcsecond, "Arcseconds", BaseUnits.Undefined),
+                        new UnitInfo<AngleUnit>(AngleUnit.Centiradian, "Centiradians", BaseUnits.Undefined),
+                        new UnitInfo<AngleUnit>(AngleUnit.Deciradian, "Deciradians", BaseUnits.Undefined),
+                        new UnitInfo<AngleUnit>(AngleUnit.Degree, "Degrees", BaseUnits.Undefined),
+                        new UnitInfo<AngleUnit>(AngleUnit.Gradian, "Gradians", BaseUnits.Undefined),
+                        new UnitInfo<AngleUnit>(AngleUnit.Microdegree, "Microdegrees", BaseUnits.Undefined),
+                        new UnitInfo<AngleUnit>(AngleUnit.Microradian, "Microradians", BaseUnits.Undefined),
+                        new UnitInfo<AngleUnit>(AngleUnit.Millidegree, "Millidegrees", BaseUnits.Undefined),
+                        new UnitInfo<AngleUnit>(AngleUnit.Milliradian, "Milliradians", BaseUnits.Undefined),
+                        new UnitInfo<AngleUnit>(AngleUnit.Nanodegree, "Nanodegrees", BaseUnits.Undefined),
+                        new UnitInfo<AngleUnit>(AngleUnit.Nanoradian, "Nanoradians", BaseUnits.Undefined),
+                        new UnitInfo<AngleUnit>(AngleUnit.NatoMil, "NatoMils", BaseUnits.Undefined),
+                        new UnitInfo<AngleUnit>(AngleUnit.Radian, "Radians", BaseUnits.Undefined),
+                        new UnitInfo<AngleUnit>(AngleUnit.Revolution, "Revolutions", BaseUnits.Undefined),
+                        new UnitInfo<AngleUnit>(AngleUnit.Tilt, "Tilt", BaseUnits.Undefined),
+                    },
+                    Angle.BaseUnit, Angle.Zero, Angle.BaseDimensions, QuantityType.Angle)
             {
                 Arcminute = new UnitInfo<AngleUnit>(AngleUnit.Arcminute, "Arcminutes", BaseUnits.Undefined);
                 Arcsecond = new UnitInfo<AngleUnit>(AngleUnit.Arcsecond, "Arcseconds", BaseUnits.Undefined);
@@ -1158,7 +1191,7 @@ namespace UnitsNet
                 Radian = new UnitInfo<AngleUnit>(AngleUnit.Radian, "Radians", BaseUnits.Undefined);
                 Revolution = new UnitInfo<AngleUnit>(AngleUnit.Revolution, "Revolutions", BaseUnits.Undefined);
                 Tilt = new UnitInfo<AngleUnit>(AngleUnit.Tilt, "Tilt", BaseUnits.Undefined);
-                BaseUnitInfo = Degree;
+                //BaseUnitInfo = Degree;
             }
 
             /// <summary>

@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly FrequencyUnit? _unit;
 
+        static Frequency()
+        {
+            BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
+            BaseUnit = FrequencyUnit.Hertz;
+            MaxValue = new Frequency(double.MaxValue, BaseUnit);
+            MinValue = new Frequency(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Frequency;
+            Units = Enum.GetValues(typeof(FrequencyUnit)).Cast<FrequencyUnit>().Except(new FrequencyUnit[]{ FrequencyUnit.Undefined }).ToArray();
+            Zero = new Frequency(0, BaseUnit);
+
+            Info = new Frequency.FrequencyQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Frequency.FrequencyQuantityInfo Info { get; } = new Frequency.FrequencyQuantityInfo();
+        public static Frequency.FrequencyQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of Frequency, which is Hertz. All conversions go via this value.
         /// </summary>
-        public static FrequencyUnit BaseUnit { get; } = FrequencyUnit.Hertz;
+        public static FrequencyUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Frequency
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Frequency MaxValue { get; } = new Frequency(double.MaxValue, BaseUnit);
+        public static Frequency MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Frequency
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Frequency MinValue { get; } = new Frequency(double.MinValue, BaseUnit);
+        public static Frequency MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Frequency;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Frequency quantity.
         /// </summary>
-        public static FrequencyUnit[] Units { get; } = Enum.GetValues(typeof(FrequencyUnit)).Cast<FrequencyUnit>().Except(new FrequencyUnit[]{ FrequencyUnit.Undefined }).ToArray();
+        public static FrequencyUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Hertz.
         /// </summary>
-        public static Frequency Zero { get; } = new Frequency(0, BaseUnit);
+        public static Frequency Zero { get; }
 
         #endregion
 
@@ -1050,7 +1063,22 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal FrequencyQuantityInfo() :
-                base("Frequency", new UnitInfo<FrequencyUnit>[]{}, Frequency.BaseUnit, Frequency.Zero, Frequency.BaseDimensions, QuantityType.Frequency)
+                base("Frequency",
+                    new UnitInfo<FrequencyUnit>[]
+                    {
+                        new UnitInfo<FrequencyUnit>(FrequencyUnit.BeatPerMinute, "BeatsPerMinute", BaseUnits.Undefined),
+                        new UnitInfo<FrequencyUnit>(FrequencyUnit.BUnit, "BUnits", BaseUnits.Undefined),
+                        new UnitInfo<FrequencyUnit>(FrequencyUnit.CyclePerHour, "CyclesPerHour", BaseUnits.Undefined),
+                        new UnitInfo<FrequencyUnit>(FrequencyUnit.CyclePerMinute, "CyclesPerMinute", BaseUnits.Undefined),
+                        new UnitInfo<FrequencyUnit>(FrequencyUnit.Gigahertz, "Gigahertz", BaseUnits.Undefined),
+                        new UnitInfo<FrequencyUnit>(FrequencyUnit.Hertz, "Hertz", BaseUnits.Undefined),
+                        new UnitInfo<FrequencyUnit>(FrequencyUnit.Kilohertz, "Kilohertz", BaseUnits.Undefined),
+                        new UnitInfo<FrequencyUnit>(FrequencyUnit.Megahertz, "Megahertz", BaseUnits.Undefined),
+                        new UnitInfo<FrequencyUnit>(FrequencyUnit.PerSecond, "PerSecond", BaseUnits.Undefined),
+                        new UnitInfo<FrequencyUnit>(FrequencyUnit.RadianPerSecond, "RadiansPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<FrequencyUnit>(FrequencyUnit.Terahertz, "Terahertz", BaseUnits.Undefined),
+                    },
+                    Frequency.BaseUnit, Frequency.Zero, Frequency.BaseDimensions, QuantityType.Frequency)
             {
                 BeatPerMinute = new UnitInfo<FrequencyUnit>(FrequencyUnit.BeatPerMinute, "BeatsPerMinute", BaseUnits.Undefined);
                 BUnit = new UnitInfo<FrequencyUnit>(FrequencyUnit.BUnit, "BUnits", BaseUnits.Undefined);
@@ -1063,7 +1091,7 @@ namespace UnitsNet
                 PerSecond = new UnitInfo<FrequencyUnit>(FrequencyUnit.PerSecond, "PerSecond", BaseUnits.Undefined);
                 RadianPerSecond = new UnitInfo<FrequencyUnit>(FrequencyUnit.RadianPerSecond, "RadiansPerSecond", BaseUnits.Undefined);
                 Terahertz = new UnitInfo<FrequencyUnit>(FrequencyUnit.Terahertz, "Terahertz", BaseUnits.Undefined);
-                BaseUnitInfo = Hertz;
+                //BaseUnitInfo = Hertz;
             }
 
             /// <summary>

@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly RotationalAccelerationUnit? _unit;
 
+        static RotationalAcceleration()
+        {
+            BaseDimensions = new BaseDimensions(0, 0, -2, 0, 0, 0, 0);
+            BaseUnit = RotationalAccelerationUnit.RadianPerSecondSquared;
+            MaxValue = new RotationalAcceleration(double.MaxValue, BaseUnit);
+            MinValue = new RotationalAcceleration(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.RotationalAcceleration;
+            Units = Enum.GetValues(typeof(RotationalAccelerationUnit)).Cast<RotationalAccelerationUnit>().Except(new RotationalAccelerationUnit[]{ RotationalAccelerationUnit.Undefined }).ToArray();
+            Zero = new RotationalAcceleration(0, BaseUnit);
+
+            Info = new RotationalAcceleration.RotationalAccelerationQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static RotationalAcceleration.RotationalAccelerationQuantityInfo Info { get; } = new RotationalAcceleration.RotationalAccelerationQuantityInfo();
+        public static RotationalAcceleration.RotationalAccelerationQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 0, -2, 0, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of RotationalAcceleration, which is RadianPerSecondSquared. All conversions go via this value.
         /// </summary>
-        public static RotationalAccelerationUnit BaseUnit { get; } = RotationalAccelerationUnit.RadianPerSecondSquared;
+        public static RotationalAccelerationUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of RotationalAcceleration
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static RotationalAcceleration MaxValue { get; } = new RotationalAcceleration(double.MaxValue, BaseUnit);
+        public static RotationalAcceleration MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of RotationalAcceleration
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static RotationalAcceleration MinValue { get; } = new RotationalAcceleration(double.MinValue, BaseUnit);
+        public static RotationalAcceleration MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.RotationalAcceleration;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the RotationalAcceleration quantity.
         /// </summary>
-        public static RotationalAccelerationUnit[] Units { get; } = Enum.GetValues(typeof(RotationalAccelerationUnit)).Cast<RotationalAccelerationUnit>().Except(new RotationalAccelerationUnit[]{ RotationalAccelerationUnit.Undefined }).ToArray();
+        public static RotationalAccelerationUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit RadianPerSecondSquared.
         /// </summary>
-        public static RotationalAcceleration Zero { get; } = new RotationalAcceleration(0, BaseUnit);
+        public static RotationalAcceleration Zero { get; }
 
         #endregion
 
@@ -924,13 +937,21 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal RotationalAccelerationQuantityInfo() :
-                base("RotationalAcceleration", new UnitInfo<RotationalAccelerationUnit>[]{}, RotationalAcceleration.BaseUnit, RotationalAcceleration.Zero, RotationalAcceleration.BaseDimensions, QuantityType.RotationalAcceleration)
+                base("RotationalAcceleration",
+                    new UnitInfo<RotationalAccelerationUnit>[]
+                    {
+                        new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.DegreePerSecondSquared, "DegreesPerSecondSquared", BaseUnits.Undefined),
+                        new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RadianPerSecondSquared, "RadiansPerSecondSquared", BaseUnits.Undefined),
+                        new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, "RevolutionsPerMinutePerSecond", BaseUnits.Undefined),
+                        new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RevolutionPerSecondSquared, "RevolutionsPerSecondSquared", BaseUnits.Undefined),
+                    },
+                    RotationalAcceleration.BaseUnit, RotationalAcceleration.Zero, RotationalAcceleration.BaseDimensions, QuantityType.RotationalAcceleration)
             {
                 DegreePerSecondSquared = new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.DegreePerSecondSquared, "DegreesPerSecondSquared", BaseUnits.Undefined);
                 RadianPerSecondSquared = new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RadianPerSecondSquared, "RadiansPerSecondSquared", BaseUnits.Undefined);
                 RevolutionPerMinutePerSecond = new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, "RevolutionsPerMinutePerSecond", BaseUnits.Undefined);
                 RevolutionPerSecondSquared = new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RevolutionPerSecondSquared, "RevolutionsPerSecondSquared", BaseUnits.Undefined);
-                BaseUnitInfo = RadianPerSecondSquared;
+                //BaseUnitInfo = RadianPerSecondSquared;
             }
 
             /// <summary>

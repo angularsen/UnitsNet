@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly SpecificVolumeUnit? _unit;
 
+        static SpecificVolume()
+        {
+            BaseDimensions = new BaseDimensions(3, -1, 0, 0, 0, 0, 0);
+            BaseUnit = SpecificVolumeUnit.CubicMeterPerKilogram;
+            MaxValue = new SpecificVolume(double.MaxValue, BaseUnit);
+            MinValue = new SpecificVolume(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.SpecificVolume;
+            Units = Enum.GetValues(typeof(SpecificVolumeUnit)).Cast<SpecificVolumeUnit>().Except(new SpecificVolumeUnit[]{ SpecificVolumeUnit.Undefined }).ToArray();
+            Zero = new SpecificVolume(0, BaseUnit);
+
+            Info = new SpecificVolume.SpecificVolumeQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static SpecificVolume.SpecificVolumeQuantityInfo Info { get; } = new SpecificVolume.SpecificVolumeQuantityInfo();
+        public static SpecificVolume.SpecificVolumeQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(3, -1, 0, 0, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of SpecificVolume, which is CubicMeterPerKilogram. All conversions go via this value.
         /// </summary>
-        public static SpecificVolumeUnit BaseUnit { get; } = SpecificVolumeUnit.CubicMeterPerKilogram;
+        public static SpecificVolumeUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of SpecificVolume
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static SpecificVolume MaxValue { get; } = new SpecificVolume(double.MaxValue, BaseUnit);
+        public static SpecificVolume MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of SpecificVolume
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static SpecificVolume MinValue { get; } = new SpecificVolume(double.MinValue, BaseUnit);
+        public static SpecificVolume MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.SpecificVolume;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the SpecificVolume quantity.
         /// </summary>
-        public static SpecificVolumeUnit[] Units { get; } = Enum.GetValues(typeof(SpecificVolumeUnit)).Cast<SpecificVolumeUnit>().Except(new SpecificVolumeUnit[]{ SpecificVolumeUnit.Undefined }).ToArray();
+        public static SpecificVolumeUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit CubicMeterPerKilogram.
         /// </summary>
-        public static SpecificVolume Zero { get; } = new SpecificVolume(0, BaseUnit);
+        public static SpecificVolume Zero { get; }
 
         #endregion
 
@@ -906,12 +919,19 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal SpecificVolumeQuantityInfo() :
-                base("SpecificVolume", new UnitInfo<SpecificVolumeUnit>[]{}, SpecificVolume.BaseUnit, SpecificVolume.Zero, SpecificVolume.BaseDimensions, QuantityType.SpecificVolume)
+                base("SpecificVolume",
+                    new UnitInfo<SpecificVolumeUnit>[]
+                    {
+                        new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.CubicFootPerPound, "CubicFeetPerPound", BaseUnits.Undefined),
+                        new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.CubicMeterPerKilogram, "CubicMetersPerKilogram", BaseUnits.Undefined),
+                        new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.MillicubicMeterPerKilogram, "MillicubicMetersPerKilogram", BaseUnits.Undefined),
+                    },
+                    SpecificVolume.BaseUnit, SpecificVolume.Zero, SpecificVolume.BaseDimensions, QuantityType.SpecificVolume)
             {
                 CubicFootPerPound = new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.CubicFootPerPound, "CubicFeetPerPound", BaseUnits.Undefined);
                 CubicMeterPerKilogram = new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.CubicMeterPerKilogram, "CubicMetersPerKilogram", BaseUnits.Undefined);
                 MillicubicMeterPerKilogram = new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.MillicubicMeterPerKilogram, "MillicubicMetersPerKilogram", BaseUnits.Undefined);
-                BaseUnitInfo = CubicMeterPerKilogram;
+                //BaseUnitInfo = CubicMeterPerKilogram;
             }
 
             /// <summary>

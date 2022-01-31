@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly MolarEntropyUnit? _unit;
 
+        static MolarEntropy()
+        {
+            BaseDimensions = new BaseDimensions(2, 1, -2, 0, -1, -1, 0);
+            BaseUnit = MolarEntropyUnit.JoulePerMoleKelvin;
+            MaxValue = new MolarEntropy(double.MaxValue, BaseUnit);
+            MinValue = new MolarEntropy(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.MolarEntropy;
+            Units = Enum.GetValues(typeof(MolarEntropyUnit)).Cast<MolarEntropyUnit>().Except(new MolarEntropyUnit[]{ MolarEntropyUnit.Undefined }).ToArray();
+            Zero = new MolarEntropy(0, BaseUnit);
+
+            Info = new MolarEntropy.MolarEntropyQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static MolarEntropy.MolarEntropyQuantityInfo Info { get; } = new MolarEntropy.MolarEntropyQuantityInfo();
+        public static MolarEntropy.MolarEntropyQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 1, -2, 0, -1, -1, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of MolarEntropy, which is JoulePerMoleKelvin. All conversions go via this value.
         /// </summary>
-        public static MolarEntropyUnit BaseUnit { get; } = MolarEntropyUnit.JoulePerMoleKelvin;
+        public static MolarEntropyUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of MolarEntropy
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static MolarEntropy MaxValue { get; } = new MolarEntropy(double.MaxValue, BaseUnit);
+        public static MolarEntropy MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of MolarEntropy
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static MolarEntropy MinValue { get; } = new MolarEntropy(double.MinValue, BaseUnit);
+        public static MolarEntropy MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.MolarEntropy;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the MolarEntropy quantity.
         /// </summary>
-        public static MolarEntropyUnit[] Units { get; } = Enum.GetValues(typeof(MolarEntropyUnit)).Cast<MolarEntropyUnit>().Except(new MolarEntropyUnit[]{ MolarEntropyUnit.Undefined }).ToArray();
+        public static MolarEntropyUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit JoulePerMoleKelvin.
         /// </summary>
-        public static MolarEntropy Zero { get; } = new MolarEntropy(0, BaseUnit);
+        public static MolarEntropy Zero { get; }
 
         #endregion
 
@@ -906,12 +919,19 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal MolarEntropyQuantityInfo() :
-                base("MolarEntropy", new UnitInfo<MolarEntropyUnit>[]{}, MolarEntropy.BaseUnit, MolarEntropy.Zero, MolarEntropy.BaseDimensions, QuantityType.MolarEntropy)
+                base("MolarEntropy",
+                    new UnitInfo<MolarEntropyUnit>[]
+                    {
+                        new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.JoulePerMoleKelvin, "JoulesPerMoleKelvin", BaseUnits.Undefined),
+                        new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.KilojoulePerMoleKelvin, "KilojoulesPerMoleKelvin", BaseUnits.Undefined),
+                        new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.MegajoulePerMoleKelvin, "MegajoulesPerMoleKelvin", BaseUnits.Undefined),
+                    },
+                    MolarEntropy.BaseUnit, MolarEntropy.Zero, MolarEntropy.BaseDimensions, QuantityType.MolarEntropy)
             {
                 JoulePerMoleKelvin = new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.JoulePerMoleKelvin, "JoulesPerMoleKelvin", BaseUnits.Undefined);
                 KilojoulePerMoleKelvin = new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.KilojoulePerMoleKelvin, "KilojoulesPerMoleKelvin", BaseUnits.Undefined);
                 MegajoulePerMoleKelvin = new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.MegajoulePerMoleKelvin, "MegajoulesPerMoleKelvin", BaseUnits.Undefined);
-                BaseUnitInfo = JoulePerMoleKelvin;
+                //BaseUnitInfo = JoulePerMoleKelvin;
             }
 
             /// <summary>

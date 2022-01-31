@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly RelativeHumidityUnit? _unit;
 
+        static RelativeHumidity()
+        {
+            BaseDimensions = BaseDimensions.Dimensionless;
+            BaseUnit = RelativeHumidityUnit.Percent;
+            MaxValue = new RelativeHumidity(double.MaxValue, BaseUnit);
+            MinValue = new RelativeHumidity(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.RelativeHumidity;
+            Units = Enum.GetValues(typeof(RelativeHumidityUnit)).Cast<RelativeHumidityUnit>().Except(new RelativeHumidityUnit[]{ RelativeHumidityUnit.Undefined }).ToArray();
+            Zero = new RelativeHumidity(0, BaseUnit);
+
+            Info = new RelativeHumidity.RelativeHumidityQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static RelativeHumidity.RelativeHumidityQuantityInfo Info { get; } = new RelativeHumidity.RelativeHumidityQuantityInfo();
+        public static RelativeHumidity.RelativeHumidityQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = BaseDimensions.Dimensionless;
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of RelativeHumidity, which is Percent. All conversions go via this value.
         /// </summary>
-        public static RelativeHumidityUnit BaseUnit { get; } = RelativeHumidityUnit.Percent;
+        public static RelativeHumidityUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of RelativeHumidity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static RelativeHumidity MaxValue { get; } = new RelativeHumidity(double.MaxValue, BaseUnit);
+        public static RelativeHumidity MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of RelativeHumidity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static RelativeHumidity MinValue { get; } = new RelativeHumidity(double.MinValue, BaseUnit);
+        public static RelativeHumidity MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.RelativeHumidity;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the RelativeHumidity quantity.
         /// </summary>
-        public static RelativeHumidityUnit[] Units { get; } = Enum.GetValues(typeof(RelativeHumidityUnit)).Cast<RelativeHumidityUnit>().Except(new RelativeHumidityUnit[]{ RelativeHumidityUnit.Undefined }).ToArray();
+        public static RelativeHumidityUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Percent.
         /// </summary>
-        public static RelativeHumidity Zero { get; } = new RelativeHumidity(0, BaseUnit);
+        public static RelativeHumidity Zero { get; }
 
         #endregion
 
@@ -870,10 +883,15 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal RelativeHumidityQuantityInfo() :
-                base("RelativeHumidity", new UnitInfo<RelativeHumidityUnit>[]{}, RelativeHumidity.BaseUnit, RelativeHumidity.Zero, RelativeHumidity.BaseDimensions, QuantityType.RelativeHumidity)
+                base("RelativeHumidity",
+                    new UnitInfo<RelativeHumidityUnit>[]
+                    {
+                        new UnitInfo<RelativeHumidityUnit>(RelativeHumidityUnit.Percent, "Percent", BaseUnits.Undefined),
+                    },
+                    RelativeHumidity.BaseUnit, RelativeHumidity.Zero, RelativeHumidity.BaseDimensions, QuantityType.RelativeHumidity)
             {
                 Percent = new UnitInfo<RelativeHumidityUnit>(RelativeHumidityUnit.Percent, "Percent", BaseUnits.Undefined);
-                BaseUnitInfo = Percent;
+                //BaseUnitInfo = Percent;
             }
 
             /// <summary>

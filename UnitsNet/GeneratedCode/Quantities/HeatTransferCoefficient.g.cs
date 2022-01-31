@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly HeatTransferCoefficientUnit? _unit;
 
+        static HeatTransferCoefficient()
+        {
+            BaseDimensions = new BaseDimensions(0, 1, -3, 0, -1, 0, 0);
+            BaseUnit = HeatTransferCoefficientUnit.WattPerSquareMeterKelvin;
+            MaxValue = new HeatTransferCoefficient(double.MaxValue, BaseUnit);
+            MinValue = new HeatTransferCoefficient(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.HeatTransferCoefficient;
+            Units = Enum.GetValues(typeof(HeatTransferCoefficientUnit)).Cast<HeatTransferCoefficientUnit>().Except(new HeatTransferCoefficientUnit[]{ HeatTransferCoefficientUnit.Undefined }).ToArray();
+            Zero = new HeatTransferCoefficient(0, BaseUnit);
+
+            Info = new HeatTransferCoefficient.HeatTransferCoefficientQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static HeatTransferCoefficient.HeatTransferCoefficientQuantityInfo Info { get; } = new HeatTransferCoefficient.HeatTransferCoefficientQuantityInfo();
+        public static HeatTransferCoefficient.HeatTransferCoefficientQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 1, -3, 0, -1, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of HeatTransferCoefficient, which is WattPerSquareMeterKelvin. All conversions go via this value.
         /// </summary>
-        public static HeatTransferCoefficientUnit BaseUnit { get; } = HeatTransferCoefficientUnit.WattPerSquareMeterKelvin;
+        public static HeatTransferCoefficientUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of HeatTransferCoefficient
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static HeatTransferCoefficient MaxValue { get; } = new HeatTransferCoefficient(double.MaxValue, BaseUnit);
+        public static HeatTransferCoefficient MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of HeatTransferCoefficient
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static HeatTransferCoefficient MinValue { get; } = new HeatTransferCoefficient(double.MinValue, BaseUnit);
+        public static HeatTransferCoefficient MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.HeatTransferCoefficient;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the HeatTransferCoefficient quantity.
         /// </summary>
-        public static HeatTransferCoefficientUnit[] Units { get; } = Enum.GetValues(typeof(HeatTransferCoefficientUnit)).Cast<HeatTransferCoefficientUnit>().Except(new HeatTransferCoefficientUnit[]{ HeatTransferCoefficientUnit.Undefined }).ToArray();
+        public static HeatTransferCoefficientUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit WattPerSquareMeterKelvin.
         /// </summary>
-        public static HeatTransferCoefficient Zero { get; } = new HeatTransferCoefficient(0, BaseUnit);
+        public static HeatTransferCoefficient Zero { get; }
 
         #endregion
 
@@ -906,12 +919,19 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal HeatTransferCoefficientQuantityInfo() :
-                base("HeatTransferCoefficient", new UnitInfo<HeatTransferCoefficientUnit>[]{}, HeatTransferCoefficient.BaseUnit, HeatTransferCoefficient.Zero, HeatTransferCoefficient.BaseDimensions, QuantityType.HeatTransferCoefficient)
+                base("HeatTransferCoefficient",
+                    new UnitInfo<HeatTransferCoefficientUnit>[]
+                    {
+                        new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, "BtusPerSquareFootDegreeFahrenheit", BaseUnits.Undefined),
+                        new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, "WattsPerSquareMeterCelsius", BaseUnits.Undefined),
+                        new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, "WattsPerSquareMeterKelvin", BaseUnits.Undefined),
+                    },
+                    HeatTransferCoefficient.BaseUnit, HeatTransferCoefficient.Zero, HeatTransferCoefficient.BaseDimensions, QuantityType.HeatTransferCoefficient)
             {
                 BtuPerSquareFootDegreeFahrenheit = new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, "BtusPerSquareFootDegreeFahrenheit", BaseUnits.Undefined);
                 WattPerSquareMeterCelsius = new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, "WattsPerSquareMeterCelsius", BaseUnits.Undefined);
                 WattPerSquareMeterKelvin = new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, "WattsPerSquareMeterKelvin", BaseUnits.Undefined);
-                BaseUnitInfo = WattPerSquareMeterKelvin;
+                //BaseUnitInfo = WattPerSquareMeterKelvin;
             }
 
             /// <summary>

@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly SpecificEntropyUnit? _unit;
 
+        static SpecificEntropy()
+        {
+            BaseDimensions = new BaseDimensions(2, 0, -2, 0, -1, 0, 0);
+            BaseUnit = SpecificEntropyUnit.JoulePerKilogramKelvin;
+            MaxValue = new SpecificEntropy(double.MaxValue, BaseUnit);
+            MinValue = new SpecificEntropy(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.SpecificEntropy;
+            Units = Enum.GetValues(typeof(SpecificEntropyUnit)).Cast<SpecificEntropyUnit>().Except(new SpecificEntropyUnit[]{ SpecificEntropyUnit.Undefined }).ToArray();
+            Zero = new SpecificEntropy(0, BaseUnit);
+
+            Info = new SpecificEntropy.SpecificEntropyQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static SpecificEntropy.SpecificEntropyQuantityInfo Info { get; } = new SpecificEntropy.SpecificEntropyQuantityInfo();
+        public static SpecificEntropy.SpecificEntropyQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 0, -2, 0, -1, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of SpecificEntropy, which is JoulePerKilogramKelvin. All conversions go via this value.
         /// </summary>
-        public static SpecificEntropyUnit BaseUnit { get; } = SpecificEntropyUnit.JoulePerKilogramKelvin;
+        public static SpecificEntropyUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of SpecificEntropy
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static SpecificEntropy MaxValue { get; } = new SpecificEntropy(double.MaxValue, BaseUnit);
+        public static SpecificEntropy MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of SpecificEntropy
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static SpecificEntropy MinValue { get; } = new SpecificEntropy(double.MinValue, BaseUnit);
+        public static SpecificEntropy MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.SpecificEntropy;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the SpecificEntropy quantity.
         /// </summary>
-        public static SpecificEntropyUnit[] Units { get; } = Enum.GetValues(typeof(SpecificEntropyUnit)).Cast<SpecificEntropyUnit>().Except(new SpecificEntropyUnit[]{ SpecificEntropyUnit.Undefined }).ToArray();
+        public static SpecificEntropyUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit JoulePerKilogramKelvin.
         /// </summary>
-        public static SpecificEntropy Zero { get; } = new SpecificEntropy(0, BaseUnit);
+        public static SpecificEntropy Zero { get; }
 
         #endregion
 
@@ -1014,7 +1027,20 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal SpecificEntropyQuantityInfo() :
-                base("SpecificEntropy", new UnitInfo<SpecificEntropyUnit>[]{}, SpecificEntropy.BaseUnit, SpecificEntropy.Zero, SpecificEntropy.BaseDimensions, QuantityType.SpecificEntropy)
+                base("SpecificEntropy",
+                    new UnitInfo<SpecificEntropyUnit>[]
+                    {
+                        new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.BtuPerPoundFahrenheit, "BtusPerPoundFahrenheit", BaseUnits.Undefined),
+                        new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.CaloriePerGramKelvin, "CaloriesPerGramKelvin", BaseUnits.Undefined),
+                        new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.JoulePerKilogramDegreeCelsius, "JoulesPerKilogramDegreeCelsius", BaseUnits.Undefined),
+                        new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.JoulePerKilogramKelvin, "JoulesPerKilogramKelvin", BaseUnits.Undefined),
+                        new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.KilocaloriePerGramKelvin, "KilocaloriesPerGramKelvin", BaseUnits.Undefined),
+                        new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius, "KilojoulesPerKilogramDegreeCelsius", BaseUnits.Undefined),
+                        new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.KilojoulePerKilogramKelvin, "KilojoulesPerKilogramKelvin", BaseUnits.Undefined),
+                        new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, "MegajoulesPerKilogramDegreeCelsius", BaseUnits.Undefined),
+                        new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.MegajoulePerKilogramKelvin, "MegajoulesPerKilogramKelvin", BaseUnits.Undefined),
+                    },
+                    SpecificEntropy.BaseUnit, SpecificEntropy.Zero, SpecificEntropy.BaseDimensions, QuantityType.SpecificEntropy)
             {
                 BtuPerPoundFahrenheit = new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.BtuPerPoundFahrenheit, "BtusPerPoundFahrenheit", BaseUnits.Undefined);
                 CaloriePerGramKelvin = new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.CaloriePerGramKelvin, "CaloriesPerGramKelvin", BaseUnits.Undefined);
@@ -1025,7 +1051,7 @@ namespace UnitsNet
                 KilojoulePerKilogramKelvin = new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.KilojoulePerKilogramKelvin, "KilojoulesPerKilogramKelvin", BaseUnits.Undefined);
                 MegajoulePerKilogramDegreeCelsius = new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, "MegajoulesPerKilogramDegreeCelsius", BaseUnits.Undefined);
                 MegajoulePerKilogramKelvin = new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.MegajoulePerKilogramKelvin, "MegajoulesPerKilogramKelvin", BaseUnits.Undefined);
-                BaseUnitInfo = JoulePerKilogramKelvin;
+                //BaseUnitInfo = JoulePerKilogramKelvin;
             }
 
             /// <summary>

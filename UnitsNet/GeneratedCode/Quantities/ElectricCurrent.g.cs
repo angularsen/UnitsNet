@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ElectricCurrentUnit? _unit;
 
+        static ElectricCurrent()
+        {
+            BaseDimensions = new BaseDimensions(0, 0, 0, 1, 0, 0, 0);
+            BaseUnit = ElectricCurrentUnit.Ampere;
+            MaxValue = new ElectricCurrent(double.MaxValue, BaseUnit);
+            MinValue = new ElectricCurrent(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.ElectricCurrent;
+            Units = Enum.GetValues(typeof(ElectricCurrentUnit)).Cast<ElectricCurrentUnit>().Except(new ElectricCurrentUnit[]{ ElectricCurrentUnit.Undefined }).ToArray();
+            Zero = new ElectricCurrent(0, BaseUnit);
+
+            Info = new ElectricCurrent.ElectricCurrentQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static ElectricCurrent.ElectricCurrentQuantityInfo Info { get; } = new ElectricCurrent.ElectricCurrentQuantityInfo();
+        public static ElectricCurrent.ElectricCurrentQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 0, 0, 1, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of ElectricCurrent, which is Ampere. All conversions go via this value.
         /// </summary>
-        public static ElectricCurrentUnit BaseUnit { get; } = ElectricCurrentUnit.Ampere;
+        public static ElectricCurrentUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of ElectricCurrent
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricCurrent MaxValue { get; } = new ElectricCurrent(double.MaxValue, BaseUnit);
+        public static ElectricCurrent MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of ElectricCurrent
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricCurrent MinValue { get; } = new ElectricCurrent(double.MinValue, BaseUnit);
+        public static ElectricCurrent MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricCurrent;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the ElectricCurrent quantity.
         /// </summary>
-        public static ElectricCurrentUnit[] Units { get; } = Enum.GetValues(typeof(ElectricCurrentUnit)).Cast<ElectricCurrentUnit>().Except(new ElectricCurrentUnit[]{ ElectricCurrentUnit.Undefined }).ToArray();
+        public static ElectricCurrentUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Ampere.
         /// </summary>
-        public static ElectricCurrent Zero { get; } = new ElectricCurrent(0, BaseUnit);
+        public static ElectricCurrent Zero { get; }
 
         #endregion
 
@@ -996,7 +1009,19 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ElectricCurrentQuantityInfo() :
-                base("ElectricCurrent", new UnitInfo<ElectricCurrentUnit>[]{}, ElectricCurrent.BaseUnit, ElectricCurrent.Zero, ElectricCurrent.BaseDimensions, QuantityType.ElectricCurrent)
+                base("ElectricCurrent",
+                    new UnitInfo<ElectricCurrentUnit>[]
+                    {
+                        new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Ampere, "Amperes", new BaseUnits(current: ElectricCurrentUnit.Ampere)),
+                        new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Centiampere, "Centiamperes", BaseUnits.Undefined),
+                        new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Kiloampere, "Kiloamperes", BaseUnits.Undefined),
+                        new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Megaampere, "Megaamperes", BaseUnits.Undefined),
+                        new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Microampere, "Microamperes", BaseUnits.Undefined),
+                        new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Milliampere, "Milliamperes", BaseUnits.Undefined),
+                        new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Nanoampere, "Nanoamperes", BaseUnits.Undefined),
+                        new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Picoampere, "Picoamperes", BaseUnits.Undefined),
+                    },
+                    ElectricCurrent.BaseUnit, ElectricCurrent.Zero, ElectricCurrent.BaseDimensions, QuantityType.ElectricCurrent)
             {
                 Ampere = new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Ampere, "Amperes", new BaseUnits(current: ElectricCurrentUnit.Ampere));
                 Centiampere = new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Centiampere, "Centiamperes", BaseUnits.Undefined);
@@ -1006,7 +1031,7 @@ namespace UnitsNet
                 Milliampere = new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Milliampere, "Milliamperes", BaseUnits.Undefined);
                 Nanoampere = new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Nanoampere, "Nanoamperes", BaseUnits.Undefined);
                 Picoampere = new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Picoampere, "Picoamperes", BaseUnits.Undefined);
-                BaseUnitInfo = Ampere;
+                //BaseUnitInfo = Ampere;
             }
 
             /// <summary>

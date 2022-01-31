@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ReactivePowerUnit? _unit;
 
+        static ReactivePower()
+        {
+            BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
+            BaseUnit = ReactivePowerUnit.VoltampereReactive;
+            MaxValue = new ReactivePower(double.MaxValue, BaseUnit);
+            MinValue = new ReactivePower(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.ReactivePower;
+            Units = Enum.GetValues(typeof(ReactivePowerUnit)).Cast<ReactivePowerUnit>().Except(new ReactivePowerUnit[]{ ReactivePowerUnit.Undefined }).ToArray();
+            Zero = new ReactivePower(0, BaseUnit);
+
+            Info = new ReactivePower.ReactivePowerQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static ReactivePower.ReactivePowerQuantityInfo Info { get; } = new ReactivePower.ReactivePowerQuantityInfo();
+        public static ReactivePower.ReactivePowerQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of ReactivePower, which is VoltampereReactive. All conversions go via this value.
         /// </summary>
-        public static ReactivePowerUnit BaseUnit { get; } = ReactivePowerUnit.VoltampereReactive;
+        public static ReactivePowerUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of ReactivePower
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ReactivePower MaxValue { get; } = new ReactivePower(double.MaxValue, BaseUnit);
+        public static ReactivePower MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of ReactivePower
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ReactivePower MinValue { get; } = new ReactivePower(double.MinValue, BaseUnit);
+        public static ReactivePower MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ReactivePower;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the ReactivePower quantity.
         /// </summary>
-        public static ReactivePowerUnit[] Units { get; } = Enum.GetValues(typeof(ReactivePowerUnit)).Cast<ReactivePowerUnit>().Except(new ReactivePowerUnit[]{ ReactivePowerUnit.Undefined }).ToArray();
+        public static ReactivePowerUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit VoltampereReactive.
         /// </summary>
-        public static ReactivePower Zero { get; } = new ReactivePower(0, BaseUnit);
+        public static ReactivePower Zero { get; }
 
         #endregion
 
@@ -924,13 +937,21 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ReactivePowerQuantityInfo() :
-                base("ReactivePower", new UnitInfo<ReactivePowerUnit>[]{}, ReactivePower.BaseUnit, ReactivePower.Zero, ReactivePower.BaseDimensions, QuantityType.ReactivePower)
+                base("ReactivePower",
+                    new UnitInfo<ReactivePowerUnit>[]
+                    {
+                        new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.GigavoltampereReactive, "GigavoltamperesReactive", BaseUnits.Undefined),
+                        new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.KilovoltampereReactive, "KilovoltamperesReactive", BaseUnits.Undefined),
+                        new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.MegavoltampereReactive, "MegavoltamperesReactive", BaseUnits.Undefined),
+                        new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.VoltampereReactive, "VoltamperesReactive", BaseUnits.Undefined),
+                    },
+                    ReactivePower.BaseUnit, ReactivePower.Zero, ReactivePower.BaseDimensions, QuantityType.ReactivePower)
             {
                 GigavoltampereReactive = new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.GigavoltampereReactive, "GigavoltamperesReactive", BaseUnits.Undefined);
                 KilovoltampereReactive = new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.KilovoltampereReactive, "KilovoltamperesReactive", BaseUnits.Undefined);
                 MegavoltampereReactive = new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.MegavoltampereReactive, "MegavoltamperesReactive", BaseUnits.Undefined);
                 VoltampereReactive = new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.VoltampereReactive, "VoltamperesReactive", BaseUnits.Undefined);
-                BaseUnitInfo = VoltampereReactive;
+                //BaseUnitInfo = VoltampereReactive;
             }
 
             /// <summary>

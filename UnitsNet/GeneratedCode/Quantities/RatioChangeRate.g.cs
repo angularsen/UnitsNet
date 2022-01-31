@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly RatioChangeRateUnit? _unit;
 
+        static RatioChangeRate()
+        {
+            BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
+            BaseUnit = RatioChangeRateUnit.DecimalFractionPerSecond;
+            MaxValue = new RatioChangeRate(double.MaxValue, BaseUnit);
+            MinValue = new RatioChangeRate(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.RatioChangeRate;
+            Units = Enum.GetValues(typeof(RatioChangeRateUnit)).Cast<RatioChangeRateUnit>().Except(new RatioChangeRateUnit[]{ RatioChangeRateUnit.Undefined }).ToArray();
+            Zero = new RatioChangeRate(0, BaseUnit);
+
+            Info = new RatioChangeRate.RatioChangeRateQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static RatioChangeRate.RatioChangeRateQuantityInfo Info { get; } = new RatioChangeRate.RatioChangeRateQuantityInfo();
+        public static RatioChangeRate.RatioChangeRateQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of RatioChangeRate, which is DecimalFractionPerSecond. All conversions go via this value.
         /// </summary>
-        public static RatioChangeRateUnit BaseUnit { get; } = RatioChangeRateUnit.DecimalFractionPerSecond;
+        public static RatioChangeRateUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of RatioChangeRate
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static RatioChangeRate MaxValue { get; } = new RatioChangeRate(double.MaxValue, BaseUnit);
+        public static RatioChangeRate MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of RatioChangeRate
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static RatioChangeRate MinValue { get; } = new RatioChangeRate(double.MinValue, BaseUnit);
+        public static RatioChangeRate MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.RatioChangeRate;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the RatioChangeRate quantity.
         /// </summary>
-        public static RatioChangeRateUnit[] Units { get; } = Enum.GetValues(typeof(RatioChangeRateUnit)).Cast<RatioChangeRateUnit>().Except(new RatioChangeRateUnit[]{ RatioChangeRateUnit.Undefined }).ToArray();
+        public static RatioChangeRateUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DecimalFractionPerSecond.
         /// </summary>
-        public static RatioChangeRate Zero { get; } = new RatioChangeRate(0, BaseUnit);
+        public static RatioChangeRate Zero { get; }
 
         #endregion
 
@@ -888,11 +901,17 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal RatioChangeRateQuantityInfo() :
-                base("RatioChangeRate", new UnitInfo<RatioChangeRateUnit>[]{}, RatioChangeRate.BaseUnit, RatioChangeRate.Zero, RatioChangeRate.BaseDimensions, QuantityType.RatioChangeRate)
+                base("RatioChangeRate",
+                    new UnitInfo<RatioChangeRateUnit>[]
+                    {
+                        new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.DecimalFractionPerSecond, "DecimalFractionsPerSecond", BaseUnits.Undefined),
+                        new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.PercentPerSecond, "PercentsPerSecond", BaseUnits.Undefined),
+                    },
+                    RatioChangeRate.BaseUnit, RatioChangeRate.Zero, RatioChangeRate.BaseDimensions, QuantityType.RatioChangeRate)
             {
                 DecimalFractionPerSecond = new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.DecimalFractionPerSecond, "DecimalFractionsPerSecond", BaseUnits.Undefined);
                 PercentPerSecond = new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.PercentPerSecond, "PercentsPerSecond", BaseUnits.Undefined);
-                BaseUnitInfo = DecimalFractionPerSecond;
+                //BaseUnitInfo = DecimalFractionPerSecond;
             }
 
             /// <summary>

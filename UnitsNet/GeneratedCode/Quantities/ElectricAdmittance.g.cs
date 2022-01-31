@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly ElectricAdmittanceUnit? _unit;
 
+        static ElectricAdmittance()
+        {
+            BaseDimensions = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
+            BaseUnit = ElectricAdmittanceUnit.Siemens;
+            MaxValue = new ElectricAdmittance(double.MaxValue, BaseUnit);
+            MinValue = new ElectricAdmittance(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.ElectricAdmittance;
+            Units = Enum.GetValues(typeof(ElectricAdmittanceUnit)).Cast<ElectricAdmittanceUnit>().Except(new ElectricAdmittanceUnit[]{ ElectricAdmittanceUnit.Undefined }).ToArray();
+            Zero = new ElectricAdmittance(0, BaseUnit);
+
+            Info = new ElectricAdmittance.ElectricAdmittanceQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static ElectricAdmittance.ElectricAdmittanceQuantityInfo Info { get; } = new ElectricAdmittance.ElectricAdmittanceQuantityInfo();
+        public static ElectricAdmittance.ElectricAdmittanceQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of ElectricAdmittance, which is Siemens. All conversions go via this value.
         /// </summary>
-        public static ElectricAdmittanceUnit BaseUnit { get; } = ElectricAdmittanceUnit.Siemens;
+        public static ElectricAdmittanceUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of ElectricAdmittance
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricAdmittance MaxValue { get; } = new ElectricAdmittance(double.MaxValue, BaseUnit);
+        public static ElectricAdmittance MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of ElectricAdmittance
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricAdmittance MinValue { get; } = new ElectricAdmittance(double.MinValue, BaseUnit);
+        public static ElectricAdmittance MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricAdmittance;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the ElectricAdmittance quantity.
         /// </summary>
-        public static ElectricAdmittanceUnit[] Units { get; } = Enum.GetValues(typeof(ElectricAdmittanceUnit)).Cast<ElectricAdmittanceUnit>().Except(new ElectricAdmittanceUnit[]{ ElectricAdmittanceUnit.Undefined }).ToArray();
+        public static ElectricAdmittanceUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Siemens.
         /// </summary>
-        public static ElectricAdmittance Zero { get; } = new ElectricAdmittance(0, BaseUnit);
+        public static ElectricAdmittance Zero { get; }
 
         #endregion
 
@@ -924,13 +937,21 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal ElectricAdmittanceQuantityInfo() :
-                base("ElectricAdmittance", new UnitInfo<ElectricAdmittanceUnit>[]{}, ElectricAdmittance.BaseUnit, ElectricAdmittance.Zero, ElectricAdmittance.BaseDimensions, QuantityType.ElectricAdmittance)
+                base("ElectricAdmittance",
+                    new UnitInfo<ElectricAdmittanceUnit>[]
+                    {
+                        new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Microsiemens, "Microsiemens", BaseUnits.Undefined),
+                        new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Millisiemens, "Millisiemens", BaseUnits.Undefined),
+                        new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Nanosiemens, "Nanosiemens", BaseUnits.Undefined),
+                        new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Siemens, "Siemens", BaseUnits.Undefined),
+                    },
+                    ElectricAdmittance.BaseUnit, ElectricAdmittance.Zero, ElectricAdmittance.BaseDimensions, QuantityType.ElectricAdmittance)
             {
                 Microsiemens = new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Microsiemens, "Microsiemens", BaseUnits.Undefined);
                 Millisiemens = new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Millisiemens, "Millisiemens", BaseUnits.Undefined);
                 Nanosiemens = new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Nanosiemens, "Nanosiemens", BaseUnits.Undefined);
                 Siemens = new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Siemens, "Siemens", BaseUnits.Undefined);
-                BaseUnitInfo = Siemens;
+                //BaseUnitInfo = Siemens;
             }
 
             /// <summary>

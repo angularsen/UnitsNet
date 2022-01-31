@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly DurationUnit? _unit;
 
+        static Duration()
+        {
+            BaseDimensions = new BaseDimensions(0, 0, 1, 0, 0, 0, 0);
+            BaseUnit = DurationUnit.Second;
+            MaxValue = new Duration(double.MaxValue, BaseUnit);
+            MinValue = new Duration(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Duration;
+            Units = Enum.GetValues(typeof(DurationUnit)).Cast<DurationUnit>().Except(new DurationUnit[]{ DurationUnit.Undefined }).ToArray();
+            Zero = new Duration(0, BaseUnit);
+
+            Info = new Duration.DurationQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Duration.DurationQuantityInfo Info { get; } = new Duration.DurationQuantityInfo();
+        public static Duration.DurationQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(0, 0, 1, 0, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static DurationUnit BaseUnit { get; } = DurationUnit.Second;
+        public static DurationUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Duration MaxValue { get; } = new Duration(double.MaxValue, BaseUnit);
+        public static Duration MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Duration MinValue { get; } = new Duration(double.MinValue, BaseUnit);
+        public static Duration MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Duration;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Duration quantity.
         /// </summary>
-        public static DurationUnit[] Units { get; } = Enum.GetValues(typeof(DurationUnit)).Cast<DurationUnit>().Except(new DurationUnit[]{ DurationUnit.Undefined }).ToArray();
+        public static DurationUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static Duration Zero { get; } = new Duration(0, BaseUnit);
+        public static Duration Zero { get; }
 
         #endregion
 
@@ -1050,7 +1063,22 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal DurationQuantityInfo() :
-                base("Duration", new UnitInfo<DurationUnit>[]{}, Duration.BaseUnit, Duration.Zero, Duration.BaseDimensions, QuantityType.Duration)
+                base("Duration",
+                    new UnitInfo<DurationUnit>[]
+                    {
+                        new UnitInfo<DurationUnit>(DurationUnit.Day, "Days", new BaseUnits(time: DurationUnit.Day)),
+                        new UnitInfo<DurationUnit>(DurationUnit.Hour, "Hours", new BaseUnits(time: DurationUnit.Hour)),
+                        new UnitInfo<DurationUnit>(DurationUnit.JulianYear, "JulianYears", new BaseUnits(time: DurationUnit.JulianYear)),
+                        new UnitInfo<DurationUnit>(DurationUnit.Microsecond, "Microseconds", BaseUnits.Undefined),
+                        new UnitInfo<DurationUnit>(DurationUnit.Millisecond, "Milliseconds", BaseUnits.Undefined),
+                        new UnitInfo<DurationUnit>(DurationUnit.Minute, "Minutes", new BaseUnits(time: DurationUnit.Minute)),
+                        new UnitInfo<DurationUnit>(DurationUnit.Month30, "Months30", new BaseUnits(time: DurationUnit.Month30)),
+                        new UnitInfo<DurationUnit>(DurationUnit.Nanosecond, "Nanoseconds", BaseUnits.Undefined),
+                        new UnitInfo<DurationUnit>(DurationUnit.Second, "Seconds", new BaseUnits(time: DurationUnit.Second)),
+                        new UnitInfo<DurationUnit>(DurationUnit.Week, "Weeks", new BaseUnits(time: DurationUnit.Week)),
+                        new UnitInfo<DurationUnit>(DurationUnit.Year365, "Years365", new BaseUnits(time: DurationUnit.Year365)),
+                    },
+                    Duration.BaseUnit, Duration.Zero, Duration.BaseDimensions, QuantityType.Duration)
             {
                 Day = new UnitInfo<DurationUnit>(DurationUnit.Day, "Days", new BaseUnits(time: DurationUnit.Day));
                 Hour = new UnitInfo<DurationUnit>(DurationUnit.Hour, "Hours", new BaseUnits(time: DurationUnit.Hour));
@@ -1063,7 +1091,7 @@ namespace UnitsNet
                 Second = new UnitInfo<DurationUnit>(DurationUnit.Second, "Seconds", new BaseUnits(time: DurationUnit.Second));
                 Week = new UnitInfo<DurationUnit>(DurationUnit.Week, "Weeks", new BaseUnits(time: DurationUnit.Week));
                 Year365 = new UnitInfo<DurationUnit>(DurationUnit.Year365, "Years365", new BaseUnits(time: DurationUnit.Year365));
-                BaseUnitInfo = Second;
+                //BaseUnitInfo = Second;
             }
 
             /// <summary>

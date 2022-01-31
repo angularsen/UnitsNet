@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly TorquePerLengthUnit? _unit;
 
+        static TorquePerLength()
+        {
+            BaseDimensions = new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
+            BaseUnit = TorquePerLengthUnit.NewtonMeterPerMeter;
+            MaxValue = new TorquePerLength(double.MaxValue, BaseUnit);
+            MinValue = new TorquePerLength(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.TorquePerLength;
+            Units = Enum.GetValues(typeof(TorquePerLengthUnit)).Cast<TorquePerLengthUnit>().Except(new TorquePerLengthUnit[]{ TorquePerLengthUnit.Undefined }).ToArray();
+            Zero = new TorquePerLength(0, BaseUnit);
+
+            Info = new TorquePerLength.TorquePerLengthQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static TorquePerLength.TorquePerLengthQuantityInfo Info { get; } = new TorquePerLength.TorquePerLengthQuantityInfo();
+        public static TorquePerLength.TorquePerLengthQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of TorquePerLength, which is NewtonMeterPerMeter. All conversions go via this value.
         /// </summary>
-        public static TorquePerLengthUnit BaseUnit { get; } = TorquePerLengthUnit.NewtonMeterPerMeter;
+        public static TorquePerLengthUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of TorquePerLength
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static TorquePerLength MaxValue { get; } = new TorquePerLength(double.MaxValue, BaseUnit);
+        public static TorquePerLength MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of TorquePerLength
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static TorquePerLength MinValue { get; } = new TorquePerLength(double.MinValue, BaseUnit);
+        public static TorquePerLength MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.TorquePerLength;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the TorquePerLength quantity.
         /// </summary>
-        public static TorquePerLengthUnit[] Units { get; } = Enum.GetValues(typeof(TorquePerLengthUnit)).Cast<TorquePerLengthUnit>().Except(new TorquePerLengthUnit[]{ TorquePerLengthUnit.Undefined }).ToArray();
+        public static TorquePerLengthUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonMeterPerMeter.
         /// </summary>
-        public static TorquePerLength Zero { get; } = new TorquePerLength(0, BaseUnit);
+        public static TorquePerLength Zero { get; }
 
         #endregion
 
@@ -1230,7 +1243,32 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal TorquePerLengthQuantityInfo() :
-                base("TorquePerLength", new UnitInfo<TorquePerLengthUnit>[]{}, TorquePerLength.BaseUnit, TorquePerLength.Zero, TorquePerLength.BaseDimensions, QuantityType.TorquePerLength)
+                base("TorquePerLength",
+                    new UnitInfo<TorquePerLengthUnit>[]
+                    {
+                        new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilogramForceCentimeterPerMeter, "KilogramForceCentimetersPerMeter", BaseUnits.Undefined),
+                        new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilogramForceMeterPerMeter, "KilogramForceMetersPerMeter", BaseUnits.Undefined),
+                        new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilogramForceMillimeterPerMeter, "KilogramForceMillimetersPerMeter", BaseUnits.Undefined),
+                        new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilonewtonCentimeterPerMeter, "KilonewtonCentimetersPerMeter", BaseUnits.Undefined),
+                        new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilonewtonMeterPerMeter, "KilonewtonMetersPerMeter", BaseUnits.Undefined),
+                        new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilonewtonMillimeterPerMeter, "KilonewtonMillimetersPerMeter", BaseUnits.Undefined),
+                        new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilopoundForceFootPerFoot, "KilopoundForceFeetPerFoot", BaseUnits.Undefined),
+                        new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilopoundForceInchPerFoot, "KilopoundForceInchesPerFoot", BaseUnits.Undefined),
+                        new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.MeganewtonCentimeterPerMeter, "MeganewtonCentimetersPerMeter", BaseUnits.Undefined),
+                        new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.MeganewtonMeterPerMeter, "MeganewtonMetersPerMeter", BaseUnits.Undefined),
+                        new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.MeganewtonMillimeterPerMeter, "MeganewtonMillimetersPerMeter", BaseUnits.Undefined),
+                        new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.MegapoundForceFootPerFoot, "MegapoundForceFeetPerFoot", BaseUnits.Undefined),
+                        new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.MegapoundForceInchPerFoot, "MegapoundForceInchesPerFoot", BaseUnits.Undefined),
+                        new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.NewtonCentimeterPerMeter, "NewtonCentimetersPerMeter", BaseUnits.Undefined),
+                        new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.NewtonMeterPerMeter, "NewtonMetersPerMeter", BaseUnits.Undefined),
+                        new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.NewtonMillimeterPerMeter, "NewtonMillimetersPerMeter", BaseUnits.Undefined),
+                        new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.PoundForceFootPerFoot, "PoundForceFeetPerFoot", BaseUnits.Undefined),
+                        new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.PoundForceInchPerFoot, "PoundForceInchesPerFoot", BaseUnits.Undefined),
+                        new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.TonneForceCentimeterPerMeter, "TonneForceCentimetersPerMeter", BaseUnits.Undefined),
+                        new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.TonneForceMeterPerMeter, "TonneForceMetersPerMeter", BaseUnits.Undefined),
+                        new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.TonneForceMillimeterPerMeter, "TonneForceMillimetersPerMeter", BaseUnits.Undefined),
+                    },
+                    TorquePerLength.BaseUnit, TorquePerLength.Zero, TorquePerLength.BaseDimensions, QuantityType.TorquePerLength)
             {
                 KilogramForceCentimeterPerMeter = new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilogramForceCentimeterPerMeter, "KilogramForceCentimetersPerMeter", BaseUnits.Undefined);
                 KilogramForceMeterPerMeter = new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilogramForceMeterPerMeter, "KilogramForceMetersPerMeter", BaseUnits.Undefined);
@@ -1253,7 +1291,7 @@ namespace UnitsNet
                 TonneForceCentimeterPerMeter = new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.TonneForceCentimeterPerMeter, "TonneForceCentimetersPerMeter", BaseUnits.Undefined);
                 TonneForceMeterPerMeter = new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.TonneForceMeterPerMeter, "TonneForceMetersPerMeter", BaseUnits.Undefined);
                 TonneForceMillimeterPerMeter = new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.TonneForceMillimeterPerMeter, "TonneForceMillimetersPerMeter", BaseUnits.Undefined);
-                BaseUnitInfo = NewtonMeterPerMeter;
+                //BaseUnitInfo = NewtonMeterPerMeter;
             }
 
             /// <summary>

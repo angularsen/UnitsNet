@@ -50,6 +50,19 @@ namespace UnitsNet
         [DataMember(Name = "Unit", Order = 1)]
         private readonly TemperatureGradientUnit? _unit;
 
+        static TemperatureGradient()
+        {
+            BaseDimensions = new BaseDimensions(-1, 0, 0, 0, 1, 0, 0);
+            BaseUnit = TemperatureGradientUnit.KelvinPerMeter;
+            MaxValue = new TemperatureGradient(double.MaxValue, BaseUnit);
+            MinValue = new TemperatureGradient(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.TemperatureGradient;
+            Units = Enum.GetValues(typeof(TemperatureGradientUnit)).Cast<TemperatureGradientUnit>().Except(new TemperatureGradientUnit[]{ TemperatureGradientUnit.Undefined }).ToArray();
+            Zero = new TemperatureGradient(0, BaseUnit);
+
+            Info = new TemperatureGradient.TemperatureGradientQuantityInfo();
+        }
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -87,45 +100,45 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static TemperatureGradient.TemperatureGradientQuantityInfo Info { get; } = new TemperatureGradient.TemperatureGradientQuantityInfo();
+        public static TemperatureGradient.TemperatureGradientQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; } = new BaseDimensions(-1, 0, 0, 0, 1, 0, 0);
+        public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
         ///     The base unit of TemperatureGradient, which is KelvinPerMeter. All conversions go via this value.
         /// </summary>
-        public static TemperatureGradientUnit BaseUnit { get; } = TemperatureGradientUnit.KelvinPerMeter;
+        public static TemperatureGradientUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of TemperatureGradient
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static TemperatureGradient MaxValue { get; } = new TemperatureGradient(double.MaxValue, BaseUnit);
+        public static TemperatureGradient MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of TemperatureGradient
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static TemperatureGradient MinValue { get; } = new TemperatureGradient(double.MinValue, BaseUnit);
+        public static TemperatureGradient MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.TemperatureGradient;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the TemperatureGradient quantity.
         /// </summary>
-        public static TemperatureGradientUnit[] Units { get; } = Enum.GetValues(typeof(TemperatureGradientUnit)).Cast<TemperatureGradientUnit>().Except(new TemperatureGradientUnit[]{ TemperatureGradientUnit.Undefined }).ToArray();
+        public static TemperatureGradientUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KelvinPerMeter.
         /// </summary>
-        public static TemperatureGradient Zero { get; } = new TemperatureGradient(0, BaseUnit);
+        public static TemperatureGradient Zero { get; }
 
         #endregion
 
@@ -924,13 +937,21 @@ namespace UnitsNet
             ///     Constructs an instance.
             /// </summary>
             internal TemperatureGradientQuantityInfo() :
-                base("TemperatureGradient", new UnitInfo<TemperatureGradientUnit>[]{}, TemperatureGradient.BaseUnit, TemperatureGradient.Zero, TemperatureGradient.BaseDimensions, QuantityType.TemperatureGradient)
+                base("TemperatureGradient",
+                    new UnitInfo<TemperatureGradientUnit>[]
+                    {
+                        new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.DegreeCelsiusPerKilometer, "DegreesCelciusPerKilometer", new BaseUnits(length: LengthUnit.Kilometer, temperature: TemperatureUnit.DegreeCelsius)),
+                        new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.DegreeCelsiusPerMeter, "DegreesCelciusPerMeter", new BaseUnits(length: LengthUnit.Meter, temperature: TemperatureUnit.DegreeCelsius)),
+                        new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.DegreeFahrenheitPerFoot, "DegreesFahrenheitPerFoot", new BaseUnits(length: LengthUnit.Foot, temperature: TemperatureUnit.DegreeFahrenheit)),
+                        new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.KelvinPerMeter, "KelvinsPerMeter", new BaseUnits(length: LengthUnit.Meter, temperature: TemperatureUnit.Kelvin)),
+                    },
+                    TemperatureGradient.BaseUnit, TemperatureGradient.Zero, TemperatureGradient.BaseDimensions, QuantityType.TemperatureGradient)
             {
                 DegreeCelsiusPerKilometer = new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.DegreeCelsiusPerKilometer, "DegreesCelciusPerKilometer", new BaseUnits(length: LengthUnit.Kilometer, temperature: TemperatureUnit.DegreeCelsius));
                 DegreeCelsiusPerMeter = new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.DegreeCelsiusPerMeter, "DegreesCelciusPerMeter", new BaseUnits(length: LengthUnit.Meter, temperature: TemperatureUnit.DegreeCelsius));
                 DegreeFahrenheitPerFoot = new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.DegreeFahrenheitPerFoot, "DegreesFahrenheitPerFoot", new BaseUnits(length: LengthUnit.Foot, temperature: TemperatureUnit.DegreeFahrenheit));
                 KelvinPerMeter = new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.KelvinPerMeter, "KelvinsPerMeter", new BaseUnits(length: LengthUnit.Meter, temperature: TemperatureUnit.Kelvin));
-                BaseUnitInfo = KelvinPerMeter;
+                //BaseUnitInfo = KelvinPerMeter;
             }
 
             /// <summary>
