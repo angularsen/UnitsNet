@@ -926,7 +926,7 @@ namespace UnitsNet
 
             var inBaseUnits = ToUnit(BaseUnit);
 
-            if(!unitConverter.TryGetConversionFunction<HeatFlux>(inBaseUnits.Unit, unit, out var conversionFunction))
+            if(!unitConverter.TryGetConversionFunction((typeof(HeatFlux), inBaseUnits.Unit, typeof(HeatFlux), unit), out var conversionFunction))
                 throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
 
             var converted = conversionFunction(inBaseUnits);

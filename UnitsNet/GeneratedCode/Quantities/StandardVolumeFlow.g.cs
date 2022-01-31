@@ -773,7 +773,7 @@ namespace UnitsNet
 
             var inBaseUnits = ToUnit(BaseUnit);
 
-            if(!unitConverter.TryGetConversionFunction<StandardVolumeFlow>(inBaseUnits.Unit, unit, out var conversionFunction))
+            if(!unitConverter.TryGetConversionFunction((typeof(StandardVolumeFlow), inBaseUnits.Unit, typeof(StandardVolumeFlow), unit), out var conversionFunction))
                 throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
 
             var converted = conversionFunction(inBaseUnits);

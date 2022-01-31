@@ -807,7 +807,7 @@ namespace UnitsNet
 
             var inBaseUnits = ToUnit(BaseUnit);
 
-            if(!unitConverter.TryGetConversionFunction<Duration>(inBaseUnits.Unit, unit, out var conversionFunction))
+            if(!unitConverter.TryGetConversionFunction((typeof(Duration), inBaseUnits.Unit, typeof(Duration), unit), out var conversionFunction))
                 throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
 
             var converted = conversionFunction(inBaseUnits);

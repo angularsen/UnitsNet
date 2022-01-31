@@ -1456,7 +1456,7 @@ namespace UnitsNet
 
             var inBaseUnits = ToUnit(BaseUnit);
 
-            if(!unitConverter.TryGetConversionFunction<MassConcentration>(inBaseUnits.Unit, unit, out var conversionFunction))
+            if(!unitConverter.TryGetConversionFunction((typeof(MassConcentration), inBaseUnits.Unit, typeof(MassConcentration), unit), out var conversionFunction))
                 throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
 
             var converted = conversionFunction(inBaseUnits);

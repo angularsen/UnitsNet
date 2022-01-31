@@ -776,7 +776,7 @@ namespace UnitsNet
 
             var inBaseUnits = ToUnit(BaseUnit);
 
-            if(!unitConverter.TryGetConversionFunction<KinematicViscosity>(inBaseUnits.Unit, unit, out var conversionFunction))
+            if(!unitConverter.TryGetConversionFunction((typeof(KinematicViscosity), inBaseUnits.Unit, typeof(KinematicViscosity), unit), out var conversionFunction))
                 throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
 
             var converted = conversionFunction(inBaseUnits);
