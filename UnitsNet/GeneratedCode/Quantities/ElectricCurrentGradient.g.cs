@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.ElectricCurrentGradient;
             Units = Enum.GetValues(typeof(ElectricCurrentGradientUnit)).Cast<ElectricCurrentGradientUnit>().Except(new ElectricCurrentGradientUnit[]{ ElectricCurrentGradientUnit.Undefined }).ToArray();
             Zero = new ElectricCurrentGradient(0, BaseUnit);
-            Info = new ElectricCurrentGradient.ElectricCurrentGradientQuantityInfo();
+            Info = new ElectricCurrentGradientQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static ElectricCurrentGradient.ElectricCurrentGradientQuantityInfo Info { get; }
+        public static ElectricCurrentGradientQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -929,11 +929,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{ElectricCurrentGradientUnit}"/> for the <see cref="ElectricCurrentGradient"/> quantity and its units.
         /// </summary>
         public sealed class ElectricCurrentGradientQuantityInfo : QuantityInfo<ElectricCurrentGradientUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="ElectricCurrentGradientQuantityInfo"/> class.
             /// </summary>
             internal ElectricCurrentGradientQuantityInfo() :
                 base("ElectricCurrentGradient",

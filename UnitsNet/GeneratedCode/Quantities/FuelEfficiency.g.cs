@@ -62,7 +62,7 @@ namespace UnitsNet
             QuantityType = QuantityType.FuelEfficiency;
             Units = Enum.GetValues(typeof(FuelEfficiencyUnit)).Cast<FuelEfficiencyUnit>().Except(new FuelEfficiencyUnit[]{ FuelEfficiencyUnit.Undefined }).ToArray();
             Zero = new FuelEfficiency(0, BaseUnit);
-            Info = new FuelEfficiency.FuelEfficiencyQuantityInfo();
+            Info = new FuelEfficiencyQuantityInfo();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static FuelEfficiency.FuelEfficiencyQuantityInfo Info { get; }
+        public static FuelEfficiencyQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -932,11 +932,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{FuelEfficiencyUnit}"/> for the <see cref="FuelEfficiency"/> quantity and its units.
         /// </summary>
         public sealed class FuelEfficiencyQuantityInfo : QuantityInfo<FuelEfficiencyUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="FuelEfficiencyQuantityInfo"/> class.
             /// </summary>
             internal FuelEfficiencyQuantityInfo() :
                 base("FuelEfficiency",

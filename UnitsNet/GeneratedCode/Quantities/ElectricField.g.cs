@@ -62,7 +62,7 @@ namespace UnitsNet
             QuantityType = QuantityType.ElectricField;
             Units = Enum.GetValues(typeof(ElectricFieldUnit)).Cast<ElectricFieldUnit>().Except(new ElectricFieldUnit[]{ ElectricFieldUnit.Undefined }).ToArray();
             Zero = new ElectricField(0, BaseUnit);
-            Info = new ElectricField.ElectricFieldQuantityInfo();
+            Info = new ElectricFieldQuantityInfo();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static ElectricField.ElectricFieldQuantityInfo Info { get; }
+        public static ElectricFieldQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -878,11 +878,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{ElectricFieldUnit}"/> for the <see cref="ElectricField"/> quantity and its units.
         /// </summary>
         public sealed class ElectricFieldQuantityInfo : QuantityInfo<ElectricFieldUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="ElectricFieldQuantityInfo"/> class.
             /// </summary>
             internal ElectricFieldQuantityInfo() :
                 base("ElectricField",

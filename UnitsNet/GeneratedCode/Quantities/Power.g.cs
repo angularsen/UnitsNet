@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Power;
             Units = Enum.GetValues(typeof(PowerUnit)).Cast<PowerUnit>().Except(new PowerUnit[]{ PowerUnit.Undefined }).ToArray();
             Zero = new Power(0, BaseUnit);
-            Info = new Power.PowerQuantityInfo();
+            Info = new PowerQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Power.PowerQuantityInfo Info { get; }
+        public static PowerQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1312,11 +1312,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{PowerUnit}"/> for the <see cref="Power"/> quantity and its units.
         /// </summary>
         public sealed class PowerQuantityInfo : QuantityInfo<PowerUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="PowerQuantityInfo"/> class.
             /// </summary>
             internal PowerQuantityInfo() :
                 base("Power",

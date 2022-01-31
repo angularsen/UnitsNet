@@ -62,7 +62,7 @@ namespace UnitsNet
             QuantityType = QuantityType.SpecificWeight;
             Units = Enum.GetValues(typeof(SpecificWeightUnit)).Cast<SpecificWeightUnit>().Except(new SpecificWeightUnit[]{ SpecificWeightUnit.Undefined }).ToArray();
             Zero = new SpecificWeight(0, BaseUnit);
-            Info = new SpecificWeight.SpecificWeightQuantityInfo();
+            Info = new SpecificWeightQuantityInfo();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static SpecificWeight.SpecificWeightQuantityInfo Info { get; }
+        public static SpecificWeightQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1166,11 +1166,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{SpecificWeightUnit}"/> for the <see cref="SpecificWeight"/> quantity and its units.
         /// </summary>
         public sealed class SpecificWeightQuantityInfo : QuantityInfo<SpecificWeightUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="SpecificWeightQuantityInfo"/> class.
             /// </summary>
             internal SpecificWeightQuantityInfo() :
                 base("SpecificWeight",

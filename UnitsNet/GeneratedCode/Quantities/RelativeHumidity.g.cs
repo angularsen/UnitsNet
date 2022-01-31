@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.RelativeHumidity;
             Units = Enum.GetValues(typeof(RelativeHumidityUnit)).Cast<RelativeHumidityUnit>().Except(new RelativeHumidityUnit[]{ RelativeHumidityUnit.Undefined }).ToArray();
             Zero = new RelativeHumidity(0, BaseUnit);
-            Info = new RelativeHumidity.RelativeHumidityQuantityInfo();
+            Info = new RelativeHumidityQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static RelativeHumidity.RelativeHumidityQuantityInfo Info { get; }
+        public static RelativeHumidityQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -875,11 +875,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{RelativeHumidityUnit}"/> for the <see cref="RelativeHumidity"/> quantity and its units.
         /// </summary>
         public sealed class RelativeHumidityQuantityInfo : QuantityInfo<RelativeHumidityUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="RelativeHumidityQuantityInfo"/> class.
             /// </summary>
             internal RelativeHumidityQuantityInfo() :
                 base("RelativeHumidity",

@@ -62,7 +62,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Magnetization;
             Units = Enum.GetValues(typeof(MagnetizationUnit)).Cast<MagnetizationUnit>().Except(new MagnetizationUnit[]{ MagnetizationUnit.Undefined }).ToArray();
             Zero = new Magnetization(0, BaseUnit);
-            Info = new Magnetization.MagnetizationQuantityInfo();
+            Info = new MagnetizationQuantityInfo();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Magnetization.MagnetizationQuantityInfo Info { get; }
+        public static MagnetizationQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -878,11 +878,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{MagnetizationUnit}"/> for the <see cref="Magnetization"/> quantity and its units.
         /// </summary>
         public sealed class MagnetizationQuantityInfo : QuantityInfo<MagnetizationUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="MagnetizationQuantityInfo"/> class.
             /// </summary>
             internal MagnetizationQuantityInfo() :
                 base("Magnetization",

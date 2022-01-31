@@ -62,7 +62,7 @@ namespace UnitsNet
             QuantityType = QuantityType.ElectricChargeDensity;
             Units = Enum.GetValues(typeof(ElectricChargeDensityUnit)).Cast<ElectricChargeDensityUnit>().Except(new ElectricChargeDensityUnit[]{ ElectricChargeDensityUnit.Undefined }).ToArray();
             Zero = new ElectricChargeDensity(0, BaseUnit);
-            Info = new ElectricChargeDensity.ElectricChargeDensityQuantityInfo();
+            Info = new ElectricChargeDensityQuantityInfo();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static ElectricChargeDensity.ElectricChargeDensityQuantityInfo Info { get; }
+        public static ElectricChargeDensityQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -878,11 +878,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{ElectricChargeDensityUnit}"/> for the <see cref="ElectricChargeDensity"/> quantity and its units.
         /// </summary>
         public sealed class ElectricChargeDensityQuantityInfo : QuantityInfo<ElectricChargeDensityUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="ElectricChargeDensityQuantityInfo"/> class.
             /// </summary>
             internal ElectricChargeDensityQuantityInfo() :
                 base("ElectricChargeDensity",

@@ -62,7 +62,7 @@ namespace UnitsNet
             QuantityType = QuantityType.ElectricInductance;
             Units = Enum.GetValues(typeof(ElectricInductanceUnit)).Cast<ElectricInductanceUnit>().Except(new ElectricInductanceUnit[]{ ElectricInductanceUnit.Undefined }).ToArray();
             Zero = new ElectricInductance(0, BaseUnit);
-            Info = new ElectricInductance.ElectricInductanceQuantityInfo();
+            Info = new ElectricInductanceQuantityInfo();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static ElectricInductance.ElectricInductanceQuantityInfo Info { get; }
+        public static ElectricInductanceQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -932,11 +932,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{ElectricInductanceUnit}"/> for the <see cref="ElectricInductance"/> quantity and its units.
         /// </summary>
         public sealed class ElectricInductanceQuantityInfo : QuantityInfo<ElectricInductanceUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="ElectricInductanceQuantityInfo"/> class.
             /// </summary>
             internal ElectricInductanceQuantityInfo() :
                 base("ElectricInductance",

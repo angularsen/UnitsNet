@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Level;
             Units = Enum.GetValues(typeof(LevelUnit)).Cast<LevelUnit>().Except(new LevelUnit[]{ LevelUnit.Undefined }).ToArray();
             Zero = new Level(0, BaseUnit);
-            Info = new Level.LevelQuantityInfo();
+            Info = new LevelQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Level.LevelQuantityInfo Info { get; }
+        public static LevelQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -901,11 +901,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{LevelUnit}"/> for the <see cref="Level"/> quantity and its units.
         /// </summary>
         public sealed class LevelQuantityInfo : QuantityInfo<LevelUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="LevelQuantityInfo"/> class.
             /// </summary>
             internal LevelQuantityInfo() :
                 base("Level",

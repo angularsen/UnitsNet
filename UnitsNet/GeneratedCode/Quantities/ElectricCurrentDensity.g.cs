@@ -62,7 +62,7 @@ namespace UnitsNet
             QuantityType = QuantityType.ElectricCurrentDensity;
             Units = Enum.GetValues(typeof(ElectricCurrentDensityUnit)).Cast<ElectricCurrentDensityUnit>().Except(new ElectricCurrentDensityUnit[]{ ElectricCurrentDensityUnit.Undefined }).ToArray();
             Zero = new ElectricCurrentDensity(0, BaseUnit);
-            Info = new ElectricCurrentDensity.ElectricCurrentDensityQuantityInfo();
+            Info = new ElectricCurrentDensityQuantityInfo();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static ElectricCurrentDensity.ElectricCurrentDensityQuantityInfo Info { get; }
+        public static ElectricCurrentDensityQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -914,11 +914,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{ElectricCurrentDensityUnit}"/> for the <see cref="ElectricCurrentDensity"/> quantity and its units.
         /// </summary>
         public sealed class ElectricCurrentDensityQuantityInfo : QuantityInfo<ElectricCurrentDensityUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="ElectricCurrentDensityQuantityInfo"/> class.
             /// </summary>
             internal ElectricCurrentDensityQuantityInfo() :
                 base("ElectricCurrentDensity",

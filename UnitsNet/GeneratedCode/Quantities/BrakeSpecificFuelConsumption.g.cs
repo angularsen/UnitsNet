@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.BrakeSpecificFuelConsumption;
             Units = Enum.GetValues(typeof(BrakeSpecificFuelConsumptionUnit)).Cast<BrakeSpecificFuelConsumptionUnit>().Except(new BrakeSpecificFuelConsumptionUnit[]{ BrakeSpecificFuelConsumptionUnit.Undefined }).ToArray();
             Zero = new BrakeSpecificFuelConsumption(0, BaseUnit);
-            Info = new BrakeSpecificFuelConsumption.BrakeSpecificFuelConsumptionQuantityInfo();
+            Info = new BrakeSpecificFuelConsumptionQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static BrakeSpecificFuelConsumption.BrakeSpecificFuelConsumptionQuantityInfo Info { get; }
+        public static BrakeSpecificFuelConsumptionQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -911,11 +911,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{BrakeSpecificFuelConsumptionUnit}"/> for the <see cref="BrakeSpecificFuelConsumption"/> quantity and its units.
         /// </summary>
         public sealed class BrakeSpecificFuelConsumptionQuantityInfo : QuantityInfo<BrakeSpecificFuelConsumptionUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="BrakeSpecificFuelConsumptionQuantityInfo"/> class.
             /// </summary>
             internal BrakeSpecificFuelConsumptionQuantityInfo() :
                 base("BrakeSpecificFuelConsumption",

@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.RotationalStiffnessPerLength;
             Units = Enum.GetValues(typeof(RotationalStiffnessPerLengthUnit)).Cast<RotationalStiffnessPerLengthUnit>().Except(new RotationalStiffnessPerLengthUnit[]{ RotationalStiffnessPerLengthUnit.Undefined }).ToArray();
             Zero = new RotationalStiffnessPerLength(0, BaseUnit);
-            Info = new RotationalStiffnessPerLength.RotationalStiffnessPerLengthQuantityInfo();
+            Info = new RotationalStiffnessPerLengthQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static RotationalStiffnessPerLength.RotationalStiffnessPerLengthQuantityInfo Info { get; }
+        public static RotationalStiffnessPerLengthQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -947,11 +947,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{RotationalStiffnessPerLengthUnit}"/> for the <see cref="RotationalStiffnessPerLength"/> quantity and its units.
         /// </summary>
         public sealed class RotationalStiffnessPerLengthQuantityInfo : QuantityInfo<RotationalStiffnessPerLengthUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="RotationalStiffnessPerLengthQuantityInfo"/> class.
             /// </summary>
             internal RotationalStiffnessPerLengthQuantityInfo() :
                 base("RotationalStiffnessPerLength",

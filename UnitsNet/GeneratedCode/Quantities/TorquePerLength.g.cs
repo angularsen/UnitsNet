@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.TorquePerLength;
             Units = Enum.GetValues(typeof(TorquePerLengthUnit)).Cast<TorquePerLengthUnit>().Except(new TorquePerLengthUnit[]{ TorquePerLengthUnit.Undefined }).ToArray();
             Zero = new TorquePerLength(0, BaseUnit);
-            Info = new TorquePerLength.TorquePerLengthQuantityInfo();
+            Info = new TorquePerLengthQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static TorquePerLength.TorquePerLengthQuantityInfo Info { get; }
+        public static TorquePerLengthQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1235,11 +1235,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{TorquePerLengthUnit}"/> for the <see cref="TorquePerLength"/> quantity and its units.
         /// </summary>
         public sealed class TorquePerLengthQuantityInfo : QuantityInfo<TorquePerLengthUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="TorquePerLengthQuantityInfo"/> class.
             /// </summary>
             internal TorquePerLengthQuantityInfo() :
                 base("TorquePerLength",

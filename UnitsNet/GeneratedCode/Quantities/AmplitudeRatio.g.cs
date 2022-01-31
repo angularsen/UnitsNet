@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.AmplitudeRatio;
             Units = Enum.GetValues(typeof(AmplitudeRatioUnit)).Cast<AmplitudeRatioUnit>().Except(new AmplitudeRatioUnit[]{ AmplitudeRatioUnit.Undefined }).ToArray();
             Zero = new AmplitudeRatio(0, BaseUnit);
-            Info = new AmplitudeRatio.AmplitudeRatioQuantityInfo();
+            Info = new AmplitudeRatioQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static AmplitudeRatio.AmplitudeRatioQuantityInfo Info { get; }
+        public static AmplitudeRatioQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -937,11 +937,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{AmplitudeRatioUnit}"/> for the <see cref="AmplitudeRatio"/> quantity and its units.
         /// </summary>
         public sealed class AmplitudeRatioQuantityInfo : QuantityInfo<AmplitudeRatioUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="AmplitudeRatioQuantityInfo"/> class.
             /// </summary>
             internal AmplitudeRatioQuantityInfo() :
                 base("AmplitudeRatio",

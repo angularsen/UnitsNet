@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Pressure;
             Units = Enum.GetValues(typeof(PressureUnit)).Cast<PressureUnit>().Except(new PressureUnit[]{ PressureUnit.Undefined }).ToArray();
             Zero = new Pressure(0, BaseUnit);
-            Info = new Pressure.PressureQuantityInfo();
+            Info = new PressureQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Pressure.PressureQuantityInfo Info { get; }
+        public static PressureQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1667,11 +1667,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{PressureUnit}"/> for the <see cref="Pressure"/> quantity and its units.
         /// </summary>
         public sealed class PressureQuantityInfo : QuantityInfo<PressureUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="PressureQuantityInfo"/> class.
             /// </summary>
             internal PressureQuantityInfo() :
                 base("Pressure",

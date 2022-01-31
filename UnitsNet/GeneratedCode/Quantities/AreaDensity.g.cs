@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.AreaDensity;
             Units = Enum.GetValues(typeof(AreaDensityUnit)).Cast<AreaDensityUnit>().Except(new AreaDensityUnit[]{ AreaDensityUnit.Undefined }).ToArray();
             Zero = new AreaDensity(0, BaseUnit);
-            Info = new AreaDensity.AreaDensityQuantityInfo();
+            Info = new AreaDensityQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static AreaDensity.AreaDensityQuantityInfo Info { get; }
+        public static AreaDensityQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -875,11 +875,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{AreaDensityUnit}"/> for the <see cref="AreaDensity"/> quantity and its units.
         /// </summary>
         public sealed class AreaDensityQuantityInfo : QuantityInfo<AreaDensityUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="AreaDensityQuantityInfo"/> class.
             /// </summary>
             internal AreaDensityQuantityInfo() :
                 base("AreaDensity",

@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Entropy;
             Units = Enum.GetValues(typeof(EntropyUnit)).Cast<EntropyUnit>().Except(new EntropyUnit[]{ EntropyUnit.Undefined }).ToArray();
             Zero = new Entropy(0, BaseUnit);
-            Info = new Entropy.EntropyQuantityInfo();
+            Info = new EntropyQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Entropy.EntropyQuantityInfo Info { get; }
+        public static EntropyQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -983,11 +983,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{EntropyUnit}"/> for the <see cref="Entropy"/> quantity and its units.
         /// </summary>
         public sealed class EntropyQuantityInfo : QuantityInfo<EntropyUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="EntropyQuantityInfo"/> class.
             /// </summary>
             internal EntropyQuantityInfo() :
                 base("Entropy",

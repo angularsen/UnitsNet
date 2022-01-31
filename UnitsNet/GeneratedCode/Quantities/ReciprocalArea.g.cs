@@ -62,7 +62,7 @@ namespace UnitsNet
             QuantityType = QuantityType.ReciprocalArea;
             Units = Enum.GetValues(typeof(ReciprocalAreaUnit)).Cast<ReciprocalAreaUnit>().Except(new ReciprocalAreaUnit[]{ ReciprocalAreaUnit.Undefined }).ToArray();
             Zero = new ReciprocalArea(0, BaseUnit);
-            Info = new ReciprocalArea.ReciprocalAreaQuantityInfo();
+            Info = new ReciprocalAreaQuantityInfo();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static ReciprocalArea.ReciprocalAreaQuantityInfo Info { get; }
+        public static ReciprocalAreaQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1058,11 +1058,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{ReciprocalAreaUnit}"/> for the <see cref="ReciprocalArea"/> quantity and its units.
         /// </summary>
         public sealed class ReciprocalAreaQuantityInfo : QuantityInfo<ReciprocalAreaUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="ReciprocalAreaQuantityInfo"/> class.
             /// </summary>
             internal ReciprocalAreaQuantityInfo() :
                 base("ReciprocalArea",

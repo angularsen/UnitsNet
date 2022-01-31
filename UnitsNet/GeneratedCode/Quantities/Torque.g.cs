@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Torque;
             Units = Enum.GetValues(typeof(TorqueUnit)).Cast<TorqueUnit>().Except(new TorqueUnit[]{ TorqueUnit.Undefined }).ToArray();
             Zero = new Torque(0, BaseUnit);
-            Info = new Torque.TorqueQuantityInfo();
+            Info = new TorqueQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Torque.TorqueQuantityInfo Info { get; }
+        public static TorqueQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1307,11 +1307,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{TorqueUnit}"/> for the <see cref="Torque"/> quantity and its units.
         /// </summary>
         public sealed class TorqueQuantityInfo : QuantityInfo<TorqueUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="TorqueQuantityInfo"/> class.
             /// </summary>
             internal TorqueQuantityInfo() :
                 base("Torque",

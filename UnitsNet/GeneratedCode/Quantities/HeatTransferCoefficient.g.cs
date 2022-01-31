@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.HeatTransferCoefficient;
             Units = Enum.GetValues(typeof(HeatTransferCoefficientUnit)).Cast<HeatTransferCoefficientUnit>().Except(new HeatTransferCoefficientUnit[]{ HeatTransferCoefficientUnit.Undefined }).ToArray();
             Zero = new HeatTransferCoefficient(0, BaseUnit);
-            Info = new HeatTransferCoefficient.HeatTransferCoefficientQuantityInfo();
+            Info = new HeatTransferCoefficientQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static HeatTransferCoefficient.HeatTransferCoefficientQuantityInfo Info { get; }
+        public static HeatTransferCoefficientQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -911,11 +911,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{HeatTransferCoefficientUnit}"/> for the <see cref="HeatTransferCoefficient"/> quantity and its units.
         /// </summary>
         public sealed class HeatTransferCoefficientQuantityInfo : QuantityInfo<HeatTransferCoefficientUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="HeatTransferCoefficientQuantityInfo"/> class.
             /// </summary>
             internal HeatTransferCoefficientQuantityInfo() :
                 base("HeatTransferCoefficient",

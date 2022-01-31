@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Irradiance;
             Units = Enum.GetValues(typeof(IrradianceUnit)).Cast<IrradianceUnit>().Except(new IrradianceUnit[]{ IrradianceUnit.Undefined }).ToArray();
             Zero = new Irradiance(0, BaseUnit);
-            Info = new Irradiance.IrradianceQuantityInfo();
+            Info = new IrradianceQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Irradiance.IrradianceQuantityInfo Info { get; }
+        public static IrradianceQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1109,11 +1109,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{IrradianceUnit}"/> for the <see cref="Irradiance"/> quantity and its units.
         /// </summary>
         public sealed class IrradianceQuantityInfo : QuantityInfo<IrradianceUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="IrradianceQuantityInfo"/> class.
             /// </summary>
             internal IrradianceQuantityInfo() :
                 base("Irradiance",

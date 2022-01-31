@@ -62,7 +62,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Irradiation;
             Units = Enum.GetValues(typeof(IrradiationUnit)).Cast<IrradiationUnit>().Except(new IrradiationUnit[]{ IrradiationUnit.Undefined }).ToArray();
             Zero = new Irradiation(0, BaseUnit);
-            Info = new Irradiation.IrradiationQuantityInfo();
+            Info = new IrradiationQuantityInfo();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Irradiation.IrradiationQuantityInfo Info { get; }
+        public static IrradiationQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -986,11 +986,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{IrradiationUnit}"/> for the <see cref="Irradiation"/> quantity and its units.
         /// </summary>
         public sealed class IrradiationQuantityInfo : QuantityInfo<IrradiationUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="IrradiationQuantityInfo"/> class.
             /// </summary>
             internal IrradiationQuantityInfo() :
                 base("Irradiation",

@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.RotationalAcceleration;
             Units = Enum.GetValues(typeof(RotationalAccelerationUnit)).Cast<RotationalAccelerationUnit>().Except(new RotationalAccelerationUnit[]{ RotationalAccelerationUnit.Undefined }).ToArray();
             Zero = new RotationalAcceleration(0, BaseUnit);
-            Info = new RotationalAcceleration.RotationalAccelerationQuantityInfo();
+            Info = new RotationalAccelerationQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static RotationalAcceleration.RotationalAccelerationQuantityInfo Info { get; }
+        public static RotationalAccelerationQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -929,11 +929,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{RotationalAccelerationUnit}"/> for the <see cref="RotationalAcceleration"/> quantity and its units.
         /// </summary>
         public sealed class RotationalAccelerationQuantityInfo : QuantityInfo<RotationalAccelerationUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="RotationalAccelerationQuantityInfo"/> class.
             /// </summary>
             internal RotationalAccelerationQuantityInfo() :
                 base("RotationalAcceleration",

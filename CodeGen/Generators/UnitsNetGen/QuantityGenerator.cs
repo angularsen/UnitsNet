@@ -133,7 +133,7 @@ namespace UnitsNet
             QuantityType = QuantityType.{_quantity.Name};
             Units = Enum.GetValues(typeof({_unitEnumName})).Cast<{_unitEnumName}>().Except(new {_unitEnumName}[]{{ {_unitEnumName}.Undefined }}).ToArray();
             Zero = new {_quantity.Name}(0, BaseUnit);
-            Info = new {_quantity.Name}.{_quantity.Name}QuantityInfo();
+            Info = new {_quantity.Name}QuantityInfo();
         }}
 " );
         }
@@ -195,7 +195,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref=""IQuantity.QuantityInfo""/>
-        public static {_quantity.Name}.{_quantity.Name}QuantityInfo Info {{ get; }}
+        public static {_quantity.Name}QuantityInfo Info {{ get; }}
 
         /// <summary>
         ///     The <see cref=""BaseDimensions"" /> of this quantity.
@@ -1167,11 +1167,12 @@ namespace UnitsNet
         {
             Writer.WL($@"
         /// <summary>
+        ///     The <see cref=""QuantityInfo{{{_unitEnumName}}}""/> for the <see cref=""{_quantity.Name}""/> quantity and its units.
         /// </summary>
         public sealed class {_quantity.Name}QuantityInfo : QuantityInfo<{_unitEnumName}>
         {{
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref=""{_quantity.Name}QuantityInfo""/> class.
             /// </summary>
             internal {_quantity.Name}QuantityInfo() :
                 base(""{_quantity.Name}"",

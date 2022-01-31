@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.ForcePerLength;
             Units = Enum.GetValues(typeof(ForcePerLengthUnit)).Cast<ForcePerLengthUnit>().Except(new ForcePerLengthUnit[]{ ForcePerLengthUnit.Undefined }).ToArray();
             Zero = new ForcePerLength(0, BaseUnit);
-            Info = new ForcePerLength.ForcePerLengthQuantityInfo();
+            Info = new ForcePerLengthQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static ForcePerLength.ForcePerLengthQuantityInfo Info { get; }
+        public static ForcePerLengthQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1541,11 +1541,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{ForcePerLengthUnit}"/> for the <see cref="ForcePerLength"/> quantity and its units.
         /// </summary>
         public sealed class ForcePerLengthQuantityInfo : QuantityInfo<ForcePerLengthUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="ForcePerLengthQuantityInfo"/> class.
             /// </summary>
             internal ForcePerLengthQuantityInfo() :
                 base("ForcePerLength",

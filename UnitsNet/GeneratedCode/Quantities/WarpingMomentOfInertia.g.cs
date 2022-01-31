@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.WarpingMomentOfInertia;
             Units = Enum.GetValues(typeof(WarpingMomentOfInertiaUnit)).Cast<WarpingMomentOfInertiaUnit>().Except(new WarpingMomentOfInertiaUnit[]{ WarpingMomentOfInertiaUnit.Undefined }).ToArray();
             Zero = new WarpingMomentOfInertia(0, BaseUnit);
-            Info = new WarpingMomentOfInertia.WarpingMomentOfInertiaQuantityInfo();
+            Info = new WarpingMomentOfInertiaQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static WarpingMomentOfInertia.WarpingMomentOfInertiaQuantityInfo Info { get; }
+        public static WarpingMomentOfInertiaQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -965,11 +965,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{WarpingMomentOfInertiaUnit}"/> for the <see cref="WarpingMomentOfInertia"/> quantity and its units.
         /// </summary>
         public sealed class WarpingMomentOfInertiaQuantityInfo : QuantityInfo<WarpingMomentOfInertiaUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="WarpingMomentOfInertiaQuantityInfo"/> class.
             /// </summary>
             internal WarpingMomentOfInertiaQuantityInfo() :
                 base("WarpingMomentOfInertia",

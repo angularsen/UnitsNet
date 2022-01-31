@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.StandardVolumeFlow;
             Units = Enum.GetValues(typeof(StandardVolumeFlowUnit)).Cast<StandardVolumeFlowUnit>().Except(new StandardVolumeFlowUnit[]{ StandardVolumeFlowUnit.Undefined }).ToArray();
             Zero = new StandardVolumeFlow(0, BaseUnit);
-            Info = new StandardVolumeFlow.StandardVolumeFlowQuantityInfo();
+            Info = new StandardVolumeFlowQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static StandardVolumeFlow.StandardVolumeFlowQuantityInfo Info { get; }
+        public static StandardVolumeFlowQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1019,11 +1019,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{StandardVolumeFlowUnit}"/> for the <see cref="StandardVolumeFlow"/> quantity and its units.
         /// </summary>
         public sealed class StandardVolumeFlowQuantityInfo : QuantityInfo<StandardVolumeFlowUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="StandardVolumeFlowQuantityInfo"/> class.
             /// </summary>
             internal StandardVolumeFlowQuantityInfo() :
                 base("StandardVolumeFlow",

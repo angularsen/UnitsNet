@@ -62,7 +62,7 @@ namespace UnitsNet
             QuantityType = QuantityType.LuminousFlux;
             Units = Enum.GetValues(typeof(LuminousFluxUnit)).Cast<LuminousFluxUnit>().Except(new LuminousFluxUnit[]{ LuminousFluxUnit.Undefined }).ToArray();
             Zero = new LuminousFlux(0, BaseUnit);
-            Info = new LuminousFlux.LuminousFluxQuantityInfo();
+            Info = new LuminousFluxQuantityInfo();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static LuminousFlux.LuminousFluxQuantityInfo Info { get; }
+        public static LuminousFluxQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -878,11 +878,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{LuminousFluxUnit}"/> for the <see cref="LuminousFlux"/> quantity and its units.
         /// </summary>
         public sealed class LuminousFluxQuantityInfo : QuantityInfo<LuminousFluxUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="LuminousFluxQuantityInfo"/> class.
             /// </summary>
             internal LuminousFluxQuantityInfo() :
                 base("LuminousFlux",

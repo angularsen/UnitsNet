@@ -62,7 +62,7 @@ namespace UnitsNet
             QuantityType = QuantityType.KinematicViscosity;
             Units = Enum.GetValues(typeof(KinematicViscosityUnit)).Cast<KinematicViscosityUnit>().Except(new KinematicViscosityUnit[]{ KinematicViscosityUnit.Undefined }).ToArray();
             Zero = new KinematicViscosity(0, BaseUnit);
-            Info = new KinematicViscosity.KinematicViscosityQuantityInfo();
+            Info = new KinematicViscosityQuantityInfo();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static KinematicViscosity.KinematicViscosityQuantityInfo Info { get; }
+        public static KinematicViscosityQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1022,11 +1022,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{KinematicViscosityUnit}"/> for the <see cref="KinematicViscosity"/> quantity and its units.
         /// </summary>
         public sealed class KinematicViscosityQuantityInfo : QuantityInfo<KinematicViscosityUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="KinematicViscosityQuantityInfo"/> class.
             /// </summary>
             internal KinematicViscosityQuantityInfo() :
                 base("KinematicViscosity",

@@ -60,7 +60,7 @@ namespace UnitsNet
             QuantityType = QuantityType.LapseRate;
             Units = Enum.GetValues(typeof(LapseRateUnit)).Cast<LapseRateUnit>().Except(new LapseRateUnit[]{ LapseRateUnit.Undefined }).ToArray();
             Zero = new LapseRate(0, BaseUnit);
-            Info = new LapseRate.LapseRateQuantityInfo();
+            Info = new LapseRateQuantityInfo();
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static LapseRate.LapseRateQuantityInfo Info { get; }
+        public static LapseRateQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -876,11 +876,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{LapseRateUnit}"/> for the <see cref="LapseRate"/> quantity and its units.
         /// </summary>
         public sealed class LapseRateQuantityInfo : QuantityInfo<LapseRateUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="LapseRateQuantityInfo"/> class.
             /// </summary>
             internal LapseRateQuantityInfo() :
                 base("LapseRate",

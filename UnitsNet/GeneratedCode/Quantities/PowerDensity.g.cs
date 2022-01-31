@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.PowerDensity;
             Units = Enum.GetValues(typeof(PowerDensityUnit)).Cast<PowerDensityUnit>().Except(new PowerDensityUnit[]{ PowerDensityUnit.Undefined }).ToArray();
             Zero = new PowerDensity(0, BaseUnit);
-            Info = new PowerDensity.PowerDensityQuantityInfo();
+            Info = new PowerDensityQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static PowerDensity.PowerDensityQuantityInfo Info { get; }
+        public static PowerDensityQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1649,11 +1649,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{PowerDensityUnit}"/> for the <see cref="PowerDensity"/> quantity and its units.
         /// </summary>
         public sealed class PowerDensityQuantityInfo : QuantityInfo<PowerDensityUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="PowerDensityQuantityInfo"/> class.
             /// </summary>
             internal PowerDensityQuantityInfo() :
                 base("PowerDensity",

@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.PowerRatio;
             Units = Enum.GetValues(typeof(PowerRatioUnit)).Cast<PowerRatioUnit>().Except(new PowerRatioUnit[]{ PowerRatioUnit.Undefined }).ToArray();
             Zero = new PowerRatio(0, BaseUnit);
-            Info = new PowerRatio.PowerRatioQuantityInfo();
+            Info = new PowerRatioQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static PowerRatio.PowerRatioQuantityInfo Info { get; }
+        public static PowerRatioQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -901,11 +901,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{PowerRatioUnit}"/> for the <see cref="PowerRatio"/> quantity and its units.
         /// </summary>
         public sealed class PowerRatioQuantityInfo : QuantityInfo<PowerRatioUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="PowerRatioQuantityInfo"/> class.
             /// </summary>
             internal PowerRatioQuantityInfo() :
                 base("PowerRatio",

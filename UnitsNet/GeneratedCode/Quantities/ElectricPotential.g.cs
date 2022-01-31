@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.ElectricPotential;
             Units = Enum.GetValues(typeof(ElectricPotentialUnit)).Cast<ElectricPotentialUnit>().Except(new ElectricPotentialUnit[]{ ElectricPotentialUnit.Undefined }).ToArray();
             Zero = new ElectricPotential(0, BaseUnit);
-            Info = new ElectricPotential.ElectricPotentialQuantityInfo();
+            Info = new ElectricPotentialQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static ElectricPotential.ElectricPotentialQuantityInfo Info { get; }
+        public static ElectricPotentialQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -947,11 +947,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{ElectricPotentialUnit}"/> for the <see cref="ElectricPotential"/> quantity and its units.
         /// </summary>
         public sealed class ElectricPotentialQuantityInfo : QuantityInfo<ElectricPotentialUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="ElectricPotentialQuantityInfo"/> class.
             /// </summary>
             internal ElectricPotentialQuantityInfo() :
                 base("ElectricPotential",

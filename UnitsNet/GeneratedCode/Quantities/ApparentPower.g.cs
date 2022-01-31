@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.ApparentPower;
             Units = Enum.GetValues(typeof(ApparentPowerUnit)).Cast<ApparentPowerUnit>().Except(new ApparentPowerUnit[]{ ApparentPowerUnit.Undefined }).ToArray();
             Zero = new ApparentPower(0, BaseUnit);
-            Info = new ApparentPower.ApparentPowerQuantityInfo();
+            Info = new ApparentPowerQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static ApparentPower.ApparentPowerQuantityInfo Info { get; }
+        public static ApparentPowerQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -929,11 +929,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{ApparentPowerUnit}"/> for the <see cref="ApparentPower"/> quantity and its units.
         /// </summary>
         public sealed class ApparentPowerQuantityInfo : QuantityInfo<ApparentPowerUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="ApparentPowerQuantityInfo"/> class.
             /// </summary>
             internal ApparentPowerQuantityInfo() :
                 base("ApparentPower",

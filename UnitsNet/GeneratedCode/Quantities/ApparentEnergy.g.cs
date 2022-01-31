@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.ApparentEnergy;
             Units = Enum.GetValues(typeof(ApparentEnergyUnit)).Cast<ApparentEnergyUnit>().Except(new ApparentEnergyUnit[]{ ApparentEnergyUnit.Undefined }).ToArray();
             Zero = new ApparentEnergy(0, BaseUnit);
-            Info = new ApparentEnergy.ApparentEnergyQuantityInfo();
+            Info = new ApparentEnergyQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static ApparentEnergy.ApparentEnergyQuantityInfo Info { get; }
+        public static ApparentEnergyQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -911,11 +911,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{ApparentEnergyUnit}"/> for the <see cref="ApparentEnergy"/> quantity and its units.
         /// </summary>
         public sealed class ApparentEnergyQuantityInfo : QuantityInfo<ApparentEnergyUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="ApparentEnergyQuantityInfo"/> class.
             /// </summary>
             internal ApparentEnergyQuantityInfo() :
                 base("ApparentEnergy",

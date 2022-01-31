@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Angle;
             Units = Enum.GetValues(typeof(AngleUnit)).Cast<AngleUnit>().Except(new AngleUnit[]{ AngleUnit.Undefined }).ToArray();
             Zero = new Angle(0, BaseUnit);
-            Info = new Angle.AngleQuantityInfo();
+            Info = new AngleQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Angle.AngleQuantityInfo Info { get; }
+        public static AngleQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1145,11 +1145,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{AngleUnit}"/> for the <see cref="Angle"/> quantity and its units.
         /// </summary>
         public sealed class AngleQuantityInfo : QuantityInfo<AngleUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="AngleQuantityInfo"/> class.
             /// </summary>
             internal AngleQuantityInfo() :
                 base("Angle",

@@ -62,7 +62,7 @@ namespace UnitsNet
             QuantityType = QuantityType.MassConcentration;
             Units = Enum.GetValues(typeof(MassConcentrationUnit)).Cast<MassConcentrationUnit>().Except(new MassConcentrationUnit[]{ MassConcentrationUnit.Undefined }).ToArray();
             Zero = new MassConcentration(0, BaseUnit);
-            Info = new MassConcentration.MassConcentrationQuantityInfo();
+            Info = new MassConcentrationQuantityInfo();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static MassConcentration.MassConcentrationQuantityInfo Info { get; }
+        public static MassConcentrationQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1742,11 +1742,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{MassConcentrationUnit}"/> for the <see cref="MassConcentration"/> quantity and its units.
         /// </summary>
         public sealed class MassConcentrationQuantityInfo : QuantityInfo<MassConcentrationUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="MassConcentrationQuantityInfo"/> class.
             /// </summary>
             internal MassConcentrationQuantityInfo() :
                 base("MassConcentration",

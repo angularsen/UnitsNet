@@ -62,7 +62,7 @@ namespace UnitsNet
             QuantityType = QuantityType.MagneticFlux;
             Units = Enum.GetValues(typeof(MagneticFluxUnit)).Cast<MagneticFluxUnit>().Except(new MagneticFluxUnit[]{ MagneticFluxUnit.Undefined }).ToArray();
             Zero = new MagneticFlux(0, BaseUnit);
-            Info = new MagneticFlux.MagneticFluxQuantityInfo();
+            Info = new MagneticFluxQuantityInfo();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static MagneticFlux.MagneticFluxQuantityInfo Info { get; }
+        public static MagneticFluxQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -878,11 +878,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{MagneticFluxUnit}"/> for the <see cref="MagneticFlux"/> quantity and its units.
         /// </summary>
         public sealed class MagneticFluxQuantityInfo : QuantityInfo<MagneticFluxUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="MagneticFluxQuantityInfo"/> class.
             /// </summary>
             internal MagneticFluxQuantityInfo() :
                 base("MagneticFlux",

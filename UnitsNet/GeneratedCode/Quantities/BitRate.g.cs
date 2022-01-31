@@ -62,7 +62,7 @@ namespace UnitsNet
             QuantityType = QuantityType.BitRate;
             Units = Enum.GetValues(typeof(BitRateUnit)).Cast<BitRateUnit>().Except(new BitRateUnit[]{ BitRateUnit.Undefined }).ToArray();
             Zero = new BitRate(0, BaseUnit);
-            Info = new BitRate.BitRateQuantityInfo();
+            Info = new BitRateQuantityInfo();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static BitRate.BitRateQuantityInfo Info { get; }
+        public static BitRateQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1333,11 +1333,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{BitRateUnit}"/> for the <see cref="BitRate"/> quantity and its units.
         /// </summary>
         public sealed class BitRateQuantityInfo : QuantityInfo<BitRateUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="BitRateQuantityInfo"/> class.
             /// </summary>
             internal BitRateQuantityInfo() :
                 base("BitRate",

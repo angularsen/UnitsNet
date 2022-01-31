@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Scalar;
             Units = Enum.GetValues(typeof(ScalarUnit)).Cast<ScalarUnit>().Except(new ScalarUnit[]{ ScalarUnit.Undefined }).ToArray();
             Zero = new Scalar(0, BaseUnit);
-            Info = new Scalar.ScalarQuantityInfo();
+            Info = new ScalarQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Scalar.ScalarQuantityInfo Info { get; }
+        public static ScalarQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -875,11 +875,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{ScalarUnit}"/> for the <see cref="Scalar"/> quantity and its units.
         /// </summary>
         public sealed class ScalarQuantityInfo : QuantityInfo<ScalarUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="ScalarQuantityInfo"/> class.
             /// </summary>
             internal ScalarQuantityInfo() :
                 base("Scalar",

@@ -62,7 +62,7 @@ namespace UnitsNet
             QuantityType = QuantityType.SpecificFuelConsumption;
             Units = Enum.GetValues(typeof(SpecificFuelConsumptionUnit)).Cast<SpecificFuelConsumptionUnit>().Except(new SpecificFuelConsumptionUnit[]{ SpecificFuelConsumptionUnit.Undefined }).ToArray();
             Zero = new SpecificFuelConsumption(0, BaseUnit);
-            Info = new SpecificFuelConsumption.SpecificFuelConsumptionQuantityInfo();
+            Info = new SpecificFuelConsumptionQuantityInfo();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static SpecificFuelConsumption.SpecificFuelConsumptionQuantityInfo Info { get; }
+        public static SpecificFuelConsumptionQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -932,11 +932,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{SpecificFuelConsumptionUnit}"/> for the <see cref="SpecificFuelConsumption"/> quantity and its units.
         /// </summary>
         public sealed class SpecificFuelConsumptionQuantityInfo : QuantityInfo<SpecificFuelConsumptionUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="SpecificFuelConsumptionQuantityInfo"/> class.
             /// </summary>
             internal SpecificFuelConsumptionQuantityInfo() :
                 base("SpecificFuelConsumption",

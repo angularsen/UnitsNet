@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.ElectricResistance;
             Units = Enum.GetValues(typeof(ElectricResistanceUnit)).Cast<ElectricResistanceUnit>().Except(new ElectricResistanceUnit[]{ ElectricResistanceUnit.Undefined }).ToArray();
             Zero = new ElectricResistance(0, BaseUnit);
-            Info = new ElectricResistance.ElectricResistanceQuantityInfo();
+            Info = new ElectricResistanceQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static ElectricResistance.ElectricResistanceQuantityInfo Info { get; }
+        public static ElectricResistanceQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -965,11 +965,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{ElectricResistanceUnit}"/> for the <see cref="ElectricResistance"/> quantity and its units.
         /// </summary>
         public sealed class ElectricResistanceQuantityInfo : QuantityInfo<ElectricResistanceUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="ElectricResistanceQuantityInfo"/> class.
             /// </summary>
             internal ElectricResistanceQuantityInfo() :
                 base("ElectricResistance",

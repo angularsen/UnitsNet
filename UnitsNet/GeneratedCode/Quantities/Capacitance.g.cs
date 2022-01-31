@@ -62,7 +62,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Capacitance;
             Units = Enum.GetValues(typeof(CapacitanceUnit)).Cast<CapacitanceUnit>().Except(new CapacitanceUnit[]{ CapacitanceUnit.Undefined }).ToArray();
             Zero = new Capacitance(0, BaseUnit);
-            Info = new Capacitance.CapacitanceQuantityInfo();
+            Info = new CapacitanceQuantityInfo();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Capacitance.CapacitanceQuantityInfo Info { get; }
+        public static CapacitanceQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -986,11 +986,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{CapacitanceUnit}"/> for the <see cref="Capacitance"/> quantity and its units.
         /// </summary>
         public sealed class CapacitanceQuantityInfo : QuantityInfo<CapacitanceUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="CapacitanceQuantityInfo"/> class.
             /// </summary>
             internal CapacitanceQuantityInfo() :
                 base("Capacitance",

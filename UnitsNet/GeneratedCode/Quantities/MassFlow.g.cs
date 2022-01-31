@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.MassFlow;
             Units = Enum.GetValues(typeof(MassFlowUnit)).Cast<MassFlowUnit>().Except(new MassFlowUnit[]{ MassFlowUnit.Undefined }).ToArray();
             Zero = new MassFlow(0, BaseUnit);
-            Info = new MassFlow.MassFlowQuantityInfo();
+            Info = new MassFlowQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static MassFlow.MassFlowQuantityInfo Info { get; }
+        public static MassFlowQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1451,11 +1451,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{MassFlowUnit}"/> for the <see cref="MassFlow"/> quantity and its units.
         /// </summary>
         public sealed class MassFlowQuantityInfo : QuantityInfo<MassFlowUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="MassFlowQuantityInfo"/> class.
             /// </summary>
             internal MassFlowQuantityInfo() :
                 base("MassFlow",

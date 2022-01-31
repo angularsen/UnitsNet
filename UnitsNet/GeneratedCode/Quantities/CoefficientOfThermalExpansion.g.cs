@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.CoefficientOfThermalExpansion;
             Units = Enum.GetValues(typeof(CoefficientOfThermalExpansionUnit)).Cast<CoefficientOfThermalExpansionUnit>().Except(new CoefficientOfThermalExpansionUnit[]{ CoefficientOfThermalExpansionUnit.Undefined }).ToArray();
             Zero = new CoefficientOfThermalExpansion(0, BaseUnit);
-            Info = new CoefficientOfThermalExpansion.CoefficientOfThermalExpansionQuantityInfo();
+            Info = new CoefficientOfThermalExpansionQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static CoefficientOfThermalExpansion.CoefficientOfThermalExpansionQuantityInfo Info { get; }
+        public static CoefficientOfThermalExpansionQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -911,11 +911,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{CoefficientOfThermalExpansionUnit}"/> for the <see cref="CoefficientOfThermalExpansion"/> quantity and its units.
         /// </summary>
         public sealed class CoefficientOfThermalExpansionQuantityInfo : QuantityInfo<CoefficientOfThermalExpansionUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="CoefficientOfThermalExpansionQuantityInfo"/> class.
             /// </summary>
             internal CoefficientOfThermalExpansionQuantityInfo() :
                 base("CoefficientOfThermalExpansion",

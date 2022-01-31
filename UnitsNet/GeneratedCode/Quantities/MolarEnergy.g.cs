@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.MolarEnergy;
             Units = Enum.GetValues(typeof(MolarEnergyUnit)).Cast<MolarEnergyUnit>().Except(new MolarEnergyUnit[]{ MolarEnergyUnit.Undefined }).ToArray();
             Zero = new MolarEnergy(0, BaseUnit);
-            Info = new MolarEnergy.MolarEnergyQuantityInfo();
+            Info = new MolarEnergyQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static MolarEnergy.MolarEnergyQuantityInfo Info { get; }
+        public static MolarEnergyQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -911,11 +911,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{MolarEnergyUnit}"/> for the <see cref="MolarEnergy"/> quantity and its units.
         /// </summary>
         public sealed class MolarEnergyQuantityInfo : QuantityInfo<MolarEnergyUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="MolarEnergyQuantityInfo"/> class.
             /// </summary>
             internal MolarEnergyQuantityInfo() :
                 base("MolarEnergy",

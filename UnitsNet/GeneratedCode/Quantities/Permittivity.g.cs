@@ -62,7 +62,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Permittivity;
             Units = Enum.GetValues(typeof(PermittivityUnit)).Cast<PermittivityUnit>().Except(new PermittivityUnit[]{ PermittivityUnit.Undefined }).ToArray();
             Zero = new Permittivity(0, BaseUnit);
-            Info = new Permittivity.PermittivityQuantityInfo();
+            Info = new PermittivityQuantityInfo();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Permittivity.PermittivityQuantityInfo Info { get; }
+        public static PermittivityQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -878,11 +878,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{PermittivityUnit}"/> for the <see cref="Permittivity"/> quantity and its units.
         /// </summary>
         public sealed class PermittivityQuantityInfo : QuantityInfo<PermittivityUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="PermittivityQuantityInfo"/> class.
             /// </summary>
             internal PermittivityQuantityInfo() :
                 base("Permittivity",

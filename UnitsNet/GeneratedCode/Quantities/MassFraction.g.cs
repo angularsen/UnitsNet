@@ -62,7 +62,7 @@ namespace UnitsNet
             QuantityType = QuantityType.MassFraction;
             Units = Enum.GetValues(typeof(MassFractionUnit)).Cast<MassFractionUnit>().Except(new MassFractionUnit[]{ MassFractionUnit.Undefined }).ToArray();
             Zero = new MassFraction(0, BaseUnit);
-            Info = new MassFraction.MassFractionQuantityInfo();
+            Info = new MassFractionQuantityInfo();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static MassFraction.MassFractionQuantityInfo Info { get; }
+        public static MassFractionQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1292,11 +1292,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{MassFractionUnit}"/> for the <see cref="MassFraction"/> quantity and its units.
         /// </summary>
         public sealed class MassFractionQuantityInfo : QuantityInfo<MassFractionUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="MassFractionQuantityInfo"/> class.
             /// </summary>
             internal MassFractionQuantityInfo() :
                 base("MassFraction",

@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.VitaminA;
             Units = Enum.GetValues(typeof(VitaminAUnit)).Cast<VitaminAUnit>().Except(new VitaminAUnit[]{ VitaminAUnit.Undefined }).ToArray();
             Zero = new VitaminA(0, BaseUnit);
-            Info = new VitaminA.VitaminAQuantityInfo();
+            Info = new VitaminAQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static VitaminA.VitaminAQuantityInfo Info { get; }
+        public static VitaminAQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -875,11 +875,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{VitaminAUnit}"/> for the <see cref="VitaminA"/> quantity and its units.
         /// </summary>
         public sealed class VitaminAQuantityInfo : QuantityInfo<VitaminAUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="VitaminAQuantityInfo"/> class.
             /// </summary>
             internal VitaminAQuantityInfo() :
                 base("VitaminA",

@@ -62,7 +62,7 @@ namespace UnitsNet
             QuantityType = QuantityType.ThermalConductivity;
             Units = Enum.GetValues(typeof(ThermalConductivityUnit)).Cast<ThermalConductivityUnit>().Except(new ThermalConductivityUnit[]{ ThermalConductivityUnit.Undefined }).ToArray();
             Zero = new ThermalConductivity(0, BaseUnit);
-            Info = new ThermalConductivity.ThermalConductivityQuantityInfo();
+            Info = new ThermalConductivityQuantityInfo();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static ThermalConductivity.ThermalConductivityQuantityInfo Info { get; }
+        public static ThermalConductivityQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -896,11 +896,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{ThermalConductivityUnit}"/> for the <see cref="ThermalConductivity"/> quantity and its units.
         /// </summary>
         public sealed class ThermalConductivityQuantityInfo : QuantityInfo<ThermalConductivityUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="ThermalConductivityQuantityInfo"/> class.
             /// </summary>
             internal ThermalConductivityQuantityInfo() :
                 base("ThermalConductivity",

@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.ElectricPotentialChangeRate;
             Units = Enum.GetValues(typeof(ElectricPotentialChangeRateUnit)).Cast<ElectricPotentialChangeRateUnit>().Except(new ElectricPotentialChangeRateUnit[]{ ElectricPotentialChangeRateUnit.Undefined }).ToArray();
             Zero = new ElectricPotentialChangeRate(0, BaseUnit);
-            Info = new ElectricPotentialChangeRate.ElectricPotentialChangeRateQuantityInfo();
+            Info = new ElectricPotentialChangeRateQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static ElectricPotentialChangeRate.ElectricPotentialChangeRateQuantityInfo Info { get; }
+        public static ElectricPotentialChangeRateQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1217,11 +1217,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{ElectricPotentialChangeRateUnit}"/> for the <see cref="ElectricPotentialChangeRate"/> quantity and its units.
         /// </summary>
         public sealed class ElectricPotentialChangeRateQuantityInfo : QuantityInfo<ElectricPotentialChangeRateUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="ElectricPotentialChangeRateQuantityInfo"/> class.
             /// </summary>
             internal ElectricPotentialChangeRateQuantityInfo() :
                 base("ElectricPotentialChangeRate",

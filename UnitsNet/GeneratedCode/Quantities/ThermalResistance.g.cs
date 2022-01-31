@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.ThermalResistance;
             Units = Enum.GetValues(typeof(ThermalResistanceUnit)).Cast<ThermalResistanceUnit>().Except(new ThermalResistanceUnit[]{ ThermalResistanceUnit.Undefined }).ToArray();
             Zero = new ThermalResistance(0, BaseUnit);
-            Info = new ThermalResistance.ThermalResistanceQuantityInfo();
+            Info = new ThermalResistanceQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static ThermalResistance.ThermalResistanceQuantityInfo Info { get; }
+        public static ThermalResistanceQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -965,11 +965,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{ThermalResistanceUnit}"/> for the <see cref="ThermalResistance"/> quantity and its units.
         /// </summary>
         public sealed class ThermalResistanceQuantityInfo : QuantityInfo<ThermalResistanceUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="ThermalResistanceQuantityInfo"/> class.
             /// </summary>
             internal ThermalResistanceQuantityInfo() :
                 base("ThermalResistance",

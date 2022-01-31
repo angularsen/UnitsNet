@@ -62,7 +62,7 @@ namespace UnitsNet
             QuantityType = QuantityType.LinearPowerDensity;
             Units = Enum.GetValues(typeof(LinearPowerDensityUnit)).Cast<LinearPowerDensityUnit>().Except(new LinearPowerDensityUnit[]{ LinearPowerDensityUnit.Undefined }).ToArray();
             Zero = new LinearPowerDensity(0, BaseUnit);
-            Info = new LinearPowerDensity.LinearPowerDensityQuantityInfo();
+            Info = new LinearPowerDensityQuantityInfo();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static LinearPowerDensity.LinearPowerDensityQuantityInfo Info { get; }
+        public static LinearPowerDensityQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1310,11 +1310,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{LinearPowerDensityUnit}"/> for the <see cref="LinearPowerDensity"/> quantity and its units.
         /// </summary>
         public sealed class LinearPowerDensityQuantityInfo : QuantityInfo<LinearPowerDensityUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="LinearPowerDensityQuantityInfo"/> class.
             /// </summary>
             internal LinearPowerDensityQuantityInfo() :
                 base("LinearPowerDensity",

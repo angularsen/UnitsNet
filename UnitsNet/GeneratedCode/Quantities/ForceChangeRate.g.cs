@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.ForceChangeRate;
             Units = Enum.GetValues(typeof(ForceChangeRateUnit)).Cast<ForceChangeRateUnit>().Except(new ForceChangeRateUnit[]{ ForceChangeRateUnit.Undefined }).ToArray();
             Zero = new ForceChangeRate(0, BaseUnit);
-            Info = new ForceChangeRate.ForceChangeRateQuantityInfo();
+            Info = new ForceChangeRateQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static ForceChangeRate.ForceChangeRateQuantityInfo Info { get; }
+        public static ForceChangeRateQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1127,11 +1127,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{ForceChangeRateUnit}"/> for the <see cref="ForceChangeRate"/> quantity and its units.
         /// </summary>
         public sealed class ForceChangeRateQuantityInfo : QuantityInfo<ForceChangeRateUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="ForceChangeRateQuantityInfo"/> class.
             /// </summary>
             internal ForceChangeRateQuantityInfo() :
                 base("ForceChangeRate",

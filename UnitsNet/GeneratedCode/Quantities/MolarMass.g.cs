@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.MolarMass;
             Units = Enum.GetValues(typeof(MolarMassUnit)).Cast<MolarMassUnit>().Except(new MolarMassUnit[]{ MolarMassUnit.Undefined }).ToArray();
             Zero = new MolarMass(0, BaseUnit);
-            Info = new MolarMass.MolarMassQuantityInfo();
+            Info = new MolarMassQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static MolarMass.MolarMassQuantityInfo Info { get; }
+        public static MolarMassQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1073,11 +1073,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{MolarMassUnit}"/> for the <see cref="MolarMass"/> quantity and its units.
         /// </summary>
         public sealed class MolarMassQuantityInfo : QuantityInfo<MolarMassUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="MolarMassQuantityInfo"/> class.
             /// </summary>
             internal MolarMassQuantityInfo() :
                 base("MolarMass",

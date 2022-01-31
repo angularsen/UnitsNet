@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Information;
             Units = Enum.GetValues(typeof(InformationUnit)).Cast<InformationUnit>().Except(new InformationUnit[]{ InformationUnit.Undefined }).ToArray();
             Zero = new Information(0, BaseUnit);
-            Info = new Information.InformationQuantityInfo();
+            Info = new InformationQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Information.InformationQuantityInfo Info { get; }
+        public static InformationQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1330,11 +1330,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{InformationUnit}"/> for the <see cref="Information"/> quantity and its units.
         /// </summary>
         public sealed class InformationQuantityInfo : QuantityInfo<InformationUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="InformationQuantityInfo"/> class.
             /// </summary>
             internal InformationQuantityInfo() :
                 base("Information",

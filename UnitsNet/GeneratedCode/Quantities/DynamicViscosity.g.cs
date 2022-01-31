@@ -62,7 +62,7 @@ namespace UnitsNet
             QuantityType = QuantityType.DynamicViscosity;
             Units = Enum.GetValues(typeof(DynamicViscosityUnit)).Cast<DynamicViscosityUnit>().Except(new DynamicViscosityUnit[]{ DynamicViscosityUnit.Undefined }).ToArray();
             Zero = new DynamicViscosity(0, BaseUnit);
-            Info = new DynamicViscosity.DynamicViscosityQuantityInfo();
+            Info = new DynamicViscosityQuantityInfo();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static DynamicViscosity.DynamicViscosityQuantityInfo Info { get; }
+        public static DynamicViscosityQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1040,11 +1040,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{DynamicViscosityUnit}"/> for the <see cref="DynamicViscosity"/> quantity and its units.
         /// </summary>
         public sealed class DynamicViscosityQuantityInfo : QuantityInfo<DynamicViscosityUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="DynamicViscosityQuantityInfo"/> class.
             /// </summary>
             internal DynamicViscosityQuantityInfo() :
                 base("DynamicViscosity",

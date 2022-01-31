@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.RatioChangeRate;
             Units = Enum.GetValues(typeof(RatioChangeRateUnit)).Cast<RatioChangeRateUnit>().Except(new RatioChangeRateUnit[]{ RatioChangeRateUnit.Undefined }).ToArray();
             Zero = new RatioChangeRate(0, BaseUnit);
-            Info = new RatioChangeRate.RatioChangeRateQuantityInfo();
+            Info = new RatioChangeRateQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static RatioChangeRate.RatioChangeRateQuantityInfo Info { get; }
+        public static RatioChangeRateQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -893,11 +893,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{RatioChangeRateUnit}"/> for the <see cref="RatioChangeRate"/> quantity and its units.
         /// </summary>
         public sealed class RatioChangeRateQuantityInfo : QuantityInfo<RatioChangeRateUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="RatioChangeRateQuantityInfo"/> class.
             /// </summary>
             internal RatioChangeRateQuantityInfo() :
                 base("RatioChangeRate",

@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Duration;
             Units = Enum.GetValues(typeof(DurationUnit)).Cast<DurationUnit>().Except(new DurationUnit[]{ DurationUnit.Undefined }).ToArray();
             Zero = new Duration(0, BaseUnit);
-            Info = new Duration.DurationQuantityInfo();
+            Info = new DurationQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Duration.DurationQuantityInfo Info { get; }
+        public static DurationQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1055,11 +1055,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{DurationUnit}"/> for the <see cref="Duration"/> quantity and its units.
         /// </summary>
         public sealed class DurationQuantityInfo : QuantityInfo<DurationUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="DurationQuantityInfo"/> class.
             /// </summary>
             internal DurationQuantityInfo() :
                 base("Duration",

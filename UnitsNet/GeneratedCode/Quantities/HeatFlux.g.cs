@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.HeatFlux;
             Units = Enum.GetValues(typeof(HeatFluxUnit)).Cast<HeatFluxUnit>().Except(new HeatFluxUnit[]{ HeatFluxUnit.Undefined }).ToArray();
             Zero = new HeatFlux(0, BaseUnit);
-            Info = new HeatFlux.HeatFluxQuantityInfo();
+            Info = new HeatFluxQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static HeatFlux.HeatFluxQuantityInfo Info { get; }
+        public static HeatFluxQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1181,11 +1181,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{HeatFluxUnit}"/> for the <see cref="HeatFlux"/> quantity and its units.
         /// </summary>
         public sealed class HeatFluxQuantityInfo : QuantityInfo<HeatFluxUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="HeatFluxQuantityInfo"/> class.
             /// </summary>
             internal HeatFluxQuantityInfo() :
                 base("HeatFlux",

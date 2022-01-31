@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Length;
             Units = Enum.GetValues(typeof(LengthUnit)).Cast<LengthUnit>().Except(new LengthUnit[]{ LengthUnit.Undefined }).ToArray();
             Zero = new Length(0, BaseUnit);
-            Info = new Length.LengthQuantityInfo();
+            Info = new LengthQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Length.LengthQuantityInfo Info { get; }
+        public static LengthQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1451,11 +1451,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{LengthUnit}"/> for the <see cref="Length"/> quantity and its units.
         /// </summary>
         public sealed class LengthQuantityInfo : QuantityInfo<LengthUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="LengthQuantityInfo"/> class.
             /// </summary>
             internal LengthQuantityInfo() :
                 base("Length",

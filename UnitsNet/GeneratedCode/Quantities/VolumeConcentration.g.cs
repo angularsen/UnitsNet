@@ -62,7 +62,7 @@ namespace UnitsNet
             QuantityType = QuantityType.VolumeConcentration;
             Units = Enum.GetValues(typeof(VolumeConcentrationUnit)).Cast<VolumeConcentrationUnit>().Except(new VolumeConcentrationUnit[]{ VolumeConcentrationUnit.Undefined }).ToArray();
             Zero = new VolumeConcentration(0, BaseUnit);
-            Info = new VolumeConcentration.VolumeConcentrationQuantityInfo();
+            Info = new VolumeConcentrationQuantityInfo();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static VolumeConcentration.VolumeConcentrationQuantityInfo Info { get; }
+        public static VolumeConcentrationQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1220,11 +1220,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{VolumeConcentrationUnit}"/> for the <see cref="VolumeConcentration"/> quantity and its units.
         /// </summary>
         public sealed class VolumeConcentrationQuantityInfo : QuantityInfo<VolumeConcentrationUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="VolumeConcentrationQuantityInfo"/> class.
             /// </summary>
             internal VolumeConcentrationQuantityInfo() :
                 base("VolumeConcentration",

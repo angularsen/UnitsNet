@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Ratio;
             Units = Enum.GetValues(typeof(RatioUnit)).Cast<RatioUnit>().Except(new RatioUnit[]{ RatioUnit.Undefined }).ToArray();
             Zero = new Ratio(0, BaseUnit);
-            Info = new Ratio.RatioQuantityInfo();
+            Info = new RatioQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Ratio.RatioQuantityInfo Info { get; }
+        public static RatioQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -965,11 +965,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{RatioUnit}"/> for the <see cref="Ratio"/> quantity and its units.
         /// </summary>
         public sealed class RatioQuantityInfo : QuantityInfo<RatioUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="RatioQuantityInfo"/> class.
             /// </summary>
             internal RatioQuantityInfo() :
                 base("Ratio",

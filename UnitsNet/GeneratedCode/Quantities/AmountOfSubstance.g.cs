@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.AmountOfSubstance;
             Units = Enum.GetValues(typeof(AmountOfSubstanceUnit)).Cast<AmountOfSubstanceUnit>().Except(new AmountOfSubstanceUnit[]{ AmountOfSubstanceUnit.Undefined }).ToArray();
             Zero = new AmountOfSubstance(0, BaseUnit);
-            Info = new AmountOfSubstance.AmountOfSubstanceQuantityInfo();
+            Info = new AmountOfSubstanceQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static AmountOfSubstance.AmountOfSubstanceQuantityInfo Info { get; }
+        public static AmountOfSubstanceQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1127,11 +1127,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{AmountOfSubstanceUnit}"/> for the <see cref="AmountOfSubstance"/> quantity and its units.
         /// </summary>
         public sealed class AmountOfSubstanceQuantityInfo : QuantityInfo<AmountOfSubstanceUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="AmountOfSubstanceQuantityInfo"/> class.
             /// </summary>
             internal AmountOfSubstanceQuantityInfo() :
                 base("AmountOfSubstance",

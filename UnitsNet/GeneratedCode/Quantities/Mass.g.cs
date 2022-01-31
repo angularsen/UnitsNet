@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Mass;
             Units = Enum.GetValues(typeof(MassUnit)).Cast<MassUnit>().Except(new MassUnit[]{ MassUnit.Undefined }).ToArray();
             Zero = new Mass(0, BaseUnit);
-            Info = new Mass.MassQuantityInfo();
+            Info = new MassQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Mass.MassQuantityInfo Info { get; }
+        public static MassQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1307,11 +1307,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{MassUnit}"/> for the <see cref="Mass"/> quantity and its units.
         /// </summary>
         public sealed class MassQuantityInfo : QuantityInfo<MassUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="MassQuantityInfo"/> class.
             /// </summary>
             internal MassQuantityInfo() :
                 base("Mass",

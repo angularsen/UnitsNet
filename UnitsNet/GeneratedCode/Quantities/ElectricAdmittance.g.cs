@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.ElectricAdmittance;
             Units = Enum.GetValues(typeof(ElectricAdmittanceUnit)).Cast<ElectricAdmittanceUnit>().Except(new ElectricAdmittanceUnit[]{ ElectricAdmittanceUnit.Undefined }).ToArray();
             Zero = new ElectricAdmittance(0, BaseUnit);
-            Info = new ElectricAdmittance.ElectricAdmittanceQuantityInfo();
+            Info = new ElectricAdmittanceQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static ElectricAdmittance.ElectricAdmittanceQuantityInfo Info { get; }
+        public static ElectricAdmittanceQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -929,11 +929,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{ElectricAdmittanceUnit}"/> for the <see cref="ElectricAdmittance"/> quantity and its units.
         /// </summary>
         public sealed class ElectricAdmittanceQuantityInfo : QuantityInfo<ElectricAdmittanceUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="ElectricAdmittanceQuantityInfo"/> class.
             /// </summary>
             internal ElectricAdmittanceQuantityInfo() :
                 base("ElectricAdmittance",

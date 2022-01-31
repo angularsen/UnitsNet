@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.ReactiveEnergy;
             Units = Enum.GetValues(typeof(ReactiveEnergyUnit)).Cast<ReactiveEnergyUnit>().Except(new ReactiveEnergyUnit[]{ ReactiveEnergyUnit.Undefined }).ToArray();
             Zero = new ReactiveEnergy(0, BaseUnit);
-            Info = new ReactiveEnergy.ReactiveEnergyQuantityInfo();
+            Info = new ReactiveEnergyQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static ReactiveEnergy.ReactiveEnergyQuantityInfo Info { get; }
+        public static ReactiveEnergyQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -911,11 +911,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{ReactiveEnergyUnit}"/> for the <see cref="ReactiveEnergy"/> quantity and its units.
         /// </summary>
         public sealed class ReactiveEnergyQuantityInfo : QuantityInfo<ReactiveEnergyUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="ReactiveEnergyQuantityInfo"/> class.
             /// </summary>
             internal ReactiveEnergyQuantityInfo() :
                 base("ReactiveEnergy",

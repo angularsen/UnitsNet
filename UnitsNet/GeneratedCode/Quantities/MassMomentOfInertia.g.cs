@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.MassMomentOfInertia;
             Units = Enum.GetValues(typeof(MassMomentOfInertiaUnit)).Cast<MassMomentOfInertiaUnit>().Except(new MassMomentOfInertiaUnit[]{ MassMomentOfInertiaUnit.Undefined }).ToArray();
             Zero = new MassMomentOfInertia(0, BaseUnit);
-            Info = new MassMomentOfInertia.MassMomentOfInertiaQuantityInfo();
+            Info = new MassMomentOfInertiaQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static MassMomentOfInertia.MassMomentOfInertiaQuantityInfo Info { get; }
+        public static MassMomentOfInertiaQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1361,11 +1361,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{MassMomentOfInertiaUnit}"/> for the <see cref="MassMomentOfInertia"/> quantity and its units.
         /// </summary>
         public sealed class MassMomentOfInertiaQuantityInfo : QuantityInfo<MassMomentOfInertiaUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="MassMomentOfInertiaQuantityInfo"/> class.
             /// </summary>
             internal MassMomentOfInertiaQuantityInfo() :
                 base("MassMomentOfInertia",

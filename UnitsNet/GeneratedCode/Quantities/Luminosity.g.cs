@@ -62,7 +62,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Luminosity;
             Units = Enum.GetValues(typeof(LuminosityUnit)).Cast<LuminosityUnit>().Except(new LuminosityUnit[]{ LuminosityUnit.Undefined }).ToArray();
             Zero = new Luminosity(0, BaseUnit);
-            Info = new Luminosity.LuminosityQuantityInfo();
+            Info = new LuminosityQuantityInfo();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Luminosity.LuminosityQuantityInfo Info { get; }
+        public static LuminosityQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1112,11 +1112,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{LuminosityUnit}"/> for the <see cref="Luminosity"/> quantity and its units.
         /// </summary>
         public sealed class LuminosityQuantityInfo : QuantityInfo<LuminosityUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="LuminosityQuantityInfo"/> class.
             /// </summary>
             internal LuminosityQuantityInfo() :
                 base("Luminosity",

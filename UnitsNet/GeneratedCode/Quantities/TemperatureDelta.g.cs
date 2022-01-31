@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.TemperatureDelta;
             Units = Enum.GetValues(typeof(TemperatureDeltaUnit)).Cast<TemperatureDeltaUnit>().Except(new TemperatureDeltaUnit[]{ TemperatureDeltaUnit.Undefined }).ToArray();
             Zero = new TemperatureDelta(0, BaseUnit);
-            Info = new TemperatureDelta.TemperatureDeltaQuantityInfo();
+            Info = new TemperatureDeltaQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static TemperatureDelta.TemperatureDeltaQuantityInfo Info { get; }
+        public static TemperatureDeltaQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1019,11 +1019,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{TemperatureDeltaUnit}"/> for the <see cref="TemperatureDelta"/> quantity and its units.
         /// </summary>
         public sealed class TemperatureDeltaQuantityInfo : QuantityInfo<TemperatureDeltaUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="TemperatureDeltaQuantityInfo"/> class.
             /// </summary>
             internal TemperatureDeltaQuantityInfo() :
                 base("TemperatureDelta",

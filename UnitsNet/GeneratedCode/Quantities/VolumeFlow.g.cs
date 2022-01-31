@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.VolumeFlow;
             Units = Enum.GetValues(typeof(VolumeFlowUnit)).Cast<VolumeFlowUnit>().Except(new VolumeFlowUnit[]{ VolumeFlowUnit.Undefined }).ToArray();
             Zero = new VolumeFlow(0, BaseUnit);
-            Info = new VolumeFlow.VolumeFlowQuantityInfo();
+            Info = new VolumeFlowQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static VolumeFlow.VolumeFlowQuantityInfo Info { get; }
+        public static VolumeFlowQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1973,11 +1973,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{VolumeFlowUnit}"/> for the <see cref="VolumeFlow"/> quantity and its units.
         /// </summary>
         public sealed class VolumeFlowQuantityInfo : QuantityInfo<VolumeFlowUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="VolumeFlowQuantityInfo"/> class.
             /// </summary>
             internal VolumeFlowQuantityInfo() :
                 base("VolumeFlow",

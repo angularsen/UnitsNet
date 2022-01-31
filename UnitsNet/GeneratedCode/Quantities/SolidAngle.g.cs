@@ -62,7 +62,7 @@ namespace UnitsNet
             QuantityType = QuantityType.SolidAngle;
             Units = Enum.GetValues(typeof(SolidAngleUnit)).Cast<SolidAngleUnit>().Except(new SolidAngleUnit[]{ SolidAngleUnit.Undefined }).ToArray();
             Zero = new SolidAngle(0, BaseUnit);
-            Info = new SolidAngle.SolidAngleQuantityInfo();
+            Info = new SolidAngleQuantityInfo();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static SolidAngle.SolidAngleQuantityInfo Info { get; }
+        public static SolidAngleQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -878,11 +878,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{SolidAngleUnit}"/> for the <see cref="SolidAngle"/> quantity and its units.
         /// </summary>
         public sealed class SolidAngleQuantityInfo : QuantityInfo<SolidAngleUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="SolidAngleQuantityInfo"/> class.
             /// </summary>
             internal SolidAngleQuantityInfo() :
                 base("SolidAngle",

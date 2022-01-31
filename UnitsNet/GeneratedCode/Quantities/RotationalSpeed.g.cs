@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.RotationalSpeed;
             Units = Enum.GetValues(typeof(RotationalSpeedUnit)).Cast<RotationalSpeedUnit>().Except(new RotationalSpeedUnit[]{ RotationalSpeedUnit.Undefined }).ToArray();
             Zero = new RotationalSpeed(0, BaseUnit);
-            Info = new RotationalSpeed.RotationalSpeedQuantityInfo();
+            Info = new RotationalSpeedQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static RotationalSpeed.RotationalSpeedQuantityInfo Info { get; }
+        public static RotationalSpeedQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1091,11 +1091,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{RotationalSpeedUnit}"/> for the <see cref="RotationalSpeed"/> quantity and its units.
         /// </summary>
         public sealed class RotationalSpeedQuantityInfo : QuantityInfo<RotationalSpeedUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="RotationalSpeedQuantityInfo"/> class.
             /// </summary>
             internal RotationalSpeedQuantityInfo() :
                 base("RotationalSpeed",

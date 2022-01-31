@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.VolumePerLength;
             Units = Enum.GetValues(typeof(VolumePerLengthUnit)).Cast<VolumePerLengthUnit>().Except(new VolumePerLengthUnit[]{ VolumePerLengthUnit.Undefined }).ToArray();
             Zero = new VolumePerLength(0, BaseUnit);
-            Info = new VolumePerLength.VolumePerLengthQuantityInfo();
+            Info = new VolumePerLengthQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static VolumePerLength.VolumePerLengthQuantityInfo Info { get; }
+        public static VolumePerLengthQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -983,11 +983,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{VolumePerLengthUnit}"/> for the <see cref="VolumePerLength"/> quantity and its units.
         /// </summary>
         public sealed class VolumePerLengthQuantityInfo : QuantityInfo<VolumePerLengthUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="VolumePerLengthQuantityInfo"/> class.
             /// </summary>
             internal VolumePerLengthQuantityInfo() :
                 base("VolumePerLength",

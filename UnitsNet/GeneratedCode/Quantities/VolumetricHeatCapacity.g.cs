@@ -62,7 +62,7 @@ namespace UnitsNet
             QuantityType = QuantityType.VolumetricHeatCapacity;
             Units = Enum.GetValues(typeof(VolumetricHeatCapacityUnit)).Cast<VolumetricHeatCapacityUnit>().Except(new VolumetricHeatCapacityUnit[]{ VolumetricHeatCapacityUnit.Undefined }).ToArray();
             Zero = new VolumetricHeatCapacity(0, BaseUnit);
-            Info = new VolumetricHeatCapacity.VolumetricHeatCapacityQuantityInfo();
+            Info = new VolumetricHeatCapacityQuantityInfo();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static VolumetricHeatCapacity.VolumetricHeatCapacityQuantityInfo Info { get; }
+        public static VolumetricHeatCapacityQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1022,11 +1022,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{VolumetricHeatCapacityUnit}"/> for the <see cref="VolumetricHeatCapacity"/> quantity and its units.
         /// </summary>
         public sealed class VolumetricHeatCapacityQuantityInfo : QuantityInfo<VolumetricHeatCapacityUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="VolumetricHeatCapacityQuantityInfo"/> class.
             /// </summary>
             internal VolumetricHeatCapacityQuantityInfo() :
                 base("VolumetricHeatCapacity",

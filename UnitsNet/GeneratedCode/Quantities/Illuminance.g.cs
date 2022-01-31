@@ -62,7 +62,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Illuminance;
             Units = Enum.GetValues(typeof(IlluminanceUnit)).Cast<IlluminanceUnit>().Except(new IlluminanceUnit[]{ IlluminanceUnit.Undefined }).ToArray();
             Zero = new Illuminance(0, BaseUnit);
-            Info = new Illuminance.IlluminanceQuantityInfo();
+            Info = new IlluminanceQuantityInfo();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Illuminance.IlluminanceQuantityInfo Info { get; }
+        public static IlluminanceQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -932,11 +932,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{IlluminanceUnit}"/> for the <see cref="Illuminance"/> quantity and its units.
         /// </summary>
         public sealed class IlluminanceQuantityInfo : QuantityInfo<IlluminanceUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="IlluminanceQuantityInfo"/> class.
             /// </summary>
             internal IlluminanceQuantityInfo() :
                 base("Illuminance",

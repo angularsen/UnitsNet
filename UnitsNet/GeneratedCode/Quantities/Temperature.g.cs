@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Temperature;
             Units = Enum.GetValues(typeof(TemperatureUnit)).Cast<TemperatureUnit>().Except(new TemperatureUnit[]{ TemperatureUnit.Undefined }).ToArray();
             Zero = new Temperature(0, BaseUnit);
-            Info = new Temperature.TemperatureQuantityInfo();
+            Info = new TemperatureQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Temperature.TemperatureQuantityInfo Info { get; }
+        public static TemperatureQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -991,11 +991,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{TemperatureUnit}"/> for the <see cref="Temperature"/> quantity and its units.
         /// </summary>
         public sealed class TemperatureQuantityInfo : QuantityInfo<TemperatureUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="TemperatureQuantityInfo"/> class.
             /// </summary>
             internal TemperatureQuantityInfo() :
                 base("Temperature",

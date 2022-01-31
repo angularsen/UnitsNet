@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.PressureChangeRate;
             Units = Enum.GetValues(typeof(PressureChangeRateUnit)).Cast<PressureChangeRateUnit>().Except(new PressureChangeRateUnit[]{ PressureChangeRateUnit.Undefined }).ToArray();
             Zero = new PressureChangeRate(0, BaseUnit);
-            Info = new PressureChangeRate.PressureChangeRateQuantityInfo();
+            Info = new PressureChangeRateQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static PressureChangeRate.PressureChangeRateQuantityInfo Info { get; }
+        public static PressureChangeRateQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1109,11 +1109,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{PressureChangeRateUnit}"/> for the <see cref="PressureChangeRate"/> quantity and its units.
         /// </summary>
         public sealed class PressureChangeRateQuantityInfo : QuantityInfo<PressureChangeRateUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="PressureChangeRateQuantityInfo"/> class.
             /// </summary>
             internal PressureChangeRateQuantityInfo() :
                 base("PressureChangeRate",

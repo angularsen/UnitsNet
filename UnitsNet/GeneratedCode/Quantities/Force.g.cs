@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Force;
             Units = Enum.GetValues(typeof(ForceUnit)).Cast<ForceUnit>().Except(new ForceUnit[]{ ForceUnit.Undefined }).ToArray();
             Zero = new Force(0, BaseUnit);
-            Info = new Force.ForceQuantityInfo();
+            Info = new ForceQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Force.ForceQuantityInfo Info { get; }
+        public static ForceQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1127,11 +1127,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{ForceUnit}"/> for the <see cref="Force"/> quantity and its units.
         /// </summary>
         public sealed class ForceQuantityInfo : QuantityInfo<ForceUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="ForceQuantityInfo"/> class.
             /// </summary>
             internal ForceQuantityInfo() :
                 base("Force",

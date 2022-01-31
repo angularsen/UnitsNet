@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Frequency;
             Units = Enum.GetValues(typeof(FrequencyUnit)).Cast<FrequencyUnit>().Except(new FrequencyUnit[]{ FrequencyUnit.Undefined }).ToArray();
             Zero = new Frequency(0, BaseUnit);
-            Info = new Frequency.FrequencyQuantityInfo();
+            Info = new FrequencyQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Frequency.FrequencyQuantityInfo Info { get; }
+        public static FrequencyQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1055,11 +1055,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{FrequencyUnit}"/> for the <see cref="Frequency"/> quantity and its units.
         /// </summary>
         public sealed class FrequencyQuantityInfo : QuantityInfo<FrequencyUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="FrequencyQuantityInfo"/> class.
             /// </summary>
             internal FrequencyQuantityInfo() :
                 base("Frequency",

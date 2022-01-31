@@ -62,7 +62,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Permeability;
             Units = Enum.GetValues(typeof(PermeabilityUnit)).Cast<PermeabilityUnit>().Except(new PermeabilityUnit[]{ PermeabilityUnit.Undefined }).ToArray();
             Zero = new Permeability(0, BaseUnit);
-            Info = new Permeability.PermeabilityQuantityInfo();
+            Info = new PermeabilityQuantityInfo();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Permeability.PermeabilityQuantityInfo Info { get; }
+        public static PermeabilityQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -878,11 +878,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{PermeabilityUnit}"/> for the <see cref="Permeability"/> quantity and its units.
         /// </summary>
         public sealed class PermeabilityQuantityInfo : QuantityInfo<PermeabilityUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="PermeabilityQuantityInfo"/> class.
             /// </summary>
             internal PermeabilityQuantityInfo() :
                 base("Permeability",

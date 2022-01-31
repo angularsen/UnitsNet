@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.ReactivePower;
             Units = Enum.GetValues(typeof(ReactivePowerUnit)).Cast<ReactivePowerUnit>().Except(new ReactivePowerUnit[]{ ReactivePowerUnit.Undefined }).ToArray();
             Zero = new ReactivePower(0, BaseUnit);
-            Info = new ReactivePower.ReactivePowerQuantityInfo();
+            Info = new ReactivePowerQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static ReactivePower.ReactivePowerQuantityInfo Info { get; }
+        public static ReactivePowerQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -929,11 +929,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{ReactivePowerUnit}"/> for the <see cref="ReactivePower"/> quantity and its units.
         /// </summary>
         public sealed class ReactivePowerQuantityInfo : QuantityInfo<ReactivePowerUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="ReactivePowerQuantityInfo"/> class.
             /// </summary>
             internal ReactivePowerQuantityInfo() :
                 base("ReactivePower",

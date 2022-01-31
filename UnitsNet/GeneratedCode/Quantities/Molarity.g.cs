@@ -62,7 +62,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Molarity;
             Units = Enum.GetValues(typeof(MolarityUnit)).Cast<MolarityUnit>().Except(new MolarityUnit[]{ MolarityUnit.Undefined }).ToArray();
             Zero = new Molarity(0, BaseUnit);
-            Info = new Molarity.MolarityQuantityInfo();
+            Info = new MolarityQuantityInfo();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static Molarity.MolarityQuantityInfo Info { get; }
+        public static MolarityQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1004,11 +1004,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{MolarityUnit}"/> for the <see cref="Molarity"/> quantity and its units.
         /// </summary>
         public sealed class MolarityQuantityInfo : QuantityInfo<MolarityUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="MolarityQuantityInfo"/> class.
             /// </summary>
             internal MolarityQuantityInfo() :
                 base("Molarity",

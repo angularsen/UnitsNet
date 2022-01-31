@@ -62,7 +62,7 @@ namespace UnitsNet
             QuantityType = QuantityType.ReciprocalLength;
             Units = Enum.GetValues(typeof(ReciprocalLengthUnit)).Cast<ReciprocalLengthUnit>().Except(new ReciprocalLengthUnit[]{ ReciprocalLengthUnit.Undefined }).ToArray();
             Zero = new ReciprocalLength(0, BaseUnit);
-            Info = new ReciprocalLength.ReciprocalLengthQuantityInfo();
+            Info = new ReciprocalLengthQuantityInfo();
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static ReciprocalLength.ReciprocalLengthQuantityInfo Info { get; }
+        public static ReciprocalLengthQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -1040,11 +1040,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{ReciprocalLengthUnit}"/> for the <see cref="ReciprocalLength"/> quantity and its units.
         /// </summary>
         public sealed class ReciprocalLengthQuantityInfo : QuantityInfo<ReciprocalLengthUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="ReciprocalLengthQuantityInfo"/> class.
             /// </summary>
             internal ReciprocalLengthQuantityInfo() :
                 base("ReciprocalLength",

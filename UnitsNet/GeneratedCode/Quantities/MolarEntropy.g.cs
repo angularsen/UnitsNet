@@ -59,7 +59,7 @@ namespace UnitsNet
             QuantityType = QuantityType.MolarEntropy;
             Units = Enum.GetValues(typeof(MolarEntropyUnit)).Cast<MolarEntropyUnit>().Except(new MolarEntropyUnit[]{ MolarEntropyUnit.Undefined }).ToArray();
             Zero = new MolarEntropy(0, BaseUnit);
-            Info = new MolarEntropy.MolarEntropyQuantityInfo();
+            Info = new MolarEntropyQuantityInfo();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static MolarEntropy.MolarEntropyQuantityInfo Info { get; }
+        public static MolarEntropyQuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -911,11 +911,12 @@ namespace UnitsNet
         #endregion
 
         /// <summary>
+        ///     The <see cref="QuantityInfo{MolarEntropyUnit}"/> for the <see cref="MolarEntropy"/> quantity and its units.
         /// </summary>
         public sealed class MolarEntropyQuantityInfo : QuantityInfo<MolarEntropyUnit>
         {
             /// <summary>
-            ///     Constructs an instance.
+            ///     Constructs an instance of the <see cref="MolarEntropyQuantityInfo"/> class.
             /// </summary>
             internal MolarEntropyQuantityInfo() :
                 base("MolarEntropy",
