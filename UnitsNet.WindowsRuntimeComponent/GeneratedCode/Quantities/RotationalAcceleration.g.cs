@@ -49,6 +49,12 @@ namespace UnitsNet
         static RotationalAcceleration()
         {
             BaseDimensions = new BaseDimensions(0, 0, -2, 0, 0, 0, 0);
+            BaseUnit = RotationalAccelerationUnit.RadianPerSecondSquared;
+            MaxValue = new RotationalAcceleration(double.MaxValue, BaseUnit);
+            MinValue = new RotationalAcceleration(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.RotationalAcceleration;
+            Units = Enum.GetValues(typeof(RotationalAccelerationUnit)).Cast<RotationalAccelerationUnit>().Except(new RotationalAccelerationUnit[]{ RotationalAccelerationUnit.Undefined }).ToArray();
+            Zero = new RotationalAcceleration(0, BaseUnit);
             Info = new QuantityInfo(QuantityType.RotationalAcceleration, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
@@ -95,33 +101,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of RotationalAcceleration, which is RadianPerSecondSquared. All conversions go via this value.
         /// </summary>
-        public static RotationalAccelerationUnit BaseUnit { get; } = RotationalAccelerationUnit.RadianPerSecondSquared;
+        public static RotationalAccelerationUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of RotationalAcceleration
         /// </summary>
-        public static RotationalAcceleration MaxValue { get; } = new RotationalAcceleration(double.MaxValue, BaseUnit);
+        public static RotationalAcceleration MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of RotationalAcceleration
         /// </summary>
-        public static RotationalAcceleration MinValue { get; } = new RotationalAcceleration(double.MinValue, BaseUnit);
+        public static RotationalAcceleration MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.RotationalAcceleration;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the RotationalAcceleration quantity.
         /// </summary>
-        public static RotationalAccelerationUnit[] Units { get; } = Enum.GetValues(typeof(RotationalAccelerationUnit)).Cast<RotationalAccelerationUnit>().Except(new RotationalAccelerationUnit[]{ RotationalAccelerationUnit.Undefined }).ToArray();
+        public static RotationalAccelerationUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit RadianPerSecondSquared.
         /// </summary>
-        public static RotationalAcceleration Zero { get; } = new RotationalAcceleration(0, BaseUnit);
+        public static RotationalAcceleration Zero { get; }
 
         #endregion
 

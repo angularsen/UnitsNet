@@ -49,6 +49,12 @@ namespace UnitsNet
         static Ratio()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
+            BaseUnit = RatioUnit.DecimalFraction;
+            MaxValue = new Ratio(double.MaxValue, BaseUnit);
+            MinValue = new Ratio(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Ratio;
+            Units = Enum.GetValues(typeof(RatioUnit)).Cast<RatioUnit>().Except(new RatioUnit[]{ RatioUnit.Undefined }).ToArray();
+            Zero = new Ratio(0, BaseUnit);
             Info = new QuantityInfo(QuantityType.Ratio, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
@@ -95,33 +101,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Ratio, which is DecimalFraction. All conversions go via this value.
         /// </summary>
-        public static RatioUnit BaseUnit { get; } = RatioUnit.DecimalFraction;
+        public static RatioUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Ratio
         /// </summary>
-        public static Ratio MaxValue { get; } = new Ratio(double.MaxValue, BaseUnit);
+        public static Ratio MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Ratio
         /// </summary>
-        public static Ratio MinValue { get; } = new Ratio(double.MinValue, BaseUnit);
+        public static Ratio MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Ratio;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Ratio quantity.
         /// </summary>
-        public static RatioUnit[] Units { get; } = Enum.GetValues(typeof(RatioUnit)).Cast<RatioUnit>().Except(new RatioUnit[]{ RatioUnit.Undefined }).ToArray();
+        public static RatioUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DecimalFraction.
         /// </summary>
-        public static Ratio Zero { get; } = new Ratio(0, BaseUnit);
+        public static Ratio Zero { get; }
 
         #endregion
 

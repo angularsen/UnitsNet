@@ -52,6 +52,12 @@ namespace UnitsNet
         static Illuminance()
         {
             BaseDimensions = new BaseDimensions(-2, 0, 0, 0, 0, 0, 1);
+            BaseUnit = IlluminanceUnit.Lux;
+            MaxValue = new Illuminance(double.MaxValue, BaseUnit);
+            MinValue = new Illuminance(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Illuminance;
+            Units = Enum.GetValues(typeof(IlluminanceUnit)).Cast<IlluminanceUnit>().Except(new IlluminanceUnit[]{ IlluminanceUnit.Undefined }).ToArray();
+            Zero = new Illuminance(0, BaseUnit);
             Info = new QuantityInfo(QuantityType.Illuminance, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
@@ -98,33 +104,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Illuminance, which is Lux. All conversions go via this value.
         /// </summary>
-        public static IlluminanceUnit BaseUnit { get; } = IlluminanceUnit.Lux;
+        public static IlluminanceUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Illuminance
         /// </summary>
-        public static Illuminance MaxValue { get; } = new Illuminance(double.MaxValue, BaseUnit);
+        public static Illuminance MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Illuminance
         /// </summary>
-        public static Illuminance MinValue { get; } = new Illuminance(double.MinValue, BaseUnit);
+        public static Illuminance MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Illuminance;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Illuminance quantity.
         /// </summary>
-        public static IlluminanceUnit[] Units { get; } = Enum.GetValues(typeof(IlluminanceUnit)).Cast<IlluminanceUnit>().Except(new IlluminanceUnit[]{ IlluminanceUnit.Undefined }).ToArray();
+        public static IlluminanceUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Lux.
         /// </summary>
-        public static Illuminance Zero { get; } = new Illuminance(0, BaseUnit);
+        public static Illuminance Zero { get; }
 
         #endregion
 

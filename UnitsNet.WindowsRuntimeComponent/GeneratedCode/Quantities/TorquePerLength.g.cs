@@ -49,6 +49,12 @@ namespace UnitsNet
         static TorquePerLength()
         {
             BaseDimensions = new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
+            BaseUnit = TorquePerLengthUnit.NewtonMeterPerMeter;
+            MaxValue = new TorquePerLength(double.MaxValue, BaseUnit);
+            MinValue = new TorquePerLength(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.TorquePerLength;
+            Units = Enum.GetValues(typeof(TorquePerLengthUnit)).Cast<TorquePerLengthUnit>().Except(new TorquePerLengthUnit[]{ TorquePerLengthUnit.Undefined }).ToArray();
+            Zero = new TorquePerLength(0, BaseUnit);
             Info = new QuantityInfo(QuantityType.TorquePerLength, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
@@ -95,33 +101,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of TorquePerLength, which is NewtonMeterPerMeter. All conversions go via this value.
         /// </summary>
-        public static TorquePerLengthUnit BaseUnit { get; } = TorquePerLengthUnit.NewtonMeterPerMeter;
+        public static TorquePerLengthUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of TorquePerLength
         /// </summary>
-        public static TorquePerLength MaxValue { get; } = new TorquePerLength(double.MaxValue, BaseUnit);
+        public static TorquePerLength MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of TorquePerLength
         /// </summary>
-        public static TorquePerLength MinValue { get; } = new TorquePerLength(double.MinValue, BaseUnit);
+        public static TorquePerLength MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.TorquePerLength;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the TorquePerLength quantity.
         /// </summary>
-        public static TorquePerLengthUnit[] Units { get; } = Enum.GetValues(typeof(TorquePerLengthUnit)).Cast<TorquePerLengthUnit>().Except(new TorquePerLengthUnit[]{ TorquePerLengthUnit.Undefined }).ToArray();
+        public static TorquePerLengthUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonMeterPerMeter.
         /// </summary>
-        public static TorquePerLength Zero { get; } = new TorquePerLength(0, BaseUnit);
+        public static TorquePerLength Zero { get; }
 
         #endregion
 

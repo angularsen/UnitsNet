@@ -49,6 +49,12 @@ namespace UnitsNet
         static ElectricResistance()
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, -2, 0, 0, 0);
+            BaseUnit = ElectricResistanceUnit.Ohm;
+            MaxValue = new ElectricResistance(double.MaxValue, BaseUnit);
+            MinValue = new ElectricResistance(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.ElectricResistance;
+            Units = Enum.GetValues(typeof(ElectricResistanceUnit)).Cast<ElectricResistanceUnit>().Except(new ElectricResistanceUnit[]{ ElectricResistanceUnit.Undefined }).ToArray();
+            Zero = new ElectricResistance(0, BaseUnit);
             Info = new QuantityInfo(QuantityType.ElectricResistance, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
@@ -95,33 +101,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricResistance, which is Ohm. All conversions go via this value.
         /// </summary>
-        public static ElectricResistanceUnit BaseUnit { get; } = ElectricResistanceUnit.Ohm;
+        public static ElectricResistanceUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of ElectricResistance
         /// </summary>
-        public static ElectricResistance MaxValue { get; } = new ElectricResistance(double.MaxValue, BaseUnit);
+        public static ElectricResistance MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of ElectricResistance
         /// </summary>
-        public static ElectricResistance MinValue { get; } = new ElectricResistance(double.MinValue, BaseUnit);
+        public static ElectricResistance MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricResistance;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the ElectricResistance quantity.
         /// </summary>
-        public static ElectricResistanceUnit[] Units { get; } = Enum.GetValues(typeof(ElectricResistanceUnit)).Cast<ElectricResistanceUnit>().Except(new ElectricResistanceUnit[]{ ElectricResistanceUnit.Undefined }).ToArray();
+        public static ElectricResistanceUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Ohm.
         /// </summary>
-        public static ElectricResistance Zero { get; } = new ElectricResistance(0, BaseUnit);
+        public static ElectricResistance Zero { get; }
 
         #endregion
 

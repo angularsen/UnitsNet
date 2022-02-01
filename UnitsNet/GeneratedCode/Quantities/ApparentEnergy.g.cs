@@ -53,9 +53,15 @@ namespace UnitsNet
         static ApparentEnergy()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
-
+            BaseUnit = ApparentEnergyUnit.VoltampereHour;
+            MaxValue = new ApparentEnergy(double.MaxValue, BaseUnit);
+            MinValue = new ApparentEnergy(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.ApparentEnergy;
+            Units = Enum.GetValues(typeof(ApparentEnergyUnit)).Cast<ApparentEnergyUnit>().Except(new ApparentEnergyUnit[]{ ApparentEnergyUnit.Undefined }).ToArray();
+            Zero = new ApparentEnergy(0, BaseUnit);
             Info = new QuantityInfo<ApparentEnergyUnit>("ApparentEnergy",
-                new UnitInfo<ApparentEnergyUnit>[] {
+                new UnitInfo<ApparentEnergyUnit>[]
+                {
                     new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.KilovoltampereHour, "KilovoltampereHours", BaseUnits.Undefined),
                     new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.MegavoltampereHour, "MegavoltampereHours", BaseUnits.Undefined),
                     new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.VoltampereHour, "VoltampereHours", BaseUnits.Undefined),
@@ -110,35 +116,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ApparentEnergy, which is VoltampereHour. All conversions go via this value.
         /// </summary>
-        public static ApparentEnergyUnit BaseUnit { get; } = ApparentEnergyUnit.VoltampereHour;
+        public static ApparentEnergyUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of ApparentEnergy
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ApparentEnergy MaxValue { get; } = new ApparentEnergy(double.MaxValue, BaseUnit);
+        public static ApparentEnergy MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of ApparentEnergy
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ApparentEnergy MinValue { get; } = new ApparentEnergy(double.MinValue, BaseUnit);
+        public static ApparentEnergy MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ApparentEnergy;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the ApparentEnergy quantity.
         /// </summary>
-        public static ApparentEnergyUnit[] Units { get; } = Enum.GetValues(typeof(ApparentEnergyUnit)).Cast<ApparentEnergyUnit>().Except(new ApparentEnergyUnit[]{ ApparentEnergyUnit.Undefined }).ToArray();
+        public static ApparentEnergyUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit VoltampereHour.
         /// </summary>
-        public static ApparentEnergy Zero { get; } = new ApparentEnergy(0, BaseUnit);
+        public static ApparentEnergy Zero { get; }
 
         #endregion
 

@@ -52,6 +52,12 @@ namespace UnitsNet
         static MassFraction()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
+            BaseUnit = MassFractionUnit.DecimalFraction;
+            MaxValue = new MassFraction(double.MaxValue, BaseUnit);
+            MinValue = new MassFraction(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.MassFraction;
+            Units = Enum.GetValues(typeof(MassFractionUnit)).Cast<MassFractionUnit>().Except(new MassFractionUnit[]{ MassFractionUnit.Undefined }).ToArray();
+            Zero = new MassFraction(0, BaseUnit);
             Info = new QuantityInfo(QuantityType.MassFraction, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
@@ -98,33 +104,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of MassFraction, which is DecimalFraction. All conversions go via this value.
         /// </summary>
-        public static MassFractionUnit BaseUnit { get; } = MassFractionUnit.DecimalFraction;
+        public static MassFractionUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of MassFraction
         /// </summary>
-        public static MassFraction MaxValue { get; } = new MassFraction(double.MaxValue, BaseUnit);
+        public static MassFraction MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of MassFraction
         /// </summary>
-        public static MassFraction MinValue { get; } = new MassFraction(double.MinValue, BaseUnit);
+        public static MassFraction MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.MassFraction;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the MassFraction quantity.
         /// </summary>
-        public static MassFractionUnit[] Units { get; } = Enum.GetValues(typeof(MassFractionUnit)).Cast<MassFractionUnit>().Except(new MassFractionUnit[]{ MassFractionUnit.Undefined }).ToArray();
+        public static MassFractionUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DecimalFraction.
         /// </summary>
-        public static MassFraction Zero { get; } = new MassFraction(0, BaseUnit);
+        public static MassFraction Zero { get; }
 
         #endregion
 

@@ -56,9 +56,15 @@ namespace UnitsNet
         static VolumeConcentration()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-
+            BaseUnit = VolumeConcentrationUnit.DecimalFraction;
+            MaxValue = new VolumeConcentration(double.MaxValue, BaseUnit);
+            MinValue = new VolumeConcentration(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.VolumeConcentration;
+            Units = Enum.GetValues(typeof(VolumeConcentrationUnit)).Cast<VolumeConcentrationUnit>().Except(new VolumeConcentrationUnit[]{ VolumeConcentrationUnit.Undefined }).ToArray();
+            Zero = new VolumeConcentration(0, BaseUnit);
             Info = new QuantityInfo<VolumeConcentrationUnit>("VolumeConcentration",
-                new UnitInfo<VolumeConcentrationUnit>[] {
+                new UnitInfo<VolumeConcentrationUnit>[]
+                {
                     new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.CentilitersPerLiter, "CentilitersPerLiter", BaseUnits.Undefined),
                     new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.CentilitersPerMililiter, "CentilitersPerMililiter", BaseUnits.Undefined),
                     new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.DecilitersPerLiter, "DecilitersPerLiter", BaseUnits.Undefined),
@@ -130,35 +136,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of VolumeConcentration, which is DecimalFraction. All conversions go via this value.
         /// </summary>
-        public static VolumeConcentrationUnit BaseUnit { get; } = VolumeConcentrationUnit.DecimalFraction;
+        public static VolumeConcentrationUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of VolumeConcentration
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static VolumeConcentration MaxValue { get; } = new VolumeConcentration(double.MaxValue, BaseUnit);
+        public static VolumeConcentration MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of VolumeConcentration
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static VolumeConcentration MinValue { get; } = new VolumeConcentration(double.MinValue, BaseUnit);
+        public static VolumeConcentration MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.VolumeConcentration;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the VolumeConcentration quantity.
         /// </summary>
-        public static VolumeConcentrationUnit[] Units { get; } = Enum.GetValues(typeof(VolumeConcentrationUnit)).Cast<VolumeConcentrationUnit>().Except(new VolumeConcentrationUnit[]{ VolumeConcentrationUnit.Undefined }).ToArray();
+        public static VolumeConcentrationUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DecimalFraction.
         /// </summary>
-        public static VolumeConcentration Zero { get; } = new VolumeConcentration(0, BaseUnit);
+        public static VolumeConcentration Zero { get; }
 
         #endregion
 

@@ -49,6 +49,12 @@ namespace UnitsNet
         static Information()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
+            BaseUnit = InformationUnit.Bit;
+            MaxValue = new Information(decimal.MaxValue, BaseUnit);
+            MinValue = new Information(decimal.MinValue, BaseUnit);
+            QuantityType = QuantityType.Information;
+            Units = Enum.GetValues(typeof(InformationUnit)).Cast<InformationUnit>().Except(new InformationUnit[]{ InformationUnit.Undefined }).ToArray();
+            Zero = new Information(0, BaseUnit);
             Info = new QuantityInfo(QuantityType.Information, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
@@ -95,33 +101,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Information, which is Bit. All conversions go via this value.
         /// </summary>
-        public static InformationUnit BaseUnit { get; } = InformationUnit.Bit;
+        public static InformationUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Information
         /// </summary>
-        public static Information MaxValue { get; } = new Information(decimal.MaxValue, BaseUnit);
+        public static Information MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Information
         /// </summary>
-        public static Information MinValue { get; } = new Information(decimal.MinValue, BaseUnit);
+        public static Information MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Information;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Information quantity.
         /// </summary>
-        public static InformationUnit[] Units { get; } = Enum.GetValues(typeof(InformationUnit)).Cast<InformationUnit>().Except(new InformationUnit[]{ InformationUnit.Undefined }).ToArray();
+        public static InformationUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Bit.
         /// </summary>
-        public static Information Zero { get; } = new Information(0, BaseUnit);
+        public static Information Zero { get; }
 
         #endregion
 

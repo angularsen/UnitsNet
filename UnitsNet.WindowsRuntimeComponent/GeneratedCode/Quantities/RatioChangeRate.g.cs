@@ -49,6 +49,12 @@ namespace UnitsNet
         static RatioChangeRate()
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
+            BaseUnit = RatioChangeRateUnit.DecimalFractionPerSecond;
+            MaxValue = new RatioChangeRate(double.MaxValue, BaseUnit);
+            MinValue = new RatioChangeRate(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.RatioChangeRate;
+            Units = Enum.GetValues(typeof(RatioChangeRateUnit)).Cast<RatioChangeRateUnit>().Except(new RatioChangeRateUnit[]{ RatioChangeRateUnit.Undefined }).ToArray();
+            Zero = new RatioChangeRate(0, BaseUnit);
             Info = new QuantityInfo(QuantityType.RatioChangeRate, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
@@ -95,33 +101,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of RatioChangeRate, which is DecimalFractionPerSecond. All conversions go via this value.
         /// </summary>
-        public static RatioChangeRateUnit BaseUnit { get; } = RatioChangeRateUnit.DecimalFractionPerSecond;
+        public static RatioChangeRateUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of RatioChangeRate
         /// </summary>
-        public static RatioChangeRate MaxValue { get; } = new RatioChangeRate(double.MaxValue, BaseUnit);
+        public static RatioChangeRate MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of RatioChangeRate
         /// </summary>
-        public static RatioChangeRate MinValue { get; } = new RatioChangeRate(double.MinValue, BaseUnit);
+        public static RatioChangeRate MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.RatioChangeRate;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the RatioChangeRate quantity.
         /// </summary>
-        public static RatioChangeRateUnit[] Units { get; } = Enum.GetValues(typeof(RatioChangeRateUnit)).Cast<RatioChangeRateUnit>().Except(new RatioChangeRateUnit[]{ RatioChangeRateUnit.Undefined }).ToArray();
+        public static RatioChangeRateUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DecimalFractionPerSecond.
         /// </summary>
-        public static RatioChangeRate Zero { get; } = new RatioChangeRate(0, BaseUnit);
+        public static RatioChangeRate Zero { get; }
 
         #endregion
 

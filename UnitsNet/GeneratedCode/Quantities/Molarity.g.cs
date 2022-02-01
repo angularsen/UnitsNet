@@ -56,9 +56,15 @@ namespace UnitsNet
         static Molarity()
         {
             BaseDimensions = new BaseDimensions(-3, 0, 0, 0, 0, 1, 0);
-
+            BaseUnit = MolarityUnit.MolesPerCubicMeter;
+            MaxValue = new Molarity(double.MaxValue, BaseUnit);
+            MinValue = new Molarity(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Molarity;
+            Units = Enum.GetValues(typeof(MolarityUnit)).Cast<MolarityUnit>().Except(new MolarityUnit[]{ MolarityUnit.Undefined }).ToArray();
+            Zero = new Molarity(0, BaseUnit);
             Info = new QuantityInfo<MolarityUnit>("Molarity",
-                new UnitInfo<MolarityUnit>[] {
+                new UnitInfo<MolarityUnit>[]
+                {
                     new UnitInfo<MolarityUnit>(MolarityUnit.CentimolesPerLiter, "CentimolesPerLiter", BaseUnits.Undefined),
                     new UnitInfo<MolarityUnit>(MolarityUnit.DecimolesPerLiter, "DecimolesPerLiter", BaseUnits.Undefined),
                     new UnitInfo<MolarityUnit>(MolarityUnit.MicromolesPerLiter, "MicromolesPerLiter", BaseUnits.Undefined),
@@ -118,35 +124,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Molarity, which is MolesPerCubicMeter. All conversions go via this value.
         /// </summary>
-        public static MolarityUnit BaseUnit { get; } = MolarityUnit.MolesPerCubicMeter;
+        public static MolarityUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Molarity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Molarity MaxValue { get; } = new Molarity(double.MaxValue, BaseUnit);
+        public static Molarity MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Molarity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Molarity MinValue { get; } = new Molarity(double.MinValue, BaseUnit);
+        public static Molarity MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Molarity;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Molarity quantity.
         /// </summary>
-        public static MolarityUnit[] Units { get; } = Enum.GetValues(typeof(MolarityUnit)).Cast<MolarityUnit>().Except(new MolarityUnit[]{ MolarityUnit.Undefined }).ToArray();
+        public static MolarityUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit MolesPerCubicMeter.
         /// </summary>
-        public static Molarity Zero { get; } = new Molarity(0, BaseUnit);
+        public static Molarity Zero { get; }
 
         #endregion
 

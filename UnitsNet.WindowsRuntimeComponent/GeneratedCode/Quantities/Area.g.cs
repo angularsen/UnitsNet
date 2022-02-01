@@ -49,6 +49,12 @@ namespace UnitsNet
         static Area()
         {
             BaseDimensions = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
+            BaseUnit = AreaUnit.SquareMeter;
+            MaxValue = new Area(double.MaxValue, BaseUnit);
+            MinValue = new Area(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Area;
+            Units = Enum.GetValues(typeof(AreaUnit)).Cast<AreaUnit>().Except(new AreaUnit[]{ AreaUnit.Undefined }).ToArray();
+            Zero = new Area(0, BaseUnit);
             Info = new QuantityInfo(QuantityType.Area, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
@@ -95,33 +101,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Area, which is SquareMeter. All conversions go via this value.
         /// </summary>
-        public static AreaUnit BaseUnit { get; } = AreaUnit.SquareMeter;
+        public static AreaUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Area
         /// </summary>
-        public static Area MaxValue { get; } = new Area(double.MaxValue, BaseUnit);
+        public static Area MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Area
         /// </summary>
-        public static Area MinValue { get; } = new Area(double.MinValue, BaseUnit);
+        public static Area MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Area;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Area quantity.
         /// </summary>
-        public static AreaUnit[] Units { get; } = Enum.GetValues(typeof(AreaUnit)).Cast<AreaUnit>().Except(new AreaUnit[]{ AreaUnit.Undefined }).ToArray();
+        public static AreaUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit SquareMeter.
         /// </summary>
-        public static Area Zero { get; } = new Area(0, BaseUnit);
+        public static Area Zero { get; }
 
         #endregion
 

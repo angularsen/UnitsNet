@@ -53,9 +53,15 @@ namespace UnitsNet
         static ThermalResistance()
         {
             BaseDimensions = new BaseDimensions(0, -1, 3, 0, 1, 0, 0);
-
+            BaseUnit = ThermalResistanceUnit.SquareMeterKelvinPerKilowatt;
+            MaxValue = new ThermalResistance(double.MaxValue, BaseUnit);
+            MinValue = new ThermalResistance(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.ThermalResistance;
+            Units = Enum.GetValues(typeof(ThermalResistanceUnit)).Cast<ThermalResistanceUnit>().Except(new ThermalResistanceUnit[]{ ThermalResistanceUnit.Undefined }).ToArray();
+            Zero = new ThermalResistance(0, BaseUnit);
             Info = new QuantityInfo<ThermalResistanceUnit>("ThermalResistance",
-                new UnitInfo<ThermalResistanceUnit>[] {
+                new UnitInfo<ThermalResistanceUnit>[]
+                {
                     new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, "HourSquareFeetDegreesFahrenheitPerBtu", BaseUnits.Undefined),
                     new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, "SquareCentimeterHourDegreesCelsiusPerKilocalorie", BaseUnits.Undefined),
                     new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt, "SquareCentimeterKelvinsPerWatt", BaseUnits.Undefined),
@@ -113,35 +119,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ThermalResistance, which is SquareMeterKelvinPerKilowatt. All conversions go via this value.
         /// </summary>
-        public static ThermalResistanceUnit BaseUnit { get; } = ThermalResistanceUnit.SquareMeterKelvinPerKilowatt;
+        public static ThermalResistanceUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of ThermalResistance
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ThermalResistance MaxValue { get; } = new ThermalResistance(double.MaxValue, BaseUnit);
+        public static ThermalResistance MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of ThermalResistance
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ThermalResistance MinValue { get; } = new ThermalResistance(double.MinValue, BaseUnit);
+        public static ThermalResistance MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ThermalResistance;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the ThermalResistance quantity.
         /// </summary>
-        public static ThermalResistanceUnit[] Units { get; } = Enum.GetValues(typeof(ThermalResistanceUnit)).Cast<ThermalResistanceUnit>().Except(new ThermalResistanceUnit[]{ ThermalResistanceUnit.Undefined }).ToArray();
+        public static ThermalResistanceUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit SquareMeterKelvinPerKilowatt.
         /// </summary>
-        public static ThermalResistance Zero { get; } = new ThermalResistance(0, BaseUnit);
+        public static ThermalResistance Zero { get; }
 
         #endregion
 

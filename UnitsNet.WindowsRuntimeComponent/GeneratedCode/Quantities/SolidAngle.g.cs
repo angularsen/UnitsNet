@@ -52,6 +52,12 @@ namespace UnitsNet
         static SolidAngle()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
+            BaseUnit = SolidAngleUnit.Steradian;
+            MaxValue = new SolidAngle(double.MaxValue, BaseUnit);
+            MinValue = new SolidAngle(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.SolidAngle;
+            Units = Enum.GetValues(typeof(SolidAngleUnit)).Cast<SolidAngleUnit>().Except(new SolidAngleUnit[]{ SolidAngleUnit.Undefined }).ToArray();
+            Zero = new SolidAngle(0, BaseUnit);
             Info = new QuantityInfo(QuantityType.SolidAngle, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
@@ -98,33 +104,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of SolidAngle, which is Steradian. All conversions go via this value.
         /// </summary>
-        public static SolidAngleUnit BaseUnit { get; } = SolidAngleUnit.Steradian;
+        public static SolidAngleUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of SolidAngle
         /// </summary>
-        public static SolidAngle MaxValue { get; } = new SolidAngle(double.MaxValue, BaseUnit);
+        public static SolidAngle MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of SolidAngle
         /// </summary>
-        public static SolidAngle MinValue { get; } = new SolidAngle(double.MinValue, BaseUnit);
+        public static SolidAngle MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.SolidAngle;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the SolidAngle quantity.
         /// </summary>
-        public static SolidAngleUnit[] Units { get; } = Enum.GetValues(typeof(SolidAngleUnit)).Cast<SolidAngleUnit>().Except(new SolidAngleUnit[]{ SolidAngleUnit.Undefined }).ToArray();
+        public static SolidAngleUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Steradian.
         /// </summary>
-        public static SolidAngle Zero { get; } = new SolidAngle(0, BaseUnit);
+        public static SolidAngle Zero { get; }
 
         #endregion
 

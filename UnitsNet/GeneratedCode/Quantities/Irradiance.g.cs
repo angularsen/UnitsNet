@@ -53,9 +53,15 @@ namespace UnitsNet
         static Irradiance()
         {
             BaseDimensions = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
-
+            BaseUnit = IrradianceUnit.WattPerSquareMeter;
+            MaxValue = new Irradiance(double.MaxValue, BaseUnit);
+            MinValue = new Irradiance(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Irradiance;
+            Units = Enum.GetValues(typeof(IrradianceUnit)).Cast<IrradianceUnit>().Except(new IrradianceUnit[]{ IrradianceUnit.Undefined }).ToArray();
+            Zero = new Irradiance(0, BaseUnit);
             Info = new QuantityInfo<IrradianceUnit>("Irradiance",
-                new UnitInfo<IrradianceUnit>[] {
+                new UnitInfo<IrradianceUnit>[]
+                {
                     new UnitInfo<IrradianceUnit>(IrradianceUnit.KilowattPerSquareCentimeter, "KilowattsPerSquareCentimeter", BaseUnits.Undefined),
                     new UnitInfo<IrradianceUnit>(IrradianceUnit.KilowattPerSquareMeter, "KilowattsPerSquareMeter", BaseUnits.Undefined),
                     new UnitInfo<IrradianceUnit>(IrradianceUnit.MegawattPerSquareCentimeter, "MegawattsPerSquareCentimeter", BaseUnits.Undefined),
@@ -121,35 +127,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Irradiance, which is WattPerSquareMeter. All conversions go via this value.
         /// </summary>
-        public static IrradianceUnit BaseUnit { get; } = IrradianceUnit.WattPerSquareMeter;
+        public static IrradianceUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Irradiance
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Irradiance MaxValue { get; } = new Irradiance(double.MaxValue, BaseUnit);
+        public static Irradiance MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Irradiance
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Irradiance MinValue { get; } = new Irradiance(double.MinValue, BaseUnit);
+        public static Irradiance MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Irradiance;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Irradiance quantity.
         /// </summary>
-        public static IrradianceUnit[] Units { get; } = Enum.GetValues(typeof(IrradianceUnit)).Cast<IrradianceUnit>().Except(new IrradianceUnit[]{ IrradianceUnit.Undefined }).ToArray();
+        public static IrradianceUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit WattPerSquareMeter.
         /// </summary>
-        public static Irradiance Zero { get; } = new Irradiance(0, BaseUnit);
+        public static Irradiance Zero { get; }
 
         #endregion
 

@@ -56,9 +56,15 @@ namespace UnitsNet
         static SpecificFuelConsumption()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-
+            BaseUnit = SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond;
+            MaxValue = new SpecificFuelConsumption(double.MaxValue, BaseUnit);
+            MinValue = new SpecificFuelConsumption(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.SpecificFuelConsumption;
+            Units = Enum.GetValues(typeof(SpecificFuelConsumptionUnit)).Cast<SpecificFuelConsumptionUnit>().Except(new SpecificFuelConsumptionUnit[]{ SpecificFuelConsumptionUnit.Undefined }).ToArray();
+            Zero = new SpecificFuelConsumption(0, BaseUnit);
             Info = new QuantityInfo<SpecificFuelConsumptionUnit>("SpecificFuelConsumption",
-                new UnitInfo<SpecificFuelConsumptionUnit>[] {
+                new UnitInfo<SpecificFuelConsumptionUnit>[]
+                {
                     new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, "GramsPerKiloNewtonSecond", BaseUnits.Undefined),
                     new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, "KilogramsPerKilogramForceHour", BaseUnits.Undefined),
                     new UnitInfo<SpecificFuelConsumptionUnit>(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, "KilogramsPerKiloNewtonSecond", BaseUnits.Undefined),
@@ -114,35 +120,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of SpecificFuelConsumption, which is GramPerKiloNewtonSecond. All conversions go via this value.
         /// </summary>
-        public static SpecificFuelConsumptionUnit BaseUnit { get; } = SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond;
+        public static SpecificFuelConsumptionUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of SpecificFuelConsumption
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static SpecificFuelConsumption MaxValue { get; } = new SpecificFuelConsumption(double.MaxValue, BaseUnit);
+        public static SpecificFuelConsumption MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of SpecificFuelConsumption
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static SpecificFuelConsumption MinValue { get; } = new SpecificFuelConsumption(double.MinValue, BaseUnit);
+        public static SpecificFuelConsumption MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.SpecificFuelConsumption;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the SpecificFuelConsumption quantity.
         /// </summary>
-        public static SpecificFuelConsumptionUnit[] Units { get; } = Enum.GetValues(typeof(SpecificFuelConsumptionUnit)).Cast<SpecificFuelConsumptionUnit>().Except(new SpecificFuelConsumptionUnit[]{ SpecificFuelConsumptionUnit.Undefined }).ToArray();
+        public static SpecificFuelConsumptionUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit GramPerKiloNewtonSecond.
         /// </summary>
-        public static SpecificFuelConsumption Zero { get; } = new SpecificFuelConsumption(0, BaseUnit);
+        public static SpecificFuelConsumption Zero { get; }
 
         #endregion
 

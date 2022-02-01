@@ -49,6 +49,12 @@ namespace UnitsNet
         static ElectricPotential()
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, -1, 0, 0, 0);
+            BaseUnit = ElectricPotentialUnit.Volt;
+            MaxValue = new ElectricPotential(double.MaxValue, BaseUnit);
+            MinValue = new ElectricPotential(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.ElectricPotential;
+            Units = Enum.GetValues(typeof(ElectricPotentialUnit)).Cast<ElectricPotentialUnit>().Except(new ElectricPotentialUnit[]{ ElectricPotentialUnit.Undefined }).ToArray();
+            Zero = new ElectricPotential(0, BaseUnit);
             Info = new QuantityInfo(QuantityType.ElectricPotential, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
@@ -95,33 +101,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricPotential, which is Volt. All conversions go via this value.
         /// </summary>
-        public static ElectricPotentialUnit BaseUnit { get; } = ElectricPotentialUnit.Volt;
+        public static ElectricPotentialUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of ElectricPotential
         /// </summary>
-        public static ElectricPotential MaxValue { get; } = new ElectricPotential(double.MaxValue, BaseUnit);
+        public static ElectricPotential MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of ElectricPotential
         /// </summary>
-        public static ElectricPotential MinValue { get; } = new ElectricPotential(double.MinValue, BaseUnit);
+        public static ElectricPotential MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricPotential;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the ElectricPotential quantity.
         /// </summary>
-        public static ElectricPotentialUnit[] Units { get; } = Enum.GetValues(typeof(ElectricPotentialUnit)).Cast<ElectricPotentialUnit>().Except(new ElectricPotentialUnit[]{ ElectricPotentialUnit.Undefined }).ToArray();
+        public static ElectricPotentialUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Volt.
         /// </summary>
-        public static ElectricPotential Zero { get; } = new ElectricPotential(0, BaseUnit);
+        public static ElectricPotential Zero { get; }
 
         #endregion
 

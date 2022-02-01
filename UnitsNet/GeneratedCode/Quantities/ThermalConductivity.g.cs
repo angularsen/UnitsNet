@@ -56,9 +56,15 @@ namespace UnitsNet
         static ThermalConductivity()
         {
             BaseDimensions = new BaseDimensions(1, 1, -3, 0, -1, 0, 0);
-
+            BaseUnit = ThermalConductivityUnit.WattPerMeterKelvin;
+            MaxValue = new ThermalConductivity(double.MaxValue, BaseUnit);
+            MinValue = new ThermalConductivity(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.ThermalConductivity;
+            Units = Enum.GetValues(typeof(ThermalConductivityUnit)).Cast<ThermalConductivityUnit>().Except(new ThermalConductivityUnit[]{ ThermalConductivityUnit.Undefined }).ToArray();
+            Zero = new ThermalConductivity(0, BaseUnit);
             Info = new QuantityInfo<ThermalConductivityUnit>("ThermalConductivity",
-                new UnitInfo<ThermalConductivityUnit>[] {
+                new UnitInfo<ThermalConductivityUnit>[]
+                {
                     new UnitInfo<ThermalConductivityUnit>(ThermalConductivityUnit.BtuPerHourFootFahrenheit, "BtusPerHourFootFahrenheit", BaseUnits.Undefined),
                     new UnitInfo<ThermalConductivityUnit>(ThermalConductivityUnit.WattPerMeterKelvin, "WattsPerMeterKelvin", BaseUnits.Undefined),
                 },
@@ -112,35 +118,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ThermalConductivity, which is WattPerMeterKelvin. All conversions go via this value.
         /// </summary>
-        public static ThermalConductivityUnit BaseUnit { get; } = ThermalConductivityUnit.WattPerMeterKelvin;
+        public static ThermalConductivityUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of ThermalConductivity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ThermalConductivity MaxValue { get; } = new ThermalConductivity(double.MaxValue, BaseUnit);
+        public static ThermalConductivity MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of ThermalConductivity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ThermalConductivity MinValue { get; } = new ThermalConductivity(double.MinValue, BaseUnit);
+        public static ThermalConductivity MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ThermalConductivity;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the ThermalConductivity quantity.
         /// </summary>
-        public static ThermalConductivityUnit[] Units { get; } = Enum.GetValues(typeof(ThermalConductivityUnit)).Cast<ThermalConductivityUnit>().Except(new ThermalConductivityUnit[]{ ThermalConductivityUnit.Undefined }).ToArray();
+        public static ThermalConductivityUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit WattPerMeterKelvin.
         /// </summary>
-        public static ThermalConductivity Zero { get; } = new ThermalConductivity(0, BaseUnit);
+        public static ThermalConductivity Zero { get; }
 
         #endregion
 

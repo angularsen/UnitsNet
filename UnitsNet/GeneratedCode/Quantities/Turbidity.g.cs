@@ -56,9 +56,15 @@ namespace UnitsNet
         static Turbidity()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-
+            BaseUnit = TurbidityUnit.NTU;
+            MaxValue = new Turbidity(double.MaxValue, BaseUnit);
+            MinValue = new Turbidity(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Turbidity;
+            Units = Enum.GetValues(typeof(TurbidityUnit)).Cast<TurbidityUnit>().Except(new TurbidityUnit[]{ TurbidityUnit.Undefined }).ToArray();
+            Zero = new Turbidity(0, BaseUnit);
             Info = new QuantityInfo<TurbidityUnit>("Turbidity",
-                new UnitInfo<TurbidityUnit>[] {
+                new UnitInfo<TurbidityUnit>[]
+                {
                     new UnitInfo<TurbidityUnit>(TurbidityUnit.NTU, "NTU", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Turbidity);
@@ -111,35 +117,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Turbidity, which is NTU. All conversions go via this value.
         /// </summary>
-        public static TurbidityUnit BaseUnit { get; } = TurbidityUnit.NTU;
+        public static TurbidityUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Turbidity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Turbidity MaxValue { get; } = new Turbidity(double.MaxValue, BaseUnit);
+        public static Turbidity MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Turbidity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Turbidity MinValue { get; } = new Turbidity(double.MinValue, BaseUnit);
+        public static Turbidity MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Turbidity;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Turbidity quantity.
         /// </summary>
-        public static TurbidityUnit[] Units { get; } = Enum.GetValues(typeof(TurbidityUnit)).Cast<TurbidityUnit>().Except(new TurbidityUnit[]{ TurbidityUnit.Undefined }).ToArray();
+        public static TurbidityUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NTU.
         /// </summary>
-        public static Turbidity Zero { get; } = new Turbidity(0, BaseUnit);
+        public static Turbidity Zero { get; }
 
         #endregion
 
