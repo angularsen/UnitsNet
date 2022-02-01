@@ -49,7 +49,13 @@ namespace UnitsNet
         static VolumeFlowPerArea()
         {
             BaseDimensions = new BaseDimensions(1, 0, -1, 0, 0, 0, 0);
-            Info = new QuantityInfo(QuantityType.VolumeFlowPerArea, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            BaseUnit = VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter;
+            MaxValue = new VolumeFlowPerArea(double.MaxValue, BaseUnit);
+            MinValue = new VolumeFlowPerArea(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.VolumeFlowPerArea;
+            Units = Enum.GetValues(typeof(VolumeFlowPerAreaUnit)).Cast<VolumeFlowPerAreaUnit>().Except(new VolumeFlowPerAreaUnit[]{ VolumeFlowPerAreaUnit.Undefined }).ToArray();
+            Zero = new VolumeFlowPerArea(0, BaseUnit);
+                Info = new QuantityInfo(QuantityType.VolumeFlowPerArea, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -95,33 +101,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of VolumeFlowPerArea, which is CubicMeterPerSecondPerSquareMeter. All conversions go via this value.
         /// </summary>
-        public static VolumeFlowPerAreaUnit BaseUnit { get; } = VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter;
+        public static VolumeFlowPerAreaUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of VolumeFlowPerArea
         /// </summary>
-        public static VolumeFlowPerArea MaxValue { get; } = new VolumeFlowPerArea(double.MaxValue, BaseUnit);
+        public static VolumeFlowPerArea MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of VolumeFlowPerArea
         /// </summary>
-        public static VolumeFlowPerArea MinValue { get; } = new VolumeFlowPerArea(double.MinValue, BaseUnit);
+        public static VolumeFlowPerArea MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.VolumeFlowPerArea;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the VolumeFlowPerArea quantity.
         /// </summary>
-        public static VolumeFlowPerAreaUnit[] Units { get; } = Enum.GetValues(typeof(VolumeFlowPerAreaUnit)).Cast<VolumeFlowPerAreaUnit>().Except(new VolumeFlowPerAreaUnit[]{ VolumeFlowPerAreaUnit.Undefined }).ToArray();
+        public static VolumeFlowPerAreaUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit CubicMeterPerSecondPerSquareMeter.
         /// </summary>
-        public static VolumeFlowPerArea Zero { get; } = new VolumeFlowPerArea(0, BaseUnit);
+        public static VolumeFlowPerArea Zero { get; }
 
         #endregion
 

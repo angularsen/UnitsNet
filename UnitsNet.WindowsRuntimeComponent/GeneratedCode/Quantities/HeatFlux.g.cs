@@ -49,7 +49,13 @@ namespace UnitsNet
         static HeatFlux()
         {
             BaseDimensions = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
-            Info = new QuantityInfo(QuantityType.HeatFlux, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            BaseUnit = HeatFluxUnit.WattPerSquareMeter;
+            MaxValue = new HeatFlux(double.MaxValue, BaseUnit);
+            MinValue = new HeatFlux(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.HeatFlux;
+            Units = Enum.GetValues(typeof(HeatFluxUnit)).Cast<HeatFluxUnit>().Except(new HeatFluxUnit[]{ HeatFluxUnit.Undefined }).ToArray();
+            Zero = new HeatFlux(0, BaseUnit);
+                Info = new QuantityInfo(QuantityType.HeatFlux, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -95,33 +101,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of HeatFlux, which is WattPerSquareMeter. All conversions go via this value.
         /// </summary>
-        public static HeatFluxUnit BaseUnit { get; } = HeatFluxUnit.WattPerSquareMeter;
+        public static HeatFluxUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of HeatFlux
         /// </summary>
-        public static HeatFlux MaxValue { get; } = new HeatFlux(double.MaxValue, BaseUnit);
+        public static HeatFlux MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of HeatFlux
         /// </summary>
-        public static HeatFlux MinValue { get; } = new HeatFlux(double.MinValue, BaseUnit);
+        public static HeatFlux MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.HeatFlux;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the HeatFlux quantity.
         /// </summary>
-        public static HeatFluxUnit[] Units { get; } = Enum.GetValues(typeof(HeatFluxUnit)).Cast<HeatFluxUnit>().Except(new HeatFluxUnit[]{ HeatFluxUnit.Undefined }).ToArray();
+        public static HeatFluxUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit WattPerSquareMeter.
         /// </summary>
-        public static HeatFlux Zero { get; } = new HeatFlux(0, BaseUnit);
+        public static HeatFlux Zero { get; }
 
         #endregion
 

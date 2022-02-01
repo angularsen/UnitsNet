@@ -49,7 +49,13 @@ namespace UnitsNet
         static Duration()
         {
             BaseDimensions = new BaseDimensions(0, 0, 1, 0, 0, 0, 0);
-            Info = new QuantityInfo(QuantityType.Duration, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            BaseUnit = DurationUnit.Second;
+            MaxValue = new Duration(double.MaxValue, BaseUnit);
+            MinValue = new Duration(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Duration;
+            Units = Enum.GetValues(typeof(DurationUnit)).Cast<DurationUnit>().Except(new DurationUnit[]{ DurationUnit.Undefined }).ToArray();
+            Zero = new Duration(0, BaseUnit);
+                Info = new QuantityInfo(QuantityType.Duration, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -95,33 +101,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static DurationUnit BaseUnit { get; } = DurationUnit.Second;
+        public static DurationUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static Duration MaxValue { get; } = new Duration(double.MaxValue, BaseUnit);
+        public static Duration MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static Duration MinValue { get; } = new Duration(double.MinValue, BaseUnit);
+        public static Duration MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Duration;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Duration quantity.
         /// </summary>
-        public static DurationUnit[] Units { get; } = Enum.GetValues(typeof(DurationUnit)).Cast<DurationUnit>().Except(new DurationUnit[]{ DurationUnit.Undefined }).ToArray();
+        public static DurationUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static Duration Zero { get; } = new Duration(0, BaseUnit);
+        public static Duration Zero { get; }
 
         #endregion
 

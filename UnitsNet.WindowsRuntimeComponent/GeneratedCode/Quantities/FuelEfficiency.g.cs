@@ -52,7 +52,13 @@ namespace UnitsNet
         static FuelEfficiency()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-            Info = new QuantityInfo(QuantityType.FuelEfficiency, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            BaseUnit = FuelEfficiencyUnit.LiterPer100Kilometers;
+            MaxValue = new FuelEfficiency(double.MaxValue, BaseUnit);
+            MinValue = new FuelEfficiency(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.FuelEfficiency;
+            Units = Enum.GetValues(typeof(FuelEfficiencyUnit)).Cast<FuelEfficiencyUnit>().Except(new FuelEfficiencyUnit[]{ FuelEfficiencyUnit.Undefined }).ToArray();
+            Zero = new FuelEfficiency(0, BaseUnit);
+                Info = new QuantityInfo(QuantityType.FuelEfficiency, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -98,33 +104,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of FuelEfficiency, which is LiterPer100Kilometers. All conversions go via this value.
         /// </summary>
-        public static FuelEfficiencyUnit BaseUnit { get; } = FuelEfficiencyUnit.LiterPer100Kilometers;
+        public static FuelEfficiencyUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of FuelEfficiency
         /// </summary>
-        public static FuelEfficiency MaxValue { get; } = new FuelEfficiency(double.MaxValue, BaseUnit);
+        public static FuelEfficiency MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of FuelEfficiency
         /// </summary>
-        public static FuelEfficiency MinValue { get; } = new FuelEfficiency(double.MinValue, BaseUnit);
+        public static FuelEfficiency MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.FuelEfficiency;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the FuelEfficiency quantity.
         /// </summary>
-        public static FuelEfficiencyUnit[] Units { get; } = Enum.GetValues(typeof(FuelEfficiencyUnit)).Cast<FuelEfficiencyUnit>().Except(new FuelEfficiencyUnit[]{ FuelEfficiencyUnit.Undefined }).ToArray();
+        public static FuelEfficiencyUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit LiterPer100Kilometers.
         /// </summary>
-        public static FuelEfficiency Zero { get; } = new FuelEfficiency(0, BaseUnit);
+        public static FuelEfficiency Zero { get; }
 
         #endregion
 

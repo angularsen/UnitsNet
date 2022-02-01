@@ -52,7 +52,13 @@ namespace UnitsNet
         static VolumeConcentration()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-            Info = new QuantityInfo(QuantityType.VolumeConcentration, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            BaseUnit = VolumeConcentrationUnit.DecimalFraction;
+            MaxValue = new VolumeConcentration(double.MaxValue, BaseUnit);
+            MinValue = new VolumeConcentration(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.VolumeConcentration;
+            Units = Enum.GetValues(typeof(VolumeConcentrationUnit)).Cast<VolumeConcentrationUnit>().Except(new VolumeConcentrationUnit[]{ VolumeConcentrationUnit.Undefined }).ToArray();
+            Zero = new VolumeConcentration(0, BaseUnit);
+                Info = new QuantityInfo(QuantityType.VolumeConcentration, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -98,33 +104,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of VolumeConcentration, which is DecimalFraction. All conversions go via this value.
         /// </summary>
-        public static VolumeConcentrationUnit BaseUnit { get; } = VolumeConcentrationUnit.DecimalFraction;
+        public static VolumeConcentrationUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of VolumeConcentration
         /// </summary>
-        public static VolumeConcentration MaxValue { get; } = new VolumeConcentration(double.MaxValue, BaseUnit);
+        public static VolumeConcentration MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of VolumeConcentration
         /// </summary>
-        public static VolumeConcentration MinValue { get; } = new VolumeConcentration(double.MinValue, BaseUnit);
+        public static VolumeConcentration MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.VolumeConcentration;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the VolumeConcentration quantity.
         /// </summary>
-        public static VolumeConcentrationUnit[] Units { get; } = Enum.GetValues(typeof(VolumeConcentrationUnit)).Cast<VolumeConcentrationUnit>().Except(new VolumeConcentrationUnit[]{ VolumeConcentrationUnit.Undefined }).ToArray();
+        public static VolumeConcentrationUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DecimalFraction.
         /// </summary>
-        public static VolumeConcentration Zero { get; } = new VolumeConcentration(0, BaseUnit);
+        public static VolumeConcentration Zero { get; }
 
         #endregion
 

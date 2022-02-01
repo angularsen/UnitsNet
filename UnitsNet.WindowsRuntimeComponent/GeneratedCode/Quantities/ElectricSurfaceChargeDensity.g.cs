@@ -52,7 +52,13 @@ namespace UnitsNet
         static ElectricSurfaceChargeDensity()
         {
             BaseDimensions = new BaseDimensions(-2, 0, 1, 1, 0, 0, 0);
-            Info = new QuantityInfo(QuantityType.ElectricSurfaceChargeDensity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            BaseUnit = ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter;
+            MaxValue = new ElectricSurfaceChargeDensity(double.MaxValue, BaseUnit);
+            MinValue = new ElectricSurfaceChargeDensity(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.ElectricSurfaceChargeDensity;
+            Units = Enum.GetValues(typeof(ElectricSurfaceChargeDensityUnit)).Cast<ElectricSurfaceChargeDensityUnit>().Except(new ElectricSurfaceChargeDensityUnit[]{ ElectricSurfaceChargeDensityUnit.Undefined }).ToArray();
+            Zero = new ElectricSurfaceChargeDensity(0, BaseUnit);
+                Info = new QuantityInfo(QuantityType.ElectricSurfaceChargeDensity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -98,33 +104,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricSurfaceChargeDensity, which is CoulombPerSquareMeter. All conversions go via this value.
         /// </summary>
-        public static ElectricSurfaceChargeDensityUnit BaseUnit { get; } = ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter;
+        public static ElectricSurfaceChargeDensityUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of ElectricSurfaceChargeDensity
         /// </summary>
-        public static ElectricSurfaceChargeDensity MaxValue { get; } = new ElectricSurfaceChargeDensity(double.MaxValue, BaseUnit);
+        public static ElectricSurfaceChargeDensity MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of ElectricSurfaceChargeDensity
         /// </summary>
-        public static ElectricSurfaceChargeDensity MinValue { get; } = new ElectricSurfaceChargeDensity(double.MinValue, BaseUnit);
+        public static ElectricSurfaceChargeDensity MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricSurfaceChargeDensity;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the ElectricSurfaceChargeDensity quantity.
         /// </summary>
-        public static ElectricSurfaceChargeDensityUnit[] Units { get; } = Enum.GetValues(typeof(ElectricSurfaceChargeDensityUnit)).Cast<ElectricSurfaceChargeDensityUnit>().Except(new ElectricSurfaceChargeDensityUnit[]{ ElectricSurfaceChargeDensityUnit.Undefined }).ToArray();
+        public static ElectricSurfaceChargeDensityUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit CoulombPerSquareMeter.
         /// </summary>
-        public static ElectricSurfaceChargeDensity Zero { get; } = new ElectricSurfaceChargeDensity(0, BaseUnit);
+        public static ElectricSurfaceChargeDensity Zero { get; }
 
         #endregion
 

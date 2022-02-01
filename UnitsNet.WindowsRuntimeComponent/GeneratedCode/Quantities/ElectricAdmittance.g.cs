@@ -49,7 +49,13 @@ namespace UnitsNet
         static ElectricAdmittance()
         {
             BaseDimensions = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
-            Info = new QuantityInfo(QuantityType.ElectricAdmittance, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            BaseUnit = ElectricAdmittanceUnit.Siemens;
+            MaxValue = new ElectricAdmittance(double.MaxValue, BaseUnit);
+            MinValue = new ElectricAdmittance(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.ElectricAdmittance;
+            Units = Enum.GetValues(typeof(ElectricAdmittanceUnit)).Cast<ElectricAdmittanceUnit>().Except(new ElectricAdmittanceUnit[]{ ElectricAdmittanceUnit.Undefined }).ToArray();
+            Zero = new ElectricAdmittance(0, BaseUnit);
+                Info = new QuantityInfo(QuantityType.ElectricAdmittance, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -95,33 +101,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricAdmittance, which is Siemens. All conversions go via this value.
         /// </summary>
-        public static ElectricAdmittanceUnit BaseUnit { get; } = ElectricAdmittanceUnit.Siemens;
+        public static ElectricAdmittanceUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of ElectricAdmittance
         /// </summary>
-        public static ElectricAdmittance MaxValue { get; } = new ElectricAdmittance(double.MaxValue, BaseUnit);
+        public static ElectricAdmittance MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of ElectricAdmittance
         /// </summary>
-        public static ElectricAdmittance MinValue { get; } = new ElectricAdmittance(double.MinValue, BaseUnit);
+        public static ElectricAdmittance MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricAdmittance;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the ElectricAdmittance quantity.
         /// </summary>
-        public static ElectricAdmittanceUnit[] Units { get; } = Enum.GetValues(typeof(ElectricAdmittanceUnit)).Cast<ElectricAdmittanceUnit>().Except(new ElectricAdmittanceUnit[]{ ElectricAdmittanceUnit.Undefined }).ToArray();
+        public static ElectricAdmittanceUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Siemens.
         /// </summary>
-        public static ElectricAdmittance Zero { get; } = new ElectricAdmittance(0, BaseUnit);
+        public static ElectricAdmittance Zero { get; }
 
         #endregion
 

@@ -56,9 +56,15 @@ namespace UnitsNet
         static BitRate()
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
-
+            BaseUnit = BitRateUnit.BitPerSecond;
+            MaxValue = new BitRate(decimal.MaxValue, BaseUnit);
+            MinValue = new BitRate(decimal.MinValue, BaseUnit);
+            QuantityType = QuantityType.BitRate;
+            Units = Enum.GetValues(typeof(BitRateUnit)).Cast<BitRateUnit>().Except(new BitRateUnit[]{ BitRateUnit.Undefined }).ToArray();
+            Zero = new BitRate(0, BaseUnit);
             Info = new QuantityInfo<BitRateUnit>("BitRate",
-                new UnitInfo<BitRateUnit>[] {
+                new UnitInfo<BitRateUnit>[]
+                {
                     new UnitInfo<BitRateUnit>(BitRateUnit.BitPerSecond, "BitsPerSecond", BaseUnits.Undefined),
                     new UnitInfo<BitRateUnit>(BitRateUnit.BytePerSecond, "BytesPerSecond", BaseUnits.Undefined),
                     new UnitInfo<BitRateUnit>(BitRateUnit.ExabitPerSecond, "ExabitsPerSecond", BaseUnits.Undefined),
@@ -136,35 +142,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of BitRate, which is BitPerSecond. All conversions go via this value.
         /// </summary>
-        public static BitRateUnit BaseUnit { get; } = BitRateUnit.BitPerSecond;
+        public static BitRateUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of BitRate
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static BitRate MaxValue { get; } = new BitRate(decimal.MaxValue, BaseUnit);
+        public static BitRate MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of BitRate
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static BitRate MinValue { get; } = new BitRate(decimal.MinValue, BaseUnit);
+        public static BitRate MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.BitRate;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the BitRate quantity.
         /// </summary>
-        public static BitRateUnit[] Units { get; } = Enum.GetValues(typeof(BitRateUnit)).Cast<BitRateUnit>().Except(new BitRateUnit[]{ BitRateUnit.Undefined }).ToArray();
+        public static BitRateUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit BitPerSecond.
         /// </summary>
-        public static BitRate Zero { get; } = new BitRate(0, BaseUnit);
+        public static BitRate Zero { get; }
 
         #endregion
 

@@ -49,7 +49,13 @@ namespace UnitsNet
         static ElectricCurrentGradient()
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 1, 0, 0, 0);
-            Info = new QuantityInfo(QuantityType.ElectricCurrentGradient, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            BaseUnit = ElectricCurrentGradientUnit.AmperePerSecond;
+            MaxValue = new ElectricCurrentGradient(double.MaxValue, BaseUnit);
+            MinValue = new ElectricCurrentGradient(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.ElectricCurrentGradient;
+            Units = Enum.GetValues(typeof(ElectricCurrentGradientUnit)).Cast<ElectricCurrentGradientUnit>().Except(new ElectricCurrentGradientUnit[]{ ElectricCurrentGradientUnit.Undefined }).ToArray();
+            Zero = new ElectricCurrentGradient(0, BaseUnit);
+                Info = new QuantityInfo(QuantityType.ElectricCurrentGradient, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -95,33 +101,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricCurrentGradient, which is AmperePerSecond. All conversions go via this value.
         /// </summary>
-        public static ElectricCurrentGradientUnit BaseUnit { get; } = ElectricCurrentGradientUnit.AmperePerSecond;
+        public static ElectricCurrentGradientUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of ElectricCurrentGradient
         /// </summary>
-        public static ElectricCurrentGradient MaxValue { get; } = new ElectricCurrentGradient(double.MaxValue, BaseUnit);
+        public static ElectricCurrentGradient MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of ElectricCurrentGradient
         /// </summary>
-        public static ElectricCurrentGradient MinValue { get; } = new ElectricCurrentGradient(double.MinValue, BaseUnit);
+        public static ElectricCurrentGradient MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricCurrentGradient;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the ElectricCurrentGradient quantity.
         /// </summary>
-        public static ElectricCurrentGradientUnit[] Units { get; } = Enum.GetValues(typeof(ElectricCurrentGradientUnit)).Cast<ElectricCurrentGradientUnit>().Except(new ElectricCurrentGradientUnit[]{ ElectricCurrentGradientUnit.Undefined }).ToArray();
+        public static ElectricCurrentGradientUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit AmperePerSecond.
         /// </summary>
-        public static ElectricCurrentGradient Zero { get; } = new ElectricCurrentGradient(0, BaseUnit);
+        public static ElectricCurrentGradient Zero { get; }
 
         #endregion
 

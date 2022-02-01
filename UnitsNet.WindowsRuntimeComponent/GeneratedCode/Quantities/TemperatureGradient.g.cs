@@ -49,7 +49,13 @@ namespace UnitsNet
         static TemperatureGradient()
         {
             BaseDimensions = new BaseDimensions(-1, 0, 0, 0, 1, 0, 0);
-            Info = new QuantityInfo(QuantityType.TemperatureGradient, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            BaseUnit = TemperatureGradientUnit.KelvinPerMeter;
+            MaxValue = new TemperatureGradient(double.MaxValue, BaseUnit);
+            MinValue = new TemperatureGradient(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.TemperatureGradient;
+            Units = Enum.GetValues(typeof(TemperatureGradientUnit)).Cast<TemperatureGradientUnit>().Except(new TemperatureGradientUnit[]{ TemperatureGradientUnit.Undefined }).ToArray();
+            Zero = new TemperatureGradient(0, BaseUnit);
+                Info = new QuantityInfo(QuantityType.TemperatureGradient, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -95,33 +101,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of TemperatureGradient, which is KelvinPerMeter. All conversions go via this value.
         /// </summary>
-        public static TemperatureGradientUnit BaseUnit { get; } = TemperatureGradientUnit.KelvinPerMeter;
+        public static TemperatureGradientUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of TemperatureGradient
         /// </summary>
-        public static TemperatureGradient MaxValue { get; } = new TemperatureGradient(double.MaxValue, BaseUnit);
+        public static TemperatureGradient MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of TemperatureGradient
         /// </summary>
-        public static TemperatureGradient MinValue { get; } = new TemperatureGradient(double.MinValue, BaseUnit);
+        public static TemperatureGradient MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.TemperatureGradient;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the TemperatureGradient quantity.
         /// </summary>
-        public static TemperatureGradientUnit[] Units { get; } = Enum.GetValues(typeof(TemperatureGradientUnit)).Cast<TemperatureGradientUnit>().Except(new TemperatureGradientUnit[]{ TemperatureGradientUnit.Undefined }).ToArray();
+        public static TemperatureGradientUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KelvinPerMeter.
         /// </summary>
-        public static TemperatureGradient Zero { get; } = new TemperatureGradient(0, BaseUnit);
+        public static TemperatureGradient Zero { get; }
 
         #endregion
 

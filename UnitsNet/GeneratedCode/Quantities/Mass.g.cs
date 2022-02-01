@@ -53,9 +53,15 @@ namespace UnitsNet
         static Mass()
         {
             BaseDimensions = new BaseDimensions(0, 1, 0, 0, 0, 0, 0);
-
+            BaseUnit = MassUnit.Kilogram;
+            MaxValue = new Mass(double.MaxValue, BaseUnit);
+            MinValue = new Mass(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Mass;
+            Units = Enum.GetValues(typeof(MassUnit)).Cast<MassUnit>().Except(new MassUnit[]{ MassUnit.Undefined }).ToArray();
+            Zero = new Mass(0, BaseUnit);
             Info = new QuantityInfo<MassUnit>("Mass",
-                new UnitInfo<MassUnit>[] {
+                new UnitInfo<MassUnit>[]
+                {
                     new UnitInfo<MassUnit>(MassUnit.Centigram, "Centigrams", BaseUnits.Undefined),
                     new UnitInfo<MassUnit>(MassUnit.Decagram, "Decagrams", BaseUnits.Undefined),
                     new UnitInfo<MassUnit>(MassUnit.Decigram, "Decigrams", BaseUnits.Undefined),
@@ -132,35 +138,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Mass, which is Kilogram. All conversions go via this value.
         /// </summary>
-        public static MassUnit BaseUnit { get; } = MassUnit.Kilogram;
+        public static MassUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Mass
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Mass MaxValue { get; } = new Mass(double.MaxValue, BaseUnit);
+        public static Mass MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Mass
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Mass MinValue { get; } = new Mass(double.MinValue, BaseUnit);
+        public static Mass MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Mass;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Mass quantity.
         /// </summary>
-        public static MassUnit[] Units { get; } = Enum.GetValues(typeof(MassUnit)).Cast<MassUnit>().Except(new MassUnit[]{ MassUnit.Undefined }).ToArray();
+        public static MassUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Kilogram.
         /// </summary>
-        public static Mass Zero { get; } = new Mass(0, BaseUnit);
+        public static Mass Zero { get; }
 
         #endregion
 

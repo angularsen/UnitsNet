@@ -52,7 +52,13 @@ namespace UnitsNet
         static Irradiation()
         {
             BaseDimensions = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
-            Info = new QuantityInfo(QuantityType.Irradiation, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            BaseUnit = IrradiationUnit.JoulePerSquareMeter;
+            MaxValue = new Irradiation(double.MaxValue, BaseUnit);
+            MinValue = new Irradiation(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Irradiation;
+            Units = Enum.GetValues(typeof(IrradiationUnit)).Cast<IrradiationUnit>().Except(new IrradiationUnit[]{ IrradiationUnit.Undefined }).ToArray();
+            Zero = new Irradiation(0, BaseUnit);
+                Info = new QuantityInfo(QuantityType.Irradiation, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -98,33 +104,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Irradiation, which is JoulePerSquareMeter. All conversions go via this value.
         /// </summary>
-        public static IrradiationUnit BaseUnit { get; } = IrradiationUnit.JoulePerSquareMeter;
+        public static IrradiationUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Irradiation
         /// </summary>
-        public static Irradiation MaxValue { get; } = new Irradiation(double.MaxValue, BaseUnit);
+        public static Irradiation MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Irradiation
         /// </summary>
-        public static Irradiation MinValue { get; } = new Irradiation(double.MinValue, BaseUnit);
+        public static Irradiation MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Irradiation;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Irradiation quantity.
         /// </summary>
-        public static IrradiationUnit[] Units { get; } = Enum.GetValues(typeof(IrradiationUnit)).Cast<IrradiationUnit>().Except(new IrradiationUnit[]{ IrradiationUnit.Undefined }).ToArray();
+        public static IrradiationUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit JoulePerSquareMeter.
         /// </summary>
-        public static Irradiation Zero { get; } = new Irradiation(0, BaseUnit);
+        public static Irradiation Zero { get; }
 
         #endregion
 

@@ -56,9 +56,15 @@ namespace UnitsNet
         static ElectricConductivity()
         {
             BaseDimensions = new BaseDimensions(-3, -1, 3, 2, 0, 0, 0);
-
+            BaseUnit = ElectricConductivityUnit.SiemensPerMeter;
+            MaxValue = new ElectricConductivity(double.MaxValue, BaseUnit);
+            MinValue = new ElectricConductivity(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.ElectricConductivity;
+            Units = Enum.GetValues(typeof(ElectricConductivityUnit)).Cast<ElectricConductivityUnit>().Except(new ElectricConductivityUnit[]{ ElectricConductivityUnit.Undefined }).ToArray();
+            Zero = new ElectricConductivity(0, BaseUnit);
             Info = new QuantityInfo<ElectricConductivityUnit>("ElectricConductivity",
-                new UnitInfo<ElectricConductivityUnit>[] {
+                new UnitInfo<ElectricConductivityUnit>[]
+                {
                     new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerFoot, "SiemensPerFoot", BaseUnits.Undefined),
                     new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerInch, "SiemensPerInch", BaseUnits.Undefined),
                     new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerMeter, "SiemensPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
@@ -113,35 +119,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricConductivity, which is SiemensPerMeter. All conversions go via this value.
         /// </summary>
-        public static ElectricConductivityUnit BaseUnit { get; } = ElectricConductivityUnit.SiemensPerMeter;
+        public static ElectricConductivityUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of ElectricConductivity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricConductivity MaxValue { get; } = new ElectricConductivity(double.MaxValue, BaseUnit);
+        public static ElectricConductivity MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of ElectricConductivity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricConductivity MinValue { get; } = new ElectricConductivity(double.MinValue, BaseUnit);
+        public static ElectricConductivity MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricConductivity;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the ElectricConductivity quantity.
         /// </summary>
-        public static ElectricConductivityUnit[] Units { get; } = Enum.GetValues(typeof(ElectricConductivityUnit)).Cast<ElectricConductivityUnit>().Except(new ElectricConductivityUnit[]{ ElectricConductivityUnit.Undefined }).ToArray();
+        public static ElectricConductivityUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit SiemensPerMeter.
         /// </summary>
-        public static ElectricConductivity Zero { get; } = new ElectricConductivity(0, BaseUnit);
+        public static ElectricConductivity Zero { get; }
 
         #endregion
 

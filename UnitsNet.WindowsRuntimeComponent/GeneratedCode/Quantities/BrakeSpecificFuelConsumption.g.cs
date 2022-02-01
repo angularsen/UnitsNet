@@ -49,7 +49,13 @@ namespace UnitsNet
         static BrakeSpecificFuelConsumption()
         {
             BaseDimensions = new BaseDimensions(-2, 0, 2, 0, 0, 0, 0);
-            Info = new QuantityInfo(QuantityType.BrakeSpecificFuelConsumption, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            BaseUnit = BrakeSpecificFuelConsumptionUnit.KilogramPerJoule;
+            MaxValue = new BrakeSpecificFuelConsumption(double.MaxValue, BaseUnit);
+            MinValue = new BrakeSpecificFuelConsumption(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.BrakeSpecificFuelConsumption;
+            Units = Enum.GetValues(typeof(BrakeSpecificFuelConsumptionUnit)).Cast<BrakeSpecificFuelConsumptionUnit>().Except(new BrakeSpecificFuelConsumptionUnit[]{ BrakeSpecificFuelConsumptionUnit.Undefined }).ToArray();
+            Zero = new BrakeSpecificFuelConsumption(0, BaseUnit);
+                Info = new QuantityInfo(QuantityType.BrakeSpecificFuelConsumption, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -95,33 +101,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of BrakeSpecificFuelConsumption, which is KilogramPerJoule. All conversions go via this value.
         /// </summary>
-        public static BrakeSpecificFuelConsumptionUnit BaseUnit { get; } = BrakeSpecificFuelConsumptionUnit.KilogramPerJoule;
+        public static BrakeSpecificFuelConsumptionUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of BrakeSpecificFuelConsumption
         /// </summary>
-        public static BrakeSpecificFuelConsumption MaxValue { get; } = new BrakeSpecificFuelConsumption(double.MaxValue, BaseUnit);
+        public static BrakeSpecificFuelConsumption MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of BrakeSpecificFuelConsumption
         /// </summary>
-        public static BrakeSpecificFuelConsumption MinValue { get; } = new BrakeSpecificFuelConsumption(double.MinValue, BaseUnit);
+        public static BrakeSpecificFuelConsumption MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.BrakeSpecificFuelConsumption;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the BrakeSpecificFuelConsumption quantity.
         /// </summary>
-        public static BrakeSpecificFuelConsumptionUnit[] Units { get; } = Enum.GetValues(typeof(BrakeSpecificFuelConsumptionUnit)).Cast<BrakeSpecificFuelConsumptionUnit>().Except(new BrakeSpecificFuelConsumptionUnit[]{ BrakeSpecificFuelConsumptionUnit.Undefined }).ToArray();
+        public static BrakeSpecificFuelConsumptionUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerJoule.
         /// </summary>
-        public static BrakeSpecificFuelConsumption Zero { get; } = new BrakeSpecificFuelConsumption(0, BaseUnit);
+        public static BrakeSpecificFuelConsumption Zero { get; }
 
         #endregion
 

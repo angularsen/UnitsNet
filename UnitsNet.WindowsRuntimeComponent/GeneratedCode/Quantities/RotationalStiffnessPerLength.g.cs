@@ -49,7 +49,13 @@ namespace UnitsNet
         static RotationalStiffnessPerLength()
         {
             BaseDimensions = new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
-            Info = new QuantityInfo(QuantityType.RotationalStiffnessPerLength, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            BaseUnit = RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter;
+            MaxValue = new RotationalStiffnessPerLength(double.MaxValue, BaseUnit);
+            MinValue = new RotationalStiffnessPerLength(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.RotationalStiffnessPerLength;
+            Units = Enum.GetValues(typeof(RotationalStiffnessPerLengthUnit)).Cast<RotationalStiffnessPerLengthUnit>().Except(new RotationalStiffnessPerLengthUnit[]{ RotationalStiffnessPerLengthUnit.Undefined }).ToArray();
+            Zero = new RotationalStiffnessPerLength(0, BaseUnit);
+                Info = new QuantityInfo(QuantityType.RotationalStiffnessPerLength, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -95,33 +101,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of RotationalStiffnessPerLength, which is NewtonMeterPerRadianPerMeter. All conversions go via this value.
         /// </summary>
-        public static RotationalStiffnessPerLengthUnit BaseUnit { get; } = RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter;
+        public static RotationalStiffnessPerLengthUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of RotationalStiffnessPerLength
         /// </summary>
-        public static RotationalStiffnessPerLength MaxValue { get; } = new RotationalStiffnessPerLength(double.MaxValue, BaseUnit);
+        public static RotationalStiffnessPerLength MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of RotationalStiffnessPerLength
         /// </summary>
-        public static RotationalStiffnessPerLength MinValue { get; } = new RotationalStiffnessPerLength(double.MinValue, BaseUnit);
+        public static RotationalStiffnessPerLength MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.RotationalStiffnessPerLength;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the RotationalStiffnessPerLength quantity.
         /// </summary>
-        public static RotationalStiffnessPerLengthUnit[] Units { get; } = Enum.GetValues(typeof(RotationalStiffnessPerLengthUnit)).Cast<RotationalStiffnessPerLengthUnit>().Except(new RotationalStiffnessPerLengthUnit[]{ RotationalStiffnessPerLengthUnit.Undefined }).ToArray();
+        public static RotationalStiffnessPerLengthUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonMeterPerRadianPerMeter.
         /// </summary>
-        public static RotationalStiffnessPerLength Zero { get; } = new RotationalStiffnessPerLength(0, BaseUnit);
+        public static RotationalStiffnessPerLength Zero { get; }
 
         #endregion
 

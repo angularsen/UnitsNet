@@ -49,7 +49,13 @@ namespace UnitsNet
         static MassFlux()
         {
             BaseDimensions = new BaseDimensions(-2, 1, -1, 0, 0, 0, 0);
-            Info = new QuantityInfo(QuantityType.MassFlux, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            BaseUnit = MassFluxUnit.KilogramPerSecondPerSquareMeter;
+            MaxValue = new MassFlux(double.MaxValue, BaseUnit);
+            MinValue = new MassFlux(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.MassFlux;
+            Units = Enum.GetValues(typeof(MassFluxUnit)).Cast<MassFluxUnit>().Except(new MassFluxUnit[]{ MassFluxUnit.Undefined }).ToArray();
+            Zero = new MassFlux(0, BaseUnit);
+                Info = new QuantityInfo(QuantityType.MassFlux, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -95,33 +101,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of MassFlux, which is KilogramPerSecondPerSquareMeter. All conversions go via this value.
         /// </summary>
-        public static MassFluxUnit BaseUnit { get; } = MassFluxUnit.KilogramPerSecondPerSquareMeter;
+        public static MassFluxUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of MassFlux
         /// </summary>
-        public static MassFlux MaxValue { get; } = new MassFlux(double.MaxValue, BaseUnit);
+        public static MassFlux MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of MassFlux
         /// </summary>
-        public static MassFlux MinValue { get; } = new MassFlux(double.MinValue, BaseUnit);
+        public static MassFlux MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.MassFlux;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the MassFlux quantity.
         /// </summary>
-        public static MassFluxUnit[] Units { get; } = Enum.GetValues(typeof(MassFluxUnit)).Cast<MassFluxUnit>().Except(new MassFluxUnit[]{ MassFluxUnit.Undefined }).ToArray();
+        public static MassFluxUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerSecondPerSquareMeter.
         /// </summary>
-        public static MassFlux Zero { get; } = new MassFlux(0, BaseUnit);
+        public static MassFlux Zero { get; }
 
         #endregion
 

@@ -49,7 +49,13 @@ namespace UnitsNet
         static ReactivePower()
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
-            Info = new QuantityInfo(QuantityType.ReactivePower, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            BaseUnit = ReactivePowerUnit.VoltampereReactive;
+            MaxValue = new ReactivePower(double.MaxValue, BaseUnit);
+            MinValue = new ReactivePower(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.ReactivePower;
+            Units = Enum.GetValues(typeof(ReactivePowerUnit)).Cast<ReactivePowerUnit>().Except(new ReactivePowerUnit[]{ ReactivePowerUnit.Undefined }).ToArray();
+            Zero = new ReactivePower(0, BaseUnit);
+                Info = new QuantityInfo(QuantityType.ReactivePower, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -95,33 +101,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ReactivePower, which is VoltampereReactive. All conversions go via this value.
         /// </summary>
-        public static ReactivePowerUnit BaseUnit { get; } = ReactivePowerUnit.VoltampereReactive;
+        public static ReactivePowerUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of ReactivePower
         /// </summary>
-        public static ReactivePower MaxValue { get; } = new ReactivePower(double.MaxValue, BaseUnit);
+        public static ReactivePower MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of ReactivePower
         /// </summary>
-        public static ReactivePower MinValue { get; } = new ReactivePower(double.MinValue, BaseUnit);
+        public static ReactivePower MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ReactivePower;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the ReactivePower quantity.
         /// </summary>
-        public static ReactivePowerUnit[] Units { get; } = Enum.GetValues(typeof(ReactivePowerUnit)).Cast<ReactivePowerUnit>().Except(new ReactivePowerUnit[]{ ReactivePowerUnit.Undefined }).ToArray();
+        public static ReactivePowerUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit VoltampereReactive.
         /// </summary>
-        public static ReactivePower Zero { get; } = new ReactivePower(0, BaseUnit);
+        public static ReactivePower Zero { get; }
 
         #endregion
 

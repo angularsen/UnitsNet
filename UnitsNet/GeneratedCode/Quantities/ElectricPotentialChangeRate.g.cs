@@ -53,9 +53,15 @@ namespace UnitsNet
         static ElectricPotentialChangeRate()
         {
             BaseDimensions = new BaseDimensions(2, 1, -4, -1, 0, 0, 0);
-
+            BaseUnit = ElectricPotentialChangeRateUnit.VoltPerSecond;
+            MaxValue = new ElectricPotentialChangeRate(double.MaxValue, BaseUnit);
+            MinValue = new ElectricPotentialChangeRate(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.ElectricPotentialChangeRate;
+            Units = Enum.GetValues(typeof(ElectricPotentialChangeRateUnit)).Cast<ElectricPotentialChangeRateUnit>().Except(new ElectricPotentialChangeRateUnit[]{ ElectricPotentialChangeRateUnit.Undefined }).ToArray();
+            Zero = new ElectricPotentialChangeRate(0, BaseUnit);
             Info = new QuantityInfo<ElectricPotentialChangeRateUnit>("ElectricPotentialChangeRate",
-                new UnitInfo<ElectricPotentialChangeRateUnit>[] {
+                new UnitInfo<ElectricPotentialChangeRateUnit>[]
+                {
                     new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.KilovoltPerHour, "KilovoltsPerHours", BaseUnits.Undefined),
                     new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond, "KilovoltsPerMicroseconds", BaseUnits.Undefined),
                     new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.KilovoltPerMinute, "KilovoltsPerMinutes", BaseUnits.Undefined),
@@ -127,35 +133,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricPotentialChangeRate, which is VoltPerSecond. All conversions go via this value.
         /// </summary>
-        public static ElectricPotentialChangeRateUnit BaseUnit { get; } = ElectricPotentialChangeRateUnit.VoltPerSecond;
+        public static ElectricPotentialChangeRateUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of ElectricPotentialChangeRate
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricPotentialChangeRate MaxValue { get; } = new ElectricPotentialChangeRate(double.MaxValue, BaseUnit);
+        public static ElectricPotentialChangeRate MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of ElectricPotentialChangeRate
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricPotentialChangeRate MinValue { get; } = new ElectricPotentialChangeRate(double.MinValue, BaseUnit);
+        public static ElectricPotentialChangeRate MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricPotentialChangeRate;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the ElectricPotentialChangeRate quantity.
         /// </summary>
-        public static ElectricPotentialChangeRateUnit[] Units { get; } = Enum.GetValues(typeof(ElectricPotentialChangeRateUnit)).Cast<ElectricPotentialChangeRateUnit>().Except(new ElectricPotentialChangeRateUnit[]{ ElectricPotentialChangeRateUnit.Undefined }).ToArray();
+        public static ElectricPotentialChangeRateUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit VoltPerSecond.
         /// </summary>
-        public static ElectricPotentialChangeRate Zero { get; } = new ElectricPotentialChangeRate(0, BaseUnit);
+        public static ElectricPotentialChangeRate Zero { get; }
 
         #endregion
 

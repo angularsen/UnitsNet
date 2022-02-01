@@ -52,7 +52,13 @@ namespace UnitsNet
         static SpecificEnergy()
         {
             BaseDimensions = new BaseDimensions(2, 0, -2, 0, 0, 0, 0);
-            Info = new QuantityInfo(QuantityType.SpecificEnergy, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            BaseUnit = SpecificEnergyUnit.JoulePerKilogram;
+            MaxValue = new SpecificEnergy(double.MaxValue, BaseUnit);
+            MinValue = new SpecificEnergy(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.SpecificEnergy;
+            Units = Enum.GetValues(typeof(SpecificEnergyUnit)).Cast<SpecificEnergyUnit>().Except(new SpecificEnergyUnit[]{ SpecificEnergyUnit.Undefined }).ToArray();
+            Zero = new SpecificEnergy(0, BaseUnit);
+                Info = new QuantityInfo(QuantityType.SpecificEnergy, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -98,33 +104,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of SpecificEnergy, which is JoulePerKilogram. All conversions go via this value.
         /// </summary>
-        public static SpecificEnergyUnit BaseUnit { get; } = SpecificEnergyUnit.JoulePerKilogram;
+        public static SpecificEnergyUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of SpecificEnergy
         /// </summary>
-        public static SpecificEnergy MaxValue { get; } = new SpecificEnergy(double.MaxValue, BaseUnit);
+        public static SpecificEnergy MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of SpecificEnergy
         /// </summary>
-        public static SpecificEnergy MinValue { get; } = new SpecificEnergy(double.MinValue, BaseUnit);
+        public static SpecificEnergy MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.SpecificEnergy;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the SpecificEnergy quantity.
         /// </summary>
-        public static SpecificEnergyUnit[] Units { get; } = Enum.GetValues(typeof(SpecificEnergyUnit)).Cast<SpecificEnergyUnit>().Except(new SpecificEnergyUnit[]{ SpecificEnergyUnit.Undefined }).ToArray();
+        public static SpecificEnergyUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit JoulePerKilogram.
         /// </summary>
-        public static SpecificEnergy Zero { get; } = new SpecificEnergy(0, BaseUnit);
+        public static SpecificEnergy Zero { get; }
 
         #endregion
 

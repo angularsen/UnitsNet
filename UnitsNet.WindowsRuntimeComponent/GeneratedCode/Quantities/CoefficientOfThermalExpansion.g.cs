@@ -49,7 +49,13 @@ namespace UnitsNet
         static CoefficientOfThermalExpansion()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, -1, 0, 0);
-            Info = new QuantityInfo(QuantityType.CoefficientOfThermalExpansion, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            BaseUnit = CoefficientOfThermalExpansionUnit.InverseKelvin;
+            MaxValue = new CoefficientOfThermalExpansion(double.MaxValue, BaseUnit);
+            MinValue = new CoefficientOfThermalExpansion(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.CoefficientOfThermalExpansion;
+            Units = Enum.GetValues(typeof(CoefficientOfThermalExpansionUnit)).Cast<CoefficientOfThermalExpansionUnit>().Except(new CoefficientOfThermalExpansionUnit[]{ CoefficientOfThermalExpansionUnit.Undefined }).ToArray();
+            Zero = new CoefficientOfThermalExpansion(0, BaseUnit);
+                Info = new QuantityInfo(QuantityType.CoefficientOfThermalExpansion, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -95,33 +101,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of CoefficientOfThermalExpansion, which is InverseKelvin. All conversions go via this value.
         /// </summary>
-        public static CoefficientOfThermalExpansionUnit BaseUnit { get; } = CoefficientOfThermalExpansionUnit.InverseKelvin;
+        public static CoefficientOfThermalExpansionUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of CoefficientOfThermalExpansion
         /// </summary>
-        public static CoefficientOfThermalExpansion MaxValue { get; } = new CoefficientOfThermalExpansion(double.MaxValue, BaseUnit);
+        public static CoefficientOfThermalExpansion MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of CoefficientOfThermalExpansion
         /// </summary>
-        public static CoefficientOfThermalExpansion MinValue { get; } = new CoefficientOfThermalExpansion(double.MinValue, BaseUnit);
+        public static CoefficientOfThermalExpansion MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.CoefficientOfThermalExpansion;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the CoefficientOfThermalExpansion quantity.
         /// </summary>
-        public static CoefficientOfThermalExpansionUnit[] Units { get; } = Enum.GetValues(typeof(CoefficientOfThermalExpansionUnit)).Cast<CoefficientOfThermalExpansionUnit>().Except(new CoefficientOfThermalExpansionUnit[]{ CoefficientOfThermalExpansionUnit.Undefined }).ToArray();
+        public static CoefficientOfThermalExpansionUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit InverseKelvin.
         /// </summary>
-        public static CoefficientOfThermalExpansion Zero { get; } = new CoefficientOfThermalExpansion(0, BaseUnit);
+        public static CoefficientOfThermalExpansion Zero { get; }
 
         #endregion
 

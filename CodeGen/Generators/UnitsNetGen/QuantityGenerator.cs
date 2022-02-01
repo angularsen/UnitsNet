@@ -119,17 +119,20 @@ namespace UnitsNet
             Writer.WL($@"
         static {_quantity.Name}()
         {{");
-            Writer.WL(_isDimensionless
-                ? @"
-            BaseDimensions = BaseDimensions.Dimensionless;
-"
-                : $@"
-            BaseDimensions = new BaseDimensions({baseDimensions.L}, {baseDimensions.M}, {baseDimensions.T}, {baseDimensions.I}, {baseDimensions.Θ}, {baseDimensions.N}, {baseDimensions.J});
-");
+            Writer.WL(_isDimensionless ? $@"
+            BaseDimensions = BaseDimensions.Dimensionless;" : $@"
+            BaseDimensions = new BaseDimensions({baseDimensions.L}, {baseDimensions.M}, {baseDimensions.T}, {baseDimensions.I}, {baseDimensions.Θ}, {baseDimensions.N}, {baseDimensions.J});");
 
             Writer.WL($@"
+            BaseUnit = {_unitEnumName}.{_quantity.BaseUnit};
+            MaxValue = new {_quantity.Name}({_valueType}.MaxValue, BaseUnit);
+            MinValue = new {_quantity.Name}({_valueType}.MinValue, BaseUnit);
+            QuantityType = QuantityType.{_quantity.Name};
+            Units = Enum.GetValues(typeof({_unitEnumName})).Cast<{_unitEnumName}>().Except(new {_unitEnumName}[]{{ {_unitEnumName}.Undefined }}).ToArray();
+            Zero = new {_quantity.Name}(0, BaseUnit);
             Info = new QuantityInfo<{_unitEnumName}>(""{_quantity.Name}"",
-                new UnitInfo<{_unitEnumName}>[] {{");
+                new UnitInfo<{_unitEnumName}>[]
+                {{");
 
             foreach (var unit in _quantity.Units)
             {
@@ -232,35 +235,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of {_quantity.Name}, which is {_quantity.BaseUnit}. All conversions go via this value.
         /// </summary>
-        public static {_unitEnumName} BaseUnit {{ get; }} = {_unitEnumName}.{_quantity.BaseUnit};
+        public static {_unitEnumName} BaseUnit {{ get; }}
 
         /// <summary>
         /// Represents the largest possible value of {_quantity.Name}
         /// </summary>
         [Obsolete(""MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848."")]
-        public static {_quantity.Name} MaxValue {{ get; }} = new {_quantity.Name}({_valueType}.MaxValue, BaseUnit);
+        public static {_quantity.Name} MaxValue {{ get; }}
 
         /// <summary>
         /// Represents the smallest possible value of {_quantity.Name}
         /// </summary>
         [Obsolete(""MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848."")]
-        public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}({_valueType}.MinValue, BaseUnit);
+        public static {_quantity.Name} MinValue {{ get; }}
 
         /// <summary>
         ///     The <see cref=""QuantityType"" /> of this quantity.
         /// </summary>
         [Obsolete(""QuantityType will be removed in the future. Use the Info property instead."")]
-        public static QuantityType QuantityType {{ get; }} = QuantityType.{_quantity.Name};
+        public static QuantityType QuantityType {{ get; }}
 
         /// <summary>
         ///     All units of measurement for the {_quantity.Name} quantity.
         /// </summary>
-        public static {_unitEnumName}[] Units {{ get; }} = Enum.GetValues(typeof({_unitEnumName})).Cast<{_unitEnumName}>().Except(new {_unitEnumName}[]{{ {_unitEnumName}.Undefined }}).ToArray();
+        public static {_unitEnumName}[] Units {{ get; }}
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit {_quantity.BaseUnit}.
         /// </summary>
-        public static {_quantity.Name} Zero {{ get; }} = new {_quantity.Name}(0, BaseUnit);
+        public static {_quantity.Name} Zero {{ get; }}
 
         #endregion
 ");

@@ -53,9 +53,15 @@ namespace UnitsNet
         static ForceChangeRate()
         {
             BaseDimensions = new BaseDimensions(1, 1, -3, 0, 0, 0, 0);
-
+            BaseUnit = ForceChangeRateUnit.NewtonPerSecond;
+            MaxValue = new ForceChangeRate(double.MaxValue, BaseUnit);
+            MinValue = new ForceChangeRate(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.ForceChangeRate;
+            Units = Enum.GetValues(typeof(ForceChangeRateUnit)).Cast<ForceChangeRateUnit>().Except(new ForceChangeRateUnit[]{ ForceChangeRateUnit.Undefined }).ToArray();
+            Zero = new ForceChangeRate(0, BaseUnit);
             Info = new QuantityInfo<ForceChangeRateUnit>("ForceChangeRate",
-                new UnitInfo<ForceChangeRateUnit>[] {
+                new UnitInfo<ForceChangeRateUnit>[]
+                {
                     new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.CentinewtonPerSecond, "CentinewtonsPerSecond", BaseUnits.Undefined),
                     new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.DecanewtonPerMinute, "DecanewtonsPerMinute", BaseUnits.Undefined),
                     new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.DecanewtonPerSecond, "DecanewtonsPerSecond", BaseUnits.Undefined),
@@ -122,35 +128,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ForceChangeRate, which is NewtonPerSecond. All conversions go via this value.
         /// </summary>
-        public static ForceChangeRateUnit BaseUnit { get; } = ForceChangeRateUnit.NewtonPerSecond;
+        public static ForceChangeRateUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of ForceChangeRate
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ForceChangeRate MaxValue { get; } = new ForceChangeRate(double.MaxValue, BaseUnit);
+        public static ForceChangeRate MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of ForceChangeRate
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ForceChangeRate MinValue { get; } = new ForceChangeRate(double.MinValue, BaseUnit);
+        public static ForceChangeRate MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ForceChangeRate;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the ForceChangeRate quantity.
         /// </summary>
-        public static ForceChangeRateUnit[] Units { get; } = Enum.GetValues(typeof(ForceChangeRateUnit)).Cast<ForceChangeRateUnit>().Except(new ForceChangeRateUnit[]{ ForceChangeRateUnit.Undefined }).ToArray();
+        public static ForceChangeRateUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonPerSecond.
         /// </summary>
-        public static ForceChangeRate Zero { get; } = new ForceChangeRate(0, BaseUnit);
+        public static ForceChangeRate Zero { get; }
 
         #endregion
 

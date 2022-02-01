@@ -53,9 +53,15 @@ namespace UnitsNet
         static Scalar()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-
+            BaseUnit = ScalarUnit.Amount;
+            MaxValue = new Scalar(double.MaxValue, BaseUnit);
+            MinValue = new Scalar(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Scalar;
+            Units = Enum.GetValues(typeof(ScalarUnit)).Cast<ScalarUnit>().Except(new ScalarUnit[]{ ScalarUnit.Undefined }).ToArray();
+            Zero = new Scalar(0, BaseUnit);
             Info = new QuantityInfo<ScalarUnit>("Scalar",
-                new UnitInfo<ScalarUnit>[] {
+                new UnitInfo<ScalarUnit>[]
+                {
                     new UnitInfo<ScalarUnit>(ScalarUnit.Amount, "Amount", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Scalar);
@@ -108,35 +114,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Scalar, which is Amount. All conversions go via this value.
         /// </summary>
-        public static ScalarUnit BaseUnit { get; } = ScalarUnit.Amount;
+        public static ScalarUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Scalar
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Scalar MaxValue { get; } = new Scalar(double.MaxValue, BaseUnit);
+        public static Scalar MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Scalar
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Scalar MinValue { get; } = new Scalar(double.MinValue, BaseUnit);
+        public static Scalar MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Scalar;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Scalar quantity.
         /// </summary>
-        public static ScalarUnit[] Units { get; } = Enum.GetValues(typeof(ScalarUnit)).Cast<ScalarUnit>().Except(new ScalarUnit[]{ ScalarUnit.Undefined }).ToArray();
+        public static ScalarUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Amount.
         /// </summary>
-        public static Scalar Zero { get; } = new Scalar(0, BaseUnit);
+        public static Scalar Zero { get; }
 
         #endregion
 

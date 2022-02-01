@@ -53,9 +53,15 @@ namespace UnitsNet
         static Angle()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-
+            BaseUnit = AngleUnit.Degree;
+            MaxValue = new Angle(double.MaxValue, BaseUnit);
+            MinValue = new Angle(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Angle;
+            Units = Enum.GetValues(typeof(AngleUnit)).Cast<AngleUnit>().Except(new AngleUnit[]{ AngleUnit.Undefined }).ToArray();
+            Zero = new Angle(0, BaseUnit);
             Info = new QuantityInfo<AngleUnit>("Angle",
-                new UnitInfo<AngleUnit>[] {
+                new UnitInfo<AngleUnit>[]
+                {
                     new UnitInfo<AngleUnit>(AngleUnit.Arcminute, "Arcminutes", BaseUnits.Undefined),
                     new UnitInfo<AngleUnit>(AngleUnit.Arcsecond, "Arcseconds", BaseUnits.Undefined),
                     new UnitInfo<AngleUnit>(AngleUnit.Centiradian, "Centiradians", BaseUnits.Undefined),
@@ -123,35 +129,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Angle, which is Degree. All conversions go via this value.
         /// </summary>
-        public static AngleUnit BaseUnit { get; } = AngleUnit.Degree;
+        public static AngleUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Angle
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Angle MaxValue { get; } = new Angle(double.MaxValue, BaseUnit);
+        public static Angle MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Angle
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Angle MinValue { get; } = new Angle(double.MinValue, BaseUnit);
+        public static Angle MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Angle;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Angle quantity.
         /// </summary>
-        public static AngleUnit[] Units { get; } = Enum.GetValues(typeof(AngleUnit)).Cast<AngleUnit>().Except(new AngleUnit[]{ AngleUnit.Undefined }).ToArray();
+        public static AngleUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Degree.
         /// </summary>
-        public static Angle Zero { get; } = new Angle(0, BaseUnit);
+        public static Angle Zero { get; }
 
         #endregion
 

@@ -52,7 +52,13 @@ namespace UnitsNet
         static LuminousFlux()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
-            Info = new QuantityInfo(QuantityType.LuminousFlux, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            BaseUnit = LuminousFluxUnit.Lumen;
+            MaxValue = new LuminousFlux(double.MaxValue, BaseUnit);
+            MinValue = new LuminousFlux(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.LuminousFlux;
+            Units = Enum.GetValues(typeof(LuminousFluxUnit)).Cast<LuminousFluxUnit>().Except(new LuminousFluxUnit[]{ LuminousFluxUnit.Undefined }).ToArray();
+            Zero = new LuminousFlux(0, BaseUnit);
+                Info = new QuantityInfo(QuantityType.LuminousFlux, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -98,33 +104,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of LuminousFlux, which is Lumen. All conversions go via this value.
         /// </summary>
-        public static LuminousFluxUnit BaseUnit { get; } = LuminousFluxUnit.Lumen;
+        public static LuminousFluxUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of LuminousFlux
         /// </summary>
-        public static LuminousFlux MaxValue { get; } = new LuminousFlux(double.MaxValue, BaseUnit);
+        public static LuminousFlux MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of LuminousFlux
         /// </summary>
-        public static LuminousFlux MinValue { get; } = new LuminousFlux(double.MinValue, BaseUnit);
+        public static LuminousFlux MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.LuminousFlux;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the LuminousFlux quantity.
         /// </summary>
-        public static LuminousFluxUnit[] Units { get; } = Enum.GetValues(typeof(LuminousFluxUnit)).Cast<LuminousFluxUnit>().Except(new LuminousFluxUnit[]{ LuminousFluxUnit.Undefined }).ToArray();
+        public static LuminousFluxUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Lumen.
         /// </summary>
-        public static LuminousFlux Zero { get; } = new LuminousFlux(0, BaseUnit);
+        public static LuminousFlux Zero { get; }
 
         #endregion
 

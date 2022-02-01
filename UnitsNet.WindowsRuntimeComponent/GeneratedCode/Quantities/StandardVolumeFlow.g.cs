@@ -49,7 +49,13 @@ namespace UnitsNet
         static StandardVolumeFlow()
         {
             BaseDimensions = new BaseDimensions(0, 1, -1, 0, 0, 0, 0);
-            Info = new QuantityInfo(QuantityType.StandardVolumeFlow, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            BaseUnit = StandardVolumeFlowUnit.StandardCubicMeterPerSecond;
+            MaxValue = new StandardVolumeFlow(double.MaxValue, BaseUnit);
+            MinValue = new StandardVolumeFlow(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.StandardVolumeFlow;
+            Units = Enum.GetValues(typeof(StandardVolumeFlowUnit)).Cast<StandardVolumeFlowUnit>().Except(new StandardVolumeFlowUnit[]{ StandardVolumeFlowUnit.Undefined }).ToArray();
+            Zero = new StandardVolumeFlow(0, BaseUnit);
+                Info = new QuantityInfo(QuantityType.StandardVolumeFlow, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -95,33 +101,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of StandardVolumeFlow, which is StandardCubicMeterPerSecond. All conversions go via this value.
         /// </summary>
-        public static StandardVolumeFlowUnit BaseUnit { get; } = StandardVolumeFlowUnit.StandardCubicMeterPerSecond;
+        public static StandardVolumeFlowUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of StandardVolumeFlow
         /// </summary>
-        public static StandardVolumeFlow MaxValue { get; } = new StandardVolumeFlow(double.MaxValue, BaseUnit);
+        public static StandardVolumeFlow MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of StandardVolumeFlow
         /// </summary>
-        public static StandardVolumeFlow MinValue { get; } = new StandardVolumeFlow(double.MinValue, BaseUnit);
+        public static StandardVolumeFlow MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.StandardVolumeFlow;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the StandardVolumeFlow quantity.
         /// </summary>
-        public static StandardVolumeFlowUnit[] Units { get; } = Enum.GetValues(typeof(StandardVolumeFlowUnit)).Cast<StandardVolumeFlowUnit>().Except(new StandardVolumeFlowUnit[]{ StandardVolumeFlowUnit.Undefined }).ToArray();
+        public static StandardVolumeFlowUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit StandardCubicMeterPerSecond.
         /// </summary>
-        public static StandardVolumeFlow Zero { get; } = new StandardVolumeFlow(0, BaseUnit);
+        public static StandardVolumeFlow Zero { get; }
 
         #endregion
 

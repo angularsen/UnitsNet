@@ -52,7 +52,13 @@ namespace UnitsNet
         static VolumetricHeatCapacity()
         {
             BaseDimensions = new BaseDimensions(-1, 1, -2, 0, -1, 0, 0);
-            Info = new QuantityInfo(QuantityType.VolumetricHeatCapacity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            BaseUnit = VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin;
+            MaxValue = new VolumetricHeatCapacity(double.MaxValue, BaseUnit);
+            MinValue = new VolumetricHeatCapacity(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.VolumetricHeatCapacity;
+            Units = Enum.GetValues(typeof(VolumetricHeatCapacityUnit)).Cast<VolumetricHeatCapacityUnit>().Except(new VolumetricHeatCapacityUnit[]{ VolumetricHeatCapacityUnit.Undefined }).ToArray();
+            Zero = new VolumetricHeatCapacity(0, BaseUnit);
+                Info = new QuantityInfo(QuantityType.VolumetricHeatCapacity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -98,33 +104,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of VolumetricHeatCapacity, which is JoulePerCubicMeterKelvin. All conversions go via this value.
         /// </summary>
-        public static VolumetricHeatCapacityUnit BaseUnit { get; } = VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin;
+        public static VolumetricHeatCapacityUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of VolumetricHeatCapacity
         /// </summary>
-        public static VolumetricHeatCapacity MaxValue { get; } = new VolumetricHeatCapacity(double.MaxValue, BaseUnit);
+        public static VolumetricHeatCapacity MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of VolumetricHeatCapacity
         /// </summary>
-        public static VolumetricHeatCapacity MinValue { get; } = new VolumetricHeatCapacity(double.MinValue, BaseUnit);
+        public static VolumetricHeatCapacity MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.VolumetricHeatCapacity;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the VolumetricHeatCapacity quantity.
         /// </summary>
-        public static VolumetricHeatCapacityUnit[] Units { get; } = Enum.GetValues(typeof(VolumetricHeatCapacityUnit)).Cast<VolumetricHeatCapacityUnit>().Except(new VolumetricHeatCapacityUnit[]{ VolumetricHeatCapacityUnit.Undefined }).ToArray();
+        public static VolumetricHeatCapacityUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit JoulePerCubicMeterKelvin.
         /// </summary>
-        public static VolumetricHeatCapacity Zero { get; } = new VolumetricHeatCapacity(0, BaseUnit);
+        public static VolumetricHeatCapacity Zero { get; }
 
         #endregion
 

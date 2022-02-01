@@ -49,7 +49,13 @@ namespace UnitsNet
         static VitaminA()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-            Info = new QuantityInfo(QuantityType.VitaminA, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            BaseUnit = VitaminAUnit.InternationalUnit;
+            MaxValue = new VitaminA(double.MaxValue, BaseUnit);
+            MinValue = new VitaminA(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.VitaminA;
+            Units = Enum.GetValues(typeof(VitaminAUnit)).Cast<VitaminAUnit>().Except(new VitaminAUnit[]{ VitaminAUnit.Undefined }).ToArray();
+            Zero = new VitaminA(0, BaseUnit);
+                Info = new QuantityInfo(QuantityType.VitaminA, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -95,33 +101,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of VitaminA, which is InternationalUnit. All conversions go via this value.
         /// </summary>
-        public static VitaminAUnit BaseUnit { get; } = VitaminAUnit.InternationalUnit;
+        public static VitaminAUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of VitaminA
         /// </summary>
-        public static VitaminA MaxValue { get; } = new VitaminA(double.MaxValue, BaseUnit);
+        public static VitaminA MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of VitaminA
         /// </summary>
-        public static VitaminA MinValue { get; } = new VitaminA(double.MinValue, BaseUnit);
+        public static VitaminA MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.VitaminA;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the VitaminA quantity.
         /// </summary>
-        public static VitaminAUnit[] Units { get; } = Enum.GetValues(typeof(VitaminAUnit)).Cast<VitaminAUnit>().Except(new VitaminAUnit[]{ VitaminAUnit.Undefined }).ToArray();
+        public static VitaminAUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit InternationalUnit.
         /// </summary>
-        public static VitaminA Zero { get; } = new VitaminA(0, BaseUnit);
+        public static VitaminA Zero { get; }
 
         #endregion
 

@@ -49,7 +49,13 @@ namespace UnitsNet
         static PowerRatio()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-            Info = new QuantityInfo(QuantityType.PowerRatio, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            BaseUnit = PowerRatioUnit.DecibelWatt;
+            MaxValue = new PowerRatio(double.MaxValue, BaseUnit);
+            MinValue = new PowerRatio(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.PowerRatio;
+            Units = Enum.GetValues(typeof(PowerRatioUnit)).Cast<PowerRatioUnit>().Except(new PowerRatioUnit[]{ PowerRatioUnit.Undefined }).ToArray();
+            Zero = new PowerRatio(0, BaseUnit);
+                Info = new QuantityInfo(QuantityType.PowerRatio, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -95,33 +101,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of PowerRatio, which is DecibelWatt. All conversions go via this value.
         /// </summary>
-        public static PowerRatioUnit BaseUnit { get; } = PowerRatioUnit.DecibelWatt;
+        public static PowerRatioUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of PowerRatio
         /// </summary>
-        public static PowerRatio MaxValue { get; } = new PowerRatio(double.MaxValue, BaseUnit);
+        public static PowerRatio MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of PowerRatio
         /// </summary>
-        public static PowerRatio MinValue { get; } = new PowerRatio(double.MinValue, BaseUnit);
+        public static PowerRatio MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.PowerRatio;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the PowerRatio quantity.
         /// </summary>
-        public static PowerRatioUnit[] Units { get; } = Enum.GetValues(typeof(PowerRatioUnit)).Cast<PowerRatioUnit>().Except(new PowerRatioUnit[]{ PowerRatioUnit.Undefined }).ToArray();
+        public static PowerRatioUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DecibelWatt.
         /// </summary>
-        public static PowerRatio Zero { get; } = new PowerRatio(0, BaseUnit);
+        public static PowerRatio Zero { get; }
 
         #endregion
 

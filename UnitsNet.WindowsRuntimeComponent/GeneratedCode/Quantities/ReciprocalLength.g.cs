@@ -52,7 +52,13 @@ namespace UnitsNet
         static ReciprocalLength()
         {
             BaseDimensions = new BaseDimensions(-1, 0, 0, 0, 0, 0, 0);
-            Info = new QuantityInfo(QuantityType.ReciprocalLength, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            BaseUnit = ReciprocalLengthUnit.InverseMeter;
+            MaxValue = new ReciprocalLength(double.MaxValue, BaseUnit);
+            MinValue = new ReciprocalLength(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.ReciprocalLength;
+            Units = Enum.GetValues(typeof(ReciprocalLengthUnit)).Cast<ReciprocalLengthUnit>().Except(new ReciprocalLengthUnit[]{ ReciprocalLengthUnit.Undefined }).ToArray();
+            Zero = new ReciprocalLength(0, BaseUnit);
+                Info = new QuantityInfo(QuantityType.ReciprocalLength, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -98,33 +104,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ReciprocalLength, which is InverseMeter. All conversions go via this value.
         /// </summary>
-        public static ReciprocalLengthUnit BaseUnit { get; } = ReciprocalLengthUnit.InverseMeter;
+        public static ReciprocalLengthUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of ReciprocalLength
         /// </summary>
-        public static ReciprocalLength MaxValue { get; } = new ReciprocalLength(double.MaxValue, BaseUnit);
+        public static ReciprocalLength MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of ReciprocalLength
         /// </summary>
-        public static ReciprocalLength MinValue { get; } = new ReciprocalLength(double.MinValue, BaseUnit);
+        public static ReciprocalLength MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ReciprocalLength;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the ReciprocalLength quantity.
         /// </summary>
-        public static ReciprocalLengthUnit[] Units { get; } = Enum.GetValues(typeof(ReciprocalLengthUnit)).Cast<ReciprocalLengthUnit>().Except(new ReciprocalLengthUnit[]{ ReciprocalLengthUnit.Undefined }).ToArray();
+        public static ReciprocalLengthUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit InverseMeter.
         /// </summary>
-        public static ReciprocalLength Zero { get; } = new ReciprocalLength(0, BaseUnit);
+        public static ReciprocalLength Zero { get; }
 
         #endregion
 

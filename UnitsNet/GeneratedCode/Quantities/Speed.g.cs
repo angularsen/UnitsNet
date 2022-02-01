@@ -53,9 +53,15 @@ namespace UnitsNet
         static Speed()
         {
             BaseDimensions = new BaseDimensions(1, 0, -1, 0, 0, 0, 0);
-
+            BaseUnit = SpeedUnit.MeterPerSecond;
+            MaxValue = new Speed(double.MaxValue, BaseUnit);
+            MinValue = new Speed(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Speed;
+            Units = Enum.GetValues(typeof(SpeedUnit)).Cast<SpeedUnit>().Except(new SpeedUnit[]{ SpeedUnit.Undefined }).ToArray();
+            Zero = new Speed(0, BaseUnit);
             Info = new QuantityInfo<SpeedUnit>("Speed",
-                new UnitInfo<SpeedUnit>[] {
+                new UnitInfo<SpeedUnit>[]
+                {
                     new UnitInfo<SpeedUnit>(SpeedUnit.CentimeterPerHour, "CentimetersPerHour", BaseUnits.Undefined),
                     new UnitInfo<SpeedUnit>(SpeedUnit.CentimeterPerMinute, "CentimetersPerMinutes", BaseUnits.Undefined),
                     new UnitInfo<SpeedUnit>(SpeedUnit.CentimeterPerSecond, "CentimetersPerSecond", BaseUnits.Undefined),
@@ -139,35 +145,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Speed, which is MeterPerSecond. All conversions go via this value.
         /// </summary>
-        public static SpeedUnit BaseUnit { get; } = SpeedUnit.MeterPerSecond;
+        public static SpeedUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Speed
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Speed MaxValue { get; } = new Speed(double.MaxValue, BaseUnit);
+        public static Speed MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Speed
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Speed MinValue { get; } = new Speed(double.MinValue, BaseUnit);
+        public static Speed MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Speed;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Speed quantity.
         /// </summary>
-        public static SpeedUnit[] Units { get; } = Enum.GetValues(typeof(SpeedUnit)).Cast<SpeedUnit>().Except(new SpeedUnit[]{ SpeedUnit.Undefined }).ToArray();
+        public static SpeedUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit MeterPerSecond.
         /// </summary>
-        public static Speed Zero { get; } = new Speed(0, BaseUnit);
+        public static Speed Zero { get; }
 
         #endregion
 

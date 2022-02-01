@@ -49,7 +49,13 @@ namespace UnitsNet
         static VolumePerLength()
         {
             BaseDimensions = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
-            Info = new QuantityInfo(QuantityType.VolumePerLength, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            BaseUnit = VolumePerLengthUnit.CubicMeterPerMeter;
+            MaxValue = new VolumePerLength(double.MaxValue, BaseUnit);
+            MinValue = new VolumePerLength(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.VolumePerLength;
+            Units = Enum.GetValues(typeof(VolumePerLengthUnit)).Cast<VolumePerLengthUnit>().Except(new VolumePerLengthUnit[]{ VolumePerLengthUnit.Undefined }).ToArray();
+            Zero = new VolumePerLength(0, BaseUnit);
+                Info = new QuantityInfo(QuantityType.VolumePerLength, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -95,33 +101,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of VolumePerLength, which is CubicMeterPerMeter. All conversions go via this value.
         /// </summary>
-        public static VolumePerLengthUnit BaseUnit { get; } = VolumePerLengthUnit.CubicMeterPerMeter;
+        public static VolumePerLengthUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of VolumePerLength
         /// </summary>
-        public static VolumePerLength MaxValue { get; } = new VolumePerLength(double.MaxValue, BaseUnit);
+        public static VolumePerLength MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of VolumePerLength
         /// </summary>
-        public static VolumePerLength MinValue { get; } = new VolumePerLength(double.MinValue, BaseUnit);
+        public static VolumePerLength MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.VolumePerLength;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the VolumePerLength quantity.
         /// </summary>
-        public static VolumePerLengthUnit[] Units { get; } = Enum.GetValues(typeof(VolumePerLengthUnit)).Cast<VolumePerLengthUnit>().Except(new VolumePerLengthUnit[]{ VolumePerLengthUnit.Undefined }).ToArray();
+        public static VolumePerLengthUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit CubicMeterPerMeter.
         /// </summary>
-        public static VolumePerLength Zero { get; } = new VolumePerLength(0, BaseUnit);
+        public static VolumePerLength Zero { get; }
 
         #endregion
 

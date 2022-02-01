@@ -56,9 +56,15 @@ namespace UnitsNet
         static Density()
         {
             BaseDimensions = new BaseDimensions(-3, 1, 0, 0, 0, 0, 0);
-
+            BaseUnit = DensityUnit.KilogramPerCubicMeter;
+            MaxValue = new Density(double.MaxValue, BaseUnit);
+            MinValue = new Density(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Density;
+            Units = Enum.GetValues(typeof(DensityUnit)).Cast<DensityUnit>().Except(new DensityUnit[]{ DensityUnit.Undefined }).ToArray();
+            Zero = new Density(0, BaseUnit);
             Info = new QuantityInfo<DensityUnit>("Density",
-                new UnitInfo<DensityUnit>[] {
+                new UnitInfo<DensityUnit>[]
+                {
                     new UnitInfo<DensityUnit>(DensityUnit.CentigramPerDeciliter, "CentigramsPerDeciLiter", BaseUnits.Undefined),
                     new UnitInfo<DensityUnit>(DensityUnit.CentigramPerLiter, "CentigramsPerLiter", BaseUnits.Undefined),
                     new UnitInfo<DensityUnit>(DensityUnit.CentigramPerMilliliter, "CentigramsPerMilliliter", BaseUnits.Undefined),
@@ -161,35 +167,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Density, which is KilogramPerCubicMeter. All conversions go via this value.
         /// </summary>
-        public static DensityUnit BaseUnit { get; } = DensityUnit.KilogramPerCubicMeter;
+        public static DensityUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Density
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Density MaxValue { get; } = new Density(double.MaxValue, BaseUnit);
+        public static Density MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Density
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Density MinValue { get; } = new Density(double.MinValue, BaseUnit);
+        public static Density MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Density;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Density quantity.
         /// </summary>
-        public static DensityUnit[] Units { get; } = Enum.GetValues(typeof(DensityUnit)).Cast<DensityUnit>().Except(new DensityUnit[]{ DensityUnit.Undefined }).ToArray();
+        public static DensityUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerCubicMeter.
         /// </summary>
-        public static Density Zero { get; } = new Density(0, BaseUnit);
+        public static Density Zero { get; }
 
         #endregion
 

@@ -53,9 +53,15 @@ namespace UnitsNet
         static AmountOfSubstance()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 1, 0);
-
+            BaseUnit = AmountOfSubstanceUnit.Mole;
+            MaxValue = new AmountOfSubstance(double.MaxValue, BaseUnit);
+            MinValue = new AmountOfSubstance(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.AmountOfSubstance;
+            Units = Enum.GetValues(typeof(AmountOfSubstanceUnit)).Cast<AmountOfSubstanceUnit>().Except(new AmountOfSubstanceUnit[]{ AmountOfSubstanceUnit.Undefined }).ToArray();
+            Zero = new AmountOfSubstance(0, BaseUnit);
             Info = new QuantityInfo<AmountOfSubstanceUnit>("AmountOfSubstance",
-                new UnitInfo<AmountOfSubstanceUnit>[] {
+                new UnitInfo<AmountOfSubstanceUnit>[]
+                {
                     new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Centimole, "Centimoles", BaseUnits.Undefined),
                     new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.CentipoundMole, "CentipoundMoles", BaseUnits.Undefined),
                     new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Decimole, "Decimoles", BaseUnits.Undefined),
@@ -122,35 +128,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of AmountOfSubstance, which is Mole. All conversions go via this value.
         /// </summary>
-        public static AmountOfSubstanceUnit BaseUnit { get; } = AmountOfSubstanceUnit.Mole;
+        public static AmountOfSubstanceUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of AmountOfSubstance
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static AmountOfSubstance MaxValue { get; } = new AmountOfSubstance(double.MaxValue, BaseUnit);
+        public static AmountOfSubstance MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of AmountOfSubstance
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static AmountOfSubstance MinValue { get; } = new AmountOfSubstance(double.MinValue, BaseUnit);
+        public static AmountOfSubstance MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.AmountOfSubstance;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the AmountOfSubstance quantity.
         /// </summary>
-        public static AmountOfSubstanceUnit[] Units { get; } = Enum.GetValues(typeof(AmountOfSubstanceUnit)).Cast<AmountOfSubstanceUnit>().Except(new AmountOfSubstanceUnit[]{ AmountOfSubstanceUnit.Undefined }).ToArray();
+        public static AmountOfSubstanceUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Mole.
         /// </summary>
-        public static AmountOfSubstance Zero { get; } = new AmountOfSubstance(0, BaseUnit);
+        public static AmountOfSubstance Zero { get; }
 
         #endregion
 
