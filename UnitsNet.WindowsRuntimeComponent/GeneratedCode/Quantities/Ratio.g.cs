@@ -55,7 +55,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Ratio;
             Units = Enum.GetValues(typeof(RatioUnit)).Cast<RatioUnit>().Except(new RatioUnit[]{ RatioUnit.Undefined }).ToArray();
             Zero = new Ratio(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.Ratio, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.Ratio, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

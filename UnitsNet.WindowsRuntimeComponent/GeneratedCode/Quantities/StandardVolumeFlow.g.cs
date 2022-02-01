@@ -55,7 +55,7 @@ namespace UnitsNet
             QuantityType = QuantityType.StandardVolumeFlow;
             Units = Enum.GetValues(typeof(StandardVolumeFlowUnit)).Cast<StandardVolumeFlowUnit>().Except(new StandardVolumeFlowUnit[]{ StandardVolumeFlowUnit.Undefined }).ToArray();
             Zero = new StandardVolumeFlow(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.StandardVolumeFlow, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.StandardVolumeFlow, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

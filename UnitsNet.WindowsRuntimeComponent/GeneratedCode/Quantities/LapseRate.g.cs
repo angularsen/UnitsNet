@@ -56,7 +56,7 @@ namespace UnitsNet
             QuantityType = QuantityType.LapseRate;
             Units = Enum.GetValues(typeof(LapseRateUnit)).Cast<LapseRateUnit>().Except(new LapseRateUnit[]{ LapseRateUnit.Undefined }).ToArray();
             Zero = new LapseRate(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.LapseRate, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.LapseRate, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

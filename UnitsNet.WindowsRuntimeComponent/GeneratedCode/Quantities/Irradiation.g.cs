@@ -58,7 +58,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Irradiation;
             Units = Enum.GetValues(typeof(IrradiationUnit)).Cast<IrradiationUnit>().Except(new IrradiationUnit[]{ IrradiationUnit.Undefined }).ToArray();
             Zero = new Irradiation(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.Irradiation, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.Irradiation, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

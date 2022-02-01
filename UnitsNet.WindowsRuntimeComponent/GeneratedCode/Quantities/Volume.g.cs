@@ -55,7 +55,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Volume;
             Units = Enum.GetValues(typeof(VolumeUnit)).Cast<VolumeUnit>().Except(new VolumeUnit[]{ VolumeUnit.Undefined }).ToArray();
             Zero = new Volume(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.Volume, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.Volume, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

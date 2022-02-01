@@ -55,7 +55,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Irradiance;
             Units = Enum.GetValues(typeof(IrradianceUnit)).Cast<IrradianceUnit>().Except(new IrradianceUnit[]{ IrradianceUnit.Undefined }).ToArray();
             Zero = new Irradiance(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.Irradiance, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.Irradiance, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

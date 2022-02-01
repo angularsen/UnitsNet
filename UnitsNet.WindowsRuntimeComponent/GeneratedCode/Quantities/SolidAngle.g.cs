@@ -58,7 +58,7 @@ namespace UnitsNet
             QuantityType = QuantityType.SolidAngle;
             Units = Enum.GetValues(typeof(SolidAngleUnit)).Cast<SolidAngleUnit>().Except(new SolidAngleUnit[]{ SolidAngleUnit.Undefined }).ToArray();
             Zero = new SolidAngle(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.SolidAngle, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.SolidAngle, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

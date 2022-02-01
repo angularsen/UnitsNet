@@ -55,7 +55,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Level;
             Units = Enum.GetValues(typeof(LevelUnit)).Cast<LevelUnit>().Except(new LevelUnit[]{ LevelUnit.Undefined }).ToArray();
             Zero = new Level(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.Level, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.Level, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

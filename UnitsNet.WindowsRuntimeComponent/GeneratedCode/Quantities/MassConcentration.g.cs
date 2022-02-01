@@ -58,7 +58,7 @@ namespace UnitsNet
             QuantityType = QuantityType.MassConcentration;
             Units = Enum.GetValues(typeof(MassConcentrationUnit)).Cast<MassConcentrationUnit>().Except(new MassConcentrationUnit[]{ MassConcentrationUnit.Undefined }).ToArray();
             Zero = new MassConcentration(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.MassConcentration, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.MassConcentration, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

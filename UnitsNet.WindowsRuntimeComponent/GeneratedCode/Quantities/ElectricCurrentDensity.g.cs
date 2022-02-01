@@ -58,7 +58,7 @@ namespace UnitsNet
             QuantityType = QuantityType.ElectricCurrentDensity;
             Units = Enum.GetValues(typeof(ElectricCurrentDensityUnit)).Cast<ElectricCurrentDensityUnit>().Except(new ElectricCurrentDensityUnit[]{ ElectricCurrentDensityUnit.Undefined }).ToArray();
             Zero = new ElectricCurrentDensity(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.ElectricCurrentDensity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.ElectricCurrentDensity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

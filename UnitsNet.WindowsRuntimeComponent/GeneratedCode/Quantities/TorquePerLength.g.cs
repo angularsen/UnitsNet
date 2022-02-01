@@ -55,7 +55,7 @@ namespace UnitsNet
             QuantityType = QuantityType.TorquePerLength;
             Units = Enum.GetValues(typeof(TorquePerLengthUnit)).Cast<TorquePerLengthUnit>().Except(new TorquePerLengthUnit[]{ TorquePerLengthUnit.Undefined }).ToArray();
             Zero = new TorquePerLength(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.TorquePerLength, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.TorquePerLength, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

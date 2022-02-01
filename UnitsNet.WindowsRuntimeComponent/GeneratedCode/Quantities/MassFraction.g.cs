@@ -58,7 +58,7 @@ namespace UnitsNet
             QuantityType = QuantityType.MassFraction;
             Units = Enum.GetValues(typeof(MassFractionUnit)).Cast<MassFractionUnit>().Except(new MassFractionUnit[]{ MassFractionUnit.Undefined }).ToArray();
             Zero = new MassFraction(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.MassFraction, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.MassFraction, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

@@ -58,7 +58,7 @@ namespace UnitsNet
             QuantityType = QuantityType.KinematicViscosity;
             Units = Enum.GetValues(typeof(KinematicViscosityUnit)).Cast<KinematicViscosityUnit>().Except(new KinematicViscosityUnit[]{ KinematicViscosityUnit.Undefined }).ToArray();
             Zero = new KinematicViscosity(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.KinematicViscosity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.KinematicViscosity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

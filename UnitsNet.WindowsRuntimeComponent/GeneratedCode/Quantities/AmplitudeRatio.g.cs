@@ -55,7 +55,7 @@ namespace UnitsNet
             QuantityType = QuantityType.AmplitudeRatio;
             Units = Enum.GetValues(typeof(AmplitudeRatioUnit)).Cast<AmplitudeRatioUnit>().Except(new AmplitudeRatioUnit[]{ AmplitudeRatioUnit.Undefined }).ToArray();
             Zero = new AmplitudeRatio(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.AmplitudeRatio, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.AmplitudeRatio, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

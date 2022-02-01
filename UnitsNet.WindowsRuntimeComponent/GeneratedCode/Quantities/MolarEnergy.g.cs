@@ -55,7 +55,7 @@ namespace UnitsNet
             QuantityType = QuantityType.MolarEnergy;
             Units = Enum.GetValues(typeof(MolarEnergyUnit)).Cast<MolarEnergyUnit>().Except(new MolarEnergyUnit[]{ MolarEnergyUnit.Undefined }).ToArray();
             Zero = new MolarEnergy(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.MolarEnergy, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.MolarEnergy, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

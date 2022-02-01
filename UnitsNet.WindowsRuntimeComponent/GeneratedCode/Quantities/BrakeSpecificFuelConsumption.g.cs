@@ -55,7 +55,7 @@ namespace UnitsNet
             QuantityType = QuantityType.BrakeSpecificFuelConsumption;
             Units = Enum.GetValues(typeof(BrakeSpecificFuelConsumptionUnit)).Cast<BrakeSpecificFuelConsumptionUnit>().Except(new BrakeSpecificFuelConsumptionUnit[]{ BrakeSpecificFuelConsumptionUnit.Undefined }).ToArray();
             Zero = new BrakeSpecificFuelConsumption(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.BrakeSpecificFuelConsumption, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.BrakeSpecificFuelConsumption, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

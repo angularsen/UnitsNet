@@ -55,7 +55,7 @@ namespace UnitsNet
             QuantityType = QuantityType.ReactivePower;
             Units = Enum.GetValues(typeof(ReactivePowerUnit)).Cast<ReactivePowerUnit>().Except(new ReactivePowerUnit[]{ ReactivePowerUnit.Undefined }).ToArray();
             Zero = new ReactivePower(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.ReactivePower, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.ReactivePower, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

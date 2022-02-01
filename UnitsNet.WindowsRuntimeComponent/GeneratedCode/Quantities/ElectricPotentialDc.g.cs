@@ -55,7 +55,7 @@ namespace UnitsNet
             QuantityType = QuantityType.ElectricPotentialDc;
             Units = Enum.GetValues(typeof(ElectricPotentialDcUnit)).Cast<ElectricPotentialDcUnit>().Except(new ElectricPotentialDcUnit[]{ ElectricPotentialDcUnit.Undefined }).ToArray();
             Zero = new ElectricPotentialDc(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.ElectricPotentialDc, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.ElectricPotentialDc, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

@@ -55,7 +55,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Scalar;
             Units = Enum.GetValues(typeof(ScalarUnit)).Cast<ScalarUnit>().Except(new ScalarUnit[]{ ScalarUnit.Undefined }).ToArray();
             Zero = new Scalar(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.Scalar, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.Scalar, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

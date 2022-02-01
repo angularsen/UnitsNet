@@ -55,7 +55,7 @@ namespace UnitsNet
             QuantityType = QuantityType.MolarEntropy;
             Units = Enum.GetValues(typeof(MolarEntropyUnit)).Cast<MolarEntropyUnit>().Except(new MolarEntropyUnit[]{ MolarEntropyUnit.Undefined }).ToArray();
             Zero = new MolarEntropy(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.MolarEntropy, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.MolarEntropy, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

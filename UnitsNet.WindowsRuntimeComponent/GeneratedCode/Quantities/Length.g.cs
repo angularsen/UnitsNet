@@ -55,7 +55,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Length;
             Units = Enum.GetValues(typeof(LengthUnit)).Cast<LengthUnit>().Except(new LengthUnit[]{ LengthUnit.Undefined }).ToArray();
             Zero = new Length(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.Length, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.Length, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

@@ -58,7 +58,7 @@ namespace UnitsNet
             QuantityType = QuantityType.VolumetricHeatCapacity;
             Units = Enum.GetValues(typeof(VolumetricHeatCapacityUnit)).Cast<VolumetricHeatCapacityUnit>().Except(new VolumetricHeatCapacityUnit[]{ VolumetricHeatCapacityUnit.Undefined }).ToArray();
             Zero = new VolumetricHeatCapacity(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.VolumetricHeatCapacity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.VolumetricHeatCapacity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

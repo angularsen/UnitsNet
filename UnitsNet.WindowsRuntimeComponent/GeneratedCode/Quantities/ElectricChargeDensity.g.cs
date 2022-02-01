@@ -58,7 +58,7 @@ namespace UnitsNet
             QuantityType = QuantityType.ElectricChargeDensity;
             Units = Enum.GetValues(typeof(ElectricChargeDensityUnit)).Cast<ElectricChargeDensityUnit>().Except(new ElectricChargeDensityUnit[]{ ElectricChargeDensityUnit.Undefined }).ToArray();
             Zero = new ElectricChargeDensity(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.ElectricChargeDensity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.ElectricChargeDensity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

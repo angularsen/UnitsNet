@@ -58,7 +58,7 @@ namespace UnitsNet
             QuantityType = QuantityType.ElectricInductance;
             Units = Enum.GetValues(typeof(ElectricInductanceUnit)).Cast<ElectricInductanceUnit>().Except(new ElectricInductanceUnit[]{ ElectricInductanceUnit.Undefined }).ToArray();
             Zero = new ElectricInductance(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.ElectricInductance, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.ElectricInductance, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

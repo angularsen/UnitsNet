@@ -58,7 +58,7 @@ namespace UnitsNet
             QuantityType = QuantityType.SpecificWeight;
             Units = Enum.GetValues(typeof(SpecificWeightUnit)).Cast<SpecificWeightUnit>().Except(new SpecificWeightUnit[]{ SpecificWeightUnit.Undefined }).ToArray();
             Zero = new SpecificWeight(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.SpecificWeight, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.SpecificWeight, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

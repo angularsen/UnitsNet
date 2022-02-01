@@ -55,7 +55,7 @@ namespace UnitsNet
             QuantityType = QuantityType.HeatFlux;
             Units = Enum.GetValues(typeof(HeatFluxUnit)).Cast<HeatFluxUnit>().Except(new HeatFluxUnit[]{ HeatFluxUnit.Undefined }).ToArray();
             Zero = new HeatFlux(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.HeatFlux, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.HeatFlux, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

@@ -55,7 +55,7 @@ namespace UnitsNet
             QuantityType = QuantityType.MassMomentOfInertia;
             Units = Enum.GetValues(typeof(MassMomentOfInertiaUnit)).Cast<MassMomentOfInertiaUnit>().Except(new MassMomentOfInertiaUnit[]{ MassMomentOfInertiaUnit.Undefined }).ToArray();
             Zero = new MassMomentOfInertia(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.MassMomentOfInertia, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.MassMomentOfInertia, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

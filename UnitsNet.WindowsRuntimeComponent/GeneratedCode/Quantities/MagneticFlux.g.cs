@@ -58,7 +58,7 @@ namespace UnitsNet
             QuantityType = QuantityType.MagneticFlux;
             Units = Enum.GetValues(typeof(MagneticFluxUnit)).Cast<MagneticFluxUnit>().Except(new MagneticFluxUnit[]{ MagneticFluxUnit.Undefined }).ToArray();
             Zero = new MagneticFlux(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.MagneticFlux, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.MagneticFlux, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

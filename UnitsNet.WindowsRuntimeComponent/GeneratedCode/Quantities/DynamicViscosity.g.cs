@@ -58,7 +58,7 @@ namespace UnitsNet
             QuantityType = QuantityType.DynamicViscosity;
             Units = Enum.GetValues(typeof(DynamicViscosityUnit)).Cast<DynamicViscosityUnit>().Except(new DynamicViscosityUnit[]{ DynamicViscosityUnit.Undefined }).ToArray();
             Zero = new DynamicViscosity(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.DynamicViscosity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.DynamicViscosity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

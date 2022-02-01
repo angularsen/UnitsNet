@@ -55,7 +55,7 @@ namespace UnitsNet
             QuantityType = QuantityType.VolumePerLength;
             Units = Enum.GetValues(typeof(VolumePerLengthUnit)).Cast<VolumePerLengthUnit>().Except(new VolumePerLengthUnit[]{ VolumePerLengthUnit.Undefined }).ToArray();
             Zero = new VolumePerLength(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.VolumePerLength, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.VolumePerLength, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

@@ -55,7 +55,7 @@ namespace UnitsNet
             QuantityType = QuantityType.ApparentEnergy;
             Units = Enum.GetValues(typeof(ApparentEnergyUnit)).Cast<ApparentEnergyUnit>().Except(new ApparentEnergyUnit[]{ ApparentEnergyUnit.Undefined }).ToArray();
             Zero = new ApparentEnergy(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.ApparentEnergy, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.ApparentEnergy, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

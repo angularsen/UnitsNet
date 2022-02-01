@@ -55,7 +55,7 @@ namespace UnitsNet
             QuantityType = QuantityType.TemperatureChangeRate;
             Units = Enum.GetValues(typeof(TemperatureChangeRateUnit)).Cast<TemperatureChangeRateUnit>().Except(new TemperatureChangeRateUnit[]{ TemperatureChangeRateUnit.Undefined }).ToArray();
             Zero = new TemperatureChangeRate(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.TemperatureChangeRate, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.TemperatureChangeRate, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

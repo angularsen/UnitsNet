@@ -58,7 +58,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Magnetization;
             Units = Enum.GetValues(typeof(MagnetizationUnit)).Cast<MagnetizationUnit>().Except(new MagnetizationUnit[]{ MagnetizationUnit.Undefined }).ToArray();
             Zero = new Magnetization(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.Magnetization, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.Magnetization, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

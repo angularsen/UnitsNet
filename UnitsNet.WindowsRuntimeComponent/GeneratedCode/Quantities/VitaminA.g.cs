@@ -55,7 +55,7 @@ namespace UnitsNet
             QuantityType = QuantityType.VitaminA;
             Units = Enum.GetValues(typeof(VitaminAUnit)).Cast<VitaminAUnit>().Except(new VitaminAUnit[]{ VitaminAUnit.Undefined }).ToArray();
             Zero = new VitaminA(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.VitaminA, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.VitaminA, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

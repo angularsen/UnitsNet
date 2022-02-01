@@ -58,7 +58,7 @@ namespace UnitsNet
             QuantityType = QuantityType.ElectricResistivity;
             Units = Enum.GetValues(typeof(ElectricResistivityUnit)).Cast<ElectricResistivityUnit>().Except(new ElectricResistivityUnit[]{ ElectricResistivityUnit.Undefined }).ToArray();
             Zero = new ElectricResistivity(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.ElectricResistivity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.ElectricResistivity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

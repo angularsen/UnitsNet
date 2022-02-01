@@ -55,7 +55,7 @@ namespace UnitsNet
             QuantityType = QuantityType.RelativeHumidity;
             Units = Enum.GetValues(typeof(RelativeHumidityUnit)).Cast<RelativeHumidityUnit>().Except(new RelativeHumidityUnit[]{ RelativeHumidityUnit.Undefined }).ToArray();
             Zero = new RelativeHumidity(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.RelativeHumidity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.RelativeHumidity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

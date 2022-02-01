@@ -55,7 +55,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Speed;
             Units = Enum.GetValues(typeof(SpeedUnit)).Cast<SpeedUnit>().Except(new SpeedUnit[]{ SpeedUnit.Undefined }).ToArray();
             Zero = new Speed(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.Speed, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.Speed, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

@@ -55,7 +55,7 @@ namespace UnitsNet
             QuantityType = QuantityType.ElectricCurrent;
             Units = Enum.GetValues(typeof(ElectricCurrentUnit)).Cast<ElectricCurrentUnit>().Except(new ElectricCurrentUnit[]{ ElectricCurrentUnit.Undefined }).ToArray();
             Zero = new ElectricCurrent(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.ElectricCurrent, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.ElectricCurrent, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

@@ -55,7 +55,7 @@ namespace UnitsNet
             QuantityType = QuantityType.AmountOfSubstance;
             Units = Enum.GetValues(typeof(AmountOfSubstanceUnit)).Cast<AmountOfSubstanceUnit>().Except(new AmountOfSubstanceUnit[]{ AmountOfSubstanceUnit.Undefined }).ToArray();
             Zero = new AmountOfSubstance(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.AmountOfSubstance, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.AmountOfSubstance, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

@@ -55,7 +55,7 @@ namespace UnitsNet
             QuantityType = QuantityType.PressureChangeRate;
             Units = Enum.GetValues(typeof(PressureChangeRateUnit)).Cast<PressureChangeRateUnit>().Except(new PressureChangeRateUnit[]{ PressureChangeRateUnit.Undefined }).ToArray();
             Zero = new PressureChangeRate(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.PressureChangeRate, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.PressureChangeRate, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

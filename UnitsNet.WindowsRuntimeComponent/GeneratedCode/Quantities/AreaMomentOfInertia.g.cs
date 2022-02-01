@@ -55,7 +55,7 @@ namespace UnitsNet
             QuantityType = QuantityType.AreaMomentOfInertia;
             Units = Enum.GetValues(typeof(AreaMomentOfInertiaUnit)).Cast<AreaMomentOfInertiaUnit>().Except(new AreaMomentOfInertiaUnit[]{ AreaMomentOfInertiaUnit.Undefined }).ToArray();
             Zero = new AreaMomentOfInertia(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.AreaMomentOfInertia, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.AreaMomentOfInertia, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

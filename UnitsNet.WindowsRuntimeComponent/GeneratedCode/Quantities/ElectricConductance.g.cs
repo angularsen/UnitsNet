@@ -58,7 +58,7 @@ namespace UnitsNet
             QuantityType = QuantityType.ElectricConductance;
             Units = Enum.GetValues(typeof(ElectricConductanceUnit)).Cast<ElectricConductanceUnit>().Except(new ElectricConductanceUnit[]{ ElectricConductanceUnit.Undefined }).ToArray();
             Zero = new ElectricConductance(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.ElectricConductance, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.ElectricConductance, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

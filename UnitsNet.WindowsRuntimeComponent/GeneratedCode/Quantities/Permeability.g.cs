@@ -58,7 +58,7 @@ namespace UnitsNet
             QuantityType = QuantityType.Permeability;
             Units = Enum.GetValues(typeof(PermeabilityUnit)).Cast<PermeabilityUnit>().Except(new PermeabilityUnit[]{ PermeabilityUnit.Undefined }).ToArray();
             Zero = new Permeability(0, BaseUnit);
-                Info = new QuantityInfo(QuantityType.Permeability, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.Permeability, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
