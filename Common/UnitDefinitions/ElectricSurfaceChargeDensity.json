@@ -17,8 +17,8 @@
         "T": "Second",
         "I": "Ampere"
       },
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "[x]",
+      "FromBaseToUnitFunc": "[x]",
       "Localization": [
         {
           "Culture": "en-US",
@@ -34,8 +34,8 @@
         "T": "Second",
         "I": "Ampere"
       },
-      "FromUnitToBaseFunc": "x * 1.0e4",
-      "FromBaseToUnitFunc": "x / 1.0e4",
+      "FromUnitToBaseFunc": "[x] * 1.0e4",
+      "FromBaseToUnitFunc": "[x] / 1.0e4",
       "Localization": [
         {
           "Culture": "en-US",
@@ -51,8 +51,8 @@
         "T": "Second",
         "I": "Ampere"
       },
-      "FromUnitToBaseFunc": "x * 1.5500031000062000e3",
-      "FromBaseToUnitFunc": "x / 1.5500031000062000e3",
+      "FromUnitToBaseFunc": "[x] * 1.5500031000062000e3",
+      "FromBaseToUnitFunc": "[x] / 1.5500031000062000e3",
       "Localization": [
         {
           "Culture": "en-US",

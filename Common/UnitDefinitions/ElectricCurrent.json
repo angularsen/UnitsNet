@@ -9,8 +9,8 @@
     {
       "SingularName": "Ampere",
       "PluralName": "Amperes",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "[x]",
+      "FromBaseToUnitFunc": "[x]",
       "BaseUnits": {
         "I": "Ampere"
       },

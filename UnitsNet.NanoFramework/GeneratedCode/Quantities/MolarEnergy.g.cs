@@ -157,9 +157,9 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case MolarEnergyUnit.JoulePerMole: return _value;
-                case MolarEnergyUnit.KilojoulePerMole: return (_value) * 1e3d;
-                case MolarEnergyUnit.MegajoulePerMole: return (_value) * 1e6d;
+                case MolarEnergyUnit.JoulePerMole: return [_value];
+                case MolarEnergyUnit.KilojoulePerMole: return ([_value]) * 1e3d;
+                case MolarEnergyUnit.MegajoulePerMole: return ([_value]) * 1e6d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -174,9 +174,9 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case MolarEnergyUnit.JoulePerMole: return baseUnitValue;
-                case MolarEnergyUnit.KilojoulePerMole: return (baseUnitValue) / 1e3d;
-                case MolarEnergyUnit.MegajoulePerMole: return (baseUnitValue) / 1e6d;
+                case MolarEnergyUnit.JoulePerMole: return [baseUnitValue];
+                case MolarEnergyUnit.KilojoulePerMole: return ([baseUnitValue]) / 1e3d;
+                case MolarEnergyUnit.MegajoulePerMole: return ([baseUnitValue]) / 1e6d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

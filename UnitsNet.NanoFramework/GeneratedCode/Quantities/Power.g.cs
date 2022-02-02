@@ -399,31 +399,31 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case PowerUnit.BoilerHorsepower: return _value*9812.5d;
-                case PowerUnit.BritishThermalUnitPerHour: return _value*0.293071d;
-                case PowerUnit.Decawatt: return (_value) * 1e1d;
-                case PowerUnit.Deciwatt: return (_value) * 1e-1d;
-                case PowerUnit.ElectricalHorsepower: return _value*746d;
-                case PowerUnit.Femtowatt: return (_value) * 1e-15d;
-                case PowerUnit.GigajoulePerHour: return (_value/3600d) * 1e9d;
-                case PowerUnit.Gigawatt: return (_value) * 1e9d;
-                case PowerUnit.HydraulicHorsepower: return _value*745.69988145d;
-                case PowerUnit.JoulePerHour: return _value/3600d;
-                case PowerUnit.KilobritishThermalUnitPerHour: return (_value*0.293071d) * 1e3d;
-                case PowerUnit.KilojoulePerHour: return (_value/3600d) * 1e3d;
-                case PowerUnit.Kilowatt: return (_value) * 1e3d;
-                case PowerUnit.MechanicalHorsepower: return _value*745.69d;
-                case PowerUnit.MegajoulePerHour: return (_value/3600d) * 1e6d;
-                case PowerUnit.Megawatt: return (_value) * 1e6d;
-                case PowerUnit.MetricHorsepower: return _value*735.49875d;
-                case PowerUnit.Microwatt: return (_value) * 1e-6d;
-                case PowerUnit.MillijoulePerHour: return (_value/3600d) * 1e-3d;
-                case PowerUnit.Milliwatt: return (_value) * 1e-3d;
-                case PowerUnit.Nanowatt: return (_value) * 1e-9d;
-                case PowerUnit.Petawatt: return (_value) * 1e15d;
-                case PowerUnit.Picowatt: return (_value) * 1e-12d;
-                case PowerUnit.Terawatt: return (_value) * 1e12d;
-                case PowerUnit.Watt: return _value;
+                case PowerUnit.BoilerHorsepower: return [_value]*9812.5d;
+                case PowerUnit.BritishThermalUnitPerHour: return [_value]*0.293071d;
+                case PowerUnit.Decawatt: return ([_value]) * 1e1d;
+                case PowerUnit.Deciwatt: return ([_value]) * 1e-1d;
+                case PowerUnit.ElectricalHorsepower: return [_value]*746d;
+                case PowerUnit.Femtowatt: return ([_value]) * 1e-15d;
+                case PowerUnit.GigajoulePerHour: return ([_value]/3600d) * 1e9d;
+                case PowerUnit.Gigawatt: return ([_value]) * 1e9d;
+                case PowerUnit.HydraulicHorsepower: return [_value]*745.69988145d;
+                case PowerUnit.JoulePerHour: return [_value]/3600d;
+                case PowerUnit.KilobritishThermalUnitPerHour: return ([_value]*0.293071d) * 1e3d;
+                case PowerUnit.KilojoulePerHour: return ([_value]/3600d) * 1e3d;
+                case PowerUnit.Kilowatt: return ([_value]) * 1e3d;
+                case PowerUnit.MechanicalHorsepower: return [_value]*745.69d;
+                case PowerUnit.MegajoulePerHour: return ([_value]/3600d) * 1e6d;
+                case PowerUnit.Megawatt: return ([_value]) * 1e6d;
+                case PowerUnit.MetricHorsepower: return [_value]*735.49875d;
+                case PowerUnit.Microwatt: return ([_value]) * 1e-6d;
+                case PowerUnit.MillijoulePerHour: return ([_value]/3600d) * 1e-3d;
+                case PowerUnit.Milliwatt: return ([_value]) * 1e-3d;
+                case PowerUnit.Nanowatt: return ([_value]) * 1e-9d;
+                case PowerUnit.Petawatt: return ([_value]) * 1e15d;
+                case PowerUnit.Picowatt: return ([_value]) * 1e-12d;
+                case PowerUnit.Terawatt: return ([_value]) * 1e12d;
+                case PowerUnit.Watt: return [_value];
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -438,31 +438,31 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case PowerUnit.BoilerHorsepower: return baseUnitValue/9812.5d;
-                case PowerUnit.BritishThermalUnitPerHour: return baseUnitValue/0.293071d;
-                case PowerUnit.Decawatt: return (baseUnitValue) / 1e1d;
-                case PowerUnit.Deciwatt: return (baseUnitValue) / 1e-1d;
-                case PowerUnit.ElectricalHorsepower: return baseUnitValue/746d;
-                case PowerUnit.Femtowatt: return (baseUnitValue) / 1e-15d;
-                case PowerUnit.GigajoulePerHour: return (baseUnitValue*3600d) / 1e9d;
-                case PowerUnit.Gigawatt: return (baseUnitValue) / 1e9d;
-                case PowerUnit.HydraulicHorsepower: return baseUnitValue/745.69988145d;
-                case PowerUnit.JoulePerHour: return baseUnitValue*3600d;
-                case PowerUnit.KilobritishThermalUnitPerHour: return (baseUnitValue/0.293071d) / 1e3d;
-                case PowerUnit.KilojoulePerHour: return (baseUnitValue*3600d) / 1e3d;
-                case PowerUnit.Kilowatt: return (baseUnitValue) / 1e3d;
-                case PowerUnit.MechanicalHorsepower: return baseUnitValue/745.69d;
-                case PowerUnit.MegajoulePerHour: return (baseUnitValue*3600d) / 1e6d;
-                case PowerUnit.Megawatt: return (baseUnitValue) / 1e6d;
-                case PowerUnit.MetricHorsepower: return baseUnitValue/735.49875d;
-                case PowerUnit.Microwatt: return (baseUnitValue) / 1e-6d;
-                case PowerUnit.MillijoulePerHour: return (baseUnitValue*3600d) / 1e-3d;
-                case PowerUnit.Milliwatt: return (baseUnitValue) / 1e-3d;
-                case PowerUnit.Nanowatt: return (baseUnitValue) / 1e-9d;
-                case PowerUnit.Petawatt: return (baseUnitValue) / 1e15d;
-                case PowerUnit.Picowatt: return (baseUnitValue) / 1e-12d;
-                case PowerUnit.Terawatt: return (baseUnitValue) / 1e12d;
-                case PowerUnit.Watt: return baseUnitValue;
+                case PowerUnit.BoilerHorsepower: return [baseUnitValue]/9812.5d;
+                case PowerUnit.BritishThermalUnitPerHour: return [baseUnitValue]/0.293071d;
+                case PowerUnit.Decawatt: return ([baseUnitValue]) / 1e1d;
+                case PowerUnit.Deciwatt: return ([baseUnitValue]) / 1e-1d;
+                case PowerUnit.ElectricalHorsepower: return [baseUnitValue]/746d;
+                case PowerUnit.Femtowatt: return ([baseUnitValue]) / 1e-15d;
+                case PowerUnit.GigajoulePerHour: return ([baseUnitValue]*3600d) / 1e9d;
+                case PowerUnit.Gigawatt: return ([baseUnitValue]) / 1e9d;
+                case PowerUnit.HydraulicHorsepower: return [baseUnitValue]/745.69988145d;
+                case PowerUnit.JoulePerHour: return [baseUnitValue]*3600d;
+                case PowerUnit.KilobritishThermalUnitPerHour: return ([baseUnitValue]/0.293071d) / 1e3d;
+                case PowerUnit.KilojoulePerHour: return ([baseUnitValue]*3600d) / 1e3d;
+                case PowerUnit.Kilowatt: return ([baseUnitValue]) / 1e3d;
+                case PowerUnit.MechanicalHorsepower: return [baseUnitValue]/745.69d;
+                case PowerUnit.MegajoulePerHour: return ([baseUnitValue]*3600d) / 1e6d;
+                case PowerUnit.Megawatt: return ([baseUnitValue]) / 1e6d;
+                case PowerUnit.MetricHorsepower: return [baseUnitValue]/735.49875d;
+                case PowerUnit.Microwatt: return ([baseUnitValue]) / 1e-6d;
+                case PowerUnit.MillijoulePerHour: return ([baseUnitValue]*3600d) / 1e-3d;
+                case PowerUnit.Milliwatt: return ([baseUnitValue]) / 1e-3d;
+                case PowerUnit.Nanowatt: return ([baseUnitValue]) / 1e-9d;
+                case PowerUnit.Petawatt: return ([baseUnitValue]) / 1e15d;
+                case PowerUnit.Picowatt: return ([baseUnitValue]) / 1e-12d;
+                case PowerUnit.Terawatt: return ([baseUnitValue]) / 1e12d;
+                case PowerUnit.Watt: return [baseUnitValue];
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

@@ -954,7 +954,7 @@ namespace UnitsNet
             {{");
             foreach (var unit in _quantity.Units)
             {
-                var func = unit.FromUnitToBaseFunc.Replace("x", "_value");
+                var func = unit.FromUnitToBaseFunc.Replace("[x]", "_value");
                 Writer.WL($@"
                 case {_unitEnumName}.{unit.SingularName}: return {func};");
             }
@@ -987,7 +987,7 @@ namespace UnitsNet
             {{");
             foreach (var unit in _quantity.Units)
             {
-                var func = unit.FromBaseToUnitFunc.Replace("x", "baseUnitValue");
+                var func = unit.FromBaseToUnitFunc.Replace("[x]", "baseUnitValue");
                 Writer.WL($@"
                 case {_unitEnumName}.{unit.SingularName}: return {func};");
             }

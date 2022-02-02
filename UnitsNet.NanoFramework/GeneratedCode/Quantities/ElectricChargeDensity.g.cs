@@ -138,7 +138,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case ElectricChargeDensityUnit.CoulombPerCubicMeter: return _value;
+                case ElectricChargeDensityUnit.CoulombPerCubicMeter: return [_value];
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -153,7 +153,7 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case ElectricChargeDensityUnit.CoulombPerCubicMeter: return baseUnitValue;
+                case ElectricChargeDensityUnit.CoulombPerCubicMeter: return [baseUnitValue];
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

@@ -135,7 +135,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case ScalarUnit.Amount: return _value;
+                case ScalarUnit.Amount: return [_value];
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -150,7 +150,7 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case ScalarUnit.Amount: return baseUnitValue;
+                case ScalarUnit.Amount: return [baseUnitValue];
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

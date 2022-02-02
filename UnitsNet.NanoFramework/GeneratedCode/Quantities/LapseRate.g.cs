@@ -135,7 +135,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case LapseRateUnit.DegreeCelsiusPerKilometer: return _value;
+                case LapseRateUnit.DegreeCelsiusPerKilometer: return [_value];
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -150,7 +150,7 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case LapseRateUnit.DegreeCelsiusPerKilometer: return baseUnitValue;
+                case LapseRateUnit.DegreeCelsiusPerKilometer: return [baseUnitValue];
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

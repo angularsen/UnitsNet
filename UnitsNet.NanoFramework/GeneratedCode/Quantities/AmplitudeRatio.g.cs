@@ -168,10 +168,10 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case AmplitudeRatioUnit.DecibelMicrovolt: return _value - 120;
-                case AmplitudeRatioUnit.DecibelMillivolt: return _value - 60;
-                case AmplitudeRatioUnit.DecibelUnloaded: return _value - 2.218487499;
-                case AmplitudeRatioUnit.DecibelVolt: return _value;
+                case AmplitudeRatioUnit.DecibelMicrovolt: return [_value] - 120;
+                case AmplitudeRatioUnit.DecibelMillivolt: return [_value] - 60;
+                case AmplitudeRatioUnit.DecibelUnloaded: return [_value] - 2.218487499;
+                case AmplitudeRatioUnit.DecibelVolt: return [_value];
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -186,10 +186,10 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case AmplitudeRatioUnit.DecibelMicrovolt: return baseUnitValue + 120;
-                case AmplitudeRatioUnit.DecibelMillivolt: return baseUnitValue + 60;
-                case AmplitudeRatioUnit.DecibelUnloaded: return baseUnitValue + 2.218487499;
-                case AmplitudeRatioUnit.DecibelVolt: return baseUnitValue;
+                case AmplitudeRatioUnit.DecibelMicrovolt: return [baseUnitValue] + 120;
+                case AmplitudeRatioUnit.DecibelMillivolt: return [baseUnitValue] + 60;
+                case AmplitudeRatioUnit.DecibelUnloaded: return [baseUnitValue] + 2.218487499;
+                case AmplitudeRatioUnit.DecibelVolt: return [baseUnitValue];
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

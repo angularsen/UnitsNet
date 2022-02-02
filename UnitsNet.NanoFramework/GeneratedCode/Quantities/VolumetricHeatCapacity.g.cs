@@ -226,15 +226,15 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit: return _value / 1.4910660e-5;
-                case VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius: return _value / 2.388459e-7;
-                case VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius: return _value;
-                case VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin: return _value;
-                case VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius: return (_value / 2.388459e-7) * 1e3d;
-                case VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius: return (_value) * 1e3d;
-                case VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin: return (_value) * 1e3d;
-                case VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius: return (_value) * 1e6d;
-                case VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin: return (_value) * 1e6d;
+                case VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit: return [_value] / 1.4910660e-5;
+                case VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius: return [_value] / 2.388459e-7;
+                case VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius: return [_value];
+                case VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin: return [_value];
+                case VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius: return ([_value] / 2.388459e-7) * 1e3d;
+                case VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius: return ([_value]) * 1e3d;
+                case VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin: return ([_value]) * 1e3d;
+                case VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius: return ([_value]) * 1e6d;
+                case VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin: return ([_value]) * 1e6d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -249,15 +249,15 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit: return baseUnitValue * 1.4910660e-5;
-                case VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius: return baseUnitValue * 2.388459e-7;
-                case VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius: return baseUnitValue;
-                case VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin: return baseUnitValue;
-                case VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius: return (baseUnitValue * 2.388459e-7) / 1e3d;
-                case VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius: return (baseUnitValue) / 1e3d;
-                case VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin: return (baseUnitValue) / 1e3d;
-                case VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius: return (baseUnitValue) / 1e6d;
-                case VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin: return (baseUnitValue) / 1e6d;
+                case VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit: return [baseUnitValue] * 1.4910660e-5;
+                case VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius: return [baseUnitValue] * 2.388459e-7;
+                case VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius: return [baseUnitValue];
+                case VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin: return [baseUnitValue];
+                case VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius: return ([baseUnitValue] * 2.388459e-7) / 1e3d;
+                case VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius: return ([baseUnitValue]) / 1e3d;
+                case VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin: return ([baseUnitValue]) / 1e3d;
+                case VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius: return ([baseUnitValue]) / 1e6d;
+                case VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin: return ([baseUnitValue]) / 1e6d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

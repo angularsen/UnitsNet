@@ -204,13 +204,13 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case CapacitanceUnit.Farad: return _value;
-                case CapacitanceUnit.Kilofarad: return (_value) * 1e3d;
-                case CapacitanceUnit.Megafarad: return (_value) * 1e6d;
-                case CapacitanceUnit.Microfarad: return (_value) * 1e-6d;
-                case CapacitanceUnit.Millifarad: return (_value) * 1e-3d;
-                case CapacitanceUnit.Nanofarad: return (_value) * 1e-9d;
-                case CapacitanceUnit.Picofarad: return (_value) * 1e-12d;
+                case CapacitanceUnit.Farad: return [_value];
+                case CapacitanceUnit.Kilofarad: return ([_value]) * 1e3d;
+                case CapacitanceUnit.Megafarad: return ([_value]) * 1e6d;
+                case CapacitanceUnit.Microfarad: return ([_value]) * 1e-6d;
+                case CapacitanceUnit.Millifarad: return ([_value]) * 1e-3d;
+                case CapacitanceUnit.Nanofarad: return ([_value]) * 1e-9d;
+                case CapacitanceUnit.Picofarad: return ([_value]) * 1e-12d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -225,13 +225,13 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case CapacitanceUnit.Farad: return baseUnitValue;
-                case CapacitanceUnit.Kilofarad: return (baseUnitValue) / 1e3d;
-                case CapacitanceUnit.Megafarad: return (baseUnitValue) / 1e6d;
-                case CapacitanceUnit.Microfarad: return (baseUnitValue) / 1e-6d;
-                case CapacitanceUnit.Millifarad: return (baseUnitValue) / 1e-3d;
-                case CapacitanceUnit.Nanofarad: return (baseUnitValue) / 1e-9d;
-                case CapacitanceUnit.Picofarad: return (baseUnitValue) / 1e-12d;
+                case CapacitanceUnit.Farad: return [baseUnitValue];
+                case CapacitanceUnit.Kilofarad: return ([baseUnitValue]) / 1e3d;
+                case CapacitanceUnit.Megafarad: return ([baseUnitValue]) / 1e6d;
+                case CapacitanceUnit.Microfarad: return ([baseUnitValue]) / 1e-6d;
+                case CapacitanceUnit.Millifarad: return ([baseUnitValue]) / 1e-3d;
+                case CapacitanceUnit.Nanofarad: return ([baseUnitValue]) / 1e-9d;
+                case CapacitanceUnit.Picofarad: return ([baseUnitValue]) / 1e-12d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

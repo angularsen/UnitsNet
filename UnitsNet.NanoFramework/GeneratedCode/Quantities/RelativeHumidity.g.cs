@@ -135,7 +135,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case RelativeHumidityUnit.Percent: return _value;
+                case RelativeHumidityUnit.Percent: return [_value];
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -150,7 +150,7 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case RelativeHumidityUnit.Percent: return baseUnitValue;
+                case RelativeHumidityUnit.Percent: return [baseUnitValue];
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

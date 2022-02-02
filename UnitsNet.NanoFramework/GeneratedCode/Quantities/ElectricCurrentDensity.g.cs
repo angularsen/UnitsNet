@@ -160,9 +160,9 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case ElectricCurrentDensityUnit.AmperePerSquareFoot: return _value * 1.0763910416709722e1;
-                case ElectricCurrentDensityUnit.AmperePerSquareInch: return _value * 1.5500031000062000e3;
-                case ElectricCurrentDensityUnit.AmperePerSquareMeter: return _value;
+                case ElectricCurrentDensityUnit.AmperePerSquareFoot: return [_value] * 1.0763910416709722e1;
+                case ElectricCurrentDensityUnit.AmperePerSquareInch: return [_value] * 1.5500031000062000e3;
+                case ElectricCurrentDensityUnit.AmperePerSquareMeter: return [_value];
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -177,9 +177,9 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case ElectricCurrentDensityUnit.AmperePerSquareFoot: return baseUnitValue / 1.0763910416709722e1;
-                case ElectricCurrentDensityUnit.AmperePerSquareInch: return baseUnitValue / 1.5500031000062000e3;
-                case ElectricCurrentDensityUnit.AmperePerSquareMeter: return baseUnitValue;
+                case ElectricCurrentDensityUnit.AmperePerSquareFoot: return [baseUnitValue] / 1.0763910416709722e1;
+                case ElectricCurrentDensityUnit.AmperePerSquareInch: return [baseUnitValue] / 1.5500031000062000e3;
+                case ElectricCurrentDensityUnit.AmperePerSquareMeter: return [baseUnitValue];
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

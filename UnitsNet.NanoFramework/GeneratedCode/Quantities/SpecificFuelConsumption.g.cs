@@ -171,10 +171,10 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond: return _value;
-                case SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour: return _value*28.33;
-                case SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond: return (_value) * 1e3d;
-                case SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour: return _value*28.33;
+                case SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond: return [_value];
+                case SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour: return [_value]*28.33;
+                case SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond: return ([_value]) * 1e3d;
+                case SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour: return [_value]*28.33;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -189,10 +189,10 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond: return baseUnitValue;
-                case SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour: return baseUnitValue/28.33;
-                case SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond: return (baseUnitValue) / 1e3d;
-                case SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour: return baseUnitValue/28.33;
+                case SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond: return [baseUnitValue];
+                case SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour: return [baseUnitValue]/28.33;
+                case SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond: return ([baseUnitValue]) / 1e3d;
+                case SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour: return [baseUnitValue]/28.33;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

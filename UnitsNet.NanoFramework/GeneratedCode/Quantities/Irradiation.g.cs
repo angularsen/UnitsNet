@@ -204,13 +204,13 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case IrradiationUnit.JoulePerSquareCentimeter: return _value*1e4;
-                case IrradiationUnit.JoulePerSquareMeter: return _value;
-                case IrradiationUnit.JoulePerSquareMillimeter: return _value*1e6;
-                case IrradiationUnit.KilojoulePerSquareMeter: return (_value) * 1e3d;
-                case IrradiationUnit.KilowattHourPerSquareMeter: return (_value*3600d) * 1e3d;
-                case IrradiationUnit.MillijoulePerSquareCentimeter: return (_value*1e4) * 1e-3d;
-                case IrradiationUnit.WattHourPerSquareMeter: return _value*3600d;
+                case IrradiationUnit.JoulePerSquareCentimeter: return [_value]*1e4;
+                case IrradiationUnit.JoulePerSquareMeter: return [_value];
+                case IrradiationUnit.JoulePerSquareMillimeter: return [_value]*1e6;
+                case IrradiationUnit.KilojoulePerSquareMeter: return ([_value]) * 1e3d;
+                case IrradiationUnit.KilowattHourPerSquareMeter: return ([_value]*3600d) * 1e3d;
+                case IrradiationUnit.MillijoulePerSquareCentimeter: return ([_value]*1e4) * 1e-3d;
+                case IrradiationUnit.WattHourPerSquareMeter: return [_value]*3600d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -225,13 +225,13 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case IrradiationUnit.JoulePerSquareCentimeter: return baseUnitValue/1e4;
-                case IrradiationUnit.JoulePerSquareMeter: return baseUnitValue;
-                case IrradiationUnit.JoulePerSquareMillimeter: return baseUnitValue/1e6;
-                case IrradiationUnit.KilojoulePerSquareMeter: return (baseUnitValue) / 1e3d;
-                case IrradiationUnit.KilowattHourPerSquareMeter: return (baseUnitValue/3600d) / 1e3d;
-                case IrradiationUnit.MillijoulePerSquareCentimeter: return (baseUnitValue/1e4) / 1e-3d;
-                case IrradiationUnit.WattHourPerSquareMeter: return baseUnitValue/3600d;
+                case IrradiationUnit.JoulePerSquareCentimeter: return [baseUnitValue]/1e4;
+                case IrradiationUnit.JoulePerSquareMeter: return [baseUnitValue];
+                case IrradiationUnit.JoulePerSquareMillimeter: return [baseUnitValue]/1e6;
+                case IrradiationUnit.KilojoulePerSquareMeter: return ([baseUnitValue]) / 1e3d;
+                case IrradiationUnit.KilowattHourPerSquareMeter: return ([baseUnitValue]/3600d) / 1e3d;
+                case IrradiationUnit.MillijoulePerSquareCentimeter: return ([baseUnitValue]/1e4) / 1e-3d;
+                case IrradiationUnit.WattHourPerSquareMeter: return [baseUnitValue]/3600d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

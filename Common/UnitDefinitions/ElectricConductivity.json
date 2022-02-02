@@ -19,8 +19,8 @@
         "T": "Second",
         "I": "Ampere"
       },
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "[x]",
+      "FromBaseToUnitFunc": "[x]",
       "Localization": [
         {
           "Culture": "en-US",
@@ -31,8 +31,8 @@
     {
       "SingularName": "SiemensPerInch",
       "PluralName": "SiemensPerInch",
-      "FromUnitToBaseFunc": "x * 3.937007874015748e1",
-      "FromBaseToUnitFunc": "x / 3.937007874015748e1",
+      "FromUnitToBaseFunc": "[x] * 3.937007874015748e1",
+      "FromBaseToUnitFunc": "[x] / 3.937007874015748e1",
       "Localization": [
         {
           "Culture": "en-US",
@@ -43,8 +43,8 @@
     {
       "SingularName": "SiemensPerFoot",
       "PluralName": "SiemensPerFoot",
-      "FromUnitToBaseFunc": "x * 3.2808398950131234",
-      "FromBaseToUnitFunc": "x / 3.2808398950131234",
+      "FromUnitToBaseFunc": "[x] * 3.2808398950131234",
+      "FromBaseToUnitFunc": "[x] / 3.2808398950131234",
       "Localization": [
         {
           "Culture": "en-US",

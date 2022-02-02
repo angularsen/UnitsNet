@@ -171,10 +171,10 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case IlluminanceUnit.Kilolux: return (_value) * 1e3d;
-                case IlluminanceUnit.Lux: return _value;
-                case IlluminanceUnit.Megalux: return (_value) * 1e6d;
-                case IlluminanceUnit.Millilux: return (_value) * 1e-3d;
+                case IlluminanceUnit.Kilolux: return ([_value]) * 1e3d;
+                case IlluminanceUnit.Lux: return [_value];
+                case IlluminanceUnit.Megalux: return ([_value]) * 1e6d;
+                case IlluminanceUnit.Millilux: return ([_value]) * 1e-3d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -189,10 +189,10 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case IlluminanceUnit.Kilolux: return (baseUnitValue) / 1e3d;
-                case IlluminanceUnit.Lux: return baseUnitValue;
-                case IlluminanceUnit.Megalux: return (baseUnitValue) / 1e6d;
-                case IlluminanceUnit.Millilux: return (baseUnitValue) / 1e-3d;
+                case IlluminanceUnit.Kilolux: return ([baseUnitValue]) / 1e3d;
+                case IlluminanceUnit.Lux: return [baseUnitValue];
+                case IlluminanceUnit.Megalux: return ([baseUnitValue]) / 1e6d;
+                case IlluminanceUnit.Millilux: return ([baseUnitValue]) / 1e-3d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

@@ -157,9 +157,9 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case SpecificVolumeUnit.CubicFootPerPound: return _value/16.01846353;
-                case SpecificVolumeUnit.CubicMeterPerKilogram: return _value;
-                case SpecificVolumeUnit.MillicubicMeterPerKilogram: return (_value) * 1e-3d;
+                case SpecificVolumeUnit.CubicFootPerPound: return [_value]/16.01846353;
+                case SpecificVolumeUnit.CubicMeterPerKilogram: return [_value];
+                case SpecificVolumeUnit.MillicubicMeterPerKilogram: return ([_value]) * 1e-3d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -174,9 +174,9 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case SpecificVolumeUnit.CubicFootPerPound: return baseUnitValue*16.01846353;
-                case SpecificVolumeUnit.CubicMeterPerKilogram: return baseUnitValue;
-                case SpecificVolumeUnit.MillicubicMeterPerKilogram: return (baseUnitValue) / 1e-3d;
+                case SpecificVolumeUnit.CubicFootPerPound: return [baseUnitValue]*16.01846353;
+                case SpecificVolumeUnit.CubicMeterPerKilogram: return [baseUnitValue];
+                case SpecificVolumeUnit.MillicubicMeterPerKilogram: return ([baseUnitValue]) / 1e-3d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

@@ -168,10 +168,10 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case ElectricAdmittanceUnit.Microsiemens: return (_value) * 1e-6d;
-                case ElectricAdmittanceUnit.Millisiemens: return (_value) * 1e-3d;
-                case ElectricAdmittanceUnit.Nanosiemens: return (_value) * 1e-9d;
-                case ElectricAdmittanceUnit.Siemens: return _value;
+                case ElectricAdmittanceUnit.Microsiemens: return ([_value]) * 1e-6d;
+                case ElectricAdmittanceUnit.Millisiemens: return ([_value]) * 1e-3d;
+                case ElectricAdmittanceUnit.Nanosiemens: return ([_value]) * 1e-9d;
+                case ElectricAdmittanceUnit.Siemens: return [_value];
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -186,10 +186,10 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case ElectricAdmittanceUnit.Microsiemens: return (baseUnitValue) / 1e-6d;
-                case ElectricAdmittanceUnit.Millisiemens: return (baseUnitValue) / 1e-3d;
-                case ElectricAdmittanceUnit.Nanosiemens: return (baseUnitValue) / 1e-9d;
-                case ElectricAdmittanceUnit.Siemens: return baseUnitValue;
+                case ElectricAdmittanceUnit.Microsiemens: return ([baseUnitValue]) / 1e-6d;
+                case ElectricAdmittanceUnit.Millisiemens: return ([baseUnitValue]) / 1e-3d;
+                case ElectricAdmittanceUnit.Nanosiemens: return ([baseUnitValue]) / 1e-9d;
+                case ElectricAdmittanceUnit.Siemens: return [baseUnitValue];
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

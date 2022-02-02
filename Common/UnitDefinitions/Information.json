@@ -7,8 +7,8 @@
     {
       "SingularName": "Byte",
       "PluralName": "Bytes",
-      "FromUnitToBaseFunc": "x*8m",
-      "FromBaseToUnitFunc": "x/8m",
+      "FromUnitToBaseFunc": "[x]*8m",
+      "FromBaseToUnitFunc": "[x]/8m",
       "Prefixes": [ "Kilo", "Mega", "Giga", "Tera", "Peta", "Exa", "Kibi", "Mebi", "Gibi", "Tebi", "Pebi", "Exbi" ],
       "Localization": [
         {
@@ -20,8 +20,8 @@
     {
       "SingularName": "Bit",
       "PluralName": "Bits",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "[x]",
+      "FromBaseToUnitFunc": "[x]",
       "Prefixes": [ "Kilo", "Mega", "Giga", "Tera", "Peta", "Exa", "Kibi", "Mebi", "Gibi", "Tebi", "Pebi", "Exbi" ],
       "Localization": [
         {

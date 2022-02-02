@@ -138,7 +138,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case PermeabilityUnit.HenryPerMeter: return _value;
+                case PermeabilityUnit.HenryPerMeter: return [_value];
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -153,7 +153,7 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case PermeabilityUnit.HenryPerMeter: return baseUnitValue;
+                case PermeabilityUnit.HenryPerMeter: return [baseUnitValue];
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

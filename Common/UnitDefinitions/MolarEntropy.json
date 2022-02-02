@@ -13,8 +13,8 @@
     {
       "SingularName": "JoulePerMoleKelvin",
       "PluralName": "JoulesPerMoleKelvin",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "[x]",
+      "FromBaseToUnitFunc": "[x]",
       "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {

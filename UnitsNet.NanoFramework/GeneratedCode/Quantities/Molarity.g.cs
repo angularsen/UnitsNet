@@ -215,14 +215,14 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case MolarityUnit.CentimolesPerLiter: return (_value/1e-3) * 1e-2d;
-                case MolarityUnit.DecimolesPerLiter: return (_value/1e-3) * 1e-1d;
-                case MolarityUnit.MicromolesPerLiter: return (_value/1e-3) * 1e-6d;
-                case MolarityUnit.MillimolesPerLiter: return (_value/1e-3) * 1e-3d;
-                case MolarityUnit.MolesPerCubicMeter: return _value;
-                case MolarityUnit.MolesPerLiter: return _value/1e-3;
-                case MolarityUnit.NanomolesPerLiter: return (_value/1e-3) * 1e-9d;
-                case MolarityUnit.PicomolesPerLiter: return (_value/1e-3) * 1e-12d;
+                case MolarityUnit.CentimolesPerLiter: return ([_value]/1e-3) * 1e-2d;
+                case MolarityUnit.DecimolesPerLiter: return ([_value]/1e-3) * 1e-1d;
+                case MolarityUnit.MicromolesPerLiter: return ([_value]/1e-3) * 1e-6d;
+                case MolarityUnit.MillimolesPerLiter: return ([_value]/1e-3) * 1e-3d;
+                case MolarityUnit.MolesPerCubicMeter: return [_value];
+                case MolarityUnit.MolesPerLiter: return [_value]/1e-3;
+                case MolarityUnit.NanomolesPerLiter: return ([_value]/1e-3) * 1e-9d;
+                case MolarityUnit.PicomolesPerLiter: return ([_value]/1e-3) * 1e-12d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -237,14 +237,14 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case MolarityUnit.CentimolesPerLiter: return (baseUnitValue*1e-3) / 1e-2d;
-                case MolarityUnit.DecimolesPerLiter: return (baseUnitValue*1e-3) / 1e-1d;
-                case MolarityUnit.MicromolesPerLiter: return (baseUnitValue*1e-3) / 1e-6d;
-                case MolarityUnit.MillimolesPerLiter: return (baseUnitValue*1e-3) / 1e-3d;
-                case MolarityUnit.MolesPerCubicMeter: return baseUnitValue;
-                case MolarityUnit.MolesPerLiter: return baseUnitValue*1e-3;
-                case MolarityUnit.NanomolesPerLiter: return (baseUnitValue*1e-3) / 1e-9d;
-                case MolarityUnit.PicomolesPerLiter: return (baseUnitValue*1e-3) / 1e-12d;
+                case MolarityUnit.CentimolesPerLiter: return ([baseUnitValue]*1e-3) / 1e-2d;
+                case MolarityUnit.DecimolesPerLiter: return ([baseUnitValue]*1e-3) / 1e-1d;
+                case MolarityUnit.MicromolesPerLiter: return ([baseUnitValue]*1e-3) / 1e-6d;
+                case MolarityUnit.MillimolesPerLiter: return ([baseUnitValue]*1e-3) / 1e-3d;
+                case MolarityUnit.MolesPerCubicMeter: return [baseUnitValue];
+                case MolarityUnit.MolesPerLiter: return [baseUnitValue]*1e-3;
+                case MolarityUnit.NanomolesPerLiter: return ([baseUnitValue]*1e-3) / 1e-9d;
+                case MolarityUnit.PicomolesPerLiter: return ([baseUnitValue]*1e-3) / 1e-12d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

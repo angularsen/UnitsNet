@@ -7,8 +7,8 @@
     {
       "SingularName": "NTU",
       "PluralName": "NTU",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "[x]",
+      "FromBaseToUnitFunc": "[x]",
       "Localization": [
         {
           "Culture": "en-US",

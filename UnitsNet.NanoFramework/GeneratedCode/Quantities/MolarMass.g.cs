@@ -256,18 +256,18 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case MolarMassUnit.CentigramPerMole: return (_value/1e3) * 1e-2d;
-                case MolarMassUnit.DecagramPerMole: return (_value/1e3) * 1e1d;
-                case MolarMassUnit.DecigramPerMole: return (_value/1e3) * 1e-1d;
-                case MolarMassUnit.GramPerMole: return _value/1e3;
-                case MolarMassUnit.HectogramPerMole: return (_value/1e3) * 1e2d;
-                case MolarMassUnit.KilogramPerMole: return (_value/1e3) * 1e3d;
-                case MolarMassUnit.KilopoundPerMole: return (_value*0.45359237) * 1e3d;
-                case MolarMassUnit.MegapoundPerMole: return (_value*0.45359237) * 1e6d;
-                case MolarMassUnit.MicrogramPerMole: return (_value/1e3) * 1e-6d;
-                case MolarMassUnit.MilligramPerMole: return (_value/1e3) * 1e-3d;
-                case MolarMassUnit.NanogramPerMole: return (_value/1e3) * 1e-9d;
-                case MolarMassUnit.PoundPerMole: return _value*0.45359237;
+                case MolarMassUnit.CentigramPerMole: return ([_value]/1e3) * 1e-2d;
+                case MolarMassUnit.DecagramPerMole: return ([_value]/1e3) * 1e1d;
+                case MolarMassUnit.DecigramPerMole: return ([_value]/1e3) * 1e-1d;
+                case MolarMassUnit.GramPerMole: return [_value]/1e3;
+                case MolarMassUnit.HectogramPerMole: return ([_value]/1e3) * 1e2d;
+                case MolarMassUnit.KilogramPerMole: return ([_value]/1e3) * 1e3d;
+                case MolarMassUnit.KilopoundPerMole: return ([_value]*0.45359237) * 1e3d;
+                case MolarMassUnit.MegapoundPerMole: return ([_value]*0.45359237) * 1e6d;
+                case MolarMassUnit.MicrogramPerMole: return ([_value]/1e3) * 1e-6d;
+                case MolarMassUnit.MilligramPerMole: return ([_value]/1e3) * 1e-3d;
+                case MolarMassUnit.NanogramPerMole: return ([_value]/1e3) * 1e-9d;
+                case MolarMassUnit.PoundPerMole: return [_value]*0.45359237;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -282,18 +282,18 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case MolarMassUnit.CentigramPerMole: return (baseUnitValue*1e3) / 1e-2d;
-                case MolarMassUnit.DecagramPerMole: return (baseUnitValue*1e3) / 1e1d;
-                case MolarMassUnit.DecigramPerMole: return (baseUnitValue*1e3) / 1e-1d;
-                case MolarMassUnit.GramPerMole: return baseUnitValue*1e3;
-                case MolarMassUnit.HectogramPerMole: return (baseUnitValue*1e3) / 1e2d;
-                case MolarMassUnit.KilogramPerMole: return (baseUnitValue*1e3) / 1e3d;
-                case MolarMassUnit.KilopoundPerMole: return (baseUnitValue/0.45359237) / 1e3d;
-                case MolarMassUnit.MegapoundPerMole: return (baseUnitValue/0.45359237) / 1e6d;
-                case MolarMassUnit.MicrogramPerMole: return (baseUnitValue*1e3) / 1e-6d;
-                case MolarMassUnit.MilligramPerMole: return (baseUnitValue*1e3) / 1e-3d;
-                case MolarMassUnit.NanogramPerMole: return (baseUnitValue*1e3) / 1e-9d;
-                case MolarMassUnit.PoundPerMole: return baseUnitValue/0.45359237;
+                case MolarMassUnit.CentigramPerMole: return ([baseUnitValue]*1e3) / 1e-2d;
+                case MolarMassUnit.DecagramPerMole: return ([baseUnitValue]*1e3) / 1e1d;
+                case MolarMassUnit.DecigramPerMole: return ([baseUnitValue]*1e3) / 1e-1d;
+                case MolarMassUnit.GramPerMole: return [baseUnitValue]*1e3;
+                case MolarMassUnit.HectogramPerMole: return ([baseUnitValue]*1e3) / 1e2d;
+                case MolarMassUnit.KilogramPerMole: return ([baseUnitValue]*1e3) / 1e3d;
+                case MolarMassUnit.KilopoundPerMole: return ([baseUnitValue]/0.45359237) / 1e3d;
+                case MolarMassUnit.MegapoundPerMole: return ([baseUnitValue]/0.45359237) / 1e6d;
+                case MolarMassUnit.MicrogramPerMole: return ([baseUnitValue]*1e3) / 1e-6d;
+                case MolarMassUnit.MilligramPerMole: return ([baseUnitValue]*1e3) / 1e-3d;
+                case MolarMassUnit.NanogramPerMole: return ([baseUnitValue]*1e3) / 1e-9d;
+                case MolarMassUnit.PoundPerMole: return [baseUnitValue]/0.45359237;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

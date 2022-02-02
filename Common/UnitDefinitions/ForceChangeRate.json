@@ -11,8 +11,8 @@
     {
       "SingularName": "NewtonPerMinute",
       "PluralName": "NewtonsPerMinute",
-      "FromUnitToBaseFunc": "x/60",
-      "FromBaseToUnitFunc": "x*60",
+      "FromUnitToBaseFunc": "[x]/60",
+      "FromBaseToUnitFunc": "[x]*60",
       "Prefixes": [ "Deca", "Kilo" ],
       "Localization": [
         {
@@ -24,8 +24,8 @@
     {
       "SingularName": "NewtonPerSecond",
       "PluralName": "NewtonsPerSecond",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "[x]",
+      "FromBaseToUnitFunc": "[x]",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo" ],
       "Localization": [
         {
@@ -37,8 +37,8 @@
 	{
       "SingularName": "PoundForcePerMinute",
       "PluralName": "PoundsForcePerMinute",
-      "FromUnitToBaseFunc": "x*4.4482216152605095551842641431421/60",
-      "FromBaseToUnitFunc": "x/4.4482216152605095551842641431421*60",
+      "FromUnitToBaseFunc": "[x]*4.4482216152605095551842641431421/60",
+      "FromBaseToUnitFunc": "[x]/4.4482216152605095551842641431421*60",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
@@ -51,8 +51,8 @@
 	{
       "SingularName": "PoundForcePerSecond",
       "PluralName": "PoundsForcePerSecond",
-      "FromUnitToBaseFunc": "x*4.4482216152605095551842641431421",
-      "FromBaseToUnitFunc": "x/4.4482216152605095551842641431421",
+      "FromUnitToBaseFunc": "[x]*4.4482216152605095551842641431421",
+      "FromBaseToUnitFunc": "[x]/4.4482216152605095551842641431421",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {

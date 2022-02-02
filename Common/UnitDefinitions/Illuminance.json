@@ -11,8 +11,8 @@
     {
       "SingularName": "Lux",
       "PluralName": "Lux",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "[x]",
+      "FromBaseToUnitFunc": "[x]",
       "Prefixes": [ "Milli", "Kilo", "Mega" ],
       "Localization": [
         {

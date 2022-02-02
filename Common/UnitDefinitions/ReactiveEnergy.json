@@ -11,8 +11,8 @@
     {
       "SingularName": "VoltampereReactiveHour",
       "PluralName": "VoltampereReactiveHours",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "[x]",
+      "FromBaseToUnitFunc": "[x]",
       "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {

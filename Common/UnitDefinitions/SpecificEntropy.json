@@ -11,8 +11,8 @@
     {
       "SingularName": "JoulePerKilogramKelvin",
       "PluralName": "JoulesPerKilogramKelvin",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "[x]",
+      "FromBaseToUnitFunc": "[x]",
       "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
@@ -24,8 +24,8 @@
     {
       "SingularName": "JoulePerKilogramDegreeCelsius",
       "PluralName": "JoulesPerKilogramDegreeCelsius",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "[x]",
+      "FromBaseToUnitFunc": "[x]",
       "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
@@ -37,8 +37,8 @@
     {
       "SingularName": "CaloriePerGramKelvin",
       "PluralName": "CaloriesPerGramKelvin",
-      "FromUnitToBaseFunc": "x*4.184e3",
-      "FromBaseToUnitFunc": "x/4.184e3",
+      "FromUnitToBaseFunc": "[x]*4.184e3",
+      "FromBaseToUnitFunc": "[x]/4.184e3",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
@@ -50,8 +50,8 @@
     {
       "SingularName": "BtuPerPoundFahrenheit",
       "PluralName": "BtusPerPoundFahrenheit",
-      "FromUnitToBaseFunc": "x * 4.1868e3",
-      "FromBaseToUnitFunc": "x / 4.1868e3",
+      "FromUnitToBaseFunc": "[x] * 4.1868e3",
+      "FromBaseToUnitFunc": "[x] / 4.1868e3",
       "Localization": [
         {
           "Culture": "en-US",

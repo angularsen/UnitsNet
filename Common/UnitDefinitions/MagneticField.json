@@ -12,8 +12,8 @@
     {
       "SingularName": "Tesla",
       "PluralName": "Teslas",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "[x]",
+      "FromBaseToUnitFunc": "[x]",
       "Prefixes": [ "Nano", "Micro", "Milli" ],
       "Localization": [
         {
@@ -25,8 +25,8 @@
     {
       "SingularName": "Gauss",
       "PluralName": "Gausses",
-      "FromUnitToBaseFunc": "x/1e4",
-      "FromBaseToUnitFunc": "x*1e4",
+      "FromUnitToBaseFunc": "[x]/1e4",
+      "FromBaseToUnitFunc": "[x]*1e4",
       "Prefixes": [ "Milli" ],
       "Localization": [
         {

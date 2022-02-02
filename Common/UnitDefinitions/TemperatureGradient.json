@@ -14,8 +14,8 @@
         "L": "Meter",
         "Θ": "Kelvin"
       },
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "[x]",
+      "FromBaseToUnitFunc": "[x]",
       "Localization": [
         {
           "Culture": "en-US",
@@ -30,8 +30,8 @@
         "L": "Meter",
         "Θ": "DegreeCelsius"
       },
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "[x]",
+      "FromBaseToUnitFunc": "[x]",
       "Localization": [
         {
           "Culture": "en-US",
@@ -46,8 +46,8 @@
         "L": "Foot",
         "Θ": "DegreeFahrenheit"
       },
-      "FromUnitToBaseFunc": "(x / 0.3048) * 5/9",
-      "FromBaseToUnitFunc": "(x * 0.3048) * 9/5",
+      "FromUnitToBaseFunc": "([x] / 0.3048) * 5/9",
+      "FromBaseToUnitFunc": "([x] * 0.3048) * 9/5",
       "Localization": [
         {
           "Culture": "en-US",
@@ -62,8 +62,8 @@
         "L": "Kilometer",
         "Θ": "DegreeCelsius"
       },
-      "FromUnitToBaseFunc": "x / 1e3",
-      "FromBaseToUnitFunc": "x * 1e3",
+      "FromUnitToBaseFunc": "[x] / 1e3",
+      "FromBaseToUnitFunc": "[x] * 1e3",
       "Localization": [
         {
           "Culture": "en-US",

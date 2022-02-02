@@ -157,9 +157,9 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case MolarEntropyUnit.JoulePerMoleKelvin: return _value;
-                case MolarEntropyUnit.KilojoulePerMoleKelvin: return (_value) * 1e3d;
-                case MolarEntropyUnit.MegajoulePerMoleKelvin: return (_value) * 1e6d;
+                case MolarEntropyUnit.JoulePerMoleKelvin: return [_value];
+                case MolarEntropyUnit.KilojoulePerMoleKelvin: return ([_value]) * 1e3d;
+                case MolarEntropyUnit.MegajoulePerMoleKelvin: return ([_value]) * 1e6d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -174,9 +174,9 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case MolarEntropyUnit.JoulePerMoleKelvin: return baseUnitValue;
-                case MolarEntropyUnit.KilojoulePerMoleKelvin: return (baseUnitValue) / 1e3d;
-                case MolarEntropyUnit.MegajoulePerMoleKelvin: return (baseUnitValue) / 1e6d;
+                case MolarEntropyUnit.JoulePerMoleKelvin: return [baseUnitValue];
+                case MolarEntropyUnit.KilojoulePerMoleKelvin: return ([baseUnitValue]) / 1e3d;
+                case MolarEntropyUnit.MegajoulePerMoleKelvin: return ([baseUnitValue]) / 1e6d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
