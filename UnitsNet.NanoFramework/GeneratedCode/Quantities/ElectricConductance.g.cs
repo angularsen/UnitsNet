@@ -160,9 +160,9 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case ElectricConductanceUnit.Microsiemens: return ([_value]) * 1e-6d;
-                case ElectricConductanceUnit.Millisiemens: return ([_value]) * 1e-3d;
-                case ElectricConductanceUnit.Siemens: return [_value];
+                case ElectricConductanceUnit.Microsiemens: return (_value) * 1e-6d;
+                case ElectricConductanceUnit.Millisiemens: return (_value) * 1e-3d;
+                case ElectricConductanceUnit.Siemens: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -177,9 +177,9 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case ElectricConductanceUnit.Microsiemens: return ([baseUnitValue]) / 1e-6d;
-                case ElectricConductanceUnit.Millisiemens: return ([baseUnitValue]) / 1e-3d;
-                case ElectricConductanceUnit.Siemens: return [baseUnitValue];
+                case ElectricConductanceUnit.Microsiemens: return (baseUnitValue) / 1e-6d;
+                case ElectricConductanceUnit.Millisiemens: return (baseUnitValue) / 1e-3d;
+                case ElectricConductanceUnit.Siemens: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

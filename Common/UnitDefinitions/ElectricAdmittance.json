@@ -12,8 +12,8 @@
     {
       "SingularName": "Siemens",
       "PluralName": "Siemens",
-      "FromUnitToBaseFunc": "[x]",
-      "FromBaseToUnitFunc": "[x]",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Nano", "Micro", "Milli" ],
       "Localization": [
         {

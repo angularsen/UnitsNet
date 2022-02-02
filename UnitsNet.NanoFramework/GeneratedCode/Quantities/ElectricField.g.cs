@@ -138,7 +138,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case ElectricFieldUnit.VoltPerMeter: return [_value];
+                case ElectricFieldUnit.VoltPerMeter: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -153,7 +153,7 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case ElectricFieldUnit.VoltPerMeter: return [baseUnitValue];
+                case ElectricFieldUnit.VoltPerMeter: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

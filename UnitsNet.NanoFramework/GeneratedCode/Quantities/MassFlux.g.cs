@@ -256,18 +256,18 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case MassFluxUnit.GramPerHourPerSquareCentimeter: return [_value]/3.6e2;
-                case MassFluxUnit.GramPerHourPerSquareMeter: return [_value]/3.6e6;
-                case MassFluxUnit.GramPerHourPerSquareMillimeter: return [_value]/3.6e0;
-                case MassFluxUnit.GramPerSecondPerSquareCentimeter: return [_value]/1e-1;
-                case MassFluxUnit.GramPerSecondPerSquareMeter: return [_value]/1e3;
-                case MassFluxUnit.GramPerSecondPerSquareMillimeter: return [_value]/1e-3;
-                case MassFluxUnit.KilogramPerHourPerSquareCentimeter: return ([_value]/3.6e2) * 1e3d;
-                case MassFluxUnit.KilogramPerHourPerSquareMeter: return ([_value]/3.6e6) * 1e3d;
-                case MassFluxUnit.KilogramPerHourPerSquareMillimeter: return ([_value]/3.6e0) * 1e3d;
-                case MassFluxUnit.KilogramPerSecondPerSquareCentimeter: return ([_value]/1e-1) * 1e3d;
-                case MassFluxUnit.KilogramPerSecondPerSquareMeter: return ([_value]/1e3) * 1e3d;
-                case MassFluxUnit.KilogramPerSecondPerSquareMillimeter: return ([_value]/1e-3) * 1e3d;
+                case MassFluxUnit.GramPerHourPerSquareCentimeter: return _value/3.6e2;
+                case MassFluxUnit.GramPerHourPerSquareMeter: return _value/3.6e6;
+                case MassFluxUnit.GramPerHourPerSquareMillimeter: return _value/3.6e0;
+                case MassFluxUnit.GramPerSecondPerSquareCentimeter: return _value/1e-1;
+                case MassFluxUnit.GramPerSecondPerSquareMeter: return _value/1e3;
+                case MassFluxUnit.GramPerSecondPerSquareMillimeter: return _value/1e-3;
+                case MassFluxUnit.KilogramPerHourPerSquareCentimeter: return (_value/3.6e2) * 1e3d;
+                case MassFluxUnit.KilogramPerHourPerSquareMeter: return (_value/3.6e6) * 1e3d;
+                case MassFluxUnit.KilogramPerHourPerSquareMillimeter: return (_value/3.6e0) * 1e3d;
+                case MassFluxUnit.KilogramPerSecondPerSquareCentimeter: return (_value/1e-1) * 1e3d;
+                case MassFluxUnit.KilogramPerSecondPerSquareMeter: return (_value/1e3) * 1e3d;
+                case MassFluxUnit.KilogramPerSecondPerSquareMillimeter: return (_value/1e-3) * 1e3d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -282,18 +282,18 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case MassFluxUnit.GramPerHourPerSquareCentimeter: return [baseUnitValue]*3.6e2;
-                case MassFluxUnit.GramPerHourPerSquareMeter: return [baseUnitValue]*3.6e6;
-                case MassFluxUnit.GramPerHourPerSquareMillimeter: return [baseUnitValue]*3.6e0;
-                case MassFluxUnit.GramPerSecondPerSquareCentimeter: return [baseUnitValue]*1e-1;
-                case MassFluxUnit.GramPerSecondPerSquareMeter: return [baseUnitValue]*1e3;
-                case MassFluxUnit.GramPerSecondPerSquareMillimeter: return [baseUnitValue]*1e-3;
-                case MassFluxUnit.KilogramPerHourPerSquareCentimeter: return ([baseUnitValue]*3.6e2) / 1e3d;
-                case MassFluxUnit.KilogramPerHourPerSquareMeter: return ([baseUnitValue]*3.6e6) / 1e3d;
-                case MassFluxUnit.KilogramPerHourPerSquareMillimeter: return ([baseUnitValue]*3.6e0) / 1e3d;
-                case MassFluxUnit.KilogramPerSecondPerSquareCentimeter: return ([baseUnitValue]*1e-1) / 1e3d;
-                case MassFluxUnit.KilogramPerSecondPerSquareMeter: return ([baseUnitValue]*1e3) / 1e3d;
-                case MassFluxUnit.KilogramPerSecondPerSquareMillimeter: return ([baseUnitValue]*1e-3) / 1e3d;
+                case MassFluxUnit.GramPerHourPerSquareCentimeter: return baseUnitValue*3.6e2;
+                case MassFluxUnit.GramPerHourPerSquareMeter: return baseUnitValue*3.6e6;
+                case MassFluxUnit.GramPerHourPerSquareMillimeter: return baseUnitValue*3.6e0;
+                case MassFluxUnit.GramPerSecondPerSquareCentimeter: return baseUnitValue*1e-1;
+                case MassFluxUnit.GramPerSecondPerSquareMeter: return baseUnitValue*1e3;
+                case MassFluxUnit.GramPerSecondPerSquareMillimeter: return baseUnitValue*1e-3;
+                case MassFluxUnit.KilogramPerHourPerSquareCentimeter: return (baseUnitValue*3.6e2) / 1e3d;
+                case MassFluxUnit.KilogramPerHourPerSquareMeter: return (baseUnitValue*3.6e6) / 1e3d;
+                case MassFluxUnit.KilogramPerHourPerSquareMillimeter: return (baseUnitValue*3.6e0) / 1e3d;
+                case MassFluxUnit.KilogramPerSecondPerSquareCentimeter: return (baseUnitValue*1e-1) / 1e3d;
+                case MassFluxUnit.KilogramPerSecondPerSquareMeter: return (baseUnitValue*1e3) / 1e3d;
+                case MassFluxUnit.KilogramPerSecondPerSquareMillimeter: return (baseUnitValue*1e-3) / 1e3d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

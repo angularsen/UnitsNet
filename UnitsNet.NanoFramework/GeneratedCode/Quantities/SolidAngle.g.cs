@@ -138,7 +138,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case SolidAngleUnit.Steradian: return [_value];
+                case SolidAngleUnit.Steradian: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -153,7 +153,7 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case SolidAngleUnit.Steradian: return [baseUnitValue];
+                case SolidAngleUnit.Steradian: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

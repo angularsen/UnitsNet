@@ -234,16 +234,16 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond: return ([_value]) * 1e-2d;
-                case TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond: return ([_value]) * 1e1d;
-                case TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond: return ([_value]) * 1e-1d;
-                case TemperatureChangeRateUnit.DegreeCelsiusPerMinute: return [_value]/60;
-                case TemperatureChangeRateUnit.DegreeCelsiusPerSecond: return [_value];
-                case TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond: return ([_value]) * 1e2d;
-                case TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond: return ([_value]) * 1e3d;
-                case TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond: return ([_value]) * 1e-6d;
-                case TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond: return ([_value]) * 1e-3d;
-                case TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond: return ([_value]) * 1e-9d;
+                case TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond: return (_value) * 1e-2d;
+                case TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond: return (_value) * 1e1d;
+                case TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond: return (_value) * 1e-1d;
+                case TemperatureChangeRateUnit.DegreeCelsiusPerMinute: return _value/60;
+                case TemperatureChangeRateUnit.DegreeCelsiusPerSecond: return _value;
+                case TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond: return (_value) * 1e2d;
+                case TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond: return (_value) * 1e3d;
+                case TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond: return (_value) * 1e-6d;
+                case TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond: return (_value) * 1e-3d;
+                case TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond: return (_value) * 1e-9d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -258,16 +258,16 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond: return ([baseUnitValue]) / 1e-2d;
-                case TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond: return ([baseUnitValue]) / 1e1d;
-                case TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond: return ([baseUnitValue]) / 1e-1d;
-                case TemperatureChangeRateUnit.DegreeCelsiusPerMinute: return [baseUnitValue]*60;
-                case TemperatureChangeRateUnit.DegreeCelsiusPerSecond: return [baseUnitValue];
-                case TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond: return ([baseUnitValue]) / 1e2d;
-                case TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond: return ([baseUnitValue]) / 1e3d;
-                case TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond: return ([baseUnitValue]) / 1e-6d;
-                case TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond: return ([baseUnitValue]) / 1e-3d;
-                case TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond: return ([baseUnitValue]) / 1e-9d;
+                case TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond: return (baseUnitValue) / 1e-2d;
+                case TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond: return (baseUnitValue) / 1e1d;
+                case TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond: return (baseUnitValue) / 1e-1d;
+                case TemperatureChangeRateUnit.DegreeCelsiusPerMinute: return baseUnitValue*60;
+                case TemperatureChangeRateUnit.DegreeCelsiusPerSecond: return baseUnitValue;
+                case TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond: return (baseUnitValue) / 1e2d;
+                case TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond: return (baseUnitValue) / 1e3d;
+                case TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond: return (baseUnitValue) / 1e-6d;
+                case TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond: return (baseUnitValue) / 1e-3d;
+                case TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond: return (baseUnitValue) / 1e-9d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

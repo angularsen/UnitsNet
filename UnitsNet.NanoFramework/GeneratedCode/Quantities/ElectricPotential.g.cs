@@ -179,11 +179,11 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case ElectricPotentialUnit.Kilovolt: return ([_value]) * 1e3d;
-                case ElectricPotentialUnit.Megavolt: return ([_value]) * 1e6d;
-                case ElectricPotentialUnit.Microvolt: return ([_value]) * 1e-6d;
-                case ElectricPotentialUnit.Millivolt: return ([_value]) * 1e-3d;
-                case ElectricPotentialUnit.Volt: return [_value];
+                case ElectricPotentialUnit.Kilovolt: return (_value) * 1e3d;
+                case ElectricPotentialUnit.Megavolt: return (_value) * 1e6d;
+                case ElectricPotentialUnit.Microvolt: return (_value) * 1e-6d;
+                case ElectricPotentialUnit.Millivolt: return (_value) * 1e-3d;
+                case ElectricPotentialUnit.Volt: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -198,11 +198,11 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case ElectricPotentialUnit.Kilovolt: return ([baseUnitValue]) / 1e3d;
-                case ElectricPotentialUnit.Megavolt: return ([baseUnitValue]) / 1e6d;
-                case ElectricPotentialUnit.Microvolt: return ([baseUnitValue]) / 1e-6d;
-                case ElectricPotentialUnit.Millivolt: return ([baseUnitValue]) / 1e-3d;
-                case ElectricPotentialUnit.Volt: return [baseUnitValue];
+                case ElectricPotentialUnit.Kilovolt: return (baseUnitValue) / 1e3d;
+                case ElectricPotentialUnit.Megavolt: return (baseUnitValue) / 1e6d;
+                case ElectricPotentialUnit.Microvolt: return (baseUnitValue) / 1e-6d;
+                case ElectricPotentialUnit.Millivolt: return (baseUnitValue) / 1e-3d;
+                case ElectricPotentialUnit.Volt: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

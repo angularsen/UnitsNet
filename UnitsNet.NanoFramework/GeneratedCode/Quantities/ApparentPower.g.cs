@@ -168,10 +168,10 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case ApparentPowerUnit.Gigavoltampere: return ([_value]) * 1e9d;
-                case ApparentPowerUnit.Kilovoltampere: return ([_value]) * 1e3d;
-                case ApparentPowerUnit.Megavoltampere: return ([_value]) * 1e6d;
-                case ApparentPowerUnit.Voltampere: return [_value];
+                case ApparentPowerUnit.Gigavoltampere: return (_value) * 1e9d;
+                case ApparentPowerUnit.Kilovoltampere: return (_value) * 1e3d;
+                case ApparentPowerUnit.Megavoltampere: return (_value) * 1e6d;
+                case ApparentPowerUnit.Voltampere: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -186,10 +186,10 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case ApparentPowerUnit.Gigavoltampere: return ([baseUnitValue]) / 1e9d;
-                case ApparentPowerUnit.Kilovoltampere: return ([baseUnitValue]) / 1e3d;
-                case ApparentPowerUnit.Megavoltampere: return ([baseUnitValue]) / 1e6d;
-                case ApparentPowerUnit.Voltampere: return [baseUnitValue];
+                case ApparentPowerUnit.Gigavoltampere: return (baseUnitValue) / 1e9d;
+                case ApparentPowerUnit.Kilovoltampere: return (baseUnitValue) / 1e3d;
+                case ApparentPowerUnit.Megavoltampere: return (baseUnitValue) / 1e6d;
+                case ApparentPowerUnit.Voltampere: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

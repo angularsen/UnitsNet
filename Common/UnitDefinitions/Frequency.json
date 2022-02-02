@@ -9,8 +9,8 @@
     {
       "SingularName": "Hertz",
       "PluralName": "Hertz",
-      "FromUnitToBaseFunc": "[x]",
-      "FromBaseToUnitFunc": "[x]",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Kilo", "Mega", "Giga", "Tera" ],
       "Localization": [
         {
@@ -26,8 +26,8 @@
     {
       "SingularName": "RadianPerSecond",
       "PluralName": "RadiansPerSecond",
-      "FromUnitToBaseFunc": "[x]/6.2831853072",
-      "FromBaseToUnitFunc": "[x]*6.2831853072",
+      "FromUnitToBaseFunc": "{x}/6.2831853072",
+      "FromBaseToUnitFunc": "{x}*6.2831853072",
       "OmitExtensionMethod": true,
       "Localization": [
         {
@@ -43,8 +43,8 @@
     {
       "SingularName": "CyclePerMinute",
       "PluralName": "CyclesPerMinute",
-      "FromUnitToBaseFunc": "[x]/60",
-      "FromBaseToUnitFunc": "[x]*60",
+      "FromUnitToBaseFunc": "{x}/60",
+      "FromBaseToUnitFunc": "{x}*60",
       "Localization": [
         {
           "Culture": "en-US",
@@ -55,8 +55,8 @@
     {
       "SingularName": "CyclePerHour",
       "PluralName": "CyclesPerHour",
-      "FromUnitToBaseFunc": "[x]/3600",
-      "FromBaseToUnitFunc": "[x]*3600",
+      "FromUnitToBaseFunc": "{x}/3600",
+      "FromBaseToUnitFunc": "{x}*3600",
       "Localization": [
         {
           "Culture": "en-US",
@@ -67,8 +67,8 @@
     {
       "SingularName": "BeatPerMinute",
       "PluralName": "BeatsPerMinute",
-      "FromUnitToBaseFunc": "[x]/60",
-      "FromBaseToUnitFunc": "[x]*60",
+      "FromUnitToBaseFunc": "{x}/60",
+      "FromBaseToUnitFunc": "{x}*60",
       "Localization": [
         {
           "Culture": "en-US",
@@ -79,8 +79,8 @@
     {
       "SingularName": "PerSecond",
       "PluralName": "PerSecond",
-      "FromUnitToBaseFunc": "[x]",
-      "FromBaseToUnitFunc": "[x]",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Localization": [
         {
           "Culture": "en-US",
@@ -95,8 +95,8 @@
     {
       "SingularName": "BUnit",
       "PluralName": "BUnits",
-      "FromUnitToBaseFunc": "Math.Sqrt([x] * 1e3)",
-      "FromBaseToUnitFunc": "[x] * [x] * 1e-3",
+      "FromUnitToBaseFunc": "Math.Sqrt({x} * 1e3)",
+      "FromBaseToUnitFunc": "{x} * {x} * 1e-3",
       "Localization": [
         {
           "Culture": "en-US",

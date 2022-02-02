@@ -12,8 +12,8 @@
     {
       "SingularName": "JoulePerMole",
       "PluralName": "JoulesPerMole",
-      "FromUnitToBaseFunc": "[x]",
-      "FromBaseToUnitFunc": "[x]",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {

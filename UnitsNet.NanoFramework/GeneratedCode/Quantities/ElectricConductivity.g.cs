@@ -160,9 +160,9 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case ElectricConductivityUnit.SiemensPerFoot: return [_value] * 3.2808398950131234;
-                case ElectricConductivityUnit.SiemensPerInch: return [_value] * 3.937007874015748e1;
-                case ElectricConductivityUnit.SiemensPerMeter: return [_value];
+                case ElectricConductivityUnit.SiemensPerFoot: return _value * 3.2808398950131234;
+                case ElectricConductivityUnit.SiemensPerInch: return _value * 3.937007874015748e1;
+                case ElectricConductivityUnit.SiemensPerMeter: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -177,9 +177,9 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case ElectricConductivityUnit.SiemensPerFoot: return [baseUnitValue] / 3.2808398950131234;
-                case ElectricConductivityUnit.SiemensPerInch: return [baseUnitValue] / 3.937007874015748e1;
-                case ElectricConductivityUnit.SiemensPerMeter: return [baseUnitValue];
+                case ElectricConductivityUnit.SiemensPerFoot: return baseUnitValue / 3.2808398950131234;
+                case ElectricConductivityUnit.SiemensPerInch: return baseUnitValue / 3.937007874015748e1;
+                case ElectricConductivityUnit.SiemensPerMeter: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

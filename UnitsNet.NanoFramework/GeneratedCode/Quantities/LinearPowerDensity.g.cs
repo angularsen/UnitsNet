@@ -402,31 +402,31 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case LinearPowerDensityUnit.GigawattPerCentimeter: return ([_value]*1e2) * 1e9d;
-                case LinearPowerDensityUnit.GigawattPerFoot: return ([_value]*3.280839895) * 1e9d;
-                case LinearPowerDensityUnit.GigawattPerInch: return ([_value]*39.37007874) * 1e9d;
-                case LinearPowerDensityUnit.GigawattPerMeter: return ([_value]) * 1e9d;
-                case LinearPowerDensityUnit.GigawattPerMillimeter: return ([_value]*1e3) * 1e9d;
-                case LinearPowerDensityUnit.KilowattPerCentimeter: return ([_value]*1e2) * 1e3d;
-                case LinearPowerDensityUnit.KilowattPerFoot: return ([_value]*3.280839895) * 1e3d;
-                case LinearPowerDensityUnit.KilowattPerInch: return ([_value]*39.37007874) * 1e3d;
-                case LinearPowerDensityUnit.KilowattPerMeter: return ([_value]) * 1e3d;
-                case LinearPowerDensityUnit.KilowattPerMillimeter: return ([_value]*1e3) * 1e3d;
-                case LinearPowerDensityUnit.MegawattPerCentimeter: return ([_value]*1e2) * 1e6d;
-                case LinearPowerDensityUnit.MegawattPerFoot: return ([_value]*3.280839895) * 1e6d;
-                case LinearPowerDensityUnit.MegawattPerInch: return ([_value]*39.37007874) * 1e6d;
-                case LinearPowerDensityUnit.MegawattPerMeter: return ([_value]) * 1e6d;
-                case LinearPowerDensityUnit.MegawattPerMillimeter: return ([_value]*1e3) * 1e6d;
-                case LinearPowerDensityUnit.MilliwattPerCentimeter: return ([_value]*1e2) * 1e-3d;
-                case LinearPowerDensityUnit.MilliwattPerFoot: return ([_value]*3.280839895) * 1e-3d;
-                case LinearPowerDensityUnit.MilliwattPerInch: return ([_value]*39.37007874) * 1e-3d;
-                case LinearPowerDensityUnit.MilliwattPerMeter: return ([_value]) * 1e-3d;
-                case LinearPowerDensityUnit.MilliwattPerMillimeter: return ([_value]*1e3) * 1e-3d;
-                case LinearPowerDensityUnit.WattPerCentimeter: return [_value]*1e2;
-                case LinearPowerDensityUnit.WattPerFoot: return [_value]*3.280839895;
-                case LinearPowerDensityUnit.WattPerInch: return [_value]*39.37007874;
-                case LinearPowerDensityUnit.WattPerMeter: return [_value];
-                case LinearPowerDensityUnit.WattPerMillimeter: return [_value]*1e3;
+                case LinearPowerDensityUnit.GigawattPerCentimeter: return (_value*1e2) * 1e9d;
+                case LinearPowerDensityUnit.GigawattPerFoot: return (_value*3.280839895) * 1e9d;
+                case LinearPowerDensityUnit.GigawattPerInch: return (_value*39.37007874) * 1e9d;
+                case LinearPowerDensityUnit.GigawattPerMeter: return (_value) * 1e9d;
+                case LinearPowerDensityUnit.GigawattPerMillimeter: return (_value*1e3) * 1e9d;
+                case LinearPowerDensityUnit.KilowattPerCentimeter: return (_value*1e2) * 1e3d;
+                case LinearPowerDensityUnit.KilowattPerFoot: return (_value*3.280839895) * 1e3d;
+                case LinearPowerDensityUnit.KilowattPerInch: return (_value*39.37007874) * 1e3d;
+                case LinearPowerDensityUnit.KilowattPerMeter: return (_value) * 1e3d;
+                case LinearPowerDensityUnit.KilowattPerMillimeter: return (_value*1e3) * 1e3d;
+                case LinearPowerDensityUnit.MegawattPerCentimeter: return (_value*1e2) * 1e6d;
+                case LinearPowerDensityUnit.MegawattPerFoot: return (_value*3.280839895) * 1e6d;
+                case LinearPowerDensityUnit.MegawattPerInch: return (_value*39.37007874) * 1e6d;
+                case LinearPowerDensityUnit.MegawattPerMeter: return (_value) * 1e6d;
+                case LinearPowerDensityUnit.MegawattPerMillimeter: return (_value*1e3) * 1e6d;
+                case LinearPowerDensityUnit.MilliwattPerCentimeter: return (_value*1e2) * 1e-3d;
+                case LinearPowerDensityUnit.MilliwattPerFoot: return (_value*3.280839895) * 1e-3d;
+                case LinearPowerDensityUnit.MilliwattPerInch: return (_value*39.37007874) * 1e-3d;
+                case LinearPowerDensityUnit.MilliwattPerMeter: return (_value) * 1e-3d;
+                case LinearPowerDensityUnit.MilliwattPerMillimeter: return (_value*1e3) * 1e-3d;
+                case LinearPowerDensityUnit.WattPerCentimeter: return _value*1e2;
+                case LinearPowerDensityUnit.WattPerFoot: return _value*3.280839895;
+                case LinearPowerDensityUnit.WattPerInch: return _value*39.37007874;
+                case LinearPowerDensityUnit.WattPerMeter: return _value;
+                case LinearPowerDensityUnit.WattPerMillimeter: return _value*1e3;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -441,31 +441,31 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case LinearPowerDensityUnit.GigawattPerCentimeter: return ([baseUnitValue]/1e2) / 1e9d;
-                case LinearPowerDensityUnit.GigawattPerFoot: return ([baseUnitValue]/3.280839895) / 1e9d;
-                case LinearPowerDensityUnit.GigawattPerInch: return ([baseUnitValue]/39.37007874) / 1e9d;
-                case LinearPowerDensityUnit.GigawattPerMeter: return ([baseUnitValue]) / 1e9d;
-                case LinearPowerDensityUnit.GigawattPerMillimeter: return ([baseUnitValue]/1e3) / 1e9d;
-                case LinearPowerDensityUnit.KilowattPerCentimeter: return ([baseUnitValue]/1e2) / 1e3d;
-                case LinearPowerDensityUnit.KilowattPerFoot: return ([baseUnitValue]/3.280839895) / 1e3d;
-                case LinearPowerDensityUnit.KilowattPerInch: return ([baseUnitValue]/39.37007874) / 1e3d;
-                case LinearPowerDensityUnit.KilowattPerMeter: return ([baseUnitValue]) / 1e3d;
-                case LinearPowerDensityUnit.KilowattPerMillimeter: return ([baseUnitValue]/1e3) / 1e3d;
-                case LinearPowerDensityUnit.MegawattPerCentimeter: return ([baseUnitValue]/1e2) / 1e6d;
-                case LinearPowerDensityUnit.MegawattPerFoot: return ([baseUnitValue]/3.280839895) / 1e6d;
-                case LinearPowerDensityUnit.MegawattPerInch: return ([baseUnitValue]/39.37007874) / 1e6d;
-                case LinearPowerDensityUnit.MegawattPerMeter: return ([baseUnitValue]) / 1e6d;
-                case LinearPowerDensityUnit.MegawattPerMillimeter: return ([baseUnitValue]/1e3) / 1e6d;
-                case LinearPowerDensityUnit.MilliwattPerCentimeter: return ([baseUnitValue]/1e2) / 1e-3d;
-                case LinearPowerDensityUnit.MilliwattPerFoot: return ([baseUnitValue]/3.280839895) / 1e-3d;
-                case LinearPowerDensityUnit.MilliwattPerInch: return ([baseUnitValue]/39.37007874) / 1e-3d;
-                case LinearPowerDensityUnit.MilliwattPerMeter: return ([baseUnitValue]) / 1e-3d;
-                case LinearPowerDensityUnit.MilliwattPerMillimeter: return ([baseUnitValue]/1e3) / 1e-3d;
-                case LinearPowerDensityUnit.WattPerCentimeter: return [baseUnitValue]/1e2;
-                case LinearPowerDensityUnit.WattPerFoot: return [baseUnitValue]/3.280839895;
-                case LinearPowerDensityUnit.WattPerInch: return [baseUnitValue]/39.37007874;
-                case LinearPowerDensityUnit.WattPerMeter: return [baseUnitValue];
-                case LinearPowerDensityUnit.WattPerMillimeter: return [baseUnitValue]/1e3;
+                case LinearPowerDensityUnit.GigawattPerCentimeter: return (baseUnitValue/1e2) / 1e9d;
+                case LinearPowerDensityUnit.GigawattPerFoot: return (baseUnitValue/3.280839895) / 1e9d;
+                case LinearPowerDensityUnit.GigawattPerInch: return (baseUnitValue/39.37007874) / 1e9d;
+                case LinearPowerDensityUnit.GigawattPerMeter: return (baseUnitValue) / 1e9d;
+                case LinearPowerDensityUnit.GigawattPerMillimeter: return (baseUnitValue/1e3) / 1e9d;
+                case LinearPowerDensityUnit.KilowattPerCentimeter: return (baseUnitValue/1e2) / 1e3d;
+                case LinearPowerDensityUnit.KilowattPerFoot: return (baseUnitValue/3.280839895) / 1e3d;
+                case LinearPowerDensityUnit.KilowattPerInch: return (baseUnitValue/39.37007874) / 1e3d;
+                case LinearPowerDensityUnit.KilowattPerMeter: return (baseUnitValue) / 1e3d;
+                case LinearPowerDensityUnit.KilowattPerMillimeter: return (baseUnitValue/1e3) / 1e3d;
+                case LinearPowerDensityUnit.MegawattPerCentimeter: return (baseUnitValue/1e2) / 1e6d;
+                case LinearPowerDensityUnit.MegawattPerFoot: return (baseUnitValue/3.280839895) / 1e6d;
+                case LinearPowerDensityUnit.MegawattPerInch: return (baseUnitValue/39.37007874) / 1e6d;
+                case LinearPowerDensityUnit.MegawattPerMeter: return (baseUnitValue) / 1e6d;
+                case LinearPowerDensityUnit.MegawattPerMillimeter: return (baseUnitValue/1e3) / 1e6d;
+                case LinearPowerDensityUnit.MilliwattPerCentimeter: return (baseUnitValue/1e2) / 1e-3d;
+                case LinearPowerDensityUnit.MilliwattPerFoot: return (baseUnitValue/3.280839895) / 1e-3d;
+                case LinearPowerDensityUnit.MilliwattPerInch: return (baseUnitValue/39.37007874) / 1e-3d;
+                case LinearPowerDensityUnit.MilliwattPerMeter: return (baseUnitValue) / 1e-3d;
+                case LinearPowerDensityUnit.MilliwattPerMillimeter: return (baseUnitValue/1e3) / 1e-3d;
+                case LinearPowerDensityUnit.WattPerCentimeter: return baseUnitValue/1e2;
+                case LinearPowerDensityUnit.WattPerFoot: return baseUnitValue/3.280839895;
+                case LinearPowerDensityUnit.WattPerInch: return baseUnitValue/39.37007874;
+                case LinearPowerDensityUnit.WattPerMeter: return baseUnitValue;
+                case LinearPowerDensityUnit.WattPerMillimeter: return baseUnitValue/1e3;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

@@ -135,7 +135,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case AreaDensityUnit.KilogramPerSquareMeter: return [_value];
+                case AreaDensityUnit.KilogramPerSquareMeter: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -150,7 +150,7 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case AreaDensityUnit.KilogramPerSquareMeter: return [baseUnitValue];
+                case AreaDensityUnit.KilogramPerSquareMeter: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

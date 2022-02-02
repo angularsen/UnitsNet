@@ -168,10 +168,10 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case ReactivePowerUnit.GigavoltampereReactive: return ([_value]) * 1e9d;
-                case ReactivePowerUnit.KilovoltampereReactive: return ([_value]) * 1e3d;
-                case ReactivePowerUnit.MegavoltampereReactive: return ([_value]) * 1e6d;
-                case ReactivePowerUnit.VoltampereReactive: return [_value];
+                case ReactivePowerUnit.GigavoltampereReactive: return (_value) * 1e9d;
+                case ReactivePowerUnit.KilovoltampereReactive: return (_value) * 1e3d;
+                case ReactivePowerUnit.MegavoltampereReactive: return (_value) * 1e6d;
+                case ReactivePowerUnit.VoltampereReactive: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -186,10 +186,10 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case ReactivePowerUnit.GigavoltampereReactive: return ([baseUnitValue]) / 1e9d;
-                case ReactivePowerUnit.KilovoltampereReactive: return ([baseUnitValue]) / 1e3d;
-                case ReactivePowerUnit.MegavoltampereReactive: return ([baseUnitValue]) / 1e6d;
-                case ReactivePowerUnit.VoltampereReactive: return [baseUnitValue];
+                case ReactivePowerUnit.GigavoltampereReactive: return (baseUnitValue) / 1e9d;
+                case ReactivePowerUnit.KilovoltampereReactive: return (baseUnitValue) / 1e3d;
+                case ReactivePowerUnit.MegavoltampereReactive: return (baseUnitValue) / 1e6d;
+                case ReactivePowerUnit.VoltampereReactive: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

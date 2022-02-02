@@ -11,8 +11,8 @@
     {
       "SingularName": "DegreeCelsiusPerKilometer",
       "PluralName": "DegreesCelciusPerKilometer",
-      "FromUnitToBaseFunc": "[x]",
-      "FromBaseToUnitFunc": "[x]",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Localization": [
         {
           "Culture": "en-US",

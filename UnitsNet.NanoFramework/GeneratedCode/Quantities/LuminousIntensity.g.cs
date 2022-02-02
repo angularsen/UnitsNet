@@ -138,7 +138,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case LuminousIntensityUnit.Candela: return [_value];
+                case LuminousIntensityUnit.Candela: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -153,7 +153,7 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case LuminousIntensityUnit.Candela: return [baseUnitValue];
+                case LuminousIntensityUnit.Candela: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

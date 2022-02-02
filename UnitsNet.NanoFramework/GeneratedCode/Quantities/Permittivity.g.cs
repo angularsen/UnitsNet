@@ -138,7 +138,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case PermittivityUnit.FaradPerMeter: return [_value];
+                case PermittivityUnit.FaradPerMeter: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -153,7 +153,7 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case PermittivityUnit.FaradPerMeter: return [baseUnitValue];
+                case PermittivityUnit.FaradPerMeter: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

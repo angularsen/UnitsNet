@@ -6,8 +6,8 @@
     "Units": [{
         "SingularName": "LiterPer100Kilometers",
         "PluralName": "LitersPer100Kilometers",
-        "FromUnitToBaseFunc": "[x]",
-        "FromBaseToUnitFunc": "[x]",
+        "FromUnitToBaseFunc": "{x}",
+        "FromBaseToUnitFunc": "{x}",
         "Localization": [{
           "Culture": "en-US",
           "Abbreviations": [
@@ -18,8 +18,8 @@
       {
         "SingularName": "MilePerUsGallon",
         "PluralName": "MilesPerUsGallon",
-        "FromUnitToBaseFunc": "(100*3.785411784)/(1.609344*[x])",
-        "FromBaseToUnitFunc": "(100*3.785411784)/(1.609344*[x])",
+        "FromUnitToBaseFunc": "(100*3.785411784)/(1.609344*{x})",
+        "FromBaseToUnitFunc": "(100*3.785411784)/(1.609344*{x})",
         "Localization": [{
           "Culture": "en-US",
           "Abbreviations": [
@@ -30,8 +30,8 @@
       {
         "SingularName": "MilePerUkGallon",
         "PluralName": "MilesPerUkGallon",
-        "FromUnitToBaseFunc": "(100*4.54609188)/(1.609344*[x])",
-        "FromBaseToUnitFunc": "(100*4.54609188)/(1.609344*[x])",
+        "FromUnitToBaseFunc": "(100*4.54609188)/(1.609344*{x})",
+        "FromBaseToUnitFunc": "(100*4.54609188)/(1.609344*{x})",
         "Localization": [{
           "Culture": "en-US",
           "Abbreviations": [
@@ -42,8 +42,8 @@
       {
         "SingularName": "KilometerPerLiter",
         "PluralName": "KilometersPerLiters",
-        "FromUnitToBaseFunc": "100/[x]",
-        "FromBaseToUnitFunc": "100/[x]",
+        "FromUnitToBaseFunc": "100/{x}",
+        "FromBaseToUnitFunc": "100/{x}",
         "Localization": [{
           "Culture": "en-US",
           "Abbreviations": [

@@ -18,8 +18,8 @@
         "T": "Second",
         "I": "Ampere"
       },
-      "FromUnitToBaseFunc": "[x]",
-      "FromBaseToUnitFunc": "[x]",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Micro", "Milli", "Kilo", "Mega" ],
       "Localization": [
         {
@@ -37,8 +37,8 @@
         "T": "Microsecond",
         "I": "Ampere"
       },
-      "FromUnitToBaseFunc": "[x]*1E6",
-      "FromBaseToUnitFunc": "[x]/1E6",
+      "FromUnitToBaseFunc": "{x}*1E6",
+      "FromBaseToUnitFunc": "{x}/1E6",
       "Prefixes": [ "Micro", "Milli", "Kilo", "Mega" ],
       "Localization": [
         {
@@ -56,8 +56,8 @@
         "T": "Minute",
         "I": "Ampere"
       },
-      "FromUnitToBaseFunc": "[x]/60",
-      "FromBaseToUnitFunc": "[x]*60",
+      "FromUnitToBaseFunc": "{x}/60",
+      "FromBaseToUnitFunc": "{x}*60",
       "Prefixes": [ "Micro", "Milli", "Kilo", "Mega" ],
       "Localization": [
         {
@@ -75,8 +75,8 @@
         "T": "Hour",
         "I": "Ampere"
       },
-      "FromUnitToBaseFunc": "[x]/3600",
-      "FromBaseToUnitFunc": "[x]*3600",
+      "FromUnitToBaseFunc": "{x}/3600",
+      "FromBaseToUnitFunc": "{x}*3600",
       "Prefixes": [ "Micro", "Milli", "Kilo", "Mega" ],
       "Localization": [
         {

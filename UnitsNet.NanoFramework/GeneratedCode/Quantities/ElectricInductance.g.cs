@@ -171,10 +171,10 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case ElectricInductanceUnit.Henry: return [_value];
-                case ElectricInductanceUnit.Microhenry: return ([_value]) * 1e-6d;
-                case ElectricInductanceUnit.Millihenry: return ([_value]) * 1e-3d;
-                case ElectricInductanceUnit.Nanohenry: return ([_value]) * 1e-9d;
+                case ElectricInductanceUnit.Henry: return _value;
+                case ElectricInductanceUnit.Microhenry: return (_value) * 1e-6d;
+                case ElectricInductanceUnit.Millihenry: return (_value) * 1e-3d;
+                case ElectricInductanceUnit.Nanohenry: return (_value) * 1e-9d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -189,10 +189,10 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case ElectricInductanceUnit.Henry: return [baseUnitValue];
-                case ElectricInductanceUnit.Microhenry: return ([baseUnitValue]) / 1e-6d;
-                case ElectricInductanceUnit.Millihenry: return ([baseUnitValue]) / 1e-3d;
-                case ElectricInductanceUnit.Nanohenry: return ([baseUnitValue]) / 1e-9d;
+                case ElectricInductanceUnit.Henry: return baseUnitValue;
+                case ElectricInductanceUnit.Microhenry: return (baseUnitValue) / 1e-6d;
+                case ElectricInductanceUnit.Millihenry: return (baseUnitValue) / 1e-3d;
+                case ElectricInductanceUnit.Nanohenry: return (baseUnitValue) / 1e-9d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

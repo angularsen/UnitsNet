@@ -237,16 +237,16 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case ReciprocalLengthUnit.InverseCentimeter: return [_value]*1e2;
-                case ReciprocalLengthUnit.InverseFoot: return [_value]/0.3048;
-                case ReciprocalLengthUnit.InverseInch: return [_value]/2.54e-2;
-                case ReciprocalLengthUnit.InverseMeter: return [_value];
-                case ReciprocalLengthUnit.InverseMicroinch: return [_value]/2.54e-8;
-                case ReciprocalLengthUnit.InverseMil: return [_value]/2.54e-5;
-                case ReciprocalLengthUnit.InverseMile: return [_value]/1609.34;
-                case ReciprocalLengthUnit.InverseMillimeter: return [_value]*1e3;
-                case ReciprocalLengthUnit.InverseUsSurveyFoot: return [_value]*3937/1200;
-                case ReciprocalLengthUnit.InverseYard: return [_value]/0.9144;
+                case ReciprocalLengthUnit.InverseCentimeter: return _value*1e2;
+                case ReciprocalLengthUnit.InverseFoot: return _value/0.3048;
+                case ReciprocalLengthUnit.InverseInch: return _value/2.54e-2;
+                case ReciprocalLengthUnit.InverseMeter: return _value;
+                case ReciprocalLengthUnit.InverseMicroinch: return _value/2.54e-8;
+                case ReciprocalLengthUnit.InverseMil: return _value/2.54e-5;
+                case ReciprocalLengthUnit.InverseMile: return _value/1609.34;
+                case ReciprocalLengthUnit.InverseMillimeter: return _value*1e3;
+                case ReciprocalLengthUnit.InverseUsSurveyFoot: return _value*3937/1200;
+                case ReciprocalLengthUnit.InverseYard: return _value/0.9144;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -261,16 +261,16 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case ReciprocalLengthUnit.InverseCentimeter: return [baseUnitValue]/1e2;
-                case ReciprocalLengthUnit.InverseFoot: return [baseUnitValue]*0.3048;
-                case ReciprocalLengthUnit.InverseInch: return [baseUnitValue]*2.54e-2;
-                case ReciprocalLengthUnit.InverseMeter: return [baseUnitValue];
-                case ReciprocalLengthUnit.InverseMicroinch: return [baseUnitValue]*2.54e-8;
-                case ReciprocalLengthUnit.InverseMil: return [baseUnitValue]*2.54e-5;
-                case ReciprocalLengthUnit.InverseMile: return [baseUnitValue]*1609.34;
-                case ReciprocalLengthUnit.InverseMillimeter: return [baseUnitValue]/1e3;
-                case ReciprocalLengthUnit.InverseUsSurveyFoot: return [baseUnitValue]*1200/3937;
-                case ReciprocalLengthUnit.InverseYard: return [baseUnitValue]*0.9144;
+                case ReciprocalLengthUnit.InverseCentimeter: return baseUnitValue/1e2;
+                case ReciprocalLengthUnit.InverseFoot: return baseUnitValue*0.3048;
+                case ReciprocalLengthUnit.InverseInch: return baseUnitValue*2.54e-2;
+                case ReciprocalLengthUnit.InverseMeter: return baseUnitValue;
+                case ReciprocalLengthUnit.InverseMicroinch: return baseUnitValue*2.54e-8;
+                case ReciprocalLengthUnit.InverseMil: return baseUnitValue*2.54e-5;
+                case ReciprocalLengthUnit.InverseMile: return baseUnitValue*1609.34;
+                case ReciprocalLengthUnit.InverseMillimeter: return baseUnitValue/1e3;
+                case ReciprocalLengthUnit.InverseUsSurveyFoot: return baseUnitValue*1200/3937;
+                case ReciprocalLengthUnit.InverseYard: return baseUnitValue*0.9144;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

@@ -157,9 +157,9 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case ApparentEnergyUnit.KilovoltampereHour: return ([_value]) * 1e3d;
-                case ApparentEnergyUnit.MegavoltampereHour: return ([_value]) * 1e6d;
-                case ApparentEnergyUnit.VoltampereHour: return [_value];
+                case ApparentEnergyUnit.KilovoltampereHour: return (_value) * 1e3d;
+                case ApparentEnergyUnit.MegavoltampereHour: return (_value) * 1e6d;
+                case ApparentEnergyUnit.VoltampereHour: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -174,9 +174,9 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case ApparentEnergyUnit.KilovoltampereHour: return ([baseUnitValue]) / 1e3d;
-                case ApparentEnergyUnit.MegavoltampereHour: return ([baseUnitValue]) / 1e6d;
-                case ApparentEnergyUnit.VoltampereHour: return [baseUnitValue];
+                case ApparentEnergyUnit.KilovoltampereHour: return (baseUnitValue) / 1e3d;
+                case ApparentEnergyUnit.MegavoltampereHour: return (baseUnitValue) / 1e6d;
+                case ApparentEnergyUnit.VoltampereHour: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

@@ -10,8 +10,8 @@
     {
       "SingularName": "StandardCubicMeterPerSecond",
       "PluralName": "StandardCubicMetersPerSecond",
-      "FromUnitToBaseFunc": "[x]",
-      "FromBaseToUnitFunc": "[x]",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Localization": [
         {
           "Culture": "en-US",
@@ -22,8 +22,8 @@
     {
       "SingularName": "StandardCubicMeterPerMinute",
       "PluralName": "StandardCubicMetersPerMinute",
-      "FromUnitToBaseFunc": "[x]/60",
-      "FromBaseToUnitFunc": "[x]*60",
+      "FromUnitToBaseFunc": "{x}/60",
+      "FromBaseToUnitFunc": "{x}*60",
       "Localization": [
         {
           "Culture": "en-US",
@@ -34,8 +34,8 @@
     {
       "SingularName": "StandardCubicMeterPerHour",
       "PluralName": "StandardCubicMetersPerHour",
-      "FromUnitToBaseFunc": "[x]/3600",
-      "FromBaseToUnitFunc": "[x]*3600",
+      "FromUnitToBaseFunc": "{x}/3600",
+      "FromBaseToUnitFunc": "{x}*3600",
       "Localization": [
         {
           "Culture": "en-US",
@@ -46,8 +46,8 @@
     {
       "SingularName": "StandardCubicMeterPerDay",
       "PluralName": "StandardCubicMetersPerDay",
-      "FromUnitToBaseFunc": "[x]/86400",
-      "FromBaseToUnitFunc": "[x]*86400",
+      "FromUnitToBaseFunc": "{x}/86400",
+      "FromBaseToUnitFunc": "{x}*86400",
       "Localization": [
         {
           "Culture": "en-US",
@@ -58,8 +58,8 @@
     {
       "SingularName": "StandardCubicCentimeterPerMinute",
       "PluralName": "StandardCubicCentimetersPerMinute",
-      "FromUnitToBaseFunc": "[x]/6e7",
-      "FromBaseToUnitFunc": "[x]*6e7",
+      "FromUnitToBaseFunc": "{x}/6e7",
+      "FromBaseToUnitFunc": "{x}*6e7",
       "Localization": [
         {
           "Culture": "en-US",
@@ -70,8 +70,8 @@
     {
       "SingularName": "StandardLiterPerMinute",
       "PluralName": "StandardLitersPerMinute",
-      "FromUnitToBaseFunc": "[x]/60000",
-      "FromBaseToUnitFunc": "[x]*60000",
+      "FromUnitToBaseFunc": "{x}/60000",
+      "FromBaseToUnitFunc": "{x}*60000",
       "Localization": [
         {
           "Culture": "en-US",
@@ -82,8 +82,8 @@
     {
       "SingularName": "StandardCubicFootPerSecond",
       "PluralName": "StandardCubicFeetPerSecond",
-      "FromUnitToBaseFunc": "[x]/35.314666721",
-      "FromBaseToUnitFunc": "[x]*35.314666721",
+      "FromUnitToBaseFunc": "{x}/35.314666721",
+      "FromBaseToUnitFunc": "{x}*35.314666721",
       "Localization": [
         {
           "Culture": "en-US",
@@ -94,8 +94,8 @@
     {
       "SingularName": "StandardCubicFootPerMinute",
       "PluralName": "StandardCubicFeetPerMinute",
-      "FromUnitToBaseFunc": "[x]/2118.88000326",
-      "FromBaseToUnitFunc": "[x]*2118.88000326",
+      "FromUnitToBaseFunc": "{x}/2118.88000326",
+      "FromBaseToUnitFunc": "{x}*2118.88000326",
       "Localization": [
         {
           "Culture": "en-US",
@@ -106,8 +106,8 @@
     {
       "SingularName": "StandardCubicFootPerHour",
       "PluralName": "StandardCubicFeetPerHour",
-      "FromUnitToBaseFunc": "[x]*7.8657907199999087346816086183876e-6",
-      "FromBaseToUnitFunc": "[x]/7.8657907199999087346816086183876e-6",
+      "FromUnitToBaseFunc": "{x}*7.8657907199999087346816086183876e-6",
+      "FromBaseToUnitFunc": "{x}/7.8657907199999087346816086183876e-6",
       "Localization": [
         {
           "Culture": "en-US",

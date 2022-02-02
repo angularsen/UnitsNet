@@ -16,8 +16,8 @@
         "M": "Kilogram",
         "T": "Second"
       },
-      "FromUnitToBaseFunc": "[x]",
-      "FromBaseToUnitFunc": "[x]",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Milli", "Kilo", "Mega", "Giga" ],
       "Localization": [
         {
@@ -29,8 +29,8 @@
     {
       "SingularName": "Calorie",
       "PluralName": "Calories",
-      "FromUnitToBaseFunc": "[x]*4.184",
-      "FromBaseToUnitFunc": "[x]/4.184",
+      "FromUnitToBaseFunc": "{x}*4.184",
+      "FromBaseToUnitFunc": "{x}/4.184",
       "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
@@ -42,8 +42,8 @@
     {
       "SingularName": "BritishThermalUnit",
       "PluralName": "BritishThermalUnits",
-      "FromUnitToBaseFunc": "[x]*1055.05585262",
-      "FromBaseToUnitFunc": "[x]/1055.05585262",
+      "FromUnitToBaseFunc": "{x}*1055.05585262",
+      "FromBaseToUnitFunc": "{x}/1055.05585262",
       "Prefixes": [ "Kilo", "Mega", "Giga" ],
       "Localization": [
         {
@@ -55,8 +55,8 @@
     {
       "SingularName": "ElectronVolt",
       "PluralName": "ElectronVolts",
-      "FromUnitToBaseFunc": "[x]*1.602176565e-19",
-      "FromBaseToUnitFunc": "[x]/1.602176565e-19",
+      "FromUnitToBaseFunc": "{x}*1.602176565e-19",
+      "FromBaseToUnitFunc": "{x}/1.602176565e-19",
       "Prefixes": [
         "Kilo",
         "Mega",
@@ -77,8 +77,8 @@
     {
       "SingularName": "FootPound",
       "PluralName": "FootPounds",
-      "FromUnitToBaseFunc": "[x]*1.355817948",
-      "FromBaseToUnitFunc": "[x]/1.355817948",
+      "FromUnitToBaseFunc": "{x}*1.355817948",
+      "FromBaseToUnitFunc": "{x}/1.355817948",
       "Localization": [
         {
           "Culture": "en-US",
@@ -89,8 +89,8 @@
     {
       "SingularName": "Erg",
       "PluralName": "Ergs",
-      "FromUnitToBaseFunc": "[x]*1e-7",
-      "FromBaseToUnitFunc": "[x]/1e-7",
+      "FromUnitToBaseFunc": "{x}*1e-7",
+      "FromBaseToUnitFunc": "{x}/1e-7",
       "Localization": [
         {
           "Culture": "en-US",
@@ -101,8 +101,8 @@
     {
       "SingularName": "WattHour",
       "PluralName": "WattHours",
-      "FromUnitToBaseFunc": "[x]*3600d",
-      "FromBaseToUnitFunc": "[x]/3600d",
+      "FromUnitToBaseFunc": "{x}*3600d",
+      "FromBaseToUnitFunc": "{x}/3600d",
       "Prefixes": [ "Kilo", "Mega", "Giga", "Tera" ],
       "Localization": [
         {
@@ -118,8 +118,8 @@
     {
       "SingularName": "WattDay",
       "PluralName": "WattDays",
-      "FromUnitToBaseFunc": "[x]*24*3600d",
-      "FromBaseToUnitFunc": "[x]/(24*3600d)",
+      "FromUnitToBaseFunc": "{x}*24*3600d",
+      "FromBaseToUnitFunc": "{x}/(24*3600d)",
       "Prefixes": [ "Kilo", "Mega", "Giga", "Tera" ],
       "Localization": [
         {
@@ -135,8 +135,8 @@
     {
       "SingularName": "ThermEc",
       "PluralName": "ThermsEc",
-      "FromUnitToBaseFunc": "[x]*1.05505585262e8",
-      "FromBaseToUnitFunc": "[x]/1.05505585262e8",
+      "FromUnitToBaseFunc": "{x}*1.05505585262e8",
+      "FromBaseToUnitFunc": "{x}/1.05505585262e8",
       "Prefixes": [ "Deca" ],
       "Localization": [
         {
@@ -154,8 +154,8 @@
     {
       "SingularName": "ThermUs",
       "PluralName": "ThermsUs",
-      "FromUnitToBaseFunc": "[x]*1.054804e8",
-      "FromBaseToUnitFunc": "[x]/1.054804e8",
+      "FromUnitToBaseFunc": "{x}*1.054804e8",
+      "FromBaseToUnitFunc": "{x}/1.054804e8",
       "Prefixes": [ "Deca" ],
       "Localization": [
         {
@@ -173,8 +173,8 @@
     {
       "SingularName": "ThermImperial",
       "PluralName": "ThermsImperial",
-      "FromUnitToBaseFunc": "[x]*1.05505585257348e8",
-      "FromBaseToUnitFunc": "[x]/1.05505585257348e8",
+      "FromUnitToBaseFunc": "{x}*1.05505585257348e8",
+      "FromBaseToUnitFunc": "{x}/1.05505585257348e8",
       "Prefixes": [ "Deca" ],
       "Localization": [
         {
@@ -192,8 +192,8 @@
     {
       "SingularName": "HorsepowerHour",
       "PluralName": "HorsepowerHours",
-      "FromUnitToBaseFunc": "[x]*2.6845195377e6",
-      "FromBaseToUnitFunc": "[x]/2.6845195377e6",
+      "FromUnitToBaseFunc": "{x}*2.6845195377e6",
+      "FromBaseToUnitFunc": "{x}/2.6845195377e6",
       "Localization": [
         {
           "Culture": "en-US",

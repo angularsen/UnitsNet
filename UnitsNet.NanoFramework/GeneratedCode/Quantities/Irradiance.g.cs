@@ -278,20 +278,20 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case IrradianceUnit.KilowattPerSquareCentimeter: return ([_value]*10000) * 1e3d;
-                case IrradianceUnit.KilowattPerSquareMeter: return ([_value]) * 1e3d;
-                case IrradianceUnit.MegawattPerSquareCentimeter: return ([_value]*10000) * 1e6d;
-                case IrradianceUnit.MegawattPerSquareMeter: return ([_value]) * 1e6d;
-                case IrradianceUnit.MicrowattPerSquareCentimeter: return ([_value]*10000) * 1e-6d;
-                case IrradianceUnit.MicrowattPerSquareMeter: return ([_value]) * 1e-6d;
-                case IrradianceUnit.MilliwattPerSquareCentimeter: return ([_value]*10000) * 1e-3d;
-                case IrradianceUnit.MilliwattPerSquareMeter: return ([_value]) * 1e-3d;
-                case IrradianceUnit.NanowattPerSquareCentimeter: return ([_value]*10000) * 1e-9d;
-                case IrradianceUnit.NanowattPerSquareMeter: return ([_value]) * 1e-9d;
-                case IrradianceUnit.PicowattPerSquareCentimeter: return ([_value]*10000) * 1e-12d;
-                case IrradianceUnit.PicowattPerSquareMeter: return ([_value]) * 1e-12d;
-                case IrradianceUnit.WattPerSquareCentimeter: return [_value]*10000;
-                case IrradianceUnit.WattPerSquareMeter: return [_value];
+                case IrradianceUnit.KilowattPerSquareCentimeter: return (_value*10000) * 1e3d;
+                case IrradianceUnit.KilowattPerSquareMeter: return (_value) * 1e3d;
+                case IrradianceUnit.MegawattPerSquareCentimeter: return (_value*10000) * 1e6d;
+                case IrradianceUnit.MegawattPerSquareMeter: return (_value) * 1e6d;
+                case IrradianceUnit.MicrowattPerSquareCentimeter: return (_value*10000) * 1e-6d;
+                case IrradianceUnit.MicrowattPerSquareMeter: return (_value) * 1e-6d;
+                case IrradianceUnit.MilliwattPerSquareCentimeter: return (_value*10000) * 1e-3d;
+                case IrradianceUnit.MilliwattPerSquareMeter: return (_value) * 1e-3d;
+                case IrradianceUnit.NanowattPerSquareCentimeter: return (_value*10000) * 1e-9d;
+                case IrradianceUnit.NanowattPerSquareMeter: return (_value) * 1e-9d;
+                case IrradianceUnit.PicowattPerSquareCentimeter: return (_value*10000) * 1e-12d;
+                case IrradianceUnit.PicowattPerSquareMeter: return (_value) * 1e-12d;
+                case IrradianceUnit.WattPerSquareCentimeter: return _value*10000;
+                case IrradianceUnit.WattPerSquareMeter: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -306,20 +306,20 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case IrradianceUnit.KilowattPerSquareCentimeter: return ([baseUnitValue]*0.0001) / 1e3d;
-                case IrradianceUnit.KilowattPerSquareMeter: return ([baseUnitValue]) / 1e3d;
-                case IrradianceUnit.MegawattPerSquareCentimeter: return ([baseUnitValue]*0.0001) / 1e6d;
-                case IrradianceUnit.MegawattPerSquareMeter: return ([baseUnitValue]) / 1e6d;
-                case IrradianceUnit.MicrowattPerSquareCentimeter: return ([baseUnitValue]*0.0001) / 1e-6d;
-                case IrradianceUnit.MicrowattPerSquareMeter: return ([baseUnitValue]) / 1e-6d;
-                case IrradianceUnit.MilliwattPerSquareCentimeter: return ([baseUnitValue]*0.0001) / 1e-3d;
-                case IrradianceUnit.MilliwattPerSquareMeter: return ([baseUnitValue]) / 1e-3d;
-                case IrradianceUnit.NanowattPerSquareCentimeter: return ([baseUnitValue]*0.0001) / 1e-9d;
-                case IrradianceUnit.NanowattPerSquareMeter: return ([baseUnitValue]) / 1e-9d;
-                case IrradianceUnit.PicowattPerSquareCentimeter: return ([baseUnitValue]*0.0001) / 1e-12d;
-                case IrradianceUnit.PicowattPerSquareMeter: return ([baseUnitValue]) / 1e-12d;
-                case IrradianceUnit.WattPerSquareCentimeter: return [baseUnitValue]*0.0001;
-                case IrradianceUnit.WattPerSquareMeter: return [baseUnitValue];
+                case IrradianceUnit.KilowattPerSquareCentimeter: return (baseUnitValue*0.0001) / 1e3d;
+                case IrradianceUnit.KilowattPerSquareMeter: return (baseUnitValue) / 1e3d;
+                case IrradianceUnit.MegawattPerSquareCentimeter: return (baseUnitValue*0.0001) / 1e6d;
+                case IrradianceUnit.MegawattPerSquareMeter: return (baseUnitValue) / 1e6d;
+                case IrradianceUnit.MicrowattPerSquareCentimeter: return (baseUnitValue*0.0001) / 1e-6d;
+                case IrradianceUnit.MicrowattPerSquareMeter: return (baseUnitValue) / 1e-6d;
+                case IrradianceUnit.MilliwattPerSquareCentimeter: return (baseUnitValue*0.0001) / 1e-3d;
+                case IrradianceUnit.MilliwattPerSquareMeter: return (baseUnitValue) / 1e-3d;
+                case IrradianceUnit.NanowattPerSquareCentimeter: return (baseUnitValue*0.0001) / 1e-9d;
+                case IrradianceUnit.NanowattPerSquareMeter: return (baseUnitValue) / 1e-9d;
+                case IrradianceUnit.PicowattPerSquareCentimeter: return (baseUnitValue*0.0001) / 1e-12d;
+                case IrradianceUnit.PicowattPerSquareMeter: return (baseUnitValue) / 1e-12d;
+                case IrradianceUnit.WattPerSquareCentimeter: return baseUnitValue*0.0001;
+                case IrradianceUnit.WattPerSquareMeter: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

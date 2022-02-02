@@ -226,15 +226,15 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case KinematicViscosityUnit.Centistokes: return ([_value]/1e4) * 1e-2d;
-                case KinematicViscosityUnit.Decistokes: return ([_value]/1e4) * 1e-1d;
-                case KinematicViscosityUnit.Kilostokes: return ([_value]/1e4) * 1e3d;
-                case KinematicViscosityUnit.Microstokes: return ([_value]/1e4) * 1e-6d;
-                case KinematicViscosityUnit.Millistokes: return ([_value]/1e4) * 1e-3d;
-                case KinematicViscosityUnit.Nanostokes: return ([_value]/1e4) * 1e-9d;
-                case KinematicViscosityUnit.SquareFootPerSecond: return [_value]/10.7639;
-                case KinematicViscosityUnit.SquareMeterPerSecond: return [_value];
-                case KinematicViscosityUnit.Stokes: return [_value]/1e4;
+                case KinematicViscosityUnit.Centistokes: return (_value/1e4) * 1e-2d;
+                case KinematicViscosityUnit.Decistokes: return (_value/1e4) * 1e-1d;
+                case KinematicViscosityUnit.Kilostokes: return (_value/1e4) * 1e3d;
+                case KinematicViscosityUnit.Microstokes: return (_value/1e4) * 1e-6d;
+                case KinematicViscosityUnit.Millistokes: return (_value/1e4) * 1e-3d;
+                case KinematicViscosityUnit.Nanostokes: return (_value/1e4) * 1e-9d;
+                case KinematicViscosityUnit.SquareFootPerSecond: return _value/10.7639;
+                case KinematicViscosityUnit.SquareMeterPerSecond: return _value;
+                case KinematicViscosityUnit.Stokes: return _value/1e4;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -249,15 +249,15 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case KinematicViscosityUnit.Centistokes: return ([baseUnitValue]*1e4) / 1e-2d;
-                case KinematicViscosityUnit.Decistokes: return ([baseUnitValue]*1e4) / 1e-1d;
-                case KinematicViscosityUnit.Kilostokes: return ([baseUnitValue]*1e4) / 1e3d;
-                case KinematicViscosityUnit.Microstokes: return ([baseUnitValue]*1e4) / 1e-6d;
-                case KinematicViscosityUnit.Millistokes: return ([baseUnitValue]*1e4) / 1e-3d;
-                case KinematicViscosityUnit.Nanostokes: return ([baseUnitValue]*1e4) / 1e-9d;
-                case KinematicViscosityUnit.SquareFootPerSecond: return [baseUnitValue]*10.7639;
-                case KinematicViscosityUnit.SquareMeterPerSecond: return [baseUnitValue];
-                case KinematicViscosityUnit.Stokes: return [baseUnitValue]*1e4;
+                case KinematicViscosityUnit.Centistokes: return (baseUnitValue*1e4) / 1e-2d;
+                case KinematicViscosityUnit.Decistokes: return (baseUnitValue*1e4) / 1e-1d;
+                case KinematicViscosityUnit.Kilostokes: return (baseUnitValue*1e4) / 1e3d;
+                case KinematicViscosityUnit.Microstokes: return (baseUnitValue*1e4) / 1e-6d;
+                case KinematicViscosityUnit.Millistokes: return (baseUnitValue*1e4) / 1e-3d;
+                case KinematicViscosityUnit.Nanostokes: return (baseUnitValue*1e4) / 1e-9d;
+                case KinematicViscosityUnit.SquareFootPerSecond: return baseUnitValue*10.7639;
+                case KinematicViscosityUnit.SquareMeterPerSecond: return baseUnitValue;
+                case KinematicViscosityUnit.Stokes: return baseUnitValue*1e4;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

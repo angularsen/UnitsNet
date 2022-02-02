@@ -190,12 +190,12 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case RatioUnit.DecimalFraction: return [_value];
-                case RatioUnit.PartPerBillion: return [_value]/1e9;
-                case RatioUnit.PartPerMillion: return [_value]/1e6;
-                case RatioUnit.PartPerThousand: return [_value]/1e3;
-                case RatioUnit.PartPerTrillion: return [_value]/1e12;
-                case RatioUnit.Percent: return [_value]/1e2;
+                case RatioUnit.DecimalFraction: return _value;
+                case RatioUnit.PartPerBillion: return _value/1e9;
+                case RatioUnit.PartPerMillion: return _value/1e6;
+                case RatioUnit.PartPerThousand: return _value/1e3;
+                case RatioUnit.PartPerTrillion: return _value/1e12;
+                case RatioUnit.Percent: return _value/1e2;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -210,12 +210,12 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case RatioUnit.DecimalFraction: return [baseUnitValue];
-                case RatioUnit.PartPerBillion: return [baseUnitValue]*1e9;
-                case RatioUnit.PartPerMillion: return [baseUnitValue]*1e6;
-                case RatioUnit.PartPerThousand: return [baseUnitValue]*1e3;
-                case RatioUnit.PartPerTrillion: return [baseUnitValue]*1e12;
-                case RatioUnit.Percent: return [baseUnitValue]*1e2;
+                case RatioUnit.DecimalFraction: return baseUnitValue;
+                case RatioUnit.PartPerBillion: return baseUnitValue*1e9;
+                case RatioUnit.PartPerMillion: return baseUnitValue*1e6;
+                case RatioUnit.PartPerThousand: return baseUnitValue*1e3;
+                case RatioUnit.PartPerTrillion: return baseUnitValue*1e12;
+                case RatioUnit.Percent: return baseUnitValue*1e2;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

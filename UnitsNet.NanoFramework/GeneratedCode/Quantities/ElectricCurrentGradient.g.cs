@@ -168,10 +168,10 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case ElectricCurrentGradientUnit.AmperePerMicrosecond: return [_value]*1E6;
-                case ElectricCurrentGradientUnit.AmperePerMillisecond: return [_value]*1E3;
-                case ElectricCurrentGradientUnit.AmperePerNanosecond: return [_value]*1E9;
-                case ElectricCurrentGradientUnit.AmperePerSecond: return [_value];
+                case ElectricCurrentGradientUnit.AmperePerMicrosecond: return _value*1E6;
+                case ElectricCurrentGradientUnit.AmperePerMillisecond: return _value*1E3;
+                case ElectricCurrentGradientUnit.AmperePerNanosecond: return _value*1E9;
+                case ElectricCurrentGradientUnit.AmperePerSecond: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -186,10 +186,10 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case ElectricCurrentGradientUnit.AmperePerMicrosecond: return [baseUnitValue]/1E6;
-                case ElectricCurrentGradientUnit.AmperePerMillisecond: return [baseUnitValue]/1E3;
-                case ElectricCurrentGradientUnit.AmperePerNanosecond: return [baseUnitValue]/1E9;
-                case ElectricCurrentGradientUnit.AmperePerSecond: return [baseUnitValue];
+                case ElectricCurrentGradientUnit.AmperePerMicrosecond: return baseUnitValue/1E6;
+                case ElectricCurrentGradientUnit.AmperePerMillisecond: return baseUnitValue/1E3;
+                case ElectricCurrentGradientUnit.AmperePerNanosecond: return baseUnitValue/1E9;
+                case ElectricCurrentGradientUnit.AmperePerSecond: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

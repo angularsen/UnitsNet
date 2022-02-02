@@ -138,7 +138,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case MagneticFluxUnit.Weber: return [_value];
+                case MagneticFluxUnit.Weber: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -153,7 +153,7 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case MagneticFluxUnit.Weber: return [baseUnitValue];
+                case MagneticFluxUnit.Weber: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

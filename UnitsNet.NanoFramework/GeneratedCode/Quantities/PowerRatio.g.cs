@@ -146,8 +146,8 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case PowerRatioUnit.DecibelMilliwatt: return [_value] - 30;
-                case PowerRatioUnit.DecibelWatt: return [_value];
+                case PowerRatioUnit.DecibelMilliwatt: return _value - 30;
+                case PowerRatioUnit.DecibelWatt: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -162,8 +162,8 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case PowerRatioUnit.DecibelMilliwatt: return [baseUnitValue] + 30;
-                case PowerRatioUnit.DecibelWatt: return [baseUnitValue];
+                case PowerRatioUnit.DecibelMilliwatt: return baseUnitValue + 30;
+                case PowerRatioUnit.DecibelWatt: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

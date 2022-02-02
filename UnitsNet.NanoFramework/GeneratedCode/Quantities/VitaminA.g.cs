@@ -135,7 +135,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case VitaminAUnit.InternationalUnit: return [_value];
+                case VitaminAUnit.InternationalUnit: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -150,7 +150,7 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case VitaminAUnit.InternationalUnit: return [baseUnitValue];
+                case VitaminAUnit.InternationalUnit: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

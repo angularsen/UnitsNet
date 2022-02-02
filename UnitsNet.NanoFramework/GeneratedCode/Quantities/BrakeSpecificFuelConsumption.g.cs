@@ -157,9 +157,9 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour: return [_value]/3.6e9;
-                case BrakeSpecificFuelConsumptionUnit.KilogramPerJoule: return [_value];
-                case BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour: return [_value]*1.689659410672e-7;
+                case BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour: return _value/3.6e9;
+                case BrakeSpecificFuelConsumptionUnit.KilogramPerJoule: return _value;
+                case BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour: return _value*1.689659410672e-7;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -174,9 +174,9 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour: return [baseUnitValue]*3.6e9;
-                case BrakeSpecificFuelConsumptionUnit.KilogramPerJoule: return [baseUnitValue];
-                case BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour: return [baseUnitValue]/1.689659410672e-7;
+                case BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour: return baseUnitValue*3.6e9;
+                case BrakeSpecificFuelConsumptionUnit.KilogramPerJoule: return baseUnitValue;
+                case BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour: return baseUnitValue/1.689659410672e-7;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

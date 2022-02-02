@@ -11,8 +11,8 @@
     {
       "SingularName": "SquareMeterPerSecond",
       "PluralName": "SquareMetersPerSecond",
-      "FromUnitToBaseFunc": "[x]",
-      "FromBaseToUnitFunc": "[x]",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Localization": [
         {
           "Culture": "en-US",
@@ -27,8 +27,8 @@
     {
       "SingularName": "Stokes",
       "PluralName": "Stokes",
-      "FromUnitToBaseFunc": "[x]/1e4",
-      "FromBaseToUnitFunc": "[x]*1e4",
+      "FromUnitToBaseFunc": "{x}/1e4",
+      "FromBaseToUnitFunc": "{x}*1e4",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
       "Localization": [
         {
@@ -44,8 +44,8 @@
     {
       "SingularName": "SquareFootPerSecond",
       "PluralName": "SquareFeetPerSecond",
-      "FromUnitToBaseFunc": "[x]/10.7639",
-      "FromBaseToUnitFunc": "[x]*10.7639",
+      "FromUnitToBaseFunc": "{x}/10.7639",
+      "FromBaseToUnitFunc": "{x}*10.7639",
       "Localization": [
         {
           "Culture": "en-US",

@@ -157,9 +157,9 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit: return [_value] * 5.6782633411134878;
-                case HeatTransferCoefficientUnit.WattPerSquareMeterCelsius: return [_value];
-                case HeatTransferCoefficientUnit.WattPerSquareMeterKelvin: return [_value];
+                case HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit: return _value * 5.6782633411134878;
+                case HeatTransferCoefficientUnit.WattPerSquareMeterCelsius: return _value;
+                case HeatTransferCoefficientUnit.WattPerSquareMeterKelvin: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -174,9 +174,9 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit: return [baseUnitValue] / 5.6782633411134878;
-                case HeatTransferCoefficientUnit.WattPerSquareMeterCelsius: return [baseUnitValue];
-                case HeatTransferCoefficientUnit.WattPerSquareMeterKelvin: return [baseUnitValue];
+                case HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit: return baseUnitValue / 5.6782633411134878;
+                case HeatTransferCoefficientUnit.WattPerSquareMeterCelsius: return baseUnitValue;
+                case HeatTransferCoefficientUnit.WattPerSquareMeterKelvin: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

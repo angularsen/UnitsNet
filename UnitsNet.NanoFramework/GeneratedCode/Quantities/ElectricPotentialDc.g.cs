@@ -179,11 +179,11 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case ElectricPotentialDcUnit.KilovoltDc: return ([_value]) * 1e3d;
-                case ElectricPotentialDcUnit.MegavoltDc: return ([_value]) * 1e6d;
-                case ElectricPotentialDcUnit.MicrovoltDc: return ([_value]) * 1e-6d;
-                case ElectricPotentialDcUnit.MillivoltDc: return ([_value]) * 1e-3d;
-                case ElectricPotentialDcUnit.VoltDc: return [_value];
+                case ElectricPotentialDcUnit.KilovoltDc: return (_value) * 1e3d;
+                case ElectricPotentialDcUnit.MegavoltDc: return (_value) * 1e6d;
+                case ElectricPotentialDcUnit.MicrovoltDc: return (_value) * 1e-6d;
+                case ElectricPotentialDcUnit.MillivoltDc: return (_value) * 1e-3d;
+                case ElectricPotentialDcUnit.VoltDc: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -198,11 +198,11 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case ElectricPotentialDcUnit.KilovoltDc: return ([baseUnitValue]) / 1e3d;
-                case ElectricPotentialDcUnit.MegavoltDc: return ([baseUnitValue]) / 1e6d;
-                case ElectricPotentialDcUnit.MicrovoltDc: return ([baseUnitValue]) / 1e-6d;
-                case ElectricPotentialDcUnit.MillivoltDc: return ([baseUnitValue]) / 1e-3d;
-                case ElectricPotentialDcUnit.VoltDc: return [baseUnitValue];
+                case ElectricPotentialDcUnit.KilovoltDc: return (baseUnitValue) / 1e3d;
+                case ElectricPotentialDcUnit.MegavoltDc: return (baseUnitValue) / 1e6d;
+                case ElectricPotentialDcUnit.MicrovoltDc: return (baseUnitValue) / 1e-6d;
+                case ElectricPotentialDcUnit.MillivoltDc: return (baseUnitValue) / 1e-3d;
+                case ElectricPotentialDcUnit.VoltDc: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

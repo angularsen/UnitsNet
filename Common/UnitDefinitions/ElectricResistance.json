@@ -12,8 +12,8 @@
     {
       "SingularName": "Ohm",
       "PluralName": "Ohms",
-      "FromUnitToBaseFunc": "[x]",
-      "FromBaseToUnitFunc": "[x]",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Micro", "Milli", "Kilo", "Mega", "Giga"],
       "Localization": [
         {

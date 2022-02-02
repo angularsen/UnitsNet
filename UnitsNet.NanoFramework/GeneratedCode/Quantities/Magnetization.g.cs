@@ -138,7 +138,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case MagnetizationUnit.AmperePerMeter: return [_value];
+                case MagnetizationUnit.AmperePerMeter: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -153,7 +153,7 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case MagnetizationUnit.AmperePerMeter: return [baseUnitValue];
+                case MagnetizationUnit.AmperePerMeter: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

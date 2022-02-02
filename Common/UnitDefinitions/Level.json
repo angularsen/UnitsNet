@@ -8,8 +8,8 @@
     {
       "SingularName": "Decibel",
       "PluralName": "Decibels",
-      "FromUnitToBaseFunc": "[x]",
-      "FromBaseToUnitFunc": "[x]",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Localization": [
         {
           "Culture": "en-US",
@@ -20,8 +20,8 @@
     {
       "SingularName": "Neper",
       "PluralName": "Nepers",
-      "FromUnitToBaseFunc": "(1/0.115129254)*[x]",
-      "FromBaseToUnitFunc": "0.115129254*[x]",
+      "FromUnitToBaseFunc": "(1/0.115129254)*{x}",
+      "FromBaseToUnitFunc": "0.115129254*{x}",
       "Localization": [
         {
           "Culture": "en-US",

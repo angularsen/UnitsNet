@@ -13,8 +13,8 @@
     {
       "SingularName": "Henry",
       "PluralName": "Henries",
-      "FromUnitToBaseFunc": "[x]",
-      "FromBaseToUnitFunc": "[x]",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
 	  "Prefixes": [ "Nano", "Micro", "Milli" ],
       "Localization": [
         {
