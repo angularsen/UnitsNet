@@ -10,8 +10,8 @@
     {
       "SingularName": "AmperePerSecond",
       "PluralName": "AmperesPerSecond",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Localization": [
         {
           "Culture": "en-US",
@@ -26,8 +26,8 @@
         "T": "Millisecond",
         "I": "Ampere"
       },
-      "FromUnitToBaseFunc": "x*1E3",
-      "FromBaseToUnitFunc": "x/1E3",
+      "FromUnitToBaseFunc": "{x}*1E3",
+      "FromBaseToUnitFunc": "{x}/1E3",
       "Localization": [
         {
           "Culture": "en-US",
@@ -42,8 +42,8 @@
         "T": "Microsecond",
         "I": "Ampere"
       },
-      "FromUnitToBaseFunc": "x*1E6",
-      "FromBaseToUnitFunc": "x/1E6",
+      "FromUnitToBaseFunc": "{x}*1E6",
+      "FromBaseToUnitFunc": "{x}/1E6",
       "Localization": [
         {
           "Culture": "en-US",
@@ -58,8 +58,8 @@
         "T": "Nanosecond",
         "I": "Ampere"
       },
-      "FromUnitToBaseFunc": "x*1E9",
-      "FromBaseToUnitFunc": "x/1E9",
+      "FromUnitToBaseFunc": "{x}*1E9",
+      "FromBaseToUnitFunc": "{x}/1E9",
       "Localization": [
         {
           "Culture": "en-US",

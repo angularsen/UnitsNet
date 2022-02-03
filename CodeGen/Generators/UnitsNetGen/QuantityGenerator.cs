@@ -367,7 +367,7 @@ namespace UnitsNet
             if(unit.SingularName == _quantity.BaseUnit)
                 continue;
 
-        var func = unit.FromBaseToUnitFunc.Replace("x", "quantity.Value" );
+        var func = unit.FromBaseToUnitFunc.Replace("{x}", "quantity.Value" );
         Writer.WL( $@"
             unitConverter.SetConversionFunction<{_quantity.Name}>({_unitEnumName}.{_quantity.BaseUnit}, {_quantity.Name}Unit.{unit.SingularName}, quantity => new {_quantity.Name}({func}, {_quantity.Name}Unit.{unit.SingularName}));");
         }
@@ -384,7 +384,7 @@ namespace UnitsNet
             if(unit.SingularName == _quantity.BaseUnit)
                 continue;
 
-        var func = unit.FromUnitToBaseFunc.Replace("x", "quantity.Value");
+        var func = unit.FromUnitToBaseFunc.Replace("{x}", "quantity.Value");
         Writer.WL($@"
             unitConverter.SetConversionFunction<{_quantity.Name}>({_quantity.Name}Unit.{unit.SingularName}, {_unitEnumName}.{_quantity.BaseUnit}, quantity => new {_quantity.Name}({func}, {_unitEnumName}.{_quantity.BaseUnit}));" );
         }
