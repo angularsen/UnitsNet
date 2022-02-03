@@ -916,13 +916,22 @@ namespace UnitsNet
             if(Unit == unit)
                 return this;
 
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!unitConverter.TryGetConversionFunction((typeof(SpecificWeight), inBaseUnits.Unit, typeof(SpecificWeight), unit), out var conversionFunction))
-                throw new NotImplementedException($"Can not convert {inBaseUnits.Unit} to {unit}.");
-
-            var converted = conversionFunction(inBaseUnits);
-            return (SpecificWeight)converted;
+            if(unitConverter.TryGetConversionFunction((typeof(SpecificWeight), Unit, typeof(SpecificWeight), unit), out var conversionFunction))
+            {
+                // Conversion from Unit -> unit found. Do the conversion and return it.
+                var converted = conversionFunction(this);
+                return (SpecificWeight)converted;
+            }
+            else if(Unit != BaseUnit)
+            {
+                // Conversion from Unit -> unit NOT found. Convert to BaseUnit and then go from BaseUnit -> unit.
+                var inBaseUnits = ToUnit(BaseUnit);
+                return inBaseUnits.ToUnit(unit);
+            }
+            else
+            {
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         /// <inheritdoc />

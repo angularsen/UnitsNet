@@ -930,13 +930,22 @@ namespace UnitsNet
             if(Unit == unit)
                 return this;
 
-            var inBaseUnits = ToUnit(BaseUnit);
-
-            if(!unitConverter.TryGetConversionFunction((typeof({_quantity.Name}), inBaseUnits.Unit, typeof({_quantity.Name}), unit), out var conversionFunction))
-                throw new NotImplementedException($""Can not convert {{inBaseUnits.Unit}} to {{unit}}."");
-
-            var converted = conversionFunction(inBaseUnits);
-            return ({_quantity.Name})converted;
+            if(unitConverter.TryGetConversionFunction((typeof({_quantity.Name}), Unit, typeof({_quantity.Name}), unit), out var conversionFunction))
+            {{
+                // Conversion from Unit -> unit found. Do the conversion and return it.
+                var converted = conversionFunction(this);
+                return ({_quantity.Name})converted;
+            }}
+            else if(Unit != BaseUnit)
+            {{
+                // Conversion from Unit -> unit NOT found. Convert to BaseUnit and then go from BaseUnit -> unit.
+                var inBaseUnits = ToUnit(BaseUnit);
+                return inBaseUnits.ToUnit(unit);
+            }}
+            else
+            {{
+                throw new NotImplementedException($""Can not convert {{Unit}} to {{unit}}."");
+            }}
         }}
 
         /// <inheritdoc />

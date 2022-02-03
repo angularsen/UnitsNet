@@ -132,5 +132,12 @@ namespace UnitsNet.Tests.CustomCode
 
             AssertEx.EqualTolerance(expectedAmountOfSubstanceValue, amountOfSubstance.As(expectedAmountOfSubstanceUnit), tolerence);
         }
+
+        [Fact]
+        public void NegativeMassToStonePoundsReturnsCorrectValues2()
+        {
+            var mass = new Mass( 3.0, MassUnit.EarthMass);
+            var target = mass.ToUnit( MassUnit.Grain );
+        }
     }
 }
