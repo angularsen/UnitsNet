@@ -234,11 +234,18 @@ namespace UnitsNet.Tests
             Assert.Equal(ThermalResistanceUnit.SquareMeterKelvinPerWatt, squaremeterkelvinperwattQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu)]
+        [InlineData(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie)]
+        [InlineData(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt)]
+        [InlineData(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt)]
+        [InlineData(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt)]
+        [InlineData(ThermalResistanceUnit.SquareMeterKelvinPerWatt)]
+        public void ToUnit_WithSameUnits_AreEqual(ThermalResistanceUnit unit)
         {
-            var quantityInBaseUnit = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1).ToUnit(ThermalResistance.BaseUnit);
-            Assert.Equal(ThermalResistance.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ThermalResistance.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

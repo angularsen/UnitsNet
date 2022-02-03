@@ -462,11 +462,37 @@ namespace UnitsNet.Tests
             Assert.Equal(TorqueUnit.TonneForceMillimeter, tonneforcemillimeterQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(TorqueUnit.GramForceCentimeter)]
+        [InlineData(TorqueUnit.GramForceMeter)]
+        [InlineData(TorqueUnit.GramForceMillimeter)]
+        [InlineData(TorqueUnit.KilogramForceCentimeter)]
+        [InlineData(TorqueUnit.KilogramForceMeter)]
+        [InlineData(TorqueUnit.KilogramForceMillimeter)]
+        [InlineData(TorqueUnit.KilonewtonCentimeter)]
+        [InlineData(TorqueUnit.KilonewtonMeter)]
+        [InlineData(TorqueUnit.KilonewtonMillimeter)]
+        [InlineData(TorqueUnit.KilopoundForceFoot)]
+        [InlineData(TorqueUnit.KilopoundForceInch)]
+        [InlineData(TorqueUnit.MeganewtonCentimeter)]
+        [InlineData(TorqueUnit.MeganewtonMeter)]
+        [InlineData(TorqueUnit.MeganewtonMillimeter)]
+        [InlineData(TorqueUnit.MegapoundForceFoot)]
+        [InlineData(TorqueUnit.MegapoundForceInch)]
+        [InlineData(TorqueUnit.NewtonCentimeter)]
+        [InlineData(TorqueUnit.NewtonMeter)]
+        [InlineData(TorqueUnit.NewtonMillimeter)]
+        [InlineData(TorqueUnit.PoundalFoot)]
+        [InlineData(TorqueUnit.PoundForceFoot)]
+        [InlineData(TorqueUnit.PoundForceInch)]
+        [InlineData(TorqueUnit.TonneForceCentimeter)]
+        [InlineData(TorqueUnit.TonneForceMeter)]
+        [InlineData(TorqueUnit.TonneForceMillimeter)]
+        public void ToUnit_WithSameUnits_AreEqual(TorqueUnit unit)
         {
-            var quantityInBaseUnit = Torque.FromNewtonMeters(1).ToUnit(Torque.BaseUnit);
-            Assert.Equal(Torque.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Torque.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

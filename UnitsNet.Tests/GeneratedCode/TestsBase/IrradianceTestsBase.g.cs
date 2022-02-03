@@ -330,11 +330,26 @@ namespace UnitsNet.Tests
             Assert.Equal(IrradianceUnit.WattPerSquareMeter, wattpersquaremeterQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(IrradianceUnit.KilowattPerSquareCentimeter)]
+        [InlineData(IrradianceUnit.KilowattPerSquareMeter)]
+        [InlineData(IrradianceUnit.MegawattPerSquareCentimeter)]
+        [InlineData(IrradianceUnit.MegawattPerSquareMeter)]
+        [InlineData(IrradianceUnit.MicrowattPerSquareCentimeter)]
+        [InlineData(IrradianceUnit.MicrowattPerSquareMeter)]
+        [InlineData(IrradianceUnit.MilliwattPerSquareCentimeter)]
+        [InlineData(IrradianceUnit.MilliwattPerSquareMeter)]
+        [InlineData(IrradianceUnit.NanowattPerSquareCentimeter)]
+        [InlineData(IrradianceUnit.NanowattPerSquareMeter)]
+        [InlineData(IrradianceUnit.PicowattPerSquareCentimeter)]
+        [InlineData(IrradianceUnit.PicowattPerSquareMeter)]
+        [InlineData(IrradianceUnit.WattPerSquareCentimeter)]
+        [InlineData(IrradianceUnit.WattPerSquareMeter)]
+        public void ToUnit_WithSameUnits_AreEqual(IrradianceUnit unit)
         {
-            var quantityInBaseUnit = Irradiance.FromWattsPerSquareMeter(1).ToUnit(Irradiance.BaseUnit);
-            Assert.Equal(Irradiance.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Irradiance.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

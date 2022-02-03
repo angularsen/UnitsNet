@@ -174,11 +174,13 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricChargeDensityUnit.CoulombPerCubicMeter, coulombpercubicmeterQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(ElectricChargeDensityUnit.CoulombPerCubicMeter)]
+        public void ToUnit_WithSameUnits_AreEqual(ElectricChargeDensityUnit unit)
         {
-            var quantityInBaseUnit = ElectricChargeDensity.FromCoulombsPerCubicMeter(1).ToUnit(ElectricChargeDensity.BaseUnit);
-            Assert.Equal(ElectricChargeDensity.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ElectricChargeDensity.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

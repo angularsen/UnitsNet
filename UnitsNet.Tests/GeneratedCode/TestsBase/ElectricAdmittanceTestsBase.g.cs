@@ -210,11 +210,16 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricAdmittanceUnit.Siemens, siemensQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(ElectricAdmittanceUnit.Microsiemens)]
+        [InlineData(ElectricAdmittanceUnit.Millisiemens)]
+        [InlineData(ElectricAdmittanceUnit.Nanosiemens)]
+        [InlineData(ElectricAdmittanceUnit.Siemens)]
+        public void ToUnit_WithSameUnits_AreEqual(ElectricAdmittanceUnit unit)
         {
-            var quantityInBaseUnit = ElectricAdmittance.FromSiemens(1).ToUnit(ElectricAdmittance.BaseUnit);
-            Assert.Equal(ElectricAdmittance.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ElectricAdmittance.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

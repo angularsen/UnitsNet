@@ -462,11 +462,37 @@ namespace UnitsNet.Tests
             Assert.Equal(LinearPowerDensityUnit.WattPerMillimeter, wattpermillimeterQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(LinearPowerDensityUnit.GigawattPerCentimeter)]
+        [InlineData(LinearPowerDensityUnit.GigawattPerFoot)]
+        [InlineData(LinearPowerDensityUnit.GigawattPerInch)]
+        [InlineData(LinearPowerDensityUnit.GigawattPerMeter)]
+        [InlineData(LinearPowerDensityUnit.GigawattPerMillimeter)]
+        [InlineData(LinearPowerDensityUnit.KilowattPerCentimeter)]
+        [InlineData(LinearPowerDensityUnit.KilowattPerFoot)]
+        [InlineData(LinearPowerDensityUnit.KilowattPerInch)]
+        [InlineData(LinearPowerDensityUnit.KilowattPerMeter)]
+        [InlineData(LinearPowerDensityUnit.KilowattPerMillimeter)]
+        [InlineData(LinearPowerDensityUnit.MegawattPerCentimeter)]
+        [InlineData(LinearPowerDensityUnit.MegawattPerFoot)]
+        [InlineData(LinearPowerDensityUnit.MegawattPerInch)]
+        [InlineData(LinearPowerDensityUnit.MegawattPerMeter)]
+        [InlineData(LinearPowerDensityUnit.MegawattPerMillimeter)]
+        [InlineData(LinearPowerDensityUnit.MilliwattPerCentimeter)]
+        [InlineData(LinearPowerDensityUnit.MilliwattPerFoot)]
+        [InlineData(LinearPowerDensityUnit.MilliwattPerInch)]
+        [InlineData(LinearPowerDensityUnit.MilliwattPerMeter)]
+        [InlineData(LinearPowerDensityUnit.MilliwattPerMillimeter)]
+        [InlineData(LinearPowerDensityUnit.WattPerCentimeter)]
+        [InlineData(LinearPowerDensityUnit.WattPerFoot)]
+        [InlineData(LinearPowerDensityUnit.WattPerInch)]
+        [InlineData(LinearPowerDensityUnit.WattPerMeter)]
+        [InlineData(LinearPowerDensityUnit.WattPerMillimeter)]
+        public void ToUnit_WithSameUnits_AreEqual(LinearPowerDensityUnit unit)
         {
-            var quantityInBaseUnit = LinearPowerDensity.FromWattsPerMeter(1).ToUnit(LinearPowerDensity.BaseUnit);
-            Assert.Equal(LinearPowerDensity.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = LinearPowerDensity.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

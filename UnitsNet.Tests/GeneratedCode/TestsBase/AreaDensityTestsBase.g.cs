@@ -174,11 +174,13 @@ namespace UnitsNet.Tests
             Assert.Equal(AreaDensityUnit.KilogramPerSquareMeter, kilogrampersquaremeterQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(AreaDensityUnit.KilogramPerSquareMeter)]
+        public void ToUnit_WithSameUnits_AreEqual(AreaDensityUnit unit)
         {
-            var quantityInBaseUnit = AreaDensity.FromKilogramsPerSquareMeter(1).ToUnit(AreaDensity.BaseUnit);
-            Assert.Equal(AreaDensity.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = AreaDensity.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

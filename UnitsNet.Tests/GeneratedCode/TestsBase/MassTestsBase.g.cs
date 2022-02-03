@@ -462,11 +462,37 @@ namespace UnitsNet.Tests
             Assert.Equal(MassUnit.Tonne, tonneQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(MassUnit.Centigram)]
+        [InlineData(MassUnit.Decagram)]
+        [InlineData(MassUnit.Decigram)]
+        [InlineData(MassUnit.EarthMass)]
+        [InlineData(MassUnit.Grain)]
+        [InlineData(MassUnit.Gram)]
+        [InlineData(MassUnit.Hectogram)]
+        [InlineData(MassUnit.Kilogram)]
+        [InlineData(MassUnit.Kilopound)]
+        [InlineData(MassUnit.Kilotonne)]
+        [InlineData(MassUnit.LongHundredweight)]
+        [InlineData(MassUnit.LongTon)]
+        [InlineData(MassUnit.Megapound)]
+        [InlineData(MassUnit.Megatonne)]
+        [InlineData(MassUnit.Microgram)]
+        [InlineData(MassUnit.Milligram)]
+        [InlineData(MassUnit.Nanogram)]
+        [InlineData(MassUnit.Ounce)]
+        [InlineData(MassUnit.Pound)]
+        [InlineData(MassUnit.ShortHundredweight)]
+        [InlineData(MassUnit.ShortTon)]
+        [InlineData(MassUnit.Slug)]
+        [InlineData(MassUnit.SolarMass)]
+        [InlineData(MassUnit.Stone)]
+        [InlineData(MassUnit.Tonne)]
+        public void ToUnit_WithSameUnits_AreEqual(MassUnit unit)
         {
-            var quantityInBaseUnit = Mass.FromKilograms(1).ToUnit(Mass.BaseUnit);
-            Assert.Equal(Mass.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Mass.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

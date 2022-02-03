@@ -198,11 +198,15 @@ namespace UnitsNet.Tests
             Assert.Equal(ApparentEnergyUnit.VoltampereHour, voltamperehourQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(ApparentEnergyUnit.KilovoltampereHour)]
+        [InlineData(ApparentEnergyUnit.MegavoltampereHour)]
+        [InlineData(ApparentEnergyUnit.VoltampereHour)]
+        public void ToUnit_WithSameUnits_AreEqual(ApparentEnergyUnit unit)
         {
-            var quantityInBaseUnit = ApparentEnergy.FromVoltampereHours(1).ToUnit(ApparentEnergy.BaseUnit);
-            Assert.Equal(ApparentEnergy.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ApparentEnergy.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

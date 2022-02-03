@@ -258,11 +258,20 @@ namespace UnitsNet.Tests
             Assert.Equal(MolarityUnit.PicomolesPerLiter, picomolesperliterQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(MolarityUnit.CentimolesPerLiter)]
+        [InlineData(MolarityUnit.DecimolesPerLiter)]
+        [InlineData(MolarityUnit.MicromolesPerLiter)]
+        [InlineData(MolarityUnit.MillimolesPerLiter)]
+        [InlineData(MolarityUnit.MolesPerCubicMeter)]
+        [InlineData(MolarityUnit.MolesPerLiter)]
+        [InlineData(MolarityUnit.NanomolesPerLiter)]
+        [InlineData(MolarityUnit.PicomolesPerLiter)]
+        public void ToUnit_WithSameUnits_AreEqual(MolarityUnit unit)
         {
-            var quantityInBaseUnit = Molarity.FromMolesPerCubicMeter(1).ToUnit(Molarity.BaseUnit);
-            Assert.Equal(Molarity.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Molarity.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

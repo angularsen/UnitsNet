@@ -330,11 +330,26 @@ namespace UnitsNet.Tests
             Assert.Equal(AccelerationUnit.StandardGravity, standardgravityQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(AccelerationUnit.CentimeterPerSecondSquared)]
+        [InlineData(AccelerationUnit.DecimeterPerSecondSquared)]
+        [InlineData(AccelerationUnit.FootPerSecondSquared)]
+        [InlineData(AccelerationUnit.InchPerSecondSquared)]
+        [InlineData(AccelerationUnit.KilometerPerSecondSquared)]
+        [InlineData(AccelerationUnit.KnotPerHour)]
+        [InlineData(AccelerationUnit.KnotPerMinute)]
+        [InlineData(AccelerationUnit.KnotPerSecond)]
+        [InlineData(AccelerationUnit.MeterPerSecondSquared)]
+        [InlineData(AccelerationUnit.MicrometerPerSecondSquared)]
+        [InlineData(AccelerationUnit.MillimeterPerSecondSquared)]
+        [InlineData(AccelerationUnit.MillistandardGravity)]
+        [InlineData(AccelerationUnit.NanometerPerSecondSquared)]
+        [InlineData(AccelerationUnit.StandardGravity)]
+        public void ToUnit_WithSameUnits_AreEqual(AccelerationUnit unit)
         {
-            var quantityInBaseUnit = Acceleration.FromMetersPerSecondSquared(1).ToUnit(Acceleration.BaseUnit);
-            Assert.Equal(Acceleration.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Acceleration.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

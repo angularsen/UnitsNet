@@ -222,11 +222,17 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricPotentialDcUnit.VoltDc, voltdcQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(ElectricPotentialDcUnit.KilovoltDc)]
+        [InlineData(ElectricPotentialDcUnit.MegavoltDc)]
+        [InlineData(ElectricPotentialDcUnit.MicrovoltDc)]
+        [InlineData(ElectricPotentialDcUnit.MillivoltDc)]
+        [InlineData(ElectricPotentialDcUnit.VoltDc)]
+        public void ToUnit_WithSameUnits_AreEqual(ElectricPotentialDcUnit unit)
         {
-            var quantityInBaseUnit = ElectricPotentialDc.FromVoltsDc(1).ToUnit(ElectricPotentialDc.BaseUnit);
-            Assert.Equal(ElectricPotentialDc.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ElectricPotentialDc.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

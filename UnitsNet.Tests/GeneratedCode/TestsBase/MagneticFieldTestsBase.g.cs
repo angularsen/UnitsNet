@@ -234,11 +234,18 @@ namespace UnitsNet.Tests
             Assert.Equal(MagneticFieldUnit.Tesla, teslaQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(MagneticFieldUnit.Gauss)]
+        [InlineData(MagneticFieldUnit.Microtesla)]
+        [InlineData(MagneticFieldUnit.Milligauss)]
+        [InlineData(MagneticFieldUnit.Millitesla)]
+        [InlineData(MagneticFieldUnit.Nanotesla)]
+        [InlineData(MagneticFieldUnit.Tesla)]
+        public void ToUnit_WithSameUnits_AreEqual(MagneticFieldUnit unit)
         {
-            var quantityInBaseUnit = MagneticField.FromTeslas(1).ToUnit(MagneticField.BaseUnit);
-            Assert.Equal(MagneticField.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = MagneticField.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

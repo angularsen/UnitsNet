@@ -774,11 +774,63 @@ namespace UnitsNet.Tests
             Assert.Equal(DensityUnit.TonnePerCubicMillimeter, tonnepercubicmillimeterQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(DensityUnit.CentigramPerDeciliter)]
+        [InlineData(DensityUnit.CentigramPerLiter)]
+        [InlineData(DensityUnit.CentigramPerMilliliter)]
+        [InlineData(DensityUnit.DecigramPerDeciliter)]
+        [InlineData(DensityUnit.DecigramPerLiter)]
+        [InlineData(DensityUnit.DecigramPerMilliliter)]
+        [InlineData(DensityUnit.GramPerCubicCentimeter)]
+        [InlineData(DensityUnit.GramPerCubicFoot)]
+        [InlineData(DensityUnit.GramPerCubicInch)]
+        [InlineData(DensityUnit.GramPerCubicMeter)]
+        [InlineData(DensityUnit.GramPerCubicMillimeter)]
+        [InlineData(DensityUnit.GramPerDeciliter)]
+        [InlineData(DensityUnit.GramPerLiter)]
+        [InlineData(DensityUnit.GramPerMilliliter)]
+        [InlineData(DensityUnit.KilogramPerCubicCentimeter)]
+        [InlineData(DensityUnit.KilogramPerCubicMeter)]
+        [InlineData(DensityUnit.KilogramPerCubicMillimeter)]
+        [InlineData(DensityUnit.KilogramPerLiter)]
+        [InlineData(DensityUnit.KilopoundPerCubicFoot)]
+        [InlineData(DensityUnit.KilopoundPerCubicInch)]
+        [InlineData(DensityUnit.MicrogramPerCubicMeter)]
+        [InlineData(DensityUnit.MicrogramPerDeciliter)]
+        [InlineData(DensityUnit.MicrogramPerLiter)]
+        [InlineData(DensityUnit.MicrogramPerMilliliter)]
+        [InlineData(DensityUnit.MilligramPerCubicMeter)]
+        [InlineData(DensityUnit.MilligramPerDeciliter)]
+        [InlineData(DensityUnit.MilligramPerLiter)]
+        [InlineData(DensityUnit.MilligramPerMilliliter)]
+        [InlineData(DensityUnit.NanogramPerDeciliter)]
+        [InlineData(DensityUnit.NanogramPerLiter)]
+        [InlineData(DensityUnit.NanogramPerMilliliter)]
+        [InlineData(DensityUnit.PicogramPerDeciliter)]
+        [InlineData(DensityUnit.PicogramPerLiter)]
+        [InlineData(DensityUnit.PicogramPerMilliliter)]
+        [InlineData(DensityUnit.PoundPerCubicCentimeter)]
+        [InlineData(DensityUnit.PoundPerCubicFoot)]
+        [InlineData(DensityUnit.PoundPerCubicInch)]
+        [InlineData(DensityUnit.PoundPerCubicMeter)]
+        [InlineData(DensityUnit.PoundPerCubicMillimeter)]
+        [InlineData(DensityUnit.PoundPerImperialGallon)]
+        [InlineData(DensityUnit.PoundPerUSGallon)]
+        [InlineData(DensityUnit.SlugPerCubicCentimeter)]
+        [InlineData(DensityUnit.SlugPerCubicFoot)]
+        [InlineData(DensityUnit.SlugPerCubicInch)]
+        [InlineData(DensityUnit.SlugPerCubicMeter)]
+        [InlineData(DensityUnit.SlugPerCubicMillimeter)]
+        [InlineData(DensityUnit.TonnePerCubicCentimeter)]
+        [InlineData(DensityUnit.TonnePerCubicFoot)]
+        [InlineData(DensityUnit.TonnePerCubicInch)]
+        [InlineData(DensityUnit.TonnePerCubicMeter)]
+        [InlineData(DensityUnit.TonnePerCubicMillimeter)]
+        public void ToUnit_WithSameUnits_AreEqual(DensityUnit unit)
         {
-            var quantityInBaseUnit = Density.FromKilogramsPerCubicMeter(1).ToUnit(Density.BaseUnit);
-            Assert.Equal(Density.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Density.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

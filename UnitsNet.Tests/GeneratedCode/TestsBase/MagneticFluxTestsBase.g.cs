@@ -174,11 +174,13 @@ namespace UnitsNet.Tests
             Assert.Equal(MagneticFluxUnit.Weber, weberQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(MagneticFluxUnit.Weber)]
+        public void ToUnit_WithSameUnits_AreEqual(MagneticFluxUnit unit)
         {
-            var quantityInBaseUnit = MagneticFlux.FromWebers(1).ToUnit(MagneticFlux.BaseUnit);
-            Assert.Equal(MagneticFlux.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = MagneticFlux.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

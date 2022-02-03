@@ -449,11 +449,38 @@ namespace UnitsNet.Tests
             Assert.Equal(BitRateUnit.TerabytePerSecond, terabytepersecondQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(BitRateUnit.BitPerSecond)]
+        [InlineData(BitRateUnit.BytePerSecond)]
+        [InlineData(BitRateUnit.ExabitPerSecond)]
+        [InlineData(BitRateUnit.ExabytePerSecond)]
+        [InlineData(BitRateUnit.ExbibitPerSecond)]
+        [InlineData(BitRateUnit.ExbibytePerSecond)]
+        [InlineData(BitRateUnit.GibibitPerSecond)]
+        [InlineData(BitRateUnit.GibibytePerSecond)]
+        [InlineData(BitRateUnit.GigabitPerSecond)]
+        [InlineData(BitRateUnit.GigabytePerSecond)]
+        [InlineData(BitRateUnit.KibibitPerSecond)]
+        [InlineData(BitRateUnit.KibibytePerSecond)]
+        [InlineData(BitRateUnit.KilobitPerSecond)]
+        [InlineData(BitRateUnit.KilobytePerSecond)]
+        [InlineData(BitRateUnit.MebibitPerSecond)]
+        [InlineData(BitRateUnit.MebibytePerSecond)]
+        [InlineData(BitRateUnit.MegabitPerSecond)]
+        [InlineData(BitRateUnit.MegabytePerSecond)]
+        [InlineData(BitRateUnit.PebibitPerSecond)]
+        [InlineData(BitRateUnit.PebibytePerSecond)]
+        [InlineData(BitRateUnit.PetabitPerSecond)]
+        [InlineData(BitRateUnit.PetabytePerSecond)]
+        [InlineData(BitRateUnit.TebibitPerSecond)]
+        [InlineData(BitRateUnit.TebibytePerSecond)]
+        [InlineData(BitRateUnit.TerabitPerSecond)]
+        [InlineData(BitRateUnit.TerabytePerSecond)]
+        public void ToUnit_WithSameUnits_AreEqual(BitRateUnit unit)
         {
-            var quantityInBaseUnit = BitRate.FromBitsPerSecond(1).ToUnit(BitRate.BaseUnit);
-            Assert.Equal(BitRate.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = BitRate.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

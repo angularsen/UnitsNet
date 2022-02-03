@@ -282,11 +282,22 @@ namespace UnitsNet.Tests
             Assert.Equal(ReciprocalLengthUnit.InverseYard, inverseyardQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(ReciprocalLengthUnit.InverseCentimeter)]
+        [InlineData(ReciprocalLengthUnit.InverseFoot)]
+        [InlineData(ReciprocalLengthUnit.InverseInch)]
+        [InlineData(ReciprocalLengthUnit.InverseMeter)]
+        [InlineData(ReciprocalLengthUnit.InverseMicroinch)]
+        [InlineData(ReciprocalLengthUnit.InverseMil)]
+        [InlineData(ReciprocalLengthUnit.InverseMile)]
+        [InlineData(ReciprocalLengthUnit.InverseMillimeter)]
+        [InlineData(ReciprocalLengthUnit.InverseUsSurveyFoot)]
+        [InlineData(ReciprocalLengthUnit.InverseYard)]
+        public void ToUnit_WithSameUnits_AreEqual(ReciprocalLengthUnit unit)
         {
-            var quantityInBaseUnit = ReciprocalLength.FromInverseMeters(1).ToUnit(ReciprocalLength.BaseUnit);
-            Assert.Equal(ReciprocalLength.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ReciprocalLength.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

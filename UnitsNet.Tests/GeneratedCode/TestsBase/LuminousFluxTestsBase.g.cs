@@ -174,11 +174,13 @@ namespace UnitsNet.Tests
             Assert.Equal(LuminousFluxUnit.Lumen, lumenQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(LuminousFluxUnit.Lumen)]
+        public void ToUnit_WithSameUnits_AreEqual(LuminousFluxUnit unit)
         {
-            var quantityInBaseUnit = LuminousFlux.FromLumens(1).ToUnit(LuminousFlux.BaseUnit);
-            Assert.Equal(LuminousFlux.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = LuminousFlux.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

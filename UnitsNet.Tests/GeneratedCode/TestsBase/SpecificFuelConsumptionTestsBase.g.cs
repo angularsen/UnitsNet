@@ -210,11 +210,16 @@ namespace UnitsNet.Tests
             Assert.Equal(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, poundmassperpoundforcehourQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond)]
+        [InlineData(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour)]
+        [InlineData(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond)]
+        [InlineData(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour)]
+        public void ToUnit_WithSameUnits_AreEqual(SpecificFuelConsumptionUnit unit)
         {
-            var quantityInBaseUnit = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1).ToUnit(SpecificFuelConsumption.BaseUnit);
-            Assert.Equal(SpecificFuelConsumption.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = SpecificFuelConsumption.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

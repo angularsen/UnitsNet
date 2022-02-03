@@ -270,11 +270,21 @@ namespace UnitsNet.Tests
             Assert.Equal(StandardVolumeFlowUnit.StandardLiterPerMinute, standardliterperminuteQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute)]
+        [InlineData(StandardVolumeFlowUnit.StandardCubicFootPerHour)]
+        [InlineData(StandardVolumeFlowUnit.StandardCubicFootPerMinute)]
+        [InlineData(StandardVolumeFlowUnit.StandardCubicFootPerSecond)]
+        [InlineData(StandardVolumeFlowUnit.StandardCubicMeterPerDay)]
+        [InlineData(StandardVolumeFlowUnit.StandardCubicMeterPerHour)]
+        [InlineData(StandardVolumeFlowUnit.StandardCubicMeterPerMinute)]
+        [InlineData(StandardVolumeFlowUnit.StandardCubicMeterPerSecond)]
+        [InlineData(StandardVolumeFlowUnit.StandardLiterPerMinute)]
+        public void ToUnit_WithSameUnits_AreEqual(StandardVolumeFlowUnit unit)
         {
-            var quantityInBaseUnit = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1).ToUnit(StandardVolumeFlow.BaseUnit);
-            Assert.Equal(StandardVolumeFlow.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = StandardVolumeFlow.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

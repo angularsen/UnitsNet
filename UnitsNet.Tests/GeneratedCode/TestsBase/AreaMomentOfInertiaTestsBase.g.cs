@@ -234,11 +234,18 @@ namespace UnitsNet.Tests
             Assert.Equal(AreaMomentOfInertiaUnit.MillimeterToTheFourth, millimetertothefourthQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(AreaMomentOfInertiaUnit.CentimeterToTheFourth)]
+        [InlineData(AreaMomentOfInertiaUnit.DecimeterToTheFourth)]
+        [InlineData(AreaMomentOfInertiaUnit.FootToTheFourth)]
+        [InlineData(AreaMomentOfInertiaUnit.InchToTheFourth)]
+        [InlineData(AreaMomentOfInertiaUnit.MeterToTheFourth)]
+        [InlineData(AreaMomentOfInertiaUnit.MillimeterToTheFourth)]
+        public void ToUnit_WithSameUnits_AreEqual(AreaMomentOfInertiaUnit unit)
         {
-            var quantityInBaseUnit = AreaMomentOfInertia.FromMetersToTheFourth(1).ToUnit(AreaMomentOfInertia.BaseUnit);
-            Assert.Equal(AreaMomentOfInertia.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = AreaMomentOfInertia.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

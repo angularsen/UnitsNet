@@ -198,11 +198,15 @@ namespace UnitsNet.Tests
             Assert.Equal(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, wattpersquaremeterkelvinQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit)]
+        [InlineData(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius)]
+        [InlineData(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin)]
+        public void ToUnit_WithSameUnits_AreEqual(HeatTransferCoefficientUnit unit)
         {
-            var quantityInBaseUnit = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1).ToUnit(HeatTransferCoefficient.BaseUnit);
-            Assert.Equal(HeatTransferCoefficient.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = HeatTransferCoefficient.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

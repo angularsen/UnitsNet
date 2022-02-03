@@ -174,11 +174,13 @@ namespace UnitsNet.Tests
             Assert.Equal(SolidAngleUnit.Steradian, steradianQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(SolidAngleUnit.Steradian)]
+        public void ToUnit_WithSameUnits_AreEqual(SolidAngleUnit unit)
         {
-            var quantityInBaseUnit = SolidAngle.FromSteradians(1).ToUnit(SolidAngle.BaseUnit);
-            Assert.Equal(SolidAngle.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = SolidAngle.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

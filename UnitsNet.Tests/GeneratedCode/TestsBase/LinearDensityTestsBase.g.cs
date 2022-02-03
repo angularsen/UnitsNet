@@ -330,11 +330,26 @@ namespace UnitsNet.Tests
             Assert.Equal(LinearDensityUnit.PoundPerInch, poundperinchQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(LinearDensityUnit.GramPerCentimeter)]
+        [InlineData(LinearDensityUnit.GramPerMeter)]
+        [InlineData(LinearDensityUnit.GramPerMillimeter)]
+        [InlineData(LinearDensityUnit.KilogramPerCentimeter)]
+        [InlineData(LinearDensityUnit.KilogramPerMeter)]
+        [InlineData(LinearDensityUnit.KilogramPerMillimeter)]
+        [InlineData(LinearDensityUnit.MicrogramPerCentimeter)]
+        [InlineData(LinearDensityUnit.MicrogramPerMeter)]
+        [InlineData(LinearDensityUnit.MicrogramPerMillimeter)]
+        [InlineData(LinearDensityUnit.MilligramPerCentimeter)]
+        [InlineData(LinearDensityUnit.MilligramPerMeter)]
+        [InlineData(LinearDensityUnit.MilligramPerMillimeter)]
+        [InlineData(LinearDensityUnit.PoundPerFoot)]
+        [InlineData(LinearDensityUnit.PoundPerInch)]
+        public void ToUnit_WithSameUnits_AreEqual(LinearDensityUnit unit)
         {
-            var quantityInBaseUnit = LinearDensity.FromKilogramsPerMeter(1).ToUnit(LinearDensity.BaseUnit);
-            Assert.Equal(LinearDensity.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = LinearDensity.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

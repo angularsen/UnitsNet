@@ -263,12 +263,18 @@ namespace UnitsNet.Tests
             Writer.WL($@"
         }}
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]");
+    foreach( var unit in _quantity.Units )
+    {
+        Writer.WL($@"
+        [InlineData({GetUnitFullName( unit )})]");
+    }
+Writer.WL($@"
+        public void ToUnit_WithSameUnits_AreEqual({_unitEnumName} unit)
         {{
-            var quantityInBaseUnit = {_quantity.Name}.From{_baseUnit.PluralName}(1).ToUnit({_quantity.Name}.BaseUnit);
-            Assert.Equal({_quantity.Name}.BaseUnit, quantityInBaseUnit.Unit);");
-            Writer.WL($@"
+            var quantity = {_quantity.Name}.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }}
 
         [Fact]

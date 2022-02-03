@@ -210,11 +210,16 @@ namespace UnitsNet.Tests
             Assert.Equal(AmplitudeRatioUnit.DecibelVolt, decibelvoltQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(AmplitudeRatioUnit.DecibelMicrovolt)]
+        [InlineData(AmplitudeRatioUnit.DecibelMillivolt)]
+        [InlineData(AmplitudeRatioUnit.DecibelUnloaded)]
+        [InlineData(AmplitudeRatioUnit.DecibelVolt)]
+        public void ToUnit_WithSameUnits_AreEqual(AmplitudeRatioUnit unit)
         {
-            var quantityInBaseUnit = AmplitudeRatio.FromDecibelVolts(1).ToUnit(AmplitudeRatio.BaseUnit);
-            Assert.Equal(AmplitudeRatio.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = AmplitudeRatio.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

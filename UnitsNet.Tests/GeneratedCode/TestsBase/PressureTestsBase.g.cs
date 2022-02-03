@@ -702,11 +702,57 @@ namespace UnitsNet.Tests
             Assert.Equal(PressureUnit.Torr, torrQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(PressureUnit.Atmosphere)]
+        [InlineData(PressureUnit.Bar)]
+        [InlineData(PressureUnit.Centibar)]
+        [InlineData(PressureUnit.Decapascal)]
+        [InlineData(PressureUnit.Decibar)]
+        [InlineData(PressureUnit.DynePerSquareCentimeter)]
+        [InlineData(PressureUnit.FootOfElevation)]
+        [InlineData(PressureUnit.FootOfHead)]
+        [InlineData(PressureUnit.Gigapascal)]
+        [InlineData(PressureUnit.Hectopascal)]
+        [InlineData(PressureUnit.InchOfMercury)]
+        [InlineData(PressureUnit.InchOfWaterColumn)]
+        [InlineData(PressureUnit.Kilobar)]
+        [InlineData(PressureUnit.KilogramForcePerSquareCentimeter)]
+        [InlineData(PressureUnit.KilogramForcePerSquareMeter)]
+        [InlineData(PressureUnit.KilogramForcePerSquareMillimeter)]
+        [InlineData(PressureUnit.KilonewtonPerSquareCentimeter)]
+        [InlineData(PressureUnit.KilonewtonPerSquareMeter)]
+        [InlineData(PressureUnit.KilonewtonPerSquareMillimeter)]
+        [InlineData(PressureUnit.Kilopascal)]
+        [InlineData(PressureUnit.KilopoundForcePerSquareFoot)]
+        [InlineData(PressureUnit.KilopoundForcePerSquareInch)]
+        [InlineData(PressureUnit.Megabar)]
+        [InlineData(PressureUnit.MeganewtonPerSquareMeter)]
+        [InlineData(PressureUnit.Megapascal)]
+        [InlineData(PressureUnit.MeterOfElevation)]
+        [InlineData(PressureUnit.MeterOfHead)]
+        [InlineData(PressureUnit.Microbar)]
+        [InlineData(PressureUnit.Micropascal)]
+        [InlineData(PressureUnit.Millibar)]
+        [InlineData(PressureUnit.MillimeterOfMercury)]
+        [InlineData(PressureUnit.MillimeterOfWaterColumn)]
+        [InlineData(PressureUnit.Millipascal)]
+        [InlineData(PressureUnit.NewtonPerSquareCentimeter)]
+        [InlineData(PressureUnit.NewtonPerSquareMeter)]
+        [InlineData(PressureUnit.NewtonPerSquareMillimeter)]
+        [InlineData(PressureUnit.Pascal)]
+        [InlineData(PressureUnit.PoundForcePerSquareFoot)]
+        [InlineData(PressureUnit.PoundForcePerSquareInch)]
+        [InlineData(PressureUnit.PoundPerInchSecondSquared)]
+        [InlineData(PressureUnit.TechnicalAtmosphere)]
+        [InlineData(PressureUnit.TonneForcePerSquareCentimeter)]
+        [InlineData(PressureUnit.TonneForcePerSquareMeter)]
+        [InlineData(PressureUnit.TonneForcePerSquareMillimeter)]
+        [InlineData(PressureUnit.Torr)]
+        public void ToUnit_WithSameUnits_AreEqual(PressureUnit unit)
         {
-            var quantityInBaseUnit = Pressure.FromPascals(1).ToUnit(Pressure.BaseUnit);
-            Assert.Equal(Pressure.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Pressure.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

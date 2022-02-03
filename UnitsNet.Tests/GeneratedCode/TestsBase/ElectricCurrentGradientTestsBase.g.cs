@@ -210,11 +210,16 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricCurrentGradientUnit.AmperePerSecond, amperepersecondQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(ElectricCurrentGradientUnit.AmperePerMicrosecond)]
+        [InlineData(ElectricCurrentGradientUnit.AmperePerMillisecond)]
+        [InlineData(ElectricCurrentGradientUnit.AmperePerNanosecond)]
+        [InlineData(ElectricCurrentGradientUnit.AmperePerSecond)]
+        public void ToUnit_WithSameUnits_AreEqual(ElectricCurrentGradientUnit unit)
         {
-            var quantityInBaseUnit = ElectricCurrentGradient.FromAmperesPerSecond(1).ToUnit(ElectricCurrentGradient.BaseUnit);
-            Assert.Equal(ElectricCurrentGradient.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ElectricCurrentGradient.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

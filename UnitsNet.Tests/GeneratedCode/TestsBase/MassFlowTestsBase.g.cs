@@ -558,11 +558,45 @@ namespace UnitsNet.Tests
             Assert.Equal(MassFlowUnit.TonnePerHour, tonneperhourQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(MassFlowUnit.CentigramPerDay)]
+        [InlineData(MassFlowUnit.CentigramPerSecond)]
+        [InlineData(MassFlowUnit.DecagramPerDay)]
+        [InlineData(MassFlowUnit.DecagramPerSecond)]
+        [InlineData(MassFlowUnit.DecigramPerDay)]
+        [InlineData(MassFlowUnit.DecigramPerSecond)]
+        [InlineData(MassFlowUnit.GramPerDay)]
+        [InlineData(MassFlowUnit.GramPerHour)]
+        [InlineData(MassFlowUnit.GramPerSecond)]
+        [InlineData(MassFlowUnit.HectogramPerDay)]
+        [InlineData(MassFlowUnit.HectogramPerSecond)]
+        [InlineData(MassFlowUnit.KilogramPerDay)]
+        [InlineData(MassFlowUnit.KilogramPerHour)]
+        [InlineData(MassFlowUnit.KilogramPerMinute)]
+        [InlineData(MassFlowUnit.KilogramPerSecond)]
+        [InlineData(MassFlowUnit.MegagramPerDay)]
+        [InlineData(MassFlowUnit.MegapoundPerDay)]
+        [InlineData(MassFlowUnit.MegapoundPerHour)]
+        [InlineData(MassFlowUnit.MegapoundPerMinute)]
+        [InlineData(MassFlowUnit.MegapoundPerSecond)]
+        [InlineData(MassFlowUnit.MicrogramPerDay)]
+        [InlineData(MassFlowUnit.MicrogramPerSecond)]
+        [InlineData(MassFlowUnit.MilligramPerDay)]
+        [InlineData(MassFlowUnit.MilligramPerSecond)]
+        [InlineData(MassFlowUnit.NanogramPerDay)]
+        [InlineData(MassFlowUnit.NanogramPerSecond)]
+        [InlineData(MassFlowUnit.PoundPerDay)]
+        [InlineData(MassFlowUnit.PoundPerHour)]
+        [InlineData(MassFlowUnit.PoundPerMinute)]
+        [InlineData(MassFlowUnit.PoundPerSecond)]
+        [InlineData(MassFlowUnit.ShortTonPerHour)]
+        [InlineData(MassFlowUnit.TonnePerDay)]
+        [InlineData(MassFlowUnit.TonnePerHour)]
+        public void ToUnit_WithSameUnits_AreEqual(MassFlowUnit unit)
         {
-            var quantityInBaseUnit = MassFlow.FromGramsPerSecond(1).ToUnit(MassFlow.BaseUnit);
-            Assert.Equal(MassFlow.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = MassFlow.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

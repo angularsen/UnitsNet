@@ -234,11 +234,18 @@ namespace UnitsNet.Tests
             Assert.Equal(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, millimetertothesixthQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(WarpingMomentOfInertiaUnit.CentimeterToTheSixth)]
+        [InlineData(WarpingMomentOfInertiaUnit.DecimeterToTheSixth)]
+        [InlineData(WarpingMomentOfInertiaUnit.FootToTheSixth)]
+        [InlineData(WarpingMomentOfInertiaUnit.InchToTheSixth)]
+        [InlineData(WarpingMomentOfInertiaUnit.MeterToTheSixth)]
+        [InlineData(WarpingMomentOfInertiaUnit.MillimeterToTheSixth)]
+        public void ToUnit_WithSameUnits_AreEqual(WarpingMomentOfInertiaUnit unit)
         {
-            var quantityInBaseUnit = WarpingMomentOfInertia.FromMetersToTheSixth(1).ToUnit(WarpingMomentOfInertia.BaseUnit);
-            Assert.Equal(WarpingMomentOfInertia.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = WarpingMomentOfInertia.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

@@ -210,11 +210,16 @@ namespace UnitsNet.Tests
             Assert.Equal(FuelEfficiencyUnit.MilePerUsGallon, mileperusgallonQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(FuelEfficiencyUnit.KilometerPerLiter)]
+        [InlineData(FuelEfficiencyUnit.LiterPer100Kilometers)]
+        [InlineData(FuelEfficiencyUnit.MilePerUkGallon)]
+        [InlineData(FuelEfficiencyUnit.MilePerUsGallon)]
+        public void ToUnit_WithSameUnits_AreEqual(FuelEfficiencyUnit unit)
         {
-            var quantityInBaseUnit = FuelEfficiency.FromLitersPer100Kilometers(1).ToUnit(FuelEfficiency.BaseUnit);
-            Assert.Equal(FuelEfficiency.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = FuelEfficiency.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

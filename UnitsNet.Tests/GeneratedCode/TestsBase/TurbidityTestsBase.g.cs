@@ -174,11 +174,13 @@ namespace UnitsNet.Tests
             Assert.Equal(TurbidityUnit.NTU, ntuQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(TurbidityUnit.NTU)]
+        public void ToUnit_WithSameUnits_AreEqual(TurbidityUnit unit)
         {
-            var quantityInBaseUnit = Turbidity.FromNTU(1).ToUnit(Turbidity.BaseUnit);
-            Assert.Equal(Turbidity.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Turbidity.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

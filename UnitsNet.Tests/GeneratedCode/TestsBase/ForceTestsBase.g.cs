@@ -342,11 +342,27 @@ namespace UnitsNet.Tests
             Assert.Equal(ForceUnit.TonneForce, tonneforceQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(ForceUnit.Decanewton)]
+        [InlineData(ForceUnit.Dyn)]
+        [InlineData(ForceUnit.KilogramForce)]
+        [InlineData(ForceUnit.Kilonewton)]
+        [InlineData(ForceUnit.KiloPond)]
+        [InlineData(ForceUnit.KilopoundForce)]
+        [InlineData(ForceUnit.Meganewton)]
+        [InlineData(ForceUnit.Micronewton)]
+        [InlineData(ForceUnit.Millinewton)]
+        [InlineData(ForceUnit.Newton)]
+        [InlineData(ForceUnit.OunceForce)]
+        [InlineData(ForceUnit.Poundal)]
+        [InlineData(ForceUnit.PoundForce)]
+        [InlineData(ForceUnit.ShortTonForce)]
+        [InlineData(ForceUnit.TonneForce)]
+        public void ToUnit_WithSameUnits_AreEqual(ForceUnit unit)
         {
-            var quantityInBaseUnit = Force.FromNewtons(1).ToUnit(Force.BaseUnit);
-            Assert.Equal(Force.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Force.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

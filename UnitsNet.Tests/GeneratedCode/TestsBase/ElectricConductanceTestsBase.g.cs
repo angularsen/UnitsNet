@@ -198,11 +198,15 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricConductanceUnit.Siemens, siemensQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(ElectricConductanceUnit.Microsiemens)]
+        [InlineData(ElectricConductanceUnit.Millisiemens)]
+        [InlineData(ElectricConductanceUnit.Siemens)]
+        public void ToUnit_WithSameUnits_AreEqual(ElectricConductanceUnit unit)
         {
-            var quantityInBaseUnit = ElectricConductance.FromSiemens(1).ToUnit(ElectricConductance.BaseUnit);
-            Assert.Equal(ElectricConductance.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ElectricConductance.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

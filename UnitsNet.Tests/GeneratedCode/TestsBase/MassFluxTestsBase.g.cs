@@ -306,11 +306,24 @@ namespace UnitsNet.Tests
             Assert.Equal(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, kilogrampersecondpersquaremillimeterQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(MassFluxUnit.GramPerHourPerSquareCentimeter)]
+        [InlineData(MassFluxUnit.GramPerHourPerSquareMeter)]
+        [InlineData(MassFluxUnit.GramPerHourPerSquareMillimeter)]
+        [InlineData(MassFluxUnit.GramPerSecondPerSquareCentimeter)]
+        [InlineData(MassFluxUnit.GramPerSecondPerSquareMeter)]
+        [InlineData(MassFluxUnit.GramPerSecondPerSquareMillimeter)]
+        [InlineData(MassFluxUnit.KilogramPerHourPerSquareCentimeter)]
+        [InlineData(MassFluxUnit.KilogramPerHourPerSquareMeter)]
+        [InlineData(MassFluxUnit.KilogramPerHourPerSquareMillimeter)]
+        [InlineData(MassFluxUnit.KilogramPerSecondPerSquareCentimeter)]
+        [InlineData(MassFluxUnit.KilogramPerSecondPerSquareMeter)]
+        [InlineData(MassFluxUnit.KilogramPerSecondPerSquareMillimeter)]
+        public void ToUnit_WithSameUnits_AreEqual(MassFluxUnit unit)
         {
-            var quantityInBaseUnit = MassFlux.FromKilogramsPerSecondPerSquareMeter(1).ToUnit(MassFlux.BaseUnit);
-            Assert.Equal(MassFlux.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = MassFlux.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

@@ -546,11 +546,44 @@ namespace UnitsNet.Tests
             Assert.Equal(SpeedUnit.YardPerSecond, yardpersecondQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(SpeedUnit.CentimeterPerHour)]
+        [InlineData(SpeedUnit.CentimeterPerMinute)]
+        [InlineData(SpeedUnit.CentimeterPerSecond)]
+        [InlineData(SpeedUnit.DecimeterPerMinute)]
+        [InlineData(SpeedUnit.DecimeterPerSecond)]
+        [InlineData(SpeedUnit.FootPerHour)]
+        [InlineData(SpeedUnit.FootPerMinute)]
+        [InlineData(SpeedUnit.FootPerSecond)]
+        [InlineData(SpeedUnit.InchPerHour)]
+        [InlineData(SpeedUnit.InchPerMinute)]
+        [InlineData(SpeedUnit.InchPerSecond)]
+        [InlineData(SpeedUnit.KilometerPerHour)]
+        [InlineData(SpeedUnit.KilometerPerMinute)]
+        [InlineData(SpeedUnit.KilometerPerSecond)]
+        [InlineData(SpeedUnit.Knot)]
+        [InlineData(SpeedUnit.MeterPerHour)]
+        [InlineData(SpeedUnit.MeterPerMinute)]
+        [InlineData(SpeedUnit.MeterPerSecond)]
+        [InlineData(SpeedUnit.MicrometerPerMinute)]
+        [InlineData(SpeedUnit.MicrometerPerSecond)]
+        [InlineData(SpeedUnit.MilePerHour)]
+        [InlineData(SpeedUnit.MillimeterPerHour)]
+        [InlineData(SpeedUnit.MillimeterPerMinute)]
+        [InlineData(SpeedUnit.MillimeterPerSecond)]
+        [InlineData(SpeedUnit.NanometerPerMinute)]
+        [InlineData(SpeedUnit.NanometerPerSecond)]
+        [InlineData(SpeedUnit.UsSurveyFootPerHour)]
+        [InlineData(SpeedUnit.UsSurveyFootPerMinute)]
+        [InlineData(SpeedUnit.UsSurveyFootPerSecond)]
+        [InlineData(SpeedUnit.YardPerHour)]
+        [InlineData(SpeedUnit.YardPerMinute)]
+        [InlineData(SpeedUnit.YardPerSecond)]
+        public void ToUnit_WithSameUnits_AreEqual(SpeedUnit unit)
         {
-            var quantityInBaseUnit = Speed.FromMetersPerSecond(1).ToUnit(Speed.BaseUnit);
-            Assert.Equal(Speed.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Speed.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

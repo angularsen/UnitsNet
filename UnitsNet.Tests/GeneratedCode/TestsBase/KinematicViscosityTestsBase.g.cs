@@ -270,11 +270,21 @@ namespace UnitsNet.Tests
             Assert.Equal(KinematicViscosityUnit.Stokes, stokesQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(KinematicViscosityUnit.Centistokes)]
+        [InlineData(KinematicViscosityUnit.Decistokes)]
+        [InlineData(KinematicViscosityUnit.Kilostokes)]
+        [InlineData(KinematicViscosityUnit.Microstokes)]
+        [InlineData(KinematicViscosityUnit.Millistokes)]
+        [InlineData(KinematicViscosityUnit.Nanostokes)]
+        [InlineData(KinematicViscosityUnit.SquareFootPerSecond)]
+        [InlineData(KinematicViscosityUnit.SquareMeterPerSecond)]
+        [InlineData(KinematicViscosityUnit.Stokes)]
+        public void ToUnit_WithSameUnits_AreEqual(KinematicViscosityUnit unit)
         {
-            var quantityInBaseUnit = KinematicViscosity.FromSquareMetersPerSecond(1).ToUnit(KinematicViscosity.BaseUnit);
-            Assert.Equal(KinematicViscosity.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = KinematicViscosity.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

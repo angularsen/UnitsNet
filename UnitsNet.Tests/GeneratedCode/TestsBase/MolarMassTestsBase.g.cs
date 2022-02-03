@@ -306,11 +306,24 @@ namespace UnitsNet.Tests
             Assert.Equal(MolarMassUnit.PoundPerMole, poundpermoleQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(MolarMassUnit.CentigramPerMole)]
+        [InlineData(MolarMassUnit.DecagramPerMole)]
+        [InlineData(MolarMassUnit.DecigramPerMole)]
+        [InlineData(MolarMassUnit.GramPerMole)]
+        [InlineData(MolarMassUnit.HectogramPerMole)]
+        [InlineData(MolarMassUnit.KilogramPerMole)]
+        [InlineData(MolarMassUnit.KilopoundPerMole)]
+        [InlineData(MolarMassUnit.MegapoundPerMole)]
+        [InlineData(MolarMassUnit.MicrogramPerMole)]
+        [InlineData(MolarMassUnit.MilligramPerMole)]
+        [InlineData(MolarMassUnit.NanogramPerMole)]
+        [InlineData(MolarMassUnit.PoundPerMole)]
+        public void ToUnit_WithSameUnits_AreEqual(MolarMassUnit unit)
         {
-            var quantityInBaseUnit = MolarMass.FromKilogramsPerMole(1).ToUnit(MolarMass.BaseUnit);
-            Assert.Equal(MolarMass.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = MolarMass.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

@@ -558,11 +558,45 @@ namespace UnitsNet.Tests
             Assert.Equal(LengthUnit.Yard, yardQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(LengthUnit.AstronomicalUnit)]
+        [InlineData(LengthUnit.Centimeter)]
+        [InlineData(LengthUnit.Chain)]
+        [InlineData(LengthUnit.Decimeter)]
+        [InlineData(LengthUnit.DtpPica)]
+        [InlineData(LengthUnit.DtpPoint)]
+        [InlineData(LengthUnit.Fathom)]
+        [InlineData(LengthUnit.Foot)]
+        [InlineData(LengthUnit.Hand)]
+        [InlineData(LengthUnit.Hectometer)]
+        [InlineData(LengthUnit.Inch)]
+        [InlineData(LengthUnit.KilolightYear)]
+        [InlineData(LengthUnit.Kilometer)]
+        [InlineData(LengthUnit.Kiloparsec)]
+        [InlineData(LengthUnit.LightYear)]
+        [InlineData(LengthUnit.MegalightYear)]
+        [InlineData(LengthUnit.Megaparsec)]
+        [InlineData(LengthUnit.Meter)]
+        [InlineData(LengthUnit.Microinch)]
+        [InlineData(LengthUnit.Micrometer)]
+        [InlineData(LengthUnit.Mil)]
+        [InlineData(LengthUnit.Mile)]
+        [InlineData(LengthUnit.Millimeter)]
+        [InlineData(LengthUnit.Nanometer)]
+        [InlineData(LengthUnit.NauticalMile)]
+        [InlineData(LengthUnit.Parsec)]
+        [InlineData(LengthUnit.PrinterPica)]
+        [InlineData(LengthUnit.PrinterPoint)]
+        [InlineData(LengthUnit.Shackle)]
+        [InlineData(LengthUnit.SolarRadius)]
+        [InlineData(LengthUnit.Twip)]
+        [InlineData(LengthUnit.UsSurveyFoot)]
+        [InlineData(LengthUnit.Yard)]
+        public void ToUnit_WithSameUnits_AreEqual(LengthUnit unit)
         {
-            var quantityInBaseUnit = Length.FromMeters(1).ToUnit(Length.BaseUnit);
-            Assert.Equal(Length.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Length.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

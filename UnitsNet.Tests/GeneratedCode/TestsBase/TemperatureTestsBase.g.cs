@@ -282,11 +282,22 @@ namespace UnitsNet.Tests
             Assert.Equal(TemperatureUnit.SolarTemperature, solartemperatureQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(TemperatureUnit.DegreeCelsius)]
+        [InlineData(TemperatureUnit.DegreeDelisle)]
+        [InlineData(TemperatureUnit.DegreeFahrenheit)]
+        [InlineData(TemperatureUnit.DegreeNewton)]
+        [InlineData(TemperatureUnit.DegreeRankine)]
+        [InlineData(TemperatureUnit.DegreeReaumur)]
+        [InlineData(TemperatureUnit.DegreeRoemer)]
+        [InlineData(TemperatureUnit.Kelvin)]
+        [InlineData(TemperatureUnit.MillidegreeCelsius)]
+        [InlineData(TemperatureUnit.SolarTemperature)]
+        public void ToUnit_WithSameUnits_AreEqual(TemperatureUnit unit)
         {
-            var quantityInBaseUnit = Temperature.FromKelvins(1).ToUnit(Temperature.BaseUnit);
-            Assert.Equal(Temperature.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Temperature.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

@@ -186,11 +186,14 @@ namespace UnitsNet.Tests
             Assert.Equal(ThermalConductivityUnit.WattPerMeterKelvin, wattpermeterkelvinQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(ThermalConductivityUnit.BtuPerHourFootFahrenheit)]
+        [InlineData(ThermalConductivityUnit.WattPerMeterKelvin)]
+        public void ToUnit_WithSameUnits_AreEqual(ThermalConductivityUnit unit)
         {
-            var quantityInBaseUnit = ThermalConductivity.FromWattsPerMeterKelvin(1).ToUnit(ThermalConductivity.BaseUnit);
-            Assert.Equal(ThermalConductivity.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ThermalConductivity.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

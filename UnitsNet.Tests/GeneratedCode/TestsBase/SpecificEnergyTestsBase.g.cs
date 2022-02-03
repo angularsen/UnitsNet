@@ -462,11 +462,37 @@ namespace UnitsNet.Tests
             Assert.Equal(SpecificEnergyUnit.WattHourPerKilogram, watthourperkilogramQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(SpecificEnergyUnit.BtuPerPound)]
+        [InlineData(SpecificEnergyUnit.CaloriePerGram)]
+        [InlineData(SpecificEnergyUnit.GigawattDayPerKilogram)]
+        [InlineData(SpecificEnergyUnit.GigawattDayPerShortTon)]
+        [InlineData(SpecificEnergyUnit.GigawattDayPerTonne)]
+        [InlineData(SpecificEnergyUnit.GigawattHourPerKilogram)]
+        [InlineData(SpecificEnergyUnit.JoulePerKilogram)]
+        [InlineData(SpecificEnergyUnit.KilocaloriePerGram)]
+        [InlineData(SpecificEnergyUnit.KilojoulePerKilogram)]
+        [InlineData(SpecificEnergyUnit.KilowattDayPerKilogram)]
+        [InlineData(SpecificEnergyUnit.KilowattDayPerShortTon)]
+        [InlineData(SpecificEnergyUnit.KilowattDayPerTonne)]
+        [InlineData(SpecificEnergyUnit.KilowattHourPerKilogram)]
+        [InlineData(SpecificEnergyUnit.MegajoulePerKilogram)]
+        [InlineData(SpecificEnergyUnit.MegawattDayPerKilogram)]
+        [InlineData(SpecificEnergyUnit.MegawattDayPerShortTon)]
+        [InlineData(SpecificEnergyUnit.MegawattDayPerTonne)]
+        [InlineData(SpecificEnergyUnit.MegawattHourPerKilogram)]
+        [InlineData(SpecificEnergyUnit.TerawattDayPerKilogram)]
+        [InlineData(SpecificEnergyUnit.TerawattDayPerShortTon)]
+        [InlineData(SpecificEnergyUnit.TerawattDayPerTonne)]
+        [InlineData(SpecificEnergyUnit.WattDayPerKilogram)]
+        [InlineData(SpecificEnergyUnit.WattDayPerShortTon)]
+        [InlineData(SpecificEnergyUnit.WattDayPerTonne)]
+        [InlineData(SpecificEnergyUnit.WattHourPerKilogram)]
+        public void ToUnit_WithSameUnits_AreEqual(SpecificEnergyUnit unit)
         {
-            var quantityInBaseUnit = SpecificEnergy.FromJoulesPerKilogram(1).ToUnit(SpecificEnergy.BaseUnit);
-            Assert.Equal(SpecificEnergy.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = SpecificEnergy.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

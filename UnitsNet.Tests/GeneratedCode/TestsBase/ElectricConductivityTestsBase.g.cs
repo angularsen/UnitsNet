@@ -198,11 +198,15 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricConductivityUnit.SiemensPerMeter, siemenspermeterQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(ElectricConductivityUnit.SiemensPerFoot)]
+        [InlineData(ElectricConductivityUnit.SiemensPerInch)]
+        [InlineData(ElectricConductivityUnit.SiemensPerMeter)]
+        public void ToUnit_WithSameUnits_AreEqual(ElectricConductivityUnit unit)
         {
-            var quantityInBaseUnit = ElectricConductivity.FromSiemensPerMeter(1).ToUnit(ElectricConductivity.BaseUnit);
-            Assert.Equal(ElectricConductivity.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ElectricConductivity.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

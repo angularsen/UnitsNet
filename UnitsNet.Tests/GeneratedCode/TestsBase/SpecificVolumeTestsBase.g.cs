@@ -198,11 +198,15 @@ namespace UnitsNet.Tests
             Assert.Equal(SpecificVolumeUnit.MillicubicMeterPerKilogram, millicubicmeterperkilogramQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(SpecificVolumeUnit.CubicFootPerPound)]
+        [InlineData(SpecificVolumeUnit.CubicMeterPerKilogram)]
+        [InlineData(SpecificVolumeUnit.MillicubicMeterPerKilogram)]
+        public void ToUnit_WithSameUnits_AreEqual(SpecificVolumeUnit unit)
         {
-            var quantityInBaseUnit = SpecificVolume.FromCubicMetersPerKilogram(1).ToUnit(SpecificVolume.BaseUnit);
-            Assert.Equal(SpecificVolume.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = SpecificVolume.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

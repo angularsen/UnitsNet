@@ -222,11 +222,17 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricChargeUnit.MilliampereHour, milliamperehourQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(ElectricChargeUnit.AmpereHour)]
+        [InlineData(ElectricChargeUnit.Coulomb)]
+        [InlineData(ElectricChargeUnit.KiloampereHour)]
+        [InlineData(ElectricChargeUnit.MegaampereHour)]
+        [InlineData(ElectricChargeUnit.MilliampereHour)]
+        public void ToUnit_WithSameUnits_AreEqual(ElectricChargeUnit unit)
         {
-            var quantityInBaseUnit = ElectricCharge.FromCoulombs(1).ToUnit(ElectricCharge.BaseUnit);
-            Assert.Equal(ElectricCharge.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ElectricCharge.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

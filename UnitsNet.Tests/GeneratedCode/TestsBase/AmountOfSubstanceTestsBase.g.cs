@@ -342,11 +342,27 @@ namespace UnitsNet.Tests
             Assert.Equal(AmountOfSubstanceUnit.PoundMole, poundmoleQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(AmountOfSubstanceUnit.Centimole)]
+        [InlineData(AmountOfSubstanceUnit.CentipoundMole)]
+        [InlineData(AmountOfSubstanceUnit.Decimole)]
+        [InlineData(AmountOfSubstanceUnit.DecipoundMole)]
+        [InlineData(AmountOfSubstanceUnit.Kilomole)]
+        [InlineData(AmountOfSubstanceUnit.KilopoundMole)]
+        [InlineData(AmountOfSubstanceUnit.Megamole)]
+        [InlineData(AmountOfSubstanceUnit.Micromole)]
+        [InlineData(AmountOfSubstanceUnit.MicropoundMole)]
+        [InlineData(AmountOfSubstanceUnit.Millimole)]
+        [InlineData(AmountOfSubstanceUnit.MillipoundMole)]
+        [InlineData(AmountOfSubstanceUnit.Mole)]
+        [InlineData(AmountOfSubstanceUnit.Nanomole)]
+        [InlineData(AmountOfSubstanceUnit.NanopoundMole)]
+        [InlineData(AmountOfSubstanceUnit.PoundMole)]
+        public void ToUnit_WithSameUnits_AreEqual(AmountOfSubstanceUnit unit)
         {
-            var quantityInBaseUnit = AmountOfSubstance.FromMoles(1).ToUnit(AmountOfSubstance.BaseUnit);
-            Assert.Equal(AmountOfSubstance.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = AmountOfSubstance.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

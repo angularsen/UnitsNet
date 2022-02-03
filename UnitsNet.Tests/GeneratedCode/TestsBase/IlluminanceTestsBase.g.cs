@@ -210,11 +210,16 @@ namespace UnitsNet.Tests
             Assert.Equal(IlluminanceUnit.Millilux, milliluxQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(IlluminanceUnit.Kilolux)]
+        [InlineData(IlluminanceUnit.Lux)]
+        [InlineData(IlluminanceUnit.Megalux)]
+        [InlineData(IlluminanceUnit.Millilux)]
+        public void ToUnit_WithSameUnits_AreEqual(IlluminanceUnit unit)
         {
-            var quantityInBaseUnit = Illuminance.FromLux(1).ToUnit(Illuminance.BaseUnit);
-            Assert.Equal(Illuminance.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Illuminance.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

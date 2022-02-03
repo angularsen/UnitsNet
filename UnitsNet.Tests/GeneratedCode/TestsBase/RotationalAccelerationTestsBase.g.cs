@@ -210,11 +210,16 @@ namespace UnitsNet.Tests
             Assert.Equal(RotationalAccelerationUnit.RevolutionPerSecondSquared, revolutionpersecondsquaredQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData(RotationalAccelerationUnit.RadianPerSecondSquared)]
+        [InlineData(RotationalAccelerationUnit.RevolutionPerMinutePerSecond)]
+        [InlineData(RotationalAccelerationUnit.RevolutionPerSecondSquared)]
+        public void ToUnit_WithSameUnits_AreEqual(RotationalAccelerationUnit unit)
         {
-            var quantityInBaseUnit = RotationalAcceleration.FromRadiansPerSecondSquared(1).ToUnit(RotationalAcceleration.BaseUnit);
-            Assert.Equal(RotationalAcceleration.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = RotationalAcceleration.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

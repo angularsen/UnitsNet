@@ -222,11 +222,17 @@ namespace UnitsNet.Tests
             Assert.Equal(RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, poundforcefootperdegreesperfootQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter)]
+        [InlineData(RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot)]
+        [InlineData(RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter)]
+        [InlineData(RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter)]
+        [InlineData(RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot)]
+        public void ToUnit_WithSameUnits_AreEqual(RotationalStiffnessPerLengthUnit unit)
         {
-            var quantityInBaseUnit = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1).ToUnit(RotationalStiffnessPerLength.BaseUnit);
-            Assert.Equal(RotationalStiffnessPerLength.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = RotationalStiffnessPerLength.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

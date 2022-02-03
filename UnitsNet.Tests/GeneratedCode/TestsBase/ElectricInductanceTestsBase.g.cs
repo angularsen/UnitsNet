@@ -210,11 +210,16 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricInductanceUnit.Nanohenry, nanohenryQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(ElectricInductanceUnit.Henry)]
+        [InlineData(ElectricInductanceUnit.Microhenry)]
+        [InlineData(ElectricInductanceUnit.Millihenry)]
+        [InlineData(ElectricInductanceUnit.Nanohenry)]
+        public void ToUnit_WithSameUnits_AreEqual(ElectricInductanceUnit unit)
         {
-            var quantityInBaseUnit = ElectricInductance.FromHenries(1).ToUnit(ElectricInductance.BaseUnit);
-            Assert.Equal(ElectricInductance.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ElectricInductance.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

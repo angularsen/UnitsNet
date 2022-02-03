@@ -318,11 +318,25 @@ namespace UnitsNet.Tests
             Assert.Equal(RotationalSpeedUnit.RevolutionPerSecond, revolutionpersecondQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(RotationalSpeedUnit.CentiradianPerSecond)]
+        [InlineData(RotationalSpeedUnit.DeciradianPerSecond)]
+        [InlineData(RotationalSpeedUnit.DegreePerMinute)]
+        [InlineData(RotationalSpeedUnit.DegreePerSecond)]
+        [InlineData(RotationalSpeedUnit.MicrodegreePerSecond)]
+        [InlineData(RotationalSpeedUnit.MicroradianPerSecond)]
+        [InlineData(RotationalSpeedUnit.MillidegreePerSecond)]
+        [InlineData(RotationalSpeedUnit.MilliradianPerSecond)]
+        [InlineData(RotationalSpeedUnit.NanodegreePerSecond)]
+        [InlineData(RotationalSpeedUnit.NanoradianPerSecond)]
+        [InlineData(RotationalSpeedUnit.RadianPerSecond)]
+        [InlineData(RotationalSpeedUnit.RevolutionPerMinute)]
+        [InlineData(RotationalSpeedUnit.RevolutionPerSecond)]
+        public void ToUnit_WithSameUnits_AreEqual(RotationalSpeedUnit unit)
         {
-            var quantityInBaseUnit = RotationalSpeed.FromRadiansPerSecond(1).ToUnit(RotationalSpeed.BaseUnit);
-            Assert.Equal(RotationalSpeed.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = RotationalSpeed.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

@@ -449,11 +449,38 @@ namespace UnitsNet.Tests
             Assert.Equal(InformationUnit.Terabyte, terabyteQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(InformationUnit.Bit)]
+        [InlineData(InformationUnit.Byte)]
+        [InlineData(InformationUnit.Exabit)]
+        [InlineData(InformationUnit.Exabyte)]
+        [InlineData(InformationUnit.Exbibit)]
+        [InlineData(InformationUnit.Exbibyte)]
+        [InlineData(InformationUnit.Gibibit)]
+        [InlineData(InformationUnit.Gibibyte)]
+        [InlineData(InformationUnit.Gigabit)]
+        [InlineData(InformationUnit.Gigabyte)]
+        [InlineData(InformationUnit.Kibibit)]
+        [InlineData(InformationUnit.Kibibyte)]
+        [InlineData(InformationUnit.Kilobit)]
+        [InlineData(InformationUnit.Kilobyte)]
+        [InlineData(InformationUnit.Mebibit)]
+        [InlineData(InformationUnit.Mebibyte)]
+        [InlineData(InformationUnit.Megabit)]
+        [InlineData(InformationUnit.Megabyte)]
+        [InlineData(InformationUnit.Pebibit)]
+        [InlineData(InformationUnit.Pebibyte)]
+        [InlineData(InformationUnit.Petabit)]
+        [InlineData(InformationUnit.Petabyte)]
+        [InlineData(InformationUnit.Tebibit)]
+        [InlineData(InformationUnit.Tebibyte)]
+        [InlineData(InformationUnit.Terabit)]
+        [InlineData(InformationUnit.Terabyte)]
+        public void ToUnit_WithSameUnits_AreEqual(InformationUnit unit)
         {
-            var quantityInBaseUnit = Information.FromBits(1).ToUnit(Information.BaseUnit);
-            Assert.Equal(Information.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Information.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

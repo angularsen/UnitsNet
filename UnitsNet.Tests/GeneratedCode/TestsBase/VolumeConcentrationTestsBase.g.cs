@@ -402,11 +402,32 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumeConcentrationUnit.PicolitersPerMililiter, picoliterspermililiterQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(VolumeConcentrationUnit.CentilitersPerLiter)]
+        [InlineData(VolumeConcentrationUnit.CentilitersPerMililiter)]
+        [InlineData(VolumeConcentrationUnit.DecilitersPerLiter)]
+        [InlineData(VolumeConcentrationUnit.DecilitersPerMililiter)]
+        [InlineData(VolumeConcentrationUnit.DecimalFraction)]
+        [InlineData(VolumeConcentrationUnit.LitersPerLiter)]
+        [InlineData(VolumeConcentrationUnit.LitersPerMililiter)]
+        [InlineData(VolumeConcentrationUnit.MicrolitersPerLiter)]
+        [InlineData(VolumeConcentrationUnit.MicrolitersPerMililiter)]
+        [InlineData(VolumeConcentrationUnit.MillilitersPerLiter)]
+        [InlineData(VolumeConcentrationUnit.MillilitersPerMililiter)]
+        [InlineData(VolumeConcentrationUnit.NanolitersPerLiter)]
+        [InlineData(VolumeConcentrationUnit.NanolitersPerMililiter)]
+        [InlineData(VolumeConcentrationUnit.PartPerBillion)]
+        [InlineData(VolumeConcentrationUnit.PartPerMillion)]
+        [InlineData(VolumeConcentrationUnit.PartPerThousand)]
+        [InlineData(VolumeConcentrationUnit.PartPerTrillion)]
+        [InlineData(VolumeConcentrationUnit.Percent)]
+        [InlineData(VolumeConcentrationUnit.PicolitersPerLiter)]
+        [InlineData(VolumeConcentrationUnit.PicolitersPerMililiter)]
+        public void ToUnit_WithSameUnits_AreEqual(VolumeConcentrationUnit unit)
         {
-            var quantityInBaseUnit = VolumeConcentration.FromDecimalFractions(1).ToUnit(VolumeConcentration.BaseUnit);
-            Assert.Equal(VolumeConcentration.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = VolumeConcentration.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

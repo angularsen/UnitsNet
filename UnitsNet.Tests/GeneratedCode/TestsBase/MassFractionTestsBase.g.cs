@@ -450,11 +450,36 @@ namespace UnitsNet.Tests
             Assert.Equal(MassFractionUnit.Percent, percentQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(MassFractionUnit.CentigramPerGram)]
+        [InlineData(MassFractionUnit.CentigramPerKilogram)]
+        [InlineData(MassFractionUnit.DecagramPerGram)]
+        [InlineData(MassFractionUnit.DecagramPerKilogram)]
+        [InlineData(MassFractionUnit.DecigramPerGram)]
+        [InlineData(MassFractionUnit.DecigramPerKilogram)]
+        [InlineData(MassFractionUnit.DecimalFraction)]
+        [InlineData(MassFractionUnit.GramPerGram)]
+        [InlineData(MassFractionUnit.GramPerKilogram)]
+        [InlineData(MassFractionUnit.HectogramPerGram)]
+        [InlineData(MassFractionUnit.HectogramPerKilogram)]
+        [InlineData(MassFractionUnit.KilogramPerGram)]
+        [InlineData(MassFractionUnit.KilogramPerKilogram)]
+        [InlineData(MassFractionUnit.MicrogramPerGram)]
+        [InlineData(MassFractionUnit.MicrogramPerKilogram)]
+        [InlineData(MassFractionUnit.MilligramPerGram)]
+        [InlineData(MassFractionUnit.MilligramPerKilogram)]
+        [InlineData(MassFractionUnit.NanogramPerGram)]
+        [InlineData(MassFractionUnit.NanogramPerKilogram)]
+        [InlineData(MassFractionUnit.PartPerBillion)]
+        [InlineData(MassFractionUnit.PartPerMillion)]
+        [InlineData(MassFractionUnit.PartPerThousand)]
+        [InlineData(MassFractionUnit.PartPerTrillion)]
+        [InlineData(MassFractionUnit.Percent)]
+        public void ToUnit_WithSameUnits_AreEqual(MassFractionUnit unit)
         {
-            var quantityInBaseUnit = MassFraction.FromDecimalFractions(1).ToUnit(MassFraction.BaseUnit);
-            Assert.Equal(MassFraction.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = MassFraction.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

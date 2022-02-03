@@ -198,11 +198,15 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareMeter, amperepersquaremeterQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(ElectricCurrentDensityUnit.AmperePerSquareFoot)]
+        [InlineData(ElectricCurrentDensityUnit.AmperePerSquareInch)]
+        [InlineData(ElectricCurrentDensityUnit.AmperePerSquareMeter)]
+        public void ToUnit_WithSameUnits_AreEqual(ElectricCurrentDensityUnit unit)
         {
-            var quantityInBaseUnit = ElectricCurrentDensity.FromAmperesPerSquareMeter(1).ToUnit(ElectricCurrentDensity.BaseUnit);
-            Assert.Equal(ElectricCurrentDensity.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ElectricCurrentDensity.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

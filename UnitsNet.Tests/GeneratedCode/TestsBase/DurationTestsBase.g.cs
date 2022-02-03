@@ -294,11 +294,23 @@ namespace UnitsNet.Tests
             Assert.Equal(DurationUnit.Year365, year365Quantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(DurationUnit.Day)]
+        [InlineData(DurationUnit.Hour)]
+        [InlineData(DurationUnit.JulianYear)]
+        [InlineData(DurationUnit.Microsecond)]
+        [InlineData(DurationUnit.Millisecond)]
+        [InlineData(DurationUnit.Minute)]
+        [InlineData(DurationUnit.Month30)]
+        [InlineData(DurationUnit.Nanosecond)]
+        [InlineData(DurationUnit.Second)]
+        [InlineData(DurationUnit.Week)]
+        [InlineData(DurationUnit.Year365)]
+        public void ToUnit_WithSameUnits_AreEqual(DurationUnit unit)
         {
-            var quantityInBaseUnit = Duration.FromSeconds(1).ToUnit(Duration.BaseUnit);
-            Assert.Equal(Duration.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Duration.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

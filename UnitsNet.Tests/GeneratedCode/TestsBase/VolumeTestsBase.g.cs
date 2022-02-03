@@ -774,11 +774,63 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumeUnit.UsTeaspoon, usteaspoonQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(VolumeUnit.AcreFoot)]
+        [InlineData(VolumeUnit.AuTablespoon)]
+        [InlineData(VolumeUnit.BoardFoot)]
+        [InlineData(VolumeUnit.Centiliter)]
+        [InlineData(VolumeUnit.CubicCentimeter)]
+        [InlineData(VolumeUnit.CubicDecimeter)]
+        [InlineData(VolumeUnit.CubicFoot)]
+        [InlineData(VolumeUnit.CubicHectometer)]
+        [InlineData(VolumeUnit.CubicInch)]
+        [InlineData(VolumeUnit.CubicKilometer)]
+        [InlineData(VolumeUnit.CubicMeter)]
+        [InlineData(VolumeUnit.CubicMicrometer)]
+        [InlineData(VolumeUnit.CubicMile)]
+        [InlineData(VolumeUnit.CubicMillimeter)]
+        [InlineData(VolumeUnit.CubicYard)]
+        [InlineData(VolumeUnit.DecausGallon)]
+        [InlineData(VolumeUnit.Deciliter)]
+        [InlineData(VolumeUnit.DeciusGallon)]
+        [InlineData(VolumeUnit.HectocubicFoot)]
+        [InlineData(VolumeUnit.HectocubicMeter)]
+        [InlineData(VolumeUnit.Hectoliter)]
+        [InlineData(VolumeUnit.HectousGallon)]
+        [InlineData(VolumeUnit.ImperialBeerBarrel)]
+        [InlineData(VolumeUnit.ImperialGallon)]
+        [InlineData(VolumeUnit.ImperialOunce)]
+        [InlineData(VolumeUnit.ImperialPint)]
+        [InlineData(VolumeUnit.KilocubicFoot)]
+        [InlineData(VolumeUnit.KilocubicMeter)]
+        [InlineData(VolumeUnit.KiloimperialGallon)]
+        [InlineData(VolumeUnit.Kiloliter)]
+        [InlineData(VolumeUnit.KilousGallon)]
+        [InlineData(VolumeUnit.Liter)]
+        [InlineData(VolumeUnit.MegacubicFoot)]
+        [InlineData(VolumeUnit.MegaimperialGallon)]
+        [InlineData(VolumeUnit.Megaliter)]
+        [InlineData(VolumeUnit.MegausGallon)]
+        [InlineData(VolumeUnit.MetricCup)]
+        [InlineData(VolumeUnit.MetricTeaspoon)]
+        [InlineData(VolumeUnit.Microliter)]
+        [InlineData(VolumeUnit.Milliliter)]
+        [InlineData(VolumeUnit.OilBarrel)]
+        [InlineData(VolumeUnit.UkTablespoon)]
+        [InlineData(VolumeUnit.UsBeerBarrel)]
+        [InlineData(VolumeUnit.UsCustomaryCup)]
+        [InlineData(VolumeUnit.UsGallon)]
+        [InlineData(VolumeUnit.UsLegalCup)]
+        [InlineData(VolumeUnit.UsOunce)]
+        [InlineData(VolumeUnit.UsPint)]
+        [InlineData(VolumeUnit.UsQuart)]
+        [InlineData(VolumeUnit.UsTablespoon)]
+        [InlineData(VolumeUnit.UsTeaspoon)]
+        public void ToUnit_WithSameUnits_AreEqual(VolumeUnit unit)
         {
-            var quantityInBaseUnit = Volume.FromCubicMeters(1).ToUnit(Volume.BaseUnit);
-            Assert.Equal(Volume.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Volume.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

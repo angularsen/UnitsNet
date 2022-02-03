@@ -174,11 +174,13 @@ namespace UnitsNet.Tests
             Assert.Equal(MagnetizationUnit.AmperePerMeter, amperepermeterQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(MagnetizationUnit.AmperePerMeter)]
+        public void ToUnit_WithSameUnits_AreEqual(MagnetizationUnit unit)
         {
-            var quantityInBaseUnit = Magnetization.FromAmperesPerMeter(1).ToUnit(Magnetization.BaseUnit);
-            Assert.Equal(Magnetization.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Magnetization.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

@@ -498,11 +498,40 @@ namespace UnitsNet.Tests
             Assert.Equal(MassMomentOfInertiaUnit.TonneSquareMilimeter, tonnesquaremilimeterQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(MassMomentOfInertiaUnit.GramSquareCentimeter)]
+        [InlineData(MassMomentOfInertiaUnit.GramSquareDecimeter)]
+        [InlineData(MassMomentOfInertiaUnit.GramSquareMeter)]
+        [InlineData(MassMomentOfInertiaUnit.GramSquareMillimeter)]
+        [InlineData(MassMomentOfInertiaUnit.KilogramSquareCentimeter)]
+        [InlineData(MassMomentOfInertiaUnit.KilogramSquareDecimeter)]
+        [InlineData(MassMomentOfInertiaUnit.KilogramSquareMeter)]
+        [InlineData(MassMomentOfInertiaUnit.KilogramSquareMillimeter)]
+        [InlineData(MassMomentOfInertiaUnit.KilotonneSquareCentimeter)]
+        [InlineData(MassMomentOfInertiaUnit.KilotonneSquareDecimeter)]
+        [InlineData(MassMomentOfInertiaUnit.KilotonneSquareMeter)]
+        [InlineData(MassMomentOfInertiaUnit.KilotonneSquareMilimeter)]
+        [InlineData(MassMomentOfInertiaUnit.MegatonneSquareCentimeter)]
+        [InlineData(MassMomentOfInertiaUnit.MegatonneSquareDecimeter)]
+        [InlineData(MassMomentOfInertiaUnit.MegatonneSquareMeter)]
+        [InlineData(MassMomentOfInertiaUnit.MegatonneSquareMilimeter)]
+        [InlineData(MassMomentOfInertiaUnit.MilligramSquareCentimeter)]
+        [InlineData(MassMomentOfInertiaUnit.MilligramSquareDecimeter)]
+        [InlineData(MassMomentOfInertiaUnit.MilligramSquareMeter)]
+        [InlineData(MassMomentOfInertiaUnit.MilligramSquareMillimeter)]
+        [InlineData(MassMomentOfInertiaUnit.PoundSquareFoot)]
+        [InlineData(MassMomentOfInertiaUnit.PoundSquareInch)]
+        [InlineData(MassMomentOfInertiaUnit.SlugSquareFoot)]
+        [InlineData(MassMomentOfInertiaUnit.SlugSquareInch)]
+        [InlineData(MassMomentOfInertiaUnit.TonneSquareCentimeter)]
+        [InlineData(MassMomentOfInertiaUnit.TonneSquareDecimeter)]
+        [InlineData(MassMomentOfInertiaUnit.TonneSquareMeter)]
+        [InlineData(MassMomentOfInertiaUnit.TonneSquareMilimeter)]
+        public void ToUnit_WithSameUnits_AreEqual(MassMomentOfInertiaUnit unit)
         {
-            var quantityInBaseUnit = MassMomentOfInertia.FromKilogramSquareMeters(1).ToUnit(MassMomentOfInertia.BaseUnit);
-            Assert.Equal(MassMomentOfInertia.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = MassMomentOfInertia.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

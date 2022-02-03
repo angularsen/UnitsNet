@@ -198,11 +198,15 @@ namespace UnitsNet.Tests
             Assert.Equal(CoefficientOfThermalExpansionUnit.InverseKelvin, inversekelvinQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius)]
+        [InlineData(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit)]
+        [InlineData(CoefficientOfThermalExpansionUnit.InverseKelvin)]
+        public void ToUnit_WithSameUnits_AreEqual(CoefficientOfThermalExpansionUnit unit)
         {
-            var quantityInBaseUnit = CoefficientOfThermalExpansion.FromInverseKelvin(1).ToUnit(CoefficientOfThermalExpansion.BaseUnit);
-            Assert.Equal(CoefficientOfThermalExpansion.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = CoefficientOfThermalExpansion.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

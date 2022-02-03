@@ -186,11 +186,14 @@ namespace UnitsNet.Tests
             Assert.Equal(LevelUnit.Neper, neperQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(LevelUnit.Decibel)]
+        [InlineData(LevelUnit.Neper)]
+        public void ToUnit_WithSameUnits_AreEqual(LevelUnit unit)
         {
-            var quantityInBaseUnit = Level.FromDecibels(1).ToUnit(Level.BaseUnit);
-            Assert.Equal(Level.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Level.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

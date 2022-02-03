@@ -690,11 +690,56 @@ namespace UnitsNet.Tests
             Assert.Equal(PowerDensityUnit.WattPerLiter, wattperliterQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(PowerDensityUnit.DecawattPerCubicFoot)]
+        [InlineData(PowerDensityUnit.DecawattPerCubicInch)]
+        [InlineData(PowerDensityUnit.DecawattPerCubicMeter)]
+        [InlineData(PowerDensityUnit.DecawattPerLiter)]
+        [InlineData(PowerDensityUnit.DeciwattPerCubicFoot)]
+        [InlineData(PowerDensityUnit.DeciwattPerCubicInch)]
+        [InlineData(PowerDensityUnit.DeciwattPerCubicMeter)]
+        [InlineData(PowerDensityUnit.DeciwattPerLiter)]
+        [InlineData(PowerDensityUnit.GigawattPerCubicFoot)]
+        [InlineData(PowerDensityUnit.GigawattPerCubicInch)]
+        [InlineData(PowerDensityUnit.GigawattPerCubicMeter)]
+        [InlineData(PowerDensityUnit.GigawattPerLiter)]
+        [InlineData(PowerDensityUnit.KilowattPerCubicFoot)]
+        [InlineData(PowerDensityUnit.KilowattPerCubicInch)]
+        [InlineData(PowerDensityUnit.KilowattPerCubicMeter)]
+        [InlineData(PowerDensityUnit.KilowattPerLiter)]
+        [InlineData(PowerDensityUnit.MegawattPerCubicFoot)]
+        [InlineData(PowerDensityUnit.MegawattPerCubicInch)]
+        [InlineData(PowerDensityUnit.MegawattPerCubicMeter)]
+        [InlineData(PowerDensityUnit.MegawattPerLiter)]
+        [InlineData(PowerDensityUnit.MicrowattPerCubicFoot)]
+        [InlineData(PowerDensityUnit.MicrowattPerCubicInch)]
+        [InlineData(PowerDensityUnit.MicrowattPerCubicMeter)]
+        [InlineData(PowerDensityUnit.MicrowattPerLiter)]
+        [InlineData(PowerDensityUnit.MilliwattPerCubicFoot)]
+        [InlineData(PowerDensityUnit.MilliwattPerCubicInch)]
+        [InlineData(PowerDensityUnit.MilliwattPerCubicMeter)]
+        [InlineData(PowerDensityUnit.MilliwattPerLiter)]
+        [InlineData(PowerDensityUnit.NanowattPerCubicFoot)]
+        [InlineData(PowerDensityUnit.NanowattPerCubicInch)]
+        [InlineData(PowerDensityUnit.NanowattPerCubicMeter)]
+        [InlineData(PowerDensityUnit.NanowattPerLiter)]
+        [InlineData(PowerDensityUnit.PicowattPerCubicFoot)]
+        [InlineData(PowerDensityUnit.PicowattPerCubicInch)]
+        [InlineData(PowerDensityUnit.PicowattPerCubicMeter)]
+        [InlineData(PowerDensityUnit.PicowattPerLiter)]
+        [InlineData(PowerDensityUnit.TerawattPerCubicFoot)]
+        [InlineData(PowerDensityUnit.TerawattPerCubicInch)]
+        [InlineData(PowerDensityUnit.TerawattPerCubicMeter)]
+        [InlineData(PowerDensityUnit.TerawattPerLiter)]
+        [InlineData(PowerDensityUnit.WattPerCubicFoot)]
+        [InlineData(PowerDensityUnit.WattPerCubicInch)]
+        [InlineData(PowerDensityUnit.WattPerCubicMeter)]
+        [InlineData(PowerDensityUnit.WattPerLiter)]
+        public void ToUnit_WithSameUnits_AreEqual(PowerDensityUnit unit)
         {
-            var quantityInBaseUnit = PowerDensity.FromWattsPerCubicMeter(1).ToUnit(PowerDensity.BaseUnit);
-            Assert.Equal(PowerDensity.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = PowerDensity.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

@@ -294,11 +294,23 @@ namespace UnitsNet.Tests
             Assert.Equal(FrequencyUnit.Terahertz, terahertzQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(FrequencyUnit.BeatPerMinute)]
+        [InlineData(FrequencyUnit.BUnit)]
+        [InlineData(FrequencyUnit.CyclePerHour)]
+        [InlineData(FrequencyUnit.CyclePerMinute)]
+        [InlineData(FrequencyUnit.Gigahertz)]
+        [InlineData(FrequencyUnit.Hertz)]
+        [InlineData(FrequencyUnit.Kilohertz)]
+        [InlineData(FrequencyUnit.Megahertz)]
+        [InlineData(FrequencyUnit.PerSecond)]
+        [InlineData(FrequencyUnit.RadianPerSecond)]
+        [InlineData(FrequencyUnit.Terahertz)]
+        public void ToUnit_WithSameUnits_AreEqual(FrequencyUnit unit)
         {
-            var quantityInBaseUnit = Frequency.FromHertz(1).ToUnit(Frequency.BaseUnit);
-            Assert.Equal(Frequency.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Frequency.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

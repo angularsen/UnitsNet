@@ -414,11 +414,33 @@ namespace UnitsNet.Tests
             Assert.Equal(TorquePerLengthUnit.TonneForceMillimeterPerMeter, tonneforcemillimeterpermeterQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(TorquePerLengthUnit.KilogramForceCentimeterPerMeter)]
+        [InlineData(TorquePerLengthUnit.KilogramForceMeterPerMeter)]
+        [InlineData(TorquePerLengthUnit.KilogramForceMillimeterPerMeter)]
+        [InlineData(TorquePerLengthUnit.KilonewtonCentimeterPerMeter)]
+        [InlineData(TorquePerLengthUnit.KilonewtonMeterPerMeter)]
+        [InlineData(TorquePerLengthUnit.KilonewtonMillimeterPerMeter)]
+        [InlineData(TorquePerLengthUnit.KilopoundForceFootPerFoot)]
+        [InlineData(TorquePerLengthUnit.KilopoundForceInchPerFoot)]
+        [InlineData(TorquePerLengthUnit.MeganewtonCentimeterPerMeter)]
+        [InlineData(TorquePerLengthUnit.MeganewtonMeterPerMeter)]
+        [InlineData(TorquePerLengthUnit.MeganewtonMillimeterPerMeter)]
+        [InlineData(TorquePerLengthUnit.MegapoundForceFootPerFoot)]
+        [InlineData(TorquePerLengthUnit.MegapoundForceInchPerFoot)]
+        [InlineData(TorquePerLengthUnit.NewtonCentimeterPerMeter)]
+        [InlineData(TorquePerLengthUnit.NewtonMeterPerMeter)]
+        [InlineData(TorquePerLengthUnit.NewtonMillimeterPerMeter)]
+        [InlineData(TorquePerLengthUnit.PoundForceFootPerFoot)]
+        [InlineData(TorquePerLengthUnit.PoundForceInchPerFoot)]
+        [InlineData(TorquePerLengthUnit.TonneForceCentimeterPerMeter)]
+        [InlineData(TorquePerLengthUnit.TonneForceMeterPerMeter)]
+        [InlineData(TorquePerLengthUnit.TonneForceMillimeterPerMeter)]
+        public void ToUnit_WithSameUnits_AreEqual(TorquePerLengthUnit unit)
         {
-            var quantityInBaseUnit = TorquePerLength.FromNewtonMetersPerMeter(1).ToUnit(TorquePerLength.BaseUnit);
-            Assert.Equal(TorquePerLength.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = TorquePerLength.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

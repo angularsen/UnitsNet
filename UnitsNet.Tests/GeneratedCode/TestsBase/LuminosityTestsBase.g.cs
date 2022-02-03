@@ -330,11 +330,26 @@ namespace UnitsNet.Tests
             Assert.Equal(LuminosityUnit.Watt, wattQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(LuminosityUnit.Decawatt)]
+        [InlineData(LuminosityUnit.Deciwatt)]
+        [InlineData(LuminosityUnit.Femtowatt)]
+        [InlineData(LuminosityUnit.Gigawatt)]
+        [InlineData(LuminosityUnit.Kilowatt)]
+        [InlineData(LuminosityUnit.Megawatt)]
+        [InlineData(LuminosityUnit.Microwatt)]
+        [InlineData(LuminosityUnit.Milliwatt)]
+        [InlineData(LuminosityUnit.Nanowatt)]
+        [InlineData(LuminosityUnit.Petawatt)]
+        [InlineData(LuminosityUnit.Picowatt)]
+        [InlineData(LuminosityUnit.SolarLuminosity)]
+        [InlineData(LuminosityUnit.Terawatt)]
+        [InlineData(LuminosityUnit.Watt)]
+        public void ToUnit_WithSameUnits_AreEqual(LuminosityUnit unit)
         {
-            var quantityInBaseUnit = Luminosity.FromWatts(1).ToUnit(Luminosity.BaseUnit);
-            Assert.Equal(Luminosity.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Luminosity.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

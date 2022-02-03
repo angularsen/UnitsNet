@@ -210,11 +210,16 @@ namespace UnitsNet.Tests
             Assert.Equal(ReactivePowerUnit.VoltampereReactive, voltamperereactiveQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(ReactivePowerUnit.GigavoltampereReactive)]
+        [InlineData(ReactivePowerUnit.KilovoltampereReactive)]
+        [InlineData(ReactivePowerUnit.MegavoltampereReactive)]
+        [InlineData(ReactivePowerUnit.VoltampereReactive)]
+        public void ToUnit_WithSameUnits_AreEqual(ReactivePowerUnit unit)
         {
-            var quantityInBaseUnit = ReactivePower.FromVoltamperesReactive(1).ToUnit(ReactivePower.BaseUnit);
-            Assert.Equal(ReactivePower.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ReactivePower.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

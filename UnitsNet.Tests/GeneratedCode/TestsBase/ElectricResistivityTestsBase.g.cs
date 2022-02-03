@@ -330,11 +330,26 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricResistivityUnit.PicoohmMeter, picoohmmeterQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(ElectricResistivityUnit.KiloohmCentimeter)]
+        [InlineData(ElectricResistivityUnit.KiloohmMeter)]
+        [InlineData(ElectricResistivityUnit.MegaohmCentimeter)]
+        [InlineData(ElectricResistivityUnit.MegaohmMeter)]
+        [InlineData(ElectricResistivityUnit.MicroohmCentimeter)]
+        [InlineData(ElectricResistivityUnit.MicroohmMeter)]
+        [InlineData(ElectricResistivityUnit.MilliohmCentimeter)]
+        [InlineData(ElectricResistivityUnit.MilliohmMeter)]
+        [InlineData(ElectricResistivityUnit.NanoohmCentimeter)]
+        [InlineData(ElectricResistivityUnit.NanoohmMeter)]
+        [InlineData(ElectricResistivityUnit.OhmCentimeter)]
+        [InlineData(ElectricResistivityUnit.OhmMeter)]
+        [InlineData(ElectricResistivityUnit.PicoohmCentimeter)]
+        [InlineData(ElectricResistivityUnit.PicoohmMeter)]
+        public void ToUnit_WithSameUnits_AreEqual(ElectricResistivityUnit unit)
         {
-            var quantityInBaseUnit = ElectricResistivity.FromOhmMeters(1).ToUnit(ElectricResistivity.BaseUnit);
-            Assert.Equal(ElectricResistivity.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ElectricResistivity.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

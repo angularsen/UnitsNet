@@ -270,11 +270,21 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, megajoulepercubicmeterkelvinQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit)]
+        [InlineData(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius)]
+        [InlineData(VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius)]
+        [InlineData(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin)]
+        [InlineData(VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius)]
+        [InlineData(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius)]
+        [InlineData(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin)]
+        [InlineData(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius)]
+        [InlineData(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin)]
+        public void ToUnit_WithSameUnits_AreEqual(VolumetricHeatCapacityUnit unit)
         {
-            var quantityInBaseUnit = VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(1).ToUnit(VolumetricHeatCapacity.BaseUnit);
-            Assert.Equal(VolumetricHeatCapacity.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = VolumetricHeatCapacity.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

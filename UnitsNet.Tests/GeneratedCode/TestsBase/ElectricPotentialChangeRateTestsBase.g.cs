@@ -402,11 +402,32 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricPotentialChangeRateUnit.VoltPerSecond, voltpersecondQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(ElectricPotentialChangeRateUnit.KilovoltPerHour)]
+        [InlineData(ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond)]
+        [InlineData(ElectricPotentialChangeRateUnit.KilovoltPerMinute)]
+        [InlineData(ElectricPotentialChangeRateUnit.KilovoltPerSecond)]
+        [InlineData(ElectricPotentialChangeRateUnit.MegavoltPerHour)]
+        [InlineData(ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond)]
+        [InlineData(ElectricPotentialChangeRateUnit.MegavoltPerMinute)]
+        [InlineData(ElectricPotentialChangeRateUnit.MegavoltPerSecond)]
+        [InlineData(ElectricPotentialChangeRateUnit.MicrovoltPerHour)]
+        [InlineData(ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond)]
+        [InlineData(ElectricPotentialChangeRateUnit.MicrovoltPerMinute)]
+        [InlineData(ElectricPotentialChangeRateUnit.MicrovoltPerSecond)]
+        [InlineData(ElectricPotentialChangeRateUnit.MillivoltPerHour)]
+        [InlineData(ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond)]
+        [InlineData(ElectricPotentialChangeRateUnit.MillivoltPerMinute)]
+        [InlineData(ElectricPotentialChangeRateUnit.MillivoltPerSecond)]
+        [InlineData(ElectricPotentialChangeRateUnit.VoltPerHour)]
+        [InlineData(ElectricPotentialChangeRateUnit.VoltPerMicrosecond)]
+        [InlineData(ElectricPotentialChangeRateUnit.VoltPerMinute)]
+        [InlineData(ElectricPotentialChangeRateUnit.VoltPerSecond)]
+        public void ToUnit_WithSameUnits_AreEqual(ElectricPotentialChangeRateUnit unit)
         {
-            var quantityInBaseUnit = ElectricPotentialChangeRate.FromVoltsPerSeconds(1).ToUnit(ElectricPotentialChangeRate.BaseUnit);
-            Assert.Equal(ElectricPotentialChangeRate.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ElectricPotentialChangeRate.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

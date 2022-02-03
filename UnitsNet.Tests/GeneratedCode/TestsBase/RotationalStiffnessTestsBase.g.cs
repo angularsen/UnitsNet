@@ -558,11 +558,45 @@ namespace UnitsNet.Tests
             Assert.Equal(RotationalStiffnessUnit.PoundForceFootPerDegrees, poundforcefootperdegreesQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(RotationalStiffnessUnit.CentinewtonMeterPerDegree)]
+        [InlineData(RotationalStiffnessUnit.CentinewtonMillimeterPerDegree)]
+        [InlineData(RotationalStiffnessUnit.CentinewtonMillimeterPerRadian)]
+        [InlineData(RotationalStiffnessUnit.DecanewtonMeterPerDegree)]
+        [InlineData(RotationalStiffnessUnit.DecanewtonMillimeterPerDegree)]
+        [InlineData(RotationalStiffnessUnit.DecanewtonMillimeterPerRadian)]
+        [InlineData(RotationalStiffnessUnit.DecinewtonMeterPerDegree)]
+        [InlineData(RotationalStiffnessUnit.DecinewtonMillimeterPerDegree)]
+        [InlineData(RotationalStiffnessUnit.DecinewtonMillimeterPerRadian)]
+        [InlineData(RotationalStiffnessUnit.KilonewtonMeterPerDegree)]
+        [InlineData(RotationalStiffnessUnit.KilonewtonMeterPerRadian)]
+        [InlineData(RotationalStiffnessUnit.KilonewtonMillimeterPerDegree)]
+        [InlineData(RotationalStiffnessUnit.KilonewtonMillimeterPerRadian)]
+        [InlineData(RotationalStiffnessUnit.KilopoundForceFootPerDegrees)]
+        [InlineData(RotationalStiffnessUnit.MeganewtonMeterPerDegree)]
+        [InlineData(RotationalStiffnessUnit.MeganewtonMeterPerRadian)]
+        [InlineData(RotationalStiffnessUnit.MeganewtonMillimeterPerDegree)]
+        [InlineData(RotationalStiffnessUnit.MeganewtonMillimeterPerRadian)]
+        [InlineData(RotationalStiffnessUnit.MicronewtonMeterPerDegree)]
+        [InlineData(RotationalStiffnessUnit.MicronewtonMillimeterPerDegree)]
+        [InlineData(RotationalStiffnessUnit.MicronewtonMillimeterPerRadian)]
+        [InlineData(RotationalStiffnessUnit.MillinewtonMeterPerDegree)]
+        [InlineData(RotationalStiffnessUnit.MillinewtonMillimeterPerDegree)]
+        [InlineData(RotationalStiffnessUnit.MillinewtonMillimeterPerRadian)]
+        [InlineData(RotationalStiffnessUnit.NanonewtonMeterPerDegree)]
+        [InlineData(RotationalStiffnessUnit.NanonewtonMillimeterPerDegree)]
+        [InlineData(RotationalStiffnessUnit.NanonewtonMillimeterPerRadian)]
+        [InlineData(RotationalStiffnessUnit.NewtonMeterPerDegree)]
+        [InlineData(RotationalStiffnessUnit.NewtonMeterPerRadian)]
+        [InlineData(RotationalStiffnessUnit.NewtonMillimeterPerDegree)]
+        [InlineData(RotationalStiffnessUnit.NewtonMillimeterPerRadian)]
+        [InlineData(RotationalStiffnessUnit.PoundForceFeetPerRadian)]
+        [InlineData(RotationalStiffnessUnit.PoundForceFootPerDegrees)]
+        public void ToUnit_WithSameUnits_AreEqual(RotationalStiffnessUnit unit)
         {
-            var quantityInBaseUnit = RotationalStiffness.FromNewtonMetersPerRadian(1).ToUnit(RotationalStiffness.BaseUnit);
-            Assert.Equal(RotationalStiffness.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = RotationalStiffness.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

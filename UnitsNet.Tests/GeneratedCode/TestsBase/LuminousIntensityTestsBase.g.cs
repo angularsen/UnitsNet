@@ -174,11 +174,13 @@ namespace UnitsNet.Tests
             Assert.Equal(LuminousIntensityUnit.Candela, candelaQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(LuminousIntensityUnit.Candela)]
+        public void ToUnit_WithSameUnits_AreEqual(LuminousIntensityUnit unit)
         {
-            var quantityInBaseUnit = LuminousIntensity.FromCandela(1).ToUnit(LuminousIntensity.BaseUnit);
-            Assert.Equal(LuminousIntensity.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = LuminousIntensity.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

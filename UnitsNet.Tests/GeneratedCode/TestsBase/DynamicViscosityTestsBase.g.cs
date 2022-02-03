@@ -282,11 +282,22 @@ namespace UnitsNet.Tests
             Assert.Equal(DynamicViscosityUnit.Reyn, reynQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(DynamicViscosityUnit.Centipoise)]
+        [InlineData(DynamicViscosityUnit.MicropascalSecond)]
+        [InlineData(DynamicViscosityUnit.MillipascalSecond)]
+        [InlineData(DynamicViscosityUnit.NewtonSecondPerMeterSquared)]
+        [InlineData(DynamicViscosityUnit.PascalSecond)]
+        [InlineData(DynamicViscosityUnit.Poise)]
+        [InlineData(DynamicViscosityUnit.PoundForceSecondPerSquareFoot)]
+        [InlineData(DynamicViscosityUnit.PoundForceSecondPerSquareInch)]
+        [InlineData(DynamicViscosityUnit.PoundPerFootSecond)]
+        [InlineData(DynamicViscosityUnit.Reyn)]
+        public void ToUnit_WithSameUnits_AreEqual(DynamicViscosityUnit unit)
         {
-            var quantityInBaseUnit = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1).ToUnit(DynamicViscosity.BaseUnit);
-            Assert.Equal(DynamicViscosity.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = DynamicViscosity.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

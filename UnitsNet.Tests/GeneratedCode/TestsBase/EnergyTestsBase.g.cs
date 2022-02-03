@@ -594,11 +594,48 @@ namespace UnitsNet.Tests
             Assert.Equal(EnergyUnit.WattHour, watthourQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(EnergyUnit.BritishThermalUnit)]
+        [InlineData(EnergyUnit.Calorie)]
+        [InlineData(EnergyUnit.DecathermEc)]
+        [InlineData(EnergyUnit.DecathermImperial)]
+        [InlineData(EnergyUnit.DecathermUs)]
+        [InlineData(EnergyUnit.ElectronVolt)]
+        [InlineData(EnergyUnit.Erg)]
+        [InlineData(EnergyUnit.FootPound)]
+        [InlineData(EnergyUnit.GigabritishThermalUnit)]
+        [InlineData(EnergyUnit.GigaelectronVolt)]
+        [InlineData(EnergyUnit.Gigajoule)]
+        [InlineData(EnergyUnit.GigawattDay)]
+        [InlineData(EnergyUnit.GigawattHour)]
+        [InlineData(EnergyUnit.HorsepowerHour)]
+        [InlineData(EnergyUnit.Joule)]
+        [InlineData(EnergyUnit.KilobritishThermalUnit)]
+        [InlineData(EnergyUnit.Kilocalorie)]
+        [InlineData(EnergyUnit.KiloelectronVolt)]
+        [InlineData(EnergyUnit.Kilojoule)]
+        [InlineData(EnergyUnit.KilowattDay)]
+        [InlineData(EnergyUnit.KilowattHour)]
+        [InlineData(EnergyUnit.MegabritishThermalUnit)]
+        [InlineData(EnergyUnit.Megacalorie)]
+        [InlineData(EnergyUnit.MegaelectronVolt)]
+        [InlineData(EnergyUnit.Megajoule)]
+        [InlineData(EnergyUnit.MegawattDay)]
+        [InlineData(EnergyUnit.MegawattHour)]
+        [InlineData(EnergyUnit.Millijoule)]
+        [InlineData(EnergyUnit.TeraelectronVolt)]
+        [InlineData(EnergyUnit.TerawattDay)]
+        [InlineData(EnergyUnit.TerawattHour)]
+        [InlineData(EnergyUnit.ThermEc)]
+        [InlineData(EnergyUnit.ThermImperial)]
+        [InlineData(EnergyUnit.ThermUs)]
+        [InlineData(EnergyUnit.WattDay)]
+        [InlineData(EnergyUnit.WattHour)]
+        public void ToUnit_WithSameUnits_AreEqual(EnergyUnit unit)
         {
-            var quantityInBaseUnit = Energy.FromJoules(1).ToUnit(Energy.BaseUnit);
-            Assert.Equal(Energy.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Energy.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

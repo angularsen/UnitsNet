@@ -618,11 +618,50 @@ namespace UnitsNet.Tests
             Assert.Equal(ForcePerLengthUnit.TonneForcePerMillimeter, tonneforcepermillimeterQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(ForcePerLengthUnit.CentinewtonPerCentimeter)]
+        [InlineData(ForcePerLengthUnit.CentinewtonPerMeter)]
+        [InlineData(ForcePerLengthUnit.CentinewtonPerMillimeter)]
+        [InlineData(ForcePerLengthUnit.DecanewtonPerCentimeter)]
+        [InlineData(ForcePerLengthUnit.DecanewtonPerMeter)]
+        [InlineData(ForcePerLengthUnit.DecanewtonPerMillimeter)]
+        [InlineData(ForcePerLengthUnit.DecinewtonPerCentimeter)]
+        [InlineData(ForcePerLengthUnit.DecinewtonPerMeter)]
+        [InlineData(ForcePerLengthUnit.DecinewtonPerMillimeter)]
+        [InlineData(ForcePerLengthUnit.KilogramForcePerCentimeter)]
+        [InlineData(ForcePerLengthUnit.KilogramForcePerMeter)]
+        [InlineData(ForcePerLengthUnit.KilogramForcePerMillimeter)]
+        [InlineData(ForcePerLengthUnit.KilonewtonPerCentimeter)]
+        [InlineData(ForcePerLengthUnit.KilonewtonPerMeter)]
+        [InlineData(ForcePerLengthUnit.KilonewtonPerMillimeter)]
+        [InlineData(ForcePerLengthUnit.KilopoundForcePerFoot)]
+        [InlineData(ForcePerLengthUnit.KilopoundForcePerInch)]
+        [InlineData(ForcePerLengthUnit.MeganewtonPerCentimeter)]
+        [InlineData(ForcePerLengthUnit.MeganewtonPerMeter)]
+        [InlineData(ForcePerLengthUnit.MeganewtonPerMillimeter)]
+        [InlineData(ForcePerLengthUnit.MicronewtonPerCentimeter)]
+        [InlineData(ForcePerLengthUnit.MicronewtonPerMeter)]
+        [InlineData(ForcePerLengthUnit.MicronewtonPerMillimeter)]
+        [InlineData(ForcePerLengthUnit.MillinewtonPerCentimeter)]
+        [InlineData(ForcePerLengthUnit.MillinewtonPerMeter)]
+        [InlineData(ForcePerLengthUnit.MillinewtonPerMillimeter)]
+        [InlineData(ForcePerLengthUnit.NanonewtonPerCentimeter)]
+        [InlineData(ForcePerLengthUnit.NanonewtonPerMeter)]
+        [InlineData(ForcePerLengthUnit.NanonewtonPerMillimeter)]
+        [InlineData(ForcePerLengthUnit.NewtonPerCentimeter)]
+        [InlineData(ForcePerLengthUnit.NewtonPerMeter)]
+        [InlineData(ForcePerLengthUnit.NewtonPerMillimeter)]
+        [InlineData(ForcePerLengthUnit.PoundForcePerFoot)]
+        [InlineData(ForcePerLengthUnit.PoundForcePerInch)]
+        [InlineData(ForcePerLengthUnit.PoundForcePerYard)]
+        [InlineData(ForcePerLengthUnit.TonneForcePerCentimeter)]
+        [InlineData(ForcePerLengthUnit.TonneForcePerMeter)]
+        [InlineData(ForcePerLengthUnit.TonneForcePerMillimeter)]
+        public void ToUnit_WithSameUnits_AreEqual(ForcePerLengthUnit unit)
         {
-            var quantityInBaseUnit = ForcePerLength.FromNewtonsPerMeter(1).ToUnit(ForcePerLength.BaseUnit);
-            Assert.Equal(ForcePerLength.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ForcePerLength.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

@@ -174,11 +174,13 @@ namespace UnitsNet.Tests
             Assert.Equal(ScalarUnit.Amount, amountQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(ScalarUnit.Amount)]
+        public void ToUnit_WithSameUnits_AreEqual(ScalarUnit unit)
         {
-            var quantityInBaseUnit = Scalar.FromAmount(1).ToUnit(Scalar.BaseUnit);
-            Assert.Equal(Scalar.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Scalar.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

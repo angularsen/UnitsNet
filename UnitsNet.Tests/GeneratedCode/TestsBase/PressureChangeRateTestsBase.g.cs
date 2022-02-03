@@ -330,11 +330,26 @@ namespace UnitsNet.Tests
             Assert.Equal(PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, poundforcepersquareinchpersecondQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(PressureChangeRateUnit.AtmospherePerSecond)]
+        [InlineData(PressureChangeRateUnit.KilopascalPerMinute)]
+        [InlineData(PressureChangeRateUnit.KilopascalPerSecond)]
+        [InlineData(PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute)]
+        [InlineData(PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond)]
+        [InlineData(PressureChangeRateUnit.MegapascalPerMinute)]
+        [InlineData(PressureChangeRateUnit.MegapascalPerSecond)]
+        [InlineData(PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute)]
+        [InlineData(PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond)]
+        [InlineData(PressureChangeRateUnit.MillimeterOfMercuryPerSecond)]
+        [InlineData(PressureChangeRateUnit.PascalPerMinute)]
+        [InlineData(PressureChangeRateUnit.PascalPerSecond)]
+        [InlineData(PressureChangeRateUnit.PoundForcePerSquareInchPerMinute)]
+        [InlineData(PressureChangeRateUnit.PoundForcePerSquareInchPerSecond)]
+        public void ToUnit_WithSameUnits_AreEqual(PressureChangeRateUnit unit)
         {
-            var quantityInBaseUnit = PressureChangeRate.FromPascalsPerSecond(1).ToUnit(PressureChangeRate.BaseUnit);
-            Assert.Equal(PressureChangeRate.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = PressureChangeRate.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

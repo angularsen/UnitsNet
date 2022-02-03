@@ -342,11 +342,27 @@ namespace UnitsNet.Tests
             Assert.Equal(ForceChangeRateUnit.PoundForcePerSecond, poundforcepersecondQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(ForceChangeRateUnit.CentinewtonPerSecond)]
+        [InlineData(ForceChangeRateUnit.DecanewtonPerMinute)]
+        [InlineData(ForceChangeRateUnit.DecanewtonPerSecond)]
+        [InlineData(ForceChangeRateUnit.DecinewtonPerSecond)]
+        [InlineData(ForceChangeRateUnit.KilonewtonPerMinute)]
+        [InlineData(ForceChangeRateUnit.KilonewtonPerSecond)]
+        [InlineData(ForceChangeRateUnit.KilopoundForcePerMinute)]
+        [InlineData(ForceChangeRateUnit.KilopoundForcePerSecond)]
+        [InlineData(ForceChangeRateUnit.MicronewtonPerSecond)]
+        [InlineData(ForceChangeRateUnit.MillinewtonPerSecond)]
+        [InlineData(ForceChangeRateUnit.NanonewtonPerSecond)]
+        [InlineData(ForceChangeRateUnit.NewtonPerMinute)]
+        [InlineData(ForceChangeRateUnit.NewtonPerSecond)]
+        [InlineData(ForceChangeRateUnit.PoundForcePerMinute)]
+        [InlineData(ForceChangeRateUnit.PoundForcePerSecond)]
+        public void ToUnit_WithSameUnits_AreEqual(ForceChangeRateUnit unit)
         {
-            var quantityInBaseUnit = ForceChangeRate.FromNewtonsPerSecond(1).ToUnit(ForceChangeRate.BaseUnit);
-            Assert.Equal(ForceChangeRate.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ForceChangeRate.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

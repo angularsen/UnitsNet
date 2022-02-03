@@ -198,11 +198,15 @@ namespace UnitsNet.Tests
             Assert.Equal(MolarEnergyUnit.MegajoulePerMole, megajoulepermoleQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(MolarEnergyUnit.JoulePerMole)]
+        [InlineData(MolarEnergyUnit.KilojoulePerMole)]
+        [InlineData(MolarEnergyUnit.MegajoulePerMole)]
+        public void ToUnit_WithSameUnits_AreEqual(MolarEnergyUnit unit)
         {
-            var quantityInBaseUnit = MolarEnergy.FromJoulesPerMole(1).ToUnit(MolarEnergy.BaseUnit);
-            Assert.Equal(MolarEnergy.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = MolarEnergy.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

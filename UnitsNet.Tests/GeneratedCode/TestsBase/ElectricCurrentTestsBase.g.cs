@@ -258,11 +258,20 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricCurrentUnit.Picoampere, picoampereQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(ElectricCurrentUnit.Ampere)]
+        [InlineData(ElectricCurrentUnit.Centiampere)]
+        [InlineData(ElectricCurrentUnit.Kiloampere)]
+        [InlineData(ElectricCurrentUnit.Megaampere)]
+        [InlineData(ElectricCurrentUnit.Microampere)]
+        [InlineData(ElectricCurrentUnit.Milliampere)]
+        [InlineData(ElectricCurrentUnit.Nanoampere)]
+        [InlineData(ElectricCurrentUnit.Picoampere)]
+        public void ToUnit_WithSameUnits_AreEqual(ElectricCurrentUnit unit)
         {
-            var quantityInBaseUnit = ElectricCurrent.FromAmperes(1).ToUnit(ElectricCurrent.BaseUnit);
-            Assert.Equal(ElectricCurrent.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ElectricCurrent.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

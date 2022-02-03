@@ -750,11 +750,61 @@ namespace UnitsNet.Tests
             Assert.Equal(MassConcentrationUnit.TonnePerCubicMillimeter, tonnepercubicmillimeterQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(MassConcentrationUnit.CentigramPerDeciliter)]
+        [InlineData(MassConcentrationUnit.CentigramPerLiter)]
+        [InlineData(MassConcentrationUnit.CentigramPerMicroliter)]
+        [InlineData(MassConcentrationUnit.CentigramPerMilliliter)]
+        [InlineData(MassConcentrationUnit.DecigramPerDeciliter)]
+        [InlineData(MassConcentrationUnit.DecigramPerLiter)]
+        [InlineData(MassConcentrationUnit.DecigramPerMicroliter)]
+        [InlineData(MassConcentrationUnit.DecigramPerMilliliter)]
+        [InlineData(MassConcentrationUnit.GramPerCubicCentimeter)]
+        [InlineData(MassConcentrationUnit.GramPerCubicMeter)]
+        [InlineData(MassConcentrationUnit.GramPerCubicMillimeter)]
+        [InlineData(MassConcentrationUnit.GramPerDeciliter)]
+        [InlineData(MassConcentrationUnit.GramPerLiter)]
+        [InlineData(MassConcentrationUnit.GramPerMicroliter)]
+        [InlineData(MassConcentrationUnit.GramPerMilliliter)]
+        [InlineData(MassConcentrationUnit.KilogramPerCubicCentimeter)]
+        [InlineData(MassConcentrationUnit.KilogramPerCubicMeter)]
+        [InlineData(MassConcentrationUnit.KilogramPerCubicMillimeter)]
+        [InlineData(MassConcentrationUnit.KilogramPerLiter)]
+        [InlineData(MassConcentrationUnit.KilopoundPerCubicFoot)]
+        [InlineData(MassConcentrationUnit.KilopoundPerCubicInch)]
+        [InlineData(MassConcentrationUnit.MicrogramPerCubicMeter)]
+        [InlineData(MassConcentrationUnit.MicrogramPerDeciliter)]
+        [InlineData(MassConcentrationUnit.MicrogramPerLiter)]
+        [InlineData(MassConcentrationUnit.MicrogramPerMicroliter)]
+        [InlineData(MassConcentrationUnit.MicrogramPerMilliliter)]
+        [InlineData(MassConcentrationUnit.MilligramPerCubicMeter)]
+        [InlineData(MassConcentrationUnit.MilligramPerDeciliter)]
+        [InlineData(MassConcentrationUnit.MilligramPerLiter)]
+        [InlineData(MassConcentrationUnit.MilligramPerMicroliter)]
+        [InlineData(MassConcentrationUnit.MilligramPerMilliliter)]
+        [InlineData(MassConcentrationUnit.NanogramPerDeciliter)]
+        [InlineData(MassConcentrationUnit.NanogramPerLiter)]
+        [InlineData(MassConcentrationUnit.NanogramPerMicroliter)]
+        [InlineData(MassConcentrationUnit.NanogramPerMilliliter)]
+        [InlineData(MassConcentrationUnit.OuncePerImperialGallon)]
+        [InlineData(MassConcentrationUnit.OuncePerUSGallon)]
+        [InlineData(MassConcentrationUnit.PicogramPerDeciliter)]
+        [InlineData(MassConcentrationUnit.PicogramPerLiter)]
+        [InlineData(MassConcentrationUnit.PicogramPerMicroliter)]
+        [InlineData(MassConcentrationUnit.PicogramPerMilliliter)]
+        [InlineData(MassConcentrationUnit.PoundPerCubicFoot)]
+        [InlineData(MassConcentrationUnit.PoundPerCubicInch)]
+        [InlineData(MassConcentrationUnit.PoundPerImperialGallon)]
+        [InlineData(MassConcentrationUnit.PoundPerUSGallon)]
+        [InlineData(MassConcentrationUnit.SlugPerCubicFoot)]
+        [InlineData(MassConcentrationUnit.TonnePerCubicCentimeter)]
+        [InlineData(MassConcentrationUnit.TonnePerCubicMeter)]
+        [InlineData(MassConcentrationUnit.TonnePerCubicMillimeter)]
+        public void ToUnit_WithSameUnits_AreEqual(MassConcentrationUnit unit)
         {
-            var quantityInBaseUnit = MassConcentration.FromKilogramsPerCubicMeter(1).ToUnit(MassConcentration.BaseUnit);
-            Assert.Equal(MassConcentration.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = MassConcentration.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

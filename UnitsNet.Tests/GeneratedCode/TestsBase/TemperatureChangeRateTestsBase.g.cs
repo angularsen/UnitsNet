@@ -282,11 +282,22 @@ namespace UnitsNet.Tests
             Assert.Equal(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, nanodegreecelsiuspersecondQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond)]
+        [InlineData(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond)]
+        [InlineData(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond)]
+        [InlineData(TemperatureChangeRateUnit.DegreeCelsiusPerMinute)]
+        [InlineData(TemperatureChangeRateUnit.DegreeCelsiusPerSecond)]
+        [InlineData(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond)]
+        [InlineData(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond)]
+        [InlineData(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond)]
+        [InlineData(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond)]
+        [InlineData(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond)]
+        public void ToUnit_WithSameUnits_AreEqual(TemperatureChangeRateUnit unit)
         {
-            var quantityInBaseUnit = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1).ToUnit(TemperatureChangeRate.BaseUnit);
-            Assert.Equal(TemperatureChangeRate.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = TemperatureChangeRate.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

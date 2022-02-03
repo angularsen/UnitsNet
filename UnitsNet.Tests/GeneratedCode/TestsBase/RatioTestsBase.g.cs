@@ -234,11 +234,18 @@ namespace UnitsNet.Tests
             Assert.Equal(RatioUnit.Percent, percentQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(RatioUnit.DecimalFraction)]
+        [InlineData(RatioUnit.PartPerBillion)]
+        [InlineData(RatioUnit.PartPerMillion)]
+        [InlineData(RatioUnit.PartPerThousand)]
+        [InlineData(RatioUnit.PartPerTrillion)]
+        [InlineData(RatioUnit.Percent)]
+        public void ToUnit_WithSameUnits_AreEqual(RatioUnit unit)
         {
-            var quantityInBaseUnit = Ratio.FromDecimalFractions(1).ToUnit(Ratio.BaseUnit);
-            Assert.Equal(Ratio.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Ratio.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

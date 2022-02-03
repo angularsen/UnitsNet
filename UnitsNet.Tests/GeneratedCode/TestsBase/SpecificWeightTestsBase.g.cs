@@ -366,11 +366,29 @@ namespace UnitsNet.Tests
             Assert.Equal(SpecificWeightUnit.TonneForcePerCubicMillimeter, tonneforcepercubicmillimeterQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(SpecificWeightUnit.KilogramForcePerCubicCentimeter)]
+        [InlineData(SpecificWeightUnit.KilogramForcePerCubicMeter)]
+        [InlineData(SpecificWeightUnit.KilogramForcePerCubicMillimeter)]
+        [InlineData(SpecificWeightUnit.KilonewtonPerCubicCentimeter)]
+        [InlineData(SpecificWeightUnit.KilonewtonPerCubicMeter)]
+        [InlineData(SpecificWeightUnit.KilonewtonPerCubicMillimeter)]
+        [InlineData(SpecificWeightUnit.KilopoundForcePerCubicFoot)]
+        [InlineData(SpecificWeightUnit.KilopoundForcePerCubicInch)]
+        [InlineData(SpecificWeightUnit.MeganewtonPerCubicMeter)]
+        [InlineData(SpecificWeightUnit.NewtonPerCubicCentimeter)]
+        [InlineData(SpecificWeightUnit.NewtonPerCubicMeter)]
+        [InlineData(SpecificWeightUnit.NewtonPerCubicMillimeter)]
+        [InlineData(SpecificWeightUnit.PoundForcePerCubicFoot)]
+        [InlineData(SpecificWeightUnit.PoundForcePerCubicInch)]
+        [InlineData(SpecificWeightUnit.TonneForcePerCubicCentimeter)]
+        [InlineData(SpecificWeightUnit.TonneForcePerCubicMeter)]
+        [InlineData(SpecificWeightUnit.TonneForcePerCubicMillimeter)]
+        public void ToUnit_WithSameUnits_AreEqual(SpecificWeightUnit unit)
         {
-            var quantityInBaseUnit = SpecificWeight.FromNewtonsPerCubicMeter(1).ToUnit(SpecificWeight.BaseUnit);
-            Assert.Equal(SpecificWeight.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = SpecificWeight.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

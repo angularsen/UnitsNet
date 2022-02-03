@@ -186,11 +186,14 @@ namespace UnitsNet.Tests
             Assert.Equal(PowerRatioUnit.DecibelWatt, decibelwattQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(PowerRatioUnit.DecibelMilliwatt)]
+        [InlineData(PowerRatioUnit.DecibelWatt)]
+        public void ToUnit_WithSameUnits_AreEqual(PowerRatioUnit unit)
         {
-            var quantityInBaseUnit = PowerRatio.FromDecibelWatts(1).ToUnit(PowerRatio.BaseUnit);
-            Assert.Equal(PowerRatio.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = PowerRatio.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

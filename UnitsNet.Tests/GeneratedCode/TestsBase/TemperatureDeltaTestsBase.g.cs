@@ -270,11 +270,21 @@ namespace UnitsNet.Tests
             Assert.Equal(TemperatureDeltaUnit.MillidegreeCelsius, millidegreecelsiusQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(TemperatureDeltaUnit.DegreeCelsius)]
+        [InlineData(TemperatureDeltaUnit.DegreeDelisle)]
+        [InlineData(TemperatureDeltaUnit.DegreeFahrenheit)]
+        [InlineData(TemperatureDeltaUnit.DegreeNewton)]
+        [InlineData(TemperatureDeltaUnit.DegreeRankine)]
+        [InlineData(TemperatureDeltaUnit.DegreeReaumur)]
+        [InlineData(TemperatureDeltaUnit.DegreeRoemer)]
+        [InlineData(TemperatureDeltaUnit.Kelvin)]
+        [InlineData(TemperatureDeltaUnit.MillidegreeCelsius)]
+        public void ToUnit_WithSameUnits_AreEqual(TemperatureDeltaUnit unit)
         {
-            var quantityInBaseUnit = TemperatureDelta.FromKelvins(1).ToUnit(TemperatureDelta.BaseUnit);
-            Assert.Equal(TemperatureDelta.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = TemperatureDelta.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

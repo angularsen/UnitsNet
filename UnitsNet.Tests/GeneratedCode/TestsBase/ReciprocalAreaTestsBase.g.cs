@@ -294,11 +294,23 @@ namespace UnitsNet.Tests
             Assert.Equal(ReciprocalAreaUnit.InverseUsSurveySquareFoot, inverseussurveysquarefootQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(ReciprocalAreaUnit.InverseSquareCentimeter)]
+        [InlineData(ReciprocalAreaUnit.InverseSquareDecimeter)]
+        [InlineData(ReciprocalAreaUnit.InverseSquareFoot)]
+        [InlineData(ReciprocalAreaUnit.InverseSquareInch)]
+        [InlineData(ReciprocalAreaUnit.InverseSquareKilometer)]
+        [InlineData(ReciprocalAreaUnit.InverseSquareMeter)]
+        [InlineData(ReciprocalAreaUnit.InverseSquareMicrometer)]
+        [InlineData(ReciprocalAreaUnit.InverseSquareMile)]
+        [InlineData(ReciprocalAreaUnit.InverseSquareMillimeter)]
+        [InlineData(ReciprocalAreaUnit.InverseSquareYard)]
+        [InlineData(ReciprocalAreaUnit.InverseUsSurveySquareFoot)]
+        public void ToUnit_WithSameUnits_AreEqual(ReciprocalAreaUnit unit)
         {
-            var quantityInBaseUnit = ReciprocalArea.FromInverseSquareMeters(1).ToUnit(ReciprocalArea.BaseUnit);
-            Assert.Equal(ReciprocalArea.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ReciprocalArea.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

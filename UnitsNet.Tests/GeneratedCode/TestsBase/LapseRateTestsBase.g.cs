@@ -174,11 +174,13 @@ namespace UnitsNet.Tests
             Assert.Equal(LapseRateUnit.DegreeCelsiusPerKilometer, degreecelsiusperkilometerQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(LapseRateUnit.DegreeCelsiusPerKilometer)]
+        public void ToUnit_WithSameUnits_AreEqual(LapseRateUnit unit)
         {
-            var quantityInBaseUnit = LapseRate.FromDegreesCelciusPerKilometer(1).ToUnit(LapseRate.BaseUnit);
-            Assert.Equal(LapseRate.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = LapseRate.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

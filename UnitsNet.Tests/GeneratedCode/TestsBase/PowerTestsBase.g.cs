@@ -437,11 +437,37 @@ namespace UnitsNet.Tests
             Assert.Equal(PowerUnit.Watt, wattQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(PowerUnit.BoilerHorsepower)]
+        [InlineData(PowerUnit.BritishThermalUnitPerHour)]
+        [InlineData(PowerUnit.Decawatt)]
+        [InlineData(PowerUnit.Deciwatt)]
+        [InlineData(PowerUnit.ElectricalHorsepower)]
+        [InlineData(PowerUnit.Femtowatt)]
+        [InlineData(PowerUnit.GigajoulePerHour)]
+        [InlineData(PowerUnit.Gigawatt)]
+        [InlineData(PowerUnit.HydraulicHorsepower)]
+        [InlineData(PowerUnit.JoulePerHour)]
+        [InlineData(PowerUnit.KilobritishThermalUnitPerHour)]
+        [InlineData(PowerUnit.KilojoulePerHour)]
+        [InlineData(PowerUnit.Kilowatt)]
+        [InlineData(PowerUnit.MechanicalHorsepower)]
+        [InlineData(PowerUnit.MegajoulePerHour)]
+        [InlineData(PowerUnit.Megawatt)]
+        [InlineData(PowerUnit.MetricHorsepower)]
+        [InlineData(PowerUnit.Microwatt)]
+        [InlineData(PowerUnit.MillijoulePerHour)]
+        [InlineData(PowerUnit.Milliwatt)]
+        [InlineData(PowerUnit.Nanowatt)]
+        [InlineData(PowerUnit.Petawatt)]
+        [InlineData(PowerUnit.Picowatt)]
+        [InlineData(PowerUnit.Terawatt)]
+        [InlineData(PowerUnit.Watt)]
+        public void ToUnit_WithSameUnits_AreEqual(PowerUnit unit)
         {
-            var quantityInBaseUnit = Power.FromWatts(1).ToUnit(Power.BaseUnit);
-            Assert.Equal(Power.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Power.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

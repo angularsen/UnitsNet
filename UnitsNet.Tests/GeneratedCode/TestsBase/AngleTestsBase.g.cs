@@ -354,11 +354,28 @@ namespace UnitsNet.Tests
             Assert.Equal(AngleUnit.Tilt, tiltQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(AngleUnit.Arcminute)]
+        [InlineData(AngleUnit.Arcsecond)]
+        [InlineData(AngleUnit.Centiradian)]
+        [InlineData(AngleUnit.Deciradian)]
+        [InlineData(AngleUnit.Degree)]
+        [InlineData(AngleUnit.Gradian)]
+        [InlineData(AngleUnit.Microdegree)]
+        [InlineData(AngleUnit.Microradian)]
+        [InlineData(AngleUnit.Millidegree)]
+        [InlineData(AngleUnit.Milliradian)]
+        [InlineData(AngleUnit.Nanodegree)]
+        [InlineData(AngleUnit.Nanoradian)]
+        [InlineData(AngleUnit.NatoMil)]
+        [InlineData(AngleUnit.Radian)]
+        [InlineData(AngleUnit.Revolution)]
+        [InlineData(AngleUnit.Tilt)]
+        public void ToUnit_WithSameUnits_AreEqual(AngleUnit unit)
         {
-            var quantityInBaseUnit = Angle.FromDegrees(1).ToUnit(Angle.BaseUnit);
-            Assert.Equal(Angle.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Angle.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

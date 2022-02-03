@@ -210,11 +210,16 @@ namespace UnitsNet.Tests
             Assert.Equal(ApparentPowerUnit.Voltampere, voltampereQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(ApparentPowerUnit.Gigavoltampere)]
+        [InlineData(ApparentPowerUnit.Kilovoltampere)]
+        [InlineData(ApparentPowerUnit.Megavoltampere)]
+        [InlineData(ApparentPowerUnit.Voltampere)]
+        public void ToUnit_WithSameUnits_AreEqual(ApparentPowerUnit unit)
         {
-            var quantityInBaseUnit = ApparentPower.FromVoltamperes(1).ToUnit(ApparentPower.BaseUnit);
-            Assert.Equal(ApparentPower.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ApparentPower.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

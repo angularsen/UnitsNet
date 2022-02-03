@@ -270,11 +270,21 @@ namespace UnitsNet.Tests
             Assert.Equal(SpecificEntropyUnit.MegajoulePerKilogramKelvin, megajouleperkilogramkelvinQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(SpecificEntropyUnit.BtuPerPoundFahrenheit)]
+        [InlineData(SpecificEntropyUnit.CaloriePerGramKelvin)]
+        [InlineData(SpecificEntropyUnit.JoulePerKilogramDegreeCelsius)]
+        [InlineData(SpecificEntropyUnit.JoulePerKilogramKelvin)]
+        [InlineData(SpecificEntropyUnit.KilocaloriePerGramKelvin)]
+        [InlineData(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius)]
+        [InlineData(SpecificEntropyUnit.KilojoulePerKilogramKelvin)]
+        [InlineData(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius)]
+        [InlineData(SpecificEntropyUnit.MegajoulePerKilogramKelvin)]
+        public void ToUnit_WithSameUnits_AreEqual(SpecificEntropyUnit unit)
         {
-            var quantityInBaseUnit = SpecificEntropy.FromJoulesPerKilogramKelvin(1).ToUnit(SpecificEntropy.BaseUnit);
-            Assert.Equal(SpecificEntropy.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = SpecificEntropy.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

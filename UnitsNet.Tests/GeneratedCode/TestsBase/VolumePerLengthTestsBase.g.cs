@@ -246,11 +246,19 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumePerLengthUnit.OilBarrelPerFoot, oilbarrelperfootQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(VolumePerLengthUnit.CubicMeterPerMeter)]
+        [InlineData(VolumePerLengthUnit.CubicYardPerFoot)]
+        [InlineData(VolumePerLengthUnit.CubicYardPerUsSurveyFoot)]
+        [InlineData(VolumePerLengthUnit.LiterPerKilometer)]
+        [InlineData(VolumePerLengthUnit.LiterPerMeter)]
+        [InlineData(VolumePerLengthUnit.LiterPerMillimeter)]
+        [InlineData(VolumePerLengthUnit.OilBarrelPerFoot)]
+        public void ToUnit_WithSameUnits_AreEqual(VolumePerLengthUnit unit)
         {
-            var quantityInBaseUnit = VolumePerLength.FromCubicMetersPerMeter(1).ToUnit(VolumePerLength.BaseUnit);
-            Assert.Equal(VolumePerLength.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = VolumePerLength.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

@@ -186,11 +186,14 @@ namespace UnitsNet.Tests
             Assert.Equal(RatioChangeRateUnit.PercentPerSecond, percentpersecondQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(RatioChangeRateUnit.DecimalFractionPerSecond)]
+        [InlineData(RatioChangeRateUnit.PercentPerSecond)]
+        public void ToUnit_WithSameUnits_AreEqual(RatioChangeRateUnit unit)
         {
-            var quantityInBaseUnit = RatioChangeRate.FromDecimalFractionsPerSecond(1).ToUnit(RatioChangeRate.BaseUnit);
-            Assert.Equal(RatioChangeRate.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = RatioChangeRate.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

@@ -174,11 +174,13 @@ namespace UnitsNet.Tests
             Assert.Equal(PermeabilityUnit.HenryPerMeter, henrypermeterQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(PermeabilityUnit.HenryPerMeter)]
+        public void ToUnit_WithSameUnits_AreEqual(PermeabilityUnit unit)
         {
-            var quantityInBaseUnit = Permeability.FromHenriesPerMeter(1).ToUnit(Permeability.BaseUnit);
-            Assert.Equal(Permeability.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Permeability.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

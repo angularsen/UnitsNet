@@ -198,11 +198,15 @@ namespace UnitsNet.Tests
             Assert.Equal(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, poundpermechanicalhorsepowerhourQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour)]
+        [InlineData(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule)]
+        [InlineData(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour)]
+        public void ToUnit_WithSameUnits_AreEqual(BrakeSpecificFuelConsumptionUnit unit)
         {
-            var quantityInBaseUnit = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1).ToUnit(BrakeSpecificFuelConsumption.BaseUnit);
-            Assert.Equal(BrakeSpecificFuelConsumption.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = BrakeSpecificFuelConsumption.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

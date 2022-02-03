@@ -246,11 +246,19 @@ namespace UnitsNet.Tests
             Assert.Equal(CapacitanceUnit.Picofarad, picofaradQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(CapacitanceUnit.Farad)]
+        [InlineData(CapacitanceUnit.Kilofarad)]
+        [InlineData(CapacitanceUnit.Megafarad)]
+        [InlineData(CapacitanceUnit.Microfarad)]
+        [InlineData(CapacitanceUnit.Millifarad)]
+        [InlineData(CapacitanceUnit.Nanofarad)]
+        [InlineData(CapacitanceUnit.Picofarad)]
+        public void ToUnit_WithSameUnits_AreEqual(CapacitanceUnit unit)
         {
-            var quantityInBaseUnit = Capacitance.FromFarads(1).ToUnit(Capacitance.BaseUnit);
-            Assert.Equal(Capacitance.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Capacitance.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

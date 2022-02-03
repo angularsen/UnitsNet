@@ -174,11 +174,13 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricFieldUnit.VoltPerMeter, voltpermeterQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(ElectricFieldUnit.VoltPerMeter)]
+        public void ToUnit_WithSameUnits_AreEqual(ElectricFieldUnit unit)
         {
-            var quantityInBaseUnit = ElectricField.FromVoltsPerMeter(1).ToUnit(ElectricField.BaseUnit);
-            Assert.Equal(ElectricField.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ElectricField.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

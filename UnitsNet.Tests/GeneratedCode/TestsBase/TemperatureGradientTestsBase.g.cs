@@ -210,11 +210,16 @@ namespace UnitsNet.Tests
             Assert.Equal(TemperatureGradientUnit.KelvinPerMeter, kelvinpermeterQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(TemperatureGradientUnit.DegreeCelsiusPerKilometer)]
+        [InlineData(TemperatureGradientUnit.DegreeCelsiusPerMeter)]
+        [InlineData(TemperatureGradientUnit.DegreeFahrenheitPerFoot)]
+        [InlineData(TemperatureGradientUnit.KelvinPerMeter)]
+        public void ToUnit_WithSameUnits_AreEqual(TemperatureGradientUnit unit)
         {
-            var quantityInBaseUnit = TemperatureGradient.FromKelvinsPerMeter(1).ToUnit(TemperatureGradient.BaseUnit);
-            Assert.Equal(TemperatureGradient.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = TemperatureGradient.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

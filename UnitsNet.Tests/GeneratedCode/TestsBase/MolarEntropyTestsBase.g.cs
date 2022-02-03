@@ -198,11 +198,15 @@ namespace UnitsNet.Tests
             Assert.Equal(MolarEntropyUnit.MegajoulePerMoleKelvin, megajoulepermolekelvinQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(MolarEntropyUnit.JoulePerMoleKelvin)]
+        [InlineData(MolarEntropyUnit.KilojoulePerMoleKelvin)]
+        [InlineData(MolarEntropyUnit.MegajoulePerMoleKelvin)]
+        public void ToUnit_WithSameUnits_AreEqual(MolarEntropyUnit unit)
         {
-            var quantityInBaseUnit = MolarEntropy.FromJoulesPerMoleKelvin(1).ToUnit(MolarEntropy.BaseUnit);
-            Assert.Equal(MolarEntropy.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = MolarEntropy.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

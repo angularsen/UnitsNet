@@ -174,11 +174,13 @@ namespace UnitsNet.Tests
             Assert.Equal(RelativeHumidityUnit.Percent, percentQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(RelativeHumidityUnit.Percent)]
+        public void ToUnit_WithSameUnits_AreEqual(RelativeHumidityUnit unit)
         {
-            var quantityInBaseUnit = RelativeHumidity.FromPercent(1).ToUnit(RelativeHumidity.BaseUnit);
-            Assert.Equal(RelativeHumidity.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = RelativeHumidity.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

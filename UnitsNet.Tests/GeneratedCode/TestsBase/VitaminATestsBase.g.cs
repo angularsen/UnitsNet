@@ -174,11 +174,13 @@ namespace UnitsNet.Tests
             Assert.Equal(VitaminAUnit.InternationalUnit, internationalunitQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(VitaminAUnit.InternationalUnit)]
+        public void ToUnit_WithSameUnits_AreEqual(VitaminAUnit unit)
         {
-            var quantityInBaseUnit = VitaminA.FromInternationalUnits(1).ToUnit(VitaminA.BaseUnit);
-            Assert.Equal(VitaminA.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = VitaminA.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

@@ -378,11 +378,30 @@ namespace UnitsNet.Tests
             Assert.Equal(HeatFluxUnit.WattPerSquareMeter, wattpersquaremeterQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(HeatFluxUnit.BtuPerHourSquareFoot)]
+        [InlineData(HeatFluxUnit.BtuPerMinuteSquareFoot)]
+        [InlineData(HeatFluxUnit.BtuPerSecondSquareFoot)]
+        [InlineData(HeatFluxUnit.BtuPerSecondSquareInch)]
+        [InlineData(HeatFluxUnit.CaloriePerSecondSquareCentimeter)]
+        [InlineData(HeatFluxUnit.CentiwattPerSquareMeter)]
+        [InlineData(HeatFluxUnit.DeciwattPerSquareMeter)]
+        [InlineData(HeatFluxUnit.KilocaloriePerHourSquareMeter)]
+        [InlineData(HeatFluxUnit.KilocaloriePerSecondSquareCentimeter)]
+        [InlineData(HeatFluxUnit.KilowattPerSquareMeter)]
+        [InlineData(HeatFluxUnit.MicrowattPerSquareMeter)]
+        [InlineData(HeatFluxUnit.MilliwattPerSquareMeter)]
+        [InlineData(HeatFluxUnit.NanowattPerSquareMeter)]
+        [InlineData(HeatFluxUnit.PoundForcePerFootSecond)]
+        [InlineData(HeatFluxUnit.PoundPerSecondCubed)]
+        [InlineData(HeatFluxUnit.WattPerSquareFoot)]
+        [InlineData(HeatFluxUnit.WattPerSquareInch)]
+        [InlineData(HeatFluxUnit.WattPerSquareMeter)]
+        public void ToUnit_WithSameUnits_AreEqual(HeatFluxUnit unit)
         {
-            var quantityInBaseUnit = HeatFlux.FromWattsPerSquareMeter(1).ToUnit(HeatFlux.BaseUnit);
-            Assert.Equal(HeatFlux.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = HeatFlux.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

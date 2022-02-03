@@ -330,11 +330,26 @@ namespace UnitsNet.Tests
             Assert.Equal(AreaUnit.UsSurveySquareFoot, ussurveysquarefootQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(AreaUnit.Acre)]
+        [InlineData(AreaUnit.Hectare)]
+        [InlineData(AreaUnit.SquareCentimeter)]
+        [InlineData(AreaUnit.SquareDecimeter)]
+        [InlineData(AreaUnit.SquareFoot)]
+        [InlineData(AreaUnit.SquareInch)]
+        [InlineData(AreaUnit.SquareKilometer)]
+        [InlineData(AreaUnit.SquareMeter)]
+        [InlineData(AreaUnit.SquareMicrometer)]
+        [InlineData(AreaUnit.SquareMile)]
+        [InlineData(AreaUnit.SquareMillimeter)]
+        [InlineData(AreaUnit.SquareNauticalMile)]
+        [InlineData(AreaUnit.SquareYard)]
+        [InlineData(AreaUnit.UsSurveySquareFoot)]
+        public void ToUnit_WithSameUnits_AreEqual(AreaUnit unit)
         {
-            var quantityInBaseUnit = Area.FromSquareMeters(1).ToUnit(Area.BaseUnit);
-            Assert.Equal(Area.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Area.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

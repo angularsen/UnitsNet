@@ -174,11 +174,13 @@ namespace UnitsNet.Tests
             Assert.Equal(PermittivityUnit.FaradPerMeter, faradpermeterQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(PermittivityUnit.FaradPerMeter)]
+        public void ToUnit_WithSameUnits_AreEqual(PermittivityUnit unit)
         {
-            var quantityInBaseUnit = Permittivity.FromFaradsPerMeter(1).ToUnit(Permittivity.BaseUnit);
-            Assert.Equal(Permittivity.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Permittivity.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]

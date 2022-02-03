@@ -186,11 +186,14 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, cubicmeterpersecondpersquaremeterQuantity.Unit);
         }
 
-        [Fact]
-        public void ToUnit_WithBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [InlineData(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot)]
+        [InlineData(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter)]
+        public void ToUnit_WithSameUnits_AreEqual(VolumeFlowPerAreaUnit unit)
         {
-            var quantityInBaseUnit = VolumeFlowPerArea.FromCubicMetersPerSecondPerSquareMeter(1).ToUnit(VolumeFlowPerArea.BaseUnit);
-            Assert.Equal(VolumeFlowPerArea.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = VolumeFlowPerArea.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
         [Fact]
