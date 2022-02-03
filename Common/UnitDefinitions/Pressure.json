@@ -16,8 +16,8 @@
         "M": "Kilogram",
         "T": "Second"
       },
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Micro", "Milli", "Deca", "Hecto", "Kilo", "Mega", "Giga" ],
       "Localization": [
         {
@@ -33,8 +33,8 @@
     {
       "SingularName": "Atmosphere",
       "PluralName": "Atmospheres",
-      "FromUnitToBaseFunc": "x*1.01325*1e5",
-      "FromBaseToUnitFunc": "x/(1.01325*1e5)",
+      "FromUnitToBaseFunc": "{x}*1.01325*1e5",
+      "FromBaseToUnitFunc": "{x}/(1.01325*1e5)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -49,8 +49,8 @@
     {
       "SingularName": "Bar",
       "PluralName": "Bars",
-      "FromUnitToBaseFunc": "x*1e5",
-      "FromBaseToUnitFunc": "x/1e5",
+      "FromUnitToBaseFunc": "{x}*1e5",
+      "FromBaseToUnitFunc": "{x}/1e5",
       "Prefixes": [ "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega" ],
       "Localization": [
         {
@@ -66,8 +66,8 @@
     {
       "SingularName": "KilogramForcePerSquareMeter",
       "PluralName": "KilogramsForcePerSquareMeter",
-      "FromUnitToBaseFunc": "x*9.80665019960652",
-      "FromBaseToUnitFunc": "x*0.101971619222242",
+      "FromUnitToBaseFunc": "{x}*9.80665019960652",
+      "FromBaseToUnitFunc": "{x}*0.101971619222242",
       "Localization": [
         {
           "Culture": "en-US",
@@ -82,8 +82,8 @@
     {
       "SingularName": "KilogramForcePerSquareCentimeter",
       "PluralName": "KilogramsForcePerSquareCentimeter",
-      "FromUnitToBaseFunc": "x*9.80665e4",
-      "FromBaseToUnitFunc": "x/9.80665e4",
+      "FromUnitToBaseFunc": "{x}*9.80665e4",
+      "FromBaseToUnitFunc": "{x}/9.80665e4",
       "Localization": [
         {
           "Culture": "en-US",
@@ -98,8 +98,8 @@
     {
       "SingularName": "KilogramForcePerSquareMillimeter",
       "PluralName": "KilogramsForcePerSquareMillimeter",
-      "FromUnitToBaseFunc": "x*9.80665e6",
-      "FromBaseToUnitFunc": "x/9.80665e6",
+      "FromUnitToBaseFunc": "{x}*9.80665e6",
+      "FromBaseToUnitFunc": "{x}/9.80665e6",
       "Localization": [
         {
           "Culture": "en-US",
@@ -114,8 +114,8 @@
     {
       "SingularName": "NewtonPerSquareMeter",
       "PluralName": "NewtonsPerSquareMeter",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
@@ -131,8 +131,8 @@
     {
       "SingularName": "NewtonPerSquareCentimeter",
       "PluralName": "NewtonsPerSquareCentimeter",
-      "FromUnitToBaseFunc": "x*1e4",
-      "FromBaseToUnitFunc": "x/1e4",
+      "FromUnitToBaseFunc": "{x}*1e4",
+      "FromBaseToUnitFunc": "{x}/1e4",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
@@ -148,8 +148,8 @@
     {
       "SingularName": "NewtonPerSquareMillimeter",
       "PluralName": "NewtonsPerSquareMillimeter",
-      "FromUnitToBaseFunc": "x*1e6",
-      "FromBaseToUnitFunc": "x/1e6",
+      "FromUnitToBaseFunc": "{x}*1e6",
+      "FromBaseToUnitFunc": "{x}/1e6",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
@@ -165,8 +165,8 @@
     {
       "SingularName": "TechnicalAtmosphere",
       "PluralName": "TechnicalAtmospheres",
-      "FromUnitToBaseFunc": "x*9.80680592331*1e4",
-      "FromBaseToUnitFunc": "x/(9.80680592331*1e4)",
+      "FromUnitToBaseFunc": "{x}*9.80680592331*1e4",
+      "FromBaseToUnitFunc": "{x}/(9.80680592331*1e4)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -181,8 +181,8 @@
     {
       "SingularName": "Torr",
       "PluralName": "Torrs",
-      "FromUnitToBaseFunc": "x*1.3332266752*1e2",
-      "FromBaseToUnitFunc": "x/(1.3332266752*1e2)",
+      "FromUnitToBaseFunc": "{x}*1.3332266752*1e2",
+      "FromBaseToUnitFunc": "{x}/(1.3332266752*1e2)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -197,8 +197,8 @@
     {
       "SingularName": "PoundForcePerSquareInch",
       "PluralName": "PoundsForcePerSquareInch",
-      "FromUnitToBaseFunc": "x*6.894757293168361e3",
-      "FromBaseToUnitFunc": "x/6.894757293168361e3",
+      "FromUnitToBaseFunc": "{x}*6.894757293168361e3",
+      "FromBaseToUnitFunc": "{x}/6.894757293168361e3",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
@@ -216,8 +216,8 @@
     {
       "SingularName": "PoundForcePerSquareFoot",
       "PluralName": "PoundsForcePerSquareFoot",
-      "FromUnitToBaseFunc": "x*4.788025898033584e1",
-      "FromBaseToUnitFunc": "x/4.788025898033584e1",
+      "FromUnitToBaseFunc": "{x}*4.788025898033584e1",
+      "FromBaseToUnitFunc": "{x}/4.788025898033584e1",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
@@ -230,8 +230,8 @@
     {
       "SingularName": "TonneForcePerSquareMillimeter",
       "PluralName": "TonnesForcePerSquareMillimeter",
-      "FromUnitToBaseFunc": "x*9.80665e9",
-      "FromBaseToUnitFunc": "x/9.80665e9",
+      "FromUnitToBaseFunc": "{x}*9.80665e9",
+      "FromBaseToUnitFunc": "{x}/9.80665e9",
       "Localization": [
         {
           "Culture": "en-US",
@@ -242,8 +242,8 @@
     {
       "SingularName": "TonneForcePerSquareMeter",
       "PluralName": "TonnesForcePerSquareMeter",
-      "FromUnitToBaseFunc": "x*9.80665e3",
-      "FromBaseToUnitFunc": "x/9.80665e3",
+      "FromUnitToBaseFunc": "{x}*9.80665e3",
+      "FromBaseToUnitFunc": "{x}/9.80665e3",
       "Localization": [
         {
           "Culture": "en-US",
@@ -254,8 +254,8 @@
     {
       "SingularName": "MeterOfHead",
       "PluralName": "MetersOfHead",
-      "FromUnitToBaseFunc": "x*9804.139432",
-      "FromBaseToUnitFunc": "x*0.0001019977334",
+      "FromUnitToBaseFunc": "{x}*9804.139432",
+      "FromBaseToUnitFunc": "{x}*0.0001019977334",
       "Localization": [
         {
           "Culture": "en-US",
@@ -266,8 +266,8 @@
     {
       "SingularName": "TonneForcePerSquareCentimeter",
       "PluralName": "TonnesForcePerSquareCentimeter",
-      "FromUnitToBaseFunc": "x*9.80665e7",
-      "FromBaseToUnitFunc": "x/9.80665e7",
+      "FromUnitToBaseFunc": "{x}*9.80665e7",
+      "FromBaseToUnitFunc": "{x}/9.80665e7",
       "Localization": [
         {
           "Culture": "en-US",
@@ -278,8 +278,8 @@
     {
       "SingularName": "FootOfHead",
       "PluralName": "FeetOfHead",
-      "FromUnitToBaseFunc": "x*2989.0669",
-      "FromBaseToUnitFunc": "x*0.000334552565551",
+      "FromUnitToBaseFunc": "{x}*2989.0669",
+      "FromBaseToUnitFunc": "{x}*0.000334552565551",
       "Localization": [
         {
           "Culture": "en-US",
@@ -290,8 +290,8 @@
     {
       "SingularName": "MillimeterOfMercury",
       "PluralName": "MillimetersOfMercury",
-      "FromUnitToBaseFunc": "x/7.50061561302643e-3",
-      "FromBaseToUnitFunc": "x*7.50061561302643e-3",
+      "FromUnitToBaseFunc": "{x}/7.50061561302643e-3",
+      "FromBaseToUnitFunc": "{x}*7.50061561302643e-3",
       "Localization": [
         {
           "Culture": "en-US",
@@ -306,8 +306,8 @@
     {
       "SingularName": "InchOfMercury",
       "PluralName": "InchesOfMercury",
-      "FromUnitToBaseFunc": "x/2.95299830714159e-4",
-      "FromBaseToUnitFunc": "x*2.95299830714159e-4",
+      "FromUnitToBaseFunc": "{x}/2.95299830714159e-4",
+      "FromBaseToUnitFunc": "{x}*2.95299830714159e-4",
       "Localization": [
         {
           "Culture": "en-US",
@@ -318,8 +318,8 @@
     {
       "SingularName": "DynePerSquareCentimeter",
       "PluralName": "DynesPerSquareCentimeter",
-      "FromUnitToBaseFunc": "x*1.0e-1",
-      "FromBaseToUnitFunc": "x/1.0e-1",
+      "FromUnitToBaseFunc": "{x}*1.0e-1",
+      "FromBaseToUnitFunc": "{x}/1.0e-1",
       "Localization": [
         {
           "Culture": "en-US",
@@ -330,8 +330,8 @@
     {
       "SingularName": "PoundPerInchSecondSquared",
       "PluralName": "PoundsPerInchSecondSquared",
-      "FromUnitToBaseFunc": "x*1.785796732283465e1",
-      "FromBaseToUnitFunc": "x/1.785796732283465e1",
+      "FromUnitToBaseFunc": "{x}*1.785796732283465e1",
+      "FromBaseToUnitFunc": "{x}/1.785796732283465e1",
       "Localization": [
         {
           "Culture": "en-US",
@@ -342,8 +342,8 @@
     {
       "SingularName": "MillimeterOfWaterColumn",
       "PluralName": "MillimeterOfWaterColumn",
-      "FromUnitToBaseFunc": "x*9.806650000000272e0",
-      "FromBaseToUnitFunc": "x/9.806650000000272e0",
+      "FromUnitToBaseFunc": "{x}*9.806650000000272e0",
+      "FromBaseToUnitFunc": "{x}/9.806650000000272e0",
       "Localization": [
         {
           "Culture": "en-US",
@@ -354,8 +354,8 @@
     {
       "SingularName": "InchOfWaterColumn",
       "PluralName": "InchesOfWaterColumn",
-      "FromUnitToBaseFunc": "x*249.08890833333",
-      "FromBaseToUnitFunc": "x/249.08890833333",
+      "FromUnitToBaseFunc": "{x}*249.08890833333",
+      "FromBaseToUnitFunc": "{x}/249.08890833333",
       "Localization": [
         {
           "Culture": "en-US",
@@ -366,8 +366,8 @@
     {
       "SingularName": "MeterOfElevation",
       "PluralName": "MetersOfElevation",
-      "FromUnitToBaseFunc": "Math.Pow(1.0 - (x / 44307.69396), 5.2553026003237266401799415610351) * 101325.0",
-      "FromBaseToUnitFunc": "(1.0 - Math.Pow(x / 101325.0, 0.190284)) * 44307.69396",
+      "FromUnitToBaseFunc": "Math.Pow(1.0 - ({x} / 44307.69396), 5.2553026003237266401799415610351) * 101325.0",
+      "FromBaseToUnitFunc": "(1.0 - Math.Pow({x} / 101325.0, 0.190284)) * 44307.69396",
       "Localization": [
         {
           "Culture": "en-US",
@@ -378,8 +378,8 @@
     {
       "SingularName": "FootOfElevation",
       "PluralName": "FeetOfElevation",
-      "FromUnitToBaseFunc": "Math.Pow(1.0 - (x / 145366.45), 5.2553026003237266401799415610351) * 101325.0",
-      "FromBaseToUnitFunc": "(1.0 - Math.Pow(x / 101325.0, 0.190284)) * 145366.45",
+      "FromUnitToBaseFunc": "Math.Pow(1.0 - ({x} / 145366.45), 5.2553026003237266401799415610351) * 101325.0",
+      "FromBaseToUnitFunc": "(1.0 - Math.Pow({x} / 101325.0, 0.190284)) * 145366.45",
       "Localization": [
         {
           "Culture": "en-US",

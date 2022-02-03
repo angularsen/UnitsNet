@@ -7,8 +7,8 @@
     {
       "SingularName": "PercentPerSecond",
       "PluralName": "PercentsPerSecond",
-      "FromUnitToBaseFunc": "x/1e2",
-      "FromBaseToUnitFunc": "x*1e2",
+      "FromUnitToBaseFunc": "{x}/1e2",
+      "FromBaseToUnitFunc": "{x}*1e2",
       "Localization": [
         {
           "Culture": "en-US",
@@ -19,8 +19,8 @@
     {
       "SingularName": "DecimalFractionPerSecond",
       "PluralName": "DecimalFractionsPerSecond",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Localization": [
         {
           "Culture": "en-US",
