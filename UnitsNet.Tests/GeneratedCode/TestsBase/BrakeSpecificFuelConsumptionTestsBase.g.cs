@@ -215,6 +215,15 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_NoException(BrakeSpecificFuelConsumptionUnit unit)
+        {
+            var quantity = BrakeSpecificFuelConsumption.From(3.0, BrakeSpecificFuelConsumption.Units.First(unit => unit != BrakeSpecificFuelConsumption.BaseUnit));
+            var converted = quantity.ToUnit(unit);
+            // TODO: Meaningful check possible?
+        }
+
         [Fact]
         public void ConversionRoundTrip()
         {

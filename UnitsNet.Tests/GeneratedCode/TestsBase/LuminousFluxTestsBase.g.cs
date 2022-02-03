@@ -189,6 +189,15 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_NoException(LuminousFluxUnit unit)
+        {
+            var quantity = LuminousFlux.From(3.0, LuminousFlux.Units.First(unit => unit != LuminousFlux.BaseUnit));
+            var converted = quantity.ToUnit(unit);
+            // TODO: Meaningful check possible?
+        }
+
         [Fact]
         public void ConversionRoundTrip()
         {

@@ -280,6 +280,15 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_NoException(MolarityUnit unit)
+        {
+            var quantity = Molarity.From(3.0, Molarity.Units.First(unit => unit != Molarity.BaseUnit));
+            var converted = quantity.ToUnit(unit);
+            // TODO: Meaningful check possible?
+        }
+
         [Fact]
         public void ConversionRoundTrip()
         {

@@ -293,6 +293,15 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_NoException(StandardVolumeFlowUnit unit)
+        {
+            var quantity = StandardVolumeFlow.From(3.0, StandardVolumeFlow.Units.First(unit => unit != StandardVolumeFlow.BaseUnit));
+            var converted = quantity.ToUnit(unit);
+            // TODO: Meaningful check possible?
+        }
+
         [Fact]
         public void ConversionRoundTrip()
         {

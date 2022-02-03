@@ -501,6 +501,15 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_NoException(LinearPowerDensityUnit unit)
+        {
+            var quantity = LinearPowerDensity.From(3.0, LinearPowerDensity.Units.First(unit => unit != LinearPowerDensity.BaseUnit));
+            var converted = quantity.ToUnit(unit);
+            // TODO: Meaningful check possible?
+        }
+
         [Fact]
         public void ConversionRoundTrip()
         {

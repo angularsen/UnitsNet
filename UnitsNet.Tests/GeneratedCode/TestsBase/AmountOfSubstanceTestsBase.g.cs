@@ -371,6 +371,15 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_NoException(AmountOfSubstanceUnit unit)
+        {
+            var quantity = AmountOfSubstance.From(3.0, AmountOfSubstance.Units.First(unit => unit != AmountOfSubstance.BaseUnit));
+            var converted = quantity.ToUnit(unit);
+            // TODO: Meaningful check possible?
+        }
+
         [Fact]
         public void ConversionRoundTrip()
         {

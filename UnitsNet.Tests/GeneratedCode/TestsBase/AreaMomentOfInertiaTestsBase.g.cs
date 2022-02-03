@@ -254,6 +254,15 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_NoException(AreaMomentOfInertiaUnit unit)
+        {
+            var quantity = AreaMomentOfInertia.From(3.0, AreaMomentOfInertia.Units.First(unit => unit != AreaMomentOfInertia.BaseUnit));
+            var converted = quantity.ToUnit(unit);
+            // TODO: Meaningful check possible?
+        }
+
         [Fact]
         public void ConversionRoundTrip()
         {

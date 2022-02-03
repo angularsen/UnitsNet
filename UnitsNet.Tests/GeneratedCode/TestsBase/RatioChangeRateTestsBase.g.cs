@@ -202,6 +202,15 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_NoException(RatioChangeRateUnit unit)
+        {
+            var quantity = RatioChangeRate.From(3.0, RatioChangeRate.Units.First(unit => unit != RatioChangeRate.BaseUnit));
+            var converted = quantity.ToUnit(unit);
+            // TODO: Meaningful check possible?
+        }
+
         [Fact]
         public void ConversionRoundTrip()
         {

@@ -215,6 +215,15 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_NoException(ElectricCurrentDensityUnit unit)
+        {
+            var quantity = ElectricCurrentDensity.From(3.0, ElectricCurrentDensity.Units.First(unit => unit != ElectricCurrentDensity.BaseUnit));
+            var converted = quantity.ToUnit(unit);
+            // TODO: Meaningful check possible?
+        }
+
         [Fact]
         public void ConversionRoundTrip()
         {

@@ -371,6 +371,15 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_NoException(ForceChangeRateUnit unit)
+        {
+            var quantity = ForceChangeRate.From(3.0, ForceChangeRate.Units.First(unit => unit != ForceChangeRate.BaseUnit));
+            var converted = quantity.ToUnit(unit);
+            // TODO: Meaningful check possible?
+        }
+
         [Fact]
         public void ConversionRoundTrip()
         {

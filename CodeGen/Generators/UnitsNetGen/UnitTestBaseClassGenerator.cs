@@ -283,6 +283,15 @@ Writer.WL( $@"
             Assert.Equal(quantity, toUnitWithSameUnit);
         }}
 
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_NoException({_unitEnumName} unit)
+        {{
+            var quantity = {_quantity.Name}.From(3.0, {_quantity.Name}.Units.First(unit => unit != {_quantity.Name}.BaseUnit));
+            var converted = quantity.ToUnit(unit);
+            // TODO: Meaningful check possible?
+        }}
+
         [Fact]
         public void ConversionRoundTrip()
         {{

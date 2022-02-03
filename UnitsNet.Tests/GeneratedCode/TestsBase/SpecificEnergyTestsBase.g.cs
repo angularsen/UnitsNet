@@ -501,6 +501,15 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_NoException(SpecificEnergyUnit unit)
+        {
+            var quantity = SpecificEnergy.From(3.0, SpecificEnergy.Units.First(unit => unit != SpecificEnergy.BaseUnit));
+            var converted = quantity.ToUnit(unit);
+            // TODO: Meaningful check possible?
+        }
+
         [Fact]
         public void ConversionRoundTrip()
         {

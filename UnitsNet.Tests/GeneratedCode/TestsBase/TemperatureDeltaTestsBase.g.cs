@@ -293,6 +293,15 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_NoException(TemperatureDeltaUnit unit)
+        {
+            var quantity = TemperatureDelta.From(3.0, TemperatureDelta.Units.First(unit => unit != TemperatureDelta.BaseUnit));
+            var converted = quantity.ToUnit(unit);
+            // TODO: Meaningful check possible?
+        }
+
         [Fact]
         public void ConversionRoundTrip()
         {

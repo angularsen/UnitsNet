@@ -540,6 +540,15 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_NoException(MassMomentOfInertiaUnit unit)
+        {
+            var quantity = MassMomentOfInertia.From(3.0, MassMomentOfInertia.Units.First(unit => unit != MassMomentOfInertia.BaseUnit));
+            var converted = quantity.ToUnit(unit);
+            // TODO: Meaningful check possible?
+        }
+
         [Fact]
         public void ConversionRoundTrip()
         {

@@ -228,6 +228,15 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_NoException(RotationalAccelerationUnit unit)
+        {
+            var quantity = RotationalAcceleration.From(3.0, RotationalAcceleration.Units.First(unit => unit != RotationalAcceleration.BaseUnit));
+            var converted = quantity.ToUnit(unit);
+            // TODO: Meaningful check possible?
+        }
+
         [Fact]
         public void ConversionRoundTrip()
         {

@@ -306,6 +306,15 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_NoException(ReciprocalLengthUnit unit)
+        {
+            var quantity = ReciprocalLength.From(3.0, ReciprocalLength.Units.First(unit => unit != ReciprocalLength.BaseUnit));
+            var converted = quantity.ToUnit(unit);
+            // TODO: Meaningful check possible?
+        }
+
         [Fact]
         public void ConversionRoundTrip()
         {

@@ -241,6 +241,15 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_NoException(ElectricPotentialAcUnit unit)
+        {
+            var quantity = ElectricPotentialAc.From(3.0, ElectricPotentialAc.Units.First(unit => unit != ElectricPotentialAc.BaseUnit));
+            var converted = quantity.ToUnit(unit);
+            // TODO: Meaningful check possible?
+        }
+
         [Fact]
         public void ConversionRoundTrip()
         {

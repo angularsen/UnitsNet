@@ -605,6 +605,15 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_NoException(RotationalStiffnessUnit unit)
+        {
+            var quantity = RotationalStiffness.From(3.0, RotationalStiffness.Units.First(unit => unit != RotationalStiffness.BaseUnit));
+            var converted = quantity.ToUnit(unit);
+            // TODO: Meaningful check possible?
+        }
+
         [Fact]
         public void ConversionRoundTrip()
         {

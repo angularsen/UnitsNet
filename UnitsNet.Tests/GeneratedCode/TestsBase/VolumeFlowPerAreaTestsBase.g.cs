@@ -202,6 +202,15 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_NoException(VolumeFlowPerAreaUnit unit)
+        {
+            var quantity = VolumeFlowPerArea.From(3.0, VolumeFlowPerArea.Units.First(unit => unit != VolumeFlowPerArea.BaseUnit));
+            var converted = quantity.ToUnit(unit);
+            // TODO: Meaningful check possible?
+        }
+
         [Fact]
         public void ConversionRoundTrip()
         {
