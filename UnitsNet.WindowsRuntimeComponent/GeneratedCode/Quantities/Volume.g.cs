@@ -49,6 +49,12 @@ namespace UnitsNet
         static Volume()
         {
             BaseDimensions = new BaseDimensions(3, 0, 0, 0, 0, 0, 0);
+            BaseUnit = VolumeUnit.CubicMeter;
+            MaxValue = new Volume(double.MaxValue, BaseUnit);
+            MinValue = new Volume(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Volume;
+            Units = Enum.GetValues(typeof(VolumeUnit)).Cast<VolumeUnit>().Except(new VolumeUnit[]{ VolumeUnit.Undefined }).ToArray();
+            Zero = new Volume(0, BaseUnit);
             Info = new QuantityInfo(QuantityType.Volume, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
@@ -95,33 +101,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Volume, which is CubicMeter. All conversions go via this value.
         /// </summary>
-        public static VolumeUnit BaseUnit { get; } = VolumeUnit.CubicMeter;
+        public static VolumeUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Volume
         /// </summary>
-        public static Volume MaxValue { get; } = new Volume(double.MaxValue, BaseUnit);
+        public static Volume MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Volume
         /// </summary>
-        public static Volume MinValue { get; } = new Volume(double.MinValue, BaseUnit);
+        public static Volume MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Volume;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Volume quantity.
         /// </summary>
-        public static VolumeUnit[] Units { get; } = Enum.GetValues(typeof(VolumeUnit)).Cast<VolumeUnit>().Except(new VolumeUnit[]{ VolumeUnit.Undefined }).ToArray();
+        public static VolumeUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit CubicMeter.
         /// </summary>
-        public static Volume Zero { get; } = new Volume(0, BaseUnit);
+        public static Volume Zero { get; }
 
         #endregion
 

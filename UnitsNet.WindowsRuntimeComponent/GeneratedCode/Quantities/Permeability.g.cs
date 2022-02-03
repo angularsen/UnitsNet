@@ -52,6 +52,12 @@ namespace UnitsNet
         static Permeability()
         {
             BaseDimensions = new BaseDimensions(1, 1, -2, -2, 0, 0, 0);
+            BaseUnit = PermeabilityUnit.HenryPerMeter;
+            MaxValue = new Permeability(double.MaxValue, BaseUnit);
+            MinValue = new Permeability(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Permeability;
+            Units = Enum.GetValues(typeof(PermeabilityUnit)).Cast<PermeabilityUnit>().Except(new PermeabilityUnit[]{ PermeabilityUnit.Undefined }).ToArray();
+            Zero = new Permeability(0, BaseUnit);
             Info = new QuantityInfo(QuantityType.Permeability, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
@@ -98,33 +104,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Permeability, which is HenryPerMeter. All conversions go via this value.
         /// </summary>
-        public static PermeabilityUnit BaseUnit { get; } = PermeabilityUnit.HenryPerMeter;
+        public static PermeabilityUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Permeability
         /// </summary>
-        public static Permeability MaxValue { get; } = new Permeability(double.MaxValue, BaseUnit);
+        public static Permeability MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Permeability
         /// </summary>
-        public static Permeability MinValue { get; } = new Permeability(double.MinValue, BaseUnit);
+        public static Permeability MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Permeability;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Permeability quantity.
         /// </summary>
-        public static PermeabilityUnit[] Units { get; } = Enum.GetValues(typeof(PermeabilityUnit)).Cast<PermeabilityUnit>().Except(new PermeabilityUnit[]{ PermeabilityUnit.Undefined }).ToArray();
+        public static PermeabilityUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit HenryPerMeter.
         /// </summary>
-        public static Permeability Zero { get; } = new Permeability(0, BaseUnit);
+        public static Permeability Zero { get; }
 
         #endregion
 

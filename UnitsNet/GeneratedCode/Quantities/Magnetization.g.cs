@@ -56,9 +56,15 @@ namespace UnitsNet
         static Magnetization()
         {
             BaseDimensions = new BaseDimensions(-1, 0, 0, 1, 0, 0, 0);
-
+            BaseUnit = MagnetizationUnit.AmperePerMeter;
+            MaxValue = new Magnetization(double.MaxValue, BaseUnit);
+            MinValue = new Magnetization(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Magnetization;
+            Units = Enum.GetValues(typeof(MagnetizationUnit)).Cast<MagnetizationUnit>().Except(new MagnetizationUnit[]{ MagnetizationUnit.Undefined }).ToArray();
+            Zero = new Magnetization(0, BaseUnit);
             Info = new QuantityInfo<MagnetizationUnit>("Magnetization",
-                new UnitInfo<MagnetizationUnit>[] {
+                new UnitInfo<MagnetizationUnit>[]
+                {
                     new UnitInfo<MagnetizationUnit>(MagnetizationUnit.AmperePerMeter, "AmperesPerMeter", new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere)),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Magnetization);
@@ -118,35 +124,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Magnetization, which is AmperePerMeter. All conversions go via this value.
         /// </summary>
-        public static MagnetizationUnit BaseUnit { get; } = MagnetizationUnit.AmperePerMeter;
+        public static MagnetizationUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Magnetization
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Magnetization MaxValue { get; } = new Magnetization(double.MaxValue, BaseUnit);
+        public static Magnetization MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Magnetization
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Magnetization MinValue { get; } = new Magnetization(double.MinValue, BaseUnit);
+        public static Magnetization MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Magnetization;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Magnetization quantity.
         /// </summary>
-        public static MagnetizationUnit[] Units { get; } = Enum.GetValues(typeof(MagnetizationUnit)).Cast<MagnetizationUnit>().Except(new MagnetizationUnit[]{ MagnetizationUnit.Undefined }).ToArray();
+        public static MagnetizationUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit AmperePerMeter.
         /// </summary>
-        public static Magnetization Zero { get; } = new Magnetization(0, BaseUnit);
+        public static Magnetization Zero { get; }
 
         #endregion
 

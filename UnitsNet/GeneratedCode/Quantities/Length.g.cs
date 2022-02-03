@@ -53,9 +53,15 @@ namespace UnitsNet
         static Length()
         {
             BaseDimensions = new BaseDimensions(1, 0, 0, 0, 0, 0, 0);
-
+            BaseUnit = LengthUnit.Meter;
+            MaxValue = new Length(double.MaxValue, BaseUnit);
+            MinValue = new Length(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Length;
+            Units = Enum.GetValues(typeof(LengthUnit)).Cast<LengthUnit>().Except(new LengthUnit[]{ LengthUnit.Undefined }).ToArray();
+            Zero = new Length(0, BaseUnit);
             Info = new QuantityInfo<LengthUnit>("Length",
-                new UnitInfo<LengthUnit>[] {
+                new UnitInfo<LengthUnit>[]
+                {
                     new UnitInfo<LengthUnit>(LengthUnit.AstronomicalUnit, "AstronomicalUnits", BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Centimeter, "Centimeters", BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Chain, "Chains", new BaseUnits(length: LengthUnit.Chain)),
@@ -147,35 +153,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Length, which is Meter. All conversions go via this value.
         /// </summary>
-        public static LengthUnit BaseUnit { get; } = LengthUnit.Meter;
+        public static LengthUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Length
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Length MaxValue { get; } = new Length(double.MaxValue, BaseUnit);
+        public static Length MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Length
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Length MinValue { get; } = new Length(double.MinValue, BaseUnit);
+        public static Length MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Length;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Length quantity.
         /// </summary>
-        public static LengthUnit[] Units { get; } = Enum.GetValues(typeof(LengthUnit)).Cast<LengthUnit>().Except(new LengthUnit[]{ LengthUnit.Undefined }).ToArray();
+        public static LengthUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Meter.
         /// </summary>
-        public static Length Zero { get; } = new Length(0, BaseUnit);
+        public static Length Zero { get; }
 
         #endregion
 

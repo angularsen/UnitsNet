@@ -53,9 +53,15 @@ namespace UnitsNet
         static Level()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-
+            BaseUnit = LevelUnit.Decibel;
+            MaxValue = new Level(double.MaxValue, BaseUnit);
+            MinValue = new Level(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Level;
+            Units = Enum.GetValues(typeof(LevelUnit)).Cast<LevelUnit>().Except(new LevelUnit[]{ LevelUnit.Undefined }).ToArray();
+            Zero = new Level(0, BaseUnit);
             Info = new QuantityInfo<LevelUnit>("Level",
-                new UnitInfo<LevelUnit>[] {
+                new UnitInfo<LevelUnit>[]
+                {
                     new UnitInfo<LevelUnit>(LevelUnit.Decibel, "Decibels", BaseUnits.Undefined),
                     new UnitInfo<LevelUnit>(LevelUnit.Neper, "Nepers", BaseUnits.Undefined),
                 },
@@ -116,35 +122,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Level, which is Decibel. All conversions go via this value.
         /// </summary>
-        public static LevelUnit BaseUnit { get; } = LevelUnit.Decibel;
+        public static LevelUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Level
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Level MaxValue { get; } = new Level(double.MaxValue, BaseUnit);
+        public static Level MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Level
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Level MinValue { get; } = new Level(double.MinValue, BaseUnit);
+        public static Level MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Level;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Level quantity.
         /// </summary>
-        public static LevelUnit[] Units { get; } = Enum.GetValues(typeof(LevelUnit)).Cast<LevelUnit>().Except(new LevelUnit[]{ LevelUnit.Undefined }).ToArray();
+        public static LevelUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Decibel.
         /// </summary>
-        public static Level Zero { get; } = new Level(0, BaseUnit);
+        public static Level Zero { get; }
 
         #endregion
 

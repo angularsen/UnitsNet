@@ -56,9 +56,15 @@ namespace UnitsNet
         static ElectricCharge()
         {
             BaseDimensions = new BaseDimensions(0, 0, 1, 1, 0, 0, 0);
-
+            BaseUnit = ElectricChargeUnit.Coulomb;
+            MaxValue = new ElectricCharge(double.MaxValue, BaseUnit);
+            MinValue = new ElectricCharge(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.ElectricCharge;
+            Units = Enum.GetValues(typeof(ElectricChargeUnit)).Cast<ElectricChargeUnit>().Except(new ElectricChargeUnit[]{ ElectricChargeUnit.Undefined }).ToArray();
+            Zero = new ElectricCharge(0, BaseUnit);
             Info = new QuantityInfo<ElectricChargeUnit>("ElectricCharge",
-                new UnitInfo<ElectricChargeUnit>[] {
+                new UnitInfo<ElectricChargeUnit>[]
+                {
                     new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.AmpereHour, "AmpereHours", BaseUnits.Undefined),
                     new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Coulomb, "Coulombs", BaseUnits.Undefined),
                     new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.KiloampereHour, "KiloampereHours", BaseUnits.Undefined),
@@ -122,35 +128,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricCharge, which is Coulomb. All conversions go via this value.
         /// </summary>
-        public static ElectricChargeUnit BaseUnit { get; } = ElectricChargeUnit.Coulomb;
+        public static ElectricChargeUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of ElectricCharge
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricCharge MaxValue { get; } = new ElectricCharge(double.MaxValue, BaseUnit);
+        public static ElectricCharge MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of ElectricCharge
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricCharge MinValue { get; } = new ElectricCharge(double.MinValue, BaseUnit);
+        public static ElectricCharge MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricCharge;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the ElectricCharge quantity.
         /// </summary>
-        public static ElectricChargeUnit[] Units { get; } = Enum.GetValues(typeof(ElectricChargeUnit)).Cast<ElectricChargeUnit>().Except(new ElectricChargeUnit[]{ ElectricChargeUnit.Undefined }).ToArray();
+        public static ElectricChargeUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Coulomb.
         /// </summary>
-        public static ElectricCharge Zero { get; } = new ElectricCharge(0, BaseUnit);
+        public static ElectricCharge Zero { get; }
 
         #endregion
 

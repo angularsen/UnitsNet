@@ -56,9 +56,15 @@ namespace UnitsNet
         static Permittivity()
         {
             BaseDimensions = new BaseDimensions(-3, -1, 4, 2, 0, 0, 0);
-
+            BaseUnit = PermittivityUnit.FaradPerMeter;
+            MaxValue = new Permittivity(double.MaxValue, BaseUnit);
+            MinValue = new Permittivity(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Permittivity;
+            Units = Enum.GetValues(typeof(PermittivityUnit)).Cast<PermittivityUnit>().Except(new PermittivityUnit[]{ PermittivityUnit.Undefined }).ToArray();
+            Zero = new Permittivity(0, BaseUnit);
             Info = new QuantityInfo<PermittivityUnit>("Permittivity",
-                new UnitInfo<PermittivityUnit>[] {
+                new UnitInfo<PermittivityUnit>[]
+                {
                     new UnitInfo<PermittivityUnit>(PermittivityUnit.FaradPerMeter, "FaradsPerMeter", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Permittivity);
@@ -118,35 +124,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Permittivity, which is FaradPerMeter. All conversions go via this value.
         /// </summary>
-        public static PermittivityUnit BaseUnit { get; } = PermittivityUnit.FaradPerMeter;
+        public static PermittivityUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Permittivity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Permittivity MaxValue { get; } = new Permittivity(double.MaxValue, BaseUnit);
+        public static Permittivity MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Permittivity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Permittivity MinValue { get; } = new Permittivity(double.MinValue, BaseUnit);
+        public static Permittivity MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Permittivity;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Permittivity quantity.
         /// </summary>
-        public static PermittivityUnit[] Units { get; } = Enum.GetValues(typeof(PermittivityUnit)).Cast<PermittivityUnit>().Except(new PermittivityUnit[]{ PermittivityUnit.Undefined }).ToArray();
+        public static PermittivityUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit FaradPerMeter.
         /// </summary>
-        public static Permittivity Zero { get; } = new Permittivity(0, BaseUnit);
+        public static Permittivity Zero { get; }
 
         #endregion
 

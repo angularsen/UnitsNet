@@ -49,6 +49,12 @@ namespace UnitsNet
         static Entropy()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, -1, 0, 0);
+            BaseUnit = EntropyUnit.JoulePerKelvin;
+            MaxValue = new Entropy(double.MaxValue, BaseUnit);
+            MinValue = new Entropy(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Entropy;
+            Units = Enum.GetValues(typeof(EntropyUnit)).Cast<EntropyUnit>().Except(new EntropyUnit[]{ EntropyUnit.Undefined }).ToArray();
+            Zero = new Entropy(0, BaseUnit);
             Info = new QuantityInfo(QuantityType.Entropy, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
@@ -95,33 +101,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Entropy, which is JoulePerKelvin. All conversions go via this value.
         /// </summary>
-        public static EntropyUnit BaseUnit { get; } = EntropyUnit.JoulePerKelvin;
+        public static EntropyUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Entropy
         /// </summary>
-        public static Entropy MaxValue { get; } = new Entropy(double.MaxValue, BaseUnit);
+        public static Entropy MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Entropy
         /// </summary>
-        public static Entropy MinValue { get; } = new Entropy(double.MinValue, BaseUnit);
+        public static Entropy MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Entropy;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Entropy quantity.
         /// </summary>
-        public static EntropyUnit[] Units { get; } = Enum.GetValues(typeof(EntropyUnit)).Cast<EntropyUnit>().Except(new EntropyUnit[]{ EntropyUnit.Undefined }).ToArray();
+        public static EntropyUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit JoulePerKelvin.
         /// </summary>
-        public static Entropy Zero { get; } = new Entropy(0, BaseUnit);
+        public static Entropy Zero { get; }
 
         #endregion
 

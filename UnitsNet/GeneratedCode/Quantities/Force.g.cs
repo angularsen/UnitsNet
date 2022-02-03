@@ -53,9 +53,15 @@ namespace UnitsNet
         static Force()
         {
             BaseDimensions = new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
-
+            BaseUnit = ForceUnit.Newton;
+            MaxValue = new Force(double.MaxValue, BaseUnit);
+            MinValue = new Force(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Force;
+            Units = Enum.GetValues(typeof(ForceUnit)).Cast<ForceUnit>().Except(new ForceUnit[]{ ForceUnit.Undefined }).ToArray();
+            Zero = new Force(0, BaseUnit);
             Info = new QuantityInfo<ForceUnit>("Force",
-                new UnitInfo<ForceUnit>[] {
+                new UnitInfo<ForceUnit>[]
+                {
                     new UnitInfo<ForceUnit>(ForceUnit.Decanewton, "Decanewtons", BaseUnits.Undefined),
                     new UnitInfo<ForceUnit>(ForceUnit.Dyn, "Dyne", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram, time: DurationUnit.Second)),
                     new UnitInfo<ForceUnit>(ForceUnit.KilogramForce, "KilogramsForce", BaseUnits.Undefined),
@@ -129,35 +135,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Force, which is Newton. All conversions go via this value.
         /// </summary>
-        public static ForceUnit BaseUnit { get; } = ForceUnit.Newton;
+        public static ForceUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Force
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Force MaxValue { get; } = new Force(double.MaxValue, BaseUnit);
+        public static Force MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Force
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Force MinValue { get; } = new Force(double.MinValue, BaseUnit);
+        public static Force MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Force;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Force quantity.
         /// </summary>
-        public static ForceUnit[] Units { get; } = Enum.GetValues(typeof(ForceUnit)).Cast<ForceUnit>().Except(new ForceUnit[]{ ForceUnit.Undefined }).ToArray();
+        public static ForceUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Newton.
         /// </summary>
-        public static Force Zero { get; } = new Force(0, BaseUnit);
+        public static Force Zero { get; }
 
         #endregion
 

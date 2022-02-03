@@ -53,9 +53,15 @@ namespace UnitsNet
         static Acceleration()
         {
             BaseDimensions = new BaseDimensions(1, 0, -2, 0, 0, 0, 0);
-
+            BaseUnit = AccelerationUnit.MeterPerSecondSquared;
+            MaxValue = new Acceleration(double.MaxValue, BaseUnit);
+            MinValue = new Acceleration(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Acceleration;
+            Units = Enum.GetValues(typeof(AccelerationUnit)).Cast<AccelerationUnit>().Except(new AccelerationUnit[]{ AccelerationUnit.Undefined }).ToArray();
+            Zero = new Acceleration(0, BaseUnit);
             Info = new QuantityInfo<AccelerationUnit>("Acceleration",
-                new UnitInfo<AccelerationUnit>[] {
+                new UnitInfo<AccelerationUnit>[]
+                {
                     new UnitInfo<AccelerationUnit>(AccelerationUnit.CentimeterPerSecondSquared, "CentimetersPerSecondSquared", BaseUnits.Undefined),
                     new UnitInfo<AccelerationUnit>(AccelerationUnit.DecimeterPerSecondSquared, "DecimetersPerSecondSquared", BaseUnits.Undefined),
                     new UnitInfo<AccelerationUnit>(AccelerationUnit.FootPerSecondSquared, "FeetPerSecondSquared", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second)),
@@ -128,35 +134,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Acceleration, which is MeterPerSecondSquared. All conversions go via this value.
         /// </summary>
-        public static AccelerationUnit BaseUnit { get; } = AccelerationUnit.MeterPerSecondSquared;
+        public static AccelerationUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Acceleration
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Acceleration MaxValue { get; } = new Acceleration(double.MaxValue, BaseUnit);
+        public static Acceleration MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Acceleration
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Acceleration MinValue { get; } = new Acceleration(double.MinValue, BaseUnit);
+        public static Acceleration MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Acceleration;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Acceleration quantity.
         /// </summary>
-        public static AccelerationUnit[] Units { get; } = Enum.GetValues(typeof(AccelerationUnit)).Cast<AccelerationUnit>().Except(new AccelerationUnit[]{ AccelerationUnit.Undefined }).ToArray();
+        public static AccelerationUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit MeterPerSecondSquared.
         /// </summary>
-        public static Acceleration Zero { get; } = new Acceleration(0, BaseUnit);
+        public static Acceleration Zero { get; }
 
         #endregion
 

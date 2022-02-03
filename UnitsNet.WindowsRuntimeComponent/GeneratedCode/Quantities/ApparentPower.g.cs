@@ -49,6 +49,12 @@ namespace UnitsNet
         static ApparentPower()
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
+            BaseUnit = ApparentPowerUnit.Voltampere;
+            MaxValue = new ApparentPower(double.MaxValue, BaseUnit);
+            MinValue = new ApparentPower(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.ApparentPower;
+            Units = Enum.GetValues(typeof(ApparentPowerUnit)).Cast<ApparentPowerUnit>().Except(new ApparentPowerUnit[]{ ApparentPowerUnit.Undefined }).ToArray();
+            Zero = new ApparentPower(0, BaseUnit);
             Info = new QuantityInfo(QuantityType.ApparentPower, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
@@ -95,33 +101,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ApparentPower, which is Voltampere. All conversions go via this value.
         /// </summary>
-        public static ApparentPowerUnit BaseUnit { get; } = ApparentPowerUnit.Voltampere;
+        public static ApparentPowerUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of ApparentPower
         /// </summary>
-        public static ApparentPower MaxValue { get; } = new ApparentPower(double.MaxValue, BaseUnit);
+        public static ApparentPower MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of ApparentPower
         /// </summary>
-        public static ApparentPower MinValue { get; } = new ApparentPower(double.MinValue, BaseUnit);
+        public static ApparentPower MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ApparentPower;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the ApparentPower quantity.
         /// </summary>
-        public static ApparentPowerUnit[] Units { get; } = Enum.GetValues(typeof(ApparentPowerUnit)).Cast<ApparentPowerUnit>().Except(new ApparentPowerUnit[]{ ApparentPowerUnit.Undefined }).ToArray();
+        public static ApparentPowerUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Voltampere.
         /// </summary>
-        public static ApparentPower Zero { get; } = new ApparentPower(0, BaseUnit);
+        public static ApparentPower Zero { get; }
 
         #endregion
 

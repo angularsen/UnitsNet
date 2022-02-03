@@ -56,9 +56,15 @@ namespace UnitsNet
         static LuminousIntensity()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
-
+            BaseUnit = LuminousIntensityUnit.Candela;
+            MaxValue = new LuminousIntensity(double.MaxValue, BaseUnit);
+            MinValue = new LuminousIntensity(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.LuminousIntensity;
+            Units = Enum.GetValues(typeof(LuminousIntensityUnit)).Cast<LuminousIntensityUnit>().Except(new LuminousIntensityUnit[]{ LuminousIntensityUnit.Undefined }).ToArray();
+            Zero = new LuminousIntensity(0, BaseUnit);
             Info = new QuantityInfo<LuminousIntensityUnit>("LuminousIntensity",
-                new UnitInfo<LuminousIntensityUnit>[] {
+                new UnitInfo<LuminousIntensityUnit>[]
+                {
                     new UnitInfo<LuminousIntensityUnit>(LuminousIntensityUnit.Candela, "Candela", new BaseUnits(luminousIntensity: LuminousIntensityUnit.Candela)),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.LuminousIntensity);
@@ -118,35 +124,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of LuminousIntensity, which is Candela. All conversions go via this value.
         /// </summary>
-        public static LuminousIntensityUnit BaseUnit { get; } = LuminousIntensityUnit.Candela;
+        public static LuminousIntensityUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of LuminousIntensity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static LuminousIntensity MaxValue { get; } = new LuminousIntensity(double.MaxValue, BaseUnit);
+        public static LuminousIntensity MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of LuminousIntensity
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static LuminousIntensity MinValue { get; } = new LuminousIntensity(double.MinValue, BaseUnit);
+        public static LuminousIntensity MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.LuminousIntensity;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the LuminousIntensity quantity.
         /// </summary>
-        public static LuminousIntensityUnit[] Units { get; } = Enum.GetValues(typeof(LuminousIntensityUnit)).Cast<LuminousIntensityUnit>().Except(new LuminousIntensityUnit[]{ LuminousIntensityUnit.Undefined }).ToArray();
+        public static LuminousIntensityUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Candela.
         /// </summary>
-        public static LuminousIntensity Zero { get; } = new LuminousIntensity(0, BaseUnit);
+        public static LuminousIntensity Zero { get; }
 
         #endregion
 

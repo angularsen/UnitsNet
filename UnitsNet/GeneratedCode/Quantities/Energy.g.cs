@@ -53,9 +53,15 @@ namespace UnitsNet
         static Energy()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
-
+            BaseUnit = EnergyUnit.Joule;
+            MaxValue = new Energy(double.MaxValue, BaseUnit);
+            MinValue = new Energy(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Energy;
+            Units = Enum.GetValues(typeof(EnergyUnit)).Cast<EnergyUnit>().Except(new EnergyUnit[]{ EnergyUnit.Undefined }).ToArray();
+            Zero = new Energy(0, BaseUnit);
             Info = new QuantityInfo<EnergyUnit>("Energy",
-                new UnitInfo<EnergyUnit>[] {
+                new UnitInfo<EnergyUnit>[]
+                {
                     new UnitInfo<EnergyUnit>(EnergyUnit.BritishThermalUnit, "BritishThermalUnits", BaseUnits.Undefined),
                     new UnitInfo<EnergyUnit>(EnergyUnit.Calorie, "Calories", BaseUnits.Undefined),
                     new UnitInfo<EnergyUnit>(EnergyUnit.DecathermEc, "DecathermsEc", BaseUnits.Undefined),
@@ -150,35 +156,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Energy, which is Joule. All conversions go via this value.
         /// </summary>
-        public static EnergyUnit BaseUnit { get; } = EnergyUnit.Joule;
+        public static EnergyUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Energy
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Energy MaxValue { get; } = new Energy(double.MaxValue, BaseUnit);
+        public static Energy MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Energy
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Energy MinValue { get; } = new Energy(double.MinValue, BaseUnit);
+        public static Energy MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Energy;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Energy quantity.
         /// </summary>
-        public static EnergyUnit[] Units { get; } = Enum.GetValues(typeof(EnergyUnit)).Cast<EnergyUnit>().Except(new EnergyUnit[]{ EnergyUnit.Undefined }).ToArray();
+        public static EnergyUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Joule.
         /// </summary>
-        public static Energy Zero { get; } = new Energy(0, BaseUnit);
+        public static Energy Zero { get; }
 
         #endregion
 

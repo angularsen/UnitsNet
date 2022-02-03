@@ -49,6 +49,12 @@ namespace UnitsNet
         static ElectricCurrent()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 1, 0, 0, 0);
+            BaseUnit = ElectricCurrentUnit.Ampere;
+            MaxValue = new ElectricCurrent(double.MaxValue, BaseUnit);
+            MinValue = new ElectricCurrent(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.ElectricCurrent;
+            Units = Enum.GetValues(typeof(ElectricCurrentUnit)).Cast<ElectricCurrentUnit>().Except(new ElectricCurrentUnit[]{ ElectricCurrentUnit.Undefined }).ToArray();
+            Zero = new ElectricCurrent(0, BaseUnit);
             Info = new QuantityInfo(QuantityType.ElectricCurrent, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
@@ -95,33 +101,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricCurrent, which is Ampere. All conversions go via this value.
         /// </summary>
-        public static ElectricCurrentUnit BaseUnit { get; } = ElectricCurrentUnit.Ampere;
+        public static ElectricCurrentUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of ElectricCurrent
         /// </summary>
-        public static ElectricCurrent MaxValue { get; } = new ElectricCurrent(double.MaxValue, BaseUnit);
+        public static ElectricCurrent MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of ElectricCurrent
         /// </summary>
-        public static ElectricCurrent MinValue { get; } = new ElectricCurrent(double.MinValue, BaseUnit);
+        public static ElectricCurrent MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricCurrent;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the ElectricCurrent quantity.
         /// </summary>
-        public static ElectricCurrentUnit[] Units { get; } = Enum.GetValues(typeof(ElectricCurrentUnit)).Cast<ElectricCurrentUnit>().Except(new ElectricCurrentUnit[]{ ElectricCurrentUnit.Undefined }).ToArray();
+        public static ElectricCurrentUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Ampere.
         /// </summary>
-        public static ElectricCurrent Zero { get; } = new ElectricCurrent(0, BaseUnit);
+        public static ElectricCurrent Zero { get; }
 
         #endregion
 

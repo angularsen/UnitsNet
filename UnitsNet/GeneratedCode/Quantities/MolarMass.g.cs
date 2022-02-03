@@ -53,9 +53,15 @@ namespace UnitsNet
         static MolarMass()
         {
             BaseDimensions = new BaseDimensions(0, 1, 0, 0, 0, -1, 0);
-
+            BaseUnit = MolarMassUnit.KilogramPerMole;
+            MaxValue = new MolarMass(double.MaxValue, BaseUnit);
+            MinValue = new MolarMass(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.MolarMass;
+            Units = Enum.GetValues(typeof(MolarMassUnit)).Cast<MolarMassUnit>().Except(new MolarMassUnit[]{ MolarMassUnit.Undefined }).ToArray();
+            Zero = new MolarMass(0, BaseUnit);
             Info = new QuantityInfo<MolarMassUnit>("MolarMass",
-                new UnitInfo<MolarMassUnit>[] {
+                new UnitInfo<MolarMassUnit>[]
+                {
                     new UnitInfo<MolarMassUnit>(MolarMassUnit.CentigramPerMole, "CentigramsPerMole", BaseUnits.Undefined),
                     new UnitInfo<MolarMassUnit>(MolarMassUnit.DecagramPerMole, "DecagramsPerMole", BaseUnits.Undefined),
                     new UnitInfo<MolarMassUnit>(MolarMassUnit.DecigramPerMole, "DecigramsPerMole", BaseUnits.Undefined),
@@ -126,35 +132,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of MolarMass, which is KilogramPerMole. All conversions go via this value.
         /// </summary>
-        public static MolarMassUnit BaseUnit { get; } = MolarMassUnit.KilogramPerMole;
+        public static MolarMassUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of MolarMass
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static MolarMass MaxValue { get; } = new MolarMass(double.MaxValue, BaseUnit);
+        public static MolarMass MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of MolarMass
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static MolarMass MinValue { get; } = new MolarMass(double.MinValue, BaseUnit);
+        public static MolarMass MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.MolarMass;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the MolarMass quantity.
         /// </summary>
-        public static MolarMassUnit[] Units { get; } = Enum.GetValues(typeof(MolarMassUnit)).Cast<MolarMassUnit>().Except(new MolarMassUnit[]{ MolarMassUnit.Undefined }).ToArray();
+        public static MolarMassUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerMole.
         /// </summary>
-        public static MolarMass Zero { get; } = new MolarMass(0, BaseUnit);
+        public static MolarMass Zero { get; }
 
         #endregion
 

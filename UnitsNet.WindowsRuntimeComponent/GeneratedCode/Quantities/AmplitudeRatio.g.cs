@@ -49,6 +49,12 @@ namespace UnitsNet
         static AmplitudeRatio()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
+            BaseUnit = AmplitudeRatioUnit.DecibelVolt;
+            MaxValue = new AmplitudeRatio(double.MaxValue, BaseUnit);
+            MinValue = new AmplitudeRatio(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.AmplitudeRatio;
+            Units = Enum.GetValues(typeof(AmplitudeRatioUnit)).Cast<AmplitudeRatioUnit>().Except(new AmplitudeRatioUnit[]{ AmplitudeRatioUnit.Undefined }).ToArray();
+            Zero = new AmplitudeRatio(0, BaseUnit);
             Info = new QuantityInfo(QuantityType.AmplitudeRatio, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
@@ -95,33 +101,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of AmplitudeRatio, which is DecibelVolt. All conversions go via this value.
         /// </summary>
-        public static AmplitudeRatioUnit BaseUnit { get; } = AmplitudeRatioUnit.DecibelVolt;
+        public static AmplitudeRatioUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of AmplitudeRatio
         /// </summary>
-        public static AmplitudeRatio MaxValue { get; } = new AmplitudeRatio(double.MaxValue, BaseUnit);
+        public static AmplitudeRatio MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of AmplitudeRatio
         /// </summary>
-        public static AmplitudeRatio MinValue { get; } = new AmplitudeRatio(double.MinValue, BaseUnit);
+        public static AmplitudeRatio MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.AmplitudeRatio;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the AmplitudeRatio quantity.
         /// </summary>
-        public static AmplitudeRatioUnit[] Units { get; } = Enum.GetValues(typeof(AmplitudeRatioUnit)).Cast<AmplitudeRatioUnit>().Except(new AmplitudeRatioUnit[]{ AmplitudeRatioUnit.Undefined }).ToArray();
+        public static AmplitudeRatioUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DecibelVolt.
         /// </summary>
-        public static AmplitudeRatio Zero { get; } = new AmplitudeRatio(0, BaseUnit);
+        public static AmplitudeRatio Zero { get; }
 
         #endregion
 

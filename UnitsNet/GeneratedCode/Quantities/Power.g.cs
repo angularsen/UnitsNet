@@ -53,9 +53,15 @@ namespace UnitsNet
         static Power()
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
-
+            BaseUnit = PowerUnit.Watt;
+            MaxValue = new Power(decimal.MaxValue, BaseUnit);
+            MinValue = new Power(decimal.MinValue, BaseUnit);
+            QuantityType = QuantityType.Power;
+            Units = Enum.GetValues(typeof(PowerUnit)).Cast<PowerUnit>().Except(new PowerUnit[]{ PowerUnit.Undefined }).ToArray();
+            Zero = new Power(0, BaseUnit);
             Info = new QuantityInfo<PowerUnit>("Power",
-                new UnitInfo<PowerUnit>[] {
+                new UnitInfo<PowerUnit>[]
+                {
                     new UnitInfo<PowerUnit>(PowerUnit.BoilerHorsepower, "BoilerHorsepower", BaseUnits.Undefined),
                     new UnitInfo<PowerUnit>(PowerUnit.BritishThermalUnitPerHour, "BritishThermalUnitsPerHour", BaseUnits.Undefined),
                     new UnitInfo<PowerUnit>(PowerUnit.Decawatt, "Decawatts", BaseUnits.Undefined),
@@ -139,35 +145,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Power, which is Watt. All conversions go via this value.
         /// </summary>
-        public static PowerUnit BaseUnit { get; } = PowerUnit.Watt;
+        public static PowerUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Power
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Power MaxValue { get; } = new Power(decimal.MaxValue, BaseUnit);
+        public static Power MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Power
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Power MinValue { get; } = new Power(decimal.MinValue, BaseUnit);
+        public static Power MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Power;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Power quantity.
         /// </summary>
-        public static PowerUnit[] Units { get; } = Enum.GetValues(typeof(PowerUnit)).Cast<PowerUnit>().Except(new PowerUnit[]{ PowerUnit.Undefined }).ToArray();
+        public static PowerUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Watt.
         /// </summary>
-        public static Power Zero { get; } = new Power(0, BaseUnit);
+        public static Power Zero { get; }
 
         #endregion
 

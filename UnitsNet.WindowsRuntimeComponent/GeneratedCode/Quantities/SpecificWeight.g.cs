@@ -52,6 +52,12 @@ namespace UnitsNet
         static SpecificWeight()
         {
             BaseDimensions = new BaseDimensions(-2, 1, -2, 0, 0, 0, 0);
+            BaseUnit = SpecificWeightUnit.NewtonPerCubicMeter;
+            MaxValue = new SpecificWeight(double.MaxValue, BaseUnit);
+            MinValue = new SpecificWeight(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.SpecificWeight;
+            Units = Enum.GetValues(typeof(SpecificWeightUnit)).Cast<SpecificWeightUnit>().Except(new SpecificWeightUnit[]{ SpecificWeightUnit.Undefined }).ToArray();
+            Zero = new SpecificWeight(0, BaseUnit);
             Info = new QuantityInfo(QuantityType.SpecificWeight, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
@@ -98,33 +104,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of SpecificWeight, which is NewtonPerCubicMeter. All conversions go via this value.
         /// </summary>
-        public static SpecificWeightUnit BaseUnit { get; } = SpecificWeightUnit.NewtonPerCubicMeter;
+        public static SpecificWeightUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of SpecificWeight
         /// </summary>
-        public static SpecificWeight MaxValue { get; } = new SpecificWeight(double.MaxValue, BaseUnit);
+        public static SpecificWeight MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of SpecificWeight
         /// </summary>
-        public static SpecificWeight MinValue { get; } = new SpecificWeight(double.MinValue, BaseUnit);
+        public static SpecificWeight MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.SpecificWeight;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the SpecificWeight quantity.
         /// </summary>
-        public static SpecificWeightUnit[] Units { get; } = Enum.GetValues(typeof(SpecificWeightUnit)).Cast<SpecificWeightUnit>().Except(new SpecificWeightUnit[]{ SpecificWeightUnit.Undefined }).ToArray();
+        public static SpecificWeightUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonPerCubicMeter.
         /// </summary>
-        public static SpecificWeight Zero { get; } = new SpecificWeight(0, BaseUnit);
+        public static SpecificWeight Zero { get; }
 
         #endregion
 

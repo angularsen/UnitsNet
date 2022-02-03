@@ -56,9 +56,15 @@ namespace UnitsNet
         static ElectricField()
         {
             BaseDimensions = new BaseDimensions(1, 1, -3, -1, 0, 0, 0);
-
+            BaseUnit = ElectricFieldUnit.VoltPerMeter;
+            MaxValue = new ElectricField(double.MaxValue, BaseUnit);
+            MinValue = new ElectricField(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.ElectricField;
+            Units = Enum.GetValues(typeof(ElectricFieldUnit)).Cast<ElectricFieldUnit>().Except(new ElectricFieldUnit[]{ ElectricFieldUnit.Undefined }).ToArray();
+            Zero = new ElectricField(0, BaseUnit);
             Info = new QuantityInfo<ElectricFieldUnit>("ElectricField",
-                new UnitInfo<ElectricFieldUnit>[] {
+                new UnitInfo<ElectricFieldUnit>[]
+                {
                     new UnitInfo<ElectricFieldUnit>(ElectricFieldUnit.VoltPerMeter, "VoltsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricField);
@@ -118,35 +124,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricField, which is VoltPerMeter. All conversions go via this value.
         /// </summary>
-        public static ElectricFieldUnit BaseUnit { get; } = ElectricFieldUnit.VoltPerMeter;
+        public static ElectricFieldUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of ElectricField
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricField MaxValue { get; } = new ElectricField(double.MaxValue, BaseUnit);
+        public static ElectricField MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of ElectricField
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static ElectricField MinValue { get; } = new ElectricField(double.MinValue, BaseUnit);
+        public static ElectricField MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ElectricField;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the ElectricField quantity.
         /// </summary>
-        public static ElectricFieldUnit[] Units { get; } = Enum.GetValues(typeof(ElectricFieldUnit)).Cast<ElectricFieldUnit>().Except(new ElectricFieldUnit[]{ ElectricFieldUnit.Undefined }).ToArray();
+        public static ElectricFieldUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit VoltPerMeter.
         /// </summary>
-        public static ElectricField Zero { get; } = new ElectricField(0, BaseUnit);
+        public static ElectricField Zero { get; }
 
         #endregion
 

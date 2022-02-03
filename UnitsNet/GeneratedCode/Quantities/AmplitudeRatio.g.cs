@@ -53,9 +53,15 @@ namespace UnitsNet
         static AmplitudeRatio()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-
+            BaseUnit = AmplitudeRatioUnit.DecibelVolt;
+            MaxValue = new AmplitudeRatio(double.MaxValue, BaseUnit);
+            MinValue = new AmplitudeRatio(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.AmplitudeRatio;
+            Units = Enum.GetValues(typeof(AmplitudeRatioUnit)).Cast<AmplitudeRatioUnit>().Except(new AmplitudeRatioUnit[]{ AmplitudeRatioUnit.Undefined }).ToArray();
+            Zero = new AmplitudeRatio(0, BaseUnit);
             Info = new QuantityInfo<AmplitudeRatioUnit>("AmplitudeRatio",
-                new UnitInfo<AmplitudeRatioUnit>[] {
+                new UnitInfo<AmplitudeRatioUnit>[]
+                {
                     new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelMicrovolt, "DecibelMicrovolts", BaseUnits.Undefined),
                     new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelMillivolt, "DecibelMillivolts", BaseUnits.Undefined),
                     new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelUnloaded, "DecibelsUnloaded", BaseUnits.Undefined),
@@ -118,35 +124,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of AmplitudeRatio, which is DecibelVolt. All conversions go via this value.
         /// </summary>
-        public static AmplitudeRatioUnit BaseUnit { get; } = AmplitudeRatioUnit.DecibelVolt;
+        public static AmplitudeRatioUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of AmplitudeRatio
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static AmplitudeRatio MaxValue { get; } = new AmplitudeRatio(double.MaxValue, BaseUnit);
+        public static AmplitudeRatio MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of AmplitudeRatio
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static AmplitudeRatio MinValue { get; } = new AmplitudeRatio(double.MinValue, BaseUnit);
+        public static AmplitudeRatio MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.AmplitudeRatio;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the AmplitudeRatio quantity.
         /// </summary>
-        public static AmplitudeRatioUnit[] Units { get; } = Enum.GetValues(typeof(AmplitudeRatioUnit)).Cast<AmplitudeRatioUnit>().Except(new AmplitudeRatioUnit[]{ AmplitudeRatioUnit.Undefined }).ToArray();
+        public static AmplitudeRatioUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DecibelVolt.
         /// </summary>
-        public static AmplitudeRatio Zero { get; } = new AmplitudeRatio(0, BaseUnit);
+        public static AmplitudeRatio Zero { get; }
 
         #endregion
 

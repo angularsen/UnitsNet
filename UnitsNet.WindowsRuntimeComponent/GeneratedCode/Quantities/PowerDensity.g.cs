@@ -49,6 +49,12 @@ namespace UnitsNet
         static PowerDensity()
         {
             BaseDimensions = new BaseDimensions(-1, 1, -3, 0, 0, 0, 0);
+            BaseUnit = PowerDensityUnit.WattPerCubicMeter;
+            MaxValue = new PowerDensity(double.MaxValue, BaseUnit);
+            MinValue = new PowerDensity(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.PowerDensity;
+            Units = Enum.GetValues(typeof(PowerDensityUnit)).Cast<PowerDensityUnit>().Except(new PowerDensityUnit[]{ PowerDensityUnit.Undefined }).ToArray();
+            Zero = new PowerDensity(0, BaseUnit);
             Info = new QuantityInfo(QuantityType.PowerDensity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
@@ -95,33 +101,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of PowerDensity, which is WattPerCubicMeter. All conversions go via this value.
         /// </summary>
-        public static PowerDensityUnit BaseUnit { get; } = PowerDensityUnit.WattPerCubicMeter;
+        public static PowerDensityUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of PowerDensity
         /// </summary>
-        public static PowerDensity MaxValue { get; } = new PowerDensity(double.MaxValue, BaseUnit);
+        public static PowerDensity MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of PowerDensity
         /// </summary>
-        public static PowerDensity MinValue { get; } = new PowerDensity(double.MinValue, BaseUnit);
+        public static PowerDensity MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.PowerDensity;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the PowerDensity quantity.
         /// </summary>
-        public static PowerDensityUnit[] Units { get; } = Enum.GetValues(typeof(PowerDensityUnit)).Cast<PowerDensityUnit>().Except(new PowerDensityUnit[]{ PowerDensityUnit.Undefined }).ToArray();
+        public static PowerDensityUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit WattPerCubicMeter.
         /// </summary>
-        public static PowerDensity Zero { get; } = new PowerDensity(0, BaseUnit);
+        public static PowerDensity Zero { get; }
 
         #endregion
 

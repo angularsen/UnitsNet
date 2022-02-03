@@ -53,9 +53,15 @@ namespace UnitsNet
         static Torque()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
-
+            BaseUnit = TorqueUnit.NewtonMeter;
+            MaxValue = new Torque(double.MaxValue, BaseUnit);
+            MinValue = new Torque(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Torque;
+            Units = Enum.GetValues(typeof(TorqueUnit)).Cast<TorqueUnit>().Except(new TorqueUnit[]{ TorqueUnit.Undefined }).ToArray();
+            Zero = new Torque(0, BaseUnit);
             Info = new QuantityInfo<TorqueUnit>("Torque",
-                new UnitInfo<TorqueUnit>[] {
+                new UnitInfo<TorqueUnit>[]
+                {
                     new UnitInfo<TorqueUnit>(TorqueUnit.GramForceCentimeter, "GramForceCentimeters", BaseUnits.Undefined),
                     new UnitInfo<TorqueUnit>(TorqueUnit.GramForceMeter, "GramForceMeters", BaseUnits.Undefined),
                     new UnitInfo<TorqueUnit>(TorqueUnit.GramForceMillimeter, "GramForceMillimeters", BaseUnits.Undefined),
@@ -139,35 +145,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Torque, which is NewtonMeter. All conversions go via this value.
         /// </summary>
-        public static TorqueUnit BaseUnit { get; } = TorqueUnit.NewtonMeter;
+        public static TorqueUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Torque
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Torque MaxValue { get; } = new Torque(double.MaxValue, BaseUnit);
+        public static Torque MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Torque
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Torque MinValue { get; } = new Torque(double.MinValue, BaseUnit);
+        public static Torque MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Torque;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Torque quantity.
         /// </summary>
-        public static TorqueUnit[] Units { get; } = Enum.GetValues(typeof(TorqueUnit)).Cast<TorqueUnit>().Except(new TorqueUnit[]{ TorqueUnit.Undefined }).ToArray();
+        public static TorqueUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonMeter.
         /// </summary>
-        public static Torque Zero { get; } = new Torque(0, BaseUnit);
+        public static Torque Zero { get; }
 
         #endregion
 

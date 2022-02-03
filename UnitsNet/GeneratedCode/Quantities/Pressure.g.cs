@@ -53,9 +53,15 @@ namespace UnitsNet
         static Pressure()
         {
             BaseDimensions = new BaseDimensions(-1, 1, -2, 0, 0, 0, 0);
-
+            BaseUnit = PressureUnit.Pascal;
+            MaxValue = new Pressure(double.MaxValue, BaseUnit);
+            MinValue = new Pressure(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Pressure;
+            Units = Enum.GetValues(typeof(PressureUnit)).Cast<PressureUnit>().Except(new PressureUnit[]{ PressureUnit.Undefined }).ToArray();
+            Zero = new Pressure(0, BaseUnit);
             Info = new QuantityInfo<PressureUnit>("Pressure",
-                new UnitInfo<PressureUnit>[] {
+                new UnitInfo<PressureUnit>[]
+                {
                     new UnitInfo<PressureUnit>(PressureUnit.Atmosphere, "Atmospheres", BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.Bar, "Bars", BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.Centibar, "Centibars", BaseUnits.Undefined),
@@ -159,35 +165,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Pressure, which is Pascal. All conversions go via this value.
         /// </summary>
-        public static PressureUnit BaseUnit { get; } = PressureUnit.Pascal;
+        public static PressureUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of Pressure
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Pressure MaxValue { get; } = new Pressure(double.MaxValue, BaseUnit);
+        public static Pressure MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of Pressure
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static Pressure MinValue { get; } = new Pressure(double.MinValue, BaseUnit);
+        public static Pressure MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.Pressure;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Pressure quantity.
         /// </summary>
-        public static PressureUnit[] Units { get; } = Enum.GetValues(typeof(PressureUnit)).Cast<PressureUnit>().Except(new PressureUnit[]{ PressureUnit.Undefined }).ToArray();
+        public static PressureUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Pascal.
         /// </summary>
-        public static Pressure Zero { get; } = new Pressure(0, BaseUnit);
+        public static Pressure Zero { get; }
 
         #endregion
 

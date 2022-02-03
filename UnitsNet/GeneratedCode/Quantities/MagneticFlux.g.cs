@@ -56,9 +56,15 @@ namespace UnitsNet
         static MagneticFlux()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, -1, 0, 0, 0);
-
+            BaseUnit = MagneticFluxUnit.Weber;
+            MaxValue = new MagneticFlux(double.MaxValue, BaseUnit);
+            MinValue = new MagneticFlux(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.MagneticFlux;
+            Units = Enum.GetValues(typeof(MagneticFluxUnit)).Cast<MagneticFluxUnit>().Except(new MagneticFluxUnit[]{ MagneticFluxUnit.Undefined }).ToArray();
+            Zero = new MagneticFlux(0, BaseUnit);
             Info = new QuantityInfo<MagneticFluxUnit>("MagneticFlux",
-                new UnitInfo<MagneticFluxUnit>[] {
+                new UnitInfo<MagneticFluxUnit>[]
+                {
                     new UnitInfo<MagneticFluxUnit>(MagneticFluxUnit.Weber, "Webers", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.MagneticFlux);
@@ -118,35 +124,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of MagneticFlux, which is Weber. All conversions go via this value.
         /// </summary>
-        public static MagneticFluxUnit BaseUnit { get; } = MagneticFluxUnit.Weber;
+        public static MagneticFluxUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of MagneticFlux
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static MagneticFlux MaxValue { get; } = new MagneticFlux(double.MaxValue, BaseUnit);
+        public static MagneticFlux MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of MagneticFlux
         /// </summary>
         [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static MagneticFlux MinValue { get; } = new MagneticFlux(double.MinValue, BaseUnit);
+        public static MagneticFlux MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.MagneticFlux;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the MagneticFlux quantity.
         /// </summary>
-        public static MagneticFluxUnit[] Units { get; } = Enum.GetValues(typeof(MagneticFluxUnit)).Cast<MagneticFluxUnit>().Except(new MagneticFluxUnit[]{ MagneticFluxUnit.Undefined }).ToArray();
+        public static MagneticFluxUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Weber.
         /// </summary>
-        public static MagneticFlux Zero { get; } = new MagneticFlux(0, BaseUnit);
+        public static MagneticFlux Zero { get; }
 
         #endregion
 

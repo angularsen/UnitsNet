@@ -52,6 +52,12 @@ namespace UnitsNet
         static ReciprocalArea()
         {
             BaseDimensions = new BaseDimensions(-2, 0, 0, 0, 0, 0, 0);
+            BaseUnit = ReciprocalAreaUnit.InverseSquareMeter;
+            MaxValue = new ReciprocalArea(double.MaxValue, BaseUnit);
+            MinValue = new ReciprocalArea(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.ReciprocalArea;
+            Units = Enum.GetValues(typeof(ReciprocalAreaUnit)).Cast<ReciprocalAreaUnit>().Except(new ReciprocalAreaUnit[]{ ReciprocalAreaUnit.Undefined }).ToArray();
+            Zero = new ReciprocalArea(0, BaseUnit);
             Info = new QuantityInfo(QuantityType.ReciprocalArea, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
 
@@ -98,33 +104,33 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ReciprocalArea, which is InverseSquareMeter. All conversions go via this value.
         /// </summary>
-        public static ReciprocalAreaUnit BaseUnit { get; } = ReciprocalAreaUnit.InverseSquareMeter;
+        public static ReciprocalAreaUnit BaseUnit { get; }
 
         /// <summary>
         /// Represents the largest possible value of ReciprocalArea
         /// </summary>
-        public static ReciprocalArea MaxValue { get; } = new ReciprocalArea(double.MaxValue, BaseUnit);
+        public static ReciprocalArea MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of ReciprocalArea
         /// </summary>
-        public static ReciprocalArea MinValue { get; } = new ReciprocalArea(double.MinValue, BaseUnit);
+        public static ReciprocalArea MinValue { get; }
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; } = QuantityType.ReciprocalArea;
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the ReciprocalArea quantity.
         /// </summary>
-        public static ReciprocalAreaUnit[] Units { get; } = Enum.GetValues(typeof(ReciprocalAreaUnit)).Cast<ReciprocalAreaUnit>().Except(new ReciprocalAreaUnit[]{ ReciprocalAreaUnit.Undefined }).ToArray();
+        public static ReciprocalAreaUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit InverseSquareMeter.
         /// </summary>
-        public static ReciprocalArea Zero { get; } = new ReciprocalArea(0, BaseUnit);
+        public static ReciprocalArea Zero { get; }
 
         #endregion
 
