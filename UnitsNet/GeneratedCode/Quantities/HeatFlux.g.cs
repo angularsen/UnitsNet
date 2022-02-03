@@ -928,17 +928,19 @@ namespace UnitsNet
         public HeatFlux ToUnit(HeatFluxUnit unit, UnitConverter unitConverter)
         {
             if(Unit == unit)
-                return this;
-
-            if(unitConverter.TryGetConversionFunction((typeof(HeatFlux), Unit, typeof(HeatFlux), unit), out var conversionFunction))
             {
-                // Conversion from Unit -> unit found. Do the conversion and return it.
+                // Already in requested units.
+                return this;
+            }
+            else if(unitConverter.TryGetConversionFunction((typeof(HeatFlux), Unit, typeof(HeatFlux), unit), out var conversionFunction))
+            {
+                // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (HeatFlux)converted;
             }
             else if(Unit != BaseUnit)
             {
-                // Conversion from Unit -> unit NOT found. Convert to BaseUnit and then go from BaseUnit -> unit.
+                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
                 return inBaseUnits.ToUnit(unit);
             }
