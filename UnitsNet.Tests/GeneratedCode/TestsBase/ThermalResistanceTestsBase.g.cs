@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -52,6 +53,16 @@ namespace UnitsNet.Tests
         protected virtual double SquareMeterKelvinsPerKilowattTolerance { get { return 1e-5; } }
         protected virtual double SquareMeterKelvinsPerWattTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu },
+            new object[] { ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie },
+            new object[] { ThermalResistanceUnit.SquareCentimeterKelvinPerWatt },
+            new object[] { ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt },
+            new object[] { ThermalResistanceUnit.SquareMeterKelvinPerKilowatt },
+            new object[] { ThermalResistanceUnit.SquareMeterKelvinPerWatt },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -235,12 +246,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu)]
-        [InlineData(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie)]
-        [InlineData(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt)]
-        [InlineData(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt)]
-        [InlineData(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt)]
-        [InlineData(ThermalResistanceUnit.SquareMeterKelvinPerWatt)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(ThermalResistanceUnit unit)
         {
             var quantity = ThermalResistance.From(3.0, unit);

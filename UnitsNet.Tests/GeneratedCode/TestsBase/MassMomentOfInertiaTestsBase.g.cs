@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -96,6 +97,38 @@ namespace UnitsNet.Tests
         protected virtual double TonneSquareMetersTolerance { get { return 1e-5; } }
         protected virtual double TonneSquareMilimetersTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { MassMomentOfInertiaUnit.GramSquareCentimeter },
+            new object[] { MassMomentOfInertiaUnit.GramSquareDecimeter },
+            new object[] { MassMomentOfInertiaUnit.GramSquareMeter },
+            new object[] { MassMomentOfInertiaUnit.GramSquareMillimeter },
+            new object[] { MassMomentOfInertiaUnit.KilogramSquareCentimeter },
+            new object[] { MassMomentOfInertiaUnit.KilogramSquareDecimeter },
+            new object[] { MassMomentOfInertiaUnit.KilogramSquareMeter },
+            new object[] { MassMomentOfInertiaUnit.KilogramSquareMillimeter },
+            new object[] { MassMomentOfInertiaUnit.KilotonneSquareCentimeter },
+            new object[] { MassMomentOfInertiaUnit.KilotonneSquareDecimeter },
+            new object[] { MassMomentOfInertiaUnit.KilotonneSquareMeter },
+            new object[] { MassMomentOfInertiaUnit.KilotonneSquareMilimeter },
+            new object[] { MassMomentOfInertiaUnit.MegatonneSquareCentimeter },
+            new object[] { MassMomentOfInertiaUnit.MegatonneSquareDecimeter },
+            new object[] { MassMomentOfInertiaUnit.MegatonneSquareMeter },
+            new object[] { MassMomentOfInertiaUnit.MegatonneSquareMilimeter },
+            new object[] { MassMomentOfInertiaUnit.MilligramSquareCentimeter },
+            new object[] { MassMomentOfInertiaUnit.MilligramSquareDecimeter },
+            new object[] { MassMomentOfInertiaUnit.MilligramSquareMeter },
+            new object[] { MassMomentOfInertiaUnit.MilligramSquareMillimeter },
+            new object[] { MassMomentOfInertiaUnit.PoundSquareFoot },
+            new object[] { MassMomentOfInertiaUnit.PoundSquareInch },
+            new object[] { MassMomentOfInertiaUnit.SlugSquareFoot },
+            new object[] { MassMomentOfInertiaUnit.SlugSquareInch },
+            new object[] { MassMomentOfInertiaUnit.TonneSquareCentimeter },
+            new object[] { MassMomentOfInertiaUnit.TonneSquareDecimeter },
+            new object[] { MassMomentOfInertiaUnit.TonneSquareMeter },
+            new object[] { MassMomentOfInertiaUnit.TonneSquareMilimeter },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -499,34 +532,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(MassMomentOfInertiaUnit.GramSquareCentimeter)]
-        [InlineData(MassMomentOfInertiaUnit.GramSquareDecimeter)]
-        [InlineData(MassMomentOfInertiaUnit.GramSquareMeter)]
-        [InlineData(MassMomentOfInertiaUnit.GramSquareMillimeter)]
-        [InlineData(MassMomentOfInertiaUnit.KilogramSquareCentimeter)]
-        [InlineData(MassMomentOfInertiaUnit.KilogramSquareDecimeter)]
-        [InlineData(MassMomentOfInertiaUnit.KilogramSquareMeter)]
-        [InlineData(MassMomentOfInertiaUnit.KilogramSquareMillimeter)]
-        [InlineData(MassMomentOfInertiaUnit.KilotonneSquareCentimeter)]
-        [InlineData(MassMomentOfInertiaUnit.KilotonneSquareDecimeter)]
-        [InlineData(MassMomentOfInertiaUnit.KilotonneSquareMeter)]
-        [InlineData(MassMomentOfInertiaUnit.KilotonneSquareMilimeter)]
-        [InlineData(MassMomentOfInertiaUnit.MegatonneSquareCentimeter)]
-        [InlineData(MassMomentOfInertiaUnit.MegatonneSquareDecimeter)]
-        [InlineData(MassMomentOfInertiaUnit.MegatonneSquareMeter)]
-        [InlineData(MassMomentOfInertiaUnit.MegatonneSquareMilimeter)]
-        [InlineData(MassMomentOfInertiaUnit.MilligramSquareCentimeter)]
-        [InlineData(MassMomentOfInertiaUnit.MilligramSquareDecimeter)]
-        [InlineData(MassMomentOfInertiaUnit.MilligramSquareMeter)]
-        [InlineData(MassMomentOfInertiaUnit.MilligramSquareMillimeter)]
-        [InlineData(MassMomentOfInertiaUnit.PoundSquareFoot)]
-        [InlineData(MassMomentOfInertiaUnit.PoundSquareInch)]
-        [InlineData(MassMomentOfInertiaUnit.SlugSquareFoot)]
-        [InlineData(MassMomentOfInertiaUnit.SlugSquareInch)]
-        [InlineData(MassMomentOfInertiaUnit.TonneSquareCentimeter)]
-        [InlineData(MassMomentOfInertiaUnit.TonneSquareDecimeter)]
-        [InlineData(MassMomentOfInertiaUnit.TonneSquareMeter)]
-        [InlineData(MassMomentOfInertiaUnit.TonneSquareMilimeter)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(MassMomentOfInertiaUnit unit)
         {
             var quantity = MassMomentOfInertia.From(3.0, unit);

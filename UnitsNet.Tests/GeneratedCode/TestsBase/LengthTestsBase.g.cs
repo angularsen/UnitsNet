@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -106,6 +107,43 @@ namespace UnitsNet.Tests
         protected virtual double UsSurveyFeetTolerance { get { return 1e-5; } }
         protected virtual double YardsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { LengthUnit.AstronomicalUnit },
+            new object[] { LengthUnit.Centimeter },
+            new object[] { LengthUnit.Chain },
+            new object[] { LengthUnit.Decimeter },
+            new object[] { LengthUnit.DtpPica },
+            new object[] { LengthUnit.DtpPoint },
+            new object[] { LengthUnit.Fathom },
+            new object[] { LengthUnit.Foot },
+            new object[] { LengthUnit.Hand },
+            new object[] { LengthUnit.Hectometer },
+            new object[] { LengthUnit.Inch },
+            new object[] { LengthUnit.KilolightYear },
+            new object[] { LengthUnit.Kilometer },
+            new object[] { LengthUnit.Kiloparsec },
+            new object[] { LengthUnit.LightYear },
+            new object[] { LengthUnit.MegalightYear },
+            new object[] { LengthUnit.Megaparsec },
+            new object[] { LengthUnit.Meter },
+            new object[] { LengthUnit.Microinch },
+            new object[] { LengthUnit.Micrometer },
+            new object[] { LengthUnit.Mil },
+            new object[] { LengthUnit.Mile },
+            new object[] { LengthUnit.Millimeter },
+            new object[] { LengthUnit.Nanometer },
+            new object[] { LengthUnit.NauticalMile },
+            new object[] { LengthUnit.Parsec },
+            new object[] { LengthUnit.PrinterPica },
+            new object[] { LengthUnit.PrinterPoint },
+            new object[] { LengthUnit.Shackle },
+            new object[] { LengthUnit.SolarRadius },
+            new object[] { LengthUnit.Twip },
+            new object[] { LengthUnit.UsSurveyFoot },
+            new object[] { LengthUnit.Yard },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -559,39 +597,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(LengthUnit.AstronomicalUnit)]
-        [InlineData(LengthUnit.Centimeter)]
-        [InlineData(LengthUnit.Chain)]
-        [InlineData(LengthUnit.Decimeter)]
-        [InlineData(LengthUnit.DtpPica)]
-        [InlineData(LengthUnit.DtpPoint)]
-        [InlineData(LengthUnit.Fathom)]
-        [InlineData(LengthUnit.Foot)]
-        [InlineData(LengthUnit.Hand)]
-        [InlineData(LengthUnit.Hectometer)]
-        [InlineData(LengthUnit.Inch)]
-        [InlineData(LengthUnit.KilolightYear)]
-        [InlineData(LengthUnit.Kilometer)]
-        [InlineData(LengthUnit.Kiloparsec)]
-        [InlineData(LengthUnit.LightYear)]
-        [InlineData(LengthUnit.MegalightYear)]
-        [InlineData(LengthUnit.Megaparsec)]
-        [InlineData(LengthUnit.Meter)]
-        [InlineData(LengthUnit.Microinch)]
-        [InlineData(LengthUnit.Micrometer)]
-        [InlineData(LengthUnit.Mil)]
-        [InlineData(LengthUnit.Mile)]
-        [InlineData(LengthUnit.Millimeter)]
-        [InlineData(LengthUnit.Nanometer)]
-        [InlineData(LengthUnit.NauticalMile)]
-        [InlineData(LengthUnit.Parsec)]
-        [InlineData(LengthUnit.PrinterPica)]
-        [InlineData(LengthUnit.PrinterPoint)]
-        [InlineData(LengthUnit.Shackle)]
-        [InlineData(LengthUnit.SolarRadius)]
-        [InlineData(LengthUnit.Twip)]
-        [InlineData(LengthUnit.UsSurveyFoot)]
-        [InlineData(LengthUnit.Yard)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(LengthUnit unit)
         {
             var quantity = Length.From(3.0, unit);

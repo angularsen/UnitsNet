@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -58,6 +59,19 @@ namespace UnitsNet.Tests
         protected virtual double SquareMetersPerSecondTolerance { get { return 1e-5; } }
         protected virtual double StokesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { KinematicViscosityUnit.Centistokes },
+            new object[] { KinematicViscosityUnit.Decistokes },
+            new object[] { KinematicViscosityUnit.Kilostokes },
+            new object[] { KinematicViscosityUnit.Microstokes },
+            new object[] { KinematicViscosityUnit.Millistokes },
+            new object[] { KinematicViscosityUnit.Nanostokes },
+            new object[] { KinematicViscosityUnit.SquareFootPerSecond },
+            new object[] { KinematicViscosityUnit.SquareMeterPerSecond },
+            new object[] { KinematicViscosityUnit.Stokes },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -271,15 +285,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(KinematicViscosityUnit.Centistokes)]
-        [InlineData(KinematicViscosityUnit.Decistokes)]
-        [InlineData(KinematicViscosityUnit.Kilostokes)]
-        [InlineData(KinematicViscosityUnit.Microstokes)]
-        [InlineData(KinematicViscosityUnit.Millistokes)]
-        [InlineData(KinematicViscosityUnit.Nanostokes)]
-        [InlineData(KinematicViscosityUnit.SquareFootPerSecond)]
-        [InlineData(KinematicViscosityUnit.SquareMeterPerSecond)]
-        [InlineData(KinematicViscosityUnit.Stokes)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(KinematicViscosityUnit unit)
         {
             var quantity = KinematicViscosity.From(3.0, unit);

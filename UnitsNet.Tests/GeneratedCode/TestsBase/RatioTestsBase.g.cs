@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -52,6 +53,16 @@ namespace UnitsNet.Tests
         protected virtual double PartsPerTrillionTolerance { get { return 1e-5; } }
         protected virtual double PercentTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { RatioUnit.DecimalFraction },
+            new object[] { RatioUnit.PartPerBillion },
+            new object[] { RatioUnit.PartPerMillion },
+            new object[] { RatioUnit.PartPerThousand },
+            new object[] { RatioUnit.PartPerTrillion },
+            new object[] { RatioUnit.Percent },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -235,12 +246,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(RatioUnit.DecimalFraction)]
-        [InlineData(RatioUnit.PartPerBillion)]
-        [InlineData(RatioUnit.PartPerMillion)]
-        [InlineData(RatioUnit.PartPerThousand)]
-        [InlineData(RatioUnit.PartPerTrillion)]
-        [InlineData(RatioUnit.Percent)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(RatioUnit unit)
         {
             var quantity = Ratio.From(3.0, unit);

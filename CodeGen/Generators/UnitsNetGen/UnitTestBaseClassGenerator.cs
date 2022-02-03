@@ -76,6 +76,7 @@ namespace CodeGen.Generators.UnitsNetGen
             Writer.WL(GeneratedFileHeader);
             Writer.WL($@"
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -104,6 +105,16 @@ namespace UnitsNet.Tests
             foreach (var unit in _quantity.Units) Writer.WL($@"
         protected virtual double {unit.PluralName}Tolerance {{ get {{ return 1e-5; }} }}"); Writer.WL($@"
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {{");
+            foreach( var unit in _quantity.Units )
+            {
+                Writer.WL($@"
+            new object[] {{ {GetUnitFullName( unit )} }},");
+            }
+Writer.WL( $@"
+        }};
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -263,13 +274,8 @@ namespace UnitsNet.Tests
             Writer.WL($@"
         }}
 
-        [Theory]");
-    foreach( var unit in _quantity.Units )
-    {
-        Writer.WL($@"
-        [InlineData({GetUnitFullName( unit )})]");
-    }
-Writer.WL($@"
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual({_unitEnumName} unit)
         {{
             var quantity = {_quantity.Name}.From(3.0, unit);

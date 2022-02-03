@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -80,6 +81,30 @@ namespace UnitsNet.Tests
         protected virtual double PicolitersPerLiterTolerance { get { return 1e-5; } }
         protected virtual double PicolitersPerMililiterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { VolumeConcentrationUnit.CentilitersPerLiter },
+            new object[] { VolumeConcentrationUnit.CentilitersPerMililiter },
+            new object[] { VolumeConcentrationUnit.DecilitersPerLiter },
+            new object[] { VolumeConcentrationUnit.DecilitersPerMililiter },
+            new object[] { VolumeConcentrationUnit.DecimalFraction },
+            new object[] { VolumeConcentrationUnit.LitersPerLiter },
+            new object[] { VolumeConcentrationUnit.LitersPerMililiter },
+            new object[] { VolumeConcentrationUnit.MicrolitersPerLiter },
+            new object[] { VolumeConcentrationUnit.MicrolitersPerMililiter },
+            new object[] { VolumeConcentrationUnit.MillilitersPerLiter },
+            new object[] { VolumeConcentrationUnit.MillilitersPerMililiter },
+            new object[] { VolumeConcentrationUnit.NanolitersPerLiter },
+            new object[] { VolumeConcentrationUnit.NanolitersPerMililiter },
+            new object[] { VolumeConcentrationUnit.PartPerBillion },
+            new object[] { VolumeConcentrationUnit.PartPerMillion },
+            new object[] { VolumeConcentrationUnit.PartPerThousand },
+            new object[] { VolumeConcentrationUnit.PartPerTrillion },
+            new object[] { VolumeConcentrationUnit.Percent },
+            new object[] { VolumeConcentrationUnit.PicolitersPerLiter },
+            new object[] { VolumeConcentrationUnit.PicolitersPerMililiter },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -403,26 +428,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(VolumeConcentrationUnit.CentilitersPerLiter)]
-        [InlineData(VolumeConcentrationUnit.CentilitersPerMililiter)]
-        [InlineData(VolumeConcentrationUnit.DecilitersPerLiter)]
-        [InlineData(VolumeConcentrationUnit.DecilitersPerMililiter)]
-        [InlineData(VolumeConcentrationUnit.DecimalFraction)]
-        [InlineData(VolumeConcentrationUnit.LitersPerLiter)]
-        [InlineData(VolumeConcentrationUnit.LitersPerMililiter)]
-        [InlineData(VolumeConcentrationUnit.MicrolitersPerLiter)]
-        [InlineData(VolumeConcentrationUnit.MicrolitersPerMililiter)]
-        [InlineData(VolumeConcentrationUnit.MillilitersPerLiter)]
-        [InlineData(VolumeConcentrationUnit.MillilitersPerMililiter)]
-        [InlineData(VolumeConcentrationUnit.NanolitersPerLiter)]
-        [InlineData(VolumeConcentrationUnit.NanolitersPerMililiter)]
-        [InlineData(VolumeConcentrationUnit.PartPerBillion)]
-        [InlineData(VolumeConcentrationUnit.PartPerMillion)]
-        [InlineData(VolumeConcentrationUnit.PartPerThousand)]
-        [InlineData(VolumeConcentrationUnit.PartPerTrillion)]
-        [InlineData(VolumeConcentrationUnit.Percent)]
-        [InlineData(VolumeConcentrationUnit.PicolitersPerLiter)]
-        [InlineData(VolumeConcentrationUnit.PicolitersPerMililiter)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(VolumeConcentrationUnit unit)
         {
             var quantity = VolumeConcentration.From(3.0, unit);

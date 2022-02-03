@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -56,6 +57,18 @@ namespace UnitsNet.Tests
         protected virtual double NanomolesPerLiterTolerance { get { return 1e-5; } }
         protected virtual double PicomolesPerLiterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { MolarityUnit.CentimolesPerLiter },
+            new object[] { MolarityUnit.DecimolesPerLiter },
+            new object[] { MolarityUnit.MicromolesPerLiter },
+            new object[] { MolarityUnit.MillimolesPerLiter },
+            new object[] { MolarityUnit.MolesPerCubicMeter },
+            new object[] { MolarityUnit.MolesPerLiter },
+            new object[] { MolarityUnit.NanomolesPerLiter },
+            new object[] { MolarityUnit.PicomolesPerLiter },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -259,14 +272,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(MolarityUnit.CentimolesPerLiter)]
-        [InlineData(MolarityUnit.DecimolesPerLiter)]
-        [InlineData(MolarityUnit.MicromolesPerLiter)]
-        [InlineData(MolarityUnit.MillimolesPerLiter)]
-        [InlineData(MolarityUnit.MolesPerCubicMeter)]
-        [InlineData(MolarityUnit.MolesPerLiter)]
-        [InlineData(MolarityUnit.NanomolesPerLiter)]
-        [InlineData(MolarityUnit.PicomolesPerLiter)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(MolarityUnit unit)
         {
             var quantity = Molarity.From(3.0, unit);

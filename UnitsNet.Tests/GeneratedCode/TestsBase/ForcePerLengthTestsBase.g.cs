@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -116,6 +117,48 @@ namespace UnitsNet.Tests
         protected virtual double TonnesForcePerMeterTolerance { get { return 1e-5; } }
         protected virtual double TonnesForcePerMillimeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ForcePerLengthUnit.CentinewtonPerCentimeter },
+            new object[] { ForcePerLengthUnit.CentinewtonPerMeter },
+            new object[] { ForcePerLengthUnit.CentinewtonPerMillimeter },
+            new object[] { ForcePerLengthUnit.DecanewtonPerCentimeter },
+            new object[] { ForcePerLengthUnit.DecanewtonPerMeter },
+            new object[] { ForcePerLengthUnit.DecanewtonPerMillimeter },
+            new object[] { ForcePerLengthUnit.DecinewtonPerCentimeter },
+            new object[] { ForcePerLengthUnit.DecinewtonPerMeter },
+            new object[] { ForcePerLengthUnit.DecinewtonPerMillimeter },
+            new object[] { ForcePerLengthUnit.KilogramForcePerCentimeter },
+            new object[] { ForcePerLengthUnit.KilogramForcePerMeter },
+            new object[] { ForcePerLengthUnit.KilogramForcePerMillimeter },
+            new object[] { ForcePerLengthUnit.KilonewtonPerCentimeter },
+            new object[] { ForcePerLengthUnit.KilonewtonPerMeter },
+            new object[] { ForcePerLengthUnit.KilonewtonPerMillimeter },
+            new object[] { ForcePerLengthUnit.KilopoundForcePerFoot },
+            new object[] { ForcePerLengthUnit.KilopoundForcePerInch },
+            new object[] { ForcePerLengthUnit.MeganewtonPerCentimeter },
+            new object[] { ForcePerLengthUnit.MeganewtonPerMeter },
+            new object[] { ForcePerLengthUnit.MeganewtonPerMillimeter },
+            new object[] { ForcePerLengthUnit.MicronewtonPerCentimeter },
+            new object[] { ForcePerLengthUnit.MicronewtonPerMeter },
+            new object[] { ForcePerLengthUnit.MicronewtonPerMillimeter },
+            new object[] { ForcePerLengthUnit.MillinewtonPerCentimeter },
+            new object[] { ForcePerLengthUnit.MillinewtonPerMeter },
+            new object[] { ForcePerLengthUnit.MillinewtonPerMillimeter },
+            new object[] { ForcePerLengthUnit.NanonewtonPerCentimeter },
+            new object[] { ForcePerLengthUnit.NanonewtonPerMeter },
+            new object[] { ForcePerLengthUnit.NanonewtonPerMillimeter },
+            new object[] { ForcePerLengthUnit.NewtonPerCentimeter },
+            new object[] { ForcePerLengthUnit.NewtonPerMeter },
+            new object[] { ForcePerLengthUnit.NewtonPerMillimeter },
+            new object[] { ForcePerLengthUnit.PoundForcePerFoot },
+            new object[] { ForcePerLengthUnit.PoundForcePerInch },
+            new object[] { ForcePerLengthUnit.PoundForcePerYard },
+            new object[] { ForcePerLengthUnit.TonneForcePerCentimeter },
+            new object[] { ForcePerLengthUnit.TonneForcePerMeter },
+            new object[] { ForcePerLengthUnit.TonneForcePerMillimeter },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -619,44 +662,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(ForcePerLengthUnit.CentinewtonPerCentimeter)]
-        [InlineData(ForcePerLengthUnit.CentinewtonPerMeter)]
-        [InlineData(ForcePerLengthUnit.CentinewtonPerMillimeter)]
-        [InlineData(ForcePerLengthUnit.DecanewtonPerCentimeter)]
-        [InlineData(ForcePerLengthUnit.DecanewtonPerMeter)]
-        [InlineData(ForcePerLengthUnit.DecanewtonPerMillimeter)]
-        [InlineData(ForcePerLengthUnit.DecinewtonPerCentimeter)]
-        [InlineData(ForcePerLengthUnit.DecinewtonPerMeter)]
-        [InlineData(ForcePerLengthUnit.DecinewtonPerMillimeter)]
-        [InlineData(ForcePerLengthUnit.KilogramForcePerCentimeter)]
-        [InlineData(ForcePerLengthUnit.KilogramForcePerMeter)]
-        [InlineData(ForcePerLengthUnit.KilogramForcePerMillimeter)]
-        [InlineData(ForcePerLengthUnit.KilonewtonPerCentimeter)]
-        [InlineData(ForcePerLengthUnit.KilonewtonPerMeter)]
-        [InlineData(ForcePerLengthUnit.KilonewtonPerMillimeter)]
-        [InlineData(ForcePerLengthUnit.KilopoundForcePerFoot)]
-        [InlineData(ForcePerLengthUnit.KilopoundForcePerInch)]
-        [InlineData(ForcePerLengthUnit.MeganewtonPerCentimeter)]
-        [InlineData(ForcePerLengthUnit.MeganewtonPerMeter)]
-        [InlineData(ForcePerLengthUnit.MeganewtonPerMillimeter)]
-        [InlineData(ForcePerLengthUnit.MicronewtonPerCentimeter)]
-        [InlineData(ForcePerLengthUnit.MicronewtonPerMeter)]
-        [InlineData(ForcePerLengthUnit.MicronewtonPerMillimeter)]
-        [InlineData(ForcePerLengthUnit.MillinewtonPerCentimeter)]
-        [InlineData(ForcePerLengthUnit.MillinewtonPerMeter)]
-        [InlineData(ForcePerLengthUnit.MillinewtonPerMillimeter)]
-        [InlineData(ForcePerLengthUnit.NanonewtonPerCentimeter)]
-        [InlineData(ForcePerLengthUnit.NanonewtonPerMeter)]
-        [InlineData(ForcePerLengthUnit.NanonewtonPerMillimeter)]
-        [InlineData(ForcePerLengthUnit.NewtonPerCentimeter)]
-        [InlineData(ForcePerLengthUnit.NewtonPerMeter)]
-        [InlineData(ForcePerLengthUnit.NewtonPerMillimeter)]
-        [InlineData(ForcePerLengthUnit.PoundForcePerFoot)]
-        [InlineData(ForcePerLengthUnit.PoundForcePerInch)]
-        [InlineData(ForcePerLengthUnit.PoundForcePerYard)]
-        [InlineData(ForcePerLengthUnit.TonneForcePerCentimeter)]
-        [InlineData(ForcePerLengthUnit.TonneForcePerMeter)]
-        [InlineData(ForcePerLengthUnit.TonneForcePerMillimeter)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(ForcePerLengthUnit unit)
         {
             var quantity = ForcePerLength.From(3.0, unit);

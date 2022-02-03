@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -60,6 +61,20 @@ namespace UnitsNet.Tests
         protected virtual double MillidegreesCelsiusTolerance { get { return 1e-5; } }
         protected virtual double SolarTemperaturesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { TemperatureUnit.DegreeCelsius },
+            new object[] { TemperatureUnit.DegreeDelisle },
+            new object[] { TemperatureUnit.DegreeFahrenheit },
+            new object[] { TemperatureUnit.DegreeNewton },
+            new object[] { TemperatureUnit.DegreeRankine },
+            new object[] { TemperatureUnit.DegreeReaumur },
+            new object[] { TemperatureUnit.DegreeRoemer },
+            new object[] { TemperatureUnit.Kelvin },
+            new object[] { TemperatureUnit.MillidegreeCelsius },
+            new object[] { TemperatureUnit.SolarTemperature },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -283,16 +298,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(TemperatureUnit.DegreeCelsius)]
-        [InlineData(TemperatureUnit.DegreeDelisle)]
-        [InlineData(TemperatureUnit.DegreeFahrenheit)]
-        [InlineData(TemperatureUnit.DegreeNewton)]
-        [InlineData(TemperatureUnit.DegreeRankine)]
-        [InlineData(TemperatureUnit.DegreeReaumur)]
-        [InlineData(TemperatureUnit.DegreeRoemer)]
-        [InlineData(TemperatureUnit.Kelvin)]
-        [InlineData(TemperatureUnit.MillidegreeCelsius)]
-        [InlineData(TemperatureUnit.SolarTemperature)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(TemperatureUnit unit)
         {
             var quantity = Temperature.From(3.0, unit);

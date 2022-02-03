@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -52,6 +53,16 @@ namespace UnitsNet.Tests
         protected virtual double MetersToTheSixthTolerance { get { return 1e-5; } }
         protected virtual double MillimetersToTheSixthTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { WarpingMomentOfInertiaUnit.CentimeterToTheSixth },
+            new object[] { WarpingMomentOfInertiaUnit.DecimeterToTheSixth },
+            new object[] { WarpingMomentOfInertiaUnit.FootToTheSixth },
+            new object[] { WarpingMomentOfInertiaUnit.InchToTheSixth },
+            new object[] { WarpingMomentOfInertiaUnit.MeterToTheSixth },
+            new object[] { WarpingMomentOfInertiaUnit.MillimeterToTheSixth },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -235,12 +246,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(WarpingMomentOfInertiaUnit.CentimeterToTheSixth)]
-        [InlineData(WarpingMomentOfInertiaUnit.DecimeterToTheSixth)]
-        [InlineData(WarpingMomentOfInertiaUnit.FootToTheSixth)]
-        [InlineData(WarpingMomentOfInertiaUnit.InchToTheSixth)]
-        [InlineData(WarpingMomentOfInertiaUnit.MeterToTheSixth)]
-        [InlineData(WarpingMomentOfInertiaUnit.MillimeterToTheSixth)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(WarpingMomentOfInertiaUnit unit)
         {
             var quantity = WarpingMomentOfInertia.From(3.0, unit);

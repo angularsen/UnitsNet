@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -52,6 +53,16 @@ namespace UnitsNet.Tests
         protected virtual double MilliohmsTolerance { get { return 1e-5; } }
         protected virtual double OhmsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ElectricResistanceUnit.Gigaohm },
+            new object[] { ElectricResistanceUnit.Kiloohm },
+            new object[] { ElectricResistanceUnit.Megaohm },
+            new object[] { ElectricResistanceUnit.Microohm },
+            new object[] { ElectricResistanceUnit.Milliohm },
+            new object[] { ElectricResistanceUnit.Ohm },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -235,12 +246,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(ElectricResistanceUnit.Gigaohm)]
-        [InlineData(ElectricResistanceUnit.Kiloohm)]
-        [InlineData(ElectricResistanceUnit.Megaohm)]
-        [InlineData(ElectricResistanceUnit.Microohm)]
-        [InlineData(ElectricResistanceUnit.Milliohm)]
-        [InlineData(ElectricResistanceUnit.Ohm)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(ElectricResistanceUnit unit)
         {
             var quantity = ElectricResistance.From(3.0, unit);

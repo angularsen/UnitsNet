@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -90,6 +91,35 @@ namespace UnitsNet.Tests
         protected virtual double TerawattsTolerance { get { return 1e-5; } }
         protected virtual double WattsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { PowerUnit.BoilerHorsepower },
+            new object[] { PowerUnit.BritishThermalUnitPerHour },
+            new object[] { PowerUnit.Decawatt },
+            new object[] { PowerUnit.Deciwatt },
+            new object[] { PowerUnit.ElectricalHorsepower },
+            new object[] { PowerUnit.Femtowatt },
+            new object[] { PowerUnit.GigajoulePerHour },
+            new object[] { PowerUnit.Gigawatt },
+            new object[] { PowerUnit.HydraulicHorsepower },
+            new object[] { PowerUnit.JoulePerHour },
+            new object[] { PowerUnit.KilobritishThermalUnitPerHour },
+            new object[] { PowerUnit.KilojoulePerHour },
+            new object[] { PowerUnit.Kilowatt },
+            new object[] { PowerUnit.MechanicalHorsepower },
+            new object[] { PowerUnit.MegajoulePerHour },
+            new object[] { PowerUnit.Megawatt },
+            new object[] { PowerUnit.MetricHorsepower },
+            new object[] { PowerUnit.Microwatt },
+            new object[] { PowerUnit.MillijoulePerHour },
+            new object[] { PowerUnit.Milliwatt },
+            new object[] { PowerUnit.Nanowatt },
+            new object[] { PowerUnit.Petawatt },
+            new object[] { PowerUnit.Picowatt },
+            new object[] { PowerUnit.Terawatt },
+            new object[] { PowerUnit.Watt },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -438,31 +468,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(PowerUnit.BoilerHorsepower)]
-        [InlineData(PowerUnit.BritishThermalUnitPerHour)]
-        [InlineData(PowerUnit.Decawatt)]
-        [InlineData(PowerUnit.Deciwatt)]
-        [InlineData(PowerUnit.ElectricalHorsepower)]
-        [InlineData(PowerUnit.Femtowatt)]
-        [InlineData(PowerUnit.GigajoulePerHour)]
-        [InlineData(PowerUnit.Gigawatt)]
-        [InlineData(PowerUnit.HydraulicHorsepower)]
-        [InlineData(PowerUnit.JoulePerHour)]
-        [InlineData(PowerUnit.KilobritishThermalUnitPerHour)]
-        [InlineData(PowerUnit.KilojoulePerHour)]
-        [InlineData(PowerUnit.Kilowatt)]
-        [InlineData(PowerUnit.MechanicalHorsepower)]
-        [InlineData(PowerUnit.MegajoulePerHour)]
-        [InlineData(PowerUnit.Megawatt)]
-        [InlineData(PowerUnit.MetricHorsepower)]
-        [InlineData(PowerUnit.Microwatt)]
-        [InlineData(PowerUnit.MillijoulePerHour)]
-        [InlineData(PowerUnit.Milliwatt)]
-        [InlineData(PowerUnit.Nanowatt)]
-        [InlineData(PowerUnit.Petawatt)]
-        [InlineData(PowerUnit.Picowatt)]
-        [InlineData(PowerUnit.Terawatt)]
-        [InlineData(PowerUnit.Watt)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(PowerUnit unit)
         {
             var quantity = Power.From(3.0, unit);

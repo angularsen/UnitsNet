@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -58,6 +59,19 @@ namespace UnitsNet.Tests
         protected virtual double MegajoulesPerKilogramDegreeCelsiusTolerance { get { return 1e-5; } }
         protected virtual double MegajoulesPerKilogramKelvinTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { SpecificEntropyUnit.BtuPerPoundFahrenheit },
+            new object[] { SpecificEntropyUnit.CaloriePerGramKelvin },
+            new object[] { SpecificEntropyUnit.JoulePerKilogramDegreeCelsius },
+            new object[] { SpecificEntropyUnit.JoulePerKilogramKelvin },
+            new object[] { SpecificEntropyUnit.KilocaloriePerGramKelvin },
+            new object[] { SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius },
+            new object[] { SpecificEntropyUnit.KilojoulePerKilogramKelvin },
+            new object[] { SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius },
+            new object[] { SpecificEntropyUnit.MegajoulePerKilogramKelvin },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -271,15 +285,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(SpecificEntropyUnit.BtuPerPoundFahrenheit)]
-        [InlineData(SpecificEntropyUnit.CaloriePerGramKelvin)]
-        [InlineData(SpecificEntropyUnit.JoulePerKilogramDegreeCelsius)]
-        [InlineData(SpecificEntropyUnit.JoulePerKilogramKelvin)]
-        [InlineData(SpecificEntropyUnit.KilocaloriePerGramKelvin)]
-        [InlineData(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius)]
-        [InlineData(SpecificEntropyUnit.KilojoulePerKilogramKelvin)]
-        [InlineData(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius)]
-        [InlineData(SpecificEntropyUnit.MegajoulePerKilogramKelvin)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(SpecificEntropyUnit unit)
         {
             var quantity = SpecificEntropy.From(3.0, unit);

@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -56,6 +57,18 @@ namespace UnitsNet.Tests
         protected virtual double NanoamperesTolerance { get { return 1e-5; } }
         protected virtual double PicoamperesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ElectricCurrentUnit.Ampere },
+            new object[] { ElectricCurrentUnit.Centiampere },
+            new object[] { ElectricCurrentUnit.Kiloampere },
+            new object[] { ElectricCurrentUnit.Megaampere },
+            new object[] { ElectricCurrentUnit.Microampere },
+            new object[] { ElectricCurrentUnit.Milliampere },
+            new object[] { ElectricCurrentUnit.Nanoampere },
+            new object[] { ElectricCurrentUnit.Picoampere },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -259,14 +272,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(ElectricCurrentUnit.Ampere)]
-        [InlineData(ElectricCurrentUnit.Centiampere)]
-        [InlineData(ElectricCurrentUnit.Kiloampere)]
-        [InlineData(ElectricCurrentUnit.Megaampere)]
-        [InlineData(ElectricCurrentUnit.Microampere)]
-        [InlineData(ElectricCurrentUnit.Milliampere)]
-        [InlineData(ElectricCurrentUnit.Nanoampere)]
-        [InlineData(ElectricCurrentUnit.Picoampere)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(ElectricCurrentUnit unit)
         {
             var quantity = ElectricCurrent.From(3.0, unit);

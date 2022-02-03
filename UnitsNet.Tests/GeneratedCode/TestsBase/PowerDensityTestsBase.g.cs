@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -128,6 +129,54 @@ namespace UnitsNet.Tests
         protected virtual double WattsPerCubicMeterTolerance { get { return 1e-5; } }
         protected virtual double WattsPerLiterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { PowerDensityUnit.DecawattPerCubicFoot },
+            new object[] { PowerDensityUnit.DecawattPerCubicInch },
+            new object[] { PowerDensityUnit.DecawattPerCubicMeter },
+            new object[] { PowerDensityUnit.DecawattPerLiter },
+            new object[] { PowerDensityUnit.DeciwattPerCubicFoot },
+            new object[] { PowerDensityUnit.DeciwattPerCubicInch },
+            new object[] { PowerDensityUnit.DeciwattPerCubicMeter },
+            new object[] { PowerDensityUnit.DeciwattPerLiter },
+            new object[] { PowerDensityUnit.GigawattPerCubicFoot },
+            new object[] { PowerDensityUnit.GigawattPerCubicInch },
+            new object[] { PowerDensityUnit.GigawattPerCubicMeter },
+            new object[] { PowerDensityUnit.GigawattPerLiter },
+            new object[] { PowerDensityUnit.KilowattPerCubicFoot },
+            new object[] { PowerDensityUnit.KilowattPerCubicInch },
+            new object[] { PowerDensityUnit.KilowattPerCubicMeter },
+            new object[] { PowerDensityUnit.KilowattPerLiter },
+            new object[] { PowerDensityUnit.MegawattPerCubicFoot },
+            new object[] { PowerDensityUnit.MegawattPerCubicInch },
+            new object[] { PowerDensityUnit.MegawattPerCubicMeter },
+            new object[] { PowerDensityUnit.MegawattPerLiter },
+            new object[] { PowerDensityUnit.MicrowattPerCubicFoot },
+            new object[] { PowerDensityUnit.MicrowattPerCubicInch },
+            new object[] { PowerDensityUnit.MicrowattPerCubicMeter },
+            new object[] { PowerDensityUnit.MicrowattPerLiter },
+            new object[] { PowerDensityUnit.MilliwattPerCubicFoot },
+            new object[] { PowerDensityUnit.MilliwattPerCubicInch },
+            new object[] { PowerDensityUnit.MilliwattPerCubicMeter },
+            new object[] { PowerDensityUnit.MilliwattPerLiter },
+            new object[] { PowerDensityUnit.NanowattPerCubicFoot },
+            new object[] { PowerDensityUnit.NanowattPerCubicInch },
+            new object[] { PowerDensityUnit.NanowattPerCubicMeter },
+            new object[] { PowerDensityUnit.NanowattPerLiter },
+            new object[] { PowerDensityUnit.PicowattPerCubicFoot },
+            new object[] { PowerDensityUnit.PicowattPerCubicInch },
+            new object[] { PowerDensityUnit.PicowattPerCubicMeter },
+            new object[] { PowerDensityUnit.PicowattPerLiter },
+            new object[] { PowerDensityUnit.TerawattPerCubicFoot },
+            new object[] { PowerDensityUnit.TerawattPerCubicInch },
+            new object[] { PowerDensityUnit.TerawattPerCubicMeter },
+            new object[] { PowerDensityUnit.TerawattPerLiter },
+            new object[] { PowerDensityUnit.WattPerCubicFoot },
+            new object[] { PowerDensityUnit.WattPerCubicInch },
+            new object[] { PowerDensityUnit.WattPerCubicMeter },
+            new object[] { PowerDensityUnit.WattPerLiter },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -691,50 +740,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(PowerDensityUnit.DecawattPerCubicFoot)]
-        [InlineData(PowerDensityUnit.DecawattPerCubicInch)]
-        [InlineData(PowerDensityUnit.DecawattPerCubicMeter)]
-        [InlineData(PowerDensityUnit.DecawattPerLiter)]
-        [InlineData(PowerDensityUnit.DeciwattPerCubicFoot)]
-        [InlineData(PowerDensityUnit.DeciwattPerCubicInch)]
-        [InlineData(PowerDensityUnit.DeciwattPerCubicMeter)]
-        [InlineData(PowerDensityUnit.DeciwattPerLiter)]
-        [InlineData(PowerDensityUnit.GigawattPerCubicFoot)]
-        [InlineData(PowerDensityUnit.GigawattPerCubicInch)]
-        [InlineData(PowerDensityUnit.GigawattPerCubicMeter)]
-        [InlineData(PowerDensityUnit.GigawattPerLiter)]
-        [InlineData(PowerDensityUnit.KilowattPerCubicFoot)]
-        [InlineData(PowerDensityUnit.KilowattPerCubicInch)]
-        [InlineData(PowerDensityUnit.KilowattPerCubicMeter)]
-        [InlineData(PowerDensityUnit.KilowattPerLiter)]
-        [InlineData(PowerDensityUnit.MegawattPerCubicFoot)]
-        [InlineData(PowerDensityUnit.MegawattPerCubicInch)]
-        [InlineData(PowerDensityUnit.MegawattPerCubicMeter)]
-        [InlineData(PowerDensityUnit.MegawattPerLiter)]
-        [InlineData(PowerDensityUnit.MicrowattPerCubicFoot)]
-        [InlineData(PowerDensityUnit.MicrowattPerCubicInch)]
-        [InlineData(PowerDensityUnit.MicrowattPerCubicMeter)]
-        [InlineData(PowerDensityUnit.MicrowattPerLiter)]
-        [InlineData(PowerDensityUnit.MilliwattPerCubicFoot)]
-        [InlineData(PowerDensityUnit.MilliwattPerCubicInch)]
-        [InlineData(PowerDensityUnit.MilliwattPerCubicMeter)]
-        [InlineData(PowerDensityUnit.MilliwattPerLiter)]
-        [InlineData(PowerDensityUnit.NanowattPerCubicFoot)]
-        [InlineData(PowerDensityUnit.NanowattPerCubicInch)]
-        [InlineData(PowerDensityUnit.NanowattPerCubicMeter)]
-        [InlineData(PowerDensityUnit.NanowattPerLiter)]
-        [InlineData(PowerDensityUnit.PicowattPerCubicFoot)]
-        [InlineData(PowerDensityUnit.PicowattPerCubicInch)]
-        [InlineData(PowerDensityUnit.PicowattPerCubicMeter)]
-        [InlineData(PowerDensityUnit.PicowattPerLiter)]
-        [InlineData(PowerDensityUnit.TerawattPerCubicFoot)]
-        [InlineData(PowerDensityUnit.TerawattPerCubicInch)]
-        [InlineData(PowerDensityUnit.TerawattPerCubicMeter)]
-        [InlineData(PowerDensityUnit.TerawattPerLiter)]
-        [InlineData(PowerDensityUnit.WattPerCubicFoot)]
-        [InlineData(PowerDensityUnit.WattPerCubicInch)]
-        [InlineData(PowerDensityUnit.WattPerCubicMeter)]
-        [InlineData(PowerDensityUnit.WattPerLiter)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(PowerDensityUnit unit)
         {
             var quantity = PowerDensity.From(3.0, unit);

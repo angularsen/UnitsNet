@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -54,6 +55,17 @@ namespace UnitsNet.Tests
         protected virtual double LitersPerMillimeterTolerance { get { return 1e-5; } }
         protected virtual double OilBarrelsPerFootTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { VolumePerLengthUnit.CubicMeterPerMeter },
+            new object[] { VolumePerLengthUnit.CubicYardPerFoot },
+            new object[] { VolumePerLengthUnit.CubicYardPerUsSurveyFoot },
+            new object[] { VolumePerLengthUnit.LiterPerKilometer },
+            new object[] { VolumePerLengthUnit.LiterPerMeter },
+            new object[] { VolumePerLengthUnit.LiterPerMillimeter },
+            new object[] { VolumePerLengthUnit.OilBarrelPerFoot },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -247,13 +259,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(VolumePerLengthUnit.CubicMeterPerMeter)]
-        [InlineData(VolumePerLengthUnit.CubicYardPerFoot)]
-        [InlineData(VolumePerLengthUnit.CubicYardPerUsSurveyFoot)]
-        [InlineData(VolumePerLengthUnit.LiterPerKilometer)]
-        [InlineData(VolumePerLengthUnit.LiterPerMeter)]
-        [InlineData(VolumePerLengthUnit.LiterPerMillimeter)]
-        [InlineData(VolumePerLengthUnit.OilBarrelPerFoot)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(VolumePerLengthUnit unit)
         {
             var quantity = VolumePerLength.From(3.0, unit);

@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -48,6 +49,14 @@ namespace UnitsNet.Tests
         protected virtual double MilesPerUkGallonTolerance { get { return 1e-5; } }
         protected virtual double MilesPerUsGallonTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { FuelEfficiencyUnit.KilometerPerLiter },
+            new object[] { FuelEfficiencyUnit.LiterPer100Kilometers },
+            new object[] { FuelEfficiencyUnit.MilePerUkGallon },
+            new object[] { FuelEfficiencyUnit.MilePerUsGallon },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -211,10 +220,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(FuelEfficiencyUnit.KilometerPerLiter)]
-        [InlineData(FuelEfficiencyUnit.LiterPer100Kilometers)]
-        [InlineData(FuelEfficiencyUnit.MilePerUkGallon)]
-        [InlineData(FuelEfficiencyUnit.MilePerUsGallon)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(FuelEfficiencyUnit unit)
         {
             var quantity = FuelEfficiency.From(3.0, unit);

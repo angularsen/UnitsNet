@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -46,6 +47,13 @@ namespace UnitsNet.Tests
         protected virtual double MillisiemensTolerance { get { return 1e-5; } }
         protected virtual double SiemensTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ElectricConductanceUnit.Microsiemens },
+            new object[] { ElectricConductanceUnit.Millisiemens },
+            new object[] { ElectricConductanceUnit.Siemens },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -199,9 +207,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(ElectricConductanceUnit.Microsiemens)]
-        [InlineData(ElectricConductanceUnit.Millisiemens)]
-        [InlineData(ElectricConductanceUnit.Siemens)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(ElectricConductanceUnit unit)
         {
             var quantity = ElectricConductance.From(3.0, unit);

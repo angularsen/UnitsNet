@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -54,6 +55,17 @@ namespace UnitsNet.Tests
         protected virtual double KilojoulesPerKelvinTolerance { get { return 1e-5; } }
         protected virtual double MegajoulesPerKelvinTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { EntropyUnit.CaloriePerKelvin },
+            new object[] { EntropyUnit.JoulePerDegreeCelsius },
+            new object[] { EntropyUnit.JoulePerKelvin },
+            new object[] { EntropyUnit.KilocaloriePerKelvin },
+            new object[] { EntropyUnit.KilojoulePerDegreeCelsius },
+            new object[] { EntropyUnit.KilojoulePerKelvin },
+            new object[] { EntropyUnit.MegajoulePerKelvin },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -247,13 +259,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(EntropyUnit.CaloriePerKelvin)]
-        [InlineData(EntropyUnit.JoulePerDegreeCelsius)]
-        [InlineData(EntropyUnit.JoulePerKelvin)]
-        [InlineData(EntropyUnit.KilocaloriePerKelvin)]
-        [InlineData(EntropyUnit.KilojoulePerDegreeCelsius)]
-        [InlineData(EntropyUnit.KilojoulePerKelvin)]
-        [InlineData(EntropyUnit.MegajoulePerKelvin)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(EntropyUnit unit)
         {
             var quantity = Entropy.From(3.0, unit);

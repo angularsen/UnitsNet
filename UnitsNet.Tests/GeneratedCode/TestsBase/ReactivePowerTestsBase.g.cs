@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -48,6 +49,14 @@ namespace UnitsNet.Tests
         protected virtual double MegavoltamperesReactiveTolerance { get { return 1e-5; } }
         protected virtual double VoltamperesReactiveTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ReactivePowerUnit.GigavoltampereReactive },
+            new object[] { ReactivePowerUnit.KilovoltampereReactive },
+            new object[] { ReactivePowerUnit.MegavoltampereReactive },
+            new object[] { ReactivePowerUnit.VoltampereReactive },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -211,10 +220,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(ReactivePowerUnit.GigavoltampereReactive)]
-        [InlineData(ReactivePowerUnit.KilovoltampereReactive)]
-        [InlineData(ReactivePowerUnit.MegavoltampereReactive)]
-        [InlineData(ReactivePowerUnit.VoltampereReactive)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(ReactivePowerUnit unit)
         {
             var quantity = ReactivePower.From(3.0, unit);

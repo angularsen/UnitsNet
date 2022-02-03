@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -52,6 +53,16 @@ namespace UnitsNet.Tests
         protected virtual double NanoteslasTolerance { get { return 1e-5; } }
         protected virtual double TeslasTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { MagneticFieldUnit.Gauss },
+            new object[] { MagneticFieldUnit.Microtesla },
+            new object[] { MagneticFieldUnit.Milligauss },
+            new object[] { MagneticFieldUnit.Millitesla },
+            new object[] { MagneticFieldUnit.Nanotesla },
+            new object[] { MagneticFieldUnit.Tesla },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -235,12 +246,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(MagneticFieldUnit.Gauss)]
-        [InlineData(MagneticFieldUnit.Microtesla)]
-        [InlineData(MagneticFieldUnit.Milligauss)]
-        [InlineData(MagneticFieldUnit.Millitesla)]
-        [InlineData(MagneticFieldUnit.Nanotesla)]
-        [InlineData(MagneticFieldUnit.Tesla)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(MagneticFieldUnit unit)
         {
             var quantity = MagneticField.From(3.0, unit);

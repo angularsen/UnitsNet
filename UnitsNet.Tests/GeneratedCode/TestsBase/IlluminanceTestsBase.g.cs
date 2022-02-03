@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -48,6 +49,14 @@ namespace UnitsNet.Tests
         protected virtual double MegaluxTolerance { get { return 1e-5; } }
         protected virtual double MilliluxTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { IlluminanceUnit.Kilolux },
+            new object[] { IlluminanceUnit.Lux },
+            new object[] { IlluminanceUnit.Megalux },
+            new object[] { IlluminanceUnit.Millilux },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -211,10 +220,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(IlluminanceUnit.Kilolux)]
-        [InlineData(IlluminanceUnit.Lux)]
-        [InlineData(IlluminanceUnit.Megalux)]
-        [InlineData(IlluminanceUnit.Millilux)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(IlluminanceUnit unit)
         {
             var quantity = Illuminance.From(3.0, unit);

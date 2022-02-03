@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -62,6 +63,21 @@ namespace UnitsNet.Tests
         protected virtual double RadiansPerSecondTolerance { get { return 1e-5; } }
         protected virtual double TerahertzTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { FrequencyUnit.BeatPerMinute },
+            new object[] { FrequencyUnit.BUnit },
+            new object[] { FrequencyUnit.CyclePerHour },
+            new object[] { FrequencyUnit.CyclePerMinute },
+            new object[] { FrequencyUnit.Gigahertz },
+            new object[] { FrequencyUnit.Hertz },
+            new object[] { FrequencyUnit.Kilohertz },
+            new object[] { FrequencyUnit.Megahertz },
+            new object[] { FrequencyUnit.PerSecond },
+            new object[] { FrequencyUnit.RadianPerSecond },
+            new object[] { FrequencyUnit.Terahertz },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -295,17 +311,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(FrequencyUnit.BeatPerMinute)]
-        [InlineData(FrequencyUnit.BUnit)]
-        [InlineData(FrequencyUnit.CyclePerHour)]
-        [InlineData(FrequencyUnit.CyclePerMinute)]
-        [InlineData(FrequencyUnit.Gigahertz)]
-        [InlineData(FrequencyUnit.Hertz)]
-        [InlineData(FrequencyUnit.Kilohertz)]
-        [InlineData(FrequencyUnit.Megahertz)]
-        [InlineData(FrequencyUnit.PerSecond)]
-        [InlineData(FrequencyUnit.RadianPerSecond)]
-        [InlineData(FrequencyUnit.Terahertz)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(FrequencyUnit unit)
         {
             var quantity = Frequency.From(3.0, unit);

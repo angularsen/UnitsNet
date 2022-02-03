@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -60,6 +61,20 @@ namespace UnitsNet.Tests
         protected virtual double PoundsPerFootSecondTolerance { get { return 1e-5; } }
         protected virtual double ReynsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { DynamicViscosityUnit.Centipoise },
+            new object[] { DynamicViscosityUnit.MicropascalSecond },
+            new object[] { DynamicViscosityUnit.MillipascalSecond },
+            new object[] { DynamicViscosityUnit.NewtonSecondPerMeterSquared },
+            new object[] { DynamicViscosityUnit.PascalSecond },
+            new object[] { DynamicViscosityUnit.Poise },
+            new object[] { DynamicViscosityUnit.PoundForceSecondPerSquareFoot },
+            new object[] { DynamicViscosityUnit.PoundForceSecondPerSquareInch },
+            new object[] { DynamicViscosityUnit.PoundPerFootSecond },
+            new object[] { DynamicViscosityUnit.Reyn },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -283,16 +298,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(DynamicViscosityUnit.Centipoise)]
-        [InlineData(DynamicViscosityUnit.MicropascalSecond)]
-        [InlineData(DynamicViscosityUnit.MillipascalSecond)]
-        [InlineData(DynamicViscosityUnit.NewtonSecondPerMeterSquared)]
-        [InlineData(DynamicViscosityUnit.PascalSecond)]
-        [InlineData(DynamicViscosityUnit.Poise)]
-        [InlineData(DynamicViscosityUnit.PoundForceSecondPerSquareFoot)]
-        [InlineData(DynamicViscosityUnit.PoundForceSecondPerSquareInch)]
-        [InlineData(DynamicViscosityUnit.PoundPerFootSecond)]
-        [InlineData(DynamicViscosityUnit.Reyn)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(DynamicViscosityUnit unit)
         {
             var quantity = DynamicViscosity.From(3.0, unit);

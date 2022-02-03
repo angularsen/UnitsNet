@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -112,6 +113,46 @@ namespace UnitsNet.Tests
         protected virtual double WattDaysTolerance { get { return 1e-5; } }
         protected virtual double WattHoursTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { EnergyUnit.BritishThermalUnit },
+            new object[] { EnergyUnit.Calorie },
+            new object[] { EnergyUnit.DecathermEc },
+            new object[] { EnergyUnit.DecathermImperial },
+            new object[] { EnergyUnit.DecathermUs },
+            new object[] { EnergyUnit.ElectronVolt },
+            new object[] { EnergyUnit.Erg },
+            new object[] { EnergyUnit.FootPound },
+            new object[] { EnergyUnit.GigabritishThermalUnit },
+            new object[] { EnergyUnit.GigaelectronVolt },
+            new object[] { EnergyUnit.Gigajoule },
+            new object[] { EnergyUnit.GigawattDay },
+            new object[] { EnergyUnit.GigawattHour },
+            new object[] { EnergyUnit.HorsepowerHour },
+            new object[] { EnergyUnit.Joule },
+            new object[] { EnergyUnit.KilobritishThermalUnit },
+            new object[] { EnergyUnit.Kilocalorie },
+            new object[] { EnergyUnit.KiloelectronVolt },
+            new object[] { EnergyUnit.Kilojoule },
+            new object[] { EnergyUnit.KilowattDay },
+            new object[] { EnergyUnit.KilowattHour },
+            new object[] { EnergyUnit.MegabritishThermalUnit },
+            new object[] { EnergyUnit.Megacalorie },
+            new object[] { EnergyUnit.MegaelectronVolt },
+            new object[] { EnergyUnit.Megajoule },
+            new object[] { EnergyUnit.MegawattDay },
+            new object[] { EnergyUnit.MegawattHour },
+            new object[] { EnergyUnit.Millijoule },
+            new object[] { EnergyUnit.TeraelectronVolt },
+            new object[] { EnergyUnit.TerawattDay },
+            new object[] { EnergyUnit.TerawattHour },
+            new object[] { EnergyUnit.ThermEc },
+            new object[] { EnergyUnit.ThermImperial },
+            new object[] { EnergyUnit.ThermUs },
+            new object[] { EnergyUnit.WattDay },
+            new object[] { EnergyUnit.WattHour },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -595,42 +636,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(EnergyUnit.BritishThermalUnit)]
-        [InlineData(EnergyUnit.Calorie)]
-        [InlineData(EnergyUnit.DecathermEc)]
-        [InlineData(EnergyUnit.DecathermImperial)]
-        [InlineData(EnergyUnit.DecathermUs)]
-        [InlineData(EnergyUnit.ElectronVolt)]
-        [InlineData(EnergyUnit.Erg)]
-        [InlineData(EnergyUnit.FootPound)]
-        [InlineData(EnergyUnit.GigabritishThermalUnit)]
-        [InlineData(EnergyUnit.GigaelectronVolt)]
-        [InlineData(EnergyUnit.Gigajoule)]
-        [InlineData(EnergyUnit.GigawattDay)]
-        [InlineData(EnergyUnit.GigawattHour)]
-        [InlineData(EnergyUnit.HorsepowerHour)]
-        [InlineData(EnergyUnit.Joule)]
-        [InlineData(EnergyUnit.KilobritishThermalUnit)]
-        [InlineData(EnergyUnit.Kilocalorie)]
-        [InlineData(EnergyUnit.KiloelectronVolt)]
-        [InlineData(EnergyUnit.Kilojoule)]
-        [InlineData(EnergyUnit.KilowattDay)]
-        [InlineData(EnergyUnit.KilowattHour)]
-        [InlineData(EnergyUnit.MegabritishThermalUnit)]
-        [InlineData(EnergyUnit.Megacalorie)]
-        [InlineData(EnergyUnit.MegaelectronVolt)]
-        [InlineData(EnergyUnit.Megajoule)]
-        [InlineData(EnergyUnit.MegawattDay)]
-        [InlineData(EnergyUnit.MegawattHour)]
-        [InlineData(EnergyUnit.Millijoule)]
-        [InlineData(EnergyUnit.TeraelectronVolt)]
-        [InlineData(EnergyUnit.TerawattDay)]
-        [InlineData(EnergyUnit.TerawattHour)]
-        [InlineData(EnergyUnit.ThermEc)]
-        [InlineData(EnergyUnit.ThermImperial)]
-        [InlineData(EnergyUnit.ThermUs)]
-        [InlineData(EnergyUnit.WattDay)]
-        [InlineData(EnergyUnit.WattHour)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(EnergyUnit unit)
         {
             var quantity = Energy.From(3.0, unit);

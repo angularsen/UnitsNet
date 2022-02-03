@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -48,6 +49,14 @@ namespace UnitsNet.Tests
         protected virtual double MegavoltamperesTolerance { get { return 1e-5; } }
         protected virtual double VoltamperesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ApparentPowerUnit.Gigavoltampere },
+            new object[] { ApparentPowerUnit.Kilovoltampere },
+            new object[] { ApparentPowerUnit.Megavoltampere },
+            new object[] { ApparentPowerUnit.Voltampere },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -211,10 +220,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(ApparentPowerUnit.Gigavoltampere)]
-        [InlineData(ApparentPowerUnit.Kilovoltampere)]
-        [InlineData(ApparentPowerUnit.Megavoltampere)]
-        [InlineData(ApparentPowerUnit.Voltampere)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(ApparentPowerUnit unit)
         {
             var quantity = ApparentPower.From(3.0, unit);

@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -106,6 +107,43 @@ namespace UnitsNet.Tests
         protected virtual double TonnesPerDayTolerance { get { return 1e-5; } }
         protected virtual double TonnesPerHourTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { MassFlowUnit.CentigramPerDay },
+            new object[] { MassFlowUnit.CentigramPerSecond },
+            new object[] { MassFlowUnit.DecagramPerDay },
+            new object[] { MassFlowUnit.DecagramPerSecond },
+            new object[] { MassFlowUnit.DecigramPerDay },
+            new object[] { MassFlowUnit.DecigramPerSecond },
+            new object[] { MassFlowUnit.GramPerDay },
+            new object[] { MassFlowUnit.GramPerHour },
+            new object[] { MassFlowUnit.GramPerSecond },
+            new object[] { MassFlowUnit.HectogramPerDay },
+            new object[] { MassFlowUnit.HectogramPerSecond },
+            new object[] { MassFlowUnit.KilogramPerDay },
+            new object[] { MassFlowUnit.KilogramPerHour },
+            new object[] { MassFlowUnit.KilogramPerMinute },
+            new object[] { MassFlowUnit.KilogramPerSecond },
+            new object[] { MassFlowUnit.MegagramPerDay },
+            new object[] { MassFlowUnit.MegapoundPerDay },
+            new object[] { MassFlowUnit.MegapoundPerHour },
+            new object[] { MassFlowUnit.MegapoundPerMinute },
+            new object[] { MassFlowUnit.MegapoundPerSecond },
+            new object[] { MassFlowUnit.MicrogramPerDay },
+            new object[] { MassFlowUnit.MicrogramPerSecond },
+            new object[] { MassFlowUnit.MilligramPerDay },
+            new object[] { MassFlowUnit.MilligramPerSecond },
+            new object[] { MassFlowUnit.NanogramPerDay },
+            new object[] { MassFlowUnit.NanogramPerSecond },
+            new object[] { MassFlowUnit.PoundPerDay },
+            new object[] { MassFlowUnit.PoundPerHour },
+            new object[] { MassFlowUnit.PoundPerMinute },
+            new object[] { MassFlowUnit.PoundPerSecond },
+            new object[] { MassFlowUnit.ShortTonPerHour },
+            new object[] { MassFlowUnit.TonnePerDay },
+            new object[] { MassFlowUnit.TonnePerHour },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -559,39 +597,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(MassFlowUnit.CentigramPerDay)]
-        [InlineData(MassFlowUnit.CentigramPerSecond)]
-        [InlineData(MassFlowUnit.DecagramPerDay)]
-        [InlineData(MassFlowUnit.DecagramPerSecond)]
-        [InlineData(MassFlowUnit.DecigramPerDay)]
-        [InlineData(MassFlowUnit.DecigramPerSecond)]
-        [InlineData(MassFlowUnit.GramPerDay)]
-        [InlineData(MassFlowUnit.GramPerHour)]
-        [InlineData(MassFlowUnit.GramPerSecond)]
-        [InlineData(MassFlowUnit.HectogramPerDay)]
-        [InlineData(MassFlowUnit.HectogramPerSecond)]
-        [InlineData(MassFlowUnit.KilogramPerDay)]
-        [InlineData(MassFlowUnit.KilogramPerHour)]
-        [InlineData(MassFlowUnit.KilogramPerMinute)]
-        [InlineData(MassFlowUnit.KilogramPerSecond)]
-        [InlineData(MassFlowUnit.MegagramPerDay)]
-        [InlineData(MassFlowUnit.MegapoundPerDay)]
-        [InlineData(MassFlowUnit.MegapoundPerHour)]
-        [InlineData(MassFlowUnit.MegapoundPerMinute)]
-        [InlineData(MassFlowUnit.MegapoundPerSecond)]
-        [InlineData(MassFlowUnit.MicrogramPerDay)]
-        [InlineData(MassFlowUnit.MicrogramPerSecond)]
-        [InlineData(MassFlowUnit.MilligramPerDay)]
-        [InlineData(MassFlowUnit.MilligramPerSecond)]
-        [InlineData(MassFlowUnit.NanogramPerDay)]
-        [InlineData(MassFlowUnit.NanogramPerSecond)]
-        [InlineData(MassFlowUnit.PoundPerDay)]
-        [InlineData(MassFlowUnit.PoundPerHour)]
-        [InlineData(MassFlowUnit.PoundPerMinute)]
-        [InlineData(MassFlowUnit.PoundPerSecond)]
-        [InlineData(MassFlowUnit.ShortTonPerHour)]
-        [InlineData(MassFlowUnit.TonnePerDay)]
-        [InlineData(MassFlowUnit.TonnePerHour)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(MassFlowUnit unit)
         {
             var quantity = MassFlow.From(3.0, unit);

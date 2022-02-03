@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -48,6 +49,14 @@ namespace UnitsNet.Tests
         protected virtual double DegreesFahrenheitPerFootTolerance { get { return 1e-5; } }
         protected virtual double KelvinsPerMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { TemperatureGradientUnit.DegreeCelsiusPerKilometer },
+            new object[] { TemperatureGradientUnit.DegreeCelsiusPerMeter },
+            new object[] { TemperatureGradientUnit.DegreeFahrenheitPerFoot },
+            new object[] { TemperatureGradientUnit.KelvinPerMeter },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -211,10 +220,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(TemperatureGradientUnit.DegreeCelsiusPerKilometer)]
-        [InlineData(TemperatureGradientUnit.DegreeCelsiusPerMeter)]
-        [InlineData(TemperatureGradientUnit.DegreeFahrenheitPerFoot)]
-        [InlineData(TemperatureGradientUnit.KelvinPerMeter)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(TemperatureGradientUnit unit)
         {
             var quantity = TemperatureGradient.From(3.0, unit);

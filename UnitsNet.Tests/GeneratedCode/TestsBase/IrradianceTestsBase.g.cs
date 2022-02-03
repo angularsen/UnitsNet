@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -68,6 +69,24 @@ namespace UnitsNet.Tests
         protected virtual double WattsPerSquareCentimeterTolerance { get { return 1e-5; } }
         protected virtual double WattsPerSquareMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { IrradianceUnit.KilowattPerSquareCentimeter },
+            new object[] { IrradianceUnit.KilowattPerSquareMeter },
+            new object[] { IrradianceUnit.MegawattPerSquareCentimeter },
+            new object[] { IrradianceUnit.MegawattPerSquareMeter },
+            new object[] { IrradianceUnit.MicrowattPerSquareCentimeter },
+            new object[] { IrradianceUnit.MicrowattPerSquareMeter },
+            new object[] { IrradianceUnit.MilliwattPerSquareCentimeter },
+            new object[] { IrradianceUnit.MilliwattPerSquareMeter },
+            new object[] { IrradianceUnit.NanowattPerSquareCentimeter },
+            new object[] { IrradianceUnit.NanowattPerSquareMeter },
+            new object[] { IrradianceUnit.PicowattPerSquareCentimeter },
+            new object[] { IrradianceUnit.PicowattPerSquareMeter },
+            new object[] { IrradianceUnit.WattPerSquareCentimeter },
+            new object[] { IrradianceUnit.WattPerSquareMeter },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -331,20 +350,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(IrradianceUnit.KilowattPerSquareCentimeter)]
-        [InlineData(IrradianceUnit.KilowattPerSquareMeter)]
-        [InlineData(IrradianceUnit.MegawattPerSquareCentimeter)]
-        [InlineData(IrradianceUnit.MegawattPerSquareMeter)]
-        [InlineData(IrradianceUnit.MicrowattPerSquareCentimeter)]
-        [InlineData(IrradianceUnit.MicrowattPerSquareMeter)]
-        [InlineData(IrradianceUnit.MilliwattPerSquareCentimeter)]
-        [InlineData(IrradianceUnit.MilliwattPerSquareMeter)]
-        [InlineData(IrradianceUnit.NanowattPerSquareCentimeter)]
-        [InlineData(IrradianceUnit.NanowattPerSquareMeter)]
-        [InlineData(IrradianceUnit.PicowattPerSquareCentimeter)]
-        [InlineData(IrradianceUnit.PicowattPerSquareMeter)]
-        [InlineData(IrradianceUnit.WattPerSquareCentimeter)]
-        [InlineData(IrradianceUnit.WattPerSquareMeter)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(IrradianceUnit unit)
         {
             var quantity = Irradiance.From(3.0, unit);

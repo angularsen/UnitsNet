@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -58,6 +59,19 @@ namespace UnitsNet.Tests
         protected virtual double StandardCubicMetersPerSecondTolerance { get { return 1e-5; } }
         protected virtual double StandardLitersPerMinuteTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute },
+            new object[] { StandardVolumeFlowUnit.StandardCubicFootPerHour },
+            new object[] { StandardVolumeFlowUnit.StandardCubicFootPerMinute },
+            new object[] { StandardVolumeFlowUnit.StandardCubicFootPerSecond },
+            new object[] { StandardVolumeFlowUnit.StandardCubicMeterPerDay },
+            new object[] { StandardVolumeFlowUnit.StandardCubicMeterPerHour },
+            new object[] { StandardVolumeFlowUnit.StandardCubicMeterPerMinute },
+            new object[] { StandardVolumeFlowUnit.StandardCubicMeterPerSecond },
+            new object[] { StandardVolumeFlowUnit.StandardLiterPerMinute },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -271,15 +285,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute)]
-        [InlineData(StandardVolumeFlowUnit.StandardCubicFootPerHour)]
-        [InlineData(StandardVolumeFlowUnit.StandardCubicFootPerMinute)]
-        [InlineData(StandardVolumeFlowUnit.StandardCubicFootPerSecond)]
-        [InlineData(StandardVolumeFlowUnit.StandardCubicMeterPerDay)]
-        [InlineData(StandardVolumeFlowUnit.StandardCubicMeterPerHour)]
-        [InlineData(StandardVolumeFlowUnit.StandardCubicMeterPerMinute)]
-        [InlineData(StandardVolumeFlowUnit.StandardCubicMeterPerSecond)]
-        [InlineData(StandardVolumeFlowUnit.StandardLiterPerMinute)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(StandardVolumeFlowUnit unit)
         {
             var quantity = StandardVolumeFlow.From(3.0, unit);

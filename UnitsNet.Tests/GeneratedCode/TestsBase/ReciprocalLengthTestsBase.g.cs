@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -60,6 +61,20 @@ namespace UnitsNet.Tests
         protected virtual double InverseUsSurveyFeetTolerance { get { return 1e-5; } }
         protected virtual double InverseYardsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ReciprocalLengthUnit.InverseCentimeter },
+            new object[] { ReciprocalLengthUnit.InverseFoot },
+            new object[] { ReciprocalLengthUnit.InverseInch },
+            new object[] { ReciprocalLengthUnit.InverseMeter },
+            new object[] { ReciprocalLengthUnit.InverseMicroinch },
+            new object[] { ReciprocalLengthUnit.InverseMil },
+            new object[] { ReciprocalLengthUnit.InverseMile },
+            new object[] { ReciprocalLengthUnit.InverseMillimeter },
+            new object[] { ReciprocalLengthUnit.InverseUsSurveyFoot },
+            new object[] { ReciprocalLengthUnit.InverseYard },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -283,16 +298,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(ReciprocalLengthUnit.InverseCentimeter)]
-        [InlineData(ReciprocalLengthUnit.InverseFoot)]
-        [InlineData(ReciprocalLengthUnit.InverseInch)]
-        [InlineData(ReciprocalLengthUnit.InverseMeter)]
-        [InlineData(ReciprocalLengthUnit.InverseMicroinch)]
-        [InlineData(ReciprocalLengthUnit.InverseMil)]
-        [InlineData(ReciprocalLengthUnit.InverseMile)]
-        [InlineData(ReciprocalLengthUnit.InverseMillimeter)]
-        [InlineData(ReciprocalLengthUnit.InverseUsSurveyFoot)]
-        [InlineData(ReciprocalLengthUnit.InverseYard)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(ReciprocalLengthUnit unit)
         {
             var quantity = ReciprocalLength.From(3.0, unit);

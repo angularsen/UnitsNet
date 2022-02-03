@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -50,6 +51,15 @@ namespace UnitsNet.Tests
         protected virtual double NewtonMetersPerRadianPerMeterTolerance { get { return 1e-5; } }
         protected virtual double PoundForceFeetPerDegreesPerFeetTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter },
+            new object[] { RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot },
+            new object[] { RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter },
+            new object[] { RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter },
+            new object[] { RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -223,11 +233,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter)]
-        [InlineData(RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot)]
-        [InlineData(RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter)]
-        [InlineData(RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter)]
-        [InlineData(RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(RotationalStiffnessPerLengthUnit unit)
         {
             var quantity = RotationalStiffnessPerLength.From(3.0, unit);

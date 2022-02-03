@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -64,6 +65,22 @@ namespace UnitsNet.Tests
         protected virtual double KilogramsPerSecondPerSquareMeterTolerance { get { return 1e-5; } }
         protected virtual double KilogramsPerSecondPerSquareMillimeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { MassFluxUnit.GramPerHourPerSquareCentimeter },
+            new object[] { MassFluxUnit.GramPerHourPerSquareMeter },
+            new object[] { MassFluxUnit.GramPerHourPerSquareMillimeter },
+            new object[] { MassFluxUnit.GramPerSecondPerSquareCentimeter },
+            new object[] { MassFluxUnit.GramPerSecondPerSquareMeter },
+            new object[] { MassFluxUnit.GramPerSecondPerSquareMillimeter },
+            new object[] { MassFluxUnit.KilogramPerHourPerSquareCentimeter },
+            new object[] { MassFluxUnit.KilogramPerHourPerSquareMeter },
+            new object[] { MassFluxUnit.KilogramPerHourPerSquareMillimeter },
+            new object[] { MassFluxUnit.KilogramPerSecondPerSquareCentimeter },
+            new object[] { MassFluxUnit.KilogramPerSecondPerSquareMeter },
+            new object[] { MassFluxUnit.KilogramPerSecondPerSquareMillimeter },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -307,18 +324,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(MassFluxUnit.GramPerHourPerSquareCentimeter)]
-        [InlineData(MassFluxUnit.GramPerHourPerSquareMeter)]
-        [InlineData(MassFluxUnit.GramPerHourPerSquareMillimeter)]
-        [InlineData(MassFluxUnit.GramPerSecondPerSquareCentimeter)]
-        [InlineData(MassFluxUnit.GramPerSecondPerSquareMeter)]
-        [InlineData(MassFluxUnit.GramPerSecondPerSquareMillimeter)]
-        [InlineData(MassFluxUnit.KilogramPerHourPerSquareCentimeter)]
-        [InlineData(MassFluxUnit.KilogramPerHourPerSquareMeter)]
-        [InlineData(MassFluxUnit.KilogramPerHourPerSquareMillimeter)]
-        [InlineData(MassFluxUnit.KilogramPerSecondPerSquareCentimeter)]
-        [InlineData(MassFluxUnit.KilogramPerSecondPerSquareMeter)]
-        [InlineData(MassFluxUnit.KilogramPerSecondPerSquareMillimeter)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(MassFluxUnit unit)
         {
             var quantity = MassFlux.From(3.0, unit);

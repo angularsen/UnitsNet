@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -90,6 +91,35 @@ namespace UnitsNet.Tests
         protected virtual double TonneForceMetersTolerance { get { return 1e-5; } }
         protected virtual double TonneForceMillimetersTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { TorqueUnit.GramForceCentimeter },
+            new object[] { TorqueUnit.GramForceMeter },
+            new object[] { TorqueUnit.GramForceMillimeter },
+            new object[] { TorqueUnit.KilogramForceCentimeter },
+            new object[] { TorqueUnit.KilogramForceMeter },
+            new object[] { TorqueUnit.KilogramForceMillimeter },
+            new object[] { TorqueUnit.KilonewtonCentimeter },
+            new object[] { TorqueUnit.KilonewtonMeter },
+            new object[] { TorqueUnit.KilonewtonMillimeter },
+            new object[] { TorqueUnit.KilopoundForceFoot },
+            new object[] { TorqueUnit.KilopoundForceInch },
+            new object[] { TorqueUnit.MeganewtonCentimeter },
+            new object[] { TorqueUnit.MeganewtonMeter },
+            new object[] { TorqueUnit.MeganewtonMillimeter },
+            new object[] { TorqueUnit.MegapoundForceFoot },
+            new object[] { TorqueUnit.MegapoundForceInch },
+            new object[] { TorqueUnit.NewtonCentimeter },
+            new object[] { TorqueUnit.NewtonMeter },
+            new object[] { TorqueUnit.NewtonMillimeter },
+            new object[] { TorqueUnit.PoundalFoot },
+            new object[] { TorqueUnit.PoundForceFoot },
+            new object[] { TorqueUnit.PoundForceInch },
+            new object[] { TorqueUnit.TonneForceCentimeter },
+            new object[] { TorqueUnit.TonneForceMeter },
+            new object[] { TorqueUnit.TonneForceMillimeter },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -463,31 +493,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(TorqueUnit.GramForceCentimeter)]
-        [InlineData(TorqueUnit.GramForceMeter)]
-        [InlineData(TorqueUnit.GramForceMillimeter)]
-        [InlineData(TorqueUnit.KilogramForceCentimeter)]
-        [InlineData(TorqueUnit.KilogramForceMeter)]
-        [InlineData(TorqueUnit.KilogramForceMillimeter)]
-        [InlineData(TorqueUnit.KilonewtonCentimeter)]
-        [InlineData(TorqueUnit.KilonewtonMeter)]
-        [InlineData(TorqueUnit.KilonewtonMillimeter)]
-        [InlineData(TorqueUnit.KilopoundForceFoot)]
-        [InlineData(TorqueUnit.KilopoundForceInch)]
-        [InlineData(TorqueUnit.MeganewtonCentimeter)]
-        [InlineData(TorqueUnit.MeganewtonMeter)]
-        [InlineData(TorqueUnit.MeganewtonMillimeter)]
-        [InlineData(TorqueUnit.MegapoundForceFoot)]
-        [InlineData(TorqueUnit.MegapoundForceInch)]
-        [InlineData(TorqueUnit.NewtonCentimeter)]
-        [InlineData(TorqueUnit.NewtonMeter)]
-        [InlineData(TorqueUnit.NewtonMillimeter)]
-        [InlineData(TorqueUnit.PoundalFoot)]
-        [InlineData(TorqueUnit.PoundForceFoot)]
-        [InlineData(TorqueUnit.PoundForceInch)]
-        [InlineData(TorqueUnit.TonneForceCentimeter)]
-        [InlineData(TorqueUnit.TonneForceMeter)]
-        [InlineData(TorqueUnit.TonneForceMillimeter)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(TorqueUnit unit)
         {
             var quantity = Torque.From(3.0, unit);

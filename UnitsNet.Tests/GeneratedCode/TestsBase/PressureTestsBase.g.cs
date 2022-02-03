@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -130,6 +131,55 @@ namespace UnitsNet.Tests
         protected virtual double TonnesForcePerSquareMillimeterTolerance { get { return 1e-5; } }
         protected virtual double TorrsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { PressureUnit.Atmosphere },
+            new object[] { PressureUnit.Bar },
+            new object[] { PressureUnit.Centibar },
+            new object[] { PressureUnit.Decapascal },
+            new object[] { PressureUnit.Decibar },
+            new object[] { PressureUnit.DynePerSquareCentimeter },
+            new object[] { PressureUnit.FootOfElevation },
+            new object[] { PressureUnit.FootOfHead },
+            new object[] { PressureUnit.Gigapascal },
+            new object[] { PressureUnit.Hectopascal },
+            new object[] { PressureUnit.InchOfMercury },
+            new object[] { PressureUnit.InchOfWaterColumn },
+            new object[] { PressureUnit.Kilobar },
+            new object[] { PressureUnit.KilogramForcePerSquareCentimeter },
+            new object[] { PressureUnit.KilogramForcePerSquareMeter },
+            new object[] { PressureUnit.KilogramForcePerSquareMillimeter },
+            new object[] { PressureUnit.KilonewtonPerSquareCentimeter },
+            new object[] { PressureUnit.KilonewtonPerSquareMeter },
+            new object[] { PressureUnit.KilonewtonPerSquareMillimeter },
+            new object[] { PressureUnit.Kilopascal },
+            new object[] { PressureUnit.KilopoundForcePerSquareFoot },
+            new object[] { PressureUnit.KilopoundForcePerSquareInch },
+            new object[] { PressureUnit.Megabar },
+            new object[] { PressureUnit.MeganewtonPerSquareMeter },
+            new object[] { PressureUnit.Megapascal },
+            new object[] { PressureUnit.MeterOfElevation },
+            new object[] { PressureUnit.MeterOfHead },
+            new object[] { PressureUnit.Microbar },
+            new object[] { PressureUnit.Micropascal },
+            new object[] { PressureUnit.Millibar },
+            new object[] { PressureUnit.MillimeterOfMercury },
+            new object[] { PressureUnit.MillimeterOfWaterColumn },
+            new object[] { PressureUnit.Millipascal },
+            new object[] { PressureUnit.NewtonPerSquareCentimeter },
+            new object[] { PressureUnit.NewtonPerSquareMeter },
+            new object[] { PressureUnit.NewtonPerSquareMillimeter },
+            new object[] { PressureUnit.Pascal },
+            new object[] { PressureUnit.PoundForcePerSquareFoot },
+            new object[] { PressureUnit.PoundForcePerSquareInch },
+            new object[] { PressureUnit.PoundPerInchSecondSquared },
+            new object[] { PressureUnit.TechnicalAtmosphere },
+            new object[] { PressureUnit.TonneForcePerSquareCentimeter },
+            new object[] { PressureUnit.TonneForcePerSquareMeter },
+            new object[] { PressureUnit.TonneForcePerSquareMillimeter },
+            new object[] { PressureUnit.Torr },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -703,51 +753,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(PressureUnit.Atmosphere)]
-        [InlineData(PressureUnit.Bar)]
-        [InlineData(PressureUnit.Centibar)]
-        [InlineData(PressureUnit.Decapascal)]
-        [InlineData(PressureUnit.Decibar)]
-        [InlineData(PressureUnit.DynePerSquareCentimeter)]
-        [InlineData(PressureUnit.FootOfElevation)]
-        [InlineData(PressureUnit.FootOfHead)]
-        [InlineData(PressureUnit.Gigapascal)]
-        [InlineData(PressureUnit.Hectopascal)]
-        [InlineData(PressureUnit.InchOfMercury)]
-        [InlineData(PressureUnit.InchOfWaterColumn)]
-        [InlineData(PressureUnit.Kilobar)]
-        [InlineData(PressureUnit.KilogramForcePerSquareCentimeter)]
-        [InlineData(PressureUnit.KilogramForcePerSquareMeter)]
-        [InlineData(PressureUnit.KilogramForcePerSquareMillimeter)]
-        [InlineData(PressureUnit.KilonewtonPerSquareCentimeter)]
-        [InlineData(PressureUnit.KilonewtonPerSquareMeter)]
-        [InlineData(PressureUnit.KilonewtonPerSquareMillimeter)]
-        [InlineData(PressureUnit.Kilopascal)]
-        [InlineData(PressureUnit.KilopoundForcePerSquareFoot)]
-        [InlineData(PressureUnit.KilopoundForcePerSquareInch)]
-        [InlineData(PressureUnit.Megabar)]
-        [InlineData(PressureUnit.MeganewtonPerSquareMeter)]
-        [InlineData(PressureUnit.Megapascal)]
-        [InlineData(PressureUnit.MeterOfElevation)]
-        [InlineData(PressureUnit.MeterOfHead)]
-        [InlineData(PressureUnit.Microbar)]
-        [InlineData(PressureUnit.Micropascal)]
-        [InlineData(PressureUnit.Millibar)]
-        [InlineData(PressureUnit.MillimeterOfMercury)]
-        [InlineData(PressureUnit.MillimeterOfWaterColumn)]
-        [InlineData(PressureUnit.Millipascal)]
-        [InlineData(PressureUnit.NewtonPerSquareCentimeter)]
-        [InlineData(PressureUnit.NewtonPerSquareMeter)]
-        [InlineData(PressureUnit.NewtonPerSquareMillimeter)]
-        [InlineData(PressureUnit.Pascal)]
-        [InlineData(PressureUnit.PoundForcePerSquareFoot)]
-        [InlineData(PressureUnit.PoundForcePerSquareInch)]
-        [InlineData(PressureUnit.PoundPerInchSecondSquared)]
-        [InlineData(PressureUnit.TechnicalAtmosphere)]
-        [InlineData(PressureUnit.TonneForcePerSquareCentimeter)]
-        [InlineData(PressureUnit.TonneForcePerSquareMeter)]
-        [InlineData(PressureUnit.TonneForcePerSquareMillimeter)]
-        [InlineData(PressureUnit.Torr)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(PressureUnit unit)
         {
             var quantity = Pressure.From(3.0, unit);

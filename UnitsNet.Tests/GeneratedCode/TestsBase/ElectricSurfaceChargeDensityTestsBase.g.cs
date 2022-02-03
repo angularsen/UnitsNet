@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -46,6 +47,13 @@ namespace UnitsNet.Tests
         protected virtual double CoulombsPerSquareInchTolerance { get { return 1e-5; } }
         protected virtual double CoulombsPerSquareMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter },
+            new object[] { ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch },
+            new object[] { ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -199,9 +207,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter)]
-        [InlineData(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch)]
-        [InlineData(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(ElectricSurfaceChargeDensityUnit unit)
         {
             var quantity = ElectricSurfaceChargeDensity.From(3.0, unit);

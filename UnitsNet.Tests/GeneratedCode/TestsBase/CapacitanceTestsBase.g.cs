@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -54,6 +55,17 @@ namespace UnitsNet.Tests
         protected virtual double NanofaradsTolerance { get { return 1e-5; } }
         protected virtual double PicofaradsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { CapacitanceUnit.Farad },
+            new object[] { CapacitanceUnit.Kilofarad },
+            new object[] { CapacitanceUnit.Megafarad },
+            new object[] { CapacitanceUnit.Microfarad },
+            new object[] { CapacitanceUnit.Millifarad },
+            new object[] { CapacitanceUnit.Nanofarad },
+            new object[] { CapacitanceUnit.Picofarad },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -247,13 +259,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(CapacitanceUnit.Farad)]
-        [InlineData(CapacitanceUnit.Kilofarad)]
-        [InlineData(CapacitanceUnit.Megafarad)]
-        [InlineData(CapacitanceUnit.Microfarad)]
-        [InlineData(CapacitanceUnit.Millifarad)]
-        [InlineData(CapacitanceUnit.Nanofarad)]
-        [InlineData(CapacitanceUnit.Picofarad)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(CapacitanceUnit unit)
         {
             var quantity = Capacitance.From(3.0, unit);

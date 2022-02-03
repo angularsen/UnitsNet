@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -142,6 +143,61 @@ namespace UnitsNet.Tests
         protected virtual double TonnesPerCubicMeterTolerance { get { return 1e-5; } }
         protected virtual double TonnesPerCubicMillimeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { DensityUnit.CentigramPerDeciliter },
+            new object[] { DensityUnit.CentigramPerLiter },
+            new object[] { DensityUnit.CentigramPerMilliliter },
+            new object[] { DensityUnit.DecigramPerDeciliter },
+            new object[] { DensityUnit.DecigramPerLiter },
+            new object[] { DensityUnit.DecigramPerMilliliter },
+            new object[] { DensityUnit.GramPerCubicCentimeter },
+            new object[] { DensityUnit.GramPerCubicFoot },
+            new object[] { DensityUnit.GramPerCubicInch },
+            new object[] { DensityUnit.GramPerCubicMeter },
+            new object[] { DensityUnit.GramPerCubicMillimeter },
+            new object[] { DensityUnit.GramPerDeciliter },
+            new object[] { DensityUnit.GramPerLiter },
+            new object[] { DensityUnit.GramPerMilliliter },
+            new object[] { DensityUnit.KilogramPerCubicCentimeter },
+            new object[] { DensityUnit.KilogramPerCubicMeter },
+            new object[] { DensityUnit.KilogramPerCubicMillimeter },
+            new object[] { DensityUnit.KilogramPerLiter },
+            new object[] { DensityUnit.KilopoundPerCubicFoot },
+            new object[] { DensityUnit.KilopoundPerCubicInch },
+            new object[] { DensityUnit.MicrogramPerCubicMeter },
+            new object[] { DensityUnit.MicrogramPerDeciliter },
+            new object[] { DensityUnit.MicrogramPerLiter },
+            new object[] { DensityUnit.MicrogramPerMilliliter },
+            new object[] { DensityUnit.MilligramPerCubicMeter },
+            new object[] { DensityUnit.MilligramPerDeciliter },
+            new object[] { DensityUnit.MilligramPerLiter },
+            new object[] { DensityUnit.MilligramPerMilliliter },
+            new object[] { DensityUnit.NanogramPerDeciliter },
+            new object[] { DensityUnit.NanogramPerLiter },
+            new object[] { DensityUnit.NanogramPerMilliliter },
+            new object[] { DensityUnit.PicogramPerDeciliter },
+            new object[] { DensityUnit.PicogramPerLiter },
+            new object[] { DensityUnit.PicogramPerMilliliter },
+            new object[] { DensityUnit.PoundPerCubicCentimeter },
+            new object[] { DensityUnit.PoundPerCubicFoot },
+            new object[] { DensityUnit.PoundPerCubicInch },
+            new object[] { DensityUnit.PoundPerCubicMeter },
+            new object[] { DensityUnit.PoundPerCubicMillimeter },
+            new object[] { DensityUnit.PoundPerImperialGallon },
+            new object[] { DensityUnit.PoundPerUSGallon },
+            new object[] { DensityUnit.SlugPerCubicCentimeter },
+            new object[] { DensityUnit.SlugPerCubicFoot },
+            new object[] { DensityUnit.SlugPerCubicInch },
+            new object[] { DensityUnit.SlugPerCubicMeter },
+            new object[] { DensityUnit.SlugPerCubicMillimeter },
+            new object[] { DensityUnit.TonnePerCubicCentimeter },
+            new object[] { DensityUnit.TonnePerCubicFoot },
+            new object[] { DensityUnit.TonnePerCubicInch },
+            new object[] { DensityUnit.TonnePerCubicMeter },
+            new object[] { DensityUnit.TonnePerCubicMillimeter },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -775,57 +831,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(DensityUnit.CentigramPerDeciliter)]
-        [InlineData(DensityUnit.CentigramPerLiter)]
-        [InlineData(DensityUnit.CentigramPerMilliliter)]
-        [InlineData(DensityUnit.DecigramPerDeciliter)]
-        [InlineData(DensityUnit.DecigramPerLiter)]
-        [InlineData(DensityUnit.DecigramPerMilliliter)]
-        [InlineData(DensityUnit.GramPerCubicCentimeter)]
-        [InlineData(DensityUnit.GramPerCubicFoot)]
-        [InlineData(DensityUnit.GramPerCubicInch)]
-        [InlineData(DensityUnit.GramPerCubicMeter)]
-        [InlineData(DensityUnit.GramPerCubicMillimeter)]
-        [InlineData(DensityUnit.GramPerDeciliter)]
-        [InlineData(DensityUnit.GramPerLiter)]
-        [InlineData(DensityUnit.GramPerMilliliter)]
-        [InlineData(DensityUnit.KilogramPerCubicCentimeter)]
-        [InlineData(DensityUnit.KilogramPerCubicMeter)]
-        [InlineData(DensityUnit.KilogramPerCubicMillimeter)]
-        [InlineData(DensityUnit.KilogramPerLiter)]
-        [InlineData(DensityUnit.KilopoundPerCubicFoot)]
-        [InlineData(DensityUnit.KilopoundPerCubicInch)]
-        [InlineData(DensityUnit.MicrogramPerCubicMeter)]
-        [InlineData(DensityUnit.MicrogramPerDeciliter)]
-        [InlineData(DensityUnit.MicrogramPerLiter)]
-        [InlineData(DensityUnit.MicrogramPerMilliliter)]
-        [InlineData(DensityUnit.MilligramPerCubicMeter)]
-        [InlineData(DensityUnit.MilligramPerDeciliter)]
-        [InlineData(DensityUnit.MilligramPerLiter)]
-        [InlineData(DensityUnit.MilligramPerMilliliter)]
-        [InlineData(DensityUnit.NanogramPerDeciliter)]
-        [InlineData(DensityUnit.NanogramPerLiter)]
-        [InlineData(DensityUnit.NanogramPerMilliliter)]
-        [InlineData(DensityUnit.PicogramPerDeciliter)]
-        [InlineData(DensityUnit.PicogramPerLiter)]
-        [InlineData(DensityUnit.PicogramPerMilliliter)]
-        [InlineData(DensityUnit.PoundPerCubicCentimeter)]
-        [InlineData(DensityUnit.PoundPerCubicFoot)]
-        [InlineData(DensityUnit.PoundPerCubicInch)]
-        [InlineData(DensityUnit.PoundPerCubicMeter)]
-        [InlineData(DensityUnit.PoundPerCubicMillimeter)]
-        [InlineData(DensityUnit.PoundPerImperialGallon)]
-        [InlineData(DensityUnit.PoundPerUSGallon)]
-        [InlineData(DensityUnit.SlugPerCubicCentimeter)]
-        [InlineData(DensityUnit.SlugPerCubicFoot)]
-        [InlineData(DensityUnit.SlugPerCubicInch)]
-        [InlineData(DensityUnit.SlugPerCubicMeter)]
-        [InlineData(DensityUnit.SlugPerCubicMillimeter)]
-        [InlineData(DensityUnit.TonnePerCubicCentimeter)]
-        [InlineData(DensityUnit.TonnePerCubicFoot)]
-        [InlineData(DensityUnit.TonnePerCubicInch)]
-        [InlineData(DensityUnit.TonnePerCubicMeter)]
-        [InlineData(DensityUnit.TonnePerCubicMillimeter)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(DensityUnit unit)
         {
             var quantity = Density.From(3.0, unit);

@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -48,6 +49,14 @@ namespace UnitsNet.Tests
         protected virtual double KilogramsPerKiloNewtonSecondTolerance { get { return 1e-5; } }
         protected virtual double PoundsMassPerPoundForceHourTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond },
+            new object[] { SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour },
+            new object[] { SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond },
+            new object[] { SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -211,10 +220,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond)]
-        [InlineData(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour)]
-        [InlineData(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond)]
-        [InlineData(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(SpecificFuelConsumptionUnit unit)
         {
             var quantity = SpecificFuelConsumption.From(3.0, unit);

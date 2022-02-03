@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -46,6 +47,13 @@ namespace UnitsNet.Tests
         protected virtual double SiemensPerInchTolerance { get { return 1e-5; } }
         protected virtual double SiemensPerMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ElectricConductivityUnit.SiemensPerFoot },
+            new object[] { ElectricConductivityUnit.SiemensPerInch },
+            new object[] { ElectricConductivityUnit.SiemensPerMeter },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -199,9 +207,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(ElectricConductivityUnit.SiemensPerFoot)]
-        [InlineData(ElectricConductivityUnit.SiemensPerInch)]
-        [InlineData(ElectricConductivityUnit.SiemensPerMeter)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(ElectricConductivityUnit unit)
         {
             var quantity = ElectricConductivity.From(3.0, unit);

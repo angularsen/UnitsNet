@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -48,6 +49,14 @@ namespace UnitsNet.Tests
         protected virtual double MillihenriesTolerance { get { return 1e-5; } }
         protected virtual double NanohenriesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ElectricInductanceUnit.Henry },
+            new object[] { ElectricInductanceUnit.Microhenry },
+            new object[] { ElectricInductanceUnit.Millihenry },
+            new object[] { ElectricInductanceUnit.Nanohenry },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -211,10 +220,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(ElectricInductanceUnit.Henry)]
-        [InlineData(ElectricInductanceUnit.Microhenry)]
-        [InlineData(ElectricInductanceUnit.Millihenry)]
-        [InlineData(ElectricInductanceUnit.Nanohenry)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(ElectricInductanceUnit unit)
         {
             var quantity = ElectricInductance.From(3.0, unit);

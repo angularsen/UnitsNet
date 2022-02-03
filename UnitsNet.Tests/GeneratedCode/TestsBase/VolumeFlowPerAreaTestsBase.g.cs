@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -44,6 +45,12 @@ namespace UnitsNet.Tests
         protected virtual double CubicFeetPerMinutePerSquareFootTolerance { get { return 1e-5; } }
         protected virtual double CubicMetersPerSecondPerSquareMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot },
+            new object[] { VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -187,8 +194,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot)]
-        [InlineData(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(VolumeFlowPerAreaUnit unit)
         {
             var quantity = VolumeFlowPerArea.From(3.0, unit);

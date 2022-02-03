@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -68,6 +69,24 @@ namespace UnitsNet.Tests
         protected virtual double SquareYardsTolerance { get { return 1e-5; } }
         protected virtual double UsSurveySquareFeetTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { AreaUnit.Acre },
+            new object[] { AreaUnit.Hectare },
+            new object[] { AreaUnit.SquareCentimeter },
+            new object[] { AreaUnit.SquareDecimeter },
+            new object[] { AreaUnit.SquareFoot },
+            new object[] { AreaUnit.SquareInch },
+            new object[] { AreaUnit.SquareKilometer },
+            new object[] { AreaUnit.SquareMeter },
+            new object[] { AreaUnit.SquareMicrometer },
+            new object[] { AreaUnit.SquareMile },
+            new object[] { AreaUnit.SquareMillimeter },
+            new object[] { AreaUnit.SquareNauticalMile },
+            new object[] { AreaUnit.SquareYard },
+            new object[] { AreaUnit.UsSurveySquareFoot },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -331,20 +350,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(AreaUnit.Acre)]
-        [InlineData(AreaUnit.Hectare)]
-        [InlineData(AreaUnit.SquareCentimeter)]
-        [InlineData(AreaUnit.SquareDecimeter)]
-        [InlineData(AreaUnit.SquareFoot)]
-        [InlineData(AreaUnit.SquareInch)]
-        [InlineData(AreaUnit.SquareKilometer)]
-        [InlineData(AreaUnit.SquareMeter)]
-        [InlineData(AreaUnit.SquareMicrometer)]
-        [InlineData(AreaUnit.SquareMile)]
-        [InlineData(AreaUnit.SquareMillimeter)]
-        [InlineData(AreaUnit.SquareNauticalMile)]
-        [InlineData(AreaUnit.SquareYard)]
-        [InlineData(AreaUnit.UsSurveySquareFoot)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(AreaUnit unit)
         {
             var quantity = Area.From(3.0, unit);

@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -68,6 +69,24 @@ namespace UnitsNet.Tests
         protected virtual double TerawattsTolerance { get { return 1e-5; } }
         protected virtual double WattsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { LuminosityUnit.Decawatt },
+            new object[] { LuminosityUnit.Deciwatt },
+            new object[] { LuminosityUnit.Femtowatt },
+            new object[] { LuminosityUnit.Gigawatt },
+            new object[] { LuminosityUnit.Kilowatt },
+            new object[] { LuminosityUnit.Megawatt },
+            new object[] { LuminosityUnit.Microwatt },
+            new object[] { LuminosityUnit.Milliwatt },
+            new object[] { LuminosityUnit.Nanowatt },
+            new object[] { LuminosityUnit.Petawatt },
+            new object[] { LuminosityUnit.Picowatt },
+            new object[] { LuminosityUnit.SolarLuminosity },
+            new object[] { LuminosityUnit.Terawatt },
+            new object[] { LuminosityUnit.Watt },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -331,20 +350,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(LuminosityUnit.Decawatt)]
-        [InlineData(LuminosityUnit.Deciwatt)]
-        [InlineData(LuminosityUnit.Femtowatt)]
-        [InlineData(LuminosityUnit.Gigawatt)]
-        [InlineData(LuminosityUnit.Kilowatt)]
-        [InlineData(LuminosityUnit.Megawatt)]
-        [InlineData(LuminosityUnit.Microwatt)]
-        [InlineData(LuminosityUnit.Milliwatt)]
-        [InlineData(LuminosityUnit.Nanowatt)]
-        [InlineData(LuminosityUnit.Petawatt)]
-        [InlineData(LuminosityUnit.Picowatt)]
-        [InlineData(LuminosityUnit.SolarLuminosity)]
-        [InlineData(LuminosityUnit.Terawatt)]
-        [InlineData(LuminosityUnit.Watt)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(LuminosityUnit unit)
         {
             var quantity = Luminosity.From(3.0, unit);

@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -50,6 +51,15 @@ namespace UnitsNet.Tests
         protected virtual double MegaampereHoursTolerance { get { return 1e-5; } }
         protected virtual double MilliampereHoursTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ElectricChargeUnit.AmpereHour },
+            new object[] { ElectricChargeUnit.Coulomb },
+            new object[] { ElectricChargeUnit.KiloampereHour },
+            new object[] { ElectricChargeUnit.MegaampereHour },
+            new object[] { ElectricChargeUnit.MilliampereHour },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -223,11 +233,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(ElectricChargeUnit.AmpereHour)]
-        [InlineData(ElectricChargeUnit.Coulomb)]
-        [InlineData(ElectricChargeUnit.KiloampereHour)]
-        [InlineData(ElectricChargeUnit.MegaampereHour)]
-        [InlineData(ElectricChargeUnit.MilliampereHour)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(ElectricChargeUnit unit)
         {
             var quantity = ElectricCharge.From(3.0, unit);

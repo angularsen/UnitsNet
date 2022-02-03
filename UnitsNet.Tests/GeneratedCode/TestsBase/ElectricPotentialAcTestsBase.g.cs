@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -50,6 +51,15 @@ namespace UnitsNet.Tests
         protected virtual double MillivoltsAcTolerance { get { return 1e-5; } }
         protected virtual double VoltsAcTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ElectricPotentialAcUnit.KilovoltAc },
+            new object[] { ElectricPotentialAcUnit.MegavoltAc },
+            new object[] { ElectricPotentialAcUnit.MicrovoltAc },
+            new object[] { ElectricPotentialAcUnit.MillivoltAc },
+            new object[] { ElectricPotentialAcUnit.VoltAc },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -223,11 +233,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(ElectricPotentialAcUnit.KilovoltAc)]
-        [InlineData(ElectricPotentialAcUnit.MegavoltAc)]
-        [InlineData(ElectricPotentialAcUnit.MicrovoltAc)]
-        [InlineData(ElectricPotentialAcUnit.MillivoltAc)]
-        [InlineData(ElectricPotentialAcUnit.VoltAc)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(ElectricPotentialAcUnit unit)
         {
             var quantity = ElectricPotentialAc.From(3.0, unit);

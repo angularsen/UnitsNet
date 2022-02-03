@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -88,6 +89,34 @@ namespace UnitsNet.Tests
         protected virtual double PartsPerTrillionTolerance { get { return 1e-5; } }
         protected virtual double PercentTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { MassFractionUnit.CentigramPerGram },
+            new object[] { MassFractionUnit.CentigramPerKilogram },
+            new object[] { MassFractionUnit.DecagramPerGram },
+            new object[] { MassFractionUnit.DecagramPerKilogram },
+            new object[] { MassFractionUnit.DecigramPerGram },
+            new object[] { MassFractionUnit.DecigramPerKilogram },
+            new object[] { MassFractionUnit.DecimalFraction },
+            new object[] { MassFractionUnit.GramPerGram },
+            new object[] { MassFractionUnit.GramPerKilogram },
+            new object[] { MassFractionUnit.HectogramPerGram },
+            new object[] { MassFractionUnit.HectogramPerKilogram },
+            new object[] { MassFractionUnit.KilogramPerGram },
+            new object[] { MassFractionUnit.KilogramPerKilogram },
+            new object[] { MassFractionUnit.MicrogramPerGram },
+            new object[] { MassFractionUnit.MicrogramPerKilogram },
+            new object[] { MassFractionUnit.MilligramPerGram },
+            new object[] { MassFractionUnit.MilligramPerKilogram },
+            new object[] { MassFractionUnit.NanogramPerGram },
+            new object[] { MassFractionUnit.NanogramPerKilogram },
+            new object[] { MassFractionUnit.PartPerBillion },
+            new object[] { MassFractionUnit.PartPerMillion },
+            new object[] { MassFractionUnit.PartPerThousand },
+            new object[] { MassFractionUnit.PartPerTrillion },
+            new object[] { MassFractionUnit.Percent },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -451,30 +480,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(MassFractionUnit.CentigramPerGram)]
-        [InlineData(MassFractionUnit.CentigramPerKilogram)]
-        [InlineData(MassFractionUnit.DecagramPerGram)]
-        [InlineData(MassFractionUnit.DecagramPerKilogram)]
-        [InlineData(MassFractionUnit.DecigramPerGram)]
-        [InlineData(MassFractionUnit.DecigramPerKilogram)]
-        [InlineData(MassFractionUnit.DecimalFraction)]
-        [InlineData(MassFractionUnit.GramPerGram)]
-        [InlineData(MassFractionUnit.GramPerKilogram)]
-        [InlineData(MassFractionUnit.HectogramPerGram)]
-        [InlineData(MassFractionUnit.HectogramPerKilogram)]
-        [InlineData(MassFractionUnit.KilogramPerGram)]
-        [InlineData(MassFractionUnit.KilogramPerKilogram)]
-        [InlineData(MassFractionUnit.MicrogramPerGram)]
-        [InlineData(MassFractionUnit.MicrogramPerKilogram)]
-        [InlineData(MassFractionUnit.MilligramPerGram)]
-        [InlineData(MassFractionUnit.MilligramPerKilogram)]
-        [InlineData(MassFractionUnit.NanogramPerGram)]
-        [InlineData(MassFractionUnit.NanogramPerKilogram)]
-        [InlineData(MassFractionUnit.PartPerBillion)]
-        [InlineData(MassFractionUnit.PartPerMillion)]
-        [InlineData(MassFractionUnit.PartPerThousand)]
-        [InlineData(MassFractionUnit.PartPerTrillion)]
-        [InlineData(MassFractionUnit.Percent)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(MassFractionUnit unit)
         {
             var quantity = MassFraction.From(3.0, unit);

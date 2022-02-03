@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -90,6 +91,35 @@ namespace UnitsNet.Tests
         protected virtual double WattDaysPerTonneTolerance { get { return 1e-5; } }
         protected virtual double WattHoursPerKilogramTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { SpecificEnergyUnit.BtuPerPound },
+            new object[] { SpecificEnergyUnit.CaloriePerGram },
+            new object[] { SpecificEnergyUnit.GigawattDayPerKilogram },
+            new object[] { SpecificEnergyUnit.GigawattDayPerShortTon },
+            new object[] { SpecificEnergyUnit.GigawattDayPerTonne },
+            new object[] { SpecificEnergyUnit.GigawattHourPerKilogram },
+            new object[] { SpecificEnergyUnit.JoulePerKilogram },
+            new object[] { SpecificEnergyUnit.KilocaloriePerGram },
+            new object[] { SpecificEnergyUnit.KilojoulePerKilogram },
+            new object[] { SpecificEnergyUnit.KilowattDayPerKilogram },
+            new object[] { SpecificEnergyUnit.KilowattDayPerShortTon },
+            new object[] { SpecificEnergyUnit.KilowattDayPerTonne },
+            new object[] { SpecificEnergyUnit.KilowattHourPerKilogram },
+            new object[] { SpecificEnergyUnit.MegajoulePerKilogram },
+            new object[] { SpecificEnergyUnit.MegawattDayPerKilogram },
+            new object[] { SpecificEnergyUnit.MegawattDayPerShortTon },
+            new object[] { SpecificEnergyUnit.MegawattDayPerTonne },
+            new object[] { SpecificEnergyUnit.MegawattHourPerKilogram },
+            new object[] { SpecificEnergyUnit.TerawattDayPerKilogram },
+            new object[] { SpecificEnergyUnit.TerawattDayPerShortTon },
+            new object[] { SpecificEnergyUnit.TerawattDayPerTonne },
+            new object[] { SpecificEnergyUnit.WattDayPerKilogram },
+            new object[] { SpecificEnergyUnit.WattDayPerShortTon },
+            new object[] { SpecificEnergyUnit.WattDayPerTonne },
+            new object[] { SpecificEnergyUnit.WattHourPerKilogram },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -463,31 +493,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(SpecificEnergyUnit.BtuPerPound)]
-        [InlineData(SpecificEnergyUnit.CaloriePerGram)]
-        [InlineData(SpecificEnergyUnit.GigawattDayPerKilogram)]
-        [InlineData(SpecificEnergyUnit.GigawattDayPerShortTon)]
-        [InlineData(SpecificEnergyUnit.GigawattDayPerTonne)]
-        [InlineData(SpecificEnergyUnit.GigawattHourPerKilogram)]
-        [InlineData(SpecificEnergyUnit.JoulePerKilogram)]
-        [InlineData(SpecificEnergyUnit.KilocaloriePerGram)]
-        [InlineData(SpecificEnergyUnit.KilojoulePerKilogram)]
-        [InlineData(SpecificEnergyUnit.KilowattDayPerKilogram)]
-        [InlineData(SpecificEnergyUnit.KilowattDayPerShortTon)]
-        [InlineData(SpecificEnergyUnit.KilowattDayPerTonne)]
-        [InlineData(SpecificEnergyUnit.KilowattHourPerKilogram)]
-        [InlineData(SpecificEnergyUnit.MegajoulePerKilogram)]
-        [InlineData(SpecificEnergyUnit.MegawattDayPerKilogram)]
-        [InlineData(SpecificEnergyUnit.MegawattDayPerShortTon)]
-        [InlineData(SpecificEnergyUnit.MegawattDayPerTonne)]
-        [InlineData(SpecificEnergyUnit.MegawattHourPerKilogram)]
-        [InlineData(SpecificEnergyUnit.TerawattDayPerKilogram)]
-        [InlineData(SpecificEnergyUnit.TerawattDayPerShortTon)]
-        [InlineData(SpecificEnergyUnit.TerawattDayPerTonne)]
-        [InlineData(SpecificEnergyUnit.WattDayPerKilogram)]
-        [InlineData(SpecificEnergyUnit.WattDayPerShortTon)]
-        [InlineData(SpecificEnergyUnit.WattDayPerTonne)]
-        [InlineData(SpecificEnergyUnit.WattHourPerKilogram)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(SpecificEnergyUnit unit)
         {
             var quantity = SpecificEnergy.From(3.0, unit);

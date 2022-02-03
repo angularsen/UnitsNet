@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -90,6 +91,35 @@ namespace UnitsNet.Tests
         protected virtual double StoneTolerance { get { return 1e-5; } }
         protected virtual double TonnesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { MassUnit.Centigram },
+            new object[] { MassUnit.Decagram },
+            new object[] { MassUnit.Decigram },
+            new object[] { MassUnit.EarthMass },
+            new object[] { MassUnit.Grain },
+            new object[] { MassUnit.Gram },
+            new object[] { MassUnit.Hectogram },
+            new object[] { MassUnit.Kilogram },
+            new object[] { MassUnit.Kilopound },
+            new object[] { MassUnit.Kilotonne },
+            new object[] { MassUnit.LongHundredweight },
+            new object[] { MassUnit.LongTon },
+            new object[] { MassUnit.Megapound },
+            new object[] { MassUnit.Megatonne },
+            new object[] { MassUnit.Microgram },
+            new object[] { MassUnit.Milligram },
+            new object[] { MassUnit.Nanogram },
+            new object[] { MassUnit.Ounce },
+            new object[] { MassUnit.Pound },
+            new object[] { MassUnit.ShortHundredweight },
+            new object[] { MassUnit.ShortTon },
+            new object[] { MassUnit.Slug },
+            new object[] { MassUnit.SolarMass },
+            new object[] { MassUnit.Stone },
+            new object[] { MassUnit.Tonne },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -463,31 +493,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(MassUnit.Centigram)]
-        [InlineData(MassUnit.Decagram)]
-        [InlineData(MassUnit.Decigram)]
-        [InlineData(MassUnit.EarthMass)]
-        [InlineData(MassUnit.Grain)]
-        [InlineData(MassUnit.Gram)]
-        [InlineData(MassUnit.Hectogram)]
-        [InlineData(MassUnit.Kilogram)]
-        [InlineData(MassUnit.Kilopound)]
-        [InlineData(MassUnit.Kilotonne)]
-        [InlineData(MassUnit.LongHundredweight)]
-        [InlineData(MassUnit.LongTon)]
-        [InlineData(MassUnit.Megapound)]
-        [InlineData(MassUnit.Megatonne)]
-        [InlineData(MassUnit.Microgram)]
-        [InlineData(MassUnit.Milligram)]
-        [InlineData(MassUnit.Nanogram)]
-        [InlineData(MassUnit.Ounce)]
-        [InlineData(MassUnit.Pound)]
-        [InlineData(MassUnit.ShortHundredweight)]
-        [InlineData(MassUnit.ShortTon)]
-        [InlineData(MassUnit.Slug)]
-        [InlineData(MassUnit.SolarMass)]
-        [InlineData(MassUnit.Stone)]
-        [InlineData(MassUnit.Tonne)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(MassUnit unit)
         {
             var quantity = Mass.From(3.0, unit);

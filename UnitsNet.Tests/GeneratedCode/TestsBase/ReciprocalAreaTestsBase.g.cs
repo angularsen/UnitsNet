@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -62,6 +63,21 @@ namespace UnitsNet.Tests
         protected virtual double InverseSquareYardsTolerance { get { return 1e-5; } }
         protected virtual double InverseUsSurveySquareFeetTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ReciprocalAreaUnit.InverseSquareCentimeter },
+            new object[] { ReciprocalAreaUnit.InverseSquareDecimeter },
+            new object[] { ReciprocalAreaUnit.InverseSquareFoot },
+            new object[] { ReciprocalAreaUnit.InverseSquareInch },
+            new object[] { ReciprocalAreaUnit.InverseSquareKilometer },
+            new object[] { ReciprocalAreaUnit.InverseSquareMeter },
+            new object[] { ReciprocalAreaUnit.InverseSquareMicrometer },
+            new object[] { ReciprocalAreaUnit.InverseSquareMile },
+            new object[] { ReciprocalAreaUnit.InverseSquareMillimeter },
+            new object[] { ReciprocalAreaUnit.InverseSquareYard },
+            new object[] { ReciprocalAreaUnit.InverseUsSurveySquareFoot },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -295,17 +311,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(ReciprocalAreaUnit.InverseSquareCentimeter)]
-        [InlineData(ReciprocalAreaUnit.InverseSquareDecimeter)]
-        [InlineData(ReciprocalAreaUnit.InverseSquareFoot)]
-        [InlineData(ReciprocalAreaUnit.InverseSquareInch)]
-        [InlineData(ReciprocalAreaUnit.InverseSquareKilometer)]
-        [InlineData(ReciprocalAreaUnit.InverseSquareMeter)]
-        [InlineData(ReciprocalAreaUnit.InverseSquareMicrometer)]
-        [InlineData(ReciprocalAreaUnit.InverseSquareMile)]
-        [InlineData(ReciprocalAreaUnit.InverseSquareMillimeter)]
-        [InlineData(ReciprocalAreaUnit.InverseSquareYard)]
-        [InlineData(ReciprocalAreaUnit.InverseUsSurveySquareFoot)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(ReciprocalAreaUnit unit)
         {
             var quantity = ReciprocalArea.From(3.0, unit);

@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -70,6 +71,25 @@ namespace UnitsNet.Tests
         protected virtual double PoundsForcePerMinuteTolerance { get { return 1e-5; } }
         protected virtual double PoundsForcePerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ForceChangeRateUnit.CentinewtonPerSecond },
+            new object[] { ForceChangeRateUnit.DecanewtonPerMinute },
+            new object[] { ForceChangeRateUnit.DecanewtonPerSecond },
+            new object[] { ForceChangeRateUnit.DecinewtonPerSecond },
+            new object[] { ForceChangeRateUnit.KilonewtonPerMinute },
+            new object[] { ForceChangeRateUnit.KilonewtonPerSecond },
+            new object[] { ForceChangeRateUnit.KilopoundForcePerMinute },
+            new object[] { ForceChangeRateUnit.KilopoundForcePerSecond },
+            new object[] { ForceChangeRateUnit.MicronewtonPerSecond },
+            new object[] { ForceChangeRateUnit.MillinewtonPerSecond },
+            new object[] { ForceChangeRateUnit.NanonewtonPerSecond },
+            new object[] { ForceChangeRateUnit.NewtonPerMinute },
+            new object[] { ForceChangeRateUnit.NewtonPerSecond },
+            new object[] { ForceChangeRateUnit.PoundForcePerMinute },
+            new object[] { ForceChangeRateUnit.PoundForcePerSecond },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -343,21 +363,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(ForceChangeRateUnit.CentinewtonPerSecond)]
-        [InlineData(ForceChangeRateUnit.DecanewtonPerMinute)]
-        [InlineData(ForceChangeRateUnit.DecanewtonPerSecond)]
-        [InlineData(ForceChangeRateUnit.DecinewtonPerSecond)]
-        [InlineData(ForceChangeRateUnit.KilonewtonPerMinute)]
-        [InlineData(ForceChangeRateUnit.KilonewtonPerSecond)]
-        [InlineData(ForceChangeRateUnit.KilopoundForcePerMinute)]
-        [InlineData(ForceChangeRateUnit.KilopoundForcePerSecond)]
-        [InlineData(ForceChangeRateUnit.MicronewtonPerSecond)]
-        [InlineData(ForceChangeRateUnit.MillinewtonPerSecond)]
-        [InlineData(ForceChangeRateUnit.NanonewtonPerSecond)]
-        [InlineData(ForceChangeRateUnit.NewtonPerMinute)]
-        [InlineData(ForceChangeRateUnit.NewtonPerSecond)]
-        [InlineData(ForceChangeRateUnit.PoundForcePerMinute)]
-        [InlineData(ForceChangeRateUnit.PoundForcePerSecond)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(ForceChangeRateUnit unit)
         {
             var quantity = ForceChangeRate.From(3.0, unit);

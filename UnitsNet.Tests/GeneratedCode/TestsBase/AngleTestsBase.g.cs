@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -72,6 +73,26 @@ namespace UnitsNet.Tests
         protected virtual double RevolutionsTolerance { get { return 1e-5; } }
         protected virtual double TiltTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { AngleUnit.Arcminute },
+            new object[] { AngleUnit.Arcsecond },
+            new object[] { AngleUnit.Centiradian },
+            new object[] { AngleUnit.Deciradian },
+            new object[] { AngleUnit.Degree },
+            new object[] { AngleUnit.Gradian },
+            new object[] { AngleUnit.Microdegree },
+            new object[] { AngleUnit.Microradian },
+            new object[] { AngleUnit.Millidegree },
+            new object[] { AngleUnit.Milliradian },
+            new object[] { AngleUnit.Nanodegree },
+            new object[] { AngleUnit.Nanoradian },
+            new object[] { AngleUnit.NatoMil },
+            new object[] { AngleUnit.Radian },
+            new object[] { AngleUnit.Revolution },
+            new object[] { AngleUnit.Tilt },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -355,22 +376,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(AngleUnit.Arcminute)]
-        [InlineData(AngleUnit.Arcsecond)]
-        [InlineData(AngleUnit.Centiradian)]
-        [InlineData(AngleUnit.Deciradian)]
-        [InlineData(AngleUnit.Degree)]
-        [InlineData(AngleUnit.Gradian)]
-        [InlineData(AngleUnit.Microdegree)]
-        [InlineData(AngleUnit.Microradian)]
-        [InlineData(AngleUnit.Millidegree)]
-        [InlineData(AngleUnit.Milliradian)]
-        [InlineData(AngleUnit.Nanodegree)]
-        [InlineData(AngleUnit.Nanoradian)]
-        [InlineData(AngleUnit.NatoMil)]
-        [InlineData(AngleUnit.Radian)]
-        [InlineData(AngleUnit.Revolution)]
-        [InlineData(AngleUnit.Tilt)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(AngleUnit unit)
         {
             var quantity = Angle.From(3.0, unit);

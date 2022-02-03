@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -60,6 +61,20 @@ namespace UnitsNet.Tests
         protected virtual double MillidegreesCelsiusPerSecondTolerance { get { return 1e-5; } }
         protected virtual double NanodegreesCelsiusPerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond },
+            new object[] { TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond },
+            new object[] { TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond },
+            new object[] { TemperatureChangeRateUnit.DegreeCelsiusPerMinute },
+            new object[] { TemperatureChangeRateUnit.DegreeCelsiusPerSecond },
+            new object[] { TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond },
+            new object[] { TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond },
+            new object[] { TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond },
+            new object[] { TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond },
+            new object[] { TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -283,16 +298,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond)]
-        [InlineData(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond)]
-        [InlineData(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond)]
-        [InlineData(TemperatureChangeRateUnit.DegreeCelsiusPerMinute)]
-        [InlineData(TemperatureChangeRateUnit.DegreeCelsiusPerSecond)]
-        [InlineData(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond)]
-        [InlineData(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond)]
-        [InlineData(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond)]
-        [InlineData(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond)]
-        [InlineData(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(TemperatureChangeRateUnit unit)
         {
             var quantity = TemperatureChangeRate.From(3.0, unit);

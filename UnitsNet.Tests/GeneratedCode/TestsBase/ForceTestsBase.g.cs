@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -70,6 +71,25 @@ namespace UnitsNet.Tests
         protected virtual double ShortTonsForceTolerance { get { return 1e-5; } }
         protected virtual double TonnesForceTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ForceUnit.Decanewton },
+            new object[] { ForceUnit.Dyn },
+            new object[] { ForceUnit.KilogramForce },
+            new object[] { ForceUnit.Kilonewton },
+            new object[] { ForceUnit.KiloPond },
+            new object[] { ForceUnit.KilopoundForce },
+            new object[] { ForceUnit.Meganewton },
+            new object[] { ForceUnit.Micronewton },
+            new object[] { ForceUnit.Millinewton },
+            new object[] { ForceUnit.Newton },
+            new object[] { ForceUnit.OunceForce },
+            new object[] { ForceUnit.Poundal },
+            new object[] { ForceUnit.PoundForce },
+            new object[] { ForceUnit.ShortTonForce },
+            new object[] { ForceUnit.TonneForce },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -343,21 +363,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(ForceUnit.Decanewton)]
-        [InlineData(ForceUnit.Dyn)]
-        [InlineData(ForceUnit.KilogramForce)]
-        [InlineData(ForceUnit.Kilonewton)]
-        [InlineData(ForceUnit.KiloPond)]
-        [InlineData(ForceUnit.KilopoundForce)]
-        [InlineData(ForceUnit.Meganewton)]
-        [InlineData(ForceUnit.Micronewton)]
-        [InlineData(ForceUnit.Millinewton)]
-        [InlineData(ForceUnit.Newton)]
-        [InlineData(ForceUnit.OunceForce)]
-        [InlineData(ForceUnit.Poundal)]
-        [InlineData(ForceUnit.PoundForce)]
-        [InlineData(ForceUnit.ShortTonForce)]
-        [InlineData(ForceUnit.TonneForce)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(ForceUnit unit)
         {
             var quantity = Force.From(3.0, unit);

@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -92,6 +93,36 @@ namespace UnitsNet.Tests
         protected virtual double TerabitsTolerance { get { return 1e-5; } }
         protected virtual double TerabytesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { InformationUnit.Bit },
+            new object[] { InformationUnit.Byte },
+            new object[] { InformationUnit.Exabit },
+            new object[] { InformationUnit.Exabyte },
+            new object[] { InformationUnit.Exbibit },
+            new object[] { InformationUnit.Exbibyte },
+            new object[] { InformationUnit.Gibibit },
+            new object[] { InformationUnit.Gibibyte },
+            new object[] { InformationUnit.Gigabit },
+            new object[] { InformationUnit.Gigabyte },
+            new object[] { InformationUnit.Kibibit },
+            new object[] { InformationUnit.Kibibyte },
+            new object[] { InformationUnit.Kilobit },
+            new object[] { InformationUnit.Kilobyte },
+            new object[] { InformationUnit.Mebibit },
+            new object[] { InformationUnit.Mebibyte },
+            new object[] { InformationUnit.Megabit },
+            new object[] { InformationUnit.Megabyte },
+            new object[] { InformationUnit.Pebibit },
+            new object[] { InformationUnit.Pebibyte },
+            new object[] { InformationUnit.Petabit },
+            new object[] { InformationUnit.Petabyte },
+            new object[] { InformationUnit.Tebibit },
+            new object[] { InformationUnit.Tebibyte },
+            new object[] { InformationUnit.Terabit },
+            new object[] { InformationUnit.Terabyte },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -450,32 +481,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(InformationUnit.Bit)]
-        [InlineData(InformationUnit.Byte)]
-        [InlineData(InformationUnit.Exabit)]
-        [InlineData(InformationUnit.Exabyte)]
-        [InlineData(InformationUnit.Exbibit)]
-        [InlineData(InformationUnit.Exbibyte)]
-        [InlineData(InformationUnit.Gibibit)]
-        [InlineData(InformationUnit.Gibibyte)]
-        [InlineData(InformationUnit.Gigabit)]
-        [InlineData(InformationUnit.Gigabyte)]
-        [InlineData(InformationUnit.Kibibit)]
-        [InlineData(InformationUnit.Kibibyte)]
-        [InlineData(InformationUnit.Kilobit)]
-        [InlineData(InformationUnit.Kilobyte)]
-        [InlineData(InformationUnit.Mebibit)]
-        [InlineData(InformationUnit.Mebibyte)]
-        [InlineData(InformationUnit.Megabit)]
-        [InlineData(InformationUnit.Megabyte)]
-        [InlineData(InformationUnit.Pebibit)]
-        [InlineData(InformationUnit.Pebibyte)]
-        [InlineData(InformationUnit.Petabit)]
-        [InlineData(InformationUnit.Petabyte)]
-        [InlineData(InformationUnit.Tebibit)]
-        [InlineData(InformationUnit.Tebibyte)]
-        [InlineData(InformationUnit.Terabit)]
-        [InlineData(InformationUnit.Terabyte)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(InformationUnit unit)
         {
             var quantity = Information.From(3.0, unit);

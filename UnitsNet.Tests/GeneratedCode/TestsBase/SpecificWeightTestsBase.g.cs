@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -74,6 +75,27 @@ namespace UnitsNet.Tests
         protected virtual double TonnesForcePerCubicMeterTolerance { get { return 1e-5; } }
         protected virtual double TonnesForcePerCubicMillimeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { SpecificWeightUnit.KilogramForcePerCubicCentimeter },
+            new object[] { SpecificWeightUnit.KilogramForcePerCubicMeter },
+            new object[] { SpecificWeightUnit.KilogramForcePerCubicMillimeter },
+            new object[] { SpecificWeightUnit.KilonewtonPerCubicCentimeter },
+            new object[] { SpecificWeightUnit.KilonewtonPerCubicMeter },
+            new object[] { SpecificWeightUnit.KilonewtonPerCubicMillimeter },
+            new object[] { SpecificWeightUnit.KilopoundForcePerCubicFoot },
+            new object[] { SpecificWeightUnit.KilopoundForcePerCubicInch },
+            new object[] { SpecificWeightUnit.MeganewtonPerCubicMeter },
+            new object[] { SpecificWeightUnit.NewtonPerCubicCentimeter },
+            new object[] { SpecificWeightUnit.NewtonPerCubicMeter },
+            new object[] { SpecificWeightUnit.NewtonPerCubicMillimeter },
+            new object[] { SpecificWeightUnit.PoundForcePerCubicFoot },
+            new object[] { SpecificWeightUnit.PoundForcePerCubicInch },
+            new object[] { SpecificWeightUnit.TonneForcePerCubicCentimeter },
+            new object[] { SpecificWeightUnit.TonneForcePerCubicMeter },
+            new object[] { SpecificWeightUnit.TonneForcePerCubicMillimeter },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -367,23 +389,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(SpecificWeightUnit.KilogramForcePerCubicCentimeter)]
-        [InlineData(SpecificWeightUnit.KilogramForcePerCubicMeter)]
-        [InlineData(SpecificWeightUnit.KilogramForcePerCubicMillimeter)]
-        [InlineData(SpecificWeightUnit.KilonewtonPerCubicCentimeter)]
-        [InlineData(SpecificWeightUnit.KilonewtonPerCubicMeter)]
-        [InlineData(SpecificWeightUnit.KilonewtonPerCubicMillimeter)]
-        [InlineData(SpecificWeightUnit.KilopoundForcePerCubicFoot)]
-        [InlineData(SpecificWeightUnit.KilopoundForcePerCubicInch)]
-        [InlineData(SpecificWeightUnit.MeganewtonPerCubicMeter)]
-        [InlineData(SpecificWeightUnit.NewtonPerCubicCentimeter)]
-        [InlineData(SpecificWeightUnit.NewtonPerCubicMeter)]
-        [InlineData(SpecificWeightUnit.NewtonPerCubicMillimeter)]
-        [InlineData(SpecificWeightUnit.PoundForcePerCubicFoot)]
-        [InlineData(SpecificWeightUnit.PoundForcePerCubicInch)]
-        [InlineData(SpecificWeightUnit.TonneForcePerCubicCentimeter)]
-        [InlineData(SpecificWeightUnit.TonneForcePerCubicMeter)]
-        [InlineData(SpecificWeightUnit.TonneForcePerCubicMillimeter)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(SpecificWeightUnit unit)
         {
             var quantity = SpecificWeight.From(3.0, unit);

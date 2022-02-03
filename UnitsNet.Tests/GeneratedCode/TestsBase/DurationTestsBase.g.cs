@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -62,6 +63,21 @@ namespace UnitsNet.Tests
         protected virtual double WeeksTolerance { get { return 1e-5; } }
         protected virtual double Years365Tolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { DurationUnit.Day },
+            new object[] { DurationUnit.Hour },
+            new object[] { DurationUnit.JulianYear },
+            new object[] { DurationUnit.Microsecond },
+            new object[] { DurationUnit.Millisecond },
+            new object[] { DurationUnit.Minute },
+            new object[] { DurationUnit.Month30 },
+            new object[] { DurationUnit.Nanosecond },
+            new object[] { DurationUnit.Second },
+            new object[] { DurationUnit.Week },
+            new object[] { DurationUnit.Year365 },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -295,17 +311,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(DurationUnit.Day)]
-        [InlineData(DurationUnit.Hour)]
-        [InlineData(DurationUnit.JulianYear)]
-        [InlineData(DurationUnit.Microsecond)]
-        [InlineData(DurationUnit.Millisecond)]
-        [InlineData(DurationUnit.Minute)]
-        [InlineData(DurationUnit.Month30)]
-        [InlineData(DurationUnit.Nanosecond)]
-        [InlineData(DurationUnit.Second)]
-        [InlineData(DurationUnit.Week)]
-        [InlineData(DurationUnit.Year365)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(DurationUnit unit)
         {
             var quantity = Duration.From(3.0, unit);

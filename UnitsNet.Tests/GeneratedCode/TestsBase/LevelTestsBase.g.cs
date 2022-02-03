@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -44,6 +45,12 @@ namespace UnitsNet.Tests
         protected virtual double DecibelsTolerance { get { return 1e-5; } }
         protected virtual double NepersTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { LevelUnit.Decibel },
+            new object[] { LevelUnit.Neper },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -187,8 +194,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(LevelUnit.Decibel)]
-        [InlineData(LevelUnit.Neper)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(LevelUnit unit)
         {
             var quantity = Level.From(3.0, unit);

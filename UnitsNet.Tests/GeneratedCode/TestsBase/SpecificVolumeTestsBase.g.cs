@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -46,6 +47,13 @@ namespace UnitsNet.Tests
         protected virtual double CubicMetersPerKilogramTolerance { get { return 1e-5; } }
         protected virtual double MillicubicMetersPerKilogramTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { SpecificVolumeUnit.CubicFootPerPound },
+            new object[] { SpecificVolumeUnit.CubicMeterPerKilogram },
+            new object[] { SpecificVolumeUnit.MillicubicMeterPerKilogram },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -199,9 +207,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(SpecificVolumeUnit.CubicFootPerPound)]
-        [InlineData(SpecificVolumeUnit.CubicMeterPerKilogram)]
-        [InlineData(SpecificVolumeUnit.MillicubicMeterPerKilogram)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(SpecificVolumeUnit unit)
         {
             var quantity = SpecificVolume.From(3.0, unit);

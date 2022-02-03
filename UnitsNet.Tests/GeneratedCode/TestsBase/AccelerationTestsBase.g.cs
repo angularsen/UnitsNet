@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -68,6 +69,24 @@ namespace UnitsNet.Tests
         protected virtual double NanometersPerSecondSquaredTolerance { get { return 1e-5; } }
         protected virtual double StandardGravityTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { AccelerationUnit.CentimeterPerSecondSquared },
+            new object[] { AccelerationUnit.DecimeterPerSecondSquared },
+            new object[] { AccelerationUnit.FootPerSecondSquared },
+            new object[] { AccelerationUnit.InchPerSecondSquared },
+            new object[] { AccelerationUnit.KilometerPerSecondSquared },
+            new object[] { AccelerationUnit.KnotPerHour },
+            new object[] { AccelerationUnit.KnotPerMinute },
+            new object[] { AccelerationUnit.KnotPerSecond },
+            new object[] { AccelerationUnit.MeterPerSecondSquared },
+            new object[] { AccelerationUnit.MicrometerPerSecondSquared },
+            new object[] { AccelerationUnit.MillimeterPerSecondSquared },
+            new object[] { AccelerationUnit.MillistandardGravity },
+            new object[] { AccelerationUnit.NanometerPerSecondSquared },
+            new object[] { AccelerationUnit.StandardGravity },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -331,20 +350,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(AccelerationUnit.CentimeterPerSecondSquared)]
-        [InlineData(AccelerationUnit.DecimeterPerSecondSquared)]
-        [InlineData(AccelerationUnit.FootPerSecondSquared)]
-        [InlineData(AccelerationUnit.InchPerSecondSquared)]
-        [InlineData(AccelerationUnit.KilometerPerSecondSquared)]
-        [InlineData(AccelerationUnit.KnotPerHour)]
-        [InlineData(AccelerationUnit.KnotPerMinute)]
-        [InlineData(AccelerationUnit.KnotPerSecond)]
-        [InlineData(AccelerationUnit.MeterPerSecondSquared)]
-        [InlineData(AccelerationUnit.MicrometerPerSecondSquared)]
-        [InlineData(AccelerationUnit.MillimeterPerSecondSquared)]
-        [InlineData(AccelerationUnit.MillistandardGravity)]
-        [InlineData(AccelerationUnit.NanometerPerSecondSquared)]
-        [InlineData(AccelerationUnit.StandardGravity)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(AccelerationUnit unit)
         {
             var quantity = Acceleration.From(3.0, unit);

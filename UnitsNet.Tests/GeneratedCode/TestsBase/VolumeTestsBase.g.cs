@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -142,6 +143,61 @@ namespace UnitsNet.Tests
         protected virtual double UsTablespoonsTolerance { get { return 1e-5; } }
         protected virtual double UsTeaspoonsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { VolumeUnit.AcreFoot },
+            new object[] { VolumeUnit.AuTablespoon },
+            new object[] { VolumeUnit.BoardFoot },
+            new object[] { VolumeUnit.Centiliter },
+            new object[] { VolumeUnit.CubicCentimeter },
+            new object[] { VolumeUnit.CubicDecimeter },
+            new object[] { VolumeUnit.CubicFoot },
+            new object[] { VolumeUnit.CubicHectometer },
+            new object[] { VolumeUnit.CubicInch },
+            new object[] { VolumeUnit.CubicKilometer },
+            new object[] { VolumeUnit.CubicMeter },
+            new object[] { VolumeUnit.CubicMicrometer },
+            new object[] { VolumeUnit.CubicMile },
+            new object[] { VolumeUnit.CubicMillimeter },
+            new object[] { VolumeUnit.CubicYard },
+            new object[] { VolumeUnit.DecausGallon },
+            new object[] { VolumeUnit.Deciliter },
+            new object[] { VolumeUnit.DeciusGallon },
+            new object[] { VolumeUnit.HectocubicFoot },
+            new object[] { VolumeUnit.HectocubicMeter },
+            new object[] { VolumeUnit.Hectoliter },
+            new object[] { VolumeUnit.HectousGallon },
+            new object[] { VolumeUnit.ImperialBeerBarrel },
+            new object[] { VolumeUnit.ImperialGallon },
+            new object[] { VolumeUnit.ImperialOunce },
+            new object[] { VolumeUnit.ImperialPint },
+            new object[] { VolumeUnit.KilocubicFoot },
+            new object[] { VolumeUnit.KilocubicMeter },
+            new object[] { VolumeUnit.KiloimperialGallon },
+            new object[] { VolumeUnit.Kiloliter },
+            new object[] { VolumeUnit.KilousGallon },
+            new object[] { VolumeUnit.Liter },
+            new object[] { VolumeUnit.MegacubicFoot },
+            new object[] { VolumeUnit.MegaimperialGallon },
+            new object[] { VolumeUnit.Megaliter },
+            new object[] { VolumeUnit.MegausGallon },
+            new object[] { VolumeUnit.MetricCup },
+            new object[] { VolumeUnit.MetricTeaspoon },
+            new object[] { VolumeUnit.Microliter },
+            new object[] { VolumeUnit.Milliliter },
+            new object[] { VolumeUnit.OilBarrel },
+            new object[] { VolumeUnit.UkTablespoon },
+            new object[] { VolumeUnit.UsBeerBarrel },
+            new object[] { VolumeUnit.UsCustomaryCup },
+            new object[] { VolumeUnit.UsGallon },
+            new object[] { VolumeUnit.UsLegalCup },
+            new object[] { VolumeUnit.UsOunce },
+            new object[] { VolumeUnit.UsPint },
+            new object[] { VolumeUnit.UsQuart },
+            new object[] { VolumeUnit.UsTablespoon },
+            new object[] { VolumeUnit.UsTeaspoon },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -775,57 +831,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(VolumeUnit.AcreFoot)]
-        [InlineData(VolumeUnit.AuTablespoon)]
-        [InlineData(VolumeUnit.BoardFoot)]
-        [InlineData(VolumeUnit.Centiliter)]
-        [InlineData(VolumeUnit.CubicCentimeter)]
-        [InlineData(VolumeUnit.CubicDecimeter)]
-        [InlineData(VolumeUnit.CubicFoot)]
-        [InlineData(VolumeUnit.CubicHectometer)]
-        [InlineData(VolumeUnit.CubicInch)]
-        [InlineData(VolumeUnit.CubicKilometer)]
-        [InlineData(VolumeUnit.CubicMeter)]
-        [InlineData(VolumeUnit.CubicMicrometer)]
-        [InlineData(VolumeUnit.CubicMile)]
-        [InlineData(VolumeUnit.CubicMillimeter)]
-        [InlineData(VolumeUnit.CubicYard)]
-        [InlineData(VolumeUnit.DecausGallon)]
-        [InlineData(VolumeUnit.Deciliter)]
-        [InlineData(VolumeUnit.DeciusGallon)]
-        [InlineData(VolumeUnit.HectocubicFoot)]
-        [InlineData(VolumeUnit.HectocubicMeter)]
-        [InlineData(VolumeUnit.Hectoliter)]
-        [InlineData(VolumeUnit.HectousGallon)]
-        [InlineData(VolumeUnit.ImperialBeerBarrel)]
-        [InlineData(VolumeUnit.ImperialGallon)]
-        [InlineData(VolumeUnit.ImperialOunce)]
-        [InlineData(VolumeUnit.ImperialPint)]
-        [InlineData(VolumeUnit.KilocubicFoot)]
-        [InlineData(VolumeUnit.KilocubicMeter)]
-        [InlineData(VolumeUnit.KiloimperialGallon)]
-        [InlineData(VolumeUnit.Kiloliter)]
-        [InlineData(VolumeUnit.KilousGallon)]
-        [InlineData(VolumeUnit.Liter)]
-        [InlineData(VolumeUnit.MegacubicFoot)]
-        [InlineData(VolumeUnit.MegaimperialGallon)]
-        [InlineData(VolumeUnit.Megaliter)]
-        [InlineData(VolumeUnit.MegausGallon)]
-        [InlineData(VolumeUnit.MetricCup)]
-        [InlineData(VolumeUnit.MetricTeaspoon)]
-        [InlineData(VolumeUnit.Microliter)]
-        [InlineData(VolumeUnit.Milliliter)]
-        [InlineData(VolumeUnit.OilBarrel)]
-        [InlineData(VolumeUnit.UkTablespoon)]
-        [InlineData(VolumeUnit.UsBeerBarrel)]
-        [InlineData(VolumeUnit.UsCustomaryCup)]
-        [InlineData(VolumeUnit.UsGallon)]
-        [InlineData(VolumeUnit.UsLegalCup)]
-        [InlineData(VolumeUnit.UsOunce)]
-        [InlineData(VolumeUnit.UsPint)]
-        [InlineData(VolumeUnit.UsQuart)]
-        [InlineData(VolumeUnit.UsTablespoon)]
-        [InlineData(VolumeUnit.UsTeaspoon)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(VolumeUnit unit)
         {
             var quantity = Volume.From(3.0, unit);

@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -92,6 +93,36 @@ namespace UnitsNet.Tests
         protected virtual double TerabitsPerSecondTolerance { get { return 1e-5; } }
         protected virtual double TerabytesPerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { BitRateUnit.BitPerSecond },
+            new object[] { BitRateUnit.BytePerSecond },
+            new object[] { BitRateUnit.ExabitPerSecond },
+            new object[] { BitRateUnit.ExabytePerSecond },
+            new object[] { BitRateUnit.ExbibitPerSecond },
+            new object[] { BitRateUnit.ExbibytePerSecond },
+            new object[] { BitRateUnit.GibibitPerSecond },
+            new object[] { BitRateUnit.GibibytePerSecond },
+            new object[] { BitRateUnit.GigabitPerSecond },
+            new object[] { BitRateUnit.GigabytePerSecond },
+            new object[] { BitRateUnit.KibibitPerSecond },
+            new object[] { BitRateUnit.KibibytePerSecond },
+            new object[] { BitRateUnit.KilobitPerSecond },
+            new object[] { BitRateUnit.KilobytePerSecond },
+            new object[] { BitRateUnit.MebibitPerSecond },
+            new object[] { BitRateUnit.MebibytePerSecond },
+            new object[] { BitRateUnit.MegabitPerSecond },
+            new object[] { BitRateUnit.MegabytePerSecond },
+            new object[] { BitRateUnit.PebibitPerSecond },
+            new object[] { BitRateUnit.PebibytePerSecond },
+            new object[] { BitRateUnit.PetabitPerSecond },
+            new object[] { BitRateUnit.PetabytePerSecond },
+            new object[] { BitRateUnit.TebibitPerSecond },
+            new object[] { BitRateUnit.TebibytePerSecond },
+            new object[] { BitRateUnit.TerabitPerSecond },
+            new object[] { BitRateUnit.TerabytePerSecond },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -450,32 +481,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(BitRateUnit.BitPerSecond)]
-        [InlineData(BitRateUnit.BytePerSecond)]
-        [InlineData(BitRateUnit.ExabitPerSecond)]
-        [InlineData(BitRateUnit.ExabytePerSecond)]
-        [InlineData(BitRateUnit.ExbibitPerSecond)]
-        [InlineData(BitRateUnit.ExbibytePerSecond)]
-        [InlineData(BitRateUnit.GibibitPerSecond)]
-        [InlineData(BitRateUnit.GibibytePerSecond)]
-        [InlineData(BitRateUnit.GigabitPerSecond)]
-        [InlineData(BitRateUnit.GigabytePerSecond)]
-        [InlineData(BitRateUnit.KibibitPerSecond)]
-        [InlineData(BitRateUnit.KibibytePerSecond)]
-        [InlineData(BitRateUnit.KilobitPerSecond)]
-        [InlineData(BitRateUnit.KilobytePerSecond)]
-        [InlineData(BitRateUnit.MebibitPerSecond)]
-        [InlineData(BitRateUnit.MebibytePerSecond)]
-        [InlineData(BitRateUnit.MegabitPerSecond)]
-        [InlineData(BitRateUnit.MegabytePerSecond)]
-        [InlineData(BitRateUnit.PebibitPerSecond)]
-        [InlineData(BitRateUnit.PebibytePerSecond)]
-        [InlineData(BitRateUnit.PetabitPerSecond)]
-        [InlineData(BitRateUnit.PetabytePerSecond)]
-        [InlineData(BitRateUnit.TebibitPerSecond)]
-        [InlineData(BitRateUnit.TebibytePerSecond)]
-        [InlineData(BitRateUnit.TerabitPerSecond)]
-        [InlineData(BitRateUnit.TerabytePerSecond)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(BitRateUnit unit)
         {
             var quantity = BitRate.From(3.0, unit);

@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -54,6 +55,17 @@ namespace UnitsNet.Tests
         protected virtual double MillijoulesPerSquareCentimeterTolerance { get { return 1e-5; } }
         protected virtual double WattHoursPerSquareMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { IrradiationUnit.JoulePerSquareCentimeter },
+            new object[] { IrradiationUnit.JoulePerSquareMeter },
+            new object[] { IrradiationUnit.JoulePerSquareMillimeter },
+            new object[] { IrradiationUnit.KilojoulePerSquareMeter },
+            new object[] { IrradiationUnit.KilowattHourPerSquareMeter },
+            new object[] { IrradiationUnit.MillijoulePerSquareCentimeter },
+            new object[] { IrradiationUnit.WattHourPerSquareMeter },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -247,13 +259,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(IrradiationUnit.JoulePerSquareCentimeter)]
-        [InlineData(IrradiationUnit.JoulePerSquareMeter)]
-        [InlineData(IrradiationUnit.JoulePerSquareMillimeter)]
-        [InlineData(IrradiationUnit.KilojoulePerSquareMeter)]
-        [InlineData(IrradiationUnit.KilowattHourPerSquareMeter)]
-        [InlineData(IrradiationUnit.MillijoulePerSquareCentimeter)]
-        [InlineData(IrradiationUnit.WattHourPerSquareMeter)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(IrradiationUnit unit)
         {
             var quantity = Irradiation.From(3.0, unit);

@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -70,6 +71,25 @@ namespace UnitsNet.Tests
         protected virtual double NanopoundMolesTolerance { get { return 1e-5; } }
         protected virtual double PoundMolesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { AmountOfSubstanceUnit.Centimole },
+            new object[] { AmountOfSubstanceUnit.CentipoundMole },
+            new object[] { AmountOfSubstanceUnit.Decimole },
+            new object[] { AmountOfSubstanceUnit.DecipoundMole },
+            new object[] { AmountOfSubstanceUnit.Kilomole },
+            new object[] { AmountOfSubstanceUnit.KilopoundMole },
+            new object[] { AmountOfSubstanceUnit.Megamole },
+            new object[] { AmountOfSubstanceUnit.Micromole },
+            new object[] { AmountOfSubstanceUnit.MicropoundMole },
+            new object[] { AmountOfSubstanceUnit.Millimole },
+            new object[] { AmountOfSubstanceUnit.MillipoundMole },
+            new object[] { AmountOfSubstanceUnit.Mole },
+            new object[] { AmountOfSubstanceUnit.Nanomole },
+            new object[] { AmountOfSubstanceUnit.NanopoundMole },
+            new object[] { AmountOfSubstanceUnit.PoundMole },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -343,21 +363,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(AmountOfSubstanceUnit.Centimole)]
-        [InlineData(AmountOfSubstanceUnit.CentipoundMole)]
-        [InlineData(AmountOfSubstanceUnit.Decimole)]
-        [InlineData(AmountOfSubstanceUnit.DecipoundMole)]
-        [InlineData(AmountOfSubstanceUnit.Kilomole)]
-        [InlineData(AmountOfSubstanceUnit.KilopoundMole)]
-        [InlineData(AmountOfSubstanceUnit.Megamole)]
-        [InlineData(AmountOfSubstanceUnit.Micromole)]
-        [InlineData(AmountOfSubstanceUnit.MicropoundMole)]
-        [InlineData(AmountOfSubstanceUnit.Millimole)]
-        [InlineData(AmountOfSubstanceUnit.MillipoundMole)]
-        [InlineData(AmountOfSubstanceUnit.Mole)]
-        [InlineData(AmountOfSubstanceUnit.Nanomole)]
-        [InlineData(AmountOfSubstanceUnit.NanopoundMole)]
-        [InlineData(AmountOfSubstanceUnit.PoundMole)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(AmountOfSubstanceUnit unit)
         {
             var quantity = AmountOfSubstance.From(3.0, unit);

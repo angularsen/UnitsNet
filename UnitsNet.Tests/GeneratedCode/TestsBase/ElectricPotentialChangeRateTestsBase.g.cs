@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -80,6 +81,30 @@ namespace UnitsNet.Tests
         protected virtual double VoltsPerMinutesTolerance { get { return 1e-5; } }
         protected virtual double VoltsPerSecondsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ElectricPotentialChangeRateUnit.KilovoltPerHour },
+            new object[] { ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond },
+            new object[] { ElectricPotentialChangeRateUnit.KilovoltPerMinute },
+            new object[] { ElectricPotentialChangeRateUnit.KilovoltPerSecond },
+            new object[] { ElectricPotentialChangeRateUnit.MegavoltPerHour },
+            new object[] { ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond },
+            new object[] { ElectricPotentialChangeRateUnit.MegavoltPerMinute },
+            new object[] { ElectricPotentialChangeRateUnit.MegavoltPerSecond },
+            new object[] { ElectricPotentialChangeRateUnit.MicrovoltPerHour },
+            new object[] { ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond },
+            new object[] { ElectricPotentialChangeRateUnit.MicrovoltPerMinute },
+            new object[] { ElectricPotentialChangeRateUnit.MicrovoltPerSecond },
+            new object[] { ElectricPotentialChangeRateUnit.MillivoltPerHour },
+            new object[] { ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond },
+            new object[] { ElectricPotentialChangeRateUnit.MillivoltPerMinute },
+            new object[] { ElectricPotentialChangeRateUnit.MillivoltPerSecond },
+            new object[] { ElectricPotentialChangeRateUnit.VoltPerHour },
+            new object[] { ElectricPotentialChangeRateUnit.VoltPerMicrosecond },
+            new object[] { ElectricPotentialChangeRateUnit.VoltPerMinute },
+            new object[] { ElectricPotentialChangeRateUnit.VoltPerSecond },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -403,26 +428,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(ElectricPotentialChangeRateUnit.KilovoltPerHour)]
-        [InlineData(ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond)]
-        [InlineData(ElectricPotentialChangeRateUnit.KilovoltPerMinute)]
-        [InlineData(ElectricPotentialChangeRateUnit.KilovoltPerSecond)]
-        [InlineData(ElectricPotentialChangeRateUnit.MegavoltPerHour)]
-        [InlineData(ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond)]
-        [InlineData(ElectricPotentialChangeRateUnit.MegavoltPerMinute)]
-        [InlineData(ElectricPotentialChangeRateUnit.MegavoltPerSecond)]
-        [InlineData(ElectricPotentialChangeRateUnit.MicrovoltPerHour)]
-        [InlineData(ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond)]
-        [InlineData(ElectricPotentialChangeRateUnit.MicrovoltPerMinute)]
-        [InlineData(ElectricPotentialChangeRateUnit.MicrovoltPerSecond)]
-        [InlineData(ElectricPotentialChangeRateUnit.MillivoltPerHour)]
-        [InlineData(ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond)]
-        [InlineData(ElectricPotentialChangeRateUnit.MillivoltPerMinute)]
-        [InlineData(ElectricPotentialChangeRateUnit.MillivoltPerSecond)]
-        [InlineData(ElectricPotentialChangeRateUnit.VoltPerHour)]
-        [InlineData(ElectricPotentialChangeRateUnit.VoltPerMicrosecond)]
-        [InlineData(ElectricPotentialChangeRateUnit.VoltPerMinute)]
-        [InlineData(ElectricPotentialChangeRateUnit.VoltPerSecond)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(ElectricPotentialChangeRateUnit unit)
         {
             var quantity = ElectricPotentialChangeRate.From(3.0, unit);

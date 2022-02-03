@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -76,6 +77,28 @@ namespace UnitsNet.Tests
         protected virtual double WattsPerSquareInchTolerance { get { return 1e-5; } }
         protected virtual double WattsPerSquareMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { HeatFluxUnit.BtuPerHourSquareFoot },
+            new object[] { HeatFluxUnit.BtuPerMinuteSquareFoot },
+            new object[] { HeatFluxUnit.BtuPerSecondSquareFoot },
+            new object[] { HeatFluxUnit.BtuPerSecondSquareInch },
+            new object[] { HeatFluxUnit.CaloriePerSecondSquareCentimeter },
+            new object[] { HeatFluxUnit.CentiwattPerSquareMeter },
+            new object[] { HeatFluxUnit.DeciwattPerSquareMeter },
+            new object[] { HeatFluxUnit.KilocaloriePerHourSquareMeter },
+            new object[] { HeatFluxUnit.KilocaloriePerSecondSquareCentimeter },
+            new object[] { HeatFluxUnit.KilowattPerSquareMeter },
+            new object[] { HeatFluxUnit.MicrowattPerSquareMeter },
+            new object[] { HeatFluxUnit.MilliwattPerSquareMeter },
+            new object[] { HeatFluxUnit.NanowattPerSquareMeter },
+            new object[] { HeatFluxUnit.PoundForcePerFootSecond },
+            new object[] { HeatFluxUnit.PoundPerSecondCubed },
+            new object[] { HeatFluxUnit.WattPerSquareFoot },
+            new object[] { HeatFluxUnit.WattPerSquareInch },
+            new object[] { HeatFluxUnit.WattPerSquareMeter },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -379,24 +402,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(HeatFluxUnit.BtuPerHourSquareFoot)]
-        [InlineData(HeatFluxUnit.BtuPerMinuteSquareFoot)]
-        [InlineData(HeatFluxUnit.BtuPerSecondSquareFoot)]
-        [InlineData(HeatFluxUnit.BtuPerSecondSquareInch)]
-        [InlineData(HeatFluxUnit.CaloriePerSecondSquareCentimeter)]
-        [InlineData(HeatFluxUnit.CentiwattPerSquareMeter)]
-        [InlineData(HeatFluxUnit.DeciwattPerSquareMeter)]
-        [InlineData(HeatFluxUnit.KilocaloriePerHourSquareMeter)]
-        [InlineData(HeatFluxUnit.KilocaloriePerSecondSquareCentimeter)]
-        [InlineData(HeatFluxUnit.KilowattPerSquareMeter)]
-        [InlineData(HeatFluxUnit.MicrowattPerSquareMeter)]
-        [InlineData(HeatFluxUnit.MilliwattPerSquareMeter)]
-        [InlineData(HeatFluxUnit.NanowattPerSquareMeter)]
-        [InlineData(HeatFluxUnit.PoundForcePerFootSecond)]
-        [InlineData(HeatFluxUnit.PoundPerSecondCubed)]
-        [InlineData(HeatFluxUnit.WattPerSquareFoot)]
-        [InlineData(HeatFluxUnit.WattPerSquareInch)]
-        [InlineData(HeatFluxUnit.WattPerSquareMeter)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(HeatFluxUnit unit)
         {
             var quantity = HeatFlux.From(3.0, unit);

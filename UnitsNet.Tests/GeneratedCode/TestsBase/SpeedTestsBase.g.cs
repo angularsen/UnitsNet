@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -104,6 +105,42 @@ namespace UnitsNet.Tests
         protected virtual double YardsPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double YardsPerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { SpeedUnit.CentimeterPerHour },
+            new object[] { SpeedUnit.CentimeterPerMinute },
+            new object[] { SpeedUnit.CentimeterPerSecond },
+            new object[] { SpeedUnit.DecimeterPerMinute },
+            new object[] { SpeedUnit.DecimeterPerSecond },
+            new object[] { SpeedUnit.FootPerHour },
+            new object[] { SpeedUnit.FootPerMinute },
+            new object[] { SpeedUnit.FootPerSecond },
+            new object[] { SpeedUnit.InchPerHour },
+            new object[] { SpeedUnit.InchPerMinute },
+            new object[] { SpeedUnit.InchPerSecond },
+            new object[] { SpeedUnit.KilometerPerHour },
+            new object[] { SpeedUnit.KilometerPerMinute },
+            new object[] { SpeedUnit.KilometerPerSecond },
+            new object[] { SpeedUnit.Knot },
+            new object[] { SpeedUnit.MeterPerHour },
+            new object[] { SpeedUnit.MeterPerMinute },
+            new object[] { SpeedUnit.MeterPerSecond },
+            new object[] { SpeedUnit.MicrometerPerMinute },
+            new object[] { SpeedUnit.MicrometerPerSecond },
+            new object[] { SpeedUnit.MilePerHour },
+            new object[] { SpeedUnit.MillimeterPerHour },
+            new object[] { SpeedUnit.MillimeterPerMinute },
+            new object[] { SpeedUnit.MillimeterPerSecond },
+            new object[] { SpeedUnit.NanometerPerMinute },
+            new object[] { SpeedUnit.NanometerPerSecond },
+            new object[] { SpeedUnit.UsSurveyFootPerHour },
+            new object[] { SpeedUnit.UsSurveyFootPerMinute },
+            new object[] { SpeedUnit.UsSurveyFootPerSecond },
+            new object[] { SpeedUnit.YardPerHour },
+            new object[] { SpeedUnit.YardPerMinute },
+            new object[] { SpeedUnit.YardPerSecond },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -547,38 +584,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(SpeedUnit.CentimeterPerHour)]
-        [InlineData(SpeedUnit.CentimeterPerMinute)]
-        [InlineData(SpeedUnit.CentimeterPerSecond)]
-        [InlineData(SpeedUnit.DecimeterPerMinute)]
-        [InlineData(SpeedUnit.DecimeterPerSecond)]
-        [InlineData(SpeedUnit.FootPerHour)]
-        [InlineData(SpeedUnit.FootPerMinute)]
-        [InlineData(SpeedUnit.FootPerSecond)]
-        [InlineData(SpeedUnit.InchPerHour)]
-        [InlineData(SpeedUnit.InchPerMinute)]
-        [InlineData(SpeedUnit.InchPerSecond)]
-        [InlineData(SpeedUnit.KilometerPerHour)]
-        [InlineData(SpeedUnit.KilometerPerMinute)]
-        [InlineData(SpeedUnit.KilometerPerSecond)]
-        [InlineData(SpeedUnit.Knot)]
-        [InlineData(SpeedUnit.MeterPerHour)]
-        [InlineData(SpeedUnit.MeterPerMinute)]
-        [InlineData(SpeedUnit.MeterPerSecond)]
-        [InlineData(SpeedUnit.MicrometerPerMinute)]
-        [InlineData(SpeedUnit.MicrometerPerSecond)]
-        [InlineData(SpeedUnit.MilePerHour)]
-        [InlineData(SpeedUnit.MillimeterPerHour)]
-        [InlineData(SpeedUnit.MillimeterPerMinute)]
-        [InlineData(SpeedUnit.MillimeterPerSecond)]
-        [InlineData(SpeedUnit.NanometerPerMinute)]
-        [InlineData(SpeedUnit.NanometerPerSecond)]
-        [InlineData(SpeedUnit.UsSurveyFootPerHour)]
-        [InlineData(SpeedUnit.UsSurveyFootPerMinute)]
-        [InlineData(SpeedUnit.UsSurveyFootPerSecond)]
-        [InlineData(SpeedUnit.YardPerHour)]
-        [InlineData(SpeedUnit.YardPerMinute)]
-        [InlineData(SpeedUnit.YardPerSecond)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(SpeedUnit unit)
         {
             var quantity = Speed.From(3.0, unit);

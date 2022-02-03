@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -68,6 +69,24 @@ namespace UnitsNet.Tests
         protected virtual double PoundsPerFootTolerance { get { return 1e-5; } }
         protected virtual double PoundsPerInchTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { LinearDensityUnit.GramPerCentimeter },
+            new object[] { LinearDensityUnit.GramPerMeter },
+            new object[] { LinearDensityUnit.GramPerMillimeter },
+            new object[] { LinearDensityUnit.KilogramPerCentimeter },
+            new object[] { LinearDensityUnit.KilogramPerMeter },
+            new object[] { LinearDensityUnit.KilogramPerMillimeter },
+            new object[] { LinearDensityUnit.MicrogramPerCentimeter },
+            new object[] { LinearDensityUnit.MicrogramPerMeter },
+            new object[] { LinearDensityUnit.MicrogramPerMillimeter },
+            new object[] { LinearDensityUnit.MilligramPerCentimeter },
+            new object[] { LinearDensityUnit.MilligramPerMeter },
+            new object[] { LinearDensityUnit.MilligramPerMillimeter },
+            new object[] { LinearDensityUnit.PoundPerFoot },
+            new object[] { LinearDensityUnit.PoundPerInch },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -331,20 +350,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(LinearDensityUnit.GramPerCentimeter)]
-        [InlineData(LinearDensityUnit.GramPerMeter)]
-        [InlineData(LinearDensityUnit.GramPerMillimeter)]
-        [InlineData(LinearDensityUnit.KilogramPerCentimeter)]
-        [InlineData(LinearDensityUnit.KilogramPerMeter)]
-        [InlineData(LinearDensityUnit.KilogramPerMillimeter)]
-        [InlineData(LinearDensityUnit.MicrogramPerCentimeter)]
-        [InlineData(LinearDensityUnit.MicrogramPerMeter)]
-        [InlineData(LinearDensityUnit.MicrogramPerMillimeter)]
-        [InlineData(LinearDensityUnit.MilligramPerCentimeter)]
-        [InlineData(LinearDensityUnit.MilligramPerMeter)]
-        [InlineData(LinearDensityUnit.MilligramPerMillimeter)]
-        [InlineData(LinearDensityUnit.PoundPerFoot)]
-        [InlineData(LinearDensityUnit.PoundPerInch)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(LinearDensityUnit unit)
         {
             var quantity = LinearDensity.From(3.0, unit);

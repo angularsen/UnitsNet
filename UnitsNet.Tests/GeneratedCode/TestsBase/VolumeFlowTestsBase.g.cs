@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -164,6 +165,72 @@ namespace UnitsNet.Tests
         protected virtual double UsGallonsPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double UsGallonsPerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { VolumeFlowUnit.AcreFootPerDay },
+            new object[] { VolumeFlowUnit.AcreFootPerHour },
+            new object[] { VolumeFlowUnit.AcreFootPerMinute },
+            new object[] { VolumeFlowUnit.AcreFootPerSecond },
+            new object[] { VolumeFlowUnit.CentiliterPerDay },
+            new object[] { VolumeFlowUnit.CentiliterPerHour },
+            new object[] { VolumeFlowUnit.CentiliterPerMinute },
+            new object[] { VolumeFlowUnit.CentiliterPerSecond },
+            new object[] { VolumeFlowUnit.CubicCentimeterPerMinute },
+            new object[] { VolumeFlowUnit.CubicDecimeterPerMinute },
+            new object[] { VolumeFlowUnit.CubicFootPerHour },
+            new object[] { VolumeFlowUnit.CubicFootPerMinute },
+            new object[] { VolumeFlowUnit.CubicFootPerSecond },
+            new object[] { VolumeFlowUnit.CubicMeterPerDay },
+            new object[] { VolumeFlowUnit.CubicMeterPerHour },
+            new object[] { VolumeFlowUnit.CubicMeterPerMinute },
+            new object[] { VolumeFlowUnit.CubicMeterPerSecond },
+            new object[] { VolumeFlowUnit.CubicMillimeterPerSecond },
+            new object[] { VolumeFlowUnit.CubicYardPerDay },
+            new object[] { VolumeFlowUnit.CubicYardPerHour },
+            new object[] { VolumeFlowUnit.CubicYardPerMinute },
+            new object[] { VolumeFlowUnit.CubicYardPerSecond },
+            new object[] { VolumeFlowUnit.DeciliterPerDay },
+            new object[] { VolumeFlowUnit.DeciliterPerHour },
+            new object[] { VolumeFlowUnit.DeciliterPerMinute },
+            new object[] { VolumeFlowUnit.DeciliterPerSecond },
+            new object[] { VolumeFlowUnit.KiloliterPerDay },
+            new object[] { VolumeFlowUnit.KiloliterPerHour },
+            new object[] { VolumeFlowUnit.KiloliterPerMinute },
+            new object[] { VolumeFlowUnit.KiloliterPerSecond },
+            new object[] { VolumeFlowUnit.KilousGallonPerMinute },
+            new object[] { VolumeFlowUnit.LiterPerDay },
+            new object[] { VolumeFlowUnit.LiterPerHour },
+            new object[] { VolumeFlowUnit.LiterPerMinute },
+            new object[] { VolumeFlowUnit.LiterPerSecond },
+            new object[] { VolumeFlowUnit.MegaliterPerDay },
+            new object[] { VolumeFlowUnit.MegaukGallonPerSecond },
+            new object[] { VolumeFlowUnit.MicroliterPerDay },
+            new object[] { VolumeFlowUnit.MicroliterPerHour },
+            new object[] { VolumeFlowUnit.MicroliterPerMinute },
+            new object[] { VolumeFlowUnit.MicroliterPerSecond },
+            new object[] { VolumeFlowUnit.MilliliterPerDay },
+            new object[] { VolumeFlowUnit.MilliliterPerHour },
+            new object[] { VolumeFlowUnit.MilliliterPerMinute },
+            new object[] { VolumeFlowUnit.MilliliterPerSecond },
+            new object[] { VolumeFlowUnit.MillionUsGallonsPerDay },
+            new object[] { VolumeFlowUnit.NanoliterPerDay },
+            new object[] { VolumeFlowUnit.NanoliterPerHour },
+            new object[] { VolumeFlowUnit.NanoliterPerMinute },
+            new object[] { VolumeFlowUnit.NanoliterPerSecond },
+            new object[] { VolumeFlowUnit.OilBarrelPerDay },
+            new object[] { VolumeFlowUnit.OilBarrelPerHour },
+            new object[] { VolumeFlowUnit.OilBarrelPerMinute },
+            new object[] { VolumeFlowUnit.OilBarrelPerSecond },
+            new object[] { VolumeFlowUnit.UkGallonPerDay },
+            new object[] { VolumeFlowUnit.UkGallonPerHour },
+            new object[] { VolumeFlowUnit.UkGallonPerMinute },
+            new object[] { VolumeFlowUnit.UkGallonPerSecond },
+            new object[] { VolumeFlowUnit.UsGallonPerDay },
+            new object[] { VolumeFlowUnit.UsGallonPerHour },
+            new object[] { VolumeFlowUnit.UsGallonPerMinute },
+            new object[] { VolumeFlowUnit.UsGallonPerSecond },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -907,68 +974,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(VolumeFlowUnit.AcreFootPerDay)]
-        [InlineData(VolumeFlowUnit.AcreFootPerHour)]
-        [InlineData(VolumeFlowUnit.AcreFootPerMinute)]
-        [InlineData(VolumeFlowUnit.AcreFootPerSecond)]
-        [InlineData(VolumeFlowUnit.CentiliterPerDay)]
-        [InlineData(VolumeFlowUnit.CentiliterPerHour)]
-        [InlineData(VolumeFlowUnit.CentiliterPerMinute)]
-        [InlineData(VolumeFlowUnit.CentiliterPerSecond)]
-        [InlineData(VolumeFlowUnit.CubicCentimeterPerMinute)]
-        [InlineData(VolumeFlowUnit.CubicDecimeterPerMinute)]
-        [InlineData(VolumeFlowUnit.CubicFootPerHour)]
-        [InlineData(VolumeFlowUnit.CubicFootPerMinute)]
-        [InlineData(VolumeFlowUnit.CubicFootPerSecond)]
-        [InlineData(VolumeFlowUnit.CubicMeterPerDay)]
-        [InlineData(VolumeFlowUnit.CubicMeterPerHour)]
-        [InlineData(VolumeFlowUnit.CubicMeterPerMinute)]
-        [InlineData(VolumeFlowUnit.CubicMeterPerSecond)]
-        [InlineData(VolumeFlowUnit.CubicMillimeterPerSecond)]
-        [InlineData(VolumeFlowUnit.CubicYardPerDay)]
-        [InlineData(VolumeFlowUnit.CubicYardPerHour)]
-        [InlineData(VolumeFlowUnit.CubicYardPerMinute)]
-        [InlineData(VolumeFlowUnit.CubicYardPerSecond)]
-        [InlineData(VolumeFlowUnit.DeciliterPerDay)]
-        [InlineData(VolumeFlowUnit.DeciliterPerHour)]
-        [InlineData(VolumeFlowUnit.DeciliterPerMinute)]
-        [InlineData(VolumeFlowUnit.DeciliterPerSecond)]
-        [InlineData(VolumeFlowUnit.KiloliterPerDay)]
-        [InlineData(VolumeFlowUnit.KiloliterPerHour)]
-        [InlineData(VolumeFlowUnit.KiloliterPerMinute)]
-        [InlineData(VolumeFlowUnit.KiloliterPerSecond)]
-        [InlineData(VolumeFlowUnit.KilousGallonPerMinute)]
-        [InlineData(VolumeFlowUnit.LiterPerDay)]
-        [InlineData(VolumeFlowUnit.LiterPerHour)]
-        [InlineData(VolumeFlowUnit.LiterPerMinute)]
-        [InlineData(VolumeFlowUnit.LiterPerSecond)]
-        [InlineData(VolumeFlowUnit.MegaliterPerDay)]
-        [InlineData(VolumeFlowUnit.MegaukGallonPerSecond)]
-        [InlineData(VolumeFlowUnit.MicroliterPerDay)]
-        [InlineData(VolumeFlowUnit.MicroliterPerHour)]
-        [InlineData(VolumeFlowUnit.MicroliterPerMinute)]
-        [InlineData(VolumeFlowUnit.MicroliterPerSecond)]
-        [InlineData(VolumeFlowUnit.MilliliterPerDay)]
-        [InlineData(VolumeFlowUnit.MilliliterPerHour)]
-        [InlineData(VolumeFlowUnit.MilliliterPerMinute)]
-        [InlineData(VolumeFlowUnit.MilliliterPerSecond)]
-        [InlineData(VolumeFlowUnit.MillionUsGallonsPerDay)]
-        [InlineData(VolumeFlowUnit.NanoliterPerDay)]
-        [InlineData(VolumeFlowUnit.NanoliterPerHour)]
-        [InlineData(VolumeFlowUnit.NanoliterPerMinute)]
-        [InlineData(VolumeFlowUnit.NanoliterPerSecond)]
-        [InlineData(VolumeFlowUnit.OilBarrelPerDay)]
-        [InlineData(VolumeFlowUnit.OilBarrelPerHour)]
-        [InlineData(VolumeFlowUnit.OilBarrelPerMinute)]
-        [InlineData(VolumeFlowUnit.OilBarrelPerSecond)]
-        [InlineData(VolumeFlowUnit.UkGallonPerDay)]
-        [InlineData(VolumeFlowUnit.UkGallonPerHour)]
-        [InlineData(VolumeFlowUnit.UkGallonPerMinute)]
-        [InlineData(VolumeFlowUnit.UkGallonPerSecond)]
-        [InlineData(VolumeFlowUnit.UsGallonPerDay)]
-        [InlineData(VolumeFlowUnit.UsGallonPerHour)]
-        [InlineData(VolumeFlowUnit.UsGallonPerMinute)]
-        [InlineData(VolumeFlowUnit.UsGallonPerSecond)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(VolumeFlowUnit unit)
         {
             var quantity = VolumeFlow.From(3.0, unit);

@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -68,6 +69,24 @@ namespace UnitsNet.Tests
         protected virtual double PicoohmsCentimeterTolerance { get { return 1e-5; } }
         protected virtual double PicoohmMetersTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ElectricResistivityUnit.KiloohmCentimeter },
+            new object[] { ElectricResistivityUnit.KiloohmMeter },
+            new object[] { ElectricResistivityUnit.MegaohmCentimeter },
+            new object[] { ElectricResistivityUnit.MegaohmMeter },
+            new object[] { ElectricResistivityUnit.MicroohmCentimeter },
+            new object[] { ElectricResistivityUnit.MicroohmMeter },
+            new object[] { ElectricResistivityUnit.MilliohmCentimeter },
+            new object[] { ElectricResistivityUnit.MilliohmMeter },
+            new object[] { ElectricResistivityUnit.NanoohmCentimeter },
+            new object[] { ElectricResistivityUnit.NanoohmMeter },
+            new object[] { ElectricResistivityUnit.OhmCentimeter },
+            new object[] { ElectricResistivityUnit.OhmMeter },
+            new object[] { ElectricResistivityUnit.PicoohmCentimeter },
+            new object[] { ElectricResistivityUnit.PicoohmMeter },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -331,20 +350,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(ElectricResistivityUnit.KiloohmCentimeter)]
-        [InlineData(ElectricResistivityUnit.KiloohmMeter)]
-        [InlineData(ElectricResistivityUnit.MegaohmCentimeter)]
-        [InlineData(ElectricResistivityUnit.MegaohmMeter)]
-        [InlineData(ElectricResistivityUnit.MicroohmCentimeter)]
-        [InlineData(ElectricResistivityUnit.MicroohmMeter)]
-        [InlineData(ElectricResistivityUnit.MilliohmCentimeter)]
-        [InlineData(ElectricResistivityUnit.MilliohmMeter)]
-        [InlineData(ElectricResistivityUnit.NanoohmCentimeter)]
-        [InlineData(ElectricResistivityUnit.NanoohmMeter)]
-        [InlineData(ElectricResistivityUnit.OhmCentimeter)]
-        [InlineData(ElectricResistivityUnit.OhmMeter)]
-        [InlineData(ElectricResistivityUnit.PicoohmCentimeter)]
-        [InlineData(ElectricResistivityUnit.PicoohmMeter)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(ElectricResistivityUnit unit)
         {
             var quantity = ElectricResistivity.From(3.0, unit);

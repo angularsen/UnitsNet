@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -90,6 +91,35 @@ namespace UnitsNet.Tests
         protected virtual double WattsPerMeterTolerance { get { return 1e-5; } }
         protected virtual double WattsPerMillimeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { LinearPowerDensityUnit.GigawattPerCentimeter },
+            new object[] { LinearPowerDensityUnit.GigawattPerFoot },
+            new object[] { LinearPowerDensityUnit.GigawattPerInch },
+            new object[] { LinearPowerDensityUnit.GigawattPerMeter },
+            new object[] { LinearPowerDensityUnit.GigawattPerMillimeter },
+            new object[] { LinearPowerDensityUnit.KilowattPerCentimeter },
+            new object[] { LinearPowerDensityUnit.KilowattPerFoot },
+            new object[] { LinearPowerDensityUnit.KilowattPerInch },
+            new object[] { LinearPowerDensityUnit.KilowattPerMeter },
+            new object[] { LinearPowerDensityUnit.KilowattPerMillimeter },
+            new object[] { LinearPowerDensityUnit.MegawattPerCentimeter },
+            new object[] { LinearPowerDensityUnit.MegawattPerFoot },
+            new object[] { LinearPowerDensityUnit.MegawattPerInch },
+            new object[] { LinearPowerDensityUnit.MegawattPerMeter },
+            new object[] { LinearPowerDensityUnit.MegawattPerMillimeter },
+            new object[] { LinearPowerDensityUnit.MilliwattPerCentimeter },
+            new object[] { LinearPowerDensityUnit.MilliwattPerFoot },
+            new object[] { LinearPowerDensityUnit.MilliwattPerInch },
+            new object[] { LinearPowerDensityUnit.MilliwattPerMeter },
+            new object[] { LinearPowerDensityUnit.MilliwattPerMillimeter },
+            new object[] { LinearPowerDensityUnit.WattPerCentimeter },
+            new object[] { LinearPowerDensityUnit.WattPerFoot },
+            new object[] { LinearPowerDensityUnit.WattPerInch },
+            new object[] { LinearPowerDensityUnit.WattPerMeter },
+            new object[] { LinearPowerDensityUnit.WattPerMillimeter },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -463,31 +493,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(LinearPowerDensityUnit.GigawattPerCentimeter)]
-        [InlineData(LinearPowerDensityUnit.GigawattPerFoot)]
-        [InlineData(LinearPowerDensityUnit.GigawattPerInch)]
-        [InlineData(LinearPowerDensityUnit.GigawattPerMeter)]
-        [InlineData(LinearPowerDensityUnit.GigawattPerMillimeter)]
-        [InlineData(LinearPowerDensityUnit.KilowattPerCentimeter)]
-        [InlineData(LinearPowerDensityUnit.KilowattPerFoot)]
-        [InlineData(LinearPowerDensityUnit.KilowattPerInch)]
-        [InlineData(LinearPowerDensityUnit.KilowattPerMeter)]
-        [InlineData(LinearPowerDensityUnit.KilowattPerMillimeter)]
-        [InlineData(LinearPowerDensityUnit.MegawattPerCentimeter)]
-        [InlineData(LinearPowerDensityUnit.MegawattPerFoot)]
-        [InlineData(LinearPowerDensityUnit.MegawattPerInch)]
-        [InlineData(LinearPowerDensityUnit.MegawattPerMeter)]
-        [InlineData(LinearPowerDensityUnit.MegawattPerMillimeter)]
-        [InlineData(LinearPowerDensityUnit.MilliwattPerCentimeter)]
-        [InlineData(LinearPowerDensityUnit.MilliwattPerFoot)]
-        [InlineData(LinearPowerDensityUnit.MilliwattPerInch)]
-        [InlineData(LinearPowerDensityUnit.MilliwattPerMeter)]
-        [InlineData(LinearPowerDensityUnit.MilliwattPerMillimeter)]
-        [InlineData(LinearPowerDensityUnit.WattPerCentimeter)]
-        [InlineData(LinearPowerDensityUnit.WattPerFoot)]
-        [InlineData(LinearPowerDensityUnit.WattPerInch)]
-        [InlineData(LinearPowerDensityUnit.WattPerMeter)]
-        [InlineData(LinearPowerDensityUnit.WattPerMillimeter)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(LinearPowerDensityUnit unit)
         {
             var quantity = LinearPowerDensity.From(3.0, unit);

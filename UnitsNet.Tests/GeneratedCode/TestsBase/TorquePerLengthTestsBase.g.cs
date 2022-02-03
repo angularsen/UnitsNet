@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -82,6 +83,31 @@ namespace UnitsNet.Tests
         protected virtual double TonneForceMetersPerMeterTolerance { get { return 1e-5; } }
         protected virtual double TonneForceMillimetersPerMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { TorquePerLengthUnit.KilogramForceCentimeterPerMeter },
+            new object[] { TorquePerLengthUnit.KilogramForceMeterPerMeter },
+            new object[] { TorquePerLengthUnit.KilogramForceMillimeterPerMeter },
+            new object[] { TorquePerLengthUnit.KilonewtonCentimeterPerMeter },
+            new object[] { TorquePerLengthUnit.KilonewtonMeterPerMeter },
+            new object[] { TorquePerLengthUnit.KilonewtonMillimeterPerMeter },
+            new object[] { TorquePerLengthUnit.KilopoundForceFootPerFoot },
+            new object[] { TorquePerLengthUnit.KilopoundForceInchPerFoot },
+            new object[] { TorquePerLengthUnit.MeganewtonCentimeterPerMeter },
+            new object[] { TorquePerLengthUnit.MeganewtonMeterPerMeter },
+            new object[] { TorquePerLengthUnit.MeganewtonMillimeterPerMeter },
+            new object[] { TorquePerLengthUnit.MegapoundForceFootPerFoot },
+            new object[] { TorquePerLengthUnit.MegapoundForceInchPerFoot },
+            new object[] { TorquePerLengthUnit.NewtonCentimeterPerMeter },
+            new object[] { TorquePerLengthUnit.NewtonMeterPerMeter },
+            new object[] { TorquePerLengthUnit.NewtonMillimeterPerMeter },
+            new object[] { TorquePerLengthUnit.PoundForceFootPerFoot },
+            new object[] { TorquePerLengthUnit.PoundForceInchPerFoot },
+            new object[] { TorquePerLengthUnit.TonneForceCentimeterPerMeter },
+            new object[] { TorquePerLengthUnit.TonneForceMeterPerMeter },
+            new object[] { TorquePerLengthUnit.TonneForceMillimeterPerMeter },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -415,27 +441,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(TorquePerLengthUnit.KilogramForceCentimeterPerMeter)]
-        [InlineData(TorquePerLengthUnit.KilogramForceMeterPerMeter)]
-        [InlineData(TorquePerLengthUnit.KilogramForceMillimeterPerMeter)]
-        [InlineData(TorquePerLengthUnit.KilonewtonCentimeterPerMeter)]
-        [InlineData(TorquePerLengthUnit.KilonewtonMeterPerMeter)]
-        [InlineData(TorquePerLengthUnit.KilonewtonMillimeterPerMeter)]
-        [InlineData(TorquePerLengthUnit.KilopoundForceFootPerFoot)]
-        [InlineData(TorquePerLengthUnit.KilopoundForceInchPerFoot)]
-        [InlineData(TorquePerLengthUnit.MeganewtonCentimeterPerMeter)]
-        [InlineData(TorquePerLengthUnit.MeganewtonMeterPerMeter)]
-        [InlineData(TorquePerLengthUnit.MeganewtonMillimeterPerMeter)]
-        [InlineData(TorquePerLengthUnit.MegapoundForceFootPerFoot)]
-        [InlineData(TorquePerLengthUnit.MegapoundForceInchPerFoot)]
-        [InlineData(TorquePerLengthUnit.NewtonCentimeterPerMeter)]
-        [InlineData(TorquePerLengthUnit.NewtonMeterPerMeter)]
-        [InlineData(TorquePerLengthUnit.NewtonMillimeterPerMeter)]
-        [InlineData(TorquePerLengthUnit.PoundForceFootPerFoot)]
-        [InlineData(TorquePerLengthUnit.PoundForceInchPerFoot)]
-        [InlineData(TorquePerLengthUnit.TonneForceCentimeterPerMeter)]
-        [InlineData(TorquePerLengthUnit.TonneForceMeterPerMeter)]
-        [InlineData(TorquePerLengthUnit.TonneForceMillimeterPerMeter)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(TorquePerLengthUnit unit)
         {
             var quantity = TorquePerLength.From(3.0, unit);

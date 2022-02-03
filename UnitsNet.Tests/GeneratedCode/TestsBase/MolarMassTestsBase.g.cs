@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -64,6 +65,22 @@ namespace UnitsNet.Tests
         protected virtual double NanogramsPerMoleTolerance { get { return 1e-5; } }
         protected virtual double PoundsPerMoleTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { MolarMassUnit.CentigramPerMole },
+            new object[] { MolarMassUnit.DecagramPerMole },
+            new object[] { MolarMassUnit.DecigramPerMole },
+            new object[] { MolarMassUnit.GramPerMole },
+            new object[] { MolarMassUnit.HectogramPerMole },
+            new object[] { MolarMassUnit.KilogramPerMole },
+            new object[] { MolarMassUnit.KilopoundPerMole },
+            new object[] { MolarMassUnit.MegapoundPerMole },
+            new object[] { MolarMassUnit.MicrogramPerMole },
+            new object[] { MolarMassUnit.MilligramPerMole },
+            new object[] { MolarMassUnit.NanogramPerMole },
+            new object[] { MolarMassUnit.PoundPerMole },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -307,18 +324,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(MolarMassUnit.CentigramPerMole)]
-        [InlineData(MolarMassUnit.DecagramPerMole)]
-        [InlineData(MolarMassUnit.DecigramPerMole)]
-        [InlineData(MolarMassUnit.GramPerMole)]
-        [InlineData(MolarMassUnit.HectogramPerMole)]
-        [InlineData(MolarMassUnit.KilogramPerMole)]
-        [InlineData(MolarMassUnit.KilopoundPerMole)]
-        [InlineData(MolarMassUnit.MegapoundPerMole)]
-        [InlineData(MolarMassUnit.MicrogramPerMole)]
-        [InlineData(MolarMassUnit.MilligramPerMole)]
-        [InlineData(MolarMassUnit.NanogramPerMole)]
-        [InlineData(MolarMassUnit.PoundPerMole)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(MolarMassUnit unit)
         {
             var quantity = MolarMass.From(3.0, unit);

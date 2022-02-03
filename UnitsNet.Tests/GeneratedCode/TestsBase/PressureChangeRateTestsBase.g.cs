@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -68,6 +69,24 @@ namespace UnitsNet.Tests
         protected virtual double PoundsForcePerSquareInchPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double PoundsForcePerSquareInchPerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { PressureChangeRateUnit.AtmospherePerSecond },
+            new object[] { PressureChangeRateUnit.KilopascalPerMinute },
+            new object[] { PressureChangeRateUnit.KilopascalPerSecond },
+            new object[] { PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute },
+            new object[] { PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond },
+            new object[] { PressureChangeRateUnit.MegapascalPerMinute },
+            new object[] { PressureChangeRateUnit.MegapascalPerSecond },
+            new object[] { PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute },
+            new object[] { PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond },
+            new object[] { PressureChangeRateUnit.MillimeterOfMercuryPerSecond },
+            new object[] { PressureChangeRateUnit.PascalPerMinute },
+            new object[] { PressureChangeRateUnit.PascalPerSecond },
+            new object[] { PressureChangeRateUnit.PoundForcePerSquareInchPerMinute },
+            new object[] { PressureChangeRateUnit.PoundForcePerSquareInchPerSecond },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -331,20 +350,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(PressureChangeRateUnit.AtmospherePerSecond)]
-        [InlineData(PressureChangeRateUnit.KilopascalPerMinute)]
-        [InlineData(PressureChangeRateUnit.KilopascalPerSecond)]
-        [InlineData(PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute)]
-        [InlineData(PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond)]
-        [InlineData(PressureChangeRateUnit.MegapascalPerMinute)]
-        [InlineData(PressureChangeRateUnit.MegapascalPerSecond)]
-        [InlineData(PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute)]
-        [InlineData(PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond)]
-        [InlineData(PressureChangeRateUnit.MillimeterOfMercuryPerSecond)]
-        [InlineData(PressureChangeRateUnit.PascalPerMinute)]
-        [InlineData(PressureChangeRateUnit.PascalPerSecond)]
-        [InlineData(PressureChangeRateUnit.PoundForcePerSquareInchPerMinute)]
-        [InlineData(PressureChangeRateUnit.PoundForcePerSquareInchPerSecond)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(PressureChangeRateUnit unit)
         {
             var quantity = PressureChangeRate.From(3.0, unit);

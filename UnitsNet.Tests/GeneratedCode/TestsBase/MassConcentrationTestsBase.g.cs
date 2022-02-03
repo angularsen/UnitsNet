@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -138,6 +139,59 @@ namespace UnitsNet.Tests
         protected virtual double TonnesPerCubicMeterTolerance { get { return 1e-5; } }
         protected virtual double TonnesPerCubicMillimeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { MassConcentrationUnit.CentigramPerDeciliter },
+            new object[] { MassConcentrationUnit.CentigramPerLiter },
+            new object[] { MassConcentrationUnit.CentigramPerMicroliter },
+            new object[] { MassConcentrationUnit.CentigramPerMilliliter },
+            new object[] { MassConcentrationUnit.DecigramPerDeciliter },
+            new object[] { MassConcentrationUnit.DecigramPerLiter },
+            new object[] { MassConcentrationUnit.DecigramPerMicroliter },
+            new object[] { MassConcentrationUnit.DecigramPerMilliliter },
+            new object[] { MassConcentrationUnit.GramPerCubicCentimeter },
+            new object[] { MassConcentrationUnit.GramPerCubicMeter },
+            new object[] { MassConcentrationUnit.GramPerCubicMillimeter },
+            new object[] { MassConcentrationUnit.GramPerDeciliter },
+            new object[] { MassConcentrationUnit.GramPerLiter },
+            new object[] { MassConcentrationUnit.GramPerMicroliter },
+            new object[] { MassConcentrationUnit.GramPerMilliliter },
+            new object[] { MassConcentrationUnit.KilogramPerCubicCentimeter },
+            new object[] { MassConcentrationUnit.KilogramPerCubicMeter },
+            new object[] { MassConcentrationUnit.KilogramPerCubicMillimeter },
+            new object[] { MassConcentrationUnit.KilogramPerLiter },
+            new object[] { MassConcentrationUnit.KilopoundPerCubicFoot },
+            new object[] { MassConcentrationUnit.KilopoundPerCubicInch },
+            new object[] { MassConcentrationUnit.MicrogramPerCubicMeter },
+            new object[] { MassConcentrationUnit.MicrogramPerDeciliter },
+            new object[] { MassConcentrationUnit.MicrogramPerLiter },
+            new object[] { MassConcentrationUnit.MicrogramPerMicroliter },
+            new object[] { MassConcentrationUnit.MicrogramPerMilliliter },
+            new object[] { MassConcentrationUnit.MilligramPerCubicMeter },
+            new object[] { MassConcentrationUnit.MilligramPerDeciliter },
+            new object[] { MassConcentrationUnit.MilligramPerLiter },
+            new object[] { MassConcentrationUnit.MilligramPerMicroliter },
+            new object[] { MassConcentrationUnit.MilligramPerMilliliter },
+            new object[] { MassConcentrationUnit.NanogramPerDeciliter },
+            new object[] { MassConcentrationUnit.NanogramPerLiter },
+            new object[] { MassConcentrationUnit.NanogramPerMicroliter },
+            new object[] { MassConcentrationUnit.NanogramPerMilliliter },
+            new object[] { MassConcentrationUnit.OuncePerImperialGallon },
+            new object[] { MassConcentrationUnit.OuncePerUSGallon },
+            new object[] { MassConcentrationUnit.PicogramPerDeciliter },
+            new object[] { MassConcentrationUnit.PicogramPerLiter },
+            new object[] { MassConcentrationUnit.PicogramPerMicroliter },
+            new object[] { MassConcentrationUnit.PicogramPerMilliliter },
+            new object[] { MassConcentrationUnit.PoundPerCubicFoot },
+            new object[] { MassConcentrationUnit.PoundPerCubicInch },
+            new object[] { MassConcentrationUnit.PoundPerImperialGallon },
+            new object[] { MassConcentrationUnit.PoundPerUSGallon },
+            new object[] { MassConcentrationUnit.SlugPerCubicFoot },
+            new object[] { MassConcentrationUnit.TonnePerCubicCentimeter },
+            new object[] { MassConcentrationUnit.TonnePerCubicMeter },
+            new object[] { MassConcentrationUnit.TonnePerCubicMillimeter },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -751,55 +805,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(MassConcentrationUnit.CentigramPerDeciliter)]
-        [InlineData(MassConcentrationUnit.CentigramPerLiter)]
-        [InlineData(MassConcentrationUnit.CentigramPerMicroliter)]
-        [InlineData(MassConcentrationUnit.CentigramPerMilliliter)]
-        [InlineData(MassConcentrationUnit.DecigramPerDeciliter)]
-        [InlineData(MassConcentrationUnit.DecigramPerLiter)]
-        [InlineData(MassConcentrationUnit.DecigramPerMicroliter)]
-        [InlineData(MassConcentrationUnit.DecigramPerMilliliter)]
-        [InlineData(MassConcentrationUnit.GramPerCubicCentimeter)]
-        [InlineData(MassConcentrationUnit.GramPerCubicMeter)]
-        [InlineData(MassConcentrationUnit.GramPerCubicMillimeter)]
-        [InlineData(MassConcentrationUnit.GramPerDeciliter)]
-        [InlineData(MassConcentrationUnit.GramPerLiter)]
-        [InlineData(MassConcentrationUnit.GramPerMicroliter)]
-        [InlineData(MassConcentrationUnit.GramPerMilliliter)]
-        [InlineData(MassConcentrationUnit.KilogramPerCubicCentimeter)]
-        [InlineData(MassConcentrationUnit.KilogramPerCubicMeter)]
-        [InlineData(MassConcentrationUnit.KilogramPerCubicMillimeter)]
-        [InlineData(MassConcentrationUnit.KilogramPerLiter)]
-        [InlineData(MassConcentrationUnit.KilopoundPerCubicFoot)]
-        [InlineData(MassConcentrationUnit.KilopoundPerCubicInch)]
-        [InlineData(MassConcentrationUnit.MicrogramPerCubicMeter)]
-        [InlineData(MassConcentrationUnit.MicrogramPerDeciliter)]
-        [InlineData(MassConcentrationUnit.MicrogramPerLiter)]
-        [InlineData(MassConcentrationUnit.MicrogramPerMicroliter)]
-        [InlineData(MassConcentrationUnit.MicrogramPerMilliliter)]
-        [InlineData(MassConcentrationUnit.MilligramPerCubicMeter)]
-        [InlineData(MassConcentrationUnit.MilligramPerDeciliter)]
-        [InlineData(MassConcentrationUnit.MilligramPerLiter)]
-        [InlineData(MassConcentrationUnit.MilligramPerMicroliter)]
-        [InlineData(MassConcentrationUnit.MilligramPerMilliliter)]
-        [InlineData(MassConcentrationUnit.NanogramPerDeciliter)]
-        [InlineData(MassConcentrationUnit.NanogramPerLiter)]
-        [InlineData(MassConcentrationUnit.NanogramPerMicroliter)]
-        [InlineData(MassConcentrationUnit.NanogramPerMilliliter)]
-        [InlineData(MassConcentrationUnit.OuncePerImperialGallon)]
-        [InlineData(MassConcentrationUnit.OuncePerUSGallon)]
-        [InlineData(MassConcentrationUnit.PicogramPerDeciliter)]
-        [InlineData(MassConcentrationUnit.PicogramPerLiter)]
-        [InlineData(MassConcentrationUnit.PicogramPerMicroliter)]
-        [InlineData(MassConcentrationUnit.PicogramPerMilliliter)]
-        [InlineData(MassConcentrationUnit.PoundPerCubicFoot)]
-        [InlineData(MassConcentrationUnit.PoundPerCubicInch)]
-        [InlineData(MassConcentrationUnit.PoundPerImperialGallon)]
-        [InlineData(MassConcentrationUnit.PoundPerUSGallon)]
-        [InlineData(MassConcentrationUnit.SlugPerCubicFoot)]
-        [InlineData(MassConcentrationUnit.TonnePerCubicCentimeter)]
-        [InlineData(MassConcentrationUnit.TonnePerCubicMeter)]
-        [InlineData(MassConcentrationUnit.TonnePerCubicMillimeter)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(MassConcentrationUnit unit)
         {
             var quantity = MassConcentration.From(3.0, unit);

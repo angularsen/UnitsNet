@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -66,6 +67,23 @@ namespace UnitsNet.Tests
         protected virtual double RevolutionsPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double RevolutionsPerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { RotationalSpeedUnit.CentiradianPerSecond },
+            new object[] { RotationalSpeedUnit.DeciradianPerSecond },
+            new object[] { RotationalSpeedUnit.DegreePerMinute },
+            new object[] { RotationalSpeedUnit.DegreePerSecond },
+            new object[] { RotationalSpeedUnit.MicrodegreePerSecond },
+            new object[] { RotationalSpeedUnit.MicroradianPerSecond },
+            new object[] { RotationalSpeedUnit.MillidegreePerSecond },
+            new object[] { RotationalSpeedUnit.MilliradianPerSecond },
+            new object[] { RotationalSpeedUnit.NanodegreePerSecond },
+            new object[] { RotationalSpeedUnit.NanoradianPerSecond },
+            new object[] { RotationalSpeedUnit.RadianPerSecond },
+            new object[] { RotationalSpeedUnit.RevolutionPerMinute },
+            new object[] { RotationalSpeedUnit.RevolutionPerSecond },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -319,19 +337,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(RotationalSpeedUnit.CentiradianPerSecond)]
-        [InlineData(RotationalSpeedUnit.DeciradianPerSecond)]
-        [InlineData(RotationalSpeedUnit.DegreePerMinute)]
-        [InlineData(RotationalSpeedUnit.DegreePerSecond)]
-        [InlineData(RotationalSpeedUnit.MicrodegreePerSecond)]
-        [InlineData(RotationalSpeedUnit.MicroradianPerSecond)]
-        [InlineData(RotationalSpeedUnit.MillidegreePerSecond)]
-        [InlineData(RotationalSpeedUnit.MilliradianPerSecond)]
-        [InlineData(RotationalSpeedUnit.NanodegreePerSecond)]
-        [InlineData(RotationalSpeedUnit.NanoradianPerSecond)]
-        [InlineData(RotationalSpeedUnit.RadianPerSecond)]
-        [InlineData(RotationalSpeedUnit.RevolutionPerMinute)]
-        [InlineData(RotationalSpeedUnit.RevolutionPerSecond)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(RotationalSpeedUnit unit)
         {
             var quantity = RotationalSpeed.From(3.0, unit);

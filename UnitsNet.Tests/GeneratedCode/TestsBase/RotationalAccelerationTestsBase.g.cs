@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -48,6 +49,14 @@ namespace UnitsNet.Tests
         protected virtual double RevolutionsPerMinutePerSecondTolerance { get { return 1e-5; } }
         protected virtual double RevolutionsPerSecondSquaredTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { RotationalAccelerationUnit.DegreePerSecondSquared },
+            new object[] { RotationalAccelerationUnit.RadianPerSecondSquared },
+            new object[] { RotationalAccelerationUnit.RevolutionPerMinutePerSecond },
+            new object[] { RotationalAccelerationUnit.RevolutionPerSecondSquared },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -211,10 +220,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(RotationalAccelerationUnit.DegreePerSecondSquared)]
-        [InlineData(RotationalAccelerationUnit.RadianPerSecondSquared)]
-        [InlineData(RotationalAccelerationUnit.RevolutionPerMinutePerSecond)]
-        [InlineData(RotationalAccelerationUnit.RevolutionPerSecondSquared)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(RotationalAccelerationUnit unit)
         {
             var quantity = RotationalAcceleration.From(3.0, unit);

@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -58,6 +59,19 @@ namespace UnitsNet.Tests
         protected virtual double MegajoulesPerCubicMeterDegreeCelsiusTolerance { get { return 1e-5; } }
         protected virtual double MegajoulesPerCubicMeterKelvinTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit },
+            new object[] { VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius },
+            new object[] { VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius },
+            new object[] { VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin },
+            new object[] { VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius },
+            new object[] { VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius },
+            new object[] { VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin },
+            new object[] { VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius },
+            new object[] { VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -271,15 +285,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit)]
-        [InlineData(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius)]
-        [InlineData(VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius)]
-        [InlineData(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin)]
-        [InlineData(VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius)]
-        [InlineData(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius)]
-        [InlineData(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin)]
-        [InlineData(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius)]
-        [InlineData(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin)]
+        [MemberData(nameof(UnitTypes))]
         public void ToUnit_WithSameUnits_AreEqual(VolumetricHeatCapacityUnit unit)
         {
             var quantity = VolumetricHeatCapacity.From(3.0, unit);
