@@ -215,10 +215,10 @@ namespace UnitsNet
             _value = Guard.EnsureValidNumber(value, nameof(value));"
                 : @"
             _value = value;");
-            Writer.WL( $@"
+            Writer.WL($@"
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException(""No units were found for the given UnitSystem."", nameof(unitSystem));
         }}
-" );
+");
         }
 
         private void GenerateStaticProperties()
