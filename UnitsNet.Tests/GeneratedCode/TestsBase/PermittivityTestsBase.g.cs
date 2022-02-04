@@ -44,6 +44,15 @@ namespace UnitsNet.Tests
         protected virtual double FaradsPerMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(PermittivityUnit unit)
+        {
+            return unit switch
+            {
+                PermittivityUnit.FaradPerMeter => (FaradsPerMeterInOneFaradPerMeter, FaradsPerMeterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { PermittivityUnit.FaradPerMeter },
@@ -193,7 +202,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(PermittivityUnit unit)
         {
-            var quantity = Permittivity.From(3.0, Permittivity.Units.First(unit => unit != Permittivity.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Permittivity.Units.FirstOrDefault(u => u != Permittivity.BaseUnit && u != PermittivityUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == PermittivityUnit.Undefined)
+                fromUnit = Permittivity.BaseUnit;
+
+            var quantity = Permittivity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

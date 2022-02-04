@@ -54,6 +54,20 @@ namespace UnitsNet.Tests
         protected virtual double PercentTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(RatioUnit unit)
+        {
+            return unit switch
+            {
+                RatioUnit.DecimalFraction => (DecimalFractionsInOneDecimalFraction, DecimalFractionsTolerance),
+                RatioUnit.PartPerBillion => (PartsPerBillionInOneDecimalFraction, PartsPerBillionTolerance),
+                RatioUnit.PartPerMillion => (PartsPerMillionInOneDecimalFraction, PartsPerMillionTolerance),
+                RatioUnit.PartPerThousand => (PartsPerThousandInOneDecimalFraction, PartsPerThousandTolerance),
+                RatioUnit.PartPerTrillion => (PartsPerTrillionInOneDecimalFraction, PartsPerTrillionTolerance),
+                RatioUnit.Percent => (PercentInOneDecimalFraction, PercentTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { RatioUnit.DecimalFraction },
@@ -258,7 +272,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(RatioUnit unit)
         {
-            var quantity = Ratio.From(3.0, Ratio.Units.First(unit => unit != Ratio.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Ratio.Units.FirstOrDefault(u => u != Ratio.BaseUnit && u != RatioUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == RatioUnit.Undefined)
+                fromUnit = Ratio.BaseUnit;
+
+            var quantity = Ratio.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

@@ -94,6 +94,40 @@ namespace UnitsNet.Tests
         protected virtual double TerabytesPerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(BitRateUnit unit)
+        {
+            return unit switch
+            {
+                BitRateUnit.BitPerSecond => (BitsPerSecondInOneBitPerSecond, BitsPerSecondTolerance),
+                BitRateUnit.BytePerSecond => (BytesPerSecondInOneBitPerSecond, BytesPerSecondTolerance),
+                BitRateUnit.ExabitPerSecond => (ExabitsPerSecondInOneBitPerSecond, ExabitsPerSecondTolerance),
+                BitRateUnit.ExabytePerSecond => (ExabytesPerSecondInOneBitPerSecond, ExabytesPerSecondTolerance),
+                BitRateUnit.ExbibitPerSecond => (ExbibitsPerSecondInOneBitPerSecond, ExbibitsPerSecondTolerance),
+                BitRateUnit.ExbibytePerSecond => (ExbibytesPerSecondInOneBitPerSecond, ExbibytesPerSecondTolerance),
+                BitRateUnit.GibibitPerSecond => (GibibitsPerSecondInOneBitPerSecond, GibibitsPerSecondTolerance),
+                BitRateUnit.GibibytePerSecond => (GibibytesPerSecondInOneBitPerSecond, GibibytesPerSecondTolerance),
+                BitRateUnit.GigabitPerSecond => (GigabitsPerSecondInOneBitPerSecond, GigabitsPerSecondTolerance),
+                BitRateUnit.GigabytePerSecond => (GigabytesPerSecondInOneBitPerSecond, GigabytesPerSecondTolerance),
+                BitRateUnit.KibibitPerSecond => (KibibitsPerSecondInOneBitPerSecond, KibibitsPerSecondTolerance),
+                BitRateUnit.KibibytePerSecond => (KibibytesPerSecondInOneBitPerSecond, KibibytesPerSecondTolerance),
+                BitRateUnit.KilobitPerSecond => (KilobitsPerSecondInOneBitPerSecond, KilobitsPerSecondTolerance),
+                BitRateUnit.KilobytePerSecond => (KilobytesPerSecondInOneBitPerSecond, KilobytesPerSecondTolerance),
+                BitRateUnit.MebibitPerSecond => (MebibitsPerSecondInOneBitPerSecond, MebibitsPerSecondTolerance),
+                BitRateUnit.MebibytePerSecond => (MebibytesPerSecondInOneBitPerSecond, MebibytesPerSecondTolerance),
+                BitRateUnit.MegabitPerSecond => (MegabitsPerSecondInOneBitPerSecond, MegabitsPerSecondTolerance),
+                BitRateUnit.MegabytePerSecond => (MegabytesPerSecondInOneBitPerSecond, MegabytesPerSecondTolerance),
+                BitRateUnit.PebibitPerSecond => (PebibitsPerSecondInOneBitPerSecond, PebibitsPerSecondTolerance),
+                BitRateUnit.PebibytePerSecond => (PebibytesPerSecondInOneBitPerSecond, PebibytesPerSecondTolerance),
+                BitRateUnit.PetabitPerSecond => (PetabitsPerSecondInOneBitPerSecond, PetabitsPerSecondTolerance),
+                BitRateUnit.PetabytePerSecond => (PetabytesPerSecondInOneBitPerSecond, PetabytesPerSecondTolerance),
+                BitRateUnit.TebibitPerSecond => (TebibitsPerSecondInOneBitPerSecond, TebibitsPerSecondTolerance),
+                BitRateUnit.TebibytePerSecond => (TebibytesPerSecondInOneBitPerSecond, TebibytesPerSecondTolerance),
+                BitRateUnit.TerabitPerSecond => (TerabitsPerSecondInOneBitPerSecond, TerabitsPerSecondTolerance),
+                BitRateUnit.TerabytePerSecond => (TerabytesPerSecondInOneBitPerSecond, TerabytesPerSecondTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { BitRateUnit.BitPerSecond },
@@ -493,7 +527,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(BitRateUnit unit)
         {
-            var quantity = BitRate.From(3.0, BitRate.Units.First(unit => unit != BitRate.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = BitRate.Units.FirstOrDefault(u => u != BitRate.BaseUnit && u != BitRateUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == BitRateUnit.Undefined)
+                fromUnit = BitRate.BaseUnit;
+
+            var quantity = BitRate.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

@@ -46,6 +46,16 @@ namespace UnitsNet.Tests
         protected virtual double NepersTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(LevelUnit unit)
+        {
+            return unit switch
+            {
+                LevelUnit.Decibel => (DecibelsInOneDecibel, DecibelsTolerance),
+                LevelUnit.Neper => (NepersInOneDecibel, NepersTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { LevelUnit.Decibel },
@@ -206,7 +216,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(LevelUnit unit)
         {
-            var quantity = Level.From(3.0, Level.Units.First(unit => unit != Level.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Level.Units.FirstOrDefault(u => u != Level.BaseUnit && u != LevelUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == LevelUnit.Undefined)
+                fromUnit = Level.BaseUnit;
+
+            var quantity = Level.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

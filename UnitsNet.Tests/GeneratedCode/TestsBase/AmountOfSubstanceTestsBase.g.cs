@@ -72,6 +72,29 @@ namespace UnitsNet.Tests
         protected virtual double PoundMolesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(AmountOfSubstanceUnit unit)
+        {
+            return unit switch
+            {
+                AmountOfSubstanceUnit.Centimole => (CentimolesInOneMole, CentimolesTolerance),
+                AmountOfSubstanceUnit.CentipoundMole => (CentipoundMolesInOneMole, CentipoundMolesTolerance),
+                AmountOfSubstanceUnit.Decimole => (DecimolesInOneMole, DecimolesTolerance),
+                AmountOfSubstanceUnit.DecipoundMole => (DecipoundMolesInOneMole, DecipoundMolesTolerance),
+                AmountOfSubstanceUnit.Kilomole => (KilomolesInOneMole, KilomolesTolerance),
+                AmountOfSubstanceUnit.KilopoundMole => (KilopoundMolesInOneMole, KilopoundMolesTolerance),
+                AmountOfSubstanceUnit.Megamole => (MegamolesInOneMole, MegamolesTolerance),
+                AmountOfSubstanceUnit.Micromole => (MicromolesInOneMole, MicromolesTolerance),
+                AmountOfSubstanceUnit.MicropoundMole => (MicropoundMolesInOneMole, MicropoundMolesTolerance),
+                AmountOfSubstanceUnit.Millimole => (MillimolesInOneMole, MillimolesTolerance),
+                AmountOfSubstanceUnit.MillipoundMole => (MillipoundMolesInOneMole, MillipoundMolesTolerance),
+                AmountOfSubstanceUnit.Mole => (MolesInOneMole, MolesTolerance),
+                AmountOfSubstanceUnit.Nanomole => (NanomolesInOneMole, NanomolesTolerance),
+                AmountOfSubstanceUnit.NanopoundMole => (NanopoundMolesInOneMole, NanopoundMolesTolerance),
+                AmountOfSubstanceUnit.PoundMole => (PoundMolesInOneMole, PoundMolesTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { AmountOfSubstanceUnit.Centimole },
@@ -375,7 +398,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(AmountOfSubstanceUnit unit)
         {
-            var quantity = AmountOfSubstance.From(3.0, AmountOfSubstance.Units.First(unit => unit != AmountOfSubstance.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = AmountOfSubstance.Units.FirstOrDefault(u => u != AmountOfSubstance.BaseUnit && u != AmountOfSubstanceUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == AmountOfSubstanceUnit.Undefined)
+                fromUnit = AmountOfSubstance.BaseUnit;
+
+            var quantity = AmountOfSubstance.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

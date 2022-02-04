@@ -84,6 +84,35 @@ namespace UnitsNet.Tests
         protected virtual double TonneForceMillimetersPerMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(TorquePerLengthUnit unit)
+        {
+            return unit switch
+            {
+                TorquePerLengthUnit.KilogramForceCentimeterPerMeter => (KilogramForceCentimetersPerMeterInOneNewtonMeterPerMeter, KilogramForceCentimetersPerMeterTolerance),
+                TorquePerLengthUnit.KilogramForceMeterPerMeter => (KilogramForceMetersPerMeterInOneNewtonMeterPerMeter, KilogramForceMetersPerMeterTolerance),
+                TorquePerLengthUnit.KilogramForceMillimeterPerMeter => (KilogramForceMillimetersPerMeterInOneNewtonMeterPerMeter, KilogramForceMillimetersPerMeterTolerance),
+                TorquePerLengthUnit.KilonewtonCentimeterPerMeter => (KilonewtonCentimetersPerMeterInOneNewtonMeterPerMeter, KilonewtonCentimetersPerMeterTolerance),
+                TorquePerLengthUnit.KilonewtonMeterPerMeter => (KilonewtonMetersPerMeterInOneNewtonMeterPerMeter, KilonewtonMetersPerMeterTolerance),
+                TorquePerLengthUnit.KilonewtonMillimeterPerMeter => (KilonewtonMillimetersPerMeterInOneNewtonMeterPerMeter, KilonewtonMillimetersPerMeterTolerance),
+                TorquePerLengthUnit.KilopoundForceFootPerFoot => (KilopoundForceFeetPerFootInOneNewtonMeterPerMeter, KilopoundForceFeetPerFootTolerance),
+                TorquePerLengthUnit.KilopoundForceInchPerFoot => (KilopoundForceInchesPerFootInOneNewtonMeterPerMeter, KilopoundForceInchesPerFootTolerance),
+                TorquePerLengthUnit.MeganewtonCentimeterPerMeter => (MeganewtonCentimetersPerMeterInOneNewtonMeterPerMeter, MeganewtonCentimetersPerMeterTolerance),
+                TorquePerLengthUnit.MeganewtonMeterPerMeter => (MeganewtonMetersPerMeterInOneNewtonMeterPerMeter, MeganewtonMetersPerMeterTolerance),
+                TorquePerLengthUnit.MeganewtonMillimeterPerMeter => (MeganewtonMillimetersPerMeterInOneNewtonMeterPerMeter, MeganewtonMillimetersPerMeterTolerance),
+                TorquePerLengthUnit.MegapoundForceFootPerFoot => (MegapoundForceFeetPerFootInOneNewtonMeterPerMeter, MegapoundForceFeetPerFootTolerance),
+                TorquePerLengthUnit.MegapoundForceInchPerFoot => (MegapoundForceInchesPerFootInOneNewtonMeterPerMeter, MegapoundForceInchesPerFootTolerance),
+                TorquePerLengthUnit.NewtonCentimeterPerMeter => (NewtonCentimetersPerMeterInOneNewtonMeterPerMeter, NewtonCentimetersPerMeterTolerance),
+                TorquePerLengthUnit.NewtonMeterPerMeter => (NewtonMetersPerMeterInOneNewtonMeterPerMeter, NewtonMetersPerMeterTolerance),
+                TorquePerLengthUnit.NewtonMillimeterPerMeter => (NewtonMillimetersPerMeterInOneNewtonMeterPerMeter, NewtonMillimetersPerMeterTolerance),
+                TorquePerLengthUnit.PoundForceFootPerFoot => (PoundForceFeetPerFootInOneNewtonMeterPerMeter, PoundForceFeetPerFootTolerance),
+                TorquePerLengthUnit.PoundForceInchPerFoot => (PoundForceInchesPerFootInOneNewtonMeterPerMeter, PoundForceInchesPerFootTolerance),
+                TorquePerLengthUnit.TonneForceCentimeterPerMeter => (TonneForceCentimetersPerMeterInOneNewtonMeterPerMeter, TonneForceCentimetersPerMeterTolerance),
+                TorquePerLengthUnit.TonneForceMeterPerMeter => (TonneForceMetersPerMeterInOneNewtonMeterPerMeter, TonneForceMetersPerMeterTolerance),
+                TorquePerLengthUnit.TonneForceMillimeterPerMeter => (TonneForceMillimetersPerMeterInOneNewtonMeterPerMeter, TonneForceMillimetersPerMeterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { TorquePerLengthUnit.KilogramForceCentimeterPerMeter },
@@ -453,7 +482,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(TorquePerLengthUnit unit)
         {
-            var quantity = TorquePerLength.From(3.0, TorquePerLength.Units.First(unit => unit != TorquePerLength.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = TorquePerLength.Units.FirstOrDefault(u => u != TorquePerLength.BaseUnit && u != TorquePerLengthUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == TorquePerLengthUnit.Undefined)
+                fromUnit = TorquePerLength.BaseUnit;
+
+            var quantity = TorquePerLength.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

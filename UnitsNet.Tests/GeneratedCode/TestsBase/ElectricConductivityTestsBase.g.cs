@@ -48,6 +48,17 @@ namespace UnitsNet.Tests
         protected virtual double SiemensPerMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricConductivityUnit unit)
+        {
+            return unit switch
+            {
+                ElectricConductivityUnit.SiemensPerFoot => (SiemensPerFootInOneSiemensPerMeter, SiemensPerFootTolerance),
+                ElectricConductivityUnit.SiemensPerInch => (SiemensPerInchInOneSiemensPerMeter, SiemensPerInchTolerance),
+                ElectricConductivityUnit.SiemensPerMeter => (SiemensPerMeterInOneSiemensPerMeter, SiemensPerMeterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { ElectricConductivityUnit.SiemensPerFoot },
@@ -219,7 +230,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(ElectricConductivityUnit unit)
         {
-            var quantity = ElectricConductivity.From(3.0, ElectricConductivity.Units.First(unit => unit != ElectricConductivity.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ElectricConductivity.Units.FirstOrDefault(u => u != ElectricConductivity.BaseUnit && u != ElectricConductivityUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ElectricConductivityUnit.Undefined)
+                fromUnit = ElectricConductivity.BaseUnit;
+
+            var quantity = ElectricConductivity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

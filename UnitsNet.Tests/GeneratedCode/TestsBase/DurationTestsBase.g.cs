@@ -64,6 +64,25 @@ namespace UnitsNet.Tests
         protected virtual double Years365Tolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(DurationUnit unit)
+        {
+            return unit switch
+            {
+                DurationUnit.Day => (DaysInOneSecond, DaysTolerance),
+                DurationUnit.Hour => (HoursInOneSecond, HoursTolerance),
+                DurationUnit.JulianYear => (JulianYearsInOneSecond, JulianYearsTolerance),
+                DurationUnit.Microsecond => (MicrosecondsInOneSecond, MicrosecondsTolerance),
+                DurationUnit.Millisecond => (MillisecondsInOneSecond, MillisecondsTolerance),
+                DurationUnit.Minute => (MinutesInOneSecond, MinutesTolerance),
+                DurationUnit.Month30 => (Months30InOneSecond, Months30Tolerance),
+                DurationUnit.Nanosecond => (NanosecondsInOneSecond, NanosecondsTolerance),
+                DurationUnit.Second => (SecondsInOneSecond, SecondsTolerance),
+                DurationUnit.Week => (WeeksInOneSecond, WeeksTolerance),
+                DurationUnit.Year365 => (Years365InOneSecond, Years365Tolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { DurationUnit.Day },
@@ -323,7 +342,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(DurationUnit unit)
         {
-            var quantity = Duration.From(3.0, Duration.Units.First(unit => unit != Duration.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Duration.Units.FirstOrDefault(u => u != Duration.BaseUnit && u != DurationUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == DurationUnit.Undefined)
+                fromUnit = Duration.BaseUnit;
+
+            var quantity = Duration.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

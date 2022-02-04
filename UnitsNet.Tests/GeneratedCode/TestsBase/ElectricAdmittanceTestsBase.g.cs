@@ -50,6 +50,18 @@ namespace UnitsNet.Tests
         protected virtual double SiemensTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricAdmittanceUnit unit)
+        {
+            return unit switch
+            {
+                ElectricAdmittanceUnit.Microsiemens => (MicrosiemensInOneSiemens, MicrosiemensTolerance),
+                ElectricAdmittanceUnit.Millisiemens => (MillisiemensInOneSiemens, MillisiemensTolerance),
+                ElectricAdmittanceUnit.Nanosiemens => (NanosiemensInOneSiemens, NanosiemensTolerance),
+                ElectricAdmittanceUnit.Siemens => (SiemensInOneSiemens, SiemensTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { ElectricAdmittanceUnit.Microsiemens },
@@ -232,7 +244,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(ElectricAdmittanceUnit unit)
         {
-            var quantity = ElectricAdmittance.From(3.0, ElectricAdmittance.Units.First(unit => unit != ElectricAdmittance.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ElectricAdmittance.Units.FirstOrDefault(u => u != ElectricAdmittance.BaseUnit && u != ElectricAdmittanceUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ElectricAdmittanceUnit.Undefined)
+                fromUnit = ElectricAdmittance.BaseUnit;
+
+            var quantity = ElectricAdmittance.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

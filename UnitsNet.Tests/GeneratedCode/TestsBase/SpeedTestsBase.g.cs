@@ -106,6 +106,46 @@ namespace UnitsNet.Tests
         protected virtual double YardsPerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(SpeedUnit unit)
+        {
+            return unit switch
+            {
+                SpeedUnit.CentimeterPerHour => (CentimetersPerHourInOneMeterPerSecond, CentimetersPerHourTolerance),
+                SpeedUnit.CentimeterPerMinute => (CentimetersPerMinutesInOneMeterPerSecond, CentimetersPerMinutesTolerance),
+                SpeedUnit.CentimeterPerSecond => (CentimetersPerSecondInOneMeterPerSecond, CentimetersPerSecondTolerance),
+                SpeedUnit.DecimeterPerMinute => (DecimetersPerMinutesInOneMeterPerSecond, DecimetersPerMinutesTolerance),
+                SpeedUnit.DecimeterPerSecond => (DecimetersPerSecondInOneMeterPerSecond, DecimetersPerSecondTolerance),
+                SpeedUnit.FootPerHour => (FeetPerHourInOneMeterPerSecond, FeetPerHourTolerance),
+                SpeedUnit.FootPerMinute => (FeetPerMinuteInOneMeterPerSecond, FeetPerMinuteTolerance),
+                SpeedUnit.FootPerSecond => (FeetPerSecondInOneMeterPerSecond, FeetPerSecondTolerance),
+                SpeedUnit.InchPerHour => (InchesPerHourInOneMeterPerSecond, InchesPerHourTolerance),
+                SpeedUnit.InchPerMinute => (InchesPerMinuteInOneMeterPerSecond, InchesPerMinuteTolerance),
+                SpeedUnit.InchPerSecond => (InchesPerSecondInOneMeterPerSecond, InchesPerSecondTolerance),
+                SpeedUnit.KilometerPerHour => (KilometersPerHourInOneMeterPerSecond, KilometersPerHourTolerance),
+                SpeedUnit.KilometerPerMinute => (KilometersPerMinutesInOneMeterPerSecond, KilometersPerMinutesTolerance),
+                SpeedUnit.KilometerPerSecond => (KilometersPerSecondInOneMeterPerSecond, KilometersPerSecondTolerance),
+                SpeedUnit.Knot => (KnotsInOneMeterPerSecond, KnotsTolerance),
+                SpeedUnit.MeterPerHour => (MetersPerHourInOneMeterPerSecond, MetersPerHourTolerance),
+                SpeedUnit.MeterPerMinute => (MetersPerMinutesInOneMeterPerSecond, MetersPerMinutesTolerance),
+                SpeedUnit.MeterPerSecond => (MetersPerSecondInOneMeterPerSecond, MetersPerSecondTolerance),
+                SpeedUnit.MicrometerPerMinute => (MicrometersPerMinutesInOneMeterPerSecond, MicrometersPerMinutesTolerance),
+                SpeedUnit.MicrometerPerSecond => (MicrometersPerSecondInOneMeterPerSecond, MicrometersPerSecondTolerance),
+                SpeedUnit.MilePerHour => (MilesPerHourInOneMeterPerSecond, MilesPerHourTolerance),
+                SpeedUnit.MillimeterPerHour => (MillimetersPerHourInOneMeterPerSecond, MillimetersPerHourTolerance),
+                SpeedUnit.MillimeterPerMinute => (MillimetersPerMinutesInOneMeterPerSecond, MillimetersPerMinutesTolerance),
+                SpeedUnit.MillimeterPerSecond => (MillimetersPerSecondInOneMeterPerSecond, MillimetersPerSecondTolerance),
+                SpeedUnit.NanometerPerMinute => (NanometersPerMinutesInOneMeterPerSecond, NanometersPerMinutesTolerance),
+                SpeedUnit.NanometerPerSecond => (NanometersPerSecondInOneMeterPerSecond, NanometersPerSecondTolerance),
+                SpeedUnit.UsSurveyFootPerHour => (UsSurveyFeetPerHourInOneMeterPerSecond, UsSurveyFeetPerHourTolerance),
+                SpeedUnit.UsSurveyFootPerMinute => (UsSurveyFeetPerMinuteInOneMeterPerSecond, UsSurveyFeetPerMinuteTolerance),
+                SpeedUnit.UsSurveyFootPerSecond => (UsSurveyFeetPerSecondInOneMeterPerSecond, UsSurveyFeetPerSecondTolerance),
+                SpeedUnit.YardPerHour => (YardsPerHourInOneMeterPerSecond, YardsPerHourTolerance),
+                SpeedUnit.YardPerMinute => (YardsPerMinuteInOneMeterPerSecond, YardsPerMinuteTolerance),
+                SpeedUnit.YardPerSecond => (YardsPerSecondInOneMeterPerSecond, YardsPerSecondTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { SpeedUnit.CentimeterPerHour },
@@ -596,7 +636,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(SpeedUnit unit)
         {
-            var quantity = Speed.From(3.0, Speed.Units.First(unit => unit != Speed.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Speed.Units.FirstOrDefault(u => u != Speed.BaseUnit && u != SpeedUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == SpeedUnit.Undefined)
+                fromUnit = Speed.BaseUnit;
+
+            var quantity = Speed.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

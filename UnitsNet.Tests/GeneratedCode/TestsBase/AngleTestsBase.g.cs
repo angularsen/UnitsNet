@@ -74,6 +74,30 @@ namespace UnitsNet.Tests
         protected virtual double TiltTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(AngleUnit unit)
+        {
+            return unit switch
+            {
+                AngleUnit.Arcminute => (ArcminutesInOneDegree, ArcminutesTolerance),
+                AngleUnit.Arcsecond => (ArcsecondsInOneDegree, ArcsecondsTolerance),
+                AngleUnit.Centiradian => (CentiradiansInOneDegree, CentiradiansTolerance),
+                AngleUnit.Deciradian => (DeciradiansInOneDegree, DeciradiansTolerance),
+                AngleUnit.Degree => (DegreesInOneDegree, DegreesTolerance),
+                AngleUnit.Gradian => (GradiansInOneDegree, GradiansTolerance),
+                AngleUnit.Microdegree => (MicrodegreesInOneDegree, MicrodegreesTolerance),
+                AngleUnit.Microradian => (MicroradiansInOneDegree, MicroradiansTolerance),
+                AngleUnit.Millidegree => (MillidegreesInOneDegree, MillidegreesTolerance),
+                AngleUnit.Milliradian => (MilliradiansInOneDegree, MilliradiansTolerance),
+                AngleUnit.Nanodegree => (NanodegreesInOneDegree, NanodegreesTolerance),
+                AngleUnit.Nanoradian => (NanoradiansInOneDegree, NanoradiansTolerance),
+                AngleUnit.NatoMil => (NatoMilsInOneDegree, NatoMilsTolerance),
+                AngleUnit.Radian => (RadiansInOneDegree, RadiansTolerance),
+                AngleUnit.Revolution => (RevolutionsInOneDegree, RevolutionsTolerance),
+                AngleUnit.Tilt => (TiltInOneDegree, TiltTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { AngleUnit.Arcminute },
@@ -388,7 +412,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(AngleUnit unit)
         {
-            var quantity = Angle.From(3.0, Angle.Units.First(unit => unit != Angle.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Angle.Units.FirstOrDefault(u => u != Angle.BaseUnit && u != AngleUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == AngleUnit.Undefined)
+                fromUnit = Angle.BaseUnit;
+
+            var quantity = Angle.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

@@ -140,6 +140,63 @@ namespace UnitsNet.Tests
         protected virtual double TonnesPerCubicMillimeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MassConcentrationUnit unit)
+        {
+            return unit switch
+            {
+                MassConcentrationUnit.CentigramPerDeciliter => (CentigramsPerDeciliterInOneKilogramPerCubicMeter, CentigramsPerDeciliterTolerance),
+                MassConcentrationUnit.CentigramPerLiter => (CentigramsPerLiterInOneKilogramPerCubicMeter, CentigramsPerLiterTolerance),
+                MassConcentrationUnit.CentigramPerMicroliter => (CentigramsPerMicroliterInOneKilogramPerCubicMeter, CentigramsPerMicroliterTolerance),
+                MassConcentrationUnit.CentigramPerMilliliter => (CentigramsPerMilliliterInOneKilogramPerCubicMeter, CentigramsPerMilliliterTolerance),
+                MassConcentrationUnit.DecigramPerDeciliter => (DecigramsPerDeciliterInOneKilogramPerCubicMeter, DecigramsPerDeciliterTolerance),
+                MassConcentrationUnit.DecigramPerLiter => (DecigramsPerLiterInOneKilogramPerCubicMeter, DecigramsPerLiterTolerance),
+                MassConcentrationUnit.DecigramPerMicroliter => (DecigramsPerMicroliterInOneKilogramPerCubicMeter, DecigramsPerMicroliterTolerance),
+                MassConcentrationUnit.DecigramPerMilliliter => (DecigramsPerMilliliterInOneKilogramPerCubicMeter, DecigramsPerMilliliterTolerance),
+                MassConcentrationUnit.GramPerCubicCentimeter => (GramsPerCubicCentimeterInOneKilogramPerCubicMeter, GramsPerCubicCentimeterTolerance),
+                MassConcentrationUnit.GramPerCubicMeter => (GramsPerCubicMeterInOneKilogramPerCubicMeter, GramsPerCubicMeterTolerance),
+                MassConcentrationUnit.GramPerCubicMillimeter => (GramsPerCubicMillimeterInOneKilogramPerCubicMeter, GramsPerCubicMillimeterTolerance),
+                MassConcentrationUnit.GramPerDeciliter => (GramsPerDeciliterInOneKilogramPerCubicMeter, GramsPerDeciliterTolerance),
+                MassConcentrationUnit.GramPerLiter => (GramsPerLiterInOneKilogramPerCubicMeter, GramsPerLiterTolerance),
+                MassConcentrationUnit.GramPerMicroliter => (GramsPerMicroliterInOneKilogramPerCubicMeter, GramsPerMicroliterTolerance),
+                MassConcentrationUnit.GramPerMilliliter => (GramsPerMilliliterInOneKilogramPerCubicMeter, GramsPerMilliliterTolerance),
+                MassConcentrationUnit.KilogramPerCubicCentimeter => (KilogramsPerCubicCentimeterInOneKilogramPerCubicMeter, KilogramsPerCubicCentimeterTolerance),
+                MassConcentrationUnit.KilogramPerCubicMeter => (KilogramsPerCubicMeterInOneKilogramPerCubicMeter, KilogramsPerCubicMeterTolerance),
+                MassConcentrationUnit.KilogramPerCubicMillimeter => (KilogramsPerCubicMillimeterInOneKilogramPerCubicMeter, KilogramsPerCubicMillimeterTolerance),
+                MassConcentrationUnit.KilogramPerLiter => (KilogramsPerLiterInOneKilogramPerCubicMeter, KilogramsPerLiterTolerance),
+                MassConcentrationUnit.KilopoundPerCubicFoot => (KilopoundsPerCubicFootInOneKilogramPerCubicMeter, KilopoundsPerCubicFootTolerance),
+                MassConcentrationUnit.KilopoundPerCubicInch => (KilopoundsPerCubicInchInOneKilogramPerCubicMeter, KilopoundsPerCubicInchTolerance),
+                MassConcentrationUnit.MicrogramPerCubicMeter => (MicrogramsPerCubicMeterInOneKilogramPerCubicMeter, MicrogramsPerCubicMeterTolerance),
+                MassConcentrationUnit.MicrogramPerDeciliter => (MicrogramsPerDeciliterInOneKilogramPerCubicMeter, MicrogramsPerDeciliterTolerance),
+                MassConcentrationUnit.MicrogramPerLiter => (MicrogramsPerLiterInOneKilogramPerCubicMeter, MicrogramsPerLiterTolerance),
+                MassConcentrationUnit.MicrogramPerMicroliter => (MicrogramsPerMicroliterInOneKilogramPerCubicMeter, MicrogramsPerMicroliterTolerance),
+                MassConcentrationUnit.MicrogramPerMilliliter => (MicrogramsPerMilliliterInOneKilogramPerCubicMeter, MicrogramsPerMilliliterTolerance),
+                MassConcentrationUnit.MilligramPerCubicMeter => (MilligramsPerCubicMeterInOneKilogramPerCubicMeter, MilligramsPerCubicMeterTolerance),
+                MassConcentrationUnit.MilligramPerDeciliter => (MilligramsPerDeciliterInOneKilogramPerCubicMeter, MilligramsPerDeciliterTolerance),
+                MassConcentrationUnit.MilligramPerLiter => (MilligramsPerLiterInOneKilogramPerCubicMeter, MilligramsPerLiterTolerance),
+                MassConcentrationUnit.MilligramPerMicroliter => (MilligramsPerMicroliterInOneKilogramPerCubicMeter, MilligramsPerMicroliterTolerance),
+                MassConcentrationUnit.MilligramPerMilliliter => (MilligramsPerMilliliterInOneKilogramPerCubicMeter, MilligramsPerMilliliterTolerance),
+                MassConcentrationUnit.NanogramPerDeciliter => (NanogramsPerDeciliterInOneKilogramPerCubicMeter, NanogramsPerDeciliterTolerance),
+                MassConcentrationUnit.NanogramPerLiter => (NanogramsPerLiterInOneKilogramPerCubicMeter, NanogramsPerLiterTolerance),
+                MassConcentrationUnit.NanogramPerMicroliter => (NanogramsPerMicroliterInOneKilogramPerCubicMeter, NanogramsPerMicroliterTolerance),
+                MassConcentrationUnit.NanogramPerMilliliter => (NanogramsPerMilliliterInOneKilogramPerCubicMeter, NanogramsPerMilliliterTolerance),
+                MassConcentrationUnit.OuncePerImperialGallon => (OuncesPerImperialGallonInOneKilogramPerCubicMeter, OuncesPerImperialGallonTolerance),
+                MassConcentrationUnit.OuncePerUSGallon => (OuncesPerUSGallonInOneKilogramPerCubicMeter, OuncesPerUSGallonTolerance),
+                MassConcentrationUnit.PicogramPerDeciliter => (PicogramsPerDeciliterInOneKilogramPerCubicMeter, PicogramsPerDeciliterTolerance),
+                MassConcentrationUnit.PicogramPerLiter => (PicogramsPerLiterInOneKilogramPerCubicMeter, PicogramsPerLiterTolerance),
+                MassConcentrationUnit.PicogramPerMicroliter => (PicogramsPerMicroliterInOneKilogramPerCubicMeter, PicogramsPerMicroliterTolerance),
+                MassConcentrationUnit.PicogramPerMilliliter => (PicogramsPerMilliliterInOneKilogramPerCubicMeter, PicogramsPerMilliliterTolerance),
+                MassConcentrationUnit.PoundPerCubicFoot => (PoundsPerCubicFootInOneKilogramPerCubicMeter, PoundsPerCubicFootTolerance),
+                MassConcentrationUnit.PoundPerCubicInch => (PoundsPerCubicInchInOneKilogramPerCubicMeter, PoundsPerCubicInchTolerance),
+                MassConcentrationUnit.PoundPerImperialGallon => (PoundsPerImperialGallonInOneKilogramPerCubicMeter, PoundsPerImperialGallonTolerance),
+                MassConcentrationUnit.PoundPerUSGallon => (PoundsPerUSGallonInOneKilogramPerCubicMeter, PoundsPerUSGallonTolerance),
+                MassConcentrationUnit.SlugPerCubicFoot => (SlugsPerCubicFootInOneKilogramPerCubicMeter, SlugsPerCubicFootTolerance),
+                MassConcentrationUnit.TonnePerCubicCentimeter => (TonnesPerCubicCentimeterInOneKilogramPerCubicMeter, TonnesPerCubicCentimeterTolerance),
+                MassConcentrationUnit.TonnePerCubicMeter => (TonnesPerCubicMeterInOneKilogramPerCubicMeter, TonnesPerCubicMeterTolerance),
+                MassConcentrationUnit.TonnePerCubicMillimeter => (TonnesPerCubicMillimeterInOneKilogramPerCubicMeter, TonnesPerCubicMillimeterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { MassConcentrationUnit.CentigramPerDeciliter },
@@ -817,7 +874,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(MassConcentrationUnit unit)
         {
-            var quantity = MassConcentration.From(3.0, MassConcentration.Units.First(unit => unit != MassConcentration.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = MassConcentration.Units.FirstOrDefault(u => u != MassConcentration.BaseUnit && u != MassConcentrationUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == MassConcentrationUnit.Undefined)
+                fromUnit = MassConcentration.BaseUnit;
+
+            var quantity = MassConcentration.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

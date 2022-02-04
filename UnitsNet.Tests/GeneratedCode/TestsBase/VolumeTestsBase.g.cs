@@ -144,6 +144,65 @@ namespace UnitsNet.Tests
         protected virtual double UsTeaspoonsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(VolumeUnit unit)
+        {
+            return unit switch
+            {
+                VolumeUnit.AcreFoot => (AcreFeetInOneCubicMeter, AcreFeetTolerance),
+                VolumeUnit.AuTablespoon => (AuTablespoonsInOneCubicMeter, AuTablespoonsTolerance),
+                VolumeUnit.BoardFoot => (BoardFeetInOneCubicMeter, BoardFeetTolerance),
+                VolumeUnit.Centiliter => (CentilitersInOneCubicMeter, CentilitersTolerance),
+                VolumeUnit.CubicCentimeter => (CubicCentimetersInOneCubicMeter, CubicCentimetersTolerance),
+                VolumeUnit.CubicDecimeter => (CubicDecimetersInOneCubicMeter, CubicDecimetersTolerance),
+                VolumeUnit.CubicFoot => (CubicFeetInOneCubicMeter, CubicFeetTolerance),
+                VolumeUnit.CubicHectometer => (CubicHectometersInOneCubicMeter, CubicHectometersTolerance),
+                VolumeUnit.CubicInch => (CubicInchesInOneCubicMeter, CubicInchesTolerance),
+                VolumeUnit.CubicKilometer => (CubicKilometersInOneCubicMeter, CubicKilometersTolerance),
+                VolumeUnit.CubicMeter => (CubicMetersInOneCubicMeter, CubicMetersTolerance),
+                VolumeUnit.CubicMicrometer => (CubicMicrometersInOneCubicMeter, CubicMicrometersTolerance),
+                VolumeUnit.CubicMile => (CubicMilesInOneCubicMeter, CubicMilesTolerance),
+                VolumeUnit.CubicMillimeter => (CubicMillimetersInOneCubicMeter, CubicMillimetersTolerance),
+                VolumeUnit.CubicYard => (CubicYardsInOneCubicMeter, CubicYardsTolerance),
+                VolumeUnit.DecausGallon => (DecausGallonsInOneCubicMeter, DecausGallonsTolerance),
+                VolumeUnit.Deciliter => (DecilitersInOneCubicMeter, DecilitersTolerance),
+                VolumeUnit.DeciusGallon => (DeciusGallonsInOneCubicMeter, DeciusGallonsTolerance),
+                VolumeUnit.HectocubicFoot => (HectocubicFeetInOneCubicMeter, HectocubicFeetTolerance),
+                VolumeUnit.HectocubicMeter => (HectocubicMetersInOneCubicMeter, HectocubicMetersTolerance),
+                VolumeUnit.Hectoliter => (HectolitersInOneCubicMeter, HectolitersTolerance),
+                VolumeUnit.HectousGallon => (HectousGallonsInOneCubicMeter, HectousGallonsTolerance),
+                VolumeUnit.ImperialBeerBarrel => (ImperialBeerBarrelsInOneCubicMeter, ImperialBeerBarrelsTolerance),
+                VolumeUnit.ImperialGallon => (ImperialGallonsInOneCubicMeter, ImperialGallonsTolerance),
+                VolumeUnit.ImperialOunce => (ImperialOuncesInOneCubicMeter, ImperialOuncesTolerance),
+                VolumeUnit.ImperialPint => (ImperialPintsInOneCubicMeter, ImperialPintsTolerance),
+                VolumeUnit.KilocubicFoot => (KilocubicFeetInOneCubicMeter, KilocubicFeetTolerance),
+                VolumeUnit.KilocubicMeter => (KilocubicMetersInOneCubicMeter, KilocubicMetersTolerance),
+                VolumeUnit.KiloimperialGallon => (KiloimperialGallonsInOneCubicMeter, KiloimperialGallonsTolerance),
+                VolumeUnit.Kiloliter => (KilolitersInOneCubicMeter, KilolitersTolerance),
+                VolumeUnit.KilousGallon => (KilousGallonsInOneCubicMeter, KilousGallonsTolerance),
+                VolumeUnit.Liter => (LitersInOneCubicMeter, LitersTolerance),
+                VolumeUnit.MegacubicFoot => (MegacubicFeetInOneCubicMeter, MegacubicFeetTolerance),
+                VolumeUnit.MegaimperialGallon => (MegaimperialGallonsInOneCubicMeter, MegaimperialGallonsTolerance),
+                VolumeUnit.Megaliter => (MegalitersInOneCubicMeter, MegalitersTolerance),
+                VolumeUnit.MegausGallon => (MegausGallonsInOneCubicMeter, MegausGallonsTolerance),
+                VolumeUnit.MetricCup => (MetricCupsInOneCubicMeter, MetricCupsTolerance),
+                VolumeUnit.MetricTeaspoon => (MetricTeaspoonsInOneCubicMeter, MetricTeaspoonsTolerance),
+                VolumeUnit.Microliter => (MicrolitersInOneCubicMeter, MicrolitersTolerance),
+                VolumeUnit.Milliliter => (MillilitersInOneCubicMeter, MillilitersTolerance),
+                VolumeUnit.OilBarrel => (OilBarrelsInOneCubicMeter, OilBarrelsTolerance),
+                VolumeUnit.UkTablespoon => (UkTablespoonsInOneCubicMeter, UkTablespoonsTolerance),
+                VolumeUnit.UsBeerBarrel => (UsBeerBarrelsInOneCubicMeter, UsBeerBarrelsTolerance),
+                VolumeUnit.UsCustomaryCup => (UsCustomaryCupsInOneCubicMeter, UsCustomaryCupsTolerance),
+                VolumeUnit.UsGallon => (UsGallonsInOneCubicMeter, UsGallonsTolerance),
+                VolumeUnit.UsLegalCup => (UsLegalCupsInOneCubicMeter, UsLegalCupsTolerance),
+                VolumeUnit.UsOunce => (UsOuncesInOneCubicMeter, UsOuncesTolerance),
+                VolumeUnit.UsPint => (UsPintsInOneCubicMeter, UsPintsTolerance),
+                VolumeUnit.UsQuart => (UsQuartsInOneCubicMeter, UsQuartsTolerance),
+                VolumeUnit.UsTablespoon => (UsTablespoonsInOneCubicMeter, UsTablespoonsTolerance),
+                VolumeUnit.UsTeaspoon => (UsTeaspoonsInOneCubicMeter, UsTeaspoonsTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { VolumeUnit.AcreFoot },
@@ -843,7 +902,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(VolumeUnit unit)
         {
-            var quantity = Volume.From(3.0, Volume.Units.First(unit => unit != Volume.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Volume.Units.FirstOrDefault(u => u != Volume.BaseUnit && u != VolumeUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == VolumeUnit.Undefined)
+                fromUnit = Volume.BaseUnit;
+
+            var quantity = Volume.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

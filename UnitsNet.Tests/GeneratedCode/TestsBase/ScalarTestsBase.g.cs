@@ -44,6 +44,15 @@ namespace UnitsNet.Tests
         protected virtual double AmountTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ScalarUnit unit)
+        {
+            return unit switch
+            {
+                ScalarUnit.Amount => (AmountInOneAmount, AmountTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { ScalarUnit.Amount },
@@ -193,7 +202,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(ScalarUnit unit)
         {
-            var quantity = Scalar.From(3.0, Scalar.Units.First(unit => unit != Scalar.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Scalar.Units.FirstOrDefault(u => u != Scalar.BaseUnit && u != ScalarUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ScalarUnit.Undefined)
+                fromUnit = Scalar.BaseUnit;
+
+            var quantity = Scalar.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

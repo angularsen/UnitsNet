@@ -92,6 +92,39 @@ namespace UnitsNet.Tests
         protected virtual double TonnesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MassUnit unit)
+        {
+            return unit switch
+            {
+                MassUnit.Centigram => (CentigramsInOneKilogram, CentigramsTolerance),
+                MassUnit.Decagram => (DecagramsInOneKilogram, DecagramsTolerance),
+                MassUnit.Decigram => (DecigramsInOneKilogram, DecigramsTolerance),
+                MassUnit.EarthMass => (EarthMassesInOneKilogram, EarthMassesTolerance),
+                MassUnit.Grain => (GrainsInOneKilogram, GrainsTolerance),
+                MassUnit.Gram => (GramsInOneKilogram, GramsTolerance),
+                MassUnit.Hectogram => (HectogramsInOneKilogram, HectogramsTolerance),
+                MassUnit.Kilogram => (KilogramsInOneKilogram, KilogramsTolerance),
+                MassUnit.Kilopound => (KilopoundsInOneKilogram, KilopoundsTolerance),
+                MassUnit.Kilotonne => (KilotonnesInOneKilogram, KilotonnesTolerance),
+                MassUnit.LongHundredweight => (LongHundredweightInOneKilogram, LongHundredweightTolerance),
+                MassUnit.LongTon => (LongTonsInOneKilogram, LongTonsTolerance),
+                MassUnit.Megapound => (MegapoundsInOneKilogram, MegapoundsTolerance),
+                MassUnit.Megatonne => (MegatonnesInOneKilogram, MegatonnesTolerance),
+                MassUnit.Microgram => (MicrogramsInOneKilogram, MicrogramsTolerance),
+                MassUnit.Milligram => (MilligramsInOneKilogram, MilligramsTolerance),
+                MassUnit.Nanogram => (NanogramsInOneKilogram, NanogramsTolerance),
+                MassUnit.Ounce => (OuncesInOneKilogram, OuncesTolerance),
+                MassUnit.Pound => (PoundsInOneKilogram, PoundsTolerance),
+                MassUnit.ShortHundredweight => (ShortHundredweightInOneKilogram, ShortHundredweightTolerance),
+                MassUnit.ShortTon => (ShortTonsInOneKilogram, ShortTonsTolerance),
+                MassUnit.Slug => (SlugsInOneKilogram, SlugsTolerance),
+                MassUnit.SolarMass => (SolarMassesInOneKilogram, SolarMassesTolerance),
+                MassUnit.Stone => (StoneInOneKilogram, StoneTolerance),
+                MassUnit.Tonne => (TonnesInOneKilogram, TonnesTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { MassUnit.Centigram },
@@ -505,7 +538,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(MassUnit unit)
         {
-            var quantity = Mass.From(3.0, Mass.Units.First(unit => unit != Mass.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Mass.Units.FirstOrDefault(u => u != Mass.BaseUnit && u != MassUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == MassUnit.Undefined)
+                fromUnit = Mass.BaseUnit;
+
+            var quantity = Mass.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

@@ -56,6 +56,21 @@ namespace UnitsNet.Tests
         protected virtual double WattHoursPerSquareMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(IrradiationUnit unit)
+        {
+            return unit switch
+            {
+                IrradiationUnit.JoulePerSquareCentimeter => (JoulesPerSquareCentimeterInOneJoulePerSquareMeter, JoulesPerSquareCentimeterTolerance),
+                IrradiationUnit.JoulePerSquareMeter => (JoulesPerSquareMeterInOneJoulePerSquareMeter, JoulesPerSquareMeterTolerance),
+                IrradiationUnit.JoulePerSquareMillimeter => (JoulesPerSquareMillimeterInOneJoulePerSquareMeter, JoulesPerSquareMillimeterTolerance),
+                IrradiationUnit.KilojoulePerSquareMeter => (KilojoulesPerSquareMeterInOneJoulePerSquareMeter, KilojoulesPerSquareMeterTolerance),
+                IrradiationUnit.KilowattHourPerSquareMeter => (KilowattHoursPerSquareMeterInOneJoulePerSquareMeter, KilowattHoursPerSquareMeterTolerance),
+                IrradiationUnit.MillijoulePerSquareCentimeter => (MillijoulesPerSquareCentimeterInOneJoulePerSquareMeter, MillijoulesPerSquareCentimeterTolerance),
+                IrradiationUnit.WattHourPerSquareMeter => (WattHoursPerSquareMeterInOneJoulePerSquareMeter, WattHoursPerSquareMeterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { IrradiationUnit.JoulePerSquareCentimeter },
@@ -271,7 +286,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(IrradiationUnit unit)
         {
-            var quantity = Irradiation.From(3.0, Irradiation.Units.First(unit => unit != Irradiation.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Irradiation.Units.FirstOrDefault(u => u != Irradiation.BaseUnit && u != IrradiationUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == IrradiationUnit.Undefined)
+                fromUnit = Irradiation.BaseUnit;
+
+            var quantity = Irradiation.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

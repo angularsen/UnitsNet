@@ -50,6 +50,18 @@ namespace UnitsNet.Tests
         protected virtual double KelvinsPerMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(TemperatureGradientUnit unit)
+        {
+            return unit switch
+            {
+                TemperatureGradientUnit.DegreeCelsiusPerKilometer => (DegreesCelciusPerKilometerInOneKelvinPerMeter, DegreesCelciusPerKilometerTolerance),
+                TemperatureGradientUnit.DegreeCelsiusPerMeter => (DegreesCelciusPerMeterInOneKelvinPerMeter, DegreesCelciusPerMeterTolerance),
+                TemperatureGradientUnit.DegreeFahrenheitPerFoot => (DegreesFahrenheitPerFootInOneKelvinPerMeter, DegreesFahrenheitPerFootTolerance),
+                TemperatureGradientUnit.KelvinPerMeter => (KelvinsPerMeterInOneKelvinPerMeter, KelvinsPerMeterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { TemperatureGradientUnit.DegreeCelsiusPerKilometer },
@@ -232,7 +244,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(TemperatureGradientUnit unit)
         {
-            var quantity = TemperatureGradient.From(3.0, TemperatureGradient.Units.First(unit => unit != TemperatureGradient.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = TemperatureGradient.Units.FirstOrDefault(u => u != TemperatureGradient.BaseUnit && u != TemperatureGradientUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == TemperatureGradientUnit.Undefined)
+                fromUnit = TemperatureGradient.BaseUnit;
+
+            var quantity = TemperatureGradient.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

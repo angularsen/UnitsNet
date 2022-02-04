@@ -58,6 +58,22 @@ namespace UnitsNet.Tests
         protected virtual double PicomolesPerLiterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MolarityUnit unit)
+        {
+            return unit switch
+            {
+                MolarityUnit.CentimolesPerLiter => (CentimolesPerLiterInOneMolesPerCubicMeter, CentimolesPerLiterTolerance),
+                MolarityUnit.DecimolesPerLiter => (DecimolesPerLiterInOneMolesPerCubicMeter, DecimolesPerLiterTolerance),
+                MolarityUnit.MicromolesPerLiter => (MicromolesPerLiterInOneMolesPerCubicMeter, MicromolesPerLiterTolerance),
+                MolarityUnit.MillimolesPerLiter => (MillimolesPerLiterInOneMolesPerCubicMeter, MillimolesPerLiterTolerance),
+                MolarityUnit.MolesPerCubicMeter => (MolesPerCubicMeterInOneMolesPerCubicMeter, MolesPerCubicMeterTolerance),
+                MolarityUnit.MolesPerLiter => (MolesPerLiterInOneMolesPerCubicMeter, MolesPerLiterTolerance),
+                MolarityUnit.NanomolesPerLiter => (NanomolesPerLiterInOneMolesPerCubicMeter, NanomolesPerLiterTolerance),
+                MolarityUnit.PicomolesPerLiter => (PicomolesPerLiterInOneMolesPerCubicMeter, PicomolesPerLiterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { MolarityUnit.CentimolesPerLiter },
@@ -284,7 +300,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(MolarityUnit unit)
         {
-            var quantity = Molarity.From(3.0, Molarity.Units.First(unit => unit != Molarity.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Molarity.Units.FirstOrDefault(u => u != Molarity.BaseUnit && u != MolarityUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == MolarityUnit.Undefined)
+                fromUnit = Molarity.BaseUnit;
+
+            var quantity = Molarity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

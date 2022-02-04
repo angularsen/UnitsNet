@@ -48,6 +48,17 @@ namespace UnitsNet.Tests
         protected virtual double MillicubicMetersPerKilogramTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(SpecificVolumeUnit unit)
+        {
+            return unit switch
+            {
+                SpecificVolumeUnit.CubicFootPerPound => (CubicFeetPerPoundInOneCubicMeterPerKilogram, CubicFeetPerPoundTolerance),
+                SpecificVolumeUnit.CubicMeterPerKilogram => (CubicMetersPerKilogramInOneCubicMeterPerKilogram, CubicMetersPerKilogramTolerance),
+                SpecificVolumeUnit.MillicubicMeterPerKilogram => (MillicubicMetersPerKilogramInOneCubicMeterPerKilogram, MillicubicMetersPerKilogramTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { SpecificVolumeUnit.CubicFootPerPound },
@@ -219,7 +230,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(SpecificVolumeUnit unit)
         {
-            var quantity = SpecificVolume.From(3.0, SpecificVolume.Units.First(unit => unit != SpecificVolume.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = SpecificVolume.Units.FirstOrDefault(u => u != SpecificVolume.BaseUnit && u != SpecificVolumeUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == SpecificVolumeUnit.Undefined)
+                fromUnit = SpecificVolume.BaseUnit;
+
+            var quantity = SpecificVolume.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

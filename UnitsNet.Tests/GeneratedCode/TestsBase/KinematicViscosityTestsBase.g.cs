@@ -60,6 +60,23 @@ namespace UnitsNet.Tests
         protected virtual double StokesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(KinematicViscosityUnit unit)
+        {
+            return unit switch
+            {
+                KinematicViscosityUnit.Centistokes => (CentistokesInOneSquareMeterPerSecond, CentistokesTolerance),
+                KinematicViscosityUnit.Decistokes => (DecistokesInOneSquareMeterPerSecond, DecistokesTolerance),
+                KinematicViscosityUnit.Kilostokes => (KilostokesInOneSquareMeterPerSecond, KilostokesTolerance),
+                KinematicViscosityUnit.Microstokes => (MicrostokesInOneSquareMeterPerSecond, MicrostokesTolerance),
+                KinematicViscosityUnit.Millistokes => (MillistokesInOneSquareMeterPerSecond, MillistokesTolerance),
+                KinematicViscosityUnit.Nanostokes => (NanostokesInOneSquareMeterPerSecond, NanostokesTolerance),
+                KinematicViscosityUnit.SquareFootPerSecond => (SquareFeetPerSecondInOneSquareMeterPerSecond, SquareFeetPerSecondTolerance),
+                KinematicViscosityUnit.SquareMeterPerSecond => (SquareMetersPerSecondInOneSquareMeterPerSecond, SquareMetersPerSecondTolerance),
+                KinematicViscosityUnit.Stokes => (StokesInOneSquareMeterPerSecond, StokesTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { KinematicViscosityUnit.Centistokes },
@@ -297,7 +314,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(KinematicViscosityUnit unit)
         {
-            var quantity = KinematicViscosity.From(3.0, KinematicViscosity.Units.First(unit => unit != KinematicViscosity.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = KinematicViscosity.Units.FirstOrDefault(u => u != KinematicViscosity.BaseUnit && u != KinematicViscosityUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == KinematicViscosityUnit.Undefined)
+                fromUnit = KinematicViscosity.BaseUnit;
+
+            var quantity = KinematicViscosity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

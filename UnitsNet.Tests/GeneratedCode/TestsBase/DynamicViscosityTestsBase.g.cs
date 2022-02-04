@@ -62,6 +62,24 @@ namespace UnitsNet.Tests
         protected virtual double ReynsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(DynamicViscosityUnit unit)
+        {
+            return unit switch
+            {
+                DynamicViscosityUnit.Centipoise => (CentipoiseInOneNewtonSecondPerMeterSquared, CentipoiseTolerance),
+                DynamicViscosityUnit.MicropascalSecond => (MicropascalSecondsInOneNewtonSecondPerMeterSquared, MicropascalSecondsTolerance),
+                DynamicViscosityUnit.MillipascalSecond => (MillipascalSecondsInOneNewtonSecondPerMeterSquared, MillipascalSecondsTolerance),
+                DynamicViscosityUnit.NewtonSecondPerMeterSquared => (NewtonSecondsPerMeterSquaredInOneNewtonSecondPerMeterSquared, NewtonSecondsPerMeterSquaredTolerance),
+                DynamicViscosityUnit.PascalSecond => (PascalSecondsInOneNewtonSecondPerMeterSquared, PascalSecondsTolerance),
+                DynamicViscosityUnit.Poise => (PoiseInOneNewtonSecondPerMeterSquared, PoiseTolerance),
+                DynamicViscosityUnit.PoundForceSecondPerSquareFoot => (PoundsForceSecondPerSquareFootInOneNewtonSecondPerMeterSquared, PoundsForceSecondPerSquareFootTolerance),
+                DynamicViscosityUnit.PoundForceSecondPerSquareInch => (PoundsForceSecondPerSquareInchInOneNewtonSecondPerMeterSquared, PoundsForceSecondPerSquareInchTolerance),
+                DynamicViscosityUnit.PoundPerFootSecond => (PoundsPerFootSecondInOneNewtonSecondPerMeterSquared, PoundsPerFootSecondTolerance),
+                DynamicViscosityUnit.Reyn => (ReynsInOneNewtonSecondPerMeterSquared, ReynsTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { DynamicViscosityUnit.Centipoise },
@@ -310,7 +328,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(DynamicViscosityUnit unit)
         {
-            var quantity = DynamicViscosity.From(3.0, DynamicViscosity.Units.First(unit => unit != DynamicViscosity.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = DynamicViscosity.Units.FirstOrDefault(u => u != DynamicViscosity.BaseUnit && u != DynamicViscosityUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == DynamicViscosityUnit.Undefined)
+                fromUnit = DynamicViscosity.BaseUnit;
+
+            var quantity = DynamicViscosity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

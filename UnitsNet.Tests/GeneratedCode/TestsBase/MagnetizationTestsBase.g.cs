@@ -44,6 +44,15 @@ namespace UnitsNet.Tests
         protected virtual double AmperesPerMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MagnetizationUnit unit)
+        {
+            return unit switch
+            {
+                MagnetizationUnit.AmperePerMeter => (AmperesPerMeterInOneAmperePerMeter, AmperesPerMeterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { MagnetizationUnit.AmperePerMeter },
@@ -193,7 +202,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(MagnetizationUnit unit)
         {
-            var quantity = Magnetization.From(3.0, Magnetization.Units.First(unit => unit != Magnetization.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Magnetization.Units.FirstOrDefault(u => u != Magnetization.BaseUnit && u != MagnetizationUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == MagnetizationUnit.Undefined)
+                fromUnit = Magnetization.BaseUnit;
+
+            var quantity = Magnetization.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

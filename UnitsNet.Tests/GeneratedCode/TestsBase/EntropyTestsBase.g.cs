@@ -56,6 +56,21 @@ namespace UnitsNet.Tests
         protected virtual double MegajoulesPerKelvinTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(EntropyUnit unit)
+        {
+            return unit switch
+            {
+                EntropyUnit.CaloriePerKelvin => (CaloriesPerKelvinInOneJoulePerKelvin, CaloriesPerKelvinTolerance),
+                EntropyUnit.JoulePerDegreeCelsius => (JoulesPerDegreeCelsiusInOneJoulePerKelvin, JoulesPerDegreeCelsiusTolerance),
+                EntropyUnit.JoulePerKelvin => (JoulesPerKelvinInOneJoulePerKelvin, JoulesPerKelvinTolerance),
+                EntropyUnit.KilocaloriePerKelvin => (KilocaloriesPerKelvinInOneJoulePerKelvin, KilocaloriesPerKelvinTolerance),
+                EntropyUnit.KilojoulePerDegreeCelsius => (KilojoulesPerDegreeCelsiusInOneJoulePerKelvin, KilojoulesPerDegreeCelsiusTolerance),
+                EntropyUnit.KilojoulePerKelvin => (KilojoulesPerKelvinInOneJoulePerKelvin, KilojoulesPerKelvinTolerance),
+                EntropyUnit.MegajoulePerKelvin => (MegajoulesPerKelvinInOneJoulePerKelvin, MegajoulesPerKelvinTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { EntropyUnit.CaloriePerKelvin },
@@ -271,7 +286,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(EntropyUnit unit)
         {
-            var quantity = Entropy.From(3.0, Entropy.Units.First(unit => unit != Entropy.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Entropy.Units.FirstOrDefault(u => u != Entropy.BaseUnit && u != EntropyUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == EntropyUnit.Undefined)
+                fromUnit = Entropy.BaseUnit;
+
+            var quantity = Entropy.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

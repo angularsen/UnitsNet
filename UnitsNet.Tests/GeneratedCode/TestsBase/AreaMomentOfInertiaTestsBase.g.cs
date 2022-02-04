@@ -54,6 +54,20 @@ namespace UnitsNet.Tests
         protected virtual double MillimetersToTheFourthTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(AreaMomentOfInertiaUnit unit)
+        {
+            return unit switch
+            {
+                AreaMomentOfInertiaUnit.CentimeterToTheFourth => (CentimetersToTheFourthInOneMeterToTheFourth, CentimetersToTheFourthTolerance),
+                AreaMomentOfInertiaUnit.DecimeterToTheFourth => (DecimetersToTheFourthInOneMeterToTheFourth, DecimetersToTheFourthTolerance),
+                AreaMomentOfInertiaUnit.FootToTheFourth => (FeetToTheFourthInOneMeterToTheFourth, FeetToTheFourthTolerance),
+                AreaMomentOfInertiaUnit.InchToTheFourth => (InchesToTheFourthInOneMeterToTheFourth, InchesToTheFourthTolerance),
+                AreaMomentOfInertiaUnit.MeterToTheFourth => (MetersToTheFourthInOneMeterToTheFourth, MetersToTheFourthTolerance),
+                AreaMomentOfInertiaUnit.MillimeterToTheFourth => (MillimetersToTheFourthInOneMeterToTheFourth, MillimetersToTheFourthTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { AreaMomentOfInertiaUnit.CentimeterToTheFourth },
@@ -258,7 +272,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(AreaMomentOfInertiaUnit unit)
         {
-            var quantity = AreaMomentOfInertia.From(3.0, AreaMomentOfInertia.Units.First(unit => unit != AreaMomentOfInertia.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = AreaMomentOfInertia.Units.FirstOrDefault(u => u != AreaMomentOfInertia.BaseUnit && u != AreaMomentOfInertiaUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == AreaMomentOfInertiaUnit.Undefined)
+                fromUnit = AreaMomentOfInertia.BaseUnit;
+
+            var quantity = AreaMomentOfInertia.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

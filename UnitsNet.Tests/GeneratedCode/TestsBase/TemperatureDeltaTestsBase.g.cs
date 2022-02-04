@@ -60,6 +60,23 @@ namespace UnitsNet.Tests
         protected virtual double MillidegreesCelsiusTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(TemperatureDeltaUnit unit)
+        {
+            return unit switch
+            {
+                TemperatureDeltaUnit.DegreeCelsius => (DegreesCelsiusInOneKelvin, DegreesCelsiusTolerance),
+                TemperatureDeltaUnit.DegreeDelisle => (DegreesDelisleInOneKelvin, DegreesDelisleTolerance),
+                TemperatureDeltaUnit.DegreeFahrenheit => (DegreesFahrenheitInOneKelvin, DegreesFahrenheitTolerance),
+                TemperatureDeltaUnit.DegreeNewton => (DegreesNewtonInOneKelvin, DegreesNewtonTolerance),
+                TemperatureDeltaUnit.DegreeRankine => (DegreesRankineInOneKelvin, DegreesRankineTolerance),
+                TemperatureDeltaUnit.DegreeReaumur => (DegreesReaumurInOneKelvin, DegreesReaumurTolerance),
+                TemperatureDeltaUnit.DegreeRoemer => (DegreesRoemerInOneKelvin, DegreesRoemerTolerance),
+                TemperatureDeltaUnit.Kelvin => (KelvinsInOneKelvin, KelvinsTolerance),
+                TemperatureDeltaUnit.MillidegreeCelsius => (MillidegreesCelsiusInOneKelvin, MillidegreesCelsiusTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { TemperatureDeltaUnit.DegreeCelsius },
@@ -297,7 +314,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(TemperatureDeltaUnit unit)
         {
-            var quantity = TemperatureDelta.From(3.0, TemperatureDelta.Units.First(unit => unit != TemperatureDelta.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = TemperatureDelta.Units.FirstOrDefault(u => u != TemperatureDelta.BaseUnit && u != TemperatureDeltaUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == TemperatureDeltaUnit.Undefined)
+                fromUnit = TemperatureDelta.BaseUnit;
+
+            var quantity = TemperatureDelta.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

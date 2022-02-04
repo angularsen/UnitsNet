@@ -70,6 +70,28 @@ namespace UnitsNet.Tests
         protected virtual double PoundsPerInchTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(LinearDensityUnit unit)
+        {
+            return unit switch
+            {
+                LinearDensityUnit.GramPerCentimeter => (GramsPerCentimeterInOneKilogramPerMeter, GramsPerCentimeterTolerance),
+                LinearDensityUnit.GramPerMeter => (GramsPerMeterInOneKilogramPerMeter, GramsPerMeterTolerance),
+                LinearDensityUnit.GramPerMillimeter => (GramsPerMillimeterInOneKilogramPerMeter, GramsPerMillimeterTolerance),
+                LinearDensityUnit.KilogramPerCentimeter => (KilogramsPerCentimeterInOneKilogramPerMeter, KilogramsPerCentimeterTolerance),
+                LinearDensityUnit.KilogramPerMeter => (KilogramsPerMeterInOneKilogramPerMeter, KilogramsPerMeterTolerance),
+                LinearDensityUnit.KilogramPerMillimeter => (KilogramsPerMillimeterInOneKilogramPerMeter, KilogramsPerMillimeterTolerance),
+                LinearDensityUnit.MicrogramPerCentimeter => (MicrogramsPerCentimeterInOneKilogramPerMeter, MicrogramsPerCentimeterTolerance),
+                LinearDensityUnit.MicrogramPerMeter => (MicrogramsPerMeterInOneKilogramPerMeter, MicrogramsPerMeterTolerance),
+                LinearDensityUnit.MicrogramPerMillimeter => (MicrogramsPerMillimeterInOneKilogramPerMeter, MicrogramsPerMillimeterTolerance),
+                LinearDensityUnit.MilligramPerCentimeter => (MilligramsPerCentimeterInOneKilogramPerMeter, MilligramsPerCentimeterTolerance),
+                LinearDensityUnit.MilligramPerMeter => (MilligramsPerMeterInOneKilogramPerMeter, MilligramsPerMeterTolerance),
+                LinearDensityUnit.MilligramPerMillimeter => (MilligramsPerMillimeterInOneKilogramPerMeter, MilligramsPerMillimeterTolerance),
+                LinearDensityUnit.PoundPerFoot => (PoundsPerFootInOneKilogramPerMeter, PoundsPerFootTolerance),
+                LinearDensityUnit.PoundPerInch => (PoundsPerInchInOneKilogramPerMeter, PoundsPerInchTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { LinearDensityUnit.GramPerCentimeter },
@@ -362,7 +384,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(LinearDensityUnit unit)
         {
-            var quantity = LinearDensity.From(3.0, LinearDensity.Units.First(unit => unit != LinearDensity.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = LinearDensity.Units.FirstOrDefault(u => u != LinearDensity.BaseUnit && u != LinearDensityUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == LinearDensityUnit.Undefined)
+                fromUnit = LinearDensity.BaseUnit;
+
+            var quantity = LinearDensity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

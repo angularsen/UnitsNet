@@ -76,6 +76,31 @@ namespace UnitsNet.Tests
         protected virtual double TonnesForcePerCubicMillimeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(SpecificWeightUnit unit)
+        {
+            return unit switch
+            {
+                SpecificWeightUnit.KilogramForcePerCubicCentimeter => (KilogramsForcePerCubicCentimeterInOneNewtonPerCubicMeter, KilogramsForcePerCubicCentimeterTolerance),
+                SpecificWeightUnit.KilogramForcePerCubicMeter => (KilogramsForcePerCubicMeterInOneNewtonPerCubicMeter, KilogramsForcePerCubicMeterTolerance),
+                SpecificWeightUnit.KilogramForcePerCubicMillimeter => (KilogramsForcePerCubicMillimeterInOneNewtonPerCubicMeter, KilogramsForcePerCubicMillimeterTolerance),
+                SpecificWeightUnit.KilonewtonPerCubicCentimeter => (KilonewtonsPerCubicCentimeterInOneNewtonPerCubicMeter, KilonewtonsPerCubicCentimeterTolerance),
+                SpecificWeightUnit.KilonewtonPerCubicMeter => (KilonewtonsPerCubicMeterInOneNewtonPerCubicMeter, KilonewtonsPerCubicMeterTolerance),
+                SpecificWeightUnit.KilonewtonPerCubicMillimeter => (KilonewtonsPerCubicMillimeterInOneNewtonPerCubicMeter, KilonewtonsPerCubicMillimeterTolerance),
+                SpecificWeightUnit.KilopoundForcePerCubicFoot => (KilopoundsForcePerCubicFootInOneNewtonPerCubicMeter, KilopoundsForcePerCubicFootTolerance),
+                SpecificWeightUnit.KilopoundForcePerCubicInch => (KilopoundsForcePerCubicInchInOneNewtonPerCubicMeter, KilopoundsForcePerCubicInchTolerance),
+                SpecificWeightUnit.MeganewtonPerCubicMeter => (MeganewtonsPerCubicMeterInOneNewtonPerCubicMeter, MeganewtonsPerCubicMeterTolerance),
+                SpecificWeightUnit.NewtonPerCubicCentimeter => (NewtonsPerCubicCentimeterInOneNewtonPerCubicMeter, NewtonsPerCubicCentimeterTolerance),
+                SpecificWeightUnit.NewtonPerCubicMeter => (NewtonsPerCubicMeterInOneNewtonPerCubicMeter, NewtonsPerCubicMeterTolerance),
+                SpecificWeightUnit.NewtonPerCubicMillimeter => (NewtonsPerCubicMillimeterInOneNewtonPerCubicMeter, NewtonsPerCubicMillimeterTolerance),
+                SpecificWeightUnit.PoundForcePerCubicFoot => (PoundsForcePerCubicFootInOneNewtonPerCubicMeter, PoundsForcePerCubicFootTolerance),
+                SpecificWeightUnit.PoundForcePerCubicInch => (PoundsForcePerCubicInchInOneNewtonPerCubicMeter, PoundsForcePerCubicInchTolerance),
+                SpecificWeightUnit.TonneForcePerCubicCentimeter => (TonnesForcePerCubicCentimeterInOneNewtonPerCubicMeter, TonnesForcePerCubicCentimeterTolerance),
+                SpecificWeightUnit.TonneForcePerCubicMeter => (TonnesForcePerCubicMeterInOneNewtonPerCubicMeter, TonnesForcePerCubicMeterTolerance),
+                SpecificWeightUnit.TonneForcePerCubicMillimeter => (TonnesForcePerCubicMillimeterInOneNewtonPerCubicMeter, TonnesForcePerCubicMillimeterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { SpecificWeightUnit.KilogramForcePerCubicCentimeter },
@@ -401,7 +426,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(SpecificWeightUnit unit)
         {
-            var quantity = SpecificWeight.From(3.0, SpecificWeight.Units.First(unit => unit != SpecificWeight.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = SpecificWeight.Units.FirstOrDefault(u => u != SpecificWeight.BaseUnit && u != SpecificWeightUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == SpecificWeightUnit.Undefined)
+                fromUnit = SpecificWeight.BaseUnit;
+
+            var quantity = SpecificWeight.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

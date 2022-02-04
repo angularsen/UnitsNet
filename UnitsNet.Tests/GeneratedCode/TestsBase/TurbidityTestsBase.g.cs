@@ -44,6 +44,15 @@ namespace UnitsNet.Tests
         protected virtual double NTUTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(TurbidityUnit unit)
+        {
+            return unit switch
+            {
+                TurbidityUnit.NTU => (NTUInOneNTU, NTUTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { TurbidityUnit.NTU },
@@ -193,7 +202,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(TurbidityUnit unit)
         {
-            var quantity = Turbidity.From(3.0, Turbidity.Units.First(unit => unit != Turbidity.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Turbidity.Units.FirstOrDefault(u => u != Turbidity.BaseUnit && u != TurbidityUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == TurbidityUnit.Undefined)
+                fromUnit = Turbidity.BaseUnit;
+
+            var quantity = Turbidity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

@@ -92,6 +92,39 @@ namespace UnitsNet.Tests
         protected virtual double WattsPerMillimeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(LinearPowerDensityUnit unit)
+        {
+            return unit switch
+            {
+                LinearPowerDensityUnit.GigawattPerCentimeter => (GigawattsPerCentimeterInOneWattPerMeter, GigawattsPerCentimeterTolerance),
+                LinearPowerDensityUnit.GigawattPerFoot => (GigawattsPerFootInOneWattPerMeter, GigawattsPerFootTolerance),
+                LinearPowerDensityUnit.GigawattPerInch => (GigawattsPerInchInOneWattPerMeter, GigawattsPerInchTolerance),
+                LinearPowerDensityUnit.GigawattPerMeter => (GigawattsPerMeterInOneWattPerMeter, GigawattsPerMeterTolerance),
+                LinearPowerDensityUnit.GigawattPerMillimeter => (GigawattsPerMillimeterInOneWattPerMeter, GigawattsPerMillimeterTolerance),
+                LinearPowerDensityUnit.KilowattPerCentimeter => (KilowattsPerCentimeterInOneWattPerMeter, KilowattsPerCentimeterTolerance),
+                LinearPowerDensityUnit.KilowattPerFoot => (KilowattsPerFootInOneWattPerMeter, KilowattsPerFootTolerance),
+                LinearPowerDensityUnit.KilowattPerInch => (KilowattsPerInchInOneWattPerMeter, KilowattsPerInchTolerance),
+                LinearPowerDensityUnit.KilowattPerMeter => (KilowattsPerMeterInOneWattPerMeter, KilowattsPerMeterTolerance),
+                LinearPowerDensityUnit.KilowattPerMillimeter => (KilowattsPerMillimeterInOneWattPerMeter, KilowattsPerMillimeterTolerance),
+                LinearPowerDensityUnit.MegawattPerCentimeter => (MegawattsPerCentimeterInOneWattPerMeter, MegawattsPerCentimeterTolerance),
+                LinearPowerDensityUnit.MegawattPerFoot => (MegawattsPerFootInOneWattPerMeter, MegawattsPerFootTolerance),
+                LinearPowerDensityUnit.MegawattPerInch => (MegawattsPerInchInOneWattPerMeter, MegawattsPerInchTolerance),
+                LinearPowerDensityUnit.MegawattPerMeter => (MegawattsPerMeterInOneWattPerMeter, MegawattsPerMeterTolerance),
+                LinearPowerDensityUnit.MegawattPerMillimeter => (MegawattsPerMillimeterInOneWattPerMeter, MegawattsPerMillimeterTolerance),
+                LinearPowerDensityUnit.MilliwattPerCentimeter => (MilliwattsPerCentimeterInOneWattPerMeter, MilliwattsPerCentimeterTolerance),
+                LinearPowerDensityUnit.MilliwattPerFoot => (MilliwattsPerFootInOneWattPerMeter, MilliwattsPerFootTolerance),
+                LinearPowerDensityUnit.MilliwattPerInch => (MilliwattsPerInchInOneWattPerMeter, MilliwattsPerInchTolerance),
+                LinearPowerDensityUnit.MilliwattPerMeter => (MilliwattsPerMeterInOneWattPerMeter, MilliwattsPerMeterTolerance),
+                LinearPowerDensityUnit.MilliwattPerMillimeter => (MilliwattsPerMillimeterInOneWattPerMeter, MilliwattsPerMillimeterTolerance),
+                LinearPowerDensityUnit.WattPerCentimeter => (WattsPerCentimeterInOneWattPerMeter, WattsPerCentimeterTolerance),
+                LinearPowerDensityUnit.WattPerFoot => (WattsPerFootInOneWattPerMeter, WattsPerFootTolerance),
+                LinearPowerDensityUnit.WattPerInch => (WattsPerInchInOneWattPerMeter, WattsPerInchTolerance),
+                LinearPowerDensityUnit.WattPerMeter => (WattsPerMeterInOneWattPerMeter, WattsPerMeterTolerance),
+                LinearPowerDensityUnit.WattPerMillimeter => (WattsPerMillimeterInOneWattPerMeter, WattsPerMillimeterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { LinearPowerDensityUnit.GigawattPerCentimeter },
@@ -505,7 +538,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(LinearPowerDensityUnit unit)
         {
-            var quantity = LinearPowerDensity.From(3.0, LinearPowerDensity.Units.First(unit => unit != LinearPowerDensity.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = LinearPowerDensity.Units.FirstOrDefault(u => u != LinearPowerDensity.BaseUnit && u != LinearPowerDensityUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == LinearPowerDensityUnit.Undefined)
+                fromUnit = LinearPowerDensity.BaseUnit;
+
+            var quantity = LinearPowerDensity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

@@ -52,6 +52,19 @@ namespace UnitsNet.Tests
         protected virtual double VoltsDcTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricPotentialDcUnit unit)
+        {
+            return unit switch
+            {
+                ElectricPotentialDcUnit.KilovoltDc => (KilovoltsDcInOneVoltDc, KilovoltsDcTolerance),
+                ElectricPotentialDcUnit.MegavoltDc => (MegavoltsDcInOneVoltDc, MegavoltsDcTolerance),
+                ElectricPotentialDcUnit.MicrovoltDc => (MicrovoltsDcInOneVoltDc, MicrovoltsDcTolerance),
+                ElectricPotentialDcUnit.MillivoltDc => (MillivoltsDcInOneVoltDc, MillivoltsDcTolerance),
+                ElectricPotentialDcUnit.VoltDc => (VoltsDcInOneVoltDc, VoltsDcTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { ElectricPotentialDcUnit.KilovoltDc },
@@ -245,7 +258,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(ElectricPotentialDcUnit unit)
         {
-            var quantity = ElectricPotentialDc.From(3.0, ElectricPotentialDc.Units.First(unit => unit != ElectricPotentialDc.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ElectricPotentialDc.Units.FirstOrDefault(u => u != ElectricPotentialDc.BaseUnit && u != ElectricPotentialDcUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ElectricPotentialDcUnit.Undefined)
+                fromUnit = ElectricPotentialDc.BaseUnit;
+
+            var quantity = ElectricPotentialDc.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

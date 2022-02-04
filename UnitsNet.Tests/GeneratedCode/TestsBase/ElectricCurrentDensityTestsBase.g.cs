@@ -48,6 +48,17 @@ namespace UnitsNet.Tests
         protected virtual double AmperesPerSquareMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricCurrentDensityUnit unit)
+        {
+            return unit switch
+            {
+                ElectricCurrentDensityUnit.AmperePerSquareFoot => (AmperesPerSquareFootInOneAmperePerSquareMeter, AmperesPerSquareFootTolerance),
+                ElectricCurrentDensityUnit.AmperePerSquareInch => (AmperesPerSquareInchInOneAmperePerSquareMeter, AmperesPerSquareInchTolerance),
+                ElectricCurrentDensityUnit.AmperePerSquareMeter => (AmperesPerSquareMeterInOneAmperePerSquareMeter, AmperesPerSquareMeterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { ElectricCurrentDensityUnit.AmperePerSquareFoot },
@@ -219,7 +230,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(ElectricCurrentDensityUnit unit)
         {
-            var quantity = ElectricCurrentDensity.From(3.0, ElectricCurrentDensity.Units.First(unit => unit != ElectricCurrentDensity.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ElectricCurrentDensity.Units.FirstOrDefault(u => u != ElectricCurrentDensity.BaseUnit && u != ElectricCurrentDensityUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ElectricCurrentDensityUnit.Undefined)
+                fromUnit = ElectricCurrentDensity.BaseUnit;
+
+            var quantity = ElectricCurrentDensity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

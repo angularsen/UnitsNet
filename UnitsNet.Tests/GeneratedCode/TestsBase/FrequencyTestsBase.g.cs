@@ -64,6 +64,25 @@ namespace UnitsNet.Tests
         protected virtual double TerahertzTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(FrequencyUnit unit)
+        {
+            return unit switch
+            {
+                FrequencyUnit.BeatPerMinute => (BeatsPerMinuteInOneHertz, BeatsPerMinuteTolerance),
+                FrequencyUnit.BUnit => (BUnitsInOneHertz, BUnitsTolerance),
+                FrequencyUnit.CyclePerHour => (CyclesPerHourInOneHertz, CyclesPerHourTolerance),
+                FrequencyUnit.CyclePerMinute => (CyclesPerMinuteInOneHertz, CyclesPerMinuteTolerance),
+                FrequencyUnit.Gigahertz => (GigahertzInOneHertz, GigahertzTolerance),
+                FrequencyUnit.Hertz => (HertzInOneHertz, HertzTolerance),
+                FrequencyUnit.Kilohertz => (KilohertzInOneHertz, KilohertzTolerance),
+                FrequencyUnit.Megahertz => (MegahertzInOneHertz, MegahertzTolerance),
+                FrequencyUnit.PerSecond => (PerSecondInOneHertz, PerSecondTolerance),
+                FrequencyUnit.RadianPerSecond => (RadiansPerSecondInOneHertz, RadiansPerSecondTolerance),
+                FrequencyUnit.Terahertz => (TerahertzInOneHertz, TerahertzTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { FrequencyUnit.BeatPerMinute },
@@ -323,7 +342,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(FrequencyUnit unit)
         {
-            var quantity = Frequency.From(3.0, Frequency.Units.First(unit => unit != Frequency.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Frequency.Units.FirstOrDefault(u => u != Frequency.BaseUnit && u != FrequencyUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == FrequencyUnit.Undefined)
+                fromUnit = Frequency.BaseUnit;
+
+            var quantity = Frequency.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

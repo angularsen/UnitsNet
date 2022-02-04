@@ -66,6 +66,26 @@ namespace UnitsNet.Tests
         protected virtual double KilogramsPerSecondPerSquareMillimeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MassFluxUnit unit)
+        {
+            return unit switch
+            {
+                MassFluxUnit.GramPerHourPerSquareCentimeter => (GramsPerHourPerSquareCentimeterInOneKilogramPerSecondPerSquareMeter, GramsPerHourPerSquareCentimeterTolerance),
+                MassFluxUnit.GramPerHourPerSquareMeter => (GramsPerHourPerSquareMeterInOneKilogramPerSecondPerSquareMeter, GramsPerHourPerSquareMeterTolerance),
+                MassFluxUnit.GramPerHourPerSquareMillimeter => (GramsPerHourPerSquareMillimeterInOneKilogramPerSecondPerSquareMeter, GramsPerHourPerSquareMillimeterTolerance),
+                MassFluxUnit.GramPerSecondPerSquareCentimeter => (GramsPerSecondPerSquareCentimeterInOneKilogramPerSecondPerSquareMeter, GramsPerSecondPerSquareCentimeterTolerance),
+                MassFluxUnit.GramPerSecondPerSquareMeter => (GramsPerSecondPerSquareMeterInOneKilogramPerSecondPerSquareMeter, GramsPerSecondPerSquareMeterTolerance),
+                MassFluxUnit.GramPerSecondPerSquareMillimeter => (GramsPerSecondPerSquareMillimeterInOneKilogramPerSecondPerSquareMeter, GramsPerSecondPerSquareMillimeterTolerance),
+                MassFluxUnit.KilogramPerHourPerSquareCentimeter => (KilogramsPerHourPerSquareCentimeterInOneKilogramPerSecondPerSquareMeter, KilogramsPerHourPerSquareCentimeterTolerance),
+                MassFluxUnit.KilogramPerHourPerSquareMeter => (KilogramsPerHourPerSquareMeterInOneKilogramPerSecondPerSquareMeter, KilogramsPerHourPerSquareMeterTolerance),
+                MassFluxUnit.KilogramPerHourPerSquareMillimeter => (KilogramsPerHourPerSquareMillimeterInOneKilogramPerSecondPerSquareMeter, KilogramsPerHourPerSquareMillimeterTolerance),
+                MassFluxUnit.KilogramPerSecondPerSquareCentimeter => (KilogramsPerSecondPerSquareCentimeterInOneKilogramPerSecondPerSquareMeter, KilogramsPerSecondPerSquareCentimeterTolerance),
+                MassFluxUnit.KilogramPerSecondPerSquareMeter => (KilogramsPerSecondPerSquareMeterInOneKilogramPerSecondPerSquareMeter, KilogramsPerSecondPerSquareMeterTolerance),
+                MassFluxUnit.KilogramPerSecondPerSquareMillimeter => (KilogramsPerSecondPerSquareMillimeterInOneKilogramPerSecondPerSquareMeter, KilogramsPerSecondPerSquareMillimeterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { MassFluxUnit.GramPerHourPerSquareCentimeter },
@@ -336,7 +356,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(MassFluxUnit unit)
         {
-            var quantity = MassFlux.From(3.0, MassFlux.Units.First(unit => unit != MassFlux.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = MassFlux.Units.FirstOrDefault(u => u != MassFlux.BaseUnit && u != MassFluxUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == MassFluxUnit.Undefined)
+                fromUnit = MassFlux.BaseUnit;
+
+            var quantity = MassFlux.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

@@ -44,6 +44,15 @@ namespace UnitsNet.Tests
         protected virtual double CoulombsPerCubicMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricChargeDensityUnit unit)
+        {
+            return unit switch
+            {
+                ElectricChargeDensityUnit.CoulombPerCubicMeter => (CoulombsPerCubicMeterInOneCoulombPerCubicMeter, CoulombsPerCubicMeterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { ElectricChargeDensityUnit.CoulombPerCubicMeter },
@@ -193,7 +202,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(ElectricChargeDensityUnit unit)
         {
-            var quantity = ElectricChargeDensity.From(3.0, ElectricChargeDensity.Units.First(unit => unit != ElectricChargeDensity.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ElectricChargeDensity.Units.FirstOrDefault(u => u != ElectricChargeDensity.BaseUnit && u != ElectricChargeDensityUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ElectricChargeDensityUnit.Undefined)
+                fromUnit = ElectricChargeDensity.BaseUnit;
+
+            var quantity = ElectricChargeDensity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

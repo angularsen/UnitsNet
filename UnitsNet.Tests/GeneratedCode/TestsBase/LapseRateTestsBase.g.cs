@@ -44,6 +44,15 @@ namespace UnitsNet.Tests
         protected virtual double DegreesCelciusPerKilometerTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(LapseRateUnit unit)
+        {
+            return unit switch
+            {
+                LapseRateUnit.DegreeCelsiusPerKilometer => (DegreesCelciusPerKilometerInOneDegreeCelsiusPerKilometer, DegreesCelciusPerKilometerTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { LapseRateUnit.DegreeCelsiusPerKilometer },
@@ -193,7 +202,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(LapseRateUnit unit)
         {
-            var quantity = LapseRate.From(3.0, LapseRate.Units.First(unit => unit != LapseRate.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = LapseRate.Units.FirstOrDefault(u => u != LapseRate.BaseUnit && u != LapseRateUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == LapseRateUnit.Undefined)
+                fromUnit = LapseRate.BaseUnit;
+
+            var quantity = LapseRate.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

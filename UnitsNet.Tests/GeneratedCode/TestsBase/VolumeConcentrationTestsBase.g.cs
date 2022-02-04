@@ -82,6 +82,34 @@ namespace UnitsNet.Tests
         protected virtual double PicolitersPerMililiterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(VolumeConcentrationUnit unit)
+        {
+            return unit switch
+            {
+                VolumeConcentrationUnit.CentilitersPerLiter => (CentilitersPerLiterInOneDecimalFraction, CentilitersPerLiterTolerance),
+                VolumeConcentrationUnit.CentilitersPerMililiter => (CentilitersPerMililiterInOneDecimalFraction, CentilitersPerMililiterTolerance),
+                VolumeConcentrationUnit.DecilitersPerLiter => (DecilitersPerLiterInOneDecimalFraction, DecilitersPerLiterTolerance),
+                VolumeConcentrationUnit.DecilitersPerMililiter => (DecilitersPerMililiterInOneDecimalFraction, DecilitersPerMililiterTolerance),
+                VolumeConcentrationUnit.DecimalFraction => (DecimalFractionsInOneDecimalFraction, DecimalFractionsTolerance),
+                VolumeConcentrationUnit.LitersPerLiter => (LitersPerLiterInOneDecimalFraction, LitersPerLiterTolerance),
+                VolumeConcentrationUnit.LitersPerMililiter => (LitersPerMililiterInOneDecimalFraction, LitersPerMililiterTolerance),
+                VolumeConcentrationUnit.MicrolitersPerLiter => (MicrolitersPerLiterInOneDecimalFraction, MicrolitersPerLiterTolerance),
+                VolumeConcentrationUnit.MicrolitersPerMililiter => (MicrolitersPerMililiterInOneDecimalFraction, MicrolitersPerMililiterTolerance),
+                VolumeConcentrationUnit.MillilitersPerLiter => (MillilitersPerLiterInOneDecimalFraction, MillilitersPerLiterTolerance),
+                VolumeConcentrationUnit.MillilitersPerMililiter => (MillilitersPerMililiterInOneDecimalFraction, MillilitersPerMililiterTolerance),
+                VolumeConcentrationUnit.NanolitersPerLiter => (NanolitersPerLiterInOneDecimalFraction, NanolitersPerLiterTolerance),
+                VolumeConcentrationUnit.NanolitersPerMililiter => (NanolitersPerMililiterInOneDecimalFraction, NanolitersPerMililiterTolerance),
+                VolumeConcentrationUnit.PartPerBillion => (PartsPerBillionInOneDecimalFraction, PartsPerBillionTolerance),
+                VolumeConcentrationUnit.PartPerMillion => (PartsPerMillionInOneDecimalFraction, PartsPerMillionTolerance),
+                VolumeConcentrationUnit.PartPerThousand => (PartsPerThousandInOneDecimalFraction, PartsPerThousandTolerance),
+                VolumeConcentrationUnit.PartPerTrillion => (PartsPerTrillionInOneDecimalFraction, PartsPerTrillionTolerance),
+                VolumeConcentrationUnit.Percent => (PercentInOneDecimalFraction, PercentTolerance),
+                VolumeConcentrationUnit.PicolitersPerLiter => (PicolitersPerLiterInOneDecimalFraction, PicolitersPerLiterTolerance),
+                VolumeConcentrationUnit.PicolitersPerMililiter => (PicolitersPerMililiterInOneDecimalFraction, PicolitersPerMililiterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { VolumeConcentrationUnit.CentilitersPerLiter },
@@ -440,7 +468,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(VolumeConcentrationUnit unit)
         {
-            var quantity = VolumeConcentration.From(3.0, VolumeConcentration.Units.First(unit => unit != VolumeConcentration.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = VolumeConcentration.Units.FirstOrDefault(u => u != VolumeConcentration.BaseUnit && u != VolumeConcentrationUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == VolumeConcentrationUnit.Undefined)
+                fromUnit = VolumeConcentration.BaseUnit;
+
+            var quantity = VolumeConcentration.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

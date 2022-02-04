@@ -44,6 +44,15 @@ namespace UnitsNet.Tests
         protected virtual double InternationalUnitsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(VitaminAUnit unit)
+        {
+            return unit switch
+            {
+                VitaminAUnit.InternationalUnit => (InternationalUnitsInOneInternationalUnit, InternationalUnitsTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { VitaminAUnit.InternationalUnit },
@@ -193,7 +202,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(VitaminAUnit unit)
         {
-            var quantity = VitaminA.From(3.0, VitaminA.Units.First(unit => unit != VitaminA.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = VitaminA.Units.FirstOrDefault(u => u != VitaminA.BaseUnit && u != VitaminAUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == VitaminAUnit.Undefined)
+                fromUnit = VitaminA.BaseUnit;
+
+            var quantity = VitaminA.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

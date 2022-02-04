@@ -50,6 +50,18 @@ namespace UnitsNet.Tests
         protected virtual double PoundsMassPerPoundForceHourTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(SpecificFuelConsumptionUnit unit)
+        {
+            return unit switch
+            {
+                SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond => (GramsPerKiloNewtonSecondInOneGramPerKiloNewtonSecond, GramsPerKiloNewtonSecondTolerance),
+                SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour => (KilogramsPerKilogramForceHourInOneGramPerKiloNewtonSecond, KilogramsPerKilogramForceHourTolerance),
+                SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond => (KilogramsPerKiloNewtonSecondInOneGramPerKiloNewtonSecond, KilogramsPerKiloNewtonSecondTolerance),
+                SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour => (PoundsMassPerPoundForceHourInOneGramPerKiloNewtonSecond, PoundsMassPerPoundForceHourTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond },
@@ -232,7 +244,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(SpecificFuelConsumptionUnit unit)
         {
-            var quantity = SpecificFuelConsumption.From(3.0, SpecificFuelConsumption.Units.First(unit => unit != SpecificFuelConsumption.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = SpecificFuelConsumption.Units.FirstOrDefault(u => u != SpecificFuelConsumption.BaseUnit && u != SpecificFuelConsumptionUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == SpecificFuelConsumptionUnit.Undefined)
+                fromUnit = SpecificFuelConsumption.BaseUnit;
+
+            var quantity = SpecificFuelConsumption.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

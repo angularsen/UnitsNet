@@ -50,6 +50,18 @@ namespace UnitsNet.Tests
         protected virtual double VoltamperesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ApparentPowerUnit unit)
+        {
+            return unit switch
+            {
+                ApparentPowerUnit.Gigavoltampere => (GigavoltamperesInOneVoltampere, GigavoltamperesTolerance),
+                ApparentPowerUnit.Kilovoltampere => (KilovoltamperesInOneVoltampere, KilovoltamperesTolerance),
+                ApparentPowerUnit.Megavoltampere => (MegavoltamperesInOneVoltampere, MegavoltamperesTolerance),
+                ApparentPowerUnit.Voltampere => (VoltamperesInOneVoltampere, VoltamperesTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { ApparentPowerUnit.Gigavoltampere },
@@ -232,7 +244,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(ApparentPowerUnit unit)
         {
-            var quantity = ApparentPower.From(3.0, ApparentPower.Units.First(unit => unit != ApparentPower.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ApparentPower.Units.FirstOrDefault(u => u != ApparentPower.BaseUnit && u != ApparentPowerUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ApparentPowerUnit.Undefined)
+                fromUnit = ApparentPower.BaseUnit;
+
+            var quantity = ApparentPower.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

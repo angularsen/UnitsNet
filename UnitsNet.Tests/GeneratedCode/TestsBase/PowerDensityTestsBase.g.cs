@@ -130,6 +130,58 @@ namespace UnitsNet.Tests
         protected virtual double WattsPerLiterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(PowerDensityUnit unit)
+        {
+            return unit switch
+            {
+                PowerDensityUnit.DecawattPerCubicFoot => (DecawattsPerCubicFootInOneWattPerCubicMeter, DecawattsPerCubicFootTolerance),
+                PowerDensityUnit.DecawattPerCubicInch => (DecawattsPerCubicInchInOneWattPerCubicMeter, DecawattsPerCubicInchTolerance),
+                PowerDensityUnit.DecawattPerCubicMeter => (DecawattsPerCubicMeterInOneWattPerCubicMeter, DecawattsPerCubicMeterTolerance),
+                PowerDensityUnit.DecawattPerLiter => (DecawattsPerLiterInOneWattPerCubicMeter, DecawattsPerLiterTolerance),
+                PowerDensityUnit.DeciwattPerCubicFoot => (DeciwattsPerCubicFootInOneWattPerCubicMeter, DeciwattsPerCubicFootTolerance),
+                PowerDensityUnit.DeciwattPerCubicInch => (DeciwattsPerCubicInchInOneWattPerCubicMeter, DeciwattsPerCubicInchTolerance),
+                PowerDensityUnit.DeciwattPerCubicMeter => (DeciwattsPerCubicMeterInOneWattPerCubicMeter, DeciwattsPerCubicMeterTolerance),
+                PowerDensityUnit.DeciwattPerLiter => (DeciwattsPerLiterInOneWattPerCubicMeter, DeciwattsPerLiterTolerance),
+                PowerDensityUnit.GigawattPerCubicFoot => (GigawattsPerCubicFootInOneWattPerCubicMeter, GigawattsPerCubicFootTolerance),
+                PowerDensityUnit.GigawattPerCubicInch => (GigawattsPerCubicInchInOneWattPerCubicMeter, GigawattsPerCubicInchTolerance),
+                PowerDensityUnit.GigawattPerCubicMeter => (GigawattsPerCubicMeterInOneWattPerCubicMeter, GigawattsPerCubicMeterTolerance),
+                PowerDensityUnit.GigawattPerLiter => (GigawattsPerLiterInOneWattPerCubicMeter, GigawattsPerLiterTolerance),
+                PowerDensityUnit.KilowattPerCubicFoot => (KilowattsPerCubicFootInOneWattPerCubicMeter, KilowattsPerCubicFootTolerance),
+                PowerDensityUnit.KilowattPerCubicInch => (KilowattsPerCubicInchInOneWattPerCubicMeter, KilowattsPerCubicInchTolerance),
+                PowerDensityUnit.KilowattPerCubicMeter => (KilowattsPerCubicMeterInOneWattPerCubicMeter, KilowattsPerCubicMeterTolerance),
+                PowerDensityUnit.KilowattPerLiter => (KilowattsPerLiterInOneWattPerCubicMeter, KilowattsPerLiterTolerance),
+                PowerDensityUnit.MegawattPerCubicFoot => (MegawattsPerCubicFootInOneWattPerCubicMeter, MegawattsPerCubicFootTolerance),
+                PowerDensityUnit.MegawattPerCubicInch => (MegawattsPerCubicInchInOneWattPerCubicMeter, MegawattsPerCubicInchTolerance),
+                PowerDensityUnit.MegawattPerCubicMeter => (MegawattsPerCubicMeterInOneWattPerCubicMeter, MegawattsPerCubicMeterTolerance),
+                PowerDensityUnit.MegawattPerLiter => (MegawattsPerLiterInOneWattPerCubicMeter, MegawattsPerLiterTolerance),
+                PowerDensityUnit.MicrowattPerCubicFoot => (MicrowattsPerCubicFootInOneWattPerCubicMeter, MicrowattsPerCubicFootTolerance),
+                PowerDensityUnit.MicrowattPerCubicInch => (MicrowattsPerCubicInchInOneWattPerCubicMeter, MicrowattsPerCubicInchTolerance),
+                PowerDensityUnit.MicrowattPerCubicMeter => (MicrowattsPerCubicMeterInOneWattPerCubicMeter, MicrowattsPerCubicMeterTolerance),
+                PowerDensityUnit.MicrowattPerLiter => (MicrowattsPerLiterInOneWattPerCubicMeter, MicrowattsPerLiterTolerance),
+                PowerDensityUnit.MilliwattPerCubicFoot => (MilliwattsPerCubicFootInOneWattPerCubicMeter, MilliwattsPerCubicFootTolerance),
+                PowerDensityUnit.MilliwattPerCubicInch => (MilliwattsPerCubicInchInOneWattPerCubicMeter, MilliwattsPerCubicInchTolerance),
+                PowerDensityUnit.MilliwattPerCubicMeter => (MilliwattsPerCubicMeterInOneWattPerCubicMeter, MilliwattsPerCubicMeterTolerance),
+                PowerDensityUnit.MilliwattPerLiter => (MilliwattsPerLiterInOneWattPerCubicMeter, MilliwattsPerLiterTolerance),
+                PowerDensityUnit.NanowattPerCubicFoot => (NanowattsPerCubicFootInOneWattPerCubicMeter, NanowattsPerCubicFootTolerance),
+                PowerDensityUnit.NanowattPerCubicInch => (NanowattsPerCubicInchInOneWattPerCubicMeter, NanowattsPerCubicInchTolerance),
+                PowerDensityUnit.NanowattPerCubicMeter => (NanowattsPerCubicMeterInOneWattPerCubicMeter, NanowattsPerCubicMeterTolerance),
+                PowerDensityUnit.NanowattPerLiter => (NanowattsPerLiterInOneWattPerCubicMeter, NanowattsPerLiterTolerance),
+                PowerDensityUnit.PicowattPerCubicFoot => (PicowattsPerCubicFootInOneWattPerCubicMeter, PicowattsPerCubicFootTolerance),
+                PowerDensityUnit.PicowattPerCubicInch => (PicowattsPerCubicInchInOneWattPerCubicMeter, PicowattsPerCubicInchTolerance),
+                PowerDensityUnit.PicowattPerCubicMeter => (PicowattsPerCubicMeterInOneWattPerCubicMeter, PicowattsPerCubicMeterTolerance),
+                PowerDensityUnit.PicowattPerLiter => (PicowattsPerLiterInOneWattPerCubicMeter, PicowattsPerLiterTolerance),
+                PowerDensityUnit.TerawattPerCubicFoot => (TerawattsPerCubicFootInOneWattPerCubicMeter, TerawattsPerCubicFootTolerance),
+                PowerDensityUnit.TerawattPerCubicInch => (TerawattsPerCubicInchInOneWattPerCubicMeter, TerawattsPerCubicInchTolerance),
+                PowerDensityUnit.TerawattPerCubicMeter => (TerawattsPerCubicMeterInOneWattPerCubicMeter, TerawattsPerCubicMeterTolerance),
+                PowerDensityUnit.TerawattPerLiter => (TerawattsPerLiterInOneWattPerCubicMeter, TerawattsPerLiterTolerance),
+                PowerDensityUnit.WattPerCubicFoot => (WattsPerCubicFootInOneWattPerCubicMeter, WattsPerCubicFootTolerance),
+                PowerDensityUnit.WattPerCubicInch => (WattsPerCubicInchInOneWattPerCubicMeter, WattsPerCubicInchTolerance),
+                PowerDensityUnit.WattPerCubicMeter => (WattsPerCubicMeterInOneWattPerCubicMeter, WattsPerCubicMeterTolerance),
+                PowerDensityUnit.WattPerLiter => (WattsPerLiterInOneWattPerCubicMeter, WattsPerLiterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { PowerDensityUnit.DecawattPerCubicFoot },
@@ -752,7 +804,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(PowerDensityUnit unit)
         {
-            var quantity = PowerDensity.From(3.0, PowerDensity.Units.First(unit => unit != PowerDensity.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = PowerDensity.Units.FirstOrDefault(u => u != PowerDensity.BaseUnit && u != PowerDensityUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == PowerDensityUnit.Undefined)
+                fromUnit = PowerDensity.BaseUnit;
+
+            var quantity = PowerDensity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

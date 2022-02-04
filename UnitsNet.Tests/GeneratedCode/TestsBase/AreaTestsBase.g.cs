@@ -70,6 +70,28 @@ namespace UnitsNet.Tests
         protected virtual double UsSurveySquareFeetTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(AreaUnit unit)
+        {
+            return unit switch
+            {
+                AreaUnit.Acre => (AcresInOneSquareMeter, AcresTolerance),
+                AreaUnit.Hectare => (HectaresInOneSquareMeter, HectaresTolerance),
+                AreaUnit.SquareCentimeter => (SquareCentimetersInOneSquareMeter, SquareCentimetersTolerance),
+                AreaUnit.SquareDecimeter => (SquareDecimetersInOneSquareMeter, SquareDecimetersTolerance),
+                AreaUnit.SquareFoot => (SquareFeetInOneSquareMeter, SquareFeetTolerance),
+                AreaUnit.SquareInch => (SquareInchesInOneSquareMeter, SquareInchesTolerance),
+                AreaUnit.SquareKilometer => (SquareKilometersInOneSquareMeter, SquareKilometersTolerance),
+                AreaUnit.SquareMeter => (SquareMetersInOneSquareMeter, SquareMetersTolerance),
+                AreaUnit.SquareMicrometer => (SquareMicrometersInOneSquareMeter, SquareMicrometersTolerance),
+                AreaUnit.SquareMile => (SquareMilesInOneSquareMeter, SquareMilesTolerance),
+                AreaUnit.SquareMillimeter => (SquareMillimetersInOneSquareMeter, SquareMillimetersTolerance),
+                AreaUnit.SquareNauticalMile => (SquareNauticalMilesInOneSquareMeter, SquareNauticalMilesTolerance),
+                AreaUnit.SquareYard => (SquareYardsInOneSquareMeter, SquareYardsTolerance),
+                AreaUnit.UsSurveySquareFoot => (UsSurveySquareFeetInOneSquareMeter, UsSurveySquareFeetTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { AreaUnit.Acre },
@@ -362,7 +384,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(AreaUnit unit)
         {
-            var quantity = Area.From(3.0, Area.Units.First(unit => unit != Area.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Area.Units.FirstOrDefault(u => u != Area.BaseUnit && u != AreaUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == AreaUnit.Undefined)
+                fromUnit = Area.BaseUnit;
+
+            var quantity = Area.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

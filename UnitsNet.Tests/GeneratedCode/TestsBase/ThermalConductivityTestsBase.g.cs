@@ -46,6 +46,16 @@ namespace UnitsNet.Tests
         protected virtual double WattsPerMeterKelvinTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ThermalConductivityUnit unit)
+        {
+            return unit switch
+            {
+                ThermalConductivityUnit.BtuPerHourFootFahrenheit => (BtusPerHourFootFahrenheitInOneWattPerMeterKelvin, BtusPerHourFootFahrenheitTolerance),
+                ThermalConductivityUnit.WattPerMeterKelvin => (WattsPerMeterKelvinInOneWattPerMeterKelvin, WattsPerMeterKelvinTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { ThermalConductivityUnit.BtuPerHourFootFahrenheit },
@@ -206,7 +216,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(ThermalConductivityUnit unit)
         {
-            var quantity = ThermalConductivity.From(3.0, ThermalConductivity.Units.First(unit => unit != ThermalConductivity.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ThermalConductivity.Units.FirstOrDefault(u => u != ThermalConductivity.BaseUnit && u != ThermalConductivityUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ThermalConductivityUnit.Undefined)
+                fromUnit = ThermalConductivity.BaseUnit;
+
+            var quantity = ThermalConductivity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

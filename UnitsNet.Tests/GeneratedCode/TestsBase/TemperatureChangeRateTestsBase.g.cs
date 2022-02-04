@@ -62,6 +62,24 @@ namespace UnitsNet.Tests
         protected virtual double NanodegreesCelsiusPerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(TemperatureChangeRateUnit unit)
+        {
+            return unit switch
+            {
+                TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond => (CentidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, CentidegreesCelsiusPerSecondTolerance),
+                TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond => (DecadegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, DecadegreesCelsiusPerSecondTolerance),
+                TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond => (DecidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, DecidegreesCelsiusPerSecondTolerance),
+                TemperatureChangeRateUnit.DegreeCelsiusPerMinute => (DegreesCelsiusPerMinuteInOneDegreeCelsiusPerSecond, DegreesCelsiusPerMinuteTolerance),
+                TemperatureChangeRateUnit.DegreeCelsiusPerSecond => (DegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, DegreesCelsiusPerSecondTolerance),
+                TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond => (HectodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, HectodegreesCelsiusPerSecondTolerance),
+                TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond => (KilodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, KilodegreesCelsiusPerSecondTolerance),
+                TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond => (MicrodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, MicrodegreesCelsiusPerSecondTolerance),
+                TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond => (MillidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, MillidegreesCelsiusPerSecondTolerance),
+                TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond => (NanodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, NanodegreesCelsiusPerSecondTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond },
@@ -310,7 +328,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(TemperatureChangeRateUnit unit)
         {
-            var quantity = TemperatureChangeRate.From(3.0, TemperatureChangeRate.Units.First(unit => unit != TemperatureChangeRate.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = TemperatureChangeRate.Units.FirstOrDefault(u => u != TemperatureChangeRate.BaseUnit && u != TemperatureChangeRateUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == TemperatureChangeRateUnit.Undefined)
+                fromUnit = TemperatureChangeRate.BaseUnit;
+
+            var quantity = TemperatureChangeRate.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

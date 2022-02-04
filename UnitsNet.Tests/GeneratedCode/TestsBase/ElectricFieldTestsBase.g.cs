@@ -44,6 +44,15 @@ namespace UnitsNet.Tests
         protected virtual double VoltsPerMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricFieldUnit unit)
+        {
+            return unit switch
+            {
+                ElectricFieldUnit.VoltPerMeter => (VoltsPerMeterInOneVoltPerMeter, VoltsPerMeterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { ElectricFieldUnit.VoltPerMeter },
@@ -193,7 +202,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(ElectricFieldUnit unit)
         {
-            var quantity = ElectricField.From(3.0, ElectricField.Units.First(unit => unit != ElectricField.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ElectricField.Units.FirstOrDefault(u => u != ElectricField.BaseUnit && u != ElectricFieldUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ElectricFieldUnit.Undefined)
+                fromUnit = ElectricField.BaseUnit;
+
+            var quantity = ElectricField.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

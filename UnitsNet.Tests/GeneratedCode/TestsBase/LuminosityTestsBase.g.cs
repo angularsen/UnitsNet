@@ -70,6 +70,28 @@ namespace UnitsNet.Tests
         protected virtual double WattsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(LuminosityUnit unit)
+        {
+            return unit switch
+            {
+                LuminosityUnit.Decawatt => (DecawattsInOneWatt, DecawattsTolerance),
+                LuminosityUnit.Deciwatt => (DeciwattsInOneWatt, DeciwattsTolerance),
+                LuminosityUnit.Femtowatt => (FemtowattsInOneWatt, FemtowattsTolerance),
+                LuminosityUnit.Gigawatt => (GigawattsInOneWatt, GigawattsTolerance),
+                LuminosityUnit.Kilowatt => (KilowattsInOneWatt, KilowattsTolerance),
+                LuminosityUnit.Megawatt => (MegawattsInOneWatt, MegawattsTolerance),
+                LuminosityUnit.Microwatt => (MicrowattsInOneWatt, MicrowattsTolerance),
+                LuminosityUnit.Milliwatt => (MilliwattsInOneWatt, MilliwattsTolerance),
+                LuminosityUnit.Nanowatt => (NanowattsInOneWatt, NanowattsTolerance),
+                LuminosityUnit.Petawatt => (PetawattsInOneWatt, PetawattsTolerance),
+                LuminosityUnit.Picowatt => (PicowattsInOneWatt, PicowattsTolerance),
+                LuminosityUnit.SolarLuminosity => (SolarLuminositiesInOneWatt, SolarLuminositiesTolerance),
+                LuminosityUnit.Terawatt => (TerawattsInOneWatt, TerawattsTolerance),
+                LuminosityUnit.Watt => (WattsInOneWatt, WattsTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { LuminosityUnit.Decawatt },
@@ -362,7 +384,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(LuminosityUnit unit)
         {
-            var quantity = Luminosity.From(3.0, Luminosity.Units.First(unit => unit != Luminosity.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Luminosity.Units.FirstOrDefault(u => u != Luminosity.BaseUnit && u != LuminosityUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == LuminosityUnit.Undefined)
+                fromUnit = Luminosity.BaseUnit;
+
+            var quantity = Luminosity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

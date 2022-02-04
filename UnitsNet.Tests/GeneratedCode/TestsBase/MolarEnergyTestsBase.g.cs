@@ -48,6 +48,17 @@ namespace UnitsNet.Tests
         protected virtual double MegajoulesPerMoleTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MolarEnergyUnit unit)
+        {
+            return unit switch
+            {
+                MolarEnergyUnit.JoulePerMole => (JoulesPerMoleInOneJoulePerMole, JoulesPerMoleTolerance),
+                MolarEnergyUnit.KilojoulePerMole => (KilojoulesPerMoleInOneJoulePerMole, KilojoulesPerMoleTolerance),
+                MolarEnergyUnit.MegajoulePerMole => (MegajoulesPerMoleInOneJoulePerMole, MegajoulesPerMoleTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { MolarEnergyUnit.JoulePerMole },
@@ -219,7 +230,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(MolarEnergyUnit unit)
         {
-            var quantity = MolarEnergy.From(3.0, MolarEnergy.Units.First(unit => unit != MolarEnergy.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = MolarEnergy.Units.FirstOrDefault(u => u != MolarEnergy.BaseUnit && u != MolarEnergyUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == MolarEnergyUnit.Undefined)
+                fromUnit = MolarEnergy.BaseUnit;
+
+            var quantity = MolarEnergy.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

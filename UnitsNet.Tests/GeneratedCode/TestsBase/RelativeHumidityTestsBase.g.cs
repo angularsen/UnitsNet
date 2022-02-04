@@ -44,6 +44,15 @@ namespace UnitsNet.Tests
         protected virtual double PercentTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(RelativeHumidityUnit unit)
+        {
+            return unit switch
+            {
+                RelativeHumidityUnit.Percent => (PercentInOnePercent, PercentTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { RelativeHumidityUnit.Percent },
@@ -193,7 +202,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(RelativeHumidityUnit unit)
         {
-            var quantity = RelativeHumidity.From(3.0, RelativeHumidity.Units.First(unit => unit != RelativeHumidity.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = RelativeHumidity.Units.FirstOrDefault(u => u != RelativeHumidity.BaseUnit && u != RelativeHumidityUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == RelativeHumidityUnit.Undefined)
+                fromUnit = RelativeHumidity.BaseUnit;
+
+            var quantity = RelativeHumidity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

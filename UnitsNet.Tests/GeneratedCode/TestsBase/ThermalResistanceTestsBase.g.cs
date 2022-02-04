@@ -54,6 +54,20 @@ namespace UnitsNet.Tests
         protected virtual double SquareMeterKelvinsPerWattTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ThermalResistanceUnit unit)
+        {
+            return unit switch
+            {
+                ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu => (HourSquareFeetDegreesFahrenheitPerBtuInOneSquareMeterKelvinPerKilowatt, HourSquareFeetDegreesFahrenheitPerBtuTolerance),
+                ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie => (SquareCentimeterHourDegreesCelsiusPerKilocalorieInOneSquareMeterKelvinPerKilowatt, SquareCentimeterHourDegreesCelsiusPerKilocalorieTolerance),
+                ThermalResistanceUnit.SquareCentimeterKelvinPerWatt => (SquareCentimeterKelvinsPerWattInOneSquareMeterKelvinPerKilowatt, SquareCentimeterKelvinsPerWattTolerance),
+                ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt => (SquareMeterDegreesCelsiusPerWattInOneSquareMeterKelvinPerKilowatt, SquareMeterDegreesCelsiusPerWattTolerance),
+                ThermalResistanceUnit.SquareMeterKelvinPerKilowatt => (SquareMeterKelvinsPerKilowattInOneSquareMeterKelvinPerKilowatt, SquareMeterKelvinsPerKilowattTolerance),
+                ThermalResistanceUnit.SquareMeterKelvinPerWatt => (SquareMeterKelvinsPerWattInOneSquareMeterKelvinPerKilowatt, SquareMeterKelvinsPerWattTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu },
@@ -258,7 +272,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(ThermalResistanceUnit unit)
         {
-            var quantity = ThermalResistance.From(3.0, ThermalResistance.Units.First(unit => unit != ThermalResistance.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ThermalResistance.Units.FirstOrDefault(u => u != ThermalResistance.BaseUnit && u != ThermalResistanceUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ThermalResistanceUnit.Undefined)
+                fromUnit = ThermalResistance.BaseUnit;
+
+            var quantity = ThermalResistance.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

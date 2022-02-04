@@ -56,6 +56,21 @@ namespace UnitsNet.Tests
         protected virtual double OilBarrelsPerFootTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(VolumePerLengthUnit unit)
+        {
+            return unit switch
+            {
+                VolumePerLengthUnit.CubicMeterPerMeter => (CubicMetersPerMeterInOneCubicMeterPerMeter, CubicMetersPerMeterTolerance),
+                VolumePerLengthUnit.CubicYardPerFoot => (CubicYardsPerFootInOneCubicMeterPerMeter, CubicYardsPerFootTolerance),
+                VolumePerLengthUnit.CubicYardPerUsSurveyFoot => (CubicYardsPerUsSurveyFootInOneCubicMeterPerMeter, CubicYardsPerUsSurveyFootTolerance),
+                VolumePerLengthUnit.LiterPerKilometer => (LitersPerKilometerInOneCubicMeterPerMeter, LitersPerKilometerTolerance),
+                VolumePerLengthUnit.LiterPerMeter => (LitersPerMeterInOneCubicMeterPerMeter, LitersPerMeterTolerance),
+                VolumePerLengthUnit.LiterPerMillimeter => (LitersPerMillimeterInOneCubicMeterPerMeter, LitersPerMillimeterTolerance),
+                VolumePerLengthUnit.OilBarrelPerFoot => (OilBarrelsPerFootInOneCubicMeterPerMeter, OilBarrelsPerFootTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { VolumePerLengthUnit.CubicMeterPerMeter },
@@ -271,7 +286,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(VolumePerLengthUnit unit)
         {
-            var quantity = VolumePerLength.From(3.0, VolumePerLength.Units.First(unit => unit != VolumePerLength.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = VolumePerLength.Units.FirstOrDefault(u => u != VolumePerLength.BaseUnit && u != VolumePerLengthUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == VolumePerLengthUnit.Undefined)
+                fromUnit = VolumePerLength.BaseUnit;
+
+            var quantity = VolumePerLength.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

@@ -44,6 +44,15 @@ namespace UnitsNet.Tests
         protected virtual double LumensTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(LuminousFluxUnit unit)
+        {
+            return unit switch
+            {
+                LuminousFluxUnit.Lumen => (LumensInOneLumen, LumensTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { LuminousFluxUnit.Lumen },
@@ -193,7 +202,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(LuminousFluxUnit unit)
         {
-            var quantity = LuminousFlux.From(3.0, LuminousFlux.Units.First(unit => unit != LuminousFlux.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = LuminousFlux.Units.FirstOrDefault(u => u != LuminousFlux.BaseUnit && u != LuminousFluxUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == LuminousFluxUnit.Undefined)
+                fromUnit = LuminousFlux.BaseUnit;
+
+            var quantity = LuminousFlux.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

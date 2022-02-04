@@ -70,6 +70,28 @@ namespace UnitsNet.Tests
         protected virtual double WattsPerSquareMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(IrradianceUnit unit)
+        {
+            return unit switch
+            {
+                IrradianceUnit.KilowattPerSquareCentimeter => (KilowattsPerSquareCentimeterInOneWattPerSquareMeter, KilowattsPerSquareCentimeterTolerance),
+                IrradianceUnit.KilowattPerSquareMeter => (KilowattsPerSquareMeterInOneWattPerSquareMeter, KilowattsPerSquareMeterTolerance),
+                IrradianceUnit.MegawattPerSquareCentimeter => (MegawattsPerSquareCentimeterInOneWattPerSquareMeter, MegawattsPerSquareCentimeterTolerance),
+                IrradianceUnit.MegawattPerSquareMeter => (MegawattsPerSquareMeterInOneWattPerSquareMeter, MegawattsPerSquareMeterTolerance),
+                IrradianceUnit.MicrowattPerSquareCentimeter => (MicrowattsPerSquareCentimeterInOneWattPerSquareMeter, MicrowattsPerSquareCentimeterTolerance),
+                IrradianceUnit.MicrowattPerSquareMeter => (MicrowattsPerSquareMeterInOneWattPerSquareMeter, MicrowattsPerSquareMeterTolerance),
+                IrradianceUnit.MilliwattPerSquareCentimeter => (MilliwattsPerSquareCentimeterInOneWattPerSquareMeter, MilliwattsPerSquareCentimeterTolerance),
+                IrradianceUnit.MilliwattPerSquareMeter => (MilliwattsPerSquareMeterInOneWattPerSquareMeter, MilliwattsPerSquareMeterTolerance),
+                IrradianceUnit.NanowattPerSquareCentimeter => (NanowattsPerSquareCentimeterInOneWattPerSquareMeter, NanowattsPerSquareCentimeterTolerance),
+                IrradianceUnit.NanowattPerSquareMeter => (NanowattsPerSquareMeterInOneWattPerSquareMeter, NanowattsPerSquareMeterTolerance),
+                IrradianceUnit.PicowattPerSquareCentimeter => (PicowattsPerSquareCentimeterInOneWattPerSquareMeter, PicowattsPerSquareCentimeterTolerance),
+                IrradianceUnit.PicowattPerSquareMeter => (PicowattsPerSquareMeterInOneWattPerSquareMeter, PicowattsPerSquareMeterTolerance),
+                IrradianceUnit.WattPerSquareCentimeter => (WattsPerSquareCentimeterInOneWattPerSquareMeter, WattsPerSquareCentimeterTolerance),
+                IrradianceUnit.WattPerSquareMeter => (WattsPerSquareMeterInOneWattPerSquareMeter, WattsPerSquareMeterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { IrradianceUnit.KilowattPerSquareCentimeter },
@@ -362,7 +384,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(IrradianceUnit unit)
         {
-            var quantity = Irradiance.From(3.0, Irradiance.Units.First(unit => unit != Irradiance.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Irradiance.Units.FirstOrDefault(u => u != Irradiance.BaseUnit && u != IrradianceUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == IrradianceUnit.Undefined)
+                fromUnit = Irradiance.BaseUnit;
+
+            var quantity = Irradiance.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

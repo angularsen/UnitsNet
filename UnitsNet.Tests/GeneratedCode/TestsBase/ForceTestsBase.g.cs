@@ -72,6 +72,29 @@ namespace UnitsNet.Tests
         protected virtual double TonnesForceTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ForceUnit unit)
+        {
+            return unit switch
+            {
+                ForceUnit.Decanewton => (DecanewtonsInOneNewton, DecanewtonsTolerance),
+                ForceUnit.Dyn => (DyneInOneNewton, DyneTolerance),
+                ForceUnit.KilogramForce => (KilogramsForceInOneNewton, KilogramsForceTolerance),
+                ForceUnit.Kilonewton => (KilonewtonsInOneNewton, KilonewtonsTolerance),
+                ForceUnit.KiloPond => (KiloPondsInOneNewton, KiloPondsTolerance),
+                ForceUnit.KilopoundForce => (KilopoundsForceInOneNewton, KilopoundsForceTolerance),
+                ForceUnit.Meganewton => (MeganewtonsInOneNewton, MeganewtonsTolerance),
+                ForceUnit.Micronewton => (MicronewtonsInOneNewton, MicronewtonsTolerance),
+                ForceUnit.Millinewton => (MillinewtonsInOneNewton, MillinewtonsTolerance),
+                ForceUnit.Newton => (NewtonsInOneNewton, NewtonsTolerance),
+                ForceUnit.OunceForce => (OunceForceInOneNewton, OunceForceTolerance),
+                ForceUnit.Poundal => (PoundalsInOneNewton, PoundalsTolerance),
+                ForceUnit.PoundForce => (PoundsForceInOneNewton, PoundsForceTolerance),
+                ForceUnit.ShortTonForce => (ShortTonsForceInOneNewton, ShortTonsForceTolerance),
+                ForceUnit.TonneForce => (TonnesForceInOneNewton, TonnesForceTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { ForceUnit.Decanewton },
@@ -375,7 +398,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(ForceUnit unit)
         {
-            var quantity = Force.From(3.0, Force.Units.First(unit => unit != Force.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Force.Units.FirstOrDefault(u => u != Force.BaseUnit && u != ForceUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ForceUnit.Undefined)
+                fromUnit = Force.BaseUnit;
+
+            var quantity = Force.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

@@ -48,6 +48,17 @@ namespace UnitsNet.Tests
         protected virtual double MegajoulesPerMoleKelvinTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MolarEntropyUnit unit)
+        {
+            return unit switch
+            {
+                MolarEntropyUnit.JoulePerMoleKelvin => (JoulesPerMoleKelvinInOneJoulePerMoleKelvin, JoulesPerMoleKelvinTolerance),
+                MolarEntropyUnit.KilojoulePerMoleKelvin => (KilojoulesPerMoleKelvinInOneJoulePerMoleKelvin, KilojoulesPerMoleKelvinTolerance),
+                MolarEntropyUnit.MegajoulePerMoleKelvin => (MegajoulesPerMoleKelvinInOneJoulePerMoleKelvin, MegajoulesPerMoleKelvinTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { MolarEntropyUnit.JoulePerMoleKelvin },
@@ -219,7 +230,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(MolarEntropyUnit unit)
         {
-            var quantity = MolarEntropy.From(3.0, MolarEntropy.Units.First(unit => unit != MolarEntropy.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = MolarEntropy.Units.FirstOrDefault(u => u != MolarEntropy.BaseUnit && u != MolarEntropyUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == MolarEntropyUnit.Undefined)
+                fromUnit = MolarEntropy.BaseUnit;
+
+            var quantity = MolarEntropy.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

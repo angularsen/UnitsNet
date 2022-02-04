@@ -46,6 +46,16 @@ namespace UnitsNet.Tests
         protected virtual double CubicMetersPerSecondPerSquareMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(VolumeFlowPerAreaUnit unit)
+        {
+            return unit switch
+            {
+                VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot => (CubicFeetPerMinutePerSquareFootInOneCubicMeterPerSecondPerSquareMeter, CubicFeetPerMinutePerSquareFootTolerance),
+                VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter => (CubicMetersPerSecondPerSquareMeterInOneCubicMeterPerSecondPerSquareMeter, CubicMetersPerSecondPerSquareMeterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot },
@@ -206,7 +216,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(VolumeFlowPerAreaUnit unit)
         {
-            var quantity = VolumeFlowPerArea.From(3.0, VolumeFlowPerArea.Units.First(unit => unit != VolumeFlowPerArea.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = VolumeFlowPerArea.Units.FirstOrDefault(u => u != VolumeFlowPerArea.BaseUnit && u != VolumeFlowPerAreaUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == VolumeFlowPerAreaUnit.Undefined)
+                fromUnit = VolumeFlowPerArea.BaseUnit;
+
+            var quantity = VolumeFlowPerArea.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

@@ -50,6 +50,18 @@ namespace UnitsNet.Tests
         protected virtual double RevolutionsPerSecondSquaredTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(RotationalAccelerationUnit unit)
+        {
+            return unit switch
+            {
+                RotationalAccelerationUnit.DegreePerSecondSquared => (DegreesPerSecondSquaredInOneRadianPerSecondSquared, DegreesPerSecondSquaredTolerance),
+                RotationalAccelerationUnit.RadianPerSecondSquared => (RadiansPerSecondSquaredInOneRadianPerSecondSquared, RadiansPerSecondSquaredTolerance),
+                RotationalAccelerationUnit.RevolutionPerMinutePerSecond => (RevolutionsPerMinutePerSecondInOneRadianPerSecondSquared, RevolutionsPerMinutePerSecondTolerance),
+                RotationalAccelerationUnit.RevolutionPerSecondSquared => (RevolutionsPerSecondSquaredInOneRadianPerSecondSquared, RevolutionsPerSecondSquaredTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { RotationalAccelerationUnit.DegreePerSecondSquared },
@@ -232,7 +244,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(RotationalAccelerationUnit unit)
         {
-            var quantity = RotationalAcceleration.From(3.0, RotationalAcceleration.Units.First(unit => unit != RotationalAcceleration.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = RotationalAcceleration.Units.FirstOrDefault(u => u != RotationalAcceleration.BaseUnit && u != RotationalAccelerationUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == RotationalAccelerationUnit.Undefined)
+                fromUnit = RotationalAcceleration.BaseUnit;
+
+            var quantity = RotationalAcceleration.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

@@ -72,6 +72,29 @@ namespace UnitsNet.Tests
         protected virtual double PoundsForcePerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ForceChangeRateUnit unit)
+        {
+            return unit switch
+            {
+                ForceChangeRateUnit.CentinewtonPerSecond => (CentinewtonsPerSecondInOneNewtonPerSecond, CentinewtonsPerSecondTolerance),
+                ForceChangeRateUnit.DecanewtonPerMinute => (DecanewtonsPerMinuteInOneNewtonPerSecond, DecanewtonsPerMinuteTolerance),
+                ForceChangeRateUnit.DecanewtonPerSecond => (DecanewtonsPerSecondInOneNewtonPerSecond, DecanewtonsPerSecondTolerance),
+                ForceChangeRateUnit.DecinewtonPerSecond => (DecinewtonsPerSecondInOneNewtonPerSecond, DecinewtonsPerSecondTolerance),
+                ForceChangeRateUnit.KilonewtonPerMinute => (KilonewtonsPerMinuteInOneNewtonPerSecond, KilonewtonsPerMinuteTolerance),
+                ForceChangeRateUnit.KilonewtonPerSecond => (KilonewtonsPerSecondInOneNewtonPerSecond, KilonewtonsPerSecondTolerance),
+                ForceChangeRateUnit.KilopoundForcePerMinute => (KilopoundsForcePerMinuteInOneNewtonPerSecond, KilopoundsForcePerMinuteTolerance),
+                ForceChangeRateUnit.KilopoundForcePerSecond => (KilopoundsForcePerSecondInOneNewtonPerSecond, KilopoundsForcePerSecondTolerance),
+                ForceChangeRateUnit.MicronewtonPerSecond => (MicronewtonsPerSecondInOneNewtonPerSecond, MicronewtonsPerSecondTolerance),
+                ForceChangeRateUnit.MillinewtonPerSecond => (MillinewtonsPerSecondInOneNewtonPerSecond, MillinewtonsPerSecondTolerance),
+                ForceChangeRateUnit.NanonewtonPerSecond => (NanonewtonsPerSecondInOneNewtonPerSecond, NanonewtonsPerSecondTolerance),
+                ForceChangeRateUnit.NewtonPerMinute => (NewtonsPerMinuteInOneNewtonPerSecond, NewtonsPerMinuteTolerance),
+                ForceChangeRateUnit.NewtonPerSecond => (NewtonsPerSecondInOneNewtonPerSecond, NewtonsPerSecondTolerance),
+                ForceChangeRateUnit.PoundForcePerMinute => (PoundsForcePerMinuteInOneNewtonPerSecond, PoundsForcePerMinuteTolerance),
+                ForceChangeRateUnit.PoundForcePerSecond => (PoundsForcePerSecondInOneNewtonPerSecond, PoundsForcePerSecondTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { ForceChangeRateUnit.CentinewtonPerSecond },
@@ -375,7 +398,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(ForceChangeRateUnit unit)
         {
-            var quantity = ForceChangeRate.From(3.0, ForceChangeRate.Units.First(unit => unit != ForceChangeRate.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ForceChangeRate.Units.FirstOrDefault(u => u != ForceChangeRate.BaseUnit && u != ForceChangeRateUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ForceChangeRateUnit.Undefined)
+                fromUnit = ForceChangeRate.BaseUnit;
+
+            var quantity = ForceChangeRate.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

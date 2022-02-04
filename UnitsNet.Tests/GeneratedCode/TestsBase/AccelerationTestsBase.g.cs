@@ -70,6 +70,28 @@ namespace UnitsNet.Tests
         protected virtual double StandardGravityTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(AccelerationUnit unit)
+        {
+            return unit switch
+            {
+                AccelerationUnit.CentimeterPerSecondSquared => (CentimetersPerSecondSquaredInOneMeterPerSecondSquared, CentimetersPerSecondSquaredTolerance),
+                AccelerationUnit.DecimeterPerSecondSquared => (DecimetersPerSecondSquaredInOneMeterPerSecondSquared, DecimetersPerSecondSquaredTolerance),
+                AccelerationUnit.FootPerSecondSquared => (FeetPerSecondSquaredInOneMeterPerSecondSquared, FeetPerSecondSquaredTolerance),
+                AccelerationUnit.InchPerSecondSquared => (InchesPerSecondSquaredInOneMeterPerSecondSquared, InchesPerSecondSquaredTolerance),
+                AccelerationUnit.KilometerPerSecondSquared => (KilometersPerSecondSquaredInOneMeterPerSecondSquared, KilometersPerSecondSquaredTolerance),
+                AccelerationUnit.KnotPerHour => (KnotsPerHourInOneMeterPerSecondSquared, KnotsPerHourTolerance),
+                AccelerationUnit.KnotPerMinute => (KnotsPerMinuteInOneMeterPerSecondSquared, KnotsPerMinuteTolerance),
+                AccelerationUnit.KnotPerSecond => (KnotsPerSecondInOneMeterPerSecondSquared, KnotsPerSecondTolerance),
+                AccelerationUnit.MeterPerSecondSquared => (MetersPerSecondSquaredInOneMeterPerSecondSquared, MetersPerSecondSquaredTolerance),
+                AccelerationUnit.MicrometerPerSecondSquared => (MicrometersPerSecondSquaredInOneMeterPerSecondSquared, MicrometersPerSecondSquaredTolerance),
+                AccelerationUnit.MillimeterPerSecondSquared => (MillimetersPerSecondSquaredInOneMeterPerSecondSquared, MillimetersPerSecondSquaredTolerance),
+                AccelerationUnit.MillistandardGravity => (MillistandardGravityInOneMeterPerSecondSquared, MillistandardGravityTolerance),
+                AccelerationUnit.NanometerPerSecondSquared => (NanometersPerSecondSquaredInOneMeterPerSecondSquared, NanometersPerSecondSquaredTolerance),
+                AccelerationUnit.StandardGravity => (StandardGravityInOneMeterPerSecondSquared, StandardGravityTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { AccelerationUnit.CentimeterPerSecondSquared },
@@ -362,7 +384,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(AccelerationUnit unit)
         {
-            var quantity = Acceleration.From(3.0, Acceleration.Units.First(unit => unit != Acceleration.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Acceleration.Units.FirstOrDefault(u => u != Acceleration.BaseUnit && u != AccelerationUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == AccelerationUnit.Undefined)
+                fromUnit = Acceleration.BaseUnit;
+
+            var quantity = Acceleration.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

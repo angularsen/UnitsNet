@@ -54,6 +54,20 @@ namespace UnitsNet.Tests
         protected virtual double TeslasTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MagneticFieldUnit unit)
+        {
+            return unit switch
+            {
+                MagneticFieldUnit.Gauss => (GaussesInOneTesla, GaussesTolerance),
+                MagneticFieldUnit.Microtesla => (MicroteslasInOneTesla, MicroteslasTolerance),
+                MagneticFieldUnit.Milligauss => (MilligaussesInOneTesla, MilligaussesTolerance),
+                MagneticFieldUnit.Millitesla => (MilliteslasInOneTesla, MilliteslasTolerance),
+                MagneticFieldUnit.Nanotesla => (NanoteslasInOneTesla, NanoteslasTolerance),
+                MagneticFieldUnit.Tesla => (TeslasInOneTesla, TeslasTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { MagneticFieldUnit.Gauss },
@@ -258,7 +272,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(MagneticFieldUnit unit)
         {
-            var quantity = MagneticField.From(3.0, MagneticField.Units.First(unit => unit != MagneticField.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = MagneticField.Units.FirstOrDefault(u => u != MagneticField.BaseUnit && u != MagneticFieldUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == MagneticFieldUnit.Undefined)
+                fromUnit = MagneticField.BaseUnit;
+
+            var quantity = MagneticField.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

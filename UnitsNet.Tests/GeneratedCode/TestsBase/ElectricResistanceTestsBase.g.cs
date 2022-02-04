@@ -54,6 +54,20 @@ namespace UnitsNet.Tests
         protected virtual double OhmsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricResistanceUnit unit)
+        {
+            return unit switch
+            {
+                ElectricResistanceUnit.Gigaohm => (GigaohmsInOneOhm, GigaohmsTolerance),
+                ElectricResistanceUnit.Kiloohm => (KiloohmsInOneOhm, KiloohmsTolerance),
+                ElectricResistanceUnit.Megaohm => (MegaohmsInOneOhm, MegaohmsTolerance),
+                ElectricResistanceUnit.Microohm => (MicroohmsInOneOhm, MicroohmsTolerance),
+                ElectricResistanceUnit.Milliohm => (MilliohmsInOneOhm, MilliohmsTolerance),
+                ElectricResistanceUnit.Ohm => (OhmsInOneOhm, OhmsTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { ElectricResistanceUnit.Gigaohm },
@@ -258,7 +272,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(ElectricResistanceUnit unit)
         {
-            var quantity = ElectricResistance.From(3.0, ElectricResistance.Units.First(unit => unit != ElectricResistance.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ElectricResistance.Units.FirstOrDefault(u => u != ElectricResistance.BaseUnit && u != ElectricResistanceUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ElectricResistanceUnit.Undefined)
+                fromUnit = ElectricResistance.BaseUnit;
+
+            var quantity = ElectricResistance.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

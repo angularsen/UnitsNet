@@ -54,6 +54,20 @@ namespace UnitsNet.Tests
         protected virtual double MillimetersToTheSixthTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(WarpingMomentOfInertiaUnit unit)
+        {
+            return unit switch
+            {
+                WarpingMomentOfInertiaUnit.CentimeterToTheSixth => (CentimetersToTheSixthInOneMeterToTheSixth, CentimetersToTheSixthTolerance),
+                WarpingMomentOfInertiaUnit.DecimeterToTheSixth => (DecimetersToTheSixthInOneMeterToTheSixth, DecimetersToTheSixthTolerance),
+                WarpingMomentOfInertiaUnit.FootToTheSixth => (FeetToTheSixthInOneMeterToTheSixth, FeetToTheSixthTolerance),
+                WarpingMomentOfInertiaUnit.InchToTheSixth => (InchesToTheSixthInOneMeterToTheSixth, InchesToTheSixthTolerance),
+                WarpingMomentOfInertiaUnit.MeterToTheSixth => (MetersToTheSixthInOneMeterToTheSixth, MetersToTheSixthTolerance),
+                WarpingMomentOfInertiaUnit.MillimeterToTheSixth => (MillimetersToTheSixthInOneMeterToTheSixth, MillimetersToTheSixthTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { WarpingMomentOfInertiaUnit.CentimeterToTheSixth },
@@ -258,7 +272,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(WarpingMomentOfInertiaUnit unit)
         {
-            var quantity = WarpingMomentOfInertia.From(3.0, WarpingMomentOfInertia.Units.First(unit => unit != WarpingMomentOfInertia.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = WarpingMomentOfInertia.Units.FirstOrDefault(u => u != WarpingMomentOfInertia.BaseUnit && u != WarpingMomentOfInertiaUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == WarpingMomentOfInertiaUnit.Undefined)
+                fromUnit = WarpingMomentOfInertia.BaseUnit;
+
+            var quantity = WarpingMomentOfInertia.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

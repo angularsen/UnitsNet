@@ -92,6 +92,39 @@ namespace UnitsNet.Tests
         protected virtual double WattsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(PowerUnit unit)
+        {
+            return unit switch
+            {
+                PowerUnit.BoilerHorsepower => (BoilerHorsepowerInOneWatt, BoilerHorsepowerTolerance),
+                PowerUnit.BritishThermalUnitPerHour => (BritishThermalUnitsPerHourInOneWatt, BritishThermalUnitsPerHourTolerance),
+                PowerUnit.Decawatt => (DecawattsInOneWatt, DecawattsTolerance),
+                PowerUnit.Deciwatt => (DeciwattsInOneWatt, DeciwattsTolerance),
+                PowerUnit.ElectricalHorsepower => (ElectricalHorsepowerInOneWatt, ElectricalHorsepowerTolerance),
+                PowerUnit.Femtowatt => (FemtowattsInOneWatt, FemtowattsTolerance),
+                PowerUnit.GigajoulePerHour => (GigajoulesPerHourInOneWatt, GigajoulesPerHourTolerance),
+                PowerUnit.Gigawatt => (GigawattsInOneWatt, GigawattsTolerance),
+                PowerUnit.HydraulicHorsepower => (HydraulicHorsepowerInOneWatt, HydraulicHorsepowerTolerance),
+                PowerUnit.JoulePerHour => (JoulesPerHourInOneWatt, JoulesPerHourTolerance),
+                PowerUnit.KilobritishThermalUnitPerHour => (KilobritishThermalUnitsPerHourInOneWatt, KilobritishThermalUnitsPerHourTolerance),
+                PowerUnit.KilojoulePerHour => (KilojoulesPerHourInOneWatt, KilojoulesPerHourTolerance),
+                PowerUnit.Kilowatt => (KilowattsInOneWatt, KilowattsTolerance),
+                PowerUnit.MechanicalHorsepower => (MechanicalHorsepowerInOneWatt, MechanicalHorsepowerTolerance),
+                PowerUnit.MegajoulePerHour => (MegajoulesPerHourInOneWatt, MegajoulesPerHourTolerance),
+                PowerUnit.Megawatt => (MegawattsInOneWatt, MegawattsTolerance),
+                PowerUnit.MetricHorsepower => (MetricHorsepowerInOneWatt, MetricHorsepowerTolerance),
+                PowerUnit.Microwatt => (MicrowattsInOneWatt, MicrowattsTolerance),
+                PowerUnit.MillijoulePerHour => (MillijoulesPerHourInOneWatt, MillijoulesPerHourTolerance),
+                PowerUnit.Milliwatt => (MilliwattsInOneWatt, MilliwattsTolerance),
+                PowerUnit.Nanowatt => (NanowattsInOneWatt, NanowattsTolerance),
+                PowerUnit.Petawatt => (PetawattsInOneWatt, PetawattsTolerance),
+                PowerUnit.Picowatt => (PicowattsInOneWatt, PicowattsTolerance),
+                PowerUnit.Terawatt => (TerawattsInOneWatt, TerawattsTolerance),
+                PowerUnit.Watt => (WattsInOneWatt, WattsTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { PowerUnit.BoilerHorsepower },
@@ -480,7 +513,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(PowerUnit unit)
         {
-            var quantity = Power.From(3.0, Power.Units.First(unit => unit != Power.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Power.Units.FirstOrDefault(u => u != Power.BaseUnit && u != PowerUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == PowerUnit.Undefined)
+                fromUnit = Power.BaseUnit;
+
+            var quantity = Power.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

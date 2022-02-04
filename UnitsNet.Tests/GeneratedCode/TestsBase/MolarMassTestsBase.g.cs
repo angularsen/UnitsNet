@@ -66,6 +66,26 @@ namespace UnitsNet.Tests
         protected virtual double PoundsPerMoleTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MolarMassUnit unit)
+        {
+            return unit switch
+            {
+                MolarMassUnit.CentigramPerMole => (CentigramsPerMoleInOneKilogramPerMole, CentigramsPerMoleTolerance),
+                MolarMassUnit.DecagramPerMole => (DecagramsPerMoleInOneKilogramPerMole, DecagramsPerMoleTolerance),
+                MolarMassUnit.DecigramPerMole => (DecigramsPerMoleInOneKilogramPerMole, DecigramsPerMoleTolerance),
+                MolarMassUnit.GramPerMole => (GramsPerMoleInOneKilogramPerMole, GramsPerMoleTolerance),
+                MolarMassUnit.HectogramPerMole => (HectogramsPerMoleInOneKilogramPerMole, HectogramsPerMoleTolerance),
+                MolarMassUnit.KilogramPerMole => (KilogramsPerMoleInOneKilogramPerMole, KilogramsPerMoleTolerance),
+                MolarMassUnit.KilopoundPerMole => (KilopoundsPerMoleInOneKilogramPerMole, KilopoundsPerMoleTolerance),
+                MolarMassUnit.MegapoundPerMole => (MegapoundsPerMoleInOneKilogramPerMole, MegapoundsPerMoleTolerance),
+                MolarMassUnit.MicrogramPerMole => (MicrogramsPerMoleInOneKilogramPerMole, MicrogramsPerMoleTolerance),
+                MolarMassUnit.MilligramPerMole => (MilligramsPerMoleInOneKilogramPerMole, MilligramsPerMoleTolerance),
+                MolarMassUnit.NanogramPerMole => (NanogramsPerMoleInOneKilogramPerMole, NanogramsPerMoleTolerance),
+                MolarMassUnit.PoundPerMole => (PoundsPerMoleInOneKilogramPerMole, PoundsPerMoleTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { MolarMassUnit.CentigramPerMole },
@@ -336,7 +356,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(MolarMassUnit unit)
         {
-            var quantity = MolarMass.From(3.0, MolarMass.Units.First(unit => unit != MolarMass.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = MolarMass.Units.FirstOrDefault(u => u != MolarMass.BaseUnit && u != MolarMassUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == MolarMassUnit.Undefined)
+                fromUnit = MolarMass.BaseUnit;
+
+            var quantity = MolarMass.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

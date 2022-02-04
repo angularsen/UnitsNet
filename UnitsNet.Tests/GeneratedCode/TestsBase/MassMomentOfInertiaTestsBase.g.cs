@@ -98,6 +98,42 @@ namespace UnitsNet.Tests
         protected virtual double TonneSquareMilimetersTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MassMomentOfInertiaUnit unit)
+        {
+            return unit switch
+            {
+                MassMomentOfInertiaUnit.GramSquareCentimeter => (GramSquareCentimetersInOneKilogramSquareMeter, GramSquareCentimetersTolerance),
+                MassMomentOfInertiaUnit.GramSquareDecimeter => (GramSquareDecimetersInOneKilogramSquareMeter, GramSquareDecimetersTolerance),
+                MassMomentOfInertiaUnit.GramSquareMeter => (GramSquareMetersInOneKilogramSquareMeter, GramSquareMetersTolerance),
+                MassMomentOfInertiaUnit.GramSquareMillimeter => (GramSquareMillimetersInOneKilogramSquareMeter, GramSquareMillimetersTolerance),
+                MassMomentOfInertiaUnit.KilogramSquareCentimeter => (KilogramSquareCentimetersInOneKilogramSquareMeter, KilogramSquareCentimetersTolerance),
+                MassMomentOfInertiaUnit.KilogramSquareDecimeter => (KilogramSquareDecimetersInOneKilogramSquareMeter, KilogramSquareDecimetersTolerance),
+                MassMomentOfInertiaUnit.KilogramSquareMeter => (KilogramSquareMetersInOneKilogramSquareMeter, KilogramSquareMetersTolerance),
+                MassMomentOfInertiaUnit.KilogramSquareMillimeter => (KilogramSquareMillimetersInOneKilogramSquareMeter, KilogramSquareMillimetersTolerance),
+                MassMomentOfInertiaUnit.KilotonneSquareCentimeter => (KilotonneSquareCentimetersInOneKilogramSquareMeter, KilotonneSquareCentimetersTolerance),
+                MassMomentOfInertiaUnit.KilotonneSquareDecimeter => (KilotonneSquareDecimetersInOneKilogramSquareMeter, KilotonneSquareDecimetersTolerance),
+                MassMomentOfInertiaUnit.KilotonneSquareMeter => (KilotonneSquareMetersInOneKilogramSquareMeter, KilotonneSquareMetersTolerance),
+                MassMomentOfInertiaUnit.KilotonneSquareMilimeter => (KilotonneSquareMilimetersInOneKilogramSquareMeter, KilotonneSquareMilimetersTolerance),
+                MassMomentOfInertiaUnit.MegatonneSquareCentimeter => (MegatonneSquareCentimetersInOneKilogramSquareMeter, MegatonneSquareCentimetersTolerance),
+                MassMomentOfInertiaUnit.MegatonneSquareDecimeter => (MegatonneSquareDecimetersInOneKilogramSquareMeter, MegatonneSquareDecimetersTolerance),
+                MassMomentOfInertiaUnit.MegatonneSquareMeter => (MegatonneSquareMetersInOneKilogramSquareMeter, MegatonneSquareMetersTolerance),
+                MassMomentOfInertiaUnit.MegatonneSquareMilimeter => (MegatonneSquareMilimetersInOneKilogramSquareMeter, MegatonneSquareMilimetersTolerance),
+                MassMomentOfInertiaUnit.MilligramSquareCentimeter => (MilligramSquareCentimetersInOneKilogramSquareMeter, MilligramSquareCentimetersTolerance),
+                MassMomentOfInertiaUnit.MilligramSquareDecimeter => (MilligramSquareDecimetersInOneKilogramSquareMeter, MilligramSquareDecimetersTolerance),
+                MassMomentOfInertiaUnit.MilligramSquareMeter => (MilligramSquareMetersInOneKilogramSquareMeter, MilligramSquareMetersTolerance),
+                MassMomentOfInertiaUnit.MilligramSquareMillimeter => (MilligramSquareMillimetersInOneKilogramSquareMeter, MilligramSquareMillimetersTolerance),
+                MassMomentOfInertiaUnit.PoundSquareFoot => (PoundSquareFeetInOneKilogramSquareMeter, PoundSquareFeetTolerance),
+                MassMomentOfInertiaUnit.PoundSquareInch => (PoundSquareInchesInOneKilogramSquareMeter, PoundSquareInchesTolerance),
+                MassMomentOfInertiaUnit.SlugSquareFoot => (SlugSquareFeetInOneKilogramSquareMeter, SlugSquareFeetTolerance),
+                MassMomentOfInertiaUnit.SlugSquareInch => (SlugSquareInchesInOneKilogramSquareMeter, SlugSquareInchesTolerance),
+                MassMomentOfInertiaUnit.TonneSquareCentimeter => (TonneSquareCentimetersInOneKilogramSquareMeter, TonneSquareCentimetersTolerance),
+                MassMomentOfInertiaUnit.TonneSquareDecimeter => (TonneSquareDecimetersInOneKilogramSquareMeter, TonneSquareDecimetersTolerance),
+                MassMomentOfInertiaUnit.TonneSquareMeter => (TonneSquareMetersInOneKilogramSquareMeter, TonneSquareMetersTolerance),
+                MassMomentOfInertiaUnit.TonneSquareMilimeter => (TonneSquareMilimetersInOneKilogramSquareMeter, TonneSquareMilimetersTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { MassMomentOfInertiaUnit.GramSquareCentimeter },
@@ -544,7 +580,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(MassMomentOfInertiaUnit unit)
         {
-            var quantity = MassMomentOfInertia.From(3.0, MassMomentOfInertia.Units.First(unit => unit != MassMomentOfInertia.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = MassMomentOfInertia.Units.FirstOrDefault(u => u != MassMomentOfInertia.BaseUnit && u != MassMomentOfInertiaUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == MassMomentOfInertiaUnit.Undefined)
+                fromUnit = MassMomentOfInertia.BaseUnit;
+
+            var quantity = MassMomentOfInertia.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

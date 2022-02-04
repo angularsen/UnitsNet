@@ -52,6 +52,19 @@ namespace UnitsNet.Tests
         protected virtual double MilliampereHoursTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricChargeUnit unit)
+        {
+            return unit switch
+            {
+                ElectricChargeUnit.AmpereHour => (AmpereHoursInOneCoulomb, AmpereHoursTolerance),
+                ElectricChargeUnit.Coulomb => (CoulombsInOneCoulomb, CoulombsTolerance),
+                ElectricChargeUnit.KiloampereHour => (KiloampereHoursInOneCoulomb, KiloampereHoursTolerance),
+                ElectricChargeUnit.MegaampereHour => (MegaampereHoursInOneCoulomb, MegaampereHoursTolerance),
+                ElectricChargeUnit.MilliampereHour => (MilliampereHoursInOneCoulomb, MilliampereHoursTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { ElectricChargeUnit.AmpereHour },
@@ -245,7 +258,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(ElectricChargeUnit unit)
         {
-            var quantity = ElectricCharge.From(3.0, ElectricCharge.Units.First(unit => unit != ElectricCharge.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ElectricCharge.Units.FirstOrDefault(u => u != ElectricCharge.BaseUnit && u != ElectricChargeUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ElectricChargeUnit.Undefined)
+                fromUnit = ElectricCharge.BaseUnit;
+
+            var quantity = ElectricCharge.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

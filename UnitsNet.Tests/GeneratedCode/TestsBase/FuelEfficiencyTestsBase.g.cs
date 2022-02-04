@@ -50,6 +50,18 @@ namespace UnitsNet.Tests
         protected virtual double MilesPerUsGallonTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(FuelEfficiencyUnit unit)
+        {
+            return unit switch
+            {
+                FuelEfficiencyUnit.KilometerPerLiter => (KilometersPerLitersInOneLiterPer100Kilometers, KilometersPerLitersTolerance),
+                FuelEfficiencyUnit.LiterPer100Kilometers => (LitersPer100KilometersInOneLiterPer100Kilometers, LitersPer100KilometersTolerance),
+                FuelEfficiencyUnit.MilePerUkGallon => (MilesPerUkGallonInOneLiterPer100Kilometers, MilesPerUkGallonTolerance),
+                FuelEfficiencyUnit.MilePerUsGallon => (MilesPerUsGallonInOneLiterPer100Kilometers, MilesPerUsGallonTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { FuelEfficiencyUnit.KilometerPerLiter },
@@ -232,7 +244,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(FuelEfficiencyUnit unit)
         {
-            var quantity = FuelEfficiency.From(3.0, FuelEfficiency.Units.First(unit => unit != FuelEfficiency.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = FuelEfficiency.Units.FirstOrDefault(u => u != FuelEfficiency.BaseUnit && u != FuelEfficiencyUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == FuelEfficiencyUnit.Undefined)
+                fromUnit = FuelEfficiency.BaseUnit;
+
+            var quantity = FuelEfficiency.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

@@ -70,6 +70,28 @@ namespace UnitsNet.Tests
         protected virtual double PoundsForcePerSquareInchPerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(PressureChangeRateUnit unit)
+        {
+            return unit switch
+            {
+                PressureChangeRateUnit.AtmospherePerSecond => (AtmospheresPerSecondInOnePascalPerSecond, AtmospheresPerSecondTolerance),
+                PressureChangeRateUnit.KilopascalPerMinute => (KilopascalsPerMinuteInOnePascalPerSecond, KilopascalsPerMinuteTolerance),
+                PressureChangeRateUnit.KilopascalPerSecond => (KilopascalsPerSecondInOnePascalPerSecond, KilopascalsPerSecondTolerance),
+                PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute => (KilopoundsForcePerSquareInchPerMinuteInOnePascalPerSecond, KilopoundsForcePerSquareInchPerMinuteTolerance),
+                PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond => (KilopoundsForcePerSquareInchPerSecondInOnePascalPerSecond, KilopoundsForcePerSquareInchPerSecondTolerance),
+                PressureChangeRateUnit.MegapascalPerMinute => (MegapascalsPerMinuteInOnePascalPerSecond, MegapascalsPerMinuteTolerance),
+                PressureChangeRateUnit.MegapascalPerSecond => (MegapascalsPerSecondInOnePascalPerSecond, MegapascalsPerSecondTolerance),
+                PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute => (MegapoundsForcePerSquareInchPerMinuteInOnePascalPerSecond, MegapoundsForcePerSquareInchPerMinuteTolerance),
+                PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond => (MegapoundsForcePerSquareInchPerSecondInOnePascalPerSecond, MegapoundsForcePerSquareInchPerSecondTolerance),
+                PressureChangeRateUnit.MillimeterOfMercuryPerSecond => (MillimetersOfMercuryPerSecondInOnePascalPerSecond, MillimetersOfMercuryPerSecondTolerance),
+                PressureChangeRateUnit.PascalPerMinute => (PascalsPerMinuteInOnePascalPerSecond, PascalsPerMinuteTolerance),
+                PressureChangeRateUnit.PascalPerSecond => (PascalsPerSecondInOnePascalPerSecond, PascalsPerSecondTolerance),
+                PressureChangeRateUnit.PoundForcePerSquareInchPerMinute => (PoundsForcePerSquareInchPerMinuteInOnePascalPerSecond, PoundsForcePerSquareInchPerMinuteTolerance),
+                PressureChangeRateUnit.PoundForcePerSquareInchPerSecond => (PoundsForcePerSquareInchPerSecondInOnePascalPerSecond, PoundsForcePerSquareInchPerSecondTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { PressureChangeRateUnit.AtmospherePerSecond },
@@ -362,7 +384,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(PressureChangeRateUnit unit)
         {
-            var quantity = PressureChangeRate.From(3.0, PressureChangeRate.Units.First(unit => unit != PressureChangeRate.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = PressureChangeRate.Units.FirstOrDefault(u => u != PressureChangeRate.BaseUnit && u != PressureChangeRateUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == PressureChangeRateUnit.Undefined)
+                fromUnit = PressureChangeRate.BaseUnit;
+
+            var quantity = PressureChangeRate.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

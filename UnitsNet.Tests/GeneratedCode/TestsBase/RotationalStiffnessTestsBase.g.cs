@@ -108,6 +108,47 @@ namespace UnitsNet.Tests
         protected virtual double PoundForceFeetPerDegreesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(RotationalStiffnessUnit unit)
+        {
+            return unit switch
+            {
+                RotationalStiffnessUnit.CentinewtonMeterPerDegree => (CentinewtonMetersPerDegreeInOneNewtonMeterPerRadian, CentinewtonMetersPerDegreeTolerance),
+                RotationalStiffnessUnit.CentinewtonMillimeterPerDegree => (CentinewtonMillimetersPerDegreeInOneNewtonMeterPerRadian, CentinewtonMillimetersPerDegreeTolerance),
+                RotationalStiffnessUnit.CentinewtonMillimeterPerRadian => (CentinewtonMillimetersPerRadianInOneNewtonMeterPerRadian, CentinewtonMillimetersPerRadianTolerance),
+                RotationalStiffnessUnit.DecanewtonMeterPerDegree => (DecanewtonMetersPerDegreeInOneNewtonMeterPerRadian, DecanewtonMetersPerDegreeTolerance),
+                RotationalStiffnessUnit.DecanewtonMillimeterPerDegree => (DecanewtonMillimetersPerDegreeInOneNewtonMeterPerRadian, DecanewtonMillimetersPerDegreeTolerance),
+                RotationalStiffnessUnit.DecanewtonMillimeterPerRadian => (DecanewtonMillimetersPerRadianInOneNewtonMeterPerRadian, DecanewtonMillimetersPerRadianTolerance),
+                RotationalStiffnessUnit.DecinewtonMeterPerDegree => (DecinewtonMetersPerDegreeInOneNewtonMeterPerRadian, DecinewtonMetersPerDegreeTolerance),
+                RotationalStiffnessUnit.DecinewtonMillimeterPerDegree => (DecinewtonMillimetersPerDegreeInOneNewtonMeterPerRadian, DecinewtonMillimetersPerDegreeTolerance),
+                RotationalStiffnessUnit.DecinewtonMillimeterPerRadian => (DecinewtonMillimetersPerRadianInOneNewtonMeterPerRadian, DecinewtonMillimetersPerRadianTolerance),
+                RotationalStiffnessUnit.KilonewtonMeterPerDegree => (KilonewtonMetersPerDegreeInOneNewtonMeterPerRadian, KilonewtonMetersPerDegreeTolerance),
+                RotationalStiffnessUnit.KilonewtonMeterPerRadian => (KilonewtonMetersPerRadianInOneNewtonMeterPerRadian, KilonewtonMetersPerRadianTolerance),
+                RotationalStiffnessUnit.KilonewtonMillimeterPerDegree => (KilonewtonMillimetersPerDegreeInOneNewtonMeterPerRadian, KilonewtonMillimetersPerDegreeTolerance),
+                RotationalStiffnessUnit.KilonewtonMillimeterPerRadian => (KilonewtonMillimetersPerRadianInOneNewtonMeterPerRadian, KilonewtonMillimetersPerRadianTolerance),
+                RotationalStiffnessUnit.KilopoundForceFootPerDegrees => (KilopoundForceFeetPerDegreesInOneNewtonMeterPerRadian, KilopoundForceFeetPerDegreesTolerance),
+                RotationalStiffnessUnit.MeganewtonMeterPerDegree => (MeganewtonMetersPerDegreeInOneNewtonMeterPerRadian, MeganewtonMetersPerDegreeTolerance),
+                RotationalStiffnessUnit.MeganewtonMeterPerRadian => (MeganewtonMetersPerRadianInOneNewtonMeterPerRadian, MeganewtonMetersPerRadianTolerance),
+                RotationalStiffnessUnit.MeganewtonMillimeterPerDegree => (MeganewtonMillimetersPerDegreeInOneNewtonMeterPerRadian, MeganewtonMillimetersPerDegreeTolerance),
+                RotationalStiffnessUnit.MeganewtonMillimeterPerRadian => (MeganewtonMillimetersPerRadianInOneNewtonMeterPerRadian, MeganewtonMillimetersPerRadianTolerance),
+                RotationalStiffnessUnit.MicronewtonMeterPerDegree => (MicronewtonMetersPerDegreeInOneNewtonMeterPerRadian, MicronewtonMetersPerDegreeTolerance),
+                RotationalStiffnessUnit.MicronewtonMillimeterPerDegree => (MicronewtonMillimetersPerDegreeInOneNewtonMeterPerRadian, MicronewtonMillimetersPerDegreeTolerance),
+                RotationalStiffnessUnit.MicronewtonMillimeterPerRadian => (MicronewtonMillimetersPerRadianInOneNewtonMeterPerRadian, MicronewtonMillimetersPerRadianTolerance),
+                RotationalStiffnessUnit.MillinewtonMeterPerDegree => (MillinewtonMetersPerDegreeInOneNewtonMeterPerRadian, MillinewtonMetersPerDegreeTolerance),
+                RotationalStiffnessUnit.MillinewtonMillimeterPerDegree => (MillinewtonMillimetersPerDegreeInOneNewtonMeterPerRadian, MillinewtonMillimetersPerDegreeTolerance),
+                RotationalStiffnessUnit.MillinewtonMillimeterPerRadian => (MillinewtonMillimetersPerRadianInOneNewtonMeterPerRadian, MillinewtonMillimetersPerRadianTolerance),
+                RotationalStiffnessUnit.NanonewtonMeterPerDegree => (NanonewtonMetersPerDegreeInOneNewtonMeterPerRadian, NanonewtonMetersPerDegreeTolerance),
+                RotationalStiffnessUnit.NanonewtonMillimeterPerDegree => (NanonewtonMillimetersPerDegreeInOneNewtonMeterPerRadian, NanonewtonMillimetersPerDegreeTolerance),
+                RotationalStiffnessUnit.NanonewtonMillimeterPerRadian => (NanonewtonMillimetersPerRadianInOneNewtonMeterPerRadian, NanonewtonMillimetersPerRadianTolerance),
+                RotationalStiffnessUnit.NewtonMeterPerDegree => (NewtonMetersPerDegreeInOneNewtonMeterPerRadian, NewtonMetersPerDegreeTolerance),
+                RotationalStiffnessUnit.NewtonMeterPerRadian => (NewtonMetersPerRadianInOneNewtonMeterPerRadian, NewtonMetersPerRadianTolerance),
+                RotationalStiffnessUnit.NewtonMillimeterPerDegree => (NewtonMillimetersPerDegreeInOneNewtonMeterPerRadian, NewtonMillimetersPerDegreeTolerance),
+                RotationalStiffnessUnit.NewtonMillimeterPerRadian => (NewtonMillimetersPerRadianInOneNewtonMeterPerRadian, NewtonMillimetersPerRadianTolerance),
+                RotationalStiffnessUnit.PoundForceFeetPerRadian => (PoundForceFeetPerRadianInOneNewtonMeterPerRadian, PoundForceFeetPerRadianTolerance),
+                RotationalStiffnessUnit.PoundForceFootPerDegrees => (PoundForceFeetPerDegreesInOneNewtonMeterPerRadian, PoundForceFeetPerDegreesTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { RotationalStiffnessUnit.CentinewtonMeterPerDegree },
@@ -609,7 +650,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(RotationalStiffnessUnit unit)
         {
-            var quantity = RotationalStiffness.From(3.0, RotationalStiffness.Units.First(unit => unit != RotationalStiffness.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = RotationalStiffness.Units.FirstOrDefault(u => u != RotationalStiffness.BaseUnit && u != RotationalStiffnessUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == RotationalStiffnessUnit.Undefined)
+                fromUnit = RotationalStiffness.BaseUnit;
+
+            var quantity = RotationalStiffness.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

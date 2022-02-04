@@ -50,6 +50,18 @@ namespace UnitsNet.Tests
         protected virtual double AmperesPerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricCurrentGradientUnit unit)
+        {
+            return unit switch
+            {
+                ElectricCurrentGradientUnit.AmperePerMicrosecond => (AmperesPerMicrosecondInOneAmperePerSecond, AmperesPerMicrosecondTolerance),
+                ElectricCurrentGradientUnit.AmperePerMillisecond => (AmperesPerMillisecondInOneAmperePerSecond, AmperesPerMillisecondTolerance),
+                ElectricCurrentGradientUnit.AmperePerNanosecond => (AmperesPerNanosecondInOneAmperePerSecond, AmperesPerNanosecondTolerance),
+                ElectricCurrentGradientUnit.AmperePerSecond => (AmperesPerSecondInOneAmperePerSecond, AmperesPerSecondTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { ElectricCurrentGradientUnit.AmperePerMicrosecond },
@@ -232,7 +244,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(ElectricCurrentGradientUnit unit)
         {
-            var quantity = ElectricCurrentGradient.From(3.0, ElectricCurrentGradient.Units.First(unit => unit != ElectricCurrentGradient.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ElectricCurrentGradient.Units.FirstOrDefault(u => u != ElectricCurrentGradient.BaseUnit && u != ElectricCurrentGradientUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ElectricCurrentGradientUnit.Undefined)
+                fromUnit = ElectricCurrentGradient.BaseUnit;
+
+            var quantity = ElectricCurrentGradient.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

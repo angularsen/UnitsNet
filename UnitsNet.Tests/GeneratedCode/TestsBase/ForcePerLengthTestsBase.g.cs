@@ -118,6 +118,52 @@ namespace UnitsNet.Tests
         protected virtual double TonnesForcePerMillimeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ForcePerLengthUnit unit)
+        {
+            return unit switch
+            {
+                ForcePerLengthUnit.CentinewtonPerCentimeter => (CentinewtonsPerCentimeterInOneNewtonPerMeter, CentinewtonsPerCentimeterTolerance),
+                ForcePerLengthUnit.CentinewtonPerMeter => (CentinewtonsPerMeterInOneNewtonPerMeter, CentinewtonsPerMeterTolerance),
+                ForcePerLengthUnit.CentinewtonPerMillimeter => (CentinewtonsPerMillimeterInOneNewtonPerMeter, CentinewtonsPerMillimeterTolerance),
+                ForcePerLengthUnit.DecanewtonPerCentimeter => (DecanewtonsPerCentimeterInOneNewtonPerMeter, DecanewtonsPerCentimeterTolerance),
+                ForcePerLengthUnit.DecanewtonPerMeter => (DecanewtonsPerMeterInOneNewtonPerMeter, DecanewtonsPerMeterTolerance),
+                ForcePerLengthUnit.DecanewtonPerMillimeter => (DecanewtonsPerMillimeterInOneNewtonPerMeter, DecanewtonsPerMillimeterTolerance),
+                ForcePerLengthUnit.DecinewtonPerCentimeter => (DecinewtonsPerCentimeterInOneNewtonPerMeter, DecinewtonsPerCentimeterTolerance),
+                ForcePerLengthUnit.DecinewtonPerMeter => (DecinewtonsPerMeterInOneNewtonPerMeter, DecinewtonsPerMeterTolerance),
+                ForcePerLengthUnit.DecinewtonPerMillimeter => (DecinewtonsPerMillimeterInOneNewtonPerMeter, DecinewtonsPerMillimeterTolerance),
+                ForcePerLengthUnit.KilogramForcePerCentimeter => (KilogramsForcePerCentimeterInOneNewtonPerMeter, KilogramsForcePerCentimeterTolerance),
+                ForcePerLengthUnit.KilogramForcePerMeter => (KilogramsForcePerMeterInOneNewtonPerMeter, KilogramsForcePerMeterTolerance),
+                ForcePerLengthUnit.KilogramForcePerMillimeter => (KilogramsForcePerMillimeterInOneNewtonPerMeter, KilogramsForcePerMillimeterTolerance),
+                ForcePerLengthUnit.KilonewtonPerCentimeter => (KilonewtonsPerCentimeterInOneNewtonPerMeter, KilonewtonsPerCentimeterTolerance),
+                ForcePerLengthUnit.KilonewtonPerMeter => (KilonewtonsPerMeterInOneNewtonPerMeter, KilonewtonsPerMeterTolerance),
+                ForcePerLengthUnit.KilonewtonPerMillimeter => (KilonewtonsPerMillimeterInOneNewtonPerMeter, KilonewtonsPerMillimeterTolerance),
+                ForcePerLengthUnit.KilopoundForcePerFoot => (KilopoundsForcePerFootInOneNewtonPerMeter, KilopoundsForcePerFootTolerance),
+                ForcePerLengthUnit.KilopoundForcePerInch => (KilopoundsForcePerInchInOneNewtonPerMeter, KilopoundsForcePerInchTolerance),
+                ForcePerLengthUnit.MeganewtonPerCentimeter => (MeganewtonsPerCentimeterInOneNewtonPerMeter, MeganewtonsPerCentimeterTolerance),
+                ForcePerLengthUnit.MeganewtonPerMeter => (MeganewtonsPerMeterInOneNewtonPerMeter, MeganewtonsPerMeterTolerance),
+                ForcePerLengthUnit.MeganewtonPerMillimeter => (MeganewtonsPerMillimeterInOneNewtonPerMeter, MeganewtonsPerMillimeterTolerance),
+                ForcePerLengthUnit.MicronewtonPerCentimeter => (MicronewtonsPerCentimeterInOneNewtonPerMeter, MicronewtonsPerCentimeterTolerance),
+                ForcePerLengthUnit.MicronewtonPerMeter => (MicronewtonsPerMeterInOneNewtonPerMeter, MicronewtonsPerMeterTolerance),
+                ForcePerLengthUnit.MicronewtonPerMillimeter => (MicronewtonsPerMillimeterInOneNewtonPerMeter, MicronewtonsPerMillimeterTolerance),
+                ForcePerLengthUnit.MillinewtonPerCentimeter => (MillinewtonsPerCentimeterInOneNewtonPerMeter, MillinewtonsPerCentimeterTolerance),
+                ForcePerLengthUnit.MillinewtonPerMeter => (MillinewtonsPerMeterInOneNewtonPerMeter, MillinewtonsPerMeterTolerance),
+                ForcePerLengthUnit.MillinewtonPerMillimeter => (MillinewtonsPerMillimeterInOneNewtonPerMeter, MillinewtonsPerMillimeterTolerance),
+                ForcePerLengthUnit.NanonewtonPerCentimeter => (NanonewtonsPerCentimeterInOneNewtonPerMeter, NanonewtonsPerCentimeterTolerance),
+                ForcePerLengthUnit.NanonewtonPerMeter => (NanonewtonsPerMeterInOneNewtonPerMeter, NanonewtonsPerMeterTolerance),
+                ForcePerLengthUnit.NanonewtonPerMillimeter => (NanonewtonsPerMillimeterInOneNewtonPerMeter, NanonewtonsPerMillimeterTolerance),
+                ForcePerLengthUnit.NewtonPerCentimeter => (NewtonsPerCentimeterInOneNewtonPerMeter, NewtonsPerCentimeterTolerance),
+                ForcePerLengthUnit.NewtonPerMeter => (NewtonsPerMeterInOneNewtonPerMeter, NewtonsPerMeterTolerance),
+                ForcePerLengthUnit.NewtonPerMillimeter => (NewtonsPerMillimeterInOneNewtonPerMeter, NewtonsPerMillimeterTolerance),
+                ForcePerLengthUnit.PoundForcePerFoot => (PoundsForcePerFootInOneNewtonPerMeter, PoundsForcePerFootTolerance),
+                ForcePerLengthUnit.PoundForcePerInch => (PoundsForcePerInchInOneNewtonPerMeter, PoundsForcePerInchTolerance),
+                ForcePerLengthUnit.PoundForcePerYard => (PoundsForcePerYardInOneNewtonPerMeter, PoundsForcePerYardTolerance),
+                ForcePerLengthUnit.TonneForcePerCentimeter => (TonnesForcePerCentimeterInOneNewtonPerMeter, TonnesForcePerCentimeterTolerance),
+                ForcePerLengthUnit.TonneForcePerMeter => (TonnesForcePerMeterInOneNewtonPerMeter, TonnesForcePerMeterTolerance),
+                ForcePerLengthUnit.TonneForcePerMillimeter => (TonnesForcePerMillimeterInOneNewtonPerMeter, TonnesForcePerMillimeterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { ForcePerLengthUnit.CentinewtonPerCentimeter },
@@ -674,7 +720,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(ForcePerLengthUnit unit)
         {
-            var quantity = ForcePerLength.From(3.0, ForcePerLength.Units.First(unit => unit != ForcePerLength.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ForcePerLength.Units.FirstOrDefault(u => u != ForcePerLength.BaseUnit && u != ForcePerLengthUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ForcePerLengthUnit.Undefined)
+                fromUnit = ForcePerLength.BaseUnit;
+
+            var quantity = ForcePerLength.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

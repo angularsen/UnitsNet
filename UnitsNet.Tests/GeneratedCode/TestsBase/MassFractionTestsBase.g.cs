@@ -90,6 +90,38 @@ namespace UnitsNet.Tests
         protected virtual double PercentTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MassFractionUnit unit)
+        {
+            return unit switch
+            {
+                MassFractionUnit.CentigramPerGram => (CentigramsPerGramInOneDecimalFraction, CentigramsPerGramTolerance),
+                MassFractionUnit.CentigramPerKilogram => (CentigramsPerKilogramInOneDecimalFraction, CentigramsPerKilogramTolerance),
+                MassFractionUnit.DecagramPerGram => (DecagramsPerGramInOneDecimalFraction, DecagramsPerGramTolerance),
+                MassFractionUnit.DecagramPerKilogram => (DecagramsPerKilogramInOneDecimalFraction, DecagramsPerKilogramTolerance),
+                MassFractionUnit.DecigramPerGram => (DecigramsPerGramInOneDecimalFraction, DecigramsPerGramTolerance),
+                MassFractionUnit.DecigramPerKilogram => (DecigramsPerKilogramInOneDecimalFraction, DecigramsPerKilogramTolerance),
+                MassFractionUnit.DecimalFraction => (DecimalFractionsInOneDecimalFraction, DecimalFractionsTolerance),
+                MassFractionUnit.GramPerGram => (GramsPerGramInOneDecimalFraction, GramsPerGramTolerance),
+                MassFractionUnit.GramPerKilogram => (GramsPerKilogramInOneDecimalFraction, GramsPerKilogramTolerance),
+                MassFractionUnit.HectogramPerGram => (HectogramsPerGramInOneDecimalFraction, HectogramsPerGramTolerance),
+                MassFractionUnit.HectogramPerKilogram => (HectogramsPerKilogramInOneDecimalFraction, HectogramsPerKilogramTolerance),
+                MassFractionUnit.KilogramPerGram => (KilogramsPerGramInOneDecimalFraction, KilogramsPerGramTolerance),
+                MassFractionUnit.KilogramPerKilogram => (KilogramsPerKilogramInOneDecimalFraction, KilogramsPerKilogramTolerance),
+                MassFractionUnit.MicrogramPerGram => (MicrogramsPerGramInOneDecimalFraction, MicrogramsPerGramTolerance),
+                MassFractionUnit.MicrogramPerKilogram => (MicrogramsPerKilogramInOneDecimalFraction, MicrogramsPerKilogramTolerance),
+                MassFractionUnit.MilligramPerGram => (MilligramsPerGramInOneDecimalFraction, MilligramsPerGramTolerance),
+                MassFractionUnit.MilligramPerKilogram => (MilligramsPerKilogramInOneDecimalFraction, MilligramsPerKilogramTolerance),
+                MassFractionUnit.NanogramPerGram => (NanogramsPerGramInOneDecimalFraction, NanogramsPerGramTolerance),
+                MassFractionUnit.NanogramPerKilogram => (NanogramsPerKilogramInOneDecimalFraction, NanogramsPerKilogramTolerance),
+                MassFractionUnit.PartPerBillion => (PartsPerBillionInOneDecimalFraction, PartsPerBillionTolerance),
+                MassFractionUnit.PartPerMillion => (PartsPerMillionInOneDecimalFraction, PartsPerMillionTolerance),
+                MassFractionUnit.PartPerThousand => (PartsPerThousandInOneDecimalFraction, PartsPerThousandTolerance),
+                MassFractionUnit.PartPerTrillion => (PartsPerTrillionInOneDecimalFraction, PartsPerTrillionTolerance),
+                MassFractionUnit.Percent => (PercentInOneDecimalFraction, PercentTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { MassFractionUnit.CentigramPerGram },
@@ -492,7 +524,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(MassFractionUnit unit)
         {
-            var quantity = MassFraction.From(3.0, MassFraction.Units.First(unit => unit != MassFraction.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = MassFraction.Units.FirstOrDefault(u => u != MassFraction.BaseUnit && u != MassFractionUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == MassFractionUnit.Undefined)
+                fromUnit = MassFraction.BaseUnit;
+
+            var quantity = MassFraction.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

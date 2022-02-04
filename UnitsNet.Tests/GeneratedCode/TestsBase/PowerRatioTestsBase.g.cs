@@ -46,6 +46,16 @@ namespace UnitsNet.Tests
         protected virtual double DecibelWattsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(PowerRatioUnit unit)
+        {
+            return unit switch
+            {
+                PowerRatioUnit.DecibelMilliwatt => (DecibelMilliwattsInOneDecibelWatt, DecibelMilliwattsTolerance),
+                PowerRatioUnit.DecibelWatt => (DecibelWattsInOneDecibelWatt, DecibelWattsTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { PowerRatioUnit.DecibelMilliwatt },
@@ -206,7 +216,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(PowerRatioUnit unit)
         {
-            var quantity = PowerRatio.From(3.0, PowerRatio.Units.First(unit => unit != PowerRatio.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = PowerRatio.Units.FirstOrDefault(u => u != PowerRatio.BaseUnit && u != PowerRatioUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == PowerRatioUnit.Undefined)
+                fromUnit = PowerRatio.BaseUnit;
+
+            var quantity = PowerRatio.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

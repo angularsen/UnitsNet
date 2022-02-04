@@ -106,8 +106,19 @@ namespace UnitsNet.Tests
         protected virtual double {unit.PluralName}Tolerance {{ get {{ return 1e-5; }} }}"); Writer.WL($@"
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor({_unitEnumName} unit)
+        {{
+            return unit switch
+            {{");
+            foreach (var unit in _quantity.Units) Writer.WL($@"
+                {GetUnitFullName( unit )} => ({unit.PluralName}InOne{_baseUnit.SingularName}, {unit.PluralName}Tolerance),");
+Writer.WL($@"
+                _ => throw new NotSupportedException()
+            }};
+        }}
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
-        {{");
+        {{" );
             foreach( var unit in _quantity.Units )
             {
                 Writer.WL($@"
@@ -287,7 +298,14 @@ Writer.WL( $@"
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException({_unitEnumName} unit)
         {{
-            var quantity = {_quantity.Name}.From(3.0, {_quantity.Name}.Units.First(unit => unit != {_quantity.Name}.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = {_quantity.Name}.Units.FirstOrDefault(u => u != {_quantity.Name}.BaseUnit && u != {_unitEnumName}.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == {_unitEnumName}.Undefined)
+                fromUnit = {_quantity.Name}.BaseUnit;
+
+            var quantity = {_quantity.Name}.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }}

@@ -166,6 +166,76 @@ namespace UnitsNet.Tests
         protected virtual double UsGallonsPerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(VolumeFlowUnit unit)
+        {
+            return unit switch
+            {
+                VolumeFlowUnit.AcreFootPerDay => (AcreFeetPerDayInOneCubicMeterPerSecond, AcreFeetPerDayTolerance),
+                VolumeFlowUnit.AcreFootPerHour => (AcreFeetPerHourInOneCubicMeterPerSecond, AcreFeetPerHourTolerance),
+                VolumeFlowUnit.AcreFootPerMinute => (AcreFeetPerMinuteInOneCubicMeterPerSecond, AcreFeetPerMinuteTolerance),
+                VolumeFlowUnit.AcreFootPerSecond => (AcreFeetPerSecondInOneCubicMeterPerSecond, AcreFeetPerSecondTolerance),
+                VolumeFlowUnit.CentiliterPerDay => (CentilitersPerDayInOneCubicMeterPerSecond, CentilitersPerDayTolerance),
+                VolumeFlowUnit.CentiliterPerHour => (CentilitersPerHourInOneCubicMeterPerSecond, CentilitersPerHourTolerance),
+                VolumeFlowUnit.CentiliterPerMinute => (CentilitersPerMinuteInOneCubicMeterPerSecond, CentilitersPerMinuteTolerance),
+                VolumeFlowUnit.CentiliterPerSecond => (CentilitersPerSecondInOneCubicMeterPerSecond, CentilitersPerSecondTolerance),
+                VolumeFlowUnit.CubicCentimeterPerMinute => (CubicCentimetersPerMinuteInOneCubicMeterPerSecond, CubicCentimetersPerMinuteTolerance),
+                VolumeFlowUnit.CubicDecimeterPerMinute => (CubicDecimetersPerMinuteInOneCubicMeterPerSecond, CubicDecimetersPerMinuteTolerance),
+                VolumeFlowUnit.CubicFootPerHour => (CubicFeetPerHourInOneCubicMeterPerSecond, CubicFeetPerHourTolerance),
+                VolumeFlowUnit.CubicFootPerMinute => (CubicFeetPerMinuteInOneCubicMeterPerSecond, CubicFeetPerMinuteTolerance),
+                VolumeFlowUnit.CubicFootPerSecond => (CubicFeetPerSecondInOneCubicMeterPerSecond, CubicFeetPerSecondTolerance),
+                VolumeFlowUnit.CubicMeterPerDay => (CubicMetersPerDayInOneCubicMeterPerSecond, CubicMetersPerDayTolerance),
+                VolumeFlowUnit.CubicMeterPerHour => (CubicMetersPerHourInOneCubicMeterPerSecond, CubicMetersPerHourTolerance),
+                VolumeFlowUnit.CubicMeterPerMinute => (CubicMetersPerMinuteInOneCubicMeterPerSecond, CubicMetersPerMinuteTolerance),
+                VolumeFlowUnit.CubicMeterPerSecond => (CubicMetersPerSecondInOneCubicMeterPerSecond, CubicMetersPerSecondTolerance),
+                VolumeFlowUnit.CubicMillimeterPerSecond => (CubicMillimetersPerSecondInOneCubicMeterPerSecond, CubicMillimetersPerSecondTolerance),
+                VolumeFlowUnit.CubicYardPerDay => (CubicYardsPerDayInOneCubicMeterPerSecond, CubicYardsPerDayTolerance),
+                VolumeFlowUnit.CubicYardPerHour => (CubicYardsPerHourInOneCubicMeterPerSecond, CubicYardsPerHourTolerance),
+                VolumeFlowUnit.CubicYardPerMinute => (CubicYardsPerMinuteInOneCubicMeterPerSecond, CubicYardsPerMinuteTolerance),
+                VolumeFlowUnit.CubicYardPerSecond => (CubicYardsPerSecondInOneCubicMeterPerSecond, CubicYardsPerSecondTolerance),
+                VolumeFlowUnit.DeciliterPerDay => (DecilitersPerDayInOneCubicMeterPerSecond, DecilitersPerDayTolerance),
+                VolumeFlowUnit.DeciliterPerHour => (DecilitersPerHourInOneCubicMeterPerSecond, DecilitersPerHourTolerance),
+                VolumeFlowUnit.DeciliterPerMinute => (DecilitersPerMinuteInOneCubicMeterPerSecond, DecilitersPerMinuteTolerance),
+                VolumeFlowUnit.DeciliterPerSecond => (DecilitersPerSecondInOneCubicMeterPerSecond, DecilitersPerSecondTolerance),
+                VolumeFlowUnit.KiloliterPerDay => (KilolitersPerDayInOneCubicMeterPerSecond, KilolitersPerDayTolerance),
+                VolumeFlowUnit.KiloliterPerHour => (KilolitersPerHourInOneCubicMeterPerSecond, KilolitersPerHourTolerance),
+                VolumeFlowUnit.KiloliterPerMinute => (KilolitersPerMinuteInOneCubicMeterPerSecond, KilolitersPerMinuteTolerance),
+                VolumeFlowUnit.KiloliterPerSecond => (KilolitersPerSecondInOneCubicMeterPerSecond, KilolitersPerSecondTolerance),
+                VolumeFlowUnit.KilousGallonPerMinute => (KilousGallonsPerMinuteInOneCubicMeterPerSecond, KilousGallonsPerMinuteTolerance),
+                VolumeFlowUnit.LiterPerDay => (LitersPerDayInOneCubicMeterPerSecond, LitersPerDayTolerance),
+                VolumeFlowUnit.LiterPerHour => (LitersPerHourInOneCubicMeterPerSecond, LitersPerHourTolerance),
+                VolumeFlowUnit.LiterPerMinute => (LitersPerMinuteInOneCubicMeterPerSecond, LitersPerMinuteTolerance),
+                VolumeFlowUnit.LiterPerSecond => (LitersPerSecondInOneCubicMeterPerSecond, LitersPerSecondTolerance),
+                VolumeFlowUnit.MegaliterPerDay => (MegalitersPerDayInOneCubicMeterPerSecond, MegalitersPerDayTolerance),
+                VolumeFlowUnit.MegaukGallonPerSecond => (MegaukGallonsPerSecondInOneCubicMeterPerSecond, MegaukGallonsPerSecondTolerance),
+                VolumeFlowUnit.MicroliterPerDay => (MicrolitersPerDayInOneCubicMeterPerSecond, MicrolitersPerDayTolerance),
+                VolumeFlowUnit.MicroliterPerHour => (MicrolitersPerHourInOneCubicMeterPerSecond, MicrolitersPerHourTolerance),
+                VolumeFlowUnit.MicroliterPerMinute => (MicrolitersPerMinuteInOneCubicMeterPerSecond, MicrolitersPerMinuteTolerance),
+                VolumeFlowUnit.MicroliterPerSecond => (MicrolitersPerSecondInOneCubicMeterPerSecond, MicrolitersPerSecondTolerance),
+                VolumeFlowUnit.MilliliterPerDay => (MillilitersPerDayInOneCubicMeterPerSecond, MillilitersPerDayTolerance),
+                VolumeFlowUnit.MilliliterPerHour => (MillilitersPerHourInOneCubicMeterPerSecond, MillilitersPerHourTolerance),
+                VolumeFlowUnit.MilliliterPerMinute => (MillilitersPerMinuteInOneCubicMeterPerSecond, MillilitersPerMinuteTolerance),
+                VolumeFlowUnit.MilliliterPerSecond => (MillilitersPerSecondInOneCubicMeterPerSecond, MillilitersPerSecondTolerance),
+                VolumeFlowUnit.MillionUsGallonsPerDay => (MillionUsGallonsPerDayInOneCubicMeterPerSecond, MillionUsGallonsPerDayTolerance),
+                VolumeFlowUnit.NanoliterPerDay => (NanolitersPerDayInOneCubicMeterPerSecond, NanolitersPerDayTolerance),
+                VolumeFlowUnit.NanoliterPerHour => (NanolitersPerHourInOneCubicMeterPerSecond, NanolitersPerHourTolerance),
+                VolumeFlowUnit.NanoliterPerMinute => (NanolitersPerMinuteInOneCubicMeterPerSecond, NanolitersPerMinuteTolerance),
+                VolumeFlowUnit.NanoliterPerSecond => (NanolitersPerSecondInOneCubicMeterPerSecond, NanolitersPerSecondTolerance),
+                VolumeFlowUnit.OilBarrelPerDay => (OilBarrelsPerDayInOneCubicMeterPerSecond, OilBarrelsPerDayTolerance),
+                VolumeFlowUnit.OilBarrelPerHour => (OilBarrelsPerHourInOneCubicMeterPerSecond, OilBarrelsPerHourTolerance),
+                VolumeFlowUnit.OilBarrelPerMinute => (OilBarrelsPerMinuteInOneCubicMeterPerSecond, OilBarrelsPerMinuteTolerance),
+                VolumeFlowUnit.OilBarrelPerSecond => (OilBarrelsPerSecondInOneCubicMeterPerSecond, OilBarrelsPerSecondTolerance),
+                VolumeFlowUnit.UkGallonPerDay => (UkGallonsPerDayInOneCubicMeterPerSecond, UkGallonsPerDayTolerance),
+                VolumeFlowUnit.UkGallonPerHour => (UkGallonsPerHourInOneCubicMeterPerSecond, UkGallonsPerHourTolerance),
+                VolumeFlowUnit.UkGallonPerMinute => (UkGallonsPerMinuteInOneCubicMeterPerSecond, UkGallonsPerMinuteTolerance),
+                VolumeFlowUnit.UkGallonPerSecond => (UkGallonsPerSecondInOneCubicMeterPerSecond, UkGallonsPerSecondTolerance),
+                VolumeFlowUnit.UsGallonPerDay => (UsGallonsPerDayInOneCubicMeterPerSecond, UsGallonsPerDayTolerance),
+                VolumeFlowUnit.UsGallonPerHour => (UsGallonsPerHourInOneCubicMeterPerSecond, UsGallonsPerHourTolerance),
+                VolumeFlowUnit.UsGallonPerMinute => (UsGallonsPerMinuteInOneCubicMeterPerSecond, UsGallonsPerMinuteTolerance),
+                VolumeFlowUnit.UsGallonPerSecond => (UsGallonsPerSecondInOneCubicMeterPerSecond, UsGallonsPerSecondTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { VolumeFlowUnit.AcreFootPerDay },
@@ -986,7 +1056,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(VolumeFlowUnit unit)
         {
-            var quantity = VolumeFlow.From(3.0, VolumeFlow.Units.First(unit => unit != VolumeFlow.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = VolumeFlow.Units.FirstOrDefault(u => u != VolumeFlow.BaseUnit && u != VolumeFlowUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == VolumeFlowUnit.Undefined)
+                fromUnit = VolumeFlow.BaseUnit;
+
+            var quantity = VolumeFlow.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

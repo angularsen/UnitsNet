@@ -108,6 +108,47 @@ namespace UnitsNet.Tests
         protected virtual double YardsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(LengthUnit unit)
+        {
+            return unit switch
+            {
+                LengthUnit.AstronomicalUnit => (AstronomicalUnitsInOneMeter, AstronomicalUnitsTolerance),
+                LengthUnit.Centimeter => (CentimetersInOneMeter, CentimetersTolerance),
+                LengthUnit.Chain => (ChainsInOneMeter, ChainsTolerance),
+                LengthUnit.Decimeter => (DecimetersInOneMeter, DecimetersTolerance),
+                LengthUnit.DtpPica => (DtpPicasInOneMeter, DtpPicasTolerance),
+                LengthUnit.DtpPoint => (DtpPointsInOneMeter, DtpPointsTolerance),
+                LengthUnit.Fathom => (FathomsInOneMeter, FathomsTolerance),
+                LengthUnit.Foot => (FeetInOneMeter, FeetTolerance),
+                LengthUnit.Hand => (HandsInOneMeter, HandsTolerance),
+                LengthUnit.Hectometer => (HectometersInOneMeter, HectometersTolerance),
+                LengthUnit.Inch => (InchesInOneMeter, InchesTolerance),
+                LengthUnit.KilolightYear => (KilolightYearsInOneMeter, KilolightYearsTolerance),
+                LengthUnit.Kilometer => (KilometersInOneMeter, KilometersTolerance),
+                LengthUnit.Kiloparsec => (KiloparsecsInOneMeter, KiloparsecsTolerance),
+                LengthUnit.LightYear => (LightYearsInOneMeter, LightYearsTolerance),
+                LengthUnit.MegalightYear => (MegalightYearsInOneMeter, MegalightYearsTolerance),
+                LengthUnit.Megaparsec => (MegaparsecsInOneMeter, MegaparsecsTolerance),
+                LengthUnit.Meter => (MetersInOneMeter, MetersTolerance),
+                LengthUnit.Microinch => (MicroinchesInOneMeter, MicroinchesTolerance),
+                LengthUnit.Micrometer => (MicrometersInOneMeter, MicrometersTolerance),
+                LengthUnit.Mil => (MilsInOneMeter, MilsTolerance),
+                LengthUnit.Mile => (MilesInOneMeter, MilesTolerance),
+                LengthUnit.Millimeter => (MillimetersInOneMeter, MillimetersTolerance),
+                LengthUnit.Nanometer => (NanometersInOneMeter, NanometersTolerance),
+                LengthUnit.NauticalMile => (NauticalMilesInOneMeter, NauticalMilesTolerance),
+                LengthUnit.Parsec => (ParsecsInOneMeter, ParsecsTolerance),
+                LengthUnit.PrinterPica => (PrinterPicasInOneMeter, PrinterPicasTolerance),
+                LengthUnit.PrinterPoint => (PrinterPointsInOneMeter, PrinterPointsTolerance),
+                LengthUnit.Shackle => (ShacklesInOneMeter, ShacklesTolerance),
+                LengthUnit.SolarRadius => (SolarRadiusesInOneMeter, SolarRadiusesTolerance),
+                LengthUnit.Twip => (TwipsInOneMeter, TwipsTolerance),
+                LengthUnit.UsSurveyFoot => (UsSurveyFeetInOneMeter, UsSurveyFeetTolerance),
+                LengthUnit.Yard => (YardsInOneMeter, YardsTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { LengthUnit.AstronomicalUnit },
@@ -609,7 +650,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(LengthUnit unit)
         {
-            var quantity = Length.From(3.0, Length.Units.First(unit => unit != Length.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Length.Units.FirstOrDefault(u => u != Length.BaseUnit && u != LengthUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == LengthUnit.Undefined)
+                fromUnit = Length.BaseUnit;
+
+            var quantity = Length.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

@@ -94,6 +94,40 @@ namespace UnitsNet.Tests
         protected virtual double TerabytesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(InformationUnit unit)
+        {
+            return unit switch
+            {
+                InformationUnit.Bit => (BitsInOneBit, BitsTolerance),
+                InformationUnit.Byte => (BytesInOneBit, BytesTolerance),
+                InformationUnit.Exabit => (ExabitsInOneBit, ExabitsTolerance),
+                InformationUnit.Exabyte => (ExabytesInOneBit, ExabytesTolerance),
+                InformationUnit.Exbibit => (ExbibitsInOneBit, ExbibitsTolerance),
+                InformationUnit.Exbibyte => (ExbibytesInOneBit, ExbibytesTolerance),
+                InformationUnit.Gibibit => (GibibitsInOneBit, GibibitsTolerance),
+                InformationUnit.Gibibyte => (GibibytesInOneBit, GibibytesTolerance),
+                InformationUnit.Gigabit => (GigabitsInOneBit, GigabitsTolerance),
+                InformationUnit.Gigabyte => (GigabytesInOneBit, GigabytesTolerance),
+                InformationUnit.Kibibit => (KibibitsInOneBit, KibibitsTolerance),
+                InformationUnit.Kibibyte => (KibibytesInOneBit, KibibytesTolerance),
+                InformationUnit.Kilobit => (KilobitsInOneBit, KilobitsTolerance),
+                InformationUnit.Kilobyte => (KilobytesInOneBit, KilobytesTolerance),
+                InformationUnit.Mebibit => (MebibitsInOneBit, MebibitsTolerance),
+                InformationUnit.Mebibyte => (MebibytesInOneBit, MebibytesTolerance),
+                InformationUnit.Megabit => (MegabitsInOneBit, MegabitsTolerance),
+                InformationUnit.Megabyte => (MegabytesInOneBit, MegabytesTolerance),
+                InformationUnit.Pebibit => (PebibitsInOneBit, PebibitsTolerance),
+                InformationUnit.Pebibyte => (PebibytesInOneBit, PebibytesTolerance),
+                InformationUnit.Petabit => (PetabitsInOneBit, PetabitsTolerance),
+                InformationUnit.Petabyte => (PetabytesInOneBit, PetabytesTolerance),
+                InformationUnit.Tebibit => (TebibitsInOneBit, TebibitsTolerance),
+                InformationUnit.Tebibyte => (TebibytesInOneBit, TebibytesTolerance),
+                InformationUnit.Terabit => (TerabitsInOneBit, TerabitsTolerance),
+                InformationUnit.Terabyte => (TerabytesInOneBit, TerabytesTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { InformationUnit.Bit },
@@ -493,7 +527,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(InformationUnit unit)
         {
-            var quantity = Information.From(3.0, Information.Units.First(unit => unit != Information.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Information.Units.FirstOrDefault(u => u != Information.BaseUnit && u != InformationUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == InformationUnit.Undefined)
+                fromUnit = Information.BaseUnit;
+
+            var quantity = Information.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

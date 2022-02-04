@@ -92,6 +92,39 @@ namespace UnitsNet.Tests
         protected virtual double WattHoursPerKilogramTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(SpecificEnergyUnit unit)
+        {
+            return unit switch
+            {
+                SpecificEnergyUnit.BtuPerPound => (BtuPerPoundInOneJoulePerKilogram, BtuPerPoundTolerance),
+                SpecificEnergyUnit.CaloriePerGram => (CaloriesPerGramInOneJoulePerKilogram, CaloriesPerGramTolerance),
+                SpecificEnergyUnit.GigawattDayPerKilogram => (GigawattDaysPerKilogramInOneJoulePerKilogram, GigawattDaysPerKilogramTolerance),
+                SpecificEnergyUnit.GigawattDayPerShortTon => (GigawattDaysPerShortTonInOneJoulePerKilogram, GigawattDaysPerShortTonTolerance),
+                SpecificEnergyUnit.GigawattDayPerTonne => (GigawattDaysPerTonneInOneJoulePerKilogram, GigawattDaysPerTonneTolerance),
+                SpecificEnergyUnit.GigawattHourPerKilogram => (GigawattHoursPerKilogramInOneJoulePerKilogram, GigawattHoursPerKilogramTolerance),
+                SpecificEnergyUnit.JoulePerKilogram => (JoulesPerKilogramInOneJoulePerKilogram, JoulesPerKilogramTolerance),
+                SpecificEnergyUnit.KilocaloriePerGram => (KilocaloriesPerGramInOneJoulePerKilogram, KilocaloriesPerGramTolerance),
+                SpecificEnergyUnit.KilojoulePerKilogram => (KilojoulesPerKilogramInOneJoulePerKilogram, KilojoulesPerKilogramTolerance),
+                SpecificEnergyUnit.KilowattDayPerKilogram => (KilowattDaysPerKilogramInOneJoulePerKilogram, KilowattDaysPerKilogramTolerance),
+                SpecificEnergyUnit.KilowattDayPerShortTon => (KilowattDaysPerShortTonInOneJoulePerKilogram, KilowattDaysPerShortTonTolerance),
+                SpecificEnergyUnit.KilowattDayPerTonne => (KilowattDaysPerTonneInOneJoulePerKilogram, KilowattDaysPerTonneTolerance),
+                SpecificEnergyUnit.KilowattHourPerKilogram => (KilowattHoursPerKilogramInOneJoulePerKilogram, KilowattHoursPerKilogramTolerance),
+                SpecificEnergyUnit.MegajoulePerKilogram => (MegajoulesPerKilogramInOneJoulePerKilogram, MegajoulesPerKilogramTolerance),
+                SpecificEnergyUnit.MegawattDayPerKilogram => (MegawattDaysPerKilogramInOneJoulePerKilogram, MegawattDaysPerKilogramTolerance),
+                SpecificEnergyUnit.MegawattDayPerShortTon => (MegawattDaysPerShortTonInOneJoulePerKilogram, MegawattDaysPerShortTonTolerance),
+                SpecificEnergyUnit.MegawattDayPerTonne => (MegawattDaysPerTonneInOneJoulePerKilogram, MegawattDaysPerTonneTolerance),
+                SpecificEnergyUnit.MegawattHourPerKilogram => (MegawattHoursPerKilogramInOneJoulePerKilogram, MegawattHoursPerKilogramTolerance),
+                SpecificEnergyUnit.TerawattDayPerKilogram => (TerawattDaysPerKilogramInOneJoulePerKilogram, TerawattDaysPerKilogramTolerance),
+                SpecificEnergyUnit.TerawattDayPerShortTon => (TerawattDaysPerShortTonInOneJoulePerKilogram, TerawattDaysPerShortTonTolerance),
+                SpecificEnergyUnit.TerawattDayPerTonne => (TerawattDaysPerTonneInOneJoulePerKilogram, TerawattDaysPerTonneTolerance),
+                SpecificEnergyUnit.WattDayPerKilogram => (WattDaysPerKilogramInOneJoulePerKilogram, WattDaysPerKilogramTolerance),
+                SpecificEnergyUnit.WattDayPerShortTon => (WattDaysPerShortTonInOneJoulePerKilogram, WattDaysPerShortTonTolerance),
+                SpecificEnergyUnit.WattDayPerTonne => (WattDaysPerTonneInOneJoulePerKilogram, WattDaysPerTonneTolerance),
+                SpecificEnergyUnit.WattHourPerKilogram => (WattHoursPerKilogramInOneJoulePerKilogram, WattHoursPerKilogramTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { SpecificEnergyUnit.BtuPerPound },
@@ -505,7 +538,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(SpecificEnergyUnit unit)
         {
-            var quantity = SpecificEnergy.From(3.0, SpecificEnergy.Units.First(unit => unit != SpecificEnergy.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = SpecificEnergy.Units.FirstOrDefault(u => u != SpecificEnergy.BaseUnit && u != SpecificEnergyUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == SpecificEnergyUnit.Undefined)
+                fromUnit = SpecificEnergy.BaseUnit;
+
+            var quantity = SpecificEnergy.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

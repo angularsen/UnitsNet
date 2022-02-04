@@ -52,6 +52,19 @@ namespace UnitsNet.Tests
         protected virtual double PoundForceFeetPerDegreesPerFeetTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(RotationalStiffnessPerLengthUnit unit)
+        {
+            return unit switch
+            {
+                RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter => (KilonewtonMetersPerRadianPerMeterInOneNewtonMeterPerRadianPerMeter, KilonewtonMetersPerRadianPerMeterTolerance),
+                RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot => (KilopoundForceFeetPerDegreesPerFeetInOneNewtonMeterPerRadianPerMeter, KilopoundForceFeetPerDegreesPerFeetTolerance),
+                RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter => (MeganewtonMetersPerRadianPerMeterInOneNewtonMeterPerRadianPerMeter, MeganewtonMetersPerRadianPerMeterTolerance),
+                RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter => (NewtonMetersPerRadianPerMeterInOneNewtonMeterPerRadianPerMeter, NewtonMetersPerRadianPerMeterTolerance),
+                RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot => (PoundForceFeetPerDegreesPerFeetInOneNewtonMeterPerRadianPerMeter, PoundForceFeetPerDegreesPerFeetTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter },
@@ -245,7 +258,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(RotationalStiffnessPerLengthUnit unit)
         {
-            var quantity = RotationalStiffnessPerLength.From(3.0, RotationalStiffnessPerLength.Units.First(unit => unit != RotationalStiffnessPerLength.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = RotationalStiffnessPerLength.Units.FirstOrDefault(u => u != RotationalStiffnessPerLength.BaseUnit && u != RotationalStiffnessPerLengthUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == RotationalStiffnessPerLengthUnit.Undefined)
+                fromUnit = RotationalStiffnessPerLength.BaseUnit;
+
+            var quantity = RotationalStiffnessPerLength.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

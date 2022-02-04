@@ -44,6 +44,15 @@ namespace UnitsNet.Tests
         protected virtual double WebersTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MagneticFluxUnit unit)
+        {
+            return unit switch
+            {
+                MagneticFluxUnit.Weber => (WebersInOneWeber, WebersTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { MagneticFluxUnit.Weber },
@@ -193,7 +202,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(MagneticFluxUnit unit)
         {
-            var quantity = MagneticFlux.From(3.0, MagneticFlux.Units.First(unit => unit != MagneticFlux.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = MagneticFlux.Units.FirstOrDefault(u => u != MagneticFlux.BaseUnit && u != MagneticFluxUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == MagneticFluxUnit.Undefined)
+                fromUnit = MagneticFlux.BaseUnit;
+
+            var quantity = MagneticFlux.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

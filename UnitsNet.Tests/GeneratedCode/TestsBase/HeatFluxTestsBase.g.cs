@@ -78,6 +78,32 @@ namespace UnitsNet.Tests
         protected virtual double WattsPerSquareMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(HeatFluxUnit unit)
+        {
+            return unit switch
+            {
+                HeatFluxUnit.BtuPerHourSquareFoot => (BtusPerHourSquareFootInOneWattPerSquareMeter, BtusPerHourSquareFootTolerance),
+                HeatFluxUnit.BtuPerMinuteSquareFoot => (BtusPerMinuteSquareFootInOneWattPerSquareMeter, BtusPerMinuteSquareFootTolerance),
+                HeatFluxUnit.BtuPerSecondSquareFoot => (BtusPerSecondSquareFootInOneWattPerSquareMeter, BtusPerSecondSquareFootTolerance),
+                HeatFluxUnit.BtuPerSecondSquareInch => (BtusPerSecondSquareInchInOneWattPerSquareMeter, BtusPerSecondSquareInchTolerance),
+                HeatFluxUnit.CaloriePerSecondSquareCentimeter => (CaloriesPerSecondSquareCentimeterInOneWattPerSquareMeter, CaloriesPerSecondSquareCentimeterTolerance),
+                HeatFluxUnit.CentiwattPerSquareMeter => (CentiwattsPerSquareMeterInOneWattPerSquareMeter, CentiwattsPerSquareMeterTolerance),
+                HeatFluxUnit.DeciwattPerSquareMeter => (DeciwattsPerSquareMeterInOneWattPerSquareMeter, DeciwattsPerSquareMeterTolerance),
+                HeatFluxUnit.KilocaloriePerHourSquareMeter => (KilocaloriesPerHourSquareMeterInOneWattPerSquareMeter, KilocaloriesPerHourSquareMeterTolerance),
+                HeatFluxUnit.KilocaloriePerSecondSquareCentimeter => (KilocaloriesPerSecondSquareCentimeterInOneWattPerSquareMeter, KilocaloriesPerSecondSquareCentimeterTolerance),
+                HeatFluxUnit.KilowattPerSquareMeter => (KilowattsPerSquareMeterInOneWattPerSquareMeter, KilowattsPerSquareMeterTolerance),
+                HeatFluxUnit.MicrowattPerSquareMeter => (MicrowattsPerSquareMeterInOneWattPerSquareMeter, MicrowattsPerSquareMeterTolerance),
+                HeatFluxUnit.MilliwattPerSquareMeter => (MilliwattsPerSquareMeterInOneWattPerSquareMeter, MilliwattsPerSquareMeterTolerance),
+                HeatFluxUnit.NanowattPerSquareMeter => (NanowattsPerSquareMeterInOneWattPerSquareMeter, NanowattsPerSquareMeterTolerance),
+                HeatFluxUnit.PoundForcePerFootSecond => (PoundsForcePerFootSecondInOneWattPerSquareMeter, PoundsForcePerFootSecondTolerance),
+                HeatFluxUnit.PoundPerSecondCubed => (PoundsPerSecondCubedInOneWattPerSquareMeter, PoundsPerSecondCubedTolerance),
+                HeatFluxUnit.WattPerSquareFoot => (WattsPerSquareFootInOneWattPerSquareMeter, WattsPerSquareFootTolerance),
+                HeatFluxUnit.WattPerSquareInch => (WattsPerSquareInchInOneWattPerSquareMeter, WattsPerSquareInchTolerance),
+                HeatFluxUnit.WattPerSquareMeter => (WattsPerSquareMeterInOneWattPerSquareMeter, WattsPerSquareMeterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { HeatFluxUnit.BtuPerHourSquareFoot },
@@ -414,7 +440,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(HeatFluxUnit unit)
         {
-            var quantity = HeatFlux.From(3.0, HeatFlux.Units.First(unit => unit != HeatFlux.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = HeatFlux.Units.FirstOrDefault(u => u != HeatFlux.BaseUnit && u != HeatFluxUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == HeatFluxUnit.Undefined)
+                fromUnit = HeatFlux.BaseUnit;
+
+            var quantity = HeatFlux.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

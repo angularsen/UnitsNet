@@ -108,6 +108,47 @@ namespace UnitsNet.Tests
         protected virtual double TonnesPerHourTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MassFlowUnit unit)
+        {
+            return unit switch
+            {
+                MassFlowUnit.CentigramPerDay => (CentigramsPerDayInOneGramPerSecond, CentigramsPerDayTolerance),
+                MassFlowUnit.CentigramPerSecond => (CentigramsPerSecondInOneGramPerSecond, CentigramsPerSecondTolerance),
+                MassFlowUnit.DecagramPerDay => (DecagramsPerDayInOneGramPerSecond, DecagramsPerDayTolerance),
+                MassFlowUnit.DecagramPerSecond => (DecagramsPerSecondInOneGramPerSecond, DecagramsPerSecondTolerance),
+                MassFlowUnit.DecigramPerDay => (DecigramsPerDayInOneGramPerSecond, DecigramsPerDayTolerance),
+                MassFlowUnit.DecigramPerSecond => (DecigramsPerSecondInOneGramPerSecond, DecigramsPerSecondTolerance),
+                MassFlowUnit.GramPerDay => (GramsPerDayInOneGramPerSecond, GramsPerDayTolerance),
+                MassFlowUnit.GramPerHour => (GramsPerHourInOneGramPerSecond, GramsPerHourTolerance),
+                MassFlowUnit.GramPerSecond => (GramsPerSecondInOneGramPerSecond, GramsPerSecondTolerance),
+                MassFlowUnit.HectogramPerDay => (HectogramsPerDayInOneGramPerSecond, HectogramsPerDayTolerance),
+                MassFlowUnit.HectogramPerSecond => (HectogramsPerSecondInOneGramPerSecond, HectogramsPerSecondTolerance),
+                MassFlowUnit.KilogramPerDay => (KilogramsPerDayInOneGramPerSecond, KilogramsPerDayTolerance),
+                MassFlowUnit.KilogramPerHour => (KilogramsPerHourInOneGramPerSecond, KilogramsPerHourTolerance),
+                MassFlowUnit.KilogramPerMinute => (KilogramsPerMinuteInOneGramPerSecond, KilogramsPerMinuteTolerance),
+                MassFlowUnit.KilogramPerSecond => (KilogramsPerSecondInOneGramPerSecond, KilogramsPerSecondTolerance),
+                MassFlowUnit.MegagramPerDay => (MegagramsPerDayInOneGramPerSecond, MegagramsPerDayTolerance),
+                MassFlowUnit.MegapoundPerDay => (MegapoundsPerDayInOneGramPerSecond, MegapoundsPerDayTolerance),
+                MassFlowUnit.MegapoundPerHour => (MegapoundsPerHourInOneGramPerSecond, MegapoundsPerHourTolerance),
+                MassFlowUnit.MegapoundPerMinute => (MegapoundsPerMinuteInOneGramPerSecond, MegapoundsPerMinuteTolerance),
+                MassFlowUnit.MegapoundPerSecond => (MegapoundsPerSecondInOneGramPerSecond, MegapoundsPerSecondTolerance),
+                MassFlowUnit.MicrogramPerDay => (MicrogramsPerDayInOneGramPerSecond, MicrogramsPerDayTolerance),
+                MassFlowUnit.MicrogramPerSecond => (MicrogramsPerSecondInOneGramPerSecond, MicrogramsPerSecondTolerance),
+                MassFlowUnit.MilligramPerDay => (MilligramsPerDayInOneGramPerSecond, MilligramsPerDayTolerance),
+                MassFlowUnit.MilligramPerSecond => (MilligramsPerSecondInOneGramPerSecond, MilligramsPerSecondTolerance),
+                MassFlowUnit.NanogramPerDay => (NanogramsPerDayInOneGramPerSecond, NanogramsPerDayTolerance),
+                MassFlowUnit.NanogramPerSecond => (NanogramsPerSecondInOneGramPerSecond, NanogramsPerSecondTolerance),
+                MassFlowUnit.PoundPerDay => (PoundsPerDayInOneGramPerSecond, PoundsPerDayTolerance),
+                MassFlowUnit.PoundPerHour => (PoundsPerHourInOneGramPerSecond, PoundsPerHourTolerance),
+                MassFlowUnit.PoundPerMinute => (PoundsPerMinuteInOneGramPerSecond, PoundsPerMinuteTolerance),
+                MassFlowUnit.PoundPerSecond => (PoundsPerSecondInOneGramPerSecond, PoundsPerSecondTolerance),
+                MassFlowUnit.ShortTonPerHour => (ShortTonsPerHourInOneGramPerSecond, ShortTonsPerHourTolerance),
+                MassFlowUnit.TonnePerDay => (TonnesPerDayInOneGramPerSecond, TonnesPerDayTolerance),
+                MassFlowUnit.TonnePerHour => (TonnesPerHourInOneGramPerSecond, TonnesPerHourTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { MassFlowUnit.CentigramPerDay },
@@ -609,7 +650,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(MassFlowUnit unit)
         {
-            var quantity = MassFlow.From(3.0, MassFlow.Units.First(unit => unit != MassFlow.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = MassFlow.Units.FirstOrDefault(u => u != MassFlow.BaseUnit && u != MassFlowUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == MassFlowUnit.Undefined)
+                fromUnit = MassFlow.BaseUnit;
+
+            var quantity = MassFlow.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

@@ -60,6 +60,23 @@ namespace UnitsNet.Tests
         protected virtual double StandardLitersPerMinuteTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(StandardVolumeFlowUnit unit)
+        {
+            return unit switch
+            {
+                StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute => (StandardCubicCentimetersPerMinuteInOneStandardCubicMeterPerSecond, StandardCubicCentimetersPerMinuteTolerance),
+                StandardVolumeFlowUnit.StandardCubicFootPerHour => (StandardCubicFeetPerHourInOneStandardCubicMeterPerSecond, StandardCubicFeetPerHourTolerance),
+                StandardVolumeFlowUnit.StandardCubicFootPerMinute => (StandardCubicFeetPerMinuteInOneStandardCubicMeterPerSecond, StandardCubicFeetPerMinuteTolerance),
+                StandardVolumeFlowUnit.StandardCubicFootPerSecond => (StandardCubicFeetPerSecondInOneStandardCubicMeterPerSecond, StandardCubicFeetPerSecondTolerance),
+                StandardVolumeFlowUnit.StandardCubicMeterPerDay => (StandardCubicMetersPerDayInOneStandardCubicMeterPerSecond, StandardCubicMetersPerDayTolerance),
+                StandardVolumeFlowUnit.StandardCubicMeterPerHour => (StandardCubicMetersPerHourInOneStandardCubicMeterPerSecond, StandardCubicMetersPerHourTolerance),
+                StandardVolumeFlowUnit.StandardCubicMeterPerMinute => (StandardCubicMetersPerMinuteInOneStandardCubicMeterPerSecond, StandardCubicMetersPerMinuteTolerance),
+                StandardVolumeFlowUnit.StandardCubicMeterPerSecond => (StandardCubicMetersPerSecondInOneStandardCubicMeterPerSecond, StandardCubicMetersPerSecondTolerance),
+                StandardVolumeFlowUnit.StandardLiterPerMinute => (StandardLitersPerMinuteInOneStandardCubicMeterPerSecond, StandardLitersPerMinuteTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute },
@@ -297,7 +314,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(StandardVolumeFlowUnit unit)
         {
-            var quantity = StandardVolumeFlow.From(3.0, StandardVolumeFlow.Units.First(unit => unit != StandardVolumeFlow.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = StandardVolumeFlow.Units.FirstOrDefault(u => u != StandardVolumeFlow.BaseUnit && u != StandardVolumeFlowUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == StandardVolumeFlowUnit.Undefined)
+                fromUnit = StandardVolumeFlow.BaseUnit;
+
+            var quantity = StandardVolumeFlow.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

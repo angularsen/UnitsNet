@@ -64,6 +64,25 @@ namespace UnitsNet.Tests
         protected virtual double InverseUsSurveySquareFeetTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ReciprocalAreaUnit unit)
+        {
+            return unit switch
+            {
+                ReciprocalAreaUnit.InverseSquareCentimeter => (InverseSquareCentimetersInOneInverseSquareMeter, InverseSquareCentimetersTolerance),
+                ReciprocalAreaUnit.InverseSquareDecimeter => (InverseSquareDecimetersInOneInverseSquareMeter, InverseSquareDecimetersTolerance),
+                ReciprocalAreaUnit.InverseSquareFoot => (InverseSquareFeetInOneInverseSquareMeter, InverseSquareFeetTolerance),
+                ReciprocalAreaUnit.InverseSquareInch => (InverseSquareInchesInOneInverseSquareMeter, InverseSquareInchesTolerance),
+                ReciprocalAreaUnit.InverseSquareKilometer => (InverseSquareKilometersInOneInverseSquareMeter, InverseSquareKilometersTolerance),
+                ReciprocalAreaUnit.InverseSquareMeter => (InverseSquareMetersInOneInverseSquareMeter, InverseSquareMetersTolerance),
+                ReciprocalAreaUnit.InverseSquareMicrometer => (InverseSquareMicrometersInOneInverseSquareMeter, InverseSquareMicrometersTolerance),
+                ReciprocalAreaUnit.InverseSquareMile => (InverseSquareMilesInOneInverseSquareMeter, InverseSquareMilesTolerance),
+                ReciprocalAreaUnit.InverseSquareMillimeter => (InverseSquareMillimetersInOneInverseSquareMeter, InverseSquareMillimetersTolerance),
+                ReciprocalAreaUnit.InverseSquareYard => (InverseSquareYardsInOneInverseSquareMeter, InverseSquareYardsTolerance),
+                ReciprocalAreaUnit.InverseUsSurveySquareFoot => (InverseUsSurveySquareFeetInOneInverseSquareMeter, InverseUsSurveySquareFeetTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { ReciprocalAreaUnit.InverseSquareCentimeter },
@@ -323,7 +342,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(ReciprocalAreaUnit unit)
         {
-            var quantity = ReciprocalArea.From(3.0, ReciprocalArea.Units.First(unit => unit != ReciprocalArea.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ReciprocalArea.Units.FirstOrDefault(u => u != ReciprocalArea.BaseUnit && u != ReciprocalAreaUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ReciprocalAreaUnit.Undefined)
+                fromUnit = ReciprocalArea.BaseUnit;
+
+            var quantity = ReciprocalArea.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

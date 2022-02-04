@@ -44,6 +44,15 @@ namespace UnitsNet.Tests
         protected virtual double SteradiansTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(SolidAngleUnit unit)
+        {
+            return unit switch
+            {
+                SolidAngleUnit.Steradian => (SteradiansInOneSteradian, SteradiansTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { SolidAngleUnit.Steradian },
@@ -193,7 +202,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(SolidAngleUnit unit)
         {
-            var quantity = SolidAngle.From(3.0, SolidAngle.Units.First(unit => unit != SolidAngle.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = SolidAngle.Units.FirstOrDefault(u => u != SolidAngle.BaseUnit && u != SolidAngleUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == SolidAngleUnit.Undefined)
+                fromUnit = SolidAngle.BaseUnit;
+
+            var quantity = SolidAngle.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

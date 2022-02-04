@@ -44,6 +44,15 @@ namespace UnitsNet.Tests
         protected virtual double KilogramsPerSquareMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(AreaDensityUnit unit)
+        {
+            return unit switch
+            {
+                AreaDensityUnit.KilogramPerSquareMeter => (KilogramsPerSquareMeterInOneKilogramPerSquareMeter, KilogramsPerSquareMeterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { AreaDensityUnit.KilogramPerSquareMeter },
@@ -193,7 +202,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(AreaDensityUnit unit)
         {
-            var quantity = AreaDensity.From(3.0, AreaDensity.Units.First(unit => unit != AreaDensity.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = AreaDensity.Units.FirstOrDefault(u => u != AreaDensity.BaseUnit && u != AreaDensityUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == AreaDensityUnit.Undefined)
+                fromUnit = AreaDensity.BaseUnit;
+
+            var quantity = AreaDensity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

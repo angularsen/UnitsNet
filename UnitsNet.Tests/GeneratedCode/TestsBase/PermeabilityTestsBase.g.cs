@@ -44,6 +44,15 @@ namespace UnitsNet.Tests
         protected virtual double HenriesPerMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(PermeabilityUnit unit)
+        {
+            return unit switch
+            {
+                PermeabilityUnit.HenryPerMeter => (HenriesPerMeterInOneHenryPerMeter, HenriesPerMeterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { PermeabilityUnit.HenryPerMeter },
@@ -193,7 +202,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(PermeabilityUnit unit)
         {
-            var quantity = Permeability.From(3.0, Permeability.Units.First(unit => unit != Permeability.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Permeability.Units.FirstOrDefault(u => u != Permeability.BaseUnit && u != PermeabilityUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == PermeabilityUnit.Undefined)
+                fromUnit = Permeability.BaseUnit;
+
+            var quantity = Permeability.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

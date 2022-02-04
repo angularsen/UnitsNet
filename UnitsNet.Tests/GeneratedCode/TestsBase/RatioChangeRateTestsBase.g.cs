@@ -46,6 +46,16 @@ namespace UnitsNet.Tests
         protected virtual double PercentsPerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(RatioChangeRateUnit unit)
+        {
+            return unit switch
+            {
+                RatioChangeRateUnit.DecimalFractionPerSecond => (DecimalFractionsPerSecondInOneDecimalFractionPerSecond, DecimalFractionsPerSecondTolerance),
+                RatioChangeRateUnit.PercentPerSecond => (PercentsPerSecondInOneDecimalFractionPerSecond, PercentsPerSecondTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { RatioChangeRateUnit.DecimalFractionPerSecond },
@@ -206,7 +216,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(RatioChangeRateUnit unit)
         {
-            var quantity = RatioChangeRate.From(3.0, RatioChangeRate.Units.First(unit => unit != RatioChangeRate.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = RatioChangeRate.Units.FirstOrDefault(u => u != RatioChangeRate.BaseUnit && u != RatioChangeRateUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == RatioChangeRateUnit.Undefined)
+                fromUnit = RatioChangeRate.BaseUnit;
+
+            var quantity = RatioChangeRate.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

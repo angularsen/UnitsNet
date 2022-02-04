@@ -60,6 +60,23 @@ namespace UnitsNet.Tests
         protected virtual double MegajoulesPerKilogramKelvinTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(SpecificEntropyUnit unit)
+        {
+            return unit switch
+            {
+                SpecificEntropyUnit.BtuPerPoundFahrenheit => (BtusPerPoundFahrenheitInOneJoulePerKilogramKelvin, BtusPerPoundFahrenheitTolerance),
+                SpecificEntropyUnit.CaloriePerGramKelvin => (CaloriesPerGramKelvinInOneJoulePerKilogramKelvin, CaloriesPerGramKelvinTolerance),
+                SpecificEntropyUnit.JoulePerKilogramDegreeCelsius => (JoulesPerKilogramDegreeCelsiusInOneJoulePerKilogramKelvin, JoulesPerKilogramDegreeCelsiusTolerance),
+                SpecificEntropyUnit.JoulePerKilogramKelvin => (JoulesPerKilogramKelvinInOneJoulePerKilogramKelvin, JoulesPerKilogramKelvinTolerance),
+                SpecificEntropyUnit.KilocaloriePerGramKelvin => (KilocaloriesPerGramKelvinInOneJoulePerKilogramKelvin, KilocaloriesPerGramKelvinTolerance),
+                SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius => (KilojoulesPerKilogramDegreeCelsiusInOneJoulePerKilogramKelvin, KilojoulesPerKilogramDegreeCelsiusTolerance),
+                SpecificEntropyUnit.KilojoulePerKilogramKelvin => (KilojoulesPerKilogramKelvinInOneJoulePerKilogramKelvin, KilojoulesPerKilogramKelvinTolerance),
+                SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius => (MegajoulesPerKilogramDegreeCelsiusInOneJoulePerKilogramKelvin, MegajoulesPerKilogramDegreeCelsiusTolerance),
+                SpecificEntropyUnit.MegajoulePerKilogramKelvin => (MegajoulesPerKilogramKelvinInOneJoulePerKilogramKelvin, MegajoulesPerKilogramKelvinTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { SpecificEntropyUnit.BtuPerPoundFahrenheit },
@@ -297,7 +314,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(SpecificEntropyUnit unit)
         {
-            var quantity = SpecificEntropy.From(3.0, SpecificEntropy.Units.First(unit => unit != SpecificEntropy.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = SpecificEntropy.Units.FirstOrDefault(u => u != SpecificEntropy.BaseUnit && u != SpecificEntropyUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == SpecificEntropyUnit.Undefined)
+                fromUnit = SpecificEntropy.BaseUnit;
+
+            var quantity = SpecificEntropy.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

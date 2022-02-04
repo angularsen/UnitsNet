@@ -62,6 +62,24 @@ namespace UnitsNet.Tests
         protected virtual double InverseYardsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ReciprocalLengthUnit unit)
+        {
+            return unit switch
+            {
+                ReciprocalLengthUnit.InverseCentimeter => (InverseCentimetersInOneInverseMeter, InverseCentimetersTolerance),
+                ReciprocalLengthUnit.InverseFoot => (InverseFeetInOneInverseMeter, InverseFeetTolerance),
+                ReciprocalLengthUnit.InverseInch => (InverseInchesInOneInverseMeter, InverseInchesTolerance),
+                ReciprocalLengthUnit.InverseMeter => (InverseMetersInOneInverseMeter, InverseMetersTolerance),
+                ReciprocalLengthUnit.InverseMicroinch => (InverseMicroinchesInOneInverseMeter, InverseMicroinchesTolerance),
+                ReciprocalLengthUnit.InverseMil => (InverseMilsInOneInverseMeter, InverseMilsTolerance),
+                ReciprocalLengthUnit.InverseMile => (InverseMilesInOneInverseMeter, InverseMilesTolerance),
+                ReciprocalLengthUnit.InverseMillimeter => (InverseMillimetersInOneInverseMeter, InverseMillimetersTolerance),
+                ReciprocalLengthUnit.InverseUsSurveyFoot => (InverseUsSurveyFeetInOneInverseMeter, InverseUsSurveyFeetTolerance),
+                ReciprocalLengthUnit.InverseYard => (InverseYardsInOneInverseMeter, InverseYardsTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { ReciprocalLengthUnit.InverseCentimeter },
@@ -310,7 +328,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(ReciprocalLengthUnit unit)
         {
-            var quantity = ReciprocalLength.From(3.0, ReciprocalLength.Units.First(unit => unit != ReciprocalLength.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ReciprocalLength.Units.FirstOrDefault(u => u != ReciprocalLength.BaseUnit && u != ReciprocalLengthUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ReciprocalLengthUnit.Undefined)
+                fromUnit = ReciprocalLength.BaseUnit;
+
+            var quantity = ReciprocalLength.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

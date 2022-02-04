@@ -50,6 +50,18 @@ namespace UnitsNet.Tests
         protected virtual double VoltamperesReactiveTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ReactivePowerUnit unit)
+        {
+            return unit switch
+            {
+                ReactivePowerUnit.GigavoltampereReactive => (GigavoltamperesReactiveInOneVoltampereReactive, GigavoltamperesReactiveTolerance),
+                ReactivePowerUnit.KilovoltampereReactive => (KilovoltamperesReactiveInOneVoltampereReactive, KilovoltamperesReactiveTolerance),
+                ReactivePowerUnit.MegavoltampereReactive => (MegavoltamperesReactiveInOneVoltampereReactive, MegavoltamperesReactiveTolerance),
+                ReactivePowerUnit.VoltampereReactive => (VoltamperesReactiveInOneVoltampereReactive, VoltamperesReactiveTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { ReactivePowerUnit.GigavoltampereReactive },
@@ -232,7 +244,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(ReactivePowerUnit unit)
         {
-            var quantity = ReactivePower.From(3.0, ReactivePower.Units.First(unit => unit != ReactivePower.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ReactivePower.Units.FirstOrDefault(u => u != ReactivePower.BaseUnit && u != ReactivePowerUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ReactivePowerUnit.Undefined)
+                fromUnit = ReactivePower.BaseUnit;
+
+            var quantity = ReactivePower.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

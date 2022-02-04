@@ -56,6 +56,21 @@ namespace UnitsNet.Tests
         protected virtual double PicofaradsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(CapacitanceUnit unit)
+        {
+            return unit switch
+            {
+                CapacitanceUnit.Farad => (FaradsInOneFarad, FaradsTolerance),
+                CapacitanceUnit.Kilofarad => (KilofaradsInOneFarad, KilofaradsTolerance),
+                CapacitanceUnit.Megafarad => (MegafaradsInOneFarad, MegafaradsTolerance),
+                CapacitanceUnit.Microfarad => (MicrofaradsInOneFarad, MicrofaradsTolerance),
+                CapacitanceUnit.Millifarad => (MillifaradsInOneFarad, MillifaradsTolerance),
+                CapacitanceUnit.Nanofarad => (NanofaradsInOneFarad, NanofaradsTolerance),
+                CapacitanceUnit.Picofarad => (PicofaradsInOneFarad, PicofaradsTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { CapacitanceUnit.Farad },
@@ -271,7 +286,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(CapacitanceUnit unit)
         {
-            var quantity = Capacitance.From(3.0, Capacitance.Units.First(unit => unit != Capacitance.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Capacitance.Units.FirstOrDefault(u => u != Capacitance.BaseUnit && u != CapacitanceUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == CapacitanceUnit.Undefined)
+                fromUnit = Capacitance.BaseUnit;
+
+            var quantity = Capacitance.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

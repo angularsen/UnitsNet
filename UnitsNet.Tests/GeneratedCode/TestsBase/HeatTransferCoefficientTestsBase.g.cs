@@ -48,6 +48,17 @@ namespace UnitsNet.Tests
         protected virtual double WattsPerSquareMeterKelvinTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(HeatTransferCoefficientUnit unit)
+        {
+            return unit switch
+            {
+                HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit => (BtusPerSquareFootDegreeFahrenheitInOneWattPerSquareMeterKelvin, BtusPerSquareFootDegreeFahrenheitTolerance),
+                HeatTransferCoefficientUnit.WattPerSquareMeterCelsius => (WattsPerSquareMeterCelsiusInOneWattPerSquareMeterKelvin, WattsPerSquareMeterCelsiusTolerance),
+                HeatTransferCoefficientUnit.WattPerSquareMeterKelvin => (WattsPerSquareMeterKelvinInOneWattPerSquareMeterKelvin, WattsPerSquareMeterKelvinTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit },
@@ -219,7 +230,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(HeatTransferCoefficientUnit unit)
         {
-            var quantity = HeatTransferCoefficient.From(3.0, HeatTransferCoefficient.Units.First(unit => unit != HeatTransferCoefficient.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = HeatTransferCoefficient.Units.FirstOrDefault(u => u != HeatTransferCoefficient.BaseUnit && u != HeatTransferCoefficientUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == HeatTransferCoefficientUnit.Undefined)
+                fromUnit = HeatTransferCoefficient.BaseUnit;
+
+            var quantity = HeatTransferCoefficient.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

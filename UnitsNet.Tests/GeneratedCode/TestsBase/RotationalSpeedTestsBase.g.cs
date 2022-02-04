@@ -68,6 +68,27 @@ namespace UnitsNet.Tests
         protected virtual double RevolutionsPerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(RotationalSpeedUnit unit)
+        {
+            return unit switch
+            {
+                RotationalSpeedUnit.CentiradianPerSecond => (CentiradiansPerSecondInOneRadianPerSecond, CentiradiansPerSecondTolerance),
+                RotationalSpeedUnit.DeciradianPerSecond => (DeciradiansPerSecondInOneRadianPerSecond, DeciradiansPerSecondTolerance),
+                RotationalSpeedUnit.DegreePerMinute => (DegreesPerMinuteInOneRadianPerSecond, DegreesPerMinuteTolerance),
+                RotationalSpeedUnit.DegreePerSecond => (DegreesPerSecondInOneRadianPerSecond, DegreesPerSecondTolerance),
+                RotationalSpeedUnit.MicrodegreePerSecond => (MicrodegreesPerSecondInOneRadianPerSecond, MicrodegreesPerSecondTolerance),
+                RotationalSpeedUnit.MicroradianPerSecond => (MicroradiansPerSecondInOneRadianPerSecond, MicroradiansPerSecondTolerance),
+                RotationalSpeedUnit.MillidegreePerSecond => (MillidegreesPerSecondInOneRadianPerSecond, MillidegreesPerSecondTolerance),
+                RotationalSpeedUnit.MilliradianPerSecond => (MilliradiansPerSecondInOneRadianPerSecond, MilliradiansPerSecondTolerance),
+                RotationalSpeedUnit.NanodegreePerSecond => (NanodegreesPerSecondInOneRadianPerSecond, NanodegreesPerSecondTolerance),
+                RotationalSpeedUnit.NanoradianPerSecond => (NanoradiansPerSecondInOneRadianPerSecond, NanoradiansPerSecondTolerance),
+                RotationalSpeedUnit.RadianPerSecond => (RadiansPerSecondInOneRadianPerSecond, RadiansPerSecondTolerance),
+                RotationalSpeedUnit.RevolutionPerMinute => (RevolutionsPerMinuteInOneRadianPerSecond, RevolutionsPerMinuteTolerance),
+                RotationalSpeedUnit.RevolutionPerSecond => (RevolutionsPerSecondInOneRadianPerSecond, RevolutionsPerSecondTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { RotationalSpeedUnit.CentiradianPerSecond },
@@ -349,7 +370,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(RotationalSpeedUnit unit)
         {
-            var quantity = RotationalSpeed.From(3.0, RotationalSpeed.Units.First(unit => unit != RotationalSpeed.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = RotationalSpeed.Units.FirstOrDefault(u => u != RotationalSpeed.BaseUnit && u != RotationalSpeedUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == RotationalSpeedUnit.Undefined)
+                fromUnit = RotationalSpeed.BaseUnit;
+
+            var quantity = RotationalSpeed.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

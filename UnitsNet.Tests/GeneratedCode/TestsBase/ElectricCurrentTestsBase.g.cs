@@ -58,6 +58,22 @@ namespace UnitsNet.Tests
         protected virtual double PicoamperesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricCurrentUnit unit)
+        {
+            return unit switch
+            {
+                ElectricCurrentUnit.Ampere => (AmperesInOneAmpere, AmperesTolerance),
+                ElectricCurrentUnit.Centiampere => (CentiamperesInOneAmpere, CentiamperesTolerance),
+                ElectricCurrentUnit.Kiloampere => (KiloamperesInOneAmpere, KiloamperesTolerance),
+                ElectricCurrentUnit.Megaampere => (MegaamperesInOneAmpere, MegaamperesTolerance),
+                ElectricCurrentUnit.Microampere => (MicroamperesInOneAmpere, MicroamperesTolerance),
+                ElectricCurrentUnit.Milliampere => (MilliamperesInOneAmpere, MilliamperesTolerance),
+                ElectricCurrentUnit.Nanoampere => (NanoamperesInOneAmpere, NanoamperesTolerance),
+                ElectricCurrentUnit.Picoampere => (PicoamperesInOneAmpere, PicoamperesTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { ElectricCurrentUnit.Ampere },
@@ -284,7 +300,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(ElectricCurrentUnit unit)
         {
-            var quantity = ElectricCurrent.From(3.0, ElectricCurrent.Units.First(unit => unit != ElectricCurrent.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ElectricCurrent.Units.FirstOrDefault(u => u != ElectricCurrent.BaseUnit && u != ElectricCurrentUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ElectricCurrentUnit.Undefined)
+                fromUnit = ElectricCurrent.BaseUnit;
+
+            var quantity = ElectricCurrent.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

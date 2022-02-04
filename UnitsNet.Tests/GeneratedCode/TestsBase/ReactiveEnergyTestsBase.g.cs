@@ -48,6 +48,17 @@ namespace UnitsNet.Tests
         protected virtual double VoltampereReactiveHoursTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ReactiveEnergyUnit unit)
+        {
+            return unit switch
+            {
+                ReactiveEnergyUnit.KilovoltampereReactiveHour => (KilovoltampereReactiveHoursInOneVoltampereReactiveHour, KilovoltampereReactiveHoursTolerance),
+                ReactiveEnergyUnit.MegavoltampereReactiveHour => (MegavoltampereReactiveHoursInOneVoltampereReactiveHour, MegavoltampereReactiveHoursTolerance),
+                ReactiveEnergyUnit.VoltampereReactiveHour => (VoltampereReactiveHoursInOneVoltampereReactiveHour, VoltampereReactiveHoursTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { ReactiveEnergyUnit.KilovoltampereReactiveHour },
@@ -219,7 +230,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(ReactiveEnergyUnit unit)
         {
-            var quantity = ReactiveEnergy.From(3.0, ReactiveEnergy.Units.First(unit => unit != ReactiveEnergy.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ReactiveEnergy.Units.FirstOrDefault(u => u != ReactiveEnergy.BaseUnit && u != ReactiveEnergyUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ReactiveEnergyUnit.Undefined)
+                fromUnit = ReactiveEnergy.BaseUnit;
+
+            var quantity = ReactiveEnergy.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

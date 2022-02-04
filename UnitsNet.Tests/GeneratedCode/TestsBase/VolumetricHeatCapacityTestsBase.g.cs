@@ -60,6 +60,23 @@ namespace UnitsNet.Tests
         protected virtual double MegajoulesPerCubicMeterKelvinTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(VolumetricHeatCapacityUnit unit)
+        {
+            return unit switch
+            {
+                VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit => (BtusPerCubicFootDegreeFahrenheitInOneJoulePerCubicMeterKelvin, BtusPerCubicFootDegreeFahrenheitTolerance),
+                VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius => (CaloriesPerCubicCentimeterDegreeCelsiusInOneJoulePerCubicMeterKelvin, CaloriesPerCubicCentimeterDegreeCelsiusTolerance),
+                VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius => (JoulesPerCubicMeterDegreeCelsiusInOneJoulePerCubicMeterKelvin, JoulesPerCubicMeterDegreeCelsiusTolerance),
+                VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin => (JoulesPerCubicMeterKelvinInOneJoulePerCubicMeterKelvin, JoulesPerCubicMeterKelvinTolerance),
+                VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius => (KilocaloriesPerCubicCentimeterDegreeCelsiusInOneJoulePerCubicMeterKelvin, KilocaloriesPerCubicCentimeterDegreeCelsiusTolerance),
+                VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius => (KilojoulesPerCubicMeterDegreeCelsiusInOneJoulePerCubicMeterKelvin, KilojoulesPerCubicMeterDegreeCelsiusTolerance),
+                VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin => (KilojoulesPerCubicMeterKelvinInOneJoulePerCubicMeterKelvin, KilojoulesPerCubicMeterKelvinTolerance),
+                VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius => (MegajoulesPerCubicMeterDegreeCelsiusInOneJoulePerCubicMeterKelvin, MegajoulesPerCubicMeterDegreeCelsiusTolerance),
+                VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin => (MegajoulesPerCubicMeterKelvinInOneJoulePerCubicMeterKelvin, MegajoulesPerCubicMeterKelvinTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit },
@@ -297,7 +314,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(VolumetricHeatCapacityUnit unit)
         {
-            var quantity = VolumetricHeatCapacity.From(3.0, VolumetricHeatCapacity.Units.First(unit => unit != VolumetricHeatCapacity.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = VolumetricHeatCapacity.Units.FirstOrDefault(u => u != VolumetricHeatCapacity.BaseUnit && u != VolumetricHeatCapacityUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == VolumetricHeatCapacityUnit.Undefined)
+                fromUnit = VolumetricHeatCapacity.BaseUnit;
+
+            var quantity = VolumetricHeatCapacity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

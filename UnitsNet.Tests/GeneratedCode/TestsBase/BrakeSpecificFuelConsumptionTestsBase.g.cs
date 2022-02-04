@@ -48,6 +48,17 @@ namespace UnitsNet.Tests
         protected virtual double PoundsPerMechanicalHorsepowerHourTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(BrakeSpecificFuelConsumptionUnit unit)
+        {
+            return unit switch
+            {
+                BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour => (GramsPerKiloWattHourInOneKilogramPerJoule, GramsPerKiloWattHourTolerance),
+                BrakeSpecificFuelConsumptionUnit.KilogramPerJoule => (KilogramsPerJouleInOneKilogramPerJoule, KilogramsPerJouleTolerance),
+                BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour => (PoundsPerMechanicalHorsepowerHourInOneKilogramPerJoule, PoundsPerMechanicalHorsepowerHourTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour },
@@ -219,7 +230,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(BrakeSpecificFuelConsumptionUnit unit)
         {
-            var quantity = BrakeSpecificFuelConsumption.From(3.0, BrakeSpecificFuelConsumption.Units.First(unit => unit != BrakeSpecificFuelConsumption.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = BrakeSpecificFuelConsumption.Units.FirstOrDefault(u => u != BrakeSpecificFuelConsumption.BaseUnit && u != BrakeSpecificFuelConsumptionUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == BrakeSpecificFuelConsumptionUnit.Undefined)
+                fromUnit = BrakeSpecificFuelConsumption.BaseUnit;
+
+            var quantity = BrakeSpecificFuelConsumption.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

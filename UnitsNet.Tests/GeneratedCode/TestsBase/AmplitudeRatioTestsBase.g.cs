@@ -50,6 +50,18 @@ namespace UnitsNet.Tests
         protected virtual double DecibelVoltsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(AmplitudeRatioUnit unit)
+        {
+            return unit switch
+            {
+                AmplitudeRatioUnit.DecibelMicrovolt => (DecibelMicrovoltsInOneDecibelVolt, DecibelMicrovoltsTolerance),
+                AmplitudeRatioUnit.DecibelMillivolt => (DecibelMillivoltsInOneDecibelVolt, DecibelMillivoltsTolerance),
+                AmplitudeRatioUnit.DecibelUnloaded => (DecibelsUnloadedInOneDecibelVolt, DecibelsUnloadedTolerance),
+                AmplitudeRatioUnit.DecibelVolt => (DecibelVoltsInOneDecibelVolt, DecibelVoltsTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { AmplitudeRatioUnit.DecibelMicrovolt },
@@ -232,7 +244,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(AmplitudeRatioUnit unit)
         {
-            var quantity = AmplitudeRatio.From(3.0, AmplitudeRatio.Units.First(unit => unit != AmplitudeRatio.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = AmplitudeRatio.Units.FirstOrDefault(u => u != AmplitudeRatio.BaseUnit && u != AmplitudeRatioUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == AmplitudeRatioUnit.Undefined)
+                fromUnit = AmplitudeRatio.BaseUnit;
+
+            var quantity = AmplitudeRatio.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

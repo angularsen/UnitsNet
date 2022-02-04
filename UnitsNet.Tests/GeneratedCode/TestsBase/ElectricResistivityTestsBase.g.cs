@@ -70,6 +70,28 @@ namespace UnitsNet.Tests
         protected virtual double PicoohmMetersTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricResistivityUnit unit)
+        {
+            return unit switch
+            {
+                ElectricResistivityUnit.KiloohmCentimeter => (KiloohmsCentimeterInOneOhmMeter, KiloohmsCentimeterTolerance),
+                ElectricResistivityUnit.KiloohmMeter => (KiloohmMetersInOneOhmMeter, KiloohmMetersTolerance),
+                ElectricResistivityUnit.MegaohmCentimeter => (MegaohmsCentimeterInOneOhmMeter, MegaohmsCentimeterTolerance),
+                ElectricResistivityUnit.MegaohmMeter => (MegaohmMetersInOneOhmMeter, MegaohmMetersTolerance),
+                ElectricResistivityUnit.MicroohmCentimeter => (MicroohmsCentimeterInOneOhmMeter, MicroohmsCentimeterTolerance),
+                ElectricResistivityUnit.MicroohmMeter => (MicroohmMetersInOneOhmMeter, MicroohmMetersTolerance),
+                ElectricResistivityUnit.MilliohmCentimeter => (MilliohmsCentimeterInOneOhmMeter, MilliohmsCentimeterTolerance),
+                ElectricResistivityUnit.MilliohmMeter => (MilliohmMetersInOneOhmMeter, MilliohmMetersTolerance),
+                ElectricResistivityUnit.NanoohmCentimeter => (NanoohmsCentimeterInOneOhmMeter, NanoohmsCentimeterTolerance),
+                ElectricResistivityUnit.NanoohmMeter => (NanoohmMetersInOneOhmMeter, NanoohmMetersTolerance),
+                ElectricResistivityUnit.OhmCentimeter => (OhmsCentimeterInOneOhmMeter, OhmsCentimeterTolerance),
+                ElectricResistivityUnit.OhmMeter => (OhmMetersInOneOhmMeter, OhmMetersTolerance),
+                ElectricResistivityUnit.PicoohmCentimeter => (PicoohmsCentimeterInOneOhmMeter, PicoohmsCentimeterTolerance),
+                ElectricResistivityUnit.PicoohmMeter => (PicoohmMetersInOneOhmMeter, PicoohmMetersTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { ElectricResistivityUnit.KiloohmCentimeter },
@@ -362,7 +384,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(ElectricResistivityUnit unit)
         {
-            var quantity = ElectricResistivity.From(3.0, ElectricResistivity.Units.First(unit => unit != ElectricResistivity.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ElectricResistivity.Units.FirstOrDefault(u => u != ElectricResistivity.BaseUnit && u != ElectricResistivityUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ElectricResistivityUnit.Undefined)
+                fromUnit = ElectricResistivity.BaseUnit;
+
+            var quantity = ElectricResistivity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

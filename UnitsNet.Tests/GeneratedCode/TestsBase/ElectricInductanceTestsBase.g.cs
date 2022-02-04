@@ -50,6 +50,18 @@ namespace UnitsNet.Tests
         protected virtual double NanohenriesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricInductanceUnit unit)
+        {
+            return unit switch
+            {
+                ElectricInductanceUnit.Henry => (HenriesInOneHenry, HenriesTolerance),
+                ElectricInductanceUnit.Microhenry => (MicrohenriesInOneHenry, MicrohenriesTolerance),
+                ElectricInductanceUnit.Millihenry => (MillihenriesInOneHenry, MillihenriesTolerance),
+                ElectricInductanceUnit.Nanohenry => (NanohenriesInOneHenry, NanohenriesTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { ElectricInductanceUnit.Henry },
@@ -232,7 +244,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(ElectricInductanceUnit unit)
         {
-            var quantity = ElectricInductance.From(3.0, ElectricInductance.Units.First(unit => unit != ElectricInductance.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ElectricInductance.Units.FirstOrDefault(u => u != ElectricInductance.BaseUnit && u != ElectricInductanceUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ElectricInductanceUnit.Undefined)
+                fromUnit = ElectricInductance.BaseUnit;
+
+            var quantity = ElectricInductance.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

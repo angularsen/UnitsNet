@@ -132,6 +132,59 @@ namespace UnitsNet.Tests
         protected virtual double TorrsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(PressureUnit unit)
+        {
+            return unit switch
+            {
+                PressureUnit.Atmosphere => (AtmospheresInOnePascal, AtmospheresTolerance),
+                PressureUnit.Bar => (BarsInOnePascal, BarsTolerance),
+                PressureUnit.Centibar => (CentibarsInOnePascal, CentibarsTolerance),
+                PressureUnit.Decapascal => (DecapascalsInOnePascal, DecapascalsTolerance),
+                PressureUnit.Decibar => (DecibarsInOnePascal, DecibarsTolerance),
+                PressureUnit.DynePerSquareCentimeter => (DynesPerSquareCentimeterInOnePascal, DynesPerSquareCentimeterTolerance),
+                PressureUnit.FootOfElevation => (FeetOfElevationInOnePascal, FeetOfElevationTolerance),
+                PressureUnit.FootOfHead => (FeetOfHeadInOnePascal, FeetOfHeadTolerance),
+                PressureUnit.Gigapascal => (GigapascalsInOnePascal, GigapascalsTolerance),
+                PressureUnit.Hectopascal => (HectopascalsInOnePascal, HectopascalsTolerance),
+                PressureUnit.InchOfMercury => (InchesOfMercuryInOnePascal, InchesOfMercuryTolerance),
+                PressureUnit.InchOfWaterColumn => (InchesOfWaterColumnInOnePascal, InchesOfWaterColumnTolerance),
+                PressureUnit.Kilobar => (KilobarsInOnePascal, KilobarsTolerance),
+                PressureUnit.KilogramForcePerSquareCentimeter => (KilogramsForcePerSquareCentimeterInOnePascal, KilogramsForcePerSquareCentimeterTolerance),
+                PressureUnit.KilogramForcePerSquareMeter => (KilogramsForcePerSquareMeterInOnePascal, KilogramsForcePerSquareMeterTolerance),
+                PressureUnit.KilogramForcePerSquareMillimeter => (KilogramsForcePerSquareMillimeterInOnePascal, KilogramsForcePerSquareMillimeterTolerance),
+                PressureUnit.KilonewtonPerSquareCentimeter => (KilonewtonsPerSquareCentimeterInOnePascal, KilonewtonsPerSquareCentimeterTolerance),
+                PressureUnit.KilonewtonPerSquareMeter => (KilonewtonsPerSquareMeterInOnePascal, KilonewtonsPerSquareMeterTolerance),
+                PressureUnit.KilonewtonPerSquareMillimeter => (KilonewtonsPerSquareMillimeterInOnePascal, KilonewtonsPerSquareMillimeterTolerance),
+                PressureUnit.Kilopascal => (KilopascalsInOnePascal, KilopascalsTolerance),
+                PressureUnit.KilopoundForcePerSquareFoot => (KilopoundsForcePerSquareFootInOnePascal, KilopoundsForcePerSquareFootTolerance),
+                PressureUnit.KilopoundForcePerSquareInch => (KilopoundsForcePerSquareInchInOnePascal, KilopoundsForcePerSquareInchTolerance),
+                PressureUnit.Megabar => (MegabarsInOnePascal, MegabarsTolerance),
+                PressureUnit.MeganewtonPerSquareMeter => (MeganewtonsPerSquareMeterInOnePascal, MeganewtonsPerSquareMeterTolerance),
+                PressureUnit.Megapascal => (MegapascalsInOnePascal, MegapascalsTolerance),
+                PressureUnit.MeterOfElevation => (MetersOfElevationInOnePascal, MetersOfElevationTolerance),
+                PressureUnit.MeterOfHead => (MetersOfHeadInOnePascal, MetersOfHeadTolerance),
+                PressureUnit.Microbar => (MicrobarsInOnePascal, MicrobarsTolerance),
+                PressureUnit.Micropascal => (MicropascalsInOnePascal, MicropascalsTolerance),
+                PressureUnit.Millibar => (MillibarsInOnePascal, MillibarsTolerance),
+                PressureUnit.MillimeterOfMercury => (MillimetersOfMercuryInOnePascal, MillimetersOfMercuryTolerance),
+                PressureUnit.MillimeterOfWaterColumn => (MillimeterOfWaterColumnInOnePascal, MillimeterOfWaterColumnTolerance),
+                PressureUnit.Millipascal => (MillipascalsInOnePascal, MillipascalsTolerance),
+                PressureUnit.NewtonPerSquareCentimeter => (NewtonsPerSquareCentimeterInOnePascal, NewtonsPerSquareCentimeterTolerance),
+                PressureUnit.NewtonPerSquareMeter => (NewtonsPerSquareMeterInOnePascal, NewtonsPerSquareMeterTolerance),
+                PressureUnit.NewtonPerSquareMillimeter => (NewtonsPerSquareMillimeterInOnePascal, NewtonsPerSquareMillimeterTolerance),
+                PressureUnit.Pascal => (PascalsInOnePascal, PascalsTolerance),
+                PressureUnit.PoundForcePerSquareFoot => (PoundsForcePerSquareFootInOnePascal, PoundsForcePerSquareFootTolerance),
+                PressureUnit.PoundForcePerSquareInch => (PoundsForcePerSquareInchInOnePascal, PoundsForcePerSquareInchTolerance),
+                PressureUnit.PoundPerInchSecondSquared => (PoundsPerInchSecondSquaredInOnePascal, PoundsPerInchSecondSquaredTolerance),
+                PressureUnit.TechnicalAtmosphere => (TechnicalAtmospheresInOnePascal, TechnicalAtmospheresTolerance),
+                PressureUnit.TonneForcePerSquareCentimeter => (TonnesForcePerSquareCentimeterInOnePascal, TonnesForcePerSquareCentimeterTolerance),
+                PressureUnit.TonneForcePerSquareMeter => (TonnesForcePerSquareMeterInOnePascal, TonnesForcePerSquareMeterTolerance),
+                PressureUnit.TonneForcePerSquareMillimeter => (TonnesForcePerSquareMillimeterInOnePascal, TonnesForcePerSquareMillimeterTolerance),
+                PressureUnit.Torr => (TorrsInOnePascal, TorrsTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { PressureUnit.Atmosphere },
@@ -765,7 +818,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(PressureUnit unit)
         {
-            var quantity = Pressure.From(3.0, Pressure.Units.First(unit => unit != Pressure.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Pressure.Units.FirstOrDefault(u => u != Pressure.BaseUnit && u != PressureUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == PressureUnit.Undefined)
+                fromUnit = Pressure.BaseUnit;
+
+            var quantity = Pressure.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

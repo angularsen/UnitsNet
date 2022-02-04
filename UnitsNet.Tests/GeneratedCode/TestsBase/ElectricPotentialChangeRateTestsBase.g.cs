@@ -82,6 +82,34 @@ namespace UnitsNet.Tests
         protected virtual double VoltsPerSecondsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricPotentialChangeRateUnit unit)
+        {
+            return unit switch
+            {
+                ElectricPotentialChangeRateUnit.KilovoltPerHour => (KilovoltsPerHoursInOneVoltPerSecond, KilovoltsPerHoursTolerance),
+                ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond => (KilovoltsPerMicrosecondsInOneVoltPerSecond, KilovoltsPerMicrosecondsTolerance),
+                ElectricPotentialChangeRateUnit.KilovoltPerMinute => (KilovoltsPerMinutesInOneVoltPerSecond, KilovoltsPerMinutesTolerance),
+                ElectricPotentialChangeRateUnit.KilovoltPerSecond => (KilovoltsPerSecondsInOneVoltPerSecond, KilovoltsPerSecondsTolerance),
+                ElectricPotentialChangeRateUnit.MegavoltPerHour => (MegavoltsPerHoursInOneVoltPerSecond, MegavoltsPerHoursTolerance),
+                ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond => (MegavoltsPerMicrosecondsInOneVoltPerSecond, MegavoltsPerMicrosecondsTolerance),
+                ElectricPotentialChangeRateUnit.MegavoltPerMinute => (MegavoltsPerMinutesInOneVoltPerSecond, MegavoltsPerMinutesTolerance),
+                ElectricPotentialChangeRateUnit.MegavoltPerSecond => (MegavoltsPerSecondsInOneVoltPerSecond, MegavoltsPerSecondsTolerance),
+                ElectricPotentialChangeRateUnit.MicrovoltPerHour => (MicrovoltsPerHoursInOneVoltPerSecond, MicrovoltsPerHoursTolerance),
+                ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond => (MicrovoltsPerMicrosecondsInOneVoltPerSecond, MicrovoltsPerMicrosecondsTolerance),
+                ElectricPotentialChangeRateUnit.MicrovoltPerMinute => (MicrovoltsPerMinutesInOneVoltPerSecond, MicrovoltsPerMinutesTolerance),
+                ElectricPotentialChangeRateUnit.MicrovoltPerSecond => (MicrovoltsPerSecondsInOneVoltPerSecond, MicrovoltsPerSecondsTolerance),
+                ElectricPotentialChangeRateUnit.MillivoltPerHour => (MillivoltsPerHoursInOneVoltPerSecond, MillivoltsPerHoursTolerance),
+                ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond => (MillivoltsPerMicrosecondsInOneVoltPerSecond, MillivoltsPerMicrosecondsTolerance),
+                ElectricPotentialChangeRateUnit.MillivoltPerMinute => (MillivoltsPerMinutesInOneVoltPerSecond, MillivoltsPerMinutesTolerance),
+                ElectricPotentialChangeRateUnit.MillivoltPerSecond => (MillivoltsPerSecondsInOneVoltPerSecond, MillivoltsPerSecondsTolerance),
+                ElectricPotentialChangeRateUnit.VoltPerHour => (VoltsPerHoursInOneVoltPerSecond, VoltsPerHoursTolerance),
+                ElectricPotentialChangeRateUnit.VoltPerMicrosecond => (VoltsPerMicrosecondsInOneVoltPerSecond, VoltsPerMicrosecondsTolerance),
+                ElectricPotentialChangeRateUnit.VoltPerMinute => (VoltsPerMinutesInOneVoltPerSecond, VoltsPerMinutesTolerance),
+                ElectricPotentialChangeRateUnit.VoltPerSecond => (VoltsPerSecondsInOneVoltPerSecond, VoltsPerSecondsTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { ElectricPotentialChangeRateUnit.KilovoltPerHour },
@@ -440,7 +468,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(ElectricPotentialChangeRateUnit unit)
         {
-            var quantity = ElectricPotentialChangeRate.From(3.0, ElectricPotentialChangeRate.Units.First(unit => unit != ElectricPotentialChangeRate.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ElectricPotentialChangeRate.Units.FirstOrDefault(u => u != ElectricPotentialChangeRate.BaseUnit && u != ElectricPotentialChangeRateUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ElectricPotentialChangeRateUnit.Undefined)
+                fromUnit = ElectricPotentialChangeRate.BaseUnit;
+
+            var quantity = ElectricPotentialChangeRate.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }

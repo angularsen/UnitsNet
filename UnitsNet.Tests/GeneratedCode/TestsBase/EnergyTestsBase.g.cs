@@ -114,6 +114,50 @@ namespace UnitsNet.Tests
         protected virtual double WattHoursTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(EnergyUnit unit)
+        {
+            return unit switch
+            {
+                EnergyUnit.BritishThermalUnit => (BritishThermalUnitsInOneJoule, BritishThermalUnitsTolerance),
+                EnergyUnit.Calorie => (CaloriesInOneJoule, CaloriesTolerance),
+                EnergyUnit.DecathermEc => (DecathermsEcInOneJoule, DecathermsEcTolerance),
+                EnergyUnit.DecathermImperial => (DecathermsImperialInOneJoule, DecathermsImperialTolerance),
+                EnergyUnit.DecathermUs => (DecathermsUsInOneJoule, DecathermsUsTolerance),
+                EnergyUnit.ElectronVolt => (ElectronVoltsInOneJoule, ElectronVoltsTolerance),
+                EnergyUnit.Erg => (ErgsInOneJoule, ErgsTolerance),
+                EnergyUnit.FootPound => (FootPoundsInOneJoule, FootPoundsTolerance),
+                EnergyUnit.GigabritishThermalUnit => (GigabritishThermalUnitsInOneJoule, GigabritishThermalUnitsTolerance),
+                EnergyUnit.GigaelectronVolt => (GigaelectronVoltsInOneJoule, GigaelectronVoltsTolerance),
+                EnergyUnit.Gigajoule => (GigajoulesInOneJoule, GigajoulesTolerance),
+                EnergyUnit.GigawattDay => (GigawattDaysInOneJoule, GigawattDaysTolerance),
+                EnergyUnit.GigawattHour => (GigawattHoursInOneJoule, GigawattHoursTolerance),
+                EnergyUnit.HorsepowerHour => (HorsepowerHoursInOneJoule, HorsepowerHoursTolerance),
+                EnergyUnit.Joule => (JoulesInOneJoule, JoulesTolerance),
+                EnergyUnit.KilobritishThermalUnit => (KilobritishThermalUnitsInOneJoule, KilobritishThermalUnitsTolerance),
+                EnergyUnit.Kilocalorie => (KilocaloriesInOneJoule, KilocaloriesTolerance),
+                EnergyUnit.KiloelectronVolt => (KiloelectronVoltsInOneJoule, KiloelectronVoltsTolerance),
+                EnergyUnit.Kilojoule => (KilojoulesInOneJoule, KilojoulesTolerance),
+                EnergyUnit.KilowattDay => (KilowattDaysInOneJoule, KilowattDaysTolerance),
+                EnergyUnit.KilowattHour => (KilowattHoursInOneJoule, KilowattHoursTolerance),
+                EnergyUnit.MegabritishThermalUnit => (MegabritishThermalUnitsInOneJoule, MegabritishThermalUnitsTolerance),
+                EnergyUnit.Megacalorie => (MegacaloriesInOneJoule, MegacaloriesTolerance),
+                EnergyUnit.MegaelectronVolt => (MegaelectronVoltsInOneJoule, MegaelectronVoltsTolerance),
+                EnergyUnit.Megajoule => (MegajoulesInOneJoule, MegajoulesTolerance),
+                EnergyUnit.MegawattDay => (MegawattDaysInOneJoule, MegawattDaysTolerance),
+                EnergyUnit.MegawattHour => (MegawattHoursInOneJoule, MegawattHoursTolerance),
+                EnergyUnit.Millijoule => (MillijoulesInOneJoule, MillijoulesTolerance),
+                EnergyUnit.TeraelectronVolt => (TeraelectronVoltsInOneJoule, TeraelectronVoltsTolerance),
+                EnergyUnit.TerawattDay => (TerawattDaysInOneJoule, TerawattDaysTolerance),
+                EnergyUnit.TerawattHour => (TerawattHoursInOneJoule, TerawattHoursTolerance),
+                EnergyUnit.ThermEc => (ThermsEcInOneJoule, ThermsEcTolerance),
+                EnergyUnit.ThermImperial => (ThermsImperialInOneJoule, ThermsImperialTolerance),
+                EnergyUnit.ThermUs => (ThermsUsInOneJoule, ThermsUsTolerance),
+                EnergyUnit.WattDay => (WattDaysInOneJoule, WattDaysTolerance),
+                EnergyUnit.WattHour => (WattHoursInOneJoule, WattHoursTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { EnergyUnit.BritishThermalUnit },
@@ -648,7 +692,14 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_NoException(EnergyUnit unit)
         {
-            var quantity = Energy.From(3.0, Energy.Units.First(unit => unit != Energy.BaseUnit));
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Energy.Units.FirstOrDefault(u => u != Energy.BaseUnit && u != EnergyUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == EnergyUnit.Undefined)
+                fromUnit = Energy.BaseUnit;
+
+            var quantity = Energy.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
             // TODO: Meaningful check possible?
         }
