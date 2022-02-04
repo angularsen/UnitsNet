@@ -701,7 +701,16 @@ namespace UnitsNet
             if(!(unit is HeatTransferCoefficientUnit unitAsHeatTransferCoefficientUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(HeatTransferCoefficientUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsHeatTransferCoefficientUnit);
+            return ToUnit(unitAsHeatTransferCoefficientUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is HeatTransferCoefficientUnit unitAsHeatTransferCoefficientUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(HeatTransferCoefficientUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsHeatTransferCoefficientUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -724,6 +733,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<HeatTransferCoefficientUnit> IQuantity<HeatTransferCoefficientUnit>.ToUnit(HeatTransferCoefficientUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<HeatTransferCoefficientUnit> IQuantity<HeatTransferCoefficientUnit>.ToUnit(HeatTransferCoefficientUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<HeatTransferCoefficientUnit> IQuantity<HeatTransferCoefficientUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

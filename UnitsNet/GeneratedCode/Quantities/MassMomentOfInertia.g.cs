@@ -1126,7 +1126,16 @@ namespace UnitsNet
             if(!(unit is MassMomentOfInertiaUnit unitAsMassMomentOfInertiaUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassMomentOfInertiaUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsMassMomentOfInertiaUnit);
+            return ToUnit(unitAsMassMomentOfInertiaUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is MassMomentOfInertiaUnit unitAsMassMomentOfInertiaUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassMomentOfInertiaUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsMassMomentOfInertiaUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -1149,6 +1158,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<MassMomentOfInertiaUnit> IQuantity<MassMomentOfInertiaUnit>.ToUnit(MassMomentOfInertiaUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<MassMomentOfInertiaUnit> IQuantity<MassMomentOfInertiaUnit>.ToUnit(MassMomentOfInertiaUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<MassMomentOfInertiaUnit> IQuantity<MassMomentOfInertiaUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

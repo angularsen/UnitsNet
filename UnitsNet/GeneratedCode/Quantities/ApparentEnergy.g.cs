@@ -701,7 +701,16 @@ namespace UnitsNet
             if(!(unit is ApparentEnergyUnit unitAsApparentEnergyUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ApparentEnergyUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsApparentEnergyUnit);
+            return ToUnit(unitAsApparentEnergyUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is ApparentEnergyUnit unitAsApparentEnergyUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ApparentEnergyUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsApparentEnergyUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -724,6 +733,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ApparentEnergyUnit> IQuantity<ApparentEnergyUnit>.ToUnit(ApparentEnergyUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<ApparentEnergyUnit> IQuantity<ApparentEnergyUnit>.ToUnit(ApparentEnergyUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<ApparentEnergyUnit> IQuantity<ApparentEnergyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

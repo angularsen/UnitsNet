@@ -721,7 +721,16 @@ namespace UnitsNet
             if(!(unit is FuelEfficiencyUnit unitAsFuelEfficiencyUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(FuelEfficiencyUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsFuelEfficiencyUnit);
+            return ToUnit(unitAsFuelEfficiencyUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is FuelEfficiencyUnit unitAsFuelEfficiencyUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(FuelEfficiencyUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsFuelEfficiencyUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -744,6 +753,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<FuelEfficiencyUnit> IQuantity<FuelEfficiencyUnit>.ToUnit(FuelEfficiencyUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<FuelEfficiencyUnit> IQuantity<FuelEfficiencyUnit>.ToUnit(FuelEfficiencyUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<FuelEfficiencyUnit> IQuantity<FuelEfficiencyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

@@ -905,7 +905,16 @@ namespace UnitsNet
             if(!(unit is ForceUnit unitAsForceUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsForceUnit);
+            return ToUnit(unitAsForceUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is ForceUnit unitAsForceUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsForceUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -928,6 +937,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ForceUnit> IQuantity<ForceUnit>.ToUnit(ForceUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<ForceUnit> IQuantity<ForceUnit>.ToUnit(ForceUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<ForceUnit> IQuantity<ForceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

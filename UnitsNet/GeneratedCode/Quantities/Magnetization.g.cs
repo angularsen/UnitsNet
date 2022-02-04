@@ -670,7 +670,16 @@ namespace UnitsNet
             if(!(unit is MagnetizationUnit unitAsMagnetizationUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MagnetizationUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsMagnetizationUnit);
+            return ToUnit(unitAsMagnetizationUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is MagnetizationUnit unitAsMagnetizationUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MagnetizationUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsMagnetizationUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -693,6 +702,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<MagnetizationUnit> IQuantity<MagnetizationUnit>.ToUnit(MagnetizationUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<MagnetizationUnit> IQuantity<MagnetizationUnit>.ToUnit(MagnetizationUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<MagnetizationUnit> IQuantity<MagnetizationUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

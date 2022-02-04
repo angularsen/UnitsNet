@@ -687,7 +687,16 @@ namespace UnitsNet
             if(!(unit is ThermalConductivityUnit unitAsThermalConductivityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ThermalConductivityUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsThermalConductivityUnit);
+            return ToUnit(unitAsThermalConductivityUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is ThermalConductivityUnit unitAsThermalConductivityUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ThermalConductivityUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsThermalConductivityUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -710,6 +719,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ThermalConductivityUnit> IQuantity<ThermalConductivityUnit>.ToUnit(ThermalConductivityUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<ThermalConductivityUnit> IQuantity<ThermalConductivityUnit>.ToUnit(ThermalConductivityUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<ThermalConductivityUnit> IQuantity<ThermalConductivityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

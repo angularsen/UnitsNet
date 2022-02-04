@@ -670,7 +670,16 @@ namespace UnitsNet
             if(!(unit is ElectricChargeDensityUnit unitAsElectricChargeDensityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricChargeDensityUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsElectricChargeDensityUnit);
+            return ToUnit(unitAsElectricChargeDensityUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is ElectricChargeDensityUnit unitAsElectricChargeDensityUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricChargeDensityUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsElectricChargeDensityUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -693,6 +702,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ElectricChargeDensityUnit> IQuantity<ElectricChargeDensityUnit>.ToUnit(ElectricChargeDensityUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<ElectricChargeDensityUnit> IQuantity<ElectricChargeDensityUnit>.ToUnit(ElectricChargeDensityUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<ElectricChargeDensityUnit> IQuantity<ElectricChargeDensityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

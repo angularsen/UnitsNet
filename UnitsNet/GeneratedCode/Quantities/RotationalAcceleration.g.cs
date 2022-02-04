@@ -718,7 +718,16 @@ namespace UnitsNet
             if(!(unit is RotationalAccelerationUnit unitAsRotationalAccelerationUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalAccelerationUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsRotationalAccelerationUnit);
+            return ToUnit(unitAsRotationalAccelerationUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is RotationalAccelerationUnit unitAsRotationalAccelerationUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalAccelerationUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsRotationalAccelerationUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -741,6 +750,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<RotationalAccelerationUnit> IQuantity<RotationalAccelerationUnit>.ToUnit(RotationalAccelerationUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<RotationalAccelerationUnit> IQuantity<RotationalAccelerationUnit>.ToUnit(RotationalAccelerationUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<RotationalAccelerationUnit> IQuantity<RotationalAccelerationUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

@@ -735,7 +735,16 @@ namespace UnitsNet
             if(!(unit is RotationalStiffnessPerLengthUnit unitAsRotationalStiffnessPerLengthUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalStiffnessPerLengthUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsRotationalStiffnessPerLengthUnit);
+            return ToUnit(unitAsRotationalStiffnessPerLengthUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is RotationalStiffnessPerLengthUnit unitAsRotationalStiffnessPerLengthUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalStiffnessPerLengthUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsRotationalStiffnessPerLengthUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -758,6 +767,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<RotationalStiffnessPerLengthUnit> IQuantity<RotationalStiffnessPerLengthUnit>.ToUnit(RotationalStiffnessPerLengthUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<RotationalStiffnessPerLengthUnit> IQuantity<RotationalStiffnessPerLengthUnit>.ToUnit(RotationalStiffnessPerLengthUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<RotationalStiffnessPerLengthUnit> IQuantity<RotationalStiffnessPerLengthUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

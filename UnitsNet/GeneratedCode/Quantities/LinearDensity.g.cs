@@ -891,7 +891,16 @@ namespace UnitsNet
             if(!(unit is LinearDensityUnit unitAsLinearDensityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LinearDensityUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsLinearDensityUnit);
+            return ToUnit(unitAsLinearDensityUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is LinearDensityUnit unitAsLinearDensityUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LinearDensityUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsLinearDensityUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -914,6 +923,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<LinearDensityUnit> IQuantity<LinearDensityUnit>.ToUnit(LinearDensityUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<LinearDensityUnit> IQuantity<LinearDensityUnit>.ToUnit(LinearDensityUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<LinearDensityUnit> IQuantity<LinearDensityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

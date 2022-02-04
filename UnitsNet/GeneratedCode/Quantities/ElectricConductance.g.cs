@@ -704,7 +704,16 @@ namespace UnitsNet
             if(!(unit is ElectricConductanceUnit unitAsElectricConductanceUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricConductanceUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsElectricConductanceUnit);
+            return ToUnit(unitAsElectricConductanceUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is ElectricConductanceUnit unitAsElectricConductanceUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricConductanceUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsElectricConductanceUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -727,6 +736,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ElectricConductanceUnit> IQuantity<ElectricConductanceUnit>.ToUnit(ElectricConductanceUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<ElectricConductanceUnit> IQuantity<ElectricConductanceUnit>.ToUnit(ElectricConductanceUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<ElectricConductanceUnit> IQuantity<ElectricConductanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

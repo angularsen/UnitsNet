@@ -803,7 +803,16 @@ namespace UnitsNet
             if(!(unit is TemperatureDeltaUnit unitAsTemperatureDeltaUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureDeltaUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsTemperatureDeltaUnit);
+            return ToUnit(unitAsTemperatureDeltaUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is TemperatureDeltaUnit unitAsTemperatureDeltaUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureDeltaUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsTemperatureDeltaUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -826,6 +835,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<TemperatureDeltaUnit> IQuantity<TemperatureDeltaUnit>.ToUnit(TemperatureDeltaUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<TemperatureDeltaUnit> IQuantity<TemperatureDeltaUnit>.ToUnit(TemperatureDeltaUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<TemperatureDeltaUnit> IQuantity<TemperatureDeltaUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

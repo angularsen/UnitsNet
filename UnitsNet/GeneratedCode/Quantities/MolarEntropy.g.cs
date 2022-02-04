@@ -701,7 +701,16 @@ namespace UnitsNet
             if(!(unit is MolarEntropyUnit unitAsMolarEntropyUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarEntropyUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsMolarEntropyUnit);
+            return ToUnit(unitAsMolarEntropyUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is MolarEntropyUnit unitAsMolarEntropyUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarEntropyUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsMolarEntropyUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -724,6 +733,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<MolarEntropyUnit> IQuantity<MolarEntropyUnit>.ToUnit(MolarEntropyUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<MolarEntropyUnit> IQuantity<MolarEntropyUnit>.ToUnit(MolarEntropyUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<MolarEntropyUnit> IQuantity<MolarEntropyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

@@ -769,7 +769,16 @@ namespace UnitsNet
             if(!(unit is EntropyUnit unitAsEntropyUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(EntropyUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsEntropyUnit);
+            return ToUnit(unitAsEntropyUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is EntropyUnit unitAsEntropyUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(EntropyUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsEntropyUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -792,6 +801,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<EntropyUnit> IQuantity<EntropyUnit>.ToUnit(EntropyUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<EntropyUnit> IQuantity<EntropyUnit>.ToUnit(EntropyUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<EntropyUnit> IQuantity<EntropyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

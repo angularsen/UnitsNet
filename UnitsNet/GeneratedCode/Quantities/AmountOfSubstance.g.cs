@@ -905,7 +905,16 @@ namespace UnitsNet
             if(!(unit is AmountOfSubstanceUnit unitAsAmountOfSubstanceUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AmountOfSubstanceUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsAmountOfSubstanceUnit);
+            return ToUnit(unitAsAmountOfSubstanceUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is AmountOfSubstanceUnit unitAsAmountOfSubstanceUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AmountOfSubstanceUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsAmountOfSubstanceUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -928,6 +937,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<AmountOfSubstanceUnit> IQuantity<AmountOfSubstanceUnit>.ToUnit(AmountOfSubstanceUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<AmountOfSubstanceUnit> IQuantity<AmountOfSubstanceUnit>.ToUnit(AmountOfSubstanceUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<AmountOfSubstanceUnit> IQuantity<AmountOfSubstanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

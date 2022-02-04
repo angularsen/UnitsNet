@@ -956,7 +956,16 @@ namespace UnitsNet
             if(!(unit is HeatFluxUnit unitAsHeatFluxUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(HeatFluxUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsHeatFluxUnit);
+            return ToUnit(unitAsHeatFluxUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is HeatFluxUnit unitAsHeatFluxUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(HeatFluxUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsHeatFluxUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -979,6 +988,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<HeatFluxUnit> IQuantity<HeatFluxUnit>.ToUnit(HeatFluxUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<HeatFluxUnit> IQuantity<HeatFluxUnit>.ToUnit(HeatFluxUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<HeatFluxUnit> IQuantity<HeatFluxUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

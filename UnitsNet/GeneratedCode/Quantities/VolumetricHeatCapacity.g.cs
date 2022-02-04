@@ -806,7 +806,16 @@ namespace UnitsNet
             if(!(unit is VolumetricHeatCapacityUnit unitAsVolumetricHeatCapacityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumetricHeatCapacityUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsVolumetricHeatCapacityUnit);
+            return ToUnit(unitAsVolumetricHeatCapacityUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is VolumetricHeatCapacityUnit unitAsVolumetricHeatCapacityUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumetricHeatCapacityUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsVolumetricHeatCapacityUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -829,6 +838,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<VolumetricHeatCapacityUnit> IQuantity<VolumetricHeatCapacityUnit>.ToUnit(VolumetricHeatCapacityUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<VolumetricHeatCapacityUnit> IQuantity<VolumetricHeatCapacityUnit>.ToUnit(VolumetricHeatCapacityUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<VolumetricHeatCapacityUnit> IQuantity<VolumetricHeatCapacityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

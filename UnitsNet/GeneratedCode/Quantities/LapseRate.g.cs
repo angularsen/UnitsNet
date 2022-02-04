@@ -668,7 +668,16 @@ namespace UnitsNet
             if(!(unit is LapseRateUnit unitAsLapseRateUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LapseRateUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsLapseRateUnit);
+            return ToUnit(unitAsLapseRateUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is LapseRateUnit unitAsLapseRateUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LapseRateUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsLapseRateUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -691,6 +700,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<LapseRateUnit> IQuantity<LapseRateUnit>.ToUnit(LapseRateUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<LapseRateUnit> IQuantity<LapseRateUnit>.ToUnit(LapseRateUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<LapseRateUnit> IQuantity<LapseRateUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

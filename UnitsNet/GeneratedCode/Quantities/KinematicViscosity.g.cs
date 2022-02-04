@@ -806,7 +806,16 @@ namespace UnitsNet
             if(!(unit is KinematicViscosityUnit unitAsKinematicViscosityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(KinematicViscosityUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsKinematicViscosityUnit);
+            return ToUnit(unitAsKinematicViscosityUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is KinematicViscosityUnit unitAsKinematicViscosityUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(KinematicViscosityUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsKinematicViscosityUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -829,6 +838,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<KinematicViscosityUnit> IQuantity<KinematicViscosityUnit>.ToUnit(KinematicViscosityUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<KinematicViscosityUnit> IQuantity<KinematicViscosityUnit>.ToUnit(KinematicViscosityUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<KinematicViscosityUnit> IQuantity<KinematicViscosityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

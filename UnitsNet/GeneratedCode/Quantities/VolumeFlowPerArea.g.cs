@@ -684,7 +684,16 @@ namespace UnitsNet
             if(!(unit is VolumeFlowPerAreaUnit unitAsVolumeFlowPerAreaUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeFlowPerAreaUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsVolumeFlowPerAreaUnit);
+            return ToUnit(unitAsVolumeFlowPerAreaUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is VolumeFlowPerAreaUnit unitAsVolumeFlowPerAreaUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeFlowPerAreaUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsVolumeFlowPerAreaUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -707,6 +716,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<VolumeFlowPerAreaUnit> IQuantity<VolumeFlowPerAreaUnit>.ToUnit(VolumeFlowPerAreaUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<VolumeFlowPerAreaUnit> IQuantity<VolumeFlowPerAreaUnit>.ToUnit(VolumeFlowPerAreaUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<VolumeFlowPerAreaUnit> IQuantity<VolumeFlowPerAreaUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

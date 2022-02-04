@@ -769,7 +769,16 @@ namespace UnitsNet
             if(!(unit is VolumePerLengthUnit unitAsVolumePerLengthUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumePerLengthUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsVolumePerLengthUnit);
+            return ToUnit(unitAsVolumePerLengthUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is VolumePerLengthUnit unitAsVolumePerLengthUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumePerLengthUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsVolumePerLengthUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -792,6 +801,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<VolumePerLengthUnit> IQuantity<VolumePerLengthUnit>.ToUnit(VolumePerLengthUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<VolumePerLengthUnit> IQuantity<VolumePerLengthUnit>.ToUnit(VolumePerLengthUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<VolumePerLengthUnit> IQuantity<VolumePerLengthUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

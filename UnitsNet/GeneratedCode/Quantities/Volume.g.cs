@@ -1517,7 +1517,16 @@ namespace UnitsNet
             if(!(unit is VolumeUnit unitAsVolumeUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsVolumeUnit);
+            return ToUnit(unitAsVolumeUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is VolumeUnit unitAsVolumeUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsVolumeUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -1540,6 +1549,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<VolumeUnit> IQuantity<VolumeUnit>.ToUnit(VolumeUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<VolumeUnit> IQuantity<VolumeUnit>.ToUnit(VolumeUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<VolumeUnit> IQuantity<VolumeUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

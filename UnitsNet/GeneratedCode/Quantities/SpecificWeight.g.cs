@@ -942,7 +942,16 @@ namespace UnitsNet
             if(!(unit is SpecificWeightUnit unitAsSpecificWeightUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificWeightUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsSpecificWeightUnit);
+            return ToUnit(unitAsSpecificWeightUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is SpecificWeightUnit unitAsSpecificWeightUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificWeightUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsSpecificWeightUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -965,6 +974,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<SpecificWeightUnit> IQuantity<SpecificWeightUnit>.ToUnit(SpecificWeightUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<SpecificWeightUnit> IQuantity<SpecificWeightUnit>.ToUnit(SpecificWeightUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<SpecificWeightUnit> IQuantity<SpecificWeightUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

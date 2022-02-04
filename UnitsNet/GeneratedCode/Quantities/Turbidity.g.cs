@@ -670,7 +670,16 @@ namespace UnitsNet
             if(!(unit is TurbidityUnit unitAsTurbidityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TurbidityUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsTurbidityUnit);
+            return ToUnit(unitAsTurbidityUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is TurbidityUnit unitAsTurbidityUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TurbidityUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsTurbidityUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -693,6 +702,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<TurbidityUnit> IQuantity<TurbidityUnit>.ToUnit(TurbidityUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<TurbidityUnit> IQuantity<TurbidityUnit>.ToUnit(TurbidityUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<TurbidityUnit> IQuantity<TurbidityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

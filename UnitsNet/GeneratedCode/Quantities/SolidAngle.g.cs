@@ -670,7 +670,16 @@ namespace UnitsNet
             if(!(unit is SolidAngleUnit unitAsSolidAngleUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SolidAngleUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsSolidAngleUnit);
+            return ToUnit(unitAsSolidAngleUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is SolidAngleUnit unitAsSolidAngleUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SolidAngleUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsSolidAngleUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -693,6 +702,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<SolidAngleUnit> IQuantity<SolidAngleUnit>.ToUnit(SolidAngleUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<SolidAngleUnit> IQuantity<SolidAngleUnit>.ToUnit(SolidAngleUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<SolidAngleUnit> IQuantity<SolidAngleUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

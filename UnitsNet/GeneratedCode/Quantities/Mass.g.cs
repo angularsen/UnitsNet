@@ -1075,7 +1075,16 @@ namespace UnitsNet
             if(!(unit is MassUnit unitAsMassUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsMassUnit);
+            return ToUnit(unitAsMassUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is MassUnit unitAsMassUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsMassUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -1098,6 +1107,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<MassUnit> IQuantity<MassUnit>.ToUnit(MassUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<MassUnit> IQuantity<MassUnit>.ToUnit(MassUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<MassUnit> IQuantity<MassUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

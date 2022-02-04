@@ -667,7 +667,16 @@ namespace UnitsNet
             if(!(unit is VitaminAUnit unitAsVitaminAUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VitaminAUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsVitaminAUnit);
+            return ToUnit(unitAsVitaminAUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is VitaminAUnit unitAsVitaminAUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VitaminAUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsVitaminAUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -690,6 +699,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<VitaminAUnit> IQuantity<VitaminAUnit>.ToUnit(VitaminAUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<VitaminAUnit> IQuantity<VitaminAUnit>.ToUnit(VitaminAUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<VitaminAUnit> IQuantity<VitaminAUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

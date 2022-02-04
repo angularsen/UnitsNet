@@ -993,7 +993,16 @@ namespace UnitsNet
             if(!(unit is VolumeConcentrationUnit unitAsVolumeConcentrationUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeConcentrationUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsVolumeConcentrationUnit);
+            return ToUnit(unitAsVolumeConcentrationUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is VolumeConcentrationUnit unitAsVolumeConcentrationUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeConcentrationUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsVolumeConcentrationUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -1016,6 +1025,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<VolumeConcentrationUnit> IQuantity<VolumeConcentrationUnit>.ToUnit(VolumeConcentrationUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<VolumeConcentrationUnit> IQuantity<VolumeConcentrationUnit>.ToUnit(VolumeConcentrationUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<VolumeConcentrationUnit> IQuantity<VolumeConcentrationUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

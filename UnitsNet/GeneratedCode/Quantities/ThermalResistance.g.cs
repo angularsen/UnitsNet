@@ -752,7 +752,16 @@ namespace UnitsNet
             if(!(unit is ThermalResistanceUnit unitAsThermalResistanceUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ThermalResistanceUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsThermalResistanceUnit);
+            return ToUnit(unitAsThermalResistanceUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is ThermalResistanceUnit unitAsThermalResistanceUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ThermalResistanceUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsThermalResistanceUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -775,6 +784,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ThermalResistanceUnit> IQuantity<ThermalResistanceUnit>.ToUnit(ThermalResistanceUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<ThermalResistanceUnit> IQuantity<ThermalResistanceUnit>.ToUnit(ThermalResistanceUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<ThermalResistanceUnit> IQuantity<ThermalResistanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

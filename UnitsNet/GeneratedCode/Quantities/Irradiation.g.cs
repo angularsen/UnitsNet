@@ -772,7 +772,16 @@ namespace UnitsNet
             if(!(unit is IrradiationUnit unitAsIrradiationUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(IrradiationUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsIrradiationUnit);
+            return ToUnit(unitAsIrradiationUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is IrradiationUnit unitAsIrradiationUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(IrradiationUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsIrradiationUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -795,6 +804,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<IrradiationUnit> IQuantity<IrradiationUnit>.ToUnit(IrradiationUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<IrradiationUnit> IQuantity<IrradiationUnit>.ToUnit(IrradiationUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<IrradiationUnit> IQuantity<IrradiationUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

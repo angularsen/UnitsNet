@@ -735,7 +735,16 @@ namespace UnitsNet
             if(!(unit is ElectricPotentialAcUnit unitAsElectricPotentialAcUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricPotentialAcUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsElectricPotentialAcUnit);
+            return ToUnit(unitAsElectricPotentialAcUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is ElectricPotentialAcUnit unitAsElectricPotentialAcUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricPotentialAcUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsElectricPotentialAcUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -758,6 +767,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ElectricPotentialAcUnit> IQuantity<ElectricPotentialAcUnit>.ToUnit(ElectricPotentialAcUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<ElectricPotentialAcUnit> IQuantity<ElectricPotentialAcUnit>.ToUnit(ElectricPotentialAcUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<ElectricPotentialAcUnit> IQuantity<ElectricPotentialAcUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

@@ -721,7 +721,16 @@ namespace UnitsNet
             if(!(unit is SpecificFuelConsumptionUnit unitAsSpecificFuelConsumptionUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificFuelConsumptionUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsSpecificFuelConsumptionUnit);
+            return ToUnit(unitAsSpecificFuelConsumptionUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is SpecificFuelConsumptionUnit unitAsSpecificFuelConsumptionUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificFuelConsumptionUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsSpecificFuelConsumptionUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -744,6 +753,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<SpecificFuelConsumptionUnit> IQuantity<SpecificFuelConsumptionUnit>.ToUnit(SpecificFuelConsumptionUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<SpecificFuelConsumptionUnit> IQuantity<SpecificFuelConsumptionUnit>.ToUnit(SpecificFuelConsumptionUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<SpecificFuelConsumptionUnit> IQuantity<SpecificFuelConsumptionUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

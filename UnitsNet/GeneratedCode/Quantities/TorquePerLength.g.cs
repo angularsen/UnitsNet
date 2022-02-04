@@ -1007,7 +1007,16 @@ namespace UnitsNet
             if(!(unit is TorquePerLengthUnit unitAsTorquePerLengthUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TorquePerLengthUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsTorquePerLengthUnit);
+            return ToUnit(unitAsTorquePerLengthUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is TorquePerLengthUnit unitAsTorquePerLengthUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TorquePerLengthUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsTorquePerLengthUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -1030,6 +1039,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<TorquePerLengthUnit> IQuantity<TorquePerLengthUnit>.ToUnit(TorquePerLengthUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<TorquePerLengthUnit> IQuantity<TorquePerLengthUnit>.ToUnit(TorquePerLengthUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<TorquePerLengthUnit> IQuantity<TorquePerLengthUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

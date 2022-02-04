@@ -1080,7 +1080,16 @@ namespace UnitsNet
             if(!(unit is PowerUnit unitAsPowerUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsPowerUnit);
+            return ToUnit(unitAsPowerUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is PowerUnit unitAsPowerUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsPowerUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -1103,6 +1112,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<PowerUnit> IQuantity<PowerUnit>.ToUnit(PowerUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<PowerUnit> IQuantity<PowerUnit>.ToUnit(PowerUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<PowerUnit> IQuantity<PowerUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

@@ -1194,7 +1194,16 @@ namespace UnitsNet
             if(!(unit is SpeedUnit unitAsSpeedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpeedUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsSpeedUnit);
+            return ToUnit(unitAsSpeedUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is SpeedUnit unitAsSpeedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpeedUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsSpeedUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -1217,6 +1226,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<SpeedUnit> IQuantity<SpeedUnit>.ToUnit(SpeedUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<SpeedUnit> IQuantity<SpeedUnit>.ToUnit(SpeedUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<SpeedUnit> IQuantity<SpeedUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

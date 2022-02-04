@@ -752,7 +752,16 @@ namespace UnitsNet
             if(!(unit is AreaMomentOfInertiaUnit unitAsAreaMomentOfInertiaUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaMomentOfInertiaUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsAreaMomentOfInertiaUnit);
+            return ToUnit(unitAsAreaMomentOfInertiaUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is AreaMomentOfInertiaUnit unitAsAreaMomentOfInertiaUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaMomentOfInertiaUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsAreaMomentOfInertiaUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -775,6 +784,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<AreaMomentOfInertiaUnit> IQuantity<AreaMomentOfInertiaUnit>.ToUnit(AreaMomentOfInertiaUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<AreaMomentOfInertiaUnit> IQuantity<AreaMomentOfInertiaUnit>.ToUnit(AreaMomentOfInertiaUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<AreaMomentOfInertiaUnit> IQuantity<AreaMomentOfInertiaUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

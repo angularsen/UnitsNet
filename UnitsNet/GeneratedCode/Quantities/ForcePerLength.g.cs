@@ -1296,7 +1296,16 @@ namespace UnitsNet
             if(!(unit is ForcePerLengthUnit unitAsForcePerLengthUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForcePerLengthUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsForcePerLengthUnit);
+            return ToUnit(unitAsForcePerLengthUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is ForcePerLengthUnit unitAsForcePerLengthUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForcePerLengthUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsForcePerLengthUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -1319,6 +1328,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ForcePerLengthUnit> IQuantity<ForcePerLengthUnit>.ToUnit(ForcePerLengthUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<ForcePerLengthUnit> IQuantity<ForcePerLengthUnit>.ToUnit(ForcePerLengthUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<ForcePerLengthUnit> IQuantity<ForcePerLengthUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

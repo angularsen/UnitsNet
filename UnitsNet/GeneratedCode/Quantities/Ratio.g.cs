@@ -752,7 +752,16 @@ namespace UnitsNet
             if(!(unit is RatioUnit unitAsRatioUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RatioUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsRatioUnit);
+            return ToUnit(unitAsRatioUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is RatioUnit unitAsRatioUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RatioUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsRatioUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -775,6 +784,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<RatioUnit> IQuantity<RatioUnit>.ToUnit(RatioUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<RatioUnit> IQuantity<RatioUnit>.ToUnit(RatioUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<RatioUnit> IQuantity<RatioUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

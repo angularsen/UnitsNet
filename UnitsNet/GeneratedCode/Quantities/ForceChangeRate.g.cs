@@ -905,7 +905,16 @@ namespace UnitsNet
             if(!(unit is ForceChangeRateUnit unitAsForceChangeRateUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceChangeRateUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsForceChangeRateUnit);
+            return ToUnit(unitAsForceChangeRateUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is ForceChangeRateUnit unitAsForceChangeRateUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceChangeRateUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsForceChangeRateUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -928,6 +937,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ForceChangeRateUnit> IQuantity<ForceChangeRateUnit>.ToUnit(ForceChangeRateUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<ForceChangeRateUnit> IQuantity<ForceChangeRateUnit>.ToUnit(ForceChangeRateUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<ForceChangeRateUnit> IQuantity<ForceChangeRateUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

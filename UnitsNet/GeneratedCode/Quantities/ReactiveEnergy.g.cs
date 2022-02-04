@@ -701,7 +701,16 @@ namespace UnitsNet
             if(!(unit is ReactiveEnergyUnit unitAsReactiveEnergyUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ReactiveEnergyUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsReactiveEnergyUnit);
+            return ToUnit(unitAsReactiveEnergyUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is ReactiveEnergyUnit unitAsReactiveEnergyUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ReactiveEnergyUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsReactiveEnergyUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -724,6 +733,9 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ReactiveEnergyUnit> IQuantity<ReactiveEnergyUnit>.ToUnit(ReactiveEnergyUnit unit) => ToUnit(unit);
+
+        /// <inheritdoc />
+        IQuantity<ReactiveEnergyUnit> IQuantity<ReactiveEnergyUnit>.ToUnit(ReactiveEnergyUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<ReactiveEnergyUnit> IQuantity<ReactiveEnergyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
