@@ -199,22 +199,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(SpecificVolumeUnit unit)
         {
-            var cubicmeterperkilogram = SpecificVolume.FromCubicMetersPerKilogram(1);
+            var inBaseUnits = SpecificVolume.From(1.0, SpecificVolume.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var cubicfootperpoundQuantity = cubicmeterperkilogram.ToUnit(SpecificVolumeUnit.CubicFootPerPound);
-            AssertEx.EqualTolerance(CubicFeetPerPoundInOneCubicMeterPerKilogram, (double)cubicfootperpoundQuantity.Value, CubicFeetPerPoundTolerance);
-            Assert.Equal(SpecificVolumeUnit.CubicFootPerPound, cubicfootperpoundQuantity.Unit);
-
-            var cubicmeterperkilogramQuantity = cubicmeterperkilogram.ToUnit(SpecificVolumeUnit.CubicMeterPerKilogram);
-            AssertEx.EqualTolerance(CubicMetersPerKilogramInOneCubicMeterPerKilogram, (double)cubicmeterperkilogramQuantity.Value, CubicMetersPerKilogramTolerance);
-            Assert.Equal(SpecificVolumeUnit.CubicMeterPerKilogram, cubicmeterperkilogramQuantity.Unit);
-
-            var millicubicmeterperkilogramQuantity = cubicmeterperkilogram.ToUnit(SpecificVolumeUnit.MillicubicMeterPerKilogram);
-            AssertEx.EqualTolerance(MillicubicMetersPerKilogramInOneCubicMeterPerKilogram, (double)millicubicmeterperkilogramQuantity.Value, MillicubicMetersPerKilogramTolerance);
-            Assert.Equal(SpecificVolumeUnit.MillicubicMeterPerKilogram, millicubicmeterperkilogramQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

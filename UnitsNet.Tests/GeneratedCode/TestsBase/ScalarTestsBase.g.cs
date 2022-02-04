@@ -179,14 +179,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ScalarUnit unit)
         {
-            var amount = Scalar.FromAmount(1);
+            var inBaseUnits = Scalar.From(1.0, Scalar.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var amountQuantity = amount.ToUnit(ScalarUnit.Amount);
-            AssertEx.EqualTolerance(AmountInOneAmount, (double)amountQuantity.Value, AmountTolerance);
-            Assert.Equal(ScalarUnit.Amount, amountQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

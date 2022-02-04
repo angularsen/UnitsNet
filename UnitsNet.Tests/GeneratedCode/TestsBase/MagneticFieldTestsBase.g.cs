@@ -229,34 +229,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(MagneticFieldUnit unit)
         {
-            var tesla = MagneticField.FromTeslas(1);
+            var inBaseUnits = MagneticField.From(1.0, MagneticField.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var gaussQuantity = tesla.ToUnit(MagneticFieldUnit.Gauss);
-            AssertEx.EqualTolerance(GaussesInOneTesla, (double)gaussQuantity.Value, GaussesTolerance);
-            Assert.Equal(MagneticFieldUnit.Gauss, gaussQuantity.Unit);
-
-            var microteslaQuantity = tesla.ToUnit(MagneticFieldUnit.Microtesla);
-            AssertEx.EqualTolerance(MicroteslasInOneTesla, (double)microteslaQuantity.Value, MicroteslasTolerance);
-            Assert.Equal(MagneticFieldUnit.Microtesla, microteslaQuantity.Unit);
-
-            var milligaussQuantity = tesla.ToUnit(MagneticFieldUnit.Milligauss);
-            AssertEx.EqualTolerance(MilligaussesInOneTesla, (double)milligaussQuantity.Value, MilligaussesTolerance);
-            Assert.Equal(MagneticFieldUnit.Milligauss, milligaussQuantity.Unit);
-
-            var milliteslaQuantity = tesla.ToUnit(MagneticFieldUnit.Millitesla);
-            AssertEx.EqualTolerance(MilliteslasInOneTesla, (double)milliteslaQuantity.Value, MilliteslasTolerance);
-            Assert.Equal(MagneticFieldUnit.Millitesla, milliteslaQuantity.Unit);
-
-            var nanoteslaQuantity = tesla.ToUnit(MagneticFieldUnit.Nanotesla);
-            AssertEx.EqualTolerance(NanoteslasInOneTesla, (double)nanoteslaQuantity.Value, NanoteslasTolerance);
-            Assert.Equal(MagneticFieldUnit.Nanotesla, nanoteslaQuantity.Unit);
-
-            var teslaQuantity = tesla.ToUnit(MagneticFieldUnit.Tesla);
-            AssertEx.EqualTolerance(TeslasInOneTesla, (double)teslaQuantity.Value, TeslasTolerance);
-            Assert.Equal(MagneticFieldUnit.Tesla, teslaQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

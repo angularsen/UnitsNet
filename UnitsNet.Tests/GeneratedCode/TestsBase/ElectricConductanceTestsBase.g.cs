@@ -199,22 +199,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ElectricConductanceUnit unit)
         {
-            var siemens = ElectricConductance.FromSiemens(1);
+            var inBaseUnits = ElectricConductance.From(1.0, ElectricConductance.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var microsiemensQuantity = siemens.ToUnit(ElectricConductanceUnit.Microsiemens);
-            AssertEx.EqualTolerance(MicrosiemensInOneSiemens, (double)microsiemensQuantity.Value, MicrosiemensTolerance);
-            Assert.Equal(ElectricConductanceUnit.Microsiemens, microsiemensQuantity.Unit);
-
-            var millisiemensQuantity = siemens.ToUnit(ElectricConductanceUnit.Millisiemens);
-            AssertEx.EqualTolerance(MillisiemensInOneSiemens, (double)millisiemensQuantity.Value, MillisiemensTolerance);
-            Assert.Equal(ElectricConductanceUnit.Millisiemens, millisiemensQuantity.Unit);
-
-            var siemensQuantity = siemens.ToUnit(ElectricConductanceUnit.Siemens);
-            AssertEx.EqualTolerance(SiemensInOneSiemens, (double)siemensQuantity.Value, SiemensTolerance);
-            Assert.Equal(ElectricConductanceUnit.Siemens, siemensQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

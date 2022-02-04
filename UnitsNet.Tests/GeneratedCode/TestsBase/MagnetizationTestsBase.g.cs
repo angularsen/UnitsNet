@@ -179,14 +179,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(MagnetizationUnit unit)
         {
-            var amperepermeter = Magnetization.FromAmperesPerMeter(1);
+            var inBaseUnits = Magnetization.From(1.0, Magnetization.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var amperepermeterQuantity = amperepermeter.ToUnit(MagnetizationUnit.AmperePerMeter);
-            AssertEx.EqualTolerance(AmperesPerMeterInOneAmperePerMeter, (double)amperepermeterQuantity.Value, AmperesPerMeterTolerance);
-            Assert.Equal(MagnetizationUnit.AmperePerMeter, amperepermeterQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

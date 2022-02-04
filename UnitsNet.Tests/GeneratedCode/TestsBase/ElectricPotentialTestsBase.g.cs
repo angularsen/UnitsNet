@@ -219,30 +219,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ElectricPotentialUnit unit)
         {
-            var volt = ElectricPotential.FromVolts(1);
+            var inBaseUnits = ElectricPotential.From(1.0, ElectricPotential.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var kilovoltQuantity = volt.ToUnit(ElectricPotentialUnit.Kilovolt);
-            AssertEx.EqualTolerance(KilovoltsInOneVolt, (double)kilovoltQuantity.Value, KilovoltsTolerance);
-            Assert.Equal(ElectricPotentialUnit.Kilovolt, kilovoltQuantity.Unit);
-
-            var megavoltQuantity = volt.ToUnit(ElectricPotentialUnit.Megavolt);
-            AssertEx.EqualTolerance(MegavoltsInOneVolt, (double)megavoltQuantity.Value, MegavoltsTolerance);
-            Assert.Equal(ElectricPotentialUnit.Megavolt, megavoltQuantity.Unit);
-
-            var microvoltQuantity = volt.ToUnit(ElectricPotentialUnit.Microvolt);
-            AssertEx.EqualTolerance(MicrovoltsInOneVolt, (double)microvoltQuantity.Value, MicrovoltsTolerance);
-            Assert.Equal(ElectricPotentialUnit.Microvolt, microvoltQuantity.Unit);
-
-            var millivoltQuantity = volt.ToUnit(ElectricPotentialUnit.Millivolt);
-            AssertEx.EqualTolerance(MillivoltsInOneVolt, (double)millivoltQuantity.Value, MillivoltsTolerance);
-            Assert.Equal(ElectricPotentialUnit.Millivolt, millivoltQuantity.Unit);
-
-            var voltQuantity = volt.ToUnit(ElectricPotentialUnit.Volt);
-            AssertEx.EqualTolerance(VoltsInOneVolt, (double)voltQuantity.Value, VoltsTolerance);
-            Assert.Equal(ElectricPotentialUnit.Volt, voltQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

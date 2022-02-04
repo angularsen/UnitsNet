@@ -209,26 +209,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ElectricAdmittanceUnit unit)
         {
-            var siemens = ElectricAdmittance.FromSiemens(1);
+            var inBaseUnits = ElectricAdmittance.From(1.0, ElectricAdmittance.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var microsiemensQuantity = siemens.ToUnit(ElectricAdmittanceUnit.Microsiemens);
-            AssertEx.EqualTolerance(MicrosiemensInOneSiemens, (double)microsiemensQuantity.Value, MicrosiemensTolerance);
-            Assert.Equal(ElectricAdmittanceUnit.Microsiemens, microsiemensQuantity.Unit);
-
-            var millisiemensQuantity = siemens.ToUnit(ElectricAdmittanceUnit.Millisiemens);
-            AssertEx.EqualTolerance(MillisiemensInOneSiemens, (double)millisiemensQuantity.Value, MillisiemensTolerance);
-            Assert.Equal(ElectricAdmittanceUnit.Millisiemens, millisiemensQuantity.Unit);
-
-            var nanosiemensQuantity = siemens.ToUnit(ElectricAdmittanceUnit.Nanosiemens);
-            AssertEx.EqualTolerance(NanosiemensInOneSiemens, (double)nanosiemensQuantity.Value, NanosiemensTolerance);
-            Assert.Equal(ElectricAdmittanceUnit.Nanosiemens, nanosiemensQuantity.Unit);
-
-            var siemensQuantity = siemens.ToUnit(ElectricAdmittanceUnit.Siemens);
-            AssertEx.EqualTolerance(SiemensInOneSiemens, (double)siemensQuantity.Value, SiemensTolerance);
-            Assert.Equal(ElectricAdmittanceUnit.Siemens, siemensQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

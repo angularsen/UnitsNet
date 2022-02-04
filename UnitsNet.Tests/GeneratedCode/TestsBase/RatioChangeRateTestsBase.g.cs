@@ -189,18 +189,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(RatioChangeRateUnit unit)
         {
-            var decimalfractionpersecond = RatioChangeRate.FromDecimalFractionsPerSecond(1);
+            var inBaseUnits = RatioChangeRate.From(1.0, RatioChangeRate.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var decimalfractionpersecondQuantity = decimalfractionpersecond.ToUnit(RatioChangeRateUnit.DecimalFractionPerSecond);
-            AssertEx.EqualTolerance(DecimalFractionsPerSecondInOneDecimalFractionPerSecond, (double)decimalfractionpersecondQuantity.Value, DecimalFractionsPerSecondTolerance);
-            Assert.Equal(RatioChangeRateUnit.DecimalFractionPerSecond, decimalfractionpersecondQuantity.Unit);
-
-            var percentpersecondQuantity = decimalfractionpersecond.ToUnit(RatioChangeRateUnit.PercentPerSecond);
-            AssertEx.EqualTolerance(PercentsPerSecondInOneDecimalFractionPerSecond, (double)percentpersecondQuantity.Value, PercentsPerSecondTolerance);
-            Assert.Equal(RatioChangeRateUnit.PercentPerSecond, percentpersecondQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

@@ -199,22 +199,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(CoefficientOfThermalExpansionUnit unit)
         {
-            var inversekelvin = CoefficientOfThermalExpansion.FromInverseKelvin(1);
+            var inBaseUnits = CoefficientOfThermalExpansion.From(1.0, CoefficientOfThermalExpansion.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var inversedegreecelsiusQuantity = inversekelvin.ToUnit(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius);
-            AssertEx.EqualTolerance(InverseDegreeCelsiusInOneInverseKelvin, (double)inversedegreecelsiusQuantity.Value, InverseDegreeCelsiusTolerance);
-            Assert.Equal(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, inversedegreecelsiusQuantity.Unit);
-
-            var inversedegreefahrenheitQuantity = inversekelvin.ToUnit(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit);
-            AssertEx.EqualTolerance(InverseDegreeFahrenheitInOneInverseKelvin, (double)inversedegreefahrenheitQuantity.Value, InverseDegreeFahrenheitTolerance);
-            Assert.Equal(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, inversedegreefahrenheitQuantity.Unit);
-
-            var inversekelvinQuantity = inversekelvin.ToUnit(CoefficientOfThermalExpansionUnit.InverseKelvin);
-            AssertEx.EqualTolerance(InverseKelvinInOneInverseKelvin, (double)inversekelvinQuantity.Value, InverseKelvinTolerance);
-            Assert.Equal(CoefficientOfThermalExpansionUnit.InverseKelvin, inversekelvinQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

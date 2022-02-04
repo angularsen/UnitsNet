@@ -309,66 +309,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(LinearDensityUnit unit)
         {
-            var kilogrampermeter = LinearDensity.FromKilogramsPerMeter(1);
+            var inBaseUnits = LinearDensity.From(1.0, LinearDensity.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var grampercentimeterQuantity = kilogrampermeter.ToUnit(LinearDensityUnit.GramPerCentimeter);
-            AssertEx.EqualTolerance(GramsPerCentimeterInOneKilogramPerMeter, (double)grampercentimeterQuantity.Value, GramsPerCentimeterTolerance);
-            Assert.Equal(LinearDensityUnit.GramPerCentimeter, grampercentimeterQuantity.Unit);
-
-            var grampermeterQuantity = kilogrampermeter.ToUnit(LinearDensityUnit.GramPerMeter);
-            AssertEx.EqualTolerance(GramsPerMeterInOneKilogramPerMeter, (double)grampermeterQuantity.Value, GramsPerMeterTolerance);
-            Assert.Equal(LinearDensityUnit.GramPerMeter, grampermeterQuantity.Unit);
-
-            var grampermillimeterQuantity = kilogrampermeter.ToUnit(LinearDensityUnit.GramPerMillimeter);
-            AssertEx.EqualTolerance(GramsPerMillimeterInOneKilogramPerMeter, (double)grampermillimeterQuantity.Value, GramsPerMillimeterTolerance);
-            Assert.Equal(LinearDensityUnit.GramPerMillimeter, grampermillimeterQuantity.Unit);
-
-            var kilogrampercentimeterQuantity = kilogrampermeter.ToUnit(LinearDensityUnit.KilogramPerCentimeter);
-            AssertEx.EqualTolerance(KilogramsPerCentimeterInOneKilogramPerMeter, (double)kilogrampercentimeterQuantity.Value, KilogramsPerCentimeterTolerance);
-            Assert.Equal(LinearDensityUnit.KilogramPerCentimeter, kilogrampercentimeterQuantity.Unit);
-
-            var kilogrampermeterQuantity = kilogrampermeter.ToUnit(LinearDensityUnit.KilogramPerMeter);
-            AssertEx.EqualTolerance(KilogramsPerMeterInOneKilogramPerMeter, (double)kilogrampermeterQuantity.Value, KilogramsPerMeterTolerance);
-            Assert.Equal(LinearDensityUnit.KilogramPerMeter, kilogrampermeterQuantity.Unit);
-
-            var kilogrampermillimeterQuantity = kilogrampermeter.ToUnit(LinearDensityUnit.KilogramPerMillimeter);
-            AssertEx.EqualTolerance(KilogramsPerMillimeterInOneKilogramPerMeter, (double)kilogrampermillimeterQuantity.Value, KilogramsPerMillimeterTolerance);
-            Assert.Equal(LinearDensityUnit.KilogramPerMillimeter, kilogrampermillimeterQuantity.Unit);
-
-            var microgrampercentimeterQuantity = kilogrampermeter.ToUnit(LinearDensityUnit.MicrogramPerCentimeter);
-            AssertEx.EqualTolerance(MicrogramsPerCentimeterInOneKilogramPerMeter, (double)microgrampercentimeterQuantity.Value, MicrogramsPerCentimeterTolerance);
-            Assert.Equal(LinearDensityUnit.MicrogramPerCentimeter, microgrampercentimeterQuantity.Unit);
-
-            var microgrampermeterQuantity = kilogrampermeter.ToUnit(LinearDensityUnit.MicrogramPerMeter);
-            AssertEx.EqualTolerance(MicrogramsPerMeterInOneKilogramPerMeter, (double)microgrampermeterQuantity.Value, MicrogramsPerMeterTolerance);
-            Assert.Equal(LinearDensityUnit.MicrogramPerMeter, microgrampermeterQuantity.Unit);
-
-            var microgrampermillimeterQuantity = kilogrampermeter.ToUnit(LinearDensityUnit.MicrogramPerMillimeter);
-            AssertEx.EqualTolerance(MicrogramsPerMillimeterInOneKilogramPerMeter, (double)microgrampermillimeterQuantity.Value, MicrogramsPerMillimeterTolerance);
-            Assert.Equal(LinearDensityUnit.MicrogramPerMillimeter, microgrampermillimeterQuantity.Unit);
-
-            var milligrampercentimeterQuantity = kilogrampermeter.ToUnit(LinearDensityUnit.MilligramPerCentimeter);
-            AssertEx.EqualTolerance(MilligramsPerCentimeterInOneKilogramPerMeter, (double)milligrampercentimeterQuantity.Value, MilligramsPerCentimeterTolerance);
-            Assert.Equal(LinearDensityUnit.MilligramPerCentimeter, milligrampercentimeterQuantity.Unit);
-
-            var milligrampermeterQuantity = kilogrampermeter.ToUnit(LinearDensityUnit.MilligramPerMeter);
-            AssertEx.EqualTolerance(MilligramsPerMeterInOneKilogramPerMeter, (double)milligrampermeterQuantity.Value, MilligramsPerMeterTolerance);
-            Assert.Equal(LinearDensityUnit.MilligramPerMeter, milligrampermeterQuantity.Unit);
-
-            var milligrampermillimeterQuantity = kilogrampermeter.ToUnit(LinearDensityUnit.MilligramPerMillimeter);
-            AssertEx.EqualTolerance(MilligramsPerMillimeterInOneKilogramPerMeter, (double)milligrampermillimeterQuantity.Value, MilligramsPerMillimeterTolerance);
-            Assert.Equal(LinearDensityUnit.MilligramPerMillimeter, milligrampermillimeterQuantity.Unit);
-
-            var poundperfootQuantity = kilogrampermeter.ToUnit(LinearDensityUnit.PoundPerFoot);
-            AssertEx.EqualTolerance(PoundsPerFootInOneKilogramPerMeter, (double)poundperfootQuantity.Value, PoundsPerFootTolerance);
-            Assert.Equal(LinearDensityUnit.PoundPerFoot, poundperfootQuantity.Unit);
-
-            var poundperinchQuantity = kilogrampermeter.ToUnit(LinearDensityUnit.PoundPerInch);
-            AssertEx.EqualTolerance(PoundsPerInchInOneKilogramPerMeter, (double)poundperinchQuantity.Value, PoundsPerInchTolerance);
-            Assert.Equal(LinearDensityUnit.PoundPerInch, poundperinchQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

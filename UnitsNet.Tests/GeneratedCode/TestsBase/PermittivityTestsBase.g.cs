@@ -179,14 +179,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(PermittivityUnit unit)
         {
-            var faradpermeter = Permittivity.FromFaradsPerMeter(1);
+            var inBaseUnits = Permittivity.From(1.0, Permittivity.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var faradpermeterQuantity = faradpermeter.ToUnit(PermittivityUnit.FaradPerMeter);
-            AssertEx.EqualTolerance(FaradsPerMeterInOneFaradPerMeter, (double)faradpermeterQuantity.Value, FaradsPerMeterTolerance);
-            Assert.Equal(PermittivityUnit.FaradPerMeter, faradpermeterQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

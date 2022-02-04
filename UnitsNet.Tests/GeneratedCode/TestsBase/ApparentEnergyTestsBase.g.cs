@@ -199,22 +199,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ApparentEnergyUnit unit)
         {
-            var voltamperehour = ApparentEnergy.FromVoltampereHours(1);
+            var inBaseUnits = ApparentEnergy.From(1.0, ApparentEnergy.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var kilovoltamperehourQuantity = voltamperehour.ToUnit(ApparentEnergyUnit.KilovoltampereHour);
-            AssertEx.EqualTolerance(KilovoltampereHoursInOneVoltampereHour, (double)kilovoltamperehourQuantity.Value, KilovoltampereHoursTolerance);
-            Assert.Equal(ApparentEnergyUnit.KilovoltampereHour, kilovoltamperehourQuantity.Unit);
-
-            var megavoltamperehourQuantity = voltamperehour.ToUnit(ApparentEnergyUnit.MegavoltampereHour);
-            AssertEx.EqualTolerance(MegavoltampereHoursInOneVoltampereHour, (double)megavoltamperehourQuantity.Value, MegavoltampereHoursTolerance);
-            Assert.Equal(ApparentEnergyUnit.MegavoltampereHour, megavoltamperehourQuantity.Unit);
-
-            var voltamperehourQuantity = voltamperehour.ToUnit(ApparentEnergyUnit.VoltampereHour);
-            AssertEx.EqualTolerance(VoltampereHoursInOneVoltampereHour, (double)voltamperehourQuantity.Value, VoltampereHoursTolerance);
-            Assert.Equal(ApparentEnergyUnit.VoltampereHour, voltamperehourQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

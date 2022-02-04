@@ -179,14 +179,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(TurbidityUnit unit)
         {
-            var ntu = Turbidity.FromNTU(1);
+            var inBaseUnits = Turbidity.From(1.0, Turbidity.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var ntuQuantity = ntu.ToUnit(TurbidityUnit.NTU);
-            AssertEx.EqualTolerance(NTUInOneNTU, (double)ntuQuantity.Value, NTUTolerance);
-            Assert.Equal(TurbidityUnit.NTU, ntuQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

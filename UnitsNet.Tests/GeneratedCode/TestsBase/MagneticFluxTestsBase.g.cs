@@ -179,14 +179,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(MagneticFluxUnit unit)
         {
-            var weber = MagneticFlux.FromWebers(1);
+            var inBaseUnits = MagneticFlux.From(1.0, MagneticFlux.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var weberQuantity = weber.ToUnit(MagneticFluxUnit.Weber);
-            AssertEx.EqualTolerance(WebersInOneWeber, (double)weberQuantity.Value, WebersTolerance);
-            Assert.Equal(MagneticFluxUnit.Weber, weberQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

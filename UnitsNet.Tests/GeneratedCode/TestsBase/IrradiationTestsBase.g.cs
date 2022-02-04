@@ -239,38 +239,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(IrradiationUnit unit)
         {
-            var joulepersquaremeter = Irradiation.FromJoulesPerSquareMeter(1);
+            var inBaseUnits = Irradiation.From(1.0, Irradiation.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var joulepersquarecentimeterQuantity = joulepersquaremeter.ToUnit(IrradiationUnit.JoulePerSquareCentimeter);
-            AssertEx.EqualTolerance(JoulesPerSquareCentimeterInOneJoulePerSquareMeter, (double)joulepersquarecentimeterQuantity.Value, JoulesPerSquareCentimeterTolerance);
-            Assert.Equal(IrradiationUnit.JoulePerSquareCentimeter, joulepersquarecentimeterQuantity.Unit);
-
-            var joulepersquaremeterQuantity = joulepersquaremeter.ToUnit(IrradiationUnit.JoulePerSquareMeter);
-            AssertEx.EqualTolerance(JoulesPerSquareMeterInOneJoulePerSquareMeter, (double)joulepersquaremeterQuantity.Value, JoulesPerSquareMeterTolerance);
-            Assert.Equal(IrradiationUnit.JoulePerSquareMeter, joulepersquaremeterQuantity.Unit);
-
-            var joulepersquaremillimeterQuantity = joulepersquaremeter.ToUnit(IrradiationUnit.JoulePerSquareMillimeter);
-            AssertEx.EqualTolerance(JoulesPerSquareMillimeterInOneJoulePerSquareMeter, (double)joulepersquaremillimeterQuantity.Value, JoulesPerSquareMillimeterTolerance);
-            Assert.Equal(IrradiationUnit.JoulePerSquareMillimeter, joulepersquaremillimeterQuantity.Unit);
-
-            var kilojoulepersquaremeterQuantity = joulepersquaremeter.ToUnit(IrradiationUnit.KilojoulePerSquareMeter);
-            AssertEx.EqualTolerance(KilojoulesPerSquareMeterInOneJoulePerSquareMeter, (double)kilojoulepersquaremeterQuantity.Value, KilojoulesPerSquareMeterTolerance);
-            Assert.Equal(IrradiationUnit.KilojoulePerSquareMeter, kilojoulepersquaremeterQuantity.Unit);
-
-            var kilowatthourpersquaremeterQuantity = joulepersquaremeter.ToUnit(IrradiationUnit.KilowattHourPerSquareMeter);
-            AssertEx.EqualTolerance(KilowattHoursPerSquareMeterInOneJoulePerSquareMeter, (double)kilowatthourpersquaremeterQuantity.Value, KilowattHoursPerSquareMeterTolerance);
-            Assert.Equal(IrradiationUnit.KilowattHourPerSquareMeter, kilowatthourpersquaremeterQuantity.Unit);
-
-            var millijoulepersquarecentimeterQuantity = joulepersquaremeter.ToUnit(IrradiationUnit.MillijoulePerSquareCentimeter);
-            AssertEx.EqualTolerance(MillijoulesPerSquareCentimeterInOneJoulePerSquareMeter, (double)millijoulepersquarecentimeterQuantity.Value, MillijoulesPerSquareCentimeterTolerance);
-            Assert.Equal(IrradiationUnit.MillijoulePerSquareCentimeter, millijoulepersquarecentimeterQuantity.Unit);
-
-            var watthourpersquaremeterQuantity = joulepersquaremeter.ToUnit(IrradiationUnit.WattHourPerSquareMeter);
-            AssertEx.EqualTolerance(WattHoursPerSquareMeterInOneJoulePerSquareMeter, (double)watthourpersquaremeterQuantity.Value, WattHoursPerSquareMeterTolerance);
-            Assert.Equal(IrradiationUnit.WattHourPerSquareMeter, watthourpersquaremeterQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

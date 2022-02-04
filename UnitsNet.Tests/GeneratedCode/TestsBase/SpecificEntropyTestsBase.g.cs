@@ -259,46 +259,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(SpecificEntropyUnit unit)
         {
-            var jouleperkilogramkelvin = SpecificEntropy.FromJoulesPerKilogramKelvin(1);
+            var inBaseUnits = SpecificEntropy.From(1.0, SpecificEntropy.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var btuperpoundfahrenheitQuantity = jouleperkilogramkelvin.ToUnit(SpecificEntropyUnit.BtuPerPoundFahrenheit);
-            AssertEx.EqualTolerance(BtusPerPoundFahrenheitInOneJoulePerKilogramKelvin, (double)btuperpoundfahrenheitQuantity.Value, BtusPerPoundFahrenheitTolerance);
-            Assert.Equal(SpecificEntropyUnit.BtuPerPoundFahrenheit, btuperpoundfahrenheitQuantity.Unit);
-
-            var caloriepergramkelvinQuantity = jouleperkilogramkelvin.ToUnit(SpecificEntropyUnit.CaloriePerGramKelvin);
-            AssertEx.EqualTolerance(CaloriesPerGramKelvinInOneJoulePerKilogramKelvin, (double)caloriepergramkelvinQuantity.Value, CaloriesPerGramKelvinTolerance);
-            Assert.Equal(SpecificEntropyUnit.CaloriePerGramKelvin, caloriepergramkelvinQuantity.Unit);
-
-            var jouleperkilogramdegreecelsiusQuantity = jouleperkilogramkelvin.ToUnit(SpecificEntropyUnit.JoulePerKilogramDegreeCelsius);
-            AssertEx.EqualTolerance(JoulesPerKilogramDegreeCelsiusInOneJoulePerKilogramKelvin, (double)jouleperkilogramdegreecelsiusQuantity.Value, JoulesPerKilogramDegreeCelsiusTolerance);
-            Assert.Equal(SpecificEntropyUnit.JoulePerKilogramDegreeCelsius, jouleperkilogramdegreecelsiusQuantity.Unit);
-
-            var jouleperkilogramkelvinQuantity = jouleperkilogramkelvin.ToUnit(SpecificEntropyUnit.JoulePerKilogramKelvin);
-            AssertEx.EqualTolerance(JoulesPerKilogramKelvinInOneJoulePerKilogramKelvin, (double)jouleperkilogramkelvinQuantity.Value, JoulesPerKilogramKelvinTolerance);
-            Assert.Equal(SpecificEntropyUnit.JoulePerKilogramKelvin, jouleperkilogramkelvinQuantity.Unit);
-
-            var kilocaloriepergramkelvinQuantity = jouleperkilogramkelvin.ToUnit(SpecificEntropyUnit.KilocaloriePerGramKelvin);
-            AssertEx.EqualTolerance(KilocaloriesPerGramKelvinInOneJoulePerKilogramKelvin, (double)kilocaloriepergramkelvinQuantity.Value, KilocaloriesPerGramKelvinTolerance);
-            Assert.Equal(SpecificEntropyUnit.KilocaloriePerGramKelvin, kilocaloriepergramkelvinQuantity.Unit);
-
-            var kilojouleperkilogramdegreecelsiusQuantity = jouleperkilogramkelvin.ToUnit(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius);
-            AssertEx.EqualTolerance(KilojoulesPerKilogramDegreeCelsiusInOneJoulePerKilogramKelvin, (double)kilojouleperkilogramdegreecelsiusQuantity.Value, KilojoulesPerKilogramDegreeCelsiusTolerance);
-            Assert.Equal(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius, kilojouleperkilogramdegreecelsiusQuantity.Unit);
-
-            var kilojouleperkilogramkelvinQuantity = jouleperkilogramkelvin.ToUnit(SpecificEntropyUnit.KilojoulePerKilogramKelvin);
-            AssertEx.EqualTolerance(KilojoulesPerKilogramKelvinInOneJoulePerKilogramKelvin, (double)kilojouleperkilogramkelvinQuantity.Value, KilojoulesPerKilogramKelvinTolerance);
-            Assert.Equal(SpecificEntropyUnit.KilojoulePerKilogramKelvin, kilojouleperkilogramkelvinQuantity.Unit);
-
-            var megajouleperkilogramdegreecelsiusQuantity = jouleperkilogramkelvin.ToUnit(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius);
-            AssertEx.EqualTolerance(MegajoulesPerKilogramDegreeCelsiusInOneJoulePerKilogramKelvin, (double)megajouleperkilogramdegreecelsiusQuantity.Value, MegajoulesPerKilogramDegreeCelsiusTolerance);
-            Assert.Equal(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, megajouleperkilogramdegreecelsiusQuantity.Unit);
-
-            var megajouleperkilogramkelvinQuantity = jouleperkilogramkelvin.ToUnit(SpecificEntropyUnit.MegajoulePerKilogramKelvin);
-            AssertEx.EqualTolerance(MegajoulesPerKilogramKelvinInOneJoulePerKilogramKelvin, (double)megajouleperkilogramkelvinQuantity.Value, MegajoulesPerKilogramKelvinTolerance);
-            Assert.Equal(SpecificEntropyUnit.MegajoulePerKilogramKelvin, megajouleperkilogramkelvinQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

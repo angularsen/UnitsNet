@@ -189,18 +189,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(PowerRatioUnit unit)
         {
-            var decibelwatt = PowerRatio.FromDecibelWatts(1);
+            var inBaseUnits = PowerRatio.From(1.0, PowerRatio.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var decibelmilliwattQuantity = decibelwatt.ToUnit(PowerRatioUnit.DecibelMilliwatt);
-            AssertEx.EqualTolerance(DecibelMilliwattsInOneDecibelWatt, (double)decibelmilliwattQuantity.Value, DecibelMilliwattsTolerance);
-            Assert.Equal(PowerRatioUnit.DecibelMilliwatt, decibelmilliwattQuantity.Unit);
-
-            var decibelwattQuantity = decibelwatt.ToUnit(PowerRatioUnit.DecibelWatt);
-            AssertEx.EqualTolerance(DecibelWattsInOneDecibelWatt, (double)decibelwattQuantity.Value, DecibelWattsTolerance);
-            Assert.Equal(PowerRatioUnit.DecibelWatt, decibelwattQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

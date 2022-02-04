@@ -199,22 +199,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(BrakeSpecificFuelConsumptionUnit unit)
         {
-            var kilogramperjoule = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1);
+            var inBaseUnits = BrakeSpecificFuelConsumption.From(1.0, BrakeSpecificFuelConsumption.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var gramperkilowatthourQuantity = kilogramperjoule.ToUnit(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour);
-            AssertEx.EqualTolerance(GramsPerKiloWattHourInOneKilogramPerJoule, (double)gramperkilowatthourQuantity.Value, GramsPerKiloWattHourTolerance);
-            Assert.Equal(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, gramperkilowatthourQuantity.Unit);
-
-            var kilogramperjouleQuantity = kilogramperjoule.ToUnit(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule);
-            AssertEx.EqualTolerance(KilogramsPerJouleInOneKilogramPerJoule, (double)kilogramperjouleQuantity.Value, KilogramsPerJouleTolerance);
-            Assert.Equal(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, kilogramperjouleQuantity.Unit);
-
-            var poundpermechanicalhorsepowerhourQuantity = kilogramperjoule.ToUnit(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour);
-            AssertEx.EqualTolerance(PoundsPerMechanicalHorsepowerHourInOneKilogramPerJoule, (double)poundpermechanicalhorsepowerhourQuantity.Value, PoundsPerMechanicalHorsepowerHourTolerance);
-            Assert.Equal(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, poundpermechanicalhorsepowerhourQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

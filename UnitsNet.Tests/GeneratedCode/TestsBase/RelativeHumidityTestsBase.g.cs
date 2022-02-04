@@ -179,14 +179,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(RelativeHumidityUnit unit)
         {
-            var percent = RelativeHumidity.FromPercent(1);
+            var inBaseUnits = RelativeHumidity.From(1.0, RelativeHumidity.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var percentQuantity = percent.ToUnit(RelativeHumidityUnit.Percent);
-            AssertEx.EqualTolerance(PercentInOnePercent, (double)percentQuantity.Value, PercentTolerance);
-            Assert.Equal(RelativeHumidityUnit.Percent, percentQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

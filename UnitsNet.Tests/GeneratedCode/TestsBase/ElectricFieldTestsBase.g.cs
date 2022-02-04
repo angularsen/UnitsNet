@@ -179,14 +179,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ElectricFieldUnit unit)
         {
-            var voltpermeter = ElectricField.FromVoltsPerMeter(1);
+            var inBaseUnits = ElectricField.From(1.0, ElectricField.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var voltpermeterQuantity = voltpermeter.ToUnit(ElectricFieldUnit.VoltPerMeter);
-            AssertEx.EqualTolerance(VoltsPerMeterInOneVoltPerMeter, (double)voltpermeterQuantity.Value, VoltsPerMeterTolerance);
-            Assert.Equal(ElectricFieldUnit.VoltPerMeter, voltpermeterQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

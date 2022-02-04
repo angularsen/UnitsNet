@@ -319,70 +319,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ForceUnit unit)
         {
-            var newton = Force.FromNewtons(1);
+            var inBaseUnits = Force.From(1.0, Force.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var decanewtonQuantity = newton.ToUnit(ForceUnit.Decanewton);
-            AssertEx.EqualTolerance(DecanewtonsInOneNewton, (double)decanewtonQuantity.Value, DecanewtonsTolerance);
-            Assert.Equal(ForceUnit.Decanewton, decanewtonQuantity.Unit);
-
-            var dynQuantity = newton.ToUnit(ForceUnit.Dyn);
-            AssertEx.EqualTolerance(DyneInOneNewton, (double)dynQuantity.Value, DyneTolerance);
-            Assert.Equal(ForceUnit.Dyn, dynQuantity.Unit);
-
-            var kilogramforceQuantity = newton.ToUnit(ForceUnit.KilogramForce);
-            AssertEx.EqualTolerance(KilogramsForceInOneNewton, (double)kilogramforceQuantity.Value, KilogramsForceTolerance);
-            Assert.Equal(ForceUnit.KilogramForce, kilogramforceQuantity.Unit);
-
-            var kilonewtonQuantity = newton.ToUnit(ForceUnit.Kilonewton);
-            AssertEx.EqualTolerance(KilonewtonsInOneNewton, (double)kilonewtonQuantity.Value, KilonewtonsTolerance);
-            Assert.Equal(ForceUnit.Kilonewton, kilonewtonQuantity.Unit);
-
-            var kilopondQuantity = newton.ToUnit(ForceUnit.KiloPond);
-            AssertEx.EqualTolerance(KiloPondsInOneNewton, (double)kilopondQuantity.Value, KiloPondsTolerance);
-            Assert.Equal(ForceUnit.KiloPond, kilopondQuantity.Unit);
-
-            var kilopoundforceQuantity = newton.ToUnit(ForceUnit.KilopoundForce);
-            AssertEx.EqualTolerance(KilopoundsForceInOneNewton, (double)kilopoundforceQuantity.Value, KilopoundsForceTolerance);
-            Assert.Equal(ForceUnit.KilopoundForce, kilopoundforceQuantity.Unit);
-
-            var meganewtonQuantity = newton.ToUnit(ForceUnit.Meganewton);
-            AssertEx.EqualTolerance(MeganewtonsInOneNewton, (double)meganewtonQuantity.Value, MeganewtonsTolerance);
-            Assert.Equal(ForceUnit.Meganewton, meganewtonQuantity.Unit);
-
-            var micronewtonQuantity = newton.ToUnit(ForceUnit.Micronewton);
-            AssertEx.EqualTolerance(MicronewtonsInOneNewton, (double)micronewtonQuantity.Value, MicronewtonsTolerance);
-            Assert.Equal(ForceUnit.Micronewton, micronewtonQuantity.Unit);
-
-            var millinewtonQuantity = newton.ToUnit(ForceUnit.Millinewton);
-            AssertEx.EqualTolerance(MillinewtonsInOneNewton, (double)millinewtonQuantity.Value, MillinewtonsTolerance);
-            Assert.Equal(ForceUnit.Millinewton, millinewtonQuantity.Unit);
-
-            var newtonQuantity = newton.ToUnit(ForceUnit.Newton);
-            AssertEx.EqualTolerance(NewtonsInOneNewton, (double)newtonQuantity.Value, NewtonsTolerance);
-            Assert.Equal(ForceUnit.Newton, newtonQuantity.Unit);
-
-            var ounceforceQuantity = newton.ToUnit(ForceUnit.OunceForce);
-            AssertEx.EqualTolerance(OunceForceInOneNewton, (double)ounceforceQuantity.Value, OunceForceTolerance);
-            Assert.Equal(ForceUnit.OunceForce, ounceforceQuantity.Unit);
-
-            var poundalQuantity = newton.ToUnit(ForceUnit.Poundal);
-            AssertEx.EqualTolerance(PoundalsInOneNewton, (double)poundalQuantity.Value, PoundalsTolerance);
-            Assert.Equal(ForceUnit.Poundal, poundalQuantity.Unit);
-
-            var poundforceQuantity = newton.ToUnit(ForceUnit.PoundForce);
-            AssertEx.EqualTolerance(PoundsForceInOneNewton, (double)poundforceQuantity.Value, PoundsForceTolerance);
-            Assert.Equal(ForceUnit.PoundForce, poundforceQuantity.Unit);
-
-            var shorttonforceQuantity = newton.ToUnit(ForceUnit.ShortTonForce);
-            AssertEx.EqualTolerance(ShortTonsForceInOneNewton, (double)shorttonforceQuantity.Value, ShortTonsForceTolerance);
-            Assert.Equal(ForceUnit.ShortTonForce, shorttonforceQuantity.Unit);
-
-            var tonneforceQuantity = newton.ToUnit(ForceUnit.TonneForce);
-            AssertEx.EqualTolerance(TonnesForceInOneNewton, (double)tonneforceQuantity.Value, TonnesForceTolerance);
-            Assert.Equal(ForceUnit.TonneForce, tonneforceQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

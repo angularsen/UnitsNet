@@ -229,34 +229,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(WarpingMomentOfInertiaUnit unit)
         {
-            var metertothesixth = WarpingMomentOfInertia.FromMetersToTheSixth(1);
+            var inBaseUnits = WarpingMomentOfInertia.From(1.0, WarpingMomentOfInertia.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var centimetertothesixthQuantity = metertothesixth.ToUnit(WarpingMomentOfInertiaUnit.CentimeterToTheSixth);
-            AssertEx.EqualTolerance(CentimetersToTheSixthInOneMeterToTheSixth, (double)centimetertothesixthQuantity.Value, CentimetersToTheSixthTolerance);
-            Assert.Equal(WarpingMomentOfInertiaUnit.CentimeterToTheSixth, centimetertothesixthQuantity.Unit);
-
-            var decimetertothesixthQuantity = metertothesixth.ToUnit(WarpingMomentOfInertiaUnit.DecimeterToTheSixth);
-            AssertEx.EqualTolerance(DecimetersToTheSixthInOneMeterToTheSixth, (double)decimetertothesixthQuantity.Value, DecimetersToTheSixthTolerance);
-            Assert.Equal(WarpingMomentOfInertiaUnit.DecimeterToTheSixth, decimetertothesixthQuantity.Unit);
-
-            var foottothesixthQuantity = metertothesixth.ToUnit(WarpingMomentOfInertiaUnit.FootToTheSixth);
-            AssertEx.EqualTolerance(FeetToTheSixthInOneMeterToTheSixth, (double)foottothesixthQuantity.Value, FeetToTheSixthTolerance);
-            Assert.Equal(WarpingMomentOfInertiaUnit.FootToTheSixth, foottothesixthQuantity.Unit);
-
-            var inchtothesixthQuantity = metertothesixth.ToUnit(WarpingMomentOfInertiaUnit.InchToTheSixth);
-            AssertEx.EqualTolerance(InchesToTheSixthInOneMeterToTheSixth, (double)inchtothesixthQuantity.Value, InchesToTheSixthTolerance);
-            Assert.Equal(WarpingMomentOfInertiaUnit.InchToTheSixth, inchtothesixthQuantity.Unit);
-
-            var metertothesixthQuantity = metertothesixth.ToUnit(WarpingMomentOfInertiaUnit.MeterToTheSixth);
-            AssertEx.EqualTolerance(MetersToTheSixthInOneMeterToTheSixth, (double)metertothesixthQuantity.Value, MetersToTheSixthTolerance);
-            Assert.Equal(WarpingMomentOfInertiaUnit.MeterToTheSixth, metertothesixthQuantity.Unit);
-
-            var millimetertothesixthQuantity = metertothesixth.ToUnit(WarpingMomentOfInertiaUnit.MillimeterToTheSixth);
-            AssertEx.EqualTolerance(MillimetersToTheSixthInOneMeterToTheSixth, (double)millimetertothesixthQuantity.Value, MillimetersToTheSixthTolerance);
-            Assert.Equal(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, millimetertothesixthQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

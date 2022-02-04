@@ -199,22 +199,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(MolarEntropyUnit unit)
         {
-            var joulepermolekelvin = MolarEntropy.FromJoulesPerMoleKelvin(1);
+            var inBaseUnits = MolarEntropy.From(1.0, MolarEntropy.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var joulepermolekelvinQuantity = joulepermolekelvin.ToUnit(MolarEntropyUnit.JoulePerMoleKelvin);
-            AssertEx.EqualTolerance(JoulesPerMoleKelvinInOneJoulePerMoleKelvin, (double)joulepermolekelvinQuantity.Value, JoulesPerMoleKelvinTolerance);
-            Assert.Equal(MolarEntropyUnit.JoulePerMoleKelvin, joulepermolekelvinQuantity.Unit);
-
-            var kilojoulepermolekelvinQuantity = joulepermolekelvin.ToUnit(MolarEntropyUnit.KilojoulePerMoleKelvin);
-            AssertEx.EqualTolerance(KilojoulesPerMoleKelvinInOneJoulePerMoleKelvin, (double)kilojoulepermolekelvinQuantity.Value, KilojoulesPerMoleKelvinTolerance);
-            Assert.Equal(MolarEntropyUnit.KilojoulePerMoleKelvin, kilojoulepermolekelvinQuantity.Unit);
-
-            var megajoulepermolekelvinQuantity = joulepermolekelvin.ToUnit(MolarEntropyUnit.MegajoulePerMoleKelvin);
-            AssertEx.EqualTolerance(MegajoulesPerMoleKelvinInOneJoulePerMoleKelvin, (double)megajoulepermolekelvinQuantity.Value, MegajoulesPerMoleKelvinTolerance);
-            Assert.Equal(MolarEntropyUnit.MegajoulePerMoleKelvin, megajoulepermolekelvinQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

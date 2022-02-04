@@ -209,26 +209,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ReactivePowerUnit unit)
         {
-            var voltamperereactive = ReactivePower.FromVoltamperesReactive(1);
+            var inBaseUnits = ReactivePower.From(1.0, ReactivePower.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var gigavoltamperereactiveQuantity = voltamperereactive.ToUnit(ReactivePowerUnit.GigavoltampereReactive);
-            AssertEx.EqualTolerance(GigavoltamperesReactiveInOneVoltampereReactive, (double)gigavoltamperereactiveQuantity.Value, GigavoltamperesReactiveTolerance);
-            Assert.Equal(ReactivePowerUnit.GigavoltampereReactive, gigavoltamperereactiveQuantity.Unit);
-
-            var kilovoltamperereactiveQuantity = voltamperereactive.ToUnit(ReactivePowerUnit.KilovoltampereReactive);
-            AssertEx.EqualTolerance(KilovoltamperesReactiveInOneVoltampereReactive, (double)kilovoltamperereactiveQuantity.Value, KilovoltamperesReactiveTolerance);
-            Assert.Equal(ReactivePowerUnit.KilovoltampereReactive, kilovoltamperereactiveQuantity.Unit);
-
-            var megavoltamperereactiveQuantity = voltamperereactive.ToUnit(ReactivePowerUnit.MegavoltampereReactive);
-            AssertEx.EqualTolerance(MegavoltamperesReactiveInOneVoltampereReactive, (double)megavoltamperereactiveQuantity.Value, MegavoltamperesReactiveTolerance);
-            Assert.Equal(ReactivePowerUnit.MegavoltampereReactive, megavoltamperereactiveQuantity.Unit);
-
-            var voltamperereactiveQuantity = voltamperereactive.ToUnit(ReactivePowerUnit.VoltampereReactive);
-            AssertEx.EqualTolerance(VoltamperesReactiveInOneVoltampereReactive, (double)voltamperereactiveQuantity.Value, VoltamperesReactiveTolerance);
-            Assert.Equal(ReactivePowerUnit.VoltampereReactive, voltamperereactiveQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

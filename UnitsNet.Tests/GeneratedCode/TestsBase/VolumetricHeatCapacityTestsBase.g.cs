@@ -259,46 +259,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(VolumetricHeatCapacityUnit unit)
         {
-            var joulepercubicmeterkelvin = VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(1);
+            var inBaseUnits = VolumetricHeatCapacity.From(1.0, VolumetricHeatCapacity.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var btupercubicfootdegreefahrenheitQuantity = joulepercubicmeterkelvin.ToUnit(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit);
-            AssertEx.EqualTolerance(BtusPerCubicFootDegreeFahrenheitInOneJoulePerCubicMeterKelvin, (double)btupercubicfootdegreefahrenheitQuantity.Value, BtusPerCubicFootDegreeFahrenheitTolerance);
-            Assert.Equal(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, btupercubicfootdegreefahrenheitQuantity.Unit);
-
-            var caloriepercubiccentimeterdegreecelsiusQuantity = joulepercubicmeterkelvin.ToUnit(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius);
-            AssertEx.EqualTolerance(CaloriesPerCubicCentimeterDegreeCelsiusInOneJoulePerCubicMeterKelvin, (double)caloriepercubiccentimeterdegreecelsiusQuantity.Value, CaloriesPerCubicCentimeterDegreeCelsiusTolerance);
-            Assert.Equal(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius, caloriepercubiccentimeterdegreecelsiusQuantity.Unit);
-
-            var joulepercubicmeterdegreecelsiusQuantity = joulepercubicmeterkelvin.ToUnit(VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius);
-            AssertEx.EqualTolerance(JoulesPerCubicMeterDegreeCelsiusInOneJoulePerCubicMeterKelvin, (double)joulepercubicmeterdegreecelsiusQuantity.Value, JoulesPerCubicMeterDegreeCelsiusTolerance);
-            Assert.Equal(VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius, joulepercubicmeterdegreecelsiusQuantity.Unit);
-
-            var joulepercubicmeterkelvinQuantity = joulepercubicmeterkelvin.ToUnit(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin);
-            AssertEx.EqualTolerance(JoulesPerCubicMeterKelvinInOneJoulePerCubicMeterKelvin, (double)joulepercubicmeterkelvinQuantity.Value, JoulesPerCubicMeterKelvinTolerance);
-            Assert.Equal(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, joulepercubicmeterkelvinQuantity.Unit);
-
-            var kilocaloriepercubiccentimeterdegreecelsiusQuantity = joulepercubicmeterkelvin.ToUnit(VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius);
-            AssertEx.EqualTolerance(KilocaloriesPerCubicCentimeterDegreeCelsiusInOneJoulePerCubicMeterKelvin, (double)kilocaloriepercubiccentimeterdegreecelsiusQuantity.Value, KilocaloriesPerCubicCentimeterDegreeCelsiusTolerance);
-            Assert.Equal(VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius, kilocaloriepercubiccentimeterdegreecelsiusQuantity.Unit);
-
-            var kilojoulepercubicmeterdegreecelsiusQuantity = joulepercubicmeterkelvin.ToUnit(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius);
-            AssertEx.EqualTolerance(KilojoulesPerCubicMeterDegreeCelsiusInOneJoulePerCubicMeterKelvin, (double)kilojoulepercubicmeterdegreecelsiusQuantity.Value, KilojoulesPerCubicMeterDegreeCelsiusTolerance);
-            Assert.Equal(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius, kilojoulepercubicmeterdegreecelsiusQuantity.Unit);
-
-            var kilojoulepercubicmeterkelvinQuantity = joulepercubicmeterkelvin.ToUnit(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin);
-            AssertEx.EqualTolerance(KilojoulesPerCubicMeterKelvinInOneJoulePerCubicMeterKelvin, (double)kilojoulepercubicmeterkelvinQuantity.Value, KilojoulesPerCubicMeterKelvinTolerance);
-            Assert.Equal(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, kilojoulepercubicmeterkelvinQuantity.Unit);
-
-            var megajoulepercubicmeterdegreecelsiusQuantity = joulepercubicmeterkelvin.ToUnit(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius);
-            AssertEx.EqualTolerance(MegajoulesPerCubicMeterDegreeCelsiusInOneJoulePerCubicMeterKelvin, (double)megajoulepercubicmeterdegreecelsiusQuantity.Value, MegajoulesPerCubicMeterDegreeCelsiusTolerance);
-            Assert.Equal(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, megajoulepercubicmeterdegreecelsiusQuantity.Unit);
-
-            var megajoulepercubicmeterkelvinQuantity = joulepercubicmeterkelvin.ToUnit(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin);
-            AssertEx.EqualTolerance(MegajoulesPerCubicMeterKelvinInOneJoulePerCubicMeterKelvin, (double)megajoulepercubicmeterkelvinQuantity.Value, MegajoulesPerCubicMeterKelvinTolerance);
-            Assert.Equal(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, megajoulepercubicmeterkelvinQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

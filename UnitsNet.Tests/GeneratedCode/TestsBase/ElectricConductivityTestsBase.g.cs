@@ -199,22 +199,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ElectricConductivityUnit unit)
         {
-            var siemenspermeter = ElectricConductivity.FromSiemensPerMeter(1);
+            var inBaseUnits = ElectricConductivity.From(1.0, ElectricConductivity.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var siemensperfootQuantity = siemenspermeter.ToUnit(ElectricConductivityUnit.SiemensPerFoot);
-            AssertEx.EqualTolerance(SiemensPerFootInOneSiemensPerMeter, (double)siemensperfootQuantity.Value, SiemensPerFootTolerance);
-            Assert.Equal(ElectricConductivityUnit.SiemensPerFoot, siemensperfootQuantity.Unit);
-
-            var siemensperinchQuantity = siemenspermeter.ToUnit(ElectricConductivityUnit.SiemensPerInch);
-            AssertEx.EqualTolerance(SiemensPerInchInOneSiemensPerMeter, (double)siemensperinchQuantity.Value, SiemensPerInchTolerance);
-            Assert.Equal(ElectricConductivityUnit.SiemensPerInch, siemensperinchQuantity.Unit);
-
-            var siemenspermeterQuantity = siemenspermeter.ToUnit(ElectricConductivityUnit.SiemensPerMeter);
-            AssertEx.EqualTolerance(SiemensPerMeterInOneSiemensPerMeter, (double)siemenspermeterQuantity.Value, SiemensPerMeterTolerance);
-            Assert.Equal(ElectricConductivityUnit.SiemensPerMeter, siemenspermeterQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

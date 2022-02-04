@@ -369,90 +369,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ElectricPotentialChangeRateUnit unit)
         {
-            var voltpersecond = ElectricPotentialChangeRate.FromVoltsPerSeconds(1);
+            var inBaseUnits = ElectricPotentialChangeRate.From(1.0, ElectricPotentialChangeRate.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var kilovoltperhourQuantity = voltpersecond.ToUnit(ElectricPotentialChangeRateUnit.KilovoltPerHour);
-            AssertEx.EqualTolerance(KilovoltsPerHoursInOneVoltPerSecond, (double)kilovoltperhourQuantity.Value, KilovoltsPerHoursTolerance);
-            Assert.Equal(ElectricPotentialChangeRateUnit.KilovoltPerHour, kilovoltperhourQuantity.Unit);
-
-            var kilovoltpermicrosecondQuantity = voltpersecond.ToUnit(ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond);
-            AssertEx.EqualTolerance(KilovoltsPerMicrosecondsInOneVoltPerSecond, (double)kilovoltpermicrosecondQuantity.Value, KilovoltsPerMicrosecondsTolerance);
-            Assert.Equal(ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond, kilovoltpermicrosecondQuantity.Unit);
-
-            var kilovoltperminuteQuantity = voltpersecond.ToUnit(ElectricPotentialChangeRateUnit.KilovoltPerMinute);
-            AssertEx.EqualTolerance(KilovoltsPerMinutesInOneVoltPerSecond, (double)kilovoltperminuteQuantity.Value, KilovoltsPerMinutesTolerance);
-            Assert.Equal(ElectricPotentialChangeRateUnit.KilovoltPerMinute, kilovoltperminuteQuantity.Unit);
-
-            var kilovoltpersecondQuantity = voltpersecond.ToUnit(ElectricPotentialChangeRateUnit.KilovoltPerSecond);
-            AssertEx.EqualTolerance(KilovoltsPerSecondsInOneVoltPerSecond, (double)kilovoltpersecondQuantity.Value, KilovoltsPerSecondsTolerance);
-            Assert.Equal(ElectricPotentialChangeRateUnit.KilovoltPerSecond, kilovoltpersecondQuantity.Unit);
-
-            var megavoltperhourQuantity = voltpersecond.ToUnit(ElectricPotentialChangeRateUnit.MegavoltPerHour);
-            AssertEx.EqualTolerance(MegavoltsPerHoursInOneVoltPerSecond, (double)megavoltperhourQuantity.Value, MegavoltsPerHoursTolerance);
-            Assert.Equal(ElectricPotentialChangeRateUnit.MegavoltPerHour, megavoltperhourQuantity.Unit);
-
-            var megavoltpermicrosecondQuantity = voltpersecond.ToUnit(ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond);
-            AssertEx.EqualTolerance(MegavoltsPerMicrosecondsInOneVoltPerSecond, (double)megavoltpermicrosecondQuantity.Value, MegavoltsPerMicrosecondsTolerance);
-            Assert.Equal(ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond, megavoltpermicrosecondQuantity.Unit);
-
-            var megavoltperminuteQuantity = voltpersecond.ToUnit(ElectricPotentialChangeRateUnit.MegavoltPerMinute);
-            AssertEx.EqualTolerance(MegavoltsPerMinutesInOneVoltPerSecond, (double)megavoltperminuteQuantity.Value, MegavoltsPerMinutesTolerance);
-            Assert.Equal(ElectricPotentialChangeRateUnit.MegavoltPerMinute, megavoltperminuteQuantity.Unit);
-
-            var megavoltpersecondQuantity = voltpersecond.ToUnit(ElectricPotentialChangeRateUnit.MegavoltPerSecond);
-            AssertEx.EqualTolerance(MegavoltsPerSecondsInOneVoltPerSecond, (double)megavoltpersecondQuantity.Value, MegavoltsPerSecondsTolerance);
-            Assert.Equal(ElectricPotentialChangeRateUnit.MegavoltPerSecond, megavoltpersecondQuantity.Unit);
-
-            var microvoltperhourQuantity = voltpersecond.ToUnit(ElectricPotentialChangeRateUnit.MicrovoltPerHour);
-            AssertEx.EqualTolerance(MicrovoltsPerHoursInOneVoltPerSecond, (double)microvoltperhourQuantity.Value, MicrovoltsPerHoursTolerance);
-            Assert.Equal(ElectricPotentialChangeRateUnit.MicrovoltPerHour, microvoltperhourQuantity.Unit);
-
-            var microvoltpermicrosecondQuantity = voltpersecond.ToUnit(ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond);
-            AssertEx.EqualTolerance(MicrovoltsPerMicrosecondsInOneVoltPerSecond, (double)microvoltpermicrosecondQuantity.Value, MicrovoltsPerMicrosecondsTolerance);
-            Assert.Equal(ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond, microvoltpermicrosecondQuantity.Unit);
-
-            var microvoltperminuteQuantity = voltpersecond.ToUnit(ElectricPotentialChangeRateUnit.MicrovoltPerMinute);
-            AssertEx.EqualTolerance(MicrovoltsPerMinutesInOneVoltPerSecond, (double)microvoltperminuteQuantity.Value, MicrovoltsPerMinutesTolerance);
-            Assert.Equal(ElectricPotentialChangeRateUnit.MicrovoltPerMinute, microvoltperminuteQuantity.Unit);
-
-            var microvoltpersecondQuantity = voltpersecond.ToUnit(ElectricPotentialChangeRateUnit.MicrovoltPerSecond);
-            AssertEx.EqualTolerance(MicrovoltsPerSecondsInOneVoltPerSecond, (double)microvoltpersecondQuantity.Value, MicrovoltsPerSecondsTolerance);
-            Assert.Equal(ElectricPotentialChangeRateUnit.MicrovoltPerSecond, microvoltpersecondQuantity.Unit);
-
-            var millivoltperhourQuantity = voltpersecond.ToUnit(ElectricPotentialChangeRateUnit.MillivoltPerHour);
-            AssertEx.EqualTolerance(MillivoltsPerHoursInOneVoltPerSecond, (double)millivoltperhourQuantity.Value, MillivoltsPerHoursTolerance);
-            Assert.Equal(ElectricPotentialChangeRateUnit.MillivoltPerHour, millivoltperhourQuantity.Unit);
-
-            var millivoltpermicrosecondQuantity = voltpersecond.ToUnit(ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond);
-            AssertEx.EqualTolerance(MillivoltsPerMicrosecondsInOneVoltPerSecond, (double)millivoltpermicrosecondQuantity.Value, MillivoltsPerMicrosecondsTolerance);
-            Assert.Equal(ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond, millivoltpermicrosecondQuantity.Unit);
-
-            var millivoltperminuteQuantity = voltpersecond.ToUnit(ElectricPotentialChangeRateUnit.MillivoltPerMinute);
-            AssertEx.EqualTolerance(MillivoltsPerMinutesInOneVoltPerSecond, (double)millivoltperminuteQuantity.Value, MillivoltsPerMinutesTolerance);
-            Assert.Equal(ElectricPotentialChangeRateUnit.MillivoltPerMinute, millivoltperminuteQuantity.Unit);
-
-            var millivoltpersecondQuantity = voltpersecond.ToUnit(ElectricPotentialChangeRateUnit.MillivoltPerSecond);
-            AssertEx.EqualTolerance(MillivoltsPerSecondsInOneVoltPerSecond, (double)millivoltpersecondQuantity.Value, MillivoltsPerSecondsTolerance);
-            Assert.Equal(ElectricPotentialChangeRateUnit.MillivoltPerSecond, millivoltpersecondQuantity.Unit);
-
-            var voltperhourQuantity = voltpersecond.ToUnit(ElectricPotentialChangeRateUnit.VoltPerHour);
-            AssertEx.EqualTolerance(VoltsPerHoursInOneVoltPerSecond, (double)voltperhourQuantity.Value, VoltsPerHoursTolerance);
-            Assert.Equal(ElectricPotentialChangeRateUnit.VoltPerHour, voltperhourQuantity.Unit);
-
-            var voltpermicrosecondQuantity = voltpersecond.ToUnit(ElectricPotentialChangeRateUnit.VoltPerMicrosecond);
-            AssertEx.EqualTolerance(VoltsPerMicrosecondsInOneVoltPerSecond, (double)voltpermicrosecondQuantity.Value, VoltsPerMicrosecondsTolerance);
-            Assert.Equal(ElectricPotentialChangeRateUnit.VoltPerMicrosecond, voltpermicrosecondQuantity.Unit);
-
-            var voltperminuteQuantity = voltpersecond.ToUnit(ElectricPotentialChangeRateUnit.VoltPerMinute);
-            AssertEx.EqualTolerance(VoltsPerMinutesInOneVoltPerSecond, (double)voltperminuteQuantity.Value, VoltsPerMinutesTolerance);
-            Assert.Equal(ElectricPotentialChangeRateUnit.VoltPerMinute, voltperminuteQuantity.Unit);
-
-            var voltpersecondQuantity = voltpersecond.ToUnit(ElectricPotentialChangeRateUnit.VoltPerSecond);
-            AssertEx.EqualTolerance(VoltsPerSecondsInOneVoltPerSecond, (double)voltpersecondQuantity.Value, VoltsPerSecondsTolerance);
-            Assert.Equal(ElectricPotentialChangeRateUnit.VoltPerSecond, voltpersecondQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

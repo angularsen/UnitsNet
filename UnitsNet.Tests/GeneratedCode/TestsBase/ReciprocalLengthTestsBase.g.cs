@@ -269,50 +269,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ReciprocalLengthUnit unit)
         {
-            var inversemeter = ReciprocalLength.FromInverseMeters(1);
+            var inBaseUnits = ReciprocalLength.From(1.0, ReciprocalLength.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var inversecentimeterQuantity = inversemeter.ToUnit(ReciprocalLengthUnit.InverseCentimeter);
-            AssertEx.EqualTolerance(InverseCentimetersInOneInverseMeter, (double)inversecentimeterQuantity.Value, InverseCentimetersTolerance);
-            Assert.Equal(ReciprocalLengthUnit.InverseCentimeter, inversecentimeterQuantity.Unit);
-
-            var inversefootQuantity = inversemeter.ToUnit(ReciprocalLengthUnit.InverseFoot);
-            AssertEx.EqualTolerance(InverseFeetInOneInverseMeter, (double)inversefootQuantity.Value, InverseFeetTolerance);
-            Assert.Equal(ReciprocalLengthUnit.InverseFoot, inversefootQuantity.Unit);
-
-            var inverseinchQuantity = inversemeter.ToUnit(ReciprocalLengthUnit.InverseInch);
-            AssertEx.EqualTolerance(InverseInchesInOneInverseMeter, (double)inverseinchQuantity.Value, InverseInchesTolerance);
-            Assert.Equal(ReciprocalLengthUnit.InverseInch, inverseinchQuantity.Unit);
-
-            var inversemeterQuantity = inversemeter.ToUnit(ReciprocalLengthUnit.InverseMeter);
-            AssertEx.EqualTolerance(InverseMetersInOneInverseMeter, (double)inversemeterQuantity.Value, InverseMetersTolerance);
-            Assert.Equal(ReciprocalLengthUnit.InverseMeter, inversemeterQuantity.Unit);
-
-            var inversemicroinchQuantity = inversemeter.ToUnit(ReciprocalLengthUnit.InverseMicroinch);
-            AssertEx.EqualTolerance(InverseMicroinchesInOneInverseMeter, (double)inversemicroinchQuantity.Value, InverseMicroinchesTolerance);
-            Assert.Equal(ReciprocalLengthUnit.InverseMicroinch, inversemicroinchQuantity.Unit);
-
-            var inversemilQuantity = inversemeter.ToUnit(ReciprocalLengthUnit.InverseMil);
-            AssertEx.EqualTolerance(InverseMilsInOneInverseMeter, (double)inversemilQuantity.Value, InverseMilsTolerance);
-            Assert.Equal(ReciprocalLengthUnit.InverseMil, inversemilQuantity.Unit);
-
-            var inversemileQuantity = inversemeter.ToUnit(ReciprocalLengthUnit.InverseMile);
-            AssertEx.EqualTolerance(InverseMilesInOneInverseMeter, (double)inversemileQuantity.Value, InverseMilesTolerance);
-            Assert.Equal(ReciprocalLengthUnit.InverseMile, inversemileQuantity.Unit);
-
-            var inversemillimeterQuantity = inversemeter.ToUnit(ReciprocalLengthUnit.InverseMillimeter);
-            AssertEx.EqualTolerance(InverseMillimetersInOneInverseMeter, (double)inversemillimeterQuantity.Value, InverseMillimetersTolerance);
-            Assert.Equal(ReciprocalLengthUnit.InverseMillimeter, inversemillimeterQuantity.Unit);
-
-            var inverseussurveyfootQuantity = inversemeter.ToUnit(ReciprocalLengthUnit.InverseUsSurveyFoot);
-            AssertEx.EqualTolerance(InverseUsSurveyFeetInOneInverseMeter, (double)inverseussurveyfootQuantity.Value, InverseUsSurveyFeetTolerance);
-            Assert.Equal(ReciprocalLengthUnit.InverseUsSurveyFoot, inverseussurveyfootQuantity.Unit);
-
-            var inverseyardQuantity = inversemeter.ToUnit(ReciprocalLengthUnit.InverseYard);
-            AssertEx.EqualTolerance(InverseYardsInOneInverseMeter, (double)inverseyardQuantity.Value, InverseYardsTolerance);
-            Assert.Equal(ReciprocalLengthUnit.InverseYard, inverseyardQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

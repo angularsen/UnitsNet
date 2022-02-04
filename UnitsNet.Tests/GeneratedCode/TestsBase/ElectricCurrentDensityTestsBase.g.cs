@@ -199,22 +199,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ElectricCurrentDensityUnit unit)
         {
-            var amperepersquaremeter = ElectricCurrentDensity.FromAmperesPerSquareMeter(1);
+            var inBaseUnits = ElectricCurrentDensity.From(1.0, ElectricCurrentDensity.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var amperepersquarefootQuantity = amperepersquaremeter.ToUnit(ElectricCurrentDensityUnit.AmperePerSquareFoot);
-            AssertEx.EqualTolerance(AmperesPerSquareFootInOneAmperePerSquareMeter, (double)amperepersquarefootQuantity.Value, AmperesPerSquareFootTolerance);
-            Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareFoot, amperepersquarefootQuantity.Unit);
-
-            var amperepersquareinchQuantity = amperepersquaremeter.ToUnit(ElectricCurrentDensityUnit.AmperePerSquareInch);
-            AssertEx.EqualTolerance(AmperesPerSquareInchInOneAmperePerSquareMeter, (double)amperepersquareinchQuantity.Value, AmperesPerSquareInchTolerance);
-            Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareInch, amperepersquareinchQuantity.Unit);
-
-            var amperepersquaremeterQuantity = amperepersquaremeter.ToUnit(ElectricCurrentDensityUnit.AmperePerSquareMeter);
-            AssertEx.EqualTolerance(AmperesPerSquareMeterInOneAmperePerSquareMeter, (double)amperepersquaremeterQuantity.Value, AmperesPerSquareMeterTolerance);
-            Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareMeter, amperepersquaremeterQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

@@ -179,14 +179,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(LuminousFluxUnit unit)
         {
-            var lumen = LuminousFlux.FromLumens(1);
+            var inBaseUnits = LuminousFlux.From(1.0, LuminousFlux.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var lumenQuantity = lumen.ToUnit(LuminousFluxUnit.Lumen);
-            AssertEx.EqualTolerance(LumensInOneLumen, (double)lumenQuantity.Value, LumensTolerance);
-            Assert.Equal(LuminousFluxUnit.Lumen, lumenQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

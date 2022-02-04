@@ -179,14 +179,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(LuminousIntensityUnit unit)
         {
-            var candela = LuminousIntensity.FromCandela(1);
+            var inBaseUnits = LuminousIntensity.From(1.0, LuminousIntensity.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var candelaQuantity = candela.ToUnit(LuminousIntensityUnit.Candela);
-            AssertEx.EqualTolerance(CandelaInOneCandela, (double)candelaQuantity.Value, CandelaTolerance);
-            Assert.Equal(LuminousIntensityUnit.Candela, candelaQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

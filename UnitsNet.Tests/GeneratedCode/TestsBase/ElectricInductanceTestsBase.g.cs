@@ -209,26 +209,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ElectricInductanceUnit unit)
         {
-            var henry = ElectricInductance.FromHenries(1);
+            var inBaseUnits = ElectricInductance.From(1.0, ElectricInductance.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var henryQuantity = henry.ToUnit(ElectricInductanceUnit.Henry);
-            AssertEx.EqualTolerance(HenriesInOneHenry, (double)henryQuantity.Value, HenriesTolerance);
-            Assert.Equal(ElectricInductanceUnit.Henry, henryQuantity.Unit);
-
-            var microhenryQuantity = henry.ToUnit(ElectricInductanceUnit.Microhenry);
-            AssertEx.EqualTolerance(MicrohenriesInOneHenry, (double)microhenryQuantity.Value, MicrohenriesTolerance);
-            Assert.Equal(ElectricInductanceUnit.Microhenry, microhenryQuantity.Unit);
-
-            var millihenryQuantity = henry.ToUnit(ElectricInductanceUnit.Millihenry);
-            AssertEx.EqualTolerance(MillihenriesInOneHenry, (double)millihenryQuantity.Value, MillihenriesTolerance);
-            Assert.Equal(ElectricInductanceUnit.Millihenry, millihenryQuantity.Unit);
-
-            var nanohenryQuantity = henry.ToUnit(ElectricInductanceUnit.Nanohenry);
-            AssertEx.EqualTolerance(NanohenriesInOneHenry, (double)nanohenryQuantity.Value, NanohenriesTolerance);
-            Assert.Equal(ElectricInductanceUnit.Nanohenry, nanohenryQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

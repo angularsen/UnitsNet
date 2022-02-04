@@ -45,36 +45,36 @@ namespace CodeGen.Generators.UnitsNetGen
         /// </summary>
         private readonly string _numberSuffix;
 
-        public UnitTestBaseClassGenerator(Quantity quantity)
+        public UnitTestBaseClassGenerator( Quantity quantity )
         {
             _quantity = quantity;
-            _baseUnit = quantity.Units.FirstOrDefault(u => u.SingularName == _quantity.BaseUnit) ??
-                        throw new ArgumentException($"No unit found with SingularName equal to BaseUnit [{_quantity.BaseUnit}]. This unit must be defined.",
-                            nameof(quantity));
+            _baseUnit = quantity.Units.FirstOrDefault( u => u.SingularName == _quantity.BaseUnit ) ??
+                        throw new ArgumentException( $"No unit found with SingularName equal to BaseUnit [{_quantity.BaseUnit}]. This unit must be defined.",
+                            nameof( quantity ) );
             _unitEnumName = $"{quantity.Name}Unit";
-            _baseUnitEnglishAbbreviation = GetEnglishAbbreviation(_baseUnit);
+            _baseUnitEnglishAbbreviation = GetEnglishAbbreviation( _baseUnit );
             _baseUnitFullName = $"{_unitEnumName}.{_baseUnit.SingularName}";
             _numberSuffix = quantity.BaseType == "decimal" ? "m" : "";
         }
 
-        private string GetUnitFullName(Unit unit) => $"{_unitEnumName}.{unit.SingularName}";
+        private string GetUnitFullName( Unit unit ) => $"{_unitEnumName}.{unit.SingularName}";
 
         /// <summary>
         /// Gets the first en-US abbreviation for the unit -or- empty string if none is defined.
         /// If a unit abbreviation exists, a leading whitespace is added to separate the number and the abbreviation like "1 m".
         /// </summary>
-        private static string GetEnglishAbbreviation(Unit unit)
+        private static string GetEnglishAbbreviation( Unit unit )
         {
-            var unitAbbreviation = unit.Localization.First(l => l.Culture == "en-US").Abbreviations.FirstOrDefault();
-            return string.IsNullOrEmpty(unitAbbreviation) ? "" : $" {unitAbbreviation}";
+            var unitAbbreviation = unit.Localization.First( l => l.Culture == "en-US" ).Abbreviations.FirstOrDefault();
+            return string.IsNullOrEmpty( unitAbbreviation ) ? "" : $" {unitAbbreviation}";
         }
 
         public override string Generate()
         {
             var baseUnitVariableName = _baseUnit.SingularName.ToLowerInvariant();
 
-            Writer.WL(GeneratedFileHeader);
-            Writer.WL($@"
+            Writer.WL( GeneratedFileHeader );
+            Writer.WL( $@"
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -95,24 +95,24 @@ namespace UnitsNet.Tests
     /// </summary>
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class {_quantity.Name}TestsBase : QuantityTestsBase
-    {{");
-            foreach (var unit in _quantity.Units) Writer.WL($@"
-        protected abstract double {unit.PluralName}InOne{_baseUnit.SingularName} {{ get; }}");
+    {{" );
+            foreach( var unit in _quantity.Units ) Writer.WL( $@"
+        protected abstract double {unit.PluralName}InOne{_baseUnit.SingularName} {{ get; }}" );
 
-            Writer.WL("");
-            Writer.WL($@"
-// ReSharper disable VirtualMemberNeverOverriden.Global");
-            foreach (var unit in _quantity.Units) Writer.WL($@"
-        protected virtual double {unit.PluralName}Tolerance {{ get {{ return 1e-5; }} }}"); Writer.WL($@"
+            Writer.WL( "" );
+            Writer.WL( $@"
+// ReSharper disable VirtualMemberNeverOverriden.Global" );
+            foreach( var unit in _quantity.Units ) Writer.WL( $@"
+        protected virtual double {unit.PluralName}Tolerance {{ get {{ return 1e-5; }} }}" ); Writer.WL( $@"
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor({_unitEnumName} unit)
         {{
             return unit switch
-            {{");
-            foreach (var unit in _quantity.Units) Writer.WL($@"
-                {GetUnitFullName( unit )} => ({unit.PluralName}InOne{_baseUnit.SingularName}, {unit.PluralName}Tolerance),");
-Writer.WL($@"
+            {{" );
+            foreach( var unit in _quantity.Units ) Writer.WL( $@"
+                {GetUnitFullName( unit )} => ({unit.PluralName}InOne{_baseUnit.SingularName}, {unit.PluralName}Tolerance)," );
+            Writer.WL( $@"
                 _ => throw new NotSupportedException()
             }};
         }}
@@ -121,10 +121,10 @@ Writer.WL($@"
         {{" );
             foreach( var unit in _quantity.Units )
             {
-                Writer.WL($@"
-            new object[] {{ {GetUnitFullName( unit )} }},");
+                Writer.WL( $@"
+            new object[] {{ {GetUnitFullName( unit )} }}," );
             }
-Writer.WL( $@"
+            Writer.WL( $@"
         }};
 
         [Fact]
@@ -137,15 +137,15 @@ Writer.WL( $@"
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {{
             var quantity = new {_quantity.Name}();
-            Assert.Equal(0, quantity.Value);");
-            if (_quantity.BaseType == "decimal") Writer.WL($@"
-            Assert.Equal(0m, ((IDecimalQuantity)quantity).Value);");
-            Writer.WL($@"
+            Assert.Equal(0, quantity.Value);" );
+            if( _quantity.BaseType == "decimal" ) Writer.WL( $@"
+            Assert.Equal(0m, ((IDecimalQuantity)quantity).Value);" );
+            Writer.WL( $@"
             Assert.Equal({_baseUnitFullName}, quantity.Unit);
         }}
 
-");
-            if (_quantity.BaseType == "double") Writer.WL($@"
+" );
+            if( _quantity.BaseType == "double" ) Writer.WL( $@"
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {{
@@ -158,7 +158,7 @@ Writer.WL( $@"
         {{
             Assert.Throws<ArgumentException>(() => new {_quantity.Name}(double.NaN, {_baseUnitFullName}));
         }}
-"); Writer.WL($@"
+" ); Writer.WL( $@"
 
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
@@ -203,31 +203,31 @@ Writer.WL( $@"
         [Fact]
         public void {_baseUnit.SingularName}To{_quantity.Name}Units()
         {{
-            {_quantity.Name} {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);");
+            {_quantity.Name} {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);" );
 
-            foreach (var unit in _quantity.Units) Writer.WL($@"
-            AssertEx.EqualTolerance({unit.PluralName}InOne{_baseUnit.SingularName}, {baseUnitVariableName}.{unit.PluralName}, {unit.PluralName}Tolerance);");
-            Writer.WL($@"
+            foreach( var unit in _quantity.Units ) Writer.WL( $@"
+            AssertEx.EqualTolerance({unit.PluralName}InOne{_baseUnit.SingularName}, {baseUnitVariableName}.{unit.PluralName}, {unit.PluralName}Tolerance);" );
+            Writer.WL( $@"
         }}
 
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
-        {{");
+        {{" );
             int i = 0;
-            foreach (var unit in _quantity.Units)
+            foreach( var unit in _quantity.Units )
             {
                 var quantityVariable = $"quantity{i++:D2}";
-                Writer.WL($@"
-            var {quantityVariable} = {_quantity.Name}.From(1, {GetUnitFullName(unit)});
+                Writer.WL( $@"
+            var {quantityVariable} = {_quantity.Name}.From(1, {GetUnitFullName( unit )});
             AssertEx.EqualTolerance(1, {quantityVariable}.{unit.PluralName}, {unit.PluralName}Tolerance);
-            Assert.Equal({GetUnitFullName(unit)}, {quantityVariable}.Unit);
-");
+            Assert.Equal({GetUnitFullName( unit )}, {quantityVariable}.Unit);
+" );
 
             }
-            Writer.WL($@"
+            Writer.WL( $@"
         }}
-");
-            if (_quantity.BaseType == "double") Writer.WL($@"
+" );
+            if( _quantity.BaseType == "double" ) Writer.WL( $@"
         [Fact]
         public void From{_baseUnit.PluralName}_WithInfinityValue_ThrowsArgumentException()
         {{
@@ -240,15 +240,15 @@ Writer.WL( $@"
         {{
             Assert.Throws<ArgumentException>(() => {_quantity.Name}.From{_baseUnit.PluralName}(double.NaN));
         }}
-"); Writer.WL($@"
+" ); Writer.WL( $@"
 
         [Fact]
         public void As()
         {{
-            var {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);");
-            foreach (var unit in _quantity.Units) Writer.WL($@"
-            AssertEx.EqualTolerance({unit.PluralName}InOne{_baseUnit.SingularName}, {baseUnitVariableName}.As({GetUnitFullName(unit)}), {unit.PluralName}Tolerance);");
-            Writer.WL($@"
+            var {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);" );
+            foreach( var unit in _quantity.Units ) Writer.WL( $@"
+            AssertEx.EqualTolerance({unit.PluralName}InOne{_baseUnit.SingularName}, {baseUnitVariableName}.As({GetUnitFullName( unit )}), {unit.PluralName}Tolerance);" );
+            Writer.WL( $@"
         }}
 
         [Fact]
@@ -268,21 +268,16 @@ Writer.WL( $@"
             }}
         }}
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit({_unitEnumName} unit)
         {{
-            var {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);");
-            foreach (var unit in _quantity.Units)
-            {
-                var asQuantityVariableName = $"{unit.SingularName.ToLowerInvariant()}Quantity";
+            var inBaseUnits = {_quantity.Name}.From(1.0, {_quantity.Name}.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-                Writer.WL("");
-                Writer.WL($@"
-            var {asQuantityVariableName} = {baseUnitVariableName}.ToUnit({GetUnitFullName(unit)});
-            AssertEx.EqualTolerance({unit.PluralName}InOne{_baseUnit.SingularName}, (double){asQuantityVariableName}.Value, {unit.PluralName}Tolerance);
-            Assert.Equal({GetUnitFullName(unit)}, {asQuantityVariableName}.Unit);");
-            }
-            Writer.WL($@"
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }}
 
         [Theory]

@@ -219,30 +219,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ElectricPotentialDcUnit unit)
         {
-            var voltdc = ElectricPotentialDc.FromVoltsDc(1);
+            var inBaseUnits = ElectricPotentialDc.From(1.0, ElectricPotentialDc.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var kilovoltdcQuantity = voltdc.ToUnit(ElectricPotentialDcUnit.KilovoltDc);
-            AssertEx.EqualTolerance(KilovoltsDcInOneVoltDc, (double)kilovoltdcQuantity.Value, KilovoltsDcTolerance);
-            Assert.Equal(ElectricPotentialDcUnit.KilovoltDc, kilovoltdcQuantity.Unit);
-
-            var megavoltdcQuantity = voltdc.ToUnit(ElectricPotentialDcUnit.MegavoltDc);
-            AssertEx.EqualTolerance(MegavoltsDcInOneVoltDc, (double)megavoltdcQuantity.Value, MegavoltsDcTolerance);
-            Assert.Equal(ElectricPotentialDcUnit.MegavoltDc, megavoltdcQuantity.Unit);
-
-            var microvoltdcQuantity = voltdc.ToUnit(ElectricPotentialDcUnit.MicrovoltDc);
-            AssertEx.EqualTolerance(MicrovoltsDcInOneVoltDc, (double)microvoltdcQuantity.Value, MicrovoltsDcTolerance);
-            Assert.Equal(ElectricPotentialDcUnit.MicrovoltDc, microvoltdcQuantity.Unit);
-
-            var millivoltdcQuantity = voltdc.ToUnit(ElectricPotentialDcUnit.MillivoltDc);
-            AssertEx.EqualTolerance(MillivoltsDcInOneVoltDc, (double)millivoltdcQuantity.Value, MillivoltsDcTolerance);
-            Assert.Equal(ElectricPotentialDcUnit.MillivoltDc, millivoltdcQuantity.Unit);
-
-            var voltdcQuantity = voltdc.ToUnit(ElectricPotentialDcUnit.VoltDc);
-            AssertEx.EqualTolerance(VoltsDcInOneVoltDc, (double)voltdcQuantity.Value, VoltsDcTolerance);
-            Assert.Equal(ElectricPotentialDcUnit.VoltDc, voltdcQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

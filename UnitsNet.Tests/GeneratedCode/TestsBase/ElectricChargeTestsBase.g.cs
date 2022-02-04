@@ -219,30 +219,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ElectricChargeUnit unit)
         {
-            var coulomb = ElectricCharge.FromCoulombs(1);
+            var inBaseUnits = ElectricCharge.From(1.0, ElectricCharge.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var amperehourQuantity = coulomb.ToUnit(ElectricChargeUnit.AmpereHour);
-            AssertEx.EqualTolerance(AmpereHoursInOneCoulomb, (double)amperehourQuantity.Value, AmpereHoursTolerance);
-            Assert.Equal(ElectricChargeUnit.AmpereHour, amperehourQuantity.Unit);
-
-            var coulombQuantity = coulomb.ToUnit(ElectricChargeUnit.Coulomb);
-            AssertEx.EqualTolerance(CoulombsInOneCoulomb, (double)coulombQuantity.Value, CoulombsTolerance);
-            Assert.Equal(ElectricChargeUnit.Coulomb, coulombQuantity.Unit);
-
-            var kiloamperehourQuantity = coulomb.ToUnit(ElectricChargeUnit.KiloampereHour);
-            AssertEx.EqualTolerance(KiloampereHoursInOneCoulomb, (double)kiloamperehourQuantity.Value, KiloampereHoursTolerance);
-            Assert.Equal(ElectricChargeUnit.KiloampereHour, kiloamperehourQuantity.Unit);
-
-            var megaamperehourQuantity = coulomb.ToUnit(ElectricChargeUnit.MegaampereHour);
-            AssertEx.EqualTolerance(MegaampereHoursInOneCoulomb, (double)megaamperehourQuantity.Value, MegaampereHoursTolerance);
-            Assert.Equal(ElectricChargeUnit.MegaampereHour, megaamperehourQuantity.Unit);
-
-            var milliamperehourQuantity = coulomb.ToUnit(ElectricChargeUnit.MilliampereHour);
-            AssertEx.EqualTolerance(MilliampereHoursInOneCoulomb, (double)milliamperehourQuantity.Value, MilliampereHoursTolerance);
-            Assert.Equal(ElectricChargeUnit.MilliampereHour, milliamperehourQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

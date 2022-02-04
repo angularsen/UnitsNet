@@ -209,26 +209,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(FuelEfficiencyUnit unit)
         {
-            var literper100kilometers = FuelEfficiency.FromLitersPer100Kilometers(1);
+            var inBaseUnits = FuelEfficiency.From(1.0, FuelEfficiency.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var kilometerperliterQuantity = literper100kilometers.ToUnit(FuelEfficiencyUnit.KilometerPerLiter);
-            AssertEx.EqualTolerance(KilometersPerLitersInOneLiterPer100Kilometers, (double)kilometerperliterQuantity.Value, KilometersPerLitersTolerance);
-            Assert.Equal(FuelEfficiencyUnit.KilometerPerLiter, kilometerperliterQuantity.Unit);
-
-            var literper100kilometersQuantity = literper100kilometers.ToUnit(FuelEfficiencyUnit.LiterPer100Kilometers);
-            AssertEx.EqualTolerance(LitersPer100KilometersInOneLiterPer100Kilometers, (double)literper100kilometersQuantity.Value, LitersPer100KilometersTolerance);
-            Assert.Equal(FuelEfficiencyUnit.LiterPer100Kilometers, literper100kilometersQuantity.Unit);
-
-            var mileperukgallonQuantity = literper100kilometers.ToUnit(FuelEfficiencyUnit.MilePerUkGallon);
-            AssertEx.EqualTolerance(MilesPerUkGallonInOneLiterPer100Kilometers, (double)mileperukgallonQuantity.Value, MilesPerUkGallonTolerance);
-            Assert.Equal(FuelEfficiencyUnit.MilePerUkGallon, mileperukgallonQuantity.Unit);
-
-            var mileperusgallonQuantity = literper100kilometers.ToUnit(FuelEfficiencyUnit.MilePerUsGallon);
-            AssertEx.EqualTolerance(MilesPerUsGallonInOneLiterPer100Kilometers, (double)mileperusgallonQuantity.Value, MilesPerUsGallonTolerance);
-            Assert.Equal(FuelEfficiencyUnit.MilePerUsGallon, mileperusgallonQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

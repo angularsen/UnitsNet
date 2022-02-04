@@ -209,26 +209,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(IlluminanceUnit unit)
         {
-            var lux = Illuminance.FromLux(1);
+            var inBaseUnits = Illuminance.From(1.0, Illuminance.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var kiloluxQuantity = lux.ToUnit(IlluminanceUnit.Kilolux);
-            AssertEx.EqualTolerance(KiloluxInOneLux, (double)kiloluxQuantity.Value, KiloluxTolerance);
-            Assert.Equal(IlluminanceUnit.Kilolux, kiloluxQuantity.Unit);
-
-            var luxQuantity = lux.ToUnit(IlluminanceUnit.Lux);
-            AssertEx.EqualTolerance(LuxInOneLux, (double)luxQuantity.Value, LuxTolerance);
-            Assert.Equal(IlluminanceUnit.Lux, luxQuantity.Unit);
-
-            var megaluxQuantity = lux.ToUnit(IlluminanceUnit.Megalux);
-            AssertEx.EqualTolerance(MegaluxInOneLux, (double)megaluxQuantity.Value, MegaluxTolerance);
-            Assert.Equal(IlluminanceUnit.Megalux, megaluxQuantity.Unit);
-
-            var milliluxQuantity = lux.ToUnit(IlluminanceUnit.Millilux);
-            AssertEx.EqualTolerance(MilliluxInOneLux, (double)milliluxQuantity.Value, MilliluxTolerance);
-            Assert.Equal(IlluminanceUnit.Millilux, milliluxQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

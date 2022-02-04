@@ -409,106 +409,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(MassFractionUnit unit)
         {
-            var decimalfraction = MassFraction.FromDecimalFractions(1);
+            var inBaseUnits = MassFraction.From(1.0, MassFraction.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var centigrampergramQuantity = decimalfraction.ToUnit(MassFractionUnit.CentigramPerGram);
-            AssertEx.EqualTolerance(CentigramsPerGramInOneDecimalFraction, (double)centigrampergramQuantity.Value, CentigramsPerGramTolerance);
-            Assert.Equal(MassFractionUnit.CentigramPerGram, centigrampergramQuantity.Unit);
-
-            var centigramperkilogramQuantity = decimalfraction.ToUnit(MassFractionUnit.CentigramPerKilogram);
-            AssertEx.EqualTolerance(CentigramsPerKilogramInOneDecimalFraction, (double)centigramperkilogramQuantity.Value, CentigramsPerKilogramTolerance);
-            Assert.Equal(MassFractionUnit.CentigramPerKilogram, centigramperkilogramQuantity.Unit);
-
-            var decagrampergramQuantity = decimalfraction.ToUnit(MassFractionUnit.DecagramPerGram);
-            AssertEx.EqualTolerance(DecagramsPerGramInOneDecimalFraction, (double)decagrampergramQuantity.Value, DecagramsPerGramTolerance);
-            Assert.Equal(MassFractionUnit.DecagramPerGram, decagrampergramQuantity.Unit);
-
-            var decagramperkilogramQuantity = decimalfraction.ToUnit(MassFractionUnit.DecagramPerKilogram);
-            AssertEx.EqualTolerance(DecagramsPerKilogramInOneDecimalFraction, (double)decagramperkilogramQuantity.Value, DecagramsPerKilogramTolerance);
-            Assert.Equal(MassFractionUnit.DecagramPerKilogram, decagramperkilogramQuantity.Unit);
-
-            var decigrampergramQuantity = decimalfraction.ToUnit(MassFractionUnit.DecigramPerGram);
-            AssertEx.EqualTolerance(DecigramsPerGramInOneDecimalFraction, (double)decigrampergramQuantity.Value, DecigramsPerGramTolerance);
-            Assert.Equal(MassFractionUnit.DecigramPerGram, decigrampergramQuantity.Unit);
-
-            var decigramperkilogramQuantity = decimalfraction.ToUnit(MassFractionUnit.DecigramPerKilogram);
-            AssertEx.EqualTolerance(DecigramsPerKilogramInOneDecimalFraction, (double)decigramperkilogramQuantity.Value, DecigramsPerKilogramTolerance);
-            Assert.Equal(MassFractionUnit.DecigramPerKilogram, decigramperkilogramQuantity.Unit);
-
-            var decimalfractionQuantity = decimalfraction.ToUnit(MassFractionUnit.DecimalFraction);
-            AssertEx.EqualTolerance(DecimalFractionsInOneDecimalFraction, (double)decimalfractionQuantity.Value, DecimalFractionsTolerance);
-            Assert.Equal(MassFractionUnit.DecimalFraction, decimalfractionQuantity.Unit);
-
-            var grampergramQuantity = decimalfraction.ToUnit(MassFractionUnit.GramPerGram);
-            AssertEx.EqualTolerance(GramsPerGramInOneDecimalFraction, (double)grampergramQuantity.Value, GramsPerGramTolerance);
-            Assert.Equal(MassFractionUnit.GramPerGram, grampergramQuantity.Unit);
-
-            var gramperkilogramQuantity = decimalfraction.ToUnit(MassFractionUnit.GramPerKilogram);
-            AssertEx.EqualTolerance(GramsPerKilogramInOneDecimalFraction, (double)gramperkilogramQuantity.Value, GramsPerKilogramTolerance);
-            Assert.Equal(MassFractionUnit.GramPerKilogram, gramperkilogramQuantity.Unit);
-
-            var hectogrampergramQuantity = decimalfraction.ToUnit(MassFractionUnit.HectogramPerGram);
-            AssertEx.EqualTolerance(HectogramsPerGramInOneDecimalFraction, (double)hectogrampergramQuantity.Value, HectogramsPerGramTolerance);
-            Assert.Equal(MassFractionUnit.HectogramPerGram, hectogrampergramQuantity.Unit);
-
-            var hectogramperkilogramQuantity = decimalfraction.ToUnit(MassFractionUnit.HectogramPerKilogram);
-            AssertEx.EqualTolerance(HectogramsPerKilogramInOneDecimalFraction, (double)hectogramperkilogramQuantity.Value, HectogramsPerKilogramTolerance);
-            Assert.Equal(MassFractionUnit.HectogramPerKilogram, hectogramperkilogramQuantity.Unit);
-
-            var kilogrampergramQuantity = decimalfraction.ToUnit(MassFractionUnit.KilogramPerGram);
-            AssertEx.EqualTolerance(KilogramsPerGramInOneDecimalFraction, (double)kilogrampergramQuantity.Value, KilogramsPerGramTolerance);
-            Assert.Equal(MassFractionUnit.KilogramPerGram, kilogrampergramQuantity.Unit);
-
-            var kilogramperkilogramQuantity = decimalfraction.ToUnit(MassFractionUnit.KilogramPerKilogram);
-            AssertEx.EqualTolerance(KilogramsPerKilogramInOneDecimalFraction, (double)kilogramperkilogramQuantity.Value, KilogramsPerKilogramTolerance);
-            Assert.Equal(MassFractionUnit.KilogramPerKilogram, kilogramperkilogramQuantity.Unit);
-
-            var microgrampergramQuantity = decimalfraction.ToUnit(MassFractionUnit.MicrogramPerGram);
-            AssertEx.EqualTolerance(MicrogramsPerGramInOneDecimalFraction, (double)microgrampergramQuantity.Value, MicrogramsPerGramTolerance);
-            Assert.Equal(MassFractionUnit.MicrogramPerGram, microgrampergramQuantity.Unit);
-
-            var microgramperkilogramQuantity = decimalfraction.ToUnit(MassFractionUnit.MicrogramPerKilogram);
-            AssertEx.EqualTolerance(MicrogramsPerKilogramInOneDecimalFraction, (double)microgramperkilogramQuantity.Value, MicrogramsPerKilogramTolerance);
-            Assert.Equal(MassFractionUnit.MicrogramPerKilogram, microgramperkilogramQuantity.Unit);
-
-            var milligrampergramQuantity = decimalfraction.ToUnit(MassFractionUnit.MilligramPerGram);
-            AssertEx.EqualTolerance(MilligramsPerGramInOneDecimalFraction, (double)milligrampergramQuantity.Value, MilligramsPerGramTolerance);
-            Assert.Equal(MassFractionUnit.MilligramPerGram, milligrampergramQuantity.Unit);
-
-            var milligramperkilogramQuantity = decimalfraction.ToUnit(MassFractionUnit.MilligramPerKilogram);
-            AssertEx.EqualTolerance(MilligramsPerKilogramInOneDecimalFraction, (double)milligramperkilogramQuantity.Value, MilligramsPerKilogramTolerance);
-            Assert.Equal(MassFractionUnit.MilligramPerKilogram, milligramperkilogramQuantity.Unit);
-
-            var nanogrampergramQuantity = decimalfraction.ToUnit(MassFractionUnit.NanogramPerGram);
-            AssertEx.EqualTolerance(NanogramsPerGramInOneDecimalFraction, (double)nanogrampergramQuantity.Value, NanogramsPerGramTolerance);
-            Assert.Equal(MassFractionUnit.NanogramPerGram, nanogrampergramQuantity.Unit);
-
-            var nanogramperkilogramQuantity = decimalfraction.ToUnit(MassFractionUnit.NanogramPerKilogram);
-            AssertEx.EqualTolerance(NanogramsPerKilogramInOneDecimalFraction, (double)nanogramperkilogramQuantity.Value, NanogramsPerKilogramTolerance);
-            Assert.Equal(MassFractionUnit.NanogramPerKilogram, nanogramperkilogramQuantity.Unit);
-
-            var partperbillionQuantity = decimalfraction.ToUnit(MassFractionUnit.PartPerBillion);
-            AssertEx.EqualTolerance(PartsPerBillionInOneDecimalFraction, (double)partperbillionQuantity.Value, PartsPerBillionTolerance);
-            Assert.Equal(MassFractionUnit.PartPerBillion, partperbillionQuantity.Unit);
-
-            var partpermillionQuantity = decimalfraction.ToUnit(MassFractionUnit.PartPerMillion);
-            AssertEx.EqualTolerance(PartsPerMillionInOneDecimalFraction, (double)partpermillionQuantity.Value, PartsPerMillionTolerance);
-            Assert.Equal(MassFractionUnit.PartPerMillion, partpermillionQuantity.Unit);
-
-            var partperthousandQuantity = decimalfraction.ToUnit(MassFractionUnit.PartPerThousand);
-            AssertEx.EqualTolerance(PartsPerThousandInOneDecimalFraction, (double)partperthousandQuantity.Value, PartsPerThousandTolerance);
-            Assert.Equal(MassFractionUnit.PartPerThousand, partperthousandQuantity.Unit);
-
-            var partpertrillionQuantity = decimalfraction.ToUnit(MassFractionUnit.PartPerTrillion);
-            AssertEx.EqualTolerance(PartsPerTrillionInOneDecimalFraction, (double)partpertrillionQuantity.Value, PartsPerTrillionTolerance);
-            Assert.Equal(MassFractionUnit.PartPerTrillion, partpertrillionQuantity.Unit);
-
-            var percentQuantity = decimalfraction.ToUnit(MassFractionUnit.Percent);
-            AssertEx.EqualTolerance(PercentInOneDecimalFraction, (double)percentQuantity.Value, PercentTolerance);
-            Assert.Equal(MassFractionUnit.Percent, percentQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

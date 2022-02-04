@@ -199,22 +199,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(MolarEnergyUnit unit)
         {
-            var joulepermole = MolarEnergy.FromJoulesPerMole(1);
+            var inBaseUnits = MolarEnergy.From(1.0, MolarEnergy.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var joulepermoleQuantity = joulepermole.ToUnit(MolarEnergyUnit.JoulePerMole);
-            AssertEx.EqualTolerance(JoulesPerMoleInOneJoulePerMole, (double)joulepermoleQuantity.Value, JoulesPerMoleTolerance);
-            Assert.Equal(MolarEnergyUnit.JoulePerMole, joulepermoleQuantity.Unit);
-
-            var kilojoulepermoleQuantity = joulepermole.ToUnit(MolarEnergyUnit.KilojoulePerMole);
-            AssertEx.EqualTolerance(KilojoulesPerMoleInOneJoulePerMole, (double)kilojoulepermoleQuantity.Value, KilojoulesPerMoleTolerance);
-            Assert.Equal(MolarEnergyUnit.KilojoulePerMole, kilojoulepermoleQuantity.Unit);
-
-            var megajoulepermoleQuantity = joulepermole.ToUnit(MolarEnergyUnit.MegajoulePerMole);
-            AssertEx.EqualTolerance(MegajoulesPerMoleInOneJoulePerMole, (double)megajoulepermoleQuantity.Value, MegajoulesPerMoleTolerance);
-            Assert.Equal(MolarEnergyUnit.MegajoulePerMole, megajoulepermoleQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

@@ -179,14 +179,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(VitaminAUnit unit)
         {
-            var internationalunit = VitaminA.FromInternationalUnits(1);
+            var inBaseUnits = VitaminA.From(1.0, VitaminA.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var internationalunitQuantity = internationalunit.ToUnit(VitaminAUnit.InternationalUnit);
-            AssertEx.EqualTolerance(InternationalUnitsInOneInternationalUnit, (double)internationalunitQuantity.Value, InternationalUnitsTolerance);
-            Assert.Equal(VitaminAUnit.InternationalUnit, internationalunitQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

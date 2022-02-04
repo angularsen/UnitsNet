@@ -209,26 +209,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(AmplitudeRatioUnit unit)
         {
-            var decibelvolt = AmplitudeRatio.FromDecibelVolts(1);
+            var inBaseUnits = AmplitudeRatio.From(1.0, AmplitudeRatio.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var decibelmicrovoltQuantity = decibelvolt.ToUnit(AmplitudeRatioUnit.DecibelMicrovolt);
-            AssertEx.EqualTolerance(DecibelMicrovoltsInOneDecibelVolt, (double)decibelmicrovoltQuantity.Value, DecibelMicrovoltsTolerance);
-            Assert.Equal(AmplitudeRatioUnit.DecibelMicrovolt, decibelmicrovoltQuantity.Unit);
-
-            var decibelmillivoltQuantity = decibelvolt.ToUnit(AmplitudeRatioUnit.DecibelMillivolt);
-            AssertEx.EqualTolerance(DecibelMillivoltsInOneDecibelVolt, (double)decibelmillivoltQuantity.Value, DecibelMillivoltsTolerance);
-            Assert.Equal(AmplitudeRatioUnit.DecibelMillivolt, decibelmillivoltQuantity.Unit);
-
-            var decibelunloadedQuantity = decibelvolt.ToUnit(AmplitudeRatioUnit.DecibelUnloaded);
-            AssertEx.EqualTolerance(DecibelsUnloadedInOneDecibelVolt, (double)decibelunloadedQuantity.Value, DecibelsUnloadedTolerance);
-            Assert.Equal(AmplitudeRatioUnit.DecibelUnloaded, decibelunloadedQuantity.Unit);
-
-            var decibelvoltQuantity = decibelvolt.ToUnit(AmplitudeRatioUnit.DecibelVolt);
-            AssertEx.EqualTolerance(DecibelVoltsInOneDecibelVolt, (double)decibelvoltQuantity.Value, DecibelVoltsTolerance);
-            Assert.Equal(AmplitudeRatioUnit.DecibelVolt, decibelvoltQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

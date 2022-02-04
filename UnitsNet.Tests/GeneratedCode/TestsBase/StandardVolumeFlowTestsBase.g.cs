@@ -259,46 +259,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(StandardVolumeFlowUnit unit)
         {
-            var standardcubicmeterpersecond = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1);
+            var inBaseUnits = StandardVolumeFlow.From(1.0, StandardVolumeFlow.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var standardcubiccentimeterperminuteQuantity = standardcubicmeterpersecond.ToUnit(StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute);
-            AssertEx.EqualTolerance(StandardCubicCentimetersPerMinuteInOneStandardCubicMeterPerSecond, (double)standardcubiccentimeterperminuteQuantity.Value, StandardCubicCentimetersPerMinuteTolerance);
-            Assert.Equal(StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, standardcubiccentimeterperminuteQuantity.Unit);
-
-            var standardcubicfootperhourQuantity = standardcubicmeterpersecond.ToUnit(StandardVolumeFlowUnit.StandardCubicFootPerHour);
-            AssertEx.EqualTolerance(StandardCubicFeetPerHourInOneStandardCubicMeterPerSecond, (double)standardcubicfootperhourQuantity.Value, StandardCubicFeetPerHourTolerance);
-            Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerHour, standardcubicfootperhourQuantity.Unit);
-
-            var standardcubicfootperminuteQuantity = standardcubicmeterpersecond.ToUnit(StandardVolumeFlowUnit.StandardCubicFootPerMinute);
-            AssertEx.EqualTolerance(StandardCubicFeetPerMinuteInOneStandardCubicMeterPerSecond, (double)standardcubicfootperminuteQuantity.Value, StandardCubicFeetPerMinuteTolerance);
-            Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerMinute, standardcubicfootperminuteQuantity.Unit);
-
-            var standardcubicfootpersecondQuantity = standardcubicmeterpersecond.ToUnit(StandardVolumeFlowUnit.StandardCubicFootPerSecond);
-            AssertEx.EqualTolerance(StandardCubicFeetPerSecondInOneStandardCubicMeterPerSecond, (double)standardcubicfootpersecondQuantity.Value, StandardCubicFeetPerSecondTolerance);
-            Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerSecond, standardcubicfootpersecondQuantity.Unit);
-
-            var standardcubicmeterperdayQuantity = standardcubicmeterpersecond.ToUnit(StandardVolumeFlowUnit.StandardCubicMeterPerDay);
-            AssertEx.EqualTolerance(StandardCubicMetersPerDayInOneStandardCubicMeterPerSecond, (double)standardcubicmeterperdayQuantity.Value, StandardCubicMetersPerDayTolerance);
-            Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerDay, standardcubicmeterperdayQuantity.Unit);
-
-            var standardcubicmeterperhourQuantity = standardcubicmeterpersecond.ToUnit(StandardVolumeFlowUnit.StandardCubicMeterPerHour);
-            AssertEx.EqualTolerance(StandardCubicMetersPerHourInOneStandardCubicMeterPerSecond, (double)standardcubicmeterperhourQuantity.Value, StandardCubicMetersPerHourTolerance);
-            Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerHour, standardcubicmeterperhourQuantity.Unit);
-
-            var standardcubicmeterperminuteQuantity = standardcubicmeterpersecond.ToUnit(StandardVolumeFlowUnit.StandardCubicMeterPerMinute);
-            AssertEx.EqualTolerance(StandardCubicMetersPerMinuteInOneStandardCubicMeterPerSecond, (double)standardcubicmeterperminuteQuantity.Value, StandardCubicMetersPerMinuteTolerance);
-            Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerMinute, standardcubicmeterperminuteQuantity.Unit);
-
-            var standardcubicmeterpersecondQuantity = standardcubicmeterpersecond.ToUnit(StandardVolumeFlowUnit.StandardCubicMeterPerSecond);
-            AssertEx.EqualTolerance(StandardCubicMetersPerSecondInOneStandardCubicMeterPerSecond, (double)standardcubicmeterpersecondQuantity.Value, StandardCubicMetersPerSecondTolerance);
-            Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerSecond, standardcubicmeterpersecondQuantity.Unit);
-
-            var standardliterperminuteQuantity = standardcubicmeterpersecond.ToUnit(StandardVolumeFlowUnit.StandardLiterPerMinute);
-            AssertEx.EqualTolerance(StandardLitersPerMinuteInOneStandardCubicMeterPerSecond, (double)standardliterperminuteQuantity.Value, StandardLitersPerMinuteTolerance);
-            Assert.Equal(StandardVolumeFlowUnit.StandardLiterPerMinute, standardliterperminuteQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

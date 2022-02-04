@@ -239,38 +239,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(CapacitanceUnit unit)
         {
-            var farad = Capacitance.FromFarads(1);
+            var inBaseUnits = Capacitance.From(1.0, Capacitance.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var faradQuantity = farad.ToUnit(CapacitanceUnit.Farad);
-            AssertEx.EqualTolerance(FaradsInOneFarad, (double)faradQuantity.Value, FaradsTolerance);
-            Assert.Equal(CapacitanceUnit.Farad, faradQuantity.Unit);
-
-            var kilofaradQuantity = farad.ToUnit(CapacitanceUnit.Kilofarad);
-            AssertEx.EqualTolerance(KilofaradsInOneFarad, (double)kilofaradQuantity.Value, KilofaradsTolerance);
-            Assert.Equal(CapacitanceUnit.Kilofarad, kilofaradQuantity.Unit);
-
-            var megafaradQuantity = farad.ToUnit(CapacitanceUnit.Megafarad);
-            AssertEx.EqualTolerance(MegafaradsInOneFarad, (double)megafaradQuantity.Value, MegafaradsTolerance);
-            Assert.Equal(CapacitanceUnit.Megafarad, megafaradQuantity.Unit);
-
-            var microfaradQuantity = farad.ToUnit(CapacitanceUnit.Microfarad);
-            AssertEx.EqualTolerance(MicrofaradsInOneFarad, (double)microfaradQuantity.Value, MicrofaradsTolerance);
-            Assert.Equal(CapacitanceUnit.Microfarad, microfaradQuantity.Unit);
-
-            var millifaradQuantity = farad.ToUnit(CapacitanceUnit.Millifarad);
-            AssertEx.EqualTolerance(MillifaradsInOneFarad, (double)millifaradQuantity.Value, MillifaradsTolerance);
-            Assert.Equal(CapacitanceUnit.Millifarad, millifaradQuantity.Unit);
-
-            var nanofaradQuantity = farad.ToUnit(CapacitanceUnit.Nanofarad);
-            AssertEx.EqualTolerance(NanofaradsInOneFarad, (double)nanofaradQuantity.Value, NanofaradsTolerance);
-            Assert.Equal(CapacitanceUnit.Nanofarad, nanofaradQuantity.Unit);
-
-            var picofaradQuantity = farad.ToUnit(CapacitanceUnit.Picofarad);
-            AssertEx.EqualTolerance(PicofaradsInOneFarad, (double)picofaradQuantity.Value, PicofaradsTolerance);
-            Assert.Equal(CapacitanceUnit.Picofarad, picofaradQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

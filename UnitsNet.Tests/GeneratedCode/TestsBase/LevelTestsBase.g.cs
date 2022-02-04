@@ -189,18 +189,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(LevelUnit unit)
         {
-            var decibel = Level.FromDecibels(1);
+            var inBaseUnits = Level.From(1.0, Level.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var decibelQuantity = decibel.ToUnit(LevelUnit.Decibel);
-            AssertEx.EqualTolerance(DecibelsInOneDecibel, (double)decibelQuantity.Value, DecibelsTolerance);
-            Assert.Equal(LevelUnit.Decibel, decibelQuantity.Unit);
-
-            var neperQuantity = decibel.ToUnit(LevelUnit.Neper);
-            AssertEx.EqualTolerance(NepersInOneDecibel, (double)neperQuantity.Value, NepersTolerance);
-            Assert.Equal(LevelUnit.Neper, neperQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

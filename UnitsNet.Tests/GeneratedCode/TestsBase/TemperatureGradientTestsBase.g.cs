@@ -209,26 +209,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(TemperatureGradientUnit unit)
         {
-            var kelvinpermeter = TemperatureGradient.FromKelvinsPerMeter(1);
+            var inBaseUnits = TemperatureGradient.From(1.0, TemperatureGradient.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var degreecelsiusperkilometerQuantity = kelvinpermeter.ToUnit(TemperatureGradientUnit.DegreeCelsiusPerKilometer);
-            AssertEx.EqualTolerance(DegreesCelciusPerKilometerInOneKelvinPerMeter, (double)degreecelsiusperkilometerQuantity.Value, DegreesCelciusPerKilometerTolerance);
-            Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerKilometer, degreecelsiusperkilometerQuantity.Unit);
-
-            var degreecelsiuspermeterQuantity = kelvinpermeter.ToUnit(TemperatureGradientUnit.DegreeCelsiusPerMeter);
-            AssertEx.EqualTolerance(DegreesCelciusPerMeterInOneKelvinPerMeter, (double)degreecelsiuspermeterQuantity.Value, DegreesCelciusPerMeterTolerance);
-            Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerMeter, degreecelsiuspermeterQuantity.Unit);
-
-            var degreefahrenheitperfootQuantity = kelvinpermeter.ToUnit(TemperatureGradientUnit.DegreeFahrenheitPerFoot);
-            AssertEx.EqualTolerance(DegreesFahrenheitPerFootInOneKelvinPerMeter, (double)degreefahrenheitperfootQuantity.Value, DegreesFahrenheitPerFootTolerance);
-            Assert.Equal(TemperatureGradientUnit.DegreeFahrenheitPerFoot, degreefahrenheitperfootQuantity.Unit);
-
-            var kelvinpermeterQuantity = kelvinpermeter.ToUnit(TemperatureGradientUnit.KelvinPerMeter);
-            AssertEx.EqualTolerance(KelvinsPerMeterInOneKelvinPerMeter, (double)kelvinpermeterQuantity.Value, KelvinsPerMeterTolerance);
-            Assert.Equal(TemperatureGradientUnit.KelvinPerMeter, kelvinpermeterQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

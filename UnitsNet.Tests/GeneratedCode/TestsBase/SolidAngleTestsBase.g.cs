@@ -179,14 +179,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(SolidAngleUnit unit)
         {
-            var steradian = SolidAngle.FromSteradians(1);
+            var inBaseUnits = SolidAngle.From(1.0, SolidAngle.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var steradianQuantity = steradian.ToUnit(SolidAngleUnit.Steradian);
-            AssertEx.EqualTolerance(SteradiansInOneSteradian, (double)steradianQuantity.Value, SteradiansTolerance);
-            Assert.Equal(SolidAngleUnit.Steradian, steradianQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]

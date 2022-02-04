@@ -419,110 +419,16 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(SpecificEnergyUnit unit)
         {
-            var jouleperkilogram = SpecificEnergy.FromJoulesPerKilogram(1);
+            var inBaseUnits = SpecificEnergy.From(1.0, SpecificEnergy.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var btuperpoundQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.BtuPerPound);
-            AssertEx.EqualTolerance(BtuPerPoundInOneJoulePerKilogram, (double)btuperpoundQuantity.Value, BtuPerPoundTolerance);
-            Assert.Equal(SpecificEnergyUnit.BtuPerPound, btuperpoundQuantity.Unit);
-
-            var caloriepergramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.CaloriePerGram);
-            AssertEx.EqualTolerance(CaloriesPerGramInOneJoulePerKilogram, (double)caloriepergramQuantity.Value, CaloriesPerGramTolerance);
-            Assert.Equal(SpecificEnergyUnit.CaloriePerGram, caloriepergramQuantity.Unit);
-
-            var gigawattdayperkilogramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.GigawattDayPerKilogram);
-            AssertEx.EqualTolerance(GigawattDaysPerKilogramInOneJoulePerKilogram, (double)gigawattdayperkilogramQuantity.Value, GigawattDaysPerKilogramTolerance);
-            Assert.Equal(SpecificEnergyUnit.GigawattDayPerKilogram, gigawattdayperkilogramQuantity.Unit);
-
-            var gigawattdaypershorttonQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.GigawattDayPerShortTon);
-            AssertEx.EqualTolerance(GigawattDaysPerShortTonInOneJoulePerKilogram, (double)gigawattdaypershorttonQuantity.Value, GigawattDaysPerShortTonTolerance);
-            Assert.Equal(SpecificEnergyUnit.GigawattDayPerShortTon, gigawattdaypershorttonQuantity.Unit);
-
-            var gigawattdaypertonneQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.GigawattDayPerTonne);
-            AssertEx.EqualTolerance(GigawattDaysPerTonneInOneJoulePerKilogram, (double)gigawattdaypertonneQuantity.Value, GigawattDaysPerTonneTolerance);
-            Assert.Equal(SpecificEnergyUnit.GigawattDayPerTonne, gigawattdaypertonneQuantity.Unit);
-
-            var gigawatthourperkilogramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.GigawattHourPerKilogram);
-            AssertEx.EqualTolerance(GigawattHoursPerKilogramInOneJoulePerKilogram, (double)gigawatthourperkilogramQuantity.Value, GigawattHoursPerKilogramTolerance);
-            Assert.Equal(SpecificEnergyUnit.GigawattHourPerKilogram, gigawatthourperkilogramQuantity.Unit);
-
-            var jouleperkilogramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.JoulePerKilogram);
-            AssertEx.EqualTolerance(JoulesPerKilogramInOneJoulePerKilogram, (double)jouleperkilogramQuantity.Value, JoulesPerKilogramTolerance);
-            Assert.Equal(SpecificEnergyUnit.JoulePerKilogram, jouleperkilogramQuantity.Unit);
-
-            var kilocaloriepergramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.KilocaloriePerGram);
-            AssertEx.EqualTolerance(KilocaloriesPerGramInOneJoulePerKilogram, (double)kilocaloriepergramQuantity.Value, KilocaloriesPerGramTolerance);
-            Assert.Equal(SpecificEnergyUnit.KilocaloriePerGram, kilocaloriepergramQuantity.Unit);
-
-            var kilojouleperkilogramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.KilojoulePerKilogram);
-            AssertEx.EqualTolerance(KilojoulesPerKilogramInOneJoulePerKilogram, (double)kilojouleperkilogramQuantity.Value, KilojoulesPerKilogramTolerance);
-            Assert.Equal(SpecificEnergyUnit.KilojoulePerKilogram, kilojouleperkilogramQuantity.Unit);
-
-            var kilowattdayperkilogramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.KilowattDayPerKilogram);
-            AssertEx.EqualTolerance(KilowattDaysPerKilogramInOneJoulePerKilogram, (double)kilowattdayperkilogramQuantity.Value, KilowattDaysPerKilogramTolerance);
-            Assert.Equal(SpecificEnergyUnit.KilowattDayPerKilogram, kilowattdayperkilogramQuantity.Unit);
-
-            var kilowattdaypershorttonQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.KilowattDayPerShortTon);
-            AssertEx.EqualTolerance(KilowattDaysPerShortTonInOneJoulePerKilogram, (double)kilowattdaypershorttonQuantity.Value, KilowattDaysPerShortTonTolerance);
-            Assert.Equal(SpecificEnergyUnit.KilowattDayPerShortTon, kilowattdaypershorttonQuantity.Unit);
-
-            var kilowattdaypertonneQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.KilowattDayPerTonne);
-            AssertEx.EqualTolerance(KilowattDaysPerTonneInOneJoulePerKilogram, (double)kilowattdaypertonneQuantity.Value, KilowattDaysPerTonneTolerance);
-            Assert.Equal(SpecificEnergyUnit.KilowattDayPerTonne, kilowattdaypertonneQuantity.Unit);
-
-            var kilowatthourperkilogramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.KilowattHourPerKilogram);
-            AssertEx.EqualTolerance(KilowattHoursPerKilogramInOneJoulePerKilogram, (double)kilowatthourperkilogramQuantity.Value, KilowattHoursPerKilogramTolerance);
-            Assert.Equal(SpecificEnergyUnit.KilowattHourPerKilogram, kilowatthourperkilogramQuantity.Unit);
-
-            var megajouleperkilogramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.MegajoulePerKilogram);
-            AssertEx.EqualTolerance(MegajoulesPerKilogramInOneJoulePerKilogram, (double)megajouleperkilogramQuantity.Value, MegajoulesPerKilogramTolerance);
-            Assert.Equal(SpecificEnergyUnit.MegajoulePerKilogram, megajouleperkilogramQuantity.Unit);
-
-            var megawattdayperkilogramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.MegawattDayPerKilogram);
-            AssertEx.EqualTolerance(MegawattDaysPerKilogramInOneJoulePerKilogram, (double)megawattdayperkilogramQuantity.Value, MegawattDaysPerKilogramTolerance);
-            Assert.Equal(SpecificEnergyUnit.MegawattDayPerKilogram, megawattdayperkilogramQuantity.Unit);
-
-            var megawattdaypershorttonQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.MegawattDayPerShortTon);
-            AssertEx.EqualTolerance(MegawattDaysPerShortTonInOneJoulePerKilogram, (double)megawattdaypershorttonQuantity.Value, MegawattDaysPerShortTonTolerance);
-            Assert.Equal(SpecificEnergyUnit.MegawattDayPerShortTon, megawattdaypershorttonQuantity.Unit);
-
-            var megawattdaypertonneQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.MegawattDayPerTonne);
-            AssertEx.EqualTolerance(MegawattDaysPerTonneInOneJoulePerKilogram, (double)megawattdaypertonneQuantity.Value, MegawattDaysPerTonneTolerance);
-            Assert.Equal(SpecificEnergyUnit.MegawattDayPerTonne, megawattdaypertonneQuantity.Unit);
-
-            var megawatthourperkilogramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.MegawattHourPerKilogram);
-            AssertEx.EqualTolerance(MegawattHoursPerKilogramInOneJoulePerKilogram, (double)megawatthourperkilogramQuantity.Value, MegawattHoursPerKilogramTolerance);
-            Assert.Equal(SpecificEnergyUnit.MegawattHourPerKilogram, megawatthourperkilogramQuantity.Unit);
-
-            var terawattdayperkilogramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.TerawattDayPerKilogram);
-            AssertEx.EqualTolerance(TerawattDaysPerKilogramInOneJoulePerKilogram, (double)terawattdayperkilogramQuantity.Value, TerawattDaysPerKilogramTolerance);
-            Assert.Equal(SpecificEnergyUnit.TerawattDayPerKilogram, terawattdayperkilogramQuantity.Unit);
-
-            var terawattdaypershorttonQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.TerawattDayPerShortTon);
-            AssertEx.EqualTolerance(TerawattDaysPerShortTonInOneJoulePerKilogram, (double)terawattdaypershorttonQuantity.Value, TerawattDaysPerShortTonTolerance);
-            Assert.Equal(SpecificEnergyUnit.TerawattDayPerShortTon, terawattdaypershorttonQuantity.Unit);
-
-            var terawattdaypertonneQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.TerawattDayPerTonne);
-            AssertEx.EqualTolerance(TerawattDaysPerTonneInOneJoulePerKilogram, (double)terawattdaypertonneQuantity.Value, TerawattDaysPerTonneTolerance);
-            Assert.Equal(SpecificEnergyUnit.TerawattDayPerTonne, terawattdaypertonneQuantity.Unit);
-
-            var wattdayperkilogramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.WattDayPerKilogram);
-            AssertEx.EqualTolerance(WattDaysPerKilogramInOneJoulePerKilogram, (double)wattdayperkilogramQuantity.Value, WattDaysPerKilogramTolerance);
-            Assert.Equal(SpecificEnergyUnit.WattDayPerKilogram, wattdayperkilogramQuantity.Unit);
-
-            var wattdaypershorttonQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.WattDayPerShortTon);
-            AssertEx.EqualTolerance(WattDaysPerShortTonInOneJoulePerKilogram, (double)wattdaypershorttonQuantity.Value, WattDaysPerShortTonTolerance);
-            Assert.Equal(SpecificEnergyUnit.WattDayPerShortTon, wattdaypershorttonQuantity.Unit);
-
-            var wattdaypertonneQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.WattDayPerTonne);
-            AssertEx.EqualTolerance(WattDaysPerTonneInOneJoulePerKilogram, (double)wattdaypertonneQuantity.Value, WattDaysPerTonneTolerance);
-            Assert.Equal(SpecificEnergyUnit.WattDayPerTonne, wattdaypertonneQuantity.Unit);
-
-            var watthourperkilogramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.WattHourPerKilogram);
-            AssertEx.EqualTolerance(WattHoursPerKilogramInOneJoulePerKilogram, (double)watthourperkilogramQuantity.Value, WattHoursPerKilogramTolerance);
-            Assert.Equal(SpecificEnergyUnit.WattHourPerKilogram, watthourperkilogramQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
         [Theory]
