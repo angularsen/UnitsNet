@@ -259,6 +259,9 @@ namespace UnitsNet
 ");
             foreach (var unit in _quantity.Units)
             {
+                if(unit.SkipConversionGeneration)
+                    continue;
+
                 Writer.WL($@"
         /// <summary>
         ///     Get {_quantity.Name} in {unit.PluralName}.
@@ -314,6 +317,9 @@ namespace UnitsNet
 ");
             foreach (var unit in _quantity.Units)
             {
+                if(unit.SkipConversionGeneration)
+                    continue;
+
                 var valueParamName = unit.PluralName.ToLowerInvariant();
                 Writer.WL($@"
         /// <summary>

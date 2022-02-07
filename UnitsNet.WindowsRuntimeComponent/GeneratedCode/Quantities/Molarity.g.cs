@@ -172,21 +172,9 @@ namespace UnitsNet
         public double CentimolesPerLiter => As(MolarityUnit.CentimolePerLiter);
 
         /// <summary>
-        ///     Get Molarity in CentimolesPerLiter.
-        /// </summary>
-        [Obsolete("Use the singular unit instead.")]
-        public double CentimolesPerLiter => As(MolarityUnit.CentimolesPerLiter);
-
-        /// <summary>
         ///     Get Molarity in DecimolesPerLiter.
         /// </summary>
         public double DecimolesPerLiter => As(MolarityUnit.DecimolePerLiter);
-
-        /// <summary>
-        ///     Get Molarity in DecimolesPerLiter.
-        /// </summary>
-        [Obsolete("Use the singular unit instead.")]
-        public double DecimolesPerLiter => As(MolarityUnit.DecimolesPerLiter);
 
         /// <summary>
         ///     Get Molarity in MicromolesPerLiter.
@@ -194,21 +182,9 @@ namespace UnitsNet
         public double MicromolesPerLiter => As(MolarityUnit.MicromolePerLiter);
 
         /// <summary>
-        ///     Get Molarity in MicromolesPerLiter.
-        /// </summary>
-        [Obsolete("Use the singular unit instead.")]
-        public double MicromolesPerLiter => As(MolarityUnit.MicromolesPerLiter);
-
-        /// <summary>
         ///     Get Molarity in MillimolesPerLiter.
         /// </summary>
         public double MillimolesPerLiter => As(MolarityUnit.MillimolePerLiter);
-
-        /// <summary>
-        ///     Get Molarity in MillimolesPerLiter.
-        /// </summary>
-        [Obsolete("Use the singular unit instead.")]
-        public double MillimolesPerLiter => As(MolarityUnit.MillimolesPerLiter);
 
         /// <summary>
         ///     Get Molarity in MolesPerCubicMeter.
@@ -221,38 +197,14 @@ namespace UnitsNet
         public double MolesPerLiter => As(MolarityUnit.MolePerLiter);
 
         /// <summary>
-        ///     Get Molarity in MolesPerCubicMeter.
-        /// </summary>
-        [Obsolete("Use the singular unit instead.")]
-        public double MolesPerCubicMeter => As(MolarityUnit.MolesPerCubicMeter);
-
-        /// <summary>
-        ///     Get Molarity in MolesPerLiter.
-        /// </summary>
-        [Obsolete("Use the singular unit instead.")]
-        public double MolesPerLiter => As(MolarityUnit.MolesPerLiter);
-
-        /// <summary>
         ///     Get Molarity in NanomolesPerLiter.
         /// </summary>
         public double NanomolesPerLiter => As(MolarityUnit.NanomolePerLiter);
 
         /// <summary>
-        ///     Get Molarity in NanomolesPerLiter.
-        /// </summary>
-        [Obsolete("Use the singular unit instead.")]
-        public double NanomolesPerLiter => As(MolarityUnit.NanomolesPerLiter);
-
-        /// <summary>
         ///     Get Molarity in PicomolesPerLiter.
         /// </summary>
         public double PicomolesPerLiter => As(MolarityUnit.PicomolePerLiter);
-
-        /// <summary>
-        ///     Get Molarity in PicomolesPerLiter.
-        /// </summary>
-        [Obsolete("Use the singular unit instead.")]
-        public double PicomolesPerLiter => As(MolarityUnit.PicomolesPerLiter);
 
         #endregion
 
@@ -295,17 +247,6 @@ namespace UnitsNet
             return new Molarity(value, MolarityUnit.CentimolePerLiter);
         }
         /// <summary>
-        ///     Get Molarity from CentimolesPerLiter.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Obsolete("Use the singular unit instead.")]
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static Molarity FromCentimolesPerLiter(double centimolesperliter)
-        {
-            double value = (double) centimolesperliter;
-            return new Molarity(value, MolarityUnit.CentimolesPerLiter);
-        }
-        /// <summary>
         ///     Get Molarity from DecimolesPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -314,17 +255,6 @@ namespace UnitsNet
         {
             double value = (double) decimolesperliter;
             return new Molarity(value, MolarityUnit.DecimolePerLiter);
-        }
-        /// <summary>
-        ///     Get Molarity from DecimolesPerLiter.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Obsolete("Use the singular unit instead.")]
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static Molarity FromDecimolesPerLiter(double decimolesperliter)
-        {
-            double value = (double) decimolesperliter;
-            return new Molarity(value, MolarityUnit.DecimolesPerLiter);
         }
         /// <summary>
         ///     Get Molarity from MicromolesPerLiter.
@@ -337,17 +267,6 @@ namespace UnitsNet
             return new Molarity(value, MolarityUnit.MicromolePerLiter);
         }
         /// <summary>
-        ///     Get Molarity from MicromolesPerLiter.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Obsolete("Use the singular unit instead.")]
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static Molarity FromMicromolesPerLiter(double micromolesperliter)
-        {
-            double value = (double) micromolesperliter;
-            return new Molarity(value, MolarityUnit.MicromolesPerLiter);
-        }
-        /// <summary>
         ///     Get Molarity from MillimolesPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -356,17 +275,6 @@ namespace UnitsNet
         {
             double value = (double) millimolesperliter;
             return new Molarity(value, MolarityUnit.MillimolePerLiter);
-        }
-        /// <summary>
-        ///     Get Molarity from MillimolesPerLiter.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Obsolete("Use the singular unit instead.")]
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static Molarity FromMillimolesPerLiter(double millimolesperliter)
-        {
-            double value = (double) millimolesperliter;
-            return new Molarity(value, MolarityUnit.MillimolesPerLiter);
         }
         /// <summary>
         ///     Get Molarity from MolesPerCubicMeter.
@@ -389,28 +297,6 @@ namespace UnitsNet
             return new Molarity(value, MolarityUnit.MolePerLiter);
         }
         /// <summary>
-        ///     Get Molarity from MolesPerCubicMeter.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Obsolete("Use the singular unit instead.")]
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static Molarity FromMolesPerCubicMeter(double molespercubicmeter)
-        {
-            double value = (double) molespercubicmeter;
-            return new Molarity(value, MolarityUnit.MolesPerCubicMeter);
-        }
-        /// <summary>
-        ///     Get Molarity from MolesPerLiter.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Obsolete("Use the singular unit instead.")]
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static Molarity FromMolesPerLiter(double molesperliter)
-        {
-            double value = (double) molesperliter;
-            return new Molarity(value, MolarityUnit.MolesPerLiter);
-        }
-        /// <summary>
         ///     Get Molarity from NanomolesPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -421,17 +307,6 @@ namespace UnitsNet
             return new Molarity(value, MolarityUnit.NanomolePerLiter);
         }
         /// <summary>
-        ///     Get Molarity from NanomolesPerLiter.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Obsolete("Use the singular unit instead.")]
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static Molarity FromNanomolesPerLiter(double nanomolesperliter)
-        {
-            double value = (double) nanomolesperliter;
-            return new Molarity(value, MolarityUnit.NanomolesPerLiter);
-        }
-        /// <summary>
         ///     Get Molarity from PicomolesPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -440,17 +315,6 @@ namespace UnitsNet
         {
             double value = (double) picomolesperliter;
             return new Molarity(value, MolarityUnit.PicomolePerLiter);
-        }
-        /// <summary>
-        ///     Get Molarity from PicomolesPerLiter.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        [Obsolete("Use the singular unit instead.")]
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static Molarity FromPicomolesPerLiter(double picomolesperliter)
-        {
-            double value = (double) picomolesperliter;
-            return new Molarity(value, MolarityUnit.PicomolesPerLiter);
         }
 
         /// <summary>
