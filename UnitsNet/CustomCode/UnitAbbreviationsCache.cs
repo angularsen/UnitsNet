@@ -233,7 +233,7 @@ namespace UnitsNet
                 if(formatProvider != FallbackCulture)
                     return GetDefaultAbbreviation(unitType, unitValue, FallbackCulture);
                 else
-                    throw new NotImplementedException($"No abbreviation is specified for {unitType.Name} with numeric value {unitValue}.");
+                    throw new NotImplementedException($"No abbreviation is specified for {unitType.Name}.{Enum.GetName(unitType, unitValue)}.");
             }
 
             var abbreviations = lookup!.GetAbbreviationsForUnit(unitValue);
@@ -242,7 +242,7 @@ namespace UnitsNet
                 if(formatProvider != FallbackCulture)
                     return GetDefaultAbbreviation(unitType, unitValue, FallbackCulture);
                 else
-                    throw new NotImplementedException($"No abbreviation is specified for {unitType.Name} with numeric value {unitValue}.");
+                    throw new NotImplementedException($"No abbreviation is specified for {unitType.Name}.{Enum.GetName(unitType, unitValue)}.");
             }
 
             return abbreviations.First();
