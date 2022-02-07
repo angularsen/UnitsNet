@@ -691,7 +691,7 @@ namespace UnitsNet
                 case VolumeUnit.Centiliter: return (_value/1e3) * 1e-2d;
                 case VolumeUnit.CubicCentimeter: return _value/1e6;
                 case VolumeUnit.CubicDecimeter: return _value/1e3;
-                case VolumeUnit.CubicFoot: return _value*0.0283168;
+                case VolumeUnit.CubicFoot: return _value * 2.8316846592e-2;
                 case VolumeUnit.CubicHectometer: return _value*1e6;
                 case VolumeUnit.CubicInch: return _value*1.6387*1e-5;
                 case VolumeUnit.CubicKilometer: return _value*1e9;
@@ -703,7 +703,7 @@ namespace UnitsNet
                 case VolumeUnit.DecausGallon: return (_value*0.00378541) * 1e1d;
                 case VolumeUnit.Deciliter: return (_value/1e3) * 1e-1d;
                 case VolumeUnit.DeciusGallon: return (_value*0.00378541) * 1e-1d;
-                case VolumeUnit.HectocubicFoot: return (_value*0.0283168) * 1e2d;
+                case VolumeUnit.HectocubicFoot: return (_value * 2.8316846592e-2) * 1e2d;
                 case VolumeUnit.HectocubicMeter: return (_value) * 1e2d;
                 case VolumeUnit.Hectoliter: return (_value/1e3) * 1e2d;
                 case VolumeUnit.HectousGallon: return (_value*0.00378541) * 1e2d;
@@ -711,13 +711,13 @@ namespace UnitsNet
                 case VolumeUnit.ImperialGallon: return _value*0.00454609000000181429905810072407;
                 case VolumeUnit.ImperialOunce: return _value*2.8413062499962901241875439064617e-5;
                 case VolumeUnit.ImperialPint: return _value * 5.6826125e-4;
-                case VolumeUnit.KilocubicFoot: return (_value*0.0283168) * 1e3d;
+                case VolumeUnit.KilocubicFoot: return (_value * 2.8316846592e-2) * 1e3d;
                 case VolumeUnit.KilocubicMeter: return (_value) * 1e3d;
                 case VolumeUnit.KiloimperialGallon: return (_value*0.00454609000000181429905810072407) * 1e3d;
                 case VolumeUnit.Kiloliter: return (_value/1e3) * 1e3d;
                 case VolumeUnit.KilousGallon: return (_value*0.00378541) * 1e3d;
                 case VolumeUnit.Liter: return _value/1e3;
-                case VolumeUnit.MegacubicFoot: return (_value*0.0283168) * 1e6d;
+                case VolumeUnit.MegacubicFoot: return (_value * 2.8316846592e-2) * 1e6d;
                 case VolumeUnit.MegaimperialGallon: return (_value*0.00454609000000181429905810072407) * 1e6d;
                 case VolumeUnit.Megaliter: return (_value/1e3) * 1e6d;
                 case VolumeUnit.MegausGallon: return (_value*0.00378541) * 1e6d;
@@ -756,7 +756,7 @@ namespace UnitsNet
                 case VolumeUnit.Centiliter: return (baseUnitValue*1e3) / 1e-2d;
                 case VolumeUnit.CubicCentimeter: return baseUnitValue*1e6;
                 case VolumeUnit.CubicDecimeter: return baseUnitValue*1e3;
-                case VolumeUnit.CubicFoot: return baseUnitValue/0.0283168;
+                case VolumeUnit.CubicFoot: return baseUnitValue / 2.8316846592e-2;
                 case VolumeUnit.CubicHectometer: return baseUnitValue/1e6;
                 case VolumeUnit.CubicInch: return baseUnitValue/(1.6387*1e-5);
                 case VolumeUnit.CubicKilometer: return baseUnitValue/1e9;
@@ -768,7 +768,7 @@ namespace UnitsNet
                 case VolumeUnit.DecausGallon: return (baseUnitValue/0.00378541) / 1e1d;
                 case VolumeUnit.Deciliter: return (baseUnitValue*1e3) / 1e-1d;
                 case VolumeUnit.DeciusGallon: return (baseUnitValue/0.00378541) / 1e-1d;
-                case VolumeUnit.HectocubicFoot: return (baseUnitValue/0.0283168) / 1e2d;
+                case VolumeUnit.HectocubicFoot: return (baseUnitValue / 2.8316846592e-2) / 1e2d;
                 case VolumeUnit.HectocubicMeter: return (baseUnitValue) / 1e2d;
                 case VolumeUnit.Hectoliter: return (baseUnitValue*1e3) / 1e2d;
                 case VolumeUnit.HectousGallon: return (baseUnitValue/0.00378541) / 1e2d;
@@ -776,13 +776,13 @@ namespace UnitsNet
                 case VolumeUnit.ImperialGallon: return baseUnitValue/0.00454609000000181429905810072407;
                 case VolumeUnit.ImperialOunce: return baseUnitValue/2.8413062499962901241875439064617e-5;
                 case VolumeUnit.ImperialPint: return baseUnitValue / 5.6826125e-4;
-                case VolumeUnit.KilocubicFoot: return (baseUnitValue/0.0283168) / 1e3d;
+                case VolumeUnit.KilocubicFoot: return (baseUnitValue / 2.8316846592e-2) / 1e3d;
                 case VolumeUnit.KilocubicMeter: return (baseUnitValue) / 1e3d;
                 case VolumeUnit.KiloimperialGallon: return (baseUnitValue/0.00454609000000181429905810072407) / 1e3d;
                 case VolumeUnit.Kiloliter: return (baseUnitValue*1e3) / 1e3d;
                 case VolumeUnit.KilousGallon: return (baseUnitValue/0.00378541) / 1e3d;
                 case VolumeUnit.Liter: return baseUnitValue*1e3;
-                case VolumeUnit.MegacubicFoot: return (baseUnitValue/0.0283168) / 1e6d;
+                case VolumeUnit.MegacubicFoot: return (baseUnitValue / 2.8316846592e-2) / 1e6d;
                 case VolumeUnit.MegaimperialGallon: return (baseUnitValue/0.00454609000000181429905810072407) / 1e6d;
                 case VolumeUnit.Megaliter: return (baseUnitValue*1e3) / 1e6d;
                 case VolumeUnit.MegausGallon: return (baseUnitValue/0.00378541) / 1e6d;

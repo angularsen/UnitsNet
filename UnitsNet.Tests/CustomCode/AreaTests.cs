@@ -24,7 +24,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double SquareMillimetersInOneSquareMeter => 1E6;
 
-        protected override double SquareFeetInOneSquareMeter => 10.76391;
+        protected override double SquareFeetInOneSquareMeter => 10.7639104167097223083335055559;
 
         protected override double SquareMicrometersInOneSquareMeter => 1E12;
 

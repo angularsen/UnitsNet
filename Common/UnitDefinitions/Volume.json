@@ -177,8 +177,8 @@
     {
       "SingularName": "CubicFoot",
       "PluralName": "CubicFeet",
-      "FromUnitToBaseFunc": "x*0.0283168",
-      "FromBaseToUnitFunc": "x/0.0283168",
+      "FromUnitToBaseFunc": "x * 2.8316846592e-2",
+      "FromBaseToUnitFunc": "x / 2.8316846592e-2",
       "Prefixes": [ "Hecto", "Kilo", "Mega" ],
       "Localization": [
         {

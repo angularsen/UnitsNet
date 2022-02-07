@@ -698,7 +698,7 @@ namespace UnitsNet
                 case AreaUnit.Hectare: return _value*1e4;
                 case AreaUnit.SquareCentimeter: return _value*1e-4;
                 case AreaUnit.SquareDecimeter: return _value*1e-2;
-                case AreaUnit.SquareFoot: return _value*0.092903;
+                case AreaUnit.SquareFoot: return _value * 9.290304e-2;
                 case AreaUnit.SquareInch: return _value*0.00064516;
                 case AreaUnit.SquareKilometer: return _value*1e6;
                 case AreaUnit.SquareMeter: return _value;
@@ -726,7 +726,7 @@ namespace UnitsNet
                 case AreaUnit.Hectare: return baseUnitValue/1e4;
                 case AreaUnit.SquareCentimeter: return baseUnitValue/1e-4;
                 case AreaUnit.SquareDecimeter: return baseUnitValue/1e-2;
-                case AreaUnit.SquareFoot: return baseUnitValue/0.092903;
+                case AreaUnit.SquareFoot: return baseUnitValue / 9.290304e-2;
                 case AreaUnit.SquareInch: return baseUnitValue/0.00064516;
                 case AreaUnit.SquareKilometer: return baseUnitValue/1e6;
                 case AreaUnit.SquareMeter: return baseUnitValue;
