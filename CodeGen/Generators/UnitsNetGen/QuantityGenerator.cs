@@ -167,7 +167,7 @@ namespace UnitsNet
 
             RegisterDefaultConversions(DefaultConversionFunctions);
         }}
-" );
+");
         }
 
         private void GenerateInstanceConstructors()
@@ -367,17 +367,17 @@ namespace UnitsNet
             if(unit.SingularName == _quantity.BaseUnit)
                 continue;
 
-        var func = unit.FromBaseToUnitFunc.Replace("{x}", "quantity.Value" );
-        Writer.WL( $@"
+        var func = unit.FromBaseToUnitFunc.Replace("{x}", "quantity.Value");
+        Writer.WL($@"
             unitConverter.SetConversionFunction<{_quantity.Name}>({_unitEnumName}.{_quantity.BaseUnit}, {_quantity.Name}Unit.{unit.SingularName}, quantity => new {_quantity.Name}({func}, {_quantity.Name}Unit.{unit.SingularName}));");
         }
 
-        Writer.WL( $@"
+        Writer.WL($@"
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<{_quantity.Name}>({_unitEnumName}.{_quantity.BaseUnit}, {_unitEnumName}.{_quantity.BaseUnit}, quantity => quantity);
 
-            // Register in unit converter: {_quantity.Name}Unit -> BaseUnit" );
+            // Register in unit converter: {_quantity.Name}Unit -> BaseUnit");
 
         foreach(var unit in _quantity.Units)
         {
@@ -386,10 +386,10 @@ namespace UnitsNet
 
         var func = unit.FromUnitToBaseFunc.Replace("{x}", "quantity.Value");
         Writer.WL($@"
-            unitConverter.SetConversionFunction<{_quantity.Name}>({_quantity.Name}Unit.{unit.SingularName}, {_unitEnumName}.{_quantity.BaseUnit}, quantity => new {_quantity.Name}({func}, {_unitEnumName}.{_quantity.BaseUnit}));" );
+            unitConverter.SetConversionFunction<{_quantity.Name}>({_quantity.Name}Unit.{unit.SingularName}, {_unitEnumName}.{_quantity.BaseUnit}, quantity => new {_quantity.Name}({func}, {_unitEnumName}.{_quantity.BaseUnit}));");
         }
 
-        Writer.WL( $@"
+        Writer.WL($@"
         }}
 
         /// <summary>
@@ -1087,7 +1087,7 @@ namespace UnitsNet
         }}
 
         #endregion
-" );
+");
         }
 
         private void GenerateIConvertibleMethods()
