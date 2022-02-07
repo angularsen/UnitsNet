@@ -9,8 +9,8 @@
     {
       "SingularName": "Mole",
       "PluralName": "Moles",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "BaseUnits": {
         "N": "Mole"
       },
@@ -28,8 +28,8 @@
       "BaseUnits": {
         "N": "PoundMole"
       },
-      "FromUnitToBaseFunc": "x*453.59237",
-      "FromBaseToUnitFunc": "x/453.59237",
+      "FromUnitToBaseFunc": "{x}*453.59237",
+      "FromBaseToUnitFunc": "{x}/453.59237",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
       "Localization": [
         {

@@ -12,8 +12,8 @@
       "BaseUnits": {
         "Θ": "Kelvin"
       },
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Localization": [
         {
           "Culture": "en-US",
@@ -27,8 +27,8 @@
       "BaseUnits": {
         "Θ": "DegreeCelsius"
       },
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Localization": [
         {
           "Culture": "en-US",
@@ -42,8 +42,8 @@
       "BaseUnits": {
         "Θ": "DegreeFahrenheit"
       },
-      "FromUnitToBaseFunc": "x*9/5",
-      "FromBaseToUnitFunc": "x*5/9",
+      "FromUnitToBaseFunc": "{x}*9/5",
+      "FromBaseToUnitFunc": "{x}*5/9",
       "Localization": [
         {
           "Culture": "en-US",

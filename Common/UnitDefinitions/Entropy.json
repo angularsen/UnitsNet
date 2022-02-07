@@ -12,8 +12,8 @@
     {
       "SingularName": "JoulePerKelvin",
       "PluralName": "JoulesPerKelvin",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
@@ -25,8 +25,8 @@
     {
       "SingularName": "CaloriePerKelvin",
       "PluralName": "CaloriesPerKelvin",
-      "FromUnitToBaseFunc": "x*4.184",
-      "FromBaseToUnitFunc": "x/4.184",
+      "FromUnitToBaseFunc": "{x}*4.184",
+      "FromBaseToUnitFunc": "{x}/4.184",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
@@ -38,8 +38,8 @@
     {
       "SingularName": "JoulePerDegreeCelsius",
       "PluralName": "JoulesPerDegreeCelsius",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
