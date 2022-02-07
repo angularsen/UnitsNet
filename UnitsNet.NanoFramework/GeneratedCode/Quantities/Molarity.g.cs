@@ -86,19 +86,9 @@ namespace UnitsNet
         public double CentimolesPerLiter => As(MolarityUnit.CentimolePerLiter);
 
         /// <summary>
-        ///     Get Molarity in CentimolesPerLiter.
-        /// </summary>
-        public double CentimolesPerLiter => As(MolarityUnit.CentimolesPerLiter);
-
-        /// <summary>
         ///     Get Molarity in DecimolesPerLiter.
         /// </summary>
         public double DecimolesPerLiter => As(MolarityUnit.DecimolePerLiter);
-
-        /// <summary>
-        ///     Get Molarity in DecimolesPerLiter.
-        /// </summary>
-        public double DecimolesPerLiter => As(MolarityUnit.DecimolesPerLiter);
 
         /// <summary>
         ///     Get Molarity in MicromolesPerLiter.
@@ -106,19 +96,9 @@ namespace UnitsNet
         public double MicromolesPerLiter => As(MolarityUnit.MicromolePerLiter);
 
         /// <summary>
-        ///     Get Molarity in MicromolesPerLiter.
-        /// </summary>
-        public double MicromolesPerLiter => As(MolarityUnit.MicromolesPerLiter);
-
-        /// <summary>
         ///     Get Molarity in MillimolesPerLiter.
         /// </summary>
         public double MillimolesPerLiter => As(MolarityUnit.MillimolePerLiter);
-
-        /// <summary>
-        ///     Get Molarity in MillimolesPerLiter.
-        /// </summary>
-        public double MillimolesPerLiter => As(MolarityUnit.MillimolesPerLiter);
 
         /// <summary>
         ///     Get Molarity in MolesPerCubicMeter.
@@ -131,34 +111,14 @@ namespace UnitsNet
         public double MolesPerLiter => As(MolarityUnit.MolePerLiter);
 
         /// <summary>
-        ///     Get Molarity in MolesPerCubicMeter.
-        /// </summary>
-        public double MolesPerCubicMeter => As(MolarityUnit.MolesPerCubicMeter);
-
-        /// <summary>
-        ///     Get Molarity in MolesPerLiter.
-        /// </summary>
-        public double MolesPerLiter => As(MolarityUnit.MolesPerLiter);
-
-        /// <summary>
         ///     Get Molarity in NanomolesPerLiter.
         /// </summary>
         public double NanomolesPerLiter => As(MolarityUnit.NanomolePerLiter);
 
         /// <summary>
-        ///     Get Molarity in NanomolesPerLiter.
-        /// </summary>
-        public double NanomolesPerLiter => As(MolarityUnit.NanomolesPerLiter);
-
-        /// <summary>
         ///     Get Molarity in PicomolesPerLiter.
         /// </summary>
         public double PicomolesPerLiter => As(MolarityUnit.PicomolePerLiter);
-
-        /// <summary>
-        ///     Get Molarity in PicomolesPerLiter.
-        /// </summary>
-        public double PicomolesPerLiter => As(MolarityUnit.PicomolesPerLiter);
 
         #endregion
 
@@ -171,22 +131,10 @@ namespace UnitsNet
         public static Molarity FromCentimolesPerLiter(double centimolesperliter) => new Molarity(centimolesperliter, MolarityUnit.CentimolePerLiter);
 
         /// <summary>
-        ///     Get Molarity from CentimolesPerLiter.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromCentimolesPerLiter(double centimolesperliter) => new Molarity(centimolesperliter, MolarityUnit.CentimolesPerLiter);
-
-        /// <summary>
         ///     Get Molarity from DecimolesPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Molarity FromDecimolesPerLiter(double decimolesperliter) => new Molarity(decimolesperliter, MolarityUnit.DecimolePerLiter);
-
-        /// <summary>
-        ///     Get Molarity from DecimolesPerLiter.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromDecimolesPerLiter(double decimolesperliter) => new Molarity(decimolesperliter, MolarityUnit.DecimolesPerLiter);
 
         /// <summary>
         ///     Get Molarity from MicromolesPerLiter.
@@ -195,22 +143,10 @@ namespace UnitsNet
         public static Molarity FromMicromolesPerLiter(double micromolesperliter) => new Molarity(micromolesperliter, MolarityUnit.MicromolePerLiter);
 
         /// <summary>
-        ///     Get Molarity from MicromolesPerLiter.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromMicromolesPerLiter(double micromolesperliter) => new Molarity(micromolesperliter, MolarityUnit.MicromolesPerLiter);
-
-        /// <summary>
         ///     Get Molarity from MillimolesPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Molarity FromMillimolesPerLiter(double millimolesperliter) => new Molarity(millimolesperliter, MolarityUnit.MillimolePerLiter);
-
-        /// <summary>
-        ///     Get Molarity from MillimolesPerLiter.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromMillimolesPerLiter(double millimolesperliter) => new Molarity(millimolesperliter, MolarityUnit.MillimolesPerLiter);
 
         /// <summary>
         ///     Get Molarity from MolesPerCubicMeter.
@@ -225,40 +161,16 @@ namespace UnitsNet
         public static Molarity FromMolesPerLiter(double molesperliter) => new Molarity(molesperliter, MolarityUnit.MolePerLiter);
 
         /// <summary>
-        ///     Get Molarity from MolesPerCubicMeter.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromMolesPerCubicMeter(double molespercubicmeter) => new Molarity(molespercubicmeter, MolarityUnit.MolesPerCubicMeter);
-
-        /// <summary>
-        ///     Get Molarity from MolesPerLiter.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromMolesPerLiter(double molesperliter) => new Molarity(molesperliter, MolarityUnit.MolesPerLiter);
-
-        /// <summary>
         ///     Get Molarity from NanomolesPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Molarity FromNanomolesPerLiter(double nanomolesperliter) => new Molarity(nanomolesperliter, MolarityUnit.NanomolePerLiter);
 
         /// <summary>
-        ///     Get Molarity from NanomolesPerLiter.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromNanomolesPerLiter(double nanomolesperliter) => new Molarity(nanomolesperliter, MolarityUnit.NanomolesPerLiter);
-
-        /// <summary>
         ///     Get Molarity from PicomolesPerLiter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Molarity FromPicomolesPerLiter(double picomolesperliter) => new Molarity(picomolesperliter, MolarityUnit.PicomolePerLiter);
-
-        /// <summary>
-        ///     Get Molarity from PicomolesPerLiter.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromPicomolesPerLiter(double picomolesperliter) => new Molarity(picomolesperliter, MolarityUnit.PicomolesPerLiter);
 
 
         /// <summary>
