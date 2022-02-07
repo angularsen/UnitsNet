@@ -17,8 +17,6 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-
 // ReSharper disable once CheckNamespace
 namespace UnitsNet.Units
 {
@@ -29,28 +27,28 @@ namespace UnitsNet.Units
     {
         Undefined = 0,
         CentimolePerLiter,
-        [Obsolete("Use the singular unit instead.")]
+        [System.Obsolete("Use the singular unit instead.")]
         CentimolesPerLiter,
         DecimolePerLiter,
-        [Obsolete("Use the singular unit instead.")]
+        [System.Obsolete("Use the singular unit instead.")]
         DecimolesPerLiter,
         MicromolePerLiter,
-        [Obsolete("Use the singular unit instead.")]
+        [System.Obsolete("Use the singular unit instead.")]
         MicromolesPerLiter,
         MillimolePerLiter,
-        [Obsolete("Use the singular unit instead.")]
+        [System.Obsolete("Use the singular unit instead.")]
         MillimolesPerLiter,
         MolePerCubicMeter,
         MolePerLiter,
-        [Obsolete("Use the singular unit instead.")]
+        [System.Obsolete("Use the singular unit instead.")]
         MolesPerCubicMeter,
-        [Obsolete("Use the singular unit instead.")]
+        [System.Obsolete("Use the singular unit instead.")]
         MolesPerLiter,
         NanomolePerLiter,
-        [Obsolete("Use the singular unit instead.")]
+        [System.Obsolete("Use the singular unit instead.")]
         NanomolesPerLiter,
         PicomolePerLiter,
-        [Obsolete("Use the singular unit instead.")]
+        [System.Obsolete("Use the singular unit instead.")]
         PicomolesPerLiter,
     }
 

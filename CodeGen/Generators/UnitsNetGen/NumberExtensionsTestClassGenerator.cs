@@ -23,7 +23,6 @@ namespace CodeGen.Generators.UnitsNetGen
 
             Writer.WL(
 $@"
-using System;
 using UnitsNet.NumberExtensions.NumberTo{_quantityName};
 using Xunit;
 

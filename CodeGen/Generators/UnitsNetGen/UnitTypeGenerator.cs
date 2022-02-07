@@ -18,8 +18,6 @@ namespace CodeGen.Generators.UnitsNetGen
         {
             Writer.WL(GeneratedFileHeader);
             Writer.WL($@"
-using System;
-
 // ReSharper disable once CheckNamespace
 namespace UnitsNet.Units
 {{
@@ -47,7 +45,7 @@ namespace UnitsNet.Units
         /// <remarks>{unit.XmlDocRemarks}</remarks>");
                 }
 
-                Writer.WLIfText(2, QuantityGenerator.GetObsoleteAttributeOrNull(unit));
+                Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit.ObsoleteText));
                 Writer.WL($@"
         {unit.SingularName},");
             }
@@ -59,5 +57,10 @@ namespace UnitsNet.Units
 }}");
             return Writer.ToString();
         }
+
+        private string? GetObsoleteAttributeOrNull(string obsoleteText) =>
+          string.IsNullOrWhiteSpace(obsoleteText) ?
+          null :
+          $"[System.Obsolete(\"{obsoleteText}\")]";
     }
 }
