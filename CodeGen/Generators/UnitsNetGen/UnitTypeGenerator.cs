@@ -18,6 +18,8 @@ namespace CodeGen.Generators.UnitsNetGen
         {
             Writer.WL(GeneratedFileHeader);
             Writer.WL($@"
+using System;
+
 // ReSharper disable once CheckNamespace
 namespace UnitsNet.Units
 {{

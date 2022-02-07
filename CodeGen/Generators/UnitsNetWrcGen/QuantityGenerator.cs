@@ -751,6 +751,6 @@ namespace UnitsNet
         /// </summary>
         private static string? GetObsoleteAttributeOrNull(string obsoleteText) => string.IsNullOrWhiteSpace(obsoleteText)
             ? null
-            : $"[System.Obsolete(\"{obsoleteText}\")]";
+            : $"[Obsolete(\"{obsoleteText}\")]";
     }
 }

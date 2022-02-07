@@ -37,6 +37,9 @@ namespace UnitsNet.NumberExtensions.NumberTo{_quantityName}
 
             foreach (var unit in _units)
             {
+                if(unit.SkipConversionGeneration)
+                    continue;
+
                 Writer.WL(2, $@"
 /// <inheritdoc cref=""{_quantityName}.From{unit.PluralName}(UnitsNet.QuantityValue)"" />");
 
@@ -55,6 +58,6 @@ namespace UnitsNet.NumberExtensions.NumberTo{_quantityName}
         private static string? GetObsoleteAttributeOrNull(string obsoleteText) =>
             string.IsNullOrWhiteSpace(obsoleteText) ?
             null :
-            $"[System.Obsolete(\"{obsoleteText}\")]";
+            $"[Obsolete(\"{obsoleteText}\")]";
     }
 }

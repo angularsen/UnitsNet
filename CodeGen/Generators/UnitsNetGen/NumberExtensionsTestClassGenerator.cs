@@ -23,6 +23,7 @@ namespace CodeGen.Generators.UnitsNetGen
 
             Writer.WL(
 $@"
+using System;
 using UnitsNet.NumberExtensions.NumberTo{_quantityName};
 using Xunit;
 
@@ -33,6 +34,9 @@ namespace UnitsNet.Tests
 
             foreach (var unit in _units)
             {
+                if(unit.SkipConversionGeneration)
+                    continue;
+
                 Writer.WL(2, $@"
 [Fact]");
 
@@ -48,9 +52,9 @@ namespace UnitsNet.Tests
             return Writer.ToString();
         }
 
-        private string GetObsoleteAttributeOrNull(string obsoleteText) =>
+        private string? GetObsoleteAttributeOrNull(string obsoleteText) =>
           string.IsNullOrWhiteSpace(obsoleteText) ?
           null :
-          $"[System.Obsolete({obsoleteText})]";
+          $"[Obsolete(\"{obsoleteText}\")]";
     }
 }

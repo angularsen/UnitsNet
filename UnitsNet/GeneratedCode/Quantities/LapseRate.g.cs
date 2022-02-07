@@ -35,7 +35,7 @@ namespace UnitsNet
     /// <summary>
     ///     Lapse rate is the rate at which Earth's atmospheric temperature decreases with an increase in altitude, or increases with the decrease in altitude.
     /// </summary>
-    [System.Obsolete("Use TemperatureGradient instead.")]
+    [Obsolete("Use TemperatureGradient instead.")]
     [DataContract]
     public partial struct LapseRate : IQuantity<LapseRateUnit>, IEquatable<LapseRate>, IComparable, IComparable<LapseRate>, IConvertible, IFormattable
     {

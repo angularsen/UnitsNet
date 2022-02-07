@@ -32,6 +32,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override bool SupportsSIUnitSystem => true;
 
         #region Unit Conversion Coefficients
+
         protected override double CentimolesPerLiterInOneMolesPerCubicMeter => 1e-1;
         protected override double DecimolesPerLiterInOneMolesPerCubicMeter => 1e-2;
         protected override double MolesPerLiterInOneMolesPerCubicMeter => 1e-3;
@@ -40,6 +41,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MicromolesPerLiterInOneMolesPerCubicMeter => 1e3;
         protected override double NanomolesPerLiterInOneMolesPerCubicMeter => 1e6;
         protected override double PicomolesPerLiterInOneMolesPerCubicMeter => 1e9;
+
         #endregion
 
         [Theory]
