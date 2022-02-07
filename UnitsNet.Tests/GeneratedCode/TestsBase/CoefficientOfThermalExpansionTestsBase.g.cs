@@ -222,7 +222,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(CoefficientOfThermalExpansionUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(CoefficientOfThermalExpansionUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = CoefficientOfThermalExpansion.Units.FirstOrDefault(u => u != CoefficientOfThermalExpansion.BaseUnit && u != CoefficientOfThermalExpansionUnit.Undefined);
@@ -233,7 +233,7 @@ namespace UnitsNet.Tests
 
             var quantity = CoefficientOfThermalExpansion.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

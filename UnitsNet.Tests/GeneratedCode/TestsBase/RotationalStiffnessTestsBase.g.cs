@@ -522,7 +522,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(RotationalStiffnessUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(RotationalStiffnessUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = RotationalStiffness.Units.FirstOrDefault(u => u != RotationalStiffness.BaseUnit && u != RotationalStiffnessUnit.Undefined);
@@ -533,7 +533,7 @@ namespace UnitsNet.Tests
 
             var quantity = RotationalStiffness.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

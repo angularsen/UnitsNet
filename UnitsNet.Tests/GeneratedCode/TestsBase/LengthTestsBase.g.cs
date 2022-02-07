@@ -522,7 +522,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(LengthUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(LengthUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = Length.Units.FirstOrDefault(u => u != Length.BaseUnit && u != LengthUnit.Undefined);
@@ -533,7 +533,7 @@ namespace UnitsNet.Tests
 
             var quantity = Length.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

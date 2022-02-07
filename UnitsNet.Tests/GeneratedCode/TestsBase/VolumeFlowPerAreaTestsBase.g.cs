@@ -212,7 +212,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(VolumeFlowPerAreaUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(VolumeFlowPerAreaUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = VolumeFlowPerArea.Units.FirstOrDefault(u => u != VolumeFlowPerArea.BaseUnit && u != VolumeFlowPerAreaUnit.Undefined);
@@ -223,7 +223,7 @@ namespace UnitsNet.Tests
 
             var quantity = VolumeFlowPerArea.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

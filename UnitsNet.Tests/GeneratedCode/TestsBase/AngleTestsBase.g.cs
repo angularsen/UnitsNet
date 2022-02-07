@@ -352,7 +352,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(AngleUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(AngleUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = Angle.Units.FirstOrDefault(u => u != Angle.BaseUnit && u != AngleUnit.Undefined);
@@ -363,7 +363,7 @@ namespace UnitsNet.Tests
 
             var quantity = Angle.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

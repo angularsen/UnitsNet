@@ -282,7 +282,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(SpecificEntropyUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(SpecificEntropyUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = SpecificEntropy.Units.FirstOrDefault(u => u != SpecificEntropy.BaseUnit && u != SpecificEntropyUnit.Undefined);
@@ -293,7 +293,7 @@ namespace UnitsNet.Tests
 
             var quantity = SpecificEntropy.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

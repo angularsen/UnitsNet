@@ -292,7 +292,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(ReciprocalLengthUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ReciprocalLengthUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = ReciprocalLength.Units.FirstOrDefault(u => u != ReciprocalLength.BaseUnit && u != ReciprocalLengthUnit.Undefined);
@@ -303,7 +303,7 @@ namespace UnitsNet.Tests
 
             var quantity = ReciprocalLength.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

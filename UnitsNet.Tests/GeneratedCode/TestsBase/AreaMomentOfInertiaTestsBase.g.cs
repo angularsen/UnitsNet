@@ -252,7 +252,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(AreaMomentOfInertiaUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(AreaMomentOfInertiaUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = AreaMomentOfInertia.Units.FirstOrDefault(u => u != AreaMomentOfInertia.BaseUnit && u != AreaMomentOfInertiaUnit.Undefined);
@@ -263,7 +263,7 @@ namespace UnitsNet.Tests
 
             var quantity = AreaMomentOfInertia.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

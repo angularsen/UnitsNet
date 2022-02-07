@@ -442,7 +442,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(SpecificEnergyUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(SpecificEnergyUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = SpecificEnergy.Units.FirstOrDefault(u => u != SpecificEnergy.BaseUnit && u != SpecificEnergyUnit.Undefined);
@@ -453,7 +453,7 @@ namespace UnitsNet.Tests
 
             var quantity = SpecificEnergy.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

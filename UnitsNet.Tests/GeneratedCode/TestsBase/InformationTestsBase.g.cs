@@ -427,7 +427,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(InformationUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(InformationUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = Information.Units.FirstOrDefault(u => u != Information.BaseUnit && u != InformationUnit.Undefined);
@@ -438,7 +438,7 @@ namespace UnitsNet.Tests
 
             var quantity = Information.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

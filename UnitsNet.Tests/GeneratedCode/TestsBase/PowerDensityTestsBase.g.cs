@@ -632,7 +632,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(PowerDensityUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(PowerDensityUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = PowerDensity.Units.FirstOrDefault(u => u != PowerDensity.BaseUnit && u != PowerDensityUnit.Undefined);
@@ -643,7 +643,7 @@ namespace UnitsNet.Tests
 
             var quantity = PowerDensity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

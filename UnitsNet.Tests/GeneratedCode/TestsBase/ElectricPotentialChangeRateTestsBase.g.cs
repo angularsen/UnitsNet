@@ -392,7 +392,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(ElectricPotentialChangeRateUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricPotentialChangeRateUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = ElectricPotentialChangeRate.Units.FirstOrDefault(u => u != ElectricPotentialChangeRate.BaseUnit && u != ElectricPotentialChangeRateUnit.Undefined);
@@ -403,7 +403,7 @@ namespace UnitsNet.Tests
 
             var quantity = ElectricPotentialChangeRate.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

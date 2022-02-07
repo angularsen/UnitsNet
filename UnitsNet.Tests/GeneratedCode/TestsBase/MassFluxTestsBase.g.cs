@@ -312,7 +312,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(MassFluxUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MassFluxUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = MassFlux.Units.FirstOrDefault(u => u != MassFlux.BaseUnit && u != MassFluxUnit.Undefined);
@@ -323,7 +323,7 @@ namespace UnitsNet.Tests
 
             var quantity = MassFlux.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

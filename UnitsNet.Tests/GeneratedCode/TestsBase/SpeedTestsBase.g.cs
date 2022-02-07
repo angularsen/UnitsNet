@@ -512,7 +512,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(SpeedUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(SpeedUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = Speed.Units.FirstOrDefault(u => u != Speed.BaseUnit && u != SpeedUnit.Undefined);
@@ -523,7 +523,7 @@ namespace UnitsNet.Tests
 
             var quantity = Speed.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

@@ -372,7 +372,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(HeatFluxUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(HeatFluxUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = HeatFlux.Units.FirstOrDefault(u => u != HeatFlux.BaseUnit && u != HeatFluxUnit.Undefined);
@@ -383,7 +383,7 @@ namespace UnitsNet.Tests
 
             var quantity = HeatFlux.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

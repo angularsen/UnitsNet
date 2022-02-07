@@ -292,7 +292,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(TemperatureChangeRateUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(TemperatureChangeRateUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = TemperatureChangeRate.Units.FirstOrDefault(u => u != TemperatureChangeRate.BaseUnit && u != TemperatureChangeRateUnit.Undefined);
@@ -303,7 +303,7 @@ namespace UnitsNet.Tests
 
             var quantity = TemperatureChangeRate.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

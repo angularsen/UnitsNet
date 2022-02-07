@@ -202,7 +202,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(MagnetizationUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MagnetizationUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = Magnetization.Units.FirstOrDefault(u => u != Magnetization.BaseUnit && u != MagnetizationUnit.Undefined);
@@ -213,7 +213,7 @@ namespace UnitsNet.Tests
 
             var quantity = Magnetization.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

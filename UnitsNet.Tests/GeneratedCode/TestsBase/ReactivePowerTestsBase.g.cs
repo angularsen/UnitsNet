@@ -232,7 +232,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(ReactivePowerUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ReactivePowerUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = ReactivePower.Units.FirstOrDefault(u => u != ReactivePower.BaseUnit && u != ReactivePowerUnit.Undefined);
@@ -243,7 +243,7 @@ namespace UnitsNet.Tests
 
             var quantity = ReactivePower.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

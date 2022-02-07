@@ -202,7 +202,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(LuminousIntensityUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(LuminousIntensityUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = LuminousIntensity.Units.FirstOrDefault(u => u != LuminousIntensity.BaseUnit && u != LuminousIntensityUnit.Undefined);
@@ -213,7 +213,7 @@ namespace UnitsNet.Tests
 
             var quantity = LuminousIntensity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

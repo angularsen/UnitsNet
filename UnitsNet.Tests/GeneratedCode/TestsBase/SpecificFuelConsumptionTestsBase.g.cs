@@ -232,7 +232,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(SpecificFuelConsumptionUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(SpecificFuelConsumptionUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = SpecificFuelConsumption.Units.FirstOrDefault(u => u != SpecificFuelConsumption.BaseUnit && u != SpecificFuelConsumptionUnit.Undefined);
@@ -243,7 +243,7 @@ namespace UnitsNet.Tests
 
             var quantity = SpecificFuelConsumption.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

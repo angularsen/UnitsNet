@@ -572,7 +572,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(ForcePerLengthUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ForcePerLengthUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = ForcePerLength.Units.FirstOrDefault(u => u != ForcePerLength.BaseUnit && u != ForcePerLengthUnit.Undefined);
@@ -583,7 +583,7 @@ namespace UnitsNet.Tests
 
             var quantity = ForcePerLength.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

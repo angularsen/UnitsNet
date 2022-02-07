@@ -202,7 +202,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(LapseRateUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(LapseRateUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = LapseRate.Units.FirstOrDefault(u => u != LapseRate.BaseUnit && u != LapseRateUnit.Undefined);
@@ -213,7 +213,7 @@ namespace UnitsNet.Tests
 
             var quantity = LapseRate.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

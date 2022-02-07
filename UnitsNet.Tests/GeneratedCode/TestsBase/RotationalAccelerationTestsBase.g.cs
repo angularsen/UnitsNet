@@ -232,7 +232,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(RotationalAccelerationUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(RotationalAccelerationUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = RotationalAcceleration.Units.FirstOrDefault(u => u != RotationalAcceleration.BaseUnit && u != RotationalAccelerationUnit.Undefined);
@@ -243,7 +243,7 @@ namespace UnitsNet.Tests
 
             var quantity = RotationalAcceleration.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

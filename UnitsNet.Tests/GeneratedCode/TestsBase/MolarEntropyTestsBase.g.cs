@@ -222,7 +222,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(MolarEntropyUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MolarEntropyUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = MolarEntropy.Units.FirstOrDefault(u => u != MolarEntropy.BaseUnit && u != MolarEntropyUnit.Undefined);
@@ -233,7 +233,7 @@ namespace UnitsNet.Tests
 
             var quantity = MolarEntropy.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

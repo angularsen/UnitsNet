@@ -252,7 +252,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(ElectricResistanceUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricResistanceUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = ElectricResistance.Units.FirstOrDefault(u => u != ElectricResistance.BaseUnit && u != ElectricResistanceUnit.Undefined);
@@ -263,7 +263,7 @@ namespace UnitsNet.Tests
 
             var quantity = ElectricResistance.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

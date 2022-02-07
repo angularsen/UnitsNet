@@ -472,7 +472,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(MassMomentOfInertiaUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MassMomentOfInertiaUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = MassMomentOfInertia.Units.FirstOrDefault(u => u != MassMomentOfInertia.BaseUnit && u != MassMomentOfInertiaUnit.Undefined);
@@ -483,7 +483,7 @@ namespace UnitsNet.Tests
 
             var quantity = MassMomentOfInertia.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

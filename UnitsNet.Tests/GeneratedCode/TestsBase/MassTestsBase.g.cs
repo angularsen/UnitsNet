@@ -442,7 +442,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(MassUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MassUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = Mass.Units.FirstOrDefault(u => u != Mass.BaseUnit && u != MassUnit.Undefined);
@@ -453,7 +453,7 @@ namespace UnitsNet.Tests
 
             var quantity = Mass.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

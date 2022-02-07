@@ -212,7 +212,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(RatioChangeRateUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(RatioChangeRateUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = RatioChangeRate.Units.FirstOrDefault(u => u != RatioChangeRate.BaseUnit && u != RatioChangeRateUnit.Undefined);
@@ -223,7 +223,7 @@ namespace UnitsNet.Tests
 
             var quantity = RatioChangeRate.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

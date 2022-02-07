@@ -202,7 +202,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(VitaminAUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(VitaminAUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = VitaminA.Units.FirstOrDefault(u => u != VitaminA.BaseUnit && u != VitaminAUnit.Undefined);
@@ -213,7 +213,7 @@ namespace UnitsNet.Tests
 
             var quantity = VitaminA.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

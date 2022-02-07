@@ -362,7 +362,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(SpecificWeightUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(SpecificWeightUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = SpecificWeight.Units.FirstOrDefault(u => u != SpecificWeight.BaseUnit && u != SpecificWeightUnit.Undefined);
@@ -373,7 +373,7 @@ namespace UnitsNet.Tests
 
             var quantity = SpecificWeight.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

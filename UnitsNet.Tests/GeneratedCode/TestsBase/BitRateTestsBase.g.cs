@@ -427,7 +427,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(BitRateUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(BitRateUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = BitRate.Units.FirstOrDefault(u => u != BitRate.BaseUnit && u != BitRateUnit.Undefined);
@@ -438,7 +438,7 @@ namespace UnitsNet.Tests
 
             var quantity = BitRate.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

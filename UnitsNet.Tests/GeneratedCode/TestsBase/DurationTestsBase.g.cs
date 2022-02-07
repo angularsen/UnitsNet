@@ -302,7 +302,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(DurationUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(DurationUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = Duration.Units.FirstOrDefault(u => u != Duration.BaseUnit && u != DurationUnit.Undefined);
@@ -313,7 +313,7 @@ namespace UnitsNet.Tests
 
             var quantity = Duration.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

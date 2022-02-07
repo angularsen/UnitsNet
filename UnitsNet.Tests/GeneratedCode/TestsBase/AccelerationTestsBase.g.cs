@@ -332,7 +332,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(AccelerationUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(AccelerationUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = Acceleration.Units.FirstOrDefault(u => u != Acceleration.BaseUnit && u != AccelerationUnit.Undefined);
@@ -343,7 +343,7 @@ namespace UnitsNet.Tests
 
             var quantity = Acceleration.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

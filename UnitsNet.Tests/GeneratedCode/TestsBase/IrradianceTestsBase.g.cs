@@ -332,7 +332,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(IrradianceUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(IrradianceUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = Irradiance.Units.FirstOrDefault(u => u != Irradiance.BaseUnit && u != IrradianceUnit.Undefined);
@@ -343,7 +343,7 @@ namespace UnitsNet.Tests
 
             var quantity = Irradiance.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

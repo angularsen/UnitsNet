@@ -702,7 +702,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(DensityUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(DensityUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = Density.Units.FirstOrDefault(u => u != Density.BaseUnit && u != DensityUnit.Undefined);
@@ -713,7 +713,7 @@ namespace UnitsNet.Tests
 
             var quantity = Density.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

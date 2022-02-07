@@ -252,7 +252,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(MagneticFieldUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MagneticFieldUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = MagneticField.Units.FirstOrDefault(u => u != MagneticField.BaseUnit && u != MagneticFieldUnit.Undefined);
@@ -263,7 +263,7 @@ namespace UnitsNet.Tests
 
             var quantity = MagneticField.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

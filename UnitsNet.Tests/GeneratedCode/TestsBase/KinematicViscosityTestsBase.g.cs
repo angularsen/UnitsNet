@@ -282,7 +282,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(KinematicViscosityUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(KinematicViscosityUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = KinematicViscosity.Units.FirstOrDefault(u => u != KinematicViscosity.BaseUnit && u != KinematicViscosityUnit.Undefined);
@@ -293,7 +293,7 @@ namespace UnitsNet.Tests
 
             var quantity = KinematicViscosity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

@@ -252,7 +252,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(WarpingMomentOfInertiaUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(WarpingMomentOfInertiaUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = WarpingMomentOfInertia.Units.FirstOrDefault(u => u != WarpingMomentOfInertia.BaseUnit && u != WarpingMomentOfInertiaUnit.Undefined);
@@ -263,7 +263,7 @@ namespace UnitsNet.Tests
 
             var quantity = WarpingMomentOfInertia.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

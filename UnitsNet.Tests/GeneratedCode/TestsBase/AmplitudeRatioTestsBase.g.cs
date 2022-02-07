@@ -232,7 +232,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(AmplitudeRatioUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(AmplitudeRatioUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = AmplitudeRatio.Units.FirstOrDefault(u => u != AmplitudeRatio.BaseUnit && u != AmplitudeRatioUnit.Undefined);
@@ -243,7 +243,7 @@ namespace UnitsNet.Tests
 
             var quantity = AmplitudeRatio.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

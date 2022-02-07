@@ -402,7 +402,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(TorquePerLengthUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(TorquePerLengthUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = TorquePerLength.Units.FirstOrDefault(u => u != TorquePerLength.BaseUnit && u != TorquePerLengthUnit.Undefined);
@@ -413,7 +413,7 @@ namespace UnitsNet.Tests
 
             var quantity = TorquePerLength.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

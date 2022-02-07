@@ -232,7 +232,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(ElectricCurrentGradientUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricCurrentGradientUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = ElectricCurrentGradient.Units.FirstOrDefault(u => u != ElectricCurrentGradient.BaseUnit && u != ElectricCurrentGradientUnit.Undefined);
@@ -243,7 +243,7 @@ namespace UnitsNet.Tests
 
             var quantity = ElectricCurrentGradient.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

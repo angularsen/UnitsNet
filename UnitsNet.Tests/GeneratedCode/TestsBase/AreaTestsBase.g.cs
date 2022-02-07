@@ -332,7 +332,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(AreaUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(AreaUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = Area.Units.FirstOrDefault(u => u != Area.BaseUnit && u != AreaUnit.Undefined);
@@ -343,7 +343,7 @@ namespace UnitsNet.Tests
 
             var quantity = Area.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

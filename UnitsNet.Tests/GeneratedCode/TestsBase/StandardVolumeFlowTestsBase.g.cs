@@ -282,7 +282,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(StandardVolumeFlowUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(StandardVolumeFlowUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = StandardVolumeFlow.Units.FirstOrDefault(u => u != StandardVolumeFlow.BaseUnit && u != StandardVolumeFlowUnit.Undefined);
@@ -293,7 +293,7 @@ namespace UnitsNet.Tests
 
             var quantity = StandardVolumeFlow.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

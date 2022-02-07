@@ -212,7 +212,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(PowerRatioUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(PowerRatioUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = PowerRatio.Units.FirstOrDefault(u => u != PowerRatio.BaseUnit && u != PowerRatioUnit.Undefined);
@@ -223,7 +223,7 @@ namespace UnitsNet.Tests
 
             var quantity = PowerRatio.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

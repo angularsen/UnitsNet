@@ -292,7 +292,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(TemperatureUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(TemperatureUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = Temperature.Units.FirstOrDefault(u => u != Temperature.BaseUnit && u != TemperatureUnit.Undefined);
@@ -303,7 +303,7 @@ namespace UnitsNet.Tests
 
             var quantity = Temperature.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

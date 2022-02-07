@@ -392,7 +392,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(VolumeConcentrationUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(VolumeConcentrationUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = VolumeConcentration.Units.FirstOrDefault(u => u != VolumeConcentration.BaseUnit && u != VolumeConcentrationUnit.Undefined);
@@ -403,7 +403,7 @@ namespace UnitsNet.Tests
 
             var quantity = VolumeConcentration.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

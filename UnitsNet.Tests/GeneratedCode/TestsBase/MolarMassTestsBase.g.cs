@@ -312,7 +312,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(MolarMassUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MolarMassUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = MolarMass.Units.FirstOrDefault(u => u != MolarMass.BaseUnit && u != MolarMassUnit.Undefined);
@@ -323,7 +323,7 @@ namespace UnitsNet.Tests
 
             var quantity = MolarMass.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

@@ -272,7 +272,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [MemberData(nameof(UnitTypes))]
-        public void ToUnit_FromNonBaseUnit_NoException(MolarityUnit unit)
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MolarityUnit unit)
         {
             // See if there is a unit available that is not the base unit.
             var fromUnit = Molarity.Units.FirstOrDefault(u => u != Molarity.BaseUnit && u != MolarityUnit.Undefined);
@@ -283,7 +283,7 @@ namespace UnitsNet.Tests
 
             var quantity = Molarity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
-            // TODO: Meaningful check possible?
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]
