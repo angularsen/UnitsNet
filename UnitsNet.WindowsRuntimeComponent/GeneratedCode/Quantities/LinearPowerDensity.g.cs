@@ -295,6 +295,35 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearPowerDensityUnit.GigawattPerCentimeter, new CultureInfo("en-US"), new string[]{"GW/cm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearPowerDensityUnit.GigawattPerFoot, new CultureInfo("en-US"), new string[]{"GW/ft"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearPowerDensityUnit.GigawattPerInch, new CultureInfo("en-US"), new string[]{"GW/in"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearPowerDensityUnit.GigawattPerMeter, new CultureInfo("en-US"), new string[]{"GW/m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearPowerDensityUnit.GigawattPerMillimeter, new CultureInfo("en-US"), new string[]{"GW/mm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearPowerDensityUnit.KilowattPerCentimeter, new CultureInfo("en-US"), new string[]{"kW/cm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearPowerDensityUnit.KilowattPerFoot, new CultureInfo("en-US"), new string[]{"kW/ft"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearPowerDensityUnit.KilowattPerInch, new CultureInfo("en-US"), new string[]{"kW/in"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearPowerDensityUnit.KilowattPerMeter, new CultureInfo("en-US"), new string[]{"kW/m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearPowerDensityUnit.KilowattPerMillimeter, new CultureInfo("en-US"), new string[]{"kW/mm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearPowerDensityUnit.MegawattPerCentimeter, new CultureInfo("en-US"), new string[]{"MW/cm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearPowerDensityUnit.MegawattPerFoot, new CultureInfo("en-US"), new string[]{"MW/ft"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearPowerDensityUnit.MegawattPerInch, new CultureInfo("en-US"), new string[]{"MW/in"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearPowerDensityUnit.MegawattPerMeter, new CultureInfo("en-US"), new string[]{"MW/m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearPowerDensityUnit.MegawattPerMillimeter, new CultureInfo("en-US"), new string[]{"MW/mm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearPowerDensityUnit.MilliwattPerCentimeter, new CultureInfo("en-US"), new string[]{"mW/cm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearPowerDensityUnit.MilliwattPerFoot, new CultureInfo("en-US"), new string[]{"mW/ft"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearPowerDensityUnit.MilliwattPerInch, new CultureInfo("en-US"), new string[]{"mW/in"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearPowerDensityUnit.MilliwattPerMeter, new CultureInfo("en-US"), new string[]{"mW/m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearPowerDensityUnit.MilliwattPerMillimeter, new CultureInfo("en-US"), new string[]{"mW/mm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearPowerDensityUnit.WattPerCentimeter, new CultureInfo("en-US"), new string[]{"W/cm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearPowerDensityUnit.WattPerFoot, new CultureInfo("en-US"), new string[]{"W/ft"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearPowerDensityUnit.WattPerInch, new CultureInfo("en-US"), new string[]{"W/in"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearPowerDensityUnit.WattPerMeter, new CultureInfo("en-US"), new string[]{"W/m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearPowerDensityUnit.WattPerMillimeter, new CultureInfo("en-US"), new string[]{"W/mm"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

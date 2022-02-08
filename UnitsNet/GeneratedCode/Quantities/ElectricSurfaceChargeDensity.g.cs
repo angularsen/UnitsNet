@@ -71,6 +71,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricSurfaceChargeDensity);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -113,7 +115,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="ElectricSurfaceChargeDensity" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<ElectricSurfaceChargeDensityUnit> Info { get; }
@@ -226,6 +228,13 @@ namespace UnitsNet
             // Register in unit converter: ElectricSurfaceChargeDensityUnit -> BaseUnit
             unitConverter.SetConversionFunction<ElectricSurfaceChargeDensity>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, quantity => new ElectricSurfaceChargeDensity(quantity.Value * 1.0e4, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter));
             unitConverter.SetConversionFunction<ElectricSurfaceChargeDensity>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, quantity => new ElectricSurfaceChargeDensity(quantity.Value * 1.5500031000062000e3, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, new CultureInfo("en-US"), new string[]{"C/cm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, new CultureInfo("en-US"), new string[]{"C/in²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, new CultureInfo("en-US"), new string[]{"C/m²"});
         }
 
         /// <summary>

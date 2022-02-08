@@ -190,6 +190,14 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, new CultureInfo("en-US"), new string[]{"g/(kN�s)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, new CultureInfo("en-US"), new string[]{"kg/(kgf�h)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, new CultureInfo("en-US"), new string[]{"kg/(kN�s)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, new CultureInfo("en-US"), new string[]{"lb/(lbf�h)"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

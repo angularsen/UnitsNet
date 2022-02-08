@@ -332,6 +332,43 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.CentinewtonMeterPerDegree, new CultureInfo("en-US"), new string[]{"cN·m/deg", "cNm/deg", "cN·m/°", "cNm/°"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.CentinewtonMillimeterPerDegree, new CultureInfo("en-US"), new string[]{"cN·mm/deg", "cNmm/deg", "cN·mm/°", "cNmm/°"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.CentinewtonMillimeterPerRadian, new CultureInfo("en-US"), new string[]{"cN·mm/rad", "cNmm/rad"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.DecanewtonMeterPerDegree, new CultureInfo("en-US"), new string[]{"daN·m/deg", "daNm/deg", "daN·m/°", "daNm/°"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.DecanewtonMillimeterPerDegree, new CultureInfo("en-US"), new string[]{"daN·mm/deg", "daNmm/deg", "daN·mm/°", "daNmm/°"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.DecanewtonMillimeterPerRadian, new CultureInfo("en-US"), new string[]{"daN·mm/rad", "daNmm/rad"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.DecinewtonMeterPerDegree, new CultureInfo("en-US"), new string[]{"dN·m/deg", "dNm/deg", "dN·m/°", "dNm/°"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.DecinewtonMillimeterPerDegree, new CultureInfo("en-US"), new string[]{"dN·mm/deg", "dNmm/deg", "dN·mm/°", "dNmm/°"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.DecinewtonMillimeterPerRadian, new CultureInfo("en-US"), new string[]{"dN·mm/rad", "dNmm/rad"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.KilonewtonMeterPerDegree, new CultureInfo("en-US"), new string[]{"kN·m/deg", "kNm/deg", "kN·m/°", "kNm/°"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.KilonewtonMeterPerRadian, new CultureInfo("en-US"), new string[]{"kN·m/rad", "kNm/rad"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.KilonewtonMillimeterPerDegree, new CultureInfo("en-US"), new string[]{"kN·mm/deg", "kNmm/deg", "kN·mm/°", "kNmm/°"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.KilonewtonMillimeterPerRadian, new CultureInfo("en-US"), new string[]{"kN·mm/rad", "kNmm/rad"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.KilopoundForceFootPerDegrees, new CultureInfo("en-US"), new string[]{"kipf·ft/°", "kip·ft/°g", "k·ft/°", "kipf·ft/deg", "kip·ft/deg", "k·ft/deg"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.MeganewtonMeterPerDegree, new CultureInfo("en-US"), new string[]{"MN·m/deg", "MNm/deg", "MN·m/°", "MNm/°"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.MeganewtonMeterPerRadian, new CultureInfo("en-US"), new string[]{"MN·m/rad", "MNm/rad"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.MeganewtonMillimeterPerDegree, new CultureInfo("en-US"), new string[]{"MN·mm/deg", "MNmm/deg", "MN·mm/°", "MNmm/°"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.MeganewtonMillimeterPerRadian, new CultureInfo("en-US"), new string[]{"MN·mm/rad", "MNmm/rad"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.MicronewtonMeterPerDegree, new CultureInfo("en-US"), new string[]{"µN·m/deg", "µNm/deg", "µN·m/°", "µNm/°"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.MicronewtonMillimeterPerDegree, new CultureInfo("en-US"), new string[]{"µN·mm/deg", "µNmm/deg", "µN·mm/°", "µNmm/°"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.MicronewtonMillimeterPerRadian, new CultureInfo("en-US"), new string[]{"µN·mm/rad", "µNmm/rad"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.MillinewtonMeterPerDegree, new CultureInfo("en-US"), new string[]{"mN·m/deg", "mNm/deg", "mN·m/°", "mNm/°"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.MillinewtonMillimeterPerDegree, new CultureInfo("en-US"), new string[]{"mN·mm/deg", "mNmm/deg", "mN·mm/°", "mNmm/°"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.MillinewtonMillimeterPerRadian, new CultureInfo("en-US"), new string[]{"mN·mm/rad", "mNmm/rad"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.NanonewtonMeterPerDegree, new CultureInfo("en-US"), new string[]{"nN·m/deg", "nNm/deg", "nN·m/°", "nNm/°"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.NanonewtonMillimeterPerDegree, new CultureInfo("en-US"), new string[]{"nN·mm/deg", "nNmm/deg", "nN·mm/°", "nNmm/°"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.NanonewtonMillimeterPerRadian, new CultureInfo("en-US"), new string[]{"nN·mm/rad", "nNmm/rad"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.NewtonMeterPerDegree, new CultureInfo("en-US"), new string[]{"N·m/deg", "Nm/deg", "N·m/°", "Nm/°"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.NewtonMeterPerRadian, new CultureInfo("en-US"), new string[]{"N·m/rad", "Nm/rad"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.NewtonMillimeterPerDegree, new CultureInfo("en-US"), new string[]{"N·mm/deg", "Nmm/deg", "N·mm/°", "Nmm/°"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.NewtonMillimeterPerRadian, new CultureInfo("en-US"), new string[]{"N·mm/rad", "Nmm/rad"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.PoundForceFeetPerRadian, new CultureInfo("en-US"), new string[]{"lbf·ft/rad"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessUnit.PoundForceFootPerDegrees, new CultureInfo("en-US"), new string[]{"lbf·ft/deg"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

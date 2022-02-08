@@ -80,13 +80,7 @@ namespace UnitsNet
             if(unitConverter is null)
                 throw new ArgumentNullException(nameof(unitConverter));
 
-            var quantities = typeof(Length)
-                .Wrap()
-                .Assembly
-                .GetExportedTypes()
-                .Where(t => typeof(IQuantity).Wrap().IsAssignableFrom(t));
-
-            foreach(var quantity in quantities)
+            foreach(var quantity in Quantity.GetQuantityTypes())
             {
                 var registerMethod = quantity.GetMethod(nameof(Length.RegisterDefaultConversions), BindingFlags.NonPublic | BindingFlags.Static);
                 registerMethod?.Invoke(null, new object[]{unitConverter});

@@ -67,6 +67,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Level);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -109,7 +111,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Level" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<LevelUnit> Info { get; }
@@ -215,6 +217,12 @@ namespace UnitsNet
 
             // Register in unit converter: LevelUnit -> BaseUnit
             unitConverter.SetConversionFunction<Level>(LevelUnit.Neper, LevelUnit.Decibel, quantity => new Level((1/0.115129254)*quantity.Value, LevelUnit.Decibel));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(LevelUnit.Decibel, new CultureInfo("en-US"), new string[]{"dB"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LevelUnit.Neper, new CultureInfo("en-US"), new string[]{"Np"});
         }
 
         /// <summary>

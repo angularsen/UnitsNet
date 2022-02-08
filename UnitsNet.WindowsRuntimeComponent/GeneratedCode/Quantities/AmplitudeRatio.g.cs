@@ -187,6 +187,14 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(AmplitudeRatioUnit.DecibelMicrovolt, new CultureInfo("en-US"), new string[]{"dBµV"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AmplitudeRatioUnit.DecibelMillivolt, new CultureInfo("en-US"), new string[]{"dBmV"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AmplitudeRatioUnit.DecibelUnloaded, new CultureInfo("en-US"), new string[]{"dBu"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AmplitudeRatioUnit.DecibelVolt, new CultureInfo("en-US"), new string[]{"dBV"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

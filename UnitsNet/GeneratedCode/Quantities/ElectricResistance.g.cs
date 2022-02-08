@@ -71,6 +71,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricResistance);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -113,7 +115,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="ElectricResistance" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<ElectricResistanceUnit> Info { get; }
@@ -247,6 +249,16 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Megaohm, ElectricResistanceUnit.Ohm, quantity => new ElectricResistance((quantity.Value) * 1e6d, ElectricResistanceUnit.Ohm));
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Microohm, ElectricResistanceUnit.Ohm, quantity => new ElectricResistance((quantity.Value) * 1e-6d, ElectricResistanceUnit.Ohm));
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Milliohm, ElectricResistanceUnit.Ohm, quantity => new ElectricResistance((quantity.Value) * 1e-3d, ElectricResistanceUnit.Ohm));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistanceUnit.Gigaohm, new CultureInfo("en-US"), new string[]{"GΩ"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistanceUnit.Kiloohm, new CultureInfo("en-US"), new string[]{"kΩ"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistanceUnit.Megaohm, new CultureInfo("en-US"), new string[]{"MΩ"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistanceUnit.Microohm, new CultureInfo("en-US"), new string[]{"µΩ"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistanceUnit.Milliohm, new CultureInfo("en-US"), new string[]{"mΩ"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistanceUnit.Ohm, new CultureInfo("en-US"), new string[]{"Ω"});
         }
 
         /// <summary>

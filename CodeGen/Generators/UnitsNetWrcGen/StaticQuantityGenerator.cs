@@ -17,7 +17,7 @@ namespace CodeGen.Generators.UnitsNetWrcGen
             Writer.WL(GeneratedFileHeader);
             Writer.WL(@"
 using System;
-using System.Linq;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -113,6 +113,14 @@ namespace UnitsNet
             Writer.WL($@"
             throw new ArgumentException(
                 $""Type {{quantityType}} is not a known quantity type. Did you pass in a third-party quantity type defined outside UnitsNet library?"");
+        }}
+
+        internal static IEnumerable<Type> GetQuantityTypes()
+        {{");
+            foreach (var quantity in _quantities)
+                Writer.WL($@"
+            yield return typeof({quantity.Name});");
+            Writer.WL($@"
         }}
     }}
 }}");

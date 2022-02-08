@@ -72,6 +72,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.SpecificFuelConsumption);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -114,7 +116,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="SpecificFuelConsumption" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<SpecificFuelConsumptionUnit> Info { get; }
@@ -234,6 +236,14 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, quantity => new SpecificFuelConsumption(quantity.Value*28.33, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond));
             unitConverter.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, quantity => new SpecificFuelConsumption((quantity.Value) * 1e3d, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond));
             unitConverter.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, quantity => new SpecificFuelConsumption(quantity.Value*28.33, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, new CultureInfo("en-US"), new string[]{"g/(kN�s)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, new CultureInfo("en-US"), new string[]{"kg/(kgf�h)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, new CultureInfo("en-US"), new string[]{"kg/(kN�s)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, new CultureInfo("en-US"), new string[]{"lb/(lbf�h)"});
         }
 
         /// <summary>

@@ -72,6 +72,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.VolumePerLength);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -114,7 +116,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="VolumePerLength" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<VolumePerLengthUnit> Info { get; }
@@ -255,6 +257,17 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<VolumePerLength>(VolumePerLengthUnit.LiterPerMeter, VolumePerLengthUnit.CubicMeterPerMeter, quantity => new VolumePerLength(quantity.Value/1000, VolumePerLengthUnit.CubicMeterPerMeter));
             unitConverter.SetConversionFunction<VolumePerLength>(VolumePerLengthUnit.LiterPerMillimeter, VolumePerLengthUnit.CubicMeterPerMeter, quantity => new VolumePerLength(quantity.Value, VolumePerLengthUnit.CubicMeterPerMeter));
             unitConverter.SetConversionFunction<VolumePerLength>(VolumePerLengthUnit.OilBarrelPerFoot, VolumePerLengthUnit.CubicMeterPerMeter, quantity => new VolumePerLength(quantity.Value/1.91713408, VolumePerLengthUnit.CubicMeterPerMeter));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumePerLengthUnit.CubicMeterPerMeter, new CultureInfo("en-US"), new string[]{"m³/m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumePerLengthUnit.CubicYardPerFoot, new CultureInfo("en-US"), new string[]{"yd³/ft"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumePerLengthUnit.CubicYardPerUsSurveyFoot, new CultureInfo("en-US"), new string[]{"yd³/ftUS"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumePerLengthUnit.LiterPerKilometer, new CultureInfo("en-US"), new string[]{"l/km"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumePerLengthUnit.LiterPerMeter, new CultureInfo("en-US"), new string[]{"l/m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumePerLengthUnit.LiterPerMillimeter, new CultureInfo("en-US"), new string[]{"l/mm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumePerLengthUnit.OilBarrelPerFoot, new CultureInfo("en-US"), new string[]{"bbl/ft"});
         }
 
         /// <summary>

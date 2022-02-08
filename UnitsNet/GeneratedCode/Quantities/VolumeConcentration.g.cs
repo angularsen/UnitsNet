@@ -88,6 +88,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.VolumeConcentration);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -130,7 +132,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="VolumeConcentration" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<VolumeConcentrationUnit> Info { get; }
@@ -362,6 +364,30 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.Percent, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration(quantity.Value/1e2, VolumeConcentrationUnit.DecimalFraction));
             unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.PicolitersPerLiter, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration((quantity.Value) * 1e-12d, VolumeConcentrationUnit.DecimalFraction));
             unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.PicolitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration((quantity.Value/1e-3) * 1e-12d, VolumeConcentrationUnit.DecimalFraction));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.CentilitersPerLiter, new CultureInfo("en-US"), new string[]{"cL/L"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.CentilitersPerMililiter, new CultureInfo("en-US"), new string[]{"cL/mL"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.DecilitersPerLiter, new CultureInfo("en-US"), new string[]{"dL/L"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.DecilitersPerMililiter, new CultureInfo("en-US"), new string[]{"dL/mL"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.DecimalFraction, new CultureInfo("en-US"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.LitersPerLiter, new CultureInfo("en-US"), new string[]{"L/L"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.LitersPerMililiter, new CultureInfo("en-US"), new string[]{"L/mL"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.MicrolitersPerLiter, new CultureInfo("en-US"), new string[]{"µL/L"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.MicrolitersPerMililiter, new CultureInfo("en-US"), new string[]{"µL/mL"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.MillilitersPerLiter, new CultureInfo("en-US"), new string[]{"mL/L"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.MillilitersPerMililiter, new CultureInfo("en-US"), new string[]{"mL/mL"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.NanolitersPerLiter, new CultureInfo("en-US"), new string[]{"nL/L"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.NanolitersPerMililiter, new CultureInfo("en-US"), new string[]{"nL/mL"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.PartPerBillion, new CultureInfo("en-US"), new string[]{"ppb"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.PartPerMillion, new CultureInfo("en-US"), new string[]{"ppm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.PartPerThousand, new CultureInfo("en-US"), new string[]{"‰"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.PartPerTrillion, new CultureInfo("en-US"), new string[]{"ppt"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.Percent, new CultureInfo("en-US"), new string[]{"%", "% (v/v)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.PicolitersPerLiter, new CultureInfo("en-US"), new string[]{"pL/L"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.PicolitersPerMililiter, new CultureInfo("en-US"), new string[]{"pL/mL"});
         }
 
         /// <summary>

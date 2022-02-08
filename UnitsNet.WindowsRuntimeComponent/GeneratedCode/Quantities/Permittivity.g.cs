@@ -175,6 +175,11 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(PermittivityUnit.FaradPerMeter, new CultureInfo("en-US"), new string[]{"F/m"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

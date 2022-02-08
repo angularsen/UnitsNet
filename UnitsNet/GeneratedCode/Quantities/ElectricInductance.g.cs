@@ -72,6 +72,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricInductance);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -114,7 +116,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="ElectricInductance" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<ElectricInductanceUnit> Info { get; }
@@ -234,6 +236,14 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Microhenry, ElectricInductanceUnit.Henry, quantity => new ElectricInductance((quantity.Value) * 1e-6d, ElectricInductanceUnit.Henry));
             unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Millihenry, ElectricInductanceUnit.Henry, quantity => new ElectricInductance((quantity.Value) * 1e-3d, ElectricInductanceUnit.Henry));
             unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Nanohenry, ElectricInductanceUnit.Henry, quantity => new ElectricInductance((quantity.Value) * 1e-9d, ElectricInductanceUnit.Henry));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricInductanceUnit.Henry, new CultureInfo("en-US"), new string[]{"H"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricInductanceUnit.Microhenry, new CultureInfo("en-US"), new string[]{"µH"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricInductanceUnit.Millihenry, new CultureInfo("en-US"), new string[]{"mH"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricInductanceUnit.Nanohenry, new CultureInfo("en-US"), new string[]{"nH"});
         }
 
         /// <summary>

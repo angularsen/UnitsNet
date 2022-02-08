@@ -195,6 +195,15 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricChargeUnit.AmpereHour, new CultureInfo("en-US"), new string[]{"A-h", "Ah"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricChargeUnit.Coulomb, new CultureInfo("en-US"), new string[]{"C"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricChargeUnit.KiloampereHour, new CultureInfo("en-US"), new string[]{"kA-h", "kAh"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricChargeUnit.MegaampereHour, new CultureInfo("en-US"), new string[]{"MA-h", "MAh"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricChargeUnit.MilliampereHour, new CultureInfo("en-US"), new string[]{"mA-h", "mAh"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

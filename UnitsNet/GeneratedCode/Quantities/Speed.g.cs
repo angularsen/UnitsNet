@@ -97,6 +97,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Speed);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -139,7 +141,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Speed" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<SpeedUnit> Info { get; }
@@ -455,6 +457,65 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Speed>(SpeedUnit.YardPerHour, SpeedUnit.MeterPerSecond, quantity => new Speed(quantity.Value*0.9144/3600, SpeedUnit.MeterPerSecond));
             unitConverter.SetConversionFunction<Speed>(SpeedUnit.YardPerMinute, SpeedUnit.MeterPerSecond, quantity => new Speed(quantity.Value*0.9144/60, SpeedUnit.MeterPerSecond));
             unitConverter.SetConversionFunction<Speed>(SpeedUnit.YardPerSecond, SpeedUnit.MeterPerSecond, quantity => new Speed(quantity.Value*0.9144, SpeedUnit.MeterPerSecond));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.CentimeterPerHour, new CultureInfo("en-US"), new string[]{"cm/h"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.CentimeterPerHour, new CultureInfo("ru-RU"), new string[]{"см/ч"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.CentimeterPerMinute, new CultureInfo("en-US"), new string[]{"cm/min"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.CentimeterPerMinute, new CultureInfo("ru-RU"), new string[]{"см/мин"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.CentimeterPerSecond, new CultureInfo("en-US"), new string[]{"cm/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.CentimeterPerSecond, new CultureInfo("ru-RU"), new string[]{"см/с"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.DecimeterPerMinute, new CultureInfo("en-US"), new string[]{"dm/min"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.DecimeterPerMinute, new CultureInfo("ru-RU"), new string[]{"дм/мин"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.DecimeterPerSecond, new CultureInfo("en-US"), new string[]{"dm/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.DecimeterPerSecond, new CultureInfo("ru-RU"), new string[]{"дм/с"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.FootPerHour, new CultureInfo("en-US"), new string[]{"ft/h"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.FootPerHour, new CultureInfo("ru-RU"), new string[]{"фут/ч"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.FootPerMinute, new CultureInfo("en-US"), new string[]{"ft/min"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.FootPerMinute, new CultureInfo("ru-RU"), new string[]{"фут/мин"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.FootPerSecond, new CultureInfo("en-US"), new string[]{"ft/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.FootPerSecond, new CultureInfo("ru-RU"), new string[]{"фут/с"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.InchPerHour, new CultureInfo("en-US"), new string[]{"in/h"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.InchPerMinute, new CultureInfo("en-US"), new string[]{"in/min"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.InchPerSecond, new CultureInfo("en-US"), new string[]{"in/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.KilometerPerHour, new CultureInfo("en-US"), new string[]{"km/h"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.KilometerPerHour, new CultureInfo("ru-RU"), new string[]{"км/ч"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.KilometerPerMinute, new CultureInfo("en-US"), new string[]{"km/min"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.KilometerPerMinute, new CultureInfo("ru-RU"), new string[]{"км/мин"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.KilometerPerSecond, new CultureInfo("en-US"), new string[]{"km/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.KilometerPerSecond, new CultureInfo("ru-RU"), new string[]{"км/с"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.Knot, new CultureInfo("en-US"), new string[]{"kn", "kt", "knot", "knots"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.Knot, new CultureInfo("ru-RU"), new string[]{"уз."});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.MeterPerHour, new CultureInfo("en-US"), new string[]{"m/h"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.MeterPerHour, new CultureInfo("ru-RU"), new string[]{"м/ч"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.MeterPerMinute, new CultureInfo("en-US"), new string[]{"m/min"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.MeterPerMinute, new CultureInfo("ru-RU"), new string[]{"м/мин"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.MeterPerSecond, new CultureInfo("en-US"), new string[]{"m/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.MeterPerSecond, new CultureInfo("ru-RU"), new string[]{"м/с"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.MicrometerPerMinute, new CultureInfo("en-US"), new string[]{"µm/min"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.MicrometerPerMinute, new CultureInfo("ru-RU"), new string[]{"мкм/мин"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.MicrometerPerSecond, new CultureInfo("en-US"), new string[]{"µm/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.MicrometerPerSecond, new CultureInfo("ru-RU"), new string[]{"мкм/с"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.MilePerHour, new CultureInfo("en-US"), new string[]{"mph"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.MilePerHour, new CultureInfo("ru-RU"), new string[]{"миль/ч"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.MillimeterPerHour, new CultureInfo("en-US"), new string[]{"mm/h"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.MillimeterPerHour, new CultureInfo("ru-RU"), new string[]{"мм/ч"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.MillimeterPerMinute, new CultureInfo("en-US"), new string[]{"mm/min"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.MillimeterPerMinute, new CultureInfo("ru-RU"), new string[]{"мм/мин"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.MillimeterPerSecond, new CultureInfo("en-US"), new string[]{"mm/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.MillimeterPerSecond, new CultureInfo("ru-RU"), new string[]{"мм/с"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.NanometerPerMinute, new CultureInfo("en-US"), new string[]{"nm/min"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.NanometerPerMinute, new CultureInfo("ru-RU"), new string[]{"нм/мин"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.NanometerPerSecond, new CultureInfo("en-US"), new string[]{"nm/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.NanometerPerSecond, new CultureInfo("ru-RU"), new string[]{"нм/с"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.UsSurveyFootPerHour, new CultureInfo("en-US"), new string[]{"ftUS/h"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.UsSurveyFootPerMinute, new CultureInfo("en-US"), new string[]{"ftUS/min"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.UsSurveyFootPerSecond, new CultureInfo("en-US"), new string[]{"ftUS/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.YardPerHour, new CultureInfo("en-US"), new string[]{"yd/h"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.YardPerMinute, new CultureInfo("en-US"), new string[]{"yd/min"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpeedUnit.YardPerSecond, new CultureInfo("en-US"), new string[]{"yd/s"});
         }
 
         /// <summary>

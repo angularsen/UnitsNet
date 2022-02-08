@@ -76,6 +76,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Molarity);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -118,7 +120,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Molarity" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<MolarityUnit> Info { get; }
@@ -266,6 +268,18 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerLiter, MolarityUnit.MolesPerCubicMeter, quantity => new Molarity(quantity.Value/1e-3, MolarityUnit.MolesPerCubicMeter));
             unitConverter.SetConversionFunction<Molarity>(MolarityUnit.NanomolesPerLiter, MolarityUnit.MolesPerCubicMeter, quantity => new Molarity((quantity.Value/1e-3) * 1e-9d, MolarityUnit.MolesPerCubicMeter));
             unitConverter.SetConversionFunction<Molarity>(MolarityUnit.PicomolesPerLiter, MolarityUnit.MolesPerCubicMeter, quantity => new Molarity((quantity.Value/1e-3) * 1e-12d, MolarityUnit.MolesPerCubicMeter));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(MolarityUnit.CentimolesPerLiter, new CultureInfo("en-US"), new string[]{"cmol/L", "cM"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MolarityUnit.DecimolesPerLiter, new CultureInfo("en-US"), new string[]{"dmol/L", "dM"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MolarityUnit.MicromolesPerLiter, new CultureInfo("en-US"), new string[]{"µmol/L", "µM"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MolarityUnit.MillimolesPerLiter, new CultureInfo("en-US"), new string[]{"mmol/L", "mM"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MolarityUnit.MolesPerCubicMeter, new CultureInfo("en-US"), new string[]{"mol/m³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MolarityUnit.MolesPerLiter, new CultureInfo("en-US"), new string[]{"mol/L", "M"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MolarityUnit.NanomolesPerLiter, new CultureInfo("en-US"), new string[]{"nmol/L", "nM"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MolarityUnit.PicomolesPerLiter, new CultureInfo("en-US"), new string[]{"pmol/L", "pM"});
         }
 
         /// <summary>

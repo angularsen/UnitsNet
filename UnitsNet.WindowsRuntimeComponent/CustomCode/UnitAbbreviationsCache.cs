@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -14,7 +15,7 @@ using UnitTypeToLookup = System.Collections.Generic.Dictionary<System.Type, Unit
 // ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
-    public sealed partial class UnitAbbreviationsCache
+    public sealed class UnitAbbreviationsCache
     {
         private readonly Dictionary<IFormatProvider, UnitTypeToLookup> _lookupsForCulture;
 
@@ -45,10 +46,10 @@ namespace UnitsNet
 
         private void LoadGeneratedAbbreviations()
         {
-            foreach(var localization in GeneratedLocalizations)
+            foreach(var quantity in Quantity.GetQuantityTypes())
             {
-                var culture = new CultureInfo(localization.CultureName);
-                MapUnitToAbbreviation(localization.UnitType, localization.UnitValue, culture, localization.UnitAbbreviations);
+                var mapGeneratedLocalizationsMethod = quantity.GetMethod(nameof(Length.MapGeneratedLocalizations), BindingFlags.NonPublic | BindingFlags.Static);
+                mapGeneratedLocalizationsMethod?.Invoke(null, new object[]{this});
             }
         }
 
@@ -57,13 +58,18 @@ namespace UnitsNet
         /// This is used to dynamically add abbreviations for existing unit enums such as <see cref="LengthUnit"/> or to extend with third-party unit enums
         /// in order to <see cref="UnitParser.Parse{TUnitType}"/> or <see cref="GetDefaultAbbreviation{TUnitType}"/> on them later.
         /// </summary>
-        /// <param name="unitType">The unit enum type.</param>
-        /// <param name="unitValue">The unit enum value.</param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="unit">The unit enum value.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <param name="abbreviations">Unit abbreviations to add.</param>
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-        private void MapUnitToAbbreviation(Type unitType, int unitValue, IFormatProvider formatProvider, [NotNull] params string[] abbreviations)
+        /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
+        internal void MapUnitToAbbreviation<TUnitType>(TUnitType unit, IFormatProvider formatProvider, params string[] abbreviations) where TUnitType : Enum
         {
+            // Assuming TUnitType is an enum, this conversion is safe. Seems not possible to enforce this today.
+            // Src: http://stackoverflow.com/questions/908543/how-to-convert-from-system-enum-to-base-integer
+            // http://stackoverflow.com/questions/79126/create-generic-method-constraining-t-to-an-enum
+            var unitValue = Convert.ToInt32(unit);
+            var unitType = typeof(TUnitType);
+
             PerformAbbreviationMapping(unitType, unitValue, formatProvider, false, abbreviations);
         }
 

@@ -187,6 +187,14 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ApparentPowerUnit.Gigavoltampere, new CultureInfo("en-US"), new string[]{"GVA"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ApparentPowerUnit.Kilovoltampere, new CultureInfo("en-US"), new string[]{"kVA"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ApparentPowerUnit.Megavoltampere, new CultureInfo("en-US"), new string[]{"MVA"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ApparentPowerUnit.Voltampere, new CultureInfo("en-US"), new string[]{"VA"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

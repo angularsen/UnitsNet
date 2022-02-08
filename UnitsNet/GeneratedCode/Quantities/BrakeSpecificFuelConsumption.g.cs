@@ -68,6 +68,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.BrakeSpecificFuelConsumption);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -110,7 +112,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="BrakeSpecificFuelConsumption" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<BrakeSpecificFuelConsumptionUnit> Info { get; }
@@ -223,6 +225,13 @@ namespace UnitsNet
             // Register in unit converter: BrakeSpecificFuelConsumptionUnit -> BaseUnit
             unitConverter.SetConversionFunction<BrakeSpecificFuelConsumption>(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, quantity => new BrakeSpecificFuelConsumption(quantity.Value/3.6e9, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule));
             unitConverter.SetConversionFunction<BrakeSpecificFuelConsumption>(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, quantity => new BrakeSpecificFuelConsumption(quantity.Value*1.689659410672e-7, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, new CultureInfo("en-US"), new string[]{"g/kWh"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, new CultureInfo("en-US"), new string[]{"kg/J"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, new CultureInfo("en-US"), new string[]{"lb/hph"});
         }
 
         /// <summary>

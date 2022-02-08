@@ -292,6 +292,38 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorqueUnit.GramForceCentimeter, new CultureInfo("en-US"), new string[]{"gf·cm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorqueUnit.GramForceMeter, new CultureInfo("en-US"), new string[]{"gf·m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorqueUnit.GramForceMillimeter, new CultureInfo("en-US"), new string[]{"gf·mm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorqueUnit.KilogramForceCentimeter, new CultureInfo("en-US"), new string[]{"kgf·cm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorqueUnit.KilogramForceMeter, new CultureInfo("en-US"), new string[]{"kgf·m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorqueUnit.KilogramForceMillimeter, new CultureInfo("en-US"), new string[]{"kgf·mm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorqueUnit.KilonewtonCentimeter, new CultureInfo("en-US"), new string[]{"kN·cm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorqueUnit.KilonewtonMeter, new CultureInfo("en-US"), new string[]{"kN·m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorqueUnit.KilonewtonMeter, new CultureInfo("ru-RU"), new string[]{"кН·м"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorqueUnit.KilonewtonMillimeter, new CultureInfo("en-US"), new string[]{"kN·mm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorqueUnit.KilopoundForceFoot, new CultureInfo("en-US"), new string[]{"kipf·ft"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorqueUnit.KilopoundForceInch, new CultureInfo("en-US"), new string[]{"kipf·in"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorqueUnit.MeganewtonCentimeter, new CultureInfo("en-US"), new string[]{"MN·cm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorqueUnit.MeganewtonMeter, new CultureInfo("en-US"), new string[]{"MN·m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorqueUnit.MeganewtonMeter, new CultureInfo("ru-RU"), new string[]{"МН·м"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorqueUnit.MeganewtonMillimeter, new CultureInfo("en-US"), new string[]{"MN·mm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorqueUnit.MegapoundForceFoot, new CultureInfo("en-US"), new string[]{"Mlbf·ft"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorqueUnit.MegapoundForceInch, new CultureInfo("en-US"), new string[]{"Mlbf·in"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorqueUnit.NewtonCentimeter, new CultureInfo("en-US"), new string[]{"N·cm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorqueUnit.NewtonMeter, new CultureInfo("en-US"), new string[]{"N·m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorqueUnit.NewtonMeter, new CultureInfo("ru-RU"), new string[]{"Н·м"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorqueUnit.NewtonMillimeter, new CultureInfo("en-US"), new string[]{"N·mm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorqueUnit.PoundalFoot, new CultureInfo("en-US"), new string[]{"pdl·ft"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorqueUnit.PoundForceFoot, new CultureInfo("en-US"), new string[]{"lbf·ft"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorqueUnit.PoundForceInch, new CultureInfo("en-US"), new string[]{"lbf·in"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorqueUnit.TonneForceCentimeter, new CultureInfo("en-US"), new string[]{"tf·cm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorqueUnit.TonneForceMeter, new CultureInfo("en-US"), new string[]{"tf·m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorqueUnit.TonneForceMillimeter, new CultureInfo("en-US"), new string[]{"tf·mm"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

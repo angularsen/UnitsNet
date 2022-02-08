@@ -175,6 +175,11 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(MagneticFluxUnit.Weber, new CultureInfo("en-US"), new string[]{"Wb"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

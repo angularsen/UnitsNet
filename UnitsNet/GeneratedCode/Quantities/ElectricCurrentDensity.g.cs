@@ -71,6 +71,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricCurrentDensity);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -113,7 +115,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="ElectricCurrentDensity" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<ElectricCurrentDensityUnit> Info { get; }
@@ -226,6 +228,13 @@ namespace UnitsNet
             // Register in unit converter: ElectricCurrentDensityUnit -> BaseUnit
             unitConverter.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareFoot, ElectricCurrentDensityUnit.AmperePerSquareMeter, quantity => new ElectricCurrentDensity(quantity.Value * 1.0763910416709722e1, ElectricCurrentDensityUnit.AmperePerSquareMeter));
             unitConverter.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareInch, ElectricCurrentDensityUnit.AmperePerSquareMeter, quantity => new ElectricCurrentDensity(quantity.Value * 1.5500031000062000e3, ElectricCurrentDensityUnit.AmperePerSquareMeter));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentDensityUnit.AmperePerSquareFoot, new CultureInfo("en-US"), new string[]{"A/ft²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentDensityUnit.AmperePerSquareInch, new CultureInfo("en-US"), new string[]{"A/in²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentDensityUnit.AmperePerSquareMeter, new CultureInfo("en-US"), new string[]{"A/m²"});
         }
 
         /// <summary>

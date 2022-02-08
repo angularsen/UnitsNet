@@ -69,6 +69,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Magnetization);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -111,7 +113,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Magnetization" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<MagnetizationUnit> Info { get; }
@@ -210,6 +212,11 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Magnetization>(MagnetizationUnit.AmperePerMeter, MagnetizationUnit.AmperePerMeter, quantity => quantity);
 
             // Register in unit converter: MagnetizationUnit -> BaseUnit
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(MagnetizationUnit.AmperePerMeter, new CultureInfo("en-US"), new string[]{"A/m"});
         }
 
         /// <summary>

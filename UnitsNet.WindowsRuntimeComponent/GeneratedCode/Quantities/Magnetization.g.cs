@@ -175,6 +175,11 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(MagnetizationUnit.AmperePerMeter, new CultureInfo("en-US"), new string[]{"A/m"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

@@ -80,6 +80,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.AmountOfSubstance);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -122,7 +124,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="AmountOfSubstance" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<AmountOfSubstanceUnit> Info { get; }
@@ -319,6 +321,25 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Nanomole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value) * 1e-9d, AmountOfSubstanceUnit.Mole));
             unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.NanopoundMole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value*453.59237) * 1e-9d, AmountOfSubstanceUnit.Mole));
             unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.PoundMole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance(quantity.Value*453.59237, AmountOfSubstanceUnit.Mole));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.Centimole, new CultureInfo("en-US"), new string[]{"cmol"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.CentipoundMole, new CultureInfo("en-US"), new string[]{"clbmol"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.Decimole, new CultureInfo("en-US"), new string[]{"dmol"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.DecipoundMole, new CultureInfo("en-US"), new string[]{"dlbmol"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.Kilomole, new CultureInfo("en-US"), new string[]{"kmol"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.KilopoundMole, new CultureInfo("en-US"), new string[]{"klbmol"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.Megamole, new CultureInfo("en-US"), new string[]{"Mmol"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.Micromole, new CultureInfo("en-US"), new string[]{"µmol"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.MicropoundMole, new CultureInfo("en-US"), new string[]{"µlbmol"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.Millimole, new CultureInfo("en-US"), new string[]{"mmol"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.MillipoundMole, new CultureInfo("en-US"), new string[]{"mlbmol"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.Mole, new CultureInfo("en-US"), new string[]{"mol"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.Nanomole, new CultureInfo("en-US"), new string[]{"nmol"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.NanopoundMole, new CultureInfo("en-US"), new string[]{"nlbmol"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.PoundMole, new CultureInfo("en-US"), new string[]{"lbmol"});
         }
 
         /// <summary>

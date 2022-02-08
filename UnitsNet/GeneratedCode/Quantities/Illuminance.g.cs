@@ -72,6 +72,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Illuminance);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -114,7 +116,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Illuminance" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<IlluminanceUnit> Info { get; }
@@ -234,6 +236,14 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Kilolux, IlluminanceUnit.Lux, quantity => new Illuminance((quantity.Value) * 1e3d, IlluminanceUnit.Lux));
             unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Megalux, IlluminanceUnit.Lux, quantity => new Illuminance((quantity.Value) * 1e6d, IlluminanceUnit.Lux));
             unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Millilux, IlluminanceUnit.Lux, quantity => new Illuminance((quantity.Value) * 1e-3d, IlluminanceUnit.Lux));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(IlluminanceUnit.Kilolux, new CultureInfo("en-US"), new string[]{"klx"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(IlluminanceUnit.Lux, new CultureInfo("en-US"), new string[]{"lx"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(IlluminanceUnit.Megalux, new CultureInfo("en-US"), new string[]{"Mlx"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(IlluminanceUnit.Millilux, new CultureInfo("en-US"), new string[]{"mlx"});
         }
 
         /// <summary>

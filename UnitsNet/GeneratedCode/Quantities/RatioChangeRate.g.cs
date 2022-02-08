@@ -67,6 +67,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.RatioChangeRate);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -109,7 +111,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="RatioChangeRate" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<RatioChangeRateUnit> Info { get; }
@@ -215,6 +217,12 @@ namespace UnitsNet
 
             // Register in unit converter: RatioChangeRateUnit -> BaseUnit
             unitConverter.SetConversionFunction<RatioChangeRate>(RatioChangeRateUnit.PercentPerSecond, RatioChangeRateUnit.DecimalFractionPerSecond, quantity => new RatioChangeRate(quantity.Value/1e2, RatioChangeRateUnit.DecimalFractionPerSecond));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(RatioChangeRateUnit.DecimalFractionPerSecond, new CultureInfo("en-US"), new string[]{"/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RatioChangeRateUnit.PercentPerSecond, new CultureInfo("en-US"), new string[]{"%/s"});
         }
 
         /// <summary>

@@ -79,6 +79,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ReciprocalArea);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -121,7 +123,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="ReciprocalArea" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<ReciprocalAreaUnit> Info { get; }
@@ -290,6 +292,21 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMillimeter, ReciprocalAreaUnit.InverseSquareMeter, quantity => new ReciprocalArea(quantity.Value/1e-6, ReciprocalAreaUnit.InverseSquareMeter));
             unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareYard, ReciprocalAreaUnit.InverseSquareMeter, quantity => new ReciprocalArea(quantity.Value/0.836127, ReciprocalAreaUnit.InverseSquareMeter));
             unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseUsSurveySquareFoot, ReciprocalAreaUnit.InverseSquareMeter, quantity => new ReciprocalArea(quantity.Value/0.09290341161, ReciprocalAreaUnit.InverseSquareMeter));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareCentimeter, new CultureInfo("en-US"), new string[]{"cm⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareDecimeter, new CultureInfo("en-US"), new string[]{"dm⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareFoot, new CultureInfo("en-US"), new string[]{"ft⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareInch, new CultureInfo("en-US"), new string[]{"in⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareKilometer, new CultureInfo("en-US"), new string[]{"km⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareMeter, new CultureInfo("en-US"), new string[]{"m⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareMicrometer, new CultureInfo("en-US"), new string[]{"µm⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareMile, new CultureInfo("en-US"), new string[]{"mi⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareMillimeter, new CultureInfo("en-US"), new string[]{"mm⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareYard, new CultureInfo("en-US"), new string[]{"yd⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseUsSurveySquareFoot, new CultureInfo("en-US"), new string[]{"ft⁻² (US)"});
         }
 
         /// <summary>

@@ -69,6 +69,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.AmplitudeRatio);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -111,7 +113,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="AmplitudeRatio" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<AmplitudeRatioUnit> Info { get; }
@@ -231,6 +233,14 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelMicrovolt, AmplitudeRatioUnit.DecibelVolt, quantity => new AmplitudeRatio(quantity.Value - 120, AmplitudeRatioUnit.DecibelVolt));
             unitConverter.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelMillivolt, AmplitudeRatioUnit.DecibelVolt, quantity => new AmplitudeRatio(quantity.Value - 60, AmplitudeRatioUnit.DecibelVolt));
             unitConverter.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelUnloaded, AmplitudeRatioUnit.DecibelVolt, quantity => new AmplitudeRatio(quantity.Value - 2.218487499, AmplitudeRatioUnit.DecibelVolt));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(AmplitudeRatioUnit.DecibelMicrovolt, new CultureInfo("en-US"), new string[]{"dBµV"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AmplitudeRatioUnit.DecibelMillivolt, new CultureInfo("en-US"), new string[]{"dBmV"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AmplitudeRatioUnit.DecibelUnloaded, new CultureInfo("en-US"), new string[]{"dBu"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AmplitudeRatioUnit.DecibelVolt, new CultureInfo("en-US"), new string[]{"dBV"});
         }
 
         /// <summary>

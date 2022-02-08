@@ -185,6 +185,13 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricConductivityUnit.SiemensPerFoot, new CultureInfo("en-US"), new string[]{"S/ft"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricConductivityUnit.SiemensPerInch, new CultureInfo("en-US"), new string[]{"S/in"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricConductivityUnit.SiemensPerMeter, new CultureInfo("en-US"), new string[]{"S/m"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

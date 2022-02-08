@@ -387,6 +387,54 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.DecawattPerCubicFoot, new CultureInfo("en-US"), new string[]{"daW/ft³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.DecawattPerCubicInch, new CultureInfo("en-US"), new string[]{"daW/in³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.DecawattPerCubicMeter, new CultureInfo("en-US"), new string[]{"daW/m³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.DecawattPerLiter, new CultureInfo("en-US"), new string[]{"daW/l"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.DeciwattPerCubicFoot, new CultureInfo("en-US"), new string[]{"dW/ft³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.DeciwattPerCubicInch, new CultureInfo("en-US"), new string[]{"dW/in³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.DeciwattPerCubicMeter, new CultureInfo("en-US"), new string[]{"dW/m³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.DeciwattPerLiter, new CultureInfo("en-US"), new string[]{"dW/l"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.GigawattPerCubicFoot, new CultureInfo("en-US"), new string[]{"GW/ft³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.GigawattPerCubicInch, new CultureInfo("en-US"), new string[]{"GW/in³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.GigawattPerCubicMeter, new CultureInfo("en-US"), new string[]{"GW/m³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.GigawattPerLiter, new CultureInfo("en-US"), new string[]{"GW/l"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.KilowattPerCubicFoot, new CultureInfo("en-US"), new string[]{"kW/ft³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.KilowattPerCubicInch, new CultureInfo("en-US"), new string[]{"kW/in³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.KilowattPerCubicMeter, new CultureInfo("en-US"), new string[]{"kW/m³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.KilowattPerLiter, new CultureInfo("en-US"), new string[]{"kW/l"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.MegawattPerCubicFoot, new CultureInfo("en-US"), new string[]{"MW/ft³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.MegawattPerCubicInch, new CultureInfo("en-US"), new string[]{"MW/in³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.MegawattPerCubicMeter, new CultureInfo("en-US"), new string[]{"MW/m³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.MegawattPerLiter, new CultureInfo("en-US"), new string[]{"MW/l"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.MicrowattPerCubicFoot, new CultureInfo("en-US"), new string[]{"µW/ft³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.MicrowattPerCubicInch, new CultureInfo("en-US"), new string[]{"µW/in³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.MicrowattPerCubicMeter, new CultureInfo("en-US"), new string[]{"µW/m³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.MicrowattPerLiter, new CultureInfo("en-US"), new string[]{"µW/l"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.MilliwattPerCubicFoot, new CultureInfo("en-US"), new string[]{"mW/ft³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.MilliwattPerCubicInch, new CultureInfo("en-US"), new string[]{"mW/in³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.MilliwattPerCubicMeter, new CultureInfo("en-US"), new string[]{"mW/m³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.MilliwattPerLiter, new CultureInfo("en-US"), new string[]{"mW/l"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.NanowattPerCubicFoot, new CultureInfo("en-US"), new string[]{"nW/ft³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.NanowattPerCubicInch, new CultureInfo("en-US"), new string[]{"nW/in³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.NanowattPerCubicMeter, new CultureInfo("en-US"), new string[]{"nW/m³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.NanowattPerLiter, new CultureInfo("en-US"), new string[]{"nW/l"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.PicowattPerCubicFoot, new CultureInfo("en-US"), new string[]{"pW/ft³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.PicowattPerCubicInch, new CultureInfo("en-US"), new string[]{"pW/in³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.PicowattPerCubicMeter, new CultureInfo("en-US"), new string[]{"pW/m³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.PicowattPerLiter, new CultureInfo("en-US"), new string[]{"pW/l"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.TerawattPerCubicFoot, new CultureInfo("en-US"), new string[]{"TW/ft³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.TerawattPerCubicInch, new CultureInfo("en-US"), new string[]{"TW/in³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.TerawattPerCubicMeter, new CultureInfo("en-US"), new string[]{"TW/m³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.TerawattPerLiter, new CultureInfo("en-US"), new string[]{"TW/l"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.WattPerCubicFoot, new CultureInfo("en-US"), new string[]{"W/ft³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.WattPerCubicInch, new CultureInfo("en-US"), new string[]{"W/in³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.WattPerCubicMeter, new CultureInfo("en-US"), new string[]{"W/m³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerDensityUnit.WattPerLiter, new CultureInfo("en-US"), new string[]{"W/l"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
