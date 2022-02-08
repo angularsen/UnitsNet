@@ -184,9 +184,9 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, new CultureInfo("en-US"), new string[]{"g/kWh"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, new CultureInfo("en-US"), new string[]{"kg/J"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, new CultureInfo("en-US"), new string[]{"lb/hph"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, new CultureInfo("en-US"), false, true, new string[]{"g/kWh"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, new CultureInfo("en-US"), false, true, new string[]{"kg/J"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, new CultureInfo("en-US"), false, true, new string[]{"lb/hph"});
         }
 
         /// <summary>

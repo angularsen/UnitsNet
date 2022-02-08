@@ -216,7 +216,7 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(TurbidityUnit.NTU, new CultureInfo("en-US"), new string[]{"NTU"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(TurbidityUnit.NTU, new CultureInfo("en-US"), false, true, new string[]{"NTU"});
         }
 
         /// <summary>

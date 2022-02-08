@@ -177,7 +177,7 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(MagneticFluxUnit.Weber, new CultureInfo("en-US"), new string[]{"Wb"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MagneticFluxUnit.Weber, new CultureInfo("en-US"), false, true, new string[]{"Wb"});
         }
 
         /// <summary>

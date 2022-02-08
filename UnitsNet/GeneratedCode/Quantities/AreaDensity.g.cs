@@ -213,7 +213,7 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(AreaDensityUnit.KilogramPerSquareMeter, new CultureInfo("en-US"), new string[]{"kg/m²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AreaDensityUnit.KilogramPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kg/m²"});
         }
 
         /// <summary>

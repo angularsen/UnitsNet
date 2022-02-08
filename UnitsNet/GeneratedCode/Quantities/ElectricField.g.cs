@@ -216,7 +216,7 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricFieldUnit.VoltPerMeter, new CultureInfo("en-US"), new string[]{"V/m"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricFieldUnit.VoltPerMeter, new CultureInfo("en-US"), false, true, new string[]{"V/m"});
         }
 
         /// <summary>

@@ -1,4 +1,4 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -94,8 +94,11 @@ namespace CodeGen.Generators
                         BaseUnits = null, // Can we determine this somehow?
                         FromBaseToUnitFunc = $"({unit.FromBaseToUnitFunc}) / {prefixInfo.Factor}",
                         FromUnitToBaseFunc = $"({unit.FromUnitToBaseFunc}) * {prefixInfo.Factor}",
-                        Localization = GetLocalizationForPrefixUnit(unit.Localization, prefixInfo)
-                    });
+                        Localization = GetLocalizationForPrefixUnit(unit.Localization, prefixInfo),
+                        ObsoleteText = unit.ObsoleteText,
+                        SkipConversionGeneration = unit.SkipConversionGeneration,
+                        AllowAbbreviationLookup = unit.AllowAbbreviationLookup
+                    } );
                 }
                 catch (Exception e)
                 {

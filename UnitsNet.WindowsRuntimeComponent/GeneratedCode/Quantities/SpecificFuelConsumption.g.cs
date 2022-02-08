@@ -192,10 +192,10 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, new CultureInfo("en-US"), new string[]{"g/(kN�s)"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, new CultureInfo("en-US"), new string[]{"kg/(kgf�h)"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, new CultureInfo("en-US"), new string[]{"kg/(kN�s)"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, new CultureInfo("en-US"), new string[]{"lb/(lbf�h)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, new CultureInfo("en-US"), false, true, new string[]{"g/(kN�s)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, new CultureInfo("en-US"), false, true, new string[]{"kg/(kgf�h)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, new CultureInfo("en-US"), false, true, new string[]{"kg/(kN�s)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, new CultureInfo("en-US"), false, true, new string[]{"lb/(lbf�h)"});
         }
 
         /// <summary>

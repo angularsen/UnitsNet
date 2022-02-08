@@ -177,7 +177,7 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(PermittivityUnit.FaradPerMeter, new CultureInfo("en-US"), new string[]{"F/m"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PermittivityUnit.FaradPerMeter, new CultureInfo("en-US"), false, true, new string[]{"F/m"});
         }
 
         /// <summary>

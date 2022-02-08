@@ -469,41 +469,41 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.CentigramPerDay, new CultureInfo("en-US"), new string[]{"cg/d"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.CentigramPerSecond, new CultureInfo("en-US"), new string[]{"cg/s", "cg/S"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.DecagramPerDay, new CultureInfo("en-US"), new string[]{"dag/d"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.DecagramPerSecond, new CultureInfo("en-US"), new string[]{"dag/s", "dag/S"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.DecigramPerDay, new CultureInfo("en-US"), new string[]{"dg/d"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.DecigramPerSecond, new CultureInfo("en-US"), new string[]{"dg/s", "dg/S"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.GramPerDay, new CultureInfo("en-US"), new string[]{"g/d"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.GramPerHour, new CultureInfo("en-US"), new string[]{"g/h"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.GramPerSecond, new CultureInfo("en-US"), new string[]{"g/s", "g/S"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.HectogramPerDay, new CultureInfo("en-US"), new string[]{"hg/d"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.HectogramPerSecond, new CultureInfo("en-US"), new string[]{"hg/s", "hg/S"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.KilogramPerDay, new CultureInfo("en-US"), new string[]{"kg/d"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.KilogramPerHour, new CultureInfo("en-US"), new string[]{"kg/h"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.KilogramPerHour, new CultureInfo("ru-RU"), new string[]{"кг/ч"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.KilogramPerMinute, new CultureInfo("en-US"), new string[]{"kg/min"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.KilogramPerMinute, new CultureInfo("ru-RU"), new string[]{"кг/мин"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.KilogramPerSecond, new CultureInfo("en-US"), new string[]{"kg/s", "kg/S"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.MegagramPerDay, new CultureInfo("en-US"), new string[]{"Mg/d"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.MegapoundPerDay, new CultureInfo("en-US"), new string[]{"Mlb/d"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.MegapoundPerHour, new CultureInfo("en-US"), new string[]{"Mlb/h"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.MegapoundPerMinute, new CultureInfo("en-US"), new string[]{"Mlb/min"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.MegapoundPerSecond, new CultureInfo("en-US"), new string[]{"Mlb/s"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.MicrogramPerDay, new CultureInfo("en-US"), new string[]{"µg/d"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.MicrogramPerSecond, new CultureInfo("en-US"), new string[]{"µg/s", "µg/S"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.MilligramPerDay, new CultureInfo("en-US"), new string[]{"mg/d"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.MilligramPerSecond, new CultureInfo("en-US"), new string[]{"mg/s", "mg/S"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.NanogramPerDay, new CultureInfo("en-US"), new string[]{"ng/d"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.NanogramPerSecond, new CultureInfo("en-US"), new string[]{"ng/s", "ng/S"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.PoundPerDay, new CultureInfo("en-US"), new string[]{"lb/d"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.PoundPerHour, new CultureInfo("en-US"), new string[]{"lb/h"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.PoundPerMinute, new CultureInfo("en-US"), new string[]{"lb/min"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.PoundPerSecond, new CultureInfo("en-US"), new string[]{"lb/s"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.ShortTonPerHour, new CultureInfo("en-US"), new string[]{"short tn/h"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.TonnePerDay, new CultureInfo("en-US"), new string[]{"t/d"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFlowUnit.TonnePerHour, new CultureInfo("en-US"), new string[]{"t/h"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.CentigramPerDay, new CultureInfo("en-US"), false, true, new string[]{"cg/d"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.CentigramPerSecond, new CultureInfo("en-US"), false, true, new string[]{"cg/s", "cg/S"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.DecagramPerDay, new CultureInfo("en-US"), false, true, new string[]{"dag/d"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.DecagramPerSecond, new CultureInfo("en-US"), false, true, new string[]{"dag/s", "dag/S"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.DecigramPerDay, new CultureInfo("en-US"), false, true, new string[]{"dg/d"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.DecigramPerSecond, new CultureInfo("en-US"), false, true, new string[]{"dg/s", "dg/S"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.GramPerDay, new CultureInfo("en-US"), false, true, new string[]{"g/d"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.GramPerHour, new CultureInfo("en-US"), false, true, new string[]{"g/h"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.GramPerSecond, new CultureInfo("en-US"), false, true, new string[]{"g/s", "g/S"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.HectogramPerDay, new CultureInfo("en-US"), false, true, new string[]{"hg/d"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.HectogramPerSecond, new CultureInfo("en-US"), false, true, new string[]{"hg/s", "hg/S"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.KilogramPerDay, new CultureInfo("en-US"), false, true, new string[]{"kg/d"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.KilogramPerHour, new CultureInfo("en-US"), false, true, new string[]{"kg/h"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.KilogramPerHour, new CultureInfo("ru-RU"), false, true, new string[]{"кг/ч"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.KilogramPerMinute, new CultureInfo("en-US"), false, true, new string[]{"kg/min"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.KilogramPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"кг/мин"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.KilogramPerSecond, new CultureInfo("en-US"), false, true, new string[]{"kg/s", "kg/S"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.MegagramPerDay, new CultureInfo("en-US"), false, true, new string[]{"Mg/d"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.MegapoundPerDay, new CultureInfo("en-US"), false, true, new string[]{"Mlb/d"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.MegapoundPerHour, new CultureInfo("en-US"), false, true, new string[]{"Mlb/h"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.MegapoundPerMinute, new CultureInfo("en-US"), false, true, new string[]{"Mlb/min"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.MegapoundPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Mlb/s"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.MicrogramPerDay, new CultureInfo("en-US"), false, true, new string[]{"µg/d"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.MicrogramPerSecond, new CultureInfo("en-US"), false, true, new string[]{"µg/s", "µg/S"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.MilligramPerDay, new CultureInfo("en-US"), false, true, new string[]{"mg/d"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.MilligramPerSecond, new CultureInfo("en-US"), false, true, new string[]{"mg/s", "mg/S"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.NanogramPerDay, new CultureInfo("en-US"), false, true, new string[]{"ng/d"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.NanogramPerSecond, new CultureInfo("en-US"), false, true, new string[]{"ng/s", "ng/S"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.PoundPerDay, new CultureInfo("en-US"), false, true, new string[]{"lb/d"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.PoundPerHour, new CultureInfo("en-US"), false, true, new string[]{"lb/h"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.PoundPerMinute, new CultureInfo("en-US"), false, true, new string[]{"lb/min"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.PoundPerSecond, new CultureInfo("en-US"), false, true, new string[]{"lb/s"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.ShortTonPerHour, new CultureInfo("en-US"), false, true, new string[]{"short tn/h"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.TonnePerDay, new CultureInfo("en-US"), false, true, new string[]{"t/d"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.TonnePerHour, new CultureInfo("en-US"), false, true, new string[]{"t/h"});
         }
 
         /// <summary>

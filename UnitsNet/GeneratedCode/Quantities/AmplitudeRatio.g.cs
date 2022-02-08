@@ -237,10 +237,10 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(AmplitudeRatioUnit.DecibelMicrovolt, new CultureInfo("en-US"), new string[]{"dBµV"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AmplitudeRatioUnit.DecibelMillivolt, new CultureInfo("en-US"), new string[]{"dBmV"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AmplitudeRatioUnit.DecibelUnloaded, new CultureInfo("en-US"), new string[]{"dBu"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AmplitudeRatioUnit.DecibelVolt, new CultureInfo("en-US"), new string[]{"dBV"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AmplitudeRatioUnit.DecibelMicrovolt, new CultureInfo("en-US"), false, true, new string[]{"dBµV"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AmplitudeRatioUnit.DecibelMillivolt, new CultureInfo("en-US"), false, true, new string[]{"dBmV"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AmplitudeRatioUnit.DecibelUnloaded, new CultureInfo("en-US"), false, true, new string[]{"dBu"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AmplitudeRatioUnit.DecibelVolt, new CultureInfo("en-US"), false, true, new string[]{"dBV"});
         }
 
         /// <summary>

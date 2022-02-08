@@ -199,12 +199,12 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(RatioUnit.DecimalFraction, new CultureInfo("en-US"), new string[]{""});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RatioUnit.PartPerBillion, new CultureInfo("en-US"), new string[]{"ppb"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RatioUnit.PartPerMillion, new CultureInfo("en-US"), new string[]{"ppm"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RatioUnit.PartPerThousand, new CultureInfo("en-US"), new string[]{"‰"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RatioUnit.PartPerTrillion, new CultureInfo("en-US"), new string[]{"ppt"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RatioUnit.Percent, new CultureInfo("en-US"), new string[]{"%"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RatioUnit.DecimalFraction, new CultureInfo("en-US"), false, true, new string[]{""});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RatioUnit.PartPerBillion, new CultureInfo("en-US"), false, true, new string[]{"ppb"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RatioUnit.PartPerMillion, new CultureInfo("en-US"), false, true, new string[]{"ppm"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RatioUnit.PartPerThousand, new CultureInfo("en-US"), false, true, new string[]{"‰"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RatioUnit.PartPerTrillion, new CultureInfo("en-US"), false, true, new string[]{"ppt"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RatioUnit.Percent, new CultureInfo("en-US"), false, true, new string[]{"%"});
         }
 
         /// <summary>

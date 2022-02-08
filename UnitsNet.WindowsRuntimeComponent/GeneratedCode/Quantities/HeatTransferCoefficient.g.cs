@@ -184,9 +184,9 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, new CultureInfo("en-US"), new string[]{"Btu/ft²·hr·°F"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, new CultureInfo("en-US"), new string[]{"W/m²·°C"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, new CultureInfo("en-US"), new string[]{"W/m²·K"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, new CultureInfo("en-US"), false, true, new string[]{"Btu/ft²·hr·°F"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, new CultureInfo("en-US"), false, true, new string[]{"W/m²·°C"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, new CultureInfo("en-US"), false, true, new string[]{"W/m²·K"});
         }
 
         /// <summary>

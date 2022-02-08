@@ -240,10 +240,10 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(FuelEfficiencyUnit.KilometerPerLiter, new CultureInfo("en-US"), new string[]{"km/L"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(FuelEfficiencyUnit.LiterPer100Kilometers, new CultureInfo("en-US"), new string[]{"L/100km"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(FuelEfficiencyUnit.MilePerUkGallon, new CultureInfo("en-US"), new string[]{"mpg (imp.)"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(FuelEfficiencyUnit.MilePerUsGallon, new CultureInfo("en-US"), new string[]{"mpg (U.S.)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(FuelEfficiencyUnit.KilometerPerLiter, new CultureInfo("en-US"), false, true, new string[]{"km/L"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(FuelEfficiencyUnit.LiterPer100Kilometers, new CultureInfo("en-US"), false, true, new string[]{"L/100km"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(FuelEfficiencyUnit.MilePerUkGallon, new CultureInfo("en-US"), false, true, new string[]{"mpg (imp.)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(FuelEfficiencyUnit.MilePerUsGallon, new CultureInfo("en-US"), false, true, new string[]{"mpg (U.S.)"});
         }
 
         /// <summary>

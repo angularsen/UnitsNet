@@ -187,9 +187,9 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricConductivityUnit.SiemensPerFoot, new CultureInfo("en-US"), new string[]{"S/ft"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricConductivityUnit.SiemensPerInch, new CultureInfo("en-US"), new string[]{"S/in"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricConductivityUnit.SiemensPerMeter, new CultureInfo("en-US"), new string[]{"S/m"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductivityUnit.SiemensPerFoot, new CultureInfo("en-US"), false, true, new string[]{"S/ft"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductivityUnit.SiemensPerInch, new CultureInfo("en-US"), false, true, new string[]{"S/in"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductivityUnit.SiemensPerMeter, new CultureInfo("en-US"), false, true, new string[]{"S/m"});
         }
 
         /// <summary>

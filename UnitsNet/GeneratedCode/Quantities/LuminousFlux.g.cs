@@ -216,7 +216,7 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(LuminousFluxUnit.Lumen, new CultureInfo("en-US"), new string[]{"lm"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LuminousFluxUnit.Lumen, new CultureInfo("en-US"), false, true, new string[]{"lm"});
         }
 
         /// <summary>

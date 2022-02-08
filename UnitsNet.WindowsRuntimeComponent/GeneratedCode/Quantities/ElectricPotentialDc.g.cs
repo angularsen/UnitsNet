@@ -194,11 +194,11 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialDcUnit.KilovoltDc, new CultureInfo("en-US"), new string[]{"kVdc"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialDcUnit.MegavoltDc, new CultureInfo("en-US"), new string[]{"MVdc"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialDcUnit.MicrovoltDc, new CultureInfo("en-US"), new string[]{"µVdc"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialDcUnit.MillivoltDc, new CultureInfo("en-US"), new string[]{"mVdc"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialDcUnit.VoltDc, new CultureInfo("en-US"), new string[]{"Vdc"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialDcUnit.KilovoltDc, new CultureInfo("en-US"), false, true, new string[]{"kVdc"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialDcUnit.MegavoltDc, new CultureInfo("en-US"), false, true, new string[]{"MVdc"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialDcUnit.MicrovoltDc, new CultureInfo("en-US"), false, true, new string[]{"µVdc"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialDcUnit.MillivoltDc, new CultureInfo("en-US"), false, true, new string[]{"mVdc"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialDcUnit.VoltDc, new CultureInfo("en-US"), false, true, new string[]{"Vdc"});
         }
 
         /// <summary>

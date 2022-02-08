@@ -96,14 +96,27 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class {_quantity.Name}TestsBase : QuantityTestsBase
     {{");
-            foreach(var unit in _quantity.Units) Writer.WL($@"
+            foreach (var unit in _quantity.Units)
+            {
+                if(unit.SkipConversionGeneration)
+                    continue;
+
+                Writer.WL($@"
         protected abstract double {unit.PluralName}InOne{_baseUnit.SingularName} {{ get; }}");
+            }
 
             Writer.WL("");
             Writer.WL($@"
 // ReSharper disable VirtualMemberNeverOverriden.Global");
-            foreach(var unit in _quantity.Units) Writer.WL($@"
-        protected virtual double {unit.PluralName}Tolerance {{ get {{ return 1e-5; }} }}"); Writer.WL($@"
+            foreach (var unit in _quantity.Units)
+            {
+                if(unit.SkipConversionGeneration)
+                    continue;
+
+                Writer.WL($@"
+        protected virtual double {unit.PluralName}Tolerance {{ get {{ return 1e-5; }} }}");
+            }
+        Writer.WL($@"
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor({_unitEnumName} unit)

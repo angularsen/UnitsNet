@@ -46,7 +46,7 @@ namespace UnitsNet.Units
         /// <remarks>{unit.XmlDocRemarks}</remarks>");
                 }
 
-                Writer.WLIfText(2, UnitsNetGen.QuantityGenerator.GetObsoleteAttributeOrNull(unit));
+                Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit.ObsoleteText));
                 Writer.WL($@"
         {unit.SingularName},");
             }
@@ -58,5 +58,10 @@ namespace UnitsNet.Units
 }}");
             return Writer.ToString();
         }
+
+        private string? GetObsoleteAttributeOrNull(string obsoleteText) =>
+            string.IsNullOrWhiteSpace(obsoleteText) ?
+            null :
+            $"[System.Obsolete(\"{obsoleteText}\")]";
     }
 }

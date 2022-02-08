@@ -259,6 +259,9 @@ namespace UnitsNet
 ");
             foreach (var unit in _quantity.Units)
             {
+                if(unit.SkipConversionGeneration)
+                    continue;
+
                 Writer.WL($@"
         /// <summary>
         ///     Get {_quantity.Name} in {unit.PluralName}.
@@ -293,7 +296,7 @@ namespace UnitsNet
                         $@"""""";
 
                     Writer.WL($@"
-            unitAbbreviationsCache.MapUnitToAbbreviation({_unitEnumName}.{unit.SingularName}, new CultureInfo(""{localization.Culture}""), new string[]{{{abbreviationParams}}});");
+            unitAbbreviationsCache.PerformAbbreviationMapping({_unitEnumName}.{unit.SingularName}, new CultureInfo(""{localization.Culture}""), false, {unit.AllowAbbreviationLookup.ToString().ToLower()}, new string[]{{{abbreviationParams}}});");
                 }
             }
 
@@ -333,6 +336,9 @@ namespace UnitsNet
 ");
             foreach (var unit in _quantity.Units)
             {
+                if(unit.SkipConversionGeneration)
+                    continue;
+
                 var valueParamName = unit.PluralName.ToLowerInvariant();
                 Writer.WL($@"
         /// <summary>
@@ -770,6 +776,6 @@ namespace UnitsNet
         /// </summary>
         private static string? GetObsoleteAttributeOrNull(string obsoleteText) => string.IsNullOrWhiteSpace(obsoleteText)
             ? null
-            : $"[System.Obsolete(\"{obsoleteText}\")]";
+            : $"[Obsolete(\"{obsoleteText}\")]";
     }
 }

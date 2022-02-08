@@ -400,30 +400,30 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFractionUnit.CentigramPerGram, new CultureInfo("en-US"), new string[]{"cg/g"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFractionUnit.CentigramPerKilogram, new CultureInfo("en-US"), new string[]{"cg/kg"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFractionUnit.DecagramPerGram, new CultureInfo("en-US"), new string[]{"dag/g"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFractionUnit.DecagramPerKilogram, new CultureInfo("en-US"), new string[]{"dag/kg"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFractionUnit.DecigramPerGram, new CultureInfo("en-US"), new string[]{"dg/g"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFractionUnit.DecigramPerKilogram, new CultureInfo("en-US"), new string[]{"dg/kg"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFractionUnit.DecimalFraction, new CultureInfo("en-US"), new string[]{""});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFractionUnit.GramPerGram, new CultureInfo("en-US"), new string[]{"g/g"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFractionUnit.GramPerKilogram, new CultureInfo("en-US"), new string[]{"g/kg"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFractionUnit.HectogramPerGram, new CultureInfo("en-US"), new string[]{"hg/g"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFractionUnit.HectogramPerKilogram, new CultureInfo("en-US"), new string[]{"hg/kg"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFractionUnit.KilogramPerGram, new CultureInfo("en-US"), new string[]{"kg/g"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFractionUnit.KilogramPerKilogram, new CultureInfo("en-US"), new string[]{"kg/kg"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFractionUnit.MicrogramPerGram, new CultureInfo("en-US"), new string[]{"µg/g"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFractionUnit.MicrogramPerKilogram, new CultureInfo("en-US"), new string[]{"µg/kg"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFractionUnit.MilligramPerGram, new CultureInfo("en-US"), new string[]{"mg/g"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFractionUnit.MilligramPerKilogram, new CultureInfo("en-US"), new string[]{"mg/kg"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFractionUnit.NanogramPerGram, new CultureInfo("en-US"), new string[]{"ng/g"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFractionUnit.NanogramPerKilogram, new CultureInfo("en-US"), new string[]{"ng/kg"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFractionUnit.PartPerBillion, new CultureInfo("en-US"), new string[]{"ppb"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFractionUnit.PartPerMillion, new CultureInfo("en-US"), new string[]{"ppm"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFractionUnit.PartPerThousand, new CultureInfo("en-US"), new string[]{"‰"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFractionUnit.PartPerTrillion, new CultureInfo("en-US"), new string[]{"ppt"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFractionUnit.Percent, new CultureInfo("en-US"), new string[]{"%", "% (w/w)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.CentigramPerGram, new CultureInfo("en-US"), false, true, new string[]{"cg/g"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.CentigramPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"cg/kg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.DecagramPerGram, new CultureInfo("en-US"), false, true, new string[]{"dag/g"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.DecagramPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"dag/kg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.DecigramPerGram, new CultureInfo("en-US"), false, true, new string[]{"dg/g"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.DecigramPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"dg/kg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.DecimalFraction, new CultureInfo("en-US"), false, true, new string[]{""});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.GramPerGram, new CultureInfo("en-US"), false, true, new string[]{"g/g"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.GramPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"g/kg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.HectogramPerGram, new CultureInfo("en-US"), false, true, new string[]{"hg/g"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.HectogramPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"hg/kg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.KilogramPerGram, new CultureInfo("en-US"), false, true, new string[]{"kg/g"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.KilogramPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"kg/kg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.MicrogramPerGram, new CultureInfo("en-US"), false, true, new string[]{"µg/g"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.MicrogramPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"µg/kg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.MilligramPerGram, new CultureInfo("en-US"), false, true, new string[]{"mg/g"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.MilligramPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"mg/kg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.NanogramPerGram, new CultureInfo("en-US"), false, true, new string[]{"ng/g"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.NanogramPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"ng/kg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.PartPerBillion, new CultureInfo("en-US"), false, true, new string[]{"ppb"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.PartPerMillion, new CultureInfo("en-US"), false, true, new string[]{"ppm"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.PartPerThousand, new CultureInfo("en-US"), false, true, new string[]{"‰"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.PartPerTrillion, new CultureInfo("en-US"), false, true, new string[]{"ppt"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.Percent, new CultureInfo("en-US"), false, true, new string[]{"%", "% (w/w)"});
         }
 
         /// <summary>

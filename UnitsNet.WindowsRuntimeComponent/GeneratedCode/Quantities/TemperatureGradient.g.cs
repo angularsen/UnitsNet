@@ -189,10 +189,10 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(TemperatureGradientUnit.DegreeCelsiusPerKilometer, new CultureInfo("en-US"), new string[]{"∆°C/km"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(TemperatureGradientUnit.DegreeCelsiusPerMeter, new CultureInfo("en-US"), new string[]{"∆°C/m"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(TemperatureGradientUnit.DegreeFahrenheitPerFoot, new CultureInfo("en-US"), new string[]{"∆°F/ft"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(TemperatureGradientUnit.KelvinPerMeter, new CultureInfo("en-US"), new string[]{"∆°K/m"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureGradientUnit.DegreeCelsiusPerKilometer, new CultureInfo("en-US"), false, true, new string[]{"∆°C/km"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureGradientUnit.DegreeCelsiusPerMeter, new CultureInfo("en-US"), false, true, new string[]{"∆°C/m"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureGradientUnit.DegreeFahrenheitPerFoot, new CultureInfo("en-US"), false, true, new string[]{"∆°F/ft"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureGradientUnit.KelvinPerMeter, new CultureInfo("en-US"), false, true, new string[]{"∆°K/m"});
         }
 
         /// <summary>

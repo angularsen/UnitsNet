@@ -31,7 +31,7 @@ namespace UnitsNet
     /// <summary>
     ///     Lapse rate is the rate at which Earth's atmospheric temperature decreases with an increase in altitude, or increases with the decrease in altitude.
     /// </summary>
-    [System.Obsolete("Use TemperatureGradient instead.")]
+    [Obsolete("Use TemperatureGradient instead.")]
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
@@ -175,7 +175,7 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(LapseRateUnit.DegreeCelsiusPerKilometer, new CultureInfo("en-US"), new string[]{"∆°C/km"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LapseRateUnit.DegreeCelsiusPerKilometer, new CultureInfo("en-US"), false, true, new string[]{"∆°C/km"});
         }
 
         /// <summary>

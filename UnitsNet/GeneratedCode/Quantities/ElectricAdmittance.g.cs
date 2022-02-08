@@ -237,10 +237,10 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricAdmittanceUnit.Microsiemens, new CultureInfo("en-US"), new string[]{"µS"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricAdmittanceUnit.Millisiemens, new CultureInfo("en-US"), new string[]{"mS"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricAdmittanceUnit.Nanosiemens, new CultureInfo("en-US"), new string[]{"nS"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricAdmittanceUnit.Siemens, new CultureInfo("en-US"), new string[]{"S"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricAdmittanceUnit.Microsiemens, new CultureInfo("en-US"), false, true, new string[]{"µS"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricAdmittanceUnit.Millisiemens, new CultureInfo("en-US"), false, true, new string[]{"mS"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricAdmittanceUnit.Nanosiemens, new CultureInfo("en-US"), false, true, new string[]{"nS"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricAdmittanceUnit.Siemens, new CultureInfo("en-US"), false, true, new string[]{"S"});
         }
 
         /// <summary>

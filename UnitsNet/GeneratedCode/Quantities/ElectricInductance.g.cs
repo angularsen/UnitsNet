@@ -240,10 +240,10 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricInductanceUnit.Henry, new CultureInfo("en-US"), new string[]{"H"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricInductanceUnit.Microhenry, new CultureInfo("en-US"), new string[]{"µH"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricInductanceUnit.Millihenry, new CultureInfo("en-US"), new string[]{"mH"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricInductanceUnit.Nanohenry, new CultureInfo("en-US"), new string[]{"nH"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricInductanceUnit.Henry, new CultureInfo("en-US"), false, true, new string[]{"H"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricInductanceUnit.Microhenry, new CultureInfo("en-US"), false, true, new string[]{"µH"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricInductanceUnit.Millihenry, new CultureInfo("en-US"), false, true, new string[]{"mH"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricInductanceUnit.Nanohenry, new CultureInfo("en-US"), false, true, new string[]{"nH"});
         }
 
         /// <summary>

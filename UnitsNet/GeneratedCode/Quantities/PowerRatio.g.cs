@@ -221,8 +221,8 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(PowerRatioUnit.DecibelMilliwatt, new CultureInfo("en-US"), new string[]{"dBmW", "dBm"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(PowerRatioUnit.DecibelWatt, new CultureInfo("en-US"), new string[]{"dBW"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerRatioUnit.DecibelMilliwatt, new CultureInfo("en-US"), false, true, new string[]{"dBmW", "dBm"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerRatioUnit.DecibelWatt, new CultureInfo("en-US"), false, true, new string[]{"dBW"});
         }
 
         /// <summary>

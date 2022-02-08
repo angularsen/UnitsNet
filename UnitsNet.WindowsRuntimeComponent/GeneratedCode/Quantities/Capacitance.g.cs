@@ -207,13 +207,13 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(CapacitanceUnit.Farad, new CultureInfo("en-US"), new string[]{"F"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(CapacitanceUnit.Kilofarad, new CultureInfo("en-US"), new string[]{"kF"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(CapacitanceUnit.Megafarad, new CultureInfo("en-US"), new string[]{"MF"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(CapacitanceUnit.Microfarad, new CultureInfo("en-US"), new string[]{"µF"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(CapacitanceUnit.Millifarad, new CultureInfo("en-US"), new string[]{"mF"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(CapacitanceUnit.Nanofarad, new CultureInfo("en-US"), new string[]{"nF"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(CapacitanceUnit.Picofarad, new CultureInfo("en-US"), new string[]{"pF"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(CapacitanceUnit.Farad, new CultureInfo("en-US"), false, true, new string[]{"F"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(CapacitanceUnit.Kilofarad, new CultureInfo("en-US"), false, true, new string[]{"kF"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(CapacitanceUnit.Megafarad, new CultureInfo("en-US"), false, true, new string[]{"MF"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(CapacitanceUnit.Microfarad, new CultureInfo("en-US"), false, true, new string[]{"µF"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(CapacitanceUnit.Millifarad, new CultureInfo("en-US"), false, true, new string[]{"mF"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(CapacitanceUnit.Nanofarad, new CultureInfo("en-US"), false, true, new string[]{"nF"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(CapacitanceUnit.Picofarad, new CultureInfo("en-US"), false, true, new string[]{"pF"});
         }
 
         /// <summary>

@@ -237,10 +237,10 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(ReactivePowerUnit.GigavoltampereReactive, new CultureInfo("en-US"), new string[]{"Gvar"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ReactivePowerUnit.KilovoltampereReactive, new CultureInfo("en-US"), new string[]{"kvar"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ReactivePowerUnit.MegavoltampereReactive, new CultureInfo("en-US"), new string[]{"Mvar"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ReactivePowerUnit.VoltampereReactive, new CultureInfo("en-US"), new string[]{"var"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ReactivePowerUnit.GigavoltampereReactive, new CultureInfo("en-US"), false, true, new string[]{"Gvar"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ReactivePowerUnit.KilovoltampereReactive, new CultureInfo("en-US"), false, true, new string[]{"kvar"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ReactivePowerUnit.MegavoltampereReactive, new CultureInfo("en-US"), false, true, new string[]{"Mvar"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ReactivePowerUnit.VoltampereReactive, new CultureInfo("en-US"), false, true, new string[]{"var"});
         }
 
         /// <summary>

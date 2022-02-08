@@ -216,7 +216,7 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(SolidAngleUnit.Steradian, new CultureInfo("en-US"), new string[]{"sr"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SolidAngleUnit.Steradian, new CultureInfo("en-US"), false, true, new string[]{"sr"});
         }
 
         /// <summary>

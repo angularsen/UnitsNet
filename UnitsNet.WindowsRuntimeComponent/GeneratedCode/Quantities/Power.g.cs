@@ -294,31 +294,31 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(PowerUnit.BoilerHorsepower, new CultureInfo("en-US"), new string[]{"hp(S)"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(PowerUnit.BritishThermalUnitPerHour, new CultureInfo("en-US"), new string[]{"Btu/h", "Btu/hr"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(PowerUnit.Decawatt, new CultureInfo("en-US"), new string[]{"daW"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(PowerUnit.Deciwatt, new CultureInfo("en-US"), new string[]{"dW"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(PowerUnit.ElectricalHorsepower, new CultureInfo("en-US"), new string[]{"hp(E)"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(PowerUnit.Femtowatt, new CultureInfo("en-US"), new string[]{"fW"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(PowerUnit.GigajoulePerHour, new CultureInfo("en-US"), new string[]{"GJ/h"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(PowerUnit.Gigawatt, new CultureInfo("en-US"), new string[]{"GW"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(PowerUnit.HydraulicHorsepower, new CultureInfo("en-US"), new string[]{"hp(H)"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(PowerUnit.JoulePerHour, new CultureInfo("en-US"), new string[]{"J/h"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(PowerUnit.KilobritishThermalUnitPerHour, new CultureInfo("en-US"), new string[]{"kBtu/h", "kBtu/hr"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(PowerUnit.KilojoulePerHour, new CultureInfo("en-US"), new string[]{"kJ/h"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(PowerUnit.Kilowatt, new CultureInfo("en-US"), new string[]{"kW"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(PowerUnit.MechanicalHorsepower, new CultureInfo("en-US"), new string[]{"hp(I)"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(PowerUnit.MegajoulePerHour, new CultureInfo("en-US"), new string[]{"MJ/h"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(PowerUnit.Megawatt, new CultureInfo("en-US"), new string[]{"MW"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(PowerUnit.MetricHorsepower, new CultureInfo("en-US"), new string[]{"hp(M)"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(PowerUnit.Microwatt, new CultureInfo("en-US"), new string[]{"µW"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(PowerUnit.MillijoulePerHour, new CultureInfo("en-US"), new string[]{"mJ/h"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(PowerUnit.Milliwatt, new CultureInfo("en-US"), new string[]{"mW"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(PowerUnit.Nanowatt, new CultureInfo("en-US"), new string[]{"nW"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(PowerUnit.Petawatt, new CultureInfo("en-US"), new string[]{"PW"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(PowerUnit.Picowatt, new CultureInfo("en-US"), new string[]{"pW"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(PowerUnit.Terawatt, new CultureInfo("en-US"), new string[]{"TW"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(PowerUnit.Watt, new CultureInfo("en-US"), new string[]{"W"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.BoilerHorsepower, new CultureInfo("en-US"), false, true, new string[]{"hp(S)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.BritishThermalUnitPerHour, new CultureInfo("en-US"), false, true, new string[]{"Btu/h", "Btu/hr"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Decawatt, new CultureInfo("en-US"), false, true, new string[]{"daW"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Deciwatt, new CultureInfo("en-US"), false, true, new string[]{"dW"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.ElectricalHorsepower, new CultureInfo("en-US"), false, true, new string[]{"hp(E)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Femtowatt, new CultureInfo("en-US"), false, true, new string[]{"fW"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.GigajoulePerHour, new CultureInfo("en-US"), false, true, new string[]{"GJ/h"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Gigawatt, new CultureInfo("en-US"), false, true, new string[]{"GW"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.HydraulicHorsepower, new CultureInfo("en-US"), false, true, new string[]{"hp(H)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.JoulePerHour, new CultureInfo("en-US"), false, true, new string[]{"J/h"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.KilobritishThermalUnitPerHour, new CultureInfo("en-US"), false, true, new string[]{"kBtu/h", "kBtu/hr"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.KilojoulePerHour, new CultureInfo("en-US"), false, true, new string[]{"kJ/h"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Kilowatt, new CultureInfo("en-US"), false, true, new string[]{"kW"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.MechanicalHorsepower, new CultureInfo("en-US"), false, true, new string[]{"hp(I)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.MegajoulePerHour, new CultureInfo("en-US"), false, true, new string[]{"MJ/h"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Megawatt, new CultureInfo("en-US"), false, true, new string[]{"MW"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.MetricHorsepower, new CultureInfo("en-US"), false, true, new string[]{"hp(M)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Microwatt, new CultureInfo("en-US"), false, true, new string[]{"µW"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.MillijoulePerHour, new CultureInfo("en-US"), false, true, new string[]{"mJ/h"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Milliwatt, new CultureInfo("en-US"), false, true, new string[]{"mW"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Nanowatt, new CultureInfo("en-US"), false, true, new string[]{"nW"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Petawatt, new CultureInfo("en-US"), false, true, new string[]{"PW"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Picowatt, new CultureInfo("en-US"), false, true, new string[]{"pW"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Terawatt, new CultureInfo("en-US"), false, true, new string[]{"TW"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Watt, new CultureInfo("en-US"), false, true, new string[]{"W"});
         }
 
         /// <summary>

@@ -11,6 +11,9 @@
     {
       "SingularName": "MolesPerCubicMeter",
       "PluralName": "MolesPerCubicMeter",
+      "ObsoleteText": "Use the singular unit instead.",
+      "SkipConversionGeneration": true,
+      "AllowAbbreviationLookup": false,
       "BaseUnits": {
         "L": "Meter",
         "N": "Mole"
@@ -28,17 +31,54 @@
     {
       "SingularName": "MolesPerLiter",
       "PluralName": "MolesPerLiter",
+      "ObsoleteText": "Use the singular unit instead.",
+      "SkipConversionGeneration": true,
+      "AllowAbbreviationLookup": false,
       "BaseUnits": {
         "L": "Decimeter",
         "N": "Mole"
       },
-      "FromUnitToBaseFunc": "{x}/1e-3",
-      "FromBaseToUnitFunc": "{x}*1e-3",
+      "FromUnitToBaseFunc": "{x} / 1e-3",
+      "FromBaseToUnitFunc": "{x} * 1e-3",
       "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "mol/L", "M"]
+          "Abbreviations": [ "mol/L", "M" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MolePerCubicMeter",
+      "PluralName": "MolesPerCubicMeter",
+      "BaseUnits": {
+        "L": "Meter",
+        "N": "Mole"
+      },
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Prefixes": [],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mol/m³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MolePerLiter",
+      "PluralName": "MolesPerLiter",
+      "BaseUnits": {
+        "L": "Decimeter",
+        "N": "Mole"
+      },
+      "FromUnitToBaseFunc": "{x} / 1e-3",
+      "FromBaseToUnitFunc": "{x} * 1e-3",
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mol/L", "M" ]
         }
       ]
     }

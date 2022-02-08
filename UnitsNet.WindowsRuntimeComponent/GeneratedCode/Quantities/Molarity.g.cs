@@ -169,42 +169,42 @@ namespace UnitsNet
         /// <summary>
         ///     Get Molarity in CentimolesPerLiter.
         /// </summary>
-        public double CentimolesPerLiter => As(MolarityUnit.CentimolesPerLiter);
+        public double CentimolesPerLiter => As(MolarityUnit.CentimolePerLiter);
 
         /// <summary>
         ///     Get Molarity in DecimolesPerLiter.
         /// </summary>
-        public double DecimolesPerLiter => As(MolarityUnit.DecimolesPerLiter);
+        public double DecimolesPerLiter => As(MolarityUnit.DecimolePerLiter);
 
         /// <summary>
         ///     Get Molarity in MicromolesPerLiter.
         /// </summary>
-        public double MicromolesPerLiter => As(MolarityUnit.MicromolesPerLiter);
+        public double MicromolesPerLiter => As(MolarityUnit.MicromolePerLiter);
 
         /// <summary>
         ///     Get Molarity in MillimolesPerLiter.
         /// </summary>
-        public double MillimolesPerLiter => As(MolarityUnit.MillimolesPerLiter);
+        public double MillimolesPerLiter => As(MolarityUnit.MillimolePerLiter);
 
         /// <summary>
         ///     Get Molarity in MolesPerCubicMeter.
         /// </summary>
-        public double MolesPerCubicMeter => As(MolarityUnit.MolesPerCubicMeter);
+        public double MolesPerCubicMeter => As(MolarityUnit.MolePerCubicMeter);
 
         /// <summary>
         ///     Get Molarity in MolesPerLiter.
         /// </summary>
-        public double MolesPerLiter => As(MolarityUnit.MolesPerLiter);
+        public double MolesPerLiter => As(MolarityUnit.MolePerLiter);
 
         /// <summary>
         ///     Get Molarity in NanomolesPerLiter.
         /// </summary>
-        public double NanomolesPerLiter => As(MolarityUnit.NanomolesPerLiter);
+        public double NanomolesPerLiter => As(MolarityUnit.NanomolePerLiter);
 
         /// <summary>
         ///     Get Molarity in PicomolesPerLiter.
         /// </summary>
-        public double PicomolesPerLiter => As(MolarityUnit.PicomolesPerLiter);
+        public double PicomolesPerLiter => As(MolarityUnit.PicomolePerLiter);
 
         #endregion
 
@@ -212,14 +212,22 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(MolarityUnit.CentimolesPerLiter, new CultureInfo("en-US"), new string[]{"cmol/L", "cM"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MolarityUnit.DecimolesPerLiter, new CultureInfo("en-US"), new string[]{"dmol/L", "dM"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MolarityUnit.MicromolesPerLiter, new CultureInfo("en-US"), new string[]{"µmol/L", "µM"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MolarityUnit.MillimolesPerLiter, new CultureInfo("en-US"), new string[]{"mmol/L", "mM"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MolarityUnit.MolesPerCubicMeter, new CultureInfo("en-US"), new string[]{"mol/m³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MolarityUnit.MolesPerLiter, new CultureInfo("en-US"), new string[]{"mol/L", "M"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MolarityUnit.NanomolesPerLiter, new CultureInfo("en-US"), new string[]{"nmol/L", "nM"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MolarityUnit.PicomolesPerLiter, new CultureInfo("en-US"), new string[]{"pmol/L", "pM"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.CentimolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"cmol/L", "cM"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.CentimolesPerLiter, new CultureInfo("en-US"), false, false, new string[]{"cmol/L", "cM"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.DecimolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"dmol/L", "dM"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.DecimolesPerLiter, new CultureInfo("en-US"), false, false, new string[]{"dmol/L", "dM"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MicromolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"µmol/L", "µM"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MicromolesPerLiter, new CultureInfo("en-US"), false, false, new string[]{"µmol/L", "µM"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MillimolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"mmol/L", "mM"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MillimolesPerLiter, new CultureInfo("en-US"), false, false, new string[]{"mmol/L", "mM"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MolePerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"mol/m³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"mol/L", "M"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MolesPerCubicMeter, new CultureInfo("en-US"), false, false, new string[]{"mol/m³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MolesPerLiter, new CultureInfo("en-US"), false, false, new string[]{"mol/L", "M"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.NanomolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"nmol/L", "nM"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.NanomolesPerLiter, new CultureInfo("en-US"), false, false, new string[]{"nmol/L", "nM"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.PicomolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"pmol/L", "pM"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.PicomolesPerLiter, new CultureInfo("en-US"), false, false, new string[]{"pmol/L", "pM"});
         }
 
         /// <summary>
@@ -256,7 +264,7 @@ namespace UnitsNet
         public static Molarity FromCentimolesPerLiter(double centimolesperliter)
         {
             double value = (double) centimolesperliter;
-            return new Molarity(value, MolarityUnit.CentimolesPerLiter);
+            return new Molarity(value, MolarityUnit.CentimolePerLiter);
         }
         /// <summary>
         ///     Get Molarity from DecimolesPerLiter.
@@ -266,7 +274,7 @@ namespace UnitsNet
         public static Molarity FromDecimolesPerLiter(double decimolesperliter)
         {
             double value = (double) decimolesperliter;
-            return new Molarity(value, MolarityUnit.DecimolesPerLiter);
+            return new Molarity(value, MolarityUnit.DecimolePerLiter);
         }
         /// <summary>
         ///     Get Molarity from MicromolesPerLiter.
@@ -276,7 +284,7 @@ namespace UnitsNet
         public static Molarity FromMicromolesPerLiter(double micromolesperliter)
         {
             double value = (double) micromolesperliter;
-            return new Molarity(value, MolarityUnit.MicromolesPerLiter);
+            return new Molarity(value, MolarityUnit.MicromolePerLiter);
         }
         /// <summary>
         ///     Get Molarity from MillimolesPerLiter.
@@ -286,7 +294,7 @@ namespace UnitsNet
         public static Molarity FromMillimolesPerLiter(double millimolesperliter)
         {
             double value = (double) millimolesperliter;
-            return new Molarity(value, MolarityUnit.MillimolesPerLiter);
+            return new Molarity(value, MolarityUnit.MillimolePerLiter);
         }
         /// <summary>
         ///     Get Molarity from MolesPerCubicMeter.
@@ -296,7 +304,7 @@ namespace UnitsNet
         public static Molarity FromMolesPerCubicMeter(double molespercubicmeter)
         {
             double value = (double) molespercubicmeter;
-            return new Molarity(value, MolarityUnit.MolesPerCubicMeter);
+            return new Molarity(value, MolarityUnit.MolePerCubicMeter);
         }
         /// <summary>
         ///     Get Molarity from MolesPerLiter.
@@ -306,7 +314,7 @@ namespace UnitsNet
         public static Molarity FromMolesPerLiter(double molesperliter)
         {
             double value = (double) molesperliter;
-            return new Molarity(value, MolarityUnit.MolesPerLiter);
+            return new Molarity(value, MolarityUnit.MolePerLiter);
         }
         /// <summary>
         ///     Get Molarity from NanomolesPerLiter.
@@ -316,7 +324,7 @@ namespace UnitsNet
         public static Molarity FromNanomolesPerLiter(double nanomolesperliter)
         {
             double value = (double) nanomolesperliter;
-            return new Molarity(value, MolarityUnit.NanomolesPerLiter);
+            return new Molarity(value, MolarityUnit.NanomolePerLiter);
         }
         /// <summary>
         ///     Get Molarity from PicomolesPerLiter.
@@ -326,7 +334,7 @@ namespace UnitsNet
         public static Molarity FromPicomolesPerLiter(double picomolesperliter)
         {
             double value = (double) picomolesperliter;
-            return new Molarity(value, MolarityUnit.PicomolesPerLiter);
+            return new Molarity(value, MolarityUnit.PicomolePerLiter);
         }
 
         /// <summary>
@@ -619,14 +627,22 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case MolarityUnit.CentimolesPerLiter: return (_value/1e-3) * 1e-2d;
-                case MolarityUnit.DecimolesPerLiter: return (_value/1e-3) * 1e-1d;
-                case MolarityUnit.MicromolesPerLiter: return (_value/1e-3) * 1e-6d;
-                case MolarityUnit.MillimolesPerLiter: return (_value/1e-3) * 1e-3d;
+                case MolarityUnit.CentimolePerLiter: return (_value / 1e-3) * 1e-2d;
+                case MolarityUnit.CentimolesPerLiter: return (_value / 1e-3) * 1e-2d;
+                case MolarityUnit.DecimolePerLiter: return (_value / 1e-3) * 1e-1d;
+                case MolarityUnit.DecimolesPerLiter: return (_value / 1e-3) * 1e-1d;
+                case MolarityUnit.MicromolePerLiter: return (_value / 1e-3) * 1e-6d;
+                case MolarityUnit.MicromolesPerLiter: return (_value / 1e-3) * 1e-6d;
+                case MolarityUnit.MillimolePerLiter: return (_value / 1e-3) * 1e-3d;
+                case MolarityUnit.MillimolesPerLiter: return (_value / 1e-3) * 1e-3d;
+                case MolarityUnit.MolePerCubicMeter: return _value;
+                case MolarityUnit.MolePerLiter: return _value / 1e-3;
                 case MolarityUnit.MolesPerCubicMeter: return _value;
-                case MolarityUnit.MolesPerLiter: return _value/1e-3;
-                case MolarityUnit.NanomolesPerLiter: return (_value/1e-3) * 1e-9d;
-                case MolarityUnit.PicomolesPerLiter: return (_value/1e-3) * 1e-12d;
+                case MolarityUnit.MolesPerLiter: return _value / 1e-3;
+                case MolarityUnit.NanomolePerLiter: return (_value / 1e-3) * 1e-9d;
+                case MolarityUnit.NanomolesPerLiter: return (_value / 1e-3) * 1e-9d;
+                case MolarityUnit.PicomolePerLiter: return (_value / 1e-3) * 1e-12d;
+                case MolarityUnit.PicomolesPerLiter: return (_value / 1e-3) * 1e-12d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -641,14 +657,22 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case MolarityUnit.CentimolesPerLiter: return (baseUnitValue*1e-3) / 1e-2d;
-                case MolarityUnit.DecimolesPerLiter: return (baseUnitValue*1e-3) / 1e-1d;
-                case MolarityUnit.MicromolesPerLiter: return (baseUnitValue*1e-3) / 1e-6d;
-                case MolarityUnit.MillimolesPerLiter: return (baseUnitValue*1e-3) / 1e-3d;
+                case MolarityUnit.CentimolePerLiter: return (baseUnitValue * 1e-3) / 1e-2d;
+                case MolarityUnit.CentimolesPerLiter: return (baseUnitValue * 1e-3) / 1e-2d;
+                case MolarityUnit.DecimolePerLiter: return (baseUnitValue * 1e-3) / 1e-1d;
+                case MolarityUnit.DecimolesPerLiter: return (baseUnitValue * 1e-3) / 1e-1d;
+                case MolarityUnit.MicromolePerLiter: return (baseUnitValue * 1e-3) / 1e-6d;
+                case MolarityUnit.MicromolesPerLiter: return (baseUnitValue * 1e-3) / 1e-6d;
+                case MolarityUnit.MillimolePerLiter: return (baseUnitValue * 1e-3) / 1e-3d;
+                case MolarityUnit.MillimolesPerLiter: return (baseUnitValue * 1e-3) / 1e-3d;
+                case MolarityUnit.MolePerCubicMeter: return baseUnitValue;
+                case MolarityUnit.MolePerLiter: return baseUnitValue * 1e-3;
                 case MolarityUnit.MolesPerCubicMeter: return baseUnitValue;
-                case MolarityUnit.MolesPerLiter: return baseUnitValue*1e-3;
-                case MolarityUnit.NanomolesPerLiter: return (baseUnitValue*1e-3) / 1e-9d;
-                case MolarityUnit.PicomolesPerLiter: return (baseUnitValue*1e-3) / 1e-12d;
+                case MolarityUnit.MolesPerLiter: return baseUnitValue * 1e-3;
+                case MolarityUnit.NanomolePerLiter: return (baseUnitValue * 1e-3) / 1e-9d;
+                case MolarityUnit.NanomolesPerLiter: return (baseUnitValue * 1e-3) / 1e-9d;
+                case MolarityUnit.PicomolePerLiter: return (baseUnitValue * 1e-3) / 1e-12d;
+                case MolarityUnit.PicomolesPerLiter: return (baseUnitValue * 1e-3) / 1e-12d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

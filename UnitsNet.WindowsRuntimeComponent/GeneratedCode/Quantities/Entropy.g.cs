@@ -204,13 +204,13 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(EntropyUnit.CaloriePerKelvin, new CultureInfo("en-US"), new string[]{"cal/K"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(EntropyUnit.JoulePerDegreeCelsius, new CultureInfo("en-US"), new string[]{"J/C"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(EntropyUnit.JoulePerKelvin, new CultureInfo("en-US"), new string[]{"J/K"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(EntropyUnit.KilocaloriePerKelvin, new CultureInfo("en-US"), new string[]{"kcal/K"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(EntropyUnit.KilojoulePerDegreeCelsius, new CultureInfo("en-US"), new string[]{"kJ/C"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(EntropyUnit.KilojoulePerKelvin, new CultureInfo("en-US"), new string[]{"kJ/K"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(EntropyUnit.MegajoulePerKelvin, new CultureInfo("en-US"), new string[]{"MJ/K"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(EntropyUnit.CaloriePerKelvin, new CultureInfo("en-US"), false, true, new string[]{"cal/K"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(EntropyUnit.JoulePerDegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"J/C"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(EntropyUnit.JoulePerKelvin, new CultureInfo("en-US"), false, true, new string[]{"J/K"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(EntropyUnit.KilocaloriePerKelvin, new CultureInfo("en-US"), false, true, new string[]{"kcal/K"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(EntropyUnit.KilojoulePerDegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"kJ/C"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(EntropyUnit.KilojoulePerKelvin, new CultureInfo("en-US"), false, true, new string[]{"kJ/K"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(EntropyUnit.MegajoulePerKelvin, new CultureInfo("en-US"), false, true, new string[]{"MJ/K"});
         }
 
         /// <summary>
