@@ -69,6 +69,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.LuminousIntensity);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -111,7 +113,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="LuminousIntensity" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<LuminousIntensityUnit> Info { get; }

@@ -109,6 +109,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.PowerDensity);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -151,7 +153,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="PowerDensity" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<PowerDensityUnit> Info { get; }
