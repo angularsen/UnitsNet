@@ -223,8 +223,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ReactiveEnergy>(ReactiveEnergyUnit.VoltampereReactiveHour, ReactiveEnergyUnit.VoltampereReactiveHour, quantity => quantity);
 
             // Register in unit converter: ReactiveEnergyUnit -> BaseUnit
-                unitConverter.SetConversionFunction<ReactiveEnergy>(ReactiveEnergyUnit.KilovoltampereReactiveHour, ReactiveEnergyUnit.VoltampereReactiveHour, quantity => new ReactiveEnergy((quantity.Value) * 1e3d, ReactiveEnergyUnit.VoltampereReactiveHour));
-                unitConverter.SetConversionFunction<ReactiveEnergy>(ReactiveEnergyUnit.MegavoltampereReactiveHour, ReactiveEnergyUnit.VoltampereReactiveHour, quantity => new ReactiveEnergy((quantity.Value) * 1e6d, ReactiveEnergyUnit.VoltampereReactiveHour));
+            unitConverter.SetConversionFunction<ReactiveEnergy>(ReactiveEnergyUnit.KilovoltampereReactiveHour, ReactiveEnergyUnit.VoltampereReactiveHour, quantity => new ReactiveEnergy((quantity.Value) * 1e3d, ReactiveEnergyUnit.VoltampereReactiveHour));
+            unitConverter.SetConversionFunction<ReactiveEnergy>(ReactiveEnergyUnit.MegavoltampereReactiveHour, ReactiveEnergyUnit.VoltampereReactiveHour, quantity => new ReactiveEnergy((quantity.Value) * 1e6d, ReactiveEnergyUnit.VoltampereReactiveHour));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)

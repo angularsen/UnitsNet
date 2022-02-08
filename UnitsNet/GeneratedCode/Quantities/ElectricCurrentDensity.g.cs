@@ -226,8 +226,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareMeter, ElectricCurrentDensityUnit.AmperePerSquareMeter, quantity => quantity);
 
             // Register in unit converter: ElectricCurrentDensityUnit -> BaseUnit
-                unitConverter.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareFoot, ElectricCurrentDensityUnit.AmperePerSquareMeter, quantity => new ElectricCurrentDensity(quantity.Value * 1.0763910416709722e1, ElectricCurrentDensityUnit.AmperePerSquareMeter));
-                unitConverter.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareInch, ElectricCurrentDensityUnit.AmperePerSquareMeter, quantity => new ElectricCurrentDensity(quantity.Value * 1.5500031000062000e3, ElectricCurrentDensityUnit.AmperePerSquareMeter));
+            unitConverter.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareFoot, ElectricCurrentDensityUnit.AmperePerSquareMeter, quantity => new ElectricCurrentDensity(quantity.Value * 1.0763910416709722e1, ElectricCurrentDensityUnit.AmperePerSquareMeter));
+            unitConverter.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareInch, ElectricCurrentDensityUnit.AmperePerSquareMeter, quantity => new ElectricCurrentDensity(quantity.Value * 1.5500031000062000e3, ElectricCurrentDensityUnit.AmperePerSquareMeter));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)

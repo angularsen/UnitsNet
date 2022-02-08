@@ -303,19 +303,19 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Watt, LuminosityUnit.Watt, quantity => quantity);
 
             // Register in unit converter: LuminosityUnit -> BaseUnit
-                unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Decawatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e1d, LuminosityUnit.Watt));
-                unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Deciwatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e-1d, LuminosityUnit.Watt));
-                unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Femtowatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e-15d, LuminosityUnit.Watt));
-                unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Gigawatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e9d, LuminosityUnit.Watt));
-                unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Kilowatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e3d, LuminosityUnit.Watt));
-                unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Megawatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e6d, LuminosityUnit.Watt));
-                unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Microwatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e-6d, LuminosityUnit.Watt));
-                unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Milliwatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e-3d, LuminosityUnit.Watt));
-                unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Nanowatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e-9d, LuminosityUnit.Watt));
-                unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Petawatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e15d, LuminosityUnit.Watt));
-                unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Picowatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e-12d, LuminosityUnit.Watt));
-                unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.SolarLuminosity, LuminosityUnit.Watt, quantity => new Luminosity(quantity.Value * 3.846e26, LuminosityUnit.Watt));
-                unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Terawatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e12d, LuminosityUnit.Watt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Decawatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e1d, LuminosityUnit.Watt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Deciwatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e-1d, LuminosityUnit.Watt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Femtowatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e-15d, LuminosityUnit.Watt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Gigawatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e9d, LuminosityUnit.Watt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Kilowatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e3d, LuminosityUnit.Watt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Megawatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e6d, LuminosityUnit.Watt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Microwatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e-6d, LuminosityUnit.Watt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Milliwatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e-3d, LuminosityUnit.Watt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Nanowatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e-9d, LuminosityUnit.Watt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Petawatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e15d, LuminosityUnit.Watt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Picowatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e-12d, LuminosityUnit.Watt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.SolarLuminosity, LuminosityUnit.Watt, quantity => new Luminosity(quantity.Value * 3.846e26, LuminosityUnit.Watt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Terawatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e12d, LuminosityUnit.Watt));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)

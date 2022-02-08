@@ -237,10 +237,10 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Volt, ElectricPotentialUnit.Volt, quantity => quantity);
 
             // Register in unit converter: ElectricPotentialUnit -> BaseUnit
-                unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Kilovolt, ElectricPotentialUnit.Volt, quantity => new ElectricPotential((quantity.Value) * 1e3d, ElectricPotentialUnit.Volt));
-                unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Megavolt, ElectricPotentialUnit.Volt, quantity => new ElectricPotential((quantity.Value) * 1e6d, ElectricPotentialUnit.Volt));
-                unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Microvolt, ElectricPotentialUnit.Volt, quantity => new ElectricPotential((quantity.Value) * 1e-6d, ElectricPotentialUnit.Volt));
-                unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Millivolt, ElectricPotentialUnit.Volt, quantity => new ElectricPotential((quantity.Value) * 1e-3d, ElectricPotentialUnit.Volt));
+            unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Kilovolt, ElectricPotentialUnit.Volt, quantity => new ElectricPotential((quantity.Value) * 1e3d, ElectricPotentialUnit.Volt));
+            unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Megavolt, ElectricPotentialUnit.Volt, quantity => new ElectricPotential((quantity.Value) * 1e6d, ElectricPotentialUnit.Volt));
+            unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Microvolt, ElectricPotentialUnit.Volt, quantity => new ElectricPotential((quantity.Value) * 1e-6d, ElectricPotentialUnit.Volt));
+            unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Millivolt, ElectricPotentialUnit.Volt, quantity => new ElectricPotential((quantity.Value) * 1e-3d, ElectricPotentialUnit.Volt));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)

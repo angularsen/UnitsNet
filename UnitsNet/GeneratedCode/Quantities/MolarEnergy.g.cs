@@ -223,8 +223,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MolarEnergy>(MolarEnergyUnit.JoulePerMole, MolarEnergyUnit.JoulePerMole, quantity => quantity);
 
             // Register in unit converter: MolarEnergyUnit -> BaseUnit
-                unitConverter.SetConversionFunction<MolarEnergy>(MolarEnergyUnit.KilojoulePerMole, MolarEnergyUnit.JoulePerMole, quantity => new MolarEnergy((quantity.Value) * 1e3d, MolarEnergyUnit.JoulePerMole));
-                unitConverter.SetConversionFunction<MolarEnergy>(MolarEnergyUnit.MegajoulePerMole, MolarEnergyUnit.JoulePerMole, quantity => new MolarEnergy((quantity.Value) * 1e6d, MolarEnergyUnit.JoulePerMole));
+            unitConverter.SetConversionFunction<MolarEnergy>(MolarEnergyUnit.KilojoulePerMole, MolarEnergyUnit.JoulePerMole, quantity => new MolarEnergy((quantity.Value) * 1e3d, MolarEnergyUnit.JoulePerMole));
+            unitConverter.SetConversionFunction<MolarEnergy>(MolarEnergyUnit.MegajoulePerMole, MolarEnergyUnit.JoulePerMole, quantity => new MolarEnergy((quantity.Value) * 1e6d, MolarEnergyUnit.JoulePerMole));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
