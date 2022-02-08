@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -44,6 +45,22 @@ namespace UnitsNet.Tests
         protected virtual double BtusPerHourFootFahrenheitTolerance { get { return 1e-5; } }
         protected virtual double WattsPerMeterKelvinTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ThermalConductivityUnit unit)
+        {
+            return unit switch
+            {
+                ThermalConductivityUnit.BtuPerHourFootFahrenheit => (BtusPerHourFootFahrenheitInOneWattPerMeterKelvin, BtusPerHourFootFahrenheitTolerance),
+                ThermalConductivityUnit.WattPerMeterKelvin => (WattsPerMeterKelvinInOneWattPerMeterKelvin, WattsPerMeterKelvinTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ThermalConductivityUnit.BtuPerHourFootFahrenheit },
+            new object[] { ThermalConductivityUnit.WattPerMeterKelvin },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -172,25 +189,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ThermalConductivityUnit unit)
         {
-            var wattpermeterkelvin = ThermalConductivity.FromWattsPerMeterKelvin(1);
+            var inBaseUnits = ThermalConductivity.From(1.0, ThermalConductivity.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var btuperhourfootfahrenheitQuantity = wattpermeterkelvin.ToUnit(ThermalConductivityUnit.BtuPerHourFootFahrenheit);
-            AssertEx.EqualTolerance(BtusPerHourFootFahrenheitInOneWattPerMeterKelvin, (double)btuperhourfootfahrenheitQuantity.Value, BtusPerHourFootFahrenheitTolerance);
-            Assert.Equal(ThermalConductivityUnit.BtuPerHourFootFahrenheit, btuperhourfootfahrenheitQuantity.Unit);
-
-            var wattpermeterkelvinQuantity = wattpermeterkelvin.ToUnit(ThermalConductivityUnit.WattPerMeterKelvin);
-            AssertEx.EqualTolerance(WattsPerMeterKelvinInOneWattPerMeterKelvin, (double)wattpermeterkelvinQuantity.Value, WattsPerMeterKelvinTolerance);
-            Assert.Equal(ThermalConductivityUnit.WattPerMeterKelvin, wattpermeterkelvinQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(ThermalConductivityUnit unit)
         {
-            var quantityInBaseUnit = ThermalConductivity.FromWattsPerMeterKelvin(1).ToBaseUnit();
-            Assert.Equal(ThermalConductivity.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ThermalConductivity.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ThermalConductivityUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ThermalConductivity.Units.FirstOrDefault(u => u != ThermalConductivity.BaseUnit && u != ThermalConductivityUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ThermalConductivityUnit.Undefined)
+                fromUnit = ThermalConductivity.BaseUnit;
+
+            var quantity = ThermalConductivity.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

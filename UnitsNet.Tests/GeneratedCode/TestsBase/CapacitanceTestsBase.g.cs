@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -54,6 +55,32 @@ namespace UnitsNet.Tests
         protected virtual double NanofaradsTolerance { get { return 1e-5; } }
         protected virtual double PicofaradsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(CapacitanceUnit unit)
+        {
+            return unit switch
+            {
+                CapacitanceUnit.Farad => (FaradsInOneFarad, FaradsTolerance),
+                CapacitanceUnit.Kilofarad => (KilofaradsInOneFarad, KilofaradsTolerance),
+                CapacitanceUnit.Megafarad => (MegafaradsInOneFarad, MegafaradsTolerance),
+                CapacitanceUnit.Microfarad => (MicrofaradsInOneFarad, MicrofaradsTolerance),
+                CapacitanceUnit.Millifarad => (MillifaradsInOneFarad, MillifaradsTolerance),
+                CapacitanceUnit.Nanofarad => (NanofaradsInOneFarad, NanofaradsTolerance),
+                CapacitanceUnit.Picofarad => (PicofaradsInOneFarad, PicofaradsTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { CapacitanceUnit.Farad },
+            new object[] { CapacitanceUnit.Kilofarad },
+            new object[] { CapacitanceUnit.Megafarad },
+            new object[] { CapacitanceUnit.Microfarad },
+            new object[] { CapacitanceUnit.Millifarad },
+            new object[] { CapacitanceUnit.Nanofarad },
+            new object[] { CapacitanceUnit.Picofarad },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -212,45 +239,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(CapacitanceUnit unit)
         {
-            var farad = Capacitance.FromFarads(1);
+            var inBaseUnits = Capacitance.From(1.0, Capacitance.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var faradQuantity = farad.ToUnit(CapacitanceUnit.Farad);
-            AssertEx.EqualTolerance(FaradsInOneFarad, (double)faradQuantity.Value, FaradsTolerance);
-            Assert.Equal(CapacitanceUnit.Farad, faradQuantity.Unit);
-
-            var kilofaradQuantity = farad.ToUnit(CapacitanceUnit.Kilofarad);
-            AssertEx.EqualTolerance(KilofaradsInOneFarad, (double)kilofaradQuantity.Value, KilofaradsTolerance);
-            Assert.Equal(CapacitanceUnit.Kilofarad, kilofaradQuantity.Unit);
-
-            var megafaradQuantity = farad.ToUnit(CapacitanceUnit.Megafarad);
-            AssertEx.EqualTolerance(MegafaradsInOneFarad, (double)megafaradQuantity.Value, MegafaradsTolerance);
-            Assert.Equal(CapacitanceUnit.Megafarad, megafaradQuantity.Unit);
-
-            var microfaradQuantity = farad.ToUnit(CapacitanceUnit.Microfarad);
-            AssertEx.EqualTolerance(MicrofaradsInOneFarad, (double)microfaradQuantity.Value, MicrofaradsTolerance);
-            Assert.Equal(CapacitanceUnit.Microfarad, microfaradQuantity.Unit);
-
-            var millifaradQuantity = farad.ToUnit(CapacitanceUnit.Millifarad);
-            AssertEx.EqualTolerance(MillifaradsInOneFarad, (double)millifaradQuantity.Value, MillifaradsTolerance);
-            Assert.Equal(CapacitanceUnit.Millifarad, millifaradQuantity.Unit);
-
-            var nanofaradQuantity = farad.ToUnit(CapacitanceUnit.Nanofarad);
-            AssertEx.EqualTolerance(NanofaradsInOneFarad, (double)nanofaradQuantity.Value, NanofaradsTolerance);
-            Assert.Equal(CapacitanceUnit.Nanofarad, nanofaradQuantity.Unit);
-
-            var picofaradQuantity = farad.ToUnit(CapacitanceUnit.Picofarad);
-            AssertEx.EqualTolerance(PicofaradsInOneFarad, (double)picofaradQuantity.Value, PicofaradsTolerance);
-            Assert.Equal(CapacitanceUnit.Picofarad, picofaradQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(CapacitanceUnit unit)
         {
-            var quantityInBaseUnit = Capacitance.FromFarads(1).ToBaseUnit();
-            Assert.Equal(Capacitance.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Capacitance.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(CapacitanceUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Capacitance.Units.FirstOrDefault(u => u != Capacitance.BaseUnit && u != CapacitanceUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == CapacitanceUnit.Undefined)
+                fromUnit = Capacitance.BaseUnit;
+
+            var quantity = Capacitance.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

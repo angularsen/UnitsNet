@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -48,6 +49,26 @@ namespace UnitsNet.Tests
         protected virtual double AmperesPerNanosecondTolerance { get { return 1e-5; } }
         protected virtual double AmperesPerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricCurrentGradientUnit unit)
+        {
+            return unit switch
+            {
+                ElectricCurrentGradientUnit.AmperePerMicrosecond => (AmperesPerMicrosecondInOneAmperePerSecond, AmperesPerMicrosecondTolerance),
+                ElectricCurrentGradientUnit.AmperePerMillisecond => (AmperesPerMillisecondInOneAmperePerSecond, AmperesPerMillisecondTolerance),
+                ElectricCurrentGradientUnit.AmperePerNanosecond => (AmperesPerNanosecondInOneAmperePerSecond, AmperesPerNanosecondTolerance),
+                ElectricCurrentGradientUnit.AmperePerSecond => (AmperesPerSecondInOneAmperePerSecond, AmperesPerSecondTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ElectricCurrentGradientUnit.AmperePerMicrosecond },
+            new object[] { ElectricCurrentGradientUnit.AmperePerMillisecond },
+            new object[] { ElectricCurrentGradientUnit.AmperePerNanosecond },
+            new object[] { ElectricCurrentGradientUnit.AmperePerSecond },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -188,33 +209,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ElectricCurrentGradientUnit unit)
         {
-            var amperepersecond = ElectricCurrentGradient.FromAmperesPerSecond(1);
+            var inBaseUnits = ElectricCurrentGradient.From(1.0, ElectricCurrentGradient.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var amperepermicrosecondQuantity = amperepersecond.ToUnit(ElectricCurrentGradientUnit.AmperePerMicrosecond);
-            AssertEx.EqualTolerance(AmperesPerMicrosecondInOneAmperePerSecond, (double)amperepermicrosecondQuantity.Value, AmperesPerMicrosecondTolerance);
-            Assert.Equal(ElectricCurrentGradientUnit.AmperePerMicrosecond, amperepermicrosecondQuantity.Unit);
-
-            var amperepermillisecondQuantity = amperepersecond.ToUnit(ElectricCurrentGradientUnit.AmperePerMillisecond);
-            AssertEx.EqualTolerance(AmperesPerMillisecondInOneAmperePerSecond, (double)amperepermillisecondQuantity.Value, AmperesPerMillisecondTolerance);
-            Assert.Equal(ElectricCurrentGradientUnit.AmperePerMillisecond, amperepermillisecondQuantity.Unit);
-
-            var amperepernanosecondQuantity = amperepersecond.ToUnit(ElectricCurrentGradientUnit.AmperePerNanosecond);
-            AssertEx.EqualTolerance(AmperesPerNanosecondInOneAmperePerSecond, (double)amperepernanosecondQuantity.Value, AmperesPerNanosecondTolerance);
-            Assert.Equal(ElectricCurrentGradientUnit.AmperePerNanosecond, amperepernanosecondQuantity.Unit);
-
-            var amperepersecondQuantity = amperepersecond.ToUnit(ElectricCurrentGradientUnit.AmperePerSecond);
-            AssertEx.EqualTolerance(AmperesPerSecondInOneAmperePerSecond, (double)amperepersecondQuantity.Value, AmperesPerSecondTolerance);
-            Assert.Equal(ElectricCurrentGradientUnit.AmperePerSecond, amperepersecondQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(ElectricCurrentGradientUnit unit)
         {
-            var quantityInBaseUnit = ElectricCurrentGradient.FromAmperesPerSecond(1).ToBaseUnit();
-            Assert.Equal(ElectricCurrentGradient.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ElectricCurrentGradient.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricCurrentGradientUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ElectricCurrentGradient.Units.FirstOrDefault(u => u != ElectricCurrentGradient.BaseUnit && u != ElectricCurrentGradientUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ElectricCurrentGradientUnit.Undefined)
+                fromUnit = ElectricCurrentGradient.BaseUnit;
+
+            var quantity = ElectricCurrentGradient.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

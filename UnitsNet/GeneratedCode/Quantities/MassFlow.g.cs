@@ -97,6 +97,8 @@ namespace UnitsNet
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerHour, "TonnesPerHour", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.MassFlow);
+
+            RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
         /// <summary>
@@ -134,6 +136,11 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="MassFlow" /> instances.
+        /// </summary>
+        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<MassFlowUnit> Info { get; }
@@ -387,75 +394,75 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> MassFlowUnit
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.CentigramPerDay, quantity => quantity.ToUnit(MassFlowUnit.CentigramPerDay));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.CentigramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.CentigramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.DecagramPerDay, quantity => quantity.ToUnit(MassFlowUnit.DecagramPerDay));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.DecagramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.DecagramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.DecigramPerDay, quantity => quantity.ToUnit(MassFlowUnit.DecigramPerDay));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.DecigramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.DecigramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.GramPerDay, quantity => quantity.ToUnit(MassFlowUnit.GramPerDay));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.GramPerHour, quantity => quantity.ToUnit(MassFlowUnit.GramPerHour));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.HectogramPerDay, quantity => quantity.ToUnit(MassFlowUnit.HectogramPerDay));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.HectogramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.HectogramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.KilogramPerDay, quantity => quantity.ToUnit(MassFlowUnit.KilogramPerDay));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.KilogramPerHour, quantity => quantity.ToUnit(MassFlowUnit.KilogramPerHour));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.KilogramPerMinute, quantity => quantity.ToUnit(MassFlowUnit.KilogramPerMinute));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.KilogramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.KilogramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MegagramPerDay, quantity => quantity.ToUnit(MassFlowUnit.MegagramPerDay));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MegapoundPerDay, quantity => quantity.ToUnit(MassFlowUnit.MegapoundPerDay));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MegapoundPerHour, quantity => quantity.ToUnit(MassFlowUnit.MegapoundPerHour));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MegapoundPerMinute, quantity => quantity.ToUnit(MassFlowUnit.MegapoundPerMinute));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MegapoundPerSecond, quantity => quantity.ToUnit(MassFlowUnit.MegapoundPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MicrogramPerDay, quantity => quantity.ToUnit(MassFlowUnit.MicrogramPerDay));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MicrogramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.MicrogramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MilligramPerDay, quantity => quantity.ToUnit(MassFlowUnit.MilligramPerDay));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MilligramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.MilligramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.NanogramPerDay, quantity => quantity.ToUnit(MassFlowUnit.NanogramPerDay));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.NanogramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.NanogramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.PoundPerDay, quantity => quantity.ToUnit(MassFlowUnit.PoundPerDay));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.PoundPerHour, quantity => quantity.ToUnit(MassFlowUnit.PoundPerHour));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.PoundPerMinute, quantity => quantity.ToUnit(MassFlowUnit.PoundPerMinute));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.PoundPerSecond, quantity => quantity.ToUnit(MassFlowUnit.PoundPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.ShortTonPerHour, quantity => quantity.ToUnit(MassFlowUnit.ShortTonPerHour));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.TonnePerDay, quantity => quantity.ToUnit(MassFlowUnit.TonnePerDay));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.TonnePerHour, quantity => quantity.ToUnit(MassFlowUnit.TonnePerHour));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.CentigramPerDay, quantity => new MassFlow((quantity.Value*86400) / 1e-2d, MassFlowUnit.CentigramPerDay));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.CentigramPerSecond, quantity => new MassFlow((quantity.Value) / 1e-2d, MassFlowUnit.CentigramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.DecagramPerDay, quantity => new MassFlow((quantity.Value*86400) / 1e1d, MassFlowUnit.DecagramPerDay));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.DecagramPerSecond, quantity => new MassFlow((quantity.Value) / 1e1d, MassFlowUnit.DecagramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.DecigramPerDay, quantity => new MassFlow((quantity.Value*86400) / 1e-1d, MassFlowUnit.DecigramPerDay));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.DecigramPerSecond, quantity => new MassFlow((quantity.Value) / 1e-1d, MassFlowUnit.DecigramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.GramPerDay, quantity => new MassFlow(quantity.Value*86400, MassFlowUnit.GramPerDay));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.GramPerHour, quantity => new MassFlow(quantity.Value*3600, MassFlowUnit.GramPerHour));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.HectogramPerDay, quantity => new MassFlow((quantity.Value*86400) / 1e2d, MassFlowUnit.HectogramPerDay));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.HectogramPerSecond, quantity => new MassFlow((quantity.Value) / 1e2d, MassFlowUnit.HectogramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.KilogramPerDay, quantity => new MassFlow((quantity.Value*86400) / 1e3d, MassFlowUnit.KilogramPerDay));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.KilogramPerHour, quantity => new MassFlow(quantity.Value*3.6, MassFlowUnit.KilogramPerHour));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.KilogramPerMinute, quantity => new MassFlow(quantity.Value*0.06, MassFlowUnit.KilogramPerMinute));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.KilogramPerSecond, quantity => new MassFlow((quantity.Value) / 1e3d, MassFlowUnit.KilogramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MegagramPerDay, quantity => new MassFlow((quantity.Value*86400) / 1e6d, MassFlowUnit.MegagramPerDay));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MegapoundPerDay, quantity => new MassFlow((quantity.Value*190.47936) / 1e6d, MassFlowUnit.MegapoundPerDay));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MegapoundPerHour, quantity => new MassFlow((quantity.Value*7.93664) / 1e6d, MassFlowUnit.MegapoundPerHour));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MegapoundPerMinute, quantity => new MassFlow((quantity.Value*0.132277) / 1e6d, MassFlowUnit.MegapoundPerMinute));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MegapoundPerSecond, quantity => new MassFlow((quantity.Value / 453.59237) / 1e6d, MassFlowUnit.MegapoundPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MicrogramPerDay, quantity => new MassFlow((quantity.Value*86400) / 1e-6d, MassFlowUnit.MicrogramPerDay));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MicrogramPerSecond, quantity => new MassFlow((quantity.Value) / 1e-6d, MassFlowUnit.MicrogramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MilligramPerDay, quantity => new MassFlow((quantity.Value*86400) / 1e-3d, MassFlowUnit.MilligramPerDay));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MilligramPerSecond, quantity => new MassFlow((quantity.Value) / 1e-3d, MassFlowUnit.MilligramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.NanogramPerDay, quantity => new MassFlow((quantity.Value*86400) / 1e-9d, MassFlowUnit.NanogramPerDay));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.NanogramPerSecond, quantity => new MassFlow((quantity.Value) / 1e-9d, MassFlowUnit.NanogramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.PoundPerDay, quantity => new MassFlow(quantity.Value*190.47936, MassFlowUnit.PoundPerDay));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.PoundPerHour, quantity => new MassFlow(quantity.Value*7.93664, MassFlowUnit.PoundPerHour));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.PoundPerMinute, quantity => new MassFlow(quantity.Value*0.132277, MassFlowUnit.PoundPerMinute));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.PoundPerSecond, quantity => new MassFlow(quantity.Value / 453.59237, MassFlowUnit.PoundPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.ShortTonPerHour, quantity => new MassFlow(quantity.Value/251.9957611, MassFlowUnit.ShortTonPerHour));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.TonnePerDay, quantity => new MassFlow(quantity.Value*0.0864000, MassFlowUnit.TonnePerDay));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.TonnePerHour, quantity => new MassFlow(quantity.Value*3.6/1000, MassFlowUnit.TonnePerHour));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.GramPerSecond, quantity => quantity);
 
             // Register in unit converter: MassFlowUnit -> BaseUnit
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.CentigramPerDay, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.CentigramPerSecond, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.DecagramPerDay, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.DecagramPerSecond, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.DecigramPerDay, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.DecigramPerSecond, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerDay, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerHour, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.HectogramPerDay, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.HectogramPerSecond, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.KilogramPerDay, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.KilogramPerHour, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.KilogramPerMinute, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.KilogramPerSecond, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MegagramPerDay, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MegapoundPerDay, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MegapoundPerHour, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MegapoundPerMinute, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MegapoundPerSecond, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MicrogramPerDay, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MicrogramPerSecond, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MilligramPerDay, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MilligramPerSecond, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.NanogramPerDay, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.NanogramPerSecond, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.PoundPerDay, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.PoundPerHour, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.PoundPerMinute, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.PoundPerSecond, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.ShortTonPerHour, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.TonnePerDay, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.TonnePerHour, MassFlowUnit.GramPerSecond, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.CentigramPerDay, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value/86400) * 1e-2d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.CentigramPerSecond, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value) * 1e-2d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.DecagramPerDay, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value/86400) * 1e1d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.DecagramPerSecond, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value) * 1e1d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.DecigramPerDay, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value/86400) * 1e-1d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.DecigramPerSecond, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value) * 1e-1d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerDay, MassFlowUnit.GramPerSecond, quantity => new MassFlow(quantity.Value/86400, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerHour, MassFlowUnit.GramPerSecond, quantity => new MassFlow(quantity.Value/3600, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.HectogramPerDay, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value/86400) * 1e2d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.HectogramPerSecond, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value) * 1e2d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.KilogramPerDay, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value/86400) * 1e3d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.KilogramPerHour, MassFlowUnit.GramPerSecond, quantity => new MassFlow(quantity.Value/3.6, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.KilogramPerMinute, MassFlowUnit.GramPerSecond, quantity => new MassFlow(quantity.Value/0.06, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.KilogramPerSecond, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value) * 1e3d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MegagramPerDay, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value/86400) * 1e6d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MegapoundPerDay, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value/190.47936) * 1e6d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MegapoundPerHour, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value/7.93664) * 1e6d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MegapoundPerMinute, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value/0.132277) * 1e6d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MegapoundPerSecond, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value * 453.59237) * 1e6d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MicrogramPerDay, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value/86400) * 1e-6d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MicrogramPerSecond, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value) * 1e-6d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MilligramPerDay, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value/86400) * 1e-3d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MilligramPerSecond, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value) * 1e-3d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.NanogramPerDay, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value/86400) * 1e-9d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.NanogramPerSecond, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value) * 1e-9d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.PoundPerDay, MassFlowUnit.GramPerSecond, quantity => new MassFlow(quantity.Value/190.47936, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.PoundPerHour, MassFlowUnit.GramPerSecond, quantity => new MassFlow(quantity.Value/7.93664, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.PoundPerMinute, MassFlowUnit.GramPerSecond, quantity => new MassFlow(quantity.Value/0.132277, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.PoundPerSecond, MassFlowUnit.GramPerSecond, quantity => new MassFlow(quantity.Value * 453.59237, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.ShortTonPerHour, MassFlowUnit.GramPerSecond, quantity => new MassFlow(quantity.Value*251.9957611, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.TonnePerDay, MassFlowUnit.GramPerSecond, quantity => new MassFlow(quantity.Value/0.0864000, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.TonnePerHour, MassFlowUnit.GramPerSecond, quantity => new MassFlow(1000*quantity.Value/3.6, MassFlowUnit.GramPerSecond));
         }
 
         /// <summary>
@@ -1160,11 +1167,42 @@ namespace UnitsNet
         /// <summary>
         ///     Converts this MassFlow to another MassFlow with the unit representation <paramref name="unit" />.
         /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
         /// <returns>A MassFlow with the specified unit.</returns>
         public MassFlow ToUnit(MassFlowUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new MassFlow(convertedValue, unit);
+            return ToUnit(unit, DefaultConversionFunctions);
+        }
+
+        /// <summary>
+        ///     Converts this MassFlow to another MassFlow using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
+        /// <returns>A MassFlow with the specified unit.</returns>
+        public MassFlow ToUnit(MassFlowUnit unit, UnitConverter unitConverter)
+        {
+            if(Unit == unit)
+            {
+                // Already in requested units.
+                return this;
+            }
+            else if(unitConverter.TryGetConversionFunction((typeof(MassFlow), Unit, typeof(MassFlow), unit), out var conversionFunction))
+            {
+                // Direct conversion to requested unit found. Return the converted quantity.
+                var converted = conversionFunction(this);
+                return (MassFlow)converted;
+            }
+            else if(Unit != BaseUnit)
+            {
+                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                var inBaseUnits = ToUnit(BaseUnit);
+                return inBaseUnits.ToUnit(unit);
+            }
+            else
+            {
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         /// <inheritdoc />
@@ -1173,7 +1211,16 @@ namespace UnitsNet
             if(!(unit is MassFlowUnit unitAsMassFlowUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassFlowUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsMassFlowUnit);
+            return ToUnit(unitAsMassFlowUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is MassFlowUnit unitAsMassFlowUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassFlowUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsMassFlowUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -1198,111 +1245,15 @@ namespace UnitsNet
         IQuantity<MassFlowUnit> IQuantity<MassFlowUnit>.ToUnit(MassFlowUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantity<MassFlowUnit> IQuantity<MassFlowUnit>.ToUnit(MassFlowUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
+
+        /// <inheritdoc />
         IQuantity<MassFlowUnit> IQuantity<MassFlowUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case MassFlowUnit.CentigramPerDay: return (_value/86400) * 1e-2d;
-                case MassFlowUnit.CentigramPerSecond: return (_value) * 1e-2d;
-                case MassFlowUnit.DecagramPerDay: return (_value/86400) * 1e1d;
-                case MassFlowUnit.DecagramPerSecond: return (_value) * 1e1d;
-                case MassFlowUnit.DecigramPerDay: return (_value/86400) * 1e-1d;
-                case MassFlowUnit.DecigramPerSecond: return (_value) * 1e-1d;
-                case MassFlowUnit.GramPerDay: return _value/86400;
-                case MassFlowUnit.GramPerHour: return _value/3600;
-                case MassFlowUnit.GramPerSecond: return _value;
-                case MassFlowUnit.HectogramPerDay: return (_value/86400) * 1e2d;
-                case MassFlowUnit.HectogramPerSecond: return (_value) * 1e2d;
-                case MassFlowUnit.KilogramPerDay: return (_value/86400) * 1e3d;
-                case MassFlowUnit.KilogramPerHour: return _value/3.6;
-                case MassFlowUnit.KilogramPerMinute: return _value/0.06;
-                case MassFlowUnit.KilogramPerSecond: return (_value) * 1e3d;
-                case MassFlowUnit.MegagramPerDay: return (_value/86400) * 1e6d;
-                case MassFlowUnit.MegapoundPerDay: return (_value/190.47936) * 1e6d;
-                case MassFlowUnit.MegapoundPerHour: return (_value/7.93664) * 1e6d;
-                case MassFlowUnit.MegapoundPerMinute: return (_value/0.132277) * 1e6d;
-                case MassFlowUnit.MegapoundPerSecond: return (_value * 453.59237) * 1e6d;
-                case MassFlowUnit.MicrogramPerDay: return (_value/86400) * 1e-6d;
-                case MassFlowUnit.MicrogramPerSecond: return (_value) * 1e-6d;
-                case MassFlowUnit.MilligramPerDay: return (_value/86400) * 1e-3d;
-                case MassFlowUnit.MilligramPerSecond: return (_value) * 1e-3d;
-                case MassFlowUnit.NanogramPerDay: return (_value/86400) * 1e-9d;
-                case MassFlowUnit.NanogramPerSecond: return (_value) * 1e-9d;
-                case MassFlowUnit.PoundPerDay: return _value/190.47936;
-                case MassFlowUnit.PoundPerHour: return _value/7.93664;
-                case MassFlowUnit.PoundPerMinute: return _value/0.132277;
-                case MassFlowUnit.PoundPerSecond: return _value * 453.59237;
-                case MassFlowUnit.ShortTonPerHour: return _value*251.9957611;
-                case MassFlowUnit.TonnePerDay: return _value/0.0864000;
-                case MassFlowUnit.TonnePerHour: return 1000*_value/3.6;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal MassFlow ToBaseUnit()
-        {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new MassFlow(baseUnitValue, BaseUnit);
-        }
 
         private double GetValueAs(MassFlowUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var baseUnitValue = GetValueInBaseUnit();
-
-            switch(unit)
-            {
-                case MassFlowUnit.CentigramPerDay: return (baseUnitValue*86400) / 1e-2d;
-                case MassFlowUnit.CentigramPerSecond: return (baseUnitValue) / 1e-2d;
-                case MassFlowUnit.DecagramPerDay: return (baseUnitValue*86400) / 1e1d;
-                case MassFlowUnit.DecagramPerSecond: return (baseUnitValue) / 1e1d;
-                case MassFlowUnit.DecigramPerDay: return (baseUnitValue*86400) / 1e-1d;
-                case MassFlowUnit.DecigramPerSecond: return (baseUnitValue) / 1e-1d;
-                case MassFlowUnit.GramPerDay: return baseUnitValue*86400;
-                case MassFlowUnit.GramPerHour: return baseUnitValue*3600;
-                case MassFlowUnit.GramPerSecond: return baseUnitValue;
-                case MassFlowUnit.HectogramPerDay: return (baseUnitValue*86400) / 1e2d;
-                case MassFlowUnit.HectogramPerSecond: return (baseUnitValue) / 1e2d;
-                case MassFlowUnit.KilogramPerDay: return (baseUnitValue*86400) / 1e3d;
-                case MassFlowUnit.KilogramPerHour: return baseUnitValue*3.6;
-                case MassFlowUnit.KilogramPerMinute: return baseUnitValue*0.06;
-                case MassFlowUnit.KilogramPerSecond: return (baseUnitValue) / 1e3d;
-                case MassFlowUnit.MegagramPerDay: return (baseUnitValue*86400) / 1e6d;
-                case MassFlowUnit.MegapoundPerDay: return (baseUnitValue*190.47936) / 1e6d;
-                case MassFlowUnit.MegapoundPerHour: return (baseUnitValue*7.93664) / 1e6d;
-                case MassFlowUnit.MegapoundPerMinute: return (baseUnitValue*0.132277) / 1e6d;
-                case MassFlowUnit.MegapoundPerSecond: return (baseUnitValue / 453.59237) / 1e6d;
-                case MassFlowUnit.MicrogramPerDay: return (baseUnitValue*86400) / 1e-6d;
-                case MassFlowUnit.MicrogramPerSecond: return (baseUnitValue) / 1e-6d;
-                case MassFlowUnit.MilligramPerDay: return (baseUnitValue*86400) / 1e-3d;
-                case MassFlowUnit.MilligramPerSecond: return (baseUnitValue) / 1e-3d;
-                case MassFlowUnit.NanogramPerDay: return (baseUnitValue*86400) / 1e-9d;
-                case MassFlowUnit.NanogramPerSecond: return (baseUnitValue) / 1e-9d;
-                case MassFlowUnit.PoundPerDay: return baseUnitValue*190.47936;
-                case MassFlowUnit.PoundPerHour: return baseUnitValue*7.93664;
-                case MassFlowUnit.PoundPerMinute: return baseUnitValue*0.132277;
-                case MassFlowUnit.PoundPerSecond: return baseUnitValue / 453.59237;
-                case MassFlowUnit.ShortTonPerHour: return baseUnitValue/251.9957611;
-                case MassFlowUnit.TonnePerDay: return baseUnitValue*0.0864000;
-                case MassFlowUnit.TonnePerHour: return baseUnitValue*3.6/1000;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         #endregion

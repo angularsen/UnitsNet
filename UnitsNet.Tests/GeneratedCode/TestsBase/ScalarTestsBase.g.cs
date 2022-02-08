@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -42,6 +43,20 @@ namespace UnitsNet.Tests
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double AmountTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ScalarUnit unit)
+        {
+            return unit switch
+            {
+                ScalarUnit.Amount => (AmountInOneAmount, AmountTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ScalarUnit.Amount },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -164,21 +179,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ScalarUnit unit)
         {
-            var amount = Scalar.FromAmount(1);
+            var inBaseUnits = Scalar.From(1.0, Scalar.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var amountQuantity = amount.ToUnit(ScalarUnit.Amount);
-            AssertEx.EqualTolerance(AmountInOneAmount, (double)amountQuantity.Value, AmountTolerance);
-            Assert.Equal(ScalarUnit.Amount, amountQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(ScalarUnit unit)
         {
-            var quantityInBaseUnit = Scalar.FromAmount(1).ToBaseUnit();
-            Assert.Equal(Scalar.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Scalar.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ScalarUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Scalar.Units.FirstOrDefault(u => u != Scalar.BaseUnit && u != ScalarUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ScalarUnit.Undefined)
+                fromUnit = Scalar.BaseUnit;
+
+            var quantity = Scalar.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

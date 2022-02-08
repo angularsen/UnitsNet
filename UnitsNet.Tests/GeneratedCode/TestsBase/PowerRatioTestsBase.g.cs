@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -44,6 +45,22 @@ namespace UnitsNet.Tests
         protected virtual double DecibelMilliwattsTolerance { get { return 1e-5; } }
         protected virtual double DecibelWattsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(PowerRatioUnit unit)
+        {
+            return unit switch
+            {
+                PowerRatioUnit.DecibelMilliwatt => (DecibelMilliwattsInOneDecibelWatt, DecibelMilliwattsTolerance),
+                PowerRatioUnit.DecibelWatt => (DecibelWattsInOneDecibelWatt, DecibelWattsTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { PowerRatioUnit.DecibelMilliwatt },
+            new object[] { PowerRatioUnit.DecibelWatt },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -172,25 +189,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(PowerRatioUnit unit)
         {
-            var decibelwatt = PowerRatio.FromDecibelWatts(1);
+            var inBaseUnits = PowerRatio.From(1.0, PowerRatio.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var decibelmilliwattQuantity = decibelwatt.ToUnit(PowerRatioUnit.DecibelMilliwatt);
-            AssertEx.EqualTolerance(DecibelMilliwattsInOneDecibelWatt, (double)decibelmilliwattQuantity.Value, DecibelMilliwattsTolerance);
-            Assert.Equal(PowerRatioUnit.DecibelMilliwatt, decibelmilliwattQuantity.Unit);
-
-            var decibelwattQuantity = decibelwatt.ToUnit(PowerRatioUnit.DecibelWatt);
-            AssertEx.EqualTolerance(DecibelWattsInOneDecibelWatt, (double)decibelwattQuantity.Value, DecibelWattsTolerance);
-            Assert.Equal(PowerRatioUnit.DecibelWatt, decibelwattQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(PowerRatioUnit unit)
         {
-            var quantityInBaseUnit = PowerRatio.FromDecibelWatts(1).ToBaseUnit();
-            Assert.Equal(PowerRatio.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = PowerRatio.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(PowerRatioUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = PowerRatio.Units.FirstOrDefault(u => u != PowerRatio.BaseUnit && u != PowerRatioUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == PowerRatioUnit.Undefined)
+                fromUnit = PowerRatio.BaseUnit;
+
+            var quantity = PowerRatio.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -48,6 +49,26 @@ namespace UnitsNet.Tests
         protected virtual double MegavoltamperesReactiveTolerance { get { return 1e-5; } }
         protected virtual double VoltamperesReactiveTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ReactivePowerUnit unit)
+        {
+            return unit switch
+            {
+                ReactivePowerUnit.GigavoltampereReactive => (GigavoltamperesReactiveInOneVoltampereReactive, GigavoltamperesReactiveTolerance),
+                ReactivePowerUnit.KilovoltampereReactive => (KilovoltamperesReactiveInOneVoltampereReactive, KilovoltamperesReactiveTolerance),
+                ReactivePowerUnit.MegavoltampereReactive => (MegavoltamperesReactiveInOneVoltampereReactive, MegavoltamperesReactiveTolerance),
+                ReactivePowerUnit.VoltampereReactive => (VoltamperesReactiveInOneVoltampereReactive, VoltamperesReactiveTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ReactivePowerUnit.GigavoltampereReactive },
+            new object[] { ReactivePowerUnit.KilovoltampereReactive },
+            new object[] { ReactivePowerUnit.MegavoltampereReactive },
+            new object[] { ReactivePowerUnit.VoltampereReactive },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -188,33 +209,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ReactivePowerUnit unit)
         {
-            var voltamperereactive = ReactivePower.FromVoltamperesReactive(1);
+            var inBaseUnits = ReactivePower.From(1.0, ReactivePower.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var gigavoltamperereactiveQuantity = voltamperereactive.ToUnit(ReactivePowerUnit.GigavoltampereReactive);
-            AssertEx.EqualTolerance(GigavoltamperesReactiveInOneVoltampereReactive, (double)gigavoltamperereactiveQuantity.Value, GigavoltamperesReactiveTolerance);
-            Assert.Equal(ReactivePowerUnit.GigavoltampereReactive, gigavoltamperereactiveQuantity.Unit);
-
-            var kilovoltamperereactiveQuantity = voltamperereactive.ToUnit(ReactivePowerUnit.KilovoltampereReactive);
-            AssertEx.EqualTolerance(KilovoltamperesReactiveInOneVoltampereReactive, (double)kilovoltamperereactiveQuantity.Value, KilovoltamperesReactiveTolerance);
-            Assert.Equal(ReactivePowerUnit.KilovoltampereReactive, kilovoltamperereactiveQuantity.Unit);
-
-            var megavoltamperereactiveQuantity = voltamperereactive.ToUnit(ReactivePowerUnit.MegavoltampereReactive);
-            AssertEx.EqualTolerance(MegavoltamperesReactiveInOneVoltampereReactive, (double)megavoltamperereactiveQuantity.Value, MegavoltamperesReactiveTolerance);
-            Assert.Equal(ReactivePowerUnit.MegavoltampereReactive, megavoltamperereactiveQuantity.Unit);
-
-            var voltamperereactiveQuantity = voltamperereactive.ToUnit(ReactivePowerUnit.VoltampereReactive);
-            AssertEx.EqualTolerance(VoltamperesReactiveInOneVoltampereReactive, (double)voltamperereactiveQuantity.Value, VoltamperesReactiveTolerance);
-            Assert.Equal(ReactivePowerUnit.VoltampereReactive, voltamperereactiveQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(ReactivePowerUnit unit)
         {
-            var quantityInBaseUnit = ReactivePower.FromVoltamperesReactive(1).ToBaseUnit();
-            Assert.Equal(ReactivePower.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ReactivePower.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ReactivePowerUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ReactivePower.Units.FirstOrDefault(u => u != ReactivePower.BaseUnit && u != ReactivePowerUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ReactivePowerUnit.Undefined)
+                fromUnit = ReactivePower.BaseUnit;
+
+            var quantity = ReactivePower.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

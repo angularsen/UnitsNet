@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -62,6 +63,40 @@ namespace UnitsNet.Tests
         protected virtual double InverseSquareYardsTolerance { get { return 1e-5; } }
         protected virtual double InverseUsSurveySquareFeetTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ReciprocalAreaUnit unit)
+        {
+            return unit switch
+            {
+                ReciprocalAreaUnit.InverseSquareCentimeter => (InverseSquareCentimetersInOneInverseSquareMeter, InverseSquareCentimetersTolerance),
+                ReciprocalAreaUnit.InverseSquareDecimeter => (InverseSquareDecimetersInOneInverseSquareMeter, InverseSquareDecimetersTolerance),
+                ReciprocalAreaUnit.InverseSquareFoot => (InverseSquareFeetInOneInverseSquareMeter, InverseSquareFeetTolerance),
+                ReciprocalAreaUnit.InverseSquareInch => (InverseSquareInchesInOneInverseSquareMeter, InverseSquareInchesTolerance),
+                ReciprocalAreaUnit.InverseSquareKilometer => (InverseSquareKilometersInOneInverseSquareMeter, InverseSquareKilometersTolerance),
+                ReciprocalAreaUnit.InverseSquareMeter => (InverseSquareMetersInOneInverseSquareMeter, InverseSquareMetersTolerance),
+                ReciprocalAreaUnit.InverseSquareMicrometer => (InverseSquareMicrometersInOneInverseSquareMeter, InverseSquareMicrometersTolerance),
+                ReciprocalAreaUnit.InverseSquareMile => (InverseSquareMilesInOneInverseSquareMeter, InverseSquareMilesTolerance),
+                ReciprocalAreaUnit.InverseSquareMillimeter => (InverseSquareMillimetersInOneInverseSquareMeter, InverseSquareMillimetersTolerance),
+                ReciprocalAreaUnit.InverseSquareYard => (InverseSquareYardsInOneInverseSquareMeter, InverseSquareYardsTolerance),
+                ReciprocalAreaUnit.InverseUsSurveySquareFoot => (InverseUsSurveySquareFeetInOneInverseSquareMeter, InverseUsSurveySquareFeetTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ReciprocalAreaUnit.InverseSquareCentimeter },
+            new object[] { ReciprocalAreaUnit.InverseSquareDecimeter },
+            new object[] { ReciprocalAreaUnit.InverseSquareFoot },
+            new object[] { ReciprocalAreaUnit.InverseSquareInch },
+            new object[] { ReciprocalAreaUnit.InverseSquareKilometer },
+            new object[] { ReciprocalAreaUnit.InverseSquareMeter },
+            new object[] { ReciprocalAreaUnit.InverseSquareMicrometer },
+            new object[] { ReciprocalAreaUnit.InverseSquareMile },
+            new object[] { ReciprocalAreaUnit.InverseSquareMillimeter },
+            new object[] { ReciprocalAreaUnit.InverseSquareYard },
+            new object[] { ReciprocalAreaUnit.InverseUsSurveySquareFoot },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -244,61 +279,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ReciprocalAreaUnit unit)
         {
-            var inversesquaremeter = ReciprocalArea.FromInverseSquareMeters(1);
+            var inBaseUnits = ReciprocalArea.From(1.0, ReciprocalArea.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var inversesquarecentimeterQuantity = inversesquaremeter.ToUnit(ReciprocalAreaUnit.InverseSquareCentimeter);
-            AssertEx.EqualTolerance(InverseSquareCentimetersInOneInverseSquareMeter, (double)inversesquarecentimeterQuantity.Value, InverseSquareCentimetersTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareCentimeter, inversesquarecentimeterQuantity.Unit);
-
-            var inversesquaredecimeterQuantity = inversesquaremeter.ToUnit(ReciprocalAreaUnit.InverseSquareDecimeter);
-            AssertEx.EqualTolerance(InverseSquareDecimetersInOneInverseSquareMeter, (double)inversesquaredecimeterQuantity.Value, InverseSquareDecimetersTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareDecimeter, inversesquaredecimeterQuantity.Unit);
-
-            var inversesquarefootQuantity = inversesquaremeter.ToUnit(ReciprocalAreaUnit.InverseSquareFoot);
-            AssertEx.EqualTolerance(InverseSquareFeetInOneInverseSquareMeter, (double)inversesquarefootQuantity.Value, InverseSquareFeetTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareFoot, inversesquarefootQuantity.Unit);
-
-            var inversesquareinchQuantity = inversesquaremeter.ToUnit(ReciprocalAreaUnit.InverseSquareInch);
-            AssertEx.EqualTolerance(InverseSquareInchesInOneInverseSquareMeter, (double)inversesquareinchQuantity.Value, InverseSquareInchesTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareInch, inversesquareinchQuantity.Unit);
-
-            var inversesquarekilometerQuantity = inversesquaremeter.ToUnit(ReciprocalAreaUnit.InverseSquareKilometer);
-            AssertEx.EqualTolerance(InverseSquareKilometersInOneInverseSquareMeter, (double)inversesquarekilometerQuantity.Value, InverseSquareKilometersTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareKilometer, inversesquarekilometerQuantity.Unit);
-
-            var inversesquaremeterQuantity = inversesquaremeter.ToUnit(ReciprocalAreaUnit.InverseSquareMeter);
-            AssertEx.EqualTolerance(InverseSquareMetersInOneInverseSquareMeter, (double)inversesquaremeterQuantity.Value, InverseSquareMetersTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareMeter, inversesquaremeterQuantity.Unit);
-
-            var inversesquaremicrometerQuantity = inversesquaremeter.ToUnit(ReciprocalAreaUnit.InverseSquareMicrometer);
-            AssertEx.EqualTolerance(InverseSquareMicrometersInOneInverseSquareMeter, (double)inversesquaremicrometerQuantity.Value, InverseSquareMicrometersTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareMicrometer, inversesquaremicrometerQuantity.Unit);
-
-            var inversesquaremileQuantity = inversesquaremeter.ToUnit(ReciprocalAreaUnit.InverseSquareMile);
-            AssertEx.EqualTolerance(InverseSquareMilesInOneInverseSquareMeter, (double)inversesquaremileQuantity.Value, InverseSquareMilesTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareMile, inversesquaremileQuantity.Unit);
-
-            var inversesquaremillimeterQuantity = inversesquaremeter.ToUnit(ReciprocalAreaUnit.InverseSquareMillimeter);
-            AssertEx.EqualTolerance(InverseSquareMillimetersInOneInverseSquareMeter, (double)inversesquaremillimeterQuantity.Value, InverseSquareMillimetersTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareMillimeter, inversesquaremillimeterQuantity.Unit);
-
-            var inversesquareyardQuantity = inversesquaremeter.ToUnit(ReciprocalAreaUnit.InverseSquareYard);
-            AssertEx.EqualTolerance(InverseSquareYardsInOneInverseSquareMeter, (double)inversesquareyardQuantity.Value, InverseSquareYardsTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareYard, inversesquareyardQuantity.Unit);
-
-            var inverseussurveysquarefootQuantity = inversesquaremeter.ToUnit(ReciprocalAreaUnit.InverseUsSurveySquareFoot);
-            AssertEx.EqualTolerance(InverseUsSurveySquareFeetInOneInverseSquareMeter, (double)inverseussurveysquarefootQuantity.Value, InverseUsSurveySquareFeetTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseUsSurveySquareFoot, inverseussurveysquarefootQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(ReciprocalAreaUnit unit)
         {
-            var quantityInBaseUnit = ReciprocalArea.FromInverseSquareMeters(1).ToBaseUnit();
-            Assert.Equal(ReciprocalArea.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ReciprocalArea.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ReciprocalAreaUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ReciprocalArea.Units.FirstOrDefault(u => u != ReciprocalArea.BaseUnit && u != ReciprocalAreaUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ReciprocalAreaUnit.Undefined)
+                fromUnit = ReciprocalArea.BaseUnit;
+
+            var quantity = ReciprocalArea.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

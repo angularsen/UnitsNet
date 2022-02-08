@@ -68,6 +68,8 @@ namespace UnitsNet
                     new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelVolt, "DecibelVolts", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.AmplitudeRatio);
+
+            RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
         /// <summary>
@@ -105,6 +107,11 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="AmplitudeRatio" /> instances.
+        /// </summary>
+        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<AmplitudeRatioUnit> Info { get; }
@@ -213,17 +220,17 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> AmplitudeRatioUnit
-            unitConverter.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelMicrovolt, quantity => quantity.ToUnit(AmplitudeRatioUnit.DecibelMicrovolt));
-            unitConverter.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelMillivolt, quantity => quantity.ToUnit(AmplitudeRatioUnit.DecibelMillivolt));
-            unitConverter.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelUnloaded, quantity => quantity.ToUnit(AmplitudeRatioUnit.DecibelUnloaded));
+            unitConverter.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelMicrovolt, quantity => new AmplitudeRatio(quantity.Value + 120, AmplitudeRatioUnit.DecibelMicrovolt));
+            unitConverter.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelMillivolt, quantity => new AmplitudeRatio(quantity.Value + 60, AmplitudeRatioUnit.DecibelMillivolt));
+            unitConverter.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelUnloaded, quantity => new AmplitudeRatio(quantity.Value + 2.218487499, AmplitudeRatioUnit.DecibelUnloaded));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelVolt, quantity => quantity);
 
             // Register in unit converter: AmplitudeRatioUnit -> BaseUnit
-            unitConverter.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelMicrovolt, AmplitudeRatioUnit.DecibelVolt, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelMillivolt, AmplitudeRatioUnit.DecibelVolt, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelUnloaded, AmplitudeRatioUnit.DecibelVolt, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelMicrovolt, AmplitudeRatioUnit.DecibelVolt, quantity => new AmplitudeRatio(quantity.Value - 120, AmplitudeRatioUnit.DecibelVolt));
+            unitConverter.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelMillivolt, AmplitudeRatioUnit.DecibelVolt, quantity => new AmplitudeRatio(quantity.Value - 60, AmplitudeRatioUnit.DecibelVolt));
+            unitConverter.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelUnloaded, AmplitudeRatioUnit.DecibelVolt, quantity => new AmplitudeRatio(quantity.Value - 2.218487499, AmplitudeRatioUnit.DecibelVolt));
         }
 
         /// <summary>
@@ -675,11 +682,42 @@ namespace UnitsNet
         /// <summary>
         ///     Converts this AmplitudeRatio to another AmplitudeRatio with the unit representation <paramref name="unit" />.
         /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
         /// <returns>A AmplitudeRatio with the specified unit.</returns>
         public AmplitudeRatio ToUnit(AmplitudeRatioUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new AmplitudeRatio(convertedValue, unit);
+            return ToUnit(unit, DefaultConversionFunctions);
+        }
+
+        /// <summary>
+        ///     Converts this AmplitudeRatio to another AmplitudeRatio using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
+        /// <returns>A AmplitudeRatio with the specified unit.</returns>
+        public AmplitudeRatio ToUnit(AmplitudeRatioUnit unit, UnitConverter unitConverter)
+        {
+            if(Unit == unit)
+            {
+                // Already in requested units.
+                return this;
+            }
+            else if(unitConverter.TryGetConversionFunction((typeof(AmplitudeRatio), Unit, typeof(AmplitudeRatio), unit), out var conversionFunction))
+            {
+                // Direct conversion to requested unit found. Return the converted quantity.
+                var converted = conversionFunction(this);
+                return (AmplitudeRatio)converted;
+            }
+            else if(Unit != BaseUnit)
+            {
+                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                var inBaseUnits = ToUnit(BaseUnit);
+                return inBaseUnits.ToUnit(unit);
+            }
+            else
+            {
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         /// <inheritdoc />
@@ -688,7 +726,16 @@ namespace UnitsNet
             if(!(unit is AmplitudeRatioUnit unitAsAmplitudeRatioUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AmplitudeRatioUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsAmplitudeRatioUnit);
+            return ToUnit(unitAsAmplitudeRatioUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is AmplitudeRatioUnit unitAsAmplitudeRatioUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AmplitudeRatioUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsAmplitudeRatioUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -713,53 +760,15 @@ namespace UnitsNet
         IQuantity<AmplitudeRatioUnit> IQuantity<AmplitudeRatioUnit>.ToUnit(AmplitudeRatioUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantity<AmplitudeRatioUnit> IQuantity<AmplitudeRatioUnit>.ToUnit(AmplitudeRatioUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
+
+        /// <inheritdoc />
         IQuantity<AmplitudeRatioUnit> IQuantity<AmplitudeRatioUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case AmplitudeRatioUnit.DecibelMicrovolt: return _value - 120;
-                case AmplitudeRatioUnit.DecibelMillivolt: return _value - 60;
-                case AmplitudeRatioUnit.DecibelUnloaded: return _value - 2.218487499;
-                case AmplitudeRatioUnit.DecibelVolt: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal AmplitudeRatio ToBaseUnit()
-        {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new AmplitudeRatio(baseUnitValue, BaseUnit);
-        }
 
         private double GetValueAs(AmplitudeRatioUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var baseUnitValue = GetValueInBaseUnit();
-
-            switch(unit)
-            {
-                case AmplitudeRatioUnit.DecibelMicrovolt: return baseUnitValue + 120;
-                case AmplitudeRatioUnit.DecibelMillivolt: return baseUnitValue + 60;
-                case AmplitudeRatioUnit.DecibelUnloaded: return baseUnitValue + 2.218487499;
-                case AmplitudeRatioUnit.DecibelVolt: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         #endregion

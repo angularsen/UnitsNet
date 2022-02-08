@@ -66,6 +66,8 @@ namespace UnitsNet
                     new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.PercentPerSecond, "PercentsPerSecond", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.RatioChangeRate);
+
+            RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
         /// <summary>
@@ -103,6 +105,11 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="RatioChangeRate" /> instances.
+        /// </summary>
+        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<RatioChangeRateUnit> Info { get; }
@@ -201,13 +208,13 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> RatioChangeRateUnit
-            unitConverter.SetConversionFunction<RatioChangeRate>(RatioChangeRateUnit.DecimalFractionPerSecond, RatioChangeRateUnit.PercentPerSecond, quantity => quantity.ToUnit(RatioChangeRateUnit.PercentPerSecond));
+            unitConverter.SetConversionFunction<RatioChangeRate>(RatioChangeRateUnit.DecimalFractionPerSecond, RatioChangeRateUnit.PercentPerSecond, quantity => new RatioChangeRate(quantity.Value*1e2, RatioChangeRateUnit.PercentPerSecond));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<RatioChangeRate>(RatioChangeRateUnit.DecimalFractionPerSecond, RatioChangeRateUnit.DecimalFractionPerSecond, quantity => quantity);
 
             // Register in unit converter: RatioChangeRateUnit -> BaseUnit
-            unitConverter.SetConversionFunction<RatioChangeRate>(RatioChangeRateUnit.PercentPerSecond, RatioChangeRateUnit.DecimalFractionPerSecond, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<RatioChangeRate>(RatioChangeRateUnit.PercentPerSecond, RatioChangeRateUnit.DecimalFractionPerSecond, quantity => new RatioChangeRate(quantity.Value/1e2, RatioChangeRateUnit.DecimalFractionPerSecond));
         }
 
         /// <summary>
@@ -633,11 +640,42 @@ namespace UnitsNet
         /// <summary>
         ///     Converts this RatioChangeRate to another RatioChangeRate with the unit representation <paramref name="unit" />.
         /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
         /// <returns>A RatioChangeRate with the specified unit.</returns>
         public RatioChangeRate ToUnit(RatioChangeRateUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new RatioChangeRate(convertedValue, unit);
+            return ToUnit(unit, DefaultConversionFunctions);
+        }
+
+        /// <summary>
+        ///     Converts this RatioChangeRate to another RatioChangeRate using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
+        /// <returns>A RatioChangeRate with the specified unit.</returns>
+        public RatioChangeRate ToUnit(RatioChangeRateUnit unit, UnitConverter unitConverter)
+        {
+            if(Unit == unit)
+            {
+                // Already in requested units.
+                return this;
+            }
+            else if(unitConverter.TryGetConversionFunction((typeof(RatioChangeRate), Unit, typeof(RatioChangeRate), unit), out var conversionFunction))
+            {
+                // Direct conversion to requested unit found. Return the converted quantity.
+                var converted = conversionFunction(this);
+                return (RatioChangeRate)converted;
+            }
+            else if(Unit != BaseUnit)
+            {
+                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                var inBaseUnits = ToUnit(BaseUnit);
+                return inBaseUnits.ToUnit(unit);
+            }
+            else
+            {
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         /// <inheritdoc />
@@ -646,7 +684,16 @@ namespace UnitsNet
             if(!(unit is RatioChangeRateUnit unitAsRatioChangeRateUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RatioChangeRateUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsRatioChangeRateUnit);
+            return ToUnit(unitAsRatioChangeRateUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is RatioChangeRateUnit unitAsRatioChangeRateUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RatioChangeRateUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsRatioChangeRateUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -671,49 +718,15 @@ namespace UnitsNet
         IQuantity<RatioChangeRateUnit> IQuantity<RatioChangeRateUnit>.ToUnit(RatioChangeRateUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantity<RatioChangeRateUnit> IQuantity<RatioChangeRateUnit>.ToUnit(RatioChangeRateUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
+
+        /// <inheritdoc />
         IQuantity<RatioChangeRateUnit> IQuantity<RatioChangeRateUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case RatioChangeRateUnit.DecimalFractionPerSecond: return _value;
-                case RatioChangeRateUnit.PercentPerSecond: return _value/1e2;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal RatioChangeRate ToBaseUnit()
-        {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new RatioChangeRate(baseUnitValue, BaseUnit);
-        }
 
         private double GetValueAs(RatioChangeRateUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var baseUnitValue = GetValueInBaseUnit();
-
-            switch(unit)
-            {
-                case RatioChangeRateUnit.DecimalFractionPerSecond: return baseUnitValue;
-                case RatioChangeRateUnit.PercentPerSecond: return baseUnitValue*1e2;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         #endregion

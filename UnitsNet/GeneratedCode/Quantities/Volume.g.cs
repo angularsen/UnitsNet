@@ -115,6 +115,8 @@ namespace UnitsNet
                     new UnitInfo<VolumeUnit>(VolumeUnit.UsTeaspoon, "UsTeaspoons", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Volume);
+
+            RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
         /// <summary>
@@ -152,6 +154,11 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Volume" /> instances.
+        /// </summary>
+        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<VolumeUnit> Info { get; }
@@ -495,111 +502,111 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> VolumeUnit
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.AcreFoot, quantity => quantity.ToUnit(VolumeUnit.AcreFoot));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.AuTablespoon, quantity => quantity.ToUnit(VolumeUnit.AuTablespoon));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.BoardFoot, quantity => quantity.ToUnit(VolumeUnit.BoardFoot));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Centiliter, quantity => quantity.ToUnit(VolumeUnit.Centiliter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicCentimeter, quantity => quantity.ToUnit(VolumeUnit.CubicCentimeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicDecimeter, quantity => quantity.ToUnit(VolumeUnit.CubicDecimeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicFoot, quantity => quantity.ToUnit(VolumeUnit.CubicFoot));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicHectometer, quantity => quantity.ToUnit(VolumeUnit.CubicHectometer));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicInch, quantity => quantity.ToUnit(VolumeUnit.CubicInch));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicKilometer, quantity => quantity.ToUnit(VolumeUnit.CubicKilometer));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicMicrometer, quantity => quantity.ToUnit(VolumeUnit.CubicMicrometer));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicMile, quantity => quantity.ToUnit(VolumeUnit.CubicMile));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicMillimeter, quantity => quantity.ToUnit(VolumeUnit.CubicMillimeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicYard, quantity => quantity.ToUnit(VolumeUnit.CubicYard));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.DecausGallon, quantity => quantity.ToUnit(VolumeUnit.DecausGallon));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Deciliter, quantity => quantity.ToUnit(VolumeUnit.Deciliter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.DeciusGallon, quantity => quantity.ToUnit(VolumeUnit.DeciusGallon));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.HectocubicFoot, quantity => quantity.ToUnit(VolumeUnit.HectocubicFoot));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.HectocubicMeter, quantity => quantity.ToUnit(VolumeUnit.HectocubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Hectoliter, quantity => quantity.ToUnit(VolumeUnit.Hectoliter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.HectousGallon, quantity => quantity.ToUnit(VolumeUnit.HectousGallon));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.ImperialBeerBarrel, quantity => quantity.ToUnit(VolumeUnit.ImperialBeerBarrel));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.ImperialGallon, quantity => quantity.ToUnit(VolumeUnit.ImperialGallon));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.ImperialOunce, quantity => quantity.ToUnit(VolumeUnit.ImperialOunce));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.ImperialPint, quantity => quantity.ToUnit(VolumeUnit.ImperialPint));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.KilocubicFoot, quantity => quantity.ToUnit(VolumeUnit.KilocubicFoot));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.KilocubicMeter, quantity => quantity.ToUnit(VolumeUnit.KilocubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.KiloimperialGallon, quantity => quantity.ToUnit(VolumeUnit.KiloimperialGallon));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Kiloliter, quantity => quantity.ToUnit(VolumeUnit.Kiloliter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.KilousGallon, quantity => quantity.ToUnit(VolumeUnit.KilousGallon));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Liter, quantity => quantity.ToUnit(VolumeUnit.Liter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.MegacubicFoot, quantity => quantity.ToUnit(VolumeUnit.MegacubicFoot));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.MegaimperialGallon, quantity => quantity.ToUnit(VolumeUnit.MegaimperialGallon));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Megaliter, quantity => quantity.ToUnit(VolumeUnit.Megaliter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.MegausGallon, quantity => quantity.ToUnit(VolumeUnit.MegausGallon));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.MetricCup, quantity => quantity.ToUnit(VolumeUnit.MetricCup));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.MetricTeaspoon, quantity => quantity.ToUnit(VolumeUnit.MetricTeaspoon));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Microliter, quantity => quantity.ToUnit(VolumeUnit.Microliter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Milliliter, quantity => quantity.ToUnit(VolumeUnit.Milliliter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.OilBarrel, quantity => quantity.ToUnit(VolumeUnit.OilBarrel));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UkTablespoon, quantity => quantity.ToUnit(VolumeUnit.UkTablespoon));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsBeerBarrel, quantity => quantity.ToUnit(VolumeUnit.UsBeerBarrel));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsCustomaryCup, quantity => quantity.ToUnit(VolumeUnit.UsCustomaryCup));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsGallon, quantity => quantity.ToUnit(VolumeUnit.UsGallon));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsLegalCup, quantity => quantity.ToUnit(VolumeUnit.UsLegalCup));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsOunce, quantity => quantity.ToUnit(VolumeUnit.UsOunce));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsPint, quantity => quantity.ToUnit(VolumeUnit.UsPint));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsQuart, quantity => quantity.ToUnit(VolumeUnit.UsQuart));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsTablespoon, quantity => quantity.ToUnit(VolumeUnit.UsTablespoon));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsTeaspoon, quantity => quantity.ToUnit(VolumeUnit.UsTeaspoon));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.AcreFoot, quantity => new Volume(quantity.Value*0.000810714, VolumeUnit.AcreFoot));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.AuTablespoon, quantity => new Volume(quantity.Value/2e-5, VolumeUnit.AuTablespoon));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.BoardFoot, quantity => new Volume(quantity.Value/2.3597372158e-3, VolumeUnit.BoardFoot));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Centiliter, quantity => new Volume((quantity.Value*1e3) / 1e-2d, VolumeUnit.Centiliter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicCentimeter, quantity => new Volume(quantity.Value*1e6, VolumeUnit.CubicCentimeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicDecimeter, quantity => new Volume(quantity.Value*1e3, VolumeUnit.CubicDecimeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicFoot, quantity => new Volume(quantity.Value / 2.8316846592e-2, VolumeUnit.CubicFoot));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicHectometer, quantity => new Volume(quantity.Value/1e6, VolumeUnit.CubicHectometer));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicInch, quantity => new Volume(quantity.Value/(1.6387*1e-5), VolumeUnit.CubicInch));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicKilometer, quantity => new Volume(quantity.Value/1e9, VolumeUnit.CubicKilometer));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicMicrometer, quantity => new Volume(quantity.Value*1e18, VolumeUnit.CubicMicrometer));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicMile, quantity => new Volume(quantity.Value/4.16818182544058e9, VolumeUnit.CubicMile));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicMillimeter, quantity => new Volume(quantity.Value*1e9, VolumeUnit.CubicMillimeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicYard, quantity => new Volume(quantity.Value/0.764554858, VolumeUnit.CubicYard));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.DecausGallon, quantity => new Volume((quantity.Value/0.00378541) / 1e1d, VolumeUnit.DecausGallon));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Deciliter, quantity => new Volume((quantity.Value*1e3) / 1e-1d, VolumeUnit.Deciliter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.DeciusGallon, quantity => new Volume((quantity.Value/0.00378541) / 1e-1d, VolumeUnit.DeciusGallon));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.HectocubicFoot, quantity => new Volume((quantity.Value / 2.8316846592e-2) / 1e2d, VolumeUnit.HectocubicFoot));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.HectocubicMeter, quantity => new Volume((quantity.Value) / 1e2d, VolumeUnit.HectocubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Hectoliter, quantity => new Volume((quantity.Value*1e3) / 1e2d, VolumeUnit.Hectoliter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.HectousGallon, quantity => new Volume((quantity.Value/0.00378541) / 1e2d, VolumeUnit.HectousGallon));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.ImperialBeerBarrel, quantity => new Volume(quantity.Value/0.16365924, VolumeUnit.ImperialBeerBarrel));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.ImperialGallon, quantity => new Volume(quantity.Value/0.00454609000000181429905810072407, VolumeUnit.ImperialGallon));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.ImperialOunce, quantity => new Volume(quantity.Value/2.8413062499962901241875439064617e-5, VolumeUnit.ImperialOunce));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.ImperialPint, quantity => new Volume(quantity.Value / 5.6826125e-4, VolumeUnit.ImperialPint));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.KilocubicFoot, quantity => new Volume((quantity.Value / 2.8316846592e-2) / 1e3d, VolumeUnit.KilocubicFoot));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.KilocubicMeter, quantity => new Volume((quantity.Value) / 1e3d, VolumeUnit.KilocubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.KiloimperialGallon, quantity => new Volume((quantity.Value/0.00454609000000181429905810072407) / 1e3d, VolumeUnit.KiloimperialGallon));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Kiloliter, quantity => new Volume((quantity.Value*1e3) / 1e3d, VolumeUnit.Kiloliter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.KilousGallon, quantity => new Volume((quantity.Value/0.00378541) / 1e3d, VolumeUnit.KilousGallon));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Liter, quantity => new Volume(quantity.Value*1e3, VolumeUnit.Liter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.MegacubicFoot, quantity => new Volume((quantity.Value / 2.8316846592e-2) / 1e6d, VolumeUnit.MegacubicFoot));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.MegaimperialGallon, quantity => new Volume((quantity.Value/0.00454609000000181429905810072407) / 1e6d, VolumeUnit.MegaimperialGallon));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Megaliter, quantity => new Volume((quantity.Value*1e3) / 1e6d, VolumeUnit.Megaliter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.MegausGallon, quantity => new Volume((quantity.Value/0.00378541) / 1e6d, VolumeUnit.MegausGallon));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.MetricCup, quantity => new Volume(quantity.Value/0.00025, VolumeUnit.MetricCup));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.MetricTeaspoon, quantity => new Volume(quantity.Value/0.5e-5, VolumeUnit.MetricTeaspoon));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Microliter, quantity => new Volume((quantity.Value*1e3) / 1e-6d, VolumeUnit.Microliter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Milliliter, quantity => new Volume((quantity.Value*1e3) / 1e-3d, VolumeUnit.Milliliter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.OilBarrel, quantity => new Volume(quantity.Value/0.158987294928, VolumeUnit.OilBarrel));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UkTablespoon, quantity => new Volume(quantity.Value/1.5e-5, VolumeUnit.UkTablespoon));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsBeerBarrel, quantity => new Volume(quantity.Value/0.1173477658, VolumeUnit.UsBeerBarrel));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsCustomaryCup, quantity => new Volume(quantity.Value/0.0002365882365, VolumeUnit.UsCustomaryCup));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsGallon, quantity => new Volume(quantity.Value/0.00378541, VolumeUnit.UsGallon));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsLegalCup, quantity => new Volume(quantity.Value/0.00024, VolumeUnit.UsLegalCup));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsOunce, quantity => new Volume(quantity.Value/2.957352956253760505068307980135e-5, VolumeUnit.UsOunce));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsPint, quantity => new Volume(quantity.Value/4.73176473e-4, VolumeUnit.UsPint));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsQuart, quantity => new Volume(quantity.Value/9.46352946e-4, VolumeUnit.UsQuart));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsTablespoon, quantity => new Volume(quantity.Value/1.478676478125e-5, VolumeUnit.UsTablespoon));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsTeaspoon, quantity => new Volume(quantity.Value/4.92892159375e-6, VolumeUnit.UsTeaspoon));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicMeter, quantity => quantity);
 
             // Register in unit converter: VolumeUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.AcreFoot, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.AuTablespoon, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.BoardFoot, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Centiliter, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicCentimeter, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicDecimeter, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicFoot, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicHectometer, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicInch, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicKilometer, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMicrometer, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMile, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMillimeter, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicYard, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.DecausGallon, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Deciliter, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.DeciusGallon, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.HectocubicFoot, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.HectocubicMeter, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Hectoliter, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.HectousGallon, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.ImperialBeerBarrel, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.ImperialGallon, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.ImperialOunce, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.ImperialPint, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.KilocubicFoot, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.KilocubicMeter, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.KiloimperialGallon, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Kiloliter, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.KilousGallon, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Liter, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.MegacubicFoot, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.MegaimperialGallon, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Megaliter, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.MegausGallon, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.MetricCup, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.MetricTeaspoon, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Microliter, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Milliliter, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.OilBarrel, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UkTablespoon, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsBeerBarrel, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsCustomaryCup, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsGallon, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsLegalCup, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsOunce, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsPint, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsQuart, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsTablespoon, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsTeaspoon, VolumeUnit.CubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.AcreFoot, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value/0.000810714, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.AuTablespoon, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*2e-5, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.BoardFoot, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*2.3597372158e-3, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Centiliter, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value/1e3) * 1e-2d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicCentimeter, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value/1e6, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicDecimeter, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value/1e3, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicFoot, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 2.8316846592e-2, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicHectometer, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*1e6, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicInch, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*1.6387*1e-5, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicKilometer, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*1e9, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMicrometer, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value/1e18, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMile, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*4.16818182544058e9, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMillimeter, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value/1e9, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicYard, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*0.764554858, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.DecausGallon, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value*0.00378541) * 1e1d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Deciliter, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value/1e3) * 1e-1d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.DeciusGallon, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value*0.00378541) * 1e-1d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.HectocubicFoot, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value * 2.8316846592e-2) * 1e2d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.HectocubicMeter, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value) * 1e2d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Hectoliter, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value/1e3) * 1e2d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.HectousGallon, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value*0.00378541) * 1e2d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.ImperialBeerBarrel, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*0.16365924, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.ImperialGallon, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*0.00454609000000181429905810072407, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.ImperialOunce, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*2.8413062499962901241875439064617e-5, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.ImperialPint, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 5.6826125e-4, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.KilocubicFoot, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value * 2.8316846592e-2) * 1e3d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.KilocubicMeter, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value) * 1e3d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.KiloimperialGallon, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value*0.00454609000000181429905810072407) * 1e3d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Kiloliter, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value/1e3) * 1e3d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.KilousGallon, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value*0.00378541) * 1e3d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Liter, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value/1e3, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.MegacubicFoot, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value * 2.8316846592e-2) * 1e6d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.MegaimperialGallon, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value*0.00454609000000181429905810072407) * 1e6d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Megaliter, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value/1e3) * 1e6d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.MegausGallon, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value*0.00378541) * 1e6d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.MetricCup, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*0.00025, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.MetricTeaspoon, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*0.5e-5, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Microliter, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value/1e3) * 1e-6d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Milliliter, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value/1e3) * 1e-3d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.OilBarrel, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*0.158987294928, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UkTablespoon, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*1.5e-5, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsBeerBarrel, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*0.1173477658, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsCustomaryCup, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*0.0002365882365, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsGallon, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*0.00378541, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsLegalCup, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*0.00024, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsOunce, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*2.957352956253760505068307980135e-5, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsPint, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*4.73176473e-4, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsQuart, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*9.46352946e-4, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsTablespoon, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*1.478676478125e-5, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsTeaspoon, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*4.92892159375e-6, VolumeUnit.CubicMeter));
         }
 
         /// <summary>
@@ -1466,11 +1473,42 @@ namespace UnitsNet
         /// <summary>
         ///     Converts this Volume to another Volume with the unit representation <paramref name="unit" />.
         /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
         /// <returns>A Volume with the specified unit.</returns>
         public Volume ToUnit(VolumeUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new Volume(convertedValue, unit);
+            return ToUnit(unit, DefaultConversionFunctions);
+        }
+
+        /// <summary>
+        ///     Converts this Volume to another Volume using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
+        /// <returns>A Volume with the specified unit.</returns>
+        public Volume ToUnit(VolumeUnit unit, UnitConverter unitConverter)
+        {
+            if(Unit == unit)
+            {
+                // Already in requested units.
+                return this;
+            }
+            else if(unitConverter.TryGetConversionFunction((typeof(Volume), Unit, typeof(Volume), unit), out var conversionFunction))
+            {
+                // Direct conversion to requested unit found. Return the converted quantity.
+                var converted = conversionFunction(this);
+                return (Volume)converted;
+            }
+            else if(Unit != BaseUnit)
+            {
+                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                var inBaseUnits = ToUnit(BaseUnit);
+                return inBaseUnits.ToUnit(unit);
+            }
+            else
+            {
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         /// <inheritdoc />
@@ -1479,7 +1517,16 @@ namespace UnitsNet
             if(!(unit is VolumeUnit unitAsVolumeUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsVolumeUnit);
+            return ToUnit(unitAsVolumeUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is VolumeUnit unitAsVolumeUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsVolumeUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -1504,147 +1551,15 @@ namespace UnitsNet
         IQuantity<VolumeUnit> IQuantity<VolumeUnit>.ToUnit(VolumeUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantity<VolumeUnit> IQuantity<VolumeUnit>.ToUnit(VolumeUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
+
+        /// <inheritdoc />
         IQuantity<VolumeUnit> IQuantity<VolumeUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case VolumeUnit.AcreFoot: return _value/0.000810714;
-                case VolumeUnit.AuTablespoon: return _value*2e-5;
-                case VolumeUnit.BoardFoot: return _value*2.3597372158e-3;
-                case VolumeUnit.Centiliter: return (_value/1e3) * 1e-2d;
-                case VolumeUnit.CubicCentimeter: return _value/1e6;
-                case VolumeUnit.CubicDecimeter: return _value/1e3;
-                case VolumeUnit.CubicFoot: return _value * 2.8316846592e-2;
-                case VolumeUnit.CubicHectometer: return _value*1e6;
-                case VolumeUnit.CubicInch: return _value*1.6387*1e-5;
-                case VolumeUnit.CubicKilometer: return _value*1e9;
-                case VolumeUnit.CubicMeter: return _value;
-                case VolumeUnit.CubicMicrometer: return _value/1e18;
-                case VolumeUnit.CubicMile: return _value*4.16818182544058e9;
-                case VolumeUnit.CubicMillimeter: return _value/1e9;
-                case VolumeUnit.CubicYard: return _value*0.764554858;
-                case VolumeUnit.DecausGallon: return (_value*0.00378541) * 1e1d;
-                case VolumeUnit.Deciliter: return (_value/1e3) * 1e-1d;
-                case VolumeUnit.DeciusGallon: return (_value*0.00378541) * 1e-1d;
-                case VolumeUnit.HectocubicFoot: return (_value * 2.8316846592e-2) * 1e2d;
-                case VolumeUnit.HectocubicMeter: return (_value) * 1e2d;
-                case VolumeUnit.Hectoliter: return (_value/1e3) * 1e2d;
-                case VolumeUnit.HectousGallon: return (_value*0.00378541) * 1e2d;
-                case VolumeUnit.ImperialBeerBarrel: return _value*0.16365924;
-                case VolumeUnit.ImperialGallon: return _value*0.00454609000000181429905810072407;
-                case VolumeUnit.ImperialOunce: return _value*2.8413062499962901241875439064617e-5;
-                case VolumeUnit.ImperialPint: return _value * 5.6826125e-4;
-                case VolumeUnit.KilocubicFoot: return (_value * 2.8316846592e-2) * 1e3d;
-                case VolumeUnit.KilocubicMeter: return (_value) * 1e3d;
-                case VolumeUnit.KiloimperialGallon: return (_value*0.00454609000000181429905810072407) * 1e3d;
-                case VolumeUnit.Kiloliter: return (_value/1e3) * 1e3d;
-                case VolumeUnit.KilousGallon: return (_value*0.00378541) * 1e3d;
-                case VolumeUnit.Liter: return _value/1e3;
-                case VolumeUnit.MegacubicFoot: return (_value * 2.8316846592e-2) * 1e6d;
-                case VolumeUnit.MegaimperialGallon: return (_value*0.00454609000000181429905810072407) * 1e6d;
-                case VolumeUnit.Megaliter: return (_value/1e3) * 1e6d;
-                case VolumeUnit.MegausGallon: return (_value*0.00378541) * 1e6d;
-                case VolumeUnit.MetricCup: return _value*0.00025;
-                case VolumeUnit.MetricTeaspoon: return _value*0.5e-5;
-                case VolumeUnit.Microliter: return (_value/1e3) * 1e-6d;
-                case VolumeUnit.Milliliter: return (_value/1e3) * 1e-3d;
-                case VolumeUnit.OilBarrel: return _value*0.158987294928;
-                case VolumeUnit.UkTablespoon: return _value*1.5e-5;
-                case VolumeUnit.UsBeerBarrel: return _value*0.1173477658;
-                case VolumeUnit.UsCustomaryCup: return _value*0.0002365882365;
-                case VolumeUnit.UsGallon: return _value*0.00378541;
-                case VolumeUnit.UsLegalCup: return _value*0.00024;
-                case VolumeUnit.UsOunce: return _value*2.957352956253760505068307980135e-5;
-                case VolumeUnit.UsPint: return _value*4.73176473e-4;
-                case VolumeUnit.UsQuart: return _value*9.46352946e-4;
-                case VolumeUnit.UsTablespoon: return _value*1.478676478125e-5;
-                case VolumeUnit.UsTeaspoon: return _value*4.92892159375e-6;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal Volume ToBaseUnit()
-        {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new Volume(baseUnitValue, BaseUnit);
-        }
 
         private double GetValueAs(VolumeUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var baseUnitValue = GetValueInBaseUnit();
-
-            switch(unit)
-            {
-                case VolumeUnit.AcreFoot: return baseUnitValue*0.000810714;
-                case VolumeUnit.AuTablespoon: return baseUnitValue/2e-5;
-                case VolumeUnit.BoardFoot: return baseUnitValue/2.3597372158e-3;
-                case VolumeUnit.Centiliter: return (baseUnitValue*1e3) / 1e-2d;
-                case VolumeUnit.CubicCentimeter: return baseUnitValue*1e6;
-                case VolumeUnit.CubicDecimeter: return baseUnitValue*1e3;
-                case VolumeUnit.CubicFoot: return baseUnitValue / 2.8316846592e-2;
-                case VolumeUnit.CubicHectometer: return baseUnitValue/1e6;
-                case VolumeUnit.CubicInch: return baseUnitValue/(1.6387*1e-5);
-                case VolumeUnit.CubicKilometer: return baseUnitValue/1e9;
-                case VolumeUnit.CubicMeter: return baseUnitValue;
-                case VolumeUnit.CubicMicrometer: return baseUnitValue*1e18;
-                case VolumeUnit.CubicMile: return baseUnitValue/4.16818182544058e9;
-                case VolumeUnit.CubicMillimeter: return baseUnitValue*1e9;
-                case VolumeUnit.CubicYard: return baseUnitValue/0.764554858;
-                case VolumeUnit.DecausGallon: return (baseUnitValue/0.00378541) / 1e1d;
-                case VolumeUnit.Deciliter: return (baseUnitValue*1e3) / 1e-1d;
-                case VolumeUnit.DeciusGallon: return (baseUnitValue/0.00378541) / 1e-1d;
-                case VolumeUnit.HectocubicFoot: return (baseUnitValue / 2.8316846592e-2) / 1e2d;
-                case VolumeUnit.HectocubicMeter: return (baseUnitValue) / 1e2d;
-                case VolumeUnit.Hectoliter: return (baseUnitValue*1e3) / 1e2d;
-                case VolumeUnit.HectousGallon: return (baseUnitValue/0.00378541) / 1e2d;
-                case VolumeUnit.ImperialBeerBarrel: return baseUnitValue/0.16365924;
-                case VolumeUnit.ImperialGallon: return baseUnitValue/0.00454609000000181429905810072407;
-                case VolumeUnit.ImperialOunce: return baseUnitValue/2.8413062499962901241875439064617e-5;
-                case VolumeUnit.ImperialPint: return baseUnitValue / 5.6826125e-4;
-                case VolumeUnit.KilocubicFoot: return (baseUnitValue / 2.8316846592e-2) / 1e3d;
-                case VolumeUnit.KilocubicMeter: return (baseUnitValue) / 1e3d;
-                case VolumeUnit.KiloimperialGallon: return (baseUnitValue/0.00454609000000181429905810072407) / 1e3d;
-                case VolumeUnit.Kiloliter: return (baseUnitValue*1e3) / 1e3d;
-                case VolumeUnit.KilousGallon: return (baseUnitValue/0.00378541) / 1e3d;
-                case VolumeUnit.Liter: return baseUnitValue*1e3;
-                case VolumeUnit.MegacubicFoot: return (baseUnitValue / 2.8316846592e-2) / 1e6d;
-                case VolumeUnit.MegaimperialGallon: return (baseUnitValue/0.00454609000000181429905810072407) / 1e6d;
-                case VolumeUnit.Megaliter: return (baseUnitValue*1e3) / 1e6d;
-                case VolumeUnit.MegausGallon: return (baseUnitValue/0.00378541) / 1e6d;
-                case VolumeUnit.MetricCup: return baseUnitValue/0.00025;
-                case VolumeUnit.MetricTeaspoon: return baseUnitValue/0.5e-5;
-                case VolumeUnit.Microliter: return (baseUnitValue*1e3) / 1e-6d;
-                case VolumeUnit.Milliliter: return (baseUnitValue*1e3) / 1e-3d;
-                case VolumeUnit.OilBarrel: return baseUnitValue/0.158987294928;
-                case VolumeUnit.UkTablespoon: return baseUnitValue/1.5e-5;
-                case VolumeUnit.UsBeerBarrel: return baseUnitValue/0.1173477658;
-                case VolumeUnit.UsCustomaryCup: return baseUnitValue/0.0002365882365;
-                case VolumeUnit.UsGallon: return baseUnitValue/0.00378541;
-                case VolumeUnit.UsLegalCup: return baseUnitValue/0.00024;
-                case VolumeUnit.UsOunce: return baseUnitValue/2.957352956253760505068307980135e-5;
-                case VolumeUnit.UsPint: return baseUnitValue/4.73176473e-4;
-                case VolumeUnit.UsQuart: return baseUnitValue/9.46352946e-4;
-                case VolumeUnit.UsTablespoon: return baseUnitValue/1.478676478125e-5;
-                case VolumeUnit.UsTeaspoon: return baseUnitValue/4.92892159375e-6;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         #endregion

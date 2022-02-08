@@ -70,6 +70,8 @@ namespace UnitsNet
                     new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerMeter, "SiemensPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricConductivity);
+
+            RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
         /// <summary>
@@ -107,6 +109,11 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="ElectricConductivity" /> instances.
+        /// </summary>
+        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<ElectricConductivityUnit> Info { get; }
@@ -210,15 +217,15 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> ElectricConductivityUnit
-            unitConverter.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerFoot, quantity => quantity.ToUnit(ElectricConductivityUnit.SiemensPerFoot));
-            unitConverter.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerInch, quantity => quantity.ToUnit(ElectricConductivityUnit.SiemensPerInch));
+            unitConverter.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerFoot, quantity => new ElectricConductivity(quantity.Value / 3.2808398950131234, ElectricConductivityUnit.SiemensPerFoot));
+            unitConverter.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerInch, quantity => new ElectricConductivity(quantity.Value / 3.937007874015748e1, ElectricConductivityUnit.SiemensPerInch));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerMeter, quantity => quantity);
 
             // Register in unit converter: ElectricConductivityUnit -> BaseUnit
-            unitConverter.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerFoot, ElectricConductivityUnit.SiemensPerMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerInch, ElectricConductivityUnit.SiemensPerMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerFoot, ElectricConductivityUnit.SiemensPerMeter, quantity => new ElectricConductivity(quantity.Value * 3.2808398950131234, ElectricConductivityUnit.SiemensPerMeter));
+            unitConverter.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerInch, ElectricConductivityUnit.SiemensPerMeter, quantity => new ElectricConductivity(quantity.Value * 3.937007874015748e1, ElectricConductivityUnit.SiemensPerMeter));
         }
 
         /// <summary>
@@ -653,11 +660,42 @@ namespace UnitsNet
         /// <summary>
         ///     Converts this ElectricConductivity to another ElectricConductivity with the unit representation <paramref name="unit" />.
         /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
         /// <returns>A ElectricConductivity with the specified unit.</returns>
         public ElectricConductivity ToUnit(ElectricConductivityUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new ElectricConductivity(convertedValue, unit);
+            return ToUnit(unit, DefaultConversionFunctions);
+        }
+
+        /// <summary>
+        ///     Converts this ElectricConductivity to another ElectricConductivity using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
+        /// <returns>A ElectricConductivity with the specified unit.</returns>
+        public ElectricConductivity ToUnit(ElectricConductivityUnit unit, UnitConverter unitConverter)
+        {
+            if(Unit == unit)
+            {
+                // Already in requested units.
+                return this;
+            }
+            else if(unitConverter.TryGetConversionFunction((typeof(ElectricConductivity), Unit, typeof(ElectricConductivity), unit), out var conversionFunction))
+            {
+                // Direct conversion to requested unit found. Return the converted quantity.
+                var converted = conversionFunction(this);
+                return (ElectricConductivity)converted;
+            }
+            else if(Unit != BaseUnit)
+            {
+                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                var inBaseUnits = ToUnit(BaseUnit);
+                return inBaseUnits.ToUnit(unit);
+            }
+            else
+            {
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         /// <inheritdoc />
@@ -666,7 +704,16 @@ namespace UnitsNet
             if(!(unit is ElectricConductivityUnit unitAsElectricConductivityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricConductivityUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsElectricConductivityUnit);
+            return ToUnit(unitAsElectricConductivityUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is ElectricConductivityUnit unitAsElectricConductivityUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricConductivityUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsElectricConductivityUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -691,51 +738,15 @@ namespace UnitsNet
         IQuantity<ElectricConductivityUnit> IQuantity<ElectricConductivityUnit>.ToUnit(ElectricConductivityUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantity<ElectricConductivityUnit> IQuantity<ElectricConductivityUnit>.ToUnit(ElectricConductivityUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
+
+        /// <inheritdoc />
         IQuantity<ElectricConductivityUnit> IQuantity<ElectricConductivityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case ElectricConductivityUnit.SiemensPerFoot: return _value * 3.2808398950131234;
-                case ElectricConductivityUnit.SiemensPerInch: return _value * 3.937007874015748e1;
-                case ElectricConductivityUnit.SiemensPerMeter: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal ElectricConductivity ToBaseUnit()
-        {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new ElectricConductivity(baseUnitValue, BaseUnit);
-        }
 
         private double GetValueAs(ElectricConductivityUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var baseUnitValue = GetValueInBaseUnit();
-
-            switch(unit)
-            {
-                case ElectricConductivityUnit.SiemensPerFoot: return baseUnitValue / 3.2808398950131234;
-                case ElectricConductivityUnit.SiemensPerInch: return baseUnitValue / 3.937007874015748e1;
-                case ElectricConductivityUnit.SiemensPerMeter: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         #endregion

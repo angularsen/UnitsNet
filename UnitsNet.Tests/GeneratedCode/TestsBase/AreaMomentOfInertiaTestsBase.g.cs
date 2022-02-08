@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -52,6 +53,30 @@ namespace UnitsNet.Tests
         protected virtual double MetersToTheFourthTolerance { get { return 1e-5; } }
         protected virtual double MillimetersToTheFourthTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(AreaMomentOfInertiaUnit unit)
+        {
+            return unit switch
+            {
+                AreaMomentOfInertiaUnit.CentimeterToTheFourth => (CentimetersToTheFourthInOneMeterToTheFourth, CentimetersToTheFourthTolerance),
+                AreaMomentOfInertiaUnit.DecimeterToTheFourth => (DecimetersToTheFourthInOneMeterToTheFourth, DecimetersToTheFourthTolerance),
+                AreaMomentOfInertiaUnit.FootToTheFourth => (FeetToTheFourthInOneMeterToTheFourth, FeetToTheFourthTolerance),
+                AreaMomentOfInertiaUnit.InchToTheFourth => (InchesToTheFourthInOneMeterToTheFourth, InchesToTheFourthTolerance),
+                AreaMomentOfInertiaUnit.MeterToTheFourth => (MetersToTheFourthInOneMeterToTheFourth, MetersToTheFourthTolerance),
+                AreaMomentOfInertiaUnit.MillimeterToTheFourth => (MillimetersToTheFourthInOneMeterToTheFourth, MillimetersToTheFourthTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { AreaMomentOfInertiaUnit.CentimeterToTheFourth },
+            new object[] { AreaMomentOfInertiaUnit.DecimeterToTheFourth },
+            new object[] { AreaMomentOfInertiaUnit.FootToTheFourth },
+            new object[] { AreaMomentOfInertiaUnit.InchToTheFourth },
+            new object[] { AreaMomentOfInertiaUnit.MeterToTheFourth },
+            new object[] { AreaMomentOfInertiaUnit.MillimeterToTheFourth },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -204,41 +229,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(AreaMomentOfInertiaUnit unit)
         {
-            var metertothefourth = AreaMomentOfInertia.FromMetersToTheFourth(1);
+            var inBaseUnits = AreaMomentOfInertia.From(1.0, AreaMomentOfInertia.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var centimetertothefourthQuantity = metertothefourth.ToUnit(AreaMomentOfInertiaUnit.CentimeterToTheFourth);
-            AssertEx.EqualTolerance(CentimetersToTheFourthInOneMeterToTheFourth, (double)centimetertothefourthQuantity.Value, CentimetersToTheFourthTolerance);
-            Assert.Equal(AreaMomentOfInertiaUnit.CentimeterToTheFourth, centimetertothefourthQuantity.Unit);
-
-            var decimetertothefourthQuantity = metertothefourth.ToUnit(AreaMomentOfInertiaUnit.DecimeterToTheFourth);
-            AssertEx.EqualTolerance(DecimetersToTheFourthInOneMeterToTheFourth, (double)decimetertothefourthQuantity.Value, DecimetersToTheFourthTolerance);
-            Assert.Equal(AreaMomentOfInertiaUnit.DecimeterToTheFourth, decimetertothefourthQuantity.Unit);
-
-            var foottothefourthQuantity = metertothefourth.ToUnit(AreaMomentOfInertiaUnit.FootToTheFourth);
-            AssertEx.EqualTolerance(FeetToTheFourthInOneMeterToTheFourth, (double)foottothefourthQuantity.Value, FeetToTheFourthTolerance);
-            Assert.Equal(AreaMomentOfInertiaUnit.FootToTheFourth, foottothefourthQuantity.Unit);
-
-            var inchtothefourthQuantity = metertothefourth.ToUnit(AreaMomentOfInertiaUnit.InchToTheFourth);
-            AssertEx.EqualTolerance(InchesToTheFourthInOneMeterToTheFourth, (double)inchtothefourthQuantity.Value, InchesToTheFourthTolerance);
-            Assert.Equal(AreaMomentOfInertiaUnit.InchToTheFourth, inchtothefourthQuantity.Unit);
-
-            var metertothefourthQuantity = metertothefourth.ToUnit(AreaMomentOfInertiaUnit.MeterToTheFourth);
-            AssertEx.EqualTolerance(MetersToTheFourthInOneMeterToTheFourth, (double)metertothefourthQuantity.Value, MetersToTheFourthTolerance);
-            Assert.Equal(AreaMomentOfInertiaUnit.MeterToTheFourth, metertothefourthQuantity.Unit);
-
-            var millimetertothefourthQuantity = metertothefourth.ToUnit(AreaMomentOfInertiaUnit.MillimeterToTheFourth);
-            AssertEx.EqualTolerance(MillimetersToTheFourthInOneMeterToTheFourth, (double)millimetertothefourthQuantity.Value, MillimetersToTheFourthTolerance);
-            Assert.Equal(AreaMomentOfInertiaUnit.MillimeterToTheFourth, millimetertothefourthQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(AreaMomentOfInertiaUnit unit)
         {
-            var quantityInBaseUnit = AreaMomentOfInertia.FromMetersToTheFourth(1).ToBaseUnit();
-            Assert.Equal(AreaMomentOfInertia.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = AreaMomentOfInertia.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(AreaMomentOfInertiaUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = AreaMomentOfInertia.Units.FirstOrDefault(u => u != AreaMomentOfInertia.BaseUnit && u != AreaMomentOfInertiaUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == AreaMomentOfInertiaUnit.Undefined)
+                fromUnit = AreaMomentOfInertia.BaseUnit;
+
+            var quantity = AreaMomentOfInertia.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

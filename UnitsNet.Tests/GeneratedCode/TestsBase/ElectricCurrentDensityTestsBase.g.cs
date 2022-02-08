@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -46,6 +47,24 @@ namespace UnitsNet.Tests
         protected virtual double AmperesPerSquareInchTolerance { get { return 1e-5; } }
         protected virtual double AmperesPerSquareMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricCurrentDensityUnit unit)
+        {
+            return unit switch
+            {
+                ElectricCurrentDensityUnit.AmperePerSquareFoot => (AmperesPerSquareFootInOneAmperePerSquareMeter, AmperesPerSquareFootTolerance),
+                ElectricCurrentDensityUnit.AmperePerSquareInch => (AmperesPerSquareInchInOneAmperePerSquareMeter, AmperesPerSquareInchTolerance),
+                ElectricCurrentDensityUnit.AmperePerSquareMeter => (AmperesPerSquareMeterInOneAmperePerSquareMeter, AmperesPerSquareMeterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ElectricCurrentDensityUnit.AmperePerSquareFoot },
+            new object[] { ElectricCurrentDensityUnit.AmperePerSquareInch },
+            new object[] { ElectricCurrentDensityUnit.AmperePerSquareMeter },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -180,29 +199,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ElectricCurrentDensityUnit unit)
         {
-            var amperepersquaremeter = ElectricCurrentDensity.FromAmperesPerSquareMeter(1);
+            var inBaseUnits = ElectricCurrentDensity.From(1.0, ElectricCurrentDensity.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var amperepersquarefootQuantity = amperepersquaremeter.ToUnit(ElectricCurrentDensityUnit.AmperePerSquareFoot);
-            AssertEx.EqualTolerance(AmperesPerSquareFootInOneAmperePerSquareMeter, (double)amperepersquarefootQuantity.Value, AmperesPerSquareFootTolerance);
-            Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareFoot, amperepersquarefootQuantity.Unit);
-
-            var amperepersquareinchQuantity = amperepersquaremeter.ToUnit(ElectricCurrentDensityUnit.AmperePerSquareInch);
-            AssertEx.EqualTolerance(AmperesPerSquareInchInOneAmperePerSquareMeter, (double)amperepersquareinchQuantity.Value, AmperesPerSquareInchTolerance);
-            Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareInch, amperepersquareinchQuantity.Unit);
-
-            var amperepersquaremeterQuantity = amperepersquaremeter.ToUnit(ElectricCurrentDensityUnit.AmperePerSquareMeter);
-            AssertEx.EqualTolerance(AmperesPerSquareMeterInOneAmperePerSquareMeter, (double)amperepersquaremeterQuantity.Value, AmperesPerSquareMeterTolerance);
-            Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareMeter, amperepersquaremeterQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(ElectricCurrentDensityUnit unit)
         {
-            var quantityInBaseUnit = ElectricCurrentDensity.FromAmperesPerSquareMeter(1).ToBaseUnit();
-            Assert.Equal(ElectricCurrentDensity.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ElectricCurrentDensity.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricCurrentDensityUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ElectricCurrentDensity.Units.FirstOrDefault(u => u != ElectricCurrentDensity.BaseUnit && u != ElectricCurrentDensityUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ElectricCurrentDensityUnit.Undefined)
+                fromUnit = ElectricCurrentDensity.BaseUnit;
+
+            var quantity = ElectricCurrentDensity.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

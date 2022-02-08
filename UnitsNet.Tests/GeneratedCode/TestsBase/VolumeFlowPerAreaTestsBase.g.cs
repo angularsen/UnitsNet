@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -44,6 +45,22 @@ namespace UnitsNet.Tests
         protected virtual double CubicFeetPerMinutePerSquareFootTolerance { get { return 1e-5; } }
         protected virtual double CubicMetersPerSecondPerSquareMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(VolumeFlowPerAreaUnit unit)
+        {
+            return unit switch
+            {
+                VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot => (CubicFeetPerMinutePerSquareFootInOneCubicMeterPerSecondPerSquareMeter, CubicFeetPerMinutePerSquareFootTolerance),
+                VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter => (CubicMetersPerSecondPerSquareMeterInOneCubicMeterPerSecondPerSquareMeter, CubicMetersPerSecondPerSquareMeterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot },
+            new object[] { VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -172,25 +189,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(VolumeFlowPerAreaUnit unit)
         {
-            var cubicmeterpersecondpersquaremeter = VolumeFlowPerArea.FromCubicMetersPerSecondPerSquareMeter(1);
+            var inBaseUnits = VolumeFlowPerArea.From(1.0, VolumeFlowPerArea.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var cubicfootperminutepersquarefootQuantity = cubicmeterpersecondpersquaremeter.ToUnit(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot);
-            AssertEx.EqualTolerance(CubicFeetPerMinutePerSquareFootInOneCubicMeterPerSecondPerSquareMeter, (double)cubicfootperminutepersquarefootQuantity.Value, CubicFeetPerMinutePerSquareFootTolerance);
-            Assert.Equal(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, cubicfootperminutepersquarefootQuantity.Unit);
-
-            var cubicmeterpersecondpersquaremeterQuantity = cubicmeterpersecondpersquaremeter.ToUnit(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter);
-            AssertEx.EqualTolerance(CubicMetersPerSecondPerSquareMeterInOneCubicMeterPerSecondPerSquareMeter, (double)cubicmeterpersecondpersquaremeterQuantity.Value, CubicMetersPerSecondPerSquareMeterTolerance);
-            Assert.Equal(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, cubicmeterpersecondpersquaremeterQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(VolumeFlowPerAreaUnit unit)
         {
-            var quantityInBaseUnit = VolumeFlowPerArea.FromCubicMetersPerSecondPerSquareMeter(1).ToBaseUnit();
-            Assert.Equal(VolumeFlowPerArea.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = VolumeFlowPerArea.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(VolumeFlowPerAreaUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = VolumeFlowPerArea.Units.FirstOrDefault(u => u != VolumeFlowPerArea.BaseUnit && u != VolumeFlowPerAreaUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == VolumeFlowPerAreaUnit.Undefined)
+                fromUnit = VolumeFlowPerArea.BaseUnit;
+
+            var quantity = VolumeFlowPerArea.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

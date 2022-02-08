@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -56,6 +57,34 @@ namespace UnitsNet.Tests
         protected virtual double NanoamperesTolerance { get { return 1e-5; } }
         protected virtual double PicoamperesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricCurrentUnit unit)
+        {
+            return unit switch
+            {
+                ElectricCurrentUnit.Ampere => (AmperesInOneAmpere, AmperesTolerance),
+                ElectricCurrentUnit.Centiampere => (CentiamperesInOneAmpere, CentiamperesTolerance),
+                ElectricCurrentUnit.Kiloampere => (KiloamperesInOneAmpere, KiloamperesTolerance),
+                ElectricCurrentUnit.Megaampere => (MegaamperesInOneAmpere, MegaamperesTolerance),
+                ElectricCurrentUnit.Microampere => (MicroamperesInOneAmpere, MicroamperesTolerance),
+                ElectricCurrentUnit.Milliampere => (MilliamperesInOneAmpere, MilliamperesTolerance),
+                ElectricCurrentUnit.Nanoampere => (NanoamperesInOneAmpere, NanoamperesTolerance),
+                ElectricCurrentUnit.Picoampere => (PicoamperesInOneAmpere, PicoamperesTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ElectricCurrentUnit.Ampere },
+            new object[] { ElectricCurrentUnit.Centiampere },
+            new object[] { ElectricCurrentUnit.Kiloampere },
+            new object[] { ElectricCurrentUnit.Megaampere },
+            new object[] { ElectricCurrentUnit.Microampere },
+            new object[] { ElectricCurrentUnit.Milliampere },
+            new object[] { ElectricCurrentUnit.Nanoampere },
+            new object[] { ElectricCurrentUnit.Picoampere },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -220,49 +249,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ElectricCurrentUnit unit)
         {
-            var ampere = ElectricCurrent.FromAmperes(1);
+            var inBaseUnits = ElectricCurrent.From(1.0, ElectricCurrent.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var ampereQuantity = ampere.ToUnit(ElectricCurrentUnit.Ampere);
-            AssertEx.EqualTolerance(AmperesInOneAmpere, (double)ampereQuantity.Value, AmperesTolerance);
-            Assert.Equal(ElectricCurrentUnit.Ampere, ampereQuantity.Unit);
-
-            var centiampereQuantity = ampere.ToUnit(ElectricCurrentUnit.Centiampere);
-            AssertEx.EqualTolerance(CentiamperesInOneAmpere, (double)centiampereQuantity.Value, CentiamperesTolerance);
-            Assert.Equal(ElectricCurrentUnit.Centiampere, centiampereQuantity.Unit);
-
-            var kiloampereQuantity = ampere.ToUnit(ElectricCurrentUnit.Kiloampere);
-            AssertEx.EqualTolerance(KiloamperesInOneAmpere, (double)kiloampereQuantity.Value, KiloamperesTolerance);
-            Assert.Equal(ElectricCurrentUnit.Kiloampere, kiloampereQuantity.Unit);
-
-            var megaampereQuantity = ampere.ToUnit(ElectricCurrentUnit.Megaampere);
-            AssertEx.EqualTolerance(MegaamperesInOneAmpere, (double)megaampereQuantity.Value, MegaamperesTolerance);
-            Assert.Equal(ElectricCurrentUnit.Megaampere, megaampereQuantity.Unit);
-
-            var microampereQuantity = ampere.ToUnit(ElectricCurrentUnit.Microampere);
-            AssertEx.EqualTolerance(MicroamperesInOneAmpere, (double)microampereQuantity.Value, MicroamperesTolerance);
-            Assert.Equal(ElectricCurrentUnit.Microampere, microampereQuantity.Unit);
-
-            var milliampereQuantity = ampere.ToUnit(ElectricCurrentUnit.Milliampere);
-            AssertEx.EqualTolerance(MilliamperesInOneAmpere, (double)milliampereQuantity.Value, MilliamperesTolerance);
-            Assert.Equal(ElectricCurrentUnit.Milliampere, milliampereQuantity.Unit);
-
-            var nanoampereQuantity = ampere.ToUnit(ElectricCurrentUnit.Nanoampere);
-            AssertEx.EqualTolerance(NanoamperesInOneAmpere, (double)nanoampereQuantity.Value, NanoamperesTolerance);
-            Assert.Equal(ElectricCurrentUnit.Nanoampere, nanoampereQuantity.Unit);
-
-            var picoampereQuantity = ampere.ToUnit(ElectricCurrentUnit.Picoampere);
-            AssertEx.EqualTolerance(PicoamperesInOneAmpere, (double)picoampereQuantity.Value, PicoamperesTolerance);
-            Assert.Equal(ElectricCurrentUnit.Picoampere, picoampereQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(ElectricCurrentUnit unit)
         {
-            var quantityInBaseUnit = ElectricCurrent.FromAmperes(1).ToBaseUnit();
-            Assert.Equal(ElectricCurrent.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ElectricCurrent.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricCurrentUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ElectricCurrent.Units.FirstOrDefault(u => u != ElectricCurrent.BaseUnit && u != ElectricCurrentUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ElectricCurrentUnit.Undefined)
+                fromUnit = ElectricCurrent.BaseUnit;
+
+            var quantity = ElectricCurrent.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

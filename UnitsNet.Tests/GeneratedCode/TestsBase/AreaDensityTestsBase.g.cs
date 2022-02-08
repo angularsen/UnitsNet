@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -42,6 +43,20 @@ namespace UnitsNet.Tests
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double KilogramsPerSquareMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(AreaDensityUnit unit)
+        {
+            return unit switch
+            {
+                AreaDensityUnit.KilogramPerSquareMeter => (KilogramsPerSquareMeterInOneKilogramPerSquareMeter, KilogramsPerSquareMeterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { AreaDensityUnit.KilogramPerSquareMeter },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -164,21 +179,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(AreaDensityUnit unit)
         {
-            var kilogrampersquaremeter = AreaDensity.FromKilogramsPerSquareMeter(1);
+            var inBaseUnits = AreaDensity.From(1.0, AreaDensity.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var kilogrampersquaremeterQuantity = kilogrampersquaremeter.ToUnit(AreaDensityUnit.KilogramPerSquareMeter);
-            AssertEx.EqualTolerance(KilogramsPerSquareMeterInOneKilogramPerSquareMeter, (double)kilogrampersquaremeterQuantity.Value, KilogramsPerSquareMeterTolerance);
-            Assert.Equal(AreaDensityUnit.KilogramPerSquareMeter, kilogrampersquaremeterQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(AreaDensityUnit unit)
         {
-            var quantityInBaseUnit = AreaDensity.FromKilogramsPerSquareMeter(1).ToBaseUnit();
-            Assert.Equal(AreaDensity.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = AreaDensity.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(AreaDensityUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = AreaDensity.Units.FirstOrDefault(u => u != AreaDensity.BaseUnit && u != AreaDensityUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == AreaDensityUnit.Undefined)
+                fromUnit = AreaDensity.BaseUnit;
+
+            var quantity = AreaDensity.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

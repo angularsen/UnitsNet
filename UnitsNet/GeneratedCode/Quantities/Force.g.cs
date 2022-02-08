@@ -79,6 +79,8 @@ namespace UnitsNet
                     new UnitInfo<ForceUnit>(ForceUnit.TonneForce, "TonnesForce", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Force);
+
+            RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
         /// <summary>
@@ -116,6 +118,11 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Force" /> instances.
+        /// </summary>
+        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<ForceUnit> Info { get; }
@@ -279,39 +286,39 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> ForceUnit
-            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Decanewton, quantity => quantity.ToUnit(ForceUnit.Decanewton));
-            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Dyn, quantity => quantity.ToUnit(ForceUnit.Dyn));
-            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.KilogramForce, quantity => quantity.ToUnit(ForceUnit.KilogramForce));
-            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Kilonewton, quantity => quantity.ToUnit(ForceUnit.Kilonewton));
-            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.KiloPond, quantity => quantity.ToUnit(ForceUnit.KiloPond));
-            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.KilopoundForce, quantity => quantity.ToUnit(ForceUnit.KilopoundForce));
-            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Meganewton, quantity => quantity.ToUnit(ForceUnit.Meganewton));
-            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Micronewton, quantity => quantity.ToUnit(ForceUnit.Micronewton));
-            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Millinewton, quantity => quantity.ToUnit(ForceUnit.Millinewton));
-            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.OunceForce, quantity => quantity.ToUnit(ForceUnit.OunceForce));
-            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Poundal, quantity => quantity.ToUnit(ForceUnit.Poundal));
-            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.PoundForce, quantity => quantity.ToUnit(ForceUnit.PoundForce));
-            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.ShortTonForce, quantity => quantity.ToUnit(ForceUnit.ShortTonForce));
-            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.TonneForce, quantity => quantity.ToUnit(ForceUnit.TonneForce));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Decanewton, quantity => new Force((quantity.Value) / 1e1d, ForceUnit.Decanewton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Dyn, quantity => new Force(quantity.Value*1e5, ForceUnit.Dyn));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.KilogramForce, quantity => new Force(quantity.Value/9.80665002864, ForceUnit.KilogramForce));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Kilonewton, quantity => new Force((quantity.Value) / 1e3d, ForceUnit.Kilonewton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.KiloPond, quantity => new Force(quantity.Value/9.80665002864, ForceUnit.KiloPond));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.KilopoundForce, quantity => new Force((quantity.Value/4.4482216152605095551842641431421) / 1e3d, ForceUnit.KilopoundForce));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Meganewton, quantity => new Force((quantity.Value) / 1e6d, ForceUnit.Meganewton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Micronewton, quantity => new Force((quantity.Value) / 1e-6d, ForceUnit.Micronewton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Millinewton, quantity => new Force((quantity.Value) / 1e-3d, ForceUnit.Millinewton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.OunceForce, quantity => new Force(quantity.Value/2.780138509537812e-1, ForceUnit.OunceForce));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Poundal, quantity => new Force(quantity.Value/0.13825502798973041652092282466083, ForceUnit.Poundal));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.PoundForce, quantity => new Force(quantity.Value/4.4482216152605095551842641431421, ForceUnit.PoundForce));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.ShortTonForce, quantity => new Force(quantity.Value/8.896443230521e3, ForceUnit.ShortTonForce));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.TonneForce, quantity => new Force(quantity.Value/9.80665002864e3, ForceUnit.TonneForce));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Newton, quantity => quantity);
 
             // Register in unit converter: ForceUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Force>(ForceUnit.Decanewton, ForceUnit.Newton, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Force>(ForceUnit.Dyn, ForceUnit.Newton, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Force>(ForceUnit.KilogramForce, ForceUnit.Newton, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Force>(ForceUnit.Kilonewton, ForceUnit.Newton, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Force>(ForceUnit.KiloPond, ForceUnit.Newton, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Force>(ForceUnit.KilopoundForce, ForceUnit.Newton, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Force>(ForceUnit.Meganewton, ForceUnit.Newton, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Force>(ForceUnit.Micronewton, ForceUnit.Newton, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Force>(ForceUnit.Millinewton, ForceUnit.Newton, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Force>(ForceUnit.OunceForce, ForceUnit.Newton, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Force>(ForceUnit.Poundal, ForceUnit.Newton, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Force>(ForceUnit.PoundForce, ForceUnit.Newton, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Force>(ForceUnit.ShortTonForce, ForceUnit.Newton, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Force>(ForceUnit.TonneForce, ForceUnit.Newton, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Decanewton, ForceUnit.Newton, quantity => new Force((quantity.Value) * 1e1d, ForceUnit.Newton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Dyn, ForceUnit.Newton, quantity => new Force(quantity.Value/1e5, ForceUnit.Newton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.KilogramForce, ForceUnit.Newton, quantity => new Force(quantity.Value*9.80665002864, ForceUnit.Newton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Kilonewton, ForceUnit.Newton, quantity => new Force((quantity.Value) * 1e3d, ForceUnit.Newton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.KiloPond, ForceUnit.Newton, quantity => new Force(quantity.Value*9.80665002864, ForceUnit.Newton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.KilopoundForce, ForceUnit.Newton, quantity => new Force((quantity.Value*4.4482216152605095551842641431421) * 1e3d, ForceUnit.Newton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Meganewton, ForceUnit.Newton, quantity => new Force((quantity.Value) * 1e6d, ForceUnit.Newton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Micronewton, ForceUnit.Newton, quantity => new Force((quantity.Value) * 1e-6d, ForceUnit.Newton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Millinewton, ForceUnit.Newton, quantity => new Force((quantity.Value) * 1e-3d, ForceUnit.Newton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.OunceForce, ForceUnit.Newton, quantity => new Force(quantity.Value*2.780138509537812e-1, ForceUnit.Newton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Poundal, ForceUnit.Newton, quantity => new Force(quantity.Value*0.13825502798973041652092282466083, ForceUnit.Newton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.PoundForce, ForceUnit.Newton, quantity => new Force(quantity.Value*4.4482216152605095551842641431421, ForceUnit.Newton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.ShortTonForce, ForceUnit.Newton, quantity => new Force(quantity.Value*8.896443230521e3, ForceUnit.Newton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.TonneForce, ForceUnit.Newton, quantity => new Force(quantity.Value*9.80665002864e3, ForceUnit.Newton));
         }
 
         /// <summary>
@@ -854,11 +861,42 @@ namespace UnitsNet
         /// <summary>
         ///     Converts this Force to another Force with the unit representation <paramref name="unit" />.
         /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
         /// <returns>A Force with the specified unit.</returns>
         public Force ToUnit(ForceUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new Force(convertedValue, unit);
+            return ToUnit(unit, DefaultConversionFunctions);
+        }
+
+        /// <summary>
+        ///     Converts this Force to another Force using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
+        /// <returns>A Force with the specified unit.</returns>
+        public Force ToUnit(ForceUnit unit, UnitConverter unitConverter)
+        {
+            if(Unit == unit)
+            {
+                // Already in requested units.
+                return this;
+            }
+            else if(unitConverter.TryGetConversionFunction((typeof(Force), Unit, typeof(Force), unit), out var conversionFunction))
+            {
+                // Direct conversion to requested unit found. Return the converted quantity.
+                var converted = conversionFunction(this);
+                return (Force)converted;
+            }
+            else if(Unit != BaseUnit)
+            {
+                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                var inBaseUnits = ToUnit(BaseUnit);
+                return inBaseUnits.ToUnit(unit);
+            }
+            else
+            {
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         /// <inheritdoc />
@@ -867,7 +905,16 @@ namespace UnitsNet
             if(!(unit is ForceUnit unitAsForceUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsForceUnit);
+            return ToUnit(unitAsForceUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is ForceUnit unitAsForceUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsForceUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -892,75 +939,15 @@ namespace UnitsNet
         IQuantity<ForceUnit> IQuantity<ForceUnit>.ToUnit(ForceUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantity<ForceUnit> IQuantity<ForceUnit>.ToUnit(ForceUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
+
+        /// <inheritdoc />
         IQuantity<ForceUnit> IQuantity<ForceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case ForceUnit.Decanewton: return (_value) * 1e1d;
-                case ForceUnit.Dyn: return _value/1e5;
-                case ForceUnit.KilogramForce: return _value*9.80665002864;
-                case ForceUnit.Kilonewton: return (_value) * 1e3d;
-                case ForceUnit.KiloPond: return _value*9.80665002864;
-                case ForceUnit.KilopoundForce: return (_value*4.4482216152605095551842641431421) * 1e3d;
-                case ForceUnit.Meganewton: return (_value) * 1e6d;
-                case ForceUnit.Micronewton: return (_value) * 1e-6d;
-                case ForceUnit.Millinewton: return (_value) * 1e-3d;
-                case ForceUnit.Newton: return _value;
-                case ForceUnit.OunceForce: return _value*2.780138509537812e-1;
-                case ForceUnit.Poundal: return _value*0.13825502798973041652092282466083;
-                case ForceUnit.PoundForce: return _value*4.4482216152605095551842641431421;
-                case ForceUnit.ShortTonForce: return _value*8.896443230521e3;
-                case ForceUnit.TonneForce: return _value*9.80665002864e3;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal Force ToBaseUnit()
-        {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new Force(baseUnitValue, BaseUnit);
-        }
 
         private double GetValueAs(ForceUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var baseUnitValue = GetValueInBaseUnit();
-
-            switch(unit)
-            {
-                case ForceUnit.Decanewton: return (baseUnitValue) / 1e1d;
-                case ForceUnit.Dyn: return baseUnitValue*1e5;
-                case ForceUnit.KilogramForce: return baseUnitValue/9.80665002864;
-                case ForceUnit.Kilonewton: return (baseUnitValue) / 1e3d;
-                case ForceUnit.KiloPond: return baseUnitValue/9.80665002864;
-                case ForceUnit.KilopoundForce: return (baseUnitValue/4.4482216152605095551842641431421) / 1e3d;
-                case ForceUnit.Meganewton: return (baseUnitValue) / 1e6d;
-                case ForceUnit.Micronewton: return (baseUnitValue) / 1e-6d;
-                case ForceUnit.Millinewton: return (baseUnitValue) / 1e-3d;
-                case ForceUnit.Newton: return baseUnitValue;
-                case ForceUnit.OunceForce: return baseUnitValue/2.780138509537812e-1;
-                case ForceUnit.Poundal: return baseUnitValue/0.13825502798973041652092282466083;
-                case ForceUnit.PoundForce: return baseUnitValue/4.4482216152605095551842641431421;
-                case ForceUnit.ShortTonForce: return baseUnitValue/8.896443230521e3;
-                case ForceUnit.TonneForce: return baseUnitValue/9.80665002864e3;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         #endregion
