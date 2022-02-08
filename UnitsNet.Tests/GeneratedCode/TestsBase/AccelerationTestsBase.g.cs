@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -68,6 +69,46 @@ namespace UnitsNet.Tests
         protected virtual double NanometersPerSecondSquaredTolerance { get { return 1e-5; } }
         protected virtual double StandardGravityTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(AccelerationUnit unit)
+        {
+            return unit switch
+            {
+                AccelerationUnit.CentimeterPerSecondSquared => (CentimetersPerSecondSquaredInOneMeterPerSecondSquared, CentimetersPerSecondSquaredTolerance),
+                AccelerationUnit.DecimeterPerSecondSquared => (DecimetersPerSecondSquaredInOneMeterPerSecondSquared, DecimetersPerSecondSquaredTolerance),
+                AccelerationUnit.FootPerSecondSquared => (FeetPerSecondSquaredInOneMeterPerSecondSquared, FeetPerSecondSquaredTolerance),
+                AccelerationUnit.InchPerSecondSquared => (InchesPerSecondSquaredInOneMeterPerSecondSquared, InchesPerSecondSquaredTolerance),
+                AccelerationUnit.KilometerPerSecondSquared => (KilometersPerSecondSquaredInOneMeterPerSecondSquared, KilometersPerSecondSquaredTolerance),
+                AccelerationUnit.KnotPerHour => (KnotsPerHourInOneMeterPerSecondSquared, KnotsPerHourTolerance),
+                AccelerationUnit.KnotPerMinute => (KnotsPerMinuteInOneMeterPerSecondSquared, KnotsPerMinuteTolerance),
+                AccelerationUnit.KnotPerSecond => (KnotsPerSecondInOneMeterPerSecondSquared, KnotsPerSecondTolerance),
+                AccelerationUnit.MeterPerSecondSquared => (MetersPerSecondSquaredInOneMeterPerSecondSquared, MetersPerSecondSquaredTolerance),
+                AccelerationUnit.MicrometerPerSecondSquared => (MicrometersPerSecondSquaredInOneMeterPerSecondSquared, MicrometersPerSecondSquaredTolerance),
+                AccelerationUnit.MillimeterPerSecondSquared => (MillimetersPerSecondSquaredInOneMeterPerSecondSquared, MillimetersPerSecondSquaredTolerance),
+                AccelerationUnit.MillistandardGravity => (MillistandardGravityInOneMeterPerSecondSquared, MillistandardGravityTolerance),
+                AccelerationUnit.NanometerPerSecondSquared => (NanometersPerSecondSquaredInOneMeterPerSecondSquared, NanometersPerSecondSquaredTolerance),
+                AccelerationUnit.StandardGravity => (StandardGravityInOneMeterPerSecondSquared, StandardGravityTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { AccelerationUnit.CentimeterPerSecondSquared },
+            new object[] { AccelerationUnit.DecimeterPerSecondSquared },
+            new object[] { AccelerationUnit.FootPerSecondSquared },
+            new object[] { AccelerationUnit.InchPerSecondSquared },
+            new object[] { AccelerationUnit.KilometerPerSecondSquared },
+            new object[] { AccelerationUnit.KnotPerHour },
+            new object[] { AccelerationUnit.KnotPerMinute },
+            new object[] { AccelerationUnit.KnotPerSecond },
+            new object[] { AccelerationUnit.MeterPerSecondSquared },
+            new object[] { AccelerationUnit.MicrometerPerSecondSquared },
+            new object[] { AccelerationUnit.MillimeterPerSecondSquared },
+            new object[] { AccelerationUnit.MillistandardGravity },
+            new object[] { AccelerationUnit.NanometerPerSecondSquared },
+            new object[] { AccelerationUnit.StandardGravity },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -268,73 +309,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(AccelerationUnit unit)
         {
-            var meterpersecondsquared = Acceleration.FromMetersPerSecondSquared(1);
+            var inBaseUnits = Acceleration.From(1.0, Acceleration.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var centimeterpersecondsquaredQuantity = meterpersecondsquared.ToUnit(AccelerationUnit.CentimeterPerSecondSquared);
-            AssertEx.EqualTolerance(CentimetersPerSecondSquaredInOneMeterPerSecondSquared, (double)centimeterpersecondsquaredQuantity.Value, CentimetersPerSecondSquaredTolerance);
-            Assert.Equal(AccelerationUnit.CentimeterPerSecondSquared, centimeterpersecondsquaredQuantity.Unit);
-
-            var decimeterpersecondsquaredQuantity = meterpersecondsquared.ToUnit(AccelerationUnit.DecimeterPerSecondSquared);
-            AssertEx.EqualTolerance(DecimetersPerSecondSquaredInOneMeterPerSecondSquared, (double)decimeterpersecondsquaredQuantity.Value, DecimetersPerSecondSquaredTolerance);
-            Assert.Equal(AccelerationUnit.DecimeterPerSecondSquared, decimeterpersecondsquaredQuantity.Unit);
-
-            var footpersecondsquaredQuantity = meterpersecondsquared.ToUnit(AccelerationUnit.FootPerSecondSquared);
-            AssertEx.EqualTolerance(FeetPerSecondSquaredInOneMeterPerSecondSquared, (double)footpersecondsquaredQuantity.Value, FeetPerSecondSquaredTolerance);
-            Assert.Equal(AccelerationUnit.FootPerSecondSquared, footpersecondsquaredQuantity.Unit);
-
-            var inchpersecondsquaredQuantity = meterpersecondsquared.ToUnit(AccelerationUnit.InchPerSecondSquared);
-            AssertEx.EqualTolerance(InchesPerSecondSquaredInOneMeterPerSecondSquared, (double)inchpersecondsquaredQuantity.Value, InchesPerSecondSquaredTolerance);
-            Assert.Equal(AccelerationUnit.InchPerSecondSquared, inchpersecondsquaredQuantity.Unit);
-
-            var kilometerpersecondsquaredQuantity = meterpersecondsquared.ToUnit(AccelerationUnit.KilometerPerSecondSquared);
-            AssertEx.EqualTolerance(KilometersPerSecondSquaredInOneMeterPerSecondSquared, (double)kilometerpersecondsquaredQuantity.Value, KilometersPerSecondSquaredTolerance);
-            Assert.Equal(AccelerationUnit.KilometerPerSecondSquared, kilometerpersecondsquaredQuantity.Unit);
-
-            var knotperhourQuantity = meterpersecondsquared.ToUnit(AccelerationUnit.KnotPerHour);
-            AssertEx.EqualTolerance(KnotsPerHourInOneMeterPerSecondSquared, (double)knotperhourQuantity.Value, KnotsPerHourTolerance);
-            Assert.Equal(AccelerationUnit.KnotPerHour, knotperhourQuantity.Unit);
-
-            var knotperminuteQuantity = meterpersecondsquared.ToUnit(AccelerationUnit.KnotPerMinute);
-            AssertEx.EqualTolerance(KnotsPerMinuteInOneMeterPerSecondSquared, (double)knotperminuteQuantity.Value, KnotsPerMinuteTolerance);
-            Assert.Equal(AccelerationUnit.KnotPerMinute, knotperminuteQuantity.Unit);
-
-            var knotpersecondQuantity = meterpersecondsquared.ToUnit(AccelerationUnit.KnotPerSecond);
-            AssertEx.EqualTolerance(KnotsPerSecondInOneMeterPerSecondSquared, (double)knotpersecondQuantity.Value, KnotsPerSecondTolerance);
-            Assert.Equal(AccelerationUnit.KnotPerSecond, knotpersecondQuantity.Unit);
-
-            var meterpersecondsquaredQuantity = meterpersecondsquared.ToUnit(AccelerationUnit.MeterPerSecondSquared);
-            AssertEx.EqualTolerance(MetersPerSecondSquaredInOneMeterPerSecondSquared, (double)meterpersecondsquaredQuantity.Value, MetersPerSecondSquaredTolerance);
-            Assert.Equal(AccelerationUnit.MeterPerSecondSquared, meterpersecondsquaredQuantity.Unit);
-
-            var micrometerpersecondsquaredQuantity = meterpersecondsquared.ToUnit(AccelerationUnit.MicrometerPerSecondSquared);
-            AssertEx.EqualTolerance(MicrometersPerSecondSquaredInOneMeterPerSecondSquared, (double)micrometerpersecondsquaredQuantity.Value, MicrometersPerSecondSquaredTolerance);
-            Assert.Equal(AccelerationUnit.MicrometerPerSecondSquared, micrometerpersecondsquaredQuantity.Unit);
-
-            var millimeterpersecondsquaredQuantity = meterpersecondsquared.ToUnit(AccelerationUnit.MillimeterPerSecondSquared);
-            AssertEx.EqualTolerance(MillimetersPerSecondSquaredInOneMeterPerSecondSquared, (double)millimeterpersecondsquaredQuantity.Value, MillimetersPerSecondSquaredTolerance);
-            Assert.Equal(AccelerationUnit.MillimeterPerSecondSquared, millimeterpersecondsquaredQuantity.Unit);
-
-            var millistandardgravityQuantity = meterpersecondsquared.ToUnit(AccelerationUnit.MillistandardGravity);
-            AssertEx.EqualTolerance(MillistandardGravityInOneMeterPerSecondSquared, (double)millistandardgravityQuantity.Value, MillistandardGravityTolerance);
-            Assert.Equal(AccelerationUnit.MillistandardGravity, millistandardgravityQuantity.Unit);
-
-            var nanometerpersecondsquaredQuantity = meterpersecondsquared.ToUnit(AccelerationUnit.NanometerPerSecondSquared);
-            AssertEx.EqualTolerance(NanometersPerSecondSquaredInOneMeterPerSecondSquared, (double)nanometerpersecondsquaredQuantity.Value, NanometersPerSecondSquaredTolerance);
-            Assert.Equal(AccelerationUnit.NanometerPerSecondSquared, nanometerpersecondsquaredQuantity.Unit);
-
-            var standardgravityQuantity = meterpersecondsquared.ToUnit(AccelerationUnit.StandardGravity);
-            AssertEx.EqualTolerance(StandardGravityInOneMeterPerSecondSquared, (double)standardgravityQuantity.Value, StandardGravityTolerance);
-            Assert.Equal(AccelerationUnit.StandardGravity, standardgravityQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(AccelerationUnit unit)
         {
-            var quantityInBaseUnit = Acceleration.FromMetersPerSecondSquared(1).ToBaseUnit();
-            Assert.Equal(Acceleration.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Acceleration.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(AccelerationUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Acceleration.Units.FirstOrDefault(u => u != Acceleration.BaseUnit && u != AccelerationUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == AccelerationUnit.Undefined)
+                fromUnit = Acceleration.BaseUnit;
+
+            var quantity = Acceleration.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

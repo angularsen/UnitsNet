@@ -67,6 +67,8 @@ namespace UnitsNet
                     new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseKelvin, "InverseKelvin", new BaseUnits(temperature: TemperatureUnit.Kelvin)),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.CoefficientOfThermalExpansion);
+
+            RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
         /// <summary>
@@ -104,6 +106,11 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="CoefficientOfThermalExpansion" /> instances.
+        /// </summary>
+        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<CoefficientOfThermalExpansionUnit> Info { get; }
@@ -207,15 +214,15 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> CoefficientOfThermalExpansionUnit
-            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.InverseKelvin, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, quantity => quantity.ToUnit(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius));
-            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.InverseKelvin, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, quantity => quantity.ToUnit(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit));
+            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.InverseKelvin, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, quantity => new CoefficientOfThermalExpansion(quantity.Value, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius));
+            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.InverseKelvin, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, quantity => new CoefficientOfThermalExpansion(quantity.Value*5/9, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.InverseKelvin, CoefficientOfThermalExpansionUnit.InverseKelvin, quantity => quantity);
 
             // Register in unit converter: CoefficientOfThermalExpansionUnit -> BaseUnit
-            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, CoefficientOfThermalExpansionUnit.InverseKelvin, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, CoefficientOfThermalExpansionUnit.InverseKelvin, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, CoefficientOfThermalExpansionUnit.InverseKelvin, quantity => new CoefficientOfThermalExpansion(quantity.Value, CoefficientOfThermalExpansionUnit.InverseKelvin));
+            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, CoefficientOfThermalExpansionUnit.InverseKelvin, quantity => new CoefficientOfThermalExpansion(quantity.Value*9/5, CoefficientOfThermalExpansionUnit.InverseKelvin));
         }
 
         /// <summary>
@@ -650,11 +657,42 @@ namespace UnitsNet
         /// <summary>
         ///     Converts this CoefficientOfThermalExpansion to another CoefficientOfThermalExpansion with the unit representation <paramref name="unit" />.
         /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
         /// <returns>A CoefficientOfThermalExpansion with the specified unit.</returns>
         public CoefficientOfThermalExpansion ToUnit(CoefficientOfThermalExpansionUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new CoefficientOfThermalExpansion(convertedValue, unit);
+            return ToUnit(unit, DefaultConversionFunctions);
+        }
+
+        /// <summary>
+        ///     Converts this CoefficientOfThermalExpansion to another CoefficientOfThermalExpansion using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
+        /// <returns>A CoefficientOfThermalExpansion with the specified unit.</returns>
+        public CoefficientOfThermalExpansion ToUnit(CoefficientOfThermalExpansionUnit unit, UnitConverter unitConverter)
+        {
+            if(Unit == unit)
+            {
+                // Already in requested units.
+                return this;
+            }
+            else if(unitConverter.TryGetConversionFunction((typeof(CoefficientOfThermalExpansion), Unit, typeof(CoefficientOfThermalExpansion), unit), out var conversionFunction))
+            {
+                // Direct conversion to requested unit found. Return the converted quantity.
+                var converted = conversionFunction(this);
+                return (CoefficientOfThermalExpansion)converted;
+            }
+            else if(Unit != BaseUnit)
+            {
+                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                var inBaseUnits = ToUnit(BaseUnit);
+                return inBaseUnits.ToUnit(unit);
+            }
+            else
+            {
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         /// <inheritdoc />
@@ -663,7 +701,16 @@ namespace UnitsNet
             if(!(unit is CoefficientOfThermalExpansionUnit unitAsCoefficientOfThermalExpansionUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(CoefficientOfThermalExpansionUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsCoefficientOfThermalExpansionUnit);
+            return ToUnit(unitAsCoefficientOfThermalExpansionUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is CoefficientOfThermalExpansionUnit unitAsCoefficientOfThermalExpansionUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(CoefficientOfThermalExpansionUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsCoefficientOfThermalExpansionUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -688,51 +735,15 @@ namespace UnitsNet
         IQuantity<CoefficientOfThermalExpansionUnit> IQuantity<CoefficientOfThermalExpansionUnit>.ToUnit(CoefficientOfThermalExpansionUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantity<CoefficientOfThermalExpansionUnit> IQuantity<CoefficientOfThermalExpansionUnit>.ToUnit(CoefficientOfThermalExpansionUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
+
+        /// <inheritdoc />
         IQuantity<CoefficientOfThermalExpansionUnit> IQuantity<CoefficientOfThermalExpansionUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case CoefficientOfThermalExpansionUnit.InverseDegreeCelsius: return _value;
-                case CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit: return _value*9/5;
-                case CoefficientOfThermalExpansionUnit.InverseKelvin: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal CoefficientOfThermalExpansion ToBaseUnit()
-        {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new CoefficientOfThermalExpansion(baseUnitValue, BaseUnit);
-        }
 
         private double GetValueAs(CoefficientOfThermalExpansionUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var baseUnitValue = GetValueInBaseUnit();
-
-            switch(unit)
-            {
-                case CoefficientOfThermalExpansionUnit.InverseDegreeCelsius: return baseUnitValue;
-                case CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit: return baseUnitValue*5/9;
-                case CoefficientOfThermalExpansionUnit.InverseKelvin: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         #endregion

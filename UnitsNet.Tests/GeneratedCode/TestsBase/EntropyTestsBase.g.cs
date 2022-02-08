@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -54,6 +55,32 @@ namespace UnitsNet.Tests
         protected virtual double KilojoulesPerKelvinTolerance { get { return 1e-5; } }
         protected virtual double MegajoulesPerKelvinTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(EntropyUnit unit)
+        {
+            return unit switch
+            {
+                EntropyUnit.CaloriePerKelvin => (CaloriesPerKelvinInOneJoulePerKelvin, CaloriesPerKelvinTolerance),
+                EntropyUnit.JoulePerDegreeCelsius => (JoulesPerDegreeCelsiusInOneJoulePerKelvin, JoulesPerDegreeCelsiusTolerance),
+                EntropyUnit.JoulePerKelvin => (JoulesPerKelvinInOneJoulePerKelvin, JoulesPerKelvinTolerance),
+                EntropyUnit.KilocaloriePerKelvin => (KilocaloriesPerKelvinInOneJoulePerKelvin, KilocaloriesPerKelvinTolerance),
+                EntropyUnit.KilojoulePerDegreeCelsius => (KilojoulesPerDegreeCelsiusInOneJoulePerKelvin, KilojoulesPerDegreeCelsiusTolerance),
+                EntropyUnit.KilojoulePerKelvin => (KilojoulesPerKelvinInOneJoulePerKelvin, KilojoulesPerKelvinTolerance),
+                EntropyUnit.MegajoulePerKelvin => (MegajoulesPerKelvinInOneJoulePerKelvin, MegajoulesPerKelvinTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { EntropyUnit.CaloriePerKelvin },
+            new object[] { EntropyUnit.JoulePerDegreeCelsius },
+            new object[] { EntropyUnit.JoulePerKelvin },
+            new object[] { EntropyUnit.KilocaloriePerKelvin },
+            new object[] { EntropyUnit.KilojoulePerDegreeCelsius },
+            new object[] { EntropyUnit.KilojoulePerKelvin },
+            new object[] { EntropyUnit.MegajoulePerKelvin },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -212,45 +239,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(EntropyUnit unit)
         {
-            var jouleperkelvin = Entropy.FromJoulesPerKelvin(1);
+            var inBaseUnits = Entropy.From(1.0, Entropy.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var calorieperkelvinQuantity = jouleperkelvin.ToUnit(EntropyUnit.CaloriePerKelvin);
-            AssertEx.EqualTolerance(CaloriesPerKelvinInOneJoulePerKelvin, (double)calorieperkelvinQuantity.Value, CaloriesPerKelvinTolerance);
-            Assert.Equal(EntropyUnit.CaloriePerKelvin, calorieperkelvinQuantity.Unit);
-
-            var jouleperdegreecelsiusQuantity = jouleperkelvin.ToUnit(EntropyUnit.JoulePerDegreeCelsius);
-            AssertEx.EqualTolerance(JoulesPerDegreeCelsiusInOneJoulePerKelvin, (double)jouleperdegreecelsiusQuantity.Value, JoulesPerDegreeCelsiusTolerance);
-            Assert.Equal(EntropyUnit.JoulePerDegreeCelsius, jouleperdegreecelsiusQuantity.Unit);
-
-            var jouleperkelvinQuantity = jouleperkelvin.ToUnit(EntropyUnit.JoulePerKelvin);
-            AssertEx.EqualTolerance(JoulesPerKelvinInOneJoulePerKelvin, (double)jouleperkelvinQuantity.Value, JoulesPerKelvinTolerance);
-            Assert.Equal(EntropyUnit.JoulePerKelvin, jouleperkelvinQuantity.Unit);
-
-            var kilocalorieperkelvinQuantity = jouleperkelvin.ToUnit(EntropyUnit.KilocaloriePerKelvin);
-            AssertEx.EqualTolerance(KilocaloriesPerKelvinInOneJoulePerKelvin, (double)kilocalorieperkelvinQuantity.Value, KilocaloriesPerKelvinTolerance);
-            Assert.Equal(EntropyUnit.KilocaloriePerKelvin, kilocalorieperkelvinQuantity.Unit);
-
-            var kilojouleperdegreecelsiusQuantity = jouleperkelvin.ToUnit(EntropyUnit.KilojoulePerDegreeCelsius);
-            AssertEx.EqualTolerance(KilojoulesPerDegreeCelsiusInOneJoulePerKelvin, (double)kilojouleperdegreecelsiusQuantity.Value, KilojoulesPerDegreeCelsiusTolerance);
-            Assert.Equal(EntropyUnit.KilojoulePerDegreeCelsius, kilojouleperdegreecelsiusQuantity.Unit);
-
-            var kilojouleperkelvinQuantity = jouleperkelvin.ToUnit(EntropyUnit.KilojoulePerKelvin);
-            AssertEx.EqualTolerance(KilojoulesPerKelvinInOneJoulePerKelvin, (double)kilojouleperkelvinQuantity.Value, KilojoulesPerKelvinTolerance);
-            Assert.Equal(EntropyUnit.KilojoulePerKelvin, kilojouleperkelvinQuantity.Unit);
-
-            var megajouleperkelvinQuantity = jouleperkelvin.ToUnit(EntropyUnit.MegajoulePerKelvin);
-            AssertEx.EqualTolerance(MegajoulesPerKelvinInOneJoulePerKelvin, (double)megajouleperkelvinQuantity.Value, MegajoulesPerKelvinTolerance);
-            Assert.Equal(EntropyUnit.MegajoulePerKelvin, megajouleperkelvinQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(EntropyUnit unit)
         {
-            var quantityInBaseUnit = Entropy.FromJoulesPerKelvin(1).ToBaseUnit();
-            Assert.Equal(Entropy.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Entropy.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(EntropyUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Entropy.Units.FirstOrDefault(u => u != Entropy.BaseUnit && u != EntropyUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == EntropyUnit.Undefined)
+                fromUnit = Entropy.BaseUnit;
+
+            var quantity = Entropy.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

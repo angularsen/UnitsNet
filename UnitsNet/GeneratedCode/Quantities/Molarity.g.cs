@@ -83,6 +83,8 @@ namespace UnitsNet
                     new UnitInfo<MolarityUnit>(MolarityUnit.PicomolesPerLiter, "PicomolesPerLiter", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Molarity);
+
+            RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
         /// <summary>
@@ -120,6 +122,11 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Molarity" /> instances.
+        /// </summary>
+        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<MolarityUnit> Info { get; }
@@ -248,41 +255,41 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> MolarityUnit
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.CentimolePerLiter, quantity => quantity.ToUnit(MolarityUnit.CentimolePerLiter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.CentimolesPerLiter, quantity => quantity.ToUnit(MolarityUnit.CentimolesPerLiter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.DecimolePerLiter, quantity => quantity.ToUnit(MolarityUnit.DecimolePerLiter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.DecimolesPerLiter, quantity => quantity.ToUnit(MolarityUnit.DecimolesPerLiter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MicromolePerLiter, quantity => quantity.ToUnit(MolarityUnit.MicromolePerLiter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MicromolesPerLiter, quantity => quantity.ToUnit(MolarityUnit.MicromolesPerLiter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MillimolePerLiter, quantity => quantity.ToUnit(MolarityUnit.MillimolePerLiter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MillimolesPerLiter, quantity => quantity.ToUnit(MolarityUnit.MillimolesPerLiter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MolePerCubicMeter, quantity => quantity.ToUnit(MolarityUnit.MolePerCubicMeter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MolePerLiter, quantity => quantity.ToUnit(MolarityUnit.MolePerLiter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MolesPerLiter, quantity => quantity.ToUnit(MolarityUnit.MolesPerLiter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.NanomolePerLiter, quantity => quantity.ToUnit(MolarityUnit.NanomolePerLiter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.NanomolesPerLiter, quantity => quantity.ToUnit(MolarityUnit.NanomolesPerLiter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.PicomolePerLiter, quantity => quantity.ToUnit(MolarityUnit.PicomolePerLiter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.PicomolesPerLiter, quantity => quantity.ToUnit(MolarityUnit.PicomolesPerLiter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.CentimolePerLiter, quantity => new Molarity((quantity.Value * 1e-3) / 1e-2d, MolarityUnit.CentimolePerLiter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.CentimolesPerLiter, quantity => new Molarity((quantity.Value * 1e-3) / 1e-2d, MolarityUnit.CentimolesPerLiter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.DecimolePerLiter, quantity => new Molarity((quantity.Value * 1e-3) / 1e-1d, MolarityUnit.DecimolePerLiter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.DecimolesPerLiter, quantity => new Molarity((quantity.Value * 1e-3) / 1e-1d, MolarityUnit.DecimolesPerLiter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MicromolePerLiter, quantity => new Molarity((quantity.Value * 1e-3) / 1e-6d, MolarityUnit.MicromolePerLiter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MicromolesPerLiter, quantity => new Molarity((quantity.Value * 1e-3) / 1e-6d, MolarityUnit.MicromolesPerLiter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MillimolePerLiter, quantity => new Molarity((quantity.Value * 1e-3) / 1e-3d, MolarityUnit.MillimolePerLiter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MillimolesPerLiter, quantity => new Molarity((quantity.Value * 1e-3) / 1e-3d, MolarityUnit.MillimolesPerLiter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MolePerCubicMeter, quantity => new Molarity(quantity.Value, MolarityUnit.MolePerCubicMeter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MolePerLiter, quantity => new Molarity(quantity.Value * 1e-3, MolarityUnit.MolePerLiter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MolesPerLiter, quantity => new Molarity(quantity.Value * 1e-3, MolarityUnit.MolesPerLiter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.NanomolePerLiter, quantity => new Molarity((quantity.Value * 1e-3) / 1e-9d, MolarityUnit.NanomolePerLiter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.NanomolesPerLiter, quantity => new Molarity((quantity.Value * 1e-3) / 1e-9d, MolarityUnit.NanomolesPerLiter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.PicomolePerLiter, quantity => new Molarity((quantity.Value * 1e-3) / 1e-12d, MolarityUnit.PicomolePerLiter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.PicomolesPerLiter, quantity => new Molarity((quantity.Value * 1e-3) / 1e-12d, MolarityUnit.PicomolesPerLiter));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MolesPerCubicMeter, quantity => quantity);
 
             // Register in unit converter: MolarityUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.CentimolePerLiter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.CentimolesPerLiter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.DecimolePerLiter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.DecimolesPerLiter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MicromolePerLiter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MicromolesPerLiter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MillimolePerLiter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MillimolesPerLiter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolePerCubicMeter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolePerLiter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerLiter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.NanomolePerLiter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.NanomolesPerLiter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.PicomolePerLiter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.PicomolesPerLiter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.CentimolePerLiter, MolarityUnit.MolesPerCubicMeter, quantity => new Molarity((quantity.Value / 1e-3) * 1e-2d, MolarityUnit.MolesPerCubicMeter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.CentimolesPerLiter, MolarityUnit.MolesPerCubicMeter, quantity => new Molarity((quantity.Value / 1e-3) * 1e-2d, MolarityUnit.MolesPerCubicMeter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.DecimolePerLiter, MolarityUnit.MolesPerCubicMeter, quantity => new Molarity((quantity.Value / 1e-3) * 1e-1d, MolarityUnit.MolesPerCubicMeter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.DecimolesPerLiter, MolarityUnit.MolesPerCubicMeter, quantity => new Molarity((quantity.Value / 1e-3) * 1e-1d, MolarityUnit.MolesPerCubicMeter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MicromolePerLiter, MolarityUnit.MolesPerCubicMeter, quantity => new Molarity((quantity.Value / 1e-3) * 1e-6d, MolarityUnit.MolesPerCubicMeter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MicromolesPerLiter, MolarityUnit.MolesPerCubicMeter, quantity => new Molarity((quantity.Value / 1e-3) * 1e-6d, MolarityUnit.MolesPerCubicMeter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MillimolePerLiter, MolarityUnit.MolesPerCubicMeter, quantity => new Molarity((quantity.Value / 1e-3) * 1e-3d, MolarityUnit.MolesPerCubicMeter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MillimolesPerLiter, MolarityUnit.MolesPerCubicMeter, quantity => new Molarity((quantity.Value / 1e-3) * 1e-3d, MolarityUnit.MolesPerCubicMeter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolePerCubicMeter, MolarityUnit.MolesPerCubicMeter, quantity => new Molarity(quantity.Value, MolarityUnit.MolesPerCubicMeter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolePerLiter, MolarityUnit.MolesPerCubicMeter, quantity => new Molarity(quantity.Value / 1e-3, MolarityUnit.MolesPerCubicMeter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerLiter, MolarityUnit.MolesPerCubicMeter, quantity => new Molarity(quantity.Value / 1e-3, MolarityUnit.MolesPerCubicMeter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.NanomolePerLiter, MolarityUnit.MolesPerCubicMeter, quantity => new Molarity((quantity.Value / 1e-3) * 1e-9d, MolarityUnit.MolesPerCubicMeter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.NanomolesPerLiter, MolarityUnit.MolesPerCubicMeter, quantity => new Molarity((quantity.Value / 1e-3) * 1e-9d, MolarityUnit.MolesPerCubicMeter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.PicomolePerLiter, MolarityUnit.MolesPerCubicMeter, quantity => new Molarity((quantity.Value / 1e-3) * 1e-12d, MolarityUnit.MolesPerCubicMeter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.PicomolesPerLiter, MolarityUnit.MolesPerCubicMeter, quantity => new Molarity((quantity.Value / 1e-3) * 1e-12d, MolarityUnit.MolesPerCubicMeter));
         }
 
         /// <summary>
@@ -762,11 +769,42 @@ namespace UnitsNet
         /// <summary>
         ///     Converts this Molarity to another Molarity with the unit representation <paramref name="unit" />.
         /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
         /// <returns>A Molarity with the specified unit.</returns>
         public Molarity ToUnit(MolarityUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new Molarity(convertedValue, unit);
+            return ToUnit(unit, DefaultConversionFunctions);
+        }
+
+        /// <summary>
+        ///     Converts this Molarity to another Molarity using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
+        /// <returns>A Molarity with the specified unit.</returns>
+        public Molarity ToUnit(MolarityUnit unit, UnitConverter unitConverter)
+        {
+            if(Unit == unit)
+            {
+                // Already in requested units.
+                return this;
+            }
+            else if(unitConverter.TryGetConversionFunction((typeof(Molarity), Unit, typeof(Molarity), unit), out var conversionFunction))
+            {
+                // Direct conversion to requested unit found. Return the converted quantity.
+                var converted = conversionFunction(this);
+                return (Molarity)converted;
+            }
+            else if(Unit != BaseUnit)
+            {
+                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                var inBaseUnits = ToUnit(BaseUnit);
+                return inBaseUnits.ToUnit(unit);
+            }
+            else
+            {
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         /// <inheritdoc />
@@ -775,7 +813,16 @@ namespace UnitsNet
             if(!(unit is MolarityUnit unitAsMolarityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarityUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsMolarityUnit);
+            return ToUnit(unitAsMolarityUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is MolarityUnit unitAsMolarityUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarityUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsMolarityUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -800,77 +847,15 @@ namespace UnitsNet
         IQuantity<MolarityUnit> IQuantity<MolarityUnit>.ToUnit(MolarityUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantity<MolarityUnit> IQuantity<MolarityUnit>.ToUnit(MolarityUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
+
+        /// <inheritdoc />
         IQuantity<MolarityUnit> IQuantity<MolarityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case MolarityUnit.CentimolePerLiter: return (_value / 1e-3) * 1e-2d;
-                case MolarityUnit.CentimolesPerLiter: return (_value / 1e-3) * 1e-2d;
-                case MolarityUnit.DecimolePerLiter: return (_value / 1e-3) * 1e-1d;
-                case MolarityUnit.DecimolesPerLiter: return (_value / 1e-3) * 1e-1d;
-                case MolarityUnit.MicromolePerLiter: return (_value / 1e-3) * 1e-6d;
-                case MolarityUnit.MicromolesPerLiter: return (_value / 1e-3) * 1e-6d;
-                case MolarityUnit.MillimolePerLiter: return (_value / 1e-3) * 1e-3d;
-                case MolarityUnit.MillimolesPerLiter: return (_value / 1e-3) * 1e-3d;
-                case MolarityUnit.MolePerCubicMeter: return _value;
-                case MolarityUnit.MolePerLiter: return _value / 1e-3;
-                case MolarityUnit.MolesPerCubicMeter: return _value;
-                case MolarityUnit.MolesPerLiter: return _value / 1e-3;
-                case MolarityUnit.NanomolePerLiter: return (_value / 1e-3) * 1e-9d;
-                case MolarityUnit.NanomolesPerLiter: return (_value / 1e-3) * 1e-9d;
-                case MolarityUnit.PicomolePerLiter: return (_value / 1e-3) * 1e-12d;
-                case MolarityUnit.PicomolesPerLiter: return (_value / 1e-3) * 1e-12d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal Molarity ToBaseUnit()
-        {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new Molarity(baseUnitValue, BaseUnit);
-        }
 
         private double GetValueAs(MolarityUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var baseUnitValue = GetValueInBaseUnit();
-
-            switch(unit)
-            {
-                case MolarityUnit.CentimolePerLiter: return (baseUnitValue * 1e-3) / 1e-2d;
-                case MolarityUnit.CentimolesPerLiter: return (baseUnitValue * 1e-3) / 1e-2d;
-                case MolarityUnit.DecimolePerLiter: return (baseUnitValue * 1e-3) / 1e-1d;
-                case MolarityUnit.DecimolesPerLiter: return (baseUnitValue * 1e-3) / 1e-1d;
-                case MolarityUnit.MicromolePerLiter: return (baseUnitValue * 1e-3) / 1e-6d;
-                case MolarityUnit.MicromolesPerLiter: return (baseUnitValue * 1e-3) / 1e-6d;
-                case MolarityUnit.MillimolePerLiter: return (baseUnitValue * 1e-3) / 1e-3d;
-                case MolarityUnit.MillimolesPerLiter: return (baseUnitValue * 1e-3) / 1e-3d;
-                case MolarityUnit.MolePerCubicMeter: return baseUnitValue;
-                case MolarityUnit.MolePerLiter: return baseUnitValue * 1e-3;
-                case MolarityUnit.MolesPerCubicMeter: return baseUnitValue;
-                case MolarityUnit.MolesPerLiter: return baseUnitValue * 1e-3;
-                case MolarityUnit.NanomolePerLiter: return (baseUnitValue * 1e-3) / 1e-9d;
-                case MolarityUnit.NanomolesPerLiter: return (baseUnitValue * 1e-3) / 1e-9d;
-                case MolarityUnit.PicomolePerLiter: return (baseUnitValue * 1e-3) / 1e-12d;
-                case MolarityUnit.PicomolesPerLiter: return (baseUnitValue * 1e-3) / 1e-12d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         #endregion

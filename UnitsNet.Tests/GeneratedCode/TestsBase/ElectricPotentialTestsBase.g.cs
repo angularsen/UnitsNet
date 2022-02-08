@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -50,6 +51,28 @@ namespace UnitsNet.Tests
         protected virtual double MillivoltsTolerance { get { return 1e-5; } }
         protected virtual double VoltsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricPotentialUnit unit)
+        {
+            return unit switch
+            {
+                ElectricPotentialUnit.Kilovolt => (KilovoltsInOneVolt, KilovoltsTolerance),
+                ElectricPotentialUnit.Megavolt => (MegavoltsInOneVolt, MegavoltsTolerance),
+                ElectricPotentialUnit.Microvolt => (MicrovoltsInOneVolt, MicrovoltsTolerance),
+                ElectricPotentialUnit.Millivolt => (MillivoltsInOneVolt, MillivoltsTolerance),
+                ElectricPotentialUnit.Volt => (VoltsInOneVolt, VoltsTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ElectricPotentialUnit.Kilovolt },
+            new object[] { ElectricPotentialUnit.Megavolt },
+            new object[] { ElectricPotentialUnit.Microvolt },
+            new object[] { ElectricPotentialUnit.Millivolt },
+            new object[] { ElectricPotentialUnit.Volt },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -196,37 +219,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ElectricPotentialUnit unit)
         {
-            var volt = ElectricPotential.FromVolts(1);
+            var inBaseUnits = ElectricPotential.From(1.0, ElectricPotential.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var kilovoltQuantity = volt.ToUnit(ElectricPotentialUnit.Kilovolt);
-            AssertEx.EqualTolerance(KilovoltsInOneVolt, (double)kilovoltQuantity.Value, KilovoltsTolerance);
-            Assert.Equal(ElectricPotentialUnit.Kilovolt, kilovoltQuantity.Unit);
-
-            var megavoltQuantity = volt.ToUnit(ElectricPotentialUnit.Megavolt);
-            AssertEx.EqualTolerance(MegavoltsInOneVolt, (double)megavoltQuantity.Value, MegavoltsTolerance);
-            Assert.Equal(ElectricPotentialUnit.Megavolt, megavoltQuantity.Unit);
-
-            var microvoltQuantity = volt.ToUnit(ElectricPotentialUnit.Microvolt);
-            AssertEx.EqualTolerance(MicrovoltsInOneVolt, (double)microvoltQuantity.Value, MicrovoltsTolerance);
-            Assert.Equal(ElectricPotentialUnit.Microvolt, microvoltQuantity.Unit);
-
-            var millivoltQuantity = volt.ToUnit(ElectricPotentialUnit.Millivolt);
-            AssertEx.EqualTolerance(MillivoltsInOneVolt, (double)millivoltQuantity.Value, MillivoltsTolerance);
-            Assert.Equal(ElectricPotentialUnit.Millivolt, millivoltQuantity.Unit);
-
-            var voltQuantity = volt.ToUnit(ElectricPotentialUnit.Volt);
-            AssertEx.EqualTolerance(VoltsInOneVolt, (double)voltQuantity.Value, VoltsTolerance);
-            Assert.Equal(ElectricPotentialUnit.Volt, voltQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(ElectricPotentialUnit unit)
         {
-            var quantityInBaseUnit = ElectricPotential.FromVolts(1).ToBaseUnit();
-            Assert.Equal(ElectricPotential.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ElectricPotential.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricPotentialUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ElectricPotential.Units.FirstOrDefault(u => u != ElectricPotential.BaseUnit && u != ElectricPotentialUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ElectricPotentialUnit.Undefined)
+                fromUnit = ElectricPotential.BaseUnit;
+
+            var quantity = ElectricPotential.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

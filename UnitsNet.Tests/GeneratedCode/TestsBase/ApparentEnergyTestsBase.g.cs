@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -46,6 +47,24 @@ namespace UnitsNet.Tests
         protected virtual double MegavoltampereHoursTolerance { get { return 1e-5; } }
         protected virtual double VoltampereHoursTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ApparentEnergyUnit unit)
+        {
+            return unit switch
+            {
+                ApparentEnergyUnit.KilovoltampereHour => (KilovoltampereHoursInOneVoltampereHour, KilovoltampereHoursTolerance),
+                ApparentEnergyUnit.MegavoltampereHour => (MegavoltampereHoursInOneVoltampereHour, MegavoltampereHoursTolerance),
+                ApparentEnergyUnit.VoltampereHour => (VoltampereHoursInOneVoltampereHour, VoltampereHoursTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ApparentEnergyUnit.KilovoltampereHour },
+            new object[] { ApparentEnergyUnit.MegavoltampereHour },
+            new object[] { ApparentEnergyUnit.VoltampereHour },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -180,29 +199,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ApparentEnergyUnit unit)
         {
-            var voltamperehour = ApparentEnergy.FromVoltampereHours(1);
+            var inBaseUnits = ApparentEnergy.From(1.0, ApparentEnergy.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var kilovoltamperehourQuantity = voltamperehour.ToUnit(ApparentEnergyUnit.KilovoltampereHour);
-            AssertEx.EqualTolerance(KilovoltampereHoursInOneVoltampereHour, (double)kilovoltamperehourQuantity.Value, KilovoltampereHoursTolerance);
-            Assert.Equal(ApparentEnergyUnit.KilovoltampereHour, kilovoltamperehourQuantity.Unit);
-
-            var megavoltamperehourQuantity = voltamperehour.ToUnit(ApparentEnergyUnit.MegavoltampereHour);
-            AssertEx.EqualTolerance(MegavoltampereHoursInOneVoltampereHour, (double)megavoltamperehourQuantity.Value, MegavoltampereHoursTolerance);
-            Assert.Equal(ApparentEnergyUnit.MegavoltampereHour, megavoltamperehourQuantity.Unit);
-
-            var voltamperehourQuantity = voltamperehour.ToUnit(ApparentEnergyUnit.VoltampereHour);
-            AssertEx.EqualTolerance(VoltampereHoursInOneVoltampereHour, (double)voltamperehourQuantity.Value, VoltampereHoursTolerance);
-            Assert.Equal(ApparentEnergyUnit.VoltampereHour, voltamperehourQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(ApparentEnergyUnit unit)
         {
-            var quantityInBaseUnit = ApparentEnergy.FromVoltampereHours(1).ToBaseUnit();
-            Assert.Equal(ApparentEnergy.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ApparentEnergy.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ApparentEnergyUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ApparentEnergy.Units.FirstOrDefault(u => u != ApparentEnergy.BaseUnit && u != ApparentEnergyUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ApparentEnergyUnit.Undefined)
+                fromUnit = ApparentEnergy.BaseUnit;
+
+            var quantity = ApparentEnergy.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

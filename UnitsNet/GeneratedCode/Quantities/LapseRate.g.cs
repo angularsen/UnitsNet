@@ -66,6 +66,8 @@ namespace UnitsNet
                     new UnitInfo<LapseRateUnit>(LapseRateUnit.DegreeCelsiusPerKilometer, "DegreesCelciusPerKilometer", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.LapseRate);
+
+            RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
         /// <summary>
@@ -103,6 +105,11 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="LapseRate" /> instances.
+        /// </summary>
+        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<LapseRateUnit> Info { get; }
@@ -617,11 +624,42 @@ namespace UnitsNet
         /// <summary>
         ///     Converts this LapseRate to another LapseRate with the unit representation <paramref name="unit" />.
         /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
         /// <returns>A LapseRate with the specified unit.</returns>
         public LapseRate ToUnit(LapseRateUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new LapseRate(convertedValue, unit);
+            return ToUnit(unit, DefaultConversionFunctions);
+        }
+
+        /// <summary>
+        ///     Converts this LapseRate to another LapseRate using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
+        /// <returns>A LapseRate with the specified unit.</returns>
+        public LapseRate ToUnit(LapseRateUnit unit, UnitConverter unitConverter)
+        {
+            if(Unit == unit)
+            {
+                // Already in requested units.
+                return this;
+            }
+            else if(unitConverter.TryGetConversionFunction((typeof(LapseRate), Unit, typeof(LapseRate), unit), out var conversionFunction))
+            {
+                // Direct conversion to requested unit found. Return the converted quantity.
+                var converted = conversionFunction(this);
+                return (LapseRate)converted;
+            }
+            else if(Unit != BaseUnit)
+            {
+                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                var inBaseUnits = ToUnit(BaseUnit);
+                return inBaseUnits.ToUnit(unit);
+            }
+            else
+            {
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         /// <inheritdoc />
@@ -630,7 +668,16 @@ namespace UnitsNet
             if(!(unit is LapseRateUnit unitAsLapseRateUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LapseRateUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsLapseRateUnit);
+            return ToUnit(unitAsLapseRateUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is LapseRateUnit unitAsLapseRateUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LapseRateUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsLapseRateUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -655,47 +702,15 @@ namespace UnitsNet
         IQuantity<LapseRateUnit> IQuantity<LapseRateUnit>.ToUnit(LapseRateUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantity<LapseRateUnit> IQuantity<LapseRateUnit>.ToUnit(LapseRateUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
+
+        /// <inheritdoc />
         IQuantity<LapseRateUnit> IQuantity<LapseRateUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case LapseRateUnit.DegreeCelsiusPerKilometer: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal LapseRate ToBaseUnit()
-        {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new LapseRate(baseUnitValue, BaseUnit);
-        }
 
         private double GetValueAs(LapseRateUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var baseUnitValue = GetValueInBaseUnit();
-
-            switch(unit)
-            {
-                case LapseRateUnit.DegreeCelsiusPerKilometer: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         #endregion

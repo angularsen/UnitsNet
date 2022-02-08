@@ -68,6 +68,8 @@ namespace UnitsNet
                     new UnitInfo<ElectricFieldUnit>(ElectricFieldUnit.VoltPerMeter, "VoltsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricField);
+
+            RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
         /// <summary>
@@ -105,6 +107,11 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="ElectricField" /> instances.
+        /// </summary>
+        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<ElectricFieldUnit> Info { get; }
@@ -619,11 +626,42 @@ namespace UnitsNet
         /// <summary>
         ///     Converts this ElectricField to another ElectricField with the unit representation <paramref name="unit" />.
         /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
         /// <returns>A ElectricField with the specified unit.</returns>
         public ElectricField ToUnit(ElectricFieldUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new ElectricField(convertedValue, unit);
+            return ToUnit(unit, DefaultConversionFunctions);
+        }
+
+        /// <summary>
+        ///     Converts this ElectricField to another ElectricField using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
+        /// <returns>A ElectricField with the specified unit.</returns>
+        public ElectricField ToUnit(ElectricFieldUnit unit, UnitConverter unitConverter)
+        {
+            if(Unit == unit)
+            {
+                // Already in requested units.
+                return this;
+            }
+            else if(unitConverter.TryGetConversionFunction((typeof(ElectricField), Unit, typeof(ElectricField), unit), out var conversionFunction))
+            {
+                // Direct conversion to requested unit found. Return the converted quantity.
+                var converted = conversionFunction(this);
+                return (ElectricField)converted;
+            }
+            else if(Unit != BaseUnit)
+            {
+                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                var inBaseUnits = ToUnit(BaseUnit);
+                return inBaseUnits.ToUnit(unit);
+            }
+            else
+            {
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         /// <inheritdoc />
@@ -632,7 +670,16 @@ namespace UnitsNet
             if(!(unit is ElectricFieldUnit unitAsElectricFieldUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricFieldUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsElectricFieldUnit);
+            return ToUnit(unitAsElectricFieldUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is ElectricFieldUnit unitAsElectricFieldUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricFieldUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsElectricFieldUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -657,47 +704,15 @@ namespace UnitsNet
         IQuantity<ElectricFieldUnit> IQuantity<ElectricFieldUnit>.ToUnit(ElectricFieldUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantity<ElectricFieldUnit> IQuantity<ElectricFieldUnit>.ToUnit(ElectricFieldUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
+
+        /// <inheritdoc />
         IQuantity<ElectricFieldUnit> IQuantity<ElectricFieldUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case ElectricFieldUnit.VoltPerMeter: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal ElectricField ToBaseUnit()
-        {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new ElectricField(baseUnitValue, BaseUnit);
-        }
 
         private double GetValueAs(ElectricFieldUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var baseUnitValue = GetValueInBaseUnit();
-
-            switch(unit)
-            {
-                case ElectricFieldUnit.VoltPerMeter: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         #endregion

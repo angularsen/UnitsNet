@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -46,6 +47,24 @@ namespace UnitsNet.Tests
         protected virtual double CoulombsPerSquareInchTolerance { get { return 1e-5; } }
         protected virtual double CoulombsPerSquareMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricSurfaceChargeDensityUnit unit)
+        {
+            return unit switch
+            {
+                ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter => (CoulombsPerSquareCentimeterInOneCoulombPerSquareMeter, CoulombsPerSquareCentimeterTolerance),
+                ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch => (CoulombsPerSquareInchInOneCoulombPerSquareMeter, CoulombsPerSquareInchTolerance),
+                ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter => (CoulombsPerSquareMeterInOneCoulombPerSquareMeter, CoulombsPerSquareMeterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter },
+            new object[] { ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch },
+            new object[] { ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -180,29 +199,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ElectricSurfaceChargeDensityUnit unit)
         {
-            var coulombpersquaremeter = ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(1);
+            var inBaseUnits = ElectricSurfaceChargeDensity.From(1.0, ElectricSurfaceChargeDensity.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var coulombpersquarecentimeterQuantity = coulombpersquaremeter.ToUnit(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter);
-            AssertEx.EqualTolerance(CoulombsPerSquareCentimeterInOneCoulombPerSquareMeter, (double)coulombpersquarecentimeterQuantity.Value, CoulombsPerSquareCentimeterTolerance);
-            Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, coulombpersquarecentimeterQuantity.Unit);
-
-            var coulombpersquareinchQuantity = coulombpersquaremeter.ToUnit(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch);
-            AssertEx.EqualTolerance(CoulombsPerSquareInchInOneCoulombPerSquareMeter, (double)coulombpersquareinchQuantity.Value, CoulombsPerSquareInchTolerance);
-            Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, coulombpersquareinchQuantity.Unit);
-
-            var coulombpersquaremeterQuantity = coulombpersquaremeter.ToUnit(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter);
-            AssertEx.EqualTolerance(CoulombsPerSquareMeterInOneCoulombPerSquareMeter, (double)coulombpersquaremeterQuantity.Value, CoulombsPerSquareMeterTolerance);
-            Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, coulombpersquaremeterQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(ElectricSurfaceChargeDensityUnit unit)
         {
-            var quantityInBaseUnit = ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(1).ToBaseUnit();
-            Assert.Equal(ElectricSurfaceChargeDensity.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ElectricSurfaceChargeDensity.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricSurfaceChargeDensityUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ElectricSurfaceChargeDensity.Units.FirstOrDefault(u => u != ElectricSurfaceChargeDensity.BaseUnit && u != ElectricSurfaceChargeDensityUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ElectricSurfaceChargeDensityUnit.Undefined)
+                fromUnit = ElectricSurfaceChargeDensity.BaseUnit;
+
+            var quantity = ElectricSurfaceChargeDensity.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

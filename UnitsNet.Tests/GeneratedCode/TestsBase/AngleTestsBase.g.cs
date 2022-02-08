@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -72,6 +73,50 @@ namespace UnitsNet.Tests
         protected virtual double RevolutionsTolerance { get { return 1e-5; } }
         protected virtual double TiltTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(AngleUnit unit)
+        {
+            return unit switch
+            {
+                AngleUnit.Arcminute => (ArcminutesInOneDegree, ArcminutesTolerance),
+                AngleUnit.Arcsecond => (ArcsecondsInOneDegree, ArcsecondsTolerance),
+                AngleUnit.Centiradian => (CentiradiansInOneDegree, CentiradiansTolerance),
+                AngleUnit.Deciradian => (DeciradiansInOneDegree, DeciradiansTolerance),
+                AngleUnit.Degree => (DegreesInOneDegree, DegreesTolerance),
+                AngleUnit.Gradian => (GradiansInOneDegree, GradiansTolerance),
+                AngleUnit.Microdegree => (MicrodegreesInOneDegree, MicrodegreesTolerance),
+                AngleUnit.Microradian => (MicroradiansInOneDegree, MicroradiansTolerance),
+                AngleUnit.Millidegree => (MillidegreesInOneDegree, MillidegreesTolerance),
+                AngleUnit.Milliradian => (MilliradiansInOneDegree, MilliradiansTolerance),
+                AngleUnit.Nanodegree => (NanodegreesInOneDegree, NanodegreesTolerance),
+                AngleUnit.Nanoradian => (NanoradiansInOneDegree, NanoradiansTolerance),
+                AngleUnit.NatoMil => (NatoMilsInOneDegree, NatoMilsTolerance),
+                AngleUnit.Radian => (RadiansInOneDegree, RadiansTolerance),
+                AngleUnit.Revolution => (RevolutionsInOneDegree, RevolutionsTolerance),
+                AngleUnit.Tilt => (TiltInOneDegree, TiltTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { AngleUnit.Arcminute },
+            new object[] { AngleUnit.Arcsecond },
+            new object[] { AngleUnit.Centiradian },
+            new object[] { AngleUnit.Deciradian },
+            new object[] { AngleUnit.Degree },
+            new object[] { AngleUnit.Gradian },
+            new object[] { AngleUnit.Microdegree },
+            new object[] { AngleUnit.Microradian },
+            new object[] { AngleUnit.Millidegree },
+            new object[] { AngleUnit.Milliradian },
+            new object[] { AngleUnit.Nanodegree },
+            new object[] { AngleUnit.Nanoradian },
+            new object[] { AngleUnit.NatoMil },
+            new object[] { AngleUnit.Radian },
+            new object[] { AngleUnit.Revolution },
+            new object[] { AngleUnit.Tilt },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -284,81 +329,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(AngleUnit unit)
         {
-            var degree = Angle.FromDegrees(1);
+            var inBaseUnits = Angle.From(1.0, Angle.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var arcminuteQuantity = degree.ToUnit(AngleUnit.Arcminute);
-            AssertEx.EqualTolerance(ArcminutesInOneDegree, (double)arcminuteQuantity.Value, ArcminutesTolerance);
-            Assert.Equal(AngleUnit.Arcminute, arcminuteQuantity.Unit);
-
-            var arcsecondQuantity = degree.ToUnit(AngleUnit.Arcsecond);
-            AssertEx.EqualTolerance(ArcsecondsInOneDegree, (double)arcsecondQuantity.Value, ArcsecondsTolerance);
-            Assert.Equal(AngleUnit.Arcsecond, arcsecondQuantity.Unit);
-
-            var centiradianQuantity = degree.ToUnit(AngleUnit.Centiradian);
-            AssertEx.EqualTolerance(CentiradiansInOneDegree, (double)centiradianQuantity.Value, CentiradiansTolerance);
-            Assert.Equal(AngleUnit.Centiradian, centiradianQuantity.Unit);
-
-            var deciradianQuantity = degree.ToUnit(AngleUnit.Deciradian);
-            AssertEx.EqualTolerance(DeciradiansInOneDegree, (double)deciradianQuantity.Value, DeciradiansTolerance);
-            Assert.Equal(AngleUnit.Deciradian, deciradianQuantity.Unit);
-
-            var degreeQuantity = degree.ToUnit(AngleUnit.Degree);
-            AssertEx.EqualTolerance(DegreesInOneDegree, (double)degreeQuantity.Value, DegreesTolerance);
-            Assert.Equal(AngleUnit.Degree, degreeQuantity.Unit);
-
-            var gradianQuantity = degree.ToUnit(AngleUnit.Gradian);
-            AssertEx.EqualTolerance(GradiansInOneDegree, (double)gradianQuantity.Value, GradiansTolerance);
-            Assert.Equal(AngleUnit.Gradian, gradianQuantity.Unit);
-
-            var microdegreeQuantity = degree.ToUnit(AngleUnit.Microdegree);
-            AssertEx.EqualTolerance(MicrodegreesInOneDegree, (double)microdegreeQuantity.Value, MicrodegreesTolerance);
-            Assert.Equal(AngleUnit.Microdegree, microdegreeQuantity.Unit);
-
-            var microradianQuantity = degree.ToUnit(AngleUnit.Microradian);
-            AssertEx.EqualTolerance(MicroradiansInOneDegree, (double)microradianQuantity.Value, MicroradiansTolerance);
-            Assert.Equal(AngleUnit.Microradian, microradianQuantity.Unit);
-
-            var millidegreeQuantity = degree.ToUnit(AngleUnit.Millidegree);
-            AssertEx.EqualTolerance(MillidegreesInOneDegree, (double)millidegreeQuantity.Value, MillidegreesTolerance);
-            Assert.Equal(AngleUnit.Millidegree, millidegreeQuantity.Unit);
-
-            var milliradianQuantity = degree.ToUnit(AngleUnit.Milliradian);
-            AssertEx.EqualTolerance(MilliradiansInOneDegree, (double)milliradianQuantity.Value, MilliradiansTolerance);
-            Assert.Equal(AngleUnit.Milliradian, milliradianQuantity.Unit);
-
-            var nanodegreeQuantity = degree.ToUnit(AngleUnit.Nanodegree);
-            AssertEx.EqualTolerance(NanodegreesInOneDegree, (double)nanodegreeQuantity.Value, NanodegreesTolerance);
-            Assert.Equal(AngleUnit.Nanodegree, nanodegreeQuantity.Unit);
-
-            var nanoradianQuantity = degree.ToUnit(AngleUnit.Nanoradian);
-            AssertEx.EqualTolerance(NanoradiansInOneDegree, (double)nanoradianQuantity.Value, NanoradiansTolerance);
-            Assert.Equal(AngleUnit.Nanoradian, nanoradianQuantity.Unit);
-
-            var natomilQuantity = degree.ToUnit(AngleUnit.NatoMil);
-            AssertEx.EqualTolerance(NatoMilsInOneDegree, (double)natomilQuantity.Value, NatoMilsTolerance);
-            Assert.Equal(AngleUnit.NatoMil, natomilQuantity.Unit);
-
-            var radianQuantity = degree.ToUnit(AngleUnit.Radian);
-            AssertEx.EqualTolerance(RadiansInOneDegree, (double)radianQuantity.Value, RadiansTolerance);
-            Assert.Equal(AngleUnit.Radian, radianQuantity.Unit);
-
-            var revolutionQuantity = degree.ToUnit(AngleUnit.Revolution);
-            AssertEx.EqualTolerance(RevolutionsInOneDegree, (double)revolutionQuantity.Value, RevolutionsTolerance);
-            Assert.Equal(AngleUnit.Revolution, revolutionQuantity.Unit);
-
-            var tiltQuantity = degree.ToUnit(AngleUnit.Tilt);
-            AssertEx.EqualTolerance(TiltInOneDegree, (double)tiltQuantity.Value, TiltTolerance);
-            Assert.Equal(AngleUnit.Tilt, tiltQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(AngleUnit unit)
         {
-            var quantityInBaseUnit = Angle.FromDegrees(1).ToBaseUnit();
-            Assert.Equal(Angle.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Angle.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(AngleUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Angle.Units.FirstOrDefault(u => u != Angle.BaseUnit && u != AngleUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == AngleUnit.Undefined)
+                fromUnit = Angle.BaseUnit;
+
+            var quantity = Angle.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

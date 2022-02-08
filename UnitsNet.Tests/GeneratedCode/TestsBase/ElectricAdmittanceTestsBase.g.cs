@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -48,6 +49,26 @@ namespace UnitsNet.Tests
         protected virtual double NanosiemensTolerance { get { return 1e-5; } }
         protected virtual double SiemensTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricAdmittanceUnit unit)
+        {
+            return unit switch
+            {
+                ElectricAdmittanceUnit.Microsiemens => (MicrosiemensInOneSiemens, MicrosiemensTolerance),
+                ElectricAdmittanceUnit.Millisiemens => (MillisiemensInOneSiemens, MillisiemensTolerance),
+                ElectricAdmittanceUnit.Nanosiemens => (NanosiemensInOneSiemens, NanosiemensTolerance),
+                ElectricAdmittanceUnit.Siemens => (SiemensInOneSiemens, SiemensTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ElectricAdmittanceUnit.Microsiemens },
+            new object[] { ElectricAdmittanceUnit.Millisiemens },
+            new object[] { ElectricAdmittanceUnit.Nanosiemens },
+            new object[] { ElectricAdmittanceUnit.Siemens },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -188,33 +209,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ElectricAdmittanceUnit unit)
         {
-            var siemens = ElectricAdmittance.FromSiemens(1);
+            var inBaseUnits = ElectricAdmittance.From(1.0, ElectricAdmittance.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var microsiemensQuantity = siemens.ToUnit(ElectricAdmittanceUnit.Microsiemens);
-            AssertEx.EqualTolerance(MicrosiemensInOneSiemens, (double)microsiemensQuantity.Value, MicrosiemensTolerance);
-            Assert.Equal(ElectricAdmittanceUnit.Microsiemens, microsiemensQuantity.Unit);
-
-            var millisiemensQuantity = siemens.ToUnit(ElectricAdmittanceUnit.Millisiemens);
-            AssertEx.EqualTolerance(MillisiemensInOneSiemens, (double)millisiemensQuantity.Value, MillisiemensTolerance);
-            Assert.Equal(ElectricAdmittanceUnit.Millisiemens, millisiemensQuantity.Unit);
-
-            var nanosiemensQuantity = siemens.ToUnit(ElectricAdmittanceUnit.Nanosiemens);
-            AssertEx.EqualTolerance(NanosiemensInOneSiemens, (double)nanosiemensQuantity.Value, NanosiemensTolerance);
-            Assert.Equal(ElectricAdmittanceUnit.Nanosiemens, nanosiemensQuantity.Unit);
-
-            var siemensQuantity = siemens.ToUnit(ElectricAdmittanceUnit.Siemens);
-            AssertEx.EqualTolerance(SiemensInOneSiemens, (double)siemensQuantity.Value, SiemensTolerance);
-            Assert.Equal(ElectricAdmittanceUnit.Siemens, siemensQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(ElectricAdmittanceUnit unit)
         {
-            var quantityInBaseUnit = ElectricAdmittance.FromSiemens(1).ToBaseUnit();
-            Assert.Equal(ElectricAdmittance.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ElectricAdmittance.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricAdmittanceUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ElectricAdmittance.Units.FirstOrDefault(u => u != ElectricAdmittance.BaseUnit && u != ElectricAdmittanceUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ElectricAdmittanceUnit.Undefined)
+                fromUnit = ElectricAdmittance.BaseUnit;
+
+            var quantity = ElectricAdmittance.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

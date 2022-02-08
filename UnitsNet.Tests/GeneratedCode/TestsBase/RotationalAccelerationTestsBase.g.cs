@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -48,6 +49,26 @@ namespace UnitsNet.Tests
         protected virtual double RevolutionsPerMinutePerSecondTolerance { get { return 1e-5; } }
         protected virtual double RevolutionsPerSecondSquaredTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(RotationalAccelerationUnit unit)
+        {
+            return unit switch
+            {
+                RotationalAccelerationUnit.DegreePerSecondSquared => (DegreesPerSecondSquaredInOneRadianPerSecondSquared, DegreesPerSecondSquaredTolerance),
+                RotationalAccelerationUnit.RadianPerSecondSquared => (RadiansPerSecondSquaredInOneRadianPerSecondSquared, RadiansPerSecondSquaredTolerance),
+                RotationalAccelerationUnit.RevolutionPerMinutePerSecond => (RevolutionsPerMinutePerSecondInOneRadianPerSecondSquared, RevolutionsPerMinutePerSecondTolerance),
+                RotationalAccelerationUnit.RevolutionPerSecondSquared => (RevolutionsPerSecondSquaredInOneRadianPerSecondSquared, RevolutionsPerSecondSquaredTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { RotationalAccelerationUnit.DegreePerSecondSquared },
+            new object[] { RotationalAccelerationUnit.RadianPerSecondSquared },
+            new object[] { RotationalAccelerationUnit.RevolutionPerMinutePerSecond },
+            new object[] { RotationalAccelerationUnit.RevolutionPerSecondSquared },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -188,33 +209,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(RotationalAccelerationUnit unit)
         {
-            var radianpersecondsquared = RotationalAcceleration.FromRadiansPerSecondSquared(1);
+            var inBaseUnits = RotationalAcceleration.From(1.0, RotationalAcceleration.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var degreepersecondsquaredQuantity = radianpersecondsquared.ToUnit(RotationalAccelerationUnit.DegreePerSecondSquared);
-            AssertEx.EqualTolerance(DegreesPerSecondSquaredInOneRadianPerSecondSquared, (double)degreepersecondsquaredQuantity.Value, DegreesPerSecondSquaredTolerance);
-            Assert.Equal(RotationalAccelerationUnit.DegreePerSecondSquared, degreepersecondsquaredQuantity.Unit);
-
-            var radianpersecondsquaredQuantity = radianpersecondsquared.ToUnit(RotationalAccelerationUnit.RadianPerSecondSquared);
-            AssertEx.EqualTolerance(RadiansPerSecondSquaredInOneRadianPerSecondSquared, (double)radianpersecondsquaredQuantity.Value, RadiansPerSecondSquaredTolerance);
-            Assert.Equal(RotationalAccelerationUnit.RadianPerSecondSquared, radianpersecondsquaredQuantity.Unit);
-
-            var revolutionperminutepersecondQuantity = radianpersecondsquared.ToUnit(RotationalAccelerationUnit.RevolutionPerMinutePerSecond);
-            AssertEx.EqualTolerance(RevolutionsPerMinutePerSecondInOneRadianPerSecondSquared, (double)revolutionperminutepersecondQuantity.Value, RevolutionsPerMinutePerSecondTolerance);
-            Assert.Equal(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, revolutionperminutepersecondQuantity.Unit);
-
-            var revolutionpersecondsquaredQuantity = radianpersecondsquared.ToUnit(RotationalAccelerationUnit.RevolutionPerSecondSquared);
-            AssertEx.EqualTolerance(RevolutionsPerSecondSquaredInOneRadianPerSecondSquared, (double)revolutionpersecondsquaredQuantity.Value, RevolutionsPerSecondSquaredTolerance);
-            Assert.Equal(RotationalAccelerationUnit.RevolutionPerSecondSquared, revolutionpersecondsquaredQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(RotationalAccelerationUnit unit)
         {
-            var quantityInBaseUnit = RotationalAcceleration.FromRadiansPerSecondSquared(1).ToBaseUnit();
-            Assert.Equal(RotationalAcceleration.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = RotationalAcceleration.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(RotationalAccelerationUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = RotationalAcceleration.Units.FirstOrDefault(u => u != RotationalAcceleration.BaseUnit && u != RotationalAccelerationUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == RotationalAccelerationUnit.Undefined)
+                fromUnit = RotationalAcceleration.BaseUnit;
+
+            var quantity = RotationalAcceleration.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

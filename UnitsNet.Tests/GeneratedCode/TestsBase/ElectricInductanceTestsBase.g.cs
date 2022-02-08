@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -48,6 +49,26 @@ namespace UnitsNet.Tests
         protected virtual double MillihenriesTolerance { get { return 1e-5; } }
         protected virtual double NanohenriesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricInductanceUnit unit)
+        {
+            return unit switch
+            {
+                ElectricInductanceUnit.Henry => (HenriesInOneHenry, HenriesTolerance),
+                ElectricInductanceUnit.Microhenry => (MicrohenriesInOneHenry, MicrohenriesTolerance),
+                ElectricInductanceUnit.Millihenry => (MillihenriesInOneHenry, MillihenriesTolerance),
+                ElectricInductanceUnit.Nanohenry => (NanohenriesInOneHenry, NanohenriesTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ElectricInductanceUnit.Henry },
+            new object[] { ElectricInductanceUnit.Microhenry },
+            new object[] { ElectricInductanceUnit.Millihenry },
+            new object[] { ElectricInductanceUnit.Nanohenry },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -188,33 +209,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ElectricInductanceUnit unit)
         {
-            var henry = ElectricInductance.FromHenries(1);
+            var inBaseUnits = ElectricInductance.From(1.0, ElectricInductance.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var henryQuantity = henry.ToUnit(ElectricInductanceUnit.Henry);
-            AssertEx.EqualTolerance(HenriesInOneHenry, (double)henryQuantity.Value, HenriesTolerance);
-            Assert.Equal(ElectricInductanceUnit.Henry, henryQuantity.Unit);
-
-            var microhenryQuantity = henry.ToUnit(ElectricInductanceUnit.Microhenry);
-            AssertEx.EqualTolerance(MicrohenriesInOneHenry, (double)microhenryQuantity.Value, MicrohenriesTolerance);
-            Assert.Equal(ElectricInductanceUnit.Microhenry, microhenryQuantity.Unit);
-
-            var millihenryQuantity = henry.ToUnit(ElectricInductanceUnit.Millihenry);
-            AssertEx.EqualTolerance(MillihenriesInOneHenry, (double)millihenryQuantity.Value, MillihenriesTolerance);
-            Assert.Equal(ElectricInductanceUnit.Millihenry, millihenryQuantity.Unit);
-
-            var nanohenryQuantity = henry.ToUnit(ElectricInductanceUnit.Nanohenry);
-            AssertEx.EqualTolerance(NanohenriesInOneHenry, (double)nanohenryQuantity.Value, NanohenriesTolerance);
-            Assert.Equal(ElectricInductanceUnit.Nanohenry, nanohenryQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(ElectricInductanceUnit unit)
         {
-            var quantityInBaseUnit = ElectricInductance.FromHenries(1).ToBaseUnit();
-            Assert.Equal(ElectricInductance.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ElectricInductance.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricInductanceUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ElectricInductance.Units.FirstOrDefault(u => u != ElectricInductance.BaseUnit && u != ElectricInductanceUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ElectricInductanceUnit.Undefined)
+                fromUnit = ElectricInductance.BaseUnit;
+
+            var quantity = ElectricInductance.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

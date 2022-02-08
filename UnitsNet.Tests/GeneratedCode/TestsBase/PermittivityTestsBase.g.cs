@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -42,6 +43,20 @@ namespace UnitsNet.Tests
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double FaradsPerMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(PermittivityUnit unit)
+        {
+            return unit switch
+            {
+                PermittivityUnit.FaradPerMeter => (FaradsPerMeterInOneFaradPerMeter, FaradsPerMeterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { PermittivityUnit.FaradPerMeter },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -164,21 +179,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(PermittivityUnit unit)
         {
-            var faradpermeter = Permittivity.FromFaradsPerMeter(1);
+            var inBaseUnits = Permittivity.From(1.0, Permittivity.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var faradpermeterQuantity = faradpermeter.ToUnit(PermittivityUnit.FaradPerMeter);
-            AssertEx.EqualTolerance(FaradsPerMeterInOneFaradPerMeter, (double)faradpermeterQuantity.Value, FaradsPerMeterTolerance);
-            Assert.Equal(PermittivityUnit.FaradPerMeter, faradpermeterQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(PermittivityUnit unit)
         {
-            var quantityInBaseUnit = Permittivity.FromFaradsPerMeter(1).ToBaseUnit();
-            Assert.Equal(Permittivity.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Permittivity.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(PermittivityUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Permittivity.Units.FirstOrDefault(u => u != Permittivity.BaseUnit && u != PermittivityUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == PermittivityUnit.Undefined)
+                fromUnit = Permittivity.BaseUnit;
+
+            var quantity = Permittivity.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

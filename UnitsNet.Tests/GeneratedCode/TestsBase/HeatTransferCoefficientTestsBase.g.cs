@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -46,6 +47,24 @@ namespace UnitsNet.Tests
         protected virtual double WattsPerSquareMeterCelsiusTolerance { get { return 1e-5; } }
         protected virtual double WattsPerSquareMeterKelvinTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(HeatTransferCoefficientUnit unit)
+        {
+            return unit switch
+            {
+                HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit => (BtusPerSquareFootDegreeFahrenheitInOneWattPerSquareMeterKelvin, BtusPerSquareFootDegreeFahrenheitTolerance),
+                HeatTransferCoefficientUnit.WattPerSquareMeterCelsius => (WattsPerSquareMeterCelsiusInOneWattPerSquareMeterKelvin, WattsPerSquareMeterCelsiusTolerance),
+                HeatTransferCoefficientUnit.WattPerSquareMeterKelvin => (WattsPerSquareMeterKelvinInOneWattPerSquareMeterKelvin, WattsPerSquareMeterKelvinTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit },
+            new object[] { HeatTransferCoefficientUnit.WattPerSquareMeterCelsius },
+            new object[] { HeatTransferCoefficientUnit.WattPerSquareMeterKelvin },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -180,29 +199,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(HeatTransferCoefficientUnit unit)
         {
-            var wattpersquaremeterkelvin = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);
+            var inBaseUnits = HeatTransferCoefficient.From(1.0, HeatTransferCoefficient.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var btupersquarefootdegreefahrenheitQuantity = wattpersquaremeterkelvin.ToUnit(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit);
-            AssertEx.EqualTolerance(BtusPerSquareFootDegreeFahrenheitInOneWattPerSquareMeterKelvin, (double)btupersquarefootdegreefahrenheitQuantity.Value, BtusPerSquareFootDegreeFahrenheitTolerance);
-            Assert.Equal(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, btupersquarefootdegreefahrenheitQuantity.Unit);
-
-            var wattpersquaremetercelsiusQuantity = wattpersquaremeterkelvin.ToUnit(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius);
-            AssertEx.EqualTolerance(WattsPerSquareMeterCelsiusInOneWattPerSquareMeterKelvin, (double)wattpersquaremetercelsiusQuantity.Value, WattsPerSquareMeterCelsiusTolerance);
-            Assert.Equal(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, wattpersquaremetercelsiusQuantity.Unit);
-
-            var wattpersquaremeterkelvinQuantity = wattpersquaremeterkelvin.ToUnit(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin);
-            AssertEx.EqualTolerance(WattsPerSquareMeterKelvinInOneWattPerSquareMeterKelvin, (double)wattpersquaremeterkelvinQuantity.Value, WattsPerSquareMeterKelvinTolerance);
-            Assert.Equal(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, wattpersquaremeterkelvinQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(HeatTransferCoefficientUnit unit)
         {
-            var quantityInBaseUnit = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1).ToBaseUnit();
-            Assert.Equal(HeatTransferCoefficient.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = HeatTransferCoefficient.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(HeatTransferCoefficientUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = HeatTransferCoefficient.Units.FirstOrDefault(u => u != HeatTransferCoefficient.BaseUnit && u != HeatTransferCoefficientUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == HeatTransferCoefficientUnit.Undefined)
+                fromUnit = HeatTransferCoefficient.BaseUnit;
+
+            var quantity = HeatTransferCoefficient.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

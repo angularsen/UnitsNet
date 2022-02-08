@@ -76,6 +76,7 @@ namespace CodeGen.Generators.UnitsNetGen
             Writer.WL(GeneratedFileHeader);
             Writer.WL($@"
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -118,6 +119,27 @@ namespace UnitsNet.Tests
         Writer.WL($@"
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor({_unitEnumName} unit)
+        {{
+            return unit switch
+            {{");
+            foreach(var unit in _quantity.Units) Writer.WL($@"
+                {GetUnitFullName(unit)} => ({unit.PluralName}InOne{_baseUnit.SingularName}, {unit.PluralName}Tolerance),");
+            Writer.WL($@"
+                _ => throw new NotSupportedException()
+            }};
+        }}
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {{");
+            foreach(var unit in _quantity.Units)
+            {
+                Writer.WL($@"
+            new object[] {{ {GetUnitFullName(unit)} }},");
+            }
+            Writer.WL($@"
+        }};
+
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {{
@@ -129,14 +151,14 @@ namespace UnitsNet.Tests
         {{
             var quantity = new {_quantity.Name}();
             Assert.Equal(0, quantity.Value);");
-            if (_quantity.BaseType == "decimal") Writer.WL($@"
+            if(_quantity.BaseType == "decimal") Writer.WL($@"
             Assert.Equal(0m, ((IDecimalQuantity)quantity).Value);");
             Writer.WL($@"
             Assert.Equal({_baseUnitFullName}, quantity.Unit);
         }}
 
 ");
-            if (_quantity.BaseType == "double") Writer.WL($@"
+            if(_quantity.BaseType == "double") Writer.WL($@"
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {{
@@ -196,7 +218,7 @@ namespace UnitsNet.Tests
         {{
             {_quantity.Name} {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);");
 
-            foreach (var unit in _quantity.Units) Writer.WL($@"
+            foreach(var unit in _quantity.Units) Writer.WL($@"
             AssertEx.EqualTolerance({unit.PluralName}InOne{_baseUnit.SingularName}, {baseUnitVariableName}.{unit.PluralName}, {unit.PluralName}Tolerance);");
             Writer.WL($@"
         }}
@@ -205,7 +227,7 @@ namespace UnitsNet.Tests
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {{");
             int i = 0;
-            foreach (var unit in _quantity.Units)
+            foreach(var unit in _quantity.Units)
             {
                 var quantityVariable = $"quantity{i++:D2}";
                 Writer.WL($@"
@@ -218,7 +240,7 @@ namespace UnitsNet.Tests
             Writer.WL($@"
         }}
 ");
-            if (_quantity.BaseType == "double") Writer.WL($@"
+            if(_quantity.BaseType == "double") Writer.WL($@"
         [Fact]
         public void From{_baseUnit.PluralName}_WithInfinityValue_ThrowsArgumentException()
         {{
@@ -237,7 +259,7 @@ namespace UnitsNet.Tests
         public void As()
         {{
             var {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);");
-            foreach (var unit in _quantity.Units) Writer.WL($@"
+            foreach(var unit in _quantity.Units) Writer.WL($@"
             AssertEx.EqualTolerance({unit.PluralName}InOne{_baseUnit.SingularName}, {baseUnitVariableName}.As({GetUnitFullName(unit)}), {unit.PluralName}Tolerance);");
             Writer.WL($@"
         }}
@@ -259,29 +281,41 @@ namespace UnitsNet.Tests
             }}
         }}
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit({_unitEnumName} unit)
         {{
-            var {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);");
-            foreach (var unit in _quantity.Units)
-            {
-                var asQuantityVariableName = $"{unit.SingularName.ToLowerInvariant()}Quantity";
+            var inBaseUnits = {_quantity.Name}.From(1.0, {_quantity.Name}.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-                Writer.WL("");
-                Writer.WL($@"
-            var {asQuantityVariableName} = {baseUnitVariableName}.ToUnit({GetUnitFullName(unit)});
-            AssertEx.EqualTolerance({unit.PluralName}InOne{_baseUnit.SingularName}, (double){asQuantityVariableName}.Value, {unit.PluralName}Tolerance);
-            Assert.Equal({GetUnitFullName(unit)}, {asQuantityVariableName}.Unit);");
-            }
-            Writer.WL($@"
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }}
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual({_unitEnumName} unit)
         {{
-            var quantityInBaseUnit = {_quantity.Name}.From{_baseUnit.PluralName}(1).ToBaseUnit();
-            Assert.Equal({_quantity.Name}.BaseUnit, quantityInBaseUnit.Unit);");
-            Writer.WL($@"
+            var quantity = {_quantity.Name}.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }}
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit({_unitEnumName} unit)
+        {{
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = {_quantity.Name}.Units.FirstOrDefault(u => u != {_quantity.Name}.BaseUnit && u != {_unitEnumName}.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == {_unitEnumName}.Undefined)
+                fromUnit = {_quantity.Name}.BaseUnit;
+
+            var quantity = {_quantity.Name}.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }}
 
         [Fact]
@@ -714,9 +748,9 @@ namespace UnitsNet.Tests
         }}
 ");
 
-        if( _quantity.GenerateArithmetic )
+        if(_quantity.GenerateArithmetic)
         {
-                Writer.WL( $@"
+                Writer.WL($@"
         [Theory]
         [InlineData(1.0)]
         [InlineData(-1.0)]
@@ -729,7 +763,7 @@ namespace UnitsNet.Tests
 
 Writer.WL($@"
     }}
-}}" );
+}}");
             return Writer.ToString();
         }
     }

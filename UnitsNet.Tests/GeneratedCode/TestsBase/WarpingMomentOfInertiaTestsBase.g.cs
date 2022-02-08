@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -52,6 +53,30 @@ namespace UnitsNet.Tests
         protected virtual double MetersToTheSixthTolerance { get { return 1e-5; } }
         protected virtual double MillimetersToTheSixthTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(WarpingMomentOfInertiaUnit unit)
+        {
+            return unit switch
+            {
+                WarpingMomentOfInertiaUnit.CentimeterToTheSixth => (CentimetersToTheSixthInOneMeterToTheSixth, CentimetersToTheSixthTolerance),
+                WarpingMomentOfInertiaUnit.DecimeterToTheSixth => (DecimetersToTheSixthInOneMeterToTheSixth, DecimetersToTheSixthTolerance),
+                WarpingMomentOfInertiaUnit.FootToTheSixth => (FeetToTheSixthInOneMeterToTheSixth, FeetToTheSixthTolerance),
+                WarpingMomentOfInertiaUnit.InchToTheSixth => (InchesToTheSixthInOneMeterToTheSixth, InchesToTheSixthTolerance),
+                WarpingMomentOfInertiaUnit.MeterToTheSixth => (MetersToTheSixthInOneMeterToTheSixth, MetersToTheSixthTolerance),
+                WarpingMomentOfInertiaUnit.MillimeterToTheSixth => (MillimetersToTheSixthInOneMeterToTheSixth, MillimetersToTheSixthTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { WarpingMomentOfInertiaUnit.CentimeterToTheSixth },
+            new object[] { WarpingMomentOfInertiaUnit.DecimeterToTheSixth },
+            new object[] { WarpingMomentOfInertiaUnit.FootToTheSixth },
+            new object[] { WarpingMomentOfInertiaUnit.InchToTheSixth },
+            new object[] { WarpingMomentOfInertiaUnit.MeterToTheSixth },
+            new object[] { WarpingMomentOfInertiaUnit.MillimeterToTheSixth },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -204,41 +229,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(WarpingMomentOfInertiaUnit unit)
         {
-            var metertothesixth = WarpingMomentOfInertia.FromMetersToTheSixth(1);
+            var inBaseUnits = WarpingMomentOfInertia.From(1.0, WarpingMomentOfInertia.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var centimetertothesixthQuantity = metertothesixth.ToUnit(WarpingMomentOfInertiaUnit.CentimeterToTheSixth);
-            AssertEx.EqualTolerance(CentimetersToTheSixthInOneMeterToTheSixth, (double)centimetertothesixthQuantity.Value, CentimetersToTheSixthTolerance);
-            Assert.Equal(WarpingMomentOfInertiaUnit.CentimeterToTheSixth, centimetertothesixthQuantity.Unit);
-
-            var decimetertothesixthQuantity = metertothesixth.ToUnit(WarpingMomentOfInertiaUnit.DecimeterToTheSixth);
-            AssertEx.EqualTolerance(DecimetersToTheSixthInOneMeterToTheSixth, (double)decimetertothesixthQuantity.Value, DecimetersToTheSixthTolerance);
-            Assert.Equal(WarpingMomentOfInertiaUnit.DecimeterToTheSixth, decimetertothesixthQuantity.Unit);
-
-            var foottothesixthQuantity = metertothesixth.ToUnit(WarpingMomentOfInertiaUnit.FootToTheSixth);
-            AssertEx.EqualTolerance(FeetToTheSixthInOneMeterToTheSixth, (double)foottothesixthQuantity.Value, FeetToTheSixthTolerance);
-            Assert.Equal(WarpingMomentOfInertiaUnit.FootToTheSixth, foottothesixthQuantity.Unit);
-
-            var inchtothesixthQuantity = metertothesixth.ToUnit(WarpingMomentOfInertiaUnit.InchToTheSixth);
-            AssertEx.EqualTolerance(InchesToTheSixthInOneMeterToTheSixth, (double)inchtothesixthQuantity.Value, InchesToTheSixthTolerance);
-            Assert.Equal(WarpingMomentOfInertiaUnit.InchToTheSixth, inchtothesixthQuantity.Unit);
-
-            var metertothesixthQuantity = metertothesixth.ToUnit(WarpingMomentOfInertiaUnit.MeterToTheSixth);
-            AssertEx.EqualTolerance(MetersToTheSixthInOneMeterToTheSixth, (double)metertothesixthQuantity.Value, MetersToTheSixthTolerance);
-            Assert.Equal(WarpingMomentOfInertiaUnit.MeterToTheSixth, metertothesixthQuantity.Unit);
-
-            var millimetertothesixthQuantity = metertothesixth.ToUnit(WarpingMomentOfInertiaUnit.MillimeterToTheSixth);
-            AssertEx.EqualTolerance(MillimetersToTheSixthInOneMeterToTheSixth, (double)millimetertothesixthQuantity.Value, MillimetersToTheSixthTolerance);
-            Assert.Equal(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, millimetertothesixthQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(WarpingMomentOfInertiaUnit unit)
         {
-            var quantityInBaseUnit = WarpingMomentOfInertia.FromMetersToTheSixth(1).ToBaseUnit();
-            Assert.Equal(WarpingMomentOfInertia.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = WarpingMomentOfInertia.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(WarpingMomentOfInertiaUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = WarpingMomentOfInertia.Units.FirstOrDefault(u => u != WarpingMomentOfInertia.BaseUnit && u != WarpingMomentOfInertiaUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == WarpingMomentOfInertiaUnit.Undefined)
+                fromUnit = WarpingMomentOfInertia.BaseUnit;
+
+            var quantity = WarpingMomentOfInertia.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

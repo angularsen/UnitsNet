@@ -73,6 +73,8 @@ namespace UnitsNet
                     new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.MegajoulePerKilogramKelvin, "MegajoulesPerKilogramKelvin", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.SpecificEntropy);
+
+            RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
         /// <summary>
@@ -110,6 +112,11 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="SpecificEntropy" /> instances.
+        /// </summary>
+        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<SpecificEntropyUnit> Info { get; }
@@ -243,27 +250,27 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> SpecificEntropyUnit
-            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.BtuPerPoundFahrenheit, quantity => quantity.ToUnit(SpecificEntropyUnit.BtuPerPoundFahrenheit));
-            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.CaloriePerGramKelvin, quantity => quantity.ToUnit(SpecificEntropyUnit.CaloriePerGramKelvin));
-            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.JoulePerKilogramDegreeCelsius, quantity => quantity.ToUnit(SpecificEntropyUnit.JoulePerKilogramDegreeCelsius));
-            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.KilocaloriePerGramKelvin, quantity => quantity.ToUnit(SpecificEntropyUnit.KilocaloriePerGramKelvin));
-            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius, quantity => quantity.ToUnit(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius));
-            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.KilojoulePerKilogramKelvin, quantity => quantity.ToUnit(SpecificEntropyUnit.KilojoulePerKilogramKelvin));
-            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, quantity => quantity.ToUnit(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius));
-            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.MegajoulePerKilogramKelvin, quantity => quantity.ToUnit(SpecificEntropyUnit.MegajoulePerKilogramKelvin));
+            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.BtuPerPoundFahrenheit, quantity => new SpecificEntropy(quantity.Value / 4.1868e3, SpecificEntropyUnit.BtuPerPoundFahrenheit));
+            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.CaloriePerGramKelvin, quantity => new SpecificEntropy(quantity.Value/4.184e3, SpecificEntropyUnit.CaloriePerGramKelvin));
+            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.JoulePerKilogramDegreeCelsius, quantity => new SpecificEntropy(quantity.Value, SpecificEntropyUnit.JoulePerKilogramDegreeCelsius));
+            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.KilocaloriePerGramKelvin, quantity => new SpecificEntropy((quantity.Value/4.184e3) / 1e3d, SpecificEntropyUnit.KilocaloriePerGramKelvin));
+            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius, quantity => new SpecificEntropy((quantity.Value) / 1e3d, SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius));
+            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.KilojoulePerKilogramKelvin, quantity => new SpecificEntropy((quantity.Value) / 1e3d, SpecificEntropyUnit.KilojoulePerKilogramKelvin));
+            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, quantity => new SpecificEntropy((quantity.Value) / 1e6d, SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius));
+            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.MegajoulePerKilogramKelvin, quantity => new SpecificEntropy((quantity.Value) / 1e6d, SpecificEntropyUnit.MegajoulePerKilogramKelvin));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.JoulePerKilogramKelvin, quantity => quantity);
 
             // Register in unit converter: SpecificEntropyUnit -> BaseUnit
-            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.BtuPerPoundFahrenheit, SpecificEntropyUnit.JoulePerKilogramKelvin, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.CaloriePerGramKelvin, SpecificEntropyUnit.JoulePerKilogramKelvin, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.JoulePerKilogramDegreeCelsius, SpecificEntropyUnit.JoulePerKilogramKelvin, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.KilocaloriePerGramKelvin, SpecificEntropyUnit.JoulePerKilogramKelvin, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius, SpecificEntropyUnit.JoulePerKilogramKelvin, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.KilojoulePerKilogramKelvin, SpecificEntropyUnit.JoulePerKilogramKelvin, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, SpecificEntropyUnit.JoulePerKilogramKelvin, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.MegajoulePerKilogramKelvin, SpecificEntropyUnit.JoulePerKilogramKelvin, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.BtuPerPoundFahrenheit, SpecificEntropyUnit.JoulePerKilogramKelvin, quantity => new SpecificEntropy(quantity.Value * 4.1868e3, SpecificEntropyUnit.JoulePerKilogramKelvin));
+            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.CaloriePerGramKelvin, SpecificEntropyUnit.JoulePerKilogramKelvin, quantity => new SpecificEntropy(quantity.Value*4.184e3, SpecificEntropyUnit.JoulePerKilogramKelvin));
+            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.JoulePerKilogramDegreeCelsius, SpecificEntropyUnit.JoulePerKilogramKelvin, quantity => new SpecificEntropy(quantity.Value, SpecificEntropyUnit.JoulePerKilogramKelvin));
+            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.KilocaloriePerGramKelvin, SpecificEntropyUnit.JoulePerKilogramKelvin, quantity => new SpecificEntropy((quantity.Value*4.184e3) * 1e3d, SpecificEntropyUnit.JoulePerKilogramKelvin));
+            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius, SpecificEntropyUnit.JoulePerKilogramKelvin, quantity => new SpecificEntropy((quantity.Value) * 1e3d, SpecificEntropyUnit.JoulePerKilogramKelvin));
+            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.KilojoulePerKilogramKelvin, SpecificEntropyUnit.JoulePerKilogramKelvin, quantity => new SpecificEntropy((quantity.Value) * 1e3d, SpecificEntropyUnit.JoulePerKilogramKelvin));
+            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, SpecificEntropyUnit.JoulePerKilogramKelvin, quantity => new SpecificEntropy((quantity.Value) * 1e6d, SpecificEntropyUnit.JoulePerKilogramKelvin));
+            unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.MegajoulePerKilogramKelvin, SpecificEntropyUnit.JoulePerKilogramKelvin, quantity => new SpecificEntropy((quantity.Value) * 1e6d, SpecificEntropyUnit.JoulePerKilogramKelvin));
         }
 
         /// <summary>
@@ -752,11 +759,42 @@ namespace UnitsNet
         /// <summary>
         ///     Converts this SpecificEntropy to another SpecificEntropy with the unit representation <paramref name="unit" />.
         /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
         /// <returns>A SpecificEntropy with the specified unit.</returns>
         public SpecificEntropy ToUnit(SpecificEntropyUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new SpecificEntropy(convertedValue, unit);
+            return ToUnit(unit, DefaultConversionFunctions);
+        }
+
+        /// <summary>
+        ///     Converts this SpecificEntropy to another SpecificEntropy using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
+        /// <returns>A SpecificEntropy with the specified unit.</returns>
+        public SpecificEntropy ToUnit(SpecificEntropyUnit unit, UnitConverter unitConverter)
+        {
+            if(Unit == unit)
+            {
+                // Already in requested units.
+                return this;
+            }
+            else if(unitConverter.TryGetConversionFunction((typeof(SpecificEntropy), Unit, typeof(SpecificEntropy), unit), out var conversionFunction))
+            {
+                // Direct conversion to requested unit found. Return the converted quantity.
+                var converted = conversionFunction(this);
+                return (SpecificEntropy)converted;
+            }
+            else if(Unit != BaseUnit)
+            {
+                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                var inBaseUnits = ToUnit(BaseUnit);
+                return inBaseUnits.ToUnit(unit);
+            }
+            else
+            {
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         /// <inheritdoc />
@@ -765,7 +803,16 @@ namespace UnitsNet
             if(!(unit is SpecificEntropyUnit unitAsSpecificEntropyUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificEntropyUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsSpecificEntropyUnit);
+            return ToUnit(unitAsSpecificEntropyUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is SpecificEntropyUnit unitAsSpecificEntropyUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificEntropyUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsSpecificEntropyUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -790,63 +837,15 @@ namespace UnitsNet
         IQuantity<SpecificEntropyUnit> IQuantity<SpecificEntropyUnit>.ToUnit(SpecificEntropyUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantity<SpecificEntropyUnit> IQuantity<SpecificEntropyUnit>.ToUnit(SpecificEntropyUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
+
+        /// <inheritdoc />
         IQuantity<SpecificEntropyUnit> IQuantity<SpecificEntropyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case SpecificEntropyUnit.BtuPerPoundFahrenheit: return _value * 4.1868e3;
-                case SpecificEntropyUnit.CaloriePerGramKelvin: return _value*4.184e3;
-                case SpecificEntropyUnit.JoulePerKilogramDegreeCelsius: return _value;
-                case SpecificEntropyUnit.JoulePerKilogramKelvin: return _value;
-                case SpecificEntropyUnit.KilocaloriePerGramKelvin: return (_value*4.184e3) * 1e3d;
-                case SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius: return (_value) * 1e3d;
-                case SpecificEntropyUnit.KilojoulePerKilogramKelvin: return (_value) * 1e3d;
-                case SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius: return (_value) * 1e6d;
-                case SpecificEntropyUnit.MegajoulePerKilogramKelvin: return (_value) * 1e6d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal SpecificEntropy ToBaseUnit()
-        {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new SpecificEntropy(baseUnitValue, BaseUnit);
-        }
 
         private double GetValueAs(SpecificEntropyUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var baseUnitValue = GetValueInBaseUnit();
-
-            switch(unit)
-            {
-                case SpecificEntropyUnit.BtuPerPoundFahrenheit: return baseUnitValue / 4.1868e3;
-                case SpecificEntropyUnit.CaloriePerGramKelvin: return baseUnitValue/4.184e3;
-                case SpecificEntropyUnit.JoulePerKilogramDegreeCelsius: return baseUnitValue;
-                case SpecificEntropyUnit.JoulePerKilogramKelvin: return baseUnitValue;
-                case SpecificEntropyUnit.KilocaloriePerGramKelvin: return (baseUnitValue/4.184e3) / 1e3d;
-                case SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius: return (baseUnitValue) / 1e3d;
-                case SpecificEntropyUnit.KilojoulePerKilogramKelvin: return (baseUnitValue) / 1e3d;
-                case SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius: return (baseUnitValue) / 1e6d;
-                case SpecificEntropyUnit.MegajoulePerKilogramKelvin: return (baseUnitValue) / 1e6d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         #endregion

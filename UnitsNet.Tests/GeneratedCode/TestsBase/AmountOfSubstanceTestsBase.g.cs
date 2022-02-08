@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -70,6 +71,48 @@ namespace UnitsNet.Tests
         protected virtual double NanopoundMolesTolerance { get { return 1e-5; } }
         protected virtual double PoundMolesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(AmountOfSubstanceUnit unit)
+        {
+            return unit switch
+            {
+                AmountOfSubstanceUnit.Centimole => (CentimolesInOneMole, CentimolesTolerance),
+                AmountOfSubstanceUnit.CentipoundMole => (CentipoundMolesInOneMole, CentipoundMolesTolerance),
+                AmountOfSubstanceUnit.Decimole => (DecimolesInOneMole, DecimolesTolerance),
+                AmountOfSubstanceUnit.DecipoundMole => (DecipoundMolesInOneMole, DecipoundMolesTolerance),
+                AmountOfSubstanceUnit.Kilomole => (KilomolesInOneMole, KilomolesTolerance),
+                AmountOfSubstanceUnit.KilopoundMole => (KilopoundMolesInOneMole, KilopoundMolesTolerance),
+                AmountOfSubstanceUnit.Megamole => (MegamolesInOneMole, MegamolesTolerance),
+                AmountOfSubstanceUnit.Micromole => (MicromolesInOneMole, MicromolesTolerance),
+                AmountOfSubstanceUnit.MicropoundMole => (MicropoundMolesInOneMole, MicropoundMolesTolerance),
+                AmountOfSubstanceUnit.Millimole => (MillimolesInOneMole, MillimolesTolerance),
+                AmountOfSubstanceUnit.MillipoundMole => (MillipoundMolesInOneMole, MillipoundMolesTolerance),
+                AmountOfSubstanceUnit.Mole => (MolesInOneMole, MolesTolerance),
+                AmountOfSubstanceUnit.Nanomole => (NanomolesInOneMole, NanomolesTolerance),
+                AmountOfSubstanceUnit.NanopoundMole => (NanopoundMolesInOneMole, NanopoundMolesTolerance),
+                AmountOfSubstanceUnit.PoundMole => (PoundMolesInOneMole, PoundMolesTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { AmountOfSubstanceUnit.Centimole },
+            new object[] { AmountOfSubstanceUnit.CentipoundMole },
+            new object[] { AmountOfSubstanceUnit.Decimole },
+            new object[] { AmountOfSubstanceUnit.DecipoundMole },
+            new object[] { AmountOfSubstanceUnit.Kilomole },
+            new object[] { AmountOfSubstanceUnit.KilopoundMole },
+            new object[] { AmountOfSubstanceUnit.Megamole },
+            new object[] { AmountOfSubstanceUnit.Micromole },
+            new object[] { AmountOfSubstanceUnit.MicropoundMole },
+            new object[] { AmountOfSubstanceUnit.Millimole },
+            new object[] { AmountOfSubstanceUnit.MillipoundMole },
+            new object[] { AmountOfSubstanceUnit.Mole },
+            new object[] { AmountOfSubstanceUnit.Nanomole },
+            new object[] { AmountOfSubstanceUnit.NanopoundMole },
+            new object[] { AmountOfSubstanceUnit.PoundMole },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -276,77 +319,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(AmountOfSubstanceUnit unit)
         {
-            var mole = AmountOfSubstance.FromMoles(1);
+            var inBaseUnits = AmountOfSubstance.From(1.0, AmountOfSubstance.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var centimoleQuantity = mole.ToUnit(AmountOfSubstanceUnit.Centimole);
-            AssertEx.EqualTolerance(CentimolesInOneMole, (double)centimoleQuantity.Value, CentimolesTolerance);
-            Assert.Equal(AmountOfSubstanceUnit.Centimole, centimoleQuantity.Unit);
-
-            var centipoundmoleQuantity = mole.ToUnit(AmountOfSubstanceUnit.CentipoundMole);
-            AssertEx.EqualTolerance(CentipoundMolesInOneMole, (double)centipoundmoleQuantity.Value, CentipoundMolesTolerance);
-            Assert.Equal(AmountOfSubstanceUnit.CentipoundMole, centipoundmoleQuantity.Unit);
-
-            var decimoleQuantity = mole.ToUnit(AmountOfSubstanceUnit.Decimole);
-            AssertEx.EqualTolerance(DecimolesInOneMole, (double)decimoleQuantity.Value, DecimolesTolerance);
-            Assert.Equal(AmountOfSubstanceUnit.Decimole, decimoleQuantity.Unit);
-
-            var decipoundmoleQuantity = mole.ToUnit(AmountOfSubstanceUnit.DecipoundMole);
-            AssertEx.EqualTolerance(DecipoundMolesInOneMole, (double)decipoundmoleQuantity.Value, DecipoundMolesTolerance);
-            Assert.Equal(AmountOfSubstanceUnit.DecipoundMole, decipoundmoleQuantity.Unit);
-
-            var kilomoleQuantity = mole.ToUnit(AmountOfSubstanceUnit.Kilomole);
-            AssertEx.EqualTolerance(KilomolesInOneMole, (double)kilomoleQuantity.Value, KilomolesTolerance);
-            Assert.Equal(AmountOfSubstanceUnit.Kilomole, kilomoleQuantity.Unit);
-
-            var kilopoundmoleQuantity = mole.ToUnit(AmountOfSubstanceUnit.KilopoundMole);
-            AssertEx.EqualTolerance(KilopoundMolesInOneMole, (double)kilopoundmoleQuantity.Value, KilopoundMolesTolerance);
-            Assert.Equal(AmountOfSubstanceUnit.KilopoundMole, kilopoundmoleQuantity.Unit);
-
-            var megamoleQuantity = mole.ToUnit(AmountOfSubstanceUnit.Megamole);
-            AssertEx.EqualTolerance(MegamolesInOneMole, (double)megamoleQuantity.Value, MegamolesTolerance);
-            Assert.Equal(AmountOfSubstanceUnit.Megamole, megamoleQuantity.Unit);
-
-            var micromoleQuantity = mole.ToUnit(AmountOfSubstanceUnit.Micromole);
-            AssertEx.EqualTolerance(MicromolesInOneMole, (double)micromoleQuantity.Value, MicromolesTolerance);
-            Assert.Equal(AmountOfSubstanceUnit.Micromole, micromoleQuantity.Unit);
-
-            var micropoundmoleQuantity = mole.ToUnit(AmountOfSubstanceUnit.MicropoundMole);
-            AssertEx.EqualTolerance(MicropoundMolesInOneMole, (double)micropoundmoleQuantity.Value, MicropoundMolesTolerance);
-            Assert.Equal(AmountOfSubstanceUnit.MicropoundMole, micropoundmoleQuantity.Unit);
-
-            var millimoleQuantity = mole.ToUnit(AmountOfSubstanceUnit.Millimole);
-            AssertEx.EqualTolerance(MillimolesInOneMole, (double)millimoleQuantity.Value, MillimolesTolerance);
-            Assert.Equal(AmountOfSubstanceUnit.Millimole, millimoleQuantity.Unit);
-
-            var millipoundmoleQuantity = mole.ToUnit(AmountOfSubstanceUnit.MillipoundMole);
-            AssertEx.EqualTolerance(MillipoundMolesInOneMole, (double)millipoundmoleQuantity.Value, MillipoundMolesTolerance);
-            Assert.Equal(AmountOfSubstanceUnit.MillipoundMole, millipoundmoleQuantity.Unit);
-
-            var moleQuantity = mole.ToUnit(AmountOfSubstanceUnit.Mole);
-            AssertEx.EqualTolerance(MolesInOneMole, (double)moleQuantity.Value, MolesTolerance);
-            Assert.Equal(AmountOfSubstanceUnit.Mole, moleQuantity.Unit);
-
-            var nanomoleQuantity = mole.ToUnit(AmountOfSubstanceUnit.Nanomole);
-            AssertEx.EqualTolerance(NanomolesInOneMole, (double)nanomoleQuantity.Value, NanomolesTolerance);
-            Assert.Equal(AmountOfSubstanceUnit.Nanomole, nanomoleQuantity.Unit);
-
-            var nanopoundmoleQuantity = mole.ToUnit(AmountOfSubstanceUnit.NanopoundMole);
-            AssertEx.EqualTolerance(NanopoundMolesInOneMole, (double)nanopoundmoleQuantity.Value, NanopoundMolesTolerance);
-            Assert.Equal(AmountOfSubstanceUnit.NanopoundMole, nanopoundmoleQuantity.Unit);
-
-            var poundmoleQuantity = mole.ToUnit(AmountOfSubstanceUnit.PoundMole);
-            AssertEx.EqualTolerance(PoundMolesInOneMole, (double)poundmoleQuantity.Value, PoundMolesTolerance);
-            Assert.Equal(AmountOfSubstanceUnit.PoundMole, poundmoleQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(AmountOfSubstanceUnit unit)
         {
-            var quantityInBaseUnit = AmountOfSubstance.FromMoles(1).ToBaseUnit();
-            Assert.Equal(AmountOfSubstance.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = AmountOfSubstance.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(AmountOfSubstanceUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = AmountOfSubstance.Units.FirstOrDefault(u => u != AmountOfSubstance.BaseUnit && u != AmountOfSubstanceUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == AmountOfSubstanceUnit.Undefined)
+                fromUnit = AmountOfSubstance.BaseUnit;
+
+            var quantity = AmountOfSubstance.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]
