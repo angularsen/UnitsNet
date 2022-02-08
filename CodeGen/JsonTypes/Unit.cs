@@ -21,6 +21,7 @@ namespace CodeGen.JsonTypes
         public string XmlDocSummary;
         public string ObsoleteText;
         public bool SkipConversionGeneration;
+        public bool AllowAbbreviationLookup = true;
 
         // 0649 Field is never assigned to
 #pragma warning restore 0649

@@ -96,8 +96,9 @@ namespace CodeGen.Generators
                         FromUnitToBaseFunc = $"({unit.FromUnitToBaseFunc}) * {prefixInfo.Factor}",
                         Localization = GetLocalizationForPrefixUnit(unit.Localization, prefixInfo),
                         ObsoleteText = unit.ObsoleteText,
-                        SkipConversionGeneration = unit.SkipConversionGeneration
-                    });
+                        SkipConversionGeneration = unit.SkipConversionGeneration,
+                        AllowAbbreviationLookup = unit.AllowAbbreviationLookup
+                    } );
                 }
                 catch (Exception e)
                 {

@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 using CodeGen.JsonTypes;
 
 namespace CodeGen.Generators.UnitsNetWrcGen
@@ -15,43 +15,43 @@ namespace CodeGen.Generators.UnitsNetWrcGen
         public override string Generate()
         {
             Writer.WL(GeneratedFileHeader);
-            Writer.WL(@"
+            Writer.WL($@"
 using System;
+using System.Collections.Generic;
 using UnitsNet.Units;
 
 // ReSharper disable RedundantCommaInArrayInitializer
 // ReSharper disable once CheckNamespace
 namespace UnitsNet
-{
-    public sealed partial class UnitAbbreviationsCache
-    {
-        private static readonly (string CultureName, Type UnitType, int UnitValue, string[] UnitAbbreviations)[] GeneratedLocalizations
-            = new []
-            {");
-            foreach (var quantity in _quantities)
+{{
+    public partial class UnitAbbreviationsCache
+    {{
+        private static IEnumerable<(string CultureName, Enum UnitValue, bool AllowAbbreviationLookup, string[] UnitAbbreviations)> GetGeneratedLocalizationInfo()
+        {{" );
+            foreach( var quantity in _quantities )
             {
                 var unitEnumName = $"{quantity.Name}Unit";
 
-                foreach (var unit in quantity.Units)
+                foreach( var unit in quantity.Units )
                 {
-                    foreach (var localization in unit.Localization)
+                    foreach( var localization in unit.Localization )
                     {
                         var cultureName = localization.Culture;
 
                         // All units must have a unit abbreviation, so fallback to "" for units with no abbreviations defined in JSON
-                        var abbreviationParams = localization.Abbreviations.Any()
-                            ? string.Join(", ", localization.Abbreviations.Select(abbr => $"\"{abbr}\""))
-                            : "\"\"";
-                        Writer.WL($@"
-                (""{cultureName}"", typeof({unitEnumName}), (int){unitEnumName}.{unit.SingularName}, new string[]{{{abbreviationParams}}}),");
+                        var abbreviationParams = localization.Abbreviations.Any() ?
+                            string.Join( ", ", localization.Abbreviations.Select( abbr => $@"""{abbr}""" ) ) :
+                            $@"""""";
+                        Writer.WL( $@"
+            yield return (""{cultureName}"", {unitEnumName}.{unit.SingularName}, {unit.AllowAbbreviationLookup.ToString().ToLower()}, new string[]{{{abbreviationParams}}});" );
                     }
                 }
             }
 
-            Writer.WL(@"
-            };
-    }
-}");
+            Writer.WL( $@"
+        }}
+    }}
+}}" );
             return Writer.ToString();
         }
     }

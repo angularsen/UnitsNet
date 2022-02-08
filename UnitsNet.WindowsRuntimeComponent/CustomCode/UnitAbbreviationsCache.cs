@@ -45,10 +45,16 @@ namespace UnitsNet
 
         private void LoadGeneratedAbbreviations()
         {
-            foreach(var localization in GeneratedLocalizations)
+            foreach(var localizationInfo in GetGeneratedLocalizationInfo())
             {
-                var culture = new CultureInfo(localization.CultureName);
-                MapUnitToAbbreviation(localization.UnitType, localization.UnitValue, culture, localization.UnitAbbreviations);
+                // Assuming TUnitType is an enum, this conversion is safe. Seems not possible to enforce this today.
+                // Src: http://stackoverflow.com/questions/908543/how-to-convert-from-system-enum-to-base-integer
+                // http://stackoverflow.com/questions/79126/create-generic-method-constraining-t-to-an-enum
+                var unitType = localizationInfo.UnitValue.GetType();
+                var unitValue = Convert.ToInt32(localizationInfo.UnitValue);
+                var culture = new CultureInfo(localizationInfo.CultureName);
+
+                PerformAbbreviationMapping(unitType, unitValue, culture, false, localizationInfo.AllowAbbreviationLookup, localizationInfo.UnitAbbreviations);
             }
         }
 
@@ -64,10 +70,10 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         private void MapUnitToAbbreviation(Type unitType, int unitValue, IFormatProvider formatProvider, [NotNull] params string[] abbreviations)
         {
-            PerformAbbreviationMapping(unitType, unitValue, formatProvider, false, abbreviations);
+            PerformAbbreviationMapping(unitType, unitValue, formatProvider, false, true, abbreviations);
         }
 
-        private void PerformAbbreviationMapping(Type unitType, int unitValue, IFormatProvider formatProvider, bool setAsDefault, [NotNull] params string[] abbreviations)
+        private void PerformAbbreviationMapping(Type unitType, int unitValue, IFormatProvider formatProvider, bool setAsDefault, bool allowAbbreviationLookup, [NotNull] params string[] abbreviations)
         {
             if (!unitType.Wrap().IsEnum)
                 throw new ArgumentException("Must be an enum type.", nameof(unitType));
@@ -85,7 +91,7 @@ namespace UnitsNet
 
             foreach (var abbr in abbreviations)
             {
-                unitToAbbreviations.Add(unitValue, abbr, setAsDefault);
+                unitToAbbreviations.Add(unitValue, abbr, setAsDefault, allowAbbreviationLookup);
             }
         }
 

@@ -13,6 +13,7 @@
       "PluralName": "MolesPerCubicMeter",
       "ObsoleteText": "Use the singular unit instead.",
       "SkipConversionGeneration": true,
+      "AllowAbbreviationLookup": false,
       "BaseUnits": {
         "L": "Meter",
         "N": "Mole"
@@ -32,6 +33,7 @@
       "PluralName": "MolesPerLiter",
       "ObsoleteText": "Use the singular unit instead.",
       "SkipConversionGeneration": true,
+      "AllowAbbreviationLookup": false,
       "BaseUnits": {
         "L": "Decimeter",
         "N": "Mole"
