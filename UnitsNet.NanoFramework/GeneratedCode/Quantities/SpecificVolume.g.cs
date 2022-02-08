@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static SpecificVolumeUnit ConversionBaseUnit { get; } = SpecificVolumeUnit.CubicMeterPerKilogram;
+        public static SpecificVolumeUnit BaseUnit { get; } = SpecificVolumeUnit.CubicMeterPerKilogram;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static SpecificVolume MaxValue { get; } = new SpecificVolume(double.MaxValue, ConversionBaseUnit);
+        public static SpecificVolume MaxValue { get; } = new SpecificVolume(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static SpecificVolume MinValue { get; } = new SpecificVolume(double.MinValue, ConversionBaseUnit);
+        public static SpecificVolume MinValue { get; } = new SpecificVolume(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static SpecificVolume Zero { get; } = new SpecificVolume(0, ConversionBaseUnit);
+        public static SpecificVolume Zero { get; } = new SpecificVolume(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

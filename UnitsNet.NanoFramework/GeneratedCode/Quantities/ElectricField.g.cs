@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static ElectricFieldUnit ConversionBaseUnit { get; } = ElectricFieldUnit.VoltPerMeter;
+        public static ElectricFieldUnit BaseUnit { get; } = ElectricFieldUnit.VoltPerMeter;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static ElectricField MaxValue { get; } = new ElectricField(double.MaxValue, ConversionBaseUnit);
+        public static ElectricField MaxValue { get; } = new ElectricField(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static ElectricField MinValue { get; } = new ElectricField(double.MinValue, ConversionBaseUnit);
+        public static ElectricField MinValue { get; } = new ElectricField(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static ElectricField Zero { get; } = new ElectricField(0, ConversionBaseUnit);
+        public static ElectricField Zero { get; } = new ElectricField(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

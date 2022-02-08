@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static CapacitanceUnit ConversionBaseUnit { get; } = CapacitanceUnit.Farad;
+        public static CapacitanceUnit BaseUnit { get; } = CapacitanceUnit.Farad;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static Capacitance MaxValue { get; } = new Capacitance(double.MaxValue, ConversionBaseUnit);
+        public static Capacitance MaxValue { get; } = new Capacitance(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static Capacitance MinValue { get; } = new Capacitance(double.MinValue, ConversionBaseUnit);
+        public static Capacitance MinValue { get; } = new Capacitance(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static Capacitance Zero { get; } = new Capacitance(0, ConversionBaseUnit);
+        public static Capacitance Zero { get; } = new Capacitance(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

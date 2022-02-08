@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static LinearPowerDensityUnit ConversionBaseUnit { get; } = LinearPowerDensityUnit.WattPerMeter;
+        public static LinearPowerDensityUnit BaseUnit { get; } = LinearPowerDensityUnit.WattPerMeter;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static LinearPowerDensity MaxValue { get; } = new LinearPowerDensity(double.MaxValue, ConversionBaseUnit);
+        public static LinearPowerDensity MaxValue { get; } = new LinearPowerDensity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static LinearPowerDensity MinValue { get; } = new LinearPowerDensity(double.MinValue, ConversionBaseUnit);
+        public static LinearPowerDensity MinValue { get; } = new LinearPowerDensity(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static LinearPowerDensity Zero { get; } = new LinearPowerDensity(0, ConversionBaseUnit);
+        public static LinearPowerDensity Zero { get; } = new LinearPowerDensity(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

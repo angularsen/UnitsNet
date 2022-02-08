@@ -1,6 +1,6 @@
 {
   "Name": "ElectricResistance",
-  "ConversionBaseUnit": "Ohm",
+  "BaseUnit": "Ohm",
   "XmlDocSummary": "The electrical resistance of an electrical conductor is the opposition to the passage of an electric current through that conductor.",
   "BaseDimensions": {
     "L": 2,

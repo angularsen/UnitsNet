@@ -1,6 +1,6 @@
 {
   "Name": "ThermalResistance",
-  "ConversionBaseUnit": "SquareMeterKelvinPerKilowatt",
+  "BaseUnit": "SquareMeterKelvinPerKilowatt",
   "XmlDocSummary": "Heat Transfer Coefficient or Thermal conductivity - indicates a materials ability to conduct heat.",
   "BaseDimensions": {
     "M": -1,

@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static MagneticFluxUnit ConversionBaseUnit { get; } = MagneticFluxUnit.Weber;
+        public static MagneticFluxUnit BaseUnit { get; } = MagneticFluxUnit.Weber;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static MagneticFlux MaxValue { get; } = new MagneticFlux(double.MaxValue, ConversionBaseUnit);
+        public static MagneticFlux MaxValue { get; } = new MagneticFlux(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static MagneticFlux MinValue { get; } = new MagneticFlux(double.MinValue, ConversionBaseUnit);
+        public static MagneticFlux MinValue { get; } = new MagneticFlux(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static MagneticFlux Zero { get; } = new MagneticFlux(0, ConversionBaseUnit);
+        public static MagneticFlux Zero { get; } = new MagneticFlux(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

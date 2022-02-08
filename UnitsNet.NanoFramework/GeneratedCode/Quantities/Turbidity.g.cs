@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static TurbidityUnit ConversionBaseUnit { get; } = TurbidityUnit.NTU;
+        public static TurbidityUnit BaseUnit { get; } = TurbidityUnit.NTU;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static Turbidity MaxValue { get; } = new Turbidity(double.MaxValue, ConversionBaseUnit);
+        public static Turbidity MaxValue { get; } = new Turbidity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static Turbidity MinValue { get; } = new Turbidity(double.MinValue, ConversionBaseUnit);
+        public static Turbidity MinValue { get; } = new Turbidity(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static Turbidity Zero { get; } = new Turbidity(0, ConversionBaseUnit);
+        public static Turbidity Zero { get; } = new Turbidity(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

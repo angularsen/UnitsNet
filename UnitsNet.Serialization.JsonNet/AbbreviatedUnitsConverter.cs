@@ -24,7 +24,7 @@ namespace UnitsNet.Serialization.JsonNet
     {
         private const string ValueProperty = "Value";
         private const string UnitProperty = "Unit";
-        private const string TypeProperty = "Type"; 
+        private const string TypeProperty = "Type";
 
         private readonly UnitAbbreviationsCache _abbreviations;
         private readonly IEqualityComparer<string> _propertyComparer;
@@ -183,7 +183,7 @@ namespace UnitsNet.Serialization.JsonNet
 
             return Quantity.From(value, unit);
         }
-        
+
         /// <summary>
         ///     Attempt to find an a unique (non-ambiguous) unit matching the provided abbreviation.
         ///     <remarks>

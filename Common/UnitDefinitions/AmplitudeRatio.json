@@ -1,6 +1,6 @@
 {
   "Name": "AmplitudeRatio",
-  "ConversionBaseUnit": "DecibelVolt",
+  "BaseUnit": "DecibelVolt",
   "Logarithmic": "True",
   "LogarithmicScalingFactor": "2",
   "XmlDocSummary": "The strength of a signal expressed in decibels (dB) relative to one volt RMS.",

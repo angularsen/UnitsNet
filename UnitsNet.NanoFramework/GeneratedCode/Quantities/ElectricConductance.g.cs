@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static ElectricConductanceUnit ConversionBaseUnit { get; } = ElectricConductanceUnit.Siemens;
+        public static ElectricConductanceUnit BaseUnit { get; } = ElectricConductanceUnit.Siemens;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static ElectricConductance MaxValue { get; } = new ElectricConductance(double.MaxValue, ConversionBaseUnit);
+        public static ElectricConductance MaxValue { get; } = new ElectricConductance(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static ElectricConductance MinValue { get; } = new ElectricConductance(double.MinValue, ConversionBaseUnit);
+        public static ElectricConductance MinValue { get; } = new ElectricConductance(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static ElectricConductance Zero { get; } = new ElectricConductance(0, ConversionBaseUnit);
+        public static ElectricConductance Zero { get; } = new ElectricConductance(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

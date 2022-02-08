@@ -48,8 +48,8 @@ namespace CodeGen.Generators.UnitsNetGen
         public UnitTestBaseClassGenerator(Quantity quantity)
         {
             _quantity = quantity;
-            _baseUnit = quantity.Units.FirstOrDefault(u => u.SingularName == _quantity.ConversionBaseUnit) ??
-                        throw new ArgumentException($"No unit found with SingularName equal to ConversionBaseUnit [{_quantity.ConversionBaseUnit}]. This unit must be defined.",
+            _baseUnit = quantity.Units.FirstOrDefault(u => u.SingularName == _quantity.BaseUnit) ??
+                        throw new ArgumentException($"No unit found with SingularName equal to BaseUnit [{_quantity.BaseUnit}]. This unit must be defined.",
                             nameof(quantity));
             _unitEnumName = $"{quantity.Name}Unit";
             _baseUnitEnglishAbbreviation = GetEnglishAbbreviation(_baseUnit);
@@ -242,7 +242,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {{
-            var quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.ConversionBaseUnit);
+            var quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.BaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -282,11 +282,11 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit({_unitEnumName} unit)
         {{
             // See if there is a unit available that is not the base unit.
-            var fromUnit = {_quantity.Name}.Units.FirstOrDefault(u => u != {_quantity.Name}.ConversionBaseUnit && u != {_unitEnumName}.Undefined);
+            var fromUnit = {_quantity.Name}.Units.FirstOrDefault(u => u != {_quantity.Name}.BaseUnit && u != {_unitEnumName}.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
             if(fromUnit == {_unitEnumName}.Undefined)
-                fromUnit = {_quantity.Name}.ConversionBaseUnit;
+                fromUnit = {_quantity.Name}.BaseUnit;
 
             var quantity = {_quantity.Name}.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

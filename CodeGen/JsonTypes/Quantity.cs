@@ -13,7 +13,7 @@ namespace CodeGen.JsonTypes
 
         public BaseDimensions BaseDimensions = new(); // Default to empty
         public string ValueType = "double";
-        public string ConversionBaseUnit;
+        public string BaseUnit;
         public bool GenerateArithmetic = true;
         public bool Logarithmic = false;
         public int LogarithmicScalingFactor = 1;

@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static RatioUnit ConversionBaseUnit { get; } = RatioUnit.DecimalFraction;
+        public static RatioUnit BaseUnit { get; } = RatioUnit.DecimalFraction;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static Ratio MaxValue { get; } = new Ratio(double.MaxValue, ConversionBaseUnit);
+        public static Ratio MaxValue { get; } = new Ratio(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static Ratio MinValue { get; } = new Ratio(double.MinValue, ConversionBaseUnit);
+        public static Ratio MinValue { get; } = new Ratio(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static Ratio Zero { get; } = new Ratio(0, ConversionBaseUnit);
+        public static Ratio Zero { get; } = new Ratio(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

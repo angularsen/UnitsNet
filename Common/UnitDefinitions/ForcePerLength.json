@@ -1,6 +1,6 @@
 {
   "Name": "ForcePerLength",
-  "ConversionBaseUnit": "NewtonPerMeter",
+  "BaseUnit": "NewtonPerMeter",
   "XmlDocSummary": "The magnitude of force per unit length.",
   "BaseDimensions": {
     "M": 1,

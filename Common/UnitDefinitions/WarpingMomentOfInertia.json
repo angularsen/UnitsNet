@@ -1,6 +1,6 @@
 {
   "Name": "WarpingMomentOfInertia",
-  "ConversionBaseUnit": "MeterToTheSixth",
+  "BaseUnit": "MeterToTheSixth",
   "XmlDocSummary": "A geometric property of an area that is used to determine the warping stress.",
   "BaseDimensions": {
     "L": 6

@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static RelativeHumidityUnit ConversionBaseUnit { get; } = RelativeHumidityUnit.Percent;
+        public static RelativeHumidityUnit BaseUnit { get; } = RelativeHumidityUnit.Percent;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static RelativeHumidity MaxValue { get; } = new RelativeHumidity(double.MaxValue, ConversionBaseUnit);
+        public static RelativeHumidity MaxValue { get; } = new RelativeHumidity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static RelativeHumidity MinValue { get; } = new RelativeHumidity(double.MinValue, ConversionBaseUnit);
+        public static RelativeHumidity MinValue { get; } = new RelativeHumidity(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static RelativeHumidity Zero { get; } = new RelativeHumidity(0, ConversionBaseUnit);
+        public static RelativeHumidity Zero { get; } = new RelativeHumidity(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

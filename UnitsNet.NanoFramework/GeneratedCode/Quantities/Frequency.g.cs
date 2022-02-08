@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static FrequencyUnit ConversionBaseUnit { get; } = FrequencyUnit.Hertz;
+        public static FrequencyUnit BaseUnit { get; } = FrequencyUnit.Hertz;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static Frequency MaxValue { get; } = new Frequency(double.MaxValue, ConversionBaseUnit);
+        public static Frequency MaxValue { get; } = new Frequency(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static Frequency MinValue { get; } = new Frequency(double.MinValue, ConversionBaseUnit);
+        public static Frequency MinValue { get; } = new Frequency(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static Frequency Zero { get; } = new Frequency(0, ConversionBaseUnit);
+        public static Frequency Zero { get; } = new Frequency(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

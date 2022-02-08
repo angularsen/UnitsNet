@@ -1,6 +1,6 @@
 {
   "Name": "SpecificEnergy",
-  "ConversionBaseUnit": "JoulePerKilogram",
+  "BaseUnit": "JoulePerKilogram",
   "XmlDocSummary": "The SpecificEnergy",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Specific_energy",
   "BaseDimensions": {

@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static ForcePerLengthUnit ConversionBaseUnit { get; } = ForcePerLengthUnit.NewtonPerMeter;
+        public static ForcePerLengthUnit BaseUnit { get; } = ForcePerLengthUnit.NewtonPerMeter;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static ForcePerLength MaxValue { get; } = new ForcePerLength(double.MaxValue, ConversionBaseUnit);
+        public static ForcePerLength MaxValue { get; } = new ForcePerLength(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static ForcePerLength MinValue { get; } = new ForcePerLength(double.MinValue, ConversionBaseUnit);
+        public static ForcePerLength MinValue { get; } = new ForcePerLength(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static ForcePerLength Zero { get; } = new ForcePerLength(0, ConversionBaseUnit);
+        public static ForcePerLength Zero { get; } = new ForcePerLength(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

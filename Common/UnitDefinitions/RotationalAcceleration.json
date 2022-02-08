@@ -1,6 +1,6 @@
 {
   "Name": "RotationalAcceleration",
-  "ConversionBaseUnit": "RadianPerSecondSquared",
+  "BaseUnit": "RadianPerSecondSquared",
   "XmlDocSummary": "Angular acceleration is the rate of change of rotational speed.",
   "BaseDimensions": {
     "T": -2

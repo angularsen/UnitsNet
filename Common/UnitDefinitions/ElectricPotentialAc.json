@@ -1,6 +1,6 @@
 {
   "Name": "ElectricPotentialAc",
-  "ConversionBaseUnit": "VoltAc",
+  "BaseUnit": "VoltAc",
   "XmlDocSummary": "The Electric Potential of a system known to use Alternating Current.",
   "Units": [
     {

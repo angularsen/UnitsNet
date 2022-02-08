@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static MassFractionUnit ConversionBaseUnit { get; } = MassFractionUnit.DecimalFraction;
+        public static MassFractionUnit BaseUnit { get; } = MassFractionUnit.DecimalFraction;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static MassFraction MaxValue { get; } = new MassFraction(double.MaxValue, ConversionBaseUnit);
+        public static MassFraction MaxValue { get; } = new MassFraction(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static MassFraction MinValue { get; } = new MassFraction(double.MinValue, ConversionBaseUnit);
+        public static MassFraction MinValue { get; } = new MassFraction(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static MassFraction Zero { get; } = new MassFraction(0, ConversionBaseUnit);
+        public static MassFraction Zero { get; } = new MassFraction(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

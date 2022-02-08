@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static AngleUnit ConversionBaseUnit { get; } = AngleUnit.Degree;
+        public static AngleUnit BaseUnit { get; } = AngleUnit.Degree;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static Angle MaxValue { get; } = new Angle(double.MaxValue, ConversionBaseUnit);
+        public static Angle MaxValue { get; } = new Angle(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static Angle MinValue { get; } = new Angle(double.MinValue, ConversionBaseUnit);
+        public static Angle MinValue { get; } = new Angle(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static Angle Zero { get; } = new Angle(0, ConversionBaseUnit);
+        public static Angle Zero { get; } = new Angle(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

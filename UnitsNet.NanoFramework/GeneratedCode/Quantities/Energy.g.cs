@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static EnergyUnit ConversionBaseUnit { get; } = EnergyUnit.Joule;
+        public static EnergyUnit BaseUnit { get; } = EnergyUnit.Joule;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static Energy MaxValue { get; } = new Energy(double.MaxValue, ConversionBaseUnit);
+        public static Energy MaxValue { get; } = new Energy(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static Energy MinValue { get; } = new Energy(double.MinValue, ConversionBaseUnit);
+        public static Energy MinValue { get; } = new Energy(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static Energy Zero { get; } = new Energy(0, ConversionBaseUnit);
+        public static Energy Zero { get; } = new Energy(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

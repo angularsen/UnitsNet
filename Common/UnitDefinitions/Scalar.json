@@ -1,6 +1,6 @@
 {
   "Name": "Scalar",
-  "ConversionBaseUnit": "Amount",
+  "BaseUnit": "Amount",
   "XmlDocSummary": "A way of representing a number of items.",
   "Units": [
     {

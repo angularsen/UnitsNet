@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static TemperatureDeltaUnit ConversionBaseUnit { get; } = TemperatureDeltaUnit.Kelvin;
+        public static TemperatureDeltaUnit BaseUnit { get; } = TemperatureDeltaUnit.Kelvin;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static TemperatureDelta MaxValue { get; } = new TemperatureDelta(double.MaxValue, ConversionBaseUnit);
+        public static TemperatureDelta MaxValue { get; } = new TemperatureDelta(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static TemperatureDelta MinValue { get; } = new TemperatureDelta(double.MinValue, ConversionBaseUnit);
+        public static TemperatureDelta MinValue { get; } = new TemperatureDelta(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static TemperatureDelta Zero { get; } = new TemperatureDelta(0, ConversionBaseUnit);
+        public static TemperatureDelta Zero { get; } = new TemperatureDelta(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

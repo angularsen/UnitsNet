@@ -24,7 +24,7 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     The rate of change of temperature with displacement in a given direction (as with increase of height)
+    ///     
     /// </summary>
     public struct  TemperatureGradient
     {
@@ -145,7 +145,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(TemperatureGradientUnit unit) => GetValueAs(unit);        
+        public double As(TemperatureGradientUnit unit) => GetValueAs(unit);
 
         /// <summary>
         ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
@@ -153,11 +153,9 @@ namespace UnitsNet
         /// <returns>A Duration with the specified unit.</returns>
         public TemperatureGradient ToUnit(TemperatureGradientUnit unit)
         {
-                
             var convertedValue = GetValueAs(unit);
             return new TemperatureGradient(convertedValue, unit);
         }
-
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

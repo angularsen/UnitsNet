@@ -17,8 +17,8 @@
     <language>en-US</language>
     <tags>nanoframework pressure unit units quantity quantities measurement si metric imperial abbreviation abbreviations convert conversion parse immutable</tags>
     <dependencies>
-      <dependency id="nanoFramework.CoreLibrary" version="1.10.5" />
-      <dependency id="nanoFramework.System.Math" version="1.4.1" />
+      <dependency id="nanoFramework.CoreLibrary" version="1.12.0-preview.5" />
+      <dependency id="nanoFramework.System.Math" version="1.4.4-preview.11" />
     </dependencies>
   </metadata>
   <files>

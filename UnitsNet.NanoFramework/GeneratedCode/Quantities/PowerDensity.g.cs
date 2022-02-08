@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static PowerDensityUnit ConversionBaseUnit { get; } = PowerDensityUnit.WattPerCubicMeter;
+        public static PowerDensityUnit BaseUnit { get; } = PowerDensityUnit.WattPerCubicMeter;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static PowerDensity MaxValue { get; } = new PowerDensity(double.MaxValue, ConversionBaseUnit);
+        public static PowerDensity MaxValue { get; } = new PowerDensity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static PowerDensity MinValue { get; } = new PowerDensity(double.MinValue, ConversionBaseUnit);
+        public static PowerDensity MinValue { get; } = new PowerDensity(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static PowerDensity Zero { get; } = new PowerDensity(0, ConversionBaseUnit);
+        public static PowerDensity Zero { get; } = new PowerDensity(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

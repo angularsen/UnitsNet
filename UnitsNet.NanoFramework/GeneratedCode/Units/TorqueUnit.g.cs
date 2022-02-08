@@ -25,6 +25,9 @@ namespace UnitsNet.Units
 
     public enum TorqueUnit
     {
+        GramForceCentimeter,
+        GramForceMeter,
+        GramForceMillimeter,
         KilogramForceCentimeter,
         KilogramForceMeter,
         KilogramForceMillimeter,

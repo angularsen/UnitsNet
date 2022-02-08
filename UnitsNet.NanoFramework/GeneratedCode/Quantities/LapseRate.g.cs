@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static LapseRateUnit ConversionBaseUnit { get; } = LapseRateUnit.DegreeCelsiusPerKilometer;
+        public static LapseRateUnit BaseUnit { get; } = LapseRateUnit.DegreeCelsiusPerKilometer;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static LapseRate MaxValue { get; } = new LapseRate(double.MaxValue, ConversionBaseUnit);
+        public static LapseRate MaxValue { get; } = new LapseRate(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static LapseRate MinValue { get; } = new LapseRate(double.MinValue, ConversionBaseUnit);
+        public static LapseRate MinValue { get; } = new LapseRate(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static LapseRate Zero { get; } = new LapseRate(0, ConversionBaseUnit);
+        public static LapseRate Zero { get; } = new LapseRate(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

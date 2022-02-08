@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static PressureUnit ConversionBaseUnit { get; } = PressureUnit.Pascal;
+        public static PressureUnit BaseUnit { get; } = PressureUnit.Pascal;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static Pressure MaxValue { get; } = new Pressure(double.MaxValue, ConversionBaseUnit);
+        public static Pressure MaxValue { get; } = new Pressure(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static Pressure MinValue { get; } = new Pressure(double.MinValue, ConversionBaseUnit);
+        public static Pressure MinValue { get; } = new Pressure(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static Pressure Zero { get; } = new Pressure(0, ConversionBaseUnit);
+        public static Pressure Zero { get; } = new Pressure(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static ReciprocalLengthUnit ConversionBaseUnit { get; } = ReciprocalLengthUnit.InverseMeter;
+        public static ReciprocalLengthUnit BaseUnit { get; } = ReciprocalLengthUnit.InverseMeter;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static ReciprocalLength MaxValue { get; } = new ReciprocalLength(double.MaxValue, ConversionBaseUnit);
+        public static ReciprocalLength MaxValue { get; } = new ReciprocalLength(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static ReciprocalLength MinValue { get; } = new ReciprocalLength(double.MinValue, ConversionBaseUnit);
+        public static ReciprocalLength MinValue { get; } = new ReciprocalLength(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static ReciprocalLength Zero { get; } = new ReciprocalLength(0, ConversionBaseUnit);
+        public static ReciprocalLength Zero { get; } = new ReciprocalLength(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

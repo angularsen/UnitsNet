@@ -75,7 +75,7 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static {_unitEnumName} ConversionBaseUnit {{ get; }} = {_unitEnumName}.{_quantity.ConversionBaseUnit};
+        public static {_unitEnumName} BaseUnit {{ get; }} = {_unitEnumName}.{_quantity.BaseUnit};
 
         /// <summary>
         /// Represents the largest possible value of Duration
@@ -83,27 +83,27 @@ namespace UnitsNet
 
             // Non decimal
             Writer.WLCondition(_quantity.ValueType != "decimal", $@"
-        public static {_quantity.Name} MaxValue {{ get; }} = new {_quantity.Name}({_quantity.ValueType}.MaxValue, ConversionBaseUnit);
+        public static {_quantity.Name} MaxValue {{ get; }} = new {_quantity.Name}({_quantity.ValueType}.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}({_quantity.ValueType}.MinValue, ConversionBaseUnit);");
+        public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}({_quantity.ValueType}.MinValue, BaseUnit);");
 
             // Decimal MaxValue = 79228162514264337593543950335M
             Writer.WLCondition(_quantity.ValueType == "decimal", $@"
-        public static {_quantity.Name} MaxValue {{ get; }} = new {_quantity.Name}(79228162514264337593543950335M, ConversionBaseUnit);
+        public static {_quantity.Name} MaxValue {{ get; }} = new {_quantity.Name}(79228162514264337593543950335M, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}(-79228162514264337593543950335M, ConversionBaseUnit);");
+        public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}(-79228162514264337593543950335M, BaseUnit);");
 
             Writer.WL($@"
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static {_quantity.Name} Zero {{ get; }} = new {_quantity.Name}(0, ConversionBaseUnit);");
+        public static {_quantity.Name} Zero {{ get; }} = new {_quantity.Name}(0, BaseUnit);");
 
             GenerateConversionProperties();
             GenerateStaticFactoryMethods();

@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static MassUnit ConversionBaseUnit { get; } = MassUnit.Kilogram;
+        public static MassUnit BaseUnit { get; } = MassUnit.Kilogram;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static Mass MaxValue { get; } = new Mass(double.MaxValue, ConversionBaseUnit);
+        public static Mass MaxValue { get; } = new Mass(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static Mass MinValue { get; } = new Mass(double.MinValue, ConversionBaseUnit);
+        public static Mass MinValue { get; } = new Mass(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static Mass Zero { get; } = new Mass(0, ConversionBaseUnit);
+        public static Mass Zero { get; } = new Mass(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

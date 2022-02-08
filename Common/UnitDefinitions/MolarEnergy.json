@@ -1,6 +1,6 @@
 {
   "Name": "MolarEnergy",
-  "ConversionBaseUnit": "JoulePerMole",
+  "BaseUnit": "JoulePerMole",
   "XmlDocSummary": "Molar energy is the amount of energy stored in 1 mole of a substance.",
   "BaseDimensions": {
     "L": 2,

@@ -21,8 +21,8 @@ namespace CodeGen.Generators.UnitsNetGen
         {
             _quantity = quantity ?? throw new ArgumentNullException(nameof(quantity));
 
-            _baseUnit = quantity.Units.FirstOrDefault(u => u.SingularName == _quantity.ConversionBaseUnit) ??
-                        throw new ArgumentException($"No unit found with SingularName equal to ConversionBaseUnit [{_quantity.ConversionBaseUnit}]. This unit must be defined.",
+            _baseUnit = quantity.Units.FirstOrDefault(u => u.SingularName == _quantity.BaseUnit) ??
+                        throw new ArgumentException($"No unit found with SingularName equal to BaseUnit [{_quantity.BaseUnit}]. This unit must be defined.",
                             nameof(quantity));
 
             _valueType = quantity.ValueType;
@@ -162,7 +162,7 @@ namespace UnitsNet
 
             Writer.WL($@"
                 }},
-                ConversionBaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions);
 
             RegisterDefaultConversions(DefaultConversionFunctions);
         }}
@@ -235,7 +235,7 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions {{ get; }}
 
         /// <summary>
-        ///     The base unit of {_quantity.Name}, which is {_quantity.ConversionBaseUnit}. All conversions go via this value.
+        ///     The base unit of {_quantity.Name}, which is {_quantity.BaseUnit}. All conversions go via this value.
         /// </summary>
         public static {_unitEnumName} BaseUnit {{ get; }}
 
@@ -245,7 +245,7 @@ namespace UnitsNet
         public static {_unitEnumName}[] Units {{ get; }}
 
         /// <summary>
-        ///     Gets an instance of this quantity with a value of 0 in the base unit {_quantity.ConversionBaseUnit}.
+        ///     Gets an instance of this quantity with a value of 0 in the base unit {_quantity.BaseUnit}.
         /// </summary>
         public static {_quantity.Name} Zero {{ get; }}
 
@@ -279,7 +279,7 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public {_unitEnumName} Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
+        public {_unitEnumName} Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<{_unitEnumName}> QuantityInfo => Info;
@@ -344,7 +344,7 @@ namespace UnitsNet
         }
 
         Writer.WL($@"
-            
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<{_quantity.Name}>({_unitEnumName}.{_quantity.BaseUnit}, {_unitEnumName}.{_quantity.BaseUnit}, quantity => quantity);
 

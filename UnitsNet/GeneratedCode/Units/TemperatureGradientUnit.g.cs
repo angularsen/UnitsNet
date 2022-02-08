@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum TemperatureGradientUnit
     {
-        Undefined = 0,
         DegreeCelsiusPerKilometer,
         DegreeCelsiusPerMeter,
         DegreeFahrenheitPerFoot,

@@ -24,7 +24,7 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     The volumetric flow rate per area is the volume of fluid which passes through a given unit surface area per unit time.
+    ///     
     /// </summary>
     public struct  VolumeFlowPerArea
     {
@@ -123,7 +123,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(VolumeFlowPerAreaUnit unit) => GetValueAs(unit);        
+        public double As(VolumeFlowPerAreaUnit unit) => GetValueAs(unit);
 
         /// <summary>
         ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
@@ -131,11 +131,9 @@ namespace UnitsNet
         /// <returns>A Duration with the specified unit.</returns>
         public VolumeFlowPerArea ToUnit(VolumeFlowPerAreaUnit unit)
         {
-                
             var convertedValue = GetValueAs(unit);
             return new VolumeFlowPerArea(convertedValue, unit);
         }
-
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

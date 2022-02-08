@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static RotationalAccelerationUnit ConversionBaseUnit { get; } = RotationalAccelerationUnit.RadianPerSecondSquared;
+        public static RotationalAccelerationUnit BaseUnit { get; } = RotationalAccelerationUnit.RadianPerSecondSquared;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static RotationalAcceleration MaxValue { get; } = new RotationalAcceleration(double.MaxValue, ConversionBaseUnit);
+        public static RotationalAcceleration MaxValue { get; } = new RotationalAcceleration(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static RotationalAcceleration MinValue { get; } = new RotationalAcceleration(double.MinValue, ConversionBaseUnit);
+        public static RotationalAcceleration MinValue { get; } = new RotationalAcceleration(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static RotationalAcceleration Zero { get; } = new RotationalAcceleration(0, ConversionBaseUnit);
+        public static RotationalAcceleration Zero { get; } = new RotationalAcceleration(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

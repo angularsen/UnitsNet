@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static MassConcentrationUnit ConversionBaseUnit { get; } = MassConcentrationUnit.KilogramPerCubicMeter;
+        public static MassConcentrationUnit BaseUnit { get; } = MassConcentrationUnit.KilogramPerCubicMeter;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static MassConcentration MaxValue { get; } = new MassConcentration(double.MaxValue, ConversionBaseUnit);
+        public static MassConcentration MaxValue { get; } = new MassConcentration(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static MassConcentration MinValue { get; } = new MassConcentration(double.MinValue, ConversionBaseUnit);
+        public static MassConcentration MinValue { get; } = new MassConcentration(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static MassConcentration Zero { get; } = new MassConcentration(0, ConversionBaseUnit);
+        public static MassConcentration Zero { get; } = new MassConcentration(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

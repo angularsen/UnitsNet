@@ -1,6 +1,6 @@
 {
   "Name": "HeatFlux",
-  "ConversionBaseUnit": "WattPerSquareMeter",
+  "BaseUnit": "WattPerSquareMeter",
   "XmlDocSummary": "Heat flux is the flow of energy per unit of area per unit of time",
   "BaseDimensions": {
     "M": 1,

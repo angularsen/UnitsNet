@@ -276,7 +276,7 @@ namespace UnitsNet.Tests
         {
             var units = new Length[] { };
 
-            Length sum = units.Sum(Length.ConversionBaseUnit);
+            Length sum = units.Sum(Length.BaseUnit);
 
             Assert.Equal(Length.Zero, sum);
         }

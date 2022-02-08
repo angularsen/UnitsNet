@@ -1,6 +1,6 @@
 {
   "Name": "TemperatureChangeRate",
-  "ConversionBaseUnit": "DegreeCelsiusPerSecond",
+  "BaseUnit": "DegreeCelsiusPerSecond",
   "XmlDocSummary": "Temperature change rate is the ratio of the temperature change to the time during which the change occurred (value of temperature changes per unit time).",
   "BaseDimensions": {
     "T": -1,

@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static IlluminanceUnit ConversionBaseUnit { get; } = IlluminanceUnit.Lux;
+        public static IlluminanceUnit BaseUnit { get; } = IlluminanceUnit.Lux;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static Illuminance MaxValue { get; } = new Illuminance(double.MaxValue, ConversionBaseUnit);
+        public static Illuminance MaxValue { get; } = new Illuminance(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static Illuminance MinValue { get; } = new Illuminance(double.MinValue, ConversionBaseUnit);
+        public static Illuminance MinValue { get; } = new Illuminance(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static Illuminance Zero { get; } = new Illuminance(0, ConversionBaseUnit);
+        public static Illuminance Zero { get; } = new Illuminance(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

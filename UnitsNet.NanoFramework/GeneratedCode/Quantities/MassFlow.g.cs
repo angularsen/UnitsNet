@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static MassFlowUnit ConversionBaseUnit { get; } = MassFlowUnit.GramPerSecond;
+        public static MassFlowUnit BaseUnit { get; } = MassFlowUnit.GramPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static MassFlow MaxValue { get; } = new MassFlow(double.MaxValue, ConversionBaseUnit);
+        public static MassFlow MaxValue { get; } = new MassFlow(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static MassFlow MinValue { get; } = new MassFlow(double.MinValue, ConversionBaseUnit);
+        public static MassFlow MinValue { get; } = new MassFlow(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static MassFlow Zero { get; } = new MassFlow(0, ConversionBaseUnit);
+        public static MassFlow Zero { get; } = new MassFlow(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

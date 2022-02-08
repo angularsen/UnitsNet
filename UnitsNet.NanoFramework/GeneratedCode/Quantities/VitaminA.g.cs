@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static VitaminAUnit ConversionBaseUnit { get; } = VitaminAUnit.InternationalUnit;
+        public static VitaminAUnit BaseUnit { get; } = VitaminAUnit.InternationalUnit;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static VitaminA MaxValue { get; } = new VitaminA(double.MaxValue, ConversionBaseUnit);
+        public static VitaminA MaxValue { get; } = new VitaminA(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static VitaminA MinValue { get; } = new VitaminA(double.MinValue, ConversionBaseUnit);
+        public static VitaminA MinValue { get; } = new VitaminA(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static VitaminA Zero { get; } = new VitaminA(0, ConversionBaseUnit);
+        public static VitaminA Zero { get; } = new VitaminA(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

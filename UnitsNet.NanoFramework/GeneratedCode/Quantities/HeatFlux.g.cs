@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static HeatFluxUnit ConversionBaseUnit { get; } = HeatFluxUnit.WattPerSquareMeter;
+        public static HeatFluxUnit BaseUnit { get; } = HeatFluxUnit.WattPerSquareMeter;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static HeatFlux MaxValue { get; } = new HeatFlux(double.MaxValue, ConversionBaseUnit);
+        public static HeatFlux MaxValue { get; } = new HeatFlux(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static HeatFlux MinValue { get; } = new HeatFlux(double.MinValue, ConversionBaseUnit);
+        public static HeatFlux MinValue { get; } = new HeatFlux(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static HeatFlux Zero { get; } = new HeatFlux(0, ConversionBaseUnit);
+        public static HeatFlux Zero { get; } = new HeatFlux(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

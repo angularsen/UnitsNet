@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static ElectricPotentialUnit ConversionBaseUnit { get; } = ElectricPotentialUnit.Volt;
+        public static ElectricPotentialUnit BaseUnit { get; } = ElectricPotentialUnit.Volt;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static ElectricPotential MaxValue { get; } = new ElectricPotential(double.MaxValue, ConversionBaseUnit);
+        public static ElectricPotential MaxValue { get; } = new ElectricPotential(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static ElectricPotential MinValue { get; } = new ElectricPotential(double.MinValue, ConversionBaseUnit);
+        public static ElectricPotential MinValue { get; } = new ElectricPotential(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static ElectricPotential Zero { get; } = new ElectricPotential(0, ConversionBaseUnit);
+        public static ElectricPotential Zero { get; } = new ElectricPotential(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

@@ -1,6 +1,6 @@
 {
   "Name": "ElectricPotentialDc",
-  "ConversionBaseUnit": "VoltDc",
+  "BaseUnit": "VoltDc",
   "XmlDocSummary": "The Electric Potential of a system known to use Direct Current.",
   "Units": [
     {

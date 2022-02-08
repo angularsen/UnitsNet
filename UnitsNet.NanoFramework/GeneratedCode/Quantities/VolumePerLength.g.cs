@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static VolumePerLengthUnit ConversionBaseUnit { get; } = VolumePerLengthUnit.CubicMeterPerMeter;
+        public static VolumePerLengthUnit BaseUnit { get; } = VolumePerLengthUnit.CubicMeterPerMeter;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static VolumePerLength MaxValue { get; } = new VolumePerLength(double.MaxValue, ConversionBaseUnit);
+        public static VolumePerLength MaxValue { get; } = new VolumePerLength(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static VolumePerLength MinValue { get; } = new VolumePerLength(double.MinValue, ConversionBaseUnit);
+        public static VolumePerLength MinValue { get; } = new VolumePerLength(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static VolumePerLength Zero { get; } = new VolumePerLength(0, ConversionBaseUnit);
+        public static VolumePerLength Zero { get; } = new VolumePerLength(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

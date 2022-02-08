@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static SpecificWeightUnit ConversionBaseUnit { get; } = SpecificWeightUnit.NewtonPerCubicMeter;
+        public static SpecificWeightUnit BaseUnit { get; } = SpecificWeightUnit.NewtonPerCubicMeter;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static SpecificWeight MaxValue { get; } = new SpecificWeight(double.MaxValue, ConversionBaseUnit);
+        public static SpecificWeight MaxValue { get; } = new SpecificWeight(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static SpecificWeight MinValue { get; } = new SpecificWeight(double.MinValue, ConversionBaseUnit);
+        public static SpecificWeight MinValue { get; } = new SpecificWeight(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static SpecificWeight Zero { get; } = new SpecificWeight(0, ConversionBaseUnit);
+        public static SpecificWeight Zero { get; } = new SpecificWeight(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

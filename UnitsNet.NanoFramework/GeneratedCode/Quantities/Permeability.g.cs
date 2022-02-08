@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static PermeabilityUnit ConversionBaseUnit { get; } = PermeabilityUnit.HenryPerMeter;
+        public static PermeabilityUnit BaseUnit { get; } = PermeabilityUnit.HenryPerMeter;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static Permeability MaxValue { get; } = new Permeability(double.MaxValue, ConversionBaseUnit);
+        public static Permeability MaxValue { get; } = new Permeability(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static Permeability MinValue { get; } = new Permeability(double.MinValue, ConversionBaseUnit);
+        public static Permeability MinValue { get; } = new Permeability(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static Permeability Zero { get; } = new Permeability(0, ConversionBaseUnit);
+        public static Permeability Zero { get; } = new Permeability(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

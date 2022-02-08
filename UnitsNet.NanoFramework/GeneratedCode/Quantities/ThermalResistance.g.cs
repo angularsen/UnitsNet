@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static ThermalResistanceUnit ConversionBaseUnit { get; } = ThermalResistanceUnit.SquareMeterKelvinPerKilowatt;
+        public static ThermalResistanceUnit BaseUnit { get; } = ThermalResistanceUnit.SquareMeterKelvinPerKilowatt;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static ThermalResistance MaxValue { get; } = new ThermalResistance(double.MaxValue, ConversionBaseUnit);
+        public static ThermalResistance MaxValue { get; } = new ThermalResistance(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static ThermalResistance MinValue { get; } = new ThermalResistance(double.MinValue, ConversionBaseUnit);
+        public static ThermalResistance MinValue { get; } = new ThermalResistance(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static ThermalResistance Zero { get; } = new ThermalResistance(0, ConversionBaseUnit);
+        public static ThermalResistance Zero { get; } = new ThermalResistance(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

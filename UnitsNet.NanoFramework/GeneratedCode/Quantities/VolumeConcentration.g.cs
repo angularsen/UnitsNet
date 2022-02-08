@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static VolumeConcentrationUnit ConversionBaseUnit { get; } = VolumeConcentrationUnit.DecimalFraction;
+        public static VolumeConcentrationUnit BaseUnit { get; } = VolumeConcentrationUnit.DecimalFraction;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static VolumeConcentration MaxValue { get; } = new VolumeConcentration(double.MaxValue, ConversionBaseUnit);
+        public static VolumeConcentration MaxValue { get; } = new VolumeConcentration(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static VolumeConcentration MinValue { get; } = new VolumeConcentration(double.MinValue, ConversionBaseUnit);
+        public static VolumeConcentration MinValue { get; } = new VolumeConcentration(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static VolumeConcentration Zero { get; } = new VolumeConcentration(0, ConversionBaseUnit);
+        public static VolumeConcentration Zero { get; } = new VolumeConcentration(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

@@ -1,6 +1,6 @@
 {
   "Name": "Irradiation",
-  "ConversionBaseUnit": "JoulePerSquareMeter",
+  "BaseUnit": "JoulePerSquareMeter",
   "XmlDocSummary": "Irradiation is the process by which an object is exposed to radiation. The exposure can originate from various sources, including natural sources.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Irradiation",
   "BaseDimensions": {

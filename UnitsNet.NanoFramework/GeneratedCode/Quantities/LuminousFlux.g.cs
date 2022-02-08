@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static LuminousFluxUnit ConversionBaseUnit { get; } = LuminousFluxUnit.Lumen;
+        public static LuminousFluxUnit BaseUnit { get; } = LuminousFluxUnit.Lumen;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static LuminousFlux MaxValue { get; } = new LuminousFlux(double.MaxValue, ConversionBaseUnit);
+        public static LuminousFlux MaxValue { get; } = new LuminousFlux(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static LuminousFlux MinValue { get; } = new LuminousFlux(double.MinValue, ConversionBaseUnit);
+        public static LuminousFlux MinValue { get; } = new LuminousFlux(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static LuminousFlux Zero { get; } = new LuminousFlux(0, ConversionBaseUnit);
+        public static LuminousFlux Zero { get; } = new LuminousFlux(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

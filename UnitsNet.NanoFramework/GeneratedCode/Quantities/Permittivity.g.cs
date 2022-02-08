@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static PermittivityUnit ConversionBaseUnit { get; } = PermittivityUnit.FaradPerMeter;
+        public static PermittivityUnit BaseUnit { get; } = PermittivityUnit.FaradPerMeter;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static Permittivity MaxValue { get; } = new Permittivity(double.MaxValue, ConversionBaseUnit);
+        public static Permittivity MaxValue { get; } = new Permittivity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static Permittivity MinValue { get; } = new Permittivity(double.MinValue, ConversionBaseUnit);
+        public static Permittivity MinValue { get; } = new Permittivity(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static Permittivity Zero { get; } = new Permittivity(0, ConversionBaseUnit);
+        public static Permittivity Zero { get; } = new Permittivity(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

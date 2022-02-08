@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static MagnetizationUnit ConversionBaseUnit { get; } = MagnetizationUnit.AmperePerMeter;
+        public static MagnetizationUnit BaseUnit { get; } = MagnetizationUnit.AmperePerMeter;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static Magnetization MaxValue { get; } = new Magnetization(double.MaxValue, ConversionBaseUnit);
+        public static Magnetization MaxValue { get; } = new Magnetization(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static Magnetization MinValue { get; } = new Magnetization(double.MinValue, ConversionBaseUnit);
+        public static Magnetization MinValue { get; } = new Magnetization(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static Magnetization Zero { get; } = new Magnetization(0, ConversionBaseUnit);
+        public static Magnetization Zero { get; } = new Magnetization(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

@@ -63,21 +63,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static LuminosityUnit ConversionBaseUnit { get; } = LuminosityUnit.Watt;
+        public static LuminosityUnit BaseUnit { get; } = LuminosityUnit.Watt;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static Luminosity MaxValue { get; } = new Luminosity(double.MaxValue, ConversionBaseUnit);
+        public static Luminosity MaxValue { get; } = new Luminosity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static Luminosity MinValue { get; } = new Luminosity(double.MinValue, ConversionBaseUnit);
+        public static Luminosity MinValue { get; } = new Luminosity(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static Luminosity Zero { get; } = new Luminosity(0, ConversionBaseUnit);
+        public static Luminosity Zero { get; } = new Luminosity(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

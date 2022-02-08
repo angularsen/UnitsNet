@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static AmplitudeRatioUnit ConversionBaseUnit { get; } = AmplitudeRatioUnit.DecibelVolt;
+        public static AmplitudeRatioUnit BaseUnit { get; } = AmplitudeRatioUnit.DecibelVolt;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static AmplitudeRatio MaxValue { get; } = new AmplitudeRatio(double.MaxValue, ConversionBaseUnit);
+        public static AmplitudeRatio MaxValue { get; } = new AmplitudeRatio(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static AmplitudeRatio MinValue { get; } = new AmplitudeRatio(double.MinValue, ConversionBaseUnit);
+        public static AmplitudeRatio MinValue { get; } = new AmplitudeRatio(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static AmplitudeRatio Zero { get; } = new AmplitudeRatio(0, ConversionBaseUnit);
+        public static AmplitudeRatio Zero { get; } = new AmplitudeRatio(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>

@@ -60,21 +60,21 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static MolarMassUnit ConversionBaseUnit { get; } = MolarMassUnit.KilogramPerMole;
+        public static MolarMassUnit BaseUnit { get; } = MolarMassUnit.KilogramPerMole;
 
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static MolarMass MaxValue { get; } = new MolarMass(double.MaxValue, ConversionBaseUnit);
+        public static MolarMass MaxValue { get; } = new MolarMass(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static MolarMass MinValue { get; } = new MolarMass(double.MinValue, ConversionBaseUnit);
+        public static MolarMass MinValue { get; } = new MolarMass(double.MinValue, BaseUnit);
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
-        public static MolarMass Zero { get; } = new MolarMass(0, ConversionBaseUnit);
+        public static MolarMass Zero { get; } = new MolarMass(0, BaseUnit);
         #region Conversion Properties
 
         /// <summary>
