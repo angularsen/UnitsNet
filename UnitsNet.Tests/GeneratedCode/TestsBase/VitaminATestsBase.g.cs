@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -42,6 +43,20 @@ namespace UnitsNet.Tests
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double InternationalUnitsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(VitaminAUnit unit)
+        {
+            return unit switch
+            {
+                VitaminAUnit.InternationalUnit => (InternationalUnitsInOneInternationalUnit, InternationalUnitsTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { VitaminAUnit.InternationalUnit },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -164,21 +179,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(VitaminAUnit unit)
         {
-            var internationalunit = VitaminA.FromInternationalUnits(1);
+            var inBaseUnits = VitaminA.From(1.0, VitaminA.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var internationalunitQuantity = internationalunit.ToUnit(VitaminAUnit.InternationalUnit);
-            AssertEx.EqualTolerance(InternationalUnitsInOneInternationalUnit, (double)internationalunitQuantity.Value, InternationalUnitsTolerance);
-            Assert.Equal(VitaminAUnit.InternationalUnit, internationalunitQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(VitaminAUnit unit)
         {
-            var quantityInBaseUnit = VitaminA.FromInternationalUnits(1).ToBaseUnit();
-            Assert.Equal(VitaminA.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = VitaminA.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(VitaminAUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = VitaminA.Units.FirstOrDefault(u => u != VitaminA.BaseUnit && u != VitaminAUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == VitaminAUnit.Undefined)
+                fromUnit = VitaminA.BaseUnit;
+
+            var quantity = VitaminA.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -54,6 +55,32 @@ namespace UnitsNet.Tests
         protected virtual double LitersPerMillimeterTolerance { get { return 1e-5; } }
         protected virtual double OilBarrelsPerFootTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(VolumePerLengthUnit unit)
+        {
+            return unit switch
+            {
+                VolumePerLengthUnit.CubicMeterPerMeter => (CubicMetersPerMeterInOneCubicMeterPerMeter, CubicMetersPerMeterTolerance),
+                VolumePerLengthUnit.CubicYardPerFoot => (CubicYardsPerFootInOneCubicMeterPerMeter, CubicYardsPerFootTolerance),
+                VolumePerLengthUnit.CubicYardPerUsSurveyFoot => (CubicYardsPerUsSurveyFootInOneCubicMeterPerMeter, CubicYardsPerUsSurveyFootTolerance),
+                VolumePerLengthUnit.LiterPerKilometer => (LitersPerKilometerInOneCubicMeterPerMeter, LitersPerKilometerTolerance),
+                VolumePerLengthUnit.LiterPerMeter => (LitersPerMeterInOneCubicMeterPerMeter, LitersPerMeterTolerance),
+                VolumePerLengthUnit.LiterPerMillimeter => (LitersPerMillimeterInOneCubicMeterPerMeter, LitersPerMillimeterTolerance),
+                VolumePerLengthUnit.OilBarrelPerFoot => (OilBarrelsPerFootInOneCubicMeterPerMeter, OilBarrelsPerFootTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { VolumePerLengthUnit.CubicMeterPerMeter },
+            new object[] { VolumePerLengthUnit.CubicYardPerFoot },
+            new object[] { VolumePerLengthUnit.CubicYardPerUsSurveyFoot },
+            new object[] { VolumePerLengthUnit.LiterPerKilometer },
+            new object[] { VolumePerLengthUnit.LiterPerMeter },
+            new object[] { VolumePerLengthUnit.LiterPerMillimeter },
+            new object[] { VolumePerLengthUnit.OilBarrelPerFoot },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -212,45 +239,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(VolumePerLengthUnit unit)
         {
-            var cubicmeterpermeter = VolumePerLength.FromCubicMetersPerMeter(1);
+            var inBaseUnits = VolumePerLength.From(1.0, VolumePerLength.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var cubicmeterpermeterQuantity = cubicmeterpermeter.ToUnit(VolumePerLengthUnit.CubicMeterPerMeter);
-            AssertEx.EqualTolerance(CubicMetersPerMeterInOneCubicMeterPerMeter, (double)cubicmeterpermeterQuantity.Value, CubicMetersPerMeterTolerance);
-            Assert.Equal(VolumePerLengthUnit.CubicMeterPerMeter, cubicmeterpermeterQuantity.Unit);
-
-            var cubicyardperfootQuantity = cubicmeterpermeter.ToUnit(VolumePerLengthUnit.CubicYardPerFoot);
-            AssertEx.EqualTolerance(CubicYardsPerFootInOneCubicMeterPerMeter, (double)cubicyardperfootQuantity.Value, CubicYardsPerFootTolerance);
-            Assert.Equal(VolumePerLengthUnit.CubicYardPerFoot, cubicyardperfootQuantity.Unit);
-
-            var cubicyardperussurveyfootQuantity = cubicmeterpermeter.ToUnit(VolumePerLengthUnit.CubicYardPerUsSurveyFoot);
-            AssertEx.EqualTolerance(CubicYardsPerUsSurveyFootInOneCubicMeterPerMeter, (double)cubicyardperussurveyfootQuantity.Value, CubicYardsPerUsSurveyFootTolerance);
-            Assert.Equal(VolumePerLengthUnit.CubicYardPerUsSurveyFoot, cubicyardperussurveyfootQuantity.Unit);
-
-            var literperkilometerQuantity = cubicmeterpermeter.ToUnit(VolumePerLengthUnit.LiterPerKilometer);
-            AssertEx.EqualTolerance(LitersPerKilometerInOneCubicMeterPerMeter, (double)literperkilometerQuantity.Value, LitersPerKilometerTolerance);
-            Assert.Equal(VolumePerLengthUnit.LiterPerKilometer, literperkilometerQuantity.Unit);
-
-            var literpermeterQuantity = cubicmeterpermeter.ToUnit(VolumePerLengthUnit.LiterPerMeter);
-            AssertEx.EqualTolerance(LitersPerMeterInOneCubicMeterPerMeter, (double)literpermeterQuantity.Value, LitersPerMeterTolerance);
-            Assert.Equal(VolumePerLengthUnit.LiterPerMeter, literpermeterQuantity.Unit);
-
-            var literpermillimeterQuantity = cubicmeterpermeter.ToUnit(VolumePerLengthUnit.LiterPerMillimeter);
-            AssertEx.EqualTolerance(LitersPerMillimeterInOneCubicMeterPerMeter, (double)literpermillimeterQuantity.Value, LitersPerMillimeterTolerance);
-            Assert.Equal(VolumePerLengthUnit.LiterPerMillimeter, literpermillimeterQuantity.Unit);
-
-            var oilbarrelperfootQuantity = cubicmeterpermeter.ToUnit(VolumePerLengthUnit.OilBarrelPerFoot);
-            AssertEx.EqualTolerance(OilBarrelsPerFootInOneCubicMeterPerMeter, (double)oilbarrelperfootQuantity.Value, OilBarrelsPerFootTolerance);
-            Assert.Equal(VolumePerLengthUnit.OilBarrelPerFoot, oilbarrelperfootQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(VolumePerLengthUnit unit)
         {
-            var quantityInBaseUnit = VolumePerLength.FromCubicMetersPerMeter(1).ToBaseUnit();
-            Assert.Equal(VolumePerLength.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = VolumePerLength.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(VolumePerLengthUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = VolumePerLength.Units.FirstOrDefault(u => u != VolumePerLength.BaseUnit && u != VolumePerLengthUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == VolumePerLengthUnit.Undefined)
+                fromUnit = VolumePerLength.BaseUnit;
+
+            var quantity = VolumePerLength.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

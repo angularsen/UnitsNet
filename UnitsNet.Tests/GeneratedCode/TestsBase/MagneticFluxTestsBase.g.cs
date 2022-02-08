@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -42,6 +43,20 @@ namespace UnitsNet.Tests
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double WebersTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MagneticFluxUnit unit)
+        {
+            return unit switch
+            {
+                MagneticFluxUnit.Weber => (WebersInOneWeber, WebersTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { MagneticFluxUnit.Weber },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -164,21 +179,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(MagneticFluxUnit unit)
         {
-            var weber = MagneticFlux.FromWebers(1);
+            var inBaseUnits = MagneticFlux.From(1.0, MagneticFlux.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var weberQuantity = weber.ToUnit(MagneticFluxUnit.Weber);
-            AssertEx.EqualTolerance(WebersInOneWeber, (double)weberQuantity.Value, WebersTolerance);
-            Assert.Equal(MagneticFluxUnit.Weber, weberQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(MagneticFluxUnit unit)
         {
-            var quantityInBaseUnit = MagneticFlux.FromWebers(1).ToBaseUnit();
-            Assert.Equal(MagneticFlux.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = MagneticFlux.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MagneticFluxUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = MagneticFlux.Units.FirstOrDefault(u => u != MagneticFlux.BaseUnit && u != MagneticFluxUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == MagneticFluxUnit.Undefined)
+                fromUnit = MagneticFlux.BaseUnit;
+
+            var quantity = MagneticFlux.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -46,6 +47,24 @@ namespace UnitsNet.Tests
         protected virtual double InverseDegreeFahrenheitTolerance { get { return 1e-5; } }
         protected virtual double InverseKelvinTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(CoefficientOfThermalExpansionUnit unit)
+        {
+            return unit switch
+            {
+                CoefficientOfThermalExpansionUnit.InverseDegreeCelsius => (InverseDegreeCelsiusInOneInverseKelvin, InverseDegreeCelsiusTolerance),
+                CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit => (InverseDegreeFahrenheitInOneInverseKelvin, InverseDegreeFahrenheitTolerance),
+                CoefficientOfThermalExpansionUnit.InverseKelvin => (InverseKelvinInOneInverseKelvin, InverseKelvinTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { CoefficientOfThermalExpansionUnit.InverseDegreeCelsius },
+            new object[] { CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit },
+            new object[] { CoefficientOfThermalExpansionUnit.InverseKelvin },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -180,29 +199,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(CoefficientOfThermalExpansionUnit unit)
         {
-            var inversekelvin = CoefficientOfThermalExpansion.FromInverseKelvin(1);
+            var inBaseUnits = CoefficientOfThermalExpansion.From(1.0, CoefficientOfThermalExpansion.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var inversedegreecelsiusQuantity = inversekelvin.ToUnit(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius);
-            AssertEx.EqualTolerance(InverseDegreeCelsiusInOneInverseKelvin, (double)inversedegreecelsiusQuantity.Value, InverseDegreeCelsiusTolerance);
-            Assert.Equal(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, inversedegreecelsiusQuantity.Unit);
-
-            var inversedegreefahrenheitQuantity = inversekelvin.ToUnit(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit);
-            AssertEx.EqualTolerance(InverseDegreeFahrenheitInOneInverseKelvin, (double)inversedegreefahrenheitQuantity.Value, InverseDegreeFahrenheitTolerance);
-            Assert.Equal(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, inversedegreefahrenheitQuantity.Unit);
-
-            var inversekelvinQuantity = inversekelvin.ToUnit(CoefficientOfThermalExpansionUnit.InverseKelvin);
-            AssertEx.EqualTolerance(InverseKelvinInOneInverseKelvin, (double)inversekelvinQuantity.Value, InverseKelvinTolerance);
-            Assert.Equal(CoefficientOfThermalExpansionUnit.InverseKelvin, inversekelvinQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(CoefficientOfThermalExpansionUnit unit)
         {
-            var quantityInBaseUnit = CoefficientOfThermalExpansion.FromInverseKelvin(1).ToBaseUnit();
-            Assert.Equal(CoefficientOfThermalExpansion.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = CoefficientOfThermalExpansion.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(CoefficientOfThermalExpansionUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = CoefficientOfThermalExpansion.Units.FirstOrDefault(u => u != CoefficientOfThermalExpansion.BaseUnit && u != CoefficientOfThermalExpansionUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == CoefficientOfThermalExpansionUnit.Undefined)
+                fromUnit = CoefficientOfThermalExpansion.BaseUnit;
+
+            var quantity = CoefficientOfThermalExpansion.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

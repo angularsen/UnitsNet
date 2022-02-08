@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -64,6 +65,42 @@ namespace UnitsNet.Tests
         protected virtual double NanogramsPerMoleTolerance { get { return 1e-5; } }
         protected virtual double PoundsPerMoleTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MolarMassUnit unit)
+        {
+            return unit switch
+            {
+                MolarMassUnit.CentigramPerMole => (CentigramsPerMoleInOneKilogramPerMole, CentigramsPerMoleTolerance),
+                MolarMassUnit.DecagramPerMole => (DecagramsPerMoleInOneKilogramPerMole, DecagramsPerMoleTolerance),
+                MolarMassUnit.DecigramPerMole => (DecigramsPerMoleInOneKilogramPerMole, DecigramsPerMoleTolerance),
+                MolarMassUnit.GramPerMole => (GramsPerMoleInOneKilogramPerMole, GramsPerMoleTolerance),
+                MolarMassUnit.HectogramPerMole => (HectogramsPerMoleInOneKilogramPerMole, HectogramsPerMoleTolerance),
+                MolarMassUnit.KilogramPerMole => (KilogramsPerMoleInOneKilogramPerMole, KilogramsPerMoleTolerance),
+                MolarMassUnit.KilopoundPerMole => (KilopoundsPerMoleInOneKilogramPerMole, KilopoundsPerMoleTolerance),
+                MolarMassUnit.MegapoundPerMole => (MegapoundsPerMoleInOneKilogramPerMole, MegapoundsPerMoleTolerance),
+                MolarMassUnit.MicrogramPerMole => (MicrogramsPerMoleInOneKilogramPerMole, MicrogramsPerMoleTolerance),
+                MolarMassUnit.MilligramPerMole => (MilligramsPerMoleInOneKilogramPerMole, MilligramsPerMoleTolerance),
+                MolarMassUnit.NanogramPerMole => (NanogramsPerMoleInOneKilogramPerMole, NanogramsPerMoleTolerance),
+                MolarMassUnit.PoundPerMole => (PoundsPerMoleInOneKilogramPerMole, PoundsPerMoleTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { MolarMassUnit.CentigramPerMole },
+            new object[] { MolarMassUnit.DecagramPerMole },
+            new object[] { MolarMassUnit.DecigramPerMole },
+            new object[] { MolarMassUnit.GramPerMole },
+            new object[] { MolarMassUnit.HectogramPerMole },
+            new object[] { MolarMassUnit.KilogramPerMole },
+            new object[] { MolarMassUnit.KilopoundPerMole },
+            new object[] { MolarMassUnit.MegapoundPerMole },
+            new object[] { MolarMassUnit.MicrogramPerMole },
+            new object[] { MolarMassUnit.MilligramPerMole },
+            new object[] { MolarMassUnit.NanogramPerMole },
+            new object[] { MolarMassUnit.PoundPerMole },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -252,65 +289,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(MolarMassUnit unit)
         {
-            var kilogrampermole = MolarMass.FromKilogramsPerMole(1);
+            var inBaseUnits = MolarMass.From(1.0, MolarMass.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var centigrampermoleQuantity = kilogrampermole.ToUnit(MolarMassUnit.CentigramPerMole);
-            AssertEx.EqualTolerance(CentigramsPerMoleInOneKilogramPerMole, (double)centigrampermoleQuantity.Value, CentigramsPerMoleTolerance);
-            Assert.Equal(MolarMassUnit.CentigramPerMole, centigrampermoleQuantity.Unit);
-
-            var decagrampermoleQuantity = kilogrampermole.ToUnit(MolarMassUnit.DecagramPerMole);
-            AssertEx.EqualTolerance(DecagramsPerMoleInOneKilogramPerMole, (double)decagrampermoleQuantity.Value, DecagramsPerMoleTolerance);
-            Assert.Equal(MolarMassUnit.DecagramPerMole, decagrampermoleQuantity.Unit);
-
-            var decigrampermoleQuantity = kilogrampermole.ToUnit(MolarMassUnit.DecigramPerMole);
-            AssertEx.EqualTolerance(DecigramsPerMoleInOneKilogramPerMole, (double)decigrampermoleQuantity.Value, DecigramsPerMoleTolerance);
-            Assert.Equal(MolarMassUnit.DecigramPerMole, decigrampermoleQuantity.Unit);
-
-            var grampermoleQuantity = kilogrampermole.ToUnit(MolarMassUnit.GramPerMole);
-            AssertEx.EqualTolerance(GramsPerMoleInOneKilogramPerMole, (double)grampermoleQuantity.Value, GramsPerMoleTolerance);
-            Assert.Equal(MolarMassUnit.GramPerMole, grampermoleQuantity.Unit);
-
-            var hectogrampermoleQuantity = kilogrampermole.ToUnit(MolarMassUnit.HectogramPerMole);
-            AssertEx.EqualTolerance(HectogramsPerMoleInOneKilogramPerMole, (double)hectogrampermoleQuantity.Value, HectogramsPerMoleTolerance);
-            Assert.Equal(MolarMassUnit.HectogramPerMole, hectogrampermoleQuantity.Unit);
-
-            var kilogrampermoleQuantity = kilogrampermole.ToUnit(MolarMassUnit.KilogramPerMole);
-            AssertEx.EqualTolerance(KilogramsPerMoleInOneKilogramPerMole, (double)kilogrampermoleQuantity.Value, KilogramsPerMoleTolerance);
-            Assert.Equal(MolarMassUnit.KilogramPerMole, kilogrampermoleQuantity.Unit);
-
-            var kilopoundpermoleQuantity = kilogrampermole.ToUnit(MolarMassUnit.KilopoundPerMole);
-            AssertEx.EqualTolerance(KilopoundsPerMoleInOneKilogramPerMole, (double)kilopoundpermoleQuantity.Value, KilopoundsPerMoleTolerance);
-            Assert.Equal(MolarMassUnit.KilopoundPerMole, kilopoundpermoleQuantity.Unit);
-
-            var megapoundpermoleQuantity = kilogrampermole.ToUnit(MolarMassUnit.MegapoundPerMole);
-            AssertEx.EqualTolerance(MegapoundsPerMoleInOneKilogramPerMole, (double)megapoundpermoleQuantity.Value, MegapoundsPerMoleTolerance);
-            Assert.Equal(MolarMassUnit.MegapoundPerMole, megapoundpermoleQuantity.Unit);
-
-            var microgrampermoleQuantity = kilogrampermole.ToUnit(MolarMassUnit.MicrogramPerMole);
-            AssertEx.EqualTolerance(MicrogramsPerMoleInOneKilogramPerMole, (double)microgrampermoleQuantity.Value, MicrogramsPerMoleTolerance);
-            Assert.Equal(MolarMassUnit.MicrogramPerMole, microgrampermoleQuantity.Unit);
-
-            var milligrampermoleQuantity = kilogrampermole.ToUnit(MolarMassUnit.MilligramPerMole);
-            AssertEx.EqualTolerance(MilligramsPerMoleInOneKilogramPerMole, (double)milligrampermoleQuantity.Value, MilligramsPerMoleTolerance);
-            Assert.Equal(MolarMassUnit.MilligramPerMole, milligrampermoleQuantity.Unit);
-
-            var nanogrampermoleQuantity = kilogrampermole.ToUnit(MolarMassUnit.NanogramPerMole);
-            AssertEx.EqualTolerance(NanogramsPerMoleInOneKilogramPerMole, (double)nanogrampermoleQuantity.Value, NanogramsPerMoleTolerance);
-            Assert.Equal(MolarMassUnit.NanogramPerMole, nanogrampermoleQuantity.Unit);
-
-            var poundpermoleQuantity = kilogrampermole.ToUnit(MolarMassUnit.PoundPerMole);
-            AssertEx.EqualTolerance(PoundsPerMoleInOneKilogramPerMole, (double)poundpermoleQuantity.Value, PoundsPerMoleTolerance);
-            Assert.Equal(MolarMassUnit.PoundPerMole, poundpermoleQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(MolarMassUnit unit)
         {
-            var quantityInBaseUnit = MolarMass.FromKilogramsPerMole(1).ToBaseUnit();
-            Assert.Equal(MolarMass.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = MolarMass.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MolarMassUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = MolarMass.Units.FirstOrDefault(u => u != MolarMass.BaseUnit && u != MolarMassUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == MolarMassUnit.Undefined)
+                fromUnit = MolarMass.BaseUnit;
+
+            var quantity = MolarMass.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

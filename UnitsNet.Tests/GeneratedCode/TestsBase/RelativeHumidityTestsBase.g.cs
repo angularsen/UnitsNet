@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -42,6 +43,20 @@ namespace UnitsNet.Tests
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double PercentTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(RelativeHumidityUnit unit)
+        {
+            return unit switch
+            {
+                RelativeHumidityUnit.Percent => (PercentInOnePercent, PercentTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { RelativeHumidityUnit.Percent },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -164,21 +179,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(RelativeHumidityUnit unit)
         {
-            var percent = RelativeHumidity.FromPercent(1);
+            var inBaseUnits = RelativeHumidity.From(1.0, RelativeHumidity.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var percentQuantity = percent.ToUnit(RelativeHumidityUnit.Percent);
-            AssertEx.EqualTolerance(PercentInOnePercent, (double)percentQuantity.Value, PercentTolerance);
-            Assert.Equal(RelativeHumidityUnit.Percent, percentQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(RelativeHumidityUnit unit)
         {
-            var quantityInBaseUnit = RelativeHumidity.FromPercent(1).ToBaseUnit();
-            Assert.Equal(RelativeHumidity.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = RelativeHumidity.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(RelativeHumidityUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = RelativeHumidity.Units.FirstOrDefault(u => u != RelativeHumidity.BaseUnit && u != RelativeHumidityUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == RelativeHumidityUnit.Undefined)
+                fromUnit = RelativeHumidity.BaseUnit;
+
+            var quantity = RelativeHumidity.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -46,6 +47,24 @@ namespace UnitsNet.Tests
         protected virtual double KilojoulesPerMoleKelvinTolerance { get { return 1e-5; } }
         protected virtual double MegajoulesPerMoleKelvinTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MolarEntropyUnit unit)
+        {
+            return unit switch
+            {
+                MolarEntropyUnit.JoulePerMoleKelvin => (JoulesPerMoleKelvinInOneJoulePerMoleKelvin, JoulesPerMoleKelvinTolerance),
+                MolarEntropyUnit.KilojoulePerMoleKelvin => (KilojoulesPerMoleKelvinInOneJoulePerMoleKelvin, KilojoulesPerMoleKelvinTolerance),
+                MolarEntropyUnit.MegajoulePerMoleKelvin => (MegajoulesPerMoleKelvinInOneJoulePerMoleKelvin, MegajoulesPerMoleKelvinTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { MolarEntropyUnit.JoulePerMoleKelvin },
+            new object[] { MolarEntropyUnit.KilojoulePerMoleKelvin },
+            new object[] { MolarEntropyUnit.MegajoulePerMoleKelvin },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -180,29 +199,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(MolarEntropyUnit unit)
         {
-            var joulepermolekelvin = MolarEntropy.FromJoulesPerMoleKelvin(1);
+            var inBaseUnits = MolarEntropy.From(1.0, MolarEntropy.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var joulepermolekelvinQuantity = joulepermolekelvin.ToUnit(MolarEntropyUnit.JoulePerMoleKelvin);
-            AssertEx.EqualTolerance(JoulesPerMoleKelvinInOneJoulePerMoleKelvin, (double)joulepermolekelvinQuantity.Value, JoulesPerMoleKelvinTolerance);
-            Assert.Equal(MolarEntropyUnit.JoulePerMoleKelvin, joulepermolekelvinQuantity.Unit);
-
-            var kilojoulepermolekelvinQuantity = joulepermolekelvin.ToUnit(MolarEntropyUnit.KilojoulePerMoleKelvin);
-            AssertEx.EqualTolerance(KilojoulesPerMoleKelvinInOneJoulePerMoleKelvin, (double)kilojoulepermolekelvinQuantity.Value, KilojoulesPerMoleKelvinTolerance);
-            Assert.Equal(MolarEntropyUnit.KilojoulePerMoleKelvin, kilojoulepermolekelvinQuantity.Unit);
-
-            var megajoulepermolekelvinQuantity = joulepermolekelvin.ToUnit(MolarEntropyUnit.MegajoulePerMoleKelvin);
-            AssertEx.EqualTolerance(MegajoulesPerMoleKelvinInOneJoulePerMoleKelvin, (double)megajoulepermolekelvinQuantity.Value, MegajoulesPerMoleKelvinTolerance);
-            Assert.Equal(MolarEntropyUnit.MegajoulePerMoleKelvin, megajoulepermolekelvinQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(MolarEntropyUnit unit)
         {
-            var quantityInBaseUnit = MolarEntropy.FromJoulesPerMoleKelvin(1).ToBaseUnit();
-            Assert.Equal(MolarEntropy.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = MolarEntropy.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MolarEntropyUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = MolarEntropy.Units.FirstOrDefault(u => u != MolarEntropy.BaseUnit && u != MolarEntropyUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == MolarEntropyUnit.Undefined)
+                fromUnit = MolarEntropy.BaseUnit;
+
+            var quantity = MolarEntropy.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

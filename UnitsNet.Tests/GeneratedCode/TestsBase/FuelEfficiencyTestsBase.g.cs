@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -48,6 +49,26 @@ namespace UnitsNet.Tests
         protected virtual double MilesPerUkGallonTolerance { get { return 1e-5; } }
         protected virtual double MilesPerUsGallonTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(FuelEfficiencyUnit unit)
+        {
+            return unit switch
+            {
+                FuelEfficiencyUnit.KilometerPerLiter => (KilometersPerLitersInOneLiterPer100Kilometers, KilometersPerLitersTolerance),
+                FuelEfficiencyUnit.LiterPer100Kilometers => (LitersPer100KilometersInOneLiterPer100Kilometers, LitersPer100KilometersTolerance),
+                FuelEfficiencyUnit.MilePerUkGallon => (MilesPerUkGallonInOneLiterPer100Kilometers, MilesPerUkGallonTolerance),
+                FuelEfficiencyUnit.MilePerUsGallon => (MilesPerUsGallonInOneLiterPer100Kilometers, MilesPerUsGallonTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { FuelEfficiencyUnit.KilometerPerLiter },
+            new object[] { FuelEfficiencyUnit.LiterPer100Kilometers },
+            new object[] { FuelEfficiencyUnit.MilePerUkGallon },
+            new object[] { FuelEfficiencyUnit.MilePerUsGallon },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -188,33 +209,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(FuelEfficiencyUnit unit)
         {
-            var literper100kilometers = FuelEfficiency.FromLitersPer100Kilometers(1);
+            var inBaseUnits = FuelEfficiency.From(1.0, FuelEfficiency.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var kilometerperliterQuantity = literper100kilometers.ToUnit(FuelEfficiencyUnit.KilometerPerLiter);
-            AssertEx.EqualTolerance(KilometersPerLitersInOneLiterPer100Kilometers, (double)kilometerperliterQuantity.Value, KilometersPerLitersTolerance);
-            Assert.Equal(FuelEfficiencyUnit.KilometerPerLiter, kilometerperliterQuantity.Unit);
-
-            var literper100kilometersQuantity = literper100kilometers.ToUnit(FuelEfficiencyUnit.LiterPer100Kilometers);
-            AssertEx.EqualTolerance(LitersPer100KilometersInOneLiterPer100Kilometers, (double)literper100kilometersQuantity.Value, LitersPer100KilometersTolerance);
-            Assert.Equal(FuelEfficiencyUnit.LiterPer100Kilometers, literper100kilometersQuantity.Unit);
-
-            var mileperukgallonQuantity = literper100kilometers.ToUnit(FuelEfficiencyUnit.MilePerUkGallon);
-            AssertEx.EqualTolerance(MilesPerUkGallonInOneLiterPer100Kilometers, (double)mileperukgallonQuantity.Value, MilesPerUkGallonTolerance);
-            Assert.Equal(FuelEfficiencyUnit.MilePerUkGallon, mileperukgallonQuantity.Unit);
-
-            var mileperusgallonQuantity = literper100kilometers.ToUnit(FuelEfficiencyUnit.MilePerUsGallon);
-            AssertEx.EqualTolerance(MilesPerUsGallonInOneLiterPer100Kilometers, (double)mileperusgallonQuantity.Value, MilesPerUsGallonTolerance);
-            Assert.Equal(FuelEfficiencyUnit.MilePerUsGallon, mileperusgallonQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(FuelEfficiencyUnit unit)
         {
-            var quantityInBaseUnit = FuelEfficiency.FromLitersPer100Kilometers(1).ToBaseUnit();
-            Assert.Equal(FuelEfficiency.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = FuelEfficiency.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(FuelEfficiencyUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = FuelEfficiency.Units.FirstOrDefault(u => u != FuelEfficiency.BaseUnit && u != FuelEfficiencyUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == FuelEfficiencyUnit.Undefined)
+                fromUnit = FuelEfficiency.BaseUnit;
+
+            var quantity = FuelEfficiency.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

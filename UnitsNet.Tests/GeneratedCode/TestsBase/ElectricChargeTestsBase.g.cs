@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -50,6 +51,28 @@ namespace UnitsNet.Tests
         protected virtual double MegaampereHoursTolerance { get { return 1e-5; } }
         protected virtual double MilliampereHoursTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricChargeUnit unit)
+        {
+            return unit switch
+            {
+                ElectricChargeUnit.AmpereHour => (AmpereHoursInOneCoulomb, AmpereHoursTolerance),
+                ElectricChargeUnit.Coulomb => (CoulombsInOneCoulomb, CoulombsTolerance),
+                ElectricChargeUnit.KiloampereHour => (KiloampereHoursInOneCoulomb, KiloampereHoursTolerance),
+                ElectricChargeUnit.MegaampereHour => (MegaampereHoursInOneCoulomb, MegaampereHoursTolerance),
+                ElectricChargeUnit.MilliampereHour => (MilliampereHoursInOneCoulomb, MilliampereHoursTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ElectricChargeUnit.AmpereHour },
+            new object[] { ElectricChargeUnit.Coulomb },
+            new object[] { ElectricChargeUnit.KiloampereHour },
+            new object[] { ElectricChargeUnit.MegaampereHour },
+            new object[] { ElectricChargeUnit.MilliampereHour },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -196,37 +219,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ElectricChargeUnit unit)
         {
-            var coulomb = ElectricCharge.FromCoulombs(1);
+            var inBaseUnits = ElectricCharge.From(1.0, ElectricCharge.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var amperehourQuantity = coulomb.ToUnit(ElectricChargeUnit.AmpereHour);
-            AssertEx.EqualTolerance(AmpereHoursInOneCoulomb, (double)amperehourQuantity.Value, AmpereHoursTolerance);
-            Assert.Equal(ElectricChargeUnit.AmpereHour, amperehourQuantity.Unit);
-
-            var coulombQuantity = coulomb.ToUnit(ElectricChargeUnit.Coulomb);
-            AssertEx.EqualTolerance(CoulombsInOneCoulomb, (double)coulombQuantity.Value, CoulombsTolerance);
-            Assert.Equal(ElectricChargeUnit.Coulomb, coulombQuantity.Unit);
-
-            var kiloamperehourQuantity = coulomb.ToUnit(ElectricChargeUnit.KiloampereHour);
-            AssertEx.EqualTolerance(KiloampereHoursInOneCoulomb, (double)kiloamperehourQuantity.Value, KiloampereHoursTolerance);
-            Assert.Equal(ElectricChargeUnit.KiloampereHour, kiloamperehourQuantity.Unit);
-
-            var megaamperehourQuantity = coulomb.ToUnit(ElectricChargeUnit.MegaampereHour);
-            AssertEx.EqualTolerance(MegaampereHoursInOneCoulomb, (double)megaamperehourQuantity.Value, MegaampereHoursTolerance);
-            Assert.Equal(ElectricChargeUnit.MegaampereHour, megaamperehourQuantity.Unit);
-
-            var milliamperehourQuantity = coulomb.ToUnit(ElectricChargeUnit.MilliampereHour);
-            AssertEx.EqualTolerance(MilliampereHoursInOneCoulomb, (double)milliamperehourQuantity.Value, MilliampereHoursTolerance);
-            Assert.Equal(ElectricChargeUnit.MilliampereHour, milliamperehourQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(ElectricChargeUnit unit)
         {
-            var quantityInBaseUnit = ElectricCharge.FromCoulombs(1).ToBaseUnit();
-            Assert.Equal(ElectricCharge.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ElectricCharge.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricChargeUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ElectricCharge.Units.FirstOrDefault(u => u != ElectricCharge.BaseUnit && u != ElectricChargeUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ElectricChargeUnit.Undefined)
+                fromUnit = ElectricCharge.BaseUnit;
+
+            var quantity = ElectricCharge.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -46,6 +47,24 @@ namespace UnitsNet.Tests
         protected virtual double SiemensPerInchTolerance { get { return 1e-5; } }
         protected virtual double SiemensPerMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricConductivityUnit unit)
+        {
+            return unit switch
+            {
+                ElectricConductivityUnit.SiemensPerFoot => (SiemensPerFootInOneSiemensPerMeter, SiemensPerFootTolerance),
+                ElectricConductivityUnit.SiemensPerInch => (SiemensPerInchInOneSiemensPerMeter, SiemensPerInchTolerance),
+                ElectricConductivityUnit.SiemensPerMeter => (SiemensPerMeterInOneSiemensPerMeter, SiemensPerMeterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ElectricConductivityUnit.SiemensPerFoot },
+            new object[] { ElectricConductivityUnit.SiemensPerInch },
+            new object[] { ElectricConductivityUnit.SiemensPerMeter },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -180,29 +199,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ElectricConductivityUnit unit)
         {
-            var siemenspermeter = ElectricConductivity.FromSiemensPerMeter(1);
+            var inBaseUnits = ElectricConductivity.From(1.0, ElectricConductivity.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var siemensperfootQuantity = siemenspermeter.ToUnit(ElectricConductivityUnit.SiemensPerFoot);
-            AssertEx.EqualTolerance(SiemensPerFootInOneSiemensPerMeter, (double)siemensperfootQuantity.Value, SiemensPerFootTolerance);
-            Assert.Equal(ElectricConductivityUnit.SiemensPerFoot, siemensperfootQuantity.Unit);
-
-            var siemensperinchQuantity = siemenspermeter.ToUnit(ElectricConductivityUnit.SiemensPerInch);
-            AssertEx.EqualTolerance(SiemensPerInchInOneSiemensPerMeter, (double)siemensperinchQuantity.Value, SiemensPerInchTolerance);
-            Assert.Equal(ElectricConductivityUnit.SiemensPerInch, siemensperinchQuantity.Unit);
-
-            var siemenspermeterQuantity = siemenspermeter.ToUnit(ElectricConductivityUnit.SiemensPerMeter);
-            AssertEx.EqualTolerance(SiemensPerMeterInOneSiemensPerMeter, (double)siemenspermeterQuantity.Value, SiemensPerMeterTolerance);
-            Assert.Equal(ElectricConductivityUnit.SiemensPerMeter, siemenspermeterQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(ElectricConductivityUnit unit)
         {
-            var quantityInBaseUnit = ElectricConductivity.FromSiemensPerMeter(1).ToBaseUnit();
-            Assert.Equal(ElectricConductivity.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ElectricConductivity.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricConductivityUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ElectricConductivity.Units.FirstOrDefault(u => u != ElectricConductivity.BaseUnit && u != ElectricConductivityUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ElectricConductivityUnit.Undefined)
+                fromUnit = ElectricConductivity.BaseUnit;
+
+            var quantity = ElectricConductivity.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

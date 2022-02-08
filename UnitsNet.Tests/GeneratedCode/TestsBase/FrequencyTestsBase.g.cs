@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -62,6 +63,40 @@ namespace UnitsNet.Tests
         protected virtual double RadiansPerSecondTolerance { get { return 1e-5; } }
         protected virtual double TerahertzTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(FrequencyUnit unit)
+        {
+            return unit switch
+            {
+                FrequencyUnit.BeatPerMinute => (BeatsPerMinuteInOneHertz, BeatsPerMinuteTolerance),
+                FrequencyUnit.BUnit => (BUnitsInOneHertz, BUnitsTolerance),
+                FrequencyUnit.CyclePerHour => (CyclesPerHourInOneHertz, CyclesPerHourTolerance),
+                FrequencyUnit.CyclePerMinute => (CyclesPerMinuteInOneHertz, CyclesPerMinuteTolerance),
+                FrequencyUnit.Gigahertz => (GigahertzInOneHertz, GigahertzTolerance),
+                FrequencyUnit.Hertz => (HertzInOneHertz, HertzTolerance),
+                FrequencyUnit.Kilohertz => (KilohertzInOneHertz, KilohertzTolerance),
+                FrequencyUnit.Megahertz => (MegahertzInOneHertz, MegahertzTolerance),
+                FrequencyUnit.PerSecond => (PerSecondInOneHertz, PerSecondTolerance),
+                FrequencyUnit.RadianPerSecond => (RadiansPerSecondInOneHertz, RadiansPerSecondTolerance),
+                FrequencyUnit.Terahertz => (TerahertzInOneHertz, TerahertzTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { FrequencyUnit.BeatPerMinute },
+            new object[] { FrequencyUnit.BUnit },
+            new object[] { FrequencyUnit.CyclePerHour },
+            new object[] { FrequencyUnit.CyclePerMinute },
+            new object[] { FrequencyUnit.Gigahertz },
+            new object[] { FrequencyUnit.Hertz },
+            new object[] { FrequencyUnit.Kilohertz },
+            new object[] { FrequencyUnit.Megahertz },
+            new object[] { FrequencyUnit.PerSecond },
+            new object[] { FrequencyUnit.RadianPerSecond },
+            new object[] { FrequencyUnit.Terahertz },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -244,61 +279,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(FrequencyUnit unit)
         {
-            var hertz = Frequency.FromHertz(1);
+            var inBaseUnits = Frequency.From(1.0, Frequency.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var beatperminuteQuantity = hertz.ToUnit(FrequencyUnit.BeatPerMinute);
-            AssertEx.EqualTolerance(BeatsPerMinuteInOneHertz, (double)beatperminuteQuantity.Value, BeatsPerMinuteTolerance);
-            Assert.Equal(FrequencyUnit.BeatPerMinute, beatperminuteQuantity.Unit);
-
-            var bunitQuantity = hertz.ToUnit(FrequencyUnit.BUnit);
-            AssertEx.EqualTolerance(BUnitsInOneHertz, (double)bunitQuantity.Value, BUnitsTolerance);
-            Assert.Equal(FrequencyUnit.BUnit, bunitQuantity.Unit);
-
-            var cycleperhourQuantity = hertz.ToUnit(FrequencyUnit.CyclePerHour);
-            AssertEx.EqualTolerance(CyclesPerHourInOneHertz, (double)cycleperhourQuantity.Value, CyclesPerHourTolerance);
-            Assert.Equal(FrequencyUnit.CyclePerHour, cycleperhourQuantity.Unit);
-
-            var cycleperminuteQuantity = hertz.ToUnit(FrequencyUnit.CyclePerMinute);
-            AssertEx.EqualTolerance(CyclesPerMinuteInOneHertz, (double)cycleperminuteQuantity.Value, CyclesPerMinuteTolerance);
-            Assert.Equal(FrequencyUnit.CyclePerMinute, cycleperminuteQuantity.Unit);
-
-            var gigahertzQuantity = hertz.ToUnit(FrequencyUnit.Gigahertz);
-            AssertEx.EqualTolerance(GigahertzInOneHertz, (double)gigahertzQuantity.Value, GigahertzTolerance);
-            Assert.Equal(FrequencyUnit.Gigahertz, gigahertzQuantity.Unit);
-
-            var hertzQuantity = hertz.ToUnit(FrequencyUnit.Hertz);
-            AssertEx.EqualTolerance(HertzInOneHertz, (double)hertzQuantity.Value, HertzTolerance);
-            Assert.Equal(FrequencyUnit.Hertz, hertzQuantity.Unit);
-
-            var kilohertzQuantity = hertz.ToUnit(FrequencyUnit.Kilohertz);
-            AssertEx.EqualTolerance(KilohertzInOneHertz, (double)kilohertzQuantity.Value, KilohertzTolerance);
-            Assert.Equal(FrequencyUnit.Kilohertz, kilohertzQuantity.Unit);
-
-            var megahertzQuantity = hertz.ToUnit(FrequencyUnit.Megahertz);
-            AssertEx.EqualTolerance(MegahertzInOneHertz, (double)megahertzQuantity.Value, MegahertzTolerance);
-            Assert.Equal(FrequencyUnit.Megahertz, megahertzQuantity.Unit);
-
-            var persecondQuantity = hertz.ToUnit(FrequencyUnit.PerSecond);
-            AssertEx.EqualTolerance(PerSecondInOneHertz, (double)persecondQuantity.Value, PerSecondTolerance);
-            Assert.Equal(FrequencyUnit.PerSecond, persecondQuantity.Unit);
-
-            var radianpersecondQuantity = hertz.ToUnit(FrequencyUnit.RadianPerSecond);
-            AssertEx.EqualTolerance(RadiansPerSecondInOneHertz, (double)radianpersecondQuantity.Value, RadiansPerSecondTolerance);
-            Assert.Equal(FrequencyUnit.RadianPerSecond, radianpersecondQuantity.Unit);
-
-            var terahertzQuantity = hertz.ToUnit(FrequencyUnit.Terahertz);
-            AssertEx.EqualTolerance(TerahertzInOneHertz, (double)terahertzQuantity.Value, TerahertzTolerance);
-            Assert.Equal(FrequencyUnit.Terahertz, terahertzQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(FrequencyUnit unit)
         {
-            var quantityInBaseUnit = Frequency.FromHertz(1).ToBaseUnit();
-            Assert.Equal(Frequency.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Frequency.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(FrequencyUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Frequency.Units.FirstOrDefault(u => u != Frequency.BaseUnit && u != FrequencyUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == FrequencyUnit.Undefined)
+                fromUnit = Frequency.BaseUnit;
+
+            var quantity = Frequency.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]
