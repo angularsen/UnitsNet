@@ -276,6 +276,28 @@ namespace UnitsNet.Tests
             Assert.Equal("1 m^2", Area.FromSquareMeters(1).ToString(newZealandCulture));
         }
 
+        [Fact]
+        public void MapUnitToDefaultAbbreviation_ParsesUsingDefaultString()
+        {
+            var cache = new UnitAbbreviationsCache();
+            cache.MapUnitToDefaultAbbreviation(MassFlowUnit.GramPerSecond, NorwegianCulture, "grams/second");
+
+            var parser = new QuantityParser(cache);
+            Assert.Equal(MassFlow.FromPoundsPerSecond(10), parser.Parse<MassFlow, MassFlowUnit>("10 lb/s", NorwegianCulture, MassFlow.From));
+        }
+
+        [Fact]
+        public void MapUnitToDefaultAbbreviation_AddsNewUnitAsAdditionalOverride()
+        {
+            var cache = new UnitAbbreviationsCache();
+            var abbreviationsBefore = cache.GetUnitAbbreviations(MassFlowUnit.GramPerSecond, NorwegianCulture);
+
+            cache.MapUnitToDefaultAbbreviation(MassFlowUnit.GramPerSecond, NorwegianCulture, "grams/second");
+
+            var abbreviationsAfter = cache.GetUnitAbbreviations(MassFlowUnit.GramPerSecond, NorwegianCulture);
+            Assert.Equal(abbreviationsBefore.Length + 1, abbreviationsAfter.Length);
+        }
+
         /// <summary>
         ///     Convenience method to the proper culture parameter type.
         /// </summary>

@@ -72,20 +72,17 @@ namespace UnitsNet
             if (unitAbbreviation == null) throw new ArgumentNullException(nameof(unitAbbreviation));
             unitAbbreviation = unitAbbreviation.Trim();
 
-            if(!_unitAbbreviationsCache.TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var abbreviations))
-                throw new UnitNotFoundException($"No abbreviations defined for unit type [{unitType}] for culture [{formatProvider}].");
-
-            var unitIntValues = abbreviations!.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
+            var unitIntValues = _unitAbbreviationsCache.GetUnitsForAbbreviation(unitType, formatProvider, unitAbbreviation, ignoreCase: true);
 
             if (unitIntValues.Count == 0)
             {
                 unitAbbreviation = NormalizeUnitString(unitAbbreviation);
-                unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
+                unitIntValues = _unitAbbreviationsCache.GetUnitsForAbbreviation(unitType, formatProvider, unitAbbreviation, ignoreCase: true);
             }
 
             // Narrow the search if too many hits, for example Megabar "Mbar" and Millibar "mbar" need to be distinguished
             if (unitIntValues.Count > 1)
-                unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: false);
+                unitIntValues = _unitAbbreviationsCache.GetUnitsForAbbreviation(unitType, formatProvider, unitAbbreviation, ignoreCase: false);
 
             switch (unitIntValues.Count)
             {
@@ -197,20 +194,17 @@ namespace UnitsNet
             unitAbbreviation = unitAbbreviation.Trim();
             unit = default;
 
-            if(!_unitAbbreviationsCache.TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var abbreviations))
-                return false;
-
-            var unitIntValues = abbreviations!.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
+            var unitIntValues = _unitAbbreviationsCache.GetUnitsForAbbreviation(unitType, formatProvider, unitAbbreviation, ignoreCase: true);
 
             if (unitIntValues.Count == 0)
             {
                 unitAbbreviation = NormalizeUnitString(unitAbbreviation);
-                unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
+                unitIntValues = _unitAbbreviationsCache.GetUnitsForAbbreviation(unitType, formatProvider, unitAbbreviation, ignoreCase: true);
             }
 
             // Narrow the search if too many hits, for example Megabar "Mbar" and Millibar "mbar" need to be distinguished
             if (unitIntValues.Count > 1)
-                unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: false);
+                unitIntValues = _unitAbbreviationsCache.GetUnitsForAbbreviation(unitType, formatProvider, unitAbbreviation, ignoreCase: false);
 
             if(unitIntValues.Count != 1)
                 return false;

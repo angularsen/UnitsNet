@@ -73,7 +73,6 @@ namespace UnitsNet
                 abbreviationsForUnit.Insert(0, abbreviation);
             else
                 abbreviationsForUnit.Add(abbreviation);
-
         }
     }
 }
