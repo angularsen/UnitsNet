@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
             BaseUnit = AmplitudeRatioUnit.DecibelVolt;
-            MaxValue = new AmplitudeRatio(double.MaxValue, BaseUnit);
-            MinValue = new AmplitudeRatio(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.AmplitudeRatio;
-            Units = Enum.GetValues(typeof(AmplitudeRatioUnit)).Cast<AmplitudeRatioUnit>().Except(new AmplitudeRatioUnit[]{ AmplitudeRatioUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(AmplitudeRatioUnit)).Cast<AmplitudeRatioUnit>().ToArray();
             Zero = new AmplitudeRatio(0, BaseUnit);
             Info = new QuantityInfo<AmplitudeRatioUnit>("AmplitudeRatio",
                 new UnitInfo<AmplitudeRatioUnit>[]

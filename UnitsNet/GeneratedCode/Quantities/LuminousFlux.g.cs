@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
             BaseUnit = LuminousFluxUnit.Lumen;
-            MaxValue = new LuminousFlux(double.MaxValue, BaseUnit);
-            MinValue = new LuminousFlux(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.LuminousFlux;
-            Units = Enum.GetValues(typeof(LuminousFluxUnit)).Cast<LuminousFluxUnit>().Except(new LuminousFluxUnit[]{ LuminousFluxUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(LuminousFluxUnit)).Cast<LuminousFluxUnit>().ToArray();
             Zero = new LuminousFlux(0, BaseUnit);
             Info = new QuantityInfo<LuminousFluxUnit>("LuminousFlux",
                 new UnitInfo<LuminousFluxUnit>[]

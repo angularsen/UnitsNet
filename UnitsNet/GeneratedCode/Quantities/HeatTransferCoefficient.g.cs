@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 1, -3, 0, -1, 0, 0);
             BaseUnit = HeatTransferCoefficientUnit.WattPerSquareMeterKelvin;
-            MaxValue = new HeatTransferCoefficient(double.MaxValue, BaseUnit);
-            MinValue = new HeatTransferCoefficient(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.HeatTransferCoefficient;
-            Units = Enum.GetValues(typeof(HeatTransferCoefficientUnit)).Cast<HeatTransferCoefficientUnit>().Except(new HeatTransferCoefficientUnit[]{ HeatTransferCoefficientUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(HeatTransferCoefficientUnit)).Cast<HeatTransferCoefficientUnit>().ToArray();
             Zero = new HeatTransferCoefficient(0, BaseUnit);
             Info = new QuantityInfo<HeatTransferCoefficientUnit>("HeatTransferCoefficient",
                 new UnitInfo<HeatTransferCoefficientUnit>[]

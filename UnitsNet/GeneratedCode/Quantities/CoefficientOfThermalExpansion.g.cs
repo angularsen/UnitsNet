@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, -1, 0, 0);
             BaseUnit = CoefficientOfThermalExpansionUnit.InverseKelvin;
-            MaxValue = new CoefficientOfThermalExpansion(double.MaxValue, BaseUnit);
-            MinValue = new CoefficientOfThermalExpansion(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.CoefficientOfThermalExpansion;
-            Units = Enum.GetValues(typeof(CoefficientOfThermalExpansionUnit)).Cast<CoefficientOfThermalExpansionUnit>().Except(new CoefficientOfThermalExpansionUnit[]{ CoefficientOfThermalExpansionUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(CoefficientOfThermalExpansionUnit)).Cast<CoefficientOfThermalExpansionUnit>().ToArray();
             Zero = new CoefficientOfThermalExpansion(0, BaseUnit);
             Info = new QuantityInfo<CoefficientOfThermalExpansionUnit>("CoefficientOfThermalExpansion",
                 new UnitInfo<CoefficientOfThermalExpansionUnit>[]

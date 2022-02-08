@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, 0, 0, 0, 0, 0);
             BaseUnit = MassMomentOfInertiaUnit.KilogramSquareMeter;
-            MaxValue = new MassMomentOfInertia(double.MaxValue, BaseUnit);
-            MinValue = new MassMomentOfInertia(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.MassMomentOfInertia;
-            Units = Enum.GetValues(typeof(MassMomentOfInertiaUnit)).Cast<MassMomentOfInertiaUnit>().Except(new MassMomentOfInertiaUnit[]{ MassMomentOfInertiaUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(MassMomentOfInertiaUnit)).Cast<MassMomentOfInertiaUnit>().ToArray();
             Zero = new MassMomentOfInertia(0, BaseUnit);
             Info = new QuantityInfo<MassMomentOfInertiaUnit>("MassMomentOfInertia",
                 new UnitInfo<MassMomentOfInertiaUnit>[]

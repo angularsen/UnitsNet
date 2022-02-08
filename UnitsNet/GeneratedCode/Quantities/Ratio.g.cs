@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
             BaseUnit = RatioUnit.DecimalFraction;
-            MaxValue = new Ratio(double.MaxValue, BaseUnit);
-            MinValue = new Ratio(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.Ratio;
-            Units = Enum.GetValues(typeof(RatioUnit)).Cast<RatioUnit>().Except(new RatioUnit[]{ RatioUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(RatioUnit)).Cast<RatioUnit>().ToArray();
             Zero = new Ratio(0, BaseUnit);
             Info = new QuantityInfo<RatioUnit>("Ratio",
                 new UnitInfo<RatioUnit>[]

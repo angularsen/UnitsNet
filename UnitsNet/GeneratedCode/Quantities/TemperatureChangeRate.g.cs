@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 0, 1, 0, 0);
             BaseUnit = TemperatureChangeRateUnit.DegreeCelsiusPerSecond;
-            MaxValue = new TemperatureChangeRate(double.MaxValue, BaseUnit);
-            MinValue = new TemperatureChangeRate(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.TemperatureChangeRate;
-            Units = Enum.GetValues(typeof(TemperatureChangeRateUnit)).Cast<TemperatureChangeRateUnit>().Except(new TemperatureChangeRateUnit[]{ TemperatureChangeRateUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(TemperatureChangeRateUnit)).Cast<TemperatureChangeRateUnit>().ToArray();
             Zero = new TemperatureChangeRate(0, BaseUnit);
             Info = new QuantityInfo<TemperatureChangeRateUnit>("TemperatureChangeRate",
                 new UnitInfo<TemperatureChangeRateUnit>[]

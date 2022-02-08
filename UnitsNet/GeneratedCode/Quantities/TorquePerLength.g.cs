@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
             BaseUnit = TorquePerLengthUnit.NewtonMeterPerMeter;
-            MaxValue = new TorquePerLength(double.MaxValue, BaseUnit);
-            MinValue = new TorquePerLength(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.TorquePerLength;
-            Units = Enum.GetValues(typeof(TorquePerLengthUnit)).Cast<TorquePerLengthUnit>().Except(new TorquePerLengthUnit[]{ TorquePerLengthUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(TorquePerLengthUnit)).Cast<TorquePerLengthUnit>().ToArray();
             Zero = new TorquePerLength(0, BaseUnit);
             Info = new QuantityInfo<TorquePerLengthUnit>("TorquePerLength",
                 new UnitInfo<TorquePerLengthUnit>[]

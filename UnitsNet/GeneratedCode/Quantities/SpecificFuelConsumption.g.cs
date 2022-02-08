@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
             BaseUnit = SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond;
-            MaxValue = new SpecificFuelConsumption(double.MaxValue, BaseUnit);
-            MinValue = new SpecificFuelConsumption(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.SpecificFuelConsumption;
-            Units = Enum.GetValues(typeof(SpecificFuelConsumptionUnit)).Cast<SpecificFuelConsumptionUnit>().Except(new SpecificFuelConsumptionUnit[]{ SpecificFuelConsumptionUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(SpecificFuelConsumptionUnit)).Cast<SpecificFuelConsumptionUnit>().ToArray();
             Zero = new SpecificFuelConsumption(0, BaseUnit);
             Info = new QuantityInfo<SpecificFuelConsumptionUnit>("SpecificFuelConsumption",
                 new UnitInfo<SpecificFuelConsumptionUnit>[]

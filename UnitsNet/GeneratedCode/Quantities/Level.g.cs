@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
             BaseUnit = LevelUnit.Decibel;
-            MaxValue = new Level(double.MaxValue, BaseUnit);
-            MinValue = new Level(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.Level;
-            Units = Enum.GetValues(typeof(LevelUnit)).Cast<LevelUnit>().Except(new LevelUnit[]{ LevelUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(LevelUnit)).Cast<LevelUnit>().ToArray();
             Zero = new Level(0, BaseUnit);
             Info = new QuantityInfo<LevelUnit>("Level",
                 new UnitInfo<LevelUnit>[]

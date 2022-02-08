@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 1, 0, 0, 0);
             BaseUnit = ElectricCurrentUnit.Ampere;
-            MaxValue = new ElectricCurrent(double.MaxValue, BaseUnit);
-            MinValue = new ElectricCurrent(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.ElectricCurrent;
-            Units = Enum.GetValues(typeof(ElectricCurrentUnit)).Cast<ElectricCurrentUnit>().Except(new ElectricCurrentUnit[]{ ElectricCurrentUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(ElectricCurrentUnit)).Cast<ElectricCurrentUnit>().ToArray();
             Zero = new ElectricCurrent(0, BaseUnit);
             Info = new QuantityInfo<ElectricCurrentUnit>("ElectricCurrent",
                 new UnitInfo<ElectricCurrentUnit>[]

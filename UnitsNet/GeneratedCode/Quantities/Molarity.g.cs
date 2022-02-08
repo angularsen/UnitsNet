@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-3, 0, 0, 0, 0, 1, 0);
             BaseUnit = MolarityUnit.MolesPerCubicMeter;
-            MaxValue = new Molarity(double.MaxValue, BaseUnit);
-            MinValue = new Molarity(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.Molarity;
-            Units = Enum.GetValues(typeof(MolarityUnit)).Cast<MolarityUnit>().Except(new MolarityUnit[]{ MolarityUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(MolarityUnit)).Cast<MolarityUnit>().ToArray();
             Zero = new Molarity(0, BaseUnit);
             Info = new QuantityInfo<MolarityUnit>("Molarity",
                 new UnitInfo<MolarityUnit>[]

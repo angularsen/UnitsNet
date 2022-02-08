@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-1, 1, -2, 0, -1, 0, 0);
             BaseUnit = VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin;
-            MaxValue = new VolumetricHeatCapacity(double.MaxValue, BaseUnit);
-            MinValue = new VolumetricHeatCapacity(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.VolumetricHeatCapacity;
-            Units = Enum.GetValues(typeof(VolumetricHeatCapacityUnit)).Cast<VolumetricHeatCapacityUnit>().Except(new VolumetricHeatCapacityUnit[]{ VolumetricHeatCapacityUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(VolumetricHeatCapacityUnit)).Cast<VolumetricHeatCapacityUnit>().ToArray();
             Zero = new VolumetricHeatCapacity(0, BaseUnit);
             Info = new QuantityInfo<VolumetricHeatCapacityUnit>("VolumetricHeatCapacity",
                 new UnitInfo<VolumetricHeatCapacityUnit>[]

@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(1, 1, -3, 0, 0, 0, 0);
             BaseUnit = LinearPowerDensityUnit.WattPerMeter;
-            MaxValue = new LinearPowerDensity(double.MaxValue, BaseUnit);
-            MinValue = new LinearPowerDensity(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.LinearPowerDensity;
-            Units = Enum.GetValues(typeof(LinearPowerDensityUnit)).Cast<LinearPowerDensityUnit>().Except(new LinearPowerDensityUnit[]{ LinearPowerDensityUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(LinearPowerDensityUnit)).Cast<LinearPowerDensityUnit>().ToArray();
             Zero = new LinearPowerDensity(0, BaseUnit);
             Info = new QuantityInfo<LinearPowerDensityUnit>("LinearPowerDensity",
                 new UnitInfo<LinearPowerDensityUnit>[]

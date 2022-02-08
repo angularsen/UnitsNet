@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-2, 0, 0, 1, 0, 0, 0);
             BaseUnit = ElectricCurrentDensityUnit.AmperePerSquareMeter;
-            MaxValue = new ElectricCurrentDensity(double.MaxValue, BaseUnit);
-            MinValue = new ElectricCurrentDensity(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.ElectricCurrentDensity;
-            Units = Enum.GetValues(typeof(ElectricCurrentDensityUnit)).Cast<ElectricCurrentDensityUnit>().Except(new ElectricCurrentDensityUnit[]{ ElectricCurrentDensityUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(ElectricCurrentDensityUnit)).Cast<ElectricCurrentDensityUnit>().ToArray();
             Zero = new ElectricCurrentDensity(0, BaseUnit);
             Info = new QuantityInfo<ElectricCurrentDensityUnit>("ElectricCurrentDensity",
                 new UnitInfo<ElectricCurrentDensityUnit>[]

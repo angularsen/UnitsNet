@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(6, 0, 0, 0, 0, 0, 0);
             BaseUnit = WarpingMomentOfInertiaUnit.MeterToTheSixth;
-            MaxValue = new WarpingMomentOfInertia(double.MaxValue, BaseUnit);
-            MinValue = new WarpingMomentOfInertia(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.WarpingMomentOfInertia;
-            Units = Enum.GetValues(typeof(WarpingMomentOfInertiaUnit)).Cast<WarpingMomentOfInertiaUnit>().Except(new WarpingMomentOfInertiaUnit[]{ WarpingMomentOfInertiaUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(WarpingMomentOfInertiaUnit)).Cast<WarpingMomentOfInertiaUnit>().ToArray();
             Zero = new WarpingMomentOfInertia(0, BaseUnit);
             Info = new QuantityInfo<WarpingMomentOfInertiaUnit>("WarpingMomentOfInertia",
                 new UnitInfo<WarpingMomentOfInertiaUnit>[]

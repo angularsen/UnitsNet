@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(1, 1, -2, -2, 0, 0, 0);
             BaseUnit = PermeabilityUnit.HenryPerMeter;
-            MaxValue = new Permeability(double.MaxValue, BaseUnit);
-            MinValue = new Permeability(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.Permeability;
-            Units = Enum.GetValues(typeof(PermeabilityUnit)).Cast<PermeabilityUnit>().Except(new PermeabilityUnit[]{ PermeabilityUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(PermeabilityUnit)).Cast<PermeabilityUnit>().ToArray();
             Zero = new Permeability(0, BaseUnit);
             Info = new QuantityInfo<PermeabilityUnit>("Permeability",
                 new UnitInfo<PermeabilityUnit>[]

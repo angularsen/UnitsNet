@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-3, 0, 1, 1, 0, 0, 0);
             BaseUnit = ElectricChargeDensityUnit.CoulombPerCubicMeter;
-            MaxValue = new ElectricChargeDensity(double.MaxValue, BaseUnit);
-            MinValue = new ElectricChargeDensity(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.ElectricChargeDensity;
-            Units = Enum.GetValues(typeof(ElectricChargeDensityUnit)).Cast<ElectricChargeDensityUnit>().Except(new ElectricChargeDensityUnit[]{ ElectricChargeDensityUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(ElectricChargeDensityUnit)).Cast<ElectricChargeDensityUnit>().ToArray();
             Zero = new ElectricChargeDensity(0, BaseUnit);
             Info = new QuantityInfo<ElectricChargeDensityUnit>("ElectricChargeDensity",
                 new UnitInfo<ElectricChargeDensityUnit>[]

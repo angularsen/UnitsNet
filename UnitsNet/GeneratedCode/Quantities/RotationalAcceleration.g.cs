@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, -2, 0, 0, 0, 0);
             BaseUnit = RotationalAccelerationUnit.RadianPerSecondSquared;
-            MaxValue = new RotationalAcceleration(double.MaxValue, BaseUnit);
-            MinValue = new RotationalAcceleration(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.RotationalAcceleration;
-            Units = Enum.GetValues(typeof(RotationalAccelerationUnit)).Cast<RotationalAccelerationUnit>().Except(new RotationalAccelerationUnit[]{ RotationalAccelerationUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(RotationalAccelerationUnit)).Cast<RotationalAccelerationUnit>().ToArray();
             Zero = new RotationalAcceleration(0, BaseUnit);
             Info = new QuantityInfo<RotationalAccelerationUnit>("RotationalAcceleration",
                 new UnitInfo<RotationalAccelerationUnit>[]

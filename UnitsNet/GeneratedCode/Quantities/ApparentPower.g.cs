@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
             BaseUnit = ApparentPowerUnit.Voltampere;
-            MaxValue = new ApparentPower(double.MaxValue, BaseUnit);
-            MinValue = new ApparentPower(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.ApparentPower;
-            Units = Enum.GetValues(typeof(ApparentPowerUnit)).Cast<ApparentPowerUnit>().Except(new ApparentPowerUnit[]{ ApparentPowerUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(ApparentPowerUnit)).Cast<ApparentPowerUnit>().ToArray();
             Zero = new ApparentPower(0, BaseUnit);
             Info = new QuantityInfo<ApparentPowerUnit>("ApparentPower",
                 new UnitInfo<ApparentPowerUnit>[]

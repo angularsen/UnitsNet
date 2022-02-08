@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 0, -2, 0, 0, 0, 0);
             BaseUnit = SpecificEnergyUnit.JoulePerKilogram;
-            MaxValue = new SpecificEnergy(double.MaxValue, BaseUnit);
-            MinValue = new SpecificEnergy(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.SpecificEnergy;
-            Units = Enum.GetValues(typeof(SpecificEnergyUnit)).Cast<SpecificEnergyUnit>().Except(new SpecificEnergyUnit[]{ SpecificEnergyUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(SpecificEnergyUnit)).Cast<SpecificEnergyUnit>().ToArray();
             Zero = new SpecificEnergy(0, BaseUnit);
             Info = new QuantityInfo<SpecificEnergyUnit>("SpecificEnergy",
                 new UnitInfo<SpecificEnergyUnit>[]

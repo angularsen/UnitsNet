@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-1, 1, -3, 0, 0, 0, 0);
             BaseUnit = PowerDensityUnit.WattPerCubicMeter;
-            MaxValue = new PowerDensity(double.MaxValue, BaseUnit);
-            MinValue = new PowerDensity(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.PowerDensity;
-            Units = Enum.GetValues(typeof(PowerDensityUnit)).Cast<PowerDensityUnit>().Except(new PowerDensityUnit[]{ PowerDensityUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(PowerDensityUnit)).Cast<PowerDensityUnit>().ToArray();
             Zero = new PowerDensity(0, BaseUnit);
             Info = new QuantityInfo<PowerDensityUnit>("PowerDensity",
                 new UnitInfo<PowerDensityUnit>[]

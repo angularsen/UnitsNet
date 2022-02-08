@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-2, 0, 0, 0, 0, 0, 0);
             BaseUnit = ReciprocalAreaUnit.InverseSquareMeter;
-            MaxValue = new ReciprocalArea(double.MaxValue, BaseUnit);
-            MinValue = new ReciprocalArea(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.ReciprocalArea;
-            Units = Enum.GetValues(typeof(ReciprocalAreaUnit)).Cast<ReciprocalAreaUnit>().Except(new ReciprocalAreaUnit[]{ ReciprocalAreaUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(ReciprocalAreaUnit)).Cast<ReciprocalAreaUnit>().ToArray();
             Zero = new ReciprocalArea(0, BaseUnit);
             Info = new QuantityInfo<ReciprocalAreaUnit>("ReciprocalArea",
                 new UnitInfo<ReciprocalAreaUnit>[]

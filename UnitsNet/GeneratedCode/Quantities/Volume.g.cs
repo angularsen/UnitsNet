@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(3, 0, 0, 0, 0, 0, 0);
             BaseUnit = VolumeUnit.CubicMeter;
-            MaxValue = new Volume(double.MaxValue, BaseUnit);
-            MinValue = new Volume(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.Volume;
-            Units = Enum.GetValues(typeof(VolumeUnit)).Cast<VolumeUnit>().Except(new VolumeUnit[]{ VolumeUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(VolumeUnit)).Cast<VolumeUnit>().ToArray();
             Zero = new Volume(0, BaseUnit);
             Info = new QuantityInfo<VolumeUnit>("Volume",
                 new UnitInfo<VolumeUnit>[]

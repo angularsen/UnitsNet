@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
             BaseUnit = ScalarUnit.Amount;
-            MaxValue = new Scalar(double.MaxValue, BaseUnit);
-            MinValue = new Scalar(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.Scalar;
-            Units = Enum.GetValues(typeof(ScalarUnit)).Cast<ScalarUnit>().Except(new ScalarUnit[]{ ScalarUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(ScalarUnit)).Cast<ScalarUnit>().ToArray();
             Zero = new Scalar(0, BaseUnit);
             Info = new QuantityInfo<ScalarUnit>("Scalar",
                 new UnitInfo<ScalarUnit>[]

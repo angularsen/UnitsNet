@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-2, 1, -2, 0, 0, 0, 0);
             BaseUnit = SpecificWeightUnit.NewtonPerCubicMeter;
-            MaxValue = new SpecificWeight(double.MaxValue, BaseUnit);
-            MinValue = new SpecificWeight(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.SpecificWeight;
-            Units = Enum.GetValues(typeof(SpecificWeightUnit)).Cast<SpecificWeightUnit>().Except(new SpecificWeightUnit[]{ SpecificWeightUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(SpecificWeightUnit)).Cast<SpecificWeightUnit>().ToArray();
             Zero = new SpecificWeight(0, BaseUnit);
             Info = new QuantityInfo<SpecificWeightUnit>("SpecificWeight",
                 new UnitInfo<SpecificWeightUnit>[]

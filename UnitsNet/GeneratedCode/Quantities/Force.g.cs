@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
             BaseUnit = ForceUnit.Newton;
-            MaxValue = new Force(double.MaxValue, BaseUnit);
-            MinValue = new Force(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.Force;
-            Units = Enum.GetValues(typeof(ForceUnit)).Cast<ForceUnit>().Except(new ForceUnit[]{ ForceUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(ForceUnit)).Cast<ForceUnit>().ToArray();
             Zero = new Force(0, BaseUnit);
             Info = new QuantityInfo<ForceUnit>("Force",
                 new UnitInfo<ForceUnit>[]

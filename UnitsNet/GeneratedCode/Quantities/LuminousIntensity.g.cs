@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
             BaseUnit = LuminousIntensityUnit.Candela;
-            MaxValue = new LuminousIntensity(double.MaxValue, BaseUnit);
-            MinValue = new LuminousIntensity(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.LuminousIntensity;
-            Units = Enum.GetValues(typeof(LuminousIntensityUnit)).Cast<LuminousIntensityUnit>().Except(new LuminousIntensityUnit[]{ LuminousIntensityUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(LuminousIntensityUnit)).Cast<LuminousIntensityUnit>().ToArray();
             Zero = new LuminousIntensity(0, BaseUnit);
             Info = new QuantityInfo<LuminousIntensityUnit>("LuminousIntensity",
                 new UnitInfo<LuminousIntensityUnit>[]

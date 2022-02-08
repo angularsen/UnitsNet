@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-1, 1, -1, 0, 0, 0, 0);
             BaseUnit = DynamicViscosityUnit.NewtonSecondPerMeterSquared;
-            MaxValue = new DynamicViscosity(double.MaxValue, BaseUnit);
-            MinValue = new DynamicViscosity(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.DynamicViscosity;
-            Units = Enum.GetValues(typeof(DynamicViscosityUnit)).Cast<DynamicViscosityUnit>().Except(new DynamicViscosityUnit[]{ DynamicViscosityUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(DynamicViscosityUnit)).Cast<DynamicViscosityUnit>().ToArray();
             Zero = new DynamicViscosity(0, BaseUnit);
             Info = new QuantityInfo<DynamicViscosityUnit>("DynamicViscosity",
                 new UnitInfo<DynamicViscosityUnit>[]

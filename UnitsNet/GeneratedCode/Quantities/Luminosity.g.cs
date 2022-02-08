@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
             BaseUnit = LuminosityUnit.Watt;
-            MaxValue = new Luminosity(double.MaxValue, BaseUnit);
-            MinValue = new Luminosity(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.Luminosity;
-            Units = Enum.GetValues(typeof(LuminosityUnit)).Cast<LuminosityUnit>().Except(new LuminosityUnit[]{ LuminosityUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(LuminosityUnit)).Cast<LuminosityUnit>().ToArray();
             Zero = new Luminosity(0, BaseUnit);
             Info = new QuantityInfo<LuminosityUnit>("Luminosity",
                 new UnitInfo<LuminosityUnit>[]

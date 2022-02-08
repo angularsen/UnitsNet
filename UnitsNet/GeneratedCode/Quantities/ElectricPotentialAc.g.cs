@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
             BaseUnit = ElectricPotentialAcUnit.VoltAc;
-            MaxValue = new ElectricPotentialAc(double.MaxValue, BaseUnit);
-            MinValue = new ElectricPotentialAc(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.ElectricPotentialAc;
-            Units = Enum.GetValues(typeof(ElectricPotentialAcUnit)).Cast<ElectricPotentialAcUnit>().Except(new ElectricPotentialAcUnit[]{ ElectricPotentialAcUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(ElectricPotentialAcUnit)).Cast<ElectricPotentialAcUnit>().ToArray();
             Zero = new ElectricPotentialAc(0, BaseUnit);
             Info = new QuantityInfo<ElectricPotentialAcUnit>("ElectricPotentialAc",
                 new UnitInfo<ElectricPotentialAcUnit>[]

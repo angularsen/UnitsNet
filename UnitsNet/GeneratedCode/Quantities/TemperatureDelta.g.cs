@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 1, 0, 0);
             BaseUnit = TemperatureDeltaUnit.Kelvin;
-            MaxValue = new TemperatureDelta(double.MaxValue, BaseUnit);
-            MinValue = new TemperatureDelta(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.TemperatureDelta;
-            Units = Enum.GetValues(typeof(TemperatureDeltaUnit)).Cast<TemperatureDeltaUnit>().Except(new TemperatureDeltaUnit[]{ TemperatureDeltaUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(TemperatureDeltaUnit)).Cast<TemperatureDeltaUnit>().ToArray();
             Zero = new TemperatureDelta(0, BaseUnit);
             Info = new QuantityInfo<TemperatureDeltaUnit>("TemperatureDelta",
                 new UnitInfo<TemperatureDeltaUnit>[]

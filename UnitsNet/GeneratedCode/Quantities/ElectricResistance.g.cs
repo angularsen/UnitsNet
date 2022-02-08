@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, -2, 0, 0, 0);
             BaseUnit = ElectricResistanceUnit.Ohm;
-            MaxValue = new ElectricResistance(double.MaxValue, BaseUnit);
-            MinValue = new ElectricResistance(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.ElectricResistance;
-            Units = Enum.GetValues(typeof(ElectricResistanceUnit)).Cast<ElectricResistanceUnit>().Except(new ElectricResistanceUnit[]{ ElectricResistanceUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(ElectricResistanceUnit)).Cast<ElectricResistanceUnit>().ToArray();
             Zero = new ElectricResistance(0, BaseUnit);
             Info = new QuantityInfo<ElectricResistanceUnit>("ElectricResistance",
                 new UnitInfo<ElectricResistanceUnit>[]

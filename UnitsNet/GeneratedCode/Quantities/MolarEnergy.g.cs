@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, -1, 0);
             BaseUnit = MolarEnergyUnit.JoulePerMole;
-            MaxValue = new MolarEnergy(double.MaxValue, BaseUnit);
-            MinValue = new MolarEnergy(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.MolarEnergy;
-            Units = Enum.GetValues(typeof(MolarEnergyUnit)).Cast<MolarEnergyUnit>().Except(new MolarEnergyUnit[]{ MolarEnergyUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(MolarEnergyUnit)).Cast<MolarEnergyUnit>().ToArray();
             Zero = new MolarEnergy(0, BaseUnit);
             Info = new QuantityInfo<MolarEnergyUnit>("MolarEnergy",
                 new UnitInfo<MolarEnergyUnit>[]

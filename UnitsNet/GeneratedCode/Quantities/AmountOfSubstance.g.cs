@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 1, 0);
             BaseUnit = AmountOfSubstanceUnit.Mole;
-            MaxValue = new AmountOfSubstance(double.MaxValue, BaseUnit);
-            MinValue = new AmountOfSubstance(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.AmountOfSubstance;
-            Units = Enum.GetValues(typeof(AmountOfSubstanceUnit)).Cast<AmountOfSubstanceUnit>().Except(new AmountOfSubstanceUnit[]{ AmountOfSubstanceUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(AmountOfSubstanceUnit)).Cast<AmountOfSubstanceUnit>().ToArray();
             Zero = new AmountOfSubstance(0, BaseUnit);
             Info = new QuantityInfo<AmountOfSubstanceUnit>("AmountOfSubstance",
                 new UnitInfo<AmountOfSubstanceUnit>[]

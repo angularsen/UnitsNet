@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-3, -1, 3, 2, 0, 0, 0);
             BaseUnit = ElectricConductivityUnit.SiemensPerMeter;
-            MaxValue = new ElectricConductivity(double.MaxValue, BaseUnit);
-            MinValue = new ElectricConductivity(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.ElectricConductivity;
-            Units = Enum.GetValues(typeof(ElectricConductivityUnit)).Cast<ElectricConductivityUnit>().Except(new ElectricConductivityUnit[]{ ElectricConductivityUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(ElectricConductivityUnit)).Cast<ElectricConductivityUnit>().ToArray();
             Zero = new ElectricConductivity(0, BaseUnit);
             Info = new QuantityInfo<ElectricConductivityUnit>("ElectricConductivity",
                 new UnitInfo<ElectricConductivityUnit>[]

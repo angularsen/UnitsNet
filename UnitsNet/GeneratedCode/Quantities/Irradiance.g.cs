@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
             BaseUnit = IrradianceUnit.WattPerSquareMeter;
-            MaxValue = new Irradiance(double.MaxValue, BaseUnit);
-            MinValue = new Irradiance(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.Irradiance;
-            Units = Enum.GetValues(typeof(IrradianceUnit)).Cast<IrradianceUnit>().Except(new IrradianceUnit[]{ IrradianceUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(IrradianceUnit)).Cast<IrradianceUnit>().ToArray();
             Zero = new Irradiance(0, BaseUnit);
             Info = new QuantityInfo<IrradianceUnit>("Irradiance",
                 new UnitInfo<IrradianceUnit>[]

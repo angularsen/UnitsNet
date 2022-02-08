@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(1, 1, -3, 0, 0, 0, 0);
             BaseUnit = ForceChangeRateUnit.NewtonPerSecond;
-            MaxValue = new ForceChangeRate(double.MaxValue, BaseUnit);
-            MinValue = new ForceChangeRate(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.ForceChangeRate;
-            Units = Enum.GetValues(typeof(ForceChangeRateUnit)).Cast<ForceChangeRateUnit>().Except(new ForceChangeRateUnit[]{ ForceChangeRateUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(ForceChangeRateUnit)).Cast<ForceChangeRateUnit>().ToArray();
             Zero = new ForceChangeRate(0, BaseUnit);
             Info = new QuantityInfo<ForceChangeRateUnit>("ForceChangeRate",
                 new UnitInfo<ForceChangeRateUnit>[]

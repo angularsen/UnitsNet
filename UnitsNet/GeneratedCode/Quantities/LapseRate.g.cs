@@ -54,10 +54,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-1, 0, 0, 0, 1, 0, 0);
             BaseUnit = LapseRateUnit.DegreeCelsiusPerKilometer;
-            MaxValue = new LapseRate(double.MaxValue, BaseUnit);
-            MinValue = new LapseRate(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.LapseRate;
-            Units = Enum.GetValues(typeof(LapseRateUnit)).Cast<LapseRateUnit>().Except(new LapseRateUnit[]{ LapseRateUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(LapseRateUnit)).Cast<LapseRateUnit>().ToArray();
             Zero = new LapseRate(0, BaseUnit);
             Info = new QuantityInfo<LapseRateUnit>("LapseRate",
                 new UnitInfo<LapseRateUnit>[]

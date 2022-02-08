@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(1, 0, -2, 0, 0, 0, 0);
             BaseUnit = AccelerationUnit.MeterPerSecondSquared;
-            MaxValue = new Acceleration(double.MaxValue, BaseUnit);
-            MinValue = new Acceleration(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.Acceleration;
-            Units = Enum.GetValues(typeof(AccelerationUnit)).Cast<AccelerationUnit>().Except(new AccelerationUnit[]{ AccelerationUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(AccelerationUnit)).Cast<AccelerationUnit>().ToArray();
             Zero = new Acceleration(0, BaseUnit);
             Info = new QuantityInfo<AccelerationUnit>("Acceleration",
                 new UnitInfo<AccelerationUnit>[]

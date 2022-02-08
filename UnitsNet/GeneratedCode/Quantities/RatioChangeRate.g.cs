@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
             BaseUnit = RatioChangeRateUnit.DecimalFractionPerSecond;
-            MaxValue = new RatioChangeRate(double.MaxValue, BaseUnit);
-            MinValue = new RatioChangeRate(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.RatioChangeRate;
-            Units = Enum.GetValues(typeof(RatioChangeRateUnit)).Cast<RatioChangeRateUnit>().Except(new RatioChangeRateUnit[]{ RatioChangeRateUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(RatioChangeRateUnit)).Cast<RatioChangeRateUnit>().ToArray();
             Zero = new RatioChangeRate(0, BaseUnit);
             Info = new QuantityInfo<RatioChangeRateUnit>("RatioChangeRate",
                 new UnitInfo<RatioChangeRateUnit>[]

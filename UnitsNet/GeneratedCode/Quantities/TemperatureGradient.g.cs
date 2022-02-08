@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-1, 0, 0, 0, 1, 0, 0);
             BaseUnit = TemperatureGradientUnit.KelvinPerMeter;
-            MaxValue = new TemperatureGradient(double.MaxValue, BaseUnit);
-            MinValue = new TemperatureGradient(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.TemperatureGradient;
-            Units = Enum.GetValues(typeof(TemperatureGradientUnit)).Cast<TemperatureGradientUnit>().Except(new TemperatureGradientUnit[]{ TemperatureGradientUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(TemperatureGradientUnit)).Cast<TemperatureGradientUnit>().ToArray();
             Zero = new TemperatureGradient(0, BaseUnit);
             Info = new QuantityInfo<TemperatureGradientUnit>("TemperatureGradient",
                 new UnitInfo<TemperatureGradientUnit>[]

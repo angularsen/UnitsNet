@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
             BaseUnit = RelativeHumidityUnit.Percent;
-            MaxValue = new RelativeHumidity(double.MaxValue, BaseUnit);
-            MinValue = new RelativeHumidity(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.RelativeHumidity;
-            Units = Enum.GetValues(typeof(RelativeHumidityUnit)).Cast<RelativeHumidityUnit>().Except(new RelativeHumidityUnit[]{ RelativeHumidityUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(RelativeHumidityUnit)).Cast<RelativeHumidityUnit>().ToArray();
             Zero = new RelativeHumidity(0, BaseUnit);
             Info = new QuantityInfo<RelativeHumidityUnit>("RelativeHumidity",
                 new UnitInfo<RelativeHumidityUnit>[]

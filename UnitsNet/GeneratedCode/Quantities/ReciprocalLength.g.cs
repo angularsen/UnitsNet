@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-1, 0, 0, 0, 0, 0, 0);
             BaseUnit = ReciprocalLengthUnit.InverseMeter;
-            MaxValue = new ReciprocalLength(double.MaxValue, BaseUnit);
-            MinValue = new ReciprocalLength(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.ReciprocalLength;
-            Units = Enum.GetValues(typeof(ReciprocalLengthUnit)).Cast<ReciprocalLengthUnit>().Except(new ReciprocalLengthUnit[]{ ReciprocalLengthUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(ReciprocalLengthUnit)).Cast<ReciprocalLengthUnit>().ToArray();
             Zero = new ReciprocalLength(0, BaseUnit);
             Info = new QuantityInfo<ReciprocalLengthUnit>("ReciprocalLength",
                 new UnitInfo<ReciprocalLengthUnit>[]

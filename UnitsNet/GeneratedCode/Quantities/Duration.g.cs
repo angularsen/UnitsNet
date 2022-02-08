@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, 1, 0, 0, 0, 0);
             BaseUnit = DurationUnit.Second;
-            MaxValue = new Duration(double.MaxValue, BaseUnit);
-            MinValue = new Duration(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.Duration;
-            Units = Enum.GetValues(typeof(DurationUnit)).Cast<DurationUnit>().Except(new DurationUnit[]{ DurationUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(DurationUnit)).Cast<DurationUnit>().ToArray();
             Zero = new Duration(0, BaseUnit);
             Info = new QuantityInfo<DurationUnit>("Duration",
                 new UnitInfo<DurationUnit>[]

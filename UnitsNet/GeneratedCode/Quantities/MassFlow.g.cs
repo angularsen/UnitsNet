@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 1, -1, 0, 0, 0, 0);
             BaseUnit = MassFlowUnit.GramPerSecond;
-            MaxValue = new MassFlow(double.MaxValue, BaseUnit);
-            MinValue = new MassFlow(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.MassFlow;
-            Units = Enum.GetValues(typeof(MassFlowUnit)).Cast<MassFlowUnit>().Except(new MassFlowUnit[]{ MassFlowUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(MassFlowUnit)).Cast<MassFlowUnit>().ToArray();
             Zero = new MassFlow(0, BaseUnit);
             Info = new QuantityInfo<MassFlowUnit>("MassFlow",
                 new UnitInfo<MassFlowUnit>[]

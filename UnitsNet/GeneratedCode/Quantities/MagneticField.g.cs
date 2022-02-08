@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 1, -2, -1, 0, 0, 0);
             BaseUnit = MagneticFieldUnit.Tesla;
-            MaxValue = new MagneticField(double.MaxValue, BaseUnit);
-            MinValue = new MagneticField(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.MagneticField;
-            Units = Enum.GetValues(typeof(MagneticFieldUnit)).Cast<MagneticFieldUnit>().Except(new MagneticFieldUnit[]{ MagneticFieldUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(MagneticFieldUnit)).Cast<MagneticFieldUnit>().ToArray();
             Zero = new MagneticField(0, BaseUnit);
             Info = new QuantityInfo<MagneticFieldUnit>("MagneticField",
                 new UnitInfo<MagneticFieldUnit>[]

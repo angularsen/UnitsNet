@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
             BaseUnit = ForcePerLengthUnit.NewtonPerMeter;
-            MaxValue = new ForcePerLength(double.MaxValue, BaseUnit);
-            MinValue = new ForcePerLength(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.ForcePerLength;
-            Units = Enum.GetValues(typeof(ForcePerLengthUnit)).Cast<ForcePerLengthUnit>().Except(new ForcePerLengthUnit[]{ ForcePerLengthUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(ForcePerLengthUnit)).Cast<ForcePerLengthUnit>().ToArray();
             Zero = new ForcePerLength(0, BaseUnit);
             Info = new QuantityInfo<ForcePerLengthUnit>("ForcePerLength",
                 new UnitInfo<ForcePerLengthUnit>[]

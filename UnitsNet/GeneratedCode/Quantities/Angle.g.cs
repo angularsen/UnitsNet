@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
             BaseUnit = AngleUnit.Degree;
-            MaxValue = new Angle(double.MaxValue, BaseUnit);
-            MinValue = new Angle(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.Angle;
-            Units = Enum.GetValues(typeof(AngleUnit)).Cast<AngleUnit>().Except(new AngleUnit[]{ AngleUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(AngleUnit)).Cast<AngleUnit>().ToArray();
             Zero = new Angle(0, BaseUnit);
             Info = new QuantityInfo<AngleUnit>("Angle",
                 new UnitInfo<AngleUnit>[]

@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
             BaseUnit = AreaUnit.SquareMeter;
-            MaxValue = new Area(double.MaxValue, BaseUnit);
-            MinValue = new Area(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.Area;
-            Units = Enum.GetValues(typeof(AreaUnit)).Cast<AreaUnit>().Except(new AreaUnit[]{ AreaUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(AreaUnit)).Cast<AreaUnit>().ToArray();
             Zero = new Area(0, BaseUnit);
             Info = new QuantityInfo<AreaUnit>("Area",
                 new UnitInfo<AreaUnit>[]

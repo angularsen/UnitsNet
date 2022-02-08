@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-3, 1, 0, 0, 0, 0, 0);
             BaseUnit = MassConcentrationUnit.KilogramPerCubicMeter;
-            MaxValue = new MassConcentration(double.MaxValue, BaseUnit);
-            MinValue = new MassConcentration(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.MassConcentration;
-            Units = Enum.GetValues(typeof(MassConcentrationUnit)).Cast<MassConcentrationUnit>().Except(new MassConcentrationUnit[]{ MassConcentrationUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(MassConcentrationUnit)).Cast<MassConcentrationUnit>().ToArray();
             Zero = new MassConcentration(0, BaseUnit);
             Info = new QuantityInfo<MassConcentrationUnit>("MassConcentration",
                 new UnitInfo<MassConcentrationUnit>[]

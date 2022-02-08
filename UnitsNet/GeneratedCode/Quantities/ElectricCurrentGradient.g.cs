@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 1, 0, 0, 0);
             BaseUnit = ElectricCurrentGradientUnit.AmperePerSecond;
-            MaxValue = new ElectricCurrentGradient(double.MaxValue, BaseUnit);
-            MinValue = new ElectricCurrentGradient(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.ElectricCurrentGradient;
-            Units = Enum.GetValues(typeof(ElectricCurrentGradientUnit)).Cast<ElectricCurrentGradientUnit>().Except(new ElectricCurrentGradientUnit[]{ ElectricCurrentGradientUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(ElectricCurrentGradientUnit)).Cast<ElectricCurrentGradientUnit>().ToArray();
             Zero = new ElectricCurrentGradient(0, BaseUnit);
             Info = new QuantityInfo<ElectricCurrentGradientUnit>("ElectricCurrentGradient",
                 new UnitInfo<ElectricCurrentGradientUnit>[]

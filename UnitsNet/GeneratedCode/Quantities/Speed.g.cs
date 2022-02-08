@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(1, 0, -1, 0, 0, 0, 0);
             BaseUnit = SpeedUnit.MeterPerSecond;
-            MaxValue = new Speed(double.MaxValue, BaseUnit);
-            MinValue = new Speed(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.Speed;
-            Units = Enum.GetValues(typeof(SpeedUnit)).Cast<SpeedUnit>().Except(new SpeedUnit[]{ SpeedUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(SpeedUnit)).Cast<SpeedUnit>().ToArray();
             Zero = new Speed(0, BaseUnit);
             Info = new QuantityInfo<SpeedUnit>("Speed",
                 new UnitInfo<SpeedUnit>[]

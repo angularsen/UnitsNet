@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-1, 1, -3, 0, 0, 0, 0);
             BaseUnit = PressureChangeRateUnit.PascalPerSecond;
-            MaxValue = new PressureChangeRate(double.MaxValue, BaseUnit);
-            MinValue = new PressureChangeRate(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.PressureChangeRate;
-            Units = Enum.GetValues(typeof(PressureChangeRateUnit)).Cast<PressureChangeRateUnit>().Except(new PressureChangeRateUnit[]{ PressureChangeRateUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(PressureChangeRateUnit)).Cast<PressureChangeRateUnit>().ToArray();
             Zero = new PressureChangeRate(0, BaseUnit);
             Info = new QuantityInfo<PressureChangeRateUnit>("PressureChangeRate",
                 new UnitInfo<PressureChangeRateUnit>[]

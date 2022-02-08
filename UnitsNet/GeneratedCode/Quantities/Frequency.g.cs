@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
             BaseUnit = FrequencyUnit.Hertz;
-            MaxValue = new Frequency(double.MaxValue, BaseUnit);
-            MinValue = new Frequency(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.Frequency;
-            Units = Enum.GetValues(typeof(FrequencyUnit)).Cast<FrequencyUnit>().Except(new FrequencyUnit[]{ FrequencyUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(FrequencyUnit)).Cast<FrequencyUnit>().ToArray();
             Zero = new Frequency(0, BaseUnit);
             Info = new QuantityInfo<FrequencyUnit>("Frequency",
                 new UnitInfo<FrequencyUnit>[]

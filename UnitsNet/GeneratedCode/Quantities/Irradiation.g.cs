@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
             BaseUnit = IrradiationUnit.JoulePerSquareMeter;
-            MaxValue = new Irradiation(double.MaxValue, BaseUnit);
-            MinValue = new Irradiation(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.Irradiation;
-            Units = Enum.GetValues(typeof(IrradiationUnit)).Cast<IrradiationUnit>().Except(new IrradiationUnit[]{ IrradiationUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(IrradiationUnit)).Cast<IrradiationUnit>().ToArray();
             Zero = new Irradiation(0, BaseUnit);
             Info = new QuantityInfo<IrradiationUnit>("Irradiation",
                 new UnitInfo<IrradiationUnit>[]

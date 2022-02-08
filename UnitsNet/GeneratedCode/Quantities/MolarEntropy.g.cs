@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, -1, -1, 0);
             BaseUnit = MolarEntropyUnit.JoulePerMoleKelvin;
-            MaxValue = new MolarEntropy(double.MaxValue, BaseUnit);
-            MinValue = new MolarEntropy(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.MolarEntropy;
-            Units = Enum.GetValues(typeof(MolarEntropyUnit)).Cast<MolarEntropyUnit>().Except(new MolarEntropyUnit[]{ MolarEntropyUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(MolarEntropyUnit)).Cast<MolarEntropyUnit>().ToArray();
             Zero = new MolarEntropy(0, BaseUnit);
             Info = new QuantityInfo<MolarEntropyUnit>("MolarEntropy",
                 new UnitInfo<MolarEntropyUnit>[]

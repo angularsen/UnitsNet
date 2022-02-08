@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, -1, 3, 0, 1, 0, 0);
             BaseUnit = ThermalResistanceUnit.SquareMeterKelvinPerKilowatt;
-            MaxValue = new ThermalResistance(double.MaxValue, BaseUnit);
-            MinValue = new ThermalResistance(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.ThermalResistance;
-            Units = Enum.GetValues(typeof(ThermalResistanceUnit)).Cast<ThermalResistanceUnit>().Except(new ThermalResistanceUnit[]{ ThermalResistanceUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(ThermalResistanceUnit)).Cast<ThermalResistanceUnit>().ToArray();
             Zero = new ThermalResistance(0, BaseUnit);
             Info = new QuantityInfo<ThermalResistanceUnit>("ThermalResistance",
                 new UnitInfo<ThermalResistanceUnit>[]

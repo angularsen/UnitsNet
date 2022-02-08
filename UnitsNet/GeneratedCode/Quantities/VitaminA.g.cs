@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
             BaseUnit = VitaminAUnit.InternationalUnit;
-            MaxValue = new VitaminA(double.MaxValue, BaseUnit);
-            MinValue = new VitaminA(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.VitaminA;
-            Units = Enum.GetValues(typeof(VitaminAUnit)).Cast<VitaminAUnit>().Except(new VitaminAUnit[]{ VitaminAUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(VitaminAUnit)).Cast<VitaminAUnit>().ToArray();
             Zero = new VitaminA(0, BaseUnit);
             Info = new QuantityInfo<VitaminAUnit>("VitaminA",
                 new UnitInfo<VitaminAUnit>[]

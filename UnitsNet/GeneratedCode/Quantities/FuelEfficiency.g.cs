@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
             BaseUnit = FuelEfficiencyUnit.LiterPer100Kilometers;
-            MaxValue = new FuelEfficiency(double.MaxValue, BaseUnit);
-            MinValue = new FuelEfficiency(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.FuelEfficiency;
-            Units = Enum.GetValues(typeof(FuelEfficiencyUnit)).Cast<FuelEfficiencyUnit>().Except(new FuelEfficiencyUnit[]{ FuelEfficiencyUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(FuelEfficiencyUnit)).Cast<FuelEfficiencyUnit>().ToArray();
             Zero = new FuelEfficiency(0, BaseUnit);
             Info = new QuantityInfo<FuelEfficiencyUnit>("FuelEfficiency",
                 new UnitInfo<FuelEfficiencyUnit>[]

@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
             BaseUnit = VolumeConcentrationUnit.DecimalFraction;
-            MaxValue = new VolumeConcentration(double.MaxValue, BaseUnit);
-            MinValue = new VolumeConcentration(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.VolumeConcentration;
-            Units = Enum.GetValues(typeof(VolumeConcentrationUnit)).Cast<VolumeConcentrationUnit>().Except(new VolumeConcentrationUnit[]{ VolumeConcentrationUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(VolumeConcentrationUnit)).Cast<VolumeConcentrationUnit>().ToArray();
             Zero = new VolumeConcentration(0, BaseUnit);
             Info = new QuantityInfo<VolumeConcentrationUnit>("VolumeConcentration",
                 new UnitInfo<VolumeConcentrationUnit>[]

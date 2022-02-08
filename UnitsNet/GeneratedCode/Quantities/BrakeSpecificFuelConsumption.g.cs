@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-2, 0, 2, 0, 0, 0, 0);
             BaseUnit = BrakeSpecificFuelConsumptionUnit.KilogramPerJoule;
-            MaxValue = new BrakeSpecificFuelConsumption(double.MaxValue, BaseUnit);
-            MinValue = new BrakeSpecificFuelConsumption(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.BrakeSpecificFuelConsumption;
-            Units = Enum.GetValues(typeof(BrakeSpecificFuelConsumptionUnit)).Cast<BrakeSpecificFuelConsumptionUnit>().Except(new BrakeSpecificFuelConsumptionUnit[]{ BrakeSpecificFuelConsumptionUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(BrakeSpecificFuelConsumptionUnit)).Cast<BrakeSpecificFuelConsumptionUnit>().ToArray();
             Zero = new BrakeSpecificFuelConsumption(0, BaseUnit);
             Info = new QuantityInfo<BrakeSpecificFuelConsumptionUnit>("BrakeSpecificFuelConsumption",
                 new UnitInfo<BrakeSpecificFuelConsumptionUnit>[]

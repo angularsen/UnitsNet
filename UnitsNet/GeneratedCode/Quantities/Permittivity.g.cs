@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-3, -1, 4, 2, 0, 0, 0);
             BaseUnit = PermittivityUnit.FaradPerMeter;
-            MaxValue = new Permittivity(double.MaxValue, BaseUnit);
-            MinValue = new Permittivity(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.Permittivity;
-            Units = Enum.GetValues(typeof(PermittivityUnit)).Cast<PermittivityUnit>().Except(new PermittivityUnit[]{ PermittivityUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(PermittivityUnit)).Cast<PermittivityUnit>().ToArray();
             Zero = new Permittivity(0, BaseUnit);
             Info = new QuantityInfo<PermittivityUnit>("Permittivity",
                 new UnitInfo<PermittivityUnit>[]

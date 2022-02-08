@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(3, -1, 0, 0, 0, 0, 0);
             BaseUnit = SpecificVolumeUnit.CubicMeterPerKilogram;
-            MaxValue = new SpecificVolume(double.MaxValue, BaseUnit);
-            MinValue = new SpecificVolume(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.SpecificVolume;
-            Units = Enum.GetValues(typeof(SpecificVolumeUnit)).Cast<SpecificVolumeUnit>().Except(new SpecificVolumeUnit[]{ SpecificVolumeUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(SpecificVolumeUnit)).Cast<SpecificVolumeUnit>().ToArray();
             Zero = new SpecificVolume(0, BaseUnit);
             Info = new QuantityInfo<SpecificVolumeUnit>("SpecificVolume",
                 new UnitInfo<SpecificVolumeUnit>[]

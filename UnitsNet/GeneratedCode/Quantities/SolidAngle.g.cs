@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
             BaseUnit = SolidAngleUnit.Steradian;
-            MaxValue = new SolidAngle(double.MaxValue, BaseUnit);
-            MinValue = new SolidAngle(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.SolidAngle;
-            Units = Enum.GetValues(typeof(SolidAngleUnit)).Cast<SolidAngleUnit>().Except(new SolidAngleUnit[]{ SolidAngleUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(SolidAngleUnit)).Cast<SolidAngleUnit>().ToArray();
             Zero = new SolidAngle(0, BaseUnit);
             Info = new QuantityInfo<SolidAngleUnit>("SolidAngle",
                 new UnitInfo<SolidAngleUnit>[]

@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-2, 1, 0, 0, 0, 0, 0);
             BaseUnit = AreaDensityUnit.KilogramPerSquareMeter;
-            MaxValue = new AreaDensity(double.MaxValue, BaseUnit);
-            MinValue = new AreaDensity(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.AreaDensity;
-            Units = Enum.GetValues(typeof(AreaDensityUnit)).Cast<AreaDensityUnit>().Except(new AreaDensityUnit[]{ AreaDensityUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(AreaDensityUnit)).Cast<AreaDensityUnit>().ToArray();
             Zero = new AreaDensity(0, BaseUnit);
             Info = new QuantityInfo<AreaDensityUnit>("AreaDensity",
                 new UnitInfo<AreaDensityUnit>[]

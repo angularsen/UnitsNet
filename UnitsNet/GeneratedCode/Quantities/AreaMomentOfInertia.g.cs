@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(4, 0, 0, 0, 0, 0, 0);
             BaseUnit = AreaMomentOfInertiaUnit.MeterToTheFourth;
-            MaxValue = new AreaMomentOfInertia(double.MaxValue, BaseUnit);
-            MinValue = new AreaMomentOfInertia(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.AreaMomentOfInertia;
-            Units = Enum.GetValues(typeof(AreaMomentOfInertiaUnit)).Cast<AreaMomentOfInertiaUnit>().Except(new AreaMomentOfInertiaUnit[]{ AreaMomentOfInertiaUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(AreaMomentOfInertiaUnit)).Cast<AreaMomentOfInertiaUnit>().ToArray();
             Zero = new AreaMomentOfInertia(0, BaseUnit);
             Info = new QuantityInfo<AreaMomentOfInertiaUnit>("AreaMomentOfInertia",
                 new UnitInfo<AreaMomentOfInertiaUnit>[]

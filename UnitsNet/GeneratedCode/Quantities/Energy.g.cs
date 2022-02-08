@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
             BaseUnit = EnergyUnit.Joule;
-            MaxValue = new Energy(double.MaxValue, BaseUnit);
-            MinValue = new Energy(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.Energy;
-            Units = Enum.GetValues(typeof(EnergyUnit)).Cast<EnergyUnit>().Except(new EnergyUnit[]{ EnergyUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(EnergyUnit)).Cast<EnergyUnit>().ToArray();
             Zero = new Energy(0, BaseUnit);
             Info = new QuantityInfo<EnergyUnit>("Energy",
                 new UnitInfo<EnergyUnit>[]

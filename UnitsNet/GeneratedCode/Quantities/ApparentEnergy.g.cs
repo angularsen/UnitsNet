@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
             BaseUnit = ApparentEnergyUnit.VoltampereHour;
-            MaxValue = new ApparentEnergy(double.MaxValue, BaseUnit);
-            MinValue = new ApparentEnergy(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.ApparentEnergy;
-            Units = Enum.GetValues(typeof(ApparentEnergyUnit)).Cast<ApparentEnergyUnit>().Except(new ApparentEnergyUnit[]{ ApparentEnergyUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(ApparentEnergyUnit)).Cast<ApparentEnergyUnit>().ToArray();
             Zero = new ApparentEnergy(0, BaseUnit);
             Info = new QuantityInfo<ApparentEnergyUnit>("ApparentEnergy",
                 new UnitInfo<ApparentEnergyUnit>[]

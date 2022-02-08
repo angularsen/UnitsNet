@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-1, 0, 0, 1, 0, 0, 0);
             BaseUnit = MagnetizationUnit.AmperePerMeter;
-            MaxValue = new Magnetization(double.MaxValue, BaseUnit);
-            MinValue = new Magnetization(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.Magnetization;
-            Units = Enum.GetValues(typeof(MagnetizationUnit)).Cast<MagnetizationUnit>().Except(new MagnetizationUnit[]{ MagnetizationUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(MagnetizationUnit)).Cast<MagnetizationUnit>().ToArray();
             Zero = new Magnetization(0, BaseUnit);
             Info = new QuantityInfo<MagnetizationUnit>("Magnetization",
                 new UnitInfo<MagnetizationUnit>[]

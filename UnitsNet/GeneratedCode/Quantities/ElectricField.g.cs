@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(1, 1, -3, -1, 0, 0, 0);
             BaseUnit = ElectricFieldUnit.VoltPerMeter;
-            MaxValue = new ElectricField(double.MaxValue, BaseUnit);
-            MinValue = new ElectricField(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.ElectricField;
-            Units = Enum.GetValues(typeof(ElectricFieldUnit)).Cast<ElectricFieldUnit>().Except(new ElectricFieldUnit[]{ ElectricFieldUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(ElectricFieldUnit)).Cast<ElectricFieldUnit>().ToArray();
             Zero = new ElectricField(0, BaseUnit);
             Info = new QuantityInfo<ElectricFieldUnit>("ElectricField",
                 new UnitInfo<ElectricFieldUnit>[]

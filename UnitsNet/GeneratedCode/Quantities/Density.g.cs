@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-3, 1, 0, 0, 0, 0, 0);
             BaseUnit = DensityUnit.KilogramPerCubicMeter;
-            MaxValue = new Density(double.MaxValue, BaseUnit);
-            MinValue = new Density(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.Density;
-            Units = Enum.GetValues(typeof(DensityUnit)).Cast<DensityUnit>().Except(new DensityUnit[]{ DensityUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(DensityUnit)).Cast<DensityUnit>().ToArray();
             Zero = new Density(0, BaseUnit);
             Info = new QuantityInfo<DensityUnit>("Density",
                 new UnitInfo<DensityUnit>[]

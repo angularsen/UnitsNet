@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 0, -2, 0, -1, 0, 0);
             BaseUnit = SpecificEntropyUnit.JoulePerKilogramKelvin;
-            MaxValue = new SpecificEntropy(double.MaxValue, BaseUnit);
-            MinValue = new SpecificEntropy(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.SpecificEntropy;
-            Units = Enum.GetValues(typeof(SpecificEntropyUnit)).Cast<SpecificEntropyUnit>().Except(new SpecificEntropyUnit[]{ SpecificEntropyUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(SpecificEntropyUnit)).Cast<SpecificEntropyUnit>().ToArray();
             Zero = new SpecificEntropy(0, BaseUnit);
             Info = new QuantityInfo<SpecificEntropyUnit>("SpecificEntropy",
                 new UnitInfo<SpecificEntropyUnit>[]

@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
             BaseUnit = MassFractionUnit.DecimalFraction;
-            MaxValue = new MassFraction(double.MaxValue, BaseUnit);
-            MinValue = new MassFraction(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.MassFraction;
-            Units = Enum.GetValues(typeof(MassFractionUnit)).Cast<MassFractionUnit>().Except(new MassFractionUnit[]{ MassFractionUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(MassFractionUnit)).Cast<MassFractionUnit>().ToArray();
             Zero = new MassFraction(0, BaseUnit);
             Info = new QuantityInfo<MassFractionUnit>("MassFraction",
                 new UnitInfo<MassFractionUnit>[]

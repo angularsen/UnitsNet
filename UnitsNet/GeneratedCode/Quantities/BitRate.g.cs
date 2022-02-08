@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
             BaseUnit = BitRateUnit.BitPerSecond;
-            MaxValue = new BitRate(decimal.MaxValue, BaseUnit);
-            MinValue = new BitRate(decimal.MinValue, BaseUnit);
-            QuantityType = QuantityType.BitRate;
-            Units = Enum.GetValues(typeof(BitRateUnit)).Cast<BitRateUnit>().Except(new BitRateUnit[]{ BitRateUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(BitRateUnit)).Cast<BitRateUnit>().ToArray();
             Zero = new BitRate(0, BaseUnit);
             Info = new QuantityInfo<BitRateUnit>("BitRate",
                 new UnitInfo<BitRateUnit>[]

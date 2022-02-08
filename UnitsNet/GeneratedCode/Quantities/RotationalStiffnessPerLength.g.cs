@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
             BaseUnit = RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter;
-            MaxValue = new RotationalStiffnessPerLength(double.MaxValue, BaseUnit);
-            MinValue = new RotationalStiffnessPerLength(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.RotationalStiffnessPerLength;
-            Units = Enum.GetValues(typeof(RotationalStiffnessPerLengthUnit)).Cast<RotationalStiffnessPerLengthUnit>().Except(new RotationalStiffnessPerLengthUnit[]{ RotationalStiffnessPerLengthUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(RotationalStiffnessPerLengthUnit)).Cast<RotationalStiffnessPerLengthUnit>().ToArray();
             Zero = new RotationalStiffnessPerLength(0, BaseUnit);
             Info = new QuantityInfo<RotationalStiffnessPerLengthUnit>("RotationalStiffnessPerLength",
                 new UnitInfo<RotationalStiffnessPerLengthUnit>[]

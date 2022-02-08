@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
             BaseUnit = InformationUnit.Bit;
-            MaxValue = new Information(decimal.MaxValue, BaseUnit);
-            MinValue = new Information(decimal.MinValue, BaseUnit);
-            QuantityType = QuantityType.Information;
-            Units = Enum.GetValues(typeof(InformationUnit)).Cast<InformationUnit>().Except(new InformationUnit[]{ InformationUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(InformationUnit)).Cast<InformationUnit>().ToArray();
             Zero = new Information(0, BaseUnit);
             Info = new QuantityInfo<InformationUnit>("Information",
                 new UnitInfo<InformationUnit>[]

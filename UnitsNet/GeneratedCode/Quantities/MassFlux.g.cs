@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-2, 1, -1, 0, 0, 0, 0);
             BaseUnit = MassFluxUnit.KilogramPerSecondPerSquareMeter;
-            MaxValue = new MassFlux(double.MaxValue, BaseUnit);
-            MinValue = new MassFlux(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.MassFlux;
-            Units = Enum.GetValues(typeof(MassFluxUnit)).Cast<MassFluxUnit>().Except(new MassFluxUnit[]{ MassFluxUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(MassFluxUnit)).Cast<MassFluxUnit>().ToArray();
             Zero = new MassFlux(0, BaseUnit);
             Info = new QuantityInfo<MassFluxUnit>("MassFlux",
                 new UnitInfo<MassFluxUnit>[]

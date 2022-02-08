@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, -1, 0, 0);
             BaseUnit = EntropyUnit.JoulePerKelvin;
-            MaxValue = new Entropy(double.MaxValue, BaseUnit);
-            MinValue = new Entropy(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.Entropy;
-            Units = Enum.GetValues(typeof(EntropyUnit)).Cast<EntropyUnit>().Except(new EntropyUnit[]{ EntropyUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(EntropyUnit)).Cast<EntropyUnit>().ToArray();
             Zero = new Entropy(0, BaseUnit);
             Info = new QuantityInfo<EntropyUnit>("Entropy",
                 new UnitInfo<EntropyUnit>[]

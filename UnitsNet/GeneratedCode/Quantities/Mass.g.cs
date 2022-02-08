@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 1, 0, 0, 0, 0, 0);
             BaseUnit = MassUnit.Kilogram;
-            MaxValue = new Mass(double.MaxValue, BaseUnit);
-            MinValue = new Mass(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.Mass;
-            Units = Enum.GetValues(typeof(MassUnit)).Cast<MassUnit>().Except(new MassUnit[]{ MassUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(MassUnit)).Cast<MassUnit>().ToArray();
             Zero = new Mass(0, BaseUnit);
             Info = new QuantityInfo<MassUnit>("Mass",
                 new UnitInfo<MassUnit>[]

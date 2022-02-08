@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
             BaseUnit = ElectricAdmittanceUnit.Siemens;
-            MaxValue = new ElectricAdmittance(double.MaxValue, BaseUnit);
-            MinValue = new ElectricAdmittance(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.ElectricAdmittance;
-            Units = Enum.GetValues(typeof(ElectricAdmittanceUnit)).Cast<ElectricAdmittanceUnit>().Except(new ElectricAdmittanceUnit[]{ ElectricAdmittanceUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(ElectricAdmittanceUnit)).Cast<ElectricAdmittanceUnit>().ToArray();
             Zero = new ElectricAdmittance(0, BaseUnit);
             Info = new QuantityInfo<ElectricAdmittanceUnit>("ElectricAdmittance",
                 new UnitInfo<ElectricAdmittanceUnit>[]

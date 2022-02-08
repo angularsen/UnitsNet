@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
             BaseUnit = PowerRatioUnit.DecibelWatt;
-            MaxValue = new PowerRatio(double.MaxValue, BaseUnit);
-            MinValue = new PowerRatio(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.PowerRatio;
-            Units = Enum.GetValues(typeof(PowerRatioUnit)).Cast<PowerRatioUnit>().Except(new PowerRatioUnit[]{ PowerRatioUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(PowerRatioUnit)).Cast<PowerRatioUnit>().ToArray();
             Zero = new PowerRatio(0, BaseUnit);
             Info = new QuantityInfo<PowerRatioUnit>("PowerRatio",
                 new UnitInfo<PowerRatioUnit>[]

@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, -1, 0, 0, 0);
             BaseUnit = MagneticFluxUnit.Weber;
-            MaxValue = new MagneticFlux(double.MaxValue, BaseUnit);
-            MinValue = new MagneticFlux(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.MagneticFlux;
-            Units = Enum.GetValues(typeof(MagneticFluxUnit)).Cast<MagneticFluxUnit>().Except(new MagneticFluxUnit[]{ MagneticFluxUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(MagneticFluxUnit)).Cast<MagneticFluxUnit>().ToArray();
             Zero = new MagneticFlux(0, BaseUnit);
             Info = new QuantityInfo<MagneticFluxUnit>("MagneticFlux",
                 new UnitInfo<MagneticFluxUnit>[]

@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 0, -1, 0, 0, 0, 0);
             BaseUnit = KinematicViscosityUnit.SquareMeterPerSecond;
-            MaxValue = new KinematicViscosity(double.MaxValue, BaseUnit);
-            MinValue = new KinematicViscosity(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.KinematicViscosity;
-            Units = Enum.GetValues(typeof(KinematicViscosityUnit)).Cast<KinematicViscosityUnit>().Except(new KinematicViscosityUnit[]{ KinematicViscosityUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(KinematicViscosityUnit)).Cast<KinematicViscosityUnit>().ToArray();
             Zero = new KinematicViscosity(0, BaseUnit);
             Info = new QuantityInfo<KinematicViscosityUnit>("KinematicViscosity",
                 new UnitInfo<KinematicViscosityUnit>[]

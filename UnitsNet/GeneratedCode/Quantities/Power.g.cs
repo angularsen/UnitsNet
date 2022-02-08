@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
             BaseUnit = PowerUnit.Watt;
-            MaxValue = new Power(decimal.MaxValue, BaseUnit);
-            MinValue = new Power(decimal.MinValue, BaseUnit);
-            QuantityType = QuantityType.Power;
-            Units = Enum.GetValues(typeof(PowerUnit)).Cast<PowerUnit>().Except(new PowerUnit[]{ PowerUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(PowerUnit)).Cast<PowerUnit>().ToArray();
             Zero = new Power(0, BaseUnit);
             Info = new QuantityInfo<PowerUnit>("Power",
                 new UnitInfo<PowerUnit>[]

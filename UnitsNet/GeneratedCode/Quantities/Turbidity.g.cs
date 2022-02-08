@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
             BaseUnit = TurbidityUnit.NTU;
-            MaxValue = new Turbidity(double.MaxValue, BaseUnit);
-            MinValue = new Turbidity(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.Turbidity;
-            Units = Enum.GetValues(typeof(TurbidityUnit)).Cast<TurbidityUnit>().Except(new TurbidityUnit[]{ TurbidityUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(TurbidityUnit)).Cast<TurbidityUnit>().ToArray();
             Zero = new Turbidity(0, BaseUnit);
             Info = new QuantityInfo<TurbidityUnit>("Turbidity",
                 new UnitInfo<TurbidityUnit>[]

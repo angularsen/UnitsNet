@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-1, 1, 0, 0, 0, 0, 0);
             BaseUnit = LinearDensityUnit.KilogramPerMeter;
-            MaxValue = new LinearDensity(double.MaxValue, BaseUnit);
-            MinValue = new LinearDensity(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.LinearDensity;
-            Units = Enum.GetValues(typeof(LinearDensityUnit)).Cast<LinearDensityUnit>().Except(new LinearDensityUnit[]{ LinearDensityUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(LinearDensityUnit)).Cast<LinearDensityUnit>().ToArray();
             Zero = new LinearDensity(0, BaseUnit);
             Info = new QuantityInfo<LinearDensityUnit>("LinearDensity",
                 new UnitInfo<LinearDensityUnit>[]

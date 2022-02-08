@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-2, 0, 0, 0, 0, 0, 1);
             BaseUnit = IlluminanceUnit.Lux;
-            MaxValue = new Illuminance(double.MaxValue, BaseUnit);
-            MinValue = new Illuminance(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.Illuminance;
-            Units = Enum.GetValues(typeof(IlluminanceUnit)).Cast<IlluminanceUnit>().Except(new IlluminanceUnit[]{ IlluminanceUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(IlluminanceUnit)).Cast<IlluminanceUnit>().ToArray();
             Zero = new Illuminance(0, BaseUnit);
             Info = new QuantityInfo<IlluminanceUnit>("Illuminance",
                 new UnitInfo<IlluminanceUnit>[]

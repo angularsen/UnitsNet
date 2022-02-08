@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -1, 0, 0, 0, 0);
             BaseUnit = ReactiveEnergyUnit.VoltampereReactiveHour;
-            MaxValue = new ReactiveEnergy(double.MaxValue, BaseUnit);
-            MinValue = new ReactiveEnergy(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.ReactiveEnergy;
-            Units = Enum.GetValues(typeof(ReactiveEnergyUnit)).Cast<ReactiveEnergyUnit>().Except(new ReactiveEnergyUnit[]{ ReactiveEnergyUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(ReactiveEnergyUnit)).Cast<ReactiveEnergyUnit>().ToArray();
             Zero = new ReactiveEnergy(0, BaseUnit);
             Info = new QuantityInfo<ReactiveEnergyUnit>("ReactiveEnergy",
                 new UnitInfo<ReactiveEnergyUnit>[]

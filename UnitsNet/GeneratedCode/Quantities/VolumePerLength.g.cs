@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
             BaseUnit = VolumePerLengthUnit.CubicMeterPerMeter;
-            MaxValue = new VolumePerLength(double.MaxValue, BaseUnit);
-            MinValue = new VolumePerLength(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.VolumePerLength;
-            Units = Enum.GetValues(typeof(VolumePerLengthUnit)).Cast<VolumePerLengthUnit>().Except(new VolumePerLengthUnit[]{ VolumePerLengthUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(VolumePerLengthUnit)).Cast<VolumePerLengthUnit>().ToArray();
             Zero = new VolumePerLength(0, BaseUnit);
             Info = new QuantityInfo<VolumePerLengthUnit>("VolumePerLength",
                 new UnitInfo<VolumePerLengthUnit>[]

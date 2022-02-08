@@ -53,10 +53,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(2, 1, -4, -1, 0, 0, 0);
             BaseUnit = ElectricPotentialChangeRateUnit.VoltPerSecond;
-            MaxValue = new ElectricPotentialChangeRate(double.MaxValue, BaseUnit);
-            MinValue = new ElectricPotentialChangeRate(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.ElectricPotentialChangeRate;
-            Units = Enum.GetValues(typeof(ElectricPotentialChangeRateUnit)).Cast<ElectricPotentialChangeRateUnit>().Except(new ElectricPotentialChangeRateUnit[]{ ElectricPotentialChangeRateUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(ElectricPotentialChangeRateUnit)).Cast<ElectricPotentialChangeRateUnit>().ToArray();
             Zero = new ElectricPotentialChangeRate(0, BaseUnit);
             Info = new QuantityInfo<ElectricPotentialChangeRateUnit>("ElectricPotentialChangeRate",
                 new UnitInfo<ElectricPotentialChangeRateUnit>[]

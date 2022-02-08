@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-2, -1, 4, 2, 0, 0, 0);
             BaseUnit = CapacitanceUnit.Farad;
-            MaxValue = new Capacitance(double.MaxValue, BaseUnit);
-            MinValue = new Capacitance(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.Capacitance;
-            Units = Enum.GetValues(typeof(CapacitanceUnit)).Cast<CapacitanceUnit>().Except(new CapacitanceUnit[]{ CapacitanceUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(CapacitanceUnit)).Cast<CapacitanceUnit>().ToArray();
             Zero = new Capacitance(0, BaseUnit);
             Info = new QuantityInfo<CapacitanceUnit>("Capacitance",
                 new UnitInfo<CapacitanceUnit>[]

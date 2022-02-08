@@ -56,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
             BaseUnit = ElectricConductanceUnit.Siemens;
-            MaxValue = new ElectricConductance(double.MaxValue, BaseUnit);
-            MinValue = new ElectricConductance(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.ElectricConductance;
-            Units = Enum.GetValues(typeof(ElectricConductanceUnit)).Cast<ElectricConductanceUnit>().Except(new ElectricConductanceUnit[]{ ElectricConductanceUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(ElectricConductanceUnit)).Cast<ElectricConductanceUnit>().ToArray();
             Zero = new ElectricConductance(0, BaseUnit);
             Info = new QuantityInfo<ElectricConductanceUnit>("ElectricConductance",
                 new UnitInfo<ElectricConductanceUnit>[]
