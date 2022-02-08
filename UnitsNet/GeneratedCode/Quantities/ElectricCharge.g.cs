@@ -73,6 +73,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricCharge);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -115,7 +117,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="ElectricCharge" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<ElectricChargeUnit> Info { get; }
@@ -242,6 +244,15 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.KiloampereHour, ElectricChargeUnit.Coulomb, quantity => new ElectricCharge((quantity.Value/2.77777777777e-4) * 1e3d, ElectricChargeUnit.Coulomb));
             unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.MegaampereHour, ElectricChargeUnit.Coulomb, quantity => new ElectricCharge((quantity.Value/2.77777777777e-4) * 1e6d, ElectricChargeUnit.Coulomb));
             unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.MilliampereHour, ElectricChargeUnit.Coulomb, quantity => new ElectricCharge((quantity.Value/2.77777777777e-4) * 1e-3d, ElectricChargeUnit.Coulomb));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricChargeUnit.AmpereHour, new CultureInfo("en-US"), new string[]{"A-h", "Ah"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricChargeUnit.Coulomb, new CultureInfo("en-US"), new string[]{"C"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricChargeUnit.KiloampereHour, new CultureInfo("en-US"), new string[]{"kA-h", "kAh"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricChargeUnit.MegaampereHour, new CultureInfo("en-US"), new string[]{"MA-h", "MAh"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricChargeUnit.MilliampereHour, new CultureInfo("en-US"), new string[]{"mA-h", "mAh"});
         }
 
         /// <summary>

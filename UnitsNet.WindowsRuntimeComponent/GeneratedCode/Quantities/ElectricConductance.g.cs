@@ -185,6 +185,13 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricConductanceUnit.Microsiemens, new CultureInfo("en-US"), new string[]{"µS"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricConductanceUnit.Millisiemens, new CultureInfo("en-US"), new string[]{"mS"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricConductanceUnit.Siemens, new CultureInfo("en-US"), new string[]{"S"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

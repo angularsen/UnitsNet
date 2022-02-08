@@ -69,6 +69,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricCurrentGradient);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -111,7 +113,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="ElectricCurrentGradient" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<ElectricCurrentGradientUnit> Info { get; }
@@ -231,6 +233,14 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerMicrosecond, ElectricCurrentGradientUnit.AmperePerSecond, quantity => new ElectricCurrentGradient(quantity.Value*1E6, ElectricCurrentGradientUnit.AmperePerSecond));
             unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerMillisecond, ElectricCurrentGradientUnit.AmperePerSecond, quantity => new ElectricCurrentGradient(quantity.Value*1E3, ElectricCurrentGradientUnit.AmperePerSecond));
             unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerNanosecond, ElectricCurrentGradientUnit.AmperePerSecond, quantity => new ElectricCurrentGradient(quantity.Value*1E9, ElectricCurrentGradientUnit.AmperePerSecond));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentGradientUnit.AmperePerMicrosecond, new CultureInfo("en-US"), new string[]{"A/μs"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentGradientUnit.AmperePerMillisecond, new CultureInfo("en-US"), new string[]{"A/ms"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentGradientUnit.AmperePerNanosecond, new CultureInfo("en-US"), new string[]{"A/ns"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentGradientUnit.AmperePerSecond, new CultureInfo("en-US"), new string[]{"A/s"});
         }
 
         /// <summary>

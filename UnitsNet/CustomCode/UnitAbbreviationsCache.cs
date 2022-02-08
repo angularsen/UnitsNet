@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -18,7 +19,7 @@ namespace UnitsNet
     ///     Cache of the mapping between unit enum values and unit abbreviation strings for one or more cultures.
     ///     A static instance <see cref="Default"/> is used internally for ToString() and Parse() of quantities and units.
     /// </summary>
-    public sealed partial class UnitAbbreviationsCache
+    public sealed class UnitAbbreviationsCache
     {
         private readonly Dictionary<IFormatProvider, UnitTypeToLookup> _lookupsForCulture;
 
@@ -55,16 +56,10 @@ namespace UnitsNet
 
         private void LoadGeneratedAbbreviations()
         {
-            foreach(var localizationInfo in GetGeneratedLocalizationInfo())
+            foreach(var quantity in Quantity.GetQuantityTypes())
             {
-                // Assuming TUnitType is an enum, this conversion is safe. Seems not possible to enforce this today.
-                // Src: http://stackoverflow.com/questions/908543/how-to-convert-from-system-enum-to-base-integer
-                // http://stackoverflow.com/questions/79126/create-generic-method-constraining-t-to-an-enum
-                var unitType = localizationInfo.UnitValue.GetType();
-                var unitValue = Convert.ToInt32(localizationInfo.UnitValue);
-                var culture = new CultureInfo(localizationInfo.CultureName);
-
-                PerformAbbreviationMapping(unitType, unitValue, culture, false, localizationInfo.AllowAbbreviationLookup, localizationInfo.UnitAbbreviations);
+                var mapGeneratedLocalizationsMethod = quantity.GetMethod(nameof(Length.MapGeneratedLocalizations), BindingFlags.NonPublic | BindingFlags.Static);
+                mapGeneratedLocalizationsMethod?.Invoke(null, new object[]{this});
             }
         }
 

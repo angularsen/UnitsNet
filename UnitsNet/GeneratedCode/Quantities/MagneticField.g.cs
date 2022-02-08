@@ -74,6 +74,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.MagneticField);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -116,7 +118,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="MagneticField" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<MagneticFieldUnit> Info { get; }
@@ -250,6 +252,16 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Milligauss, MagneticFieldUnit.Tesla, quantity => new MagneticField((quantity.Value/1e4) * 1e-3d, MagneticFieldUnit.Tesla));
             unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Millitesla, MagneticFieldUnit.Tesla, quantity => new MagneticField((quantity.Value) * 1e-3d, MagneticFieldUnit.Tesla));
             unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Nanotesla, MagneticFieldUnit.Tesla, quantity => new MagneticField((quantity.Value) * 1e-9d, MagneticFieldUnit.Tesla));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(MagneticFieldUnit.Gauss, new CultureInfo("en-US"), new string[]{"G"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MagneticFieldUnit.Microtesla, new CultureInfo("en-US"), new string[]{"µT"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MagneticFieldUnit.Milligauss, new CultureInfo("en-US"), new string[]{"mG"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MagneticFieldUnit.Millitesla, new CultureInfo("en-US"), new string[]{"mT"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MagneticFieldUnit.Nanotesla, new CultureInfo("en-US"), new string[]{"nT"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MagneticFieldUnit.Tesla, new CultureInfo("en-US"), new string[]{"T"});
         }
 
         /// <summary>

@@ -227,6 +227,22 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassFluxUnit.GramPerHourPerSquareCentimeter, new CultureInfo("en-US"), new string[]{"g·h⁻¹·cm⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassFluxUnit.GramPerHourPerSquareMeter, new CultureInfo("en-US"), new string[]{"g·h⁻¹·m⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassFluxUnit.GramPerHourPerSquareMillimeter, new CultureInfo("en-US"), new string[]{"g·h⁻¹·mm⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassFluxUnit.GramPerSecondPerSquareCentimeter, new CultureInfo("en-US"), new string[]{"g·s⁻¹·cm⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassFluxUnit.GramPerSecondPerSquareMeter, new CultureInfo("en-US"), new string[]{"g·s⁻¹·m⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassFluxUnit.GramPerSecondPerSquareMillimeter, new CultureInfo("en-US"), new string[]{"g·s⁻¹·mm⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassFluxUnit.KilogramPerHourPerSquareCentimeter, new CultureInfo("en-US"), new string[]{"kg·h⁻¹·cm⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassFluxUnit.KilogramPerHourPerSquareMeter, new CultureInfo("en-US"), new string[]{"kg·h⁻¹·m⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassFluxUnit.KilogramPerHourPerSquareMillimeter, new CultureInfo("en-US"), new string[]{"kg·h⁻¹·mm⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassFluxUnit.KilogramPerSecondPerSquareCentimeter, new CultureInfo("en-US"), new string[]{"kg·s⁻¹·cm⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassFluxUnit.KilogramPerSecondPerSquareMeter, new CultureInfo("en-US"), new string[]{"kg·s⁻¹·m⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, new CultureInfo("en-US"), new string[]{"kg·s⁻¹·mm⁻²"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

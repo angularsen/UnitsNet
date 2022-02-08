@@ -192,6 +192,20 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialUnit.Kilovolt, new CultureInfo("en-US"), new string[]{"kV"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialUnit.Kilovolt, new CultureInfo("ru-RU"), new string[]{"кВ"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialUnit.Megavolt, new CultureInfo("en-US"), new string[]{"MV"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialUnit.Megavolt, new CultureInfo("ru-RU"), new string[]{"МВ"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialUnit.Microvolt, new CultureInfo("en-US"), new string[]{"µV"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialUnit.Microvolt, new CultureInfo("ru-RU"), new string[]{"мкВ"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialUnit.Millivolt, new CultureInfo("en-US"), new string[]{"mV"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialUnit.Millivolt, new CultureInfo("ru-RU"), new string[]{"мВ"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialUnit.Volt, new CultureInfo("en-US"), new string[]{"V"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialUnit.Volt, new CultureInfo("ru-RU"), new string[]{"В"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

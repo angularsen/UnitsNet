@@ -300,6 +300,36 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(BitRateUnit.BitPerSecond, new CultureInfo("en-US"), new string[]{"bit/s", "bps"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(BitRateUnit.BytePerSecond, new CultureInfo("en-US"), new string[]{"B/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(BitRateUnit.ExabitPerSecond, new CultureInfo("en-US"), new string[]{"Ebit/s", "Ebps"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(BitRateUnit.ExabytePerSecond, new CultureInfo("en-US"), new string[]{"EB/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(BitRateUnit.ExbibitPerSecond, new CultureInfo("en-US"), new string[]{"Eibit/s", "Eibps"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(BitRateUnit.ExbibytePerSecond, new CultureInfo("en-US"), new string[]{"EiB/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(BitRateUnit.GibibitPerSecond, new CultureInfo("en-US"), new string[]{"Gibit/s", "Gibps"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(BitRateUnit.GibibytePerSecond, new CultureInfo("en-US"), new string[]{"GiB/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(BitRateUnit.GigabitPerSecond, new CultureInfo("en-US"), new string[]{"Gbit/s", "Gbps"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(BitRateUnit.GigabytePerSecond, new CultureInfo("en-US"), new string[]{"GB/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(BitRateUnit.KibibitPerSecond, new CultureInfo("en-US"), new string[]{"Kibit/s", "Kibps"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(BitRateUnit.KibibytePerSecond, new CultureInfo("en-US"), new string[]{"KiB/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(BitRateUnit.KilobitPerSecond, new CultureInfo("en-US"), new string[]{"kbit/s", "kbps"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(BitRateUnit.KilobytePerSecond, new CultureInfo("en-US"), new string[]{"kB/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(BitRateUnit.MebibitPerSecond, new CultureInfo("en-US"), new string[]{"Mibit/s", "Mibps"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(BitRateUnit.MebibytePerSecond, new CultureInfo("en-US"), new string[]{"MiB/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(BitRateUnit.MegabitPerSecond, new CultureInfo("en-US"), new string[]{"Mbit/s", "Mbps"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(BitRateUnit.MegabytePerSecond, new CultureInfo("en-US"), new string[]{"MB/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(BitRateUnit.PebibitPerSecond, new CultureInfo("en-US"), new string[]{"Pibit/s", "Pibps"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(BitRateUnit.PebibytePerSecond, new CultureInfo("en-US"), new string[]{"PiB/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(BitRateUnit.PetabitPerSecond, new CultureInfo("en-US"), new string[]{"Pbit/s", "Pbps"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(BitRateUnit.PetabytePerSecond, new CultureInfo("en-US"), new string[]{"PB/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(BitRateUnit.TebibitPerSecond, new CultureInfo("en-US"), new string[]{"Tibit/s", "Tibps"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(BitRateUnit.TebibytePerSecond, new CultureInfo("en-US"), new string[]{"TiB/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(BitRateUnit.TerabitPerSecond, new CultureInfo("en-US"), new string[]{"Tbit/s", "Tbps"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(BitRateUnit.TerabytePerSecond, new CultureInfo("en-US"), new string[]{"TB/s"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

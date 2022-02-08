@@ -175,6 +175,11 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminousIntensityUnit.Candela, new CultureInfo("en-US"), new string[]{"cd"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

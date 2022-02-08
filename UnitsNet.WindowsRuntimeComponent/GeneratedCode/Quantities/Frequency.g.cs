@@ -222,6 +222,28 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.BeatPerMinute, new CultureInfo("en-US"), new string[]{"bpm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.BUnit, new CultureInfo("en-US"), new string[]{"B Units"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.CyclePerHour, new CultureInfo("en-US"), new string[]{"cph"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.CyclePerMinute, new CultureInfo("en-US"), new string[]{"cpm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.Gigahertz, new CultureInfo("en-US"), new string[]{"GHz"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.Gigahertz, new CultureInfo("ru-RU"), new string[]{"ГГц"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.Hertz, new CultureInfo("en-US"), new string[]{"Hz"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.Hertz, new CultureInfo("ru-RU"), new string[]{"Гц"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.Kilohertz, new CultureInfo("en-US"), new string[]{"kHz"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.Kilohertz, new CultureInfo("ru-RU"), new string[]{"кГц"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.Megahertz, new CultureInfo("en-US"), new string[]{"MHz"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.Megahertz, new CultureInfo("ru-RU"), new string[]{"МГц"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.PerSecond, new CultureInfo("en-US"), new string[]{"s⁻¹"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.PerSecond, new CultureInfo("ru-RU"), new string[]{"с⁻¹"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.RadianPerSecond, new CultureInfo("en-US"), new string[]{"rad/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.RadianPerSecond, new CultureInfo("ru-RU"), new string[]{"рад/с"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.Terahertz, new CultureInfo("en-US"), new string[]{"THz"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.Terahertz, new CultureInfo("ru-RU"), new string[]{"ТГц"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

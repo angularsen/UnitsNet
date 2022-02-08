@@ -71,6 +71,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.AreaMomentOfInertia);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -113,7 +115,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="AreaMomentOfInertia" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<AreaMomentOfInertiaUnit> Info { get; }
@@ -247,6 +249,16 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.FootToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth, quantity => new AreaMomentOfInertia(quantity.Value*Math.Pow(0.3048, 4), AreaMomentOfInertiaUnit.MeterToTheFourth));
             unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.InchToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth, quantity => new AreaMomentOfInertia(quantity.Value*Math.Pow(2.54e-2, 4), AreaMomentOfInertiaUnit.MeterToTheFourth));
             unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MillimeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth, quantity => new AreaMomentOfInertia(quantity.Value/1e12, AreaMomentOfInertiaUnit.MeterToTheFourth));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaMomentOfInertiaUnit.CentimeterToTheFourth, new CultureInfo("en-US"), new string[]{"cm⁴", "cm^4"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaMomentOfInertiaUnit.DecimeterToTheFourth, new CultureInfo("en-US"), new string[]{"dm⁴", "dm^4"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaMomentOfInertiaUnit.FootToTheFourth, new CultureInfo("en-US"), new string[]{"ft⁴", "ft^4"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaMomentOfInertiaUnit.InchToTheFourth, new CultureInfo("en-US"), new string[]{"in⁴", "in^4"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaMomentOfInertiaUnit.MeterToTheFourth, new CultureInfo("en-US"), new string[]{"m⁴", "m^4"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaMomentOfInertiaUnit.MillimeterToTheFourth, new CultureInfo("en-US"), new string[]{"mm⁴", "mm^4"});
         }
 
         /// <summary>

@@ -177,6 +177,12 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerRatioUnit.DecibelMilliwatt, new CultureInfo("en-US"), new string[]{"dBmW", "dBm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerRatioUnit.DecibelWatt, new CultureInfo("en-US"), new string[]{"dBW"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

@@ -69,6 +69,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.MagneticFlux);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -111,7 +113,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="MagneticFlux" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<MagneticFluxUnit> Info { get; }
@@ -210,6 +212,11 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MagneticFlux>(MagneticFluxUnit.Weber, MagneticFluxUnit.Weber, quantity => quantity);
 
             // Register in unit converter: MagneticFluxUnit -> BaseUnit
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(MagneticFluxUnit.Weber, new CultureInfo("en-US"), new string[]{"Wb"});
         }
 
         /// <summary>

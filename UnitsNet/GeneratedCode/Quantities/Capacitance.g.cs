@@ -75,6 +75,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Capacitance);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -117,7 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Capacitance" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<CapacitanceUnit> Info { get; }
@@ -258,6 +260,17 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Millifarad, CapacitanceUnit.Farad, quantity => new Capacitance((quantity.Value) * 1e-3d, CapacitanceUnit.Farad));
             unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Nanofarad, CapacitanceUnit.Farad, quantity => new Capacitance((quantity.Value) * 1e-9d, CapacitanceUnit.Farad));
             unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Picofarad, CapacitanceUnit.Farad, quantity => new Capacitance((quantity.Value) * 1e-12d, CapacitanceUnit.Farad));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(CapacitanceUnit.Farad, new CultureInfo("en-US"), new string[]{"F"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(CapacitanceUnit.Kilofarad, new CultureInfo("en-US"), new string[]{"kF"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(CapacitanceUnit.Megafarad, new CultureInfo("en-US"), new string[]{"MF"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(CapacitanceUnit.Microfarad, new CultureInfo("en-US"), new string[]{"µF"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(CapacitanceUnit.Millifarad, new CultureInfo("en-US"), new string[]{"mF"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(CapacitanceUnit.Nanofarad, new CultureInfo("en-US"), new string[]{"nF"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(CapacitanceUnit.Picofarad, new CultureInfo("en-US"), new string[]{"pF"});
         }
 
         /// <summary>

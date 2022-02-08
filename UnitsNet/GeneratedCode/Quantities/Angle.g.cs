@@ -81,6 +81,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Angle);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -123,7 +125,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Angle" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<AngleUnit> Info { get; }
@@ -327,6 +329,38 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Angle>(AngleUnit.Radian, AngleUnit.Degree, quantity => new Angle(quantity.Value*180/Math.PI, AngleUnit.Degree));
             unitConverter.SetConversionFunction<Angle>(AngleUnit.Revolution, AngleUnit.Degree, quantity => new Angle(quantity.Value*360, AngleUnit.Degree));
             unitConverter.SetConversionFunction<Angle>(AngleUnit.Tilt, AngleUnit.Degree, quantity => new Angle(Math.Asin(quantity.Value)*180/Math.PI, AngleUnit.Degree));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Arcminute, new CultureInfo("en-US"), new string[]{"'", "arcmin", "amin", "min"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Arcsecond, new CultureInfo("en-US"), new string[]{"″", "arcsec", "asec", "sec"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Centiradian, new CultureInfo("en-US"), new string[]{"crad"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Centiradian, new CultureInfo("ru-RU"), new string[]{"срад"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Deciradian, new CultureInfo("en-US"), new string[]{"drad"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Deciradian, new CultureInfo("ru-RU"), new string[]{"драд"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Degree, new CultureInfo("en-US"), new string[]{"°", "deg"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Degree, new CultureInfo("ru-RU"), new string[]{"°"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Gradian, new CultureInfo("en-US"), new string[]{"g"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Gradian, new CultureInfo("ru-RU"), new string[]{"g"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Microdegree, new CultureInfo("en-US"), new string[]{"µ°", "µdeg"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Microdegree, new CultureInfo("ru-RU"), new string[]{"мк°"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Microradian, new CultureInfo("en-US"), new string[]{"µrad"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Microradian, new CultureInfo("ru-RU"), new string[]{"мкрад"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Millidegree, new CultureInfo("en-US"), new string[]{"m°", "mdeg"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Millidegree, new CultureInfo("ru-RU"), new string[]{"м°"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Milliradian, new CultureInfo("en-US"), new string[]{"mrad"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Milliradian, new CultureInfo("ru-RU"), new string[]{"мрад"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Nanodegree, new CultureInfo("en-US"), new string[]{"n°", "ndeg"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Nanodegree, new CultureInfo("ru-RU"), new string[]{"н°"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Nanoradian, new CultureInfo("en-US"), new string[]{"nrad"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Nanoradian, new CultureInfo("ru-RU"), new string[]{"нрад"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.NatoMil, new CultureInfo("en-US"), new string[]{"mil"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Radian, new CultureInfo("en-US"), new string[]{"rad"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Radian, new CultureInfo("ru-RU"), new string[]{"рад"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Revolution, new CultureInfo("en-US"), new string[]{"r"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Revolution, new CultureInfo("ru-RU"), new string[]{"r"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Tilt, new CultureInfo("en-US"), new string[]{"sin(θ)"});
         }
 
         /// <summary>

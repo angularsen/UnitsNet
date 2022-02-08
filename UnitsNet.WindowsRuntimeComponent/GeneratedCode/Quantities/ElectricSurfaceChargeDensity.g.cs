@@ -185,6 +185,13 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, new CultureInfo("en-US"), new string[]{"C/cm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, new CultureInfo("en-US"), new string[]{"C/in²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, new CultureInfo("en-US"), new string[]{"C/m²"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

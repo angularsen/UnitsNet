@@ -190,6 +190,14 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(FuelEfficiencyUnit.KilometerPerLiter, new CultureInfo("en-US"), new string[]{"km/L"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(FuelEfficiencyUnit.LiterPer100Kilometers, new CultureInfo("en-US"), new string[]{"L/100km"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(FuelEfficiencyUnit.MilePerUkGallon, new CultureInfo("en-US"), new string[]{"mpg (imp.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(FuelEfficiencyUnit.MilePerUsGallon, new CultureInfo("en-US"), new string[]{"mpg (U.S.)"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

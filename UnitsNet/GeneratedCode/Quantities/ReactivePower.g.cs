@@ -69,6 +69,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ReactivePower);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -111,7 +113,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="ReactivePower" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<ReactivePowerUnit> Info { get; }
@@ -231,6 +233,14 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ReactivePower>(ReactivePowerUnit.GigavoltampereReactive, ReactivePowerUnit.VoltampereReactive, quantity => new ReactivePower((quantity.Value) * 1e9d, ReactivePowerUnit.VoltampereReactive));
             unitConverter.SetConversionFunction<ReactivePower>(ReactivePowerUnit.KilovoltampereReactive, ReactivePowerUnit.VoltampereReactive, quantity => new ReactivePower((quantity.Value) * 1e3d, ReactivePowerUnit.VoltampereReactive));
             unitConverter.SetConversionFunction<ReactivePower>(ReactivePowerUnit.MegavoltampereReactive, ReactivePowerUnit.VoltampereReactive, quantity => new ReactivePower((quantity.Value) * 1e6d, ReactivePowerUnit.VoltampereReactive));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReactivePowerUnit.GigavoltampereReactive, new CultureInfo("en-US"), new string[]{"Gvar"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReactivePowerUnit.KilovoltampereReactive, new CultureInfo("en-US"), new string[]{"kvar"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReactivePowerUnit.MegavoltampereReactive, new CultureInfo("en-US"), new string[]{"Mvar"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReactivePowerUnit.VoltampereReactive, new CultureInfo("en-US"), new string[]{"var"});
         }
 
         /// <summary>

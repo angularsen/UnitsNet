@@ -175,6 +175,11 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricFieldUnit.VoltPerMeter, new CultureInfo("en-US"), new string[]{"V/m"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

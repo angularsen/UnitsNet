@@ -212,6 +212,19 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, new CultureInfo("en-US"), new string[]{"sccm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(StandardVolumeFlowUnit.StandardCubicFootPerHour, new CultureInfo("en-US"), new string[]{"scfh"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(StandardVolumeFlowUnit.StandardCubicFootPerMinute, new CultureInfo("en-US"), new string[]{"scfm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(StandardVolumeFlowUnit.StandardCubicFootPerSecond, new CultureInfo("en-US"), new string[]{"Sft³/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(StandardVolumeFlowUnit.StandardCubicMeterPerDay, new CultureInfo("en-US"), new string[]{"Sm³/d"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(StandardVolumeFlowUnit.StandardCubicMeterPerHour, new CultureInfo("en-US"), new string[]{"Sm³/h"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(StandardVolumeFlowUnit.StandardCubicMeterPerMinute, new CultureInfo("en-US"), new string[]{"Sm³/min"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(StandardVolumeFlowUnit.StandardCubicMeterPerSecond, new CultureInfo("en-US"), new string[]{"Sm³/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(StandardVolumeFlowUnit.StandardLiterPerMinute, new CultureInfo("en-US"), new string[]{"slm"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

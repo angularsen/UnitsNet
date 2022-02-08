@@ -175,6 +175,11 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(SolidAngleUnit.Steradian, new CultureInfo("en-US"), new string[]{"sr"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

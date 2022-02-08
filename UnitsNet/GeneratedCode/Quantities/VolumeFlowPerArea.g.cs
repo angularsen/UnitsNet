@@ -67,6 +67,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.VolumeFlowPerArea);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -109,7 +111,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="VolumeFlowPerArea" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<VolumeFlowPerAreaUnit> Info { get; }
@@ -215,6 +217,12 @@ namespace UnitsNet
 
             // Register in unit converter: VolumeFlowPerAreaUnit -> BaseUnit
             unitConverter.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, quantity => new VolumeFlowPerArea(quantity.Value/196.850394, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, new CultureInfo("en-US"), new string[]{"CFM/ft²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, new CultureInfo("en-US"), new string[]{"m³/(s·m²)"});
         }
 
         /// <summary>

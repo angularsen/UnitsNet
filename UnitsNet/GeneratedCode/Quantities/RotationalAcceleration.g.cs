@@ -69,6 +69,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.RotationalAcceleration);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -111,7 +113,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="RotationalAcceleration" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<RotationalAccelerationUnit> Info { get; }
@@ -231,6 +233,14 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.DegreePerSecondSquared, RotationalAccelerationUnit.RadianPerSecondSquared, quantity => new RotationalAcceleration((Math.PI/180)*quantity.Value, RotationalAccelerationUnit.RadianPerSecondSquared));
             unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, RotationalAccelerationUnit.RadianPerSecondSquared, quantity => new RotationalAcceleration(((2*Math.PI)/60)*quantity.Value, RotationalAccelerationUnit.RadianPerSecondSquared));
             unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.RevolutionPerSecondSquared, RotationalAccelerationUnit.RadianPerSecondSquared, quantity => new RotationalAcceleration((2*Math.PI)*quantity.Value, RotationalAccelerationUnit.RadianPerSecondSquared));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalAccelerationUnit.DegreePerSecondSquared, new CultureInfo("en-US"), new string[]{"°/s²", "deg/s²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalAccelerationUnit.RadianPerSecondSquared, new CultureInfo("en-US"), new string[]{"rad/s²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, new CultureInfo("en-US"), new string[]{"rpm/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalAccelerationUnit.RevolutionPerSecondSquared, new CultureInfo("en-US"), new string[]{"r/s²"});
         }
 
         /// <summary>

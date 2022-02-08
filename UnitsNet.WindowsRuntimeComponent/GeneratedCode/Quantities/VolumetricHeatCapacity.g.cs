@@ -215,6 +215,19 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, new CultureInfo("en-US"), new string[]{"BTU/ft³·°F"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius, new CultureInfo("en-US"), new string[]{"cal/cm³·°C"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius, new CultureInfo("en-US"), new string[]{"J/m³·°C"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, new CultureInfo("en-US"), new string[]{"J/m³·K"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius, new CultureInfo("en-US"), new string[]{"kcal/cm³·°C"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius, new CultureInfo("en-US"), new string[]{"kJ/m³·°C"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, new CultureInfo("en-US"), new string[]{"kJ/m³·K"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, new CultureInfo("en-US"), new string[]{"MJ/m³·°C"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, new CultureInfo("en-US"), new string[]{"MJ/m³·K"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

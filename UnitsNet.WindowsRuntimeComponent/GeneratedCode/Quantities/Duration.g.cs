@@ -222,6 +222,31 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Day, new CultureInfo("en-US"), new string[]{"d", "day", "days"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Day, new CultureInfo("ru-RU"), new string[]{"сут", "д"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Hour, new CultureInfo("en-US"), new string[]{"h", "hr", "hrs", "hour", "hours"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Hour, new CultureInfo("ru-RU"), new string[]{"ч", "час"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.JulianYear, new CultureInfo("en-US"), new string[]{"jyr", "jyear", "jyears"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Microsecond, new CultureInfo("en-US"), new string[]{"µs", "µsec", "µsecs", "µsecond", "µseconds"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Microsecond, new CultureInfo("ru-RU"), new string[]{"мксек", "мкс"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Millisecond, new CultureInfo("en-US"), new string[]{"ms", "msec", "msecs", "msecond", "mseconds"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Millisecond, new CultureInfo("ru-RU"), new string[]{"мсек", "мс"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Minute, new CultureInfo("en-US"), new string[]{"m", "min", "minute", "minutes"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Minute, new CultureInfo("ru-RU"), new string[]{"мин"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Month30, new CultureInfo("en-US"), new string[]{"mo", "month", "months"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Month30, new CultureInfo("ru-RU"), new string[]{"месяц"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Nanosecond, new CultureInfo("en-US"), new string[]{"ns", "nsec", "nsecs", "nsecond", "nseconds"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Nanosecond, new CultureInfo("ru-RU"), new string[]{"нсек", "нс"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Second, new CultureInfo("en-US"), new string[]{"s", "sec", "secs", "second", "seconds"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Second, new CultureInfo("ru-RU"), new string[]{"сек", "с"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Week, new CultureInfo("en-US"), new string[]{"wk", "week", "weeks"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Week, new CultureInfo("ru-RU"), new string[]{"нед"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Year365, new CultureInfo("en-US"), new string[]{"yr", "year", "years"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Year365, new CultureInfo("ru-RU"), new string[]{"год"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

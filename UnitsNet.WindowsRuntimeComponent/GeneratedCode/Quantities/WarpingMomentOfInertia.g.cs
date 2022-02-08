@@ -197,6 +197,16 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(WarpingMomentOfInertiaUnit.CentimeterToTheSixth, new CultureInfo("en-US"), new string[]{"cm⁶", "cm^6"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(WarpingMomentOfInertiaUnit.DecimeterToTheSixth, new CultureInfo("en-US"), new string[]{"dm⁶", "dm^6"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(WarpingMomentOfInertiaUnit.FootToTheSixth, new CultureInfo("en-US"), new string[]{"ft⁶", "ft^6"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(WarpingMomentOfInertiaUnit.InchToTheSixth, new CultureInfo("en-US"), new string[]{"in⁶", "in^6"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(WarpingMomentOfInertiaUnit.MeterToTheSixth, new CultureInfo("en-US"), new string[]{"m⁶", "m^6"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, new CultureInfo("en-US"), new string[]{"mm⁶", "mm^6"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

@@ -79,6 +79,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Area);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -121,7 +123,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Area" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<AreaUnit> Info { get; }
@@ -284,7 +286,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.Hectare, quantity => new Area(quantity.Value/1e4, AreaUnit.Hectare));
             unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareCentimeter, quantity => new Area(quantity.Value/1e-4, AreaUnit.SquareCentimeter));
             unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareDecimeter, quantity => new Area(quantity.Value/1e-2, AreaUnit.SquareDecimeter));
-            unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareFoot, quantity => new Area(quantity.Value/0.092903, AreaUnit.SquareFoot));
+            unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareFoot, quantity => new Area(quantity.Value / 9.290304e-2, AreaUnit.SquareFoot));
             unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareInch, quantity => new Area(quantity.Value/0.00064516, AreaUnit.SquareInch));
             unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareKilometer, quantity => new Area(quantity.Value/1e6, AreaUnit.SquareKilometer));
             unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareMicrometer, quantity => new Area(quantity.Value/1e-12, AreaUnit.SquareMicrometer));
@@ -302,7 +304,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Area>(AreaUnit.Hectare, AreaUnit.SquareMeter, quantity => new Area(quantity.Value*1e4, AreaUnit.SquareMeter));
             unitConverter.SetConversionFunction<Area>(AreaUnit.SquareCentimeter, AreaUnit.SquareMeter, quantity => new Area(quantity.Value*1e-4, AreaUnit.SquareMeter));
             unitConverter.SetConversionFunction<Area>(AreaUnit.SquareDecimeter, AreaUnit.SquareMeter, quantity => new Area(quantity.Value*1e-2, AreaUnit.SquareMeter));
-            unitConverter.SetConversionFunction<Area>(AreaUnit.SquareFoot, AreaUnit.SquareMeter, quantity => new Area(quantity.Value*0.092903, AreaUnit.SquareMeter));
+            unitConverter.SetConversionFunction<Area>(AreaUnit.SquareFoot, AreaUnit.SquareMeter, quantity => new Area(quantity.Value * 9.290304e-2, AreaUnit.SquareMeter));
             unitConverter.SetConversionFunction<Area>(AreaUnit.SquareInch, AreaUnit.SquareMeter, quantity => new Area(quantity.Value*0.00064516, AreaUnit.SquareMeter));
             unitConverter.SetConversionFunction<Area>(AreaUnit.SquareKilometer, AreaUnit.SquareMeter, quantity => new Area(quantity.Value*1e6, AreaUnit.SquareMeter));
             unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMicrometer, AreaUnit.SquareMeter, quantity => new Area(quantity.Value*1e-12, AreaUnit.SquareMeter));
@@ -311,6 +313,51 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Area>(AreaUnit.SquareNauticalMile, AreaUnit.SquareMeter, quantity => new Area(quantity.Value*3429904, AreaUnit.SquareMeter));
             unitConverter.SetConversionFunction<Area>(AreaUnit.SquareYard, AreaUnit.SquareMeter, quantity => new Area(quantity.Value*0.836127, AreaUnit.SquareMeter));
             unitConverter.SetConversionFunction<Area>(AreaUnit.UsSurveySquareFoot, AreaUnit.SquareMeter, quantity => new Area(quantity.Value*0.09290341161, AreaUnit.SquareMeter));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.Acre, new CultureInfo("en-US"), new string[]{"ac"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.Acre, new CultureInfo("ru-RU"), new string[]{"акр"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.Acre, new CultureInfo("zh-CN"), new string[]{"英亩"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.Hectare, new CultureInfo("en-US"), new string[]{"ha"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.Hectare, new CultureInfo("ru-RU"), new string[]{"га"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.Hectare, new CultureInfo("zh-CN"), new string[]{"英亩"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareCentimeter, new CultureInfo("en-US"), new string[]{"cm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareCentimeter, new CultureInfo("ru-RU"), new string[]{"см²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareCentimeter, new CultureInfo("zh-CN"), new string[]{"平方厘米"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareDecimeter, new CultureInfo("en-US"), new string[]{"dm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareDecimeter, new CultureInfo("ru-RU"), new string[]{"дм²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareDecimeter, new CultureInfo("zh-CN"), new string[]{"平方分米"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareFoot, new CultureInfo("en-US"), new string[]{"ft²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareFoot, new CultureInfo("ru-RU"), new string[]{"фут²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareFoot, new CultureInfo("zh-CN"), new string[]{"平方英尺"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareInch, new CultureInfo("en-US"), new string[]{"in²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareInch, new CultureInfo("ru-RU"), new string[]{"дюйм²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareInch, new CultureInfo("zh-CN"), new string[]{"平方英寸"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareKilometer, new CultureInfo("en-US"), new string[]{"km²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareKilometer, new CultureInfo("ru-RU"), new string[]{"км²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareKilometer, new CultureInfo("zh-CN"), new string[]{"平方公里"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareMeter, new CultureInfo("en-US"), new string[]{"m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareMeter, new CultureInfo("ru-RU"), new string[]{"м²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareMeter, new CultureInfo("zh-CN"), new string[]{"平方米"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareMicrometer, new CultureInfo("en-US"), new string[]{"µm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareMicrometer, new CultureInfo("ru-RU"), new string[]{"мкм²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareMicrometer, new CultureInfo("zh-CN"), new string[]{"平方微米"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareMile, new CultureInfo("en-US"), new string[]{"mi²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareMile, new CultureInfo("ru-RU"), new string[]{"миля²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareMile, new CultureInfo("zh-CN"), new string[]{"平方英里"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareMillimeter, new CultureInfo("en-US"), new string[]{"mm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareMillimeter, new CultureInfo("ru-RU"), new string[]{"мм²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareMillimeter, new CultureInfo("zh-CN"), new string[]{"平方毫米"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareNauticalMile, new CultureInfo("en-US"), new string[]{"nmi²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareNauticalMile, new CultureInfo("ru-RU"), new string[]{"морск.миля²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareNauticalMile, new CultureInfo("zh-CN"), new string[]{"平方海里"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareYard, new CultureInfo("en-US"), new string[]{"yd²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareYard, new CultureInfo("ru-RU"), new string[]{"ярд²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareYard, new CultureInfo("zh-CN"), new string[]{"平方码"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.UsSurveySquareFoot, new CultureInfo("en-US"), new string[]{"ft² (US)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.UsSurveySquareFoot, new CultureInfo("ru-RU"), new string[]{"фут² (US)"});
         }
 
         /// <summary>

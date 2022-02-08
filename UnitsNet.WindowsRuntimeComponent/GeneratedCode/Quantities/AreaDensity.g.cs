@@ -172,6 +172,11 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaDensityUnit.KilogramPerSquareMeter, new CultureInfo("en-US"), new string[]{"kg/m²"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

@@ -172,6 +172,11 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ScalarUnit.Amount, new CultureInfo("en-US"), new string[]{""});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

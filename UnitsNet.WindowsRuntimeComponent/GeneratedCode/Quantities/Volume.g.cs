@@ -422,6 +422,107 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.AcreFoot, new CultureInfo("en-US"), new string[]{"ac-ft", "acre-foot", "acre-feet"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.AuTablespoon, new CultureInfo("en-US"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.AuTablespoon, new CultureInfo("ru-RU"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.AuTablespoon, new CultureInfo("nb-NO"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.BoardFoot, new CultureInfo("en-US"), new string[]{"bf", "board foot", "board feet"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.BoardFoot, new CultureInfo("fr-CA"), new string[]{"pmp", "pied-planche", "pied de planche"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Centiliter, new CultureInfo("en-US"), new string[]{"cl"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Centiliter, new CultureInfo("ru-RU"), new string[]{"сл"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicCentimeter, new CultureInfo("en-US"), new string[]{"cm³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicCentimeter, new CultureInfo("ru-RU"), new string[]{"см³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicDecimeter, new CultureInfo("en-US"), new string[]{"dm³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicDecimeter, new CultureInfo("ru-RU"), new string[]{"дм³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicFoot, new CultureInfo("en-US"), new string[]{"ft³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicFoot, new CultureInfo("ru-RU"), new string[]{"фут³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicHectometer, new CultureInfo("en-US"), new string[]{"hm³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicHectometer, new CultureInfo("ru-RU"), new string[]{"гм³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicInch, new CultureInfo("en-US"), new string[]{"in³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicInch, new CultureInfo("ru-RU"), new string[]{"дюйм³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicKilometer, new CultureInfo("en-US"), new string[]{"km³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicKilometer, new CultureInfo("ru-RU"), new string[]{"км³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicMeter, new CultureInfo("en-US"), new string[]{"m³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicMeter, new CultureInfo("ru-RU"), new string[]{"м³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicMicrometer, new CultureInfo("en-US"), new string[]{"µm³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicMicrometer, new CultureInfo("ru-RU"), new string[]{"мкм³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicMile, new CultureInfo("en-US"), new string[]{"mi³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicMile, new CultureInfo("ru-RU"), new string[]{"миля³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicMillimeter, new CultureInfo("en-US"), new string[]{"mm³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicMillimeter, new CultureInfo("ru-RU"), new string[]{"мм³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicYard, new CultureInfo("en-US"), new string[]{"yd³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicYard, new CultureInfo("ru-RU"), new string[]{"ярд³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.DecausGallon, new CultureInfo("en-US"), new string[]{"dagal (U.S.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.DecausGallon, new CultureInfo("ru-RU"), new string[]{"даАмериканский галлон"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Deciliter, new CultureInfo("en-US"), new string[]{"dl"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Deciliter, new CultureInfo("ru-RU"), new string[]{"дл"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.DeciusGallon, new CultureInfo("en-US"), new string[]{"dgal (U.S.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.DeciusGallon, new CultureInfo("ru-RU"), new string[]{"дАмериканский галлон"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.HectocubicFoot, new CultureInfo("en-US"), new string[]{"hft³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.HectocubicFoot, new CultureInfo("ru-RU"), new string[]{"гфут³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.HectocubicMeter, new CultureInfo("en-US"), new string[]{"hm³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.HectocubicMeter, new CultureInfo("ru-RU"), new string[]{"гм³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Hectoliter, new CultureInfo("en-US"), new string[]{"hl"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Hectoliter, new CultureInfo("ru-RU"), new string[]{"гл"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.HectousGallon, new CultureInfo("en-US"), new string[]{"hgal (U.S.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.HectousGallon, new CultureInfo("ru-RU"), new string[]{"гАмериканский галлон"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.ImperialBeerBarrel, new CultureInfo("en-US"), new string[]{"bl (imp.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.ImperialGallon, new CultureInfo("en-US"), new string[]{"gal (imp.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.ImperialGallon, new CultureInfo("ru-RU"), new string[]{"Английский галлон"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.ImperialOunce, new CultureInfo("en-US"), new string[]{"oz (imp.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.ImperialOunce, new CultureInfo("ru-RU"), new string[]{"Английская унция"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.ImperialPint, new CultureInfo("en-US"), new string[]{"pt (imp.)", "UK pt", "pt", "p"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.KilocubicFoot, new CultureInfo("en-US"), new string[]{"kft³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.KilocubicFoot, new CultureInfo("ru-RU"), new string[]{"кфут³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.KilocubicMeter, new CultureInfo("en-US"), new string[]{"km³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.KilocubicMeter, new CultureInfo("ru-RU"), new string[]{"км³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.KiloimperialGallon, new CultureInfo("en-US"), new string[]{"kgal (imp.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.KiloimperialGallon, new CultureInfo("ru-RU"), new string[]{"кАнглийский галлон"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Kiloliter, new CultureInfo("en-US"), new string[]{"kl"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Kiloliter, new CultureInfo("ru-RU"), new string[]{"кл"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.KilousGallon, new CultureInfo("en-US"), new string[]{"kgal (U.S.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.KilousGallon, new CultureInfo("ru-RU"), new string[]{"кАмериканский галлон"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Liter, new CultureInfo("en-US"), new string[]{"l"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Liter, new CultureInfo("ru-RU"), new string[]{"л"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MegacubicFoot, new CultureInfo("en-US"), new string[]{"Mft³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MegacubicFoot, new CultureInfo("ru-RU"), new string[]{"Мфут³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MegaimperialGallon, new CultureInfo("en-US"), new string[]{"Mgal (imp.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MegaimperialGallon, new CultureInfo("ru-RU"), new string[]{"МАнглийский галлон"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Megaliter, new CultureInfo("en-US"), new string[]{"Ml"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Megaliter, new CultureInfo("ru-RU"), new string[]{"Мл"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MegausGallon, new CultureInfo("en-US"), new string[]{"Mgal (U.S.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MegausGallon, new CultureInfo("ru-RU"), new string[]{"МАмериканский галлон"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MetricCup, new CultureInfo("en-US"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MetricTeaspoon, new CultureInfo("en-US"), new string[]{"tsp", "t", "ts", "tspn", "t.", "ts.", "tsp.", "tspn.", "teaspoon"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MetricTeaspoon, new CultureInfo("ru-RU"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MetricTeaspoon, new CultureInfo("nb-NO"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Microliter, new CultureInfo("en-US"), new string[]{"µl"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Microliter, new CultureInfo("ru-RU"), new string[]{"мкл"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Milliliter, new CultureInfo("en-US"), new string[]{"ml"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Milliliter, new CultureInfo("ru-RU"), new string[]{"мл"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.OilBarrel, new CultureInfo("en-US"), new string[]{"bbl"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UkTablespoon, new CultureInfo("en-US"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UkTablespoon, new CultureInfo("ru-RU"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UkTablespoon, new CultureInfo("nb-NO"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsBeerBarrel, new CultureInfo("en-US"), new string[]{"bl (U.S.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsCustomaryCup, new CultureInfo("en-US"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsGallon, new CultureInfo("en-US"), new string[]{"gal (U.S.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsGallon, new CultureInfo("ru-RU"), new string[]{"Американский галлон"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsLegalCup, new CultureInfo("en-US"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsOunce, new CultureInfo("en-US"), new string[]{"oz (U.S.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsOunce, new CultureInfo("ru-RU"), new string[]{"Американская унция"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsPint, new CultureInfo("en-US"), new string[]{"pt (U.S.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsQuart, new CultureInfo("en-US"), new string[]{"qt (U.S.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsTablespoon, new CultureInfo("en-US"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsTablespoon, new CultureInfo("ru-RU"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsTablespoon, new CultureInfo("nb-NO"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsTeaspoon, new CultureInfo("en-US"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsTeaspoon, new CultureInfo("ru-RU"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsTeaspoon, new CultureInfo("nb-NO"), new string[]{""});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -1255,7 +1356,7 @@ namespace UnitsNet
                 case VolumeUnit.Centiliter: return (_value/1e3) * 1e-2d;
                 case VolumeUnit.CubicCentimeter: return _value/1e6;
                 case VolumeUnit.CubicDecimeter: return _value/1e3;
-                case VolumeUnit.CubicFoot: return _value*0.0283168;
+                case VolumeUnit.CubicFoot: return _value * 2.8316846592e-2;
                 case VolumeUnit.CubicHectometer: return _value*1e6;
                 case VolumeUnit.CubicInch: return _value*1.6387*1e-5;
                 case VolumeUnit.CubicKilometer: return _value*1e9;
@@ -1267,7 +1368,7 @@ namespace UnitsNet
                 case VolumeUnit.DecausGallon: return (_value*0.00378541) * 1e1d;
                 case VolumeUnit.Deciliter: return (_value/1e3) * 1e-1d;
                 case VolumeUnit.DeciusGallon: return (_value*0.00378541) * 1e-1d;
-                case VolumeUnit.HectocubicFoot: return (_value*0.0283168) * 1e2d;
+                case VolumeUnit.HectocubicFoot: return (_value * 2.8316846592e-2) * 1e2d;
                 case VolumeUnit.HectocubicMeter: return (_value) * 1e2d;
                 case VolumeUnit.Hectoliter: return (_value/1e3) * 1e2d;
                 case VolumeUnit.HectousGallon: return (_value*0.00378541) * 1e2d;
@@ -1275,13 +1376,13 @@ namespace UnitsNet
                 case VolumeUnit.ImperialGallon: return _value*0.00454609000000181429905810072407;
                 case VolumeUnit.ImperialOunce: return _value*2.8413062499962901241875439064617e-5;
                 case VolumeUnit.ImperialPint: return _value * 5.6826125e-4;
-                case VolumeUnit.KilocubicFoot: return (_value*0.0283168) * 1e3d;
+                case VolumeUnit.KilocubicFoot: return (_value * 2.8316846592e-2) * 1e3d;
                 case VolumeUnit.KilocubicMeter: return (_value) * 1e3d;
                 case VolumeUnit.KiloimperialGallon: return (_value*0.00454609000000181429905810072407) * 1e3d;
                 case VolumeUnit.Kiloliter: return (_value/1e3) * 1e3d;
                 case VolumeUnit.KilousGallon: return (_value*0.00378541) * 1e3d;
                 case VolumeUnit.Liter: return _value/1e3;
-                case VolumeUnit.MegacubicFoot: return (_value*0.0283168) * 1e6d;
+                case VolumeUnit.MegacubicFoot: return (_value * 2.8316846592e-2) * 1e6d;
                 case VolumeUnit.MegaimperialGallon: return (_value*0.00454609000000181429905810072407) * 1e6d;
                 case VolumeUnit.Megaliter: return (_value/1e3) * 1e6d;
                 case VolumeUnit.MegausGallon: return (_value*0.00378541) * 1e6d;
@@ -1320,7 +1421,7 @@ namespace UnitsNet
                 case VolumeUnit.Centiliter: return (baseUnitValue*1e3) / 1e-2d;
                 case VolumeUnit.CubicCentimeter: return baseUnitValue*1e6;
                 case VolumeUnit.CubicDecimeter: return baseUnitValue*1e3;
-                case VolumeUnit.CubicFoot: return baseUnitValue/0.0283168;
+                case VolumeUnit.CubicFoot: return baseUnitValue / 2.8316846592e-2;
                 case VolumeUnit.CubicHectometer: return baseUnitValue/1e6;
                 case VolumeUnit.CubicInch: return baseUnitValue/(1.6387*1e-5);
                 case VolumeUnit.CubicKilometer: return baseUnitValue/1e9;
@@ -1332,7 +1433,7 @@ namespace UnitsNet
                 case VolumeUnit.DecausGallon: return (baseUnitValue/0.00378541) / 1e1d;
                 case VolumeUnit.Deciliter: return (baseUnitValue*1e3) / 1e-1d;
                 case VolumeUnit.DeciusGallon: return (baseUnitValue/0.00378541) / 1e-1d;
-                case VolumeUnit.HectocubicFoot: return (baseUnitValue/0.0283168) / 1e2d;
+                case VolumeUnit.HectocubicFoot: return (baseUnitValue / 2.8316846592e-2) / 1e2d;
                 case VolumeUnit.HectocubicMeter: return (baseUnitValue) / 1e2d;
                 case VolumeUnit.Hectoliter: return (baseUnitValue*1e3) / 1e2d;
                 case VolumeUnit.HectousGallon: return (baseUnitValue/0.00378541) / 1e2d;
@@ -1340,13 +1441,13 @@ namespace UnitsNet
                 case VolumeUnit.ImperialGallon: return baseUnitValue/0.00454609000000181429905810072407;
                 case VolumeUnit.ImperialOunce: return baseUnitValue/2.8413062499962901241875439064617e-5;
                 case VolumeUnit.ImperialPint: return baseUnitValue / 5.6826125e-4;
-                case VolumeUnit.KilocubicFoot: return (baseUnitValue/0.0283168) / 1e3d;
+                case VolumeUnit.KilocubicFoot: return (baseUnitValue / 2.8316846592e-2) / 1e3d;
                 case VolumeUnit.KilocubicMeter: return (baseUnitValue) / 1e3d;
                 case VolumeUnit.KiloimperialGallon: return (baseUnitValue/0.00454609000000181429905810072407) / 1e3d;
                 case VolumeUnit.Kiloliter: return (baseUnitValue*1e3) / 1e3d;
                 case VolumeUnit.KilousGallon: return (baseUnitValue/0.00378541) / 1e3d;
                 case VolumeUnit.Liter: return baseUnitValue*1e3;
-                case VolumeUnit.MegacubicFoot: return (baseUnitValue/0.0283168) / 1e6d;
+                case VolumeUnit.MegacubicFoot: return (baseUnitValue / 2.8316846592e-2) / 1e6d;
                 case VolumeUnit.MegaimperialGallon: return (baseUnitValue/0.00454609000000181429905810072407) / 1e6d;
                 case VolumeUnit.Megaliter: return (baseUnitValue*1e3) / 1e6d;
                 case VolumeUnit.MegausGallon: return (baseUnitValue/0.00378541) / 1e6d;

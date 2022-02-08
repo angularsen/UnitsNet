@@ -69,6 +69,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Permeability);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -111,7 +113,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Permeability" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<PermeabilityUnit> Info { get; }
@@ -210,6 +212,11 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Permeability>(PermeabilityUnit.HenryPerMeter, PermeabilityUnit.HenryPerMeter, quantity => quantity);
 
             // Register in unit converter: PermeabilityUnit -> BaseUnit
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(PermeabilityUnit.HenryPerMeter, new CultureInfo("en-US"), new string[]{"H/m"});
         }
 
         /// <summary>

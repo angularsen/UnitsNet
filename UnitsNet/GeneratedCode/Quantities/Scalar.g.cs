@@ -66,6 +66,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Scalar);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -108,7 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Scalar" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<ScalarUnit> Info { get; }
@@ -207,6 +209,11 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Scalar>(ScalarUnit.Amount, ScalarUnit.Amount, quantity => quantity);
 
             // Register in unit converter: ScalarUnit -> BaseUnit
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ScalarUnit.Amount, new CultureInfo("en-US"), new string[]{""});
         }
 
         /// <summary>

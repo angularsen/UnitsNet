@@ -70,6 +70,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ThermalConductivity);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -112,7 +114,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="ThermalConductivity" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<ThermalConductivityUnit> Info { get; }
@@ -218,6 +220,12 @@ namespace UnitsNet
 
             // Register in unit converter: ThermalConductivityUnit -> BaseUnit
             unitConverter.SetConversionFunction<ThermalConductivity>(ThermalConductivityUnit.BtuPerHourFootFahrenheit, ThermalConductivityUnit.WattPerMeterKelvin, quantity => new ThermalConductivity(quantity.Value*1.73073467, ThermalConductivityUnit.WattPerMeterKelvin));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ThermalConductivityUnit.BtuPerHourFootFahrenheit, new CultureInfo("en-US"), new string[]{"BTU/h·ft·°F"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ThermalConductivityUnit.WattPerMeterKelvin, new CultureInfo("en-US"), new string[]{"W/m·K"});
         }
 
         /// <summary>

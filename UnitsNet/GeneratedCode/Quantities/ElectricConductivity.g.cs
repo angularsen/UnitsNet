@@ -71,6 +71,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricConductivity);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -113,7 +115,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="ElectricConductivity" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<ElectricConductivityUnit> Info { get; }
@@ -226,6 +228,13 @@ namespace UnitsNet
             // Register in unit converter: ElectricConductivityUnit -> BaseUnit
             unitConverter.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerFoot, ElectricConductivityUnit.SiemensPerMeter, quantity => new ElectricConductivity(quantity.Value * 3.2808398950131234, ElectricConductivityUnit.SiemensPerMeter));
             unitConverter.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerInch, ElectricConductivityUnit.SiemensPerMeter, quantity => new ElectricConductivity(quantity.Value * 3.937007874015748e1, ElectricConductivityUnit.SiemensPerMeter));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricConductivityUnit.SiemensPerFoot, new CultureInfo("en-US"), new string[]{"S/ft"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricConductivityUnit.SiemensPerInch, new CultureInfo("en-US"), new string[]{"S/in"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricConductivityUnit.SiemensPerMeter, new CultureInfo("en-US"), new string[]{"S/m"});
         }
 
         /// <summary>
