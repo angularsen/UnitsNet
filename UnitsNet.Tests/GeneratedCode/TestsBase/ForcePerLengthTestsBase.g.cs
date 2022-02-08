@@ -562,12 +562,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ForcePerLengthUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = ForcePerLength.Units.FirstOrDefault(u => u != ForcePerLength.BaseUnit && u != ForcePerLengthUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == ForcePerLengthUnit.Undefined)
-                fromUnit = ForcePerLength.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = ForcePerLength.Units.FirstOrDefault(u => u != ForcePerLength.BaseUnit);
 
             var quantity = ForcePerLength.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

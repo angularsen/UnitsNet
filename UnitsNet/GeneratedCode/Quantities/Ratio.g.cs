@@ -67,6 +67,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -106,7 +108,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Ratio" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<RatioUnit> Info { get; }
@@ -215,6 +217,16 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Ratio>(RatioUnit.PartPerThousand, RatioUnit.DecimalFraction, quantity => new Ratio(quantity.Value/1e3, RatioUnit.DecimalFraction));
             unitConverter.SetConversionFunction<Ratio>(RatioUnit.PartPerTrillion, RatioUnit.DecimalFraction, quantity => new Ratio(quantity.Value/1e12, RatioUnit.DecimalFraction));
             unitConverter.SetConversionFunction<Ratio>(RatioUnit.Percent, RatioUnit.DecimalFraction, quantity => new Ratio(quantity.Value/1e2, RatioUnit.DecimalFraction));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(RatioUnit.DecimalFraction, new CultureInfo("en-US"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RatioUnit.PartPerBillion, new CultureInfo("en-US"), new string[]{"ppb"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RatioUnit.PartPerMillion, new CultureInfo("en-US"), new string[]{"ppm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RatioUnit.PartPerThousand, new CultureInfo("en-US"), new string[]{"‰"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RatioUnit.PartPerTrillion, new CultureInfo("en-US"), new string[]{"ppt"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RatioUnit.Percent, new CultureInfo("en-US"), new string[]{"%"});
         }
 
         /// <summary>

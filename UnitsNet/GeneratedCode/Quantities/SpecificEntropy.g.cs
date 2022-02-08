@@ -70,6 +70,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -109,7 +111,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="SpecificEntropy" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<SpecificEntropyUnit> Info { get; }
@@ -239,6 +241,19 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.KilojoulePerKilogramKelvin, SpecificEntropyUnit.JoulePerKilogramKelvin, quantity => new SpecificEntropy((quantity.Value) * 1e3d, SpecificEntropyUnit.JoulePerKilogramKelvin));
             unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, SpecificEntropyUnit.JoulePerKilogramKelvin, quantity => new SpecificEntropy((quantity.Value) * 1e6d, SpecificEntropyUnit.JoulePerKilogramKelvin));
             unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.MegajoulePerKilogramKelvin, SpecificEntropyUnit.JoulePerKilogramKelvin, quantity => new SpecificEntropy((quantity.Value) * 1e6d, SpecificEntropyUnit.JoulePerKilogramKelvin));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEntropyUnit.BtuPerPoundFahrenheit, new CultureInfo("en-US"), new string[]{"BTU/lb·°F", "BTU/lbm·°F"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEntropyUnit.CaloriePerGramKelvin, new CultureInfo("en-US"), new string[]{"cal/g.K"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEntropyUnit.JoulePerKilogramDegreeCelsius, new CultureInfo("en-US"), new string[]{"J/kg.C"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEntropyUnit.JoulePerKilogramKelvin, new CultureInfo("en-US"), new string[]{"J/kg.K"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEntropyUnit.KilocaloriePerGramKelvin, new CultureInfo("en-US"), new string[]{"kcal/g.K"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius, new CultureInfo("en-US"), new string[]{"kJ/kg.C"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEntropyUnit.KilojoulePerKilogramKelvin, new CultureInfo("en-US"), new string[]{"kJ/kg.K"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, new CultureInfo("en-US"), new string[]{"MJ/kg.C"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEntropyUnit.MegajoulePerKilogramKelvin, new CultureInfo("en-US"), new string[]{"MJ/kg.K"});
         }
 
         /// <summary>

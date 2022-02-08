@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using UnitsNet.Units;
 
 using UnitTypeToLookup = System.Collections.Generic.Dictionary<System.Type, UnitsNet.UnitValueAbbreviationLookup>;
@@ -16,7 +17,7 @@ namespace UnitsNet
     ///     Cache of the mapping between unit enum values and unit abbreviation strings for one or more cultures.
     ///     A static instance <see cref="Default"/> is used internally for ToString() and Parse() of quantities and units.
     /// </summary>
-    public sealed partial class UnitAbbreviationsCache
+    public sealed class UnitAbbreviationsCache
     {
         private readonly Dictionary<IFormatProvider, UnitTypeToLookup> _lookupsForCulture;
 
@@ -53,10 +54,10 @@ namespace UnitsNet
 
         private void LoadGeneratedAbbreviations()
         {
-            foreach(var localization in GeneratedLocalizations)
+            foreach(var quantity in Quantity.GetQuantityTypes())
             {
-                var culture = new CultureInfo(localization.CultureName);
-                MapUnitToAbbreviation(localization.UnitType, localization.UnitValue, culture, localization.UnitAbbreviations);
+                var mapGeneratedLocalizationsMethod = quantity.GetMethod(nameof(Length.MapGeneratedLocalizations), BindingFlags.NonPublic | BindingFlags.Static);
+                mapGeneratedLocalizationsMethod?.Invoke(null, new object[]{this});
             }
         }
 

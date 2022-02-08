@@ -64,6 +64,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -103,7 +105,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="ApparentEnergy" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<ApparentEnergyUnit> Info { get; }
@@ -191,6 +193,13 @@ namespace UnitsNet
             // Register in unit converter: ApparentEnergyUnit -> BaseUnit
             unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.KilovoltampereHour, ApparentEnergyUnit.VoltampereHour, quantity => new ApparentEnergy((quantity.Value) * 1e3d, ApparentEnergyUnit.VoltampereHour));
             unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.MegavoltampereHour, ApparentEnergyUnit.VoltampereHour, quantity => new ApparentEnergy((quantity.Value) * 1e6d, ApparentEnergyUnit.VoltampereHour));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ApparentEnergyUnit.KilovoltampereHour, new CultureInfo("en-US"), new string[]{"kVAh"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ApparentEnergyUnit.MegavoltampereHour, new CultureInfo("en-US"), new string[]{"MVAh"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ApparentEnergyUnit.VoltampereHour, new CultureInfo("en-US"), new string[]{"VAh"});
         }
 
         /// <summary>

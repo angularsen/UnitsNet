@@ -202,12 +202,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(LevelUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = Level.Units.FirstOrDefault(u => u != Level.BaseUnit && u != LevelUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == LevelUnit.Undefined)
-                fromUnit = Level.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = Level.Units.FirstOrDefault(u => u != Level.BaseUnit);
 
             var quantity = Level.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

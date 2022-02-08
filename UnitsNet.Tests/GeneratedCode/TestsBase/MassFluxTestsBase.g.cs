@@ -302,12 +302,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MassFluxUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = MassFlux.Units.FirstOrDefault(u => u != MassFlux.BaseUnit && u != MassFluxUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == MassFluxUnit.Undefined)
-                fromUnit = MassFlux.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = MassFlux.Units.FirstOrDefault(u => u != MassFlux.BaseUnit);
 
             var quantity = MassFlux.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

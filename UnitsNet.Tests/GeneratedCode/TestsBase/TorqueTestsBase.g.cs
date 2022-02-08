@@ -432,12 +432,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(TorqueUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = Torque.Units.FirstOrDefault(u => u != Torque.BaseUnit && u != TorqueUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == TorqueUnit.Undefined)
-                fromUnit = Torque.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = Torque.Units.FirstOrDefault(u => u != Torque.BaseUnit);
 
             var quantity = Torque.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

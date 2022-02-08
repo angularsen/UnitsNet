@@ -202,12 +202,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(PowerRatioUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = PowerRatio.Units.FirstOrDefault(u => u != PowerRatio.BaseUnit && u != PowerRatioUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == PowerRatioUnit.Undefined)
-                fromUnit = PowerRatio.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = PowerRatio.Units.FirstOrDefault(u => u != PowerRatio.BaseUnit);
 
             var quantity = PowerRatio.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

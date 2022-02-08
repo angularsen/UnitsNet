@@ -272,12 +272,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(SpecificEntropyUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = SpecificEntropy.Units.FirstOrDefault(u => u != SpecificEntropy.BaseUnit && u != SpecificEntropyUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == SpecificEntropyUnit.Undefined)
-                fromUnit = SpecificEntropy.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = SpecificEntropy.Units.FirstOrDefault(u => u != SpecificEntropy.BaseUnit);
 
             var quantity = SpecificEntropy.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

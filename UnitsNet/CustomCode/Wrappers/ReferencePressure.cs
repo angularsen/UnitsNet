@@ -36,7 +36,7 @@ namespace UnitsNet.Wrappers
         ///     <see cref="PressureReference.Absolute" />, and <see cref="PressureReference.Vacuum" />
         /// </summary>
         public static PressureReference[] References { get; } =
-            Enum.GetValues(typeof(PressureReference)).Cast<PressureReference>().Except(new[] {PressureReference.Undefined}).ToArray();
+            Enum.GetValues(typeof(PressureReference)).Cast<PressureReference>().ToArray();
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="ReferencePressure" /> struct requiring measured

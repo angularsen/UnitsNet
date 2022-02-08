@@ -292,12 +292,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(FrequencyUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = Frequency.Units.FirstOrDefault(u => u != Frequency.BaseUnit && u != FrequencyUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == FrequencyUnit.Undefined)
-                fromUnit = Frequency.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = Frequency.Units.FirstOrDefault(u => u != Frequency.BaseUnit);
 
             var quantity = Frequency.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

@@ -222,12 +222,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(RotationalAccelerationUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = RotationalAcceleration.Units.FirstOrDefault(u => u != RotationalAcceleration.BaseUnit && u != RotationalAccelerationUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == RotationalAccelerationUnit.Undefined)
-                fromUnit = RotationalAcceleration.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = RotationalAcceleration.Units.FirstOrDefault(u => u != RotationalAcceleration.BaseUnit);
 
             var quantity = RotationalAcceleration.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

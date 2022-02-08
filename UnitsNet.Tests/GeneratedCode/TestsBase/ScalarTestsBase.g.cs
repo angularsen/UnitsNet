@@ -192,12 +192,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ScalarUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = Scalar.Units.FirstOrDefault(u => u != Scalar.BaseUnit && u != ScalarUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == ScalarUnit.Undefined)
-                fromUnit = Scalar.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = Scalar.Units.FirstOrDefault(u => u != Scalar.BaseUnit);
 
             var quantity = Scalar.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

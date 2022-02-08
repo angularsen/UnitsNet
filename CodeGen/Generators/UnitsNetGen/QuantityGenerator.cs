@@ -161,6 +161,8 @@ namespace UnitsNet
                 }},
                 BaseUnit, Zero, BaseDimensions);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }}
 ");
@@ -221,7 +223,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref=""UnitConverter"" /> containing the default generated conversion functions for <see cref=""{_quantity.Name}"" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions {{ get; }} = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions {{ get; }}
 
         /// <inheritdoc cref=""IQuantity.QuantityInfo""/>
         public static QuantityInfo<{_unitEnumName}> Info {{ get; }}
@@ -352,12 +354,31 @@ namespace UnitsNet
             if(unit.SingularName == _quantity.BaseUnit)
                 continue;
 
-        var func = unit.FromUnitToBaseFunc.Replace("{x}", "quantity.Value");
-        Writer.WL($@"
+            var func = unit.FromUnitToBaseFunc.Replace("{x}", "quantity.Value");
+            Writer.WL($@"
             unitConverter.SetConversionFunction<{_quantity.Name}>({_quantity.Name}Unit.{unit.SingularName}, {_unitEnumName}.{_quantity.BaseUnit}, quantity => new {_quantity.Name}({func}, {_unitEnumName}.{_quantity.BaseUnit}));");
         }
 
         Writer.WL($@"
+        }}
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {{");
+            foreach(var unit in _quantity.Units)
+            {
+                foreach(var localization in unit.Localization)
+                {
+                    // All units must have a unit abbreviation, so fallback to "" for units with no abbreviations defined in JSON
+                    var abbreviationParams = localization.Abbreviations.Any() ?
+                        string.Join(", ", localization.Abbreviations.Select(abbr => $@"""{abbr}""")) :
+                        $@"""""";
+
+                    Writer.WL($@"
+            unitAbbreviationsCache.MapUnitToAbbreviation({_unitEnumName}.{unit.SingularName}, new CultureInfo(""{localization.Culture}""), new string[]{{{abbreviationParams}}});");
+                }
+            }
+
+            Writer.WL($@"
         }}
 
         /// <summary>

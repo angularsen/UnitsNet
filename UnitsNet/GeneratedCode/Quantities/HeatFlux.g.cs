@@ -79,6 +79,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -118,7 +120,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="HeatFlux" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<HeatFluxUnit> Info { get; }
@@ -311,6 +313,28 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.PoundPerSecondCubed, HeatFluxUnit.WattPerSquareMeter, quantity => new HeatFlux(quantity.Value*4.5359237e-1, HeatFluxUnit.WattPerSquareMeter));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareFoot, HeatFluxUnit.WattPerSquareMeter, quantity => new HeatFlux(quantity.Value*1.07639e1, HeatFluxUnit.WattPerSquareMeter));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareInch, HeatFluxUnit.WattPerSquareMeter, quantity => new HeatFlux(quantity.Value*1.5500031e3, HeatFluxUnit.WattPerSquareMeter));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.BtuPerHourSquareFoot, new CultureInfo("en-US"), new string[]{"BTU/h·ft²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.BtuPerMinuteSquareFoot, new CultureInfo("en-US"), new string[]{"BTU/min·ft²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.BtuPerSecondSquareFoot, new CultureInfo("en-US"), new string[]{"BTU/s·ft²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.BtuPerSecondSquareInch, new CultureInfo("en-US"), new string[]{"BTU/s·in²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.CaloriePerSecondSquareCentimeter, new CultureInfo("en-US"), new string[]{"cal/s·cm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.CentiwattPerSquareMeter, new CultureInfo("en-US"), new string[]{"cW/m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.DeciwattPerSquareMeter, new CultureInfo("en-US"), new string[]{"dW/m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.KilocaloriePerHourSquareMeter, new CultureInfo("en-US"), new string[]{"kcal/h·m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.KilocaloriePerSecondSquareCentimeter, new CultureInfo("en-US"), new string[]{"kcal/s·cm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.KilowattPerSquareMeter, new CultureInfo("en-US"), new string[]{"kW/m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.MicrowattPerSquareMeter, new CultureInfo("en-US"), new string[]{"µW/m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.MilliwattPerSquareMeter, new CultureInfo("en-US"), new string[]{"mW/m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.NanowattPerSquareMeter, new CultureInfo("en-US"), new string[]{"nW/m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.PoundForcePerFootSecond, new CultureInfo("en-US"), new string[]{"lbf/(ft·s)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.PoundPerSecondCubed, new CultureInfo("en-US"), new string[]{"lb/s³", "lbm/s³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.WattPerSquareFoot, new CultureInfo("en-US"), new string[]{"W/ft²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.WattPerSquareInch, new CultureInfo("en-US"), new string[]{"W/in²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.WattPerSquareMeter, new CultureInfo("en-US"), new string[]{"W/m²"});
         }
 
         /// <summary>

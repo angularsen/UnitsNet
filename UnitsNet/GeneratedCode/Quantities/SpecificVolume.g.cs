@@ -64,6 +64,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -103,7 +105,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="SpecificVolume" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<SpecificVolumeUnit> Info { get; }
@@ -191,6 +193,13 @@ namespace UnitsNet
             // Register in unit converter: SpecificVolumeUnit -> BaseUnit
             unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicFootPerPound, SpecificVolumeUnit.CubicMeterPerKilogram, quantity => new SpecificVolume(quantity.Value/16.01846353, SpecificVolumeUnit.CubicMeterPerKilogram));
             unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.MillicubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram, quantity => new SpecificVolume((quantity.Value) * 1e-3d, SpecificVolumeUnit.CubicMeterPerKilogram));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificVolumeUnit.CubicFootPerPound, new CultureInfo("en-US"), new string[]{"ft³/lb"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificVolumeUnit.CubicMeterPerKilogram, new CultureInfo("en-US"), new string[]{"m³/kg"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificVolumeUnit.MillicubicMeterPerKilogram, new CultureInfo("en-US"), new string[]{"mm³/kg"});
         }
 
         /// <summary>

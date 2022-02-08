@@ -202,12 +202,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ThermalConductivityUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = ThermalConductivity.Units.FirstOrDefault(u => u != ThermalConductivity.BaseUnit && u != ThermalConductivityUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == ThermalConductivityUnit.Undefined)
-                fromUnit = ThermalConductivity.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = ThermalConductivity.Units.FirstOrDefault(u => u != ThermalConductivity.BaseUnit);
 
             var quantity = ThermalConductivity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

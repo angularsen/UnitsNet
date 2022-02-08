@@ -212,12 +212,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricConductivityUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = ElectricConductivity.Units.FirstOrDefault(u => u != ElectricConductivity.BaseUnit && u != ElectricConductivityUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == ElectricConductivityUnit.Undefined)
-                fromUnit = ElectricConductivity.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = ElectricConductivity.Units.FirstOrDefault(u => u != ElectricConductivity.BaseUnit);
 
             var quantity = ElectricConductivity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

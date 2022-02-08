@@ -422,12 +422,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MassFractionUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = MassFraction.Units.FirstOrDefault(u => u != MassFraction.BaseUnit && u != MassFractionUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == MassFractionUnit.Undefined)
-                fromUnit = MassFraction.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = MassFraction.Units.FirstOrDefault(u => u != MassFraction.BaseUnit);
 
             var quantity = MassFraction.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

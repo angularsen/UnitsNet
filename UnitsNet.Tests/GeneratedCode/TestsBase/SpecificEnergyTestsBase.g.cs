@@ -432,12 +432,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(SpecificEnergyUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = SpecificEnergy.Units.FirstOrDefault(u => u != SpecificEnergy.BaseUnit && u != SpecificEnergyUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == SpecificEnergyUnit.Undefined)
-                fromUnit = SpecificEnergy.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = SpecificEnergy.Units.FirstOrDefault(u => u != SpecificEnergy.BaseUnit);
 
             var quantity = SpecificEnergy.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

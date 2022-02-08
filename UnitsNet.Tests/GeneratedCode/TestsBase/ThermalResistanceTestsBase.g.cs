@@ -242,12 +242,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ThermalResistanceUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = ThermalResistance.Units.FirstOrDefault(u => u != ThermalResistance.BaseUnit && u != ThermalResistanceUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == ThermalResistanceUnit.Undefined)
-                fromUnit = ThermalResistance.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = ThermalResistance.Units.FirstOrDefault(u => u != ThermalResistance.BaseUnit);
 
             var quantity = ThermalResistance.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

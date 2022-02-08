@@ -70,6 +70,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -109,7 +111,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="StandardVolumeFlow" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<StandardVolumeFlowUnit> Info { get; }
@@ -239,6 +241,19 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<StandardVolumeFlow>(StandardVolumeFlowUnit.StandardCubicMeterPerHour, StandardVolumeFlowUnit.StandardCubicMeterPerSecond, quantity => new StandardVolumeFlow(quantity.Value/3600, StandardVolumeFlowUnit.StandardCubicMeterPerSecond));
             unitConverter.SetConversionFunction<StandardVolumeFlow>(StandardVolumeFlowUnit.StandardCubicMeterPerMinute, StandardVolumeFlowUnit.StandardCubicMeterPerSecond, quantity => new StandardVolumeFlow(quantity.Value/60, StandardVolumeFlowUnit.StandardCubicMeterPerSecond));
             unitConverter.SetConversionFunction<StandardVolumeFlow>(StandardVolumeFlowUnit.StandardLiterPerMinute, StandardVolumeFlowUnit.StandardCubicMeterPerSecond, quantity => new StandardVolumeFlow(quantity.Value/60000, StandardVolumeFlowUnit.StandardCubicMeterPerSecond));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, new CultureInfo("en-US"), new string[]{"sccm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(StandardVolumeFlowUnit.StandardCubicFootPerHour, new CultureInfo("en-US"), new string[]{"scfh"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(StandardVolumeFlowUnit.StandardCubicFootPerMinute, new CultureInfo("en-US"), new string[]{"scfm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(StandardVolumeFlowUnit.StandardCubicFootPerSecond, new CultureInfo("en-US"), new string[]{"Sft³/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(StandardVolumeFlowUnit.StandardCubicMeterPerDay, new CultureInfo("en-US"), new string[]{"Sm³/d"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(StandardVolumeFlowUnit.StandardCubicMeterPerHour, new CultureInfo("en-US"), new string[]{"Sm³/h"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(StandardVolumeFlowUnit.StandardCubicMeterPerMinute, new CultureInfo("en-US"), new string[]{"Sm³/min"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(StandardVolumeFlowUnit.StandardCubicMeterPerSecond, new CultureInfo("en-US"), new string[]{"Sm³/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(StandardVolumeFlowUnit.StandardLiterPerMinute, new CultureInfo("en-US"), new string[]{"slm"});
         }
 
         /// <summary>

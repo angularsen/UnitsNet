@@ -232,12 +232,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(RotationalStiffnessPerLengthUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = RotationalStiffnessPerLength.Units.FirstOrDefault(u => u != RotationalStiffnessPerLength.BaseUnit && u != RotationalStiffnessPerLengthUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == RotationalStiffnessPerLengthUnit.Undefined)
-                fromUnit = RotationalStiffnessPerLength.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = RotationalStiffnessPerLength.Units.FirstOrDefault(u => u != RotationalStiffnessPerLength.BaseUnit);
 
             var quantity = RotationalStiffnessPerLength.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

@@ -382,12 +382,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricPotentialChangeRateUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = ElectricPotentialChangeRate.Units.FirstOrDefault(u => u != ElectricPotentialChangeRate.BaseUnit && u != ElectricPotentialChangeRateUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == ElectricPotentialChangeRateUnit.Undefined)
-                fromUnit = ElectricPotentialChangeRate.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = ElectricPotentialChangeRate.Units.FirstOrDefault(u => u != ElectricPotentialChangeRate.BaseUnit);
 
             var quantity = ElectricPotentialChangeRate.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

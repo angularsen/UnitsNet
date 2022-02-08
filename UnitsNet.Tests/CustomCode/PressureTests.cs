@@ -214,12 +214,6 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
-        public void ReferencesDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(PressureReference.Undefined, ReferencePressure.References);
-        }
-
-        [Fact]
         public void Vacuum_WithDefaultPressureReference_IsOneLessAtmosphereNegative()
         {
             var refPressure = new ReferencePressure(Pressure.FromAtmospheres(3));

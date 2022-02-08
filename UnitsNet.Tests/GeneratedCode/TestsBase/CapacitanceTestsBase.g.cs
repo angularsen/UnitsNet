@@ -252,12 +252,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(CapacitanceUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = Capacitance.Units.FirstOrDefault(u => u != Capacitance.BaseUnit && u != CapacitanceUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == CapacitanceUnit.Undefined)
-                fromUnit = Capacitance.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = Capacitance.Units.FirstOrDefault(u => u != Capacitance.BaseUnit);
 
             var quantity = Capacitance.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

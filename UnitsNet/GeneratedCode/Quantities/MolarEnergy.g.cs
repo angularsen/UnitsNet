@@ -64,6 +64,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -103,7 +105,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="MolarEnergy" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<MolarEnergyUnit> Info { get; }
@@ -191,6 +193,13 @@ namespace UnitsNet
             // Register in unit converter: MolarEnergyUnit -> BaseUnit
             unitConverter.SetConversionFunction<MolarEnergy>(MolarEnergyUnit.KilojoulePerMole, MolarEnergyUnit.JoulePerMole, quantity => new MolarEnergy((quantity.Value) * 1e3d, MolarEnergyUnit.JoulePerMole));
             unitConverter.SetConversionFunction<MolarEnergy>(MolarEnergyUnit.MegajoulePerMole, MolarEnergyUnit.JoulePerMole, quantity => new MolarEnergy((quantity.Value) * 1e6d, MolarEnergyUnit.JoulePerMole));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(MolarEnergyUnit.JoulePerMole, new CultureInfo("en-US"), new string[]{"J/mol"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MolarEnergyUnit.KilojoulePerMole, new CultureInfo("en-US"), new string[]{"kJ/mol"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MolarEnergyUnit.MegajoulePerMole, new CultureInfo("en-US"), new string[]{"MJ/mol"});
         }
 
         /// <summary>

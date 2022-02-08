@@ -192,12 +192,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(PermeabilityUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = Permeability.Units.FirstOrDefault(u => u != Permeability.BaseUnit && u != PermeabilityUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == PermeabilityUnit.Undefined)
-                fromUnit = Permeability.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = Permeability.Units.FirstOrDefault(u => u != Permeability.BaseUnit);
 
             var quantity = Permeability.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

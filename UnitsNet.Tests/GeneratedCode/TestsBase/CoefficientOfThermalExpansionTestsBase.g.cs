@@ -212,12 +212,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(CoefficientOfThermalExpansionUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = CoefficientOfThermalExpansion.Units.FirstOrDefault(u => u != CoefficientOfThermalExpansion.BaseUnit && u != CoefficientOfThermalExpansionUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == CoefficientOfThermalExpansionUnit.Undefined)
-                fromUnit = CoefficientOfThermalExpansion.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = CoefficientOfThermalExpansion.Units.FirstOrDefault(u => u != CoefficientOfThermalExpansion.BaseUnit);
 
             var quantity = CoefficientOfThermalExpansion.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

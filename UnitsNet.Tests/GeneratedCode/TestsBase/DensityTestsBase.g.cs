@@ -692,12 +692,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(DensityUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = Density.Units.FirstOrDefault(u => u != Density.BaseUnit && u != DensityUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == DensityUnit.Undefined)
-                fromUnit = Density.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = Density.Units.FirstOrDefault(u => u != Density.BaseUnit);
 
             var quantity = Density.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

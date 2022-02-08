@@ -89,6 +89,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -128,7 +130,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="MassMomentOfInertia" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<MassMomentOfInertiaUnit> Info { get; }
@@ -391,6 +393,38 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.TonneSquareDecimeter, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => new MassMomentOfInertia(quantity.Value/1e-1, MassMomentOfInertiaUnit.KilogramSquareMeter));
             unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.TonneSquareMeter, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => new MassMomentOfInertia(quantity.Value/1e-3, MassMomentOfInertiaUnit.KilogramSquareMeter));
             unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.TonneSquareMilimeter, MassMomentOfInertiaUnit.KilogramSquareMeter, quantity => new MassMomentOfInertia(quantity.Value/1e3, MassMomentOfInertiaUnit.KilogramSquareMeter));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassMomentOfInertiaUnit.GramSquareCentimeter, new CultureInfo("en-US"), new string[]{"g·cm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassMomentOfInertiaUnit.GramSquareDecimeter, new CultureInfo("en-US"), new string[]{"g·dm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassMomentOfInertiaUnit.GramSquareMeter, new CultureInfo("en-US"), new string[]{"g·m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassMomentOfInertiaUnit.GramSquareMillimeter, new CultureInfo("en-US"), new string[]{"g·mm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassMomentOfInertiaUnit.KilogramSquareCentimeter, new CultureInfo("en-US"), new string[]{"kg·cm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassMomentOfInertiaUnit.KilogramSquareDecimeter, new CultureInfo("en-US"), new string[]{"kg·dm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassMomentOfInertiaUnit.KilogramSquareMeter, new CultureInfo("en-US"), new string[]{"kg·m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassMomentOfInertiaUnit.KilogramSquareMillimeter, new CultureInfo("en-US"), new string[]{"kg·mm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassMomentOfInertiaUnit.KilotonneSquareCentimeter, new CultureInfo("en-US"), new string[]{"kt·cm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassMomentOfInertiaUnit.KilotonneSquareDecimeter, new CultureInfo("en-US"), new string[]{"kt·dm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassMomentOfInertiaUnit.KilotonneSquareMeter, new CultureInfo("en-US"), new string[]{"kt·m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassMomentOfInertiaUnit.KilotonneSquareMilimeter, new CultureInfo("en-US"), new string[]{"kt·mm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassMomentOfInertiaUnit.MegatonneSquareCentimeter, new CultureInfo("en-US"), new string[]{"Mt·cm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassMomentOfInertiaUnit.MegatonneSquareDecimeter, new CultureInfo("en-US"), new string[]{"Mt·dm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassMomentOfInertiaUnit.MegatonneSquareMeter, new CultureInfo("en-US"), new string[]{"Mt·m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassMomentOfInertiaUnit.MegatonneSquareMilimeter, new CultureInfo("en-US"), new string[]{"Mt·mm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassMomentOfInertiaUnit.MilligramSquareCentimeter, new CultureInfo("en-US"), new string[]{"mg·cm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassMomentOfInertiaUnit.MilligramSquareDecimeter, new CultureInfo("en-US"), new string[]{"mg·dm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassMomentOfInertiaUnit.MilligramSquareMeter, new CultureInfo("en-US"), new string[]{"mg·m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassMomentOfInertiaUnit.MilligramSquareMillimeter, new CultureInfo("en-US"), new string[]{"mg·mm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassMomentOfInertiaUnit.PoundSquareFoot, new CultureInfo("en-US"), new string[]{"lb·ft²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassMomentOfInertiaUnit.PoundSquareInch, new CultureInfo("en-US"), new string[]{"lb·in²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassMomentOfInertiaUnit.SlugSquareFoot, new CultureInfo("en-US"), new string[]{"slug·ft²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassMomentOfInertiaUnit.SlugSquareInch, new CultureInfo("en-US"), new string[]{"slug·in²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassMomentOfInertiaUnit.TonneSquareCentimeter, new CultureInfo("en-US"), new string[]{"t·cm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassMomentOfInertiaUnit.TonneSquareDecimeter, new CultureInfo("en-US"), new string[]{"t·dm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassMomentOfInertiaUnit.TonneSquareMeter, new CultureInfo("en-US"), new string[]{"t·m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassMomentOfInertiaUnit.TonneSquareMilimeter, new CultureInfo("en-US"), new string[]{"t·mm²"});
         }
 
         /// <summary>

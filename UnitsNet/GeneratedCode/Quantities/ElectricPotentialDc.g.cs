@@ -66,6 +66,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -105,7 +107,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="ElectricPotentialDc" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<ElectricPotentialDcUnit> Info { get; }
@@ -207,6 +209,15 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricPotentialDc>(ElectricPotentialDcUnit.MegavoltDc, ElectricPotentialDcUnit.VoltDc, quantity => new ElectricPotentialDc((quantity.Value) * 1e6d, ElectricPotentialDcUnit.VoltDc));
             unitConverter.SetConversionFunction<ElectricPotentialDc>(ElectricPotentialDcUnit.MicrovoltDc, ElectricPotentialDcUnit.VoltDc, quantity => new ElectricPotentialDc((quantity.Value) * 1e-6d, ElectricPotentialDcUnit.VoltDc));
             unitConverter.SetConversionFunction<ElectricPotentialDc>(ElectricPotentialDcUnit.MillivoltDc, ElectricPotentialDcUnit.VoltDc, quantity => new ElectricPotentialDc((quantity.Value) * 1e-3d, ElectricPotentialDcUnit.VoltDc));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialDcUnit.KilovoltDc, new CultureInfo("en-US"), new string[]{"kVdc"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialDcUnit.MegavoltDc, new CultureInfo("en-US"), new string[]{"MVdc"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialDcUnit.MicrovoltDc, new CultureInfo("en-US"), new string[]{"µVdc"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialDcUnit.MillivoltDc, new CultureInfo("en-US"), new string[]{"mVdc"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialDcUnit.VoltDc, new CultureInfo("en-US"), new string[]{"Vdc"});
         }
 
         /// <summary>

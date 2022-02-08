@@ -65,6 +65,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -104,7 +106,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="ApparentPower" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<ApparentPowerUnit> Info { get; }
@@ -199,6 +201,14 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Gigavoltampere, ApparentPowerUnit.Voltampere, quantity => new ApparentPower((quantity.Value) * 1e9d, ApparentPowerUnit.Voltampere));
             unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Kilovoltampere, ApparentPowerUnit.Voltampere, quantity => new ApparentPower((quantity.Value) * 1e3d, ApparentPowerUnit.Voltampere));
             unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Megavoltampere, ApparentPowerUnit.Voltampere, quantity => new ApparentPower((quantity.Value) * 1e6d, ApparentPowerUnit.Voltampere));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ApparentPowerUnit.Gigavoltampere, new CultureInfo("en-US"), new string[]{"GVA"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ApparentPowerUnit.Kilovoltampere, new CultureInfo("en-US"), new string[]{"kVA"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ApparentPowerUnit.Megavoltampere, new CultureInfo("en-US"), new string[]{"MVA"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ApparentPowerUnit.Voltampere, new CultureInfo("en-US"), new string[]{"VA"});
         }
 
         /// <summary>

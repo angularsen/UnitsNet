@@ -222,12 +222,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricAdmittanceUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = ElectricAdmittance.Units.FirstOrDefault(u => u != ElectricAdmittance.BaseUnit && u != ElectricAdmittanceUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == ElectricAdmittanceUnit.Undefined)
-                fromUnit = ElectricAdmittance.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = ElectricAdmittance.Units.FirstOrDefault(u => u != ElectricAdmittance.BaseUnit);
 
             var quantity = ElectricAdmittance.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

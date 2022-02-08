@@ -64,6 +64,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -103,7 +105,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="HeatTransferCoefficient" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<HeatTransferCoefficientUnit> Info { get; }
@@ -191,6 +193,13 @@ namespace UnitsNet
             // Register in unit converter: HeatTransferCoefficientUnit -> BaseUnit
             unitConverter.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, quantity => new HeatTransferCoefficient(quantity.Value * 5.6782633411134878, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin));
             unitConverter.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, quantity => new HeatTransferCoefficient(quantity.Value, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, new CultureInfo("en-US"), new string[]{"Btu/ft²·hr·°F"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, new CultureInfo("en-US"), new string[]{"W/m²·°C"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, new CultureInfo("en-US"), new string[]{"W/m²·K"});
         }
 
         /// <summary>

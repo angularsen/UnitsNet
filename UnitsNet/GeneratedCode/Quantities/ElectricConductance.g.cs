@@ -67,6 +67,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -106,7 +108,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="ElectricConductance" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<ElectricConductanceUnit> Info { get; }
@@ -194,6 +196,13 @@ namespace UnitsNet
             // Register in unit converter: ElectricConductanceUnit -> BaseUnit
             unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Microsiemens, ElectricConductanceUnit.Siemens, quantity => new ElectricConductance((quantity.Value) * 1e-6d, ElectricConductanceUnit.Siemens));
             unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Millisiemens, ElectricConductanceUnit.Siemens, quantity => new ElectricConductance((quantity.Value) * 1e-3d, ElectricConductanceUnit.Siemens));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricConductanceUnit.Microsiemens, new CultureInfo("en-US"), new string[]{"µS"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricConductanceUnit.Millisiemens, new CultureInfo("en-US"), new string[]{"mS"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricConductanceUnit.Siemens, new CultureInfo("en-US"), new string[]{"S"});
         }
 
         /// <summary>

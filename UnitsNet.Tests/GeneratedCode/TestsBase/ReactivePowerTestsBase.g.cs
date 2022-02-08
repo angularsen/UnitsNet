@@ -222,12 +222,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ReactivePowerUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = ReactivePower.Units.FirstOrDefault(u => u != ReactivePower.BaseUnit && u != ReactivePowerUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == ReactivePowerUnit.Undefined)
-                fromUnit = ReactivePower.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = ReactivePower.Units.FirstOrDefault(u => u != ReactivePower.BaseUnit);
 
             var quantity = ReactivePower.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

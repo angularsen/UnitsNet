@@ -342,12 +342,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(AngleUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = Angle.Units.FirstOrDefault(u => u != Angle.BaseUnit && u != AngleUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == AngleUnit.Undefined)
-                fromUnit = Angle.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = Angle.Units.FirstOrDefault(u => u != Angle.BaseUnit);
 
             var quantity = Angle.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

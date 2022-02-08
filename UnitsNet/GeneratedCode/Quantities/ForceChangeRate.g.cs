@@ -76,6 +76,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -115,7 +117,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="ForceChangeRate" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<ForceChangeRateUnit> Info { get; }
@@ -287,6 +289,25 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ForceChangeRate>(ForceChangeRateUnit.NewtonPerMinute, ForceChangeRateUnit.NewtonPerSecond, quantity => new ForceChangeRate(quantity.Value/60, ForceChangeRateUnit.NewtonPerSecond));
             unitConverter.SetConversionFunction<ForceChangeRate>(ForceChangeRateUnit.PoundForcePerMinute, ForceChangeRateUnit.NewtonPerSecond, quantity => new ForceChangeRate(quantity.Value*4.4482216152605095551842641431421/60, ForceChangeRateUnit.NewtonPerSecond));
             unitConverter.SetConversionFunction<ForceChangeRate>(ForceChangeRateUnit.PoundForcePerSecond, ForceChangeRateUnit.NewtonPerSecond, quantity => new ForceChangeRate(quantity.Value*4.4482216152605095551842641431421, ForceChangeRateUnit.NewtonPerSecond));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceChangeRateUnit.CentinewtonPerSecond, new CultureInfo("en-US"), new string[]{"cN/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceChangeRateUnit.DecanewtonPerMinute, new CultureInfo("en-US"), new string[]{"daN/min"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceChangeRateUnit.DecanewtonPerSecond, new CultureInfo("en-US"), new string[]{"daN/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceChangeRateUnit.DecinewtonPerSecond, new CultureInfo("en-US"), new string[]{"dN/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceChangeRateUnit.KilonewtonPerMinute, new CultureInfo("en-US"), new string[]{"kN/min"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceChangeRateUnit.KilonewtonPerSecond, new CultureInfo("en-US"), new string[]{"kN/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceChangeRateUnit.KilopoundForcePerMinute, new CultureInfo("en-US"), new string[]{"kipf/min", "kip/min", "k/min"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceChangeRateUnit.KilopoundForcePerSecond, new CultureInfo("en-US"), new string[]{"kipf/s", "kip/s", "k/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceChangeRateUnit.MicronewtonPerSecond, new CultureInfo("en-US"), new string[]{"µN/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceChangeRateUnit.MillinewtonPerSecond, new CultureInfo("en-US"), new string[]{"mN/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceChangeRateUnit.NanonewtonPerSecond, new CultureInfo("en-US"), new string[]{"nN/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceChangeRateUnit.NewtonPerMinute, new CultureInfo("en-US"), new string[]{"N/min"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceChangeRateUnit.NewtonPerSecond, new CultureInfo("en-US"), new string[]{"N/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceChangeRateUnit.PoundForcePerMinute, new CultureInfo("en-US"), new string[]{"lbf/min"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceChangeRateUnit.PoundForcePerSecond, new CultureInfo("en-US"), new string[]{"lbf/s"});
         }
 
         /// <summary>

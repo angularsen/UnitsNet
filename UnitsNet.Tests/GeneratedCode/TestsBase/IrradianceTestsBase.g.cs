@@ -322,12 +322,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(IrradianceUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = Irradiance.Units.FirstOrDefault(u => u != Irradiance.BaseUnit && u != IrradianceUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == IrradianceUnit.Undefined)
-                fromUnit = Irradiance.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = Irradiance.Units.FirstOrDefault(u => u != Irradiance.BaseUnit);
 
             var quantity = Irradiance.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

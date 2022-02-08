@@ -622,12 +622,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(PowerDensityUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = PowerDensity.Units.FirstOrDefault(u => u != PowerDensity.BaseUnit && u != PowerDensityUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == PowerDensityUnit.Undefined)
-                fromUnit = PowerDensity.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = PowerDensity.Units.FirstOrDefault(u => u != PowerDensity.BaseUnit);
 
             var quantity = PowerDensity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

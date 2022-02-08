@@ -71,6 +71,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -110,7 +112,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Temperature" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<TemperatureUnit> Info { get; }
@@ -247,6 +249,20 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Temperature>(TemperatureUnit.DegreeRoemer, TemperatureUnit.Kelvin, quantity => new Temperature(quantity.Value*40/21 + 273.15 - 7.5*40d/21, TemperatureUnit.Kelvin));
             unitConverter.SetConversionFunction<Temperature>(TemperatureUnit.MillidegreeCelsius, TemperatureUnit.Kelvin, quantity => new Temperature(quantity.Value / 1000 + 273.15, TemperatureUnit.Kelvin));
             unitConverter.SetConversionFunction<Temperature>(TemperatureUnit.SolarTemperature, TemperatureUnit.Kelvin, quantity => new Temperature(quantity.Value * 5778, TemperatureUnit.Kelvin));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(TemperatureUnit.DegreeCelsius, new CultureInfo("en-US"), new string[]{"°C"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TemperatureUnit.DegreeDelisle, new CultureInfo("en-US"), new string[]{"°De"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TemperatureUnit.DegreeFahrenheit, new CultureInfo("en-US"), new string[]{"°F"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TemperatureUnit.DegreeNewton, new CultureInfo("en-US"), new string[]{"°N"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TemperatureUnit.DegreeRankine, new CultureInfo("en-US"), new string[]{"°R"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TemperatureUnit.DegreeReaumur, new CultureInfo("en-US"), new string[]{"°Ré"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TemperatureUnit.DegreeRoemer, new CultureInfo("en-US"), new string[]{"°Rø"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TemperatureUnit.Kelvin, new CultureInfo("en-US"), new string[]{"K"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TemperatureUnit.MillidegreeCelsius, new CultureInfo("en-US"), new string[]{"m°C"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TemperatureUnit.SolarTemperature, new CultureInfo("en-US"), new string[]{"T⊙"});
         }
 
         /// <summary>

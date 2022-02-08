@@ -63,6 +63,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -102,7 +104,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="PowerRatio" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<PowerRatioUnit> Info { get; }
@@ -183,6 +185,12 @@ namespace UnitsNet
 
             // Register in unit converter: PowerRatioUnit -> BaseUnit
             unitConverter.SetConversionFunction<PowerRatio>(PowerRatioUnit.DecibelMilliwatt, PowerRatioUnit.DecibelWatt, quantity => new PowerRatio(quantity.Value - 30, PowerRatioUnit.DecibelWatt));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerRatioUnit.DecibelMilliwatt, new CultureInfo("en-US"), new string[]{"dBmW", "dBm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerRatioUnit.DecibelWatt, new CultureInfo("en-US"), new string[]{"dBW"});
         }
 
         /// <summary>

@@ -64,6 +64,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -103,7 +105,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="ReactiveEnergy" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<ReactiveEnergyUnit> Info { get; }
@@ -191,6 +193,13 @@ namespace UnitsNet
             // Register in unit converter: ReactiveEnergyUnit -> BaseUnit
             unitConverter.SetConversionFunction<ReactiveEnergy>(ReactiveEnergyUnit.KilovoltampereReactiveHour, ReactiveEnergyUnit.VoltampereReactiveHour, quantity => new ReactiveEnergy((quantity.Value) * 1e3d, ReactiveEnergyUnit.VoltampereReactiveHour));
             unitConverter.SetConversionFunction<ReactiveEnergy>(ReactiveEnergyUnit.MegavoltampereReactiveHour, ReactiveEnergyUnit.VoltampereReactiveHour, quantity => new ReactiveEnergy((quantity.Value) * 1e6d, ReactiveEnergyUnit.VoltampereReactiveHour));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReactiveEnergyUnit.KilovoltampereReactiveHour, new CultureInfo("en-US"), new string[]{"kvarh"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReactiveEnergyUnit.MegavoltampereReactiveHour, new CultureInfo("en-US"), new string[]{"Mvarh"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReactiveEnergyUnit.VoltampereReactiveHour, new CultureInfo("en-US"), new string[]{"varh"});
         }
 
         /// <summary>

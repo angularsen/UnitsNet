@@ -76,6 +76,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -115,7 +117,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Force" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<ForceUnit> Info { get; }
@@ -287,6 +289,38 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Force>(ForceUnit.PoundForce, ForceUnit.Newton, quantity => new Force(quantity.Value*4.4482216152605095551842641431421, ForceUnit.Newton));
             unitConverter.SetConversionFunction<Force>(ForceUnit.ShortTonForce, ForceUnit.Newton, quantity => new Force(quantity.Value*8.896443230521e3, ForceUnit.Newton));
             unitConverter.SetConversionFunction<Force>(ForceUnit.TonneForce, ForceUnit.Newton, quantity => new Force(quantity.Value*9.80665002864e3, ForceUnit.Newton));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceUnit.Decanewton, new CultureInfo("en-US"), new string[]{"daN"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceUnit.Decanewton, new CultureInfo("ru-RU"), new string[]{"даН"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceUnit.Dyn, new CultureInfo("en-US"), new string[]{"dyn"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceUnit.Dyn, new CultureInfo("ru-RU"), new string[]{"дин"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceUnit.KilogramForce, new CultureInfo("en-US"), new string[]{"kgf"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceUnit.KilogramForce, new CultureInfo("ru-RU"), new string[]{"кгс"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceUnit.Kilonewton, new CultureInfo("en-US"), new string[]{"kN"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceUnit.Kilonewton, new CultureInfo("ru-RU"), new string[]{"кН"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceUnit.KiloPond, new CultureInfo("en-US"), new string[]{"kp"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceUnit.KiloPond, new CultureInfo("ru-RU"), new string[]{"кгс"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceUnit.KilopoundForce, new CultureInfo("en-US"), new string[]{"kipf", "kip", "k"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceUnit.KilopoundForce, new CultureInfo("ru-RU"), new string[]{"кипф", "койка", "К"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceUnit.Meganewton, new CultureInfo("en-US"), new string[]{"MN"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceUnit.Meganewton, new CultureInfo("ru-RU"), new string[]{"МН"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceUnit.Micronewton, new CultureInfo("en-US"), new string[]{"µN"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceUnit.Micronewton, new CultureInfo("ru-RU"), new string[]{"мкН"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceUnit.Millinewton, new CultureInfo("en-US"), new string[]{"mN"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceUnit.Millinewton, new CultureInfo("ru-RU"), new string[]{"мН"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceUnit.Newton, new CultureInfo("en-US"), new string[]{"N"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceUnit.Newton, new CultureInfo("ru-RU"), new string[]{"Н"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceUnit.OunceForce, new CultureInfo("en-US"), new string[]{"ozf"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceUnit.Poundal, new CultureInfo("en-US"), new string[]{"pdl"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceUnit.Poundal, new CultureInfo("ru-RU"), new string[]{"паундаль"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceUnit.PoundForce, new CultureInfo("en-US"), new string[]{"lbf"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceUnit.PoundForce, new CultureInfo("ru-RU"), new string[]{"фунт-сила"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceUnit.ShortTonForce, new CultureInfo("en-US"), new string[]{"tf (short)", "t (US)f", "short tons-force"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceUnit.TonneForce, new CultureInfo("en-US"), new string[]{"tf", "Ton"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ForceUnit.TonneForce, new CultureInfo("ru-RU"), new string[]{"тс"});
         }
 
         /// <summary>

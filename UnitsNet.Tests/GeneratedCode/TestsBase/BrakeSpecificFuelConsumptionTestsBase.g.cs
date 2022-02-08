@@ -212,12 +212,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(BrakeSpecificFuelConsumptionUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = BrakeSpecificFuelConsumption.Units.FirstOrDefault(u => u != BrakeSpecificFuelConsumption.BaseUnit && u != BrakeSpecificFuelConsumptionUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == BrakeSpecificFuelConsumptionUnit.Undefined)
-                fromUnit = BrakeSpecificFuelConsumption.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = BrakeSpecificFuelConsumption.Units.FirstOrDefault(u => u != BrakeSpecificFuelConsumption.BaseUnit);
 
             var quantity = BrakeSpecificFuelConsumption.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

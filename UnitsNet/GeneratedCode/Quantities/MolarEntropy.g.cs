@@ -64,6 +64,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -103,7 +105,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="MolarEntropy" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<MolarEntropyUnit> Info { get; }
@@ -191,6 +193,13 @@ namespace UnitsNet
             // Register in unit converter: MolarEntropyUnit -> BaseUnit
             unitConverter.SetConversionFunction<MolarEntropy>(MolarEntropyUnit.KilojoulePerMoleKelvin, MolarEntropyUnit.JoulePerMoleKelvin, quantity => new MolarEntropy((quantity.Value) * 1e3d, MolarEntropyUnit.JoulePerMoleKelvin));
             unitConverter.SetConversionFunction<MolarEntropy>(MolarEntropyUnit.MegajoulePerMoleKelvin, MolarEntropyUnit.JoulePerMoleKelvin, quantity => new MolarEntropy((quantity.Value) * 1e6d, MolarEntropyUnit.JoulePerMoleKelvin));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(MolarEntropyUnit.JoulePerMoleKelvin, new CultureInfo("en-US"), new string[]{"J/(mol*K)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MolarEntropyUnit.KilojoulePerMoleKelvin, new CultureInfo("en-US"), new string[]{"kJ/(mol*K)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MolarEntropyUnit.MegajoulePerMoleKelvin, new CultureInfo("en-US"), new string[]{"MJ/(mol*K)"});
         }
 
         /// <summary>

@@ -202,12 +202,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(RatioChangeRateUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = RatioChangeRate.Units.FirstOrDefault(u => u != RatioChangeRate.BaseUnit && u != RatioChangeRateUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == RatioChangeRateUnit.Undefined)
-                fromUnit = RatioChangeRate.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = RatioChangeRate.Units.FirstOrDefault(u => u != RatioChangeRate.BaseUnit);
 
             var quantity = RatioChangeRate.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

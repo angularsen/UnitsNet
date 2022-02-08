@@ -282,12 +282,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(TemperatureChangeRateUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = TemperatureChangeRate.Units.FirstOrDefault(u => u != TemperatureChangeRate.BaseUnit && u != TemperatureChangeRateUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == TemperatureChangeRateUnit.Undefined)
-                fromUnit = TemperatureChangeRate.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = TemperatureChangeRate.Units.FirstOrDefault(u => u != TemperatureChangeRate.BaseUnit);
 
             var quantity = TemperatureChangeRate.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

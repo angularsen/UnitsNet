@@ -672,12 +672,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MassConcentrationUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = MassConcentration.Units.FirstOrDefault(u => u != MassConcentration.BaseUnit && u != MassConcentrationUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == MassConcentrationUnit.Undefined)
-                fromUnit = MassConcentration.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = MassConcentration.Units.FirstOrDefault(u => u != MassConcentration.BaseUnit);
 
             var quantity = MassConcentration.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

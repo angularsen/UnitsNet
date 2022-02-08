@@ -362,12 +362,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(HeatFluxUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = HeatFlux.Units.FirstOrDefault(u => u != HeatFlux.BaseUnit && u != HeatFluxUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == HeatFluxUnit.Undefined)
-                fromUnit = HeatFlux.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = HeatFlux.Units.FirstOrDefault(u => u != HeatFlux.BaseUnit);
 
             var quantity = HeatFlux.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

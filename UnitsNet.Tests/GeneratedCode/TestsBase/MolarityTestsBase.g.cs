@@ -262,12 +262,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MolarityUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = Molarity.Units.FirstOrDefault(u => u != Molarity.BaseUnit && u != MolarityUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == MolarityUnit.Undefined)
-                fromUnit = Molarity.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = Molarity.Units.FirstOrDefault(u => u != Molarity.BaseUnit);
 
             var quantity = Molarity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

@@ -322,12 +322,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(PressureChangeRateUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = PressureChangeRate.Units.FirstOrDefault(u => u != PressureChangeRate.BaseUnit && u != PressureChangeRateUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == PressureChangeRateUnit.Undefined)
-                fromUnit = PressureChangeRate.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = PressureChangeRate.Units.FirstOrDefault(u => u != PressureChangeRate.BaseUnit);
 
             var quantity = PressureChangeRate.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

@@ -82,6 +82,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -121,7 +123,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="TorquePerLength" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<TorquePerLengthUnit> Info { get; }
@@ -335,6 +337,34 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.TonneForceCentimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => new TorquePerLength(quantity.Value*98.0665019960652, TorquePerLengthUnit.NewtonMeterPerMeter));
             unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.TonneForceMeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => new TorquePerLength(quantity.Value*9806.65019960653, TorquePerLengthUnit.NewtonMeterPerMeter));
             unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.TonneForceMillimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => new TorquePerLength(quantity.Value*9.80665019960652, TorquePerLengthUnit.NewtonMeterPerMeter));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorquePerLengthUnit.KilogramForceCentimeterPerMeter, new CultureInfo("en-US"), new string[]{"kgf·cm/m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorquePerLengthUnit.KilogramForceMeterPerMeter, new CultureInfo("en-US"), new string[]{"kgf·m/m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorquePerLengthUnit.KilogramForceMillimeterPerMeter, new CultureInfo("en-US"), new string[]{"kgf·mm/m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorquePerLengthUnit.KilonewtonCentimeterPerMeter, new CultureInfo("en-US"), new string[]{"kN·cm/m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorquePerLengthUnit.KilonewtonMeterPerMeter, new CultureInfo("en-US"), new string[]{"kN·m/m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorquePerLengthUnit.KilonewtonMeterPerMeter, new CultureInfo("ru-RU"), new string[]{"кН·м/м"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorquePerLengthUnit.KilonewtonMillimeterPerMeter, new CultureInfo("en-US"), new string[]{"kN·mm/m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorquePerLengthUnit.KilopoundForceFootPerFoot, new CultureInfo("en-US"), new string[]{"kipf·ft/ft"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorquePerLengthUnit.KilopoundForceInchPerFoot, new CultureInfo("en-US"), new string[]{"kipf·in/ft"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorquePerLengthUnit.MeganewtonCentimeterPerMeter, new CultureInfo("en-US"), new string[]{"MN·cm/m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorquePerLengthUnit.MeganewtonMeterPerMeter, new CultureInfo("en-US"), new string[]{"MN·m/m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorquePerLengthUnit.MeganewtonMeterPerMeter, new CultureInfo("ru-RU"), new string[]{"МН·м/м"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorquePerLengthUnit.MeganewtonMillimeterPerMeter, new CultureInfo("en-US"), new string[]{"MN·mm/m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorquePerLengthUnit.MegapoundForceFootPerFoot, new CultureInfo("en-US"), new string[]{"Mlbf·ft/ft"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorquePerLengthUnit.MegapoundForceInchPerFoot, new CultureInfo("en-US"), new string[]{"Mlbf·in/ft"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorquePerLengthUnit.NewtonCentimeterPerMeter, new CultureInfo("en-US"), new string[]{"N·cm/m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorquePerLengthUnit.NewtonMeterPerMeter, new CultureInfo("en-US"), new string[]{"N·m/m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorquePerLengthUnit.NewtonMeterPerMeter, new CultureInfo("ru-RU"), new string[]{"Н·м/м"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorquePerLengthUnit.NewtonMillimeterPerMeter, new CultureInfo("en-US"), new string[]{"N·mm/m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorquePerLengthUnit.PoundForceFootPerFoot, new CultureInfo("en-US"), new string[]{"lbf·ft/ft"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorquePerLengthUnit.PoundForceInchPerFoot, new CultureInfo("en-US"), new string[]{"lbf·in/ft"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorquePerLengthUnit.TonneForceCentimeterPerMeter, new CultureInfo("en-US"), new string[]{"tf·cm/m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorquePerLengthUnit.TonneForceMeterPerMeter, new CultureInfo("en-US"), new string[]{"tf·m/m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TorquePerLengthUnit.TonneForceMillimeterPerMeter, new CultureInfo("en-US"), new string[]{"tf·mm/m"});
         }
 
         /// <summary>

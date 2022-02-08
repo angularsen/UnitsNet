@@ -128,6 +128,14 @@ namespace UnitsNet
                     return false;
             }
         }
+
+        internal static IEnumerable<Type> GetQuantityTypes()
+        {");
+            foreach (var quantity in _quantities)
+                Writer.WL($@"
+            yield return typeof({quantity.Name});");
+            Writer.WL(@"
+        }
     }
 }");
             return Writer.ToString();

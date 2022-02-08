@@ -64,7 +64,7 @@ namespace UnitsNet
         /// <returns>Unit enum value, such as <see cref="MassUnit.Kilogram" />.</returns>
         /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
-        public Enum Parse(string unitAbbreviation, Type unitType, IFormatProvider? formatProvider = null)
+        public Enum Parse(string? unitAbbreviation, Type unitType, IFormatProvider? formatProvider = null)
         {
             if (unitAbbreviation == null) throw new ArgumentNullException(nameof(unitAbbreviation));
             unitAbbreviation = unitAbbreviation.Trim();

@@ -123,6 +123,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -162,7 +164,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="VolumeFlow" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<VolumeFlowUnit> Info { get; }
@@ -663,6 +665,99 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.UsGallonPerHour, VolumeFlowUnit.CubicMeterPerSecond, quantity => new VolumeFlow(quantity.Value/951019.38848933424, VolumeFlowUnit.CubicMeterPerSecond));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.UsGallonPerMinute, VolumeFlowUnit.CubicMeterPerSecond, quantity => new VolumeFlow(quantity.Value/15850.323141489, VolumeFlowUnit.CubicMeterPerSecond));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.UsGallonPerSecond, VolumeFlowUnit.CubicMeterPerSecond, quantity => new VolumeFlow(quantity.Value/264.1720523581484, VolumeFlowUnit.CubicMeterPerSecond));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.AcreFootPerDay, new CultureInfo("en-US"), new string[]{"af/d"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.AcreFootPerHour, new CultureInfo("en-US"), new string[]{"af/h"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.AcreFootPerMinute, new CultureInfo("en-US"), new string[]{"af/m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.AcreFootPerSecond, new CultureInfo("en-US"), new string[]{"af/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.CentiliterPerDay, new CultureInfo("en-US"), new string[]{"cl/day", "cL/d", "cLPD"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.CentiliterPerHour, new CultureInfo("en-US"), new string[]{"cL/h", "cLPH"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.CentiliterPerHour, new CultureInfo("ru-RU"), new string[]{"сл/ч"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.CentiliterPerMinute, new CultureInfo("en-US"), new string[]{"cL/min", "cLPM"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.CentiliterPerMinute, new CultureInfo("ru-RU"), new string[]{"сл/мин"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.CentiliterPerSecond, new CultureInfo("en-US"), new string[]{"cL/s", "cLPS"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.CentiliterPerSecond, new CultureInfo("ru-RU"), new string[]{"сл/c"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.CubicCentimeterPerMinute, new CultureInfo("en-US"), new string[]{"cm³/min"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.CubicCentimeterPerMinute, new CultureInfo("ru-RU"), new string[]{"см³/мин"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.CubicDecimeterPerMinute, new CultureInfo("en-US"), new string[]{"dm³/min"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.CubicDecimeterPerMinute, new CultureInfo("ru-RU"), new string[]{"дм³/мин"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.CubicFootPerHour, new CultureInfo("en-US"), new string[]{"ft³/h", "cf/hr"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.CubicFootPerMinute, new CultureInfo("en-US"), new string[]{"ft³/min", "CFM"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.CubicFootPerSecond, new CultureInfo("en-US"), new string[]{"ft³/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.CubicMeterPerDay, new CultureInfo("en-US"), new string[]{"m³/d"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.CubicMeterPerHour, new CultureInfo("en-US"), new string[]{"m³/h"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.CubicMeterPerHour, new CultureInfo("ru-RU"), new string[]{"м³/ч"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.CubicMeterPerMinute, new CultureInfo("en-US"), new string[]{"m³/min"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.CubicMeterPerMinute, new CultureInfo("ru-RU"), new string[]{"м³/мин"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.CubicMeterPerSecond, new CultureInfo("en-US"), new string[]{"m³/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.CubicMeterPerSecond, new CultureInfo("ru-RU"), new string[]{"м³/с"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.CubicMillimeterPerSecond, new CultureInfo("en-US"), new string[]{"mm³/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.CubicMillimeterPerSecond, new CultureInfo("ru-RU"), new string[]{"мм³/с"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.CubicYardPerDay, new CultureInfo("en-US"), new string[]{"cy/day"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.CubicYardPerHour, new CultureInfo("en-US"), new string[]{"yd³/h"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.CubicYardPerMinute, new CultureInfo("en-US"), new string[]{"yd³/min"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.CubicYardPerSecond, new CultureInfo("en-US"), new string[]{"yd³/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.DeciliterPerDay, new CultureInfo("en-US"), new string[]{"dl/day", "dL/d", "dLPD"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.DeciliterPerHour, new CultureInfo("en-US"), new string[]{"dL/h", "dLPH"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.DeciliterPerHour, new CultureInfo("ru-RU"), new string[]{"дл/ч"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.DeciliterPerMinute, new CultureInfo("en-US"), new string[]{"dL/min", "dLPM"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.DeciliterPerMinute, new CultureInfo("ru-RU"), new string[]{"дл/мин"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.DeciliterPerSecond, new CultureInfo("en-US"), new string[]{"dL/s", "dLPS"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.DeciliterPerSecond, new CultureInfo("ru-RU"), new string[]{"дл/c"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.KiloliterPerDay, new CultureInfo("en-US"), new string[]{"kl/day", "kL/d", "kLPD"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.KiloliterPerHour, new CultureInfo("en-US"), new string[]{"kL/h", "kLPH"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.KiloliterPerHour, new CultureInfo("ru-RU"), new string[]{"кл/ч"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.KiloliterPerMinute, new CultureInfo("en-US"), new string[]{"kL/min", "kLPM"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.KiloliterPerMinute, new CultureInfo("ru-RU"), new string[]{"кл/мин"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.KiloliterPerSecond, new CultureInfo("en-US"), new string[]{"kL/s", "kLPS"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.KiloliterPerSecond, new CultureInfo("ru-RU"), new string[]{"кл/c"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.KilousGallonPerMinute, new CultureInfo("en-US"), new string[]{"kgal (U.S.)/min", "KGPM"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.LiterPerDay, new CultureInfo("en-US"), new string[]{"l/day", "L/d", "LPD"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.LiterPerHour, new CultureInfo("en-US"), new string[]{"L/h", "LPH"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.LiterPerHour, new CultureInfo("ru-RU"), new string[]{"л/ч"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.LiterPerMinute, new CultureInfo("en-US"), new string[]{"L/min", "LPM"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.LiterPerMinute, new CultureInfo("ru-RU"), new string[]{"л/мин"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.LiterPerSecond, new CultureInfo("en-US"), new string[]{"L/s", "LPS"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.LiterPerSecond, new CultureInfo("ru-RU"), new string[]{"л/c"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.MegaliterPerDay, new CultureInfo("en-US"), new string[]{"Ml/day", "ML/d", "MLPD"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.MegaukGallonPerSecond, new CultureInfo("en-US"), new string[]{"Mgal (imp.)/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.MicroliterPerDay, new CultureInfo("en-US"), new string[]{"µl/day", "µL/d", "µLPD"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.MicroliterPerHour, new CultureInfo("en-US"), new string[]{"µL/h", "µLPH"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.MicroliterPerHour, new CultureInfo("ru-RU"), new string[]{"мкл/ч"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.MicroliterPerMinute, new CultureInfo("en-US"), new string[]{"µL/min", "µLPM"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.MicroliterPerMinute, new CultureInfo("ru-RU"), new string[]{"мкл/мин"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.MicroliterPerSecond, new CultureInfo("en-US"), new string[]{"µL/s", "µLPS"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.MicroliterPerSecond, new CultureInfo("ru-RU"), new string[]{"мкл/c"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.MilliliterPerDay, new CultureInfo("en-US"), new string[]{"ml/day", "mL/d", "mLPD"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.MilliliterPerHour, new CultureInfo("en-US"), new string[]{"mL/h", "mLPH"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.MilliliterPerHour, new CultureInfo("ru-RU"), new string[]{"мл/ч"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.MilliliterPerMinute, new CultureInfo("en-US"), new string[]{"mL/min", "mLPM"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.MilliliterPerMinute, new CultureInfo("ru-RU"), new string[]{"мл/мин"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.MilliliterPerSecond, new CultureInfo("en-US"), new string[]{"mL/s", "mLPS"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.MilliliterPerSecond, new CultureInfo("ru-RU"), new string[]{"мл/c"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.MillionUsGallonPerDay, new CultureInfo("en-US"), new string[]{"MGD"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.NanoliterPerDay, new CultureInfo("en-US"), new string[]{"nl/day", "nL/d", "nLPD"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.NanoliterPerHour, new CultureInfo("en-US"), new string[]{"nL/h", "nLPH"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.NanoliterPerHour, new CultureInfo("ru-RU"), new string[]{"нл/ч"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.NanoliterPerMinute, new CultureInfo("en-US"), new string[]{"nL/min", "nLPM"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.NanoliterPerMinute, new CultureInfo("ru-RU"), new string[]{"нл/мин"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.NanoliterPerSecond, new CultureInfo("en-US"), new string[]{"nL/s", "nLPS"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.NanoliterPerSecond, new CultureInfo("ru-RU"), new string[]{"нл/c"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.OilBarrelPerDay, new CultureInfo("en-US"), new string[]{"bbl/d", "BOPD"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.OilBarrelPerHour, new CultureInfo("en-US"), new string[]{"bbl/hr", "bph"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.OilBarrelPerMinute, new CultureInfo("en-US"), new string[]{"bbl/min", "bpm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.OilBarrelPerSecond, new CultureInfo("en-US"), new string[]{"bbl/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.UkGallonPerDay, new CultureInfo("en-US"), new string[]{"gal (U. K.)/d"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.UkGallonPerHour, new CultureInfo("en-US"), new string[]{"gal (imp.)/h"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.UkGallonPerMinute, new CultureInfo("en-US"), new string[]{"gal (imp.)/min"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.UkGallonPerSecond, new CultureInfo("en-US"), new string[]{"gal (imp.)/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.UsGallonPerDay, new CultureInfo("en-US"), new string[]{"gpd", "gal/d"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.UsGallonPerHour, new CultureInfo("en-US"), new string[]{"gal (U.S.)/h"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.UsGallonPerMinute, new CultureInfo("en-US"), new string[]{"gal (U.S.)/min", "GPM"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowUnit.UsGallonPerSecond, new CultureInfo("en-US"), new string[]{"gal (U.S.)/s"});
         }
 
         /// <summary>

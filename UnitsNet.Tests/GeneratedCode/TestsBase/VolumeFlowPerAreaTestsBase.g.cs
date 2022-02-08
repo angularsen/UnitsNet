@@ -202,12 +202,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(VolumeFlowPerAreaUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = VolumeFlowPerArea.Units.FirstOrDefault(u => u != VolumeFlowPerArea.BaseUnit && u != VolumeFlowPerAreaUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == VolumeFlowPerAreaUnit.Undefined)
-                fromUnit = VolumeFlowPerArea.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = VolumeFlowPerArea.Units.FirstOrDefault(u => u != VolumeFlowPerArea.BaseUnit);
 
             var quantity = VolumeFlowPerArea.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

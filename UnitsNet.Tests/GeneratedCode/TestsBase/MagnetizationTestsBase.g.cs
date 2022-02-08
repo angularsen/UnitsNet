@@ -192,12 +192,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MagnetizationUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = Magnetization.Units.FirstOrDefault(u => u != Magnetization.BaseUnit && u != MagnetizationUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == MagnetizationUnit.Undefined)
-                fromUnit = Magnetization.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = Magnetization.Units.FirstOrDefault(u => u != Magnetization.BaseUnit);
 
             var quantity = Magnetization.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

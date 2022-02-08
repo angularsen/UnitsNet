@@ -112,6 +112,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -151,7 +153,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Volume" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<VolumeUnit> Info { get; }
@@ -575,6 +577,107 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsQuart, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*9.46352946e-4, VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsTablespoon, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*1.478676478125e-5, VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsTeaspoon, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*4.92892159375e-6, VolumeUnit.CubicMeter));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.AcreFoot, new CultureInfo("en-US"), new string[]{"ac-ft", "acre-foot", "acre-feet"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.AuTablespoon, new CultureInfo("en-US"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.AuTablespoon, new CultureInfo("ru-RU"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.AuTablespoon, new CultureInfo("nb-NO"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.BoardFoot, new CultureInfo("en-US"), new string[]{"bf", "board foot", "board feet"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.BoardFoot, new CultureInfo("fr-CA"), new string[]{"pmp", "pied-planche", "pied de planche"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Centiliter, new CultureInfo("en-US"), new string[]{"cl"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Centiliter, new CultureInfo("ru-RU"), new string[]{"сл"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicCentimeter, new CultureInfo("en-US"), new string[]{"cm³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicCentimeter, new CultureInfo("ru-RU"), new string[]{"см³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicDecimeter, new CultureInfo("en-US"), new string[]{"dm³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicDecimeter, new CultureInfo("ru-RU"), new string[]{"дм³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicFoot, new CultureInfo("en-US"), new string[]{"ft³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicFoot, new CultureInfo("ru-RU"), new string[]{"фут³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicHectometer, new CultureInfo("en-US"), new string[]{"hm³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicHectometer, new CultureInfo("ru-RU"), new string[]{"гм³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicInch, new CultureInfo("en-US"), new string[]{"in³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicInch, new CultureInfo("ru-RU"), new string[]{"дюйм³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicKilometer, new CultureInfo("en-US"), new string[]{"km³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicKilometer, new CultureInfo("ru-RU"), new string[]{"км³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicMeter, new CultureInfo("en-US"), new string[]{"m³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicMeter, new CultureInfo("ru-RU"), new string[]{"м³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicMicrometer, new CultureInfo("en-US"), new string[]{"µm³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicMicrometer, new CultureInfo("ru-RU"), new string[]{"мкм³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicMile, new CultureInfo("en-US"), new string[]{"mi³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicMile, new CultureInfo("ru-RU"), new string[]{"миля³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicMillimeter, new CultureInfo("en-US"), new string[]{"mm³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicMillimeter, new CultureInfo("ru-RU"), new string[]{"мм³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicYard, new CultureInfo("en-US"), new string[]{"yd³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicYard, new CultureInfo("ru-RU"), new string[]{"ярд³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.DecausGallon, new CultureInfo("en-US"), new string[]{"dagal (U.S.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.DecausGallon, new CultureInfo("ru-RU"), new string[]{"даАмериканский галлон"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Deciliter, new CultureInfo("en-US"), new string[]{"dl"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Deciliter, new CultureInfo("ru-RU"), new string[]{"дл"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.DeciusGallon, new CultureInfo("en-US"), new string[]{"dgal (U.S.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.DeciusGallon, new CultureInfo("ru-RU"), new string[]{"дАмериканский галлон"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.HectocubicFoot, new CultureInfo("en-US"), new string[]{"hft³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.HectocubicFoot, new CultureInfo("ru-RU"), new string[]{"гфут³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.HectocubicMeter, new CultureInfo("en-US"), new string[]{"hm³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.HectocubicMeter, new CultureInfo("ru-RU"), new string[]{"гм³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Hectoliter, new CultureInfo("en-US"), new string[]{"hl"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Hectoliter, new CultureInfo("ru-RU"), new string[]{"гл"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.HectousGallon, new CultureInfo("en-US"), new string[]{"hgal (U.S.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.HectousGallon, new CultureInfo("ru-RU"), new string[]{"гАмериканский галлон"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.ImperialBeerBarrel, new CultureInfo("en-US"), new string[]{"bl (imp.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.ImperialGallon, new CultureInfo("en-US"), new string[]{"gal (imp.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.ImperialGallon, new CultureInfo("ru-RU"), new string[]{"Английский галлон"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.ImperialOunce, new CultureInfo("en-US"), new string[]{"oz (imp.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.ImperialOunce, new CultureInfo("ru-RU"), new string[]{"Английская унция"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.ImperialPint, new CultureInfo("en-US"), new string[]{"pt (imp.)", "UK pt", "pt", "p"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.KilocubicFoot, new CultureInfo("en-US"), new string[]{"kft³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.KilocubicFoot, new CultureInfo("ru-RU"), new string[]{"кфут³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.KilocubicMeter, new CultureInfo("en-US"), new string[]{"km³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.KilocubicMeter, new CultureInfo("ru-RU"), new string[]{"км³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.KiloimperialGallon, new CultureInfo("en-US"), new string[]{"kgal (imp.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.KiloimperialGallon, new CultureInfo("ru-RU"), new string[]{"кАнглийский галлон"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Kiloliter, new CultureInfo("en-US"), new string[]{"kl"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Kiloliter, new CultureInfo("ru-RU"), new string[]{"кл"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.KilousGallon, new CultureInfo("en-US"), new string[]{"kgal (U.S.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.KilousGallon, new CultureInfo("ru-RU"), new string[]{"кАмериканский галлон"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Liter, new CultureInfo("en-US"), new string[]{"l"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Liter, new CultureInfo("ru-RU"), new string[]{"л"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MegacubicFoot, new CultureInfo("en-US"), new string[]{"Mft³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MegacubicFoot, new CultureInfo("ru-RU"), new string[]{"Мфут³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MegaimperialGallon, new CultureInfo("en-US"), new string[]{"Mgal (imp.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MegaimperialGallon, new CultureInfo("ru-RU"), new string[]{"МАнглийский галлон"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Megaliter, new CultureInfo("en-US"), new string[]{"Ml"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Megaliter, new CultureInfo("ru-RU"), new string[]{"Мл"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MegausGallon, new CultureInfo("en-US"), new string[]{"Mgal (U.S.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MegausGallon, new CultureInfo("ru-RU"), new string[]{"МАмериканский галлон"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MetricCup, new CultureInfo("en-US"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MetricTeaspoon, new CultureInfo("en-US"), new string[]{"tsp", "t", "ts", "tspn", "t.", "ts.", "tsp.", "tspn.", "teaspoon"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MetricTeaspoon, new CultureInfo("ru-RU"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MetricTeaspoon, new CultureInfo("nb-NO"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Microliter, new CultureInfo("en-US"), new string[]{"µl"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Microliter, new CultureInfo("ru-RU"), new string[]{"мкл"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Milliliter, new CultureInfo("en-US"), new string[]{"ml"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Milliliter, new CultureInfo("ru-RU"), new string[]{"мл"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.OilBarrel, new CultureInfo("en-US"), new string[]{"bbl"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UkTablespoon, new CultureInfo("en-US"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UkTablespoon, new CultureInfo("ru-RU"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UkTablespoon, new CultureInfo("nb-NO"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsBeerBarrel, new CultureInfo("en-US"), new string[]{"bl (U.S.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsCustomaryCup, new CultureInfo("en-US"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsGallon, new CultureInfo("en-US"), new string[]{"gal (U.S.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsGallon, new CultureInfo("ru-RU"), new string[]{"Американский галлон"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsLegalCup, new CultureInfo("en-US"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsOunce, new CultureInfo("en-US"), new string[]{"oz (U.S.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsOunce, new CultureInfo("ru-RU"), new string[]{"Американская унция"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsPint, new CultureInfo("en-US"), new string[]{"pt (U.S.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsQuart, new CultureInfo("en-US"), new string[]{"qt (U.S.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsTablespoon, new CultureInfo("en-US"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsTablespoon, new CultureInfo("ru-RU"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsTablespoon, new CultureInfo("nb-NO"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsTeaspoon, new CultureInfo("en-US"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsTeaspoon, new CultureInfo("ru-RU"), new string[]{""});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsTeaspoon, new CultureInfo("nb-NO"), new string[]{""});
         }
 
         /// <summary>

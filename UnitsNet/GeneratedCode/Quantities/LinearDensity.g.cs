@@ -78,6 +78,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -117,7 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="LinearDensity" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<LinearDensityUnit> Info { get; }
@@ -282,6 +284,24 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.MilligramPerMillimeter, LinearDensityUnit.KilogramPerMeter, quantity => new LinearDensity((quantity.Value) * 1e-3d, LinearDensityUnit.KilogramPerMeter));
             unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.PoundPerFoot, LinearDensityUnit.KilogramPerMeter, quantity => new LinearDensity(quantity.Value*1.48816394, LinearDensityUnit.KilogramPerMeter));
             unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.PoundPerInch, LinearDensityUnit.KilogramPerMeter, quantity => new LinearDensity(quantity.Value/5.5997415e-2, LinearDensityUnit.KilogramPerMeter));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearDensityUnit.GramPerCentimeter, new CultureInfo("en-US"), new string[]{"g/cm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearDensityUnit.GramPerMeter, new CultureInfo("en-US"), new string[]{"g/m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearDensityUnit.GramPerMillimeter, new CultureInfo("en-US"), new string[]{"g/mm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearDensityUnit.KilogramPerCentimeter, new CultureInfo("en-US"), new string[]{"kg/cm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearDensityUnit.KilogramPerMeter, new CultureInfo("en-US"), new string[]{"kg/m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearDensityUnit.KilogramPerMillimeter, new CultureInfo("en-US"), new string[]{"kg/mm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearDensityUnit.MicrogramPerCentimeter, new CultureInfo("en-US"), new string[]{"µg/cm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearDensityUnit.MicrogramPerMeter, new CultureInfo("en-US"), new string[]{"µg/m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearDensityUnit.MicrogramPerMillimeter, new CultureInfo("en-US"), new string[]{"µg/mm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearDensityUnit.MilligramPerCentimeter, new CultureInfo("en-US"), new string[]{"mg/cm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearDensityUnit.MilligramPerMeter, new CultureInfo("en-US"), new string[]{"mg/m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearDensityUnit.MilligramPerMillimeter, new CultureInfo("en-US"), new string[]{"mg/mm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearDensityUnit.PoundPerFoot, new CultureInfo("en-US"), new string[]{"lb/ft"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LinearDensityUnit.PoundPerInch, new CultureInfo("en-US"), new string[]{"lb/in"});
         }
 
         /// <summary>

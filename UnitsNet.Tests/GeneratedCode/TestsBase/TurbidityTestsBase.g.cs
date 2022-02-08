@@ -192,12 +192,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(TurbidityUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = Turbidity.Units.FirstOrDefault(u => u != Turbidity.BaseUnit && u != TurbidityUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == TurbidityUnit.Undefined)
-                fromUnit = Turbidity.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = Turbidity.Units.FirstOrDefault(u => u != Turbidity.BaseUnit);
 
             var quantity = Turbidity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

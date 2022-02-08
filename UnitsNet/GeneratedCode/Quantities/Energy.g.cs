@@ -97,6 +97,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -136,7 +138,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Energy" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<EnergyUnit> Info { get; }
@@ -455,6 +457,67 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.ThermUs, EnergyUnit.Joule, quantity => new Energy(quantity.Value*1.054804e8, EnergyUnit.Joule));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.WattDay, EnergyUnit.Joule, quantity => new Energy(quantity.Value*24*3600d, EnergyUnit.Joule));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.WattHour, EnergyUnit.Joule, quantity => new Energy(quantity.Value*3600d, EnergyUnit.Joule));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.BritishThermalUnit, new CultureInfo("en-US"), new string[]{"BTU"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.Calorie, new CultureInfo("en-US"), new string[]{"cal"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.DecathermEc, new CultureInfo("en-US"), new string[]{"Dth (E.C.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.DecathermEc, new CultureInfo("ru-RU"), new string[]{"Европейский декатерм"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.DecathermImperial, new CultureInfo("en-US"), new string[]{"Dth (imp.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.DecathermImperial, new CultureInfo("ru-RU"), new string[]{"Английский декатерм"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.DecathermUs, new CultureInfo("en-US"), new string[]{"Dth (U.S.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.DecathermUs, new CultureInfo("ru-RU"), new string[]{"Американский декатерм"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.ElectronVolt, new CultureInfo("en-US"), new string[]{"eV"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.ElectronVolt, new CultureInfo("ru-RU"), new string[]{"эВ"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.Erg, new CultureInfo("en-US"), new string[]{"erg"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.FootPound, new CultureInfo("en-US"), new string[]{"ft·lb"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.GigabritishThermalUnit, new CultureInfo("en-US"), new string[]{"GBTU"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.GigaelectronVolt, new CultureInfo("en-US"), new string[]{"GeV"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.GigaelectronVolt, new CultureInfo("ru-RU"), new string[]{"ГэВ"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.Gigajoule, new CultureInfo("en-US"), new string[]{"GJ"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.GigawattDay, new CultureInfo("en-US"), new string[]{"GWd"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.GigawattDay, new CultureInfo("ru-RU"), new string[]{"ГВт/д"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.GigawattHour, new CultureInfo("en-US"), new string[]{"GWh"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.GigawattHour, new CultureInfo("ru-RU"), new string[]{"ГВт/ч"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.HorsepowerHour, new CultureInfo("en-US"), new string[]{"hp·h"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.Joule, new CultureInfo("en-US"), new string[]{"J"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.KilobritishThermalUnit, new CultureInfo("en-US"), new string[]{"kBTU"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.Kilocalorie, new CultureInfo("en-US"), new string[]{"kcal"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.KiloelectronVolt, new CultureInfo("en-US"), new string[]{"keV"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.KiloelectronVolt, new CultureInfo("ru-RU"), new string[]{"кэВ"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.Kilojoule, new CultureInfo("en-US"), new string[]{"kJ"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.KilowattDay, new CultureInfo("en-US"), new string[]{"kWd"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.KilowattDay, new CultureInfo("ru-RU"), new string[]{"кВт/д"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.KilowattHour, new CultureInfo("en-US"), new string[]{"kWh"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.KilowattHour, new CultureInfo("ru-RU"), new string[]{"кВт/ч"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.MegabritishThermalUnit, new CultureInfo("en-US"), new string[]{"MBTU"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.Megacalorie, new CultureInfo("en-US"), new string[]{"Mcal"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.MegaelectronVolt, new CultureInfo("en-US"), new string[]{"MeV"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.MegaelectronVolt, new CultureInfo("ru-RU"), new string[]{"МэВ"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.Megajoule, new CultureInfo("en-US"), new string[]{"MJ"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.MegawattDay, new CultureInfo("en-US"), new string[]{"MWd"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.MegawattDay, new CultureInfo("ru-RU"), new string[]{"МВт/д"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.MegawattHour, new CultureInfo("en-US"), new string[]{"MWh"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.MegawattHour, new CultureInfo("ru-RU"), new string[]{"МВт/ч"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.Millijoule, new CultureInfo("en-US"), new string[]{"mJ"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.TeraelectronVolt, new CultureInfo("en-US"), new string[]{"TeV"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.TeraelectronVolt, new CultureInfo("ru-RU"), new string[]{"ТэВ"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.TerawattDay, new CultureInfo("en-US"), new string[]{"TWd"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.TerawattDay, new CultureInfo("ru-RU"), new string[]{"ТВт/д"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.TerawattHour, new CultureInfo("en-US"), new string[]{"TWh"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.TerawattHour, new CultureInfo("ru-RU"), new string[]{"ТВт/ч"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.ThermEc, new CultureInfo("en-US"), new string[]{"th (E.C.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.ThermEc, new CultureInfo("ru-RU"), new string[]{"Европейский терм"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.ThermImperial, new CultureInfo("en-US"), new string[]{"th (imp.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.ThermImperial, new CultureInfo("ru-RU"), new string[]{"Английский терм"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.ThermUs, new CultureInfo("en-US"), new string[]{"th (U.S.)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.ThermUs, new CultureInfo("ru-RU"), new string[]{"Американский терм"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.WattDay, new CultureInfo("en-US"), new string[]{"Wd"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.WattDay, new CultureInfo("ru-RU"), new string[]{"Вт/д"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.WattHour, new CultureInfo("en-US"), new string[]{"Wh"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EnergyUnit.WattHour, new CultureInfo("ru-RU"), new string[]{"Вт/ч"});
         }
 
         /// <summary>

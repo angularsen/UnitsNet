@@ -322,12 +322,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(LinearDensityUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = LinearDensity.Units.FirstOrDefault(u => u != LinearDensity.BaseUnit && u != LinearDensityUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == LinearDensityUnit.Undefined)
-                fromUnit = LinearDensity.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = LinearDensity.Units.FirstOrDefault(u => u != LinearDensity.BaseUnit);
 
             var quantity = LinearDensity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

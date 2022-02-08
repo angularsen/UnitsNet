@@ -322,12 +322,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(AreaUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = Area.Units.FirstOrDefault(u => u != Area.BaseUnit && u != AreaUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == AreaUnit.Undefined)
-                fromUnit = Area.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = Area.Units.FirstOrDefault(u => u != Area.BaseUnit);
 
             var quantity = Area.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

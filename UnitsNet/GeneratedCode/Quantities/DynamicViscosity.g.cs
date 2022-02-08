@@ -74,6 +74,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -113,7 +115,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="DynamicViscosity" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<DynamicViscosityUnit> Info { get; }
@@ -250,6 +252,20 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.PoundForceSecondPerSquareInch, DynamicViscosityUnit.NewtonSecondPerMeterSquared, quantity => new DynamicViscosity(quantity.Value * 6.8947572931683613e3, DynamicViscosityUnit.NewtonSecondPerMeterSquared));
             unitConverter.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.PoundPerFootSecond, DynamicViscosityUnit.NewtonSecondPerMeterSquared, quantity => new DynamicViscosity(quantity.Value * 1.4881639, DynamicViscosityUnit.NewtonSecondPerMeterSquared));
             unitConverter.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.Reyn, DynamicViscosityUnit.NewtonSecondPerMeterSquared, quantity => new DynamicViscosity(quantity.Value * 6.8947572931683613e3, DynamicViscosityUnit.NewtonSecondPerMeterSquared));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(DynamicViscosityUnit.Centipoise, new CultureInfo("en-US"), new string[]{"cP"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(DynamicViscosityUnit.MicropascalSecond, new CultureInfo("en-US"), new string[]{"µPa·s", "µPaS"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(DynamicViscosityUnit.MillipascalSecond, new CultureInfo("en-US"), new string[]{"mPa·s", "mPaS"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(DynamicViscosityUnit.NewtonSecondPerMeterSquared, new CultureInfo("en-US"), new string[]{"Ns/m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(DynamicViscosityUnit.PascalSecond, new CultureInfo("en-US"), new string[]{"Pa·s", "PaS"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(DynamicViscosityUnit.Poise, new CultureInfo("en-US"), new string[]{"P"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(DynamicViscosityUnit.PoundForceSecondPerSquareFoot, new CultureInfo("en-US"), new string[]{"lbf·s/ft²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(DynamicViscosityUnit.PoundForceSecondPerSquareInch, new CultureInfo("en-US"), new string[]{"lbf·s/in²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(DynamicViscosityUnit.PoundPerFootSecond, new CultureInfo("en-US"), new string[]{"lb/ft·s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(DynamicViscosityUnit.Reyn, new CultureInfo("en-US"), new string[]{"reyn"});
         }
 
         /// <summary>

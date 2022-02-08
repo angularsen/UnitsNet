@@ -417,12 +417,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(BitRateUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = BitRate.Units.FirstOrDefault(u => u != BitRate.BaseUnit && u != BitRateUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == BitRateUnit.Undefined)
-                fromUnit = BitRate.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = BitRate.Units.FirstOrDefault(u => u != BitRate.BaseUnit);
 
             var quantity = BitRate.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

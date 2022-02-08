@@ -192,12 +192,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(LuminousFluxUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = LuminousFlux.Units.FirstOrDefault(u => u != LuminousFlux.BaseUnit && u != LuminousFluxUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == LuminousFluxUnit.Undefined)
-                fromUnit = LuminousFlux.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = LuminousFlux.Units.FirstOrDefault(u => u != LuminousFlux.BaseUnit);
 
             var quantity = LuminousFlux.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

@@ -78,6 +78,8 @@ namespace UnitsNet
                 },
                 BaseUnit, Zero, BaseDimensions);
 
+            DefaultConversionFunctions = new UnitConverter();
+
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -117,7 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Luminosity" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+        public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<LuminosityUnit> Info { get; }
@@ -282,6 +284,24 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Picowatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e-12d, LuminosityUnit.Watt));
             unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.SolarLuminosity, LuminosityUnit.Watt, quantity => new Luminosity(quantity.Value * 3.846e26, LuminosityUnit.Watt));
             unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Terawatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e12d, LuminosityUnit.Watt));
+        }
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Decawatt, new CultureInfo("en-US"), new string[]{"daW"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Deciwatt, new CultureInfo("en-US"), new string[]{"dW"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Femtowatt, new CultureInfo("en-US"), new string[]{"fW"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Gigawatt, new CultureInfo("en-US"), new string[]{"GW"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Kilowatt, new CultureInfo("en-US"), new string[]{"kW"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Megawatt, new CultureInfo("en-US"), new string[]{"MW"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Microwatt, new CultureInfo("en-US"), new string[]{"µW"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Milliwatt, new CultureInfo("en-US"), new string[]{"mW"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Nanowatt, new CultureInfo("en-US"), new string[]{"nW"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Petawatt, new CultureInfo("en-US"), new string[]{"PW"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Picowatt, new CultureInfo("en-US"), new string[]{"pW"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.SolarLuminosity, new CultureInfo("en-US"), new string[]{"L⊙"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Terawatt, new CultureInfo("en-US"), new string[]{"TW"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Watt, new CultureInfo("en-US"), new string[]{"W"});
         }
 
         /// <summary>
