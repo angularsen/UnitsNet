@@ -212,14 +212,22 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(MolarityUnit.CentimolesPerLiter, new CultureInfo("en-US"), new string[]{"cmol/L", "cM"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MolarityUnit.DecimolesPerLiter, new CultureInfo("en-US"), new string[]{"dmol/L", "dM"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MolarityUnit.MicromolesPerLiter, new CultureInfo("en-US"), new string[]{"µmol/L", "µM"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MolarityUnit.MillimolesPerLiter, new CultureInfo("en-US"), new string[]{"mmol/L", "mM"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MolarityUnit.MolesPerCubicMeter, new CultureInfo("en-US"), new string[]{"mol/m³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MolarityUnit.MolesPerLiter, new CultureInfo("en-US"), new string[]{"mol/L", "M"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MolarityUnit.NanomolesPerLiter, new CultureInfo("en-US"), new string[]{"nmol/L", "nM"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MolarityUnit.PicomolesPerLiter, new CultureInfo("en-US"), new string[]{"pmol/L", "pM"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.CentimolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"cmol/L", "cM"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.CentimolesPerLiter, new CultureInfo("en-US"), false, false, new string[]{"cmol/L", "cM"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.DecimolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"dmol/L", "dM"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.DecimolesPerLiter, new CultureInfo("en-US"), false, false, new string[]{"dmol/L", "dM"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MicromolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"µmol/L", "µM"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MicromolesPerLiter, new CultureInfo("en-US"), false, false, new string[]{"µmol/L", "µM"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MillimolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"mmol/L", "mM"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MillimolesPerLiter, new CultureInfo("en-US"), false, false, new string[]{"mmol/L", "mM"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MolePerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"mol/m³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"mol/L", "M"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MolesPerCubicMeter, new CultureInfo("en-US"), false, false, new string[]{"mol/m³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MolesPerLiter, new CultureInfo("en-US"), false, false, new string[]{"mol/L", "M"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.NanomolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"nmol/L", "nM"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.NanomolesPerLiter, new CultureInfo("en-US"), false, false, new string[]{"nmol/L", "nM"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.PicomolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"pmol/L", "pM"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.PicomolesPerLiter, new CultureInfo("en-US"), false, false, new string[]{"pmol/L", "pM"});
         }
 
         /// <summary>

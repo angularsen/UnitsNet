@@ -174,7 +174,7 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(RelativeHumidityUnit.Percent, new CultureInfo("en-US"), new string[]{"%RH"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RelativeHumidityUnit.Percent, new CultureInfo("en-US"), false, true, new string[]{"%RH"});
         }
 
         /// <summary>

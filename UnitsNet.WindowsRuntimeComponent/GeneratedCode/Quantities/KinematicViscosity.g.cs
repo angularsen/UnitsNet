@@ -217,23 +217,23 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.Centistokes, new CultureInfo("en-US"), new string[]{"cSt"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.Centistokes, new CultureInfo("ru-RU"), new string[]{"сСт"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.Decistokes, new CultureInfo("en-US"), new string[]{"dSt"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.Decistokes, new CultureInfo("ru-RU"), new string[]{"дСт"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.Kilostokes, new CultureInfo("en-US"), new string[]{"kSt"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.Kilostokes, new CultureInfo("ru-RU"), new string[]{"кСт"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.Microstokes, new CultureInfo("en-US"), new string[]{"µSt"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.Microstokes, new CultureInfo("ru-RU"), new string[]{"мкСт"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.Millistokes, new CultureInfo("en-US"), new string[]{"mSt"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.Millistokes, new CultureInfo("ru-RU"), new string[]{"мСт"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.Nanostokes, new CultureInfo("en-US"), new string[]{"nSt"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.Nanostokes, new CultureInfo("ru-RU"), new string[]{"нСт"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.SquareFootPerSecond, new CultureInfo("en-US"), new string[]{"ft²/s"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.SquareMeterPerSecond, new CultureInfo("en-US"), new string[]{"m²/s"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.SquareMeterPerSecond, new CultureInfo("ru-RU"), new string[]{"м²/с"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.Stokes, new CultureInfo("en-US"), new string[]{"St"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.Stokes, new CultureInfo("ru-RU"), new string[]{"Ст"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Centistokes, new CultureInfo("en-US"), false, true, new string[]{"cSt"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Centistokes, new CultureInfo("ru-RU"), false, true, new string[]{"сСт"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Decistokes, new CultureInfo("en-US"), false, true, new string[]{"dSt"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Decistokes, new CultureInfo("ru-RU"), false, true, new string[]{"дСт"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Kilostokes, new CultureInfo("en-US"), false, true, new string[]{"kSt"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Kilostokes, new CultureInfo("ru-RU"), false, true, new string[]{"кСт"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Microstokes, new CultureInfo("en-US"), false, true, new string[]{"µSt"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Microstokes, new CultureInfo("ru-RU"), false, true, new string[]{"мкСт"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Millistokes, new CultureInfo("en-US"), false, true, new string[]{"mSt"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Millistokes, new CultureInfo("ru-RU"), false, true, new string[]{"мСт"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Nanostokes, new CultureInfo("en-US"), false, true, new string[]{"nSt"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Nanostokes, new CultureInfo("ru-RU"), false, true, new string[]{"нСт"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.SquareFootPerSecond, new CultureInfo("en-US"), false, true, new string[]{"ft²/s"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.SquareMeterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"m²/s"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.SquareMeterPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"м²/с"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Stokes, new CultureInfo("en-US"), false, true, new string[]{"St"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Stokes, new CultureInfo("ru-RU"), false, true, new string[]{"Ст"});
         }
 
         /// <summary>

@@ -229,9 +229,9 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(ApparentEnergyUnit.KilovoltampereHour, new CultureInfo("en-US"), new string[]{"kVAh"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ApparentEnergyUnit.MegavoltampereHour, new CultureInfo("en-US"), new string[]{"MVAh"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ApparentEnergyUnit.VoltampereHour, new CultureInfo("en-US"), new string[]{"VAh"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ApparentEnergyUnit.KilovoltampereHour, new CultureInfo("en-US"), false, true, new string[]{"kVAh"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ApparentEnergyUnit.MegavoltampereHour, new CultureInfo("en-US"), false, true, new string[]{"MVAh"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ApparentEnergyUnit.VoltampereHour, new CultureInfo("en-US"), false, true, new string[]{"VAh"});
         }
 
         /// <summary>

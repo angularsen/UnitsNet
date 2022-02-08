@@ -248,11 +248,11 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricChargeUnit.AmpereHour, new CultureInfo("en-US"), new string[]{"A-h", "Ah"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricChargeUnit.Coulomb, new CultureInfo("en-US"), new string[]{"C"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricChargeUnit.KiloampereHour, new CultureInfo("en-US"), new string[]{"kA-h", "kAh"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricChargeUnit.MegaampereHour, new CultureInfo("en-US"), new string[]{"MA-h", "MAh"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricChargeUnit.MilliampereHour, new CultureInfo("en-US"), new string[]{"mA-h", "mAh"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.AmpereHour, new CultureInfo("en-US"), false, true, new string[]{"A-h", "Ah"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.Coulomb, new CultureInfo("en-US"), false, true, new string[]{"C"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.KiloampereHour, new CultureInfo("en-US"), false, true, new string[]{"kA-h", "kAh"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.MegaampereHour, new CultureInfo("en-US"), false, true, new string[]{"MA-h", "MAh"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.MilliampereHour, new CultureInfo("en-US"), false, true, new string[]{"mA-h", "mAh"});
         }
 
         /// <summary>

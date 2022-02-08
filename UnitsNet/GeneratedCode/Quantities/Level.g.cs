@@ -221,8 +221,8 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(LevelUnit.Decibel, new CultureInfo("en-US"), new string[]{"dB"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LevelUnit.Neper, new CultureInfo("en-US"), new string[]{"Np"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LevelUnit.Decibel, new CultureInfo("en-US"), false, true, new string[]{"dB"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LevelUnit.Neper, new CultureInfo("en-US"), false, true, new string[]{"Np"});
         }
 
         /// <summary>

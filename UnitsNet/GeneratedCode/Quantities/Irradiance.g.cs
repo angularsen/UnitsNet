@@ -317,20 +317,20 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(IrradianceUnit.KilowattPerSquareCentimeter, new CultureInfo("en-US"), new string[]{"kW/cm²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(IrradianceUnit.KilowattPerSquareMeter, new CultureInfo("en-US"), new string[]{"kW/m²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(IrradianceUnit.MegawattPerSquareCentimeter, new CultureInfo("en-US"), new string[]{"MW/cm²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(IrradianceUnit.MegawattPerSquareMeter, new CultureInfo("en-US"), new string[]{"MW/m²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(IrradianceUnit.MicrowattPerSquareCentimeter, new CultureInfo("en-US"), new string[]{"µW/cm²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(IrradianceUnit.MicrowattPerSquareMeter, new CultureInfo("en-US"), new string[]{"µW/m²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(IrradianceUnit.MilliwattPerSquareCentimeter, new CultureInfo("en-US"), new string[]{"mW/cm²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(IrradianceUnit.MilliwattPerSquareMeter, new CultureInfo("en-US"), new string[]{"mW/m²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(IrradianceUnit.NanowattPerSquareCentimeter, new CultureInfo("en-US"), new string[]{"nW/cm²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(IrradianceUnit.NanowattPerSquareMeter, new CultureInfo("en-US"), new string[]{"nW/m²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(IrradianceUnit.PicowattPerSquareCentimeter, new CultureInfo("en-US"), new string[]{"pW/cm²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(IrradianceUnit.PicowattPerSquareMeter, new CultureInfo("en-US"), new string[]{"pW/m²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(IrradianceUnit.WattPerSquareCentimeter, new CultureInfo("en-US"), new string[]{"W/cm²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(IrradianceUnit.WattPerSquareMeter, new CultureInfo("en-US"), new string[]{"W/m²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.KilowattPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kW/cm²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.KilowattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kW/m²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.MegawattPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"MW/cm²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.MegawattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"MW/m²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.MicrowattPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"µW/cm²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.MicrowattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"µW/m²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.MilliwattPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"mW/cm²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.MilliwattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"mW/m²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.NanowattPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"nW/cm²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.NanowattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"nW/m²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.PicowattPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"pW/cm²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.PicowattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"pW/m²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.WattPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"W/cm²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.WattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"W/m²"});
         }
 
         /// <summary>

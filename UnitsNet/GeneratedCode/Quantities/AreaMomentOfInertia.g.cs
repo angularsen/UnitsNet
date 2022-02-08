@@ -253,12 +253,12 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(AreaMomentOfInertiaUnit.CentimeterToTheFourth, new CultureInfo("en-US"), new string[]{"cm⁴", "cm^4"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AreaMomentOfInertiaUnit.DecimeterToTheFourth, new CultureInfo("en-US"), new string[]{"dm⁴", "dm^4"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AreaMomentOfInertiaUnit.FootToTheFourth, new CultureInfo("en-US"), new string[]{"ft⁴", "ft^4"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AreaMomentOfInertiaUnit.InchToTheFourth, new CultureInfo("en-US"), new string[]{"in⁴", "in^4"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AreaMomentOfInertiaUnit.MeterToTheFourth, new CultureInfo("en-US"), new string[]{"m⁴", "m^4"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AreaMomentOfInertiaUnit.MillimeterToTheFourth, new CultureInfo("en-US"), new string[]{"mm⁴", "mm^4"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AreaMomentOfInertiaUnit.CentimeterToTheFourth, new CultureInfo("en-US"), false, true, new string[]{"cm⁴", "cm^4"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AreaMomentOfInertiaUnit.DecimeterToTheFourth, new CultureInfo("en-US"), false, true, new string[]{"dm⁴", "dm^4"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AreaMomentOfInertiaUnit.FootToTheFourth, new CultureInfo("en-US"), false, true, new string[]{"ft⁴", "ft^4"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AreaMomentOfInertiaUnit.InchToTheFourth, new CultureInfo("en-US"), false, true, new string[]{"in⁴", "in^4"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AreaMomentOfInertiaUnit.MeterToTheFourth, new CultureInfo("en-US"), false, true, new string[]{"m⁴", "m^4"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AreaMomentOfInertiaUnit.MillimeterToTheFourth, new CultureInfo("en-US"), false, true, new string[]{"mm⁴", "mm^4"});
         }
 
         /// <summary>

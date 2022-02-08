@@ -64,20 +64,11 @@ namespace UnitsNet
         /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
         internal void MapUnitToAbbreviation<TUnitType>(TUnitType unit, IFormatProvider formatProvider, params string[] abbreviations) where TUnitType : Enum
         {
-            // Assuming TUnitType is an enum, this conversion is safe. Seems not possible to enforce this today.
-            // Src: http://stackoverflow.com/questions/908543/how-to-convert-from-system-enum-to-base-integer
-            // http://stackoverflow.com/questions/79126/create-generic-method-constraining-t-to-an-enum
-            var unitValue = Convert.ToInt32(unit);
-            var unitType = typeof(TUnitType);
-
-            PerformAbbreviationMapping(unitType, unitValue, formatProvider, false, true, abbreviations);
+            PerformAbbreviationMapping(unit, formatProvider, false, true, abbreviations);
         }
 
-        private void PerformAbbreviationMapping(Type unitType, int unitValue, IFormatProvider formatProvider, bool setAsDefault, bool allowAbbreviationLookup, [NotNull] params string[] abbreviations)
+        internal void PerformAbbreviationMapping(Enum unitValue, IFormatProvider formatProvider, bool setAsDefault, bool allowAbbreviationLookup, [NotNull] params string[] abbreviations)
         {
-            if (!unitType.Wrap().IsEnum)
-                throw new ArgumentException("Must be an enum type.", nameof(unitType));
-
             if (abbreviations == null)
                 throw new ArgumentNullException(nameof(abbreviations));
 
@@ -86,12 +77,14 @@ namespace UnitsNet
             if (!_lookupsForCulture.TryGetValue(formatProvider, out var quantitiesForProvider))
                 quantitiesForProvider = _lookupsForCulture[formatProvider] = new UnitTypeToLookup();
 
+            var unitType = unitValue.GetType();
             if (!quantitiesForProvider.TryGetValue(unitType, out var unitToAbbreviations))
                 unitToAbbreviations = quantitiesForProvider[unitType] = new UnitValueAbbreviationLookup();
 
+            var unitValueAsInt = Convert.ToInt32(unitValue);
             foreach (var abbr in abbreviations)
             {
-                unitToAbbreviations.Add(unitValue, abbr, setAsDefault, allowAbbreviationLookup);
+                unitToAbbreviations.Add(unitValueAsInt, abbr, setAsDefault, allowAbbreviationLookup);
             }
         }
 

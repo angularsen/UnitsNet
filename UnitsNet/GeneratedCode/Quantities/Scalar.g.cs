@@ -213,7 +213,7 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(ScalarUnit.Amount, new CultureInfo("en-US"), new string[]{""});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ScalarUnit.Amount, new CultureInfo("en-US"), false, true, new string[]{""});
         }
 
         /// <summary>

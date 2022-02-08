@@ -232,9 +232,9 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentDensityUnit.AmperePerSquareFoot, new CultureInfo("en-US"), new string[]{"A/ft²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentDensityUnit.AmperePerSquareInch, new CultureInfo("en-US"), new string[]{"A/in²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentDensityUnit.AmperePerSquareMeter, new CultureInfo("en-US"), new string[]{"A/m²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentDensityUnit.AmperePerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"A/ft²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentDensityUnit.AmperePerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"A/in²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentDensityUnit.AmperePerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"A/m²"});
         }
 
         /// <summary>

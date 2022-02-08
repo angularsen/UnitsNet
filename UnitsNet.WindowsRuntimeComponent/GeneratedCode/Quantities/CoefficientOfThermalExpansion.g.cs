@@ -184,9 +184,9 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, new CultureInfo("en-US"), new string[]{"°C⁻¹", "1/°C"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, new CultureInfo("en-US"), new string[]{"°F⁻¹", "1/°F"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(CoefficientOfThermalExpansionUnit.InverseKelvin, new CultureInfo("en-US"), new string[]{"K⁻¹", "1/K"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"°C⁻¹", "1/°C"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, new CultureInfo("en-US"), false, true, new string[]{"°F⁻¹", "1/°F"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(CoefficientOfThermalExpansionUnit.InverseKelvin, new CultureInfo("en-US"), false, true, new string[]{"K⁻¹", "1/K"});
         }
 
         /// <summary>

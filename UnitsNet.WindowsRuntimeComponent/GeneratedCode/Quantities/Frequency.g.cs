@@ -224,24 +224,24 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.BeatPerMinute, new CultureInfo("en-US"), new string[]{"bpm"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.BUnit, new CultureInfo("en-US"), new string[]{"B Units"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.CyclePerHour, new CultureInfo("en-US"), new string[]{"cph"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.CyclePerMinute, new CultureInfo("en-US"), new string[]{"cpm"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.Gigahertz, new CultureInfo("en-US"), new string[]{"GHz"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.Gigahertz, new CultureInfo("ru-RU"), new string[]{"ГГц"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.Hertz, new CultureInfo("en-US"), new string[]{"Hz"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.Hertz, new CultureInfo("ru-RU"), new string[]{"Гц"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.Kilohertz, new CultureInfo("en-US"), new string[]{"kHz"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.Kilohertz, new CultureInfo("ru-RU"), new string[]{"кГц"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.Megahertz, new CultureInfo("en-US"), new string[]{"MHz"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.Megahertz, new CultureInfo("ru-RU"), new string[]{"МГц"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.PerSecond, new CultureInfo("en-US"), new string[]{"s⁻¹"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.PerSecond, new CultureInfo("ru-RU"), new string[]{"с⁻¹"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.RadianPerSecond, new CultureInfo("en-US"), new string[]{"rad/s"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.RadianPerSecond, new CultureInfo("ru-RU"), new string[]{"рад/с"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.Terahertz, new CultureInfo("en-US"), new string[]{"THz"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(FrequencyUnit.Terahertz, new CultureInfo("ru-RU"), new string[]{"ТГц"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.BeatPerMinute, new CultureInfo("en-US"), false, true, new string[]{"bpm"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.BUnit, new CultureInfo("en-US"), false, true, new string[]{"B Units"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.CyclePerHour, new CultureInfo("en-US"), false, true, new string[]{"cph"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.CyclePerMinute, new CultureInfo("en-US"), false, true, new string[]{"cpm"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Gigahertz, new CultureInfo("en-US"), false, true, new string[]{"GHz"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Gigahertz, new CultureInfo("ru-RU"), false, true, new string[]{"ГГц"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Hertz, new CultureInfo("en-US"), false, true, new string[]{"Hz"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Hertz, new CultureInfo("ru-RU"), false, true, new string[]{"Гц"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Kilohertz, new CultureInfo("en-US"), false, true, new string[]{"kHz"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Kilohertz, new CultureInfo("ru-RU"), false, true, new string[]{"кГц"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Megahertz, new CultureInfo("en-US"), false, true, new string[]{"MHz"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Megahertz, new CultureInfo("ru-RU"), false, true, new string[]{"МГц"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.PerSecond, new CultureInfo("en-US"), false, true, new string[]{"s⁻¹"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.PerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"с⁻¹"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.RadianPerSecond, new CultureInfo("en-US"), false, true, new string[]{"rad/s"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.RadianPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"рад/с"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Terahertz, new CultureInfo("en-US"), false, true, new string[]{"THz"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Terahertz, new CultureInfo("ru-RU"), false, true, new string[]{"ТГц"});
         }
 
         /// <summary>

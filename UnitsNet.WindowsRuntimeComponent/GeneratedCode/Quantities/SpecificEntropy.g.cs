@@ -214,15 +214,15 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEntropyUnit.BtuPerPoundFahrenheit, new CultureInfo("en-US"), new string[]{"BTU/lb·°F", "BTU/lbm·°F"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEntropyUnit.CaloriePerGramKelvin, new CultureInfo("en-US"), new string[]{"cal/g.K"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEntropyUnit.JoulePerKilogramDegreeCelsius, new CultureInfo("en-US"), new string[]{"J/kg.C"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEntropyUnit.JoulePerKilogramKelvin, new CultureInfo("en-US"), new string[]{"J/kg.K"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEntropyUnit.KilocaloriePerGramKelvin, new CultureInfo("en-US"), new string[]{"kcal/g.K"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius, new CultureInfo("en-US"), new string[]{"kJ/kg.C"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEntropyUnit.KilojoulePerKilogramKelvin, new CultureInfo("en-US"), new string[]{"kJ/kg.K"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, new CultureInfo("en-US"), new string[]{"MJ/kg.C"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEntropyUnit.MegajoulePerKilogramKelvin, new CultureInfo("en-US"), new string[]{"MJ/kg.K"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEntropyUnit.BtuPerPoundFahrenheit, new CultureInfo("en-US"), false, true, new string[]{"BTU/lb·°F", "BTU/lbm·°F"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEntropyUnit.CaloriePerGramKelvin, new CultureInfo("en-US"), false, true, new string[]{"cal/g.K"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEntropyUnit.JoulePerKilogramDegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"J/kg.C"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEntropyUnit.JoulePerKilogramKelvin, new CultureInfo("en-US"), false, true, new string[]{"J/kg.K"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEntropyUnit.KilocaloriePerGramKelvin, new CultureInfo("en-US"), false, true, new string[]{"kcal/g.K"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"kJ/kg.C"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEntropyUnit.KilojoulePerKilogramKelvin, new CultureInfo("en-US"), false, true, new string[]{"kJ/kg.K"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"MJ/kg.C"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEntropyUnit.MegajoulePerKilogramKelvin, new CultureInfo("en-US"), false, true, new string[]{"MJ/kg.K"});
         }
 
         /// <summary>

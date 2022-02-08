@@ -242,20 +242,20 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistivityUnit.KiloohmCentimeter, new CultureInfo("en-US"), new string[]{"kΩ·cm"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistivityUnit.KiloohmMeter, new CultureInfo("en-US"), new string[]{"kΩ·m"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistivityUnit.MegaohmCentimeter, new CultureInfo("en-US"), new string[]{"MΩ·cm"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistivityUnit.MegaohmMeter, new CultureInfo("en-US"), new string[]{"MΩ·m"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistivityUnit.MicroohmCentimeter, new CultureInfo("en-US"), new string[]{"µΩ·cm"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistivityUnit.MicroohmMeter, new CultureInfo("en-US"), new string[]{"µΩ·m"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistivityUnit.MilliohmCentimeter, new CultureInfo("en-US"), new string[]{"mΩ·cm"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistivityUnit.MilliohmMeter, new CultureInfo("en-US"), new string[]{"mΩ·m"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistivityUnit.NanoohmCentimeter, new CultureInfo("en-US"), new string[]{"nΩ·cm"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistivityUnit.NanoohmMeter, new CultureInfo("en-US"), new string[]{"nΩ·m"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistivityUnit.OhmCentimeter, new CultureInfo("en-US"), new string[]{"Ω·cm"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistivityUnit.OhmMeter, new CultureInfo("en-US"), new string[]{"Ω·m"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistivityUnit.PicoohmCentimeter, new CultureInfo("en-US"), new string[]{"pΩ·cm"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistivityUnit.PicoohmMeter, new CultureInfo("en-US"), new string[]{"pΩ·m"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.KiloohmCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kΩ·cm"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.KiloohmMeter, new CultureInfo("en-US"), false, true, new string[]{"kΩ·m"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.MegaohmCentimeter, new CultureInfo("en-US"), false, true, new string[]{"MΩ·cm"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.MegaohmMeter, new CultureInfo("en-US"), false, true, new string[]{"MΩ·m"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.MicroohmCentimeter, new CultureInfo("en-US"), false, true, new string[]{"µΩ·cm"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.MicroohmMeter, new CultureInfo("en-US"), false, true, new string[]{"µΩ·m"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.MilliohmCentimeter, new CultureInfo("en-US"), false, true, new string[]{"mΩ·cm"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.MilliohmMeter, new CultureInfo("en-US"), false, true, new string[]{"mΩ·m"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.NanoohmCentimeter, new CultureInfo("en-US"), false, true, new string[]{"nΩ·cm"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.NanoohmMeter, new CultureInfo("en-US"), false, true, new string[]{"nΩ·m"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.OhmCentimeter, new CultureInfo("en-US"), false, true, new string[]{"Ω·cm"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.OhmMeter, new CultureInfo("en-US"), false, true, new string[]{"Ω·m"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.PicoohmCentimeter, new CultureInfo("en-US"), false, true, new string[]{"pΩ·cm"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.PicoohmMeter, new CultureInfo("en-US"), false, true, new string[]{"pΩ·m"});
         }
 
         /// <summary>

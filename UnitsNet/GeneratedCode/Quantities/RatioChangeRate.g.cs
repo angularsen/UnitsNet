@@ -221,8 +221,8 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(RatioChangeRateUnit.DecimalFractionPerSecond, new CultureInfo("en-US"), new string[]{"/s"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RatioChangeRateUnit.PercentPerSecond, new CultureInfo("en-US"), new string[]{"%/s"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RatioChangeRateUnit.DecimalFractionPerSecond, new CultureInfo("en-US"), false, true, new string[]{"/s"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RatioChangeRateUnit.PercentPerSecond, new CultureInfo("en-US"), false, true, new string[]{"%/s"});
         }
 
         /// <summary>

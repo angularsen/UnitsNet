@@ -177,7 +177,7 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricChargeDensityUnit.CoulombPerCubicMeter, new CultureInfo("en-US"), new string[]{"C/m³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeDensityUnit.CoulombPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"C/m³"});
         }
 
         /// <summary>

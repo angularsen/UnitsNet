@@ -240,10 +240,10 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(IlluminanceUnit.Kilolux, new CultureInfo("en-US"), new string[]{"klx"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(IlluminanceUnit.Lux, new CultureInfo("en-US"), new string[]{"lx"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(IlluminanceUnit.Megalux, new CultureInfo("en-US"), new string[]{"Mlx"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(IlluminanceUnit.Millilux, new CultureInfo("en-US"), new string[]{"mlx"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(IlluminanceUnit.Kilolux, new CultureInfo("en-US"), false, true, new string[]{"klx"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(IlluminanceUnit.Lux, new CultureInfo("en-US"), false, true, new string[]{"lx"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(IlluminanceUnit.Megalux, new CultureInfo("en-US"), false, true, new string[]{"Mlx"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(IlluminanceUnit.Millilux, new CultureInfo("en-US"), false, true, new string[]{"mlx"});
         }
 
         /// <summary>

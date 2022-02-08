@@ -242,20 +242,20 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Decawatt, new CultureInfo("en-US"), new string[]{"daW"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Deciwatt, new CultureInfo("en-US"), new string[]{"dW"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Femtowatt, new CultureInfo("en-US"), new string[]{"fW"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Gigawatt, new CultureInfo("en-US"), new string[]{"GW"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Kilowatt, new CultureInfo("en-US"), new string[]{"kW"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Megawatt, new CultureInfo("en-US"), new string[]{"MW"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Microwatt, new CultureInfo("en-US"), new string[]{"µW"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Milliwatt, new CultureInfo("en-US"), new string[]{"mW"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Nanowatt, new CultureInfo("en-US"), new string[]{"nW"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Petawatt, new CultureInfo("en-US"), new string[]{"PW"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Picowatt, new CultureInfo("en-US"), new string[]{"pW"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.SolarLuminosity, new CultureInfo("en-US"), new string[]{"L⊙"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Terawatt, new CultureInfo("en-US"), new string[]{"TW"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Watt, new CultureInfo("en-US"), new string[]{"W"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Decawatt, new CultureInfo("en-US"), false, true, new string[]{"daW"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Deciwatt, new CultureInfo("en-US"), false, true, new string[]{"dW"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Femtowatt, new CultureInfo("en-US"), false, true, new string[]{"fW"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Gigawatt, new CultureInfo("en-US"), false, true, new string[]{"GW"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Kilowatt, new CultureInfo("en-US"), false, true, new string[]{"kW"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Megawatt, new CultureInfo("en-US"), false, true, new string[]{"MW"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Microwatt, new CultureInfo("en-US"), false, true, new string[]{"µW"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Milliwatt, new CultureInfo("en-US"), false, true, new string[]{"mW"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Nanowatt, new CultureInfo("en-US"), false, true, new string[]{"nW"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Petawatt, new CultureInfo("en-US"), false, true, new string[]{"PW"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Picowatt, new CultureInfo("en-US"), false, true, new string[]{"pW"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.SolarLuminosity, new CultureInfo("en-US"), false, true, new string[]{"L⊙"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Terawatt, new CultureInfo("en-US"), false, true, new string[]{"TW"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Watt, new CultureInfo("en-US"), false, true, new string[]{"W"});
         }
 
         /// <summary>

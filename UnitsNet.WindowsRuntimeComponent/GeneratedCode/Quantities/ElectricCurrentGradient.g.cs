@@ -189,10 +189,10 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentGradientUnit.AmperePerMicrosecond, new CultureInfo("en-US"), new string[]{"A/μs"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentGradientUnit.AmperePerMillisecond, new CultureInfo("en-US"), new string[]{"A/ms"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentGradientUnit.AmperePerNanosecond, new CultureInfo("en-US"), new string[]{"A/ns"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentGradientUnit.AmperePerSecond, new CultureInfo("en-US"), new string[]{"A/s"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentGradientUnit.AmperePerMicrosecond, new CultureInfo("en-US"), false, true, new string[]{"A/μs"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentGradientUnit.AmperePerMillisecond, new CultureInfo("en-US"), false, true, new string[]{"A/ms"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentGradientUnit.AmperePerNanosecond, new CultureInfo("en-US"), false, true, new string[]{"A/ns"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentGradientUnit.AmperePerSecond, new CultureInfo("en-US"), false, true, new string[]{"A/s"});
         }
 
         /// <summary>

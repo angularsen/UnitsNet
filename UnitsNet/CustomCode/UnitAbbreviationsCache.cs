@@ -74,7 +74,7 @@ namespace UnitsNet
         [PublicAPI]
         public void MapUnitToAbbreviation<TUnitType>(TUnitType unit, params string[] abbreviations) where TUnitType : Enum
         {
-            MapUnitToAbbreviation(typeof(TUnitType), Convert.ToInt32(unit), CultureInfo.CurrentUICulture, abbreviations);
+            PerformAbbreviationMapping(unit, CultureInfo.CurrentUICulture, false, true, abbreviations);
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace UnitsNet
         /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
         public void MapUnitToDefaultAbbreviation<TUnitType>(TUnitType unit, string abbreviation) where TUnitType : Enum
         {
-            MapUnitToDefaultAbbreviation(typeof(TUnitType), Convert.ToInt32(unit), CultureInfo.CurrentUICulture, abbreviation);
+            PerformAbbreviationMapping(unit, CultureInfo.CurrentUICulture, true, true, abbreviation);
         }
 
         /// <summary>
@@ -102,13 +102,7 @@ namespace UnitsNet
         [PublicAPI]
         public void MapUnitToAbbreviation<TUnitType>(TUnitType unit, IFormatProvider formatProvider, params string[] abbreviations) where TUnitType : Enum
         {
-            // Assuming TUnitType is an enum, this conversion is safe. Seems not possible to enforce this today.
-            // Src: http://stackoverflow.com/questions/908543/how-to-convert-from-system-enum-to-base-integer
-            // http://stackoverflow.com/questions/79126/create-generic-method-constraining-t-to-an-enum
-            var unitValue = Convert.ToInt32(unit);
-            var unitType = typeof(TUnitType);
-
-            MapUnitToAbbreviation(unitType, unitValue, formatProvider, abbreviations);
+            PerformAbbreviationMapping(unit, formatProvider, false, true, abbreviations);
         }
 
         /// <summary>
@@ -123,13 +117,7 @@ namespace UnitsNet
         [PublicAPI]
         public void MapUnitToDefaultAbbreviation<TUnitType>(TUnitType unit, IFormatProvider formatProvider, string abbreviation) where TUnitType : Enum
         {
-            // Assuming TUnitType is an enum, this conversion is safe. Seems not possible to enforce this today.
-            // Src: http://stackoverflow.com/questions/908543/how-to-convert-from-system-enum-to-base-integer
-            // http://stackoverflow.com/questions/79126/create-generic-method-constraining-t-to-an-enum
-            var unitValue = Convert.ToInt32(unit);
-            var unitType = typeof(TUnitType);
-
-            MapUnitToDefaultAbbreviation(unitType, unitValue, formatProvider, abbreviation);
+            PerformAbbreviationMapping(unit, formatProvider, true, true, abbreviation);
         }
 
         /// <summary>
@@ -144,7 +132,8 @@ namespace UnitsNet
         [PublicAPI]
         public void MapUnitToAbbreviation(Type unitType, int unitValue, IFormatProvider formatProvider, [NotNull] params string[] abbreviations)
         {
-            PerformAbbreviationMapping(unitType, unitValue, formatProvider, false, true, abbreviations);
+            var enumValue = (Enum)Enum.ToObject(unitType, unitValue);
+            PerformAbbreviationMapping(enumValue, formatProvider, false, true, abbreviations);
         }
 
         /// <summary>
@@ -159,14 +148,12 @@ namespace UnitsNet
         [PublicAPI]
         public void MapUnitToDefaultAbbreviation(Type unitType, int unitValue, IFormatProvider formatProvider, [NotNull] string abbreviation)
         {
-            PerformAbbreviationMapping(unitType, unitValue, formatProvider, true, true, abbreviation);
+            var enumValue = (Enum)Enum.ToObject(unitType, unitValue);
+            PerformAbbreviationMapping(enumValue, formatProvider, true, true, abbreviation);
         }
 
-        private void PerformAbbreviationMapping(Type unitType, int unitValue, IFormatProvider formatProvider, bool setAsDefault, bool allowAbbreviationLookup, [NotNull] params string[] abbreviations)
+        internal void PerformAbbreviationMapping(Enum unitValue, IFormatProvider formatProvider, bool setAsDefault, bool allowAbbreviationLookup, [NotNull] params string[] abbreviations)
         {
-            if (!unitType.Wrap().IsEnum)
-                throw new ArgumentException("Must be an enum type.", nameof(unitType));
-
             if (abbreviations == null)
                 throw new ArgumentNullException(nameof(abbreviations));
 
@@ -175,12 +162,14 @@ namespace UnitsNet
             if (!_lookupsForCulture.TryGetValue(formatProvider, out var quantitiesForProvider))
                 quantitiesForProvider = _lookupsForCulture[formatProvider] = new UnitTypeToLookup();
 
+            var unitType = unitValue.GetType();
             if (!quantitiesForProvider.TryGetValue(unitType, out var unitToAbbreviations))
                 unitToAbbreviations = quantitiesForProvider[unitType] = new UnitValueAbbreviationLookup();
 
+            var unitValueAsInt = Convert.ToInt32(unitValue);
             foreach (var abbr in abbreviations)
             {
-                unitToAbbreviations.Add(unitValue, abbr, setAsDefault, allowAbbreviationLookup);
+                unitToAbbreviations.Add(unitValueAsInt, abbr, setAsDefault, allowAbbreviationLookup);
             }
         }
 

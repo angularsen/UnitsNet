@@ -245,11 +245,11 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialAcUnit.KilovoltAc, new CultureInfo("en-US"), new string[]{"kVac"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialAcUnit.MegavoltAc, new CultureInfo("en-US"), new string[]{"MVac"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialAcUnit.MicrovoltAc, new CultureInfo("en-US"), new string[]{"µVac"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialAcUnit.MillivoltAc, new CultureInfo("en-US"), new string[]{"mVac"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialAcUnit.VoltAc, new CultureInfo("en-US"), new string[]{"Vac"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialAcUnit.KilovoltAc, new CultureInfo("en-US"), false, true, new string[]{"kVac"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialAcUnit.MegavoltAc, new CultureInfo("en-US"), false, true, new string[]{"MVac"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialAcUnit.MicrovoltAc, new CultureInfo("en-US"), false, true, new string[]{"µVac"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialAcUnit.MillivoltAc, new CultureInfo("en-US"), false, true, new string[]{"mVac"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialAcUnit.VoltAc, new CultureInfo("en-US"), false, true, new string[]{"Vac"});
         }
 
         /// <summary>

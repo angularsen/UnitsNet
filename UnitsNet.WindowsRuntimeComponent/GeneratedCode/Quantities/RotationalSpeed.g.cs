@@ -234,31 +234,31 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalSpeedUnit.CentiradianPerSecond, new CultureInfo("en-US"), new string[]{"crad/s"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalSpeedUnit.CentiradianPerSecond, new CultureInfo("ru-RU"), new string[]{"срад/с"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalSpeedUnit.DeciradianPerSecond, new CultureInfo("en-US"), new string[]{"drad/s"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalSpeedUnit.DeciradianPerSecond, new CultureInfo("ru-RU"), new string[]{"драд/с"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalSpeedUnit.DegreePerMinute, new CultureInfo("en-US"), new string[]{"°/min", "deg/min"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalSpeedUnit.DegreePerSecond, new CultureInfo("en-US"), new string[]{"°/s", "deg/s"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalSpeedUnit.DegreePerSecond, new CultureInfo("ru-RU"), new string[]{"°/с"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalSpeedUnit.MicrodegreePerSecond, new CultureInfo("en-US"), new string[]{"µ°/s", "µdeg/s"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalSpeedUnit.MicrodegreePerSecond, new CultureInfo("ru-RU"), new string[]{"мк°/с"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalSpeedUnit.MicroradianPerSecond, new CultureInfo("en-US"), new string[]{"µrad/s"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalSpeedUnit.MicroradianPerSecond, new CultureInfo("ru-RU"), new string[]{"мкрад/с"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalSpeedUnit.MillidegreePerSecond, new CultureInfo("en-US"), new string[]{"m°/s", "mdeg/s"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalSpeedUnit.MillidegreePerSecond, new CultureInfo("ru-RU"), new string[]{"м°/с"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalSpeedUnit.MilliradianPerSecond, new CultureInfo("en-US"), new string[]{"mrad/s"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalSpeedUnit.MilliradianPerSecond, new CultureInfo("ru-RU"), new string[]{"мрад/с"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalSpeedUnit.NanodegreePerSecond, new CultureInfo("en-US"), new string[]{"n°/s", "ndeg/s"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalSpeedUnit.NanodegreePerSecond, new CultureInfo("ru-RU"), new string[]{"н°/с"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalSpeedUnit.NanoradianPerSecond, new CultureInfo("en-US"), new string[]{"nrad/s"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalSpeedUnit.NanoradianPerSecond, new CultureInfo("ru-RU"), new string[]{"нрад/с"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalSpeedUnit.RadianPerSecond, new CultureInfo("en-US"), new string[]{"rad/s"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalSpeedUnit.RadianPerSecond, new CultureInfo("ru-RU"), new string[]{"рад/с"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalSpeedUnit.RevolutionPerMinute, new CultureInfo("en-US"), new string[]{"rpm", "r/min"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalSpeedUnit.RevolutionPerMinute, new CultureInfo("ru-RU"), new string[]{"об/мин"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalSpeedUnit.RevolutionPerSecond, new CultureInfo("en-US"), new string[]{"r/s"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalSpeedUnit.RevolutionPerSecond, new CultureInfo("ru-RU"), new string[]{"об/с"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.CentiradianPerSecond, new CultureInfo("en-US"), false, true, new string[]{"crad/s"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.CentiradianPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"срад/с"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.DeciradianPerSecond, new CultureInfo("en-US"), false, true, new string[]{"drad/s"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.DeciradianPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"драд/с"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.DegreePerMinute, new CultureInfo("en-US"), false, true, new string[]{"°/min", "deg/min"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.DegreePerSecond, new CultureInfo("en-US"), false, true, new string[]{"°/s", "deg/s"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.DegreePerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"°/с"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.MicrodegreePerSecond, new CultureInfo("en-US"), false, true, new string[]{"µ°/s", "µdeg/s"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.MicrodegreePerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"мк°/с"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.MicroradianPerSecond, new CultureInfo("en-US"), false, true, new string[]{"µrad/s"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.MicroradianPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"мкрад/с"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.MillidegreePerSecond, new CultureInfo("en-US"), false, true, new string[]{"m°/s", "mdeg/s"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.MillidegreePerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"м°/с"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.MilliradianPerSecond, new CultureInfo("en-US"), false, true, new string[]{"mrad/s"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.MilliradianPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"мрад/с"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.NanodegreePerSecond, new CultureInfo("en-US"), false, true, new string[]{"n°/s", "ndeg/s"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.NanodegreePerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"н°/с"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.NanoradianPerSecond, new CultureInfo("en-US"), false, true, new string[]{"nrad/s"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.NanoradianPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"нрад/с"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.RadianPerSecond, new CultureInfo("en-US"), false, true, new string[]{"rad/s"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.RadianPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"рад/с"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.RevolutionPerMinute, new CultureInfo("en-US"), false, true, new string[]{"rpm", "r/min"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.RevolutionPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"об/мин"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.RevolutionPerSecond, new CultureInfo("en-US"), false, true, new string[]{"r/s"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.RevolutionPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"об/с"});
         }
 
         /// <summary>

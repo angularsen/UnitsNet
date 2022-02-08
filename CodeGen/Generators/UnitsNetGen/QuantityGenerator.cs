@@ -409,7 +409,7 @@ namespace UnitsNet
                         $@"""""";
 
                     Writer.WL($@"
-            unitAbbreviationsCache.MapUnitToAbbreviation({_unitEnumName}.{unit.SingularName}, new CultureInfo(""{localization.Culture}""), new string[]{{{abbreviationParams}}});");
+            unitAbbreviationsCache.PerformAbbreviationMapping({_unitEnumName}.{unit.SingularName}, new CultureInfo(""{localization.Culture}""), false, {unit.AllowAbbreviationLookup.ToString().ToLower()}, new string[]{{{abbreviationParams}}});");
                 }
             }
 

@@ -229,9 +229,9 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificVolumeUnit.CubicFootPerPound, new CultureInfo("en-US"), new string[]{"ft³/lb"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificVolumeUnit.CubicMeterPerKilogram, new CultureInfo("en-US"), new string[]{"m³/kg"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificVolumeUnit.MillicubicMeterPerKilogram, new CultureInfo("en-US"), new string[]{"mm³/kg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificVolumeUnit.CubicFootPerPound, new CultureInfo("en-US"), false, true, new string[]{"ft³/lb"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificVolumeUnit.CubicMeterPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"m³/kg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificVolumeUnit.MillicubicMeterPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"mm³/kg"});
         }
 
         /// <summary>

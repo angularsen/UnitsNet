@@ -277,15 +277,15 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(TemperatureDeltaUnit.DegreeCelsius, new CultureInfo("en-US"), new string[]{"∆°C"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(TemperatureDeltaUnit.DegreeDelisle, new CultureInfo("en-US"), new string[]{"∆°De"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(TemperatureDeltaUnit.DegreeFahrenheit, new CultureInfo("en-US"), new string[]{"∆°F"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(TemperatureDeltaUnit.DegreeNewton, new CultureInfo("en-US"), new string[]{"∆°N"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(TemperatureDeltaUnit.DegreeRankine, new CultureInfo("en-US"), new string[]{"∆°R"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(TemperatureDeltaUnit.DegreeReaumur, new CultureInfo("en-US"), new string[]{"∆°Ré"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(TemperatureDeltaUnit.DegreeRoemer, new CultureInfo("en-US"), new string[]{"∆°Rø"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(TemperatureDeltaUnit.Kelvin, new CultureInfo("en-US"), new string[]{"∆K"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(TemperatureDeltaUnit.MillidegreeCelsius, new CultureInfo("en-US"), new string[]{"∆m°C"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureDeltaUnit.DegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"∆°C"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureDeltaUnit.DegreeDelisle, new CultureInfo("en-US"), false, true, new string[]{"∆°De"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureDeltaUnit.DegreeFahrenheit, new CultureInfo("en-US"), false, true, new string[]{"∆°F"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureDeltaUnit.DegreeNewton, new CultureInfo("en-US"), false, true, new string[]{"∆°N"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureDeltaUnit.DegreeRankine, new CultureInfo("en-US"), false, true, new string[]{"∆°R"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureDeltaUnit.DegreeReaumur, new CultureInfo("en-US"), false, true, new string[]{"∆°Ré"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureDeltaUnit.DegreeRoemer, new CultureInfo("en-US"), false, true, new string[]{"∆°Rø"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureDeltaUnit.Kelvin, new CultureInfo("en-US"), false, true, new string[]{"∆K"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureDeltaUnit.MillidegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"∆m°C"});
         }
 
         /// <summary>

@@ -216,7 +216,7 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(PermeabilityUnit.HenryPerMeter, new CultureInfo("en-US"), new string[]{"H/m"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PermeabilityUnit.HenryPerMeter, new CultureInfo("en-US"), false, true, new string[]{"H/m"});
         }
 
         /// <summary>

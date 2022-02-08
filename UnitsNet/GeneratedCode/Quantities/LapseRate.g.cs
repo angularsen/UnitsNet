@@ -214,7 +214,7 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(LapseRateUnit.DegreeCelsiusPerKilometer, new CultureInfo("en-US"), new string[]{"∆°C/km"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LapseRateUnit.DegreeCelsiusPerKilometer, new CultureInfo("en-US"), false, true, new string[]{"∆°C/km"});
         }
 
         /// <summary>

@@ -227,17 +227,17 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareCentimeter, new CultureInfo("en-US"), new string[]{"cm⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareDecimeter, new CultureInfo("en-US"), new string[]{"dm⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareFoot, new CultureInfo("en-US"), new string[]{"ft⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareInch, new CultureInfo("en-US"), new string[]{"in⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareKilometer, new CultureInfo("en-US"), new string[]{"km⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareMeter, new CultureInfo("en-US"), new string[]{"m⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareMicrometer, new CultureInfo("en-US"), new string[]{"µm⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareMile, new CultureInfo("en-US"), new string[]{"mi⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareMillimeter, new CultureInfo("en-US"), new string[]{"mm⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareYard, new CultureInfo("en-US"), new string[]{"yd⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseUsSurveySquareFoot, new CultureInfo("en-US"), new string[]{"ft⁻² (US)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalAreaUnit.InverseSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"cm⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalAreaUnit.InverseSquareDecimeter, new CultureInfo("en-US"), false, true, new string[]{"dm⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalAreaUnit.InverseSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"ft⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalAreaUnit.InverseSquareInch, new CultureInfo("en-US"), false, true, new string[]{"in⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalAreaUnit.InverseSquareKilometer, new CultureInfo("en-US"), false, true, new string[]{"km⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalAreaUnit.InverseSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"m⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalAreaUnit.InverseSquareMicrometer, new CultureInfo("en-US"), false, true, new string[]{"µm⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalAreaUnit.InverseSquareMile, new CultureInfo("en-US"), false, true, new string[]{"mi⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalAreaUnit.InverseSquareMillimeter, new CultureInfo("en-US"), false, true, new string[]{"mm⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalAreaUnit.InverseSquareYard, new CultureInfo("en-US"), false, true, new string[]{"yd⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalAreaUnit.InverseUsSurveySquareFoot, new CultureInfo("en-US"), false, true, new string[]{"ft⁻² (US)"});
         }
 
         /// <summary>

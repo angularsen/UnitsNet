@@ -221,8 +221,8 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, new CultureInfo("en-US"), new string[]{"CFM/ft²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, new CultureInfo("en-US"), new string[]{"m³/(s·m²)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"CFM/ft²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"m³/(s·m²)"});
         }
 
         /// <summary>

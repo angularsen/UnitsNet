@@ -224,8 +224,8 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(ThermalConductivityUnit.BtuPerHourFootFahrenheit, new CultureInfo("en-US"), new string[]{"BTU/h·ft·°F"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ThermalConductivityUnit.WattPerMeterKelvin, new CultureInfo("en-US"), new string[]{"W/m·K"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ThermalConductivityUnit.BtuPerHourFootFahrenheit, new CultureInfo("en-US"), false, true, new string[]{"BTU/h·ft·°F"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ThermalConductivityUnit.WattPerMeterKelvin, new CultureInfo("en-US"), false, true, new string[]{"W/m·K"});
         }
 
         /// <summary>

@@ -199,12 +199,12 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(WarpingMomentOfInertiaUnit.CentimeterToTheSixth, new CultureInfo("en-US"), new string[]{"cm⁶", "cm^6"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(WarpingMomentOfInertiaUnit.DecimeterToTheSixth, new CultureInfo("en-US"), new string[]{"dm⁶", "dm^6"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(WarpingMomentOfInertiaUnit.FootToTheSixth, new CultureInfo("en-US"), new string[]{"ft⁶", "ft^6"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(WarpingMomentOfInertiaUnit.InchToTheSixth, new CultureInfo("en-US"), new string[]{"in⁶", "in^6"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(WarpingMomentOfInertiaUnit.MeterToTheSixth, new CultureInfo("en-US"), new string[]{"m⁶", "m^6"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, new CultureInfo("en-US"), new string[]{"mm⁶", "mm^6"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(WarpingMomentOfInertiaUnit.CentimeterToTheSixth, new CultureInfo("en-US"), false, true, new string[]{"cm⁶", "cm^6"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(WarpingMomentOfInertiaUnit.DecimeterToTheSixth, new CultureInfo("en-US"), false, true, new string[]{"dm⁶", "dm^6"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(WarpingMomentOfInertiaUnit.FootToTheSixth, new CultureInfo("en-US"), false, true, new string[]{"ft⁶", "ft^6"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(WarpingMomentOfInertiaUnit.InchToTheSixth, new CultureInfo("en-US"), false, true, new string[]{"in⁶", "in^6"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(WarpingMomentOfInertiaUnit.MeterToTheSixth, new CultureInfo("en-US"), false, true, new string[]{"m⁶", "m^6"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, new CultureInfo("en-US"), false, true, new string[]{"mm⁶", "mm^6"});
         }
 
         /// <summary>

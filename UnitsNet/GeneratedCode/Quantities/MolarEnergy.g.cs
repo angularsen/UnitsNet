@@ -229,9 +229,9 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(MolarEnergyUnit.JoulePerMole, new CultureInfo("en-US"), new string[]{"J/mol"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MolarEnergyUnit.KilojoulePerMole, new CultureInfo("en-US"), new string[]{"kJ/mol"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MolarEnergyUnit.MegajoulePerMole, new CultureInfo("en-US"), new string[]{"MJ/mol"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarEnergyUnit.JoulePerMole, new CultureInfo("en-US"), false, true, new string[]{"J/mol"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarEnergyUnit.KilojoulePerMole, new CultureInfo("en-US"), false, true, new string[]{"kJ/mol"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarEnergyUnit.MegajoulePerMole, new CultureInfo("en-US"), false, true, new string[]{"MJ/mol"});
         }
 
         /// <summary>

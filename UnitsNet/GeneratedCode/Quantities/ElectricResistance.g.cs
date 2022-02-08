@@ -253,12 +253,12 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistanceUnit.Gigaohm, new CultureInfo("en-US"), new string[]{"GΩ"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistanceUnit.Kiloohm, new CultureInfo("en-US"), new string[]{"kΩ"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistanceUnit.Megaohm, new CultureInfo("en-US"), new string[]{"MΩ"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistanceUnit.Microohm, new CultureInfo("en-US"), new string[]{"µΩ"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistanceUnit.Milliohm, new CultureInfo("en-US"), new string[]{"mΩ"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistanceUnit.Ohm, new CultureInfo("en-US"), new string[]{"Ω"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistanceUnit.Gigaohm, new CultureInfo("en-US"), false, true, new string[]{"GΩ"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistanceUnit.Kiloohm, new CultureInfo("en-US"), false, true, new string[]{"kΩ"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistanceUnit.Megaohm, new CultureInfo("en-US"), false, true, new string[]{"MΩ"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistanceUnit.Microohm, new CultureInfo("en-US"), false, true, new string[]{"µΩ"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistanceUnit.Milliohm, new CultureInfo("en-US"), false, true, new string[]{"mΩ"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistanceUnit.Ohm, new CultureInfo("en-US"), false, true, new string[]{"Ω"});
         }
 
         /// <summary>

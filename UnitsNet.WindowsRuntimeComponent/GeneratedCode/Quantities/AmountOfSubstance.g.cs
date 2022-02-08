@@ -244,21 +244,21 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.Centimole, new CultureInfo("en-US"), new string[]{"cmol"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.CentipoundMole, new CultureInfo("en-US"), new string[]{"clbmol"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.Decimole, new CultureInfo("en-US"), new string[]{"dmol"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.DecipoundMole, new CultureInfo("en-US"), new string[]{"dlbmol"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.Kilomole, new CultureInfo("en-US"), new string[]{"kmol"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.KilopoundMole, new CultureInfo("en-US"), new string[]{"klbmol"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.Megamole, new CultureInfo("en-US"), new string[]{"Mmol"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.Micromole, new CultureInfo("en-US"), new string[]{"µmol"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.MicropoundMole, new CultureInfo("en-US"), new string[]{"µlbmol"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.Millimole, new CultureInfo("en-US"), new string[]{"mmol"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.MillipoundMole, new CultureInfo("en-US"), new string[]{"mlbmol"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.Mole, new CultureInfo("en-US"), new string[]{"mol"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.Nanomole, new CultureInfo("en-US"), new string[]{"nmol"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.NanopoundMole, new CultureInfo("en-US"), new string[]{"nlbmol"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AmountOfSubstanceUnit.PoundMole, new CultureInfo("en-US"), new string[]{"lbmol"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.Centimole, new CultureInfo("en-US"), false, true, new string[]{"cmol"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.CentipoundMole, new CultureInfo("en-US"), false, true, new string[]{"clbmol"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.Decimole, new CultureInfo("en-US"), false, true, new string[]{"dmol"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.DecipoundMole, new CultureInfo("en-US"), false, true, new string[]{"dlbmol"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.Kilomole, new CultureInfo("en-US"), false, true, new string[]{"kmol"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.KilopoundMole, new CultureInfo("en-US"), false, true, new string[]{"klbmol"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.Megamole, new CultureInfo("en-US"), false, true, new string[]{"Mmol"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.Micromole, new CultureInfo("en-US"), false, true, new string[]{"µmol"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.MicropoundMole, new CultureInfo("en-US"), false, true, new string[]{"µlbmol"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.Millimole, new CultureInfo("en-US"), false, true, new string[]{"mmol"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.MillipoundMole, new CultureInfo("en-US"), false, true, new string[]{"mlbmol"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.Mole, new CultureInfo("en-US"), false, true, new string[]{"mol"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.Nanomole, new CultureInfo("en-US"), false, true, new string[]{"nmol"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.NanopoundMole, new CultureInfo("en-US"), false, true, new string[]{"nlbmol"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.PoundMole, new CultureInfo("en-US"), false, true, new string[]{"lbmol"});
         }
 
         /// <summary>

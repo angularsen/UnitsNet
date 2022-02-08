@@ -204,13 +204,13 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumePerLengthUnit.CubicMeterPerMeter, new CultureInfo("en-US"), new string[]{"m³/m"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumePerLengthUnit.CubicYardPerFoot, new CultureInfo("en-US"), new string[]{"yd³/ft"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumePerLengthUnit.CubicYardPerUsSurveyFoot, new CultureInfo("en-US"), new string[]{"yd³/ftUS"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumePerLengthUnit.LiterPerKilometer, new CultureInfo("en-US"), new string[]{"l/km"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumePerLengthUnit.LiterPerMeter, new CultureInfo("en-US"), new string[]{"l/m"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumePerLengthUnit.LiterPerMillimeter, new CultureInfo("en-US"), new string[]{"l/mm"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumePerLengthUnit.OilBarrelPerFoot, new CultureInfo("en-US"), new string[]{"bbl/ft"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumePerLengthUnit.CubicMeterPerMeter, new CultureInfo("en-US"), false, true, new string[]{"m³/m"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumePerLengthUnit.CubicYardPerFoot, new CultureInfo("en-US"), false, true, new string[]{"yd³/ft"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumePerLengthUnit.CubicYardPerUsSurveyFoot, new CultureInfo("en-US"), false, true, new string[]{"yd³/ftUS"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumePerLengthUnit.LiterPerKilometer, new CultureInfo("en-US"), false, true, new string[]{"l/km"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumePerLengthUnit.LiterPerMeter, new CultureInfo("en-US"), false, true, new string[]{"l/m"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumePerLengthUnit.LiterPerMillimeter, new CultureInfo("en-US"), false, true, new string[]{"l/mm"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumePerLengthUnit.OilBarrelPerFoot, new CultureInfo("en-US"), false, true, new string[]{"bbl/ft"});
         }
 
         /// <summary>

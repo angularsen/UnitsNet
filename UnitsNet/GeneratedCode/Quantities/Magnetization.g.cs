@@ -216,7 +216,7 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(MagnetizationUnit.AmperePerMeter, new CultureInfo("en-US"), new string[]{"A/m"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MagnetizationUnit.AmperePerMeter, new CultureInfo("en-US"), false, true, new string[]{"A/m"});
         }
 
         /// <summary>

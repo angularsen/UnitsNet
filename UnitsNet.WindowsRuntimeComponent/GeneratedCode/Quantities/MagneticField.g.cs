@@ -202,12 +202,12 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(MagneticFieldUnit.Gauss, new CultureInfo("en-US"), new string[]{"G"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MagneticFieldUnit.Microtesla, new CultureInfo("en-US"), new string[]{"µT"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MagneticFieldUnit.Milligauss, new CultureInfo("en-US"), new string[]{"mG"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MagneticFieldUnit.Millitesla, new CultureInfo("en-US"), new string[]{"mT"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MagneticFieldUnit.Nanotesla, new CultureInfo("en-US"), new string[]{"nT"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MagneticFieldUnit.Tesla, new CultureInfo("en-US"), new string[]{"T"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MagneticFieldUnit.Gauss, new CultureInfo("en-US"), false, true, new string[]{"G"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MagneticFieldUnit.Microtesla, new CultureInfo("en-US"), false, true, new string[]{"µT"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MagneticFieldUnit.Milligauss, new CultureInfo("en-US"), false, true, new string[]{"mG"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MagneticFieldUnit.Millitesla, new CultureInfo("en-US"), false, true, new string[]{"mT"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MagneticFieldUnit.Nanotesla, new CultureInfo("en-US"), false, true, new string[]{"nT"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MagneticFieldUnit.Tesla, new CultureInfo("en-US"), false, true, new string[]{"T"});
         }
 
         /// <summary>

@@ -187,9 +187,9 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, new CultureInfo("en-US"), new string[]{"C/cm²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, new CultureInfo("en-US"), new string[]{"C/in²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, new CultureInfo("en-US"), new string[]{"C/m²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"C/cm²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"C/in²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"C/m²"});
         }
 
         /// <summary>

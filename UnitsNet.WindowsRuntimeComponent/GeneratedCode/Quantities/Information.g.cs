@@ -299,32 +299,32 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(InformationUnit.Bit, new CultureInfo("en-US"), new string[]{"b"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(InformationUnit.Byte, new CultureInfo("en-US"), new string[]{"B"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(InformationUnit.Exabit, new CultureInfo("en-US"), new string[]{"Eb"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(InformationUnit.Exabyte, new CultureInfo("en-US"), new string[]{"EB"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(InformationUnit.Exbibit, new CultureInfo("en-US"), new string[]{"Eib"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(InformationUnit.Exbibyte, new CultureInfo("en-US"), new string[]{"EiB"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(InformationUnit.Gibibit, new CultureInfo("en-US"), new string[]{"Gib"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(InformationUnit.Gibibyte, new CultureInfo("en-US"), new string[]{"GiB"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(InformationUnit.Gigabit, new CultureInfo("en-US"), new string[]{"Gb"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(InformationUnit.Gigabyte, new CultureInfo("en-US"), new string[]{"GB"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(InformationUnit.Kibibit, new CultureInfo("en-US"), new string[]{"Kib"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(InformationUnit.Kibibyte, new CultureInfo("en-US"), new string[]{"KiB"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(InformationUnit.Kilobit, new CultureInfo("en-US"), new string[]{"kb"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(InformationUnit.Kilobyte, new CultureInfo("en-US"), new string[]{"kB"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(InformationUnit.Mebibit, new CultureInfo("en-US"), new string[]{"Mib"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(InformationUnit.Mebibyte, new CultureInfo("en-US"), new string[]{"MiB"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(InformationUnit.Megabit, new CultureInfo("en-US"), new string[]{"Mb"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(InformationUnit.Megabyte, new CultureInfo("en-US"), new string[]{"MB"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(InformationUnit.Pebibit, new CultureInfo("en-US"), new string[]{"Pib"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(InformationUnit.Pebibyte, new CultureInfo("en-US"), new string[]{"PiB"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(InformationUnit.Petabit, new CultureInfo("en-US"), new string[]{"Pb"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(InformationUnit.Petabyte, new CultureInfo("en-US"), new string[]{"PB"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(InformationUnit.Tebibit, new CultureInfo("en-US"), new string[]{"Tib"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(InformationUnit.Tebibyte, new CultureInfo("en-US"), new string[]{"TiB"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(InformationUnit.Terabit, new CultureInfo("en-US"), new string[]{"Tb"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(InformationUnit.Terabyte, new CultureInfo("en-US"), new string[]{"TB"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(InformationUnit.Bit, new CultureInfo("en-US"), false, true, new string[]{"b"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(InformationUnit.Byte, new CultureInfo("en-US"), false, true, new string[]{"B"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(InformationUnit.Exabit, new CultureInfo("en-US"), false, true, new string[]{"Eb"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(InformationUnit.Exabyte, new CultureInfo("en-US"), false, true, new string[]{"EB"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(InformationUnit.Exbibit, new CultureInfo("en-US"), false, true, new string[]{"Eib"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(InformationUnit.Exbibyte, new CultureInfo("en-US"), false, true, new string[]{"EiB"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(InformationUnit.Gibibit, new CultureInfo("en-US"), false, true, new string[]{"Gib"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(InformationUnit.Gibibyte, new CultureInfo("en-US"), false, true, new string[]{"GiB"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(InformationUnit.Gigabit, new CultureInfo("en-US"), false, true, new string[]{"Gb"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(InformationUnit.Gigabyte, new CultureInfo("en-US"), false, true, new string[]{"GB"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(InformationUnit.Kibibit, new CultureInfo("en-US"), false, true, new string[]{"Kib"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(InformationUnit.Kibibyte, new CultureInfo("en-US"), false, true, new string[]{"KiB"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(InformationUnit.Kilobit, new CultureInfo("en-US"), false, true, new string[]{"kb"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(InformationUnit.Kilobyte, new CultureInfo("en-US"), false, true, new string[]{"kB"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(InformationUnit.Mebibit, new CultureInfo("en-US"), false, true, new string[]{"Mib"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(InformationUnit.Mebibyte, new CultureInfo("en-US"), false, true, new string[]{"MiB"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(InformationUnit.Megabit, new CultureInfo("en-US"), false, true, new string[]{"Mb"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(InformationUnit.Megabyte, new CultureInfo("en-US"), false, true, new string[]{"MB"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(InformationUnit.Pebibit, new CultureInfo("en-US"), false, true, new string[]{"Pib"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(InformationUnit.Pebibyte, new CultureInfo("en-US"), false, true, new string[]{"PiB"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(InformationUnit.Petabit, new CultureInfo("en-US"), false, true, new string[]{"Pb"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(InformationUnit.Petabyte, new CultureInfo("en-US"), false, true, new string[]{"PB"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(InformationUnit.Tebibit, new CultureInfo("en-US"), false, true, new string[]{"Tib"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(InformationUnit.Tebibyte, new CultureInfo("en-US"), false, true, new string[]{"TiB"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(InformationUnit.Terabit, new CultureInfo("en-US"), false, true, new string[]{"Tb"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(InformationUnit.Terabyte, new CultureInfo("en-US"), false, true, new string[]{"TB"});
         }
 
         /// <summary>

@@ -269,14 +269,14 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentUnit.Ampere, new CultureInfo("en-US"), new string[]{"A"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentUnit.Centiampere, new CultureInfo("en-US"), new string[]{"cA"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentUnit.Kiloampere, new CultureInfo("en-US"), new string[]{"kA"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentUnit.Megaampere, new CultureInfo("en-US"), new string[]{"MA"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentUnit.Microampere, new CultureInfo("en-US"), new string[]{"µA"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentUnit.Milliampere, new CultureInfo("en-US"), new string[]{"mA"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentUnit.Nanoampere, new CultureInfo("en-US"), new string[]{"nA"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentUnit.Picoampere, new CultureInfo("en-US"), new string[]{"pA"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentUnit.Ampere, new CultureInfo("en-US"), false, true, new string[]{"A"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentUnit.Centiampere, new CultureInfo("en-US"), false, true, new string[]{"cA"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentUnit.Kiloampere, new CultureInfo("en-US"), false, true, new string[]{"kA"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentUnit.Megaampere, new CultureInfo("en-US"), false, true, new string[]{"MA"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentUnit.Microampere, new CultureInfo("en-US"), false, true, new string[]{"µA"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentUnit.Milliampere, new CultureInfo("en-US"), false, true, new string[]{"mA"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentUnit.Nanoampere, new CultureInfo("en-US"), false, true, new string[]{"nA"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentUnit.Picoampere, new CultureInfo("en-US"), false, true, new string[]{"pA"});
         }
 
         /// <summary>

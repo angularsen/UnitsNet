@@ -257,23 +257,23 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificWeightUnit.KilogramForcePerCubicCentimeter, new CultureInfo("en-US"), new string[]{"kgf/cm³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificWeightUnit.KilogramForcePerCubicMeter, new CultureInfo("en-US"), new string[]{"kgf/m³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificWeightUnit.KilogramForcePerCubicMillimeter, new CultureInfo("en-US"), new string[]{"kgf/mm³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificWeightUnit.KilonewtonPerCubicCentimeter, new CultureInfo("en-US"), new string[]{"kN/cm³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificWeightUnit.KilonewtonPerCubicMeter, new CultureInfo("en-US"), new string[]{"kN/m³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificWeightUnit.KilonewtonPerCubicMillimeter, new CultureInfo("en-US"), new string[]{"kN/mm³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificWeightUnit.KilopoundForcePerCubicFoot, new CultureInfo("en-US"), new string[]{"kipf/ft³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificWeightUnit.KilopoundForcePerCubicInch, new CultureInfo("en-US"), new string[]{"kipf/in³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificWeightUnit.MeganewtonPerCubicMeter, new CultureInfo("en-US"), new string[]{"MN/m³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificWeightUnit.NewtonPerCubicCentimeter, new CultureInfo("en-US"), new string[]{"N/cm³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificWeightUnit.NewtonPerCubicMeter, new CultureInfo("en-US"), new string[]{"N/m³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificWeightUnit.NewtonPerCubicMillimeter, new CultureInfo("en-US"), new string[]{"N/mm³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificWeightUnit.PoundForcePerCubicFoot, new CultureInfo("en-US"), new string[]{"lbf/ft³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificWeightUnit.PoundForcePerCubicInch, new CultureInfo("en-US"), new string[]{"lbf/in³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificWeightUnit.TonneForcePerCubicCentimeter, new CultureInfo("en-US"), new string[]{"tf/cm³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificWeightUnit.TonneForcePerCubicMeter, new CultureInfo("en-US"), new string[]{"tf/m³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificWeightUnit.TonneForcePerCubicMillimeter, new CultureInfo("en-US"), new string[]{"tf/mm³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.KilogramForcePerCubicCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kgf/cm³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.KilogramForcePerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"kgf/m³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.KilogramForcePerCubicMillimeter, new CultureInfo("en-US"), false, true, new string[]{"kgf/mm³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.KilonewtonPerCubicCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kN/cm³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.KilonewtonPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"kN/m³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.KilonewtonPerCubicMillimeter, new CultureInfo("en-US"), false, true, new string[]{"kN/mm³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.KilopoundForcePerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"kipf/ft³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.KilopoundForcePerCubicInch, new CultureInfo("en-US"), false, true, new string[]{"kipf/in³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.MeganewtonPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"MN/m³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.NewtonPerCubicCentimeter, new CultureInfo("en-US"), false, true, new string[]{"N/cm³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.NewtonPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"N/m³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.NewtonPerCubicMillimeter, new CultureInfo("en-US"), false, true, new string[]{"N/mm³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.PoundForcePerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"lbf/ft³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.PoundForcePerCubicInch, new CultureInfo("en-US"), false, true, new string[]{"lbf/in³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.TonneForcePerCubicCentimeter, new CultureInfo("en-US"), false, true, new string[]{"tf/cm³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.TonneForcePerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"tf/m³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.TonneForcePerCubicMillimeter, new CultureInfo("en-US"), false, true, new string[]{"tf/mm³"});
         }
 
         /// <summary>

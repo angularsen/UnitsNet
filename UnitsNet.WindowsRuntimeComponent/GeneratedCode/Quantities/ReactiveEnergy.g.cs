@@ -184,9 +184,9 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(ReactiveEnergyUnit.KilovoltampereReactiveHour, new CultureInfo("en-US"), new string[]{"kvarh"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ReactiveEnergyUnit.MegavoltampereReactiveHour, new CultureInfo("en-US"), new string[]{"Mvarh"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ReactiveEnergyUnit.VoltampereReactiveHour, new CultureInfo("en-US"), new string[]{"varh"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ReactiveEnergyUnit.KilovoltampereReactiveHour, new CultureInfo("en-US"), false, true, new string[]{"kvarh"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ReactiveEnergyUnit.MegavoltampereReactiveHour, new CultureInfo("en-US"), false, true, new string[]{"Mvarh"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ReactiveEnergyUnit.VoltampereReactiveHour, new CultureInfo("en-US"), false, true, new string[]{"varh"});
         }
 
         /// <summary>
