@@ -210,6 +210,12 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<RatioChangeRate>(RatioChangeRateUnit.PercentPerSecond, RatioChangeRateUnit.DecimalFractionPerSecond, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(RatioChangeRateUnit.DecimalFractionPerSecond, new CultureInfo("en-US"), new string[]{"/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RatioChangeRateUnit.PercentPerSecond, new CultureInfo("en-US"), new string[]{"%/s"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

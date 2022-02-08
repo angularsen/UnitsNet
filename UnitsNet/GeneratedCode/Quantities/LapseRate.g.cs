@@ -203,6 +203,11 @@ namespace UnitsNet
             // Register in unit converter: LapseRateUnit -> BaseUnit
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(LapseRateUnit.DegreeCelsiusPerKilometer, new CultureInfo("en-US"), new string[]{"∆°C/km"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

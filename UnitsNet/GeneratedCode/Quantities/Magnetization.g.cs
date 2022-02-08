@@ -205,6 +205,11 @@ namespace UnitsNet
             // Register in unit converter: MagnetizationUnit -> BaseUnit
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(MagnetizationUnit.AmperePerMeter, new CultureInfo("en-US"), new string[]{"A/m"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

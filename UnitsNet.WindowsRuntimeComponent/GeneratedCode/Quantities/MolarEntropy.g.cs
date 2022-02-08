@@ -182,6 +182,13 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(MolarEntropyUnit.JoulePerMoleKelvin, new CultureInfo("en-US"), new string[]{"J/(mol*K)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MolarEntropyUnit.KilojoulePerMoleKelvin, new CultureInfo("en-US"), new string[]{"kJ/(mol*K)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MolarEntropyUnit.MegajoulePerMoleKelvin, new CultureInfo("en-US"), new string[]{"MJ/(mol*K)"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

@@ -309,6 +309,24 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Terawatt, LuminosityUnit.Watt, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Decawatt, new CultureInfo("en-US"), new string[]{"daW"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Deciwatt, new CultureInfo("en-US"), new string[]{"dW"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Femtowatt, new CultureInfo("en-US"), new string[]{"fW"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Gigawatt, new CultureInfo("en-US"), new string[]{"GW"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Kilowatt, new CultureInfo("en-US"), new string[]{"kW"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Megawatt, new CultureInfo("en-US"), new string[]{"MW"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Microwatt, new CultureInfo("en-US"), new string[]{"µW"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Milliwatt, new CultureInfo("en-US"), new string[]{"mW"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Nanowatt, new CultureInfo("en-US"), new string[]{"nW"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Petawatt, new CultureInfo("en-US"), new string[]{"PW"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Picowatt, new CultureInfo("en-US"), new string[]{"pW"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.SolarLuminosity, new CultureInfo("en-US"), new string[]{"L⊙"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Terawatt, new CultureInfo("en-US"), new string[]{"TW"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminosityUnit.Watt, new CultureInfo("en-US"), new string[]{"W"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

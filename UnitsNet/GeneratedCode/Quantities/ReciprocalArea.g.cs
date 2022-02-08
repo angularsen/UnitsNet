@@ -285,6 +285,21 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseUsSurveySquareFoot, ReciprocalAreaUnit.InverseSquareMeter, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareCentimeter, new CultureInfo("en-US"), new string[]{"cm⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareDecimeter, new CultureInfo("en-US"), new string[]{"dm⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareFoot, new CultureInfo("en-US"), new string[]{"ft⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareInch, new CultureInfo("en-US"), new string[]{"in⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareKilometer, new CultureInfo("en-US"), new string[]{"km⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareMeter, new CultureInfo("en-US"), new string[]{"m⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareMicrometer, new CultureInfo("en-US"), new string[]{"µm⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareMile, new CultureInfo("en-US"), new string[]{"mi⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareMillimeter, new CultureInfo("en-US"), new string[]{"mm⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareYard, new CultureInfo("en-US"), new string[]{"yd⁻²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseUsSurveySquareFoot, new CultureInfo("en-US"), new string[]{"ft⁻² (US)"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

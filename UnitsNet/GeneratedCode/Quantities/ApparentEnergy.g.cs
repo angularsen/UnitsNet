@@ -218,6 +218,13 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.MegavoltampereHour, ApparentEnergyUnit.VoltampereHour, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ApparentEnergyUnit.KilovoltampereHour, new CultureInfo("en-US"), new string[]{"kVAh"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ApparentEnergyUnit.MegavoltampereHour, new CultureInfo("en-US"), new string[]{"MVAh"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ApparentEnergyUnit.VoltampereHour, new CultureInfo("en-US"), new string[]{"VAh"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

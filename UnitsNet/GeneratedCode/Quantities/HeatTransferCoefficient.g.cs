@@ -218,6 +218,13 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, new CultureInfo("en-US"), new string[]{"Btu/ft²·hr·°F"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, new CultureInfo("en-US"), new string[]{"W/m²·°C"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, new CultureInfo("en-US"), new string[]{"W/m²·K"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

@@ -177,6 +177,12 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(LevelUnit.Decibel, new CultureInfo("en-US"), new string[]{"dB"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LevelUnit.Neper, new CultureInfo("en-US"), new string[]{"Np"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

@@ -234,6 +234,15 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricPotentialDc>(ElectricPotentialDcUnit.MillivoltDc, ElectricPotentialDcUnit.VoltDc, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialDcUnit.KilovoltDc, new CultureInfo("en-US"), new string[]{"kVdc"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialDcUnit.MegavoltDc, new CultureInfo("en-US"), new string[]{"MVdc"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialDcUnit.MicrovoltDc, new CultureInfo("en-US"), new string[]{"µVdc"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialDcUnit.MillivoltDc, new CultureInfo("en-US"), new string[]{"mVdc"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialDcUnit.VoltDc, new CultureInfo("en-US"), new string[]{"Vdc"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

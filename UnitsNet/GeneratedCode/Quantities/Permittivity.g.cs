@@ -205,6 +205,11 @@ namespace UnitsNet
             // Register in unit converter: PermittivityUnit -> BaseUnit
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(PermittivityUnit.FaradPerMeter, new CultureInfo("en-US"), new string[]{"F/m"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

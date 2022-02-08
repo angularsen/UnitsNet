@@ -226,6 +226,14 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ReactivePower>(ReactivePowerUnit.MegavoltampereReactive, ReactivePowerUnit.VoltampereReactive, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReactivePowerUnit.GigavoltampereReactive, new CultureInfo("en-US"), new string[]{"Gvar"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReactivePowerUnit.KilovoltampereReactive, new CultureInfo("en-US"), new string[]{"kvar"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReactivePowerUnit.MegavoltampereReactive, new CultureInfo("en-US"), new string[]{"Mvar"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReactivePowerUnit.VoltampereReactive, new CultureInfo("en-US"), new string[]{"var"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

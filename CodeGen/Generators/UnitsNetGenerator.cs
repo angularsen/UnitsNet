@@ -66,7 +66,6 @@ namespace CodeGen.Generators
 
             Log.Information("");
             GenerateIQuantityTests(quantities, $"{testProjectDir}/GeneratedCode/IQuantityTests.g.cs");
-            GenerateUnitAbbreviationsCache(quantities, $"{outputDir}/UnitAbbreviationsCache.g.cs");
             GenerateQuantityType(quantities, $"{outputDir}/QuantityType.g.cs");
             GenerateStaticQuantity(quantities, $"{outputDir}/Quantity.g.cs");
 
@@ -120,13 +119,6 @@ namespace CodeGen.Generators
             var content = new IQuantityTestClassGenerator(quantities).Generate();
             File.WriteAllText(filePath, content);
             Log.Information("✅ IQuantityTests.g.cs");
-        }
-
-        private static void GenerateUnitAbbreviationsCache(Quantity[] quantities, string filePath)
-        {
-            var content = new UnitAbbreviationsCacheGenerator(quantities).Generate();
-            File.WriteAllText(filePath, content);
-            Log.Information("✅ UnitAbbreviationsCache.g.cs");
         }
 
         private static void GenerateQuantityType(Quantity[] quantities, string filePath)

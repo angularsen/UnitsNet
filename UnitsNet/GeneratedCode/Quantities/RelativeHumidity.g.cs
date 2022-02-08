@@ -202,6 +202,11 @@ namespace UnitsNet
             // Register in unit converter: RelativeHumidityUnit -> BaseUnit
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(RelativeHumidityUnit.Percent, new CultureInfo("en-US"), new string[]{"%RH"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

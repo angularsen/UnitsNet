@@ -213,6 +213,12 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ThermalConductivity>(ThermalConductivityUnit.BtuPerHourFootFahrenheit, ThermalConductivityUnit.WattPerMeterKelvin, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ThermalConductivityUnit.BtuPerHourFootFahrenheit, new CultureInfo("en-US"), new string[]{"BTU/h·ft·°F"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ThermalConductivityUnit.WattPerMeterKelvin, new CultureInfo("en-US"), new string[]{"W/m·K"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

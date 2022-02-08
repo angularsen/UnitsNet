@@ -354,6 +354,30 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerMinute, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialChangeRateUnit.KilovoltPerHour, new CultureInfo("en-US"), new string[]{"kV/h"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond, new CultureInfo("en-US"), new string[]{"kV/μs"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialChangeRateUnit.KilovoltPerMinute, new CultureInfo("en-US"), new string[]{"kV/min"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialChangeRateUnit.KilovoltPerSecond, new CultureInfo("en-US"), new string[]{"kV/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialChangeRateUnit.MegavoltPerHour, new CultureInfo("en-US"), new string[]{"MV/h"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond, new CultureInfo("en-US"), new string[]{"MV/μs"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialChangeRateUnit.MegavoltPerMinute, new CultureInfo("en-US"), new string[]{"MV/min"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialChangeRateUnit.MegavoltPerSecond, new CultureInfo("en-US"), new string[]{"MV/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialChangeRateUnit.MicrovoltPerHour, new CultureInfo("en-US"), new string[]{"µV/h"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond, new CultureInfo("en-US"), new string[]{"µV/μs"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialChangeRateUnit.MicrovoltPerMinute, new CultureInfo("en-US"), new string[]{"µV/min"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialChangeRateUnit.MicrovoltPerSecond, new CultureInfo("en-US"), new string[]{"µV/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialChangeRateUnit.MillivoltPerHour, new CultureInfo("en-US"), new string[]{"mV/h"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond, new CultureInfo("en-US"), new string[]{"mV/μs"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialChangeRateUnit.MillivoltPerMinute, new CultureInfo("en-US"), new string[]{"mV/min"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialChangeRateUnit.MillivoltPerSecond, new CultureInfo("en-US"), new string[]{"mV/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialChangeRateUnit.VoltPerHour, new CultureInfo("en-US"), new string[]{"V/h"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialChangeRateUnit.VoltPerMicrosecond, new CultureInfo("en-US"), new string[]{"V/μs"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialChangeRateUnit.VoltPerMinute, new CultureInfo("en-US"), new string[]{"V/min"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialChangeRateUnit.VoltPerSecond, new CultureInfo("en-US"), new string[]{"V/s"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

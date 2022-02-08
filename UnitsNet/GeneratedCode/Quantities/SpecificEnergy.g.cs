@@ -397,6 +397,35 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.WattHourPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.BtuPerPound, new CultureInfo("en-US"), new string[]{"btu/lb"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.CaloriePerGram, new CultureInfo("en-US"), new string[]{"cal/g"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.GigawattDayPerKilogram, new CultureInfo("en-US"), new string[]{"GWd/kg"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.GigawattDayPerShortTon, new CultureInfo("en-US"), new string[]{"GWd/ST"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.GigawattDayPerTonne, new CultureInfo("en-US"), new string[]{"GWd/t"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.GigawattHourPerKilogram, new CultureInfo("en-US"), new string[]{"GWh/kg"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.JoulePerKilogram, new CultureInfo("en-US"), new string[]{"J/kg"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.KilocaloriePerGram, new CultureInfo("en-US"), new string[]{"kcal/g"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.KilojoulePerKilogram, new CultureInfo("en-US"), new string[]{"kJ/kg"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.KilowattDayPerKilogram, new CultureInfo("en-US"), new string[]{"kWd/kg"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.KilowattDayPerShortTon, new CultureInfo("en-US"), new string[]{"kWd/ST"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.KilowattDayPerTonne, new CultureInfo("en-US"), new string[]{"kWd/t"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.KilowattHourPerKilogram, new CultureInfo("en-US"), new string[]{"kWh/kg"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.MegajoulePerKilogram, new CultureInfo("en-US"), new string[]{"MJ/kg"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.MegawattDayPerKilogram, new CultureInfo("en-US"), new string[]{"MWd/kg"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.MegawattDayPerShortTon, new CultureInfo("en-US"), new string[]{"MWd/ST"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.MegawattDayPerTonne, new CultureInfo("en-US"), new string[]{"MWd/t"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.MegawattHourPerKilogram, new CultureInfo("en-US"), new string[]{"MWh/kg"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.TerawattDayPerKilogram, new CultureInfo("en-US"), new string[]{"TWd/kg"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.TerawattDayPerShortTon, new CultureInfo("en-US"), new string[]{"TWd/ST"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.TerawattDayPerTonne, new CultureInfo("en-US"), new string[]{"TWd/t"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.WattDayPerKilogram, new CultureInfo("en-US"), new string[]{"Wd/kg"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.WattDayPerShortTon, new CultureInfo("en-US"), new string[]{"Wd/ST"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.WattDayPerTonne, new CultureInfo("en-US"), new string[]{"Wd/t"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.WattHourPerKilogram, new CultureInfo("en-US"), new string[]{"Wh/kg"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

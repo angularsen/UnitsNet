@@ -226,6 +226,14 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricAdmittance>(ElectricAdmittanceUnit.Nanosiemens, ElectricAdmittanceUnit.Siemens, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricAdmittanceUnit.Microsiemens, new CultureInfo("en-US"), new string[]{"µS"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricAdmittanceUnit.Millisiemens, new CultureInfo("en-US"), new string[]{"mS"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricAdmittanceUnit.Nanosiemens, new CultureInfo("en-US"), new string[]{"nS"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricAdmittanceUnit.Siemens, new CultureInfo("en-US"), new string[]{"S"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

@@ -210,6 +210,12 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Level>(LevelUnit.Neper, LevelUnit.Decibel, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(LevelUnit.Decibel, new CultureInfo("en-US"), new string[]{"dB"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(LevelUnit.Neper, new CultureInfo("en-US"), new string[]{"Np"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

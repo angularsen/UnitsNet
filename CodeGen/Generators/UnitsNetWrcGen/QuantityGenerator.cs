@@ -281,6 +281,25 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {{");
+            foreach(var unit in _quantity.Units)
+            {
+                foreach(var localization in unit.Localization)
+                {
+                    // All units must have a unit abbreviation, so fallback to "" for units with no abbreviations defined in JSON
+                    var abbreviationParams = localization.Abbreviations.Any() ?
+                        string.Join(", ", localization.Abbreviations.Select(abbr => $@"""{abbr}""")) :
+                        $@"""""";
+
+                    Writer.WL($@"
+            unitAbbreviationsCache.MapUnitToAbbreviation({_unitEnumName}.{unit.SingularName}, new CultureInfo(""{localization.Culture}""), new string[]{{{abbreviationParams}}});");
+                }
+            }
+
+            Writer.WL($@"
+        }}
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

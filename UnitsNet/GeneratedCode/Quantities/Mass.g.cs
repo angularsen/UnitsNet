@@ -394,6 +394,70 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Mass>(MassUnit.Tonne, MassUnit.Kilogram, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Centigram, new CultureInfo("en-US"), new string[]{"cg"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Centigram, new CultureInfo("ru-RU"), new string[]{"сг"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Centigram, new CultureInfo("zh-CN"), new string[]{"厘克"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Decagram, new CultureInfo("en-US"), new string[]{"dag"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Decagram, new CultureInfo("ru-RU"), new string[]{"даг"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Decagram, new CultureInfo("zh-CN"), new string[]{"十克"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Decigram, new CultureInfo("en-US"), new string[]{"dg"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Decigram, new CultureInfo("ru-RU"), new string[]{"дг"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Decigram, new CultureInfo("zh-CN"), new string[]{"分克"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.EarthMass, new CultureInfo("en-US"), new string[]{"em"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Grain, new CultureInfo("en-US"), new string[]{"gr"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Gram, new CultureInfo("en-US"), new string[]{"g"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Gram, new CultureInfo("ru-RU"), new string[]{"г"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Gram, new CultureInfo("zh-CN"), new string[]{"克"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Hectogram, new CultureInfo("en-US"), new string[]{"hg"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Hectogram, new CultureInfo("ru-RU"), new string[]{"гг"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Hectogram, new CultureInfo("zh-CN"), new string[]{"百克"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Kilogram, new CultureInfo("en-US"), new string[]{"kg"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Kilogram, new CultureInfo("ru-RU"), new string[]{"кг"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Kilogram, new CultureInfo("zh-CN"), new string[]{"千克"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Kilopound, new CultureInfo("en-US"), new string[]{"klb", "klbs", "klbm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Kilopound, new CultureInfo("ru-RU"), new string[]{"кфунт"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Kilopound, new CultureInfo("zh-CN"), new string[]{"千磅"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Kilotonne, new CultureInfo("en-US"), new string[]{"kt"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Kilotonne, new CultureInfo("ru-RU"), new string[]{"кт"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Kilotonne, new CultureInfo("zh-CN"), new string[]{"千吨"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.LongHundredweight, new CultureInfo("en-US"), new string[]{"cwt"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.LongTon, new CultureInfo("en-US"), new string[]{"long tn"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.LongTon, new CultureInfo("ru-RU"), new string[]{"тонна большая"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.LongTon, new CultureInfo("zh-CN"), new string[]{"长吨"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Megapound, new CultureInfo("en-US"), new string[]{"Mlb", "Mlbs", "Mlbm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Megapound, new CultureInfo("ru-RU"), new string[]{"Мфунт"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Megapound, new CultureInfo("zh-CN"), new string[]{"兆磅"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Megatonne, new CultureInfo("en-US"), new string[]{"Mt"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Megatonne, new CultureInfo("ru-RU"), new string[]{"Мт"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Megatonne, new CultureInfo("zh-CN"), new string[]{"兆吨"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Microgram, new CultureInfo("en-US"), new string[]{"µg"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Microgram, new CultureInfo("ru-RU"), new string[]{"мкг"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Microgram, new CultureInfo("zh-CN"), new string[]{"微克"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Milligram, new CultureInfo("en-US"), new string[]{"mg"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Milligram, new CultureInfo("ru-RU"), new string[]{"мг"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Milligram, new CultureInfo("zh-CN"), new string[]{"毫克"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Nanogram, new CultureInfo("en-US"), new string[]{"ng"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Nanogram, new CultureInfo("ru-RU"), new string[]{"нг"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Nanogram, new CultureInfo("zh-CN"), new string[]{"纳克"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Ounce, new CultureInfo("en-US"), new string[]{"oz"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Ounce, new CultureInfo("zh-CN"), new string[]{"盎司"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Pound, new CultureInfo("en-US"), new string[]{"lb", "lbs", "lbm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Pound, new CultureInfo("ru-RU"), new string[]{"фунт"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Pound, new CultureInfo("zh-CN"), new string[]{"磅"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.ShortHundredweight, new CultureInfo("en-US"), new string[]{"cwt"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.ShortTon, new CultureInfo("en-US"), new string[]{"t (short)", "short tn", "ST"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.ShortTon, new CultureInfo("ru-RU"), new string[]{"тонна малая"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.ShortTon, new CultureInfo("zh-CN"), new string[]{"短吨"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Slug, new CultureInfo("en-US"), new string[]{"slug"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.SolarMass, new CultureInfo("en-US"), new string[]{"M⊙"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Stone, new CultureInfo("en-US"), new string[]{"st"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Tonne, new CultureInfo("en-US"), new string[]{"t"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Tonne, new CultureInfo("ru-RU"), new string[]{"т"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MassUnit.Tonne, new CultureInfo("zh-CN"), new string[]{"吨"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

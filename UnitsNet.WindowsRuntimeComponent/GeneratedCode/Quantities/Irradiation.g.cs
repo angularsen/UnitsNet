@@ -205,6 +205,17 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(IrradiationUnit.JoulePerSquareCentimeter, new CultureInfo("en-US"), new string[]{"J/cm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(IrradiationUnit.JoulePerSquareMeter, new CultureInfo("en-US"), new string[]{"J/m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(IrradiationUnit.JoulePerSquareMillimeter, new CultureInfo("en-US"), new string[]{"J/mm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(IrradiationUnit.KilojoulePerSquareMeter, new CultureInfo("en-US"), new string[]{"kJ/m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(IrradiationUnit.KilowattHourPerSquareMeter, new CultureInfo("en-US"), new string[]{"kWh/m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(IrradiationUnit.MillijoulePerSquareCentimeter, new CultureInfo("en-US"), new string[]{"mJ/cm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(IrradiationUnit.WattHourPerSquareMeter, new CultureInfo("en-US"), new string[]{"Wh/m²"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

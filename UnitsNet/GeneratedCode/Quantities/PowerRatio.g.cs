@@ -210,6 +210,12 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<PowerRatio>(PowerRatioUnit.DecibelMilliwatt, PowerRatioUnit.DecibelWatt, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerRatioUnit.DecibelMilliwatt, new CultureInfo("en-US"), new string[]{"dBmW", "dBm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PowerRatioUnit.DecibelWatt, new CultureInfo("en-US"), new string[]{"dBW"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

@@ -218,6 +218,13 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.MillicubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificVolumeUnit.CubicFootPerPound, new CultureInfo("en-US"), new string[]{"ft³/lb"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificVolumeUnit.CubicMeterPerKilogram, new CultureInfo("en-US"), new string[]{"m³/kg"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificVolumeUnit.MillicubicMeterPerKilogram, new CultureInfo("en-US"), new string[]{"mm³/kg"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

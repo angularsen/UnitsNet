@@ -242,6 +242,16 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Milliohm, ElectricResistanceUnit.Ohm, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistanceUnit.Gigaohm, new CultureInfo("en-US"), new string[]{"GΩ"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistanceUnit.Kiloohm, new CultureInfo("en-US"), new string[]{"kΩ"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistanceUnit.Megaohm, new CultureInfo("en-US"), new string[]{"MΩ"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistanceUnit.Microohm, new CultureInfo("en-US"), new string[]{"µΩ"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistanceUnit.Milliohm, new CultureInfo("en-US"), new string[]{"mΩ"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistanceUnit.Ohm, new CultureInfo("en-US"), new string[]{"Ω"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

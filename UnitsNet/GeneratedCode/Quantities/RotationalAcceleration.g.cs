@@ -226,6 +226,14 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.RevolutionPerSecondSquared, RotationalAccelerationUnit.RadianPerSecondSquared, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalAccelerationUnit.DegreePerSecondSquared, new CultureInfo("en-US"), new string[]{"°/s²", "deg/s²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalAccelerationUnit.RadianPerSecondSquared, new CultureInfo("en-US"), new string[]{"rad/s²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, new CultureInfo("en-US"), new string[]{"rpm/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalAccelerationUnit.RevolutionPerSecondSquared, new CultureInfo("en-US"), new string[]{"r/s²"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

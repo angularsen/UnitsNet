@@ -205,6 +205,11 @@ namespace UnitsNet
             // Register in unit converter: MagneticFluxUnit -> BaseUnit
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(MagneticFluxUnit.Weber, new CultureInfo("en-US"), new string[]{"Wb"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

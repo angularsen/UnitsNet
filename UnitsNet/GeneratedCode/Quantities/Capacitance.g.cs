@@ -253,6 +253,17 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Picofarad, CapacitanceUnit.Farad, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(CapacitanceUnit.Farad, new CultureInfo("en-US"), new string[]{"F"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(CapacitanceUnit.Kilofarad, new CultureInfo("en-US"), new string[]{"kF"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(CapacitanceUnit.Megafarad, new CultureInfo("en-US"), new string[]{"MF"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(CapacitanceUnit.Microfarad, new CultureInfo("en-US"), new string[]{"µF"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(CapacitanceUnit.Millifarad, new CultureInfo("en-US"), new string[]{"mF"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(CapacitanceUnit.Nanofarad, new CultureInfo("en-US"), new string[]{"nF"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(CapacitanceUnit.Picofarad, new CultureInfo("en-US"), new string[]{"pF"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

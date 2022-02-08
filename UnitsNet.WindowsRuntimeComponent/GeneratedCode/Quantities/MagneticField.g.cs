@@ -200,6 +200,16 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(MagneticFieldUnit.Gauss, new CultureInfo("en-US"), new string[]{"G"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MagneticFieldUnit.Microtesla, new CultureInfo("en-US"), new string[]{"µT"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MagneticFieldUnit.Milligauss, new CultureInfo("en-US"), new string[]{"mG"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MagneticFieldUnit.Millitesla, new CultureInfo("en-US"), new string[]{"mT"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MagneticFieldUnit.Nanotesla, new CultureInfo("en-US"), new string[]{"nT"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MagneticFieldUnit.Tesla, new CultureInfo("en-US"), new string[]{"T"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

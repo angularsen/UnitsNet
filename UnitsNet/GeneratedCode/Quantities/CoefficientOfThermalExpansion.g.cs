@@ -218,6 +218,13 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, CoefficientOfThermalExpansionUnit.InverseKelvin, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, new CultureInfo("en-US"), new string[]{"°C⁻¹", "1/°C"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, new CultureInfo("en-US"), new string[]{"°F⁻¹", "1/°F"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(CoefficientOfThermalExpansionUnit.InverseKelvin, new CultureInfo("en-US"), new string[]{"K⁻¹", "1/K"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

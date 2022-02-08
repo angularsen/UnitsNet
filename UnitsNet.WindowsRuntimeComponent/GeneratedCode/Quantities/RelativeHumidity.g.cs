@@ -172,6 +172,11 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(RelativeHumidityUnit.Percent, new CultureInfo("en-US"), new string[]{"%RH"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

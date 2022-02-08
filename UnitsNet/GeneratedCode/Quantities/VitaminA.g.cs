@@ -202,6 +202,11 @@ namespace UnitsNet
             // Register in unit converter: VitaminAUnit -> BaseUnit
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(VitaminAUnit.InternationalUnit, new CultureInfo("en-US"), new string[]{"IU"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

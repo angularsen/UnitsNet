@@ -202,6 +202,11 @@ namespace UnitsNet
             // Register in unit converter: ScalarUnit -> BaseUnit
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ScalarUnit.Amount, new CultureInfo("en-US"), new string[]{""});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

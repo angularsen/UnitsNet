@@ -258,6 +258,18 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Picoampere, ElectricCurrentUnit.Ampere, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentUnit.Ampere, new CultureInfo("en-US"), new string[]{"A"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentUnit.Centiampere, new CultureInfo("en-US"), new string[]{"cA"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentUnit.Kiloampere, new CultureInfo("en-US"), new string[]{"kA"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentUnit.Megaampere, new CultureInfo("en-US"), new string[]{"MA"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentUnit.Microampere, new CultureInfo("en-US"), new string[]{"µA"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentUnit.Milliampere, new CultureInfo("en-US"), new string[]{"mA"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentUnit.Nanoampere, new CultureInfo("en-US"), new string[]{"nA"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentUnit.Picoampere, new CultureInfo("en-US"), new string[]{"pA"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

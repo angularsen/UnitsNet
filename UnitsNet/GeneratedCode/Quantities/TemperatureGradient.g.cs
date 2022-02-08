@@ -226,6 +226,14 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.DegreeFahrenheitPerFoot, TemperatureGradientUnit.KelvinPerMeter, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(TemperatureGradientUnit.DegreeCelsiusPerKilometer, new CultureInfo("en-US"), new string[]{"∆°C/km"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TemperatureGradientUnit.DegreeCelsiusPerMeter, new CultureInfo("en-US"), new string[]{"∆°C/m"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TemperatureGradientUnit.DegreeFahrenheitPerFoot, new CultureInfo("en-US"), new string[]{"∆°F/ft"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(TemperatureGradientUnit.KelvinPerMeter, new CultureInfo("en-US"), new string[]{"∆°K/m"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

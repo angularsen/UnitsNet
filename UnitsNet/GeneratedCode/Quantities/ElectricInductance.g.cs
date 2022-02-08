@@ -229,6 +229,14 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Nanohenry, ElectricInductanceUnit.Henry, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricInductanceUnit.Henry, new CultureInfo("en-US"), new string[]{"H"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricInductanceUnit.Microhenry, new CultureInfo("en-US"), new string[]{"µH"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricInductanceUnit.Millihenry, new CultureInfo("en-US"), new string[]{"mH"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricInductanceUnit.Nanohenry, new CultureInfo("en-US"), new string[]{"nH"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

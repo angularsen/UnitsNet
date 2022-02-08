@@ -218,6 +218,13 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ReactiveEnergy>(ReactiveEnergyUnit.MegavoltampereReactiveHour, ReactiveEnergyUnit.VoltampereReactiveHour, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReactiveEnergyUnit.KilovoltampereReactiveHour, new CultureInfo("en-US"), new string[]{"kvarh"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReactiveEnergyUnit.MegavoltampereReactiveHour, new CultureInfo("en-US"), new string[]{"Mvarh"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ReactiveEnergyUnit.VoltampereReactiveHour, new CultureInfo("en-US"), new string[]{"varh"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

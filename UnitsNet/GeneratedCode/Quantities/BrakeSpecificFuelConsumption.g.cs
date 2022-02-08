@@ -218,6 +218,13 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<BrakeSpecificFuelConsumption>(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, new CultureInfo("en-US"), new string[]{"g/kWh"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, new CultureInfo("en-US"), new string[]{"kg/J"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, new CultureInfo("en-US"), new string[]{"lb/hph"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

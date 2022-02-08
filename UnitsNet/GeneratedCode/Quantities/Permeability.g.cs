@@ -205,6 +205,11 @@ namespace UnitsNet
             // Register in unit converter: PermeabilityUnit -> BaseUnit
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(PermeabilityUnit.HenryPerMeter, new CultureInfo("en-US"), new string[]{"H/m"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

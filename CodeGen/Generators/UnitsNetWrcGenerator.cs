@@ -1,4 +1,4 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System.IO;
@@ -51,7 +51,6 @@ namespace CodeGen.Generators
             }
 
             Log.Information("");
-            GenerateUnitAbbreviationsCache(quantities, $"{outputDir}/UnitAbbreviationsCache.g.cs");
             GenerateQuantityType(quantities, $"{outputDir}/QuantityType.g.cs");
             GenerateStaticQuantity(quantities, $"{outputDir}/Quantity.g.cs");
 
@@ -71,13 +70,6 @@ namespace CodeGen.Generators
         {
             var content = new UnitTypeGenerator(quantity).Generate();
             File.WriteAllText(filePath, content);
-        }
-
-        private static void GenerateUnitAbbreviationsCache(Quantity[] quantities, string filePath)
-        {
-            var content = new UnitAbbreviationsCacheGenerator(quantities).Generate();
-            File.WriteAllText(filePath, content);
-            Log.Information("✅ UnitAbbreviationsCache.g.cs (WRC)");
         }
 
         private static void GenerateQuantityType(Quantity[] quantities, string filePath)

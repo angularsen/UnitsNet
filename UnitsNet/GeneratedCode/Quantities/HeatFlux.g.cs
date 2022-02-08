@@ -338,6 +338,28 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareInch, HeatFluxUnit.WattPerSquareMeter, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.BtuPerHourSquareFoot, new CultureInfo("en-US"), new string[]{"BTU/h·ft²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.BtuPerMinuteSquareFoot, new CultureInfo("en-US"), new string[]{"BTU/min·ft²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.BtuPerSecondSquareFoot, new CultureInfo("en-US"), new string[]{"BTU/s·ft²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.BtuPerSecondSquareInch, new CultureInfo("en-US"), new string[]{"BTU/s·in²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.CaloriePerSecondSquareCentimeter, new CultureInfo("en-US"), new string[]{"cal/s·cm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.CentiwattPerSquareMeter, new CultureInfo("en-US"), new string[]{"cW/m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.DeciwattPerSquareMeter, new CultureInfo("en-US"), new string[]{"dW/m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.KilocaloriePerHourSquareMeter, new CultureInfo("en-US"), new string[]{"kcal/h·m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.KilocaloriePerSecondSquareCentimeter, new CultureInfo("en-US"), new string[]{"kcal/s·cm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.KilowattPerSquareMeter, new CultureInfo("en-US"), new string[]{"kW/m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.MicrowattPerSquareMeter, new CultureInfo("en-US"), new string[]{"µW/m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.MilliwattPerSquareMeter, new CultureInfo("en-US"), new string[]{"mW/m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.NanowattPerSquareMeter, new CultureInfo("en-US"), new string[]{"nW/m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.PoundForcePerFootSecond, new CultureInfo("en-US"), new string[]{"lbf/(ft·s)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.PoundPerSecondCubed, new CultureInfo("en-US"), new string[]{"lb/s³", "lbm/s³"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.WattPerSquareFoot, new CultureInfo("en-US"), new string[]{"W/ft²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.WattPerSquareInch, new CultureInfo("en-US"), new string[]{"W/in²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(HeatFluxUnit.WattPerSquareMeter, new CultureInfo("en-US"), new string[]{"W/m²"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

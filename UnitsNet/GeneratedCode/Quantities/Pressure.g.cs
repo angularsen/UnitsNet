@@ -554,6 +554,86 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Torr, PressureUnit.Pascal, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Atmosphere, new CultureInfo("en-US"), new string[]{"atm"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Atmosphere, new CultureInfo("ru-RU"), new string[]{"атм"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Bar, new CultureInfo("en-US"), new string[]{"bar"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Bar, new CultureInfo("ru-RU"), new string[]{"бар"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Centibar, new CultureInfo("en-US"), new string[]{"cbar"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Centibar, new CultureInfo("ru-RU"), new string[]{"сбар"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Decapascal, new CultureInfo("en-US"), new string[]{"daPa"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Decapascal, new CultureInfo("ru-RU"), new string[]{"даПа"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Decibar, new CultureInfo("en-US"), new string[]{"dbar"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Decibar, new CultureInfo("ru-RU"), new string[]{"дбар"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.DynePerSquareCentimeter, new CultureInfo("en-US"), new string[]{"dyn/cm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.FootOfElevation, new CultureInfo("en-US"), new string[]{"ft of elevation"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.FootOfHead, new CultureInfo("en-US"), new string[]{"ft of head"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Gigapascal, new CultureInfo("en-US"), new string[]{"GPa"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Gigapascal, new CultureInfo("ru-RU"), new string[]{"ГПа"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Hectopascal, new CultureInfo("en-US"), new string[]{"hPa"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Hectopascal, new CultureInfo("ru-RU"), new string[]{"гПа"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.InchOfMercury, new CultureInfo("en-US"), new string[]{"inHg"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.InchOfWaterColumn, new CultureInfo("en-US"), new string[]{"inH2O", "inch wc", "wc"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Kilobar, new CultureInfo("en-US"), new string[]{"kbar"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Kilobar, new CultureInfo("ru-RU"), new string[]{"кбар"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.KilogramForcePerSquareCentimeter, new CultureInfo("en-US"), new string[]{"kgf/cm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.KilogramForcePerSquareCentimeter, new CultureInfo("ru-RU"), new string[]{"кгс/см²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.KilogramForcePerSquareMeter, new CultureInfo("en-US"), new string[]{"kgf/m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.KilogramForcePerSquareMeter, new CultureInfo("ru-RU"), new string[]{"кгс/м²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.KilogramForcePerSquareMillimeter, new CultureInfo("en-US"), new string[]{"kgf/mm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.KilogramForcePerSquareMillimeter, new CultureInfo("ru-RU"), new string[]{"кгс/мм²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.KilonewtonPerSquareCentimeter, new CultureInfo("en-US"), new string[]{"kN/cm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.KilonewtonPerSquareCentimeter, new CultureInfo("ru-RU"), new string[]{"кН/см²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.KilonewtonPerSquareMeter, new CultureInfo("en-US"), new string[]{"kN/m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.KilonewtonPerSquareMeter, new CultureInfo("ru-RU"), new string[]{"кН/м²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.KilonewtonPerSquareMillimeter, new CultureInfo("en-US"), new string[]{"kN/mm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.KilonewtonPerSquareMillimeter, new CultureInfo("ru-RU"), new string[]{"кН/мм²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Kilopascal, new CultureInfo("en-US"), new string[]{"kPa"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Kilopascal, new CultureInfo("ru-RU"), new string[]{"кПа"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.KilopoundForcePerSquareFoot, new CultureInfo("en-US"), new string[]{"kipf/ft²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.KilopoundForcePerSquareInch, new CultureInfo("en-US"), new string[]{"ksi", "kipf/in²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.KilopoundForcePerSquareInch, new CultureInfo("ru-RU"), new string[]{"ksi", "kipf/in²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Megabar, new CultureInfo("en-US"), new string[]{"Mbar"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Megabar, new CultureInfo("ru-RU"), new string[]{"Мбар"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.MeganewtonPerSquareMeter, new CultureInfo("en-US"), new string[]{"MN/m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.MeganewtonPerSquareMeter, new CultureInfo("ru-RU"), new string[]{"МН/м²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Megapascal, new CultureInfo("en-US"), new string[]{"MPa"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Megapascal, new CultureInfo("ru-RU"), new string[]{"МПа"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.MeterOfElevation, new CultureInfo("en-US"), new string[]{"m of elevation"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.MeterOfHead, new CultureInfo("en-US"), new string[]{"m of head"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Microbar, new CultureInfo("en-US"), new string[]{"µbar"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Microbar, new CultureInfo("ru-RU"), new string[]{"мкбар"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Micropascal, new CultureInfo("en-US"), new string[]{"µPa"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Micropascal, new CultureInfo("ru-RU"), new string[]{"мкПа"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Millibar, new CultureInfo("en-US"), new string[]{"mbar"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Millibar, new CultureInfo("ru-RU"), new string[]{"мбар"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.MillimeterOfMercury, new CultureInfo("en-US"), new string[]{"mmHg"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.MillimeterOfMercury, new CultureInfo("ru-RU"), new string[]{"мм рт.ст."});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.MillimeterOfWaterColumn, new CultureInfo("en-US"), new string[]{"mmH2O", "mm wc"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Millipascal, new CultureInfo("en-US"), new string[]{"mPa"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Millipascal, new CultureInfo("ru-RU"), new string[]{"мПа"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.NewtonPerSquareCentimeter, new CultureInfo("en-US"), new string[]{"N/cm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.NewtonPerSquareCentimeter, new CultureInfo("ru-RU"), new string[]{"Н/см²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.NewtonPerSquareMeter, new CultureInfo("en-US"), new string[]{"N/m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.NewtonPerSquareMeter, new CultureInfo("ru-RU"), new string[]{"Н/м²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.NewtonPerSquareMillimeter, new CultureInfo("en-US"), new string[]{"N/mm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.NewtonPerSquareMillimeter, new CultureInfo("ru-RU"), new string[]{"Н/мм²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Pascal, new CultureInfo("en-US"), new string[]{"Pa"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Pascal, new CultureInfo("ru-RU"), new string[]{"Па"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.PoundForcePerSquareFoot, new CultureInfo("en-US"), new string[]{"lb/ft²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.PoundForcePerSquareInch, new CultureInfo("en-US"), new string[]{"psi", "lb/in²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.PoundForcePerSquareInch, new CultureInfo("ru-RU"), new string[]{"psi", "lb/in²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.PoundPerInchSecondSquared, new CultureInfo("en-US"), new string[]{"lbm/(in·s²)", "lb/(in·s²)"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.TechnicalAtmosphere, new CultureInfo("en-US"), new string[]{"at"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.TechnicalAtmosphere, new CultureInfo("ru-RU"), new string[]{"ат"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.TonneForcePerSquareCentimeter, new CultureInfo("en-US"), new string[]{"tf/cm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.TonneForcePerSquareMeter, new CultureInfo("en-US"), new string[]{"tf/m²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.TonneForcePerSquareMillimeter, new CultureInfo("en-US"), new string[]{"tf/mm²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Torr, new CultureInfo("en-US"), new string[]{"torr"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(PressureUnit.Torr, new CultureInfo("ru-RU"), new string[]{"торр"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

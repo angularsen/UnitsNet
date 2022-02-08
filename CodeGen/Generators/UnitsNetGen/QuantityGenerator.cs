@@ -360,16 +360,16 @@ namespace UnitsNet
             if(unit.SingularName == _quantity.BaseUnit)
                 continue;
 
-            Writer.WL( $@"
+            Writer.WL($@"
             unitConverter.SetConversionFunction<{_quantity.Name}>({_unitEnumName}.{_quantity.BaseUnit}, {_quantity.Name}Unit.{unit.SingularName}, quantity => quantity.ToUnit({_quantity.Name}Unit.{unit.SingularName}));");
         }
 
-        Writer.WL( $@"
+        Writer.WL($@"
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<{_quantity.Name}>({_unitEnumName}.{_quantity.BaseUnit}, {_unitEnumName}.{_quantity.BaseUnit}, quantity => quantity);
 
-            // Register in unit converter: {_quantity.Name}Unit -> BaseUnit" );
+            // Register in unit converter: {_quantity.Name}Unit -> BaseUnit");
 
         foreach(var unit in _quantity.Units)
         {
@@ -377,10 +377,29 @@ namespace UnitsNet
                 continue;
 
             Writer.WL($@"
-            unitConverter.SetConversionFunction<{_quantity.Name}>({_quantity.Name}Unit.{unit.SingularName}, {_unitEnumName}.{_quantity.BaseUnit}, quantity => quantity.ToBaseUnit());" );
+            unitConverter.SetConversionFunction<{_quantity.Name}>({_quantity.Name}Unit.{unit.SingularName}, {_unitEnumName}.{_quantity.BaseUnit}, quantity => quantity.ToBaseUnit());");
         }
 
-        Writer.WL( $@"
+        Writer.WL($@"
+        }}
+
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {{");
+            foreach(var unit in _quantity.Units)
+            {
+                foreach(var localization in unit.Localization)
+                {
+                    // All units must have a unit abbreviation, so fallback to "" for units with no abbreviations defined in JSON
+                    var abbreviationParams = localization.Abbreviations.Any() ?
+                        string.Join(", ", localization.Abbreviations.Select(abbr => $@"""{abbr}""")) :
+                        $@"""""";
+
+                    Writer.WL($@"
+            unitAbbreviationsCache.MapUnitToAbbreviation({_unitEnumName}.{unit.SingularName}, new CultureInfo(""{localization.Culture}""), new string[]{{{abbreviationParams}}});");
+                }
+            }
+
+            Writer.WL($@"
         }}
 
         /// <summary>
@@ -1084,7 +1103,7 @@ namespace UnitsNet
         }}
 
         #endregion
-" );
+");
         }
 
         private void GenerateIConvertibleMethods()

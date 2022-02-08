@@ -205,6 +205,11 @@ namespace UnitsNet
             // Register in unit converter: LuminousIntensityUnit -> BaseUnit
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminousIntensityUnit.Candela, new CultureInfo("en-US"), new string[]{"cd"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

@@ -205,6 +205,11 @@ namespace UnitsNet
             // Register in unit converter: LuminousFluxUnit -> BaseUnit
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(LuminousFluxUnit.Lumen, new CultureInfo("en-US"), new string[]{"lm"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

@@ -218,6 +218,13 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MolarEnergy>(MolarEnergyUnit.MegajoulePerMole, MolarEnergyUnit.JoulePerMole, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(MolarEnergyUnit.JoulePerMole, new CultureInfo("en-US"), new string[]{"J/mol"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MolarEnergyUnit.KilojoulePerMole, new CultureInfo("en-US"), new string[]{"kJ/mol"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(MolarEnergyUnit.MegajoulePerMole, new CultureInfo("en-US"), new string[]{"MJ/mol"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

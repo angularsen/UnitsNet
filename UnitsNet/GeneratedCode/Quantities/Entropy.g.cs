@@ -250,6 +250,17 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Entropy>(EntropyUnit.MegajoulePerKelvin, EntropyUnit.JoulePerKelvin, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(EntropyUnit.CaloriePerKelvin, new CultureInfo("en-US"), new string[]{"cal/K"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EntropyUnit.JoulePerDegreeCelsius, new CultureInfo("en-US"), new string[]{"J/C"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EntropyUnit.JoulePerKelvin, new CultureInfo("en-US"), new string[]{"J/K"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EntropyUnit.KilocaloriePerKelvin, new CultureInfo("en-US"), new string[]{"kcal/K"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EntropyUnit.KilojoulePerDegreeCelsius, new CultureInfo("en-US"), new string[]{"kJ/C"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EntropyUnit.KilojoulePerKelvin, new CultureInfo("en-US"), new string[]{"kJ/K"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(EntropyUnit.MegajoulePerKelvin, new CultureInfo("en-US"), new string[]{"MJ/K"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

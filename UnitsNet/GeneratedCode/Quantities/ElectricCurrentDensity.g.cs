@@ -221,6 +221,13 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareInch, ElectricCurrentDensityUnit.AmperePerSquareMeter, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentDensityUnit.AmperePerSquareFoot, new CultureInfo("en-US"), new string[]{"A/ft²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentDensityUnit.AmperePerSquareInch, new CultureInfo("en-US"), new string[]{"A/in²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentDensityUnit.AmperePerSquareMeter, new CultureInfo("en-US"), new string[]{"A/m²"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

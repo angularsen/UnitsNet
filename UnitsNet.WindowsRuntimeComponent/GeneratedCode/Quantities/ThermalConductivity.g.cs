@@ -180,6 +180,12 @@ namespace UnitsNet
 
         #region Static Methods
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ThermalConductivityUnit.BtuPerHourFootFahrenheit, new CultureInfo("en-US"), new string[]{"BTU/h·ft·°F"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(ThermalConductivityUnit.WattPerMeterKelvin, new CultureInfo("en-US"), new string[]{"W/m·K"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

@@ -269,6 +269,27 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.Stokes, KinematicViscosityUnit.SquareMeterPerSecond, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.Centistokes, new CultureInfo("en-US"), new string[]{"cSt"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.Centistokes, new CultureInfo("ru-RU"), new string[]{"сСт"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.Decistokes, new CultureInfo("en-US"), new string[]{"dSt"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.Decistokes, new CultureInfo("ru-RU"), new string[]{"дСт"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.Kilostokes, new CultureInfo("en-US"), new string[]{"kSt"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.Kilostokes, new CultureInfo("ru-RU"), new string[]{"кСт"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.Microstokes, new CultureInfo("en-US"), new string[]{"µSt"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.Microstokes, new CultureInfo("ru-RU"), new string[]{"мкСт"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.Millistokes, new CultureInfo("en-US"), new string[]{"mSt"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.Millistokes, new CultureInfo("ru-RU"), new string[]{"мСт"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.Nanostokes, new CultureInfo("en-US"), new string[]{"nSt"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.Nanostokes, new CultureInfo("ru-RU"), new string[]{"нСт"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.SquareFootPerSecond, new CultureInfo("en-US"), new string[]{"ft²/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.SquareMeterPerSecond, new CultureInfo("en-US"), new string[]{"m²/s"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.SquareMeterPerSecond, new CultureInfo("ru-RU"), new string[]{"м²/с"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.Stokes, new CultureInfo("en-US"), new string[]{"St"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(KinematicViscosityUnit.Stokes, new CultureInfo("ru-RU"), new string[]{"Ст"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

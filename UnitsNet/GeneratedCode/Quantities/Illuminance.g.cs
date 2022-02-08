@@ -229,6 +229,14 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Millilux, IlluminanceUnit.Lux, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(IlluminanceUnit.Kilolux, new CultureInfo("en-US"), new string[]{"klx"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(IlluminanceUnit.Lux, new CultureInfo("en-US"), new string[]{"lx"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(IlluminanceUnit.Megalux, new CultureInfo("en-US"), new string[]{"Mlx"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(IlluminanceUnit.Millilux, new CultureInfo("en-US"), new string[]{"mlx"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

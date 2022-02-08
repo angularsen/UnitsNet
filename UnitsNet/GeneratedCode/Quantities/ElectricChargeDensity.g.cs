@@ -205,6 +205,11 @@ namespace UnitsNet
             // Register in unit converter: ElectricChargeDensityUnit -> BaseUnit
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricChargeDensityUnit.CoulombPerCubicMeter, new CultureInfo("en-US"), new string[]{"C/m³"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

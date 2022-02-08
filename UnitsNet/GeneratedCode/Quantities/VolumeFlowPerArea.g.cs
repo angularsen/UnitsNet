@@ -210,6 +210,12 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, quantity => quantity.ToBaseUnit());
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, new CultureInfo("en-US"), new string[]{"CFM/ft²"});
+            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, new CultureInfo("en-US"), new string[]{"m³/(s·m²)"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

@@ -205,6 +205,11 @@ namespace UnitsNet
             // Register in unit converter: TurbidityUnit -> BaseUnit
         }
 
+        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            unitAbbreviationsCache.MapUnitToAbbreviation(TurbidityUnit.NTU, new CultureInfo("en-US"), new string[]{"NTU"});
+        }
+
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
