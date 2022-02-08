@@ -21,9 +21,8 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 
-using Xunit;
-using System;
 using UnitsNet.Units;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -45,7 +44,7 @@ namespace UnitsNet.Tests.CustomCode
         #endregion
 
         [Theory]
-        [InlineData(0.5, MolarityUnit.MolesPerLiter,
+        [InlineData(0.5, MolarityUnit.MolePerLiter,
                     KnownQuantities.DensityOfEthanolInKgPerCubicMeter, DensityUnit.KilogramPerCubicMeter,
                     KnownQuantities.MolarMassOfEthanolInGramsPerMole, MolarMassUnit.GramPerMole,
                     29.19419518377693, VolumeConcentrationUnit.MillilitersPerLiter)]    // 0.5M ethanol
@@ -65,10 +64,10 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Theory]
-        [InlineData(1.02698355, MolarityUnit.MolesPerLiter,
+        [InlineData(1.02698355, MolarityUnit.MolePerLiter,
                     58.443, MolarMassUnit.GramPerMole,
                     60.02, MassConcentrationUnit.KilogramPerCubicMeter)]    // test from JonathanDavies626
-        [InlineData(0.1142805, MolarityUnit.MolesPerLiter,
+        [InlineData(0.1142805, MolarityUnit.MolePerLiter,
                     KnownQuantities.MolarMassHClInGramsPerMole, MolarMassUnit.GramPerMole,
                     4.16667, MassConcentrationUnit.KilogramPerCubicMeter)]    // HCL solution
         public void ExpectMolarityConvertedToMassConcentrationCorrectly(
@@ -85,9 +84,9 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Theory]
-        [InlineData(0.1142805, MolarityUnit.MolesPerLiter,
+        [InlineData(0.1142805, MolarityUnit.MolePerLiter,
                     10, VolumeConcentrationUnit.Percent,
-                    0.01142805, MolarityUnit.MolesPerLiter)]    // 10 % dilution of HCL
+                    0.01142805, MolarityUnit.MolePerLiter)]    // 10 % dilution of HCL
         public void MolarityFromDilutedSolution(
             double startingMolarityValue, MolarityUnit startingMolarityUnit,
             double newConcentration, VolumeConcentrationUnit newConcentrationUnit,
@@ -112,7 +111,5 @@ namespace UnitsNet.Tests.CustomCode
         {
             Assert.Equal(1, Molarity.Parse("1000 mM").MolesPerLiter);
         }
-
     }
-
 }
