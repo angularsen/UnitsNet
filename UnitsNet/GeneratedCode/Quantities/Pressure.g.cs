@@ -123,7 +123,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Pressure(double value, PressureUnit unit)
         {
-            if(unit == PressureUnit.Undefined)
+            if (unit == PressureUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
@@ -140,7 +140,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Pressure(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -512,7 +512,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.TonneForcePerSquareMeter, quantity => new Pressure(quantity.Value/9.80665e3, PressureUnit.TonneForcePerSquareMeter));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.TonneForcePerSquareMillimeter, quantity => new Pressure(quantity.Value/9.80665e9, PressureUnit.TonneForcePerSquareMillimeter));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.Torr, quantity => new Pressure(quantity.Value/(1.3332266752*1e2), PressureUnit.Torr));
-            
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.Pascal, quantity => quantity);
 
@@ -1320,8 +1319,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Pressure objPressure)) throw new ArgumentException("Expected type Pressure.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is Pressure objPressure)) throw new ArgumentException("Expected type Pressure.", nameof(obj));
 
             return CompareTo(objPressure);
         }
@@ -1336,7 +1335,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(Pressure, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is Pressure objPressure))
+            if (obj is null || !(obj is Pressure objPressure))
                 return false;
 
             return Equals(objPressure);
@@ -1391,7 +1390,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(Pressure other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -1419,7 +1418,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(PressureUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -1429,13 +1428,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -1444,7 +1443,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is PressureUnit unitAsPressureUnit))
+            if (!(unit is PressureUnit unitAsPressureUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PressureUnit)} is supported.", nameof(unit));
 
             return As(unitAsPressureUnit);
@@ -1468,18 +1467,18 @@ namespace UnitsNet
         /// <returns>A Pressure with the specified unit.</returns>
         public Pressure ToUnit(PressureUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(Pressure), Unit, typeof(Pressure), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(Pressure), Unit, typeof(Pressure), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (Pressure)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -1494,7 +1493,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is PressureUnit unitAsPressureUnit))
+            if (!(unit is PressureUnit unitAsPressureUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PressureUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsPressureUnit, DefaultConversionFunctions);
@@ -1503,7 +1502,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
         {
-            if(!(unit is PressureUnit unitAsPressureUnit))
+            if (!(unit is PressureUnit unitAsPressureUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PressureUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsPressureUnit, unitConverter);
@@ -1512,13 +1511,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public Pressure ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -1693,15 +1692,15 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(Pressure))
+            if (conversionType == typeof(Pressure))
                 return this;
-            else if(conversionType == typeof(PressureUnit))
+            else if (conversionType == typeof(PressureUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
+            else if (conversionType == typeof(QuantityType))
                 return Pressure.QuantityType;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return Pressure.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return Pressure.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(Pressure)} to {conversionType} is not supported.");

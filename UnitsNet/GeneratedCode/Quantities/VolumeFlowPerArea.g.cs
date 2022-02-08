@@ -80,7 +80,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public VolumeFlowPerArea(double value, VolumeFlowPerAreaUnit unit)
         {
-            if(unit == VolumeFlowPerAreaUnit.Undefined)
+            if (unit == VolumeFlowPerAreaUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
@@ -97,7 +97,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public VolumeFlowPerArea(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -211,7 +211,6 @@ namespace UnitsNet
         {
             // Register in unit converter: BaseUnit -> VolumeFlowPerAreaUnit
             unitConverter.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, quantity => new VolumeFlowPerArea(quantity.Value*196.850394, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot));
-            
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, quantity => quantity);
 
@@ -515,8 +514,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is VolumeFlowPerArea objVolumeFlowPerArea)) throw new ArgumentException("Expected type VolumeFlowPerArea.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is VolumeFlowPerArea objVolumeFlowPerArea)) throw new ArgumentException("Expected type VolumeFlowPerArea.", nameof(obj));
 
             return CompareTo(objVolumeFlowPerArea);
         }
@@ -531,7 +530,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(VolumeFlowPerArea, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is VolumeFlowPerArea objVolumeFlowPerArea))
+            if (obj is null || !(obj is VolumeFlowPerArea objVolumeFlowPerArea))
                 return false;
 
             return Equals(objVolumeFlowPerArea);
@@ -586,7 +585,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(VolumeFlowPerArea other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -614,7 +613,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(VolumeFlowPerAreaUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -624,13 +623,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -639,7 +638,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is VolumeFlowPerAreaUnit unitAsVolumeFlowPerAreaUnit))
+            if (!(unit is VolumeFlowPerAreaUnit unitAsVolumeFlowPerAreaUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeFlowPerAreaUnit)} is supported.", nameof(unit));
 
             return As(unitAsVolumeFlowPerAreaUnit);
@@ -663,18 +662,18 @@ namespace UnitsNet
         /// <returns>A VolumeFlowPerArea with the specified unit.</returns>
         public VolumeFlowPerArea ToUnit(VolumeFlowPerAreaUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(VolumeFlowPerArea), Unit, typeof(VolumeFlowPerArea), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(VolumeFlowPerArea), Unit, typeof(VolumeFlowPerArea), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (VolumeFlowPerArea)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -689,7 +688,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is VolumeFlowPerAreaUnit unitAsVolumeFlowPerAreaUnit))
+            if (!(unit is VolumeFlowPerAreaUnit unitAsVolumeFlowPerAreaUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeFlowPerAreaUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsVolumeFlowPerAreaUnit, DefaultConversionFunctions);
@@ -698,7 +697,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
         {
-            if(!(unit is VolumeFlowPerAreaUnit unitAsVolumeFlowPerAreaUnit))
+            if (!(unit is VolumeFlowPerAreaUnit unitAsVolumeFlowPerAreaUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeFlowPerAreaUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsVolumeFlowPerAreaUnit, unitConverter);
@@ -707,13 +706,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public VolumeFlowPerArea ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -888,15 +887,15 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(VolumeFlowPerArea))
+            if (conversionType == typeof(VolumeFlowPerArea))
                 return this;
-            else if(conversionType == typeof(VolumeFlowPerAreaUnit))
+            else if (conversionType == typeof(VolumeFlowPerAreaUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
+            else if (conversionType == typeof(QuantityType))
                 return VolumeFlowPerArea.QuantityType;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return VolumeFlowPerArea.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return VolumeFlowPerArea.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(VolumeFlowPerArea)} to {conversionType} is not supported.");

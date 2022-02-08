@@ -268,7 +268,7 @@ namespace UnitsNet.Tests
             var fromUnit = Irradiation.Units.FirstOrDefault(u => u != Irradiation.BaseUnit && u != IrradiationUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == IrradiationUnit.Undefined)
+            if (fromUnit == IrradiationUnit.Undefined)
                 fromUnit = Irradiation.BaseUnit;
 
             var quantity = Irradiation.From(3.0, fromUnit);
@@ -426,7 +426,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(IrradiationUnit)).Cast<IrradiationUnit>();
             foreach(var unit in units)
             {
-                if(unit == IrradiationUnit.Undefined)
+                if (unit == IrradiationUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

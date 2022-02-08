@@ -448,7 +448,7 @@ namespace UnitsNet.Tests
             var fromUnit = Torque.Units.FirstOrDefault(u => u != Torque.BaseUnit && u != TorqueUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == TorqueUnit.Undefined)
+            if (fromUnit == TorqueUnit.Undefined)
                 fromUnit = Torque.BaseUnit;
 
             var quantity = Torque.From(3.0, fromUnit);
@@ -624,7 +624,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(TorqueUnit)).Cast<TorqueUnit>();
             foreach(var unit in units)
             {
-                if(unit == TorqueUnit.Undefined)
+                if (unit == TorqueUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

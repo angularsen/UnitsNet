@@ -318,7 +318,7 @@ namespace UnitsNet.Tests
             var fromUnit = MassFlux.Units.FirstOrDefault(u => u != MassFlux.BaseUnit && u != MassFluxUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == MassFluxUnit.Undefined)
+            if (fromUnit == MassFluxUnit.Undefined)
                 fromUnit = MassFlux.BaseUnit;
 
             var quantity = MassFlux.From(3.0, fromUnit);
@@ -481,7 +481,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(MassFluxUnit)).Cast<MassFluxUnit>();
             foreach(var unit in units)
             {
-                if(unit == MassFluxUnit.Undefined)
+                if (unit == MassFluxUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

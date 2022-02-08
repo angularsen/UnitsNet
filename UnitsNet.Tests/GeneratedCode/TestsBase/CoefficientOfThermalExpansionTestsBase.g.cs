@@ -228,7 +228,7 @@ namespace UnitsNet.Tests
             var fromUnit = CoefficientOfThermalExpansion.Units.FirstOrDefault(u => u != CoefficientOfThermalExpansion.BaseUnit && u != CoefficientOfThermalExpansionUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == CoefficientOfThermalExpansionUnit.Undefined)
+            if (fromUnit == CoefficientOfThermalExpansionUnit.Undefined)
                 fromUnit = CoefficientOfThermalExpansion.BaseUnit;
 
             var quantity = CoefficientOfThermalExpansion.From(3.0, fromUnit);
@@ -382,7 +382,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(CoefficientOfThermalExpansionUnit)).Cast<CoefficientOfThermalExpansionUnit>();
             foreach(var unit in units)
             {
-                if(unit == CoefficientOfThermalExpansionUnit.Undefined)
+                if (unit == CoefficientOfThermalExpansionUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

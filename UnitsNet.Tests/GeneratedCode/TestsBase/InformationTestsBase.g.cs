@@ -433,7 +433,7 @@ namespace UnitsNet.Tests
             var fromUnit = Information.Units.FirstOrDefault(u => u != Information.BaseUnit && u != InformationUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == InformationUnit.Undefined)
+            if (fromUnit == InformationUnit.Undefined)
                 fromUnit = Information.BaseUnit;
 
             var quantity = Information.From(3.0, fromUnit);
@@ -610,7 +610,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(InformationUnit)).Cast<InformationUnit>();
             foreach(var unit in units)
             {
-                if(unit == InformationUnit.Undefined)
+                if (unit == InformationUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

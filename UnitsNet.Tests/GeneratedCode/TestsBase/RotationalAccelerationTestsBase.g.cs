@@ -238,7 +238,7 @@ namespace UnitsNet.Tests
             var fromUnit = RotationalAcceleration.Units.FirstOrDefault(u => u != RotationalAcceleration.BaseUnit && u != RotationalAccelerationUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == RotationalAccelerationUnit.Undefined)
+            if (fromUnit == RotationalAccelerationUnit.Undefined)
                 fromUnit = RotationalAcceleration.BaseUnit;
 
             var quantity = RotationalAcceleration.From(3.0, fromUnit);
@@ -393,7 +393,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(RotationalAccelerationUnit)).Cast<RotationalAccelerationUnit>();
             foreach(var unit in units)
             {
-                if(unit == RotationalAccelerationUnit.Undefined)
+                if (unit == RotationalAccelerationUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

@@ -208,7 +208,7 @@ namespace UnitsNet.Tests
             var fromUnit = MagneticFlux.Units.FirstOrDefault(u => u != MagneticFlux.BaseUnit && u != MagneticFluxUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == MagneticFluxUnit.Undefined)
+            if (fromUnit == MagneticFluxUnit.Undefined)
                 fromUnit = MagneticFlux.BaseUnit;
 
             var quantity = MagneticFlux.From(3.0, fromUnit);
@@ -360,7 +360,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(MagneticFluxUnit)).Cast<MagneticFluxUnit>();
             foreach(var unit in units)
             {
-                if(unit == MagneticFluxUnit.Undefined)
+                if (unit == MagneticFluxUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

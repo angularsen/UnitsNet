@@ -56,7 +56,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is BaseDimensions))
+            if (obj is null || !(obj is BaseDimensions))
                 return false;
 
             var other = (BaseDimensions)obj;
@@ -83,7 +83,7 @@ namespace UnitsNet
         /// <returns>Resulting dimensions.</returns>
         public BaseDimensions Multiply(BaseDimensions right)
         {
-            if(right is null)
+            if (right is null)
                 throw new ArgumentNullException(nameof(right));
 
             return new BaseDimensions(
@@ -103,7 +103,7 @@ namespace UnitsNet
         /// <returns>Resulting dimensions.</returns>
         public BaseDimensions Divide(BaseDimensions right)
         {
-            if(right is null)
+            if (right is null)
                 throw new ArgumentNullException(nameof(right));
 
             return new BaseDimensions(
@@ -146,9 +146,9 @@ namespace UnitsNet
         /// <returns>Resulting dimensions.</returns>
         public static BaseDimensions operator *(BaseDimensions left, BaseDimensions right)
         {
-            if(left is null)
+            if (left is null)
                 throw new ArgumentNullException(nameof(left));
-            else if(right is null)
+            else if (right is null)
                 throw new ArgumentNullException(nameof(right));
 
             return left.Multiply(right);
@@ -162,9 +162,9 @@ namespace UnitsNet
         /// <returns>Resulting dimensions.</returns>
         public static BaseDimensions operator /(BaseDimensions left, BaseDimensions right)
         {
-            if(left is null)
+            if (left is null)
                 throw new ArgumentNullException(nameof(left));
-            else if(right is null)
+            else if (right is null)
                 throw new ArgumentNullException(nameof(right));
 
             return left.Divide(right);
@@ -190,11 +190,11 @@ namespace UnitsNet
         {
             var absoluteValue = Math.Abs(value);
 
-            if(absoluteValue > 0)
+            if (absoluteValue > 0)
             {
                 sb.AppendFormat("[{0}]", name);
 
-                if(absoluteValue > 1)
+                if (absoluteValue > 1)
                     sb.AppendFormat("^{0}", value);
             }
         }

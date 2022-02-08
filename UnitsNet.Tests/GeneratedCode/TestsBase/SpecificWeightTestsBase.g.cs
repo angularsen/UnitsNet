@@ -368,7 +368,7 @@ namespace UnitsNet.Tests
             var fromUnit = SpecificWeight.Units.FirstOrDefault(u => u != SpecificWeight.BaseUnit && u != SpecificWeightUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == SpecificWeightUnit.Undefined)
+            if (fromUnit == SpecificWeightUnit.Undefined)
                 fromUnit = SpecificWeight.BaseUnit;
 
             var quantity = SpecificWeight.From(3.0, fromUnit);
@@ -536,7 +536,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(SpecificWeightUnit)).Cast<SpecificWeightUnit>();
             foreach(var unit in units)
             {
-                if(unit == SpecificWeightUnit.Undefined)
+                if (unit == SpecificWeightUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

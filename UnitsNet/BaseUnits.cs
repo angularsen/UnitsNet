@@ -59,7 +59,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is BaseUnits))
+            if (obj is null || !(obj is BaseUnits))
                 return false;
 
             return Equals((BaseUnits)obj);
@@ -72,7 +72,7 @@ namespace UnitsNet
         /// <returns>True if equal, otherwise false.</returns>
         public bool Equals(BaseUnits other)
         {
-            if(other is null)
+            if (other is null)
                 return false;
 
             return Length == other.Length &&
@@ -93,11 +93,11 @@ namespace UnitsNet
         /// <returns>True if the base units are a subset of other, otherwise false.</returns>
         public bool IsSubsetOf(BaseUnits other)
         {
-            if(other is null)
+            if (other is null)
                 return false;
 
             // If all base units are undefined, can only be a subset of another where all base units are undefined.
-            if(Equals(Undefined))
+            if (Equals(Undefined))
                 return other.Equals(Undefined);
 
             return (Length == LengthUnit.Undefined || Length == other.Length) &&

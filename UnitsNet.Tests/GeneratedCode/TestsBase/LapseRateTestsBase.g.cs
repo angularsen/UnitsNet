@@ -208,7 +208,7 @@ namespace UnitsNet.Tests
             var fromUnit = LapseRate.Units.FirstOrDefault(u => u != LapseRate.BaseUnit && u != LapseRateUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == LapseRateUnit.Undefined)
+            if (fromUnit == LapseRateUnit.Undefined)
                 fromUnit = LapseRate.BaseUnit;
 
             var quantity = LapseRate.From(3.0, fromUnit);
@@ -360,7 +360,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(LapseRateUnit)).Cast<LapseRateUnit>();
             foreach(var unit in units)
             {
-                if(unit == LapseRateUnit.Undefined)
+                if (unit == LapseRateUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

@@ -288,7 +288,7 @@ namespace UnitsNet.Tests
             var fromUnit = StandardVolumeFlow.Units.FirstOrDefault(u => u != StandardVolumeFlow.BaseUnit && u != StandardVolumeFlowUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == StandardVolumeFlowUnit.Undefined)
+            if (fromUnit == StandardVolumeFlowUnit.Undefined)
                 fromUnit = StandardVolumeFlow.BaseUnit;
 
             var quantity = StandardVolumeFlow.From(3.0, fromUnit);
@@ -448,7 +448,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(StandardVolumeFlowUnit)).Cast<StandardVolumeFlowUnit>();
             foreach(var unit in units)
             {
-                if(unit == StandardVolumeFlowUnit.Undefined)
+                if (unit == StandardVolumeFlowUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

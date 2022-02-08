@@ -208,7 +208,7 @@ namespace UnitsNet.Tests
             var fromUnit = Permeability.Units.FirstOrDefault(u => u != Permeability.BaseUnit && u != PermeabilityUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == PermeabilityUnit.Undefined)
+            if (fromUnit == PermeabilityUnit.Undefined)
                 fromUnit = Permeability.BaseUnit;
 
             var quantity = Permeability.From(3.0, fromUnit);
@@ -360,7 +360,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(PermeabilityUnit)).Cast<PermeabilityUnit>();
             foreach(var unit in units)
             {
-                if(unit == PermeabilityUnit.Undefined)
+                if (unit == PermeabilityUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

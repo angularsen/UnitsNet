@@ -208,7 +208,7 @@ namespace UnitsNet.Tests
             var fromUnit = LuminousIntensity.Units.FirstOrDefault(u => u != LuminousIntensity.BaseUnit && u != LuminousIntensityUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == LuminousIntensityUnit.Undefined)
+            if (fromUnit == LuminousIntensityUnit.Undefined)
                 fromUnit = LuminousIntensity.BaseUnit;
 
             var quantity = LuminousIntensity.From(3.0, fromUnit);
@@ -360,7 +360,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(LuminousIntensityUnit)).Cast<LuminousIntensityUnit>();
             foreach(var unit in units)
             {
-                if(unit == LuminousIntensityUnit.Undefined)
+                if (unit == LuminousIntensityUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

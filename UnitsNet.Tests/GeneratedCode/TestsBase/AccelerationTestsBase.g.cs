@@ -338,7 +338,7 @@ namespace UnitsNet.Tests
             var fromUnit = Acceleration.Units.FirstOrDefault(u => u != Acceleration.BaseUnit && u != AccelerationUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == AccelerationUnit.Undefined)
+            if (fromUnit == AccelerationUnit.Undefined)
                 fromUnit = Acceleration.BaseUnit;
 
             var quantity = Acceleration.From(3.0, fromUnit);
@@ -503,7 +503,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(AccelerationUnit)).Cast<AccelerationUnit>();
             foreach(var unit in units)
             {
-                if(unit == AccelerationUnit.Undefined)
+                if (unit == AccelerationUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

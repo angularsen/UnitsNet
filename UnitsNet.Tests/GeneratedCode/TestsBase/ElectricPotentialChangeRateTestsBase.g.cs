@@ -398,7 +398,7 @@ namespace UnitsNet.Tests
             var fromUnit = ElectricPotentialChangeRate.Units.FirstOrDefault(u => u != ElectricPotentialChangeRate.BaseUnit && u != ElectricPotentialChangeRateUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == ElectricPotentialChangeRateUnit.Undefined)
+            if (fromUnit == ElectricPotentialChangeRateUnit.Undefined)
                 fromUnit = ElectricPotentialChangeRate.BaseUnit;
 
             var quantity = ElectricPotentialChangeRate.From(3.0, fromUnit);
@@ -569,7 +569,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ElectricPotentialChangeRateUnit)).Cast<ElectricPotentialChangeRateUnit>();
             foreach(var unit in units)
             {
-                if(unit == ElectricPotentialChangeRateUnit.Undefined)
+                if (unit == ElectricPotentialChangeRateUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

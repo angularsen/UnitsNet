@@ -218,7 +218,7 @@ namespace UnitsNet.Tests
             var fromUnit = RatioChangeRate.Units.FirstOrDefault(u => u != RatioChangeRate.BaseUnit && u != RatioChangeRateUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == RatioChangeRateUnit.Undefined)
+            if (fromUnit == RatioChangeRateUnit.Undefined)
                 fromUnit = RatioChangeRate.BaseUnit;
 
             var quantity = RatioChangeRate.From(3.0, fromUnit);
@@ -371,7 +371,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(RatioChangeRateUnit)).Cast<RatioChangeRateUnit>();
             foreach(var unit in units)
             {
-                if(unit == RatioChangeRateUnit.Undefined)
+                if (unit == RatioChangeRateUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

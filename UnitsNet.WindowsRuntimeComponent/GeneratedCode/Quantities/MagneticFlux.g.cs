@@ -82,7 +82,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         private MagneticFlux(double value, MagneticFluxUnit unit)
         {
-            if(unit == MagneticFluxUnit.Undefined)
+            if (unit == MagneticFluxUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
@@ -383,8 +383,8 @@ namespace UnitsNet
 
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is MagneticFlux objMagneticFlux)) throw new ArgumentException("Expected type MagneticFlux.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is MagneticFlux objMagneticFlux)) throw new ArgumentException("Expected type MagneticFlux.", nameof(obj));
 
             return CompareTo(objMagneticFlux);
         }
@@ -398,7 +398,7 @@ namespace UnitsNet
         [Windows.Foundation.Metadata.DefaultOverload]
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is MagneticFlux objMagneticFlux))
+            if (obj is null || !(obj is MagneticFlux objMagneticFlux))
                 return false;
 
             return Equals(objMagneticFlux);
@@ -451,7 +451,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(MagneticFlux other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -481,7 +481,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(MagneticFluxUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = AsBaseNumericType(unit);
@@ -515,7 +515,7 @@ namespace UnitsNet
 
         private double AsBaseNumericType(MagneticFluxUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return _value;
 
             var baseUnitValue = AsBaseUnit();

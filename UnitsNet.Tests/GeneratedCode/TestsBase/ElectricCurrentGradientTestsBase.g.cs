@@ -238,7 +238,7 @@ namespace UnitsNet.Tests
             var fromUnit = ElectricCurrentGradient.Units.FirstOrDefault(u => u != ElectricCurrentGradient.BaseUnit && u != ElectricCurrentGradientUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == ElectricCurrentGradientUnit.Undefined)
+            if (fromUnit == ElectricCurrentGradientUnit.Undefined)
                 fromUnit = ElectricCurrentGradient.BaseUnit;
 
             var quantity = ElectricCurrentGradient.From(3.0, fromUnit);
@@ -393,7 +393,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ElectricCurrentGradientUnit)).Cast<ElectricCurrentGradientUnit>();
             foreach(var unit in units)
             {
-                if(unit == ElectricCurrentGradientUnit.Undefined)
+                if (unit == ElectricCurrentGradientUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

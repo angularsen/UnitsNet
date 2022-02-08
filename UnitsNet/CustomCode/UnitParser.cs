@@ -72,7 +72,7 @@ namespace UnitsNet
             if (unitAbbreviation == null) throw new ArgumentNullException(nameof(unitAbbreviation));
             unitAbbreviation = unitAbbreviation.Trim();
 
-            if(!_unitAbbreviationsCache.TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var abbreviations))
+            if (!_unitAbbreviationsCache.TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var abbreviations))
                 throw new UnitNotFoundException($"No abbreviations defined for unit type [{unitType}] for culture [{formatProvider}].");
 
             var unitIntValues = abbreviations!.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
@@ -157,7 +157,7 @@ namespace UnitsNet
         {
             unit = default;
 
-            if(!TryParse(unitAbbreviation, typeof(TUnitType), formatProvider, out var unitObj))
+            if (!TryParse(unitAbbreviation, typeof(TUnitType), formatProvider, out var unitObj))
                 return false;
 
             unit = (TUnitType)unitObj!;
@@ -197,7 +197,7 @@ namespace UnitsNet
             unitAbbreviation = unitAbbreviation.Trim();
             unit = default;
 
-            if(!_unitAbbreviationsCache.TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var abbreviations))
+            if (!_unitAbbreviationsCache.TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var abbreviations))
                 return false;
 
             var unitIntValues = abbreviations!.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
@@ -212,7 +212,7 @@ namespace UnitsNet
             if (unitIntValues.Count > 1)
                 unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: false);
 
-            if(unitIntValues.Count != 1)
+            if (unitIntValues.Count != 1)
                 return false;
 
             unit = (Enum)Enum.ToObject(unitType, unitIntValues[0]);

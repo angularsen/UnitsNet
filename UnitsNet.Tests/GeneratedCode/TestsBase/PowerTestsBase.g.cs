@@ -423,7 +423,7 @@ namespace UnitsNet.Tests
             var fromUnit = Power.Units.FirstOrDefault(u => u != Power.BaseUnit && u != PowerUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == PowerUnit.Undefined)
+            if (fromUnit == PowerUnit.Undefined)
                 fromUnit = Power.BaseUnit;
 
             var quantity = Power.From(3.0, fromUnit);
@@ -599,7 +599,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(PowerUnit)).Cast<PowerUnit>();
             foreach(var unit in units)
             {
-                if(unit == PowerUnit.Undefined)
+                if (unit == PowerUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

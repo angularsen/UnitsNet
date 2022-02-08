@@ -90,7 +90,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public MolarMass(double value, MolarMassUnit unit)
         {
-            if(unit == MolarMassUnit.Undefined)
+            if (unit == MolarMassUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
@@ -107,7 +107,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public MolarMass(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -281,7 +281,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.MilligramPerMole, quantity => new MolarMass((quantity.Value*1e3) / 1e-3d, MolarMassUnit.MilligramPerMole));
             unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.NanogramPerMole, quantity => new MolarMass((quantity.Value*1e3) / 1e-9d, MolarMassUnit.NanogramPerMole));
             unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.PoundPerMole, quantity => new MolarMass(quantity.Value/0.45359237, MolarMassUnit.PoundPerMole));
-            
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.KilogramPerMole, quantity => quantity);
 
@@ -707,8 +706,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is MolarMass objMolarMass)) throw new ArgumentException("Expected type MolarMass.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is MolarMass objMolarMass)) throw new ArgumentException("Expected type MolarMass.", nameof(obj));
 
             return CompareTo(objMolarMass);
         }
@@ -723,7 +722,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(MolarMass, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is MolarMass objMolarMass))
+            if (obj is null || !(obj is MolarMass objMolarMass))
                 return false;
 
             return Equals(objMolarMass);
@@ -778,7 +777,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(MolarMass other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -806,7 +805,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(MolarMassUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -816,13 +815,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -831,7 +830,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is MolarMassUnit unitAsMolarMassUnit))
+            if (!(unit is MolarMassUnit unitAsMolarMassUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarMassUnit)} is supported.", nameof(unit));
 
             return As(unitAsMolarMassUnit);
@@ -855,18 +854,18 @@ namespace UnitsNet
         /// <returns>A MolarMass with the specified unit.</returns>
         public MolarMass ToUnit(MolarMassUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(MolarMass), Unit, typeof(MolarMass), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(MolarMass), Unit, typeof(MolarMass), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (MolarMass)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -881,7 +880,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is MolarMassUnit unitAsMolarMassUnit))
+            if (!(unit is MolarMassUnit unitAsMolarMassUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarMassUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsMolarMassUnit, DefaultConversionFunctions);
@@ -890,7 +889,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
         {
-            if(!(unit is MolarMassUnit unitAsMolarMassUnit))
+            if (!(unit is MolarMassUnit unitAsMolarMassUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarMassUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsMolarMassUnit, unitConverter);
@@ -899,13 +898,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public MolarMass ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -1080,15 +1079,15 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(MolarMass))
+            if (conversionType == typeof(MolarMass))
                 return this;
-            else if(conversionType == typeof(MolarMassUnit))
+            else if (conversionType == typeof(MolarMassUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
+            else if (conversionType == typeof(QuantityType))
                 return MolarMass.QuantityType;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return MolarMass.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return MolarMass.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(MolarMass)} to {conversionType} is not supported.");

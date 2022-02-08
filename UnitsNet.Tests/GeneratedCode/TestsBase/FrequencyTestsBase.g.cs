@@ -308,7 +308,7 @@ namespace UnitsNet.Tests
             var fromUnit = Frequency.Units.FirstOrDefault(u => u != Frequency.BaseUnit && u != FrequencyUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == FrequencyUnit.Undefined)
+            if (fromUnit == FrequencyUnit.Undefined)
                 fromUnit = Frequency.BaseUnit;
 
             var quantity = Frequency.From(3.0, fromUnit);
@@ -470,7 +470,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(FrequencyUnit)).Cast<FrequencyUnit>();
             foreach(var unit in units)
             {
-                if(unit == FrequencyUnit.Undefined)
+                if (unit == FrequencyUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

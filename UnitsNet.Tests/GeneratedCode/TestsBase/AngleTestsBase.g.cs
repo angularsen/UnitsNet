@@ -358,7 +358,7 @@ namespace UnitsNet.Tests
             var fromUnit = Angle.Units.FirstOrDefault(u => u != Angle.BaseUnit && u != AngleUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == AngleUnit.Undefined)
+            if (fromUnit == AngleUnit.Undefined)
                 fromUnit = Angle.BaseUnit;
 
             var quantity = Angle.From(3.0, fromUnit);
@@ -525,7 +525,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(AngleUnit)).Cast<AngleUnit>();
             foreach(var unit in units)
             {
-                if(unit == AngleUnit.Undefined)
+                if (unit == AngleUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

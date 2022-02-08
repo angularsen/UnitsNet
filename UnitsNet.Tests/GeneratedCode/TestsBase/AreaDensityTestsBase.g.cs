@@ -208,7 +208,7 @@ namespace UnitsNet.Tests
             var fromUnit = AreaDensity.Units.FirstOrDefault(u => u != AreaDensity.BaseUnit && u != AreaDensityUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == AreaDensityUnit.Undefined)
+            if (fromUnit == AreaDensityUnit.Undefined)
                 fromUnit = AreaDensity.BaseUnit;
 
             var quantity = AreaDensity.From(3.0, fromUnit);
@@ -360,7 +360,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(AreaDensityUnit)).Cast<AreaDensityUnit>();
             foreach(var unit in units)
             {
-                if(unit == AreaDensityUnit.Undefined)
+                if (unit == AreaDensityUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

@@ -14,7 +14,7 @@ namespace CodeGen.Generators.NanoFrameworkGen
         public QuantityGenerator(Quantity quantity)
         {
             _quantity = quantity ?? throw new ArgumentNullException(nameof(quantity));
-            _unitEnumName = $"{quantity.Name}Unit";            
+            _unitEnumName = $"{quantity.Name}Unit";
         }
 
         public override string Generate()
@@ -124,7 +124,7 @@ namespace UnitsNet
 ");
             foreach (var unit in _quantity.Units)
             {
-                if(unit.SkipConversionGeneration)
+                if (unit.SkipConversionGeneration)
                     continue;
 
                 Writer.WL($@"
@@ -149,7 +149,7 @@ namespace UnitsNet
 ");
             foreach (var unit in _quantity.Units)
             {
-                if(unit.SkipConversionGeneration)
+                if (unit.SkipConversionGeneration)
                     continue;
 
                 var valueParamName = unit.PluralName.ToLowerInvariant();
@@ -189,7 +189,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name=""unit"" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public {_quantity.BaseType} As({_unitEnumName} unit) => GetValueAs(unit);        
+        public {_quantity.BaseType} As({_unitEnumName} unit) => GetValueAs(unit);
 
         /// <summary>
         ///     Converts this Duration to another Duration with the unit representation <paramref name=""unit"" />.
@@ -197,11 +197,9 @@ namespace UnitsNet
         /// <returns>A Duration with the specified unit.</returns>
         public {_quantity.Name} ToUnit({_unitEnumName} unit)
         {{
-                
             var convertedValue = GetValueAs(unit);
             return new {_quantity.Name}(convertedValue, unit);
         }}
-
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
@@ -227,7 +225,7 @@ namespace UnitsNet
 
         private {_quantity.BaseType} GetValueAs({_unitEnumName} unit)
         {{
-            if(Unit == unit)
+            if (Unit == unit)
                 return _value;
 
             var baseUnitValue = GetValueInBaseUnit();

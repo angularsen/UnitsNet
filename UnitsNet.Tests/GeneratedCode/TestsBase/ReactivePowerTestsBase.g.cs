@@ -238,7 +238,7 @@ namespace UnitsNet.Tests
             var fromUnit = ReactivePower.Units.FirstOrDefault(u => u != ReactivePower.BaseUnit && u != ReactivePowerUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == ReactivePowerUnit.Undefined)
+            if (fromUnit == ReactivePowerUnit.Undefined)
                 fromUnit = ReactivePower.BaseUnit;
 
             var quantity = ReactivePower.From(3.0, fromUnit);
@@ -393,7 +393,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ReactivePowerUnit)).Cast<ReactivePowerUnit>();
             foreach(var unit in units)
             {
-                if(unit == ReactivePowerUnit.Undefined)
+                if (unit == ReactivePowerUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

@@ -338,7 +338,7 @@ namespace UnitsNet.Tests
             var fromUnit = Area.Units.FirstOrDefault(u => u != Area.BaseUnit && u != AreaUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == AreaUnit.Undefined)
+            if (fromUnit == AreaUnit.Undefined)
                 fromUnit = Area.BaseUnit;
 
             var quantity = Area.From(3.0, fromUnit);
@@ -503,7 +503,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(AreaUnit)).Cast<AreaUnit>();
             foreach(var unit in units)
             {
-                if(unit == AreaUnit.Undefined)
+                if (unit == AreaUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

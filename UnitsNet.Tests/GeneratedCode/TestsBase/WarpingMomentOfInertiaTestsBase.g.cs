@@ -258,7 +258,7 @@ namespace UnitsNet.Tests
             var fromUnit = WarpingMomentOfInertia.Units.FirstOrDefault(u => u != WarpingMomentOfInertia.BaseUnit && u != WarpingMomentOfInertiaUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == WarpingMomentOfInertiaUnit.Undefined)
+            if (fromUnit == WarpingMomentOfInertiaUnit.Undefined)
                 fromUnit = WarpingMomentOfInertia.BaseUnit;
 
             var quantity = WarpingMomentOfInertia.From(3.0, fromUnit);
@@ -415,7 +415,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(WarpingMomentOfInertiaUnit)).Cast<WarpingMomentOfInertiaUnit>();
             foreach(var unit in units)
             {
-                if(unit == WarpingMomentOfInertiaUnit.Undefined)
+                if (unit == WarpingMomentOfInertiaUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

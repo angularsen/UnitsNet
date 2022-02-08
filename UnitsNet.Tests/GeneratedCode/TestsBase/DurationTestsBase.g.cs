@@ -308,7 +308,7 @@ namespace UnitsNet.Tests
             var fromUnit = Duration.Units.FirstOrDefault(u => u != Duration.BaseUnit && u != DurationUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == DurationUnit.Undefined)
+            if (fromUnit == DurationUnit.Undefined)
                 fromUnit = Duration.BaseUnit;
 
             var quantity = Duration.From(3.0, fromUnit);
@@ -470,7 +470,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(DurationUnit)).Cast<DurationUnit>();
             foreach(var unit in units)
             {
-                if(unit == DurationUnit.Undefined)
+                if (unit == DurationUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

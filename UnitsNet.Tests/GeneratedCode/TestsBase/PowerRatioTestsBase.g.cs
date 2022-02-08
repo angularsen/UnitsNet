@@ -218,7 +218,7 @@ namespace UnitsNet.Tests
             var fromUnit = PowerRatio.Units.FirstOrDefault(u => u != PowerRatio.BaseUnit && u != PowerRatioUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == PowerRatioUnit.Undefined)
+            if (fromUnit == PowerRatioUnit.Undefined)
                 fromUnit = PowerRatio.BaseUnit;
 
             var quantity = PowerRatio.From(3.0, fromUnit);
@@ -375,7 +375,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(PowerRatioUnit)).Cast<PowerRatioUnit>();
             foreach(var unit in units)
             {
-                if(unit == PowerRatioUnit.Undefined)
+                if (unit == PowerRatioUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

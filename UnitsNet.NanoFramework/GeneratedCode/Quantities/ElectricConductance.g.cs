@@ -137,7 +137,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(ElectricConductanceUnit unit) => GetValueAs(unit);        
+        public double As(ElectricConductanceUnit unit) => GetValueAs(unit);
 
         /// <summary>
         ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
@@ -145,11 +145,9 @@ namespace UnitsNet
         /// <returns>A Duration with the specified unit.</returns>
         public ElectricConductance ToUnit(ElectricConductanceUnit unit)
         {
-                
             var convertedValue = GetValueAs(unit);
             return new ElectricConductance(convertedValue, unit);
         }
-
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
@@ -170,7 +168,7 @@ namespace UnitsNet
 
         private double GetValueAs(ElectricConductanceUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return _value;
 
             var baseUnitValue = GetValueInBaseUnit();

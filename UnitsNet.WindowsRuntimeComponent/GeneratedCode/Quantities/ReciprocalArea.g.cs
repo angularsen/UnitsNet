@@ -82,7 +82,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         private ReciprocalArea(double value, ReciprocalAreaUnit unit)
         {
-            if(unit == ReciprocalAreaUnit.Undefined)
+            if (unit == ReciprocalAreaUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
@@ -543,8 +543,8 @@ namespace UnitsNet
 
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ReciprocalArea objReciprocalArea)) throw new ArgumentException("Expected type ReciprocalArea.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is ReciprocalArea objReciprocalArea)) throw new ArgumentException("Expected type ReciprocalArea.", nameof(obj));
 
             return CompareTo(objReciprocalArea);
         }
@@ -558,7 +558,7 @@ namespace UnitsNet
         [Windows.Foundation.Metadata.DefaultOverload]
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is ReciprocalArea objReciprocalArea))
+            if (obj is null || !(obj is ReciprocalArea objReciprocalArea))
                 return false;
 
             return Equals(objReciprocalArea);
@@ -611,7 +611,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(ReciprocalArea other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -641,7 +641,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(ReciprocalAreaUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = AsBaseNumericType(unit);
@@ -685,7 +685,7 @@ namespace UnitsNet
 
         private double AsBaseNumericType(ReciprocalAreaUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return _value;
 
             var baseUnitValue = AsBaseUnit();

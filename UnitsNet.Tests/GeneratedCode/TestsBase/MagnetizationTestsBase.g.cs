@@ -208,7 +208,7 @@ namespace UnitsNet.Tests
             var fromUnit = Magnetization.Units.FirstOrDefault(u => u != Magnetization.BaseUnit && u != MagnetizationUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == MagnetizationUnit.Undefined)
+            if (fromUnit == MagnetizationUnit.Undefined)
                 fromUnit = Magnetization.BaseUnit;
 
             var quantity = Magnetization.From(3.0, fromUnit);
@@ -360,7 +360,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(MagnetizationUnit)).Cast<MagnetizationUnit>();
             foreach(var unit in units)
             {
-                if(unit == MagnetizationUnit.Undefined)
+                if (unit == MagnetizationUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

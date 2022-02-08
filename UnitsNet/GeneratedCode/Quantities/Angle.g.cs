@@ -94,7 +94,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Angle(double value, AngleUnit unit)
         {
-            if(unit == AngleUnit.Undefined)
+            if (unit == AngleUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
@@ -111,7 +111,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Angle(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -309,7 +309,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Radian, quantity => new Angle(quantity.Value/180*Math.PI, AngleUnit.Radian));
             unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Revolution, quantity => new Angle(quantity.Value/360, AngleUnit.Revolution));
             unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Tilt, quantity => new Angle(Math.Sin(quantity.Value/180*Math.PI), AngleUnit.Tilt));
-            
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Degree, quantity => quantity);
 
@@ -779,8 +778,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Angle objAngle)) throw new ArgumentException("Expected type Angle.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is Angle objAngle)) throw new ArgumentException("Expected type Angle.", nameof(obj));
 
             return CompareTo(objAngle);
         }
@@ -795,7 +794,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(Angle, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is Angle objAngle))
+            if (obj is null || !(obj is Angle objAngle))
                 return false;
 
             return Equals(objAngle);
@@ -850,7 +849,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(Angle other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -878,7 +877,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(AngleUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -888,13 +887,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -903,7 +902,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is AngleUnit unitAsAngleUnit))
+            if (!(unit is AngleUnit unitAsAngleUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AngleUnit)} is supported.", nameof(unit));
 
             return As(unitAsAngleUnit);
@@ -927,18 +926,18 @@ namespace UnitsNet
         /// <returns>A Angle with the specified unit.</returns>
         public Angle ToUnit(AngleUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(Angle), Unit, typeof(Angle), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(Angle), Unit, typeof(Angle), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (Angle)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -953,7 +952,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is AngleUnit unitAsAngleUnit))
+            if (!(unit is AngleUnit unitAsAngleUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AngleUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsAngleUnit, DefaultConversionFunctions);
@@ -962,7 +961,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
         {
-            if(!(unit is AngleUnit unitAsAngleUnit))
+            if (!(unit is AngleUnit unitAsAngleUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AngleUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsAngleUnit, unitConverter);
@@ -971,13 +970,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public Angle ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -1152,15 +1151,15 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(Angle))
+            if (conversionType == typeof(Angle))
                 return this;
-            else if(conversionType == typeof(AngleUnit))
+            else if (conversionType == typeof(AngleUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
+            else if (conversionType == typeof(QuantityType))
                 return Angle.QuantityType;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return Angle.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return Angle.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(Angle)} to {conversionType} is not supported.");

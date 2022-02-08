@@ -348,7 +348,7 @@ namespace UnitsNet.Tests
             var fromUnit = AmountOfSubstance.Units.FirstOrDefault(u => u != AmountOfSubstance.BaseUnit && u != AmountOfSubstanceUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == AmountOfSubstanceUnit.Undefined)
+            if (fromUnit == AmountOfSubstanceUnit.Undefined)
                 fromUnit = AmountOfSubstance.BaseUnit;
 
             var quantity = AmountOfSubstance.From(3.0, fromUnit);
@@ -514,7 +514,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(AmountOfSubstanceUnit)).Cast<AmountOfSubstanceUnit>();
             foreach(var unit in units)
             {
-                if(unit == AmountOfSubstanceUnit.Undefined)
+                if (unit == AmountOfSubstanceUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

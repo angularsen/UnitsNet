@@ -518,7 +518,7 @@ namespace UnitsNet.Tests
             var fromUnit = Speed.Units.FirstOrDefault(u => u != Speed.BaseUnit && u != SpeedUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == SpeedUnit.Undefined)
+            if (fromUnit == SpeedUnit.Undefined)
                 fromUnit = Speed.BaseUnit;
 
             var quantity = Speed.From(3.0, fromUnit);
@@ -701,7 +701,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(SpeedUnit)).Cast<SpeedUnit>();
             foreach(var unit in units)
             {
-                if(unit == SpeedUnit.Undefined)
+                if (unit == SpeedUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

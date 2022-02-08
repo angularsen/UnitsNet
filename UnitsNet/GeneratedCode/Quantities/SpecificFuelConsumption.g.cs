@@ -85,7 +85,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public SpecificFuelConsumption(double value, SpecificFuelConsumptionUnit unit)
         {
-            if(unit == SpecificFuelConsumptionUnit.Undefined)
+            if (unit == SpecificFuelConsumptionUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
@@ -102,7 +102,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public SpecificFuelConsumption(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -228,7 +228,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, quantity => new SpecificFuelConsumption(quantity.Value/28.33, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour));
             unitConverter.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, quantity => new SpecificFuelConsumption((quantity.Value) / 1e3d, SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond));
             unitConverter.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, quantity => new SpecificFuelConsumption(quantity.Value/28.33, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour));
-            
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, quantity => quantity);
 
@@ -554,8 +553,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is SpecificFuelConsumption objSpecificFuelConsumption)) throw new ArgumentException("Expected type SpecificFuelConsumption.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is SpecificFuelConsumption objSpecificFuelConsumption)) throw new ArgumentException("Expected type SpecificFuelConsumption.", nameof(obj));
 
             return CompareTo(objSpecificFuelConsumption);
         }
@@ -570,7 +569,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(SpecificFuelConsumption, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is SpecificFuelConsumption objSpecificFuelConsumption))
+            if (obj is null || !(obj is SpecificFuelConsumption objSpecificFuelConsumption))
                 return false;
 
             return Equals(objSpecificFuelConsumption);
@@ -625,7 +624,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(SpecificFuelConsumption other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -653,7 +652,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(SpecificFuelConsumptionUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -663,13 +662,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -678,7 +677,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is SpecificFuelConsumptionUnit unitAsSpecificFuelConsumptionUnit))
+            if (!(unit is SpecificFuelConsumptionUnit unitAsSpecificFuelConsumptionUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificFuelConsumptionUnit)} is supported.", nameof(unit));
 
             return As(unitAsSpecificFuelConsumptionUnit);
@@ -702,18 +701,18 @@ namespace UnitsNet
         /// <returns>A SpecificFuelConsumption with the specified unit.</returns>
         public SpecificFuelConsumption ToUnit(SpecificFuelConsumptionUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(SpecificFuelConsumption), Unit, typeof(SpecificFuelConsumption), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(SpecificFuelConsumption), Unit, typeof(SpecificFuelConsumption), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (SpecificFuelConsumption)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -728,7 +727,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is SpecificFuelConsumptionUnit unitAsSpecificFuelConsumptionUnit))
+            if (!(unit is SpecificFuelConsumptionUnit unitAsSpecificFuelConsumptionUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificFuelConsumptionUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsSpecificFuelConsumptionUnit, DefaultConversionFunctions);
@@ -737,7 +736,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
         {
-            if(!(unit is SpecificFuelConsumptionUnit unitAsSpecificFuelConsumptionUnit))
+            if (!(unit is SpecificFuelConsumptionUnit unitAsSpecificFuelConsumptionUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificFuelConsumptionUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsSpecificFuelConsumptionUnit, unitConverter);
@@ -746,13 +745,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public SpecificFuelConsumption ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -927,15 +926,15 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(SpecificFuelConsumption))
+            if (conversionType == typeof(SpecificFuelConsumption))
                 return this;
-            else if(conversionType == typeof(SpecificFuelConsumptionUnit))
+            else if (conversionType == typeof(SpecificFuelConsumptionUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
+            else if (conversionType == typeof(QuantityType))
                 return SpecificFuelConsumption.QuantityType;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return SpecificFuelConsumption.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return SpecificFuelConsumption.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(SpecificFuelConsumption)} to {conversionType} is not supported.");

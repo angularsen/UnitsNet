@@ -81,7 +81,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ApparentEnergy(double value, ApparentEnergyUnit unit)
         {
-            if(unit == ApparentEnergyUnit.Undefined)
+            if (unit == ApparentEnergyUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
@@ -98,7 +98,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public ApparentEnergy(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -218,7 +218,6 @@ namespace UnitsNet
             // Register in unit converter: BaseUnit -> ApparentEnergyUnit
             unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.KilovoltampereHour, quantity => new ApparentEnergy((quantity.Value) / 1e3d, ApparentEnergyUnit.KilovoltampereHour));
             unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.MegavoltampereHour, quantity => new ApparentEnergy((quantity.Value) / 1e6d, ApparentEnergyUnit.MegavoltampereHour));
-            
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.VoltampereHour, quantity => quantity);
 
@@ -533,8 +532,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ApparentEnergy objApparentEnergy)) throw new ArgumentException("Expected type ApparentEnergy.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is ApparentEnergy objApparentEnergy)) throw new ArgumentException("Expected type ApparentEnergy.", nameof(obj));
 
             return CompareTo(objApparentEnergy);
         }
@@ -549,7 +548,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(ApparentEnergy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is ApparentEnergy objApparentEnergy))
+            if (obj is null || !(obj is ApparentEnergy objApparentEnergy))
                 return false;
 
             return Equals(objApparentEnergy);
@@ -604,7 +603,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(ApparentEnergy other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -632,7 +631,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(ApparentEnergyUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -642,13 +641,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -657,7 +656,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is ApparentEnergyUnit unitAsApparentEnergyUnit))
+            if (!(unit is ApparentEnergyUnit unitAsApparentEnergyUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ApparentEnergyUnit)} is supported.", nameof(unit));
 
             return As(unitAsApparentEnergyUnit);
@@ -681,18 +680,18 @@ namespace UnitsNet
         /// <returns>A ApparentEnergy with the specified unit.</returns>
         public ApparentEnergy ToUnit(ApparentEnergyUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(ApparentEnergy), Unit, typeof(ApparentEnergy), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(ApparentEnergy), Unit, typeof(ApparentEnergy), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (ApparentEnergy)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -707,7 +706,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is ApparentEnergyUnit unitAsApparentEnergyUnit))
+            if (!(unit is ApparentEnergyUnit unitAsApparentEnergyUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ApparentEnergyUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsApparentEnergyUnit, DefaultConversionFunctions);
@@ -716,7 +715,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
         {
-            if(!(unit is ApparentEnergyUnit unitAsApparentEnergyUnit))
+            if (!(unit is ApparentEnergyUnit unitAsApparentEnergyUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ApparentEnergyUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsApparentEnergyUnit, unitConverter);
@@ -725,13 +724,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public ApparentEnergy ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -906,15 +905,15 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(ApparentEnergy))
+            if (conversionType == typeof(ApparentEnergy))
                 return this;
-            else if(conversionType == typeof(ApparentEnergyUnit))
+            else if (conversionType == typeof(ApparentEnergyUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
+            else if (conversionType == typeof(QuantityType))
                 return ApparentEnergy.QuantityType;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return ApparentEnergy.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return ApparentEnergy.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(ApparentEnergy)} to {conversionType} is not supported.");

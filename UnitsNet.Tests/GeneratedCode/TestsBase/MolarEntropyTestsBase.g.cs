@@ -228,7 +228,7 @@ namespace UnitsNet.Tests
             var fromUnit = MolarEntropy.Units.FirstOrDefault(u => u != MolarEntropy.BaseUnit && u != MolarEntropyUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == MolarEntropyUnit.Undefined)
+            if (fromUnit == MolarEntropyUnit.Undefined)
                 fromUnit = MolarEntropy.BaseUnit;
 
             var quantity = MolarEntropy.From(3.0, fromUnit);
@@ -382,7 +382,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(MolarEntropyUnit)).Cast<MolarEntropyUnit>();
             foreach(var unit in units)
             {
-                if(unit == MolarEntropyUnit.Undefined)
+                if (unit == MolarEntropyUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

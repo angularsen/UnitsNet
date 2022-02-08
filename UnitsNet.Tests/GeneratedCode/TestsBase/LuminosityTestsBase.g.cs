@@ -338,7 +338,7 @@ namespace UnitsNet.Tests
             var fromUnit = Luminosity.Units.FirstOrDefault(u => u != Luminosity.BaseUnit && u != LuminosityUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == LuminosityUnit.Undefined)
+            if (fromUnit == LuminosityUnit.Undefined)
                 fromUnit = Luminosity.BaseUnit;
 
             var quantity = Luminosity.From(3.0, fromUnit);
@@ -503,7 +503,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(LuminosityUnit)).Cast<LuminosityUnit>();
             foreach(var unit in units)
             {
-                if(unit == LuminosityUnit.Undefined)
+                if (unit == LuminosityUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

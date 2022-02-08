@@ -218,7 +218,7 @@ namespace UnitsNet.Tests
             var fromUnit = VolumeFlowPerArea.Units.FirstOrDefault(u => u != VolumeFlowPerArea.BaseUnit && u != VolumeFlowPerAreaUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == VolumeFlowPerAreaUnit.Undefined)
+            if (fromUnit == VolumeFlowPerAreaUnit.Undefined)
                 fromUnit = VolumeFlowPerArea.BaseUnit;
 
             var quantity = VolumeFlowPerArea.From(3.0, fromUnit);
@@ -371,7 +371,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(VolumeFlowPerAreaUnit)).Cast<VolumeFlowPerAreaUnit>();
             foreach(var unit in units)
             {
-                if(unit == VolumeFlowPerAreaUnit.Undefined)
+                if (unit == VolumeFlowPerAreaUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

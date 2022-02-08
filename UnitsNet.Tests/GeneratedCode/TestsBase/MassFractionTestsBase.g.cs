@@ -438,7 +438,7 @@ namespace UnitsNet.Tests
             var fromUnit = MassFraction.Units.FirstOrDefault(u => u != MassFraction.BaseUnit && u != MassFractionUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == MassFractionUnit.Undefined)
+            if (fromUnit == MassFractionUnit.Undefined)
                 fromUnit = MassFraction.BaseUnit;
 
             var quantity = MassFraction.From(3.0, fromUnit);
@@ -613,7 +613,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(MassFractionUnit)).Cast<MassFractionUnit>();
             foreach(var unit in units)
             {
-                if(unit == MassFractionUnit.Undefined)
+                if (unit == MassFractionUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

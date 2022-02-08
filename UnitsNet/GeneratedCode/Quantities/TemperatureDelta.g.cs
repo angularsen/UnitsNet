@@ -87,7 +87,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public TemperatureDelta(double value, TemperatureDeltaUnit unit)
         {
-            if(unit == TemperatureDeltaUnit.Undefined)
+            if (unit == TemperatureDeltaUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
@@ -104,7 +104,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public TemperatureDelta(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -260,7 +260,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeReaumur, quantity => new TemperatureDelta(quantity.Value*4/5, TemperatureDeltaUnit.DegreeReaumur));
             unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeRoemer, quantity => new TemperatureDelta(quantity.Value*21/40, TemperatureDeltaUnit.DegreeRoemer));
             unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.MillidegreeCelsius, quantity => new TemperatureDelta((quantity.Value) / 1e-3d, TemperatureDeltaUnit.MillidegreeCelsius));
-            
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.Kelvin, quantity => quantity);
 
@@ -641,8 +640,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is TemperatureDelta objTemperatureDelta)) throw new ArgumentException("Expected type TemperatureDelta.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is TemperatureDelta objTemperatureDelta)) throw new ArgumentException("Expected type TemperatureDelta.", nameof(obj));
 
             return CompareTo(objTemperatureDelta);
         }
@@ -657,7 +656,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(TemperatureDelta, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is TemperatureDelta objTemperatureDelta))
+            if (obj is null || !(obj is TemperatureDelta objTemperatureDelta))
                 return false;
 
             return Equals(objTemperatureDelta);
@@ -712,7 +711,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(TemperatureDelta other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -740,7 +739,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(TemperatureDeltaUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -750,13 +749,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -765,7 +764,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is TemperatureDeltaUnit unitAsTemperatureDeltaUnit))
+            if (!(unit is TemperatureDeltaUnit unitAsTemperatureDeltaUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureDeltaUnit)} is supported.", nameof(unit));
 
             return As(unitAsTemperatureDeltaUnit);
@@ -789,18 +788,18 @@ namespace UnitsNet
         /// <returns>A TemperatureDelta with the specified unit.</returns>
         public TemperatureDelta ToUnit(TemperatureDeltaUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(TemperatureDelta), Unit, typeof(TemperatureDelta), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(TemperatureDelta), Unit, typeof(TemperatureDelta), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (TemperatureDelta)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -815,7 +814,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is TemperatureDeltaUnit unitAsTemperatureDeltaUnit))
+            if (!(unit is TemperatureDeltaUnit unitAsTemperatureDeltaUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureDeltaUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsTemperatureDeltaUnit, DefaultConversionFunctions);
@@ -824,7 +823,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
         {
-            if(!(unit is TemperatureDeltaUnit unitAsTemperatureDeltaUnit))
+            if (!(unit is TemperatureDeltaUnit unitAsTemperatureDeltaUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureDeltaUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsTemperatureDeltaUnit, unitConverter);
@@ -833,13 +832,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public TemperatureDelta ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -1014,15 +1013,15 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(TemperatureDelta))
+            if (conversionType == typeof(TemperatureDelta))
                 return this;
-            else if(conversionType == typeof(TemperatureDeltaUnit))
+            else if (conversionType == typeof(TemperatureDeltaUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
+            else if (conversionType == typeof(QuantityType))
                 return TemperatureDelta.QuantityType;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return TemperatureDelta.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return TemperatureDelta.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(TemperatureDelta)} to {conversionType} is not supported.");

@@ -308,7 +308,7 @@ namespace UnitsNet.Tests
             var fromUnit = ReciprocalArea.Units.FirstOrDefault(u => u != ReciprocalArea.BaseUnit && u != ReciprocalAreaUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == ReciprocalAreaUnit.Undefined)
+            if (fromUnit == ReciprocalAreaUnit.Undefined)
                 fromUnit = ReciprocalArea.BaseUnit;
 
             var quantity = ReciprocalArea.From(3.0, fromUnit);
@@ -470,7 +470,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ReciprocalAreaUnit)).Cast<ReciprocalAreaUnit>();
             foreach(var unit in units)
             {
-                if(unit == ReciprocalAreaUnit.Undefined)
+                if (unit == ReciprocalAreaUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

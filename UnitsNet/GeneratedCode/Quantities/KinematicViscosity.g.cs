@@ -90,7 +90,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public KinematicViscosity(double value, KinematicViscosityUnit unit)
         {
-            if(unit == KinematicViscosityUnit.Undefined)
+            if (unit == KinematicViscosityUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
@@ -107,7 +107,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public KinematicViscosity(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -263,7 +263,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Nanostokes, quantity => new KinematicViscosity((quantity.Value*1e4) / 1e-9d, KinematicViscosityUnit.Nanostokes));
             unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.SquareFootPerSecond, quantity => new KinematicViscosity(quantity.Value*10.7639, KinematicViscosityUnit.SquareFootPerSecond));
             unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Stokes, quantity => new KinematicViscosity(quantity.Value*1e4, KinematicViscosityUnit.Stokes));
-            
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.SquareMeterPerSecond, quantity => quantity);
 
@@ -652,8 +651,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is KinematicViscosity objKinematicViscosity)) throw new ArgumentException("Expected type KinematicViscosity.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is KinematicViscosity objKinematicViscosity)) throw new ArgumentException("Expected type KinematicViscosity.", nameof(obj));
 
             return CompareTo(objKinematicViscosity);
         }
@@ -668,7 +667,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(KinematicViscosity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is KinematicViscosity objKinematicViscosity))
+            if (obj is null || !(obj is KinematicViscosity objKinematicViscosity))
                 return false;
 
             return Equals(objKinematicViscosity);
@@ -723,7 +722,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(KinematicViscosity other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -751,7 +750,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(KinematicViscosityUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -761,13 +760,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -776,7 +775,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is KinematicViscosityUnit unitAsKinematicViscosityUnit))
+            if (!(unit is KinematicViscosityUnit unitAsKinematicViscosityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(KinematicViscosityUnit)} is supported.", nameof(unit));
 
             return As(unitAsKinematicViscosityUnit);
@@ -800,18 +799,18 @@ namespace UnitsNet
         /// <returns>A KinematicViscosity with the specified unit.</returns>
         public KinematicViscosity ToUnit(KinematicViscosityUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(KinematicViscosity), Unit, typeof(KinematicViscosity), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(KinematicViscosity), Unit, typeof(KinematicViscosity), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (KinematicViscosity)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -826,7 +825,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is KinematicViscosityUnit unitAsKinematicViscosityUnit))
+            if (!(unit is KinematicViscosityUnit unitAsKinematicViscosityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(KinematicViscosityUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsKinematicViscosityUnit, DefaultConversionFunctions);
@@ -835,7 +834,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
         {
-            if(!(unit is KinematicViscosityUnit unitAsKinematicViscosityUnit))
+            if (!(unit is KinematicViscosityUnit unitAsKinematicViscosityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(KinematicViscosityUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsKinematicViscosityUnit, unitConverter);
@@ -844,13 +843,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public KinematicViscosity ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -1025,15 +1024,15 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(KinematicViscosity))
+            if (conversionType == typeof(KinematicViscosity))
                 return this;
-            else if(conversionType == typeof(KinematicViscosityUnit))
+            else if (conversionType == typeof(KinematicViscosityUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
+            else if (conversionType == typeof(QuantityType))
                 return KinematicViscosity.QuantityType;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return KinematicViscosity.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return KinematicViscosity.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(KinematicViscosity)} to {conversionType} is not supported.");

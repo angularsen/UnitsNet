@@ -348,7 +348,7 @@ namespace UnitsNet.Tests
             var fromUnit = Force.Units.FirstOrDefault(u => u != Force.BaseUnit && u != ForceUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == ForceUnit.Undefined)
+            if (fromUnit == ForceUnit.Undefined)
                 fromUnit = Force.BaseUnit;
 
             var quantity = Force.From(3.0, fromUnit);
@@ -514,7 +514,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ForceUnit)).Cast<ForceUnit>();
             foreach(var unit in units)
             {
-                if(unit == ForceUnit.Undefined)
+                if (unit == ForceUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

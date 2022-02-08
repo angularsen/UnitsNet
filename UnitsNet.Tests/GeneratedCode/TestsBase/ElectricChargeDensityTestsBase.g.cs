@@ -208,7 +208,7 @@ namespace UnitsNet.Tests
             var fromUnit = ElectricChargeDensity.Units.FirstOrDefault(u => u != ElectricChargeDensity.BaseUnit && u != ElectricChargeDensityUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == ElectricChargeDensityUnit.Undefined)
+            if (fromUnit == ElectricChargeDensityUnit.Undefined)
                 fromUnit = ElectricChargeDensity.BaseUnit;
 
             var quantity = ElectricChargeDensity.From(3.0, fromUnit);
@@ -360,7 +360,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ElectricChargeDensityUnit)).Cast<ElectricChargeDensityUnit>();
             foreach(var unit in units)
             {
-                if(unit == ElectricChargeDensityUnit.Undefined)
+                if (unit == ElectricChargeDensityUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

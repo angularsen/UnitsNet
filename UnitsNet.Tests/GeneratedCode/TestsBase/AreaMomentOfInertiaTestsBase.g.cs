@@ -258,7 +258,7 @@ namespace UnitsNet.Tests
             var fromUnit = AreaMomentOfInertia.Units.FirstOrDefault(u => u != AreaMomentOfInertia.BaseUnit && u != AreaMomentOfInertiaUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == AreaMomentOfInertiaUnit.Undefined)
+            if (fromUnit == AreaMomentOfInertiaUnit.Undefined)
                 fromUnit = AreaMomentOfInertia.BaseUnit;
 
             var quantity = AreaMomentOfInertia.From(3.0, fromUnit);
@@ -415,7 +415,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(AreaMomentOfInertiaUnit)).Cast<AreaMomentOfInertiaUnit>();
             foreach(var unit in units)
             {
-                if(unit == AreaMomentOfInertiaUnit.Undefined)
+                if (unit == AreaMomentOfInertiaUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

@@ -338,7 +338,7 @@ namespace UnitsNet.Tests
             var fromUnit = PressureChangeRate.Units.FirstOrDefault(u => u != PressureChangeRate.BaseUnit && u != PressureChangeRateUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == PressureChangeRateUnit.Undefined)
+            if (fromUnit == PressureChangeRateUnit.Undefined)
                 fromUnit = PressureChangeRate.BaseUnit;
 
             var quantity = PressureChangeRate.From(3.0, fromUnit);
@@ -503,7 +503,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(PressureChangeRateUnit)).Cast<PressureChangeRateUnit>();
             foreach(var unit in units)
             {
-                if(unit == PressureChangeRateUnit.Undefined)
+                if (unit == PressureChangeRateUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

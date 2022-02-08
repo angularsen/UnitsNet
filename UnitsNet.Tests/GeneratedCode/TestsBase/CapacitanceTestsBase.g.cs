@@ -268,7 +268,7 @@ namespace UnitsNet.Tests
             var fromUnit = Capacitance.Units.FirstOrDefault(u => u != Capacitance.BaseUnit && u != CapacitanceUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == CapacitanceUnit.Undefined)
+            if (fromUnit == CapacitanceUnit.Undefined)
                 fromUnit = Capacitance.BaseUnit;
 
             var quantity = Capacitance.From(3.0, fromUnit);
@@ -426,7 +426,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(CapacitanceUnit)).Cast<CapacitanceUnit>();
             foreach(var unit in units)
             {
-                if(unit == CapacitanceUnit.Undefined)
+                if (unit == CapacitanceUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

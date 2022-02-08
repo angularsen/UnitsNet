@@ -176,7 +176,7 @@ namespace UnitsNet
                 if (double.TryParse(stringValue, NumberStyles.Any, culture, out double dvalue))
                 {
                     var defaultUnit = GetAttribute<DefaultUnitAttribute>(context) ?? new DefaultUnitAttribute(default(TQuantity).Unit);
-                    if(defaultUnit.UnitType != null)
+                    if (defaultUnit.UnitType != null)
                         quantity = Quantity.From(dvalue, defaultUnit.UnitType);
                 }
                 else
@@ -184,7 +184,7 @@ namespace UnitsNet
                     quantity = Quantity.Parse(culture, typeof(TQuantity), stringValue);
                 }
 
-                if( quantity != null )
+                if (quantity != null)
                 {
                     ConvertToUnitAttribute? convertToUnit = GetAttribute<ConvertToUnitAttribute>(context);
                     if (convertToUnit != null && convertToUnit.UnitType != null)

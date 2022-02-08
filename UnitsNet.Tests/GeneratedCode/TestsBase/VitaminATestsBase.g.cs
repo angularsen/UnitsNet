@@ -208,7 +208,7 @@ namespace UnitsNet.Tests
             var fromUnit = VitaminA.Units.FirstOrDefault(u => u != VitaminA.BaseUnit && u != VitaminAUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == VitaminAUnit.Undefined)
+            if (fromUnit == VitaminAUnit.Undefined)
                 fromUnit = VitaminA.BaseUnit;
 
             var quantity = VitaminA.From(3.0, fromUnit);
@@ -360,7 +360,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(VitaminAUnit)).Cast<VitaminAUnit>();
             foreach(var unit in units)
             {
-                if(unit == VitaminAUnit.Undefined)
+                if (unit == VitaminAUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

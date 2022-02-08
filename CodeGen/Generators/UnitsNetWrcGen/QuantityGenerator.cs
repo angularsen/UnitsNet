@@ -150,7 +150,7 @@ namespace UnitsNet
         /// <exception cref=""ArgumentException"">If value is NaN or Infinity.</exception>
         private {_quantity.Name}({_quantity.BaseType} value, {_unitEnumName} unit)
         {{
-            if(unit == {_unitEnumName}.Undefined)
+            if (unit == {_unitEnumName}.Undefined)
               throw new ArgumentException(""The quantity can not be created with an undefined unit."", nameof(unit));
 ");
 
@@ -259,7 +259,7 @@ namespace UnitsNet
 ");
             foreach (var unit in _quantity.Units)
             {
-                if(unit.SkipConversionGeneration)
+                if (unit.SkipConversionGeneration)
                     continue;
 
                 Writer.WL($@"
@@ -336,7 +336,7 @@ namespace UnitsNet
 ");
             foreach (var unit in _quantity.Units)
             {
-                if(unit.SkipConversionGeneration)
+                if (unit.SkipConversionGeneration)
                     continue;
 
                 var valueParamName = unit.PluralName.ToLowerInvariant();
@@ -533,8 +533,8 @@ namespace UnitsNet
 
         public int CompareTo(object obj)
         {{
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is {_quantity.Name} obj{_quantity.Name})) throw new ArgumentException(""Expected type {_quantity.Name}."", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is {_quantity.Name} obj{_quantity.Name})) throw new ArgumentException(""Expected type {_quantity.Name}."", nameof(obj));
 
             return CompareTo(obj{_quantity.Name});
         }}
@@ -548,7 +548,7 @@ namespace UnitsNet
         [Windows.Foundation.Metadata.DefaultOverload]
         public override bool Equals(object obj)
         {{
-            if(obj is null || !(obj is {_quantity.Name} obj{_quantity.Name}))
+            if (obj is null || !(obj is {_quantity.Name} obj{_quantity.Name}))
                 return false;
 
             return Equals(obj{_quantity.Name});
@@ -601,7 +601,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals({_quantity.Name} other, double tolerance, ComparisonType comparisonType)
         {{
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(""tolerance"", ""Tolerance must be greater than or equal to 0."");
 
             double thisValue = (double)this.Value;
@@ -636,7 +636,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As({_unitEnumName} unit)
         {{
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = AsBaseNumericType(unit);
@@ -677,7 +677,7 @@ namespace UnitsNet
 
         private {_valueType} AsBaseNumericType({_unitEnumName} unit)
         {{
-            if(Unit == unit)
+            if (Unit == unit)
                 return _value;
 
             var baseUnitValue = AsBaseUnit();

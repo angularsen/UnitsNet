@@ -342,7 +342,7 @@ namespace UnitsNet.Tests
             var fromUnit = Molarity.Units.FirstOrDefault(u => u != Molarity.BaseUnit && u != MolarityUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == MolarityUnit.Undefined)
+            if (fromUnit == MolarityUnit.Undefined)
                 fromUnit = Molarity.BaseUnit;
 
             var quantity = Molarity.From(3.0, fromUnit);
@@ -509,7 +509,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(MolarityUnit)).Cast<MolarityUnit>();
             foreach(var unit in units)
             {
-                if(unit == MolarityUnit.Undefined)
+                if (unit == MolarityUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

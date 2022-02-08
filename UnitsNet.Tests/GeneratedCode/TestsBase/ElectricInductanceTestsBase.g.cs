@@ -238,7 +238,7 @@ namespace UnitsNet.Tests
             var fromUnit = ElectricInductance.Units.FirstOrDefault(u => u != ElectricInductance.BaseUnit && u != ElectricInductanceUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == ElectricInductanceUnit.Undefined)
+            if (fromUnit == ElectricInductanceUnit.Undefined)
                 fromUnit = ElectricInductance.BaseUnit;
 
             var quantity = ElectricInductance.From(3.0, fromUnit);
@@ -393,7 +393,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ElectricInductanceUnit)).Cast<ElectricInductanceUnit>();
             foreach(var unit in units)
             {
-                if(unit == ElectricInductanceUnit.Undefined)
+                if (unit == ElectricInductanceUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

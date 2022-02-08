@@ -79,7 +79,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         private Duration(double value, DurationUnit unit)
         {
-            if(unit == DurationUnit.Undefined)
+            if (unit == DurationUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
@@ -550,8 +550,8 @@ namespace UnitsNet
 
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Duration objDuration)) throw new ArgumentException("Expected type Duration.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is Duration objDuration)) throw new ArgumentException("Expected type Duration.", nameof(obj));
 
             return CompareTo(objDuration);
         }
@@ -565,7 +565,7 @@ namespace UnitsNet
         [Windows.Foundation.Metadata.DefaultOverload]
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is Duration objDuration))
+            if (obj is null || !(obj is Duration objDuration))
                 return false;
 
             return Equals(objDuration);
@@ -618,7 +618,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(Duration other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -648,7 +648,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(DurationUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = AsBaseNumericType(unit);
@@ -692,7 +692,7 @@ namespace UnitsNet
 
         private double AsBaseNumericType(DurationUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return _value;
 
             var baseUnitValue = AsBaseUnit();

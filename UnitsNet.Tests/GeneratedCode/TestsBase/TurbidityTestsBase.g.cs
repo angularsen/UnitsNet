@@ -208,7 +208,7 @@ namespace UnitsNet.Tests
             var fromUnit = Turbidity.Units.FirstOrDefault(u => u != Turbidity.BaseUnit && u != TurbidityUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == TurbidityUnit.Undefined)
+            if (fromUnit == TurbidityUnit.Undefined)
                 fromUnit = Turbidity.BaseUnit;
 
             var quantity = Turbidity.From(3.0, fromUnit);
@@ -360,7 +360,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(TurbidityUnit)).Cast<TurbidityUnit>();
             foreach(var unit in units)
             {
-                if(unit == TurbidityUnit.Undefined)
+                if (unit == TurbidityUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

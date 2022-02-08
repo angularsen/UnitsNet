@@ -298,7 +298,7 @@ namespace UnitsNet.Tests
             var fromUnit = TemperatureChangeRate.Units.FirstOrDefault(u => u != TemperatureChangeRate.BaseUnit && u != TemperatureChangeRateUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == TemperatureChangeRateUnit.Undefined)
+            if (fromUnit == TemperatureChangeRateUnit.Undefined)
                 fromUnit = TemperatureChangeRate.BaseUnit;
 
             var quantity = TemperatureChangeRate.From(3.0, fromUnit);
@@ -459,7 +459,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(TemperatureChangeRateUnit)).Cast<TemperatureChangeRateUnit>();
             foreach(var unit in units)
             {
-                if(unit == TemperatureChangeRateUnit.Undefined)
+                if (unit == TemperatureChangeRateUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

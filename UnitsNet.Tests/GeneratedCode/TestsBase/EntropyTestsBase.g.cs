@@ -268,7 +268,7 @@ namespace UnitsNet.Tests
             var fromUnit = Entropy.Units.FirstOrDefault(u => u != Entropy.BaseUnit && u != EntropyUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == EntropyUnit.Undefined)
+            if (fromUnit == EntropyUnit.Undefined)
                 fromUnit = Entropy.BaseUnit;
 
             var quantity = Entropy.From(3.0, fromUnit);
@@ -426,7 +426,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(EntropyUnit)).Cast<EntropyUnit>();
             foreach(var unit in units)
             {
-                if(unit == EntropyUnit.Undefined)
+                if (unit == EntropyUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

@@ -378,7 +378,7 @@ namespace UnitsNet.Tests
             var fromUnit = HeatFlux.Units.FirstOrDefault(u => u != HeatFlux.BaseUnit && u != HeatFluxUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == HeatFluxUnit.Undefined)
+            if (fromUnit == HeatFluxUnit.Undefined)
                 fromUnit = HeatFlux.BaseUnit;
 
             var quantity = HeatFlux.From(3.0, fromUnit);
@@ -547,7 +547,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(HeatFluxUnit)).Cast<HeatFluxUnit>();
             foreach(var unit in units)
             {
-                if(unit == HeatFluxUnit.Undefined)
+                if (unit == HeatFluxUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

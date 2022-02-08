@@ -79,7 +79,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         private Information(decimal value, InformationUnit unit)
         {
-            if(unit == InformationUnit.Undefined)
+            if (unit == InformationUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
             _value = value;
@@ -780,8 +780,8 @@ namespace UnitsNet
 
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Information objInformation)) throw new ArgumentException("Expected type Information.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is Information objInformation)) throw new ArgumentException("Expected type Information.", nameof(obj));
 
             return CompareTo(objInformation);
         }
@@ -795,7 +795,7 @@ namespace UnitsNet
         [Windows.Foundation.Metadata.DefaultOverload]
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is Information objInformation))
+            if (obj is null || !(obj is Information objInformation))
                 return false;
 
             return Equals(objInformation);
@@ -848,7 +848,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(Information other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -878,7 +878,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(InformationUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = AsBaseNumericType(unit);
@@ -937,7 +937,7 @@ namespace UnitsNet
 
         private decimal AsBaseNumericType(InformationUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return _value;
 
             var baseUnitValue = AsBaseUnit();

@@ -288,7 +288,7 @@ namespace UnitsNet.Tests
             var fromUnit = TemperatureDelta.Units.FirstOrDefault(u => u != TemperatureDelta.BaseUnit && u != TemperatureDeltaUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == TemperatureDeltaUnit.Undefined)
+            if (fromUnit == TemperatureDeltaUnit.Undefined)
                 fromUnit = TemperatureDelta.BaseUnit;
 
             var quantity = TemperatureDelta.From(3.0, fromUnit);
@@ -448,7 +448,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(TemperatureDeltaUnit)).Cast<TemperatureDeltaUnit>();
             foreach(var unit in units)
             {
-                if(unit == TemperatureDeltaUnit.Undefined)
+                if (unit == TemperatureDeltaUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

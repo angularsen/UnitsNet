@@ -248,7 +248,7 @@ namespace UnitsNet.Tests
             var fromUnit = ElectricCharge.Units.FirstOrDefault(u => u != ElectricCharge.BaseUnit && u != ElectricChargeUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == ElectricChargeUnit.Undefined)
+            if (fromUnit == ElectricChargeUnit.Undefined)
                 fromUnit = ElectricCharge.BaseUnit;
 
             var quantity = ElectricCharge.From(3.0, fromUnit);
@@ -404,7 +404,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ElectricChargeUnit)).Cast<ElectricChargeUnit>();
             foreach(var unit in units)
             {
-                if(unit == ElectricChargeUnit.Undefined)
+                if (unit == ElectricChargeUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

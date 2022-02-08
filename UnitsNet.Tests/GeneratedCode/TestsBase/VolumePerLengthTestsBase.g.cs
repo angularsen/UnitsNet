@@ -268,7 +268,7 @@ namespace UnitsNet.Tests
             var fromUnit = VolumePerLength.Units.FirstOrDefault(u => u != VolumePerLength.BaseUnit && u != VolumePerLengthUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == VolumePerLengthUnit.Undefined)
+            if (fromUnit == VolumePerLengthUnit.Undefined)
                 fromUnit = VolumePerLength.BaseUnit;
 
             var quantity = VolumePerLength.From(3.0, fromUnit);
@@ -426,7 +426,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(VolumePerLengthUnit)).Cast<VolumePerLengthUnit>();
             foreach(var unit in units)
             {
-                if(unit == VolumePerLengthUnit.Undefined)
+                if (unit == VolumePerLengthUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

@@ -228,7 +228,7 @@ namespace UnitsNet.Tests
             var fromUnit = MolarEnergy.Units.FirstOrDefault(u => u != MolarEnergy.BaseUnit && u != MolarEnergyUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == MolarEnergyUnit.Undefined)
+            if (fromUnit == MolarEnergyUnit.Undefined)
                 fromUnit = MolarEnergy.BaseUnit;
 
             var quantity = MolarEnergy.From(3.0, fromUnit);
@@ -382,7 +382,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(MolarEnergyUnit)).Cast<MolarEnergyUnit>();
             foreach(var unit in units)
             {
-                if(unit == MolarEnergyUnit.Undefined)
+                if (unit == MolarEnergyUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

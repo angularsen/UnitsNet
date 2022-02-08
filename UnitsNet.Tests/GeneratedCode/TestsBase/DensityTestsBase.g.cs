@@ -708,7 +708,7 @@ namespace UnitsNet.Tests
             var fromUnit = Density.Units.FirstOrDefault(u => u != Density.BaseUnit && u != DensityUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == DensityUnit.Undefined)
+            if (fromUnit == DensityUnit.Undefined)
                 fromUnit = Density.BaseUnit;
 
             var quantity = Density.From(3.0, fromUnit);
@@ -910,7 +910,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(DensityUnit)).Cast<DensityUnit>();
             foreach(var unit in units)
             {
-                if(unit == DensityUnit.Undefined)
+                if (unit == DensityUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

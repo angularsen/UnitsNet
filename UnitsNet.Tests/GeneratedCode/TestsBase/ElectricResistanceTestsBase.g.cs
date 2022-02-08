@@ -258,7 +258,7 @@ namespace UnitsNet.Tests
             var fromUnit = ElectricResistance.Units.FirstOrDefault(u => u != ElectricResistance.BaseUnit && u != ElectricResistanceUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == ElectricResistanceUnit.Undefined)
+            if (fromUnit == ElectricResistanceUnit.Undefined)
                 fromUnit = ElectricResistance.BaseUnit;
 
             var quantity = ElectricResistance.From(3.0, fromUnit);
@@ -415,7 +415,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ElectricResistanceUnit)).Cast<ElectricResistanceUnit>();
             foreach(var unit in units)
             {
-                if(unit == ElectricResistanceUnit.Undefined)
+                if (unit == ElectricResistanceUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

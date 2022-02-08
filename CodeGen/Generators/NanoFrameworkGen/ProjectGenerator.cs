@@ -48,7 +48,7 @@ namespace CodeGen.Generators.NanoFrameworkGen
       <SpecificVersion>True</SpecificVersion>
     </Reference>");
 
-    if(NanoFrameworkGenerator.ProjectsRequiringMath.Contains(_quantity.Name))
+    if (NanoFrameworkGenerator.ProjectsRequiringMath.Contains(_quantity.Name))
     {
                 Writer.WL($@"
     <Reference Include=""System.Math, Version={_versions.MathVersion}, Culture=neutral, PublicKeyToken=c07d481e9758c731"">

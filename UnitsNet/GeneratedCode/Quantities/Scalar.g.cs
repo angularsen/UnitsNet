@@ -79,7 +79,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Scalar(double value, ScalarUnit unit)
         {
-            if(unit == ScalarUnit.Undefined)
+            if (unit == ScalarUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
@@ -96,7 +96,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Scalar(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -204,7 +204,6 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> ScalarUnit
-            
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Scalar>(ScalarUnit.Amount, ScalarUnit.Amount, quantity => quantity);
 
@@ -497,8 +496,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Scalar objScalar)) throw new ArgumentException("Expected type Scalar.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is Scalar objScalar)) throw new ArgumentException("Expected type Scalar.", nameof(obj));
 
             return CompareTo(objScalar);
         }
@@ -513,7 +512,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(Scalar, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is Scalar objScalar))
+            if (obj is null || !(obj is Scalar objScalar))
                 return false;
 
             return Equals(objScalar);
@@ -568,7 +567,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(Scalar other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -596,7 +595,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(ScalarUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -606,13 +605,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -621,7 +620,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is ScalarUnit unitAsScalarUnit))
+            if (!(unit is ScalarUnit unitAsScalarUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ScalarUnit)} is supported.", nameof(unit));
 
             return As(unitAsScalarUnit);
@@ -645,18 +644,18 @@ namespace UnitsNet
         /// <returns>A Scalar with the specified unit.</returns>
         public Scalar ToUnit(ScalarUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(Scalar), Unit, typeof(Scalar), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(Scalar), Unit, typeof(Scalar), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (Scalar)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -671,7 +670,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is ScalarUnit unitAsScalarUnit))
+            if (!(unit is ScalarUnit unitAsScalarUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ScalarUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsScalarUnit, DefaultConversionFunctions);
@@ -680,7 +679,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
         {
-            if(!(unit is ScalarUnit unitAsScalarUnit))
+            if (!(unit is ScalarUnit unitAsScalarUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ScalarUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsScalarUnit, unitConverter);
@@ -689,13 +688,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public Scalar ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -870,15 +869,15 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(Scalar))
+            if (conversionType == typeof(Scalar))
                 return this;
-            else if(conversionType == typeof(ScalarUnit))
+            else if (conversionType == typeof(ScalarUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
+            else if (conversionType == typeof(QuantityType))
                 return Scalar.QuantityType;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return Scalar.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return Scalar.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(Scalar)} to {conversionType} is not supported.");

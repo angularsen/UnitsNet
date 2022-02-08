@@ -15,7 +15,7 @@ namespace UnitsNet
         /// <returns>The TimeSpan with the same time as the duration</returns>
         public TimeSpan ToTimeSpan()
         {
-            if( Seconds > TimeSpan.MaxValue.TotalSeconds ||
+            if ( Seconds > TimeSpan.MaxValue.TotalSeconds ||
                 Seconds < TimeSpan.MinValue.TotalSeconds )
                 throw new ArgumentOutOfRangeException( nameof( Duration ), "The duration is too large or small to fit in a TimeSpan" );
             return TimeSpan.FromSeconds( Seconds );

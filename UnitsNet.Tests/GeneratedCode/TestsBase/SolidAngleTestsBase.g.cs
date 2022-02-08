@@ -208,7 +208,7 @@ namespace UnitsNet.Tests
             var fromUnit = SolidAngle.Units.FirstOrDefault(u => u != SolidAngle.BaseUnit && u != SolidAngleUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == SolidAngleUnit.Undefined)
+            if (fromUnit == SolidAngleUnit.Undefined)
                 fromUnit = SolidAngle.BaseUnit;
 
             var quantity = SolidAngle.From(3.0, fromUnit);
@@ -360,7 +360,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(SolidAngleUnit)).Cast<SolidAngleUnit>();
             foreach(var unit in units)
             {
-                if(unit == SolidAngleUnit.Undefined)
+                if (unit == SolidAngleUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

@@ -79,7 +79,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         private ElectricPotential(double value, ElectricPotentialUnit unit)
         {
-            if(unit == ElectricPotentialUnit.Undefined)
+            if (unit == ElectricPotentialUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
@@ -449,8 +449,8 @@ namespace UnitsNet
 
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ElectricPotential objElectricPotential)) throw new ArgumentException("Expected type ElectricPotential.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is ElectricPotential objElectricPotential)) throw new ArgumentException("Expected type ElectricPotential.", nameof(obj));
 
             return CompareTo(objElectricPotential);
         }
@@ -464,7 +464,7 @@ namespace UnitsNet
         [Windows.Foundation.Metadata.DefaultOverload]
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is ElectricPotential objElectricPotential))
+            if (obj is null || !(obj is ElectricPotential objElectricPotential))
                 return false;
 
             return Equals(objElectricPotential);
@@ -517,7 +517,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(ElectricPotential other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -547,7 +547,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(ElectricPotentialUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = AsBaseNumericType(unit);
@@ -585,7 +585,7 @@ namespace UnitsNet
 
         private double AsBaseNumericType(ElectricPotentialUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return _value;
 
             var baseUnitValue = AsBaseUnit();

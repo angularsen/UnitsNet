@@ -208,7 +208,7 @@ namespace UnitsNet.Tests
             var fromUnit = ElectricField.Units.FirstOrDefault(u => u != ElectricField.BaseUnit && u != ElectricFieldUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == ElectricFieldUnit.Undefined)
+            if (fromUnit == ElectricFieldUnit.Undefined)
                 fromUnit = ElectricField.BaseUnit;
 
             var quantity = ElectricField.From(3.0, fromUnit);
@@ -360,7 +360,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ElectricFieldUnit)).Cast<ElectricFieldUnit>();
             foreach(var unit in units)
             {
-                if(unit == ElectricFieldUnit.Undefined)
+                if (unit == ElectricFieldUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

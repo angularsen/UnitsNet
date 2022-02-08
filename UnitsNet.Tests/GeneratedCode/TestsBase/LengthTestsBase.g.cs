@@ -528,7 +528,7 @@ namespace UnitsNet.Tests
             var fromUnit = Length.Units.FirstOrDefault(u => u != Length.BaseUnit && u != LengthUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == LengthUnit.Undefined)
+            if (fromUnit == LengthUnit.Undefined)
                 fromUnit = Length.BaseUnit;
 
             var quantity = Length.From(3.0, fromUnit);
@@ -712,7 +712,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(LengthUnit)).Cast<LengthUnit>();
             foreach(var unit in units)
             {
-                if(unit == LengthUnit.Undefined)
+                if (unit == LengthUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

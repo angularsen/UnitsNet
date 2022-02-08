@@ -98,7 +98,7 @@ namespace UnitsNet.Tests
     {{");
             foreach (var unit in _quantity.Units)
             {
-                if(unit.SkipConversionGeneration)
+                if (unit.SkipConversionGeneration)
                     continue;
 
                 Writer.WL($@"
@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
 // ReSharper disable VirtualMemberNeverOverriden.Global");
             foreach (var unit in _quantity.Units)
             {
-                if(unit.SkipConversionGeneration)
+                if (unit.SkipConversionGeneration)
                     continue;
 
                 Writer.WL($@"
@@ -151,14 +151,14 @@ namespace UnitsNet.Tests
         {{
             var quantity = new {_quantity.Name}();
             Assert.Equal(0, quantity.Value);");
-            if(_quantity.BaseType == "decimal") Writer.WL($@"
+            if (_quantity.BaseType == "decimal") Writer.WL($@"
             Assert.Equal(0m, ((IDecimalQuantity)quantity).Value);");
             Writer.WL($@"
             Assert.Equal({_baseUnitFullName}, quantity.Unit);
         }}
 
 ");
-            if(_quantity.BaseType == "double") Writer.WL($@"
+            if (_quantity.BaseType == "double") Writer.WL($@"
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {{
@@ -240,7 +240,7 @@ namespace UnitsNet.Tests
             Writer.WL($@"
         }}
 ");
-            if(_quantity.BaseType == "double") Writer.WL($@"
+            if (_quantity.BaseType == "double") Writer.WL($@"
         [Fact]
         public void From{_baseUnit.PluralName}_WithInfinityValue_ThrowsArgumentException()
         {{
@@ -310,7 +310,7 @@ namespace UnitsNet.Tests
             var fromUnit = {_quantity.Name}.Units.FirstOrDefault(u => u != {_quantity.Name}.BaseUnit && u != {_unitEnumName}.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == {_unitEnumName}.Undefined)
+            if (fromUnit == {_unitEnumName}.Undefined)
                 fromUnit = {_quantity.Name}.BaseUnit;
 
             var quantity = {_quantity.Name}.From(3.0, fromUnit);
@@ -496,7 +496,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof({_unitEnumName})).Cast<{_unitEnumName}>();
             foreach(var unit in units)
             {{
-                if(unit == {_unitEnumName}.Undefined)
+                if (unit == {_unitEnumName}.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
@@ -748,7 +748,7 @@ namespace UnitsNet.Tests
         }}
 ");
 
-        if(_quantity.GenerateArithmetic)
+        if (_quantity.GenerateArithmetic)
         {
                 Writer.WL($@"
         [Theory]

@@ -248,7 +248,7 @@ namespace UnitsNet.Tests
             var fromUnit = ElectricPotentialDc.Units.FirstOrDefault(u => u != ElectricPotentialDc.BaseUnit && u != ElectricPotentialDcUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == ElectricPotentialDcUnit.Undefined)
+            if (fromUnit == ElectricPotentialDcUnit.Undefined)
                 fromUnit = ElectricPotentialDc.BaseUnit;
 
             var quantity = ElectricPotentialDc.From(3.0, fromUnit);
@@ -404,7 +404,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ElectricPotentialDcUnit)).Cast<ElectricPotentialDcUnit>();
             foreach(var unit in units)
             {
-                if(unit == ElectricPotentialDcUnit.Undefined)
+                if (unit == ElectricPotentialDcUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

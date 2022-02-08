@@ -238,7 +238,7 @@ namespace UnitsNet.Tests
             var fromUnit = TemperatureGradient.Units.FirstOrDefault(u => u != TemperatureGradient.BaseUnit && u != TemperatureGradientUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == TemperatureGradientUnit.Undefined)
+            if (fromUnit == TemperatureGradientUnit.Undefined)
                 fromUnit = TemperatureGradient.BaseUnit;
 
             var quantity = TemperatureGradient.From(3.0, fromUnit);
@@ -393,7 +393,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(TemperatureGradientUnit)).Cast<TemperatureGradientUnit>();
             foreach(var unit in units)
             {
-                if(unit == TemperatureGradientUnit.Undefined)
+                if (unit == TemperatureGradientUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

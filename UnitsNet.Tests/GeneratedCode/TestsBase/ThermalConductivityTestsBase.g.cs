@@ -218,7 +218,7 @@ namespace UnitsNet.Tests
             var fromUnit = ThermalConductivity.Units.FirstOrDefault(u => u != ThermalConductivity.BaseUnit && u != ThermalConductivityUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == ThermalConductivityUnit.Undefined)
+            if (fromUnit == ThermalConductivityUnit.Undefined)
                 fromUnit = ThermalConductivity.BaseUnit;
 
             var quantity = ThermalConductivity.From(3.0, fromUnit);
@@ -371,7 +371,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ThermalConductivityUnit)).Cast<ThermalConductivityUnit>();
             foreach(var unit in units)
             {
-                if(unit == ThermalConductivityUnit.Undefined)
+                if (unit == ThermalConductivityUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

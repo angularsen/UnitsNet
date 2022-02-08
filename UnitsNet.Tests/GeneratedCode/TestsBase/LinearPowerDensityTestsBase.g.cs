@@ -448,7 +448,7 @@ namespace UnitsNet.Tests
             var fromUnit = LinearPowerDensity.Units.FirstOrDefault(u => u != LinearPowerDensity.BaseUnit && u != LinearPowerDensityUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == LinearPowerDensityUnit.Undefined)
+            if (fromUnit == LinearPowerDensityUnit.Undefined)
                 fromUnit = LinearPowerDensity.BaseUnit;
 
             var quantity = LinearPowerDensity.From(3.0, fromUnit);
@@ -624,7 +624,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(LinearPowerDensityUnit)).Cast<LinearPowerDensityUnit>();
             foreach(var unit in units)
             {
-                if(unit == LinearPowerDensityUnit.Undefined)
+                if (unit == LinearPowerDensityUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

@@ -228,7 +228,7 @@ namespace UnitsNet.Tests
             var fromUnit = HeatTransferCoefficient.Units.FirstOrDefault(u => u != HeatTransferCoefficient.BaseUnit && u != HeatTransferCoefficientUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == HeatTransferCoefficientUnit.Undefined)
+            if (fromUnit == HeatTransferCoefficientUnit.Undefined)
                 fromUnit = HeatTransferCoefficient.BaseUnit;
 
             var quantity = HeatTransferCoefficient.From(3.0, fromUnit);
@@ -382,7 +382,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(HeatTransferCoefficientUnit)).Cast<HeatTransferCoefficientUnit>();
             foreach(var unit in units)
             {
-                if(unit == HeatTransferCoefficientUnit.Undefined)
+                if (unit == HeatTransferCoefficientUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

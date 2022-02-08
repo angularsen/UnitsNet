@@ -298,7 +298,7 @@ namespace UnitsNet.Tests
             var fromUnit = ReciprocalLength.Units.FirstOrDefault(u => u != ReciprocalLength.BaseUnit && u != ReciprocalLengthUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == ReciprocalLengthUnit.Undefined)
+            if (fromUnit == ReciprocalLengthUnit.Undefined)
                 fromUnit = ReciprocalLength.BaseUnit;
 
             var quantity = ReciprocalLength.From(3.0, fromUnit);
@@ -459,7 +459,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ReciprocalLengthUnit)).Cast<ReciprocalLengthUnit>();
             foreach(var unit in units)
             {
-                if(unit == ReciprocalLengthUnit.Undefined)
+                if (unit == ReciprocalLengthUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

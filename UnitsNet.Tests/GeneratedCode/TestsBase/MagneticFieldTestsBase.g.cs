@@ -258,7 +258,7 @@ namespace UnitsNet.Tests
             var fromUnit = MagneticField.Units.FirstOrDefault(u => u != MagneticField.BaseUnit && u != MagneticFieldUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == MagneticFieldUnit.Undefined)
+            if (fromUnit == MagneticFieldUnit.Undefined)
                 fromUnit = MagneticField.BaseUnit;
 
             var quantity = MagneticField.From(3.0, fromUnit);
@@ -415,7 +415,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(MagneticFieldUnit)).Cast<MagneticFieldUnit>();
             foreach(var unit in units)
             {
-                if(unit == MagneticFieldUnit.Undefined)
+                if (unit == MagneticFieldUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

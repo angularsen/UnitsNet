@@ -183,7 +183,7 @@ namespace UnitsNet
         /// <exception cref=""ArgumentException"">If value is NaN or Infinity.</exception>
         public {_quantity.Name}({_quantity.BaseType} value, {_unitEnumName} unit)
         {{
-            if(unit == {_unitEnumName}.Undefined)
+            if (unit == {_unitEnumName}.Undefined)
               throw new ArgumentException(""The quantity can not be created with an undefined unit."", nameof(unit));
 ");
 
@@ -206,7 +206,7 @@ namespace UnitsNet
         /// <exception cref=""ArgumentException"">No unit was found for the given <see cref=""UnitSystem""/>.</exception>
         public {_quantity.Name}({_valueType} value, UnitSystem unitSystem)
         {{
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -334,7 +334,7 @@ namespace UnitsNet
 ");
             foreach (var unit in _quantity.Units)
             {
-                if(unit.SkipConversionGeneration)
+                if (unit.SkipConversionGeneration)
                     continue;
 
                 Writer.WL($@"
@@ -369,7 +369,7 @@ namespace UnitsNet
 
         foreach(var unit in _quantity.Units)
         {
-            if(unit.SingularName == _quantity.BaseUnit)
+            if (unit.SingularName == _quantity.BaseUnit)
                 continue;
 
         var func = unit.FromBaseToUnitFunc.Replace("{x}", "quantity.Value");
@@ -378,7 +378,7 @@ namespace UnitsNet
         }
 
         Writer.WL($@"
-            
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<{_quantity.Name}>({_unitEnumName}.{_quantity.BaseUnit}, {_unitEnumName}.{_quantity.BaseUnit}, quantity => quantity);
 
@@ -386,7 +386,7 @@ namespace UnitsNet
 
         foreach(var unit in _quantity.Units)
         {
-            if(unit.SingularName == _quantity.BaseUnit)
+            if (unit.SingularName == _quantity.BaseUnit)
                 continue;
 
             var func = unit.FromUnitToBaseFunc.Replace("{x}", "quantity.Value");
@@ -448,7 +448,7 @@ namespace UnitsNet
 ");
             foreach (var unit in _quantity.Units)
             {
-                if(unit.SkipConversionGeneration)
+                if (unit.SkipConversionGeneration)
                     continue;
 
                 var valueParamName = unit.PluralName.ToLowerInvariant();
@@ -801,8 +801,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {{
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is {_quantity.Name} obj{_quantity.Name})) throw new ArgumentException(""Expected type {_quantity.Name}."", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is {_quantity.Name} obj{_quantity.Name})) throw new ArgumentException(""Expected type {_quantity.Name}."", nameof(obj));
 
             return CompareTo(obj{_quantity.Name});
         }}
@@ -817,7 +817,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, double, ComparisonType)""/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {{
-            if(obj is null || !(obj is {_quantity.Name} obj{_quantity.Name}))
+            if (obj is null || !(obj is {_quantity.Name} obj{_quantity.Name}))
                 return false;
 
             return Equals(obj{_quantity.Name});
@@ -872,7 +872,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals({_quantity.Name} other, double tolerance, ComparisonType comparisonType)
         {{
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(""tolerance"", ""Tolerance must be greater than or equal to 0."");
 
             double thisValue = (double)this.Value;
@@ -905,7 +905,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As({_unitEnumName} unit)
         {{
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -915,13 +915,13 @@ namespace UnitsNet
         /// <inheritdoc cref=""IQuantity.As(UnitSystem)""/>
         public double As(UnitSystem unitSystem)
         {{
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException(""No units were found for the given UnitSystem."", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -930,7 +930,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {{
-            if(!(unit is {_unitEnumName} unitAs{_unitEnumName}))
+            if (!(unit is {_unitEnumName} unitAs{_unitEnumName}))
                 throw new ArgumentException($""The given unit is of type {{unit.GetType()}}. Only {{typeof({_unitEnumName})}} is supported."", nameof(unit));
 
             return As(unitAs{_unitEnumName});
@@ -954,18 +954,18 @@ namespace UnitsNet
         /// <returns>A {_quantity.Name} with the specified unit.</returns>
         public {_quantity.Name} ToUnit({_unitEnumName} unit, UnitConverter unitConverter)
         {{
-            if(Unit == unit)
+            if (Unit == unit)
             {{
                 // Already in requested units.
                 return this;
             }}
-            else if(unitConverter.TryGetConversionFunction((typeof({_quantity.Name}), Unit, typeof({_quantity.Name}), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof({_quantity.Name}), Unit, typeof({_quantity.Name}), unit), out var conversionFunction))
             {{
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return ({_quantity.Name})converted;
             }}
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {{
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -980,7 +980,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {{
-            if(!(unit is {_unitEnumName} unitAs{_unitEnumName}))
+            if (!(unit is {_unitEnumName} unitAs{_unitEnumName}))
                 throw new ArgumentException($""The given unit is of type {{unit.GetType()}}. Only {{typeof({_unitEnumName})}} is supported."", nameof(unit));
 
             return ToUnit(unitAs{_unitEnumName}, DefaultConversionFunctions);
@@ -989,7 +989,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
         {{
-            if(!(unit is {_unitEnumName} unitAs{_unitEnumName}))
+            if (!(unit is {_unitEnumName} unitAs{_unitEnumName}))
                 throw new ArgumentException($""The given unit is of type {{unit.GetType()}}. Only {{typeof({_unitEnumName})}} is supported."", nameof(unit));
 
             return ToUnit(unitAs{_unitEnumName}, unitConverter);
@@ -998,13 +998,13 @@ namespace UnitsNet
         /// <inheritdoc cref=""IQuantity.ToUnit(UnitSystem)""/>
         public {_quantity.Name} ToUnit(UnitSystem unitSystem)
         {{
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException(""No units were found for the given UnitSystem."", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -1189,15 +1189,15 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {{
-            if(conversionType == typeof({_quantity.Name}))
+            if (conversionType == typeof({_quantity.Name}))
                 return this;
-            else if(conversionType == typeof({_unitEnumName}))
+            else if (conversionType == typeof({_unitEnumName}))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
+            else if (conversionType == typeof(QuantityType))
                 return {_quantity.Name}.QuantityType;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return {_quantity.Name}.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return {_quantity.Name}.BaseDimensions;
             else
                 throw new InvalidCastException($""Converting {{typeof({_quantity.Name})}} to {{conversionType}} is not supported."");

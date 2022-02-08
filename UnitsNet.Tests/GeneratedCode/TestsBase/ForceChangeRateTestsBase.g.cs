@@ -348,7 +348,7 @@ namespace UnitsNet.Tests
             var fromUnit = ForceChangeRate.Units.FirstOrDefault(u => u != ForceChangeRate.BaseUnit && u != ForceChangeRateUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == ForceChangeRateUnit.Undefined)
+            if (fromUnit == ForceChangeRateUnit.Undefined)
                 fromUnit = ForceChangeRate.BaseUnit;
 
             var quantity = ForceChangeRate.From(3.0, fromUnit);
@@ -514,7 +514,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ForceChangeRateUnit)).Cast<ForceChangeRateUnit>();
             foreach(var unit in units)
             {
-                if(unit == ForceChangeRateUnit.Undefined)
+                if (unit == ForceChangeRateUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

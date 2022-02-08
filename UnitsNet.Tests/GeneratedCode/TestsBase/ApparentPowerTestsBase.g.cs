@@ -238,7 +238,7 @@ namespace UnitsNet.Tests
             var fromUnit = ApparentPower.Units.FirstOrDefault(u => u != ApparentPower.BaseUnit && u != ApparentPowerUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == ApparentPowerUnit.Undefined)
+            if (fromUnit == ApparentPowerUnit.Undefined)
                 fromUnit = ApparentPower.BaseUnit;
 
             var quantity = ApparentPower.From(3.0, fromUnit);
@@ -393,7 +393,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ApparentPowerUnit)).Cast<ApparentPowerUnit>();
             foreach(var unit in units)
             {
-                if(unit == ApparentPowerUnit.Undefined)
+                if (unit == ApparentPowerUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

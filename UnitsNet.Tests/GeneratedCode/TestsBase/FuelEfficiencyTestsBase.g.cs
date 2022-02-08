@@ -238,7 +238,7 @@ namespace UnitsNet.Tests
             var fromUnit = FuelEfficiency.Units.FirstOrDefault(u => u != FuelEfficiency.BaseUnit && u != FuelEfficiencyUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == FuelEfficiencyUnit.Undefined)
+            if (fromUnit == FuelEfficiencyUnit.Undefined)
                 fromUnit = FuelEfficiency.BaseUnit;
 
             var quantity = FuelEfficiency.From(3.0, fromUnit);
@@ -393,7 +393,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(FuelEfficiencyUnit)).Cast<FuelEfficiencyUnit>();
             foreach(var unit in units)
             {
-                if(unit == FuelEfficiencyUnit.Undefined)
+                if (unit == FuelEfficiencyUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

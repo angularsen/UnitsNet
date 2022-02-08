@@ -228,7 +228,7 @@ namespace UnitsNet.Tests
             var fromUnit = BrakeSpecificFuelConsumption.Units.FirstOrDefault(u => u != BrakeSpecificFuelConsumption.BaseUnit && u != BrakeSpecificFuelConsumptionUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == BrakeSpecificFuelConsumptionUnit.Undefined)
+            if (fromUnit == BrakeSpecificFuelConsumptionUnit.Undefined)
                 fromUnit = BrakeSpecificFuelConsumption.BaseUnit;
 
             var quantity = BrakeSpecificFuelConsumption.From(3.0, fromUnit);
@@ -382,7 +382,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(BrakeSpecificFuelConsumptionUnit)).Cast<BrakeSpecificFuelConsumptionUnit>();
             foreach(var unit in units)
             {
-                if(unit == BrakeSpecificFuelConsumptionUnit.Undefined)
+                if (unit == BrakeSpecificFuelConsumptionUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

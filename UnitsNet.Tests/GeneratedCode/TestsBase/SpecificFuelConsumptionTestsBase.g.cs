@@ -238,7 +238,7 @@ namespace UnitsNet.Tests
             var fromUnit = SpecificFuelConsumption.Units.FirstOrDefault(u => u != SpecificFuelConsumption.BaseUnit && u != SpecificFuelConsumptionUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == SpecificFuelConsumptionUnit.Undefined)
+            if (fromUnit == SpecificFuelConsumptionUnit.Undefined)
                 fromUnit = SpecificFuelConsumption.BaseUnit;
 
             var quantity = SpecificFuelConsumption.From(3.0, fromUnit);
@@ -393,7 +393,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(SpecificFuelConsumptionUnit)).Cast<SpecificFuelConsumptionUnit>();
             foreach(var unit in units)
             {
-                if(unit == SpecificFuelConsumptionUnit.Undefined)
+                if (unit == SpecificFuelConsumptionUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

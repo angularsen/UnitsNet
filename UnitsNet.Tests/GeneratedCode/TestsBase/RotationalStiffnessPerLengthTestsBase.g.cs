@@ -248,7 +248,7 @@ namespace UnitsNet.Tests
             var fromUnit = RotationalStiffnessPerLength.Units.FirstOrDefault(u => u != RotationalStiffnessPerLength.BaseUnit && u != RotationalStiffnessPerLengthUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == RotationalStiffnessPerLengthUnit.Undefined)
+            if (fromUnit == RotationalStiffnessPerLengthUnit.Undefined)
                 fromUnit = RotationalStiffnessPerLength.BaseUnit;
 
             var quantity = RotationalStiffnessPerLength.From(3.0, fromUnit);
@@ -404,7 +404,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(RotationalStiffnessPerLengthUnit)).Cast<RotationalStiffnessPerLengthUnit>();
             foreach(var unit in units)
             {
-                if(unit == RotationalStiffnessPerLengthUnit.Undefined)
+                if (unit == RotationalStiffnessPerLengthUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

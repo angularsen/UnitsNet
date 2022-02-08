@@ -208,7 +208,7 @@ namespace UnitsNet.Tests
             var fromUnit = RelativeHumidity.Units.FirstOrDefault(u => u != RelativeHumidity.BaseUnit && u != RelativeHumidityUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == RelativeHumidityUnit.Undefined)
+            if (fromUnit == RelativeHumidityUnit.Undefined)
                 fromUnit = RelativeHumidity.BaseUnit;
 
             var quantity = RelativeHumidity.From(3.0, fromUnit);
@@ -360,7 +360,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(RelativeHumidityUnit)).Cast<RelativeHumidityUnit>();
             foreach(var unit in units)
             {
-                if(unit == RelativeHumidityUnit.Undefined)
+                if (unit == RelativeHumidityUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

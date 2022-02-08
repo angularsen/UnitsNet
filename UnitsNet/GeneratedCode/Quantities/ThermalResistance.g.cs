@@ -84,7 +84,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ThermalResistance(double value, ThermalResistanceUnit unit)
         {
-            if(unit == ThermalResistanceUnit.Undefined)
+            if (unit == ThermalResistanceUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
@@ -101,7 +101,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public ThermalResistance(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -239,7 +239,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareCentimeterKelvinPerWatt, quantity => new ThermalResistance(quantity.Value/0.0999964777570357, ThermalResistanceUnit.SquareCentimeterKelvinPerWatt));
             unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, quantity => new ThermalResistance(quantity.Value/1000.088056074108, ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt));
             unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareMeterKelvinPerWatt, quantity => new ThermalResistance(quantity.Value/1000, ThermalResistanceUnit.SquareMeterKelvinPerWatt));
-            
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, quantity => quantity);
 
@@ -587,8 +586,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ThermalResistance objThermalResistance)) throw new ArgumentException("Expected type ThermalResistance.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is ThermalResistance objThermalResistance)) throw new ArgumentException("Expected type ThermalResistance.", nameof(obj));
 
             return CompareTo(objThermalResistance);
         }
@@ -603,7 +602,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(ThermalResistance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is ThermalResistance objThermalResistance))
+            if (obj is null || !(obj is ThermalResistance objThermalResistance))
                 return false;
 
             return Equals(objThermalResistance);
@@ -658,7 +657,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(ThermalResistance other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -686,7 +685,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(ThermalResistanceUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -696,13 +695,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -711,7 +710,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is ThermalResistanceUnit unitAsThermalResistanceUnit))
+            if (!(unit is ThermalResistanceUnit unitAsThermalResistanceUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ThermalResistanceUnit)} is supported.", nameof(unit));
 
             return As(unitAsThermalResistanceUnit);
@@ -735,18 +734,18 @@ namespace UnitsNet
         /// <returns>A ThermalResistance with the specified unit.</returns>
         public ThermalResistance ToUnit(ThermalResistanceUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(ThermalResistance), Unit, typeof(ThermalResistance), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(ThermalResistance), Unit, typeof(ThermalResistance), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (ThermalResistance)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -761,7 +760,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is ThermalResistanceUnit unitAsThermalResistanceUnit))
+            if (!(unit is ThermalResistanceUnit unitAsThermalResistanceUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ThermalResistanceUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsThermalResistanceUnit, DefaultConversionFunctions);
@@ -770,7 +769,7 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
         {
-            if(!(unit is ThermalResistanceUnit unitAsThermalResistanceUnit))
+            if (!(unit is ThermalResistanceUnit unitAsThermalResistanceUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ThermalResistanceUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsThermalResistanceUnit, unitConverter);
@@ -779,13 +778,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public ThermalResistance ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -960,15 +959,15 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(ThermalResistance))
+            if (conversionType == typeof(ThermalResistance))
                 return this;
-            else if(conversionType == typeof(ThermalResistanceUnit))
+            else if (conversionType == typeof(ThermalResistanceUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityType))
+            else if (conversionType == typeof(QuantityType))
                 return ThermalResistance.QuantityType;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return ThermalResistance.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return ThermalResistance.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(ThermalResistance)} to {conversionType} is not supported.");

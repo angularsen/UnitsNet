@@ -208,7 +208,7 @@ namespace UnitsNet.Tests
             var fromUnit = Permittivity.Units.FirstOrDefault(u => u != Permittivity.BaseUnit && u != PermittivityUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == PermittivityUnit.Undefined)
+            if (fromUnit == PermittivityUnit.Undefined)
                 fromUnit = Permittivity.BaseUnit;
 
             var quantity = Permittivity.From(3.0, fromUnit);
@@ -360,7 +360,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(PermittivityUnit)).Cast<PermittivityUnit>();
             foreach(var unit in units)
             {
-                if(unit == PermittivityUnit.Undefined)
+                if (unit == PermittivityUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

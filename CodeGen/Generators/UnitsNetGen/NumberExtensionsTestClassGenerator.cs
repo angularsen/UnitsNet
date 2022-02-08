@@ -33,7 +33,7 @@ namespace UnitsNet.Tests
 
             foreach (var unit in _units)
             {
-                if(unit.SkipConversionGeneration)
+                if (unit.SkipConversionGeneration)
                     continue;
 
                 Writer.WL(2, $@"

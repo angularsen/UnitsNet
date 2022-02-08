@@ -258,7 +258,7 @@ namespace UnitsNet.Tests
             var fromUnit = Ratio.Units.FirstOrDefault(u => u != Ratio.BaseUnit && u != RatioUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == RatioUnit.Undefined)
+            if (fromUnit == RatioUnit.Undefined)
                 fromUnit = Ratio.BaseUnit;
 
             var quantity = Ratio.From(3.0, fromUnit);
@@ -415,7 +415,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(RatioUnit)).Cast<RatioUnit>();
             foreach(var unit in units)
             {
-                if(unit == RatioUnit.Undefined)
+                if (unit == RatioUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

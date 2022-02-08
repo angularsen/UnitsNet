@@ -31,7 +31,7 @@ namespace UnitsNet
 
         internal List<string> GetAbbreviationsForUnit(int unit)
         {
-            if(!unitToAbbreviationMap.TryGetValue(unit, out var abbreviations))
+            if (!unitToAbbreviationMap.TryGetValue(unit, out var abbreviations))
                 unitToAbbreviationMap[unit] = abbreviations = new List<string>();
 
             return abbreviations.Distinct().ToList();
@@ -43,7 +43,7 @@ namespace UnitsNet
             var key = ignoreCase ? lowerCaseAbbreviation : abbreviation;
             var map = ignoreCase ? lowerCaseAbbreviationToUnitMap : abbreviationToUnitMap;
 
-            if(!map.TryGetValue(key, out List<int> units))
+            if (!map.TryGetValue(key, out List<int> units))
                 map[key] = units = new List<int>();
 
             return units.Distinct().ToList();
@@ -53,15 +53,15 @@ namespace UnitsNet
         {
             var lowerCaseAbbreviation = abbreviation.ToLower();
 
-            if(!unitToAbbreviationMap.TryGetValue(unit, out var abbreviationsForUnit))
+            if (!unitToAbbreviationMap.TryGetValue(unit, out var abbreviationsForUnit))
                 abbreviationsForUnit = unitToAbbreviationMap[unit] = new List<string>();
 
-            if(allowAbbreviationLookup)
+            if (allowAbbreviationLookup)
             {
-                if(!abbreviationToUnitMap.TryGetValue(abbreviation, out var unitsForAbbreviation))
+                if (!abbreviationToUnitMap.TryGetValue(abbreviation, out var unitsForAbbreviation))
                     abbreviationToUnitMap[abbreviation] = unitsForAbbreviation = new List<int>();
 
-                if(!lowerCaseAbbreviationToUnitMap.TryGetValue(lowerCaseAbbreviation, out var unitsForLowerCaseAbbreviation))
+                if (!lowerCaseAbbreviationToUnitMap.TryGetValue(lowerCaseAbbreviation, out var unitsForLowerCaseAbbreviation))
                     lowerCaseAbbreviationToUnitMap[lowerCaseAbbreviation] = unitsForLowerCaseAbbreviation = new List<int>();
 
                 unitsForLowerCaseAbbreviation.Remove(unit);

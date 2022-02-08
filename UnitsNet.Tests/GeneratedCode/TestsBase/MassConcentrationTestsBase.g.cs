@@ -688,7 +688,7 @@ namespace UnitsNet.Tests
             var fromUnit = MassConcentration.Units.FirstOrDefault(u => u != MassConcentration.BaseUnit && u != MassConcentrationUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == MassConcentrationUnit.Undefined)
+            if (fromUnit == MassConcentrationUnit.Undefined)
                 fromUnit = MassConcentration.BaseUnit;
 
             var quantity = MassConcentration.From(3.0, fromUnit);
@@ -888,7 +888,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(MassConcentrationUnit)).Cast<MassConcentrationUnit>();
             foreach(var unit in units)
             {
-                if(unit == MassConcentrationUnit.Undefined)
+                if (unit == MassConcentrationUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

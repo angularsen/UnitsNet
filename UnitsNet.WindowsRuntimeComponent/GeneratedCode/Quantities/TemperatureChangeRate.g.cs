@@ -79,7 +79,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         private TemperatureChangeRate(double value, TemperatureChangeRateUnit unit)
         {
-            if(unit == TemperatureChangeRateUnit.Undefined)
+            if (unit == TemperatureChangeRateUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
             _value = Guard.EnsureValidNumber(value, nameof(value));
@@ -524,8 +524,8 @@ namespace UnitsNet
 
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is TemperatureChangeRate objTemperatureChangeRate)) throw new ArgumentException("Expected type TemperatureChangeRate.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is TemperatureChangeRate objTemperatureChangeRate)) throw new ArgumentException("Expected type TemperatureChangeRate.", nameof(obj));
 
             return CompareTo(objTemperatureChangeRate);
         }
@@ -539,7 +539,7 @@ namespace UnitsNet
         [Windows.Foundation.Metadata.DefaultOverload]
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is TemperatureChangeRate objTemperatureChangeRate))
+            if (obj is null || !(obj is TemperatureChangeRate objTemperatureChangeRate))
                 return false;
 
             return Equals(objTemperatureChangeRate);
@@ -592,7 +592,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(TemperatureChangeRate other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -622,7 +622,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(TemperatureChangeRateUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = AsBaseNumericType(unit);
@@ -665,7 +665,7 @@ namespace UnitsNet
 
         private double AsBaseNumericType(TemperatureChangeRateUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return _value;
 
             var baseUnitValue = AsBaseUnit();

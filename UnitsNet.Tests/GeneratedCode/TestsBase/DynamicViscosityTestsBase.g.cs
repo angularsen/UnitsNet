@@ -298,7 +298,7 @@ namespace UnitsNet.Tests
             var fromUnit = DynamicViscosity.Units.FirstOrDefault(u => u != DynamicViscosity.BaseUnit && u != DynamicViscosityUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == DynamicViscosityUnit.Undefined)
+            if (fromUnit == DynamicViscosityUnit.Undefined)
                 fromUnit = DynamicViscosity.BaseUnit;
 
             var quantity = DynamicViscosity.From(3.0, fromUnit);
@@ -459,7 +459,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(DynamicViscosityUnit)).Cast<DynamicViscosityUnit>();
             foreach(var unit in units)
             {
-                if(unit == DynamicViscosityUnit.Undefined)
+                if (unit == DynamicViscosityUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

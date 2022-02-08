@@ -208,7 +208,7 @@ namespace UnitsNet.Tests
             var fromUnit = LuminousFlux.Units.FirstOrDefault(u => u != LuminousFlux.BaseUnit && u != LuminousFluxUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == LuminousFluxUnit.Undefined)
+            if (fromUnit == LuminousFluxUnit.Undefined)
                 fromUnit = LuminousFlux.BaseUnit;
 
             var quantity = LuminousFlux.From(3.0, fromUnit);
@@ -360,7 +360,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(LuminousFluxUnit)).Cast<LuminousFluxUnit>();
             foreach(var unit in units)
             {
-                if(unit == LuminousFluxUnit.Undefined)
+                if (unit == LuminousFluxUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

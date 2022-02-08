@@ -258,7 +258,7 @@ namespace UnitsNet.Tests
             var fromUnit = ThermalResistance.Units.FirstOrDefault(u => u != ThermalResistance.BaseUnit && u != ThermalResistanceUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == ThermalResistanceUnit.Undefined)
+            if (fromUnit == ThermalResistanceUnit.Undefined)
                 fromUnit = ThermalResistance.BaseUnit;
 
             var quantity = ThermalResistance.From(3.0, fromUnit);
@@ -415,7 +415,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ThermalResistanceUnit)).Cast<ThermalResistanceUnit>();
             foreach(var unit in units)
             {
-                if(unit == ThermalResistanceUnit.Undefined)
+                if (unit == ThermalResistanceUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

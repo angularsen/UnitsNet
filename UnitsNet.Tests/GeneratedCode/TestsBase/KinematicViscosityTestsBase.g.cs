@@ -288,7 +288,7 @@ namespace UnitsNet.Tests
             var fromUnit = KinematicViscosity.Units.FirstOrDefault(u => u != KinematicViscosity.BaseUnit && u != KinematicViscosityUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == KinematicViscosityUnit.Undefined)
+            if (fromUnit == KinematicViscosityUnit.Undefined)
                 fromUnit = KinematicViscosity.BaseUnit;
 
             var quantity = KinematicViscosity.From(3.0, fromUnit);
@@ -448,7 +448,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(KinematicViscosityUnit)).Cast<KinematicViscosityUnit>();
             foreach(var unit in units)
             {
-                if(unit == KinematicViscosityUnit.Undefined)
+                if (unit == KinematicViscosityUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

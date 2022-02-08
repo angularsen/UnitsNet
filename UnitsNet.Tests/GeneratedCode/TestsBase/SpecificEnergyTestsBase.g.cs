@@ -448,7 +448,7 @@ namespace UnitsNet.Tests
             var fromUnit = SpecificEnergy.Units.FirstOrDefault(u => u != SpecificEnergy.BaseUnit && u != SpecificEnergyUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == SpecificEnergyUnit.Undefined)
+            if (fromUnit == SpecificEnergyUnit.Undefined)
                 fromUnit = SpecificEnergy.BaseUnit;
 
             var quantity = SpecificEnergy.From(3.0, fromUnit);
@@ -624,7 +624,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(SpecificEnergyUnit)).Cast<SpecificEnergyUnit>();
             foreach(var unit in units)
             {
-                if(unit == SpecificEnergyUnit.Undefined)
+                if (unit == SpecificEnergyUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

@@ -233,7 +233,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(MolarMassUnit unit) => GetValueAs(unit);        
+        public double As(MolarMassUnit unit) => GetValueAs(unit);
 
         /// <summary>
         ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
@@ -241,11 +241,9 @@ namespace UnitsNet
         /// <returns>A Duration with the specified unit.</returns>
         public MolarMass ToUnit(MolarMassUnit unit)
         {
-                
             var convertedValue = GetValueAs(unit);
             return new MolarMass(convertedValue, unit);
         }
-
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
@@ -275,7 +273,7 @@ namespace UnitsNet
 
         private double GetValueAs(MolarMassUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return _value;
 
             var baseUnitValue = GetValueInBaseUnit();

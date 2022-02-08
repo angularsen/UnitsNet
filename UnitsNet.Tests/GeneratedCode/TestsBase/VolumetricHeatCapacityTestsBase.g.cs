@@ -288,7 +288,7 @@ namespace UnitsNet.Tests
             var fromUnit = VolumetricHeatCapacity.Units.FirstOrDefault(u => u != VolumetricHeatCapacity.BaseUnit && u != VolumetricHeatCapacityUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == VolumetricHeatCapacityUnit.Undefined)
+            if (fromUnit == VolumetricHeatCapacityUnit.Undefined)
                 fromUnit = VolumetricHeatCapacity.BaseUnit;
 
             var quantity = VolumetricHeatCapacity.From(3.0, fromUnit);
@@ -448,7 +448,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(VolumetricHeatCapacityUnit)).Cast<VolumetricHeatCapacityUnit>();
             foreach(var unit in units)
             {
-                if(unit == VolumetricHeatCapacityUnit.Undefined)
+                if (unit == VolumetricHeatCapacityUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

@@ -478,7 +478,7 @@ namespace UnitsNet.Tests
             var fromUnit = MassMomentOfInertia.Units.FirstOrDefault(u => u != MassMomentOfInertia.BaseUnit && u != MassMomentOfInertiaUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == MassMomentOfInertiaUnit.Undefined)
+            if (fromUnit == MassMomentOfInertiaUnit.Undefined)
                 fromUnit = MassMomentOfInertia.BaseUnit;
 
             var quantity = MassMomentOfInertia.From(3.0, fromUnit);
@@ -657,7 +657,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(MassMomentOfInertiaUnit)).Cast<MassMomentOfInertiaUnit>();
             foreach(var unit in units)
             {
-                if(unit == MassMomentOfInertiaUnit.Undefined)
+                if (unit == MassMomentOfInertiaUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

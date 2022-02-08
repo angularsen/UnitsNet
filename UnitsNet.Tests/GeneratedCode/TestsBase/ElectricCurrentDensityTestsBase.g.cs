@@ -228,7 +228,7 @@ namespace UnitsNet.Tests
             var fromUnit = ElectricCurrentDensity.Units.FirstOrDefault(u => u != ElectricCurrentDensity.BaseUnit && u != ElectricCurrentDensityUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == ElectricCurrentDensityUnit.Undefined)
+            if (fromUnit == ElectricCurrentDensityUnit.Undefined)
                 fromUnit = ElectricCurrentDensity.BaseUnit;
 
             var quantity = ElectricCurrentDensity.From(3.0, fromUnit);
@@ -382,7 +382,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ElectricCurrentDensityUnit)).Cast<ElectricCurrentDensityUnit>();
             foreach(var unit in units)
             {
-                if(unit == ElectricCurrentDensityUnit.Undefined)
+                if (unit == ElectricCurrentDensityUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);

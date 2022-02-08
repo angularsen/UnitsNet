@@ -238,7 +238,7 @@ namespace UnitsNet.Tests
             var fromUnit = AmplitudeRatio.Units.FirstOrDefault(u => u != AmplitudeRatio.BaseUnit && u != AmplitudeRatioUnit.Undefined);
 
             // If there is only one unit for the quantity, we must use the base unit.
-            if(fromUnit == AmplitudeRatioUnit.Undefined)
+            if (fromUnit == AmplitudeRatioUnit.Undefined)
                 fromUnit = AmplitudeRatio.BaseUnit;
 
             var quantity = AmplitudeRatio.From(3.0, fromUnit);
@@ -397,7 +397,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(AmplitudeRatioUnit)).Cast<AmplitudeRatioUnit>();
             foreach(var unit in units)
             {
-                if(unit == AmplitudeRatioUnit.Undefined)
+                if (unit == AmplitudeRatioUnit.Undefined)
                     continue;
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
