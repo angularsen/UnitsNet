@@ -169,7 +169,7 @@ namespace UnitsNet
 
             RegisterDefaultConversions(DefaultConversionFunctions);
         }}
-" );
+");
         }
 
         private void GenerateInstanceConstructors()

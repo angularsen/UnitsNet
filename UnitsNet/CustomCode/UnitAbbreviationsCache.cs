@@ -56,13 +56,7 @@ namespace UnitsNet
 
         private void LoadGeneratedAbbreviations()
         {
-            var quantities = typeof(Length)
-                .Wrap()
-                .Assembly
-                .GetExportedTypes()
-                .Where(t => typeof(IQuantity).Wrap().IsAssignableFrom(t) && t != typeof(IQuantity));
-
-            foreach(var quantity in quantities)
+            foreach(var quantity in Quantity.GetQuantityTypes())
             {
                 var mapGeneratedLocalizationsMethod = quantity.GetMethod(nameof(Length.MapGeneratedLocalizations), BindingFlags.NonPublic | BindingFlags.Static);
                 mapGeneratedLocalizationsMethod?.Invoke(null, new object[]{this});
