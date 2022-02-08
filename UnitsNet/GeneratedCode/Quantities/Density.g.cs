@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -38,7 +39,7 @@ namespace UnitsNet
     ///     http://en.wikipedia.org/wiki/Density
     /// </remarks>
     [DataContract]
-    public partial struct Density : IQuantity<DensityUnit>, IComparable, IComparable<Density>, IConvertible, IFormattable
+    public partial struct Density : IQuantity<DensityUnit>, IEquatable<Density>, IComparable, IComparable<Density>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -55,9 +56,15 @@ namespace UnitsNet
         static Density()
         {
             BaseDimensions = new BaseDimensions(-3, 1, 0, 0, 0, 0, 0);
-
+            BaseUnit = DensityUnit.KilogramPerCubicMeter;
+            MaxValue = new Density(double.MaxValue, BaseUnit);
+            MinValue = new Density(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Density;
+            Units = Enum.GetValues(typeof(DensityUnit)).Cast<DensityUnit>().Except(new DensityUnit[]{ DensityUnit.Undefined }).ToArray();
+            Zero = new Density(0, BaseUnit);
             Info = new QuantityInfo<DensityUnit>("Density",
-                new UnitInfo<DensityUnit>[] {
+                new UnitInfo<DensityUnit>[]
+                {
                     new UnitInfo<DensityUnit>(DensityUnit.CentigramPerDeciliter, "CentigramsPerDeciLiter", BaseUnits.Undefined),
                     new UnitInfo<DensityUnit>(DensityUnit.CentigramPerLiter, "CentigramsPerLiter", BaseUnits.Undefined),
                     new UnitInfo<DensityUnit>(DensityUnit.CentigramPerMilliliter, "CentigramsPerMilliliter", BaseUnits.Undefined),
@@ -65,6 +72,8 @@ namespace UnitsNet
                     new UnitInfo<DensityUnit>(DensityUnit.DecigramPerLiter, "DecigramsPerLiter", BaseUnits.Undefined),
                     new UnitInfo<DensityUnit>(DensityUnit.DecigramPerMilliliter, "DecigramsPerMilliliter", BaseUnits.Undefined),
                     new UnitInfo<DensityUnit>(DensityUnit.GramPerCubicCentimeter, "GramsPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram)),
+                    new UnitInfo<DensityUnit>(DensityUnit.GramPerCubicFoot, "GramsPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Gram)),
+                    new UnitInfo<DensityUnit>(DensityUnit.GramPerCubicInch, "GramsPerCubicInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Gram)),
                     new UnitInfo<DensityUnit>(DensityUnit.GramPerCubicMeter, "GramsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram)),
                     new UnitInfo<DensityUnit>(DensityUnit.GramPerCubicMillimeter, "GramsPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Gram)),
                     new UnitInfo<DensityUnit>(DensityUnit.GramPerDeciliter, "GramsPerDeciLiter", BaseUnits.Undefined),
@@ -90,16 +99,27 @@ namespace UnitsNet
                     new UnitInfo<DensityUnit>(DensityUnit.PicogramPerDeciliter, "PicogramsPerDeciLiter", BaseUnits.Undefined),
                     new UnitInfo<DensityUnit>(DensityUnit.PicogramPerLiter, "PicogramsPerLiter", BaseUnits.Undefined),
                     new UnitInfo<DensityUnit>(DensityUnit.PicogramPerMilliliter, "PicogramsPerMilliliter", BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.PoundPerCubicCentimeter, "PoundsPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Pound)),
                     new UnitInfo<DensityUnit>(DensityUnit.PoundPerCubicFoot, "PoundsPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound)),
                     new UnitInfo<DensityUnit>(DensityUnit.PoundPerCubicInch, "PoundsPerCubicInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Pound)),
+                    new UnitInfo<DensityUnit>(DensityUnit.PoundPerCubicMeter, "PoundsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Pound)),
+                    new UnitInfo<DensityUnit>(DensityUnit.PoundPerCubicMillimeter, "PoundsPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Pound)),
                     new UnitInfo<DensityUnit>(DensityUnit.PoundPerImperialGallon, "PoundsPerImperialGallon", BaseUnits.Undefined),
                     new UnitInfo<DensityUnit>(DensityUnit.PoundPerUSGallon, "PoundsPerUSGallon", BaseUnits.Undefined),
+                    new UnitInfo<DensityUnit>(DensityUnit.SlugPerCubicCentimeter, "SlugsPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Slug)),
                     new UnitInfo<DensityUnit>(DensityUnit.SlugPerCubicFoot, "SlugsPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Slug)),
+                    new UnitInfo<DensityUnit>(DensityUnit.SlugPerCubicInch, "SlugsPerCubicInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Slug)),
+                    new UnitInfo<DensityUnit>(DensityUnit.SlugPerCubicMeter, "SlugsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Slug)),
+                    new UnitInfo<DensityUnit>(DensityUnit.SlugPerCubicMillimeter, "SlugsPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Slug)),
                     new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicCentimeter, "TonnesPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Tonne)),
+                    new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicFoot, "TonnesPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Tonne)),
+                    new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicInch, "TonnesPerCubicInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Tonne)),
                     new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicMeter, "TonnesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Tonne)),
                     new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicMillimeter, "TonnesPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Tonne)),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Density);
+
+            RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
         /// <summary>
@@ -110,6 +130,9 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Density(double value, DensityUnit unit)
         {
+            if(unit == DensityUnit.Undefined)
+              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
+
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
@@ -135,6 +158,11 @@ namespace UnitsNet
 
         #region Static Properties
 
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Density" /> instances.
+        /// </summary>
+        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<DensityUnit> Info { get; }
 
@@ -146,17 +174,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Density, which is KilogramPerCubicMeter. All conversions go via this value.
         /// </summary>
-        public static DensityUnit ConversionBaseUnit { get; } = DensityUnit.KilogramPerCubicMeter;
+        public static DensityUnit BaseUnit { get; }
+
+        /// <summary>
+        /// Represents the largest possible value of Density
+        /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
+        public static Density MaxValue { get; }
+
+        /// <summary>
+        /// Represents the smallest possible value of Density
+        /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
+        public static Density MinValue { get; }
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Density quantity.
         /// </summary>
-        public static DensityUnit[] Units { get; } = Enum.GetValues(typeof(DensityUnit)).Cast<DensityUnit>().ToArray();
+        public static DensityUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerCubicMeter.
         /// </summary>
-        public static Density Zero { get; } = new Density(0, ConversionBaseUnit);
+        public static Density Zero { get; }
 
         #endregion
 
@@ -170,13 +216,19 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public DensityUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
+        public DensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<DensityUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
+        public QuantityType Type => QuantityType.Density;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -221,6 +273,16 @@ namespace UnitsNet
         ///     Get Density in GramsPerCubicCentimeter.
         /// </summary>
         public double GramsPerCubicCentimeter => As(DensityUnit.GramPerCubicCentimeter);
+
+        /// <summary>
+        ///     Get Density in GramsPerCubicFoot.
+        /// </summary>
+        public double GramsPerCubicFoot => As(DensityUnit.GramPerCubicFoot);
+
+        /// <summary>
+        ///     Get Density in GramsPerCubicInch.
+        /// </summary>
+        public double GramsPerCubicInch => As(DensityUnit.GramPerCubicInch);
 
         /// <summary>
         ///     Get Density in GramsPerCubicMeter.
@@ -348,6 +410,11 @@ namespace UnitsNet
         public double PicogramsPerMilliliter => As(DensityUnit.PicogramPerMilliliter);
 
         /// <summary>
+        ///     Get Density in PoundsPerCubicCentimeter.
+        /// </summary>
+        public double PoundsPerCubicCentimeter => As(DensityUnit.PoundPerCubicCentimeter);
+
+        /// <summary>
         ///     Get Density in PoundsPerCubicFoot.
         /// </summary>
         public double PoundsPerCubicFoot => As(DensityUnit.PoundPerCubicFoot);
@@ -356,6 +423,16 @@ namespace UnitsNet
         ///     Get Density in PoundsPerCubicInch.
         /// </summary>
         public double PoundsPerCubicInch => As(DensityUnit.PoundPerCubicInch);
+
+        /// <summary>
+        ///     Get Density in PoundsPerCubicMeter.
+        /// </summary>
+        public double PoundsPerCubicMeter => As(DensityUnit.PoundPerCubicMeter);
+
+        /// <summary>
+        ///     Get Density in PoundsPerCubicMillimeter.
+        /// </summary>
+        public double PoundsPerCubicMillimeter => As(DensityUnit.PoundPerCubicMillimeter);
 
         /// <summary>
         ///     Get Density in PoundsPerImperialGallon.
@@ -368,14 +445,44 @@ namespace UnitsNet
         public double PoundsPerUSGallon => As(DensityUnit.PoundPerUSGallon);
 
         /// <summary>
+        ///     Get Density in SlugsPerCubicCentimeter.
+        /// </summary>
+        public double SlugsPerCubicCentimeter => As(DensityUnit.SlugPerCubicCentimeter);
+
+        /// <summary>
         ///     Get Density in SlugsPerCubicFoot.
         /// </summary>
         public double SlugsPerCubicFoot => As(DensityUnit.SlugPerCubicFoot);
 
         /// <summary>
+        ///     Get Density in SlugsPerCubicInch.
+        /// </summary>
+        public double SlugsPerCubicInch => As(DensityUnit.SlugPerCubicInch);
+
+        /// <summary>
+        ///     Get Density in SlugsPerCubicMeter.
+        /// </summary>
+        public double SlugsPerCubicMeter => As(DensityUnit.SlugPerCubicMeter);
+
+        /// <summary>
+        ///     Get Density in SlugsPerCubicMillimeter.
+        /// </summary>
+        public double SlugsPerCubicMillimeter => As(DensityUnit.SlugPerCubicMillimeter);
+
+        /// <summary>
         ///     Get Density in TonnesPerCubicCentimeter.
         /// </summary>
         public double TonnesPerCubicCentimeter => As(DensityUnit.TonnePerCubicCentimeter);
+
+        /// <summary>
+        ///     Get Density in TonnesPerCubicFoot.
+        /// </summary>
+        public double TonnesPerCubicFoot => As(DensityUnit.TonnePerCubicFoot);
+
+        /// <summary>
+        ///     Get Density in TonnesPerCubicInch.
+        /// </summary>
+        public double TonnesPerCubicInch => As(DensityUnit.TonnePerCubicInch);
 
         /// <summary>
         ///     Get Density in TonnesPerCubicMeter.
@@ -392,6 +499,120 @@ namespace UnitsNet
         #region Static Methods
 
         /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
+        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
+        {
+            // Register in unit converter: BaseUnit -> DensityUnit
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.CentigramPerDeciliter, quantity => new Density((quantity.Value*1e-1) / 1e-2d, DensityUnit.CentigramPerDeciliter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.CentigramPerLiter, quantity => new Density((quantity.Value*1) / 1e-2d, DensityUnit.CentigramPerLiter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.CentigramPerMilliliter, quantity => new Density((quantity.Value*1e-3) / 1e-2d, DensityUnit.CentigramPerMilliliter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.DecigramPerDeciliter, quantity => new Density((quantity.Value*1e-1) / 1e-1d, DensityUnit.DecigramPerDeciliter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.DecigramPerLiter, quantity => new Density((quantity.Value*1) / 1e-1d, DensityUnit.DecigramPerLiter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.DecigramPerMilliliter, quantity => new Density((quantity.Value*1e-3) / 1e-1d, DensityUnit.DecigramPerMilliliter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.GramPerCubicCentimeter, quantity => new Density(quantity.Value*1e-3, DensityUnit.GramPerCubicCentimeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.GramPerCubicFoot, quantity => new Density(quantity.Value/0.0353146667214886, DensityUnit.GramPerCubicFoot));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.GramPerCubicInch, quantity => new Density(quantity.Value/61.0237440947323, DensityUnit.GramPerCubicInch));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.GramPerCubicMeter, quantity => new Density(quantity.Value*1e3, DensityUnit.GramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.GramPerCubicMillimeter, quantity => new Density(quantity.Value*1e-6, DensityUnit.GramPerCubicMillimeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.GramPerDeciliter, quantity => new Density(quantity.Value*1e-1, DensityUnit.GramPerDeciliter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.GramPerLiter, quantity => new Density(quantity.Value*1, DensityUnit.GramPerLiter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.GramPerMilliliter, quantity => new Density(quantity.Value*1e-3, DensityUnit.GramPerMilliliter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.KilogramPerCubicCentimeter, quantity => new Density((quantity.Value*1e-3) / 1e3d, DensityUnit.KilogramPerCubicCentimeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.KilogramPerCubicMillimeter, quantity => new Density((quantity.Value*1e-6) / 1e3d, DensityUnit.KilogramPerCubicMillimeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.KilogramPerLiter, quantity => new Density(quantity.Value/1e3, DensityUnit.KilogramPerLiter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.KilopoundPerCubicFoot, quantity => new Density((quantity.Value*0.062427961) / 1e3d, DensityUnit.KilopoundPerCubicFoot));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.KilopoundPerCubicInch, quantity => new Density((quantity.Value*3.6127298147753e-5) / 1e3d, DensityUnit.KilopoundPerCubicInch));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.MicrogramPerCubicMeter, quantity => new Density((quantity.Value*1e3) / 1e-6d, DensityUnit.MicrogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.MicrogramPerDeciliter, quantity => new Density((quantity.Value*1e-1) / 1e-6d, DensityUnit.MicrogramPerDeciliter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.MicrogramPerLiter, quantity => new Density((quantity.Value*1) / 1e-6d, DensityUnit.MicrogramPerLiter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.MicrogramPerMilliliter, quantity => new Density((quantity.Value*1e-3) / 1e-6d, DensityUnit.MicrogramPerMilliliter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.MilligramPerCubicMeter, quantity => new Density((quantity.Value*1e3) / 1e-3d, DensityUnit.MilligramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.MilligramPerDeciliter, quantity => new Density((quantity.Value*1e-1) / 1e-3d, DensityUnit.MilligramPerDeciliter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.MilligramPerLiter, quantity => new Density((quantity.Value*1) / 1e-3d, DensityUnit.MilligramPerLiter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.MilligramPerMilliliter, quantity => new Density((quantity.Value*1e-3) / 1e-3d, DensityUnit.MilligramPerMilliliter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.NanogramPerDeciliter, quantity => new Density((quantity.Value*1e-1) / 1e-9d, DensityUnit.NanogramPerDeciliter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.NanogramPerLiter, quantity => new Density((quantity.Value*1) / 1e-9d, DensityUnit.NanogramPerLiter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.NanogramPerMilliliter, quantity => new Density((quantity.Value*1e-3) / 1e-9d, DensityUnit.NanogramPerMilliliter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PicogramPerDeciliter, quantity => new Density((quantity.Value*1e-1) / 1e-12d, DensityUnit.PicogramPerDeciliter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PicogramPerLiter, quantity => new Density((quantity.Value*1) / 1e-12d, DensityUnit.PicogramPerLiter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PicogramPerMilliliter, quantity => new Density((quantity.Value*1e-3) / 1e-12d, DensityUnit.PicogramPerMilliliter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PoundPerCubicCentimeter, quantity => new Density(quantity.Value*2.204622621848775e-6, DensityUnit.PoundPerCubicCentimeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PoundPerCubicFoot, quantity => new Density(quantity.Value*0.062427961, DensityUnit.PoundPerCubicFoot));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PoundPerCubicInch, quantity => new Density(quantity.Value*3.6127298147753e-5, DensityUnit.PoundPerCubicInch));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PoundPerCubicMeter, quantity => new Density(quantity.Value*2.204622621848775, DensityUnit.PoundPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PoundPerCubicMillimeter, quantity => new Density(quantity.Value*2.204622621848775e-9, DensityUnit.PoundPerCubicMillimeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PoundPerImperialGallon, quantity => new Density(quantity.Value/9.9776398e1, DensityUnit.PoundPerImperialGallon));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PoundPerUSGallon, quantity => new Density(quantity.Value/1.19826427e2, DensityUnit.PoundPerUSGallon));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.SlugPerCubicCentimeter, quantity => new Density(quantity.Value/14593903, DensityUnit.SlugPerCubicCentimeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.SlugPerCubicFoot, quantity => new Density(quantity.Value*0.00194032033, DensityUnit.SlugPerCubicFoot));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.SlugPerCubicInch, quantity => new Density(quantity.Value/890574.60201535, DensityUnit.SlugPerCubicInch));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.SlugPerCubicMeter, quantity => new Density(quantity.Value/14.5939, DensityUnit.SlugPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.SlugPerCubicMillimeter, quantity => new Density(quantity.Value/14593903000, DensityUnit.SlugPerCubicMillimeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.TonnePerCubicCentimeter, quantity => new Density(quantity.Value*1e-9, DensityUnit.TonnePerCubicCentimeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.TonnePerCubicFoot, quantity => new Density(quantity.Value/3.53146667214886e4, DensityUnit.TonnePerCubicFoot));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.TonnePerCubicInch, quantity => new Density(quantity.Value/6.10237440947323e7, DensityUnit.TonnePerCubicInch));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.TonnePerCubicMeter, quantity => new Density(quantity.Value*0.001, DensityUnit.TonnePerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.TonnePerCubicMillimeter, quantity => new Density(quantity.Value*1e-12, DensityUnit.TonnePerCubicMillimeter));
+            
+            // Register in unit converter: BaseUnit <-> BaseUnit
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.KilogramPerCubicMeter, quantity => quantity);
+
+            // Register in unit converter: DensityUnit -> BaseUnit
+            unitConverter.SetConversionFunction<Density>(DensityUnit.CentigramPerDeciliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e-1) * 1e-2d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.CentigramPerLiter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1) * 1e-2d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.CentigramPerMilliliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e-3) * 1e-2d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.DecigramPerDeciliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e-1) * 1e-1d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.DecigramPerLiter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1) * 1e-1d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.DecigramPerMilliliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e-3) * 1e-1d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.GramPerCubicCentimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value/1e-3, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.GramPerCubicFoot, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value*0.0353146667214886, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.GramPerCubicInch, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value*61.0237440947323, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.GramPerCubicMeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value/1e3, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.GramPerCubicMillimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value/1e-6, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.GramPerDeciliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value/1e-1, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.GramPerLiter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value/1, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.GramPerMilliliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value/1e-3, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicCentimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e-3) * 1e3d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMillimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e-6) * 1e3d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerLiter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value*1e3, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilopoundPerCubicFoot, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/0.062427961) * 1e3d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilopoundPerCubicInch, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/3.6127298147753e-5) * 1e3d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.MicrogramPerCubicMeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e3) * 1e-6d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.MicrogramPerDeciliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e-1) * 1e-6d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.MicrogramPerLiter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1) * 1e-6d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.MicrogramPerMilliliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e-3) * 1e-6d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.MilligramPerCubicMeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e3) * 1e-3d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.MilligramPerDeciliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e-1) * 1e-3d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.MilligramPerLiter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1) * 1e-3d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.MilligramPerMilliliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e-3) * 1e-3d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.NanogramPerDeciliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e-1) * 1e-9d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.NanogramPerLiter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1) * 1e-9d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.NanogramPerMilliliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e-3) * 1e-9d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.PicogramPerDeciliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e-1) * 1e-12d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.PicogramPerLiter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1) * 1e-12d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.PicogramPerMilliliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e-3) * 1e-12d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.PoundPerCubicCentimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value/2.204622621848775e-6, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.PoundPerCubicFoot, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value/0.062427961, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.PoundPerCubicInch, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value/3.6127298147753e-5, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.PoundPerCubicMeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value/2.204622621848775, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.PoundPerCubicMillimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value/2.204622621848775e-9, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.PoundPerImperialGallon, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value*9.9776398e1, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.PoundPerUSGallon, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value*1.19826427e2, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.SlugPerCubicCentimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value*14593903, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.SlugPerCubicFoot, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value*515.378818, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.SlugPerCubicInch, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value*890574.60201535, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.SlugPerCubicMeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value*14.5939, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.SlugPerCubicMillimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value*14593903000, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.TonnePerCubicCentimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value/1e-9, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.TonnePerCubicFoot, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value*3.53146667214886e4, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.TonnePerCubicInch, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value*6.10237440947323e7, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.TonnePerCubicMeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value/0.001, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.TonnePerCubicMillimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value/1e-12, DensityUnit.KilogramPerCubicMeter));
+        }
+
+        /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
@@ -406,7 +627,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static string GetAbbreviation(DensityUnit unit, IFormatProvider? provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
@@ -478,6 +699,24 @@ namespace UnitsNet
         {
             double value = (double) gramspercubiccentimeter;
             return new Density(value, DensityUnit.GramPerCubicCentimeter);
+        }
+        /// <summary>
+        ///     Get Density from GramsPerCubicFoot.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromGramsPerCubicFoot(QuantityValue gramspercubicfoot)
+        {
+            double value = (double) gramspercubicfoot;
+            return new Density(value, DensityUnit.GramPerCubicFoot);
+        }
+        /// <summary>
+        ///     Get Density from GramsPerCubicInch.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromGramsPerCubicInch(QuantityValue gramspercubicinch)
+        {
+            double value = (double) gramspercubicinch;
+            return new Density(value, DensityUnit.GramPerCubicInch);
         }
         /// <summary>
         ///     Get Density from GramsPerCubicMeter.
@@ -705,6 +944,15 @@ namespace UnitsNet
             return new Density(value, DensityUnit.PicogramPerMilliliter);
         }
         /// <summary>
+        ///     Get Density from PoundsPerCubicCentimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromPoundsPerCubicCentimeter(QuantityValue poundspercubiccentimeter)
+        {
+            double value = (double) poundspercubiccentimeter;
+            return new Density(value, DensityUnit.PoundPerCubicCentimeter);
+        }
+        /// <summary>
         ///     Get Density from PoundsPerCubicFoot.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -721,6 +969,24 @@ namespace UnitsNet
         {
             double value = (double) poundspercubicinch;
             return new Density(value, DensityUnit.PoundPerCubicInch);
+        }
+        /// <summary>
+        ///     Get Density from PoundsPerCubicMeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromPoundsPerCubicMeter(QuantityValue poundspercubicmeter)
+        {
+            double value = (double) poundspercubicmeter;
+            return new Density(value, DensityUnit.PoundPerCubicMeter);
+        }
+        /// <summary>
+        ///     Get Density from PoundsPerCubicMillimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromPoundsPerCubicMillimeter(QuantityValue poundspercubicmillimeter)
+        {
+            double value = (double) poundspercubicmillimeter;
+            return new Density(value, DensityUnit.PoundPerCubicMillimeter);
         }
         /// <summary>
         ///     Get Density from PoundsPerImperialGallon.
@@ -741,6 +1007,15 @@ namespace UnitsNet
             return new Density(value, DensityUnit.PoundPerUSGallon);
         }
         /// <summary>
+        ///     Get Density from SlugsPerCubicCentimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromSlugsPerCubicCentimeter(QuantityValue slugspercubiccentimeter)
+        {
+            double value = (double) slugspercubiccentimeter;
+            return new Density(value, DensityUnit.SlugPerCubicCentimeter);
+        }
+        /// <summary>
         ///     Get Density from SlugsPerCubicFoot.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -750,6 +1025,33 @@ namespace UnitsNet
             return new Density(value, DensityUnit.SlugPerCubicFoot);
         }
         /// <summary>
+        ///     Get Density from SlugsPerCubicInch.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromSlugsPerCubicInch(QuantityValue slugspercubicinch)
+        {
+            double value = (double) slugspercubicinch;
+            return new Density(value, DensityUnit.SlugPerCubicInch);
+        }
+        /// <summary>
+        ///     Get Density from SlugsPerCubicMeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromSlugsPerCubicMeter(QuantityValue slugspercubicmeter)
+        {
+            double value = (double) slugspercubicmeter;
+            return new Density(value, DensityUnit.SlugPerCubicMeter);
+        }
+        /// <summary>
+        ///     Get Density from SlugsPerCubicMillimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromSlugsPerCubicMillimeter(QuantityValue slugspercubicmillimeter)
+        {
+            double value = (double) slugspercubicmillimeter;
+            return new Density(value, DensityUnit.SlugPerCubicMillimeter);
+        }
+        /// <summary>
         ///     Get Density from TonnesPerCubicCentimeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -757,6 +1059,24 @@ namespace UnitsNet
         {
             double value = (double) tonnespercubiccentimeter;
             return new Density(value, DensityUnit.TonnePerCubicCentimeter);
+        }
+        /// <summary>
+        ///     Get Density from TonnesPerCubicFoot.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromTonnesPerCubicFoot(QuantityValue tonnespercubicfoot)
+        {
+            double value = (double) tonnespercubicfoot;
+            return new Density(value, DensityUnit.TonnePerCubicFoot);
+        }
+        /// <summary>
+        ///     Get Density from TonnesPerCubicInch.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromTonnesPerCubicInch(QuantityValue tonnespercubicinch)
+        {
+            double value = (double) tonnespercubicinch;
+            return new Density(value, DensityUnit.TonnePerCubicInch);
         }
         /// <summary>
         ///     Get Density from TonnesPerCubicMeter.
@@ -841,7 +1161,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static Density Parse(string str, IFormatProvider? provider)
         {
             return QuantityParser.Default.Parse<Density, DensityUnit>(
@@ -872,7 +1192,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Density result)
         {
             return QuantityParser.Default.TryParse<Density, DensityUnit>(
@@ -900,7 +1220,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -926,7 +1246,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out DensityUnit unit)
         {
             return UnitParser.Default.TryParse<DensityUnit>(str, provider, out unit);
@@ -1006,6 +1326,20 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Density, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(Density left, Density right)
+        {
+            return left.Equals(right);
+        }
+
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Density, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(Density left, Density right)
+        {
+            return !(left == right);
+        }
+
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -1019,6 +1353,23 @@ namespace UnitsNet
         public int CompareTo(Density other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Density, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is Density objDensity))
+                return false;
+
+            return Equals(objDensity);
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Density, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(Density other)
+        {
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -1125,11 +1476,42 @@ namespace UnitsNet
         /// <summary>
         ///     Converts this Density to another Density with the unit representation <paramref name="unit" />.
         /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
         /// <returns>A Density with the specified unit.</returns>
         public Density ToUnit(DensityUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new Density(convertedValue, unit);
+            return ToUnit(unit, DefaultConversionFunctions);
+        }
+
+        /// <summary>
+        ///     Converts this Density to another Density using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
+        /// <returns>A Density with the specified unit.</returns>
+        public Density ToUnit(DensityUnit unit, UnitConverter unitConverter)
+        {
+            if(Unit == unit)
+            {
+                // Already in requested units.
+                return this;
+            }
+            else if(unitConverter.TryGetConversionFunction((typeof(Density), Unit, typeof(Density), unit), out var conversionFunction))
+            {
+                // Direct conversion to requested unit found. Return the converted quantity.
+                var converted = conversionFunction(this);
+                return (Density)converted;
+            }
+            else if(Unit != BaseUnit)
+            {
+                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                var inBaseUnits = ToUnit(BaseUnit);
+                return inBaseUnits.ToUnit(unit);
+            }
+            else
+            {
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         /// <inheritdoc />
@@ -1138,7 +1520,16 @@ namespace UnitsNet
             if(!(unit is DensityUnit unitAsDensityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DensityUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsDensityUnit);
+            return ToUnit(unitAsDensityUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is DensityUnit unitAsDensityUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DensityUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsDensityUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -1163,125 +1554,15 @@ namespace UnitsNet
         IQuantity<DensityUnit> IQuantity<DensityUnit>.ToUnit(DensityUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantity<DensityUnit> IQuantity<DensityUnit>.ToUnit(DensityUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
+
+        /// <inheritdoc />
         IQuantity<DensityUnit> IQuantity<DensityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case DensityUnit.CentigramPerDeciliter: return (_value/1e-1) * 1e-2d;
-                case DensityUnit.CentigramPerLiter: return (_value/1) * 1e-2d;
-                case DensityUnit.CentigramPerMilliliter: return (_value/1e-3) * 1e-2d;
-                case DensityUnit.DecigramPerDeciliter: return (_value/1e-1) * 1e-1d;
-                case DensityUnit.DecigramPerLiter: return (_value/1) * 1e-1d;
-                case DensityUnit.DecigramPerMilliliter: return (_value/1e-3) * 1e-1d;
-                case DensityUnit.GramPerCubicCentimeter: return _value/1e-3;
-                case DensityUnit.GramPerCubicMeter: return _value/1e3;
-                case DensityUnit.GramPerCubicMillimeter: return _value/1e-6;
-                case DensityUnit.GramPerDeciliter: return _value/1e-1;
-                case DensityUnit.GramPerLiter: return _value/1;
-                case DensityUnit.GramPerMilliliter: return _value/1e-3;
-                case DensityUnit.KilogramPerCubicCentimeter: return (_value/1e-3) * 1e3d;
-                case DensityUnit.KilogramPerCubicMeter: return (_value/1e3) * 1e3d;
-                case DensityUnit.KilogramPerCubicMillimeter: return (_value/1e-6) * 1e3d;
-                case DensityUnit.KilogramPerLiter: return _value*1e3;
-                case DensityUnit.KilopoundPerCubicFoot: return (_value/0.062427961) * 1e3d;
-                case DensityUnit.KilopoundPerCubicInch: return (_value/3.6127298147753e-5) * 1e3d;
-                case DensityUnit.MicrogramPerCubicMeter: return (_value/1e3) * 1e-6d;
-                case DensityUnit.MicrogramPerDeciliter: return (_value/1e-1) * 1e-6d;
-                case DensityUnit.MicrogramPerLiter: return (_value/1) * 1e-6d;
-                case DensityUnit.MicrogramPerMilliliter: return (_value/1e-3) * 1e-6d;
-                case DensityUnit.MilligramPerCubicMeter: return (_value/1e3) * 1e-3d;
-                case DensityUnit.MilligramPerDeciliter: return (_value/1e-1) * 1e-3d;
-                case DensityUnit.MilligramPerLiter: return (_value/1) * 1e-3d;
-                case DensityUnit.MilligramPerMilliliter: return (_value/1e-3) * 1e-3d;
-                case DensityUnit.NanogramPerDeciliter: return (_value/1e-1) * 1e-9d;
-                case DensityUnit.NanogramPerLiter: return (_value/1) * 1e-9d;
-                case DensityUnit.NanogramPerMilliliter: return (_value/1e-3) * 1e-9d;
-                case DensityUnit.PicogramPerDeciliter: return (_value/1e-1) * 1e-12d;
-                case DensityUnit.PicogramPerLiter: return (_value/1) * 1e-12d;
-                case DensityUnit.PicogramPerMilliliter: return (_value/1e-3) * 1e-12d;
-                case DensityUnit.PoundPerCubicFoot: return _value/0.062427961;
-                case DensityUnit.PoundPerCubicInch: return _value/3.6127298147753e-5;
-                case DensityUnit.PoundPerImperialGallon: return _value*9.9776398e1;
-                case DensityUnit.PoundPerUSGallon: return _value*1.19826427e2;
-                case DensityUnit.SlugPerCubicFoot: return _value*515.378818;
-                case DensityUnit.TonnePerCubicCentimeter: return _value/1e-9;
-                case DensityUnit.TonnePerCubicMeter: return _value/0.001;
-                case DensityUnit.TonnePerCubicMillimeter: return _value/1e-12;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal Density ToBaseUnit()
-        {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new Density(baseUnitValue, ConversionBaseUnit);
-        }
 
         private double GetValueAs(DensityUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var baseUnitValue = GetValueInBaseUnit();
-
-            switch(unit)
-            {
-                case DensityUnit.CentigramPerDeciliter: return (baseUnitValue*1e-1) / 1e-2d;
-                case DensityUnit.CentigramPerLiter: return (baseUnitValue*1) / 1e-2d;
-                case DensityUnit.CentigramPerMilliliter: return (baseUnitValue*1e-3) / 1e-2d;
-                case DensityUnit.DecigramPerDeciliter: return (baseUnitValue*1e-1) / 1e-1d;
-                case DensityUnit.DecigramPerLiter: return (baseUnitValue*1) / 1e-1d;
-                case DensityUnit.DecigramPerMilliliter: return (baseUnitValue*1e-3) / 1e-1d;
-                case DensityUnit.GramPerCubicCentimeter: return baseUnitValue*1e-3;
-                case DensityUnit.GramPerCubicMeter: return baseUnitValue*1e3;
-                case DensityUnit.GramPerCubicMillimeter: return baseUnitValue*1e-6;
-                case DensityUnit.GramPerDeciliter: return baseUnitValue*1e-1;
-                case DensityUnit.GramPerLiter: return baseUnitValue*1;
-                case DensityUnit.GramPerMilliliter: return baseUnitValue*1e-3;
-                case DensityUnit.KilogramPerCubicCentimeter: return (baseUnitValue*1e-3) / 1e3d;
-                case DensityUnit.KilogramPerCubicMeter: return (baseUnitValue*1e3) / 1e3d;
-                case DensityUnit.KilogramPerCubicMillimeter: return (baseUnitValue*1e-6) / 1e3d;
-                case DensityUnit.KilogramPerLiter: return baseUnitValue/1e3;
-                case DensityUnit.KilopoundPerCubicFoot: return (baseUnitValue*0.062427961) / 1e3d;
-                case DensityUnit.KilopoundPerCubicInch: return (baseUnitValue*3.6127298147753e-5) / 1e3d;
-                case DensityUnit.MicrogramPerCubicMeter: return (baseUnitValue*1e3) / 1e-6d;
-                case DensityUnit.MicrogramPerDeciliter: return (baseUnitValue*1e-1) / 1e-6d;
-                case DensityUnit.MicrogramPerLiter: return (baseUnitValue*1) / 1e-6d;
-                case DensityUnit.MicrogramPerMilliliter: return (baseUnitValue*1e-3) / 1e-6d;
-                case DensityUnit.MilligramPerCubicMeter: return (baseUnitValue*1e3) / 1e-3d;
-                case DensityUnit.MilligramPerDeciliter: return (baseUnitValue*1e-1) / 1e-3d;
-                case DensityUnit.MilligramPerLiter: return (baseUnitValue*1) / 1e-3d;
-                case DensityUnit.MilligramPerMilliliter: return (baseUnitValue*1e-3) / 1e-3d;
-                case DensityUnit.NanogramPerDeciliter: return (baseUnitValue*1e-1) / 1e-9d;
-                case DensityUnit.NanogramPerLiter: return (baseUnitValue*1) / 1e-9d;
-                case DensityUnit.NanogramPerMilliliter: return (baseUnitValue*1e-3) / 1e-9d;
-                case DensityUnit.PicogramPerDeciliter: return (baseUnitValue*1e-1) / 1e-12d;
-                case DensityUnit.PicogramPerLiter: return (baseUnitValue*1) / 1e-12d;
-                case DensityUnit.PicogramPerMilliliter: return (baseUnitValue*1e-3) / 1e-12d;
-                case DensityUnit.PoundPerCubicFoot: return baseUnitValue*0.062427961;
-                case DensityUnit.PoundPerCubicInch: return baseUnitValue*3.6127298147753e-5;
-                case DensityUnit.PoundPerImperialGallon: return baseUnitValue/9.9776398e1;
-                case DensityUnit.PoundPerUSGallon: return baseUnitValue/1.19826427e2;
-                case DensityUnit.SlugPerCubicFoot: return baseUnitValue*0.00194032033;
-                case DensityUnit.TonnePerCubicCentimeter: return baseUnitValue*1e-9;
-                case DensityUnit.TonnePerCubicMeter: return baseUnitValue*0.001;
-                case DensityUnit.TonnePerCubicMillimeter: return baseUnitValue*1e-12;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         #endregion
@@ -1301,29 +1582,63 @@ namespace UnitsNet
         ///     Gets the default string representation of value and unit using the given format provider.
         /// </summary>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
             return ToString("g", provider);
         }
 
+        /// <summary>
+        ///     Get string representation of value and unit.
+        /// </summary>
+        /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
+        /// <returns>String representation.</returns>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
+        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
+        {
+            var value = Convert.ToDouble(Value);
+            var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
+            return ToString(provider, format);
+        }
+
+        /// <summary>
+        ///     Get string representation of value and unit.
+        /// </summary>
+        /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
+        /// <param name="args">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
+        /// <returns>String representation.</returns>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
+        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
+        {
+            if (format == null) throw new ArgumentNullException(nameof(format));
+            if (args == null) throw new ArgumentNullException(nameof(args));
+
+            provider = provider ?? CultureInfo.CurrentUICulture;
+
+            var value = Convert.ToDouble(Value);
+            var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
+        }
+
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
-        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentCulture" />.
+        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentUICulture" />.
         /// </summary>
         /// <param name="format">The format string.</param>
         /// <returns>The string representation.</returns>
         public string ToString(string format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, CultureInfo.CurrentUICulture);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
-        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
+        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
         /// </summary>
         /// <param name="format">The format string.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>The string representation.</returns>
         public string ToString(string format, IFormatProvider? provider)
         {
@@ -1405,6 +1720,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(DensityUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return Density.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Density.Info;
             else if(conversionType == typeof(BaseDimensions))

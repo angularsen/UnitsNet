@@ -14,8 +14,8 @@
         "L": "Meter",
         "T": "Second"
       },
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
       "Localization": [
         {
@@ -35,8 +35,8 @@
         "L": "Inch",
         "T": "Second"
       },
-      "FromUnitToBaseFunc": "x*0.0254",
-      "FromBaseToUnitFunc": "x/0.0254",
+      "FromUnitToBaseFunc": "{x}*0.0254",
+      "FromBaseToUnitFunc": "{x}/0.0254",
       "Localization": [
         {
           "Culture": "en-US",
@@ -55,8 +55,8 @@
         "L": "Foot",
         "T": "Second"
       },
-      "FromUnitToBaseFunc": "x*0.304800",
-      "FromBaseToUnitFunc": "x/0.304800",
+      "FromUnitToBaseFunc": "{x}*0.304800",
+      "FromBaseToUnitFunc": "{x}/0.304800",
       "Localization": [
         {
           "Culture": "en-US",
@@ -75,8 +75,8 @@
         "L": "NauticalMile",
         "T": "Second"
       },
-      "FromUnitToBaseFunc": "x*0.5144444444444",
-      "FromBaseToUnitFunc": "x/0.5144444444444",
+      "FromUnitToBaseFunc": "{x}*0.5144444444444",
+      "FromBaseToUnitFunc": "{x}/0.5144444444444",
       "Localization": [
         {
           "Culture": "en-US",
@@ -95,8 +95,8 @@
         "L": "NauticalMile",
         "T": "Minute"
       },
-      "FromUnitToBaseFunc": "x*0.5144444444444/60",
-      "FromBaseToUnitFunc": "x/0.5144444444444*60",
+      "FromUnitToBaseFunc": "{x}*0.5144444444444/60",
+      "FromBaseToUnitFunc": "{x}/0.5144444444444*60",
       "Localization": [
         {
           "Culture": "en-US",
@@ -115,8 +115,8 @@
         "L": "NauticalMile",
         "T": "Hour"
       },
-      "FromUnitToBaseFunc": "x*0.5144444444444/3600",
-      "FromBaseToUnitFunc": "x/0.5144444444444*3600",
+      "FromUnitToBaseFunc": "{x}*0.5144444444444/3600",
+      "FromBaseToUnitFunc": "{x}/0.5144444444444*3600",
       "Localization": [
         {
           "Culture": "en-US",
@@ -135,8 +135,8 @@
         "L": "Meter",
         "T": "Second"
       },
-      "FromUnitToBaseFunc": "x*9.80665",
-      "FromBaseToUnitFunc": "x/9.80665",
+      "FromUnitToBaseFunc": "{x}*9.80665",
+      "FromBaseToUnitFunc": "{x}/9.80665",
       "Prefixes": [ "Milli"],
       "Localization": [
         {

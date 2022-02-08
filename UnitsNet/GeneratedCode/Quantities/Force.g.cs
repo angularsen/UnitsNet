@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -35,7 +36,7 @@ namespace UnitsNet
     ///     In physics, a force is any influence that causes an object to undergo a certain change, either concerning its movement, direction, or geometrical construction. In other words, a force can cause an object with mass to change its velocity (which includes to begin moving from a state of rest), i.e., to accelerate, or a flexible object to deform, or both. Force can also be described by intuitive concepts such as a push or a pull. A force has both magnitude and direction, making it a vector quantity. It is measured in the SI unit of newtons and represented by the symbol F.
     /// </summary>
     [DataContract]
-    public partial struct Force : IQuantity<ForceUnit>, IComparable, IComparable<Force>, IConvertible, IFormattable
+    public partial struct Force : IQuantity<ForceUnit>, IEquatable<Force>, IComparable, IComparable<Force>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -52,9 +53,15 @@ namespace UnitsNet
         static Force()
         {
             BaseDimensions = new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
-
+            BaseUnit = ForceUnit.Newton;
+            MaxValue = new Force(double.MaxValue, BaseUnit);
+            MinValue = new Force(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Force;
+            Units = Enum.GetValues(typeof(ForceUnit)).Cast<ForceUnit>().Except(new ForceUnit[]{ ForceUnit.Undefined }).ToArray();
+            Zero = new Force(0, BaseUnit);
             Info = new QuantityInfo<ForceUnit>("Force",
-                new UnitInfo<ForceUnit>[] {
+                new UnitInfo<ForceUnit>[]
+                {
                     new UnitInfo<ForceUnit>(ForceUnit.Decanewton, "Decanewtons", BaseUnits.Undefined),
                     new UnitInfo<ForceUnit>(ForceUnit.Dyn, "Dyne", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram, time: DurationUnit.Second)),
                     new UnitInfo<ForceUnit>(ForceUnit.KilogramForce, "KilogramsForce", BaseUnits.Undefined),
@@ -71,7 +78,9 @@ namespace UnitsNet
                     new UnitInfo<ForceUnit>(ForceUnit.ShortTonForce, "ShortTonsForce", BaseUnits.Undefined),
                     new UnitInfo<ForceUnit>(ForceUnit.TonneForce, "TonnesForce", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Force);
+
+            RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
         /// <summary>
@@ -82,6 +91,9 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Force(double value, ForceUnit unit)
         {
+            if(unit == ForceUnit.Undefined)
+              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
+
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
@@ -107,6 +119,11 @@ namespace UnitsNet
 
         #region Static Properties
 
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Force" /> instances.
+        /// </summary>
+        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<ForceUnit> Info { get; }
 
@@ -118,17 +135,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Force, which is Newton. All conversions go via this value.
         /// </summary>
-        public static ForceUnit ConversionBaseUnit { get; } = ForceUnit.Newton;
+        public static ForceUnit BaseUnit { get; }
+
+        /// <summary>
+        /// Represents the largest possible value of Force
+        /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
+        public static Force MaxValue { get; }
+
+        /// <summary>
+        /// Represents the smallest possible value of Force
+        /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
+        public static Force MinValue { get; }
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Force quantity.
         /// </summary>
-        public static ForceUnit[] Units { get; } = Enum.GetValues(typeof(ForceUnit)).Cast<ForceUnit>().ToArray();
+        public static ForceUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Newton.
         /// </summary>
-        public static Force Zero { get; } = new Force(0, ConversionBaseUnit);
+        public static Force Zero { get; }
 
         #endregion
 
@@ -142,13 +177,19 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public ForceUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
+        public ForceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<ForceUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
+        public QuantityType Type => QuantityType.Force;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -239,6 +280,48 @@ namespace UnitsNet
         #region Static Methods
 
         /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
+        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
+        {
+            // Register in unit converter: BaseUnit -> ForceUnit
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Decanewton, quantity => new Force((quantity.Value) / 1e1d, ForceUnit.Decanewton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Dyn, quantity => new Force(quantity.Value*1e5, ForceUnit.Dyn));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.KilogramForce, quantity => new Force(quantity.Value/9.80665002864, ForceUnit.KilogramForce));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Kilonewton, quantity => new Force((quantity.Value) / 1e3d, ForceUnit.Kilonewton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.KiloPond, quantity => new Force(quantity.Value/9.80665002864, ForceUnit.KiloPond));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.KilopoundForce, quantity => new Force((quantity.Value/4.4482216152605095551842641431421) / 1e3d, ForceUnit.KilopoundForce));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Meganewton, quantity => new Force((quantity.Value) / 1e6d, ForceUnit.Meganewton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Micronewton, quantity => new Force((quantity.Value) / 1e-6d, ForceUnit.Micronewton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Millinewton, quantity => new Force((quantity.Value) / 1e-3d, ForceUnit.Millinewton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.OunceForce, quantity => new Force(quantity.Value/2.780138509537812e-1, ForceUnit.OunceForce));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Poundal, quantity => new Force(quantity.Value/0.13825502798973041652092282466083, ForceUnit.Poundal));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.PoundForce, quantity => new Force(quantity.Value/4.4482216152605095551842641431421, ForceUnit.PoundForce));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.ShortTonForce, quantity => new Force(quantity.Value/8.896443230521e3, ForceUnit.ShortTonForce));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.TonneForce, quantity => new Force(quantity.Value/9.80665002864e3, ForceUnit.TonneForce));
+            
+            // Register in unit converter: BaseUnit <-> BaseUnit
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Newton, quantity => quantity);
+
+            // Register in unit converter: ForceUnit -> BaseUnit
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Decanewton, ForceUnit.Newton, quantity => new Force((quantity.Value) * 1e1d, ForceUnit.Newton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Dyn, ForceUnit.Newton, quantity => new Force(quantity.Value/1e5, ForceUnit.Newton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.KilogramForce, ForceUnit.Newton, quantity => new Force(quantity.Value*9.80665002864, ForceUnit.Newton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Kilonewton, ForceUnit.Newton, quantity => new Force((quantity.Value) * 1e3d, ForceUnit.Newton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.KiloPond, ForceUnit.Newton, quantity => new Force(quantity.Value*9.80665002864, ForceUnit.Newton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.KilopoundForce, ForceUnit.Newton, quantity => new Force((quantity.Value*4.4482216152605095551842641431421) * 1e3d, ForceUnit.Newton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Meganewton, ForceUnit.Newton, quantity => new Force((quantity.Value) * 1e6d, ForceUnit.Newton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Micronewton, ForceUnit.Newton, quantity => new Force((quantity.Value) * 1e-6d, ForceUnit.Newton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Millinewton, ForceUnit.Newton, quantity => new Force((quantity.Value) * 1e-3d, ForceUnit.Newton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.OunceForce, ForceUnit.Newton, quantity => new Force(quantity.Value*2.780138509537812e-1, ForceUnit.Newton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Poundal, ForceUnit.Newton, quantity => new Force(quantity.Value*0.13825502798973041652092282466083, ForceUnit.Newton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.PoundForce, ForceUnit.Newton, quantity => new Force(quantity.Value*4.4482216152605095551842641431421, ForceUnit.Newton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.ShortTonForce, ForceUnit.Newton, quantity => new Force(quantity.Value*8.896443230521e3, ForceUnit.Newton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.TonneForce, ForceUnit.Newton, quantity => new Force(quantity.Value*9.80665002864e3, ForceUnit.Newton));
+        }
+
+        /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
@@ -253,7 +336,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static string GetAbbreviation(ForceUnit unit, IFormatProvider? provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
@@ -463,7 +546,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static Force Parse(string str, IFormatProvider? provider)
         {
             return QuantityParser.Default.Parse<Force, ForceUnit>(
@@ -494,7 +577,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Force result)
         {
             return QuantityParser.Default.TryParse<Force, ForceUnit>(
@@ -522,7 +605,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -548,7 +631,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out ForceUnit unit)
         {
             return UnitParser.Default.TryParse<ForceUnit>(str, provider, out unit);
@@ -628,6 +711,20 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Force, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(Force left, Force right)
+        {
+            return left.Equals(right);
+        }
+
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Force, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(Force left, Force right)
+        {
+            return !(left == right);
+        }
+
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -641,6 +738,23 @@ namespace UnitsNet
         public int CompareTo(Force other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Force, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is Force objForce))
+                return false;
+
+            return Equals(objForce);
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Force, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(Force other)
+        {
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -747,11 +861,42 @@ namespace UnitsNet
         /// <summary>
         ///     Converts this Force to another Force with the unit representation <paramref name="unit" />.
         /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
         /// <returns>A Force with the specified unit.</returns>
         public Force ToUnit(ForceUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new Force(convertedValue, unit);
+            return ToUnit(unit, DefaultConversionFunctions);
+        }
+
+        /// <summary>
+        ///     Converts this Force to another Force using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
+        /// <returns>A Force with the specified unit.</returns>
+        public Force ToUnit(ForceUnit unit, UnitConverter unitConverter)
+        {
+            if(Unit == unit)
+            {
+                // Already in requested units.
+                return this;
+            }
+            else if(unitConverter.TryGetConversionFunction((typeof(Force), Unit, typeof(Force), unit), out var conversionFunction))
+            {
+                // Direct conversion to requested unit found. Return the converted quantity.
+                var converted = conversionFunction(this);
+                return (Force)converted;
+            }
+            else if(Unit != BaseUnit)
+            {
+                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                var inBaseUnits = ToUnit(BaseUnit);
+                return inBaseUnits.ToUnit(unit);
+            }
+            else
+            {
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         /// <inheritdoc />
@@ -760,7 +905,16 @@ namespace UnitsNet
             if(!(unit is ForceUnit unitAsForceUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsForceUnit);
+            return ToUnit(unitAsForceUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is ForceUnit unitAsForceUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsForceUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -785,75 +939,15 @@ namespace UnitsNet
         IQuantity<ForceUnit> IQuantity<ForceUnit>.ToUnit(ForceUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantity<ForceUnit> IQuantity<ForceUnit>.ToUnit(ForceUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
+
+        /// <inheritdoc />
         IQuantity<ForceUnit> IQuantity<ForceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case ForceUnit.Decanewton: return (_value) * 1e1d;
-                case ForceUnit.Dyn: return _value/1e5;
-                case ForceUnit.KilogramForce: return _value*9.80665002864;
-                case ForceUnit.Kilonewton: return (_value) * 1e3d;
-                case ForceUnit.KiloPond: return _value*9.80665002864;
-                case ForceUnit.KilopoundForce: return (_value*4.4482216152605095551842641431421) * 1e3d;
-                case ForceUnit.Meganewton: return (_value) * 1e6d;
-                case ForceUnit.Micronewton: return (_value) * 1e-6d;
-                case ForceUnit.Millinewton: return (_value) * 1e-3d;
-                case ForceUnit.Newton: return _value;
-                case ForceUnit.OunceForce: return _value*2.780138509537812e-1;
-                case ForceUnit.Poundal: return _value*0.13825502798973041652092282466083;
-                case ForceUnit.PoundForce: return _value*4.4482216152605095551842641431421;
-                case ForceUnit.ShortTonForce: return _value*8.896443230521e3;
-                case ForceUnit.TonneForce: return _value*9.80665002864e3;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal Force ToBaseUnit()
-        {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new Force(baseUnitValue, ConversionBaseUnit);
-        }
 
         private double GetValueAs(ForceUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var baseUnitValue = GetValueInBaseUnit();
-
-            switch(unit)
-            {
-                case ForceUnit.Decanewton: return (baseUnitValue) / 1e1d;
-                case ForceUnit.Dyn: return baseUnitValue*1e5;
-                case ForceUnit.KilogramForce: return baseUnitValue/9.80665002864;
-                case ForceUnit.Kilonewton: return (baseUnitValue) / 1e3d;
-                case ForceUnit.KiloPond: return baseUnitValue/9.80665002864;
-                case ForceUnit.KilopoundForce: return (baseUnitValue/4.4482216152605095551842641431421) / 1e3d;
-                case ForceUnit.Meganewton: return (baseUnitValue) / 1e6d;
-                case ForceUnit.Micronewton: return (baseUnitValue) / 1e-6d;
-                case ForceUnit.Millinewton: return (baseUnitValue) / 1e-3d;
-                case ForceUnit.Newton: return baseUnitValue;
-                case ForceUnit.OunceForce: return baseUnitValue/2.780138509537812e-1;
-                case ForceUnit.Poundal: return baseUnitValue/0.13825502798973041652092282466083;
-                case ForceUnit.PoundForce: return baseUnitValue/4.4482216152605095551842641431421;
-                case ForceUnit.ShortTonForce: return baseUnitValue/8.896443230521e3;
-                case ForceUnit.TonneForce: return baseUnitValue/9.80665002864e3;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         #endregion
@@ -873,29 +967,63 @@ namespace UnitsNet
         ///     Gets the default string representation of value and unit using the given format provider.
         /// </summary>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
             return ToString("g", provider);
         }
 
+        /// <summary>
+        ///     Get string representation of value and unit.
+        /// </summary>
+        /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
+        /// <returns>String representation.</returns>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
+        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
+        {
+            var value = Convert.ToDouble(Value);
+            var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
+            return ToString(provider, format);
+        }
+
+        /// <summary>
+        ///     Get string representation of value and unit.
+        /// </summary>
+        /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
+        /// <param name="args">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
+        /// <returns>String representation.</returns>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
+        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
+        {
+            if (format == null) throw new ArgumentNullException(nameof(format));
+            if (args == null) throw new ArgumentNullException(nameof(args));
+
+            provider = provider ?? CultureInfo.CurrentUICulture;
+
+            var value = Convert.ToDouble(Value);
+            var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
+        }
+
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
-        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentCulture" />.
+        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentUICulture" />.
         /// </summary>
         /// <param name="format">The format string.</param>
         /// <returns>The string representation.</returns>
         public string ToString(string format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, CultureInfo.CurrentUICulture);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
-        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
+        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
         /// </summary>
         /// <param name="format">The format string.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>The string representation.</returns>
         public string ToString(string format, IFormatProvider? provider)
         {
@@ -977,6 +1105,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ForceUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return Force.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Force.Info;
             else if(conversionType == typeof(BaseDimensions))

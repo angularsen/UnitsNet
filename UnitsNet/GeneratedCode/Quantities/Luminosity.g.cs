@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -38,7 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Luminosity
     /// </remarks>
     [DataContract]
-    public partial struct Luminosity : IQuantity<LuminosityUnit>, IComparable, IComparable<Luminosity>, IConvertible, IFormattable
+    public partial struct Luminosity : IQuantity<LuminosityUnit>, IEquatable<Luminosity>, IComparable, IComparable<Luminosity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -55,9 +56,15 @@ namespace UnitsNet
         static Luminosity()
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
-
+            BaseUnit = LuminosityUnit.Watt;
+            MaxValue = new Luminosity(double.MaxValue, BaseUnit);
+            MinValue = new Luminosity(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Luminosity;
+            Units = Enum.GetValues(typeof(LuminosityUnit)).Cast<LuminosityUnit>().Except(new LuminosityUnit[]{ LuminosityUnit.Undefined }).ToArray();
+            Zero = new Luminosity(0, BaseUnit);
             Info = new QuantityInfo<LuminosityUnit>("Luminosity",
-                new UnitInfo<LuminosityUnit>[] {
+                new UnitInfo<LuminosityUnit>[]
+                {
                     new UnitInfo<LuminosityUnit>(LuminosityUnit.Decawatt, "Decawatts", BaseUnits.Undefined),
                     new UnitInfo<LuminosityUnit>(LuminosityUnit.Deciwatt, "Deciwatts", BaseUnits.Undefined),
                     new UnitInfo<LuminosityUnit>(LuminosityUnit.Femtowatt, "Femtowatts", BaseUnits.Undefined),
@@ -73,7 +80,9 @@ namespace UnitsNet
                     new UnitInfo<LuminosityUnit>(LuminosityUnit.Terawatt, "Terawatts", BaseUnits.Undefined),
                     new UnitInfo<LuminosityUnit>(LuminosityUnit.Watt, "Watts", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Luminosity);
+
+            RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
         /// <summary>
@@ -84,6 +93,9 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Luminosity(double value, LuminosityUnit unit)
         {
+            if(unit == LuminosityUnit.Undefined)
+              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
+
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
@@ -109,6 +121,11 @@ namespace UnitsNet
 
         #region Static Properties
 
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Luminosity" /> instances.
+        /// </summary>
+        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<LuminosityUnit> Info { get; }
 
@@ -120,17 +137,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Luminosity, which is Watt. All conversions go via this value.
         /// </summary>
-        public static LuminosityUnit ConversionBaseUnit { get; } = LuminosityUnit.Watt;
+        public static LuminosityUnit BaseUnit { get; }
+
+        /// <summary>
+        /// Represents the largest possible value of Luminosity
+        /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
+        public static Luminosity MaxValue { get; }
+
+        /// <summary>
+        /// Represents the smallest possible value of Luminosity
+        /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
+        public static Luminosity MinValue { get; }
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Luminosity quantity.
         /// </summary>
-        public static LuminosityUnit[] Units { get; } = Enum.GetValues(typeof(LuminosityUnit)).Cast<LuminosityUnit>().ToArray();
+        public static LuminosityUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Watt.
         /// </summary>
-        public static Luminosity Zero { get; } = new Luminosity(0, ConversionBaseUnit);
+        public static Luminosity Zero { get; }
 
         #endregion
 
@@ -144,13 +179,19 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public LuminosityUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
+        public LuminosityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<LuminosityUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
+        public QuantityType Type => QuantityType.Luminosity;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -236,6 +277,46 @@ namespace UnitsNet
         #region Static Methods
 
         /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
+        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
+        {
+            // Register in unit converter: BaseUnit -> LuminosityUnit
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Watt, LuminosityUnit.Decawatt, quantity => new Luminosity((quantity.Value) / 1e1d, LuminosityUnit.Decawatt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Watt, LuminosityUnit.Deciwatt, quantity => new Luminosity((quantity.Value) / 1e-1d, LuminosityUnit.Deciwatt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Watt, LuminosityUnit.Femtowatt, quantity => new Luminosity((quantity.Value) / 1e-15d, LuminosityUnit.Femtowatt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Watt, LuminosityUnit.Gigawatt, quantity => new Luminosity((quantity.Value) / 1e9d, LuminosityUnit.Gigawatt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Watt, LuminosityUnit.Kilowatt, quantity => new Luminosity((quantity.Value) / 1e3d, LuminosityUnit.Kilowatt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Watt, LuminosityUnit.Megawatt, quantity => new Luminosity((quantity.Value) / 1e6d, LuminosityUnit.Megawatt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Watt, LuminosityUnit.Microwatt, quantity => new Luminosity((quantity.Value) / 1e-6d, LuminosityUnit.Microwatt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Watt, LuminosityUnit.Milliwatt, quantity => new Luminosity((quantity.Value) / 1e-3d, LuminosityUnit.Milliwatt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Watt, LuminosityUnit.Nanowatt, quantity => new Luminosity((quantity.Value) / 1e-9d, LuminosityUnit.Nanowatt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Watt, LuminosityUnit.Petawatt, quantity => new Luminosity((quantity.Value) / 1e15d, LuminosityUnit.Petawatt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Watt, LuminosityUnit.Picowatt, quantity => new Luminosity((quantity.Value) / 1e-12d, LuminosityUnit.Picowatt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Watt, LuminosityUnit.SolarLuminosity, quantity => new Luminosity(quantity.Value / 3.846e26, LuminosityUnit.SolarLuminosity));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Watt, LuminosityUnit.Terawatt, quantity => new Luminosity((quantity.Value) / 1e12d, LuminosityUnit.Terawatt));
+            
+            // Register in unit converter: BaseUnit <-> BaseUnit
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Watt, LuminosityUnit.Watt, quantity => quantity);
+
+            // Register in unit converter: LuminosityUnit -> BaseUnit
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Decawatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e1d, LuminosityUnit.Watt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Deciwatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e-1d, LuminosityUnit.Watt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Femtowatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e-15d, LuminosityUnit.Watt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Gigawatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e9d, LuminosityUnit.Watt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Kilowatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e3d, LuminosityUnit.Watt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Megawatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e6d, LuminosityUnit.Watt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Microwatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e-6d, LuminosityUnit.Watt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Milliwatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e-3d, LuminosityUnit.Watt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Nanowatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e-9d, LuminosityUnit.Watt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Petawatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e15d, LuminosityUnit.Watt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Picowatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e-12d, LuminosityUnit.Watt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.SolarLuminosity, LuminosityUnit.Watt, quantity => new Luminosity(quantity.Value * 3.846e26, LuminosityUnit.Watt));
+            unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Terawatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e12d, LuminosityUnit.Watt));
+        }
+
+        /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
@@ -250,7 +331,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static string GetAbbreviation(LuminosityUnit unit, IFormatProvider? provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
@@ -451,7 +532,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static Luminosity Parse(string str, IFormatProvider? provider)
         {
             return QuantityParser.Default.Parse<Luminosity, LuminosityUnit>(
@@ -482,7 +563,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Luminosity result)
         {
             return QuantityParser.Default.TryParse<Luminosity, LuminosityUnit>(
@@ -510,7 +591,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -536,7 +617,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out LuminosityUnit unit)
         {
             return UnitParser.Default.TryParse<LuminosityUnit>(str, provider, out unit);
@@ -616,6 +697,20 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Luminosity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(Luminosity left, Luminosity right)
+        {
+            return left.Equals(right);
+        }
+
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Luminosity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(Luminosity left, Luminosity right)
+        {
+            return !(left == right);
+        }
+
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -629,6 +724,23 @@ namespace UnitsNet
         public int CompareTo(Luminosity other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Luminosity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is Luminosity objLuminosity))
+                return false;
+
+            return Equals(objLuminosity);
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Luminosity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(Luminosity other)
+        {
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -735,11 +847,42 @@ namespace UnitsNet
         /// <summary>
         ///     Converts this Luminosity to another Luminosity with the unit representation <paramref name="unit" />.
         /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
         /// <returns>A Luminosity with the specified unit.</returns>
         public Luminosity ToUnit(LuminosityUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new Luminosity(convertedValue, unit);
+            return ToUnit(unit, DefaultConversionFunctions);
+        }
+
+        /// <summary>
+        ///     Converts this Luminosity to another Luminosity using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
+        /// <returns>A Luminosity with the specified unit.</returns>
+        public Luminosity ToUnit(LuminosityUnit unit, UnitConverter unitConverter)
+        {
+            if(Unit == unit)
+            {
+                // Already in requested units.
+                return this;
+            }
+            else if(unitConverter.TryGetConversionFunction((typeof(Luminosity), Unit, typeof(Luminosity), unit), out var conversionFunction))
+            {
+                // Direct conversion to requested unit found. Return the converted quantity.
+                var converted = conversionFunction(this);
+                return (Luminosity)converted;
+            }
+            else if(Unit != BaseUnit)
+            {
+                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                var inBaseUnits = ToUnit(BaseUnit);
+                return inBaseUnits.ToUnit(unit);
+            }
+            else
+            {
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         /// <inheritdoc />
@@ -748,7 +891,16 @@ namespace UnitsNet
             if(!(unit is LuminosityUnit unitAsLuminosityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminosityUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsLuminosityUnit);
+            return ToUnit(unitAsLuminosityUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is LuminosityUnit unitAsLuminosityUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminosityUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsLuminosityUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -773,73 +925,15 @@ namespace UnitsNet
         IQuantity<LuminosityUnit> IQuantity<LuminosityUnit>.ToUnit(LuminosityUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantity<LuminosityUnit> IQuantity<LuminosityUnit>.ToUnit(LuminosityUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
+
+        /// <inheritdoc />
         IQuantity<LuminosityUnit> IQuantity<LuminosityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case LuminosityUnit.Decawatt: return (_value) * 1e1d;
-                case LuminosityUnit.Deciwatt: return (_value) * 1e-1d;
-                case LuminosityUnit.Femtowatt: return (_value) * 1e-15d;
-                case LuminosityUnit.Gigawatt: return (_value) * 1e9d;
-                case LuminosityUnit.Kilowatt: return (_value) * 1e3d;
-                case LuminosityUnit.Megawatt: return (_value) * 1e6d;
-                case LuminosityUnit.Microwatt: return (_value) * 1e-6d;
-                case LuminosityUnit.Milliwatt: return (_value) * 1e-3d;
-                case LuminosityUnit.Nanowatt: return (_value) * 1e-9d;
-                case LuminosityUnit.Petawatt: return (_value) * 1e15d;
-                case LuminosityUnit.Picowatt: return (_value) * 1e-12d;
-                case LuminosityUnit.SolarLuminosity: return _value * 3.846e26;
-                case LuminosityUnit.Terawatt: return (_value) * 1e12d;
-                case LuminosityUnit.Watt: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal Luminosity ToBaseUnit()
-        {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new Luminosity(baseUnitValue, ConversionBaseUnit);
-        }
 
         private double GetValueAs(LuminosityUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var baseUnitValue = GetValueInBaseUnit();
-
-            switch(unit)
-            {
-                case LuminosityUnit.Decawatt: return (baseUnitValue) / 1e1d;
-                case LuminosityUnit.Deciwatt: return (baseUnitValue) / 1e-1d;
-                case LuminosityUnit.Femtowatt: return (baseUnitValue) / 1e-15d;
-                case LuminosityUnit.Gigawatt: return (baseUnitValue) / 1e9d;
-                case LuminosityUnit.Kilowatt: return (baseUnitValue) / 1e3d;
-                case LuminosityUnit.Megawatt: return (baseUnitValue) / 1e6d;
-                case LuminosityUnit.Microwatt: return (baseUnitValue) / 1e-6d;
-                case LuminosityUnit.Milliwatt: return (baseUnitValue) / 1e-3d;
-                case LuminosityUnit.Nanowatt: return (baseUnitValue) / 1e-9d;
-                case LuminosityUnit.Petawatt: return (baseUnitValue) / 1e15d;
-                case LuminosityUnit.Picowatt: return (baseUnitValue) / 1e-12d;
-                case LuminosityUnit.SolarLuminosity: return baseUnitValue / 3.846e26;
-                case LuminosityUnit.Terawatt: return (baseUnitValue) / 1e12d;
-                case LuminosityUnit.Watt: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         #endregion
@@ -859,29 +953,63 @@ namespace UnitsNet
         ///     Gets the default string representation of value and unit using the given format provider.
         /// </summary>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
             return ToString("g", provider);
         }
 
+        /// <summary>
+        ///     Get string representation of value and unit.
+        /// </summary>
+        /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
+        /// <returns>String representation.</returns>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
+        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
+        {
+            var value = Convert.ToDouble(Value);
+            var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
+            return ToString(provider, format);
+        }
+
+        /// <summary>
+        ///     Get string representation of value and unit.
+        /// </summary>
+        /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
+        /// <param name="args">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
+        /// <returns>String representation.</returns>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
+        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
+        {
+            if (format == null) throw new ArgumentNullException(nameof(format));
+            if (args == null) throw new ArgumentNullException(nameof(args));
+
+            provider = provider ?? CultureInfo.CurrentUICulture;
+
+            var value = Convert.ToDouble(Value);
+            var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
+        }
+
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
-        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentCulture" />.
+        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentUICulture" />.
         /// </summary>
         /// <param name="format">The format string.</param>
         /// <returns>The string representation.</returns>
         public string ToString(string format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, CultureInfo.CurrentUICulture);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
-        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
+        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
         /// </summary>
         /// <param name="format">The format string.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>The string representation.</returns>
         public string ToString(string format, IFormatProvider? provider)
         {
@@ -963,6 +1091,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(LuminosityUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return Luminosity.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Luminosity.Info;
             else if(conversionType == typeof(BaseDimensions))

@@ -6,8 +6,8 @@
     {
       "SingularName": "InternationalUnit",
       "PluralName": "InternationalUnits",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [],
       "Localization": [
         {

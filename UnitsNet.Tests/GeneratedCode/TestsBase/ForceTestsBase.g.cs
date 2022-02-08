@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -71,6 +72,54 @@ namespace UnitsNet.Tests
         protected virtual double TonnesForceTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ForceUnit unit)
+        {
+            return unit switch
+            {
+                ForceUnit.Decanewton => (DecanewtonsInOneNewton, DecanewtonsTolerance),
+                ForceUnit.Dyn => (DyneInOneNewton, DyneTolerance),
+                ForceUnit.KilogramForce => (KilogramsForceInOneNewton, KilogramsForceTolerance),
+                ForceUnit.Kilonewton => (KilonewtonsInOneNewton, KilonewtonsTolerance),
+                ForceUnit.KiloPond => (KiloPondsInOneNewton, KiloPondsTolerance),
+                ForceUnit.KilopoundForce => (KilopoundsForceInOneNewton, KilopoundsForceTolerance),
+                ForceUnit.Meganewton => (MeganewtonsInOneNewton, MeganewtonsTolerance),
+                ForceUnit.Micronewton => (MicronewtonsInOneNewton, MicronewtonsTolerance),
+                ForceUnit.Millinewton => (MillinewtonsInOneNewton, MillinewtonsTolerance),
+                ForceUnit.Newton => (NewtonsInOneNewton, NewtonsTolerance),
+                ForceUnit.OunceForce => (OunceForceInOneNewton, OunceForceTolerance),
+                ForceUnit.Poundal => (PoundalsInOneNewton, PoundalsTolerance),
+                ForceUnit.PoundForce => (PoundsForceInOneNewton, PoundsForceTolerance),
+                ForceUnit.ShortTonForce => (ShortTonsForceInOneNewton, ShortTonsForceTolerance),
+                ForceUnit.TonneForce => (TonnesForceInOneNewton, TonnesForceTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ForceUnit.Decanewton },
+            new object[] { ForceUnit.Dyn },
+            new object[] { ForceUnit.KilogramForce },
+            new object[] { ForceUnit.Kilonewton },
+            new object[] { ForceUnit.KiloPond },
+            new object[] { ForceUnit.KilopoundForce },
+            new object[] { ForceUnit.Meganewton },
+            new object[] { ForceUnit.Micronewton },
+            new object[] { ForceUnit.Millinewton },
+            new object[] { ForceUnit.Newton },
+            new object[] { ForceUnit.OunceForce },
+            new object[] { ForceUnit.Poundal },
+            new object[] { ForceUnit.PoundForce },
+            new object[] { ForceUnit.ShortTonForce },
+            new object[] { ForceUnit.TonneForce },
+        };
+
+        [Fact]
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Force((double)0.0, ForceUnit.Undefined));
+        }
+
         [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
@@ -78,6 +127,7 @@ namespace UnitsNet.Tests
             Assert.Equal(0, quantity.Value);
             Assert.Equal(ForceUnit.Newton, quantity.Unit);
         }
+
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
@@ -122,9 +172,14 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Force.Zero, quantityInfo.Zero);
             Assert.Equal("Force", quantityInfo.Name);
+            Assert.Equal(QuantityType.Force, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<ForceUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<ForceUnit>().Except(new[] {ForceUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
+
+            // Obsolete members
+            Assert.Equal(units, quantityInfo.Units);
+            Assert.Equal(unitNames, quantityInfo.UnitNames);
         }
 
         [Fact]
@@ -250,7 +305,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Force(value: 1, unit: Force.ConversionBaseUnit);
+            var quantity = new Force(value: 1, unit: Force.BaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -264,77 +319,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ForceUnit unit)
         {
-            var newton = Force.FromNewtons(1);
+            var inBaseUnits = Force.From(1.0, Force.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var decanewtonQuantity = newton.ToUnit(ForceUnit.Decanewton);
-            AssertEx.EqualTolerance(DecanewtonsInOneNewton, (double)decanewtonQuantity.Value, DecanewtonsTolerance);
-            Assert.Equal(ForceUnit.Decanewton, decanewtonQuantity.Unit);
-
-            var dynQuantity = newton.ToUnit(ForceUnit.Dyn);
-            AssertEx.EqualTolerance(DyneInOneNewton, (double)dynQuantity.Value, DyneTolerance);
-            Assert.Equal(ForceUnit.Dyn, dynQuantity.Unit);
-
-            var kilogramforceQuantity = newton.ToUnit(ForceUnit.KilogramForce);
-            AssertEx.EqualTolerance(KilogramsForceInOneNewton, (double)kilogramforceQuantity.Value, KilogramsForceTolerance);
-            Assert.Equal(ForceUnit.KilogramForce, kilogramforceQuantity.Unit);
-
-            var kilonewtonQuantity = newton.ToUnit(ForceUnit.Kilonewton);
-            AssertEx.EqualTolerance(KilonewtonsInOneNewton, (double)kilonewtonQuantity.Value, KilonewtonsTolerance);
-            Assert.Equal(ForceUnit.Kilonewton, kilonewtonQuantity.Unit);
-
-            var kilopondQuantity = newton.ToUnit(ForceUnit.KiloPond);
-            AssertEx.EqualTolerance(KiloPondsInOneNewton, (double)kilopondQuantity.Value, KiloPondsTolerance);
-            Assert.Equal(ForceUnit.KiloPond, kilopondQuantity.Unit);
-
-            var kilopoundforceQuantity = newton.ToUnit(ForceUnit.KilopoundForce);
-            AssertEx.EqualTolerance(KilopoundsForceInOneNewton, (double)kilopoundforceQuantity.Value, KilopoundsForceTolerance);
-            Assert.Equal(ForceUnit.KilopoundForce, kilopoundforceQuantity.Unit);
-
-            var meganewtonQuantity = newton.ToUnit(ForceUnit.Meganewton);
-            AssertEx.EqualTolerance(MeganewtonsInOneNewton, (double)meganewtonQuantity.Value, MeganewtonsTolerance);
-            Assert.Equal(ForceUnit.Meganewton, meganewtonQuantity.Unit);
-
-            var micronewtonQuantity = newton.ToUnit(ForceUnit.Micronewton);
-            AssertEx.EqualTolerance(MicronewtonsInOneNewton, (double)micronewtonQuantity.Value, MicronewtonsTolerance);
-            Assert.Equal(ForceUnit.Micronewton, micronewtonQuantity.Unit);
-
-            var millinewtonQuantity = newton.ToUnit(ForceUnit.Millinewton);
-            AssertEx.EqualTolerance(MillinewtonsInOneNewton, (double)millinewtonQuantity.Value, MillinewtonsTolerance);
-            Assert.Equal(ForceUnit.Millinewton, millinewtonQuantity.Unit);
-
-            var newtonQuantity = newton.ToUnit(ForceUnit.Newton);
-            AssertEx.EqualTolerance(NewtonsInOneNewton, (double)newtonQuantity.Value, NewtonsTolerance);
-            Assert.Equal(ForceUnit.Newton, newtonQuantity.Unit);
-
-            var ounceforceQuantity = newton.ToUnit(ForceUnit.OunceForce);
-            AssertEx.EqualTolerance(OunceForceInOneNewton, (double)ounceforceQuantity.Value, OunceForceTolerance);
-            Assert.Equal(ForceUnit.OunceForce, ounceforceQuantity.Unit);
-
-            var poundalQuantity = newton.ToUnit(ForceUnit.Poundal);
-            AssertEx.EqualTolerance(PoundalsInOneNewton, (double)poundalQuantity.Value, PoundalsTolerance);
-            Assert.Equal(ForceUnit.Poundal, poundalQuantity.Unit);
-
-            var poundforceQuantity = newton.ToUnit(ForceUnit.PoundForce);
-            AssertEx.EqualTolerance(PoundsForceInOneNewton, (double)poundforceQuantity.Value, PoundsForceTolerance);
-            Assert.Equal(ForceUnit.PoundForce, poundforceQuantity.Unit);
-
-            var shorttonforceQuantity = newton.ToUnit(ForceUnit.ShortTonForce);
-            AssertEx.EqualTolerance(ShortTonsForceInOneNewton, (double)shorttonforceQuantity.Value, ShortTonsForceTolerance);
-            Assert.Equal(ForceUnit.ShortTonForce, shorttonforceQuantity.Unit);
-
-            var tonneforceQuantity = newton.ToUnit(ForceUnit.TonneForce);
-            AssertEx.EqualTolerance(TonnesForceInOneNewton, (double)tonneforceQuantity.Value, TonnesForceTolerance);
-            Assert.Equal(ForceUnit.TonneForce, tonneforceQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(ForceUnit unit)
         {
-            var quantityInBaseUnit = Force.FromNewtons(1).ToBaseUnit();
-            Assert.Equal(Force.ConversionBaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Force.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ForceUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Force.Units.FirstOrDefault(u => u != Force.BaseUnit && u != ForceUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ForceUnit.Undefined)
+                fromUnit = Force.BaseUnit;
+
+            var quantity = Force.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]
@@ -412,6 +431,49 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void EqualityOperators()
+        {
+            var a = Force.FromNewtons(1);
+            var b = Force.FromNewtons(2);
+
+#pragma warning disable CS8073
+// ReSharper disable EqualExpressionComparison
+
+            Assert.True(a == a);
+            Assert.False(a != a);
+
+            Assert.True(a != b);
+            Assert.False(a == b);
+
+            Assert.False(a == null);
+            Assert.False(null == a);
+
+// ReSharper restore EqualExpressionComparison
+#pragma warning restore CS8073
+        }
+
+        [Fact]
+        public void Equals_SameType_IsImplemented()
+        {
+            var a = Force.FromNewtons(1);
+            var b = Force.FromNewtons(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+        }
+
+        [Fact]
+        public void Equals_QuantityAsObject_IsImplemented()
+        {
+            object a = Force.FromNewtons(1);
+            object b = Force.FromNewtons(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+            Assert.False(a.Equals((object)null));
+        }
+
+        [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = Force.FromNewtons(1);
@@ -441,11 +503,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(ForceUnit.Undefined, Force.Units);
+        }
+
+        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(ForceUnit)).Cast<ForceUnit>();
             foreach(var unit in units)
             {
+                if(unit == ForceUnit.Undefined)
+                    continue;
+
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }
@@ -459,8 +530,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
+            var prevCulture = Thread.CurrentThread.CurrentUICulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 daN", new Force(1, ForceUnit.Decanewton).ToString());
                 Assert.Equal("1 dyn", new Force(1, ForceUnit.Dyn).ToString());
@@ -480,7 +551,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
+                Thread.CurrentThread.CurrentUICulture = prevCulture;
             }
         }
 
@@ -510,10 +581,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
+            var oldCulture = CultureInfo.CurrentUICulture;
             try
             {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
                 Assert.Equal("0.1 N", new Force(0.123456, ForceUnit.Newton).ToString("s1"));
                 Assert.Equal("0.12 N", new Force(0.123456, ForceUnit.Newton).ToString("s2"));
                 Assert.Equal("0.123 N", new Force(0.123456, ForceUnit.Newton).ToString("s3"));
@@ -521,7 +592,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                CultureInfo.CurrentCulture = oldCulture;
+                CultureInfo.CurrentUICulture = oldCulture;
             }
         }
 
@@ -535,27 +606,28 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 N", new Force(0.123456, ForceUnit.Newton).ToString("s4", culture));
         }
 
-        [Theory]
-        [InlineData(null)]
-        [InlineData("en-US")]
-        public void ToString_NullFormat_DefaultsToGeneralFormat(string cultureName)
+
+        [Fact]
+        public void ToString_NullFormat_ThrowsArgumentNullException()
         {
             var quantity = Force.FromNewtons(1.0);
-            CultureInfo formatProvider = cultureName == null
-                ? null
-                : CultureInfo.GetCultureInfo(cultureName);
-
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
         }
 
-        [Theory]
-        [InlineData(null)]
-        [InlineData("g")]
-        public void ToString_NullProvider_EqualsCurrentCulture(string format)
+        [Fact]
+        public void ToString_NullArgs_ThrowsArgumentNullException()
         {
             var quantity = Force.FromNewtons(1.0);
-            Assert.Equal(quantity.ToString(format, CultureInfo.CurrentCulture), quantity.ToString(format, null));
+            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, "g", null));
         }
+
+        [Fact]
+        public void ToString_NullProvider_EqualsCurrentUICulture()
+        {
+            var quantity = Force.FromNewtons(1.0);
+            Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
+        }
+
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()
@@ -674,6 +746,13 @@ namespace UnitsNet.Tests
         {
             var quantity = Force.FromNewtons(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ForceUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = Force.FromNewtons(1.0);
+            Assert.Equal(QuantityType.Force, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

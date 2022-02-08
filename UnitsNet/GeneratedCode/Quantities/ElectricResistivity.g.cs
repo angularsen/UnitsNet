@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -38,7 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity
     /// </remarks>
     [DataContract]
-    public partial struct ElectricResistivity : IQuantity<ElectricResistivityUnit>, IComparable, IComparable<ElectricResistivity>, IConvertible, IFormattable
+    public partial struct ElectricResistivity : IQuantity<ElectricResistivityUnit>, IEquatable<ElectricResistivity>, IComparable, IComparable<ElectricResistivity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -55,9 +56,15 @@ namespace UnitsNet
         static ElectricResistivity()
         {
             BaseDimensions = new BaseDimensions(3, 1, -3, -2, 0, 0, 0);
-
+            BaseUnit = ElectricResistivityUnit.OhmMeter;
+            MaxValue = new ElectricResistivity(double.MaxValue, BaseUnit);
+            MinValue = new ElectricResistivity(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.ElectricResistivity;
+            Units = Enum.GetValues(typeof(ElectricResistivityUnit)).Cast<ElectricResistivityUnit>().Except(new ElectricResistivityUnit[]{ ElectricResistivityUnit.Undefined }).ToArray();
+            Zero = new ElectricResistivity(0, BaseUnit);
             Info = new QuantityInfo<ElectricResistivityUnit>("ElectricResistivity",
-                new UnitInfo<ElectricResistivityUnit>[] {
+                new UnitInfo<ElectricResistivityUnit>[]
+                {
                     new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.KiloohmCentimeter, "KiloohmsCentimeter", BaseUnits.Undefined),
                     new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.KiloohmMeter, "KiloohmMeters", BaseUnits.Undefined),
                     new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MegaohmCentimeter, "MegaohmsCentimeter", BaseUnits.Undefined),
@@ -73,7 +80,9 @@ namespace UnitsNet
                     new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.PicoohmCentimeter, "PicoohmsCentimeter", BaseUnits.Undefined),
                     new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.PicoohmMeter, "PicoohmMeters", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.ElectricResistivity);
+
+            RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
         /// <summary>
@@ -84,6 +93,9 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ElectricResistivity(double value, ElectricResistivityUnit unit)
         {
+            if(unit == ElectricResistivityUnit.Undefined)
+              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
+
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
@@ -109,6 +121,11 @@ namespace UnitsNet
 
         #region Static Properties
 
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="ElectricResistivity" /> instances.
+        /// </summary>
+        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<ElectricResistivityUnit> Info { get; }
 
@@ -120,17 +137,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricResistivity, which is OhmMeter. All conversions go via this value.
         /// </summary>
-        public static ElectricResistivityUnit ConversionBaseUnit { get; } = ElectricResistivityUnit.OhmMeter;
+        public static ElectricResistivityUnit BaseUnit { get; }
+
+        /// <summary>
+        /// Represents the largest possible value of ElectricResistivity
+        /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
+        public static ElectricResistivity MaxValue { get; }
+
+        /// <summary>
+        /// Represents the smallest possible value of ElectricResistivity
+        /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
+        public static ElectricResistivity MinValue { get; }
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the ElectricResistivity quantity.
         /// </summary>
-        public static ElectricResistivityUnit[] Units { get; } = Enum.GetValues(typeof(ElectricResistivityUnit)).Cast<ElectricResistivityUnit>().ToArray();
+        public static ElectricResistivityUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit OhmMeter.
         /// </summary>
-        public static ElectricResistivity Zero { get; } = new ElectricResistivity(0, ConversionBaseUnit);
+        public static ElectricResistivity Zero { get; }
 
         #endregion
 
@@ -144,13 +179,19 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public ElectricResistivityUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
+        public ElectricResistivityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<ElectricResistivityUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
+        public QuantityType Type => QuantityType.ElectricResistivity;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -236,6 +277,46 @@ namespace UnitsNet
         #region Static Methods
 
         /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
+        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
+        {
+            // Register in unit converter: BaseUnit -> ElectricResistivityUnit
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.KiloohmCentimeter, quantity => new ElectricResistivity((quantity.Value*100) / 1e3d, ElectricResistivityUnit.KiloohmCentimeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.KiloohmMeter, quantity => new ElectricResistivity((quantity.Value) / 1e3d, ElectricResistivityUnit.KiloohmMeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.MegaohmCentimeter, quantity => new ElectricResistivity((quantity.Value*100) / 1e6d, ElectricResistivityUnit.MegaohmCentimeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.MegaohmMeter, quantity => new ElectricResistivity((quantity.Value) / 1e6d, ElectricResistivityUnit.MegaohmMeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.MicroohmCentimeter, quantity => new ElectricResistivity((quantity.Value*100) / 1e-6d, ElectricResistivityUnit.MicroohmCentimeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.MicroohmMeter, quantity => new ElectricResistivity((quantity.Value) / 1e-6d, ElectricResistivityUnit.MicroohmMeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.MilliohmCentimeter, quantity => new ElectricResistivity((quantity.Value*100) / 1e-3d, ElectricResistivityUnit.MilliohmCentimeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.MilliohmMeter, quantity => new ElectricResistivity((quantity.Value) / 1e-3d, ElectricResistivityUnit.MilliohmMeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.NanoohmCentimeter, quantity => new ElectricResistivity((quantity.Value*100) / 1e-9d, ElectricResistivityUnit.NanoohmCentimeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.NanoohmMeter, quantity => new ElectricResistivity((quantity.Value) / 1e-9d, ElectricResistivityUnit.NanoohmMeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.OhmCentimeter, quantity => new ElectricResistivity(quantity.Value*100, ElectricResistivityUnit.OhmCentimeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.PicoohmCentimeter, quantity => new ElectricResistivity((quantity.Value*100) / 1e-12d, ElectricResistivityUnit.PicoohmCentimeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.PicoohmMeter, quantity => new ElectricResistivity((quantity.Value) / 1e-12d, ElectricResistivityUnit.PicoohmMeter));
+            
+            // Register in unit converter: BaseUnit <-> BaseUnit
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.OhmMeter, quantity => quantity);
+
+            // Register in unit converter: ElectricResistivityUnit -> BaseUnit
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.KiloohmCentimeter, ElectricResistivityUnit.OhmMeter, quantity => new ElectricResistivity((quantity.Value/100) * 1e3d, ElectricResistivityUnit.OhmMeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.KiloohmMeter, ElectricResistivityUnit.OhmMeter, quantity => new ElectricResistivity((quantity.Value) * 1e3d, ElectricResistivityUnit.OhmMeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.MegaohmCentimeter, ElectricResistivityUnit.OhmMeter, quantity => new ElectricResistivity((quantity.Value/100) * 1e6d, ElectricResistivityUnit.OhmMeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.MegaohmMeter, ElectricResistivityUnit.OhmMeter, quantity => new ElectricResistivity((quantity.Value) * 1e6d, ElectricResistivityUnit.OhmMeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.MicroohmCentimeter, ElectricResistivityUnit.OhmMeter, quantity => new ElectricResistivity((quantity.Value/100) * 1e-6d, ElectricResistivityUnit.OhmMeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.MicroohmMeter, ElectricResistivityUnit.OhmMeter, quantity => new ElectricResistivity((quantity.Value) * 1e-6d, ElectricResistivityUnit.OhmMeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.MilliohmCentimeter, ElectricResistivityUnit.OhmMeter, quantity => new ElectricResistivity((quantity.Value/100) * 1e-3d, ElectricResistivityUnit.OhmMeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.MilliohmMeter, ElectricResistivityUnit.OhmMeter, quantity => new ElectricResistivity((quantity.Value) * 1e-3d, ElectricResistivityUnit.OhmMeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.NanoohmCentimeter, ElectricResistivityUnit.OhmMeter, quantity => new ElectricResistivity((quantity.Value/100) * 1e-9d, ElectricResistivityUnit.OhmMeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.NanoohmMeter, ElectricResistivityUnit.OhmMeter, quantity => new ElectricResistivity((quantity.Value) * 1e-9d, ElectricResistivityUnit.OhmMeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmCentimeter, ElectricResistivityUnit.OhmMeter, quantity => new ElectricResistivity(quantity.Value/100, ElectricResistivityUnit.OhmMeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.PicoohmCentimeter, ElectricResistivityUnit.OhmMeter, quantity => new ElectricResistivity((quantity.Value/100) * 1e-12d, ElectricResistivityUnit.OhmMeter));
+            unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.PicoohmMeter, ElectricResistivityUnit.OhmMeter, quantity => new ElectricResistivity((quantity.Value) * 1e-12d, ElectricResistivityUnit.OhmMeter));
+        }
+
+        /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
@@ -250,7 +331,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static string GetAbbreviation(ElectricResistivityUnit unit, IFormatProvider? provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
@@ -451,7 +532,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static ElectricResistivity Parse(string str, IFormatProvider? provider)
         {
             return QuantityParser.Default.Parse<ElectricResistivity, ElectricResistivityUnit>(
@@ -482,7 +563,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out ElectricResistivity result)
         {
             return QuantityParser.Default.TryParse<ElectricResistivity, ElectricResistivityUnit>(
@@ -510,7 +591,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -536,7 +617,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out ElectricResistivityUnit unit)
         {
             return UnitParser.Default.TryParse<ElectricResistivityUnit>(str, provider, out unit);
@@ -616,6 +697,20 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(ElectricResistivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(ElectricResistivity left, ElectricResistivity right)
+        {
+            return left.Equals(right);
+        }
+
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(ElectricResistivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(ElectricResistivity left, ElectricResistivity right)
+        {
+            return !(left == right);
+        }
+
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -629,6 +724,23 @@ namespace UnitsNet
         public int CompareTo(ElectricResistivity other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(ElectricResistivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is ElectricResistivity objElectricResistivity))
+                return false;
+
+            return Equals(objElectricResistivity);
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(ElectricResistivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(ElectricResistivity other)
+        {
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -735,11 +847,42 @@ namespace UnitsNet
         /// <summary>
         ///     Converts this ElectricResistivity to another ElectricResistivity with the unit representation <paramref name="unit" />.
         /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
         /// <returns>A ElectricResistivity with the specified unit.</returns>
         public ElectricResistivity ToUnit(ElectricResistivityUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new ElectricResistivity(convertedValue, unit);
+            return ToUnit(unit, DefaultConversionFunctions);
+        }
+
+        /// <summary>
+        ///     Converts this ElectricResistivity to another ElectricResistivity using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
+        /// <returns>A ElectricResistivity with the specified unit.</returns>
+        public ElectricResistivity ToUnit(ElectricResistivityUnit unit, UnitConverter unitConverter)
+        {
+            if(Unit == unit)
+            {
+                // Already in requested units.
+                return this;
+            }
+            else if(unitConverter.TryGetConversionFunction((typeof(ElectricResistivity), Unit, typeof(ElectricResistivity), unit), out var conversionFunction))
+            {
+                // Direct conversion to requested unit found. Return the converted quantity.
+                var converted = conversionFunction(this);
+                return (ElectricResistivity)converted;
+            }
+            else if(Unit != BaseUnit)
+            {
+                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                var inBaseUnits = ToUnit(BaseUnit);
+                return inBaseUnits.ToUnit(unit);
+            }
+            else
+            {
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         /// <inheritdoc />
@@ -748,7 +891,16 @@ namespace UnitsNet
             if(!(unit is ElectricResistivityUnit unitAsElectricResistivityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricResistivityUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsElectricResistivityUnit);
+            return ToUnit(unitAsElectricResistivityUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is ElectricResistivityUnit unitAsElectricResistivityUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricResistivityUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsElectricResistivityUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -773,73 +925,15 @@ namespace UnitsNet
         IQuantity<ElectricResistivityUnit> IQuantity<ElectricResistivityUnit>.ToUnit(ElectricResistivityUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantity<ElectricResistivityUnit> IQuantity<ElectricResistivityUnit>.ToUnit(ElectricResistivityUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
+
+        /// <inheritdoc />
         IQuantity<ElectricResistivityUnit> IQuantity<ElectricResistivityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case ElectricResistivityUnit.KiloohmCentimeter: return (_value/100) * 1e3d;
-                case ElectricResistivityUnit.KiloohmMeter: return (_value) * 1e3d;
-                case ElectricResistivityUnit.MegaohmCentimeter: return (_value/100) * 1e6d;
-                case ElectricResistivityUnit.MegaohmMeter: return (_value) * 1e6d;
-                case ElectricResistivityUnit.MicroohmCentimeter: return (_value/100) * 1e-6d;
-                case ElectricResistivityUnit.MicroohmMeter: return (_value) * 1e-6d;
-                case ElectricResistivityUnit.MilliohmCentimeter: return (_value/100) * 1e-3d;
-                case ElectricResistivityUnit.MilliohmMeter: return (_value) * 1e-3d;
-                case ElectricResistivityUnit.NanoohmCentimeter: return (_value/100) * 1e-9d;
-                case ElectricResistivityUnit.NanoohmMeter: return (_value) * 1e-9d;
-                case ElectricResistivityUnit.OhmCentimeter: return _value/100;
-                case ElectricResistivityUnit.OhmMeter: return _value;
-                case ElectricResistivityUnit.PicoohmCentimeter: return (_value/100) * 1e-12d;
-                case ElectricResistivityUnit.PicoohmMeter: return (_value) * 1e-12d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal ElectricResistivity ToBaseUnit()
-        {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new ElectricResistivity(baseUnitValue, ConversionBaseUnit);
-        }
 
         private double GetValueAs(ElectricResistivityUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var baseUnitValue = GetValueInBaseUnit();
-
-            switch(unit)
-            {
-                case ElectricResistivityUnit.KiloohmCentimeter: return (baseUnitValue*100) / 1e3d;
-                case ElectricResistivityUnit.KiloohmMeter: return (baseUnitValue) / 1e3d;
-                case ElectricResistivityUnit.MegaohmCentimeter: return (baseUnitValue*100) / 1e6d;
-                case ElectricResistivityUnit.MegaohmMeter: return (baseUnitValue) / 1e6d;
-                case ElectricResistivityUnit.MicroohmCentimeter: return (baseUnitValue*100) / 1e-6d;
-                case ElectricResistivityUnit.MicroohmMeter: return (baseUnitValue) / 1e-6d;
-                case ElectricResistivityUnit.MilliohmCentimeter: return (baseUnitValue*100) / 1e-3d;
-                case ElectricResistivityUnit.MilliohmMeter: return (baseUnitValue) / 1e-3d;
-                case ElectricResistivityUnit.NanoohmCentimeter: return (baseUnitValue*100) / 1e-9d;
-                case ElectricResistivityUnit.NanoohmMeter: return (baseUnitValue) / 1e-9d;
-                case ElectricResistivityUnit.OhmCentimeter: return baseUnitValue*100;
-                case ElectricResistivityUnit.OhmMeter: return baseUnitValue;
-                case ElectricResistivityUnit.PicoohmCentimeter: return (baseUnitValue*100) / 1e-12d;
-                case ElectricResistivityUnit.PicoohmMeter: return (baseUnitValue) / 1e-12d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         #endregion
@@ -859,29 +953,63 @@ namespace UnitsNet
         ///     Gets the default string representation of value and unit using the given format provider.
         /// </summary>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
             return ToString("g", provider);
         }
 
+        /// <summary>
+        ///     Get string representation of value and unit.
+        /// </summary>
+        /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
+        /// <returns>String representation.</returns>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
+        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
+        {
+            var value = Convert.ToDouble(Value);
+            var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
+            return ToString(provider, format);
+        }
+
+        /// <summary>
+        ///     Get string representation of value and unit.
+        /// </summary>
+        /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
+        /// <param name="args">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
+        /// <returns>String representation.</returns>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
+        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
+        {
+            if (format == null) throw new ArgumentNullException(nameof(format));
+            if (args == null) throw new ArgumentNullException(nameof(args));
+
+            provider = provider ?? CultureInfo.CurrentUICulture;
+
+            var value = Convert.ToDouble(Value);
+            var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
+        }
+
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
-        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentCulture" />.
+        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentUICulture" />.
         /// </summary>
         /// <param name="format">The format string.</param>
         /// <returns>The string representation.</returns>
         public string ToString(string format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, CultureInfo.CurrentUICulture);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
-        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
+        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
         /// </summary>
         /// <param name="format">The format string.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>The string representation.</returns>
         public string ToString(string format, IFormatProvider? provider)
         {
@@ -963,6 +1091,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ElectricResistivityUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return ElectricResistivity.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return ElectricResistivity.Info;
             else if(conversionType == typeof(BaseDimensions))

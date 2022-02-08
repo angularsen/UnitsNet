@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -107,6 +108,90 @@ namespace UnitsNet.Tests
         protected virtual double TonnesPerHourTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MassFlowUnit unit)
+        {
+            return unit switch
+            {
+                MassFlowUnit.CentigramPerDay => (CentigramsPerDayInOneGramPerSecond, CentigramsPerDayTolerance),
+                MassFlowUnit.CentigramPerSecond => (CentigramsPerSecondInOneGramPerSecond, CentigramsPerSecondTolerance),
+                MassFlowUnit.DecagramPerDay => (DecagramsPerDayInOneGramPerSecond, DecagramsPerDayTolerance),
+                MassFlowUnit.DecagramPerSecond => (DecagramsPerSecondInOneGramPerSecond, DecagramsPerSecondTolerance),
+                MassFlowUnit.DecigramPerDay => (DecigramsPerDayInOneGramPerSecond, DecigramsPerDayTolerance),
+                MassFlowUnit.DecigramPerSecond => (DecigramsPerSecondInOneGramPerSecond, DecigramsPerSecondTolerance),
+                MassFlowUnit.GramPerDay => (GramsPerDayInOneGramPerSecond, GramsPerDayTolerance),
+                MassFlowUnit.GramPerHour => (GramsPerHourInOneGramPerSecond, GramsPerHourTolerance),
+                MassFlowUnit.GramPerSecond => (GramsPerSecondInOneGramPerSecond, GramsPerSecondTolerance),
+                MassFlowUnit.HectogramPerDay => (HectogramsPerDayInOneGramPerSecond, HectogramsPerDayTolerance),
+                MassFlowUnit.HectogramPerSecond => (HectogramsPerSecondInOneGramPerSecond, HectogramsPerSecondTolerance),
+                MassFlowUnit.KilogramPerDay => (KilogramsPerDayInOneGramPerSecond, KilogramsPerDayTolerance),
+                MassFlowUnit.KilogramPerHour => (KilogramsPerHourInOneGramPerSecond, KilogramsPerHourTolerance),
+                MassFlowUnit.KilogramPerMinute => (KilogramsPerMinuteInOneGramPerSecond, KilogramsPerMinuteTolerance),
+                MassFlowUnit.KilogramPerSecond => (KilogramsPerSecondInOneGramPerSecond, KilogramsPerSecondTolerance),
+                MassFlowUnit.MegagramPerDay => (MegagramsPerDayInOneGramPerSecond, MegagramsPerDayTolerance),
+                MassFlowUnit.MegapoundPerDay => (MegapoundsPerDayInOneGramPerSecond, MegapoundsPerDayTolerance),
+                MassFlowUnit.MegapoundPerHour => (MegapoundsPerHourInOneGramPerSecond, MegapoundsPerHourTolerance),
+                MassFlowUnit.MegapoundPerMinute => (MegapoundsPerMinuteInOneGramPerSecond, MegapoundsPerMinuteTolerance),
+                MassFlowUnit.MegapoundPerSecond => (MegapoundsPerSecondInOneGramPerSecond, MegapoundsPerSecondTolerance),
+                MassFlowUnit.MicrogramPerDay => (MicrogramsPerDayInOneGramPerSecond, MicrogramsPerDayTolerance),
+                MassFlowUnit.MicrogramPerSecond => (MicrogramsPerSecondInOneGramPerSecond, MicrogramsPerSecondTolerance),
+                MassFlowUnit.MilligramPerDay => (MilligramsPerDayInOneGramPerSecond, MilligramsPerDayTolerance),
+                MassFlowUnit.MilligramPerSecond => (MilligramsPerSecondInOneGramPerSecond, MilligramsPerSecondTolerance),
+                MassFlowUnit.NanogramPerDay => (NanogramsPerDayInOneGramPerSecond, NanogramsPerDayTolerance),
+                MassFlowUnit.NanogramPerSecond => (NanogramsPerSecondInOneGramPerSecond, NanogramsPerSecondTolerance),
+                MassFlowUnit.PoundPerDay => (PoundsPerDayInOneGramPerSecond, PoundsPerDayTolerance),
+                MassFlowUnit.PoundPerHour => (PoundsPerHourInOneGramPerSecond, PoundsPerHourTolerance),
+                MassFlowUnit.PoundPerMinute => (PoundsPerMinuteInOneGramPerSecond, PoundsPerMinuteTolerance),
+                MassFlowUnit.PoundPerSecond => (PoundsPerSecondInOneGramPerSecond, PoundsPerSecondTolerance),
+                MassFlowUnit.ShortTonPerHour => (ShortTonsPerHourInOneGramPerSecond, ShortTonsPerHourTolerance),
+                MassFlowUnit.TonnePerDay => (TonnesPerDayInOneGramPerSecond, TonnesPerDayTolerance),
+                MassFlowUnit.TonnePerHour => (TonnesPerHourInOneGramPerSecond, TonnesPerHourTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { MassFlowUnit.CentigramPerDay },
+            new object[] { MassFlowUnit.CentigramPerSecond },
+            new object[] { MassFlowUnit.DecagramPerDay },
+            new object[] { MassFlowUnit.DecagramPerSecond },
+            new object[] { MassFlowUnit.DecigramPerDay },
+            new object[] { MassFlowUnit.DecigramPerSecond },
+            new object[] { MassFlowUnit.GramPerDay },
+            new object[] { MassFlowUnit.GramPerHour },
+            new object[] { MassFlowUnit.GramPerSecond },
+            new object[] { MassFlowUnit.HectogramPerDay },
+            new object[] { MassFlowUnit.HectogramPerSecond },
+            new object[] { MassFlowUnit.KilogramPerDay },
+            new object[] { MassFlowUnit.KilogramPerHour },
+            new object[] { MassFlowUnit.KilogramPerMinute },
+            new object[] { MassFlowUnit.KilogramPerSecond },
+            new object[] { MassFlowUnit.MegagramPerDay },
+            new object[] { MassFlowUnit.MegapoundPerDay },
+            new object[] { MassFlowUnit.MegapoundPerHour },
+            new object[] { MassFlowUnit.MegapoundPerMinute },
+            new object[] { MassFlowUnit.MegapoundPerSecond },
+            new object[] { MassFlowUnit.MicrogramPerDay },
+            new object[] { MassFlowUnit.MicrogramPerSecond },
+            new object[] { MassFlowUnit.MilligramPerDay },
+            new object[] { MassFlowUnit.MilligramPerSecond },
+            new object[] { MassFlowUnit.NanogramPerDay },
+            new object[] { MassFlowUnit.NanogramPerSecond },
+            new object[] { MassFlowUnit.PoundPerDay },
+            new object[] { MassFlowUnit.PoundPerHour },
+            new object[] { MassFlowUnit.PoundPerMinute },
+            new object[] { MassFlowUnit.PoundPerSecond },
+            new object[] { MassFlowUnit.ShortTonPerHour },
+            new object[] { MassFlowUnit.TonnePerDay },
+            new object[] { MassFlowUnit.TonnePerHour },
+        };
+
+        [Fact]
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MassFlow((double)0.0, MassFlowUnit.Undefined));
+        }
+
         [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
@@ -114,6 +199,7 @@ namespace UnitsNet.Tests
             Assert.Equal(0, quantity.Value);
             Assert.Equal(MassFlowUnit.GramPerSecond, quantity.Unit);
         }
+
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
@@ -158,9 +244,14 @@ namespace UnitsNet.Tests
 
             Assert.Equal(MassFlow.Zero, quantityInfo.Zero);
             Assert.Equal("MassFlow", quantityInfo.Name);
+            Assert.Equal(QuantityType.MassFlow, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<MassFlowUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<MassFlowUnit>().Except(new[] {MassFlowUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
+
+            // Obsolete members
+            Assert.Equal(units, quantityInfo.Units);
+            Assert.Equal(unitNames, quantityInfo.UnitNames);
         }
 
         [Fact]
@@ -394,7 +485,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new MassFlow(value: 1, unit: MassFlow.ConversionBaseUnit);
+            var quantity = new MassFlow(value: 1, unit: MassFlow.BaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -408,149 +499,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(MassFlowUnit unit)
         {
-            var grampersecond = MassFlow.FromGramsPerSecond(1);
+            var inBaseUnits = MassFlow.From(1.0, MassFlow.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var centigramperdayQuantity = grampersecond.ToUnit(MassFlowUnit.CentigramPerDay);
-            AssertEx.EqualTolerance(CentigramsPerDayInOneGramPerSecond, (double)centigramperdayQuantity.Value, CentigramsPerDayTolerance);
-            Assert.Equal(MassFlowUnit.CentigramPerDay, centigramperdayQuantity.Unit);
-
-            var centigrampersecondQuantity = grampersecond.ToUnit(MassFlowUnit.CentigramPerSecond);
-            AssertEx.EqualTolerance(CentigramsPerSecondInOneGramPerSecond, (double)centigrampersecondQuantity.Value, CentigramsPerSecondTolerance);
-            Assert.Equal(MassFlowUnit.CentigramPerSecond, centigrampersecondQuantity.Unit);
-
-            var decagramperdayQuantity = grampersecond.ToUnit(MassFlowUnit.DecagramPerDay);
-            AssertEx.EqualTolerance(DecagramsPerDayInOneGramPerSecond, (double)decagramperdayQuantity.Value, DecagramsPerDayTolerance);
-            Assert.Equal(MassFlowUnit.DecagramPerDay, decagramperdayQuantity.Unit);
-
-            var decagrampersecondQuantity = grampersecond.ToUnit(MassFlowUnit.DecagramPerSecond);
-            AssertEx.EqualTolerance(DecagramsPerSecondInOneGramPerSecond, (double)decagrampersecondQuantity.Value, DecagramsPerSecondTolerance);
-            Assert.Equal(MassFlowUnit.DecagramPerSecond, decagrampersecondQuantity.Unit);
-
-            var decigramperdayQuantity = grampersecond.ToUnit(MassFlowUnit.DecigramPerDay);
-            AssertEx.EqualTolerance(DecigramsPerDayInOneGramPerSecond, (double)decigramperdayQuantity.Value, DecigramsPerDayTolerance);
-            Assert.Equal(MassFlowUnit.DecigramPerDay, decigramperdayQuantity.Unit);
-
-            var decigrampersecondQuantity = grampersecond.ToUnit(MassFlowUnit.DecigramPerSecond);
-            AssertEx.EqualTolerance(DecigramsPerSecondInOneGramPerSecond, (double)decigrampersecondQuantity.Value, DecigramsPerSecondTolerance);
-            Assert.Equal(MassFlowUnit.DecigramPerSecond, decigrampersecondQuantity.Unit);
-
-            var gramperdayQuantity = grampersecond.ToUnit(MassFlowUnit.GramPerDay);
-            AssertEx.EqualTolerance(GramsPerDayInOneGramPerSecond, (double)gramperdayQuantity.Value, GramsPerDayTolerance);
-            Assert.Equal(MassFlowUnit.GramPerDay, gramperdayQuantity.Unit);
-
-            var gramperhourQuantity = grampersecond.ToUnit(MassFlowUnit.GramPerHour);
-            AssertEx.EqualTolerance(GramsPerHourInOneGramPerSecond, (double)gramperhourQuantity.Value, GramsPerHourTolerance);
-            Assert.Equal(MassFlowUnit.GramPerHour, gramperhourQuantity.Unit);
-
-            var grampersecondQuantity = grampersecond.ToUnit(MassFlowUnit.GramPerSecond);
-            AssertEx.EqualTolerance(GramsPerSecondInOneGramPerSecond, (double)grampersecondQuantity.Value, GramsPerSecondTolerance);
-            Assert.Equal(MassFlowUnit.GramPerSecond, grampersecondQuantity.Unit);
-
-            var hectogramperdayQuantity = grampersecond.ToUnit(MassFlowUnit.HectogramPerDay);
-            AssertEx.EqualTolerance(HectogramsPerDayInOneGramPerSecond, (double)hectogramperdayQuantity.Value, HectogramsPerDayTolerance);
-            Assert.Equal(MassFlowUnit.HectogramPerDay, hectogramperdayQuantity.Unit);
-
-            var hectogrampersecondQuantity = grampersecond.ToUnit(MassFlowUnit.HectogramPerSecond);
-            AssertEx.EqualTolerance(HectogramsPerSecondInOneGramPerSecond, (double)hectogrampersecondQuantity.Value, HectogramsPerSecondTolerance);
-            Assert.Equal(MassFlowUnit.HectogramPerSecond, hectogrampersecondQuantity.Unit);
-
-            var kilogramperdayQuantity = grampersecond.ToUnit(MassFlowUnit.KilogramPerDay);
-            AssertEx.EqualTolerance(KilogramsPerDayInOneGramPerSecond, (double)kilogramperdayQuantity.Value, KilogramsPerDayTolerance);
-            Assert.Equal(MassFlowUnit.KilogramPerDay, kilogramperdayQuantity.Unit);
-
-            var kilogramperhourQuantity = grampersecond.ToUnit(MassFlowUnit.KilogramPerHour);
-            AssertEx.EqualTolerance(KilogramsPerHourInOneGramPerSecond, (double)kilogramperhourQuantity.Value, KilogramsPerHourTolerance);
-            Assert.Equal(MassFlowUnit.KilogramPerHour, kilogramperhourQuantity.Unit);
-
-            var kilogramperminuteQuantity = grampersecond.ToUnit(MassFlowUnit.KilogramPerMinute);
-            AssertEx.EqualTolerance(KilogramsPerMinuteInOneGramPerSecond, (double)kilogramperminuteQuantity.Value, KilogramsPerMinuteTolerance);
-            Assert.Equal(MassFlowUnit.KilogramPerMinute, kilogramperminuteQuantity.Unit);
-
-            var kilogrampersecondQuantity = grampersecond.ToUnit(MassFlowUnit.KilogramPerSecond);
-            AssertEx.EqualTolerance(KilogramsPerSecondInOneGramPerSecond, (double)kilogrampersecondQuantity.Value, KilogramsPerSecondTolerance);
-            Assert.Equal(MassFlowUnit.KilogramPerSecond, kilogrampersecondQuantity.Unit);
-
-            var megagramperdayQuantity = grampersecond.ToUnit(MassFlowUnit.MegagramPerDay);
-            AssertEx.EqualTolerance(MegagramsPerDayInOneGramPerSecond, (double)megagramperdayQuantity.Value, MegagramsPerDayTolerance);
-            Assert.Equal(MassFlowUnit.MegagramPerDay, megagramperdayQuantity.Unit);
-
-            var megapoundperdayQuantity = grampersecond.ToUnit(MassFlowUnit.MegapoundPerDay);
-            AssertEx.EqualTolerance(MegapoundsPerDayInOneGramPerSecond, (double)megapoundperdayQuantity.Value, MegapoundsPerDayTolerance);
-            Assert.Equal(MassFlowUnit.MegapoundPerDay, megapoundperdayQuantity.Unit);
-
-            var megapoundperhourQuantity = grampersecond.ToUnit(MassFlowUnit.MegapoundPerHour);
-            AssertEx.EqualTolerance(MegapoundsPerHourInOneGramPerSecond, (double)megapoundperhourQuantity.Value, MegapoundsPerHourTolerance);
-            Assert.Equal(MassFlowUnit.MegapoundPerHour, megapoundperhourQuantity.Unit);
-
-            var megapoundperminuteQuantity = grampersecond.ToUnit(MassFlowUnit.MegapoundPerMinute);
-            AssertEx.EqualTolerance(MegapoundsPerMinuteInOneGramPerSecond, (double)megapoundperminuteQuantity.Value, MegapoundsPerMinuteTolerance);
-            Assert.Equal(MassFlowUnit.MegapoundPerMinute, megapoundperminuteQuantity.Unit);
-
-            var megapoundpersecondQuantity = grampersecond.ToUnit(MassFlowUnit.MegapoundPerSecond);
-            AssertEx.EqualTolerance(MegapoundsPerSecondInOneGramPerSecond, (double)megapoundpersecondQuantity.Value, MegapoundsPerSecondTolerance);
-            Assert.Equal(MassFlowUnit.MegapoundPerSecond, megapoundpersecondQuantity.Unit);
-
-            var microgramperdayQuantity = grampersecond.ToUnit(MassFlowUnit.MicrogramPerDay);
-            AssertEx.EqualTolerance(MicrogramsPerDayInOneGramPerSecond, (double)microgramperdayQuantity.Value, MicrogramsPerDayTolerance);
-            Assert.Equal(MassFlowUnit.MicrogramPerDay, microgramperdayQuantity.Unit);
-
-            var microgrampersecondQuantity = grampersecond.ToUnit(MassFlowUnit.MicrogramPerSecond);
-            AssertEx.EqualTolerance(MicrogramsPerSecondInOneGramPerSecond, (double)microgrampersecondQuantity.Value, MicrogramsPerSecondTolerance);
-            Assert.Equal(MassFlowUnit.MicrogramPerSecond, microgrampersecondQuantity.Unit);
-
-            var milligramperdayQuantity = grampersecond.ToUnit(MassFlowUnit.MilligramPerDay);
-            AssertEx.EqualTolerance(MilligramsPerDayInOneGramPerSecond, (double)milligramperdayQuantity.Value, MilligramsPerDayTolerance);
-            Assert.Equal(MassFlowUnit.MilligramPerDay, milligramperdayQuantity.Unit);
-
-            var milligrampersecondQuantity = grampersecond.ToUnit(MassFlowUnit.MilligramPerSecond);
-            AssertEx.EqualTolerance(MilligramsPerSecondInOneGramPerSecond, (double)milligrampersecondQuantity.Value, MilligramsPerSecondTolerance);
-            Assert.Equal(MassFlowUnit.MilligramPerSecond, milligrampersecondQuantity.Unit);
-
-            var nanogramperdayQuantity = grampersecond.ToUnit(MassFlowUnit.NanogramPerDay);
-            AssertEx.EqualTolerance(NanogramsPerDayInOneGramPerSecond, (double)nanogramperdayQuantity.Value, NanogramsPerDayTolerance);
-            Assert.Equal(MassFlowUnit.NanogramPerDay, nanogramperdayQuantity.Unit);
-
-            var nanogrampersecondQuantity = grampersecond.ToUnit(MassFlowUnit.NanogramPerSecond);
-            AssertEx.EqualTolerance(NanogramsPerSecondInOneGramPerSecond, (double)nanogrampersecondQuantity.Value, NanogramsPerSecondTolerance);
-            Assert.Equal(MassFlowUnit.NanogramPerSecond, nanogrampersecondQuantity.Unit);
-
-            var poundperdayQuantity = grampersecond.ToUnit(MassFlowUnit.PoundPerDay);
-            AssertEx.EqualTolerance(PoundsPerDayInOneGramPerSecond, (double)poundperdayQuantity.Value, PoundsPerDayTolerance);
-            Assert.Equal(MassFlowUnit.PoundPerDay, poundperdayQuantity.Unit);
-
-            var poundperhourQuantity = grampersecond.ToUnit(MassFlowUnit.PoundPerHour);
-            AssertEx.EqualTolerance(PoundsPerHourInOneGramPerSecond, (double)poundperhourQuantity.Value, PoundsPerHourTolerance);
-            Assert.Equal(MassFlowUnit.PoundPerHour, poundperhourQuantity.Unit);
-
-            var poundperminuteQuantity = grampersecond.ToUnit(MassFlowUnit.PoundPerMinute);
-            AssertEx.EqualTolerance(PoundsPerMinuteInOneGramPerSecond, (double)poundperminuteQuantity.Value, PoundsPerMinuteTolerance);
-            Assert.Equal(MassFlowUnit.PoundPerMinute, poundperminuteQuantity.Unit);
-
-            var poundpersecondQuantity = grampersecond.ToUnit(MassFlowUnit.PoundPerSecond);
-            AssertEx.EqualTolerance(PoundsPerSecondInOneGramPerSecond, (double)poundpersecondQuantity.Value, PoundsPerSecondTolerance);
-            Assert.Equal(MassFlowUnit.PoundPerSecond, poundpersecondQuantity.Unit);
-
-            var shorttonperhourQuantity = grampersecond.ToUnit(MassFlowUnit.ShortTonPerHour);
-            AssertEx.EqualTolerance(ShortTonsPerHourInOneGramPerSecond, (double)shorttonperhourQuantity.Value, ShortTonsPerHourTolerance);
-            Assert.Equal(MassFlowUnit.ShortTonPerHour, shorttonperhourQuantity.Unit);
-
-            var tonneperdayQuantity = grampersecond.ToUnit(MassFlowUnit.TonnePerDay);
-            AssertEx.EqualTolerance(TonnesPerDayInOneGramPerSecond, (double)tonneperdayQuantity.Value, TonnesPerDayTolerance);
-            Assert.Equal(MassFlowUnit.TonnePerDay, tonneperdayQuantity.Unit);
-
-            var tonneperhourQuantity = grampersecond.ToUnit(MassFlowUnit.TonnePerHour);
-            AssertEx.EqualTolerance(TonnesPerHourInOneGramPerSecond, (double)tonneperhourQuantity.Value, TonnesPerHourTolerance);
-            Assert.Equal(MassFlowUnit.TonnePerHour, tonneperhourQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(MassFlowUnit unit)
         {
-            var quantityInBaseUnit = MassFlow.FromGramsPerSecond(1).ToBaseUnit();
-            Assert.Equal(MassFlow.ConversionBaseUnit, quantityInBaseUnit.Unit);
+            var quantity = MassFlow.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MassFlowUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = MassFlow.Units.FirstOrDefault(u => u != MassFlow.BaseUnit && u != MassFlowUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == MassFlowUnit.Undefined)
+                fromUnit = MassFlow.BaseUnit;
+
+            var quantity = MassFlow.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]
@@ -646,6 +629,49 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void EqualityOperators()
+        {
+            var a = MassFlow.FromGramsPerSecond(1);
+            var b = MassFlow.FromGramsPerSecond(2);
+
+#pragma warning disable CS8073
+// ReSharper disable EqualExpressionComparison
+
+            Assert.True(a == a);
+            Assert.False(a != a);
+
+            Assert.True(a != b);
+            Assert.False(a == b);
+
+            Assert.False(a == null);
+            Assert.False(null == a);
+
+// ReSharper restore EqualExpressionComparison
+#pragma warning restore CS8073
+        }
+
+        [Fact]
+        public void Equals_SameType_IsImplemented()
+        {
+            var a = MassFlow.FromGramsPerSecond(1);
+            var b = MassFlow.FromGramsPerSecond(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+        }
+
+        [Fact]
+        public void Equals_QuantityAsObject_IsImplemented()
+        {
+            object a = MassFlow.FromGramsPerSecond(1);
+            object b = MassFlow.FromGramsPerSecond(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+            Assert.False(a.Equals((object)null));
+        }
+
+        [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = MassFlow.FromGramsPerSecond(1);
@@ -675,11 +701,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(MassFlowUnit.Undefined, MassFlow.Units);
+        }
+
+        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(MassFlowUnit)).Cast<MassFlowUnit>();
             foreach(var unit in units)
             {
+                if(unit == MassFlowUnit.Undefined)
+                    continue;
+
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }
@@ -693,8 +728,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
+            var prevCulture = Thread.CurrentThread.CurrentUICulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 cg/d", new MassFlow(1, MassFlowUnit.CentigramPerDay).ToString());
                 Assert.Equal("1 cg/s", new MassFlow(1, MassFlowUnit.CentigramPerSecond).ToString());
@@ -732,7 +767,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
+                Thread.CurrentThread.CurrentUICulture = prevCulture;
             }
         }
 
@@ -780,10 +815,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
+            var oldCulture = CultureInfo.CurrentUICulture;
             try
             {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
                 Assert.Equal("0.1 g/s", new MassFlow(0.123456, MassFlowUnit.GramPerSecond).ToString("s1"));
                 Assert.Equal("0.12 g/s", new MassFlow(0.123456, MassFlowUnit.GramPerSecond).ToString("s2"));
                 Assert.Equal("0.123 g/s", new MassFlow(0.123456, MassFlowUnit.GramPerSecond).ToString("s3"));
@@ -791,7 +826,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                CultureInfo.CurrentCulture = oldCulture;
+                CultureInfo.CurrentUICulture = oldCulture;
             }
         }
 
@@ -805,27 +840,28 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 g/s", new MassFlow(0.123456, MassFlowUnit.GramPerSecond).ToString("s4", culture));
         }
 
-        [Theory]
-        [InlineData(null)]
-        [InlineData("en-US")]
-        public void ToString_NullFormat_DefaultsToGeneralFormat(string cultureName)
+
+        [Fact]
+        public void ToString_NullFormat_ThrowsArgumentNullException()
         {
             var quantity = MassFlow.FromGramsPerSecond(1.0);
-            CultureInfo formatProvider = cultureName == null
-                ? null
-                : CultureInfo.GetCultureInfo(cultureName);
-
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
         }
 
-        [Theory]
-        [InlineData(null)]
-        [InlineData("g")]
-        public void ToString_NullProvider_EqualsCurrentCulture(string format)
+        [Fact]
+        public void ToString_NullArgs_ThrowsArgumentNullException()
         {
             var quantity = MassFlow.FromGramsPerSecond(1.0);
-            Assert.Equal(quantity.ToString(format, CultureInfo.CurrentCulture), quantity.ToString(format, null));
+            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, "g", null));
         }
+
+        [Fact]
+        public void ToString_NullProvider_EqualsCurrentUICulture()
+        {
+            var quantity = MassFlow.FromGramsPerSecond(1.0);
+            Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
+        }
+
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()
@@ -944,6 +980,13 @@ namespace UnitsNet.Tests
         {
             var quantity = MassFlow.FromGramsPerSecond(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(MassFlowUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = MassFlow.FromGramsPerSecond(1.0);
+            Assert.Equal(QuantityType.MassFlow, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

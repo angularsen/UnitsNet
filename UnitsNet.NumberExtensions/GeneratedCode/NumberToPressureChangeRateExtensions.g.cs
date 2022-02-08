@@ -64,6 +64,10 @@ namespace UnitsNet.NumberExtensions.NumberToPressureChangeRate
         public static PressureChangeRate MegapoundsForcePerSquareInchPerSecond<T>(this T value) =>
             PressureChangeRate.FromMegapoundsForcePerSquareInchPerSecond(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="PressureChangeRate.FromMillimetersOfMercuryPerSecond(UnitsNet.QuantityValue)" />
+        public static PressureChangeRate MillimetersOfMercuryPerSecond<T>(this T value) =>
+            PressureChangeRate.FromMillimetersOfMercuryPerSecond(Convert.ToDouble(value));
+
         /// <inheritdoc cref="PressureChangeRate.FromPascalsPerMinute(UnitsNet.QuantityValue)" />
         public static PressureChangeRate PascalsPerMinute<T>(this T value) =>
             PressureChangeRate.FromPascalsPerMinute(Convert.ToDouble(value));

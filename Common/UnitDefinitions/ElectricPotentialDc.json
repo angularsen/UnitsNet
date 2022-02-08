@@ -6,8 +6,8 @@
     {
       "SingularName": "VoltDc",
       "PluralName": "VoltsDc",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Micro", "Milli", "Kilo", "Mega" ],
       "Localization": [
         {

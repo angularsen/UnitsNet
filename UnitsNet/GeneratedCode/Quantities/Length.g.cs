@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -35,7 +36,7 @@ namespace UnitsNet
     ///     Many different units of length have been used around the world. The main units in modern use are U.S. customary units in the United States and the Metric system elsewhere. British Imperial units are still used for some purposes in the United Kingdom and some other countries. The metric system is sub-divided into SI and non-SI units.
     /// </summary>
     [DataContract]
-    public partial struct Length : IQuantity<LengthUnit>, IComparable, IComparable<Length>, IConvertible, IFormattable
+    public partial struct Length : IQuantity<LengthUnit>, IEquatable<Length>, IComparable, IComparable<Length>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -52,9 +53,15 @@ namespace UnitsNet
         static Length()
         {
             BaseDimensions = new BaseDimensions(1, 0, 0, 0, 0, 0, 0);
-
+            BaseUnit = LengthUnit.Meter;
+            MaxValue = new Length(double.MaxValue, BaseUnit);
+            MinValue = new Length(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Length;
+            Units = Enum.GetValues(typeof(LengthUnit)).Cast<LengthUnit>().Except(new LengthUnit[]{ LengthUnit.Undefined }).ToArray();
+            Zero = new Length(0, BaseUnit);
             Info = new QuantityInfo<LengthUnit>("Length",
-                new UnitInfo<LengthUnit>[] {
+                new UnitInfo<LengthUnit>[]
+                {
                     new UnitInfo<LengthUnit>(LengthUnit.AstronomicalUnit, "AstronomicalUnits", BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Centimeter, "Centimeters", BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Chain, "Chains", new BaseUnits(length: LengthUnit.Chain)),
@@ -89,7 +96,9 @@ namespace UnitsNet
                     new UnitInfo<LengthUnit>(LengthUnit.UsSurveyFoot, "UsSurveyFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot)),
                     new UnitInfo<LengthUnit>(LengthUnit.Yard, "Yards", new BaseUnits(length: LengthUnit.Yard)),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Length);
+
+            RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
         /// <summary>
@@ -100,6 +109,9 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Length(double value, LengthUnit unit)
         {
+            if(unit == LengthUnit.Undefined)
+              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
+
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
@@ -125,6 +137,11 @@ namespace UnitsNet
 
         #region Static Properties
 
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Length" /> instances.
+        /// </summary>
+        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<LengthUnit> Info { get; }
 
@@ -136,17 +153,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Length, which is Meter. All conversions go via this value.
         /// </summary>
-        public static LengthUnit ConversionBaseUnit { get; } = LengthUnit.Meter;
+        public static LengthUnit BaseUnit { get; }
+
+        /// <summary>
+        /// Represents the largest possible value of Length
+        /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
+        public static Length MaxValue { get; }
+
+        /// <summary>
+        /// Represents the smallest possible value of Length
+        /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
+        public static Length MinValue { get; }
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Length quantity.
         /// </summary>
-        public static LengthUnit[] Units { get; } = Enum.GetValues(typeof(LengthUnit)).Cast<LengthUnit>().ToArray();
+        public static LengthUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Meter.
         /// </summary>
-        public static Length Zero { get; } = new Length(0, ConversionBaseUnit);
+        public static Length Zero { get; }
 
         #endregion
 
@@ -160,13 +195,19 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public LengthUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
+        public LengthUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<LengthUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
+        public QuantityType Type => QuantityType.Length;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -347,6 +388,84 @@ namespace UnitsNet
         #region Static Methods
 
         /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
+        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
+        {
+            // Register in unit converter: BaseUnit -> LengthUnit
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.AstronomicalUnit, quantity => new Length(quantity.Value / 1.4959787070e11, LengthUnit.AstronomicalUnit));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Centimeter, quantity => new Length((quantity.Value) / 1e-2d, LengthUnit.Centimeter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Chain, quantity => new Length(quantity.Value/20.1168, LengthUnit.Chain));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Decimeter, quantity => new Length((quantity.Value) / 1e-1d, LengthUnit.Decimeter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.DtpPica, quantity => new Length(quantity.Value*236.220472441, LengthUnit.DtpPica));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.DtpPoint, quantity => new Length((quantity.Value/2.54e-2)*72, LengthUnit.DtpPoint));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Fathom, quantity => new Length(quantity.Value/1.8288, LengthUnit.Fathom));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Foot, quantity => new Length(quantity.Value/0.3048, LengthUnit.Foot));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Hand, quantity => new Length(quantity.Value / 1.016e-1, LengthUnit.Hand));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Hectometer, quantity => new Length((quantity.Value) / 1e2d, LengthUnit.Hectometer));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Inch, quantity => new Length(quantity.Value/2.54e-2, LengthUnit.Inch));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.KilolightYear, quantity => new Length((quantity.Value / 9.46073047258e15) / 1e3d, LengthUnit.KilolightYear));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Kilometer, quantity => new Length((quantity.Value) / 1e3d, LengthUnit.Kilometer));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Kiloparsec, quantity => new Length((quantity.Value / 3.08567758128e16) / 1e3d, LengthUnit.Kiloparsec));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.LightYear, quantity => new Length(quantity.Value / 9.46073047258e15, LengthUnit.LightYear));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.MegalightYear, quantity => new Length((quantity.Value / 9.46073047258e15) / 1e6d, LengthUnit.MegalightYear));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Megaparsec, quantity => new Length((quantity.Value / 3.08567758128e16) / 1e6d, LengthUnit.Megaparsec));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Microinch, quantity => new Length(quantity.Value/2.54e-8, LengthUnit.Microinch));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Micrometer, quantity => new Length((quantity.Value) / 1e-6d, LengthUnit.Micrometer));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Mil, quantity => new Length(quantity.Value/2.54e-5, LengthUnit.Mil));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Mile, quantity => new Length(quantity.Value/1609.34, LengthUnit.Mile));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Millimeter, quantity => new Length((quantity.Value) / 1e-3d, LengthUnit.Millimeter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Nanometer, quantity => new Length((quantity.Value) / 1e-9d, LengthUnit.Nanometer));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.NauticalMile, quantity => new Length(quantity.Value/1852, LengthUnit.NauticalMile));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Parsec, quantity => new Length(quantity.Value / 3.08567758128e16, LengthUnit.Parsec));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.PrinterPica, quantity => new Length(quantity.Value*237.106301584, LengthUnit.PrinterPica));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.PrinterPoint, quantity => new Length((quantity.Value/2.54e-2)*72.27, LengthUnit.PrinterPoint));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Shackle, quantity => new Length(quantity.Value/27.432, LengthUnit.Shackle));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.SolarRadius, quantity => new Length(quantity.Value / 6.95510000E+08, LengthUnit.SolarRadius));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Twip, quantity => new Length(quantity.Value*56692.913385826, LengthUnit.Twip));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.UsSurveyFoot, quantity => new Length(quantity.Value*3937/1200, LengthUnit.UsSurveyFoot));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Yard, quantity => new Length(quantity.Value/0.9144, LengthUnit.Yard));
+            
+            // Register in unit converter: BaseUnit <-> BaseUnit
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Meter, quantity => quantity);
+
+            // Register in unit converter: LengthUnit -> BaseUnit
+            unitConverter.SetConversionFunction<Length>(LengthUnit.AstronomicalUnit, LengthUnit.Meter, quantity => new Length(quantity.Value * 1.4959787070e11, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Centimeter, LengthUnit.Meter, quantity => new Length((quantity.Value) * 1e-2d, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Chain, LengthUnit.Meter, quantity => new Length(quantity.Value*20.1168, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Decimeter, LengthUnit.Meter, quantity => new Length((quantity.Value) * 1e-1d, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.DtpPica, LengthUnit.Meter, quantity => new Length(quantity.Value/236.220472441, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.DtpPoint, LengthUnit.Meter, quantity => new Length((quantity.Value/72)*2.54e-2, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Fathom, LengthUnit.Meter, quantity => new Length(quantity.Value*1.8288, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Foot, LengthUnit.Meter, quantity => new Length(quantity.Value*0.3048, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Hand, LengthUnit.Meter, quantity => new Length(quantity.Value * 1.016e-1, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Hectometer, LengthUnit.Meter, quantity => new Length((quantity.Value) * 1e2d, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Inch, LengthUnit.Meter, quantity => new Length(quantity.Value*2.54e-2, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.KilolightYear, LengthUnit.Meter, quantity => new Length((quantity.Value * 9.46073047258e15) * 1e3d, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Kilometer, LengthUnit.Meter, quantity => new Length((quantity.Value) * 1e3d, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Kiloparsec, LengthUnit.Meter, quantity => new Length((quantity.Value * 3.08567758128e16) * 1e3d, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.LightYear, LengthUnit.Meter, quantity => new Length(quantity.Value * 9.46073047258e15, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.MegalightYear, LengthUnit.Meter, quantity => new Length((quantity.Value * 9.46073047258e15) * 1e6d, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Megaparsec, LengthUnit.Meter, quantity => new Length((quantity.Value * 3.08567758128e16) * 1e6d, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Microinch, LengthUnit.Meter, quantity => new Length(quantity.Value*2.54e-8, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Micrometer, LengthUnit.Meter, quantity => new Length((quantity.Value) * 1e-6d, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Mil, LengthUnit.Meter, quantity => new Length(quantity.Value*2.54e-5, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Mile, LengthUnit.Meter, quantity => new Length(quantity.Value*1609.34, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Millimeter, LengthUnit.Meter, quantity => new Length((quantity.Value) * 1e-3d, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Nanometer, LengthUnit.Meter, quantity => new Length((quantity.Value) * 1e-9d, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.NauticalMile, LengthUnit.Meter, quantity => new Length(quantity.Value*1852, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Parsec, LengthUnit.Meter, quantity => new Length(quantity.Value * 3.08567758128e16, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.PrinterPica, LengthUnit.Meter, quantity => new Length(quantity.Value/237.106301584, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.PrinterPoint, LengthUnit.Meter, quantity => new Length((quantity.Value/72.27)*2.54e-2, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Shackle, LengthUnit.Meter, quantity => new Length(quantity.Value*27.432, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.SolarRadius, LengthUnit.Meter, quantity => new Length(quantity.Value * 6.95510000E+08, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Twip, LengthUnit.Meter, quantity => new Length(quantity.Value/56692.913385826, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.UsSurveyFoot, LengthUnit.Meter, quantity => new Length(quantity.Value*1200/3937, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Yard, LengthUnit.Meter, quantity => new Length(quantity.Value*0.9144, LengthUnit.Meter));
+        }
+
+        /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
@@ -361,7 +480,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static string GetAbbreviation(LengthUnit unit, IFormatProvider? provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
@@ -733,7 +852,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static Length Parse(string str, IFormatProvider? provider)
         {
             return QuantityParser.Default.Parse<Length, LengthUnit>(
@@ -764,7 +883,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Length result)
         {
             return QuantityParser.Default.TryParse<Length, LengthUnit>(
@@ -792,7 +911,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -818,7 +937,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out LengthUnit unit)
         {
             return UnitParser.Default.TryParse<LengthUnit>(str, provider, out unit);
@@ -898,6 +1017,20 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Length, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(Length left, Length right)
+        {
+            return left.Equals(right);
+        }
+
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Length, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(Length left, Length right)
+        {
+            return !(left == right);
+        }
+
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -911,6 +1044,23 @@ namespace UnitsNet
         public int CompareTo(Length other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Length, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is Length objLength))
+                return false;
+
+            return Equals(objLength);
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Length, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(Length other)
+        {
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -1017,11 +1167,42 @@ namespace UnitsNet
         /// <summary>
         ///     Converts this Length to another Length with the unit representation <paramref name="unit" />.
         /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
         /// <returns>A Length with the specified unit.</returns>
         public Length ToUnit(LengthUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new Length(convertedValue, unit);
+            return ToUnit(unit, DefaultConversionFunctions);
+        }
+
+        /// <summary>
+        ///     Converts this Length to another Length using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
+        /// <returns>A Length with the specified unit.</returns>
+        public Length ToUnit(LengthUnit unit, UnitConverter unitConverter)
+        {
+            if(Unit == unit)
+            {
+                // Already in requested units.
+                return this;
+            }
+            else if(unitConverter.TryGetConversionFunction((typeof(Length), Unit, typeof(Length), unit), out var conversionFunction))
+            {
+                // Direct conversion to requested unit found. Return the converted quantity.
+                var converted = conversionFunction(this);
+                return (Length)converted;
+            }
+            else if(Unit != BaseUnit)
+            {
+                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                var inBaseUnits = ToUnit(BaseUnit);
+                return inBaseUnits.ToUnit(unit);
+            }
+            else
+            {
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         /// <inheritdoc />
@@ -1030,7 +1211,16 @@ namespace UnitsNet
             if(!(unit is LengthUnit unitAsLengthUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LengthUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsLengthUnit);
+            return ToUnit(unitAsLengthUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is LengthUnit unitAsLengthUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LengthUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsLengthUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -1055,111 +1245,15 @@ namespace UnitsNet
         IQuantity<LengthUnit> IQuantity<LengthUnit>.ToUnit(LengthUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantity<LengthUnit> IQuantity<LengthUnit>.ToUnit(LengthUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
+
+        /// <inheritdoc />
         IQuantity<LengthUnit> IQuantity<LengthUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case LengthUnit.AstronomicalUnit: return _value * 1.4959787070e11;
-                case LengthUnit.Centimeter: return (_value) * 1e-2d;
-                case LengthUnit.Chain: return _value*20.1168;
-                case LengthUnit.Decimeter: return (_value) * 1e-1d;
-                case LengthUnit.DtpPica: return _value/236.220472441;
-                case LengthUnit.DtpPoint: return (_value/72)*2.54e-2;
-                case LengthUnit.Fathom: return _value*1.8288;
-                case LengthUnit.Foot: return _value*0.3048;
-                case LengthUnit.Hand: return _value * 1.016e-1;
-                case LengthUnit.Hectometer: return (_value) * 1e2d;
-                case LengthUnit.Inch: return _value*2.54e-2;
-                case LengthUnit.KilolightYear: return (_value * 9.46073047258e15) * 1e3d;
-                case LengthUnit.Kilometer: return (_value) * 1e3d;
-                case LengthUnit.Kiloparsec: return (_value * 3.08567758128e16) * 1e3d;
-                case LengthUnit.LightYear: return _value * 9.46073047258e15;
-                case LengthUnit.MegalightYear: return (_value * 9.46073047258e15) * 1e6d;
-                case LengthUnit.Megaparsec: return (_value * 3.08567758128e16) * 1e6d;
-                case LengthUnit.Meter: return _value;
-                case LengthUnit.Microinch: return _value*2.54e-8;
-                case LengthUnit.Micrometer: return (_value) * 1e-6d;
-                case LengthUnit.Mil: return _value*2.54e-5;
-                case LengthUnit.Mile: return _value*1609.34;
-                case LengthUnit.Millimeter: return (_value) * 1e-3d;
-                case LengthUnit.Nanometer: return (_value) * 1e-9d;
-                case LengthUnit.NauticalMile: return _value*1852;
-                case LengthUnit.Parsec: return _value * 3.08567758128e16;
-                case LengthUnit.PrinterPica: return _value/237.106301584;
-                case LengthUnit.PrinterPoint: return (_value/72.27)*2.54e-2;
-                case LengthUnit.Shackle: return _value*27.432;
-                case LengthUnit.SolarRadius: return _value * 6.95510000E+08;
-                case LengthUnit.Twip: return _value/56692.913385826;
-                case LengthUnit.UsSurveyFoot: return _value*1200/3937;
-                case LengthUnit.Yard: return _value*0.9144;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal Length ToBaseUnit()
-        {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new Length(baseUnitValue, ConversionBaseUnit);
-        }
 
         private double GetValueAs(LengthUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var baseUnitValue = GetValueInBaseUnit();
-
-            switch(unit)
-            {
-                case LengthUnit.AstronomicalUnit: return baseUnitValue / 1.4959787070e11;
-                case LengthUnit.Centimeter: return (baseUnitValue) / 1e-2d;
-                case LengthUnit.Chain: return baseUnitValue/20.1168;
-                case LengthUnit.Decimeter: return (baseUnitValue) / 1e-1d;
-                case LengthUnit.DtpPica: return baseUnitValue*236.220472441;
-                case LengthUnit.DtpPoint: return (baseUnitValue/2.54e-2)*72;
-                case LengthUnit.Fathom: return baseUnitValue/1.8288;
-                case LengthUnit.Foot: return baseUnitValue/0.3048;
-                case LengthUnit.Hand: return baseUnitValue / 1.016e-1;
-                case LengthUnit.Hectometer: return (baseUnitValue) / 1e2d;
-                case LengthUnit.Inch: return baseUnitValue/2.54e-2;
-                case LengthUnit.KilolightYear: return (baseUnitValue / 9.46073047258e15) / 1e3d;
-                case LengthUnit.Kilometer: return (baseUnitValue) / 1e3d;
-                case LengthUnit.Kiloparsec: return (baseUnitValue / 3.08567758128e16) / 1e3d;
-                case LengthUnit.LightYear: return baseUnitValue / 9.46073047258e15;
-                case LengthUnit.MegalightYear: return (baseUnitValue / 9.46073047258e15) / 1e6d;
-                case LengthUnit.Megaparsec: return (baseUnitValue / 3.08567758128e16) / 1e6d;
-                case LengthUnit.Meter: return baseUnitValue;
-                case LengthUnit.Microinch: return baseUnitValue/2.54e-8;
-                case LengthUnit.Micrometer: return (baseUnitValue) / 1e-6d;
-                case LengthUnit.Mil: return baseUnitValue/2.54e-5;
-                case LengthUnit.Mile: return baseUnitValue/1609.34;
-                case LengthUnit.Millimeter: return (baseUnitValue) / 1e-3d;
-                case LengthUnit.Nanometer: return (baseUnitValue) / 1e-9d;
-                case LengthUnit.NauticalMile: return baseUnitValue/1852;
-                case LengthUnit.Parsec: return baseUnitValue / 3.08567758128e16;
-                case LengthUnit.PrinterPica: return baseUnitValue*237.106301584;
-                case LengthUnit.PrinterPoint: return (baseUnitValue/2.54e-2)*72.27;
-                case LengthUnit.Shackle: return baseUnitValue/27.432;
-                case LengthUnit.SolarRadius: return baseUnitValue / 6.95510000E+08;
-                case LengthUnit.Twip: return baseUnitValue*56692.913385826;
-                case LengthUnit.UsSurveyFoot: return baseUnitValue*3937/1200;
-                case LengthUnit.Yard: return baseUnitValue/0.9144;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         #endregion
@@ -1179,29 +1273,63 @@ namespace UnitsNet
         ///     Gets the default string representation of value and unit using the given format provider.
         /// </summary>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
             return ToString("g", provider);
         }
 
+        /// <summary>
+        ///     Get string representation of value and unit.
+        /// </summary>
+        /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
+        /// <returns>String representation.</returns>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
+        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
+        {
+            var value = Convert.ToDouble(Value);
+            var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
+            return ToString(provider, format);
+        }
+
+        /// <summary>
+        ///     Get string representation of value and unit.
+        /// </summary>
+        /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
+        /// <param name="args">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
+        /// <returns>String representation.</returns>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
+        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
+        {
+            if (format == null) throw new ArgumentNullException(nameof(format));
+            if (args == null) throw new ArgumentNullException(nameof(args));
+
+            provider = provider ?? CultureInfo.CurrentUICulture;
+
+            var value = Convert.ToDouble(Value);
+            var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
+        }
+
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
-        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentCulture" />.
+        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentUICulture" />.
         /// </summary>
         /// <param name="format">The format string.</param>
         /// <returns>The string representation.</returns>
         public string ToString(string format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, CultureInfo.CurrentUICulture);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
-        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
+        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
         /// </summary>
         /// <param name="format">The format string.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>The string representation.</returns>
         public string ToString(string format, IFormatProvider? provider)
         {
@@ -1283,6 +1411,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(LengthUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return Length.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Length.Info;
             else if(conversionType == typeof(BaseDimensions))

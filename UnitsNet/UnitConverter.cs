@@ -2,9 +2,11 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Globalization;
+using System.Reflection;
 using System.Linq;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -30,7 +32,7 @@ namespace UnitsNet
     /// <summary>
     ///     Convert between units of a quantity, such as converting from meters to centimeters of a given length.
     /// </summary>
-    public sealed partial class UnitConverter
+    public sealed class UnitConverter
     {
         /// <summary>
         /// The static instance used by Units.NET to convert between units. Modify this to add/remove conversion functions at runtime, such
@@ -38,12 +40,54 @@ namespace UnitsNet
         /// </summary>
         public static UnitConverter Default { get; }
 
-        private readonly Dictionary<ConversionFunctionLookupKey, ConversionFunction> _conversionFunctions = new Dictionary<ConversionFunctionLookupKey, ConversionFunction>();
-
         static UnitConverter()
         {
             Default = new UnitConverter();
             RegisterDefaultConversions(Default);
+        }
+
+        /// <summary>
+        /// Creates a new <see cref="UnitConverter"/> instance.
+        /// </summary>
+        public UnitConverter()
+        {
+            ConversionFunctions = new ConcurrentDictionary<ConversionFunctionLookupKey, ConversionFunction>();
+        }
+
+        /// <summary>
+        /// Creates a new <see cref="UnitConverter"/> instance with the <see cref="ConversionFunction"/> copied from <paramref name="other"/>.
+        /// </summary>
+        /// <param name="other">The <see cref="UnitConverter"/> to copy from.</param>
+        public UnitConverter(UnitConverter other)
+        {
+            ConversionFunctions = new ConcurrentDictionary<ConversionFunctionLookupKey, ConversionFunction>(other.ConversionFunctions);
+        }
+
+        private ConcurrentDictionary<ConversionFunctionLookupKey, ConversionFunction> ConversionFunctions
+        {
+            get;
+        }
+
+        /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
+        public static void RegisterDefaultConversions(UnitConverter unitConverter)
+        {
+            if(unitConverter is null)
+                throw new ArgumentNullException(nameof(unitConverter));
+
+            var quantities = typeof(Length)
+                .Wrap()
+                .Assembly
+                .GetExportedTypes()
+                .Where(t => typeof(IQuantity).Wrap().IsAssignableFrom(t));
+
+            foreach(var quantity in quantities)
+            {
+                var registerMethod = quantity.GetMethod(nameof(Length.RegisterDefaultConversions), BindingFlags.NonPublic | BindingFlags.Static);
+                registerMethod?.Invoke(null, new object[]{unitConverter});
+            }
         }
 
         /// <summary>
@@ -97,7 +141,7 @@ namespace UnitsNet
         /// <param name="conversionFunction">The quantity conversion function.</param>
         internal void SetConversionFunction(ConversionFunctionLookupKey lookupKey, ConversionFunction conversionFunction)
         {
-            _conversionFunctions[lookupKey] = conversionFunction;
+            ConversionFunctions[lookupKey] = conversionFunction;
         }
 
         /// <summary>
@@ -111,7 +155,7 @@ namespace UnitsNet
         {
             IQuantity TypelessConversionFunction(IQuantity quantity) => conversionFunction((TQuantity) quantity);
 
-            _conversionFunctions[conversionLookup] = TypelessConversionFunction;
+            ConversionFunctions[conversionLookup] = TypelessConversionFunction;
         }
 
         /// <summary>
@@ -167,7 +211,7 @@ namespace UnitsNet
             if (lookupKey.Item1 == lookupKey.Item3 && Equals(lookupKey.Item2, lookupKey.Item4))
                 return EchoFunction;
 
-            return _conversionFunctions[lookupKey];
+            return ConversionFunctions[lookupKey];
         }
 
         /// <summary>
@@ -222,7 +266,7 @@ namespace UnitsNet
         /// <returns>true if set; otherwise, false.</returns>
         public bool TryGetConversionFunction(ConversionFunctionLookupKey lookupKey, out ConversionFunction conversionFunction)
         {
-            return _conversionFunctions.TryGetValue(lookupKey, out conversionFunction);
+            return ConversionFunctions.TryGetValue(lookupKey, out conversionFunction);
         }
 
         /// <summary>
@@ -278,7 +322,8 @@ namespace UnitsNet
         ///     convert from.
         /// </param>
         /// <param name="quantityName">
-        ///     Name of quantity, such as "Length" and "Mass". <see cref="UnitsNet.Quantity.Infos" /> for all quantities.
+        ///     The name of the quantity, such as "Length" or "Mass". See <see cref="Quantity.Infos" /> for all
+        ///     types generated by UnitsNet and use <see cref="UnitInfo.Name"/>.
         /// </param>
         /// <param name="fromUnit">
         ///     Name of unit, such as "Meter" or "Centimeter" if "Length" was passed as
@@ -327,7 +372,8 @@ namespace UnitsNet
         ///     convert from.
         /// </param>
         /// <param name="quantityName">
-        ///     Name of quantity, such as "Length" and "Mass". <see cref="UnitsNet.Quantity.Infos" /> for all quantities.
+        ///     The name of the quantity, such as "Length" or "Mass". See <see cref="Quantity.Infos" /> for all
+        ///     types generated by UnitsNet and use <see cref="UnitInfo.Name"/>.
         /// </param>
         /// <param name="fromUnit">
         ///     Name of unit, such as "Meter" or "Centimeter" if "Length" was passed as
@@ -401,7 +447,8 @@ namespace UnitsNet
         ///     convert from.
         /// </param>
         /// <param name="quantityName">
-        ///     Name of quantity, such as "Length" and "Mass". <see cref="UnitsNet.Quantity.Infos" /> for all quantities.
+        ///     The name of the quantity, such as "Length" or "Mass". See <see cref="Quantity.Infos" /> for all
+        ///     types generated by UnitsNet and use <see cref="UnitInfo.Name"/>.
         /// </param>
         /// <param name="fromUnitAbbrev">
         ///     Name of unit, such as "Meter" or "Centimeter" if "Length" was passed as
@@ -446,7 +493,8 @@ namespace UnitsNet
         ///     convert from.
         /// </param>
         /// <param name="quantityName">
-        ///     Name of quantity, such as "Length" and "Mass". <see cref="UnitsNet.Quantity.Infos" /> for all quantities.
+        ///     The name of the quantity, such as "Length" or "Mass". See <see cref="Quantity.Infos" /> for all
+        ///     types generated by UnitsNet and use <see cref="UnitInfo.Name"/>.
         /// </param>
         /// <param name="fromUnitAbbrev">
         ///     Name of unit, such as "Meter" or "Centimeter" if "Length" was passed as
@@ -477,7 +525,8 @@ namespace UnitsNet
         ///     convert from.
         /// </param>
         /// <param name="quantityName">
-        ///     Name of quantity, such as "Length" and "Mass". <see cref="UnitsNet.Quantity.Infos" /> for all quantities.
+        ///     The name of the quantity, such as "Length" or "Mass". See <see cref="Quantity.Infos" /> for all
+        ///     types generated by UnitsNet and use <see cref="UnitInfo.Name"/>.
         /// </param>
         /// <param name="fromUnitAbbrev">
         ///     Name of unit, such as "Meter" or "Centimeter" if "Length" was passed as

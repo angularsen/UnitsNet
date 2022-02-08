@@ -15,8 +15,8 @@
         "L": "Meter",
         "I": "Ampere"
       },
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Localization": [
         {
           "Culture": "en-US",

@@ -39,6 +39,8 @@ namespace UnitsNet.Tests.Serialization.Json
             return (T)serializer.ReadObject(stream);
         }
 
+        #region Serialization tests
+
         [Fact]
         public void DoubleQuantity_SerializedWithDoubleValueAndunitInt()
         {
@@ -63,29 +65,9 @@ namespace UnitsNet.Tests.Serialization.Json
             Assert.Equal(expectedJson, json);
         }
 
-        [Fact]
-        public void DoubleQuantity_InScientificNotation_SerializedWithExpandedValueAndunitInt()
-        {
-            var quantity = new Mass(1E+9, MassUnit.Milligram);
-            var unitInt = (int)quantity.Unit;
-            var expectedJson = $"{{\"Value\":1000000000,\"Unit\":{unitInt}}}";
+        #endregion
 
-            var json = SerializeObject(quantity);
-
-            Assert.Equal(expectedJson, json);
-        }
-
-        [Fact]
-        public void DecimalQuantity_InScientificNotation_SerializedWithExpandedValueAndunitInt()
-        {
-            var quantity = new Information(1E+9m, InformationUnit.Exabyte);
-            var unitInt = (int)quantity.Unit;
-            var expectedJson = $"{{\"Value\":1000000000,\"Unit\":{unitInt}}}";
-
-            var json = SerializeObject(quantity);
-
-            Assert.Equal(expectedJson, json);
-        }
+        #region Deserialization tests
 
         [Fact]
         public void DoubleQuantity_DeserializedFromDoubleValueAndunitInt()
@@ -127,6 +109,19 @@ namespace UnitsNet.Tests.Serialization.Json
         }
 
         [Fact]
+        public void InterfaceObject_IncludesTypeInformation()
+        {
+            var unit = InformationUnit.Exabyte;
+            var unitInt = (int)unit;
+            var testObject = new TestInterfaceObject { Quantity = new Information(1.20m, unit) };
+            var expectedJson = $"{{\"Quantity\":{{\"__type\":\"Information:#UnitsNet\",\"Value\":1.20,\"Unit\":{unitInt}}}}}";
+
+            var json = SerializeObject(testObject);
+
+            Assert.Equal(expectedJson, json);
+        }
+
+        [Fact]
         public void DoubleBaseUnitQuantity_DeserializedFromValueAndNoUnit()
         {
             var json = "{\"Value\":1.2}";
@@ -160,6 +155,14 @@ namespace UnitsNet.Tests.Serialization.Json
             Assert.Equal(1.200m, quantity.Value);
             Assert.Equal("1.200", quantity.Value.ToString(CultureInfo.InvariantCulture));
             Assert.Equal(expectedUnit, quantity.Unit);
+        }
+
+        [Fact]
+        public void InterfaceObject_WithMissingKnownTypeInformation_ThrowsSerializationException()
+        {
+            var testObject = new TestInterfaceObject { Quantity = new Volume(1.2, VolumeUnit.Microliter) };
+
+            Assert.Throws<SerializationException>(() => SerializeObject(testObject));
         }
 
         [Fact]
@@ -212,25 +215,6 @@ namespace UnitsNet.Tests.Serialization.Json
             Assert.Equal(Information.ConversionBaseUnit, quantity.Unit);
         }
 
-        [Fact]
-        public void InterfaceObject_IncludesTypeInformation()
-        {
-            var unit = InformationUnit.Exabyte;
-            var unitInt = (int)unit;
-            var testObject = new TestInterfaceObject { Quantity = new Information(1.20m, unit) };
-            var expectedJson = $"{{\"Quantity\":{{\"__type\":\"Information:#UnitsNet\",\"Value\":1.20,\"Unit\":{unitInt}}}}}";
-
-            var json = SerializeObject(testObject);
-
-            Assert.Equal(expectedJson, json);
-        }
-
-        [Fact]
-        public void InterfaceObject_WithMissingKnownTypeInformation_ThrowsSerializationException()
-        {
-            var testObject = new TestInterfaceObject { Quantity = new Volume(1.2, VolumeUnit.Microliter) };
-
-            Assert.Throws<SerializationException>(() => SerializeObject(testObject));
-        }
+        #endregion
     }
 }

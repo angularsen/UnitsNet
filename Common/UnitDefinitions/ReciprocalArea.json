@@ -10,8 +10,8 @@
     {
       "SingularName": "InverseSquareMeter",
       "PluralName": "InverseSquareMeters",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Localization": [
         {
           "Culture": "en-US",
@@ -22,8 +22,8 @@
     {
       "SingularName": "InverseSquareKilometer",
       "PluralName": "InverseSquareKilometers",
-      "FromUnitToBaseFunc": "x/1e6",
-      "FromBaseToUnitFunc": "x*1e6",
+      "FromUnitToBaseFunc": "{x}/1e6",
+      "FromBaseToUnitFunc": "{x}*1e6",
       "Localization": [
         {
           "Culture": "en-US",
@@ -34,8 +34,8 @@
     {
       "SingularName": "InverseSquareDecimeter",
       "PluralName": "InverseSquareDecimeters",
-      "FromUnitToBaseFunc": "x/1e-2",
-      "FromBaseToUnitFunc": "x*1e-2",
+      "FromUnitToBaseFunc": "{x}/1e-2",
+      "FromBaseToUnitFunc": "{x}*1e-2",
       "Localization": [
         {
           "Culture": "en-US",
@@ -46,8 +46,8 @@
     {
       "SingularName": "InverseSquareCentimeter",
       "PluralName": "InverseSquareCentimeters",
-      "FromUnitToBaseFunc": "x/1e-4",
-      "FromBaseToUnitFunc": "x*1e-4",
+      "FromUnitToBaseFunc": "{x}/1e-4",
+      "FromBaseToUnitFunc": "{x}*1e-4",
       "Localization": [
         {
           "Culture": "en-US",
@@ -58,8 +58,8 @@
     {
       "SingularName": "InverseSquareMillimeter",
       "PluralName": "InverseSquareMillimeters",
-      "FromUnitToBaseFunc": "x/1e-6",
-      "FromBaseToUnitFunc": "x*1e-6",
+      "FromUnitToBaseFunc": "{x}/1e-6",
+      "FromBaseToUnitFunc": "{x}*1e-6",
       "Localization": [
         {
           "Culture": "en-US",
@@ -70,8 +70,8 @@
     {
       "SingularName": "InverseSquareMicrometer",
       "PluralName": "InverseSquareMicrometers",
-      "FromUnitToBaseFunc": "x/1e-12",
-      "FromBaseToUnitFunc": "x*1e-12",
+      "FromUnitToBaseFunc": "{x}/1e-12",
+      "FromBaseToUnitFunc": "{x}*1e-12",
       "Localization": [
         {
           "Culture": "en-US",
@@ -82,8 +82,8 @@
     {
       "SingularName": "InverseSquareMile",
       "PluralName": "InverseSquareMiles",
-      "FromUnitToBaseFunc": "x/2.59e6",
-      "FromBaseToUnitFunc": "x*2.59e6",
+      "FromUnitToBaseFunc": "{x}/2.59e6",
+      "FromBaseToUnitFunc": "{x}*2.59e6",
       "Localization": [
         {
           "Culture": "en-US",
@@ -94,8 +94,8 @@
     {
       "SingularName": "InverseSquareYard",
       "PluralName": "InverseSquareYards",
-      "FromUnitToBaseFunc": "x/0.836127",
-      "FromBaseToUnitFunc": "x*0.836127",
+      "FromUnitToBaseFunc": "{x}/0.836127",
+      "FromBaseToUnitFunc": "{x}*0.836127",
       "Localization": [
         {
           "Culture": "en-US",
@@ -106,8 +106,8 @@
     {
       "SingularName": "InverseSquareFoot",
       "PluralName": "InverseSquareFeet",
-      "FromUnitToBaseFunc": "x/0.092903",
-      "FromBaseToUnitFunc": "x*0.092903",
+      "FromUnitToBaseFunc": "{x}/0.092903",
+      "FromBaseToUnitFunc": "{x}*0.092903",
       "Localization": [
         {
           "Culture": "en-US",
@@ -118,8 +118,8 @@
     {
       "SingularName": "InverseUsSurveySquareFoot",
       "PluralName": "InverseUsSurveySquareFeet",
-      "FromUnitToBaseFunc": "x/0.09290341161",
-      "FromBaseToUnitFunc": "x*0.09290341161",
+      "FromUnitToBaseFunc": "{x}/0.09290341161",
+      "FromBaseToUnitFunc": "{x}*0.09290341161",
       "Localization": [
         {
           "Culture": "en-US",
@@ -130,8 +130,8 @@
     {
       "SingularName": "InverseSquareInch",
       "PluralName": "InverseSquareInches",
-      "FromUnitToBaseFunc": "x/0.00064516",
-      "FromBaseToUnitFunc": "x*0.00064516",
+      "FromUnitToBaseFunc": "{x}/0.00064516",
+      "FromBaseToUnitFunc": "{x}*0.00064516",
       "Localization": [
         {
           "Culture": "en-US",

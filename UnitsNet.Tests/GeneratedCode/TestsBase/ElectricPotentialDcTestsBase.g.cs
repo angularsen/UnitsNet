@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -51,6 +52,34 @@ namespace UnitsNet.Tests
         protected virtual double VoltsDcTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricPotentialDcUnit unit)
+        {
+            return unit switch
+            {
+                ElectricPotentialDcUnit.KilovoltDc => (KilovoltsDcInOneVoltDc, KilovoltsDcTolerance),
+                ElectricPotentialDcUnit.MegavoltDc => (MegavoltsDcInOneVoltDc, MegavoltsDcTolerance),
+                ElectricPotentialDcUnit.MicrovoltDc => (MicrovoltsDcInOneVoltDc, MicrovoltsDcTolerance),
+                ElectricPotentialDcUnit.MillivoltDc => (MillivoltsDcInOneVoltDc, MillivoltsDcTolerance),
+                ElectricPotentialDcUnit.VoltDc => (VoltsDcInOneVoltDc, VoltsDcTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ElectricPotentialDcUnit.KilovoltDc },
+            new object[] { ElectricPotentialDcUnit.MegavoltDc },
+            new object[] { ElectricPotentialDcUnit.MicrovoltDc },
+            new object[] { ElectricPotentialDcUnit.MillivoltDc },
+            new object[] { ElectricPotentialDcUnit.VoltDc },
+        };
+
+        [Fact]
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricPotentialDc((double)0.0, ElectricPotentialDcUnit.Undefined));
+        }
+
         [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
@@ -58,6 +87,7 @@ namespace UnitsNet.Tests
             Assert.Equal(0, quantity.Value);
             Assert.Equal(ElectricPotentialDcUnit.VoltDc, quantity.Unit);
         }
+
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
@@ -102,9 +132,14 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ElectricPotentialDc.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricPotentialDc", quantityInfo.Name);
+            Assert.Equal(QuantityType.ElectricPotentialDc, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<ElectricPotentialDcUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<ElectricPotentialDcUnit>().Except(new[] {ElectricPotentialDcUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
+
+            // Obsolete members
+            Assert.Equal(units, quantityInfo.Units);
+            Assert.Equal(unitNames, quantityInfo.UnitNames);
         }
 
         [Fact]
@@ -170,7 +205,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new ElectricPotentialDc(value: 1, unit: ElectricPotentialDc.ConversionBaseUnit);
+            var quantity = new ElectricPotentialDc(value: 1, unit: ElectricPotentialDc.BaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -184,37 +219,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ElectricPotentialDcUnit unit)
         {
-            var voltdc = ElectricPotentialDc.FromVoltsDc(1);
+            var inBaseUnits = ElectricPotentialDc.From(1.0, ElectricPotentialDc.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var kilovoltdcQuantity = voltdc.ToUnit(ElectricPotentialDcUnit.KilovoltDc);
-            AssertEx.EqualTolerance(KilovoltsDcInOneVoltDc, (double)kilovoltdcQuantity.Value, KilovoltsDcTolerance);
-            Assert.Equal(ElectricPotentialDcUnit.KilovoltDc, kilovoltdcQuantity.Unit);
-
-            var megavoltdcQuantity = voltdc.ToUnit(ElectricPotentialDcUnit.MegavoltDc);
-            AssertEx.EqualTolerance(MegavoltsDcInOneVoltDc, (double)megavoltdcQuantity.Value, MegavoltsDcTolerance);
-            Assert.Equal(ElectricPotentialDcUnit.MegavoltDc, megavoltdcQuantity.Unit);
-
-            var microvoltdcQuantity = voltdc.ToUnit(ElectricPotentialDcUnit.MicrovoltDc);
-            AssertEx.EqualTolerance(MicrovoltsDcInOneVoltDc, (double)microvoltdcQuantity.Value, MicrovoltsDcTolerance);
-            Assert.Equal(ElectricPotentialDcUnit.MicrovoltDc, microvoltdcQuantity.Unit);
-
-            var millivoltdcQuantity = voltdc.ToUnit(ElectricPotentialDcUnit.MillivoltDc);
-            AssertEx.EqualTolerance(MillivoltsDcInOneVoltDc, (double)millivoltdcQuantity.Value, MillivoltsDcTolerance);
-            Assert.Equal(ElectricPotentialDcUnit.MillivoltDc, millivoltdcQuantity.Unit);
-
-            var voltdcQuantity = voltdc.ToUnit(ElectricPotentialDcUnit.VoltDc);
-            AssertEx.EqualTolerance(VoltsDcInOneVoltDc, (double)voltdcQuantity.Value, VoltsDcTolerance);
-            Assert.Equal(ElectricPotentialDcUnit.VoltDc, voltdcQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(ElectricPotentialDcUnit unit)
         {
-            var quantityInBaseUnit = ElectricPotentialDc.FromVoltsDc(1).ToBaseUnit();
-            Assert.Equal(ElectricPotentialDc.ConversionBaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ElectricPotentialDc.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricPotentialDcUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ElectricPotentialDc.Units.FirstOrDefault(u => u != ElectricPotentialDc.BaseUnit && u != ElectricPotentialDcUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ElectricPotentialDcUnit.Undefined)
+                fromUnit = ElectricPotentialDc.BaseUnit;
+
+            var quantity = ElectricPotentialDc.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]
@@ -282,6 +321,49 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void EqualityOperators()
+        {
+            var a = ElectricPotentialDc.FromVoltsDc(1);
+            var b = ElectricPotentialDc.FromVoltsDc(2);
+
+#pragma warning disable CS8073
+// ReSharper disable EqualExpressionComparison
+
+            Assert.True(a == a);
+            Assert.False(a != a);
+
+            Assert.True(a != b);
+            Assert.False(a == b);
+
+            Assert.False(a == null);
+            Assert.False(null == a);
+
+// ReSharper restore EqualExpressionComparison
+#pragma warning restore CS8073
+        }
+
+        [Fact]
+        public void Equals_SameType_IsImplemented()
+        {
+            var a = ElectricPotentialDc.FromVoltsDc(1);
+            var b = ElectricPotentialDc.FromVoltsDc(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+        }
+
+        [Fact]
+        public void Equals_QuantityAsObject_IsImplemented()
+        {
+            object a = ElectricPotentialDc.FromVoltsDc(1);
+            object b = ElectricPotentialDc.FromVoltsDc(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+            Assert.False(a.Equals((object)null));
+        }
+
+        [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = ElectricPotentialDc.FromVoltsDc(1);
@@ -311,11 +393,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(ElectricPotentialDcUnit.Undefined, ElectricPotentialDc.Units);
+        }
+
+        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(ElectricPotentialDcUnit)).Cast<ElectricPotentialDcUnit>();
             foreach(var unit in units)
             {
+                if(unit == ElectricPotentialDcUnit.Undefined)
+                    continue;
+
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }
@@ -329,8 +420,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
+            var prevCulture = Thread.CurrentThread.CurrentUICulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 kVdc", new ElectricPotentialDc(1, ElectricPotentialDcUnit.KilovoltDc).ToString());
                 Assert.Equal("1 MVdc", new ElectricPotentialDc(1, ElectricPotentialDcUnit.MegavoltDc).ToString());
@@ -340,7 +431,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
+                Thread.CurrentThread.CurrentUICulture = prevCulture;
             }
         }
 
@@ -360,10 +451,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
+            var oldCulture = CultureInfo.CurrentUICulture;
             try
             {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
                 Assert.Equal("0.1 Vdc", new ElectricPotentialDc(0.123456, ElectricPotentialDcUnit.VoltDc).ToString("s1"));
                 Assert.Equal("0.12 Vdc", new ElectricPotentialDc(0.123456, ElectricPotentialDcUnit.VoltDc).ToString("s2"));
                 Assert.Equal("0.123 Vdc", new ElectricPotentialDc(0.123456, ElectricPotentialDcUnit.VoltDc).ToString("s3"));
@@ -371,7 +462,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                CultureInfo.CurrentCulture = oldCulture;
+                CultureInfo.CurrentUICulture = oldCulture;
             }
         }
 
@@ -385,27 +476,28 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 Vdc", new ElectricPotentialDc(0.123456, ElectricPotentialDcUnit.VoltDc).ToString("s4", culture));
         }
 
-        [Theory]
-        [InlineData(null)]
-        [InlineData("en-US")]
-        public void ToString_NullFormat_DefaultsToGeneralFormat(string cultureName)
+
+        [Fact]
+        public void ToString_NullFormat_ThrowsArgumentNullException()
         {
             var quantity = ElectricPotentialDc.FromVoltsDc(1.0);
-            CultureInfo formatProvider = cultureName == null
-                ? null
-                : CultureInfo.GetCultureInfo(cultureName);
-
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
         }
 
-        [Theory]
-        [InlineData(null)]
-        [InlineData("g")]
-        public void ToString_NullProvider_EqualsCurrentCulture(string format)
+        [Fact]
+        public void ToString_NullArgs_ThrowsArgumentNullException()
         {
             var quantity = ElectricPotentialDc.FromVoltsDc(1.0);
-            Assert.Equal(quantity.ToString(format, CultureInfo.CurrentCulture), quantity.ToString(format, null));
+            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, "g", null));
         }
+
+        [Fact]
+        public void ToString_NullProvider_EqualsCurrentUICulture()
+        {
+            var quantity = ElectricPotentialDc.FromVoltsDc(1.0);
+            Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
+        }
+
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()
@@ -524,6 +616,13 @@ namespace UnitsNet.Tests
         {
             var quantity = ElectricPotentialDc.FromVoltsDc(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ElectricPotentialDcUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = ElectricPotentialDc.FromVoltsDc(1.0);
+            Assert.Equal(QuantityType.ElectricPotentialDc, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

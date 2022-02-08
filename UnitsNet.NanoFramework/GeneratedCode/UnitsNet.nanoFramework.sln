@@ -198,6 +198,8 @@ Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "TemperatureChangeRate", "Te
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "TemperatureDelta", "TemperatureDelta\TemperatureDelta.nfproj", "{8854c5e8-e40b-74c3-aafc-de0f13239276}"
 EndProject
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "TemperatureGradient", "TemperatureGradient\TemperatureGradient.nfproj", "{83d1d75e-3c26-b8d0-f097-f99452e749cc}"
+EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ThermalConductivity", "ThermalConductivity\ThermalConductivity.nfproj", "{7e7d8010-b37a-151a-11a5-1db234ee1104}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ThermalResistance", "ThermalResistance\ThermalResistance.nfproj", "{c69bdd4d-3ebd-4b8e-cffb-650903da3872}"
@@ -215,6 +217,8 @@ EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "VolumeConcentration", "VolumeConcentration\VolumeConcentration.nfproj", "{4aa72022-0946-6a28-a4e9-6c9add5caef6}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "VolumeFlow", "VolumeFlow\VolumeFlow.nfproj", "{b22e47e1-9506-56e6-3d19-780b887d8cb3}"
+EndProject
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "VolumeFlowPerArea", "VolumeFlowPerArea\VolumeFlowPerArea.nfproj", "{753bcc52-c451-8b29-6ae7-520b02ee6960}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "VolumePerLength", "VolumePerLength\VolumePerLength.nfproj", "{b66e3a3e-7945-3d40-24ef-73fa6e1b8d41}"
 EndProject
@@ -816,6 +820,12 @@ Global
 {8854c5e8-e40b-74c3-aafc-de0f13239276}.Release|Any CPU.ActiveCfg = Release|Any CPU
 {8854c5e8-e40b-74c3-aafc-de0f13239276}.Release|Any CPU.Build.0 = Release|Any CPU
 {8854c5e8-e40b-74c3-aafc-de0f13239276}.Release|Any CPU.Deploy.0 = Release|Any CPU
+{83d1d75e-3c26-b8d0-f097-f99452e749cc}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{83d1d75e-3c26-b8d0-f097-f99452e749cc}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{83d1d75e-3c26-b8d0-f097-f99452e749cc}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+{83d1d75e-3c26-b8d0-f097-f99452e749cc}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{83d1d75e-3c26-b8d0-f097-f99452e749cc}.Release|Any CPU.Build.0 = Release|Any CPU
+{83d1d75e-3c26-b8d0-f097-f99452e749cc}.Release|Any CPU.Deploy.0 = Release|Any CPU
 {7e7d8010-b37a-151a-11a5-1db234ee1104}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {7e7d8010-b37a-151a-11a5-1db234ee1104}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {7e7d8010-b37a-151a-11a5-1db234ee1104}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
@@ -870,6 +880,12 @@ Global
 {b22e47e1-9506-56e6-3d19-780b887d8cb3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 {b22e47e1-9506-56e6-3d19-780b887d8cb3}.Release|Any CPU.Build.0 = Release|Any CPU
 {b22e47e1-9506-56e6-3d19-780b887d8cb3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+{753bcc52-c451-8b29-6ae7-520b02ee6960}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{753bcc52-c451-8b29-6ae7-520b02ee6960}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{753bcc52-c451-8b29-6ae7-520b02ee6960}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+{753bcc52-c451-8b29-6ae7-520b02ee6960}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{753bcc52-c451-8b29-6ae7-520b02ee6960}.Release|Any CPU.Build.0 = Release|Any CPU
+{753bcc52-c451-8b29-6ae7-520b02ee6960}.Release|Any CPU.Deploy.0 = Release|Any CPU
 {b66e3a3e-7945-3d40-24ef-73fa6e1b8d41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {b66e3a3e-7945-3d40-24ef-73fa6e1b8d41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {b66e3a3e-7945-3d40-24ef-73fa6e1b8d41}.Debug|Any CPU.Deploy.0 = Debug|Any CPU

@@ -25,6 +25,18 @@ namespace UnitsNet.Tests
     public class NumberToTorqueExtensionsTests
     {
         [Fact]
+        public void NumberToGramForceCentimetersTest() =>
+            Assert.Equal(Torque.FromGramForceCentimeters(2), 2.GramForceCentimeters());
+
+        [Fact]
+        public void NumberToGramForceMetersTest() =>
+            Assert.Equal(Torque.FromGramForceMeters(2), 2.GramForceMeters());
+
+        [Fact]
+        public void NumberToGramForceMillimetersTest() =>
+            Assert.Equal(Torque.FromGramForceMillimeters(2), 2.GramForceMillimeters());
+
+        [Fact]
         public void NumberToKilogramForceCentimetersTest() =>
             Assert.Equal(Torque.FromKilogramForceCentimeters(2), 2.KilogramForceCentimeters());
 

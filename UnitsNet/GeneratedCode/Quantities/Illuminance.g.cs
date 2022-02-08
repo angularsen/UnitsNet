@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -38,7 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Illuminance
     /// </remarks>
     [DataContract]
-    public partial struct Illuminance : IQuantity<IlluminanceUnit>, IComparable, IComparable<Illuminance>, IConvertible, IFormattable
+    public partial struct Illuminance : IQuantity<IlluminanceUnit>, IEquatable<Illuminance>, IComparable, IComparable<Illuminance>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -55,15 +56,23 @@ namespace UnitsNet
         static Illuminance()
         {
             BaseDimensions = new BaseDimensions(-2, 0, 0, 0, 0, 0, 1);
-
+            BaseUnit = IlluminanceUnit.Lux;
+            MaxValue = new Illuminance(double.MaxValue, BaseUnit);
+            MinValue = new Illuminance(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Illuminance;
+            Units = Enum.GetValues(typeof(IlluminanceUnit)).Cast<IlluminanceUnit>().Except(new IlluminanceUnit[]{ IlluminanceUnit.Undefined }).ToArray();
+            Zero = new Illuminance(0, BaseUnit);
             Info = new QuantityInfo<IlluminanceUnit>("Illuminance",
-                new UnitInfo<IlluminanceUnit>[] {
+                new UnitInfo<IlluminanceUnit>[]
+                {
                     new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Kilolux, "Kilolux", BaseUnits.Undefined),
                     new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Lux, "Lux", BaseUnits.Undefined),
                     new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Megalux, "Megalux", BaseUnits.Undefined),
                     new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Millilux, "Millilux", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Illuminance);
+
+            RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
         /// <summary>
@@ -74,6 +83,9 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Illuminance(double value, IlluminanceUnit unit)
         {
+            if(unit == IlluminanceUnit.Undefined)
+              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
+
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
@@ -99,6 +111,11 @@ namespace UnitsNet
 
         #region Static Properties
 
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Illuminance" /> instances.
+        /// </summary>
+        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<IlluminanceUnit> Info { get; }
 
@@ -110,17 +127,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Illuminance, which is Lux. All conversions go via this value.
         /// </summary>
-        public static IlluminanceUnit ConversionBaseUnit { get; } = IlluminanceUnit.Lux;
+        public static IlluminanceUnit BaseUnit { get; }
+
+        /// <summary>
+        /// Represents the largest possible value of Illuminance
+        /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
+        public static Illuminance MaxValue { get; }
+
+        /// <summary>
+        /// Represents the smallest possible value of Illuminance
+        /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
+        public static Illuminance MinValue { get; }
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Illuminance quantity.
         /// </summary>
-        public static IlluminanceUnit[] Units { get; } = Enum.GetValues(typeof(IlluminanceUnit)).Cast<IlluminanceUnit>().ToArray();
+        public static IlluminanceUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Lux.
         /// </summary>
-        public static Illuminance Zero { get; } = new Illuminance(0, ConversionBaseUnit);
+        public static Illuminance Zero { get; }
 
         #endregion
 
@@ -134,13 +169,19 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public IlluminanceUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
+        public IlluminanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<IlluminanceUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
+        public QuantityType Type => QuantityType.Illuminance;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -176,6 +217,26 @@ namespace UnitsNet
         #region Static Methods
 
         /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
+        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
+        {
+            // Register in unit converter: BaseUnit -> IlluminanceUnit
+            unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Lux, IlluminanceUnit.Kilolux, quantity => new Illuminance((quantity.Value) / 1e3d, IlluminanceUnit.Kilolux));
+            unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Lux, IlluminanceUnit.Megalux, quantity => new Illuminance((quantity.Value) / 1e6d, IlluminanceUnit.Megalux));
+            unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Lux, IlluminanceUnit.Millilux, quantity => new Illuminance((quantity.Value) / 1e-3d, IlluminanceUnit.Millilux));
+            
+            // Register in unit converter: BaseUnit <-> BaseUnit
+            unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Lux, IlluminanceUnit.Lux, quantity => quantity);
+
+            // Register in unit converter: IlluminanceUnit -> BaseUnit
+            unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Kilolux, IlluminanceUnit.Lux, quantity => new Illuminance((quantity.Value) * 1e3d, IlluminanceUnit.Lux));
+            unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Megalux, IlluminanceUnit.Lux, quantity => new Illuminance((quantity.Value) * 1e6d, IlluminanceUnit.Lux));
+            unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Millilux, IlluminanceUnit.Lux, quantity => new Illuminance((quantity.Value) * 1e-3d, IlluminanceUnit.Lux));
+        }
+
+        /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
@@ -190,7 +251,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static string GetAbbreviation(IlluminanceUnit unit, IFormatProvider? provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
@@ -301,7 +362,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static Illuminance Parse(string str, IFormatProvider? provider)
         {
             return QuantityParser.Default.Parse<Illuminance, IlluminanceUnit>(
@@ -332,7 +393,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Illuminance result)
         {
             return QuantityParser.Default.TryParse<Illuminance, IlluminanceUnit>(
@@ -360,7 +421,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -386,7 +447,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out IlluminanceUnit unit)
         {
             return UnitParser.Default.TryParse<IlluminanceUnit>(str, provider, out unit);
@@ -466,6 +527,20 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Illuminance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(Illuminance left, Illuminance right)
+        {
+            return left.Equals(right);
+        }
+
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Illuminance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(Illuminance left, Illuminance right)
+        {
+            return !(left == right);
+        }
+
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -479,6 +554,23 @@ namespace UnitsNet
         public int CompareTo(Illuminance other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Illuminance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is Illuminance objIlluminance))
+                return false;
+
+            return Equals(objIlluminance);
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Illuminance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(Illuminance other)
+        {
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -585,11 +677,42 @@ namespace UnitsNet
         /// <summary>
         ///     Converts this Illuminance to another Illuminance with the unit representation <paramref name="unit" />.
         /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
         /// <returns>A Illuminance with the specified unit.</returns>
         public Illuminance ToUnit(IlluminanceUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new Illuminance(convertedValue, unit);
+            return ToUnit(unit, DefaultConversionFunctions);
+        }
+
+        /// <summary>
+        ///     Converts this Illuminance to another Illuminance using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
+        /// <returns>A Illuminance with the specified unit.</returns>
+        public Illuminance ToUnit(IlluminanceUnit unit, UnitConverter unitConverter)
+        {
+            if(Unit == unit)
+            {
+                // Already in requested units.
+                return this;
+            }
+            else if(unitConverter.TryGetConversionFunction((typeof(Illuminance), Unit, typeof(Illuminance), unit), out var conversionFunction))
+            {
+                // Direct conversion to requested unit found. Return the converted quantity.
+                var converted = conversionFunction(this);
+                return (Illuminance)converted;
+            }
+            else if(Unit != BaseUnit)
+            {
+                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                var inBaseUnits = ToUnit(BaseUnit);
+                return inBaseUnits.ToUnit(unit);
+            }
+            else
+            {
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         /// <inheritdoc />
@@ -598,7 +721,16 @@ namespace UnitsNet
             if(!(unit is IlluminanceUnit unitAsIlluminanceUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(IlluminanceUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsIlluminanceUnit);
+            return ToUnit(unitAsIlluminanceUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is IlluminanceUnit unitAsIlluminanceUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(IlluminanceUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsIlluminanceUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -623,53 +755,15 @@ namespace UnitsNet
         IQuantity<IlluminanceUnit> IQuantity<IlluminanceUnit>.ToUnit(IlluminanceUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantity<IlluminanceUnit> IQuantity<IlluminanceUnit>.ToUnit(IlluminanceUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
+
+        /// <inheritdoc />
         IQuantity<IlluminanceUnit> IQuantity<IlluminanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case IlluminanceUnit.Kilolux: return (_value) * 1e3d;
-                case IlluminanceUnit.Lux: return _value;
-                case IlluminanceUnit.Megalux: return (_value) * 1e6d;
-                case IlluminanceUnit.Millilux: return (_value) * 1e-3d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal Illuminance ToBaseUnit()
-        {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new Illuminance(baseUnitValue, ConversionBaseUnit);
-        }
 
         private double GetValueAs(IlluminanceUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var baseUnitValue = GetValueInBaseUnit();
-
-            switch(unit)
-            {
-                case IlluminanceUnit.Kilolux: return (baseUnitValue) / 1e3d;
-                case IlluminanceUnit.Lux: return baseUnitValue;
-                case IlluminanceUnit.Megalux: return (baseUnitValue) / 1e6d;
-                case IlluminanceUnit.Millilux: return (baseUnitValue) / 1e-3d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         #endregion
@@ -689,29 +783,63 @@ namespace UnitsNet
         ///     Gets the default string representation of value and unit using the given format provider.
         /// </summary>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
             return ToString("g", provider);
         }
 
+        /// <summary>
+        ///     Get string representation of value and unit.
+        /// </summary>
+        /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
+        /// <returns>String representation.</returns>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
+        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
+        {
+            var value = Convert.ToDouble(Value);
+            var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
+            return ToString(provider, format);
+        }
+
+        /// <summary>
+        ///     Get string representation of value and unit.
+        /// </summary>
+        /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
+        /// <param name="args">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
+        /// <returns>String representation.</returns>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
+        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
+        {
+            if (format == null) throw new ArgumentNullException(nameof(format));
+            if (args == null) throw new ArgumentNullException(nameof(args));
+
+            provider = provider ?? CultureInfo.CurrentUICulture;
+
+            var value = Convert.ToDouble(Value);
+            var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
+        }
+
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
-        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentCulture" />.
+        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentUICulture" />.
         /// </summary>
         /// <param name="format">The format string.</param>
         /// <returns>The string representation.</returns>
         public string ToString(string format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, CultureInfo.CurrentUICulture);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
-        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
+        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
         /// </summary>
         /// <param name="format">The format string.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>The string representation.</returns>
         public string ToString(string format, IFormatProvider? provider)
         {
@@ -793,6 +921,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(IlluminanceUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return Illuminance.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Illuminance.Info;
             else if(conversionType == typeof(BaseDimensions))

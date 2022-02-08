@@ -56,6 +56,7 @@ namespace UnitsNet.Units
         Micropascal,
         Millibar,
         MillimeterOfMercury,
+        MillimeterOfWaterColumn,
         Millipascal,
         NewtonPerSquareCentimeter,
         NewtonPerSquareMeter,

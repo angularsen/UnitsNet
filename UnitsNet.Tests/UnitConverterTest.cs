@@ -10,6 +10,19 @@ namespace UnitsNet.Tests
     public class UnitConverterTest
     {
         [Fact]
+        public void CopyConstructorCopiesCoversionFunctions()
+        {
+            Length ConversionFunction(Length from) => Length.FromInches(18);
+
+            var unitConverter = new UnitConverter();
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Inch, ConversionFunction);
+
+            var copiedUnitConverter = new UnitConverter(unitConverter);
+            var foundConversionFunction = copiedUnitConverter.GetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Inch);
+            Assert.NotNull(foundConversionFunction);
+        }
+
+        [Fact]
         public void CustomConversionWithSameQuantityType()
         {
             Length ConversionFunction(Length from) => Length.FromInches(18);

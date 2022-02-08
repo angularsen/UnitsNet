@@ -152,6 +152,10 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
         public static Pressure MillimetersOfMercury<T>(this T value) =>
             Pressure.FromMillimetersOfMercury(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Pressure.FromMillimeterOfWaterColumn(UnitsNet.QuantityValue)" />
+        public static Pressure MillimeterOfWaterColumn<T>(this T value) =>
+            Pressure.FromMillimeterOfWaterColumn(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Pressure.FromMillipascals(UnitsNet.QuantityValue)" />
         public static Pressure Millipascals<T>(this T value) =>
             Pressure.FromMillipascals(Convert.ToDouble(value));

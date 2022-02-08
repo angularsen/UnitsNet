@@ -12,8 +12,8 @@
     {
       "SingularName": "Watt",
       "PluralName": "Watts",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Femto", "Pico", "Nano", "Micro", "Milli", "Deci", "Deca", "Kilo", "Mega", "Giga", "Tera", "Peta" ],
       "Localization": [
         {
@@ -25,8 +25,8 @@
     {
       "SingularName": "SolarLuminosity",
       "PluralName": "SolarLuminosities",
-      "FromUnitToBaseFunc": "x * 3.846e26",
-      "FromBaseToUnitFunc": "x / 3.846e26",
+      "FromUnitToBaseFunc": "{x} * 3.846e26",
+      "FromBaseToUnitFunc": "{x} / 3.846e26",
       "XmlDocRemarks": "https://www.britannica.com/science/luminosity",
       "Localization": [
         {

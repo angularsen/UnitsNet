@@ -28,6 +28,18 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
     /// </summary>
     public static class NumberToTorqueExtensions
     {
+        /// <inheritdoc cref="Torque.FromGramForceCentimeters(UnitsNet.QuantityValue)" />
+        public static Torque GramForceCentimeters<T>(this T value) =>
+            Torque.FromGramForceCentimeters(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Torque.FromGramForceMeters(UnitsNet.QuantityValue)" />
+        public static Torque GramForceMeters<T>(this T value) =>
+            Torque.FromGramForceMeters(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Torque.FromGramForceMillimeters(UnitsNet.QuantityValue)" />
+        public static Torque GramForceMillimeters<T>(this T value) =>
+            Torque.FromGramForceMillimeters(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Torque.FromKilogramForceCentimeters(UnitsNet.QuantityValue)" />
         public static Torque KilogramForceCentimeters<T>(this T value) =>
             Torque.FromKilogramForceCentimeters(Convert.ToDouble(value));

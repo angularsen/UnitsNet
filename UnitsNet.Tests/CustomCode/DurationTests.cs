@@ -31,6 +31,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double Years365InOneSecond => 3.170979198376458e-8;
 
+        protected override double JulianYearsInOneSecond => 3.16880878140289e-08;
+
         [Fact]
         public static void ToTimeSpanShouldThrowExceptionOnValuesLargerThanTimeSpanMax()
         {
@@ -189,6 +191,20 @@ namespace UnitsNet.Tests.CustomCode
         {
             ElectricCharge ah = Duration.FromHours(5) * ElectricCurrent.FromAmperes(4);
             Assert.Equal(20, ah.AmpereHours);
+        }
+
+        [Fact]
+        public void DurationTimesAcceleration()
+        {
+            Speed speed = Duration.FromSeconds(10) * Acceleration.FromMetersPerSecondSquared(10);
+            Assert.Equal(Speed.FromMetersPerSecond(100), speed);
+        }
+
+        [Fact]
+        public void DurationTimesForceChangeRate()
+        {
+            Force force = Duration.FromSeconds(10) * ForceChangeRate.FromNewtonsPerSecond(100);
+            Assert.Equal(Force.FromNewtons(1000), force);
         }
     }
 }

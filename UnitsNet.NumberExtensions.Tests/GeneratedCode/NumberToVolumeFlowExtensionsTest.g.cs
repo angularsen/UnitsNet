@@ -45,6 +45,10 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumeFlow.FromCentilitersPerDay(2), 2.CentilitersPerDay());
 
         [Fact]
+        public void NumberToCentilitersPerHourTest() =>
+            Assert.Equal(VolumeFlow.FromCentilitersPerHour(2), 2.CentilitersPerHour());
+
+        [Fact]
         public void NumberToCentilitersPerMinuteTest() =>
             Assert.Equal(VolumeFlow.FromCentilitersPerMinute(2), 2.CentilitersPerMinute());
 
@@ -113,6 +117,10 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumeFlow.FromDecilitersPerDay(2), 2.DecilitersPerDay());
 
         [Fact]
+        public void NumberToDecilitersPerHourTest() =>
+            Assert.Equal(VolumeFlow.FromDecilitersPerHour(2), 2.DecilitersPerHour());
+
+        [Fact]
         public void NumberToDecilitersPerMinuteTest() =>
             Assert.Equal(VolumeFlow.FromDecilitersPerMinute(2), 2.DecilitersPerMinute());
 
@@ -123,6 +131,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToKilolitersPerDayTest() =>
             Assert.Equal(VolumeFlow.FromKilolitersPerDay(2), 2.KilolitersPerDay());
+
+        [Fact]
+        public void NumberToKilolitersPerHourTest() =>
+            Assert.Equal(VolumeFlow.FromKilolitersPerHour(2), 2.KilolitersPerHour());
 
         [Fact]
         public void NumberToKilolitersPerMinuteTest() =>
@@ -165,6 +177,10 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumeFlow.FromMicrolitersPerDay(2), 2.MicrolitersPerDay());
 
         [Fact]
+        public void NumberToMicrolitersPerHourTest() =>
+            Assert.Equal(VolumeFlow.FromMicrolitersPerHour(2), 2.MicrolitersPerHour());
+
+        [Fact]
         public void NumberToMicrolitersPerMinuteTest() =>
             Assert.Equal(VolumeFlow.FromMicrolitersPerMinute(2), 2.MicrolitersPerMinute());
 
@@ -175,6 +191,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToMillilitersPerDayTest() =>
             Assert.Equal(VolumeFlow.FromMillilitersPerDay(2), 2.MillilitersPerDay());
+
+        [Fact]
+        public void NumberToMillilitersPerHourTest() =>
+            Assert.Equal(VolumeFlow.FromMillilitersPerHour(2), 2.MillilitersPerHour());
 
         [Fact]
         public void NumberToMillilitersPerMinuteTest() =>
@@ -191,6 +211,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToNanolitersPerDayTest() =>
             Assert.Equal(VolumeFlow.FromNanolitersPerDay(2), 2.NanolitersPerDay());
+
+        [Fact]
+        public void NumberToNanolitersPerHourTest() =>
+            Assert.Equal(VolumeFlow.FromNanolitersPerHour(2), 2.NanolitersPerHour());
 
         [Fact]
         public void NumberToNanolitersPerMinuteTest() =>

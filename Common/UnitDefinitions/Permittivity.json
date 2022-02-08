@@ -13,8 +13,8 @@
     {
       "SingularName": "FaradPerMeter",
       "PluralName": "FaradsPerMeter",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Localization": [
         {
           "Culture": "en-US",

@@ -48,6 +48,8 @@ namespace UnitsNet.Tests.CustomQuantities
             throw new ArgumentException("Must be of type HowMuchUnit.", nameof(unit));
         }
 
+        public IQuantity ToUnit(Enum unit, UnitConverter unitConverter) => throw new NotImplementedException();
+
         public IQuantity ToUnit(UnitSystem unitSystem) => throw new NotImplementedException();
 
         public override string ToString() => $"{Value} {Unit}";

@@ -88,6 +88,11 @@ namespace UnitsNet
         public double Hours => As(DurationUnit.Hour);
 
         /// <summary>
+        ///     Get Duration in JulianYears.
+        /// </summary>
+        public double JulianYears => As(DurationUnit.JulianYear);
+
+        /// <summary>
         ///     Get Duration in Microseconds.
         /// </summary>
         public double Microseconds => As(DurationUnit.Microsecond);
@@ -142,6 +147,12 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromHours(double hours) => new Duration(hours, DurationUnit.Hour);
+
+        /// <summary>
+        ///     Get Duration from JulianYears.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Duration FromJulianYears(double julianyears) => new Duration(julianyears, DurationUnit.JulianYear);
 
         /// <summary>
         ///     Get Duration from Microseconds.
@@ -234,6 +245,7 @@ namespace UnitsNet
             {
                 case DurationUnit.Day: return _value*24*3600;
                 case DurationUnit.Hour: return _value*3600;
+                case DurationUnit.JulianYear: return _value*365.25*24*3600;
                 case DurationUnit.Microsecond: return (_value) * 1e-6d;
                 case DurationUnit.Millisecond: return (_value) * 1e-3d;
                 case DurationUnit.Minute: return _value*60;
@@ -258,6 +270,7 @@ namespace UnitsNet
             {
                 case DurationUnit.Day: return baseUnitValue/(24*3600);
                 case DurationUnit.Hour: return baseUnitValue/3600;
+                case DurationUnit.JulianYear: return baseUnitValue/(365.25*24*3600);
                 case DurationUnit.Microsecond: return (baseUnitValue) / 1e-6d;
                 case DurationUnit.Millisecond: return (baseUnitValue) / 1e-3d;
                 case DurationUnit.Minute: return baseUnitValue/60;

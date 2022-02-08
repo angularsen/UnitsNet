@@ -11,8 +11,8 @@
     {
       "SingularName": "Voltampere",
       "PluralName": "Voltamperes",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Kilo", "Mega", "Giga" ],
       "Localization": [
         {

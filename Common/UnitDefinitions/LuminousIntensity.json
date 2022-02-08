@@ -13,8 +13,8 @@
       "BaseUnits": {
         "J": "Candela"
       },
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Localization": [
         {
           "Culture": "en-US",

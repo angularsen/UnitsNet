@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -35,7 +36,7 @@ namespace UnitsNet
     ///     Mass flow is the ratio of the mass change to the time during which the change occurred (value of mass changes per unit time).
     /// </summary>
     [DataContract]
-    public partial struct MassFlow : IQuantity<MassFlowUnit>, IComparable, IComparable<MassFlow>, IConvertible, IFormattable
+    public partial struct MassFlow : IQuantity<MassFlowUnit>, IEquatable<MassFlow>, IComparable, IComparable<MassFlow>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -52,9 +53,15 @@ namespace UnitsNet
         static MassFlow()
         {
             BaseDimensions = new BaseDimensions(0, 1, -1, 0, 0, 0, 0);
-
+            BaseUnit = MassFlowUnit.GramPerSecond;
+            MaxValue = new MassFlow(double.MaxValue, BaseUnit);
+            MinValue = new MassFlow(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.MassFlow;
+            Units = Enum.GetValues(typeof(MassFlowUnit)).Cast<MassFlowUnit>().Except(new MassFlowUnit[]{ MassFlowUnit.Undefined }).ToArray();
+            Zero = new MassFlow(0, BaseUnit);
             Info = new QuantityInfo<MassFlowUnit>("MassFlow",
-                new UnitInfo<MassFlowUnit>[] {
+                new UnitInfo<MassFlowUnit>[]
+                {
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.CentigramPerDay, "CentigramsPerDay", BaseUnits.Undefined),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.CentigramPerSecond, "CentigramsPerSecond", BaseUnits.Undefined),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.DecagramPerDay, "DecagramsPerDay", BaseUnits.Undefined),
@@ -89,7 +96,9 @@ namespace UnitsNet
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerDay, "TonnesPerDay", BaseUnits.Undefined),
                     new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerHour, "TonnesPerHour", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.MassFlow);
+
+            RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
         /// <summary>
@@ -100,6 +109,9 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public MassFlow(double value, MassFlowUnit unit)
         {
+            if(unit == MassFlowUnit.Undefined)
+              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
+
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
@@ -125,6 +137,11 @@ namespace UnitsNet
 
         #region Static Properties
 
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="MassFlow" /> instances.
+        /// </summary>
+        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<MassFlowUnit> Info { get; }
 
@@ -136,17 +153,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of MassFlow, which is GramPerSecond. All conversions go via this value.
         /// </summary>
-        public static MassFlowUnit ConversionBaseUnit { get; } = MassFlowUnit.GramPerSecond;
+        public static MassFlowUnit BaseUnit { get; }
+
+        /// <summary>
+        /// Represents the largest possible value of MassFlow
+        /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
+        public static MassFlow MaxValue { get; }
+
+        /// <summary>
+        /// Represents the smallest possible value of MassFlow
+        /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
+        public static MassFlow MinValue { get; }
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the MassFlow quantity.
         /// </summary>
-        public static MassFlowUnit[] Units { get; } = Enum.GetValues(typeof(MassFlowUnit)).Cast<MassFlowUnit>().ToArray();
+        public static MassFlowUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit GramPerSecond.
         /// </summary>
-        public static MassFlow Zero { get; } = new MassFlow(0, ConversionBaseUnit);
+        public static MassFlow Zero { get; }
 
         #endregion
 
@@ -160,13 +195,19 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public MassFlowUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
+        public MassFlowUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<MassFlowUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
+        public QuantityType Type => QuantityType.MassFlow;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -347,6 +388,84 @@ namespace UnitsNet
         #region Static Methods
 
         /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
+        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
+        {
+            // Register in unit converter: BaseUnit -> MassFlowUnit
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.CentigramPerDay, quantity => new MassFlow((quantity.Value*86400) / 1e-2d, MassFlowUnit.CentigramPerDay));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.CentigramPerSecond, quantity => new MassFlow((quantity.Value) / 1e-2d, MassFlowUnit.CentigramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.DecagramPerDay, quantity => new MassFlow((quantity.Value*86400) / 1e1d, MassFlowUnit.DecagramPerDay));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.DecagramPerSecond, quantity => new MassFlow((quantity.Value) / 1e1d, MassFlowUnit.DecagramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.DecigramPerDay, quantity => new MassFlow((quantity.Value*86400) / 1e-1d, MassFlowUnit.DecigramPerDay));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.DecigramPerSecond, quantity => new MassFlow((quantity.Value) / 1e-1d, MassFlowUnit.DecigramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.GramPerDay, quantity => new MassFlow(quantity.Value*86400, MassFlowUnit.GramPerDay));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.GramPerHour, quantity => new MassFlow(quantity.Value*3600, MassFlowUnit.GramPerHour));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.HectogramPerDay, quantity => new MassFlow((quantity.Value*86400) / 1e2d, MassFlowUnit.HectogramPerDay));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.HectogramPerSecond, quantity => new MassFlow((quantity.Value) / 1e2d, MassFlowUnit.HectogramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.KilogramPerDay, quantity => new MassFlow((quantity.Value*86400) / 1e3d, MassFlowUnit.KilogramPerDay));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.KilogramPerHour, quantity => new MassFlow(quantity.Value*3.6, MassFlowUnit.KilogramPerHour));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.KilogramPerMinute, quantity => new MassFlow(quantity.Value*0.06, MassFlowUnit.KilogramPerMinute));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.KilogramPerSecond, quantity => new MassFlow((quantity.Value) / 1e3d, MassFlowUnit.KilogramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MegagramPerDay, quantity => new MassFlow((quantity.Value*86400) / 1e6d, MassFlowUnit.MegagramPerDay));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MegapoundPerDay, quantity => new MassFlow((quantity.Value*190.47936) / 1e6d, MassFlowUnit.MegapoundPerDay));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MegapoundPerHour, quantity => new MassFlow((quantity.Value*7.93664) / 1e6d, MassFlowUnit.MegapoundPerHour));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MegapoundPerMinute, quantity => new MassFlow((quantity.Value*0.132277) / 1e6d, MassFlowUnit.MegapoundPerMinute));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MegapoundPerSecond, quantity => new MassFlow((quantity.Value / 453.59237) / 1e6d, MassFlowUnit.MegapoundPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MicrogramPerDay, quantity => new MassFlow((quantity.Value*86400) / 1e-6d, MassFlowUnit.MicrogramPerDay));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MicrogramPerSecond, quantity => new MassFlow((quantity.Value) / 1e-6d, MassFlowUnit.MicrogramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MilligramPerDay, quantity => new MassFlow((quantity.Value*86400) / 1e-3d, MassFlowUnit.MilligramPerDay));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MilligramPerSecond, quantity => new MassFlow((quantity.Value) / 1e-3d, MassFlowUnit.MilligramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.NanogramPerDay, quantity => new MassFlow((quantity.Value*86400) / 1e-9d, MassFlowUnit.NanogramPerDay));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.NanogramPerSecond, quantity => new MassFlow((quantity.Value) / 1e-9d, MassFlowUnit.NanogramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.PoundPerDay, quantity => new MassFlow(quantity.Value*190.47936, MassFlowUnit.PoundPerDay));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.PoundPerHour, quantity => new MassFlow(quantity.Value*7.93664, MassFlowUnit.PoundPerHour));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.PoundPerMinute, quantity => new MassFlow(quantity.Value*0.132277, MassFlowUnit.PoundPerMinute));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.PoundPerSecond, quantity => new MassFlow(quantity.Value / 453.59237, MassFlowUnit.PoundPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.ShortTonPerHour, quantity => new MassFlow(quantity.Value/251.9957611, MassFlowUnit.ShortTonPerHour));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.TonnePerDay, quantity => new MassFlow(quantity.Value*0.0864000, MassFlowUnit.TonnePerDay));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.TonnePerHour, quantity => new MassFlow(quantity.Value*3.6/1000, MassFlowUnit.TonnePerHour));
+            
+            // Register in unit converter: BaseUnit <-> BaseUnit
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.GramPerSecond, quantity => quantity);
+
+            // Register in unit converter: MassFlowUnit -> BaseUnit
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.CentigramPerDay, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value/86400) * 1e-2d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.CentigramPerSecond, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value) * 1e-2d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.DecagramPerDay, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value/86400) * 1e1d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.DecagramPerSecond, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value) * 1e1d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.DecigramPerDay, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value/86400) * 1e-1d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.DecigramPerSecond, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value) * 1e-1d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerDay, MassFlowUnit.GramPerSecond, quantity => new MassFlow(quantity.Value/86400, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerHour, MassFlowUnit.GramPerSecond, quantity => new MassFlow(quantity.Value/3600, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.HectogramPerDay, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value/86400) * 1e2d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.HectogramPerSecond, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value) * 1e2d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.KilogramPerDay, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value/86400) * 1e3d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.KilogramPerHour, MassFlowUnit.GramPerSecond, quantity => new MassFlow(quantity.Value/3.6, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.KilogramPerMinute, MassFlowUnit.GramPerSecond, quantity => new MassFlow(quantity.Value/0.06, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.KilogramPerSecond, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value) * 1e3d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MegagramPerDay, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value/86400) * 1e6d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MegapoundPerDay, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value/190.47936) * 1e6d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MegapoundPerHour, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value/7.93664) * 1e6d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MegapoundPerMinute, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value/0.132277) * 1e6d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MegapoundPerSecond, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value * 453.59237) * 1e6d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MicrogramPerDay, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value/86400) * 1e-6d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MicrogramPerSecond, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value) * 1e-6d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MilligramPerDay, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value/86400) * 1e-3d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MilligramPerSecond, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value) * 1e-3d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.NanogramPerDay, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value/86400) * 1e-9d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.NanogramPerSecond, MassFlowUnit.GramPerSecond, quantity => new MassFlow((quantity.Value) * 1e-9d, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.PoundPerDay, MassFlowUnit.GramPerSecond, quantity => new MassFlow(quantity.Value/190.47936, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.PoundPerHour, MassFlowUnit.GramPerSecond, quantity => new MassFlow(quantity.Value/7.93664, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.PoundPerMinute, MassFlowUnit.GramPerSecond, quantity => new MassFlow(quantity.Value/0.132277, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.PoundPerSecond, MassFlowUnit.GramPerSecond, quantity => new MassFlow(quantity.Value * 453.59237, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.ShortTonPerHour, MassFlowUnit.GramPerSecond, quantity => new MassFlow(quantity.Value*251.9957611, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.TonnePerDay, MassFlowUnit.GramPerSecond, quantity => new MassFlow(quantity.Value/0.0864000, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.TonnePerHour, MassFlowUnit.GramPerSecond, quantity => new MassFlow(1000*quantity.Value/3.6, MassFlowUnit.GramPerSecond));
+        }
+
+        /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
@@ -361,7 +480,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static string GetAbbreviation(MassFlowUnit unit, IFormatProvider? provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
@@ -733,7 +852,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static MassFlow Parse(string str, IFormatProvider? provider)
         {
             return QuantityParser.Default.Parse<MassFlow, MassFlowUnit>(
@@ -764,7 +883,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out MassFlow result)
         {
             return QuantityParser.Default.TryParse<MassFlow, MassFlowUnit>(
@@ -792,7 +911,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -818,7 +937,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out MassFlowUnit unit)
         {
             return UnitParser.Default.TryParse<MassFlowUnit>(str, provider, out unit);
@@ -898,6 +1017,20 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(MassFlow, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(MassFlow left, MassFlow right)
+        {
+            return left.Equals(right);
+        }
+
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(MassFlow, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(MassFlow left, MassFlow right)
+        {
+            return !(left == right);
+        }
+
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -911,6 +1044,23 @@ namespace UnitsNet
         public int CompareTo(MassFlow other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(MassFlow, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is MassFlow objMassFlow))
+                return false;
+
+            return Equals(objMassFlow);
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(MassFlow, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(MassFlow other)
+        {
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -1017,11 +1167,42 @@ namespace UnitsNet
         /// <summary>
         ///     Converts this MassFlow to another MassFlow with the unit representation <paramref name="unit" />.
         /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
         /// <returns>A MassFlow with the specified unit.</returns>
         public MassFlow ToUnit(MassFlowUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new MassFlow(convertedValue, unit);
+            return ToUnit(unit, DefaultConversionFunctions);
+        }
+
+        /// <summary>
+        ///     Converts this MassFlow to another MassFlow using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
+        /// <returns>A MassFlow with the specified unit.</returns>
+        public MassFlow ToUnit(MassFlowUnit unit, UnitConverter unitConverter)
+        {
+            if(Unit == unit)
+            {
+                // Already in requested units.
+                return this;
+            }
+            else if(unitConverter.TryGetConversionFunction((typeof(MassFlow), Unit, typeof(MassFlow), unit), out var conversionFunction))
+            {
+                // Direct conversion to requested unit found. Return the converted quantity.
+                var converted = conversionFunction(this);
+                return (MassFlow)converted;
+            }
+            else if(Unit != BaseUnit)
+            {
+                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                var inBaseUnits = ToUnit(BaseUnit);
+                return inBaseUnits.ToUnit(unit);
+            }
+            else
+            {
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         /// <inheritdoc />
@@ -1030,7 +1211,16 @@ namespace UnitsNet
             if(!(unit is MassFlowUnit unitAsMassFlowUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassFlowUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsMassFlowUnit);
+            return ToUnit(unitAsMassFlowUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is MassFlowUnit unitAsMassFlowUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassFlowUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsMassFlowUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -1055,111 +1245,15 @@ namespace UnitsNet
         IQuantity<MassFlowUnit> IQuantity<MassFlowUnit>.ToUnit(MassFlowUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantity<MassFlowUnit> IQuantity<MassFlowUnit>.ToUnit(MassFlowUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
+
+        /// <inheritdoc />
         IQuantity<MassFlowUnit> IQuantity<MassFlowUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case MassFlowUnit.CentigramPerDay: return (_value/86400) * 1e-2d;
-                case MassFlowUnit.CentigramPerSecond: return (_value) * 1e-2d;
-                case MassFlowUnit.DecagramPerDay: return (_value/86400) * 1e1d;
-                case MassFlowUnit.DecagramPerSecond: return (_value) * 1e1d;
-                case MassFlowUnit.DecigramPerDay: return (_value/86400) * 1e-1d;
-                case MassFlowUnit.DecigramPerSecond: return (_value) * 1e-1d;
-                case MassFlowUnit.GramPerDay: return _value/86400;
-                case MassFlowUnit.GramPerHour: return _value/3600;
-                case MassFlowUnit.GramPerSecond: return _value;
-                case MassFlowUnit.HectogramPerDay: return (_value/86400) * 1e2d;
-                case MassFlowUnit.HectogramPerSecond: return (_value) * 1e2d;
-                case MassFlowUnit.KilogramPerDay: return (_value/86400) * 1e3d;
-                case MassFlowUnit.KilogramPerHour: return _value/3.6;
-                case MassFlowUnit.KilogramPerMinute: return _value/0.06;
-                case MassFlowUnit.KilogramPerSecond: return (_value) * 1e3d;
-                case MassFlowUnit.MegagramPerDay: return (_value/86400) * 1e6d;
-                case MassFlowUnit.MegapoundPerDay: return (_value/190.47936) * 1e6d;
-                case MassFlowUnit.MegapoundPerHour: return (_value/7.93664) * 1e6d;
-                case MassFlowUnit.MegapoundPerMinute: return (_value/0.132277) * 1e6d;
-                case MassFlowUnit.MegapoundPerSecond: return (_value * 453.59237) * 1e6d;
-                case MassFlowUnit.MicrogramPerDay: return (_value/86400) * 1e-6d;
-                case MassFlowUnit.MicrogramPerSecond: return (_value) * 1e-6d;
-                case MassFlowUnit.MilligramPerDay: return (_value/86400) * 1e-3d;
-                case MassFlowUnit.MilligramPerSecond: return (_value) * 1e-3d;
-                case MassFlowUnit.NanogramPerDay: return (_value/86400) * 1e-9d;
-                case MassFlowUnit.NanogramPerSecond: return (_value) * 1e-9d;
-                case MassFlowUnit.PoundPerDay: return _value/190.47936;
-                case MassFlowUnit.PoundPerHour: return _value/7.93664;
-                case MassFlowUnit.PoundPerMinute: return _value/0.132277;
-                case MassFlowUnit.PoundPerSecond: return _value * 453.59237;
-                case MassFlowUnit.ShortTonPerHour: return _value*251.9957611;
-                case MassFlowUnit.TonnePerDay: return _value/0.0864000;
-                case MassFlowUnit.TonnePerHour: return 1000*_value/3.6;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal MassFlow ToBaseUnit()
-        {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new MassFlow(baseUnitValue, ConversionBaseUnit);
-        }
 
         private double GetValueAs(MassFlowUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var baseUnitValue = GetValueInBaseUnit();
-
-            switch(unit)
-            {
-                case MassFlowUnit.CentigramPerDay: return (baseUnitValue*86400) / 1e-2d;
-                case MassFlowUnit.CentigramPerSecond: return (baseUnitValue) / 1e-2d;
-                case MassFlowUnit.DecagramPerDay: return (baseUnitValue*86400) / 1e1d;
-                case MassFlowUnit.DecagramPerSecond: return (baseUnitValue) / 1e1d;
-                case MassFlowUnit.DecigramPerDay: return (baseUnitValue*86400) / 1e-1d;
-                case MassFlowUnit.DecigramPerSecond: return (baseUnitValue) / 1e-1d;
-                case MassFlowUnit.GramPerDay: return baseUnitValue*86400;
-                case MassFlowUnit.GramPerHour: return baseUnitValue*3600;
-                case MassFlowUnit.GramPerSecond: return baseUnitValue;
-                case MassFlowUnit.HectogramPerDay: return (baseUnitValue*86400) / 1e2d;
-                case MassFlowUnit.HectogramPerSecond: return (baseUnitValue) / 1e2d;
-                case MassFlowUnit.KilogramPerDay: return (baseUnitValue*86400) / 1e3d;
-                case MassFlowUnit.KilogramPerHour: return baseUnitValue*3.6;
-                case MassFlowUnit.KilogramPerMinute: return baseUnitValue*0.06;
-                case MassFlowUnit.KilogramPerSecond: return (baseUnitValue) / 1e3d;
-                case MassFlowUnit.MegagramPerDay: return (baseUnitValue*86400) / 1e6d;
-                case MassFlowUnit.MegapoundPerDay: return (baseUnitValue*190.47936) / 1e6d;
-                case MassFlowUnit.MegapoundPerHour: return (baseUnitValue*7.93664) / 1e6d;
-                case MassFlowUnit.MegapoundPerMinute: return (baseUnitValue*0.132277) / 1e6d;
-                case MassFlowUnit.MegapoundPerSecond: return (baseUnitValue / 453.59237) / 1e6d;
-                case MassFlowUnit.MicrogramPerDay: return (baseUnitValue*86400) / 1e-6d;
-                case MassFlowUnit.MicrogramPerSecond: return (baseUnitValue) / 1e-6d;
-                case MassFlowUnit.MilligramPerDay: return (baseUnitValue*86400) / 1e-3d;
-                case MassFlowUnit.MilligramPerSecond: return (baseUnitValue) / 1e-3d;
-                case MassFlowUnit.NanogramPerDay: return (baseUnitValue*86400) / 1e-9d;
-                case MassFlowUnit.NanogramPerSecond: return (baseUnitValue) / 1e-9d;
-                case MassFlowUnit.PoundPerDay: return baseUnitValue*190.47936;
-                case MassFlowUnit.PoundPerHour: return baseUnitValue*7.93664;
-                case MassFlowUnit.PoundPerMinute: return baseUnitValue*0.132277;
-                case MassFlowUnit.PoundPerSecond: return baseUnitValue / 453.59237;
-                case MassFlowUnit.ShortTonPerHour: return baseUnitValue/251.9957611;
-                case MassFlowUnit.TonnePerDay: return baseUnitValue*0.0864000;
-                case MassFlowUnit.TonnePerHour: return baseUnitValue*3.6/1000;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         #endregion
@@ -1179,29 +1273,63 @@ namespace UnitsNet
         ///     Gets the default string representation of value and unit using the given format provider.
         /// </summary>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
             return ToString("g", provider);
         }
 
+        /// <summary>
+        ///     Get string representation of value and unit.
+        /// </summary>
+        /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
+        /// <returns>String representation.</returns>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
+        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
+        {
+            var value = Convert.ToDouble(Value);
+            var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
+            return ToString(provider, format);
+        }
+
+        /// <summary>
+        ///     Get string representation of value and unit.
+        /// </summary>
+        /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
+        /// <param name="args">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
+        /// <returns>String representation.</returns>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
+        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
+        {
+            if (format == null) throw new ArgumentNullException(nameof(format));
+            if (args == null) throw new ArgumentNullException(nameof(args));
+
+            provider = provider ?? CultureInfo.CurrentUICulture;
+
+            var value = Convert.ToDouble(Value);
+            var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
+        }
+
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
-        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentCulture" />.
+        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentUICulture" />.
         /// </summary>
         /// <param name="format">The format string.</param>
         /// <returns>The string representation.</returns>
         public string ToString(string format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, CultureInfo.CurrentUICulture);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
-        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
+        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
         /// </summary>
         /// <param name="format">The format string.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>The string representation.</returns>
         public string ToString(string format, IFormatProvider? provider)
         {
@@ -1283,6 +1411,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MassFlowUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return MassFlow.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return MassFlow.Info;
             else if(conversionType == typeof(BaseDimensions))

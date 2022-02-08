@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -38,7 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Permittivity
     /// </remarks>
     [DataContract]
-    public partial struct Permittivity : IQuantity<PermittivityUnit>, IComparable, IComparable<Permittivity>, IConvertible, IFormattable
+    public partial struct Permittivity : IQuantity<PermittivityUnit>, IEquatable<Permittivity>, IComparable, IComparable<Permittivity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -55,12 +56,20 @@ namespace UnitsNet
         static Permittivity()
         {
             BaseDimensions = new BaseDimensions(-3, -1, 4, 2, 0, 0, 0);
-
+            BaseUnit = PermittivityUnit.FaradPerMeter;
+            MaxValue = new Permittivity(double.MaxValue, BaseUnit);
+            MinValue = new Permittivity(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.Permittivity;
+            Units = Enum.GetValues(typeof(PermittivityUnit)).Cast<PermittivityUnit>().Except(new PermittivityUnit[]{ PermittivityUnit.Undefined }).ToArray();
+            Zero = new Permittivity(0, BaseUnit);
             Info = new QuantityInfo<PermittivityUnit>("Permittivity",
-                new UnitInfo<PermittivityUnit>[] {
+                new UnitInfo<PermittivityUnit>[]
+                {
                     new UnitInfo<PermittivityUnit>(PermittivityUnit.FaradPerMeter, "FaradsPerMeter", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.Permittivity);
+
+            RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
         /// <summary>
@@ -71,6 +80,9 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Permittivity(double value, PermittivityUnit unit)
         {
+            if(unit == PermittivityUnit.Undefined)
+              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
+
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
@@ -96,6 +108,11 @@ namespace UnitsNet
 
         #region Static Properties
 
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Permittivity" /> instances.
+        /// </summary>
+        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<PermittivityUnit> Info { get; }
 
@@ -107,17 +124,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Permittivity, which is FaradPerMeter. All conversions go via this value.
         /// </summary>
-        public static PermittivityUnit ConversionBaseUnit { get; } = PermittivityUnit.FaradPerMeter;
+        public static PermittivityUnit BaseUnit { get; }
+
+        /// <summary>
+        /// Represents the largest possible value of Permittivity
+        /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
+        public static Permittivity MaxValue { get; }
+
+        /// <summary>
+        /// Represents the smallest possible value of Permittivity
+        /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
+        public static Permittivity MinValue { get; }
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the Permittivity quantity.
         /// </summary>
-        public static PermittivityUnit[] Units { get; } = Enum.GetValues(typeof(PermittivityUnit)).Cast<PermittivityUnit>().ToArray();
+        public static PermittivityUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit FaradPerMeter.
         /// </summary>
-        public static Permittivity Zero { get; } = new Permittivity(0, ConversionBaseUnit);
+        public static Permittivity Zero { get; }
 
         #endregion
 
@@ -131,13 +166,19 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public PermittivityUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
+        public PermittivityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<PermittivityUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
+        public QuantityType Type => QuantityType.Permittivity;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -158,6 +199,20 @@ namespace UnitsNet
         #region Static Methods
 
         /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
+        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
+        {
+            // Register in unit converter: BaseUnit -> PermittivityUnit
+            
+            // Register in unit converter: BaseUnit <-> BaseUnit
+            unitConverter.SetConversionFunction<Permittivity>(PermittivityUnit.FaradPerMeter, PermittivityUnit.FaradPerMeter, quantity => quantity);
+
+            // Register in unit converter: PermittivityUnit -> BaseUnit
+        }
+
+        /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
@@ -172,7 +227,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static string GetAbbreviation(PermittivityUnit unit, IFormatProvider? provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
@@ -256,7 +311,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static Permittivity Parse(string str, IFormatProvider? provider)
         {
             return QuantityParser.Default.Parse<Permittivity, PermittivityUnit>(
@@ -287,7 +342,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Permittivity result)
         {
             return QuantityParser.Default.TryParse<Permittivity, PermittivityUnit>(
@@ -315,7 +370,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -341,7 +396,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out PermittivityUnit unit)
         {
             return UnitParser.Default.TryParse<PermittivityUnit>(str, provider, out unit);
@@ -421,6 +476,20 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Permittivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(Permittivity left, Permittivity right)
+        {
+            return left.Equals(right);
+        }
+
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Permittivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(Permittivity left, Permittivity right)
+        {
+            return !(left == right);
+        }
+
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -434,6 +503,23 @@ namespace UnitsNet
         public int CompareTo(Permittivity other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Permittivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is Permittivity objPermittivity))
+                return false;
+
+            return Equals(objPermittivity);
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Permittivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(Permittivity other)
+        {
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -540,11 +626,42 @@ namespace UnitsNet
         /// <summary>
         ///     Converts this Permittivity to another Permittivity with the unit representation <paramref name="unit" />.
         /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
         /// <returns>A Permittivity with the specified unit.</returns>
         public Permittivity ToUnit(PermittivityUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new Permittivity(convertedValue, unit);
+            return ToUnit(unit, DefaultConversionFunctions);
+        }
+
+        /// <summary>
+        ///     Converts this Permittivity to another Permittivity using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
+        /// <returns>A Permittivity with the specified unit.</returns>
+        public Permittivity ToUnit(PermittivityUnit unit, UnitConverter unitConverter)
+        {
+            if(Unit == unit)
+            {
+                // Already in requested units.
+                return this;
+            }
+            else if(unitConverter.TryGetConversionFunction((typeof(Permittivity), Unit, typeof(Permittivity), unit), out var conversionFunction))
+            {
+                // Direct conversion to requested unit found. Return the converted quantity.
+                var converted = conversionFunction(this);
+                return (Permittivity)converted;
+            }
+            else if(Unit != BaseUnit)
+            {
+                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                var inBaseUnits = ToUnit(BaseUnit);
+                return inBaseUnits.ToUnit(unit);
+            }
+            else
+            {
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         /// <inheritdoc />
@@ -553,7 +670,16 @@ namespace UnitsNet
             if(!(unit is PermittivityUnit unitAsPermittivityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PermittivityUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsPermittivityUnit);
+            return ToUnit(unitAsPermittivityUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is PermittivityUnit unitAsPermittivityUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PermittivityUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsPermittivityUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -578,47 +704,15 @@ namespace UnitsNet
         IQuantity<PermittivityUnit> IQuantity<PermittivityUnit>.ToUnit(PermittivityUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantity<PermittivityUnit> IQuantity<PermittivityUnit>.ToUnit(PermittivityUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
+
+        /// <inheritdoc />
         IQuantity<PermittivityUnit> IQuantity<PermittivityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case PermittivityUnit.FaradPerMeter: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal Permittivity ToBaseUnit()
-        {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new Permittivity(baseUnitValue, ConversionBaseUnit);
-        }
 
         private double GetValueAs(PermittivityUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var baseUnitValue = GetValueInBaseUnit();
-
-            switch(unit)
-            {
-                case PermittivityUnit.FaradPerMeter: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         #endregion
@@ -638,29 +732,63 @@ namespace UnitsNet
         ///     Gets the default string representation of value and unit using the given format provider.
         /// </summary>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
             return ToString("g", provider);
         }
 
+        /// <summary>
+        ///     Get string representation of value and unit.
+        /// </summary>
+        /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
+        /// <returns>String representation.</returns>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
+        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
+        {
+            var value = Convert.ToDouble(Value);
+            var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
+            return ToString(provider, format);
+        }
+
+        /// <summary>
+        ///     Get string representation of value and unit.
+        /// </summary>
+        /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
+        /// <param name="args">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
+        /// <returns>String representation.</returns>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
+        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
+        {
+            if (format == null) throw new ArgumentNullException(nameof(format));
+            if (args == null) throw new ArgumentNullException(nameof(args));
+
+            provider = provider ?? CultureInfo.CurrentUICulture;
+
+            var value = Convert.ToDouble(Value);
+            var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
+        }
+
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
-        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentCulture" />.
+        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentUICulture" />.
         /// </summary>
         /// <param name="format">The format string.</param>
         /// <returns>The string representation.</returns>
         public string ToString(string format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, CultureInfo.CurrentUICulture);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
-        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
+        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
         /// </summary>
         /// <param name="format">The format string.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>The string representation.</returns>
         public string ToString(string format, IFormatProvider? provider)
         {
@@ -742,6 +870,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(PermittivityUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return Permittivity.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return Permittivity.Info;
             else if(conversionType == typeof(BaseDimensions))

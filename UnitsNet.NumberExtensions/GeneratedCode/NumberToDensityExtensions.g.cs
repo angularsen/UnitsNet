@@ -56,6 +56,14 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
         public static Density GramsPerCubicCentimeter<T>(this T value) =>
             Density.FromGramsPerCubicCentimeter(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Density.FromGramsPerCubicFoot(UnitsNet.QuantityValue)" />
+        public static Density GramsPerCubicFoot<T>(this T value) =>
+            Density.FromGramsPerCubicFoot(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromGramsPerCubicInch(UnitsNet.QuantityValue)" />
+        public static Density GramsPerCubicInch<T>(this T value) =>
+            Density.FromGramsPerCubicInch(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Density.FromGramsPerCubicMeter(UnitsNet.QuantityValue)" />
         public static Density GramsPerCubicMeter<T>(this T value) =>
             Density.FromGramsPerCubicMeter(Convert.ToDouble(value));
@@ -156,6 +164,10 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
         public static Density PicogramsPerMilliliter<T>(this T value) =>
             Density.FromPicogramsPerMilliliter(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Density.FromPoundsPerCubicCentimeter(UnitsNet.QuantityValue)" />
+        public static Density PoundsPerCubicCentimeter<T>(this T value) =>
+            Density.FromPoundsPerCubicCentimeter(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Density.FromPoundsPerCubicFoot(UnitsNet.QuantityValue)" />
         public static Density PoundsPerCubicFoot<T>(this T value) =>
             Density.FromPoundsPerCubicFoot(Convert.ToDouble(value));
@@ -163,6 +175,14 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
         /// <inheritdoc cref="Density.FromPoundsPerCubicInch(UnitsNet.QuantityValue)" />
         public static Density PoundsPerCubicInch<T>(this T value) =>
             Density.FromPoundsPerCubicInch(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromPoundsPerCubicMeter(UnitsNet.QuantityValue)" />
+        public static Density PoundsPerCubicMeter<T>(this T value) =>
+            Density.FromPoundsPerCubicMeter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromPoundsPerCubicMillimeter(UnitsNet.QuantityValue)" />
+        public static Density PoundsPerCubicMillimeter<T>(this T value) =>
+            Density.FromPoundsPerCubicMillimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(UnitsNet.QuantityValue)" />
         public static Density PoundsPerImperialGallon<T>(this T value) =>
@@ -172,13 +192,37 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
         public static Density PoundsPerUSGallon<T>(this T value) =>
             Density.FromPoundsPerUSGallon(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Density.FromSlugsPerCubicCentimeter(UnitsNet.QuantityValue)" />
+        public static Density SlugsPerCubicCentimeter<T>(this T value) =>
+            Density.FromSlugsPerCubicCentimeter(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Density.FromSlugsPerCubicFoot(UnitsNet.QuantityValue)" />
         public static Density SlugsPerCubicFoot<T>(this T value) =>
             Density.FromSlugsPerCubicFoot(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Density.FromSlugsPerCubicInch(UnitsNet.QuantityValue)" />
+        public static Density SlugsPerCubicInch<T>(this T value) =>
+            Density.FromSlugsPerCubicInch(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromSlugsPerCubicMeter(UnitsNet.QuantityValue)" />
+        public static Density SlugsPerCubicMeter<T>(this T value) =>
+            Density.FromSlugsPerCubicMeter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromSlugsPerCubicMillimeter(UnitsNet.QuantityValue)" />
+        public static Density SlugsPerCubicMillimeter<T>(this T value) =>
+            Density.FromSlugsPerCubicMillimeter(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Density.FromTonnesPerCubicCentimeter(UnitsNet.QuantityValue)" />
         public static Density TonnesPerCubicCentimeter<T>(this T value) =>
             Density.FromTonnesPerCubicCentimeter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromTonnesPerCubicFoot(UnitsNet.QuantityValue)" />
+        public static Density TonnesPerCubicFoot<T>(this T value) =>
+            Density.FromTonnesPerCubicFoot(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromTonnesPerCubicInch(UnitsNet.QuantityValue)" />
+        public static Density TonnesPerCubicInch<T>(this T value) =>
+            Density.FromTonnesPerCubicInch(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromTonnesPerCubicMeter(UnitsNet.QuantityValue)" />
         public static Density TonnesPerCubicMeter<T>(this T value) =>

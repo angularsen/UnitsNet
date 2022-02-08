@@ -27,6 +27,7 @@ namespace UnitsNet.Units
     {
         Day,
         Hour,
+        JulianYear,
         Microsecond,
         Millisecond,
         Minute,

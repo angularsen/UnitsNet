@@ -8,8 +8,8 @@
     {
       "SingularName": "DecibelWatt",
       "PluralName": "DecibelWatts",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Localization": [
         {
           "Culture": "en-US",
@@ -20,8 +20,8 @@
     {
       "SingularName": "DecibelMilliwatt",
       "PluralName": "DecibelMilliwatts",
-      "FromUnitToBaseFunc": "x - 30",
-      "FromBaseToUnitFunc": "x + 30",
+      "FromUnitToBaseFunc": "{x} - 30",
+      "FromBaseToUnitFunc": "{x} + 30",
       "Localization": [
         {
           "Culture": "en-US",

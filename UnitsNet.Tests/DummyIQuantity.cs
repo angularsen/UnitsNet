@@ -13,34 +13,18 @@ namespace UnitsNet.Tests
 
         public double Value => throw new NotImplementedException();
 
-        public double As(Enum unit)
-        {
-            throw new NotImplementedException();
-        }
+        public double As(Enum unit ) => throw new NotImplementedException();
 
-        public double As(UnitSystem unitSystem)
-        {
-            throw new NotImplementedException();
-        }
+        public double As(UnitSystem unitSystem ) => throw new NotImplementedException();
 
-        public string ToString(IFormatProvider? provider)
-        {
-            throw new NotImplementedException();
-        }
+        public string ToString(IFormatProvider? provider) => throw new NotImplementedException();
 
-        public string ToString(string? format, IFormatProvider? formatProvider)
-        {
-            throw new NotImplementedException();
-        }
+        public string ToString(string? format, IFormatProvider? formatProvider) => throw new NotImplementedException();
 
-        public IQuantity ToUnit(Enum unit)
-        {
-            throw new NotImplementedException();
-        }
+        public IQuantity ToUnit(Enum unit, UnitConverter unitConverter) => throw new NotImplementedException();
 
-        public IQuantity ToUnit(UnitSystem unitSystem)
-        {
-            throw new NotImplementedException();
-        }
+        public IQuantity ToUnit(Enum unit ) => throw new NotImplementedException();
+
+        public IQuantity ToUnit(UnitSystem unitSystem ) => throw new NotImplementedException();
     }
 }

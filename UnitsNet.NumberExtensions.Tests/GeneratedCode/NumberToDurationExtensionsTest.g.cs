@@ -33,6 +33,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Duration.FromHours(2), 2.Hours());
 
         [Fact]
+        public void NumberToJulianYearsTest() =>
+            Assert.Equal(Duration.FromJulianYears(2), 2.JulianYears());
+
+        [Fact]
         public void NumberToMicrosecondsTest() =>
             Assert.Equal(Duration.FromMicroseconds(2), 2.Microseconds());
 

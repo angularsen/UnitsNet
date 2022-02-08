@@ -11,8 +11,8 @@
     {
       "SingularName": "WattPerSquareMeterKelvin",
       "PluralName": "WattsPerSquareMeterKelvin",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Localization": [
         {
           "Culture": "en-US",
@@ -23,8 +23,8 @@
     {
       "SingularName": "WattPerSquareMeterCelsius",
       "PluralName": "WattsPerSquareMeterCelsius",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Localization": [
         {
           "Culture": "en-US",
@@ -35,8 +35,8 @@
     {
       "SingularName": "BtuPerSquareFootDegreeFahrenheit",
       "PluralName": "BtusPerSquareFootDegreeFahrenheit",
-      "FromUnitToBaseFunc": "x * 5.6782633411134878",
-      "FromBaseToUnitFunc": "x / 5.6782633411134878",
+      "FromUnitToBaseFunc": "{x} * 5.6782633411134878",
+      "FromBaseToUnitFunc": "{x} / 5.6782633411134878",
       "Localization": [
         {
           "Culture": "en-US",

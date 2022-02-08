@@ -15,8 +15,8 @@
         "L": "Meter",
         "N": "Mole"
       },
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [],
       "Localization": [
         {
@@ -32,8 +32,8 @@
         "L": "Decimeter",
         "N": "Mole"
       },
-      "FromUnitToBaseFunc": "x/1e-3",
-      "FromBaseToUnitFunc": "x*1e-3",
+      "FromUnitToBaseFunc": "{x}/1e-3",
+      "FromBaseToUnitFunc": "{x}*1e-3",
       "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
       "Localization": [
         {

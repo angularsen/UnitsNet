@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -69,6 +70,52 @@ namespace UnitsNet.Tests
         protected virtual double WattsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(LuminosityUnit unit)
+        {
+            return unit switch
+            {
+                LuminosityUnit.Decawatt => (DecawattsInOneWatt, DecawattsTolerance),
+                LuminosityUnit.Deciwatt => (DeciwattsInOneWatt, DeciwattsTolerance),
+                LuminosityUnit.Femtowatt => (FemtowattsInOneWatt, FemtowattsTolerance),
+                LuminosityUnit.Gigawatt => (GigawattsInOneWatt, GigawattsTolerance),
+                LuminosityUnit.Kilowatt => (KilowattsInOneWatt, KilowattsTolerance),
+                LuminosityUnit.Megawatt => (MegawattsInOneWatt, MegawattsTolerance),
+                LuminosityUnit.Microwatt => (MicrowattsInOneWatt, MicrowattsTolerance),
+                LuminosityUnit.Milliwatt => (MilliwattsInOneWatt, MilliwattsTolerance),
+                LuminosityUnit.Nanowatt => (NanowattsInOneWatt, NanowattsTolerance),
+                LuminosityUnit.Petawatt => (PetawattsInOneWatt, PetawattsTolerance),
+                LuminosityUnit.Picowatt => (PicowattsInOneWatt, PicowattsTolerance),
+                LuminosityUnit.SolarLuminosity => (SolarLuminositiesInOneWatt, SolarLuminositiesTolerance),
+                LuminosityUnit.Terawatt => (TerawattsInOneWatt, TerawattsTolerance),
+                LuminosityUnit.Watt => (WattsInOneWatt, WattsTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { LuminosityUnit.Decawatt },
+            new object[] { LuminosityUnit.Deciwatt },
+            new object[] { LuminosityUnit.Femtowatt },
+            new object[] { LuminosityUnit.Gigawatt },
+            new object[] { LuminosityUnit.Kilowatt },
+            new object[] { LuminosityUnit.Megawatt },
+            new object[] { LuminosityUnit.Microwatt },
+            new object[] { LuminosityUnit.Milliwatt },
+            new object[] { LuminosityUnit.Nanowatt },
+            new object[] { LuminosityUnit.Petawatt },
+            new object[] { LuminosityUnit.Picowatt },
+            new object[] { LuminosityUnit.SolarLuminosity },
+            new object[] { LuminosityUnit.Terawatt },
+            new object[] { LuminosityUnit.Watt },
+        };
+
+        [Fact]
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Luminosity((double)0.0, LuminosityUnit.Undefined));
+        }
+
         [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
@@ -76,6 +123,7 @@ namespace UnitsNet.Tests
             Assert.Equal(0, quantity.Value);
             Assert.Equal(LuminosityUnit.Watt, quantity.Unit);
         }
+
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
@@ -120,9 +168,14 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Luminosity.Zero, quantityInfo.Zero);
             Assert.Equal("Luminosity", quantityInfo.Name);
+            Assert.Equal(QuantityType.Luminosity, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<LuminosityUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<LuminosityUnit>().Except(new[] {LuminosityUnit.Undefined}).ToArray();
             var unitNames = units.Select(x => x.ToString());
+
+            // Obsolete members
+            Assert.Equal(units, quantityInfo.Units);
+            Assert.Equal(unitNames, quantityInfo.UnitNames);
         }
 
         [Fact]
@@ -242,7 +295,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void As_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            var quantity = new Luminosity(value: 1, unit: Luminosity.ConversionBaseUnit);
+            var quantity = new Luminosity(value: 1, unit: Luminosity.BaseUnit);
             Func<object> AsWithSIUnitSystem = () => quantity.As(UnitSystem.SI);
 
             if (SupportsSIUnitSystem)
@@ -256,73 +309,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(LuminosityUnit unit)
         {
-            var watt = Luminosity.FromWatts(1);
+            var inBaseUnits = Luminosity.From(1.0, Luminosity.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var decawattQuantity = watt.ToUnit(LuminosityUnit.Decawatt);
-            AssertEx.EqualTolerance(DecawattsInOneWatt, (double)decawattQuantity.Value, DecawattsTolerance);
-            Assert.Equal(LuminosityUnit.Decawatt, decawattQuantity.Unit);
-
-            var deciwattQuantity = watt.ToUnit(LuminosityUnit.Deciwatt);
-            AssertEx.EqualTolerance(DeciwattsInOneWatt, (double)deciwattQuantity.Value, DeciwattsTolerance);
-            Assert.Equal(LuminosityUnit.Deciwatt, deciwattQuantity.Unit);
-
-            var femtowattQuantity = watt.ToUnit(LuminosityUnit.Femtowatt);
-            AssertEx.EqualTolerance(FemtowattsInOneWatt, (double)femtowattQuantity.Value, FemtowattsTolerance);
-            Assert.Equal(LuminosityUnit.Femtowatt, femtowattQuantity.Unit);
-
-            var gigawattQuantity = watt.ToUnit(LuminosityUnit.Gigawatt);
-            AssertEx.EqualTolerance(GigawattsInOneWatt, (double)gigawattQuantity.Value, GigawattsTolerance);
-            Assert.Equal(LuminosityUnit.Gigawatt, gigawattQuantity.Unit);
-
-            var kilowattQuantity = watt.ToUnit(LuminosityUnit.Kilowatt);
-            AssertEx.EqualTolerance(KilowattsInOneWatt, (double)kilowattQuantity.Value, KilowattsTolerance);
-            Assert.Equal(LuminosityUnit.Kilowatt, kilowattQuantity.Unit);
-
-            var megawattQuantity = watt.ToUnit(LuminosityUnit.Megawatt);
-            AssertEx.EqualTolerance(MegawattsInOneWatt, (double)megawattQuantity.Value, MegawattsTolerance);
-            Assert.Equal(LuminosityUnit.Megawatt, megawattQuantity.Unit);
-
-            var microwattQuantity = watt.ToUnit(LuminosityUnit.Microwatt);
-            AssertEx.EqualTolerance(MicrowattsInOneWatt, (double)microwattQuantity.Value, MicrowattsTolerance);
-            Assert.Equal(LuminosityUnit.Microwatt, microwattQuantity.Unit);
-
-            var milliwattQuantity = watt.ToUnit(LuminosityUnit.Milliwatt);
-            AssertEx.EqualTolerance(MilliwattsInOneWatt, (double)milliwattQuantity.Value, MilliwattsTolerance);
-            Assert.Equal(LuminosityUnit.Milliwatt, milliwattQuantity.Unit);
-
-            var nanowattQuantity = watt.ToUnit(LuminosityUnit.Nanowatt);
-            AssertEx.EqualTolerance(NanowattsInOneWatt, (double)nanowattQuantity.Value, NanowattsTolerance);
-            Assert.Equal(LuminosityUnit.Nanowatt, nanowattQuantity.Unit);
-
-            var petawattQuantity = watt.ToUnit(LuminosityUnit.Petawatt);
-            AssertEx.EqualTolerance(PetawattsInOneWatt, (double)petawattQuantity.Value, PetawattsTolerance);
-            Assert.Equal(LuminosityUnit.Petawatt, petawattQuantity.Unit);
-
-            var picowattQuantity = watt.ToUnit(LuminosityUnit.Picowatt);
-            AssertEx.EqualTolerance(PicowattsInOneWatt, (double)picowattQuantity.Value, PicowattsTolerance);
-            Assert.Equal(LuminosityUnit.Picowatt, picowattQuantity.Unit);
-
-            var solarluminosityQuantity = watt.ToUnit(LuminosityUnit.SolarLuminosity);
-            AssertEx.EqualTolerance(SolarLuminositiesInOneWatt, (double)solarluminosityQuantity.Value, SolarLuminositiesTolerance);
-            Assert.Equal(LuminosityUnit.SolarLuminosity, solarluminosityQuantity.Unit);
-
-            var terawattQuantity = watt.ToUnit(LuminosityUnit.Terawatt);
-            AssertEx.EqualTolerance(TerawattsInOneWatt, (double)terawattQuantity.Value, TerawattsTolerance);
-            Assert.Equal(LuminosityUnit.Terawatt, terawattQuantity.Unit);
-
-            var wattQuantity = watt.ToUnit(LuminosityUnit.Watt);
-            AssertEx.EqualTolerance(WattsInOneWatt, (double)wattQuantity.Value, WattsTolerance);
-            Assert.Equal(LuminosityUnit.Watt, wattQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(LuminosityUnit unit)
         {
-            var quantityInBaseUnit = Luminosity.FromWatts(1).ToBaseUnit();
-            Assert.Equal(Luminosity.ConversionBaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Luminosity.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(LuminosityUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Luminosity.Units.FirstOrDefault(u => u != Luminosity.BaseUnit && u != LuminosityUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == LuminosityUnit.Undefined)
+                fromUnit = Luminosity.BaseUnit;
+
+            var quantity = Luminosity.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]
@@ -399,6 +420,49 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void EqualityOperators()
+        {
+            var a = Luminosity.FromWatts(1);
+            var b = Luminosity.FromWatts(2);
+
+#pragma warning disable CS8073
+// ReSharper disable EqualExpressionComparison
+
+            Assert.True(a == a);
+            Assert.False(a != a);
+
+            Assert.True(a != b);
+            Assert.False(a == b);
+
+            Assert.False(a == null);
+            Assert.False(null == a);
+
+// ReSharper restore EqualExpressionComparison
+#pragma warning restore CS8073
+        }
+
+        [Fact]
+        public void Equals_SameType_IsImplemented()
+        {
+            var a = Luminosity.FromWatts(1);
+            var b = Luminosity.FromWatts(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+        }
+
+        [Fact]
+        public void Equals_QuantityAsObject_IsImplemented()
+        {
+            object a = Luminosity.FromWatts(1);
+            object b = Luminosity.FromWatts(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+            Assert.False(a.Equals((object)null));
+        }
+
+        [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = Luminosity.FromWatts(1);
@@ -428,11 +492,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(LuminosityUnit.Undefined, Luminosity.Units);
+        }
+
+        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(LuminosityUnit)).Cast<LuminosityUnit>();
             foreach(var unit in units)
             {
+                if(unit == LuminosityUnit.Undefined)
+                    continue;
+
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }
@@ -446,8 +519,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
+            var prevCulture = Thread.CurrentThread.CurrentUICulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 daW", new Luminosity(1, LuminosityUnit.Decawatt).ToString());
                 Assert.Equal("1 dW", new Luminosity(1, LuminosityUnit.Deciwatt).ToString());
@@ -466,7 +539,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
+                Thread.CurrentThread.CurrentUICulture = prevCulture;
             }
         }
 
@@ -495,10 +568,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
+            var oldCulture = CultureInfo.CurrentUICulture;
             try
             {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
                 Assert.Equal("0.1 W", new Luminosity(0.123456, LuminosityUnit.Watt).ToString("s1"));
                 Assert.Equal("0.12 W", new Luminosity(0.123456, LuminosityUnit.Watt).ToString("s2"));
                 Assert.Equal("0.123 W", new Luminosity(0.123456, LuminosityUnit.Watt).ToString("s3"));
@@ -506,7 +579,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                CultureInfo.CurrentCulture = oldCulture;
+                CultureInfo.CurrentUICulture = oldCulture;
             }
         }
 
@@ -520,27 +593,28 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 W", new Luminosity(0.123456, LuminosityUnit.Watt).ToString("s4", culture));
         }
 
-        [Theory]
-        [InlineData(null)]
-        [InlineData("en-US")]
-        public void ToString_NullFormat_DefaultsToGeneralFormat(string cultureName)
+
+        [Fact]
+        public void ToString_NullFormat_ThrowsArgumentNullException()
         {
             var quantity = Luminosity.FromWatts(1.0);
-            CultureInfo formatProvider = cultureName == null
-                ? null
-                : CultureInfo.GetCultureInfo(cultureName);
-
-            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
+            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
         }
 
-        [Theory]
-        [InlineData(null)]
-        [InlineData("g")]
-        public void ToString_NullProvider_EqualsCurrentCulture(string format)
+        [Fact]
+        public void ToString_NullArgs_ThrowsArgumentNullException()
         {
             var quantity = Luminosity.FromWatts(1.0);
-            Assert.Equal(quantity.ToString(format, CultureInfo.CurrentCulture), quantity.ToString(format, null));
+            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, "g", null));
         }
+
+        [Fact]
+        public void ToString_NullProvider_EqualsCurrentUICulture()
+        {
+            var quantity = Luminosity.FromWatts(1.0);
+            Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
+        }
+
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()
@@ -659,6 +733,13 @@ namespace UnitsNet.Tests
         {
             var quantity = Luminosity.FromWatts(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(LuminosityUnit)));
+        }
+
+        [Fact]
+        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
+        {
+            var quantity = Luminosity.FromWatts(1.0);
+            Assert.Equal(QuantityType.Luminosity, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

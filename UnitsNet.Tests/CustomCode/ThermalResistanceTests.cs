@@ -33,6 +33,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double SquareCentimeterKelvinsPerWattInOneSquareMeterKelvinPerKilowatt => 10.00035223670306d;
         protected override double SquareMeterDegreesCelsiusPerWattInOneSquareMeterKelvinPerKilowatt => 9.999119516790815e-4;
         protected override double SquareMeterKelvinsPerKilowattInOneSquareMeterKelvinPerKilowatt => 1;
+        protected override double SquareMeterKelvinsPerWattInOneSquareMeterKelvinPerKilowatt => 0.001;
 
     }
 }

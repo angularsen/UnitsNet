@@ -12,8 +12,8 @@
       "BaseUnits": {
         "L": "Meter"
       },
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [],
       "Localization": [
         {
@@ -28,8 +28,8 @@
       "BaseUnits": {
         "L": "Decimeter"
       },
-      "FromUnitToBaseFunc": "x/1000",
-      "FromBaseToUnitFunc": "x*1000",
+      "FromUnitToBaseFunc": "{x}/1000",
+      "FromBaseToUnitFunc": "{x}*1000",
       "Prefixes": [],
       "Localization": [
         {
@@ -41,8 +41,8 @@
     {
       "SingularName": "LiterPerKilometer",
       "PluralName": "LitersPerKilometer",
-      "FromUnitToBaseFunc": "x/1e6",
-      "FromBaseToUnitFunc": "x*1e6",
+      "FromUnitToBaseFunc": "{x}/1e6",
+      "FromBaseToUnitFunc": "{x}*1e6",
       "Prefixes": [],
       "Localization": [
         {
@@ -54,8 +54,8 @@
     {
       "SingularName": "LiterPerMillimeter",
       "PluralName": "LitersPerMillimeter",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [],
       "Localization": [
         {
@@ -67,8 +67,8 @@
     {
       "SingularName": "OilBarrelPerFoot",
       "PluralName": "OilBarrelsPerFoot",
-      "FromUnitToBaseFunc": "x/1.91713408",
-      "FromBaseToUnitFunc": "x*1.91713408",
+      "FromUnitToBaseFunc": "{x}/1.91713408",
+      "FromBaseToUnitFunc": "{x}*1.91713408",
       "Prefixes": [],
       "Localization": [
         {
@@ -80,8 +80,8 @@
     {
       "SingularName": "CubicYardPerFoot",
       "PluralName": "CubicYardsPerFoot",
-      "FromUnitToBaseFunc": "x*2.50838208",
-      "FromBaseToUnitFunc": "x/2.50838208",
+      "FromUnitToBaseFunc": "{x}*2.50838208",
+      "FromBaseToUnitFunc": "{x}/2.50838208",
       "Localization": [
         {
           "Culture": "en-US",
@@ -92,8 +92,8 @@
     {
       "SingularName": "CubicYardPerUsSurveyFoot",
       "PluralName": "CubicYardsPerUsSurveyFoot",
-      "FromUnitToBaseFunc": "x*2.50837706323584",
-      "FromBaseToUnitFunc": "x/2.50837706323584",
+      "FromUnitToBaseFunc": "{x}*2.50837706323584",
+      "FromBaseToUnitFunc": "{x}/2.50837706323584",
       "Localization": [
         {
           "Culture": "en-US",

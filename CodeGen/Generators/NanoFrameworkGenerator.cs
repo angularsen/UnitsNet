@@ -119,7 +119,7 @@ namespace CodeGen.Generators
         /// </summary>
         /// <param name="rootDir">The root directory</param>
         /// <param name="quantities">The quantities to update nuspecs</param>
-        public static void UpdateNanoFrameworkDependencies(
+        public static bool UpdateNanoFrameworkDependencies(
             string rootDir,
             Quantity[] quantities)
         {
@@ -127,17 +127,69 @@ namespace CodeGen.Generators
             string path = Path.Combine(rootDir, "UnitsNet.NanoFramework\\GeneratedCode");
 
             Log.Information("");
-            Log.Information("Updating .NET nanoFramework references using nuget CLI");
+            Log.Information("Restoring .NET nanoFramework projects");
 
             // run nuget CLI
             var nugetCLI = new Process
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    FileName = "Tools/nuget.exe",
+                    FileName = Path.Combine(rootDir, "Tools/nuget.exe"),
+                    Arguments = $"restore {path}\\UnitsNet.nanoFramework.sln",
+                    UseShellExecute = false,
+                    CreateNoWindow = true,
+                    RedirectStandardError = true
+                }
+            };
+
+            // start nuget CLI and wait for exit
+            if (!nugetCLI.Start())
+            {
+                Log.Information("");
+                Log.Information("Failed to start nuget CLI to restore .NET nanoFramework projects");
+                Log.Information("");
+            }
+            else
+            {
+                // wait for exit, within 2 minutes
+                if (!nugetCLI.WaitForExit((int)TimeSpan.FromMinutes(2).TotalMilliseconds))
+                {
+                    Log.Information("");
+                    Log.Information("Failed to complete execution of nuget CLI to restore .NET nanoFramework projects");
+                    Log.Information("");
+                }
+                else
+                {
+                    if (nugetCLI.ExitCode == 0)
+                    {
+                        Log.Information("Done!");
+                        Log.Information("");
+                    }
+                    else
+                    {
+                        Log.Information("");
+                        Log.Information($"nuget CLI executed with {nugetCLI.ExitCode} exit code");
+
+                        Log.Information(nugetCLI.StandardError.ReadToEnd());
+
+                        return false;
+                    }
+                }
+            }
+
+            Log.Information("");
+            Log.Information("Updating .NET nanoFramework references using nuget CLI");
+
+            // run nuget CLI to perform update
+            nugetCLI = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = Path.Combine(rootDir, "Tools/nuget.exe"),
                     Arguments = $"update {path}\\UnitsNet.nanoFramework.sln -PreRelease",
                     UseShellExecute = false,
-                    CreateNoWindow = true
+                    CreateNoWindow = true,
+                    RedirectStandardError = true
                 }
             };
 
@@ -199,11 +251,18 @@ namespace CodeGen.Generators
                     {
                         Log.Information("");
                         Log.Information($"nuget CLI executed with {nugetCLI.ExitCode} exit code");
+
+                        Log.Information(nugetCLI.StandardError.ReadToEnd());
+
+                        return false;
                     }
                 }
+
             }
 
             Log.Information("");
+
+            return true;
         }
 
         private static NanoFrameworkVersions ParseCurrentNanoFrameworkVersions(string rootDir)

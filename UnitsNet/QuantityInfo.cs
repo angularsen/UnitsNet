@@ -36,14 +36,12 @@ namespace UnitsNet
 
             BaseDimensions = baseDimensions ?? throw new ArgumentNullException(nameof(baseDimensions));
             Zero = zero ?? throw new ArgumentNullException(nameof(zero));
-
             Name = name ?? throw new ArgumentNullException(nameof(name));
             UnitType = unitType ?? throw new ArgumentNullException(nameof(unitType));
             UnitInfos = unitInfos ?? throw new ArgumentNullException(nameof(unitInfos));
+
             BaseUnitInfo = UnitInfos.First(unitInfo => unitInfo.Value.Equals(baseUnit));
-            Zero = zero ?? throw new ArgumentNullException(nameof(zero));
             ValueType = zero.GetType();
-            BaseDimensions = baseDimensions ?? throw new ArgumentNullException(nameof(baseDimensions));
         }
 
         /// <summary>

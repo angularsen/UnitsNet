@@ -31,5 +31,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double KilopascalsPerMinuteInOnePascalPerSecond => 6e-2;
 
         protected override double PascalsPerMinuteInOnePascalPerSecond => 60;
+
+        protected override double MillimetersOfMercuryPerSecondInOnePascalPerSecond => 7.500637554192106e-3;
     }
 }

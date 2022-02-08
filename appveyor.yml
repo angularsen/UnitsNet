@@ -60,10 +60,21 @@ build_script:
     }
 
 # Upload code coverage reports to codecov.io.
+# https://docs.codecov.com/docs/codecov-uploader
 after_test:
 - ps: |
-    $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
-    bash Build/codecov.sh -s "Artifacts/Coverage" -t $env:codecov_upload_token
+    $ProgressPreference = 'SilentlyContinue'
+    Invoke-WebRequest -Uri https://keybase.io/codecovsecurity/pgp_keys.asc -OutFile codecov.asc
+    gpg.exe --import codecov.asc
+
+    Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe -Outfile codecov.exe
+    Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe.SHA256SUM -Outfile codecov.exe.SHA256SUM
+    Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe.SHA256SUM.sig -Outfile codecov.exe.SHA256SUM.sig
+
+    gpg.exe --verify codecov.exe.SHA256SUM.sig codecov.exe.SHA256SUM
+    If ($(Compare-Object -ReferenceObject  $(($(certUtil -hashfile codecov.exe SHA256)[1], "codecov.exe") -join "  ") -DifferenceObject $(Get-Content codecov.exe.SHA256SUM)).length -eq 0) { echo "SHASUM verified" } Else {exit 1}
+
+    .\codecov.exe "Artifacts/Coverage" -t $env:codecov_upload_token
 
 artifacts:
 - path: Artifacts\UnitsNet.zip

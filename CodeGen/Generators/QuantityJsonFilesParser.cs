@@ -33,16 +33,19 @@ namespace CodeGen.Generators
         public static Quantity[] ParseQuantities(string rootDir)
         {
             var jsonDir = Path.Combine(rootDir, "Common/UnitDefinitions");
-            var jsonFiles = Directory.GetFiles(jsonDir, "*.json");
-            return jsonFiles.Select(ParseQuantityFile).ToArray();
+            var jsonFileNames = Directory.GetFiles(jsonDir, "*.json");
+            return jsonFileNames
+                .OrderBy(fn => fn, StringComparer.InvariantCultureIgnoreCase)
+                .Select(ParseQuantityFile)
+                .ToArray();
         }
 
-        private static Quantity ParseQuantityFile(string jsonFile)
+        private static Quantity ParseQuantityFile(string jsonFileName)
         {
             try
             {
-                var quantity = JsonConvert.DeserializeObject<Quantity>(File.ReadAllText(jsonFile), JsonSerializerSettings)
-                               ?? throw new UnitsNetCodeGenException($"Unable to parse quantity from JSON file: {jsonFile}");
+                var quantity = JsonConvert.DeserializeObject<Quantity>(File.ReadAllText(jsonFileName), JsonSerializerSettings)
+                               ?? throw new UnitsNetCodeGenException($"Unable to parse quantity from JSON file: {jsonFileName}");
 
                 AddPrefixUnits(quantity);
                 FixConversionFunctionsForDecimalValueTypes(quantity);
@@ -51,7 +54,7 @@ namespace CodeGen.Generators
             }
             catch (Exception e)
             {
-                throw new Exception($"Error parsing quantity JSON file: {jsonFile}", e);
+                throw new Exception($"Error parsing quantity JSON file: {jsonFileName}", e);
             }
         }
 

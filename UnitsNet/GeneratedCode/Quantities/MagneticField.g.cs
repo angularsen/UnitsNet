@@ -21,6 +21,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -38,7 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Magnetic_field
     /// </remarks>
     [DataContract]
-    public partial struct MagneticField : IQuantity<MagneticFieldUnit>, IComparable, IComparable<MagneticField>, IConvertible, IFormattable
+    public partial struct MagneticField : IQuantity<MagneticFieldUnit>, IEquatable<MagneticField>, IComparable, IComparable<MagneticField>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -55,9 +56,15 @@ namespace UnitsNet
         static MagneticField()
         {
             BaseDimensions = new BaseDimensions(0, 1, -2, -1, 0, 0, 0);
-
+            BaseUnit = MagneticFieldUnit.Tesla;
+            MaxValue = new MagneticField(double.MaxValue, BaseUnit);
+            MinValue = new MagneticField(double.MinValue, BaseUnit);
+            QuantityType = QuantityType.MagneticField;
+            Units = Enum.GetValues(typeof(MagneticFieldUnit)).Cast<MagneticFieldUnit>().Except(new MagneticFieldUnit[]{ MagneticFieldUnit.Undefined }).ToArray();
+            Zero = new MagneticField(0, BaseUnit);
             Info = new QuantityInfo<MagneticFieldUnit>("MagneticField",
-                new UnitInfo<MagneticFieldUnit>[] {
+                new UnitInfo<MagneticFieldUnit>[]
+                {
                     new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Gauss, "Gausses", BaseUnits.Undefined),
                     new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Microtesla, "Microteslas", BaseUnits.Undefined),
                     new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Milligauss, "Milligausses", BaseUnits.Undefined),
@@ -65,7 +72,9 @@ namespace UnitsNet
                     new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Nanotesla, "Nanoteslas", BaseUnits.Undefined),
                     new UnitInfo<MagneticFieldUnit>(MagneticFieldUnit.Tesla, "Teslas", BaseUnits.Undefined),
                 },
-                ConversionBaseUnit, Zero, BaseDimensions);
+                BaseUnit, Zero, BaseDimensions, QuantityType.MagneticField);
+
+            RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
         /// <summary>
@@ -76,6 +85,9 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public MagneticField(double value, MagneticFieldUnit unit)
         {
+            if(unit == MagneticFieldUnit.Undefined)
+              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
+
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
@@ -101,6 +113,11 @@ namespace UnitsNet
 
         #region Static Properties
 
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="MagneticField" /> instances.
+        /// </summary>
+        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
+
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<MagneticFieldUnit> Info { get; }
 
@@ -112,17 +129,35 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of MagneticField, which is Tesla. All conversions go via this value.
         /// </summary>
-        public static MagneticFieldUnit ConversionBaseUnit { get; } = MagneticFieldUnit.Tesla;
+        public static MagneticFieldUnit BaseUnit { get; }
+
+        /// <summary>
+        /// Represents the largest possible value of MagneticField
+        /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
+        public static MagneticField MaxValue { get; }
+
+        /// <summary>
+        /// Represents the smallest possible value of MagneticField
+        /// </summary>
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
+        public static MagneticField MinValue { get; }
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
+        public static QuantityType QuantityType { get; }
 
         /// <summary>
         ///     All units of measurement for the MagneticField quantity.
         /// </summary>
-        public static MagneticFieldUnit[] Units { get; } = Enum.GetValues(typeof(MagneticFieldUnit)).Cast<MagneticFieldUnit>().ToArray();
+        public static MagneticFieldUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Tesla.
         /// </summary>
-        public static MagneticField Zero { get; } = new MagneticField(0, ConversionBaseUnit);
+        public static MagneticField Zero { get; }
 
         #endregion
 
@@ -136,13 +171,19 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public MagneticFieldUnit Unit => _unit.GetValueOrDefault(ConversionBaseUnit);
+        public MagneticFieldUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
         public QuantityInfo<MagneticFieldUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
+        public QuantityType Type => QuantityType.MagneticField;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -188,6 +229,30 @@ namespace UnitsNet
         #region Static Methods
 
         /// <summary>
+        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
+        /// </summary>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
+        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
+        {
+            // Register in unit converter: BaseUnit -> MagneticFieldUnit
+            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Tesla, MagneticFieldUnit.Gauss, quantity => new MagneticField(quantity.Value*1e4, MagneticFieldUnit.Gauss));
+            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Tesla, MagneticFieldUnit.Microtesla, quantity => new MagneticField((quantity.Value) / 1e-6d, MagneticFieldUnit.Microtesla));
+            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Tesla, MagneticFieldUnit.Milligauss, quantity => new MagneticField((quantity.Value*1e4) / 1e-3d, MagneticFieldUnit.Milligauss));
+            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Tesla, MagneticFieldUnit.Millitesla, quantity => new MagneticField((quantity.Value) / 1e-3d, MagneticFieldUnit.Millitesla));
+            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Tesla, MagneticFieldUnit.Nanotesla, quantity => new MagneticField((quantity.Value) / 1e-9d, MagneticFieldUnit.Nanotesla));
+            
+            // Register in unit converter: BaseUnit <-> BaseUnit
+            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Tesla, MagneticFieldUnit.Tesla, quantity => quantity);
+
+            // Register in unit converter: MagneticFieldUnit -> BaseUnit
+            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Gauss, MagneticFieldUnit.Tesla, quantity => new MagneticField(quantity.Value/1e4, MagneticFieldUnit.Tesla));
+            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Microtesla, MagneticFieldUnit.Tesla, quantity => new MagneticField((quantity.Value) * 1e-6d, MagneticFieldUnit.Tesla));
+            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Milligauss, MagneticFieldUnit.Tesla, quantity => new MagneticField((quantity.Value/1e4) * 1e-3d, MagneticFieldUnit.Tesla));
+            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Millitesla, MagneticFieldUnit.Tesla, quantity => new MagneticField((quantity.Value) * 1e-3d, MagneticFieldUnit.Tesla));
+            unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Nanotesla, MagneticFieldUnit.Tesla, quantity => new MagneticField((quantity.Value) * 1e-9d, MagneticFieldUnit.Tesla));
+        }
+
+        /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
@@ -202,7 +267,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static string GetAbbreviation(MagneticFieldUnit unit, IFormatProvider? provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
@@ -331,7 +396,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static MagneticField Parse(string str, IFormatProvider? provider)
         {
             return QuantityParser.Default.Parse<MagneticField, MagneticFieldUnit>(
@@ -362,7 +427,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out MagneticField result)
         {
             return QuantityParser.Default.TryParse<MagneticField, MagneticFieldUnit>(
@@ -390,7 +455,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -416,7 +481,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out MagneticFieldUnit unit)
         {
             return UnitParser.Default.TryParse<MagneticFieldUnit>(str, provider, out unit);
@@ -496,6 +561,20 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(MagneticField, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(MagneticField left, MagneticField right)
+        {
+            return left.Equals(right);
+        }
+
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(MagneticField, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(MagneticField left, MagneticField right)
+        {
+            return !(left == right);
+        }
+
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -509,6 +588,23 @@ namespace UnitsNet
         public int CompareTo(MagneticField other)
         {
             return _value.CompareTo(other.GetValueAs(this.Unit));
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(MagneticField, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is MagneticField objMagneticField))
+                return false;
+
+            return Equals(objMagneticField);
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(MagneticField, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(MagneticField other)
+        {
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -615,11 +711,42 @@ namespace UnitsNet
         /// <summary>
         ///     Converts this MagneticField to another MagneticField with the unit representation <paramref name="unit" />.
         /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
         /// <returns>A MagneticField with the specified unit.</returns>
         public MagneticField ToUnit(MagneticFieldUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new MagneticField(convertedValue, unit);
+            return ToUnit(unit, DefaultConversionFunctions);
+        }
+
+        /// <summary>
+        ///     Converts this MagneticField to another MagneticField using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
+        /// <returns>A MagneticField with the specified unit.</returns>
+        public MagneticField ToUnit(MagneticFieldUnit unit, UnitConverter unitConverter)
+        {
+            if(Unit == unit)
+            {
+                // Already in requested units.
+                return this;
+            }
+            else if(unitConverter.TryGetConversionFunction((typeof(MagneticField), Unit, typeof(MagneticField), unit), out var conversionFunction))
+            {
+                // Direct conversion to requested unit found. Return the converted quantity.
+                var converted = conversionFunction(this);
+                return (MagneticField)converted;
+            }
+            else if(Unit != BaseUnit)
+            {
+                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                var inBaseUnits = ToUnit(BaseUnit);
+                return inBaseUnits.ToUnit(unit);
+            }
+            else
+            {
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         /// <inheritdoc />
@@ -628,7 +755,16 @@ namespace UnitsNet
             if(!(unit is MagneticFieldUnit unitAsMagneticFieldUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MagneticFieldUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsMagneticFieldUnit);
+            return ToUnit(unitAsMagneticFieldUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is MagneticFieldUnit unitAsMagneticFieldUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MagneticFieldUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsMagneticFieldUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -653,57 +789,15 @@ namespace UnitsNet
         IQuantity<MagneticFieldUnit> IQuantity<MagneticFieldUnit>.ToUnit(MagneticFieldUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantity<MagneticFieldUnit> IQuantity<MagneticFieldUnit>.ToUnit(MagneticFieldUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
+
+        /// <inheritdoc />
         IQuantity<MagneticFieldUnit> IQuantity<MagneticFieldUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case MagneticFieldUnit.Gauss: return _value/1e4;
-                case MagneticFieldUnit.Microtesla: return (_value) * 1e-6d;
-                case MagneticFieldUnit.Milligauss: return (_value/1e4) * 1e-3d;
-                case MagneticFieldUnit.Millitesla: return (_value) * 1e-3d;
-                case MagneticFieldUnit.Nanotesla: return (_value) * 1e-9d;
-                case MagneticFieldUnit.Tesla: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal MagneticField ToBaseUnit()
-        {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new MagneticField(baseUnitValue, ConversionBaseUnit);
-        }
 
         private double GetValueAs(MagneticFieldUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var baseUnitValue = GetValueInBaseUnit();
-
-            switch(unit)
-            {
-                case MagneticFieldUnit.Gauss: return baseUnitValue*1e4;
-                case MagneticFieldUnit.Microtesla: return (baseUnitValue) / 1e-6d;
-                case MagneticFieldUnit.Milligauss: return (baseUnitValue*1e4) / 1e-3d;
-                case MagneticFieldUnit.Millitesla: return (baseUnitValue) / 1e-3d;
-                case MagneticFieldUnit.Nanotesla: return (baseUnitValue) / 1e-9d;
-                case MagneticFieldUnit.Tesla: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         #endregion
@@ -723,29 +817,63 @@ namespace UnitsNet
         ///     Gets the default string representation of value and unit using the given format provider.
         /// </summary>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
             return ToString("g", provider);
         }
 
+        /// <summary>
+        ///     Get string representation of value and unit.
+        /// </summary>
+        /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
+        /// <returns>String representation.</returns>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
+        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
+        {
+            var value = Convert.ToDouble(Value);
+            var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
+            return ToString(provider, format);
+        }
+
+        /// <summary>
+        ///     Get string representation of value and unit.
+        /// </summary>
+        /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
+        /// <param name="args">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
+        /// <returns>String representation.</returns>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
+        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
+        {
+            if (format == null) throw new ArgumentNullException(nameof(format));
+            if (args == null) throw new ArgumentNullException(nameof(args));
+
+            provider = provider ?? CultureInfo.CurrentUICulture;
+
+            var value = Convert.ToDouble(Value);
+            var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
+        }
+
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
-        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentCulture" />.
+        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentUICulture" />.
         /// </summary>
         /// <param name="format">The format string.</param>
         /// <returns>The string representation.</returns>
         public string ToString(string format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, CultureInfo.CurrentUICulture);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
-        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
+        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
         /// </summary>
         /// <param name="format">The format string.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
         /// <returns>The string representation.</returns>
         public string ToString(string format, IFormatProvider? provider)
         {
@@ -827,6 +955,8 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MagneticFieldUnit))
                 return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return MagneticField.QuantityType;
             else if(conversionType == typeof(QuantityInfo))
                 return MagneticField.Info;
             else if(conversionType == typeof(BaseDimensions))

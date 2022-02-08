@@ -36,6 +36,10 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
         public static Duration Hours<T>(this T value) =>
             Duration.FromHours(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Duration.FromJulianYears(UnitsNet.QuantityValue)" />
+        public static Duration JulianYears<T>(this T value) =>
+            Duration.FromJulianYears(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Duration.FromMicroseconds(UnitsNet.QuantityValue)" />
         public static Duration Microseconds<T>(this T value) =>
             Duration.FromMicroseconds(Convert.ToDouble(value));
