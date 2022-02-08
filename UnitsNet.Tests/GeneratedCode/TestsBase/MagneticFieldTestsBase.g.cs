@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -52,6 +53,30 @@ namespace UnitsNet.Tests
         protected virtual double NanoteslasTolerance { get { return 1e-5; } }
         protected virtual double TeslasTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MagneticFieldUnit unit)
+        {
+            return unit switch
+            {
+                MagneticFieldUnit.Gauss => (GaussesInOneTesla, GaussesTolerance),
+                MagneticFieldUnit.Microtesla => (MicroteslasInOneTesla, MicroteslasTolerance),
+                MagneticFieldUnit.Milligauss => (MilligaussesInOneTesla, MilligaussesTolerance),
+                MagneticFieldUnit.Millitesla => (MilliteslasInOneTesla, MilliteslasTolerance),
+                MagneticFieldUnit.Nanotesla => (NanoteslasInOneTesla, NanoteslasTolerance),
+                MagneticFieldUnit.Tesla => (TeslasInOneTesla, TeslasTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { MagneticFieldUnit.Gauss },
+            new object[] { MagneticFieldUnit.Microtesla },
+            new object[] { MagneticFieldUnit.Milligauss },
+            new object[] { MagneticFieldUnit.Millitesla },
+            new object[] { MagneticFieldUnit.Nanotesla },
+            new object[] { MagneticFieldUnit.Tesla },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -204,41 +229,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(MagneticFieldUnit unit)
         {
-            var tesla = MagneticField.FromTeslas(1);
+            var inBaseUnits = MagneticField.From(1.0, MagneticField.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var gaussQuantity = tesla.ToUnit(MagneticFieldUnit.Gauss);
-            AssertEx.EqualTolerance(GaussesInOneTesla, (double)gaussQuantity.Value, GaussesTolerance);
-            Assert.Equal(MagneticFieldUnit.Gauss, gaussQuantity.Unit);
-
-            var microteslaQuantity = tesla.ToUnit(MagneticFieldUnit.Microtesla);
-            AssertEx.EqualTolerance(MicroteslasInOneTesla, (double)microteslaQuantity.Value, MicroteslasTolerance);
-            Assert.Equal(MagneticFieldUnit.Microtesla, microteslaQuantity.Unit);
-
-            var milligaussQuantity = tesla.ToUnit(MagneticFieldUnit.Milligauss);
-            AssertEx.EqualTolerance(MilligaussesInOneTesla, (double)milligaussQuantity.Value, MilligaussesTolerance);
-            Assert.Equal(MagneticFieldUnit.Milligauss, milligaussQuantity.Unit);
-
-            var milliteslaQuantity = tesla.ToUnit(MagneticFieldUnit.Millitesla);
-            AssertEx.EqualTolerance(MilliteslasInOneTesla, (double)milliteslaQuantity.Value, MilliteslasTolerance);
-            Assert.Equal(MagneticFieldUnit.Millitesla, milliteslaQuantity.Unit);
-
-            var nanoteslaQuantity = tesla.ToUnit(MagneticFieldUnit.Nanotesla);
-            AssertEx.EqualTolerance(NanoteslasInOneTesla, (double)nanoteslaQuantity.Value, NanoteslasTolerance);
-            Assert.Equal(MagneticFieldUnit.Nanotesla, nanoteslaQuantity.Unit);
-
-            var teslaQuantity = tesla.ToUnit(MagneticFieldUnit.Tesla);
-            AssertEx.EqualTolerance(TeslasInOneTesla, (double)teslaQuantity.Value, TeslasTolerance);
-            Assert.Equal(MagneticFieldUnit.Tesla, teslaQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(MagneticFieldUnit unit)
         {
-            var quantityInBaseUnit = MagneticField.FromTeslas(1).ToBaseUnit();
-            Assert.Equal(MagneticField.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = MagneticField.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MagneticFieldUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = MagneticField.Units.FirstOrDefault(u => u != MagneticField.BaseUnit && u != MagneticFieldUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == MagneticFieldUnit.Undefined)
+                fromUnit = MagneticField.BaseUnit;
+
+            var quantity = MagneticField.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

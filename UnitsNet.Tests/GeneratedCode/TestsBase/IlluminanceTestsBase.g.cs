@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -48,6 +49,26 @@ namespace UnitsNet.Tests
         protected virtual double MegaluxTolerance { get { return 1e-5; } }
         protected virtual double MilliluxTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(IlluminanceUnit unit)
+        {
+            return unit switch
+            {
+                IlluminanceUnit.Kilolux => (KiloluxInOneLux, KiloluxTolerance),
+                IlluminanceUnit.Lux => (LuxInOneLux, LuxTolerance),
+                IlluminanceUnit.Megalux => (MegaluxInOneLux, MegaluxTolerance),
+                IlluminanceUnit.Millilux => (MilliluxInOneLux, MilliluxTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { IlluminanceUnit.Kilolux },
+            new object[] { IlluminanceUnit.Lux },
+            new object[] { IlluminanceUnit.Megalux },
+            new object[] { IlluminanceUnit.Millilux },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -188,33 +209,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(IlluminanceUnit unit)
         {
-            var lux = Illuminance.FromLux(1);
+            var inBaseUnits = Illuminance.From(1.0, Illuminance.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var kiloluxQuantity = lux.ToUnit(IlluminanceUnit.Kilolux);
-            AssertEx.EqualTolerance(KiloluxInOneLux, (double)kiloluxQuantity.Value, KiloluxTolerance);
-            Assert.Equal(IlluminanceUnit.Kilolux, kiloluxQuantity.Unit);
-
-            var luxQuantity = lux.ToUnit(IlluminanceUnit.Lux);
-            AssertEx.EqualTolerance(LuxInOneLux, (double)luxQuantity.Value, LuxTolerance);
-            Assert.Equal(IlluminanceUnit.Lux, luxQuantity.Unit);
-
-            var megaluxQuantity = lux.ToUnit(IlluminanceUnit.Megalux);
-            AssertEx.EqualTolerance(MegaluxInOneLux, (double)megaluxQuantity.Value, MegaluxTolerance);
-            Assert.Equal(IlluminanceUnit.Megalux, megaluxQuantity.Unit);
-
-            var milliluxQuantity = lux.ToUnit(IlluminanceUnit.Millilux);
-            AssertEx.EqualTolerance(MilliluxInOneLux, (double)milliluxQuantity.Value, MilliluxTolerance);
-            Assert.Equal(IlluminanceUnit.Millilux, milliluxQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(IlluminanceUnit unit)
         {
-            var quantityInBaseUnit = Illuminance.FromLux(1).ToBaseUnit();
-            Assert.Equal(Illuminance.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Illuminance.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(IlluminanceUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Illuminance.Units.FirstOrDefault(u => u != Illuminance.BaseUnit && u != IlluminanceUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == IlluminanceUnit.Undefined)
+                fromUnit = Illuminance.BaseUnit;
+
+            var quantity = Illuminance.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -48,6 +49,26 @@ namespace UnitsNet.Tests
         protected virtual double KilogramsPerKiloNewtonSecondTolerance { get { return 1e-5; } }
         protected virtual double PoundsMassPerPoundForceHourTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(SpecificFuelConsumptionUnit unit)
+        {
+            return unit switch
+            {
+                SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond => (GramsPerKiloNewtonSecondInOneGramPerKiloNewtonSecond, GramsPerKiloNewtonSecondTolerance),
+                SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour => (KilogramsPerKilogramForceHourInOneGramPerKiloNewtonSecond, KilogramsPerKilogramForceHourTolerance),
+                SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond => (KilogramsPerKiloNewtonSecondInOneGramPerKiloNewtonSecond, KilogramsPerKiloNewtonSecondTolerance),
+                SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour => (PoundsMassPerPoundForceHourInOneGramPerKiloNewtonSecond, PoundsMassPerPoundForceHourTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond },
+            new object[] { SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour },
+            new object[] { SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond },
+            new object[] { SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -188,33 +209,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(SpecificFuelConsumptionUnit unit)
         {
-            var gramperkilonewtonsecond = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1);
+            var inBaseUnits = SpecificFuelConsumption.From(1.0, SpecificFuelConsumption.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var gramperkilonewtonsecondQuantity = gramperkilonewtonsecond.ToUnit(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond);
-            AssertEx.EqualTolerance(GramsPerKiloNewtonSecondInOneGramPerKiloNewtonSecond, (double)gramperkilonewtonsecondQuantity.Value, GramsPerKiloNewtonSecondTolerance);
-            Assert.Equal(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, gramperkilonewtonsecondQuantity.Unit);
-
-            var kilogramperkilogramforcehourQuantity = gramperkilonewtonsecond.ToUnit(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour);
-            AssertEx.EqualTolerance(KilogramsPerKilogramForceHourInOneGramPerKiloNewtonSecond, (double)kilogramperkilogramforcehourQuantity.Value, KilogramsPerKilogramForceHourTolerance);
-            Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, kilogramperkilogramforcehourQuantity.Unit);
-
-            var kilogramperkilonewtonsecondQuantity = gramperkilonewtonsecond.ToUnit(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond);
-            AssertEx.EqualTolerance(KilogramsPerKiloNewtonSecondInOneGramPerKiloNewtonSecond, (double)kilogramperkilonewtonsecondQuantity.Value, KilogramsPerKiloNewtonSecondTolerance);
-            Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, kilogramperkilonewtonsecondQuantity.Unit);
-
-            var poundmassperpoundforcehourQuantity = gramperkilonewtonsecond.ToUnit(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour);
-            AssertEx.EqualTolerance(PoundsMassPerPoundForceHourInOneGramPerKiloNewtonSecond, (double)poundmassperpoundforcehourQuantity.Value, PoundsMassPerPoundForceHourTolerance);
-            Assert.Equal(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, poundmassperpoundforcehourQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(SpecificFuelConsumptionUnit unit)
         {
-            var quantityInBaseUnit = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1).ToBaseUnit();
-            Assert.Equal(SpecificFuelConsumption.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = SpecificFuelConsumption.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(SpecificFuelConsumptionUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = SpecificFuelConsumption.Units.FirstOrDefault(u => u != SpecificFuelConsumption.BaseUnit && u != SpecificFuelConsumptionUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == SpecificFuelConsumptionUnit.Undefined)
+                fromUnit = SpecificFuelConsumption.BaseUnit;
+
+            var quantity = SpecificFuelConsumption.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

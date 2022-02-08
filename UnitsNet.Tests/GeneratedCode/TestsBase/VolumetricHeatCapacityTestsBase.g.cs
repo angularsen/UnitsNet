@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -58,6 +59,36 @@ namespace UnitsNet.Tests
         protected virtual double MegajoulesPerCubicMeterDegreeCelsiusTolerance { get { return 1e-5; } }
         protected virtual double MegajoulesPerCubicMeterKelvinTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(VolumetricHeatCapacityUnit unit)
+        {
+            return unit switch
+            {
+                VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit => (BtusPerCubicFootDegreeFahrenheitInOneJoulePerCubicMeterKelvin, BtusPerCubicFootDegreeFahrenheitTolerance),
+                VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius => (CaloriesPerCubicCentimeterDegreeCelsiusInOneJoulePerCubicMeterKelvin, CaloriesPerCubicCentimeterDegreeCelsiusTolerance),
+                VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius => (JoulesPerCubicMeterDegreeCelsiusInOneJoulePerCubicMeterKelvin, JoulesPerCubicMeterDegreeCelsiusTolerance),
+                VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin => (JoulesPerCubicMeterKelvinInOneJoulePerCubicMeterKelvin, JoulesPerCubicMeterKelvinTolerance),
+                VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius => (KilocaloriesPerCubicCentimeterDegreeCelsiusInOneJoulePerCubicMeterKelvin, KilocaloriesPerCubicCentimeterDegreeCelsiusTolerance),
+                VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius => (KilojoulesPerCubicMeterDegreeCelsiusInOneJoulePerCubicMeterKelvin, KilojoulesPerCubicMeterDegreeCelsiusTolerance),
+                VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin => (KilojoulesPerCubicMeterKelvinInOneJoulePerCubicMeterKelvin, KilojoulesPerCubicMeterKelvinTolerance),
+                VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius => (MegajoulesPerCubicMeterDegreeCelsiusInOneJoulePerCubicMeterKelvin, MegajoulesPerCubicMeterDegreeCelsiusTolerance),
+                VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin => (MegajoulesPerCubicMeterKelvinInOneJoulePerCubicMeterKelvin, MegajoulesPerCubicMeterKelvinTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit },
+            new object[] { VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius },
+            new object[] { VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius },
+            new object[] { VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin },
+            new object[] { VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius },
+            new object[] { VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius },
+            new object[] { VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin },
+            new object[] { VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius },
+            new object[] { VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -228,53 +259,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(VolumetricHeatCapacityUnit unit)
         {
-            var joulepercubicmeterkelvin = VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(1);
+            var inBaseUnits = VolumetricHeatCapacity.From(1.0, VolumetricHeatCapacity.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var btupercubicfootdegreefahrenheitQuantity = joulepercubicmeterkelvin.ToUnit(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit);
-            AssertEx.EqualTolerance(BtusPerCubicFootDegreeFahrenheitInOneJoulePerCubicMeterKelvin, (double)btupercubicfootdegreefahrenheitQuantity.Value, BtusPerCubicFootDegreeFahrenheitTolerance);
-            Assert.Equal(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, btupercubicfootdegreefahrenheitQuantity.Unit);
-
-            var caloriepercubiccentimeterdegreecelsiusQuantity = joulepercubicmeterkelvin.ToUnit(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius);
-            AssertEx.EqualTolerance(CaloriesPerCubicCentimeterDegreeCelsiusInOneJoulePerCubicMeterKelvin, (double)caloriepercubiccentimeterdegreecelsiusQuantity.Value, CaloriesPerCubicCentimeterDegreeCelsiusTolerance);
-            Assert.Equal(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius, caloriepercubiccentimeterdegreecelsiusQuantity.Unit);
-
-            var joulepercubicmeterdegreecelsiusQuantity = joulepercubicmeterkelvin.ToUnit(VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius);
-            AssertEx.EqualTolerance(JoulesPerCubicMeterDegreeCelsiusInOneJoulePerCubicMeterKelvin, (double)joulepercubicmeterdegreecelsiusQuantity.Value, JoulesPerCubicMeterDegreeCelsiusTolerance);
-            Assert.Equal(VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius, joulepercubicmeterdegreecelsiusQuantity.Unit);
-
-            var joulepercubicmeterkelvinQuantity = joulepercubicmeterkelvin.ToUnit(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin);
-            AssertEx.EqualTolerance(JoulesPerCubicMeterKelvinInOneJoulePerCubicMeterKelvin, (double)joulepercubicmeterkelvinQuantity.Value, JoulesPerCubicMeterKelvinTolerance);
-            Assert.Equal(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, joulepercubicmeterkelvinQuantity.Unit);
-
-            var kilocaloriepercubiccentimeterdegreecelsiusQuantity = joulepercubicmeterkelvin.ToUnit(VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius);
-            AssertEx.EqualTolerance(KilocaloriesPerCubicCentimeterDegreeCelsiusInOneJoulePerCubicMeterKelvin, (double)kilocaloriepercubiccentimeterdegreecelsiusQuantity.Value, KilocaloriesPerCubicCentimeterDegreeCelsiusTolerance);
-            Assert.Equal(VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius, kilocaloriepercubiccentimeterdegreecelsiusQuantity.Unit);
-
-            var kilojoulepercubicmeterdegreecelsiusQuantity = joulepercubicmeterkelvin.ToUnit(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius);
-            AssertEx.EqualTolerance(KilojoulesPerCubicMeterDegreeCelsiusInOneJoulePerCubicMeterKelvin, (double)kilojoulepercubicmeterdegreecelsiusQuantity.Value, KilojoulesPerCubicMeterDegreeCelsiusTolerance);
-            Assert.Equal(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius, kilojoulepercubicmeterdegreecelsiusQuantity.Unit);
-
-            var kilojoulepercubicmeterkelvinQuantity = joulepercubicmeterkelvin.ToUnit(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin);
-            AssertEx.EqualTolerance(KilojoulesPerCubicMeterKelvinInOneJoulePerCubicMeterKelvin, (double)kilojoulepercubicmeterkelvinQuantity.Value, KilojoulesPerCubicMeterKelvinTolerance);
-            Assert.Equal(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, kilojoulepercubicmeterkelvinQuantity.Unit);
-
-            var megajoulepercubicmeterdegreecelsiusQuantity = joulepercubicmeterkelvin.ToUnit(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius);
-            AssertEx.EqualTolerance(MegajoulesPerCubicMeterDegreeCelsiusInOneJoulePerCubicMeterKelvin, (double)megajoulepercubicmeterdegreecelsiusQuantity.Value, MegajoulesPerCubicMeterDegreeCelsiusTolerance);
-            Assert.Equal(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, megajoulepercubicmeterdegreecelsiusQuantity.Unit);
-
-            var megajoulepercubicmeterkelvinQuantity = joulepercubicmeterkelvin.ToUnit(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin);
-            AssertEx.EqualTolerance(MegajoulesPerCubicMeterKelvinInOneJoulePerCubicMeterKelvin, (double)megajoulepercubicmeterkelvinQuantity.Value, MegajoulesPerCubicMeterKelvinTolerance);
-            Assert.Equal(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, megajoulepercubicmeterkelvinQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(VolumetricHeatCapacityUnit unit)
         {
-            var quantityInBaseUnit = VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(1).ToBaseUnit();
-            Assert.Equal(VolumetricHeatCapacity.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = VolumetricHeatCapacity.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(VolumetricHeatCapacityUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = VolumetricHeatCapacity.Units.FirstOrDefault(u => u != VolumetricHeatCapacity.BaseUnit && u != VolumetricHeatCapacityUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == VolumetricHeatCapacityUnit.Undefined)
+                fromUnit = VolumetricHeatCapacity.BaseUnit;
+
+            var quantity = VolumetricHeatCapacity.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

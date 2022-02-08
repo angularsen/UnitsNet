@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -62,6 +63,40 @@ namespace UnitsNet.Tests
         protected virtual double WeeksTolerance { get { return 1e-5; } }
         protected virtual double Years365Tolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(DurationUnit unit)
+        {
+            return unit switch
+            {
+                DurationUnit.Day => (DaysInOneSecond, DaysTolerance),
+                DurationUnit.Hour => (HoursInOneSecond, HoursTolerance),
+                DurationUnit.JulianYear => (JulianYearsInOneSecond, JulianYearsTolerance),
+                DurationUnit.Microsecond => (MicrosecondsInOneSecond, MicrosecondsTolerance),
+                DurationUnit.Millisecond => (MillisecondsInOneSecond, MillisecondsTolerance),
+                DurationUnit.Minute => (MinutesInOneSecond, MinutesTolerance),
+                DurationUnit.Month30 => (Months30InOneSecond, Months30Tolerance),
+                DurationUnit.Nanosecond => (NanosecondsInOneSecond, NanosecondsTolerance),
+                DurationUnit.Second => (SecondsInOneSecond, SecondsTolerance),
+                DurationUnit.Week => (WeeksInOneSecond, WeeksTolerance),
+                DurationUnit.Year365 => (Years365InOneSecond, Years365Tolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { DurationUnit.Day },
+            new object[] { DurationUnit.Hour },
+            new object[] { DurationUnit.JulianYear },
+            new object[] { DurationUnit.Microsecond },
+            new object[] { DurationUnit.Millisecond },
+            new object[] { DurationUnit.Minute },
+            new object[] { DurationUnit.Month30 },
+            new object[] { DurationUnit.Nanosecond },
+            new object[] { DurationUnit.Second },
+            new object[] { DurationUnit.Week },
+            new object[] { DurationUnit.Year365 },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -244,61 +279,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(DurationUnit unit)
         {
-            var second = Duration.FromSeconds(1);
+            var inBaseUnits = Duration.From(1.0, Duration.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var dayQuantity = second.ToUnit(DurationUnit.Day);
-            AssertEx.EqualTolerance(DaysInOneSecond, (double)dayQuantity.Value, DaysTolerance);
-            Assert.Equal(DurationUnit.Day, dayQuantity.Unit);
-
-            var hourQuantity = second.ToUnit(DurationUnit.Hour);
-            AssertEx.EqualTolerance(HoursInOneSecond, (double)hourQuantity.Value, HoursTolerance);
-            Assert.Equal(DurationUnit.Hour, hourQuantity.Unit);
-
-            var julianyearQuantity = second.ToUnit(DurationUnit.JulianYear);
-            AssertEx.EqualTolerance(JulianYearsInOneSecond, (double)julianyearQuantity.Value, JulianYearsTolerance);
-            Assert.Equal(DurationUnit.JulianYear, julianyearQuantity.Unit);
-
-            var microsecondQuantity = second.ToUnit(DurationUnit.Microsecond);
-            AssertEx.EqualTolerance(MicrosecondsInOneSecond, (double)microsecondQuantity.Value, MicrosecondsTolerance);
-            Assert.Equal(DurationUnit.Microsecond, microsecondQuantity.Unit);
-
-            var millisecondQuantity = second.ToUnit(DurationUnit.Millisecond);
-            AssertEx.EqualTolerance(MillisecondsInOneSecond, (double)millisecondQuantity.Value, MillisecondsTolerance);
-            Assert.Equal(DurationUnit.Millisecond, millisecondQuantity.Unit);
-
-            var minuteQuantity = second.ToUnit(DurationUnit.Minute);
-            AssertEx.EqualTolerance(MinutesInOneSecond, (double)minuteQuantity.Value, MinutesTolerance);
-            Assert.Equal(DurationUnit.Minute, minuteQuantity.Unit);
-
-            var month30Quantity = second.ToUnit(DurationUnit.Month30);
-            AssertEx.EqualTolerance(Months30InOneSecond, (double)month30Quantity.Value, Months30Tolerance);
-            Assert.Equal(DurationUnit.Month30, month30Quantity.Unit);
-
-            var nanosecondQuantity = second.ToUnit(DurationUnit.Nanosecond);
-            AssertEx.EqualTolerance(NanosecondsInOneSecond, (double)nanosecondQuantity.Value, NanosecondsTolerance);
-            Assert.Equal(DurationUnit.Nanosecond, nanosecondQuantity.Unit);
-
-            var secondQuantity = second.ToUnit(DurationUnit.Second);
-            AssertEx.EqualTolerance(SecondsInOneSecond, (double)secondQuantity.Value, SecondsTolerance);
-            Assert.Equal(DurationUnit.Second, secondQuantity.Unit);
-
-            var weekQuantity = second.ToUnit(DurationUnit.Week);
-            AssertEx.EqualTolerance(WeeksInOneSecond, (double)weekQuantity.Value, WeeksTolerance);
-            Assert.Equal(DurationUnit.Week, weekQuantity.Unit);
-
-            var year365Quantity = second.ToUnit(DurationUnit.Year365);
-            AssertEx.EqualTolerance(Years365InOneSecond, (double)year365Quantity.Value, Years365Tolerance);
-            Assert.Equal(DurationUnit.Year365, year365Quantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(DurationUnit unit)
         {
-            var quantityInBaseUnit = Duration.FromSeconds(1).ToBaseUnit();
-            Assert.Equal(Duration.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = Duration.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(DurationUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = Duration.Units.FirstOrDefault(u => u != Duration.BaseUnit && u != DurationUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == DurationUnit.Undefined)
+                fromUnit = Duration.BaseUnit;
+
+            var quantity = Duration.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

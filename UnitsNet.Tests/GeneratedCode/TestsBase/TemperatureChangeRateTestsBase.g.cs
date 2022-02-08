@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -60,6 +61,38 @@ namespace UnitsNet.Tests
         protected virtual double MillidegreesCelsiusPerSecondTolerance { get { return 1e-5; } }
         protected virtual double NanodegreesCelsiusPerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(TemperatureChangeRateUnit unit)
+        {
+            return unit switch
+            {
+                TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond => (CentidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, CentidegreesCelsiusPerSecondTolerance),
+                TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond => (DecadegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, DecadegreesCelsiusPerSecondTolerance),
+                TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond => (DecidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, DecidegreesCelsiusPerSecondTolerance),
+                TemperatureChangeRateUnit.DegreeCelsiusPerMinute => (DegreesCelsiusPerMinuteInOneDegreeCelsiusPerSecond, DegreesCelsiusPerMinuteTolerance),
+                TemperatureChangeRateUnit.DegreeCelsiusPerSecond => (DegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, DegreesCelsiusPerSecondTolerance),
+                TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond => (HectodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, HectodegreesCelsiusPerSecondTolerance),
+                TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond => (KilodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, KilodegreesCelsiusPerSecondTolerance),
+                TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond => (MicrodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, MicrodegreesCelsiusPerSecondTolerance),
+                TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond => (MillidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, MillidegreesCelsiusPerSecondTolerance),
+                TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond => (NanodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, NanodegreesCelsiusPerSecondTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond },
+            new object[] { TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond },
+            new object[] { TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond },
+            new object[] { TemperatureChangeRateUnit.DegreeCelsiusPerMinute },
+            new object[] { TemperatureChangeRateUnit.DegreeCelsiusPerSecond },
+            new object[] { TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond },
+            new object[] { TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond },
+            new object[] { TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond },
+            new object[] { TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond },
+            new object[] { TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -236,57 +269,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(TemperatureChangeRateUnit unit)
         {
-            var degreecelsiuspersecond = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
+            var inBaseUnits = TemperatureChangeRate.From(1.0, TemperatureChangeRate.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var centidegreecelsiuspersecondQuantity = degreecelsiuspersecond.ToUnit(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond);
-            AssertEx.EqualTolerance(CentidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, (double)centidegreecelsiuspersecondQuantity.Value, CentidegreesCelsiusPerSecondTolerance);
-            Assert.Equal(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, centidegreecelsiuspersecondQuantity.Unit);
-
-            var decadegreecelsiuspersecondQuantity = degreecelsiuspersecond.ToUnit(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond);
-            AssertEx.EqualTolerance(DecadegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, (double)decadegreecelsiuspersecondQuantity.Value, DecadegreesCelsiusPerSecondTolerance);
-            Assert.Equal(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, decadegreecelsiuspersecondQuantity.Unit);
-
-            var decidegreecelsiuspersecondQuantity = degreecelsiuspersecond.ToUnit(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond);
-            AssertEx.EqualTolerance(DecidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, (double)decidegreecelsiuspersecondQuantity.Value, DecidegreesCelsiusPerSecondTolerance);
-            Assert.Equal(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond, decidegreecelsiuspersecondQuantity.Unit);
-
-            var degreecelsiusperminuteQuantity = degreecelsiuspersecond.ToUnit(TemperatureChangeRateUnit.DegreeCelsiusPerMinute);
-            AssertEx.EqualTolerance(DegreesCelsiusPerMinuteInOneDegreeCelsiusPerSecond, (double)degreecelsiusperminuteQuantity.Value, DegreesCelsiusPerMinuteTolerance);
-            Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerMinute, degreecelsiusperminuteQuantity.Unit);
-
-            var degreecelsiuspersecondQuantity = degreecelsiuspersecond.ToUnit(TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
-            AssertEx.EqualTolerance(DegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, (double)degreecelsiuspersecondQuantity.Value, DegreesCelsiusPerSecondTolerance);
-            Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, degreecelsiuspersecondQuantity.Unit);
-
-            var hectodegreecelsiuspersecondQuantity = degreecelsiuspersecond.ToUnit(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond);
-            AssertEx.EqualTolerance(HectodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, (double)hectodegreecelsiuspersecondQuantity.Value, HectodegreesCelsiusPerSecondTolerance);
-            Assert.Equal(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond, hectodegreecelsiuspersecondQuantity.Unit);
-
-            var kilodegreecelsiuspersecondQuantity = degreecelsiuspersecond.ToUnit(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond);
-            AssertEx.EqualTolerance(KilodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, (double)kilodegreecelsiuspersecondQuantity.Value, KilodegreesCelsiusPerSecondTolerance);
-            Assert.Equal(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond, kilodegreecelsiuspersecondQuantity.Unit);
-
-            var microdegreecelsiuspersecondQuantity = degreecelsiuspersecond.ToUnit(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond);
-            AssertEx.EqualTolerance(MicrodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, (double)microdegreecelsiuspersecondQuantity.Value, MicrodegreesCelsiusPerSecondTolerance);
-            Assert.Equal(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, microdegreecelsiuspersecondQuantity.Unit);
-
-            var millidegreecelsiuspersecondQuantity = degreecelsiuspersecond.ToUnit(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond);
-            AssertEx.EqualTolerance(MillidegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, (double)millidegreecelsiuspersecondQuantity.Value, MillidegreesCelsiusPerSecondTolerance);
-            Assert.Equal(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, millidegreecelsiuspersecondQuantity.Unit);
-
-            var nanodegreecelsiuspersecondQuantity = degreecelsiuspersecond.ToUnit(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond);
-            AssertEx.EqualTolerance(NanodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond, (double)nanodegreecelsiuspersecondQuantity.Value, NanodegreesCelsiusPerSecondTolerance);
-            Assert.Equal(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, nanodegreecelsiuspersecondQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(TemperatureChangeRateUnit unit)
         {
-            var quantityInBaseUnit = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1).ToBaseUnit();
-            Assert.Equal(TemperatureChangeRate.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = TemperatureChangeRate.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(TemperatureChangeRateUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = TemperatureChangeRate.Units.FirstOrDefault(u => u != TemperatureChangeRate.BaseUnit && u != TemperatureChangeRateUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == TemperatureChangeRateUnit.Undefined)
+                fromUnit = TemperatureChangeRate.BaseUnit;
+
+            var quantity = TemperatureChangeRate.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

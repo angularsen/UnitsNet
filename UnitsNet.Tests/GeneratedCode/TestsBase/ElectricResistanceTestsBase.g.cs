@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -52,6 +53,30 @@ namespace UnitsNet.Tests
         protected virtual double MilliohmsTolerance { get { return 1e-5; } }
         protected virtual double OhmsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricResistanceUnit unit)
+        {
+            return unit switch
+            {
+                ElectricResistanceUnit.Gigaohm => (GigaohmsInOneOhm, GigaohmsTolerance),
+                ElectricResistanceUnit.Kiloohm => (KiloohmsInOneOhm, KiloohmsTolerance),
+                ElectricResistanceUnit.Megaohm => (MegaohmsInOneOhm, MegaohmsTolerance),
+                ElectricResistanceUnit.Microohm => (MicroohmsInOneOhm, MicroohmsTolerance),
+                ElectricResistanceUnit.Milliohm => (MilliohmsInOneOhm, MilliohmsTolerance),
+                ElectricResistanceUnit.Ohm => (OhmsInOneOhm, OhmsTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ElectricResistanceUnit.Gigaohm },
+            new object[] { ElectricResistanceUnit.Kiloohm },
+            new object[] { ElectricResistanceUnit.Megaohm },
+            new object[] { ElectricResistanceUnit.Microohm },
+            new object[] { ElectricResistanceUnit.Milliohm },
+            new object[] { ElectricResistanceUnit.Ohm },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -204,41 +229,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ElectricResistanceUnit unit)
         {
-            var ohm = ElectricResistance.FromOhms(1);
+            var inBaseUnits = ElectricResistance.From(1.0, ElectricResistance.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var gigaohmQuantity = ohm.ToUnit(ElectricResistanceUnit.Gigaohm);
-            AssertEx.EqualTolerance(GigaohmsInOneOhm, (double)gigaohmQuantity.Value, GigaohmsTolerance);
-            Assert.Equal(ElectricResistanceUnit.Gigaohm, gigaohmQuantity.Unit);
-
-            var kiloohmQuantity = ohm.ToUnit(ElectricResistanceUnit.Kiloohm);
-            AssertEx.EqualTolerance(KiloohmsInOneOhm, (double)kiloohmQuantity.Value, KiloohmsTolerance);
-            Assert.Equal(ElectricResistanceUnit.Kiloohm, kiloohmQuantity.Unit);
-
-            var megaohmQuantity = ohm.ToUnit(ElectricResistanceUnit.Megaohm);
-            AssertEx.EqualTolerance(MegaohmsInOneOhm, (double)megaohmQuantity.Value, MegaohmsTolerance);
-            Assert.Equal(ElectricResistanceUnit.Megaohm, megaohmQuantity.Unit);
-
-            var microohmQuantity = ohm.ToUnit(ElectricResistanceUnit.Microohm);
-            AssertEx.EqualTolerance(MicroohmsInOneOhm, (double)microohmQuantity.Value, MicroohmsTolerance);
-            Assert.Equal(ElectricResistanceUnit.Microohm, microohmQuantity.Unit);
-
-            var milliohmQuantity = ohm.ToUnit(ElectricResistanceUnit.Milliohm);
-            AssertEx.EqualTolerance(MilliohmsInOneOhm, (double)milliohmQuantity.Value, MilliohmsTolerance);
-            Assert.Equal(ElectricResistanceUnit.Milliohm, milliohmQuantity.Unit);
-
-            var ohmQuantity = ohm.ToUnit(ElectricResistanceUnit.Ohm);
-            AssertEx.EqualTolerance(OhmsInOneOhm, (double)ohmQuantity.Value, OhmsTolerance);
-            Assert.Equal(ElectricResistanceUnit.Ohm, ohmQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(ElectricResistanceUnit unit)
         {
-            var quantityInBaseUnit = ElectricResistance.FromOhms(1).ToBaseUnit();
-            Assert.Equal(ElectricResistance.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ElectricResistance.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricResistanceUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ElectricResistance.Units.FirstOrDefault(u => u != ElectricResistance.BaseUnit && u != ElectricResistanceUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ElectricResistanceUnit.Undefined)
+                fromUnit = ElectricResistance.BaseUnit;
+
+            var quantity = ElectricResistance.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

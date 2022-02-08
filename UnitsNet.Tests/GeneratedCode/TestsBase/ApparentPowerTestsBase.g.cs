@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -48,6 +49,26 @@ namespace UnitsNet.Tests
         protected virtual double MegavoltamperesTolerance { get { return 1e-5; } }
         protected virtual double VoltamperesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ApparentPowerUnit unit)
+        {
+            return unit switch
+            {
+                ApparentPowerUnit.Gigavoltampere => (GigavoltamperesInOneVoltampere, GigavoltamperesTolerance),
+                ApparentPowerUnit.Kilovoltampere => (KilovoltamperesInOneVoltampere, KilovoltamperesTolerance),
+                ApparentPowerUnit.Megavoltampere => (MegavoltamperesInOneVoltampere, MegavoltamperesTolerance),
+                ApparentPowerUnit.Voltampere => (VoltamperesInOneVoltampere, VoltamperesTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ApparentPowerUnit.Gigavoltampere },
+            new object[] { ApparentPowerUnit.Kilovoltampere },
+            new object[] { ApparentPowerUnit.Megavoltampere },
+            new object[] { ApparentPowerUnit.Voltampere },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -188,33 +209,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ApparentPowerUnit unit)
         {
-            var voltampere = ApparentPower.FromVoltamperes(1);
+            var inBaseUnits = ApparentPower.From(1.0, ApparentPower.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var gigavoltampereQuantity = voltampere.ToUnit(ApparentPowerUnit.Gigavoltampere);
-            AssertEx.EqualTolerance(GigavoltamperesInOneVoltampere, (double)gigavoltampereQuantity.Value, GigavoltamperesTolerance);
-            Assert.Equal(ApparentPowerUnit.Gigavoltampere, gigavoltampereQuantity.Unit);
-
-            var kilovoltampereQuantity = voltampere.ToUnit(ApparentPowerUnit.Kilovoltampere);
-            AssertEx.EqualTolerance(KilovoltamperesInOneVoltampere, (double)kilovoltampereQuantity.Value, KilovoltamperesTolerance);
-            Assert.Equal(ApparentPowerUnit.Kilovoltampere, kilovoltampereQuantity.Unit);
-
-            var megavoltampereQuantity = voltampere.ToUnit(ApparentPowerUnit.Megavoltampere);
-            AssertEx.EqualTolerance(MegavoltamperesInOneVoltampere, (double)megavoltampereQuantity.Value, MegavoltamperesTolerance);
-            Assert.Equal(ApparentPowerUnit.Megavoltampere, megavoltampereQuantity.Unit);
-
-            var voltampereQuantity = voltampere.ToUnit(ApparentPowerUnit.Voltampere);
-            AssertEx.EqualTolerance(VoltamperesInOneVoltampere, (double)voltampereQuantity.Value, VoltamperesTolerance);
-            Assert.Equal(ApparentPowerUnit.Voltampere, voltampereQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(ApparentPowerUnit unit)
         {
-            var quantityInBaseUnit = ApparentPower.FromVoltamperes(1).ToBaseUnit();
-            Assert.Equal(ApparentPower.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ApparentPower.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ApparentPowerUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ApparentPower.Units.FirstOrDefault(u => u != ApparentPower.BaseUnit && u != ApparentPowerUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ApparentPowerUnit.Undefined)
+                fromUnit = ApparentPower.BaseUnit;
+
+            var quantity = ApparentPower.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

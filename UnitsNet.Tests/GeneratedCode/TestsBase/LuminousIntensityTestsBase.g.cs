@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -42,6 +43,20 @@ namespace UnitsNet.Tests
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CandelaTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(LuminousIntensityUnit unit)
+        {
+            return unit switch
+            {
+                LuminousIntensityUnit.Candela => (CandelaInOneCandela, CandelaTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { LuminousIntensityUnit.Candela },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -164,21 +179,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(LuminousIntensityUnit unit)
         {
-            var candela = LuminousIntensity.FromCandela(1);
+            var inBaseUnits = LuminousIntensity.From(1.0, LuminousIntensity.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var candelaQuantity = candela.ToUnit(LuminousIntensityUnit.Candela);
-            AssertEx.EqualTolerance(CandelaInOneCandela, (double)candelaQuantity.Value, CandelaTolerance);
-            Assert.Equal(LuminousIntensityUnit.Candela, candelaQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(LuminousIntensityUnit unit)
         {
-            var quantityInBaseUnit = LuminousIntensity.FromCandela(1).ToBaseUnit();
-            Assert.Equal(LuminousIntensity.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = LuminousIntensity.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(LuminousIntensityUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = LuminousIntensity.Units.FirstOrDefault(u => u != LuminousIntensity.BaseUnit && u != LuminousIntensityUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == LuminousIntensityUnit.Undefined)
+                fromUnit = LuminousIntensity.BaseUnit;
+
+            var quantity = LuminousIntensity.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

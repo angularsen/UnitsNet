@@ -70,6 +70,8 @@ namespace UnitsNet
                     new UnitInfo<RatioUnit>(RatioUnit.Percent, "Percent", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Ratio);
+
+            RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
         /// <summary>
@@ -107,6 +109,11 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Ratio" /> instances.
+        /// </summary>
+        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<RatioUnit> Info { get; }
@@ -225,21 +232,21 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> RatioUnit
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerBillion, quantity => quantity.ToUnit(RatioUnit.PartPerBillion));
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerMillion, quantity => quantity.ToUnit(RatioUnit.PartPerMillion));
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerThousand, quantity => quantity.ToUnit(RatioUnit.PartPerThousand));
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerTrillion, quantity => quantity.ToUnit(RatioUnit.PartPerTrillion));
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.Percent, quantity => quantity.ToUnit(RatioUnit.Percent));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerBillion, quantity => new Ratio(quantity.Value*1e9, RatioUnit.PartPerBillion));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerMillion, quantity => new Ratio(quantity.Value*1e6, RatioUnit.PartPerMillion));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerThousand, quantity => new Ratio(quantity.Value*1e3, RatioUnit.PartPerThousand));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerTrillion, quantity => new Ratio(quantity.Value*1e12, RatioUnit.PartPerTrillion));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.Percent, quantity => new Ratio(quantity.Value*1e2, RatioUnit.Percent));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.DecimalFraction, quantity => quantity);
 
             // Register in unit converter: RatioUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.PartPerBillion, RatioUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.PartPerMillion, RatioUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.PartPerThousand, RatioUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.PartPerTrillion, RatioUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.Percent, RatioUnit.DecimalFraction, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.PartPerBillion, RatioUnit.DecimalFraction, quantity => new Ratio(quantity.Value/1e9, RatioUnit.DecimalFraction));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.PartPerMillion, RatioUnit.DecimalFraction, quantity => new Ratio(quantity.Value/1e6, RatioUnit.DecimalFraction));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.PartPerThousand, RatioUnit.DecimalFraction, quantity => new Ratio(quantity.Value/1e3, RatioUnit.DecimalFraction));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.PartPerTrillion, RatioUnit.DecimalFraction, quantity => new Ratio(quantity.Value/1e12, RatioUnit.DecimalFraction));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.Percent, RatioUnit.DecimalFraction, quantity => new Ratio(quantity.Value/1e2, RatioUnit.DecimalFraction));
         }
 
         /// <summary>
@@ -701,11 +708,42 @@ namespace UnitsNet
         /// <summary>
         ///     Converts this Ratio to another Ratio with the unit representation <paramref name="unit" />.
         /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
         /// <returns>A Ratio with the specified unit.</returns>
         public Ratio ToUnit(RatioUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new Ratio(convertedValue, unit);
+            return ToUnit(unit, DefaultConversionFunctions);
+        }
+
+        /// <summary>
+        ///     Converts this Ratio to another Ratio using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
+        /// <returns>A Ratio with the specified unit.</returns>
+        public Ratio ToUnit(RatioUnit unit, UnitConverter unitConverter)
+        {
+            if(Unit == unit)
+            {
+                // Already in requested units.
+                return this;
+            }
+            else if(unitConverter.TryGetConversionFunction((typeof(Ratio), Unit, typeof(Ratio), unit), out var conversionFunction))
+            {
+                // Direct conversion to requested unit found. Return the converted quantity.
+                var converted = conversionFunction(this);
+                return (Ratio)converted;
+            }
+            else if(Unit != BaseUnit)
+            {
+                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                var inBaseUnits = ToUnit(BaseUnit);
+                return inBaseUnits.ToUnit(unit);
+            }
+            else
+            {
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         /// <inheritdoc />
@@ -714,7 +752,16 @@ namespace UnitsNet
             if(!(unit is RatioUnit unitAsRatioUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RatioUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsRatioUnit);
+            return ToUnit(unitAsRatioUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is RatioUnit unitAsRatioUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RatioUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsRatioUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -739,57 +786,15 @@ namespace UnitsNet
         IQuantity<RatioUnit> IQuantity<RatioUnit>.ToUnit(RatioUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantity<RatioUnit> IQuantity<RatioUnit>.ToUnit(RatioUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
+
+        /// <inheritdoc />
         IQuantity<RatioUnit> IQuantity<RatioUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case RatioUnit.DecimalFraction: return _value;
-                case RatioUnit.PartPerBillion: return _value/1e9;
-                case RatioUnit.PartPerMillion: return _value/1e6;
-                case RatioUnit.PartPerThousand: return _value/1e3;
-                case RatioUnit.PartPerTrillion: return _value/1e12;
-                case RatioUnit.Percent: return _value/1e2;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal Ratio ToBaseUnit()
-        {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new Ratio(baseUnitValue, BaseUnit);
-        }
 
         private double GetValueAs(RatioUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var baseUnitValue = GetValueInBaseUnit();
-
-            switch(unit)
-            {
-                case RatioUnit.DecimalFraction: return baseUnitValue;
-                case RatioUnit.PartPerBillion: return baseUnitValue*1e9;
-                case RatioUnit.PartPerMillion: return baseUnitValue*1e6;
-                case RatioUnit.PartPerThousand: return baseUnitValue*1e3;
-                case RatioUnit.PartPerTrillion: return baseUnitValue*1e12;
-                case RatioUnit.Percent: return baseUnitValue*1e2;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         #endregion

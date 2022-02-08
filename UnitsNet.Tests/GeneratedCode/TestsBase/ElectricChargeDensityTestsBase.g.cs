@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -42,6 +43,20 @@ namespace UnitsNet.Tests
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CoulombsPerCubicMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricChargeDensityUnit unit)
+        {
+            return unit switch
+            {
+                ElectricChargeDensityUnit.CoulombPerCubicMeter => (CoulombsPerCubicMeterInOneCoulombPerCubicMeter, CoulombsPerCubicMeterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { ElectricChargeDensityUnit.CoulombPerCubicMeter },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -164,21 +179,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(ElectricChargeDensityUnit unit)
         {
-            var coulombpercubicmeter = ElectricChargeDensity.FromCoulombsPerCubicMeter(1);
+            var inBaseUnits = ElectricChargeDensity.From(1.0, ElectricChargeDensity.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var coulombpercubicmeterQuantity = coulombpercubicmeter.ToUnit(ElectricChargeDensityUnit.CoulombPerCubicMeter);
-            AssertEx.EqualTolerance(CoulombsPerCubicMeterInOneCoulombPerCubicMeter, (double)coulombpercubicmeterQuantity.Value, CoulombsPerCubicMeterTolerance);
-            Assert.Equal(ElectricChargeDensityUnit.CoulombPerCubicMeter, coulombpercubicmeterQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(ElectricChargeDensityUnit unit)
         {
-            var quantityInBaseUnit = ElectricChargeDensity.FromCoulombsPerCubicMeter(1).ToBaseUnit();
-            Assert.Equal(ElectricChargeDensity.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = ElectricChargeDensity.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricChargeDensityUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = ElectricChargeDensity.Units.FirstOrDefault(u => u != ElectricChargeDensity.BaseUnit && u != ElectricChargeDensityUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == ElectricChargeDensityUnit.Undefined)
+                fromUnit = ElectricChargeDensity.BaseUnit;
+
+            var quantity = ElectricChargeDensity.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -48,6 +49,26 @@ namespace UnitsNet.Tests
         protected virtual double DegreesFahrenheitPerFootTolerance { get { return 1e-5; } }
         protected virtual double KelvinsPerMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(TemperatureGradientUnit unit)
+        {
+            return unit switch
+            {
+                TemperatureGradientUnit.DegreeCelsiusPerKilometer => (DegreesCelciusPerKilometerInOneKelvinPerMeter, DegreesCelciusPerKilometerTolerance),
+                TemperatureGradientUnit.DegreeCelsiusPerMeter => (DegreesCelciusPerMeterInOneKelvinPerMeter, DegreesCelciusPerMeterTolerance),
+                TemperatureGradientUnit.DegreeFahrenheitPerFoot => (DegreesFahrenheitPerFootInOneKelvinPerMeter, DegreesFahrenheitPerFootTolerance),
+                TemperatureGradientUnit.KelvinPerMeter => (KelvinsPerMeterInOneKelvinPerMeter, KelvinsPerMeterTolerance),
+                _ => throw new NotSupportedException()
+            };
+        }
+
+        public static IEnumerable<object[]> UnitTypes = new List<object[]>
+        {
+            new object[] { TemperatureGradientUnit.DegreeCelsiusPerKilometer },
+            new object[] { TemperatureGradientUnit.DegreeCelsiusPerMeter },
+            new object[] { TemperatureGradientUnit.DegreeFahrenheitPerFoot },
+            new object[] { TemperatureGradientUnit.KelvinPerMeter },
+        };
 
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
@@ -188,33 +209,41 @@ namespace UnitsNet.Tests
             }
         }
 
-        [Fact]
-        public void ToUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit(TemperatureGradientUnit unit)
         {
-            var kelvinpermeter = TemperatureGradient.FromKelvinsPerMeter(1);
+            var inBaseUnits = TemperatureGradient.From(1.0, TemperatureGradient.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
-            var degreecelsiusperkilometerQuantity = kelvinpermeter.ToUnit(TemperatureGradientUnit.DegreeCelsiusPerKilometer);
-            AssertEx.EqualTolerance(DegreesCelciusPerKilometerInOneKelvinPerMeter, (double)degreecelsiusperkilometerQuantity.Value, DegreesCelciusPerKilometerTolerance);
-            Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerKilometer, degreecelsiusperkilometerQuantity.Unit);
-
-            var degreecelsiuspermeterQuantity = kelvinpermeter.ToUnit(TemperatureGradientUnit.DegreeCelsiusPerMeter);
-            AssertEx.EqualTolerance(DegreesCelciusPerMeterInOneKelvinPerMeter, (double)degreecelsiuspermeterQuantity.Value, DegreesCelciusPerMeterTolerance);
-            Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerMeter, degreecelsiuspermeterQuantity.Unit);
-
-            var degreefahrenheitperfootQuantity = kelvinpermeter.ToUnit(TemperatureGradientUnit.DegreeFahrenheitPerFoot);
-            AssertEx.EqualTolerance(DegreesFahrenheitPerFootInOneKelvinPerMeter, (double)degreefahrenheitperfootQuantity.Value, DegreesFahrenheitPerFootTolerance);
-            Assert.Equal(TemperatureGradientUnit.DegreeFahrenheitPerFoot, degreefahrenheitperfootQuantity.Unit);
-
-            var kelvinpermeterQuantity = kelvinpermeter.ToUnit(TemperatureGradientUnit.KelvinPerMeter);
-            AssertEx.EqualTolerance(KelvinsPerMeterInOneKelvinPerMeter, (double)kelvinpermeterQuantity.Value, KelvinsPerMeterTolerance);
-            Assert.Equal(TemperatureGradientUnit.KelvinPerMeter, kelvinpermeterQuantity.Unit);
+            var conversionFactor = GetConversionFactor(unit);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            Assert.Equal(unit, converted.Unit);
         }
 
-        [Fact]
-        public void ToBaseUnit_ReturnsQuantityWithBaseUnit()
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_WithSameUnits_AreEqual(TemperatureGradientUnit unit)
         {
-            var quantityInBaseUnit = TemperatureGradient.FromKelvinsPerMeter(1).ToBaseUnit();
-            Assert.Equal(TemperatureGradient.BaseUnit, quantityInBaseUnit.Unit);
+            var quantity = TemperatureGradient.From(3.0, unit);
+            var toUnitWithSameUnit = quantity.ToUnit(unit);
+            Assert.Equal(quantity, toUnitWithSameUnit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(TemperatureGradientUnit unit)
+        {
+            // See if there is a unit available that is not the base unit.
+            var fromUnit = TemperatureGradient.Units.FirstOrDefault(u => u != TemperatureGradient.BaseUnit && u != TemperatureGradientUnit.Undefined);
+
+            // If there is only one unit for the quantity, we must use the base unit.
+            if(fromUnit == TemperatureGradientUnit.Undefined)
+                fromUnit = TemperatureGradient.BaseUnit;
+
+            var quantity = TemperatureGradient.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
         }
 
         [Fact]

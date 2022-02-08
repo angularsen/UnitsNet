@@ -96,6 +96,8 @@ namespace UnitsNet
                     new UnitInfo<SpeedUnit>(SpeedUnit.YardPerSecond, "YardsPerSecond", new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Second)),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Speed);
+
+            RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
         /// <summary>
@@ -133,6 +135,11 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <summary>
+        ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Speed" /> instances.
+        /// </summary>
+        public static UnitConverter DefaultConversionFunctions { get; } = new UnitConverter();
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<SpeedUnit> Info { get; }
@@ -381,73 +388,73 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> SpeedUnit
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.CentimeterPerHour, quantity => quantity.ToUnit(SpeedUnit.CentimeterPerHour));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.CentimeterPerMinute, quantity => quantity.ToUnit(SpeedUnit.CentimeterPerMinute));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.CentimeterPerSecond, quantity => quantity.ToUnit(SpeedUnit.CentimeterPerSecond));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.DecimeterPerMinute, quantity => quantity.ToUnit(SpeedUnit.DecimeterPerMinute));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.DecimeterPerSecond, quantity => quantity.ToUnit(SpeedUnit.DecimeterPerSecond));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.FootPerHour, quantity => quantity.ToUnit(SpeedUnit.FootPerHour));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.FootPerMinute, quantity => quantity.ToUnit(SpeedUnit.FootPerMinute));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.FootPerSecond, quantity => quantity.ToUnit(SpeedUnit.FootPerSecond));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.InchPerHour, quantity => quantity.ToUnit(SpeedUnit.InchPerHour));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.InchPerMinute, quantity => quantity.ToUnit(SpeedUnit.InchPerMinute));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.InchPerSecond, quantity => quantity.ToUnit(SpeedUnit.InchPerSecond));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.KilometerPerHour, quantity => quantity.ToUnit(SpeedUnit.KilometerPerHour));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.KilometerPerMinute, quantity => quantity.ToUnit(SpeedUnit.KilometerPerMinute));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.KilometerPerSecond, quantity => quantity.ToUnit(SpeedUnit.KilometerPerSecond));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.Knot, quantity => quantity.ToUnit(SpeedUnit.Knot));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.MeterPerHour, quantity => quantity.ToUnit(SpeedUnit.MeterPerHour));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.MeterPerMinute, quantity => quantity.ToUnit(SpeedUnit.MeterPerMinute));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.MicrometerPerMinute, quantity => quantity.ToUnit(SpeedUnit.MicrometerPerMinute));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.MicrometerPerSecond, quantity => quantity.ToUnit(SpeedUnit.MicrometerPerSecond));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.MilePerHour, quantity => quantity.ToUnit(SpeedUnit.MilePerHour));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.MillimeterPerHour, quantity => quantity.ToUnit(SpeedUnit.MillimeterPerHour));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.MillimeterPerMinute, quantity => quantity.ToUnit(SpeedUnit.MillimeterPerMinute));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.MillimeterPerSecond, quantity => quantity.ToUnit(SpeedUnit.MillimeterPerSecond));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.NanometerPerMinute, quantity => quantity.ToUnit(SpeedUnit.NanometerPerMinute));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.NanometerPerSecond, quantity => quantity.ToUnit(SpeedUnit.NanometerPerSecond));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.UsSurveyFootPerHour, quantity => quantity.ToUnit(SpeedUnit.UsSurveyFootPerHour));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.UsSurveyFootPerMinute, quantity => quantity.ToUnit(SpeedUnit.UsSurveyFootPerMinute));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.UsSurveyFootPerSecond, quantity => quantity.ToUnit(SpeedUnit.UsSurveyFootPerSecond));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.YardPerHour, quantity => quantity.ToUnit(SpeedUnit.YardPerHour));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.YardPerMinute, quantity => quantity.ToUnit(SpeedUnit.YardPerMinute));
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.YardPerSecond, quantity => quantity.ToUnit(SpeedUnit.YardPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.CentimeterPerHour, quantity => new Speed((quantity.Value*3600) / 1e-2d, SpeedUnit.CentimeterPerHour));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.CentimeterPerMinute, quantity => new Speed((quantity.Value*60) / 1e-2d, SpeedUnit.CentimeterPerMinute));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.CentimeterPerSecond, quantity => new Speed((quantity.Value) / 1e-2d, SpeedUnit.CentimeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.DecimeterPerMinute, quantity => new Speed((quantity.Value*60) / 1e-1d, SpeedUnit.DecimeterPerMinute));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.DecimeterPerSecond, quantity => new Speed((quantity.Value) / 1e-1d, SpeedUnit.DecimeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.FootPerHour, quantity => new Speed(quantity.Value/0.3048*3600, SpeedUnit.FootPerHour));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.FootPerMinute, quantity => new Speed(quantity.Value/0.3048*60, SpeedUnit.FootPerMinute));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.FootPerSecond, quantity => new Speed(quantity.Value/0.3048, SpeedUnit.FootPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.InchPerHour, quantity => new Speed((quantity.Value/2.54e-2)*3600, SpeedUnit.InchPerHour));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.InchPerMinute, quantity => new Speed((quantity.Value/2.54e-2)*60, SpeedUnit.InchPerMinute));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.InchPerSecond, quantity => new Speed(quantity.Value/2.54e-2, SpeedUnit.InchPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.KilometerPerHour, quantity => new Speed((quantity.Value*3600) / 1e3d, SpeedUnit.KilometerPerHour));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.KilometerPerMinute, quantity => new Speed((quantity.Value*60) / 1e3d, SpeedUnit.KilometerPerMinute));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.KilometerPerSecond, quantity => new Speed((quantity.Value) / 1e3d, SpeedUnit.KilometerPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.Knot, quantity => new Speed(quantity.Value/0.514444, SpeedUnit.Knot));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.MeterPerHour, quantity => new Speed(quantity.Value*3600, SpeedUnit.MeterPerHour));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.MeterPerMinute, quantity => new Speed(quantity.Value*60, SpeedUnit.MeterPerMinute));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.MicrometerPerMinute, quantity => new Speed((quantity.Value*60) / 1e-6d, SpeedUnit.MicrometerPerMinute));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.MicrometerPerSecond, quantity => new Speed((quantity.Value) / 1e-6d, SpeedUnit.MicrometerPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.MilePerHour, quantity => new Speed(quantity.Value/0.44704, SpeedUnit.MilePerHour));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.MillimeterPerHour, quantity => new Speed((quantity.Value*3600) / 1e-3d, SpeedUnit.MillimeterPerHour));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.MillimeterPerMinute, quantity => new Speed((quantity.Value*60) / 1e-3d, SpeedUnit.MillimeterPerMinute));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.MillimeterPerSecond, quantity => new Speed((quantity.Value) / 1e-3d, SpeedUnit.MillimeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.NanometerPerMinute, quantity => new Speed((quantity.Value*60) / 1e-9d, SpeedUnit.NanometerPerMinute));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.NanometerPerSecond, quantity => new Speed((quantity.Value) / 1e-9d, SpeedUnit.NanometerPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.UsSurveyFootPerHour, quantity => new Speed((quantity.Value*3937/1200)*3600, SpeedUnit.UsSurveyFootPerHour));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.UsSurveyFootPerMinute, quantity => new Speed((quantity.Value*3937/1200)*60, SpeedUnit.UsSurveyFootPerMinute));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.UsSurveyFootPerSecond, quantity => new Speed(quantity.Value*3937/1200, SpeedUnit.UsSurveyFootPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.YardPerHour, quantity => new Speed(quantity.Value/0.9144*3600, SpeedUnit.YardPerHour));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.YardPerMinute, quantity => new Speed(quantity.Value/0.9144*60, SpeedUnit.YardPerMinute));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.YardPerSecond, quantity => new Speed(quantity.Value/0.9144, SpeedUnit.YardPerSecond));
             
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.MeterPerSecond, quantity => quantity);
 
             // Register in unit converter: SpeedUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.CentimeterPerHour, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.CentimeterPerMinute, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.CentimeterPerSecond, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.DecimeterPerMinute, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.DecimeterPerSecond, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.FootPerHour, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.FootPerMinute, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.FootPerSecond, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.InchPerHour, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.InchPerMinute, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.InchPerSecond, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.KilometerPerHour, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.KilometerPerMinute, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.KilometerPerSecond, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.Knot, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerHour, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerMinute, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MicrometerPerMinute, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MicrometerPerSecond, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MilePerHour, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MillimeterPerHour, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MillimeterPerMinute, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MillimeterPerSecond, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.NanometerPerMinute, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.NanometerPerSecond, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.UsSurveyFootPerHour, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.UsSurveyFootPerMinute, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.UsSurveyFootPerSecond, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.YardPerHour, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.YardPerMinute, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
-            unitConverter.SetConversionFunction<Speed>(SpeedUnit.YardPerSecond, SpeedUnit.MeterPerSecond, quantity => quantity.ToBaseUnit());
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.CentimeterPerHour, SpeedUnit.MeterPerSecond, quantity => new Speed((quantity.Value/3600) * 1e-2d, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.CentimeterPerMinute, SpeedUnit.MeterPerSecond, quantity => new Speed((quantity.Value/60) * 1e-2d, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.CentimeterPerSecond, SpeedUnit.MeterPerSecond, quantity => new Speed((quantity.Value) * 1e-2d, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.DecimeterPerMinute, SpeedUnit.MeterPerSecond, quantity => new Speed((quantity.Value/60) * 1e-1d, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.DecimeterPerSecond, SpeedUnit.MeterPerSecond, quantity => new Speed((quantity.Value) * 1e-1d, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.FootPerHour, SpeedUnit.MeterPerSecond, quantity => new Speed(quantity.Value*0.3048/3600, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.FootPerMinute, SpeedUnit.MeterPerSecond, quantity => new Speed(quantity.Value*0.3048/60, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.FootPerSecond, SpeedUnit.MeterPerSecond, quantity => new Speed(quantity.Value*0.3048, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.InchPerHour, SpeedUnit.MeterPerSecond, quantity => new Speed((quantity.Value/3600)*2.54e-2, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.InchPerMinute, SpeedUnit.MeterPerSecond, quantity => new Speed((quantity.Value/60)*2.54e-2, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.InchPerSecond, SpeedUnit.MeterPerSecond, quantity => new Speed(quantity.Value*2.54e-2, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.KilometerPerHour, SpeedUnit.MeterPerSecond, quantity => new Speed((quantity.Value/3600) * 1e3d, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.KilometerPerMinute, SpeedUnit.MeterPerSecond, quantity => new Speed((quantity.Value/60) * 1e3d, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.KilometerPerSecond, SpeedUnit.MeterPerSecond, quantity => new Speed((quantity.Value) * 1e3d, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.Knot, SpeedUnit.MeterPerSecond, quantity => new Speed(quantity.Value*0.514444, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerHour, SpeedUnit.MeterPerSecond, quantity => new Speed(quantity.Value/3600, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerMinute, SpeedUnit.MeterPerSecond, quantity => new Speed(quantity.Value/60, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MicrometerPerMinute, SpeedUnit.MeterPerSecond, quantity => new Speed((quantity.Value/60) * 1e-6d, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MicrometerPerSecond, SpeedUnit.MeterPerSecond, quantity => new Speed((quantity.Value) * 1e-6d, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MilePerHour, SpeedUnit.MeterPerSecond, quantity => new Speed(quantity.Value*0.44704, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MillimeterPerHour, SpeedUnit.MeterPerSecond, quantity => new Speed((quantity.Value/3600) * 1e-3d, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MillimeterPerMinute, SpeedUnit.MeterPerSecond, quantity => new Speed((quantity.Value/60) * 1e-3d, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MillimeterPerSecond, SpeedUnit.MeterPerSecond, quantity => new Speed((quantity.Value) * 1e-3d, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.NanometerPerMinute, SpeedUnit.MeterPerSecond, quantity => new Speed((quantity.Value/60) * 1e-9d, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.NanometerPerSecond, SpeedUnit.MeterPerSecond, quantity => new Speed((quantity.Value) * 1e-9d, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.UsSurveyFootPerHour, SpeedUnit.MeterPerSecond, quantity => new Speed((quantity.Value*1200/3937)/3600, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.UsSurveyFootPerMinute, SpeedUnit.MeterPerSecond, quantity => new Speed((quantity.Value*1200/3937)/60, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.UsSurveyFootPerSecond, SpeedUnit.MeterPerSecond, quantity => new Speed(quantity.Value*1200/3937, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.YardPerHour, SpeedUnit.MeterPerSecond, quantity => new Speed(quantity.Value*0.9144/3600, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.YardPerMinute, SpeedUnit.MeterPerSecond, quantity => new Speed(quantity.Value*0.9144/60, SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.YardPerSecond, SpeedUnit.MeterPerSecond, quantity => new Speed(quantity.Value*0.9144, SpeedUnit.MeterPerSecond));
         }
 
         /// <summary>
@@ -1143,11 +1150,42 @@ namespace UnitsNet
         /// <summary>
         ///     Converts this Speed to another Speed with the unit representation <paramref name="unit" />.
         /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
         /// <returns>A Speed with the specified unit.</returns>
         public Speed ToUnit(SpeedUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
-            return new Speed(convertedValue, unit);
+            return ToUnit(unit, DefaultConversionFunctions);
+        }
+
+        /// <summary>
+        ///     Converts this Speed to another Speed using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
+        /// <returns>A Speed with the specified unit.</returns>
+        public Speed ToUnit(SpeedUnit unit, UnitConverter unitConverter)
+        {
+            if(Unit == unit)
+            {
+                // Already in requested units.
+                return this;
+            }
+            else if(unitConverter.TryGetConversionFunction((typeof(Speed), Unit, typeof(Speed), unit), out var conversionFunction))
+            {
+                // Direct conversion to requested unit found. Return the converted quantity.
+                var converted = conversionFunction(this);
+                return (Speed)converted;
+            }
+            else if(Unit != BaseUnit)
+            {
+                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                var inBaseUnits = ToUnit(BaseUnit);
+                return inBaseUnits.ToUnit(unit);
+            }
+            else
+            {
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         /// <inheritdoc />
@@ -1156,7 +1194,16 @@ namespace UnitsNet
             if(!(unit is SpeedUnit unitAsSpeedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpeedUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsSpeedUnit);
+            return ToUnit(unitAsSpeedUnit, DefaultConversionFunctions);
+        }
+
+        /// <inheritdoc />
+        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
+        {
+            if(!(unit is SpeedUnit unitAsSpeedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpeedUnit)} is supported.", nameof(unit));
+
+            return ToUnit(unitAsSpeedUnit, unitConverter);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -1181,109 +1228,15 @@ namespace UnitsNet
         IQuantity<SpeedUnit> IQuantity<SpeedUnit>.ToUnit(SpeedUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
+        IQuantity<SpeedUnit> IQuantity<SpeedUnit>.ToUnit(SpeedUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
+
+        /// <inheritdoc />
         IQuantity<SpeedUnit> IQuantity<SpeedUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case SpeedUnit.CentimeterPerHour: return (_value/3600) * 1e-2d;
-                case SpeedUnit.CentimeterPerMinute: return (_value/60) * 1e-2d;
-                case SpeedUnit.CentimeterPerSecond: return (_value) * 1e-2d;
-                case SpeedUnit.DecimeterPerMinute: return (_value/60) * 1e-1d;
-                case SpeedUnit.DecimeterPerSecond: return (_value) * 1e-1d;
-                case SpeedUnit.FootPerHour: return _value*0.3048/3600;
-                case SpeedUnit.FootPerMinute: return _value*0.3048/60;
-                case SpeedUnit.FootPerSecond: return _value*0.3048;
-                case SpeedUnit.InchPerHour: return (_value/3600)*2.54e-2;
-                case SpeedUnit.InchPerMinute: return (_value/60)*2.54e-2;
-                case SpeedUnit.InchPerSecond: return _value*2.54e-2;
-                case SpeedUnit.KilometerPerHour: return (_value/3600) * 1e3d;
-                case SpeedUnit.KilometerPerMinute: return (_value/60) * 1e3d;
-                case SpeedUnit.KilometerPerSecond: return (_value) * 1e3d;
-                case SpeedUnit.Knot: return _value*0.514444;
-                case SpeedUnit.MeterPerHour: return _value/3600;
-                case SpeedUnit.MeterPerMinute: return _value/60;
-                case SpeedUnit.MeterPerSecond: return _value;
-                case SpeedUnit.MicrometerPerMinute: return (_value/60) * 1e-6d;
-                case SpeedUnit.MicrometerPerSecond: return (_value) * 1e-6d;
-                case SpeedUnit.MilePerHour: return _value*0.44704;
-                case SpeedUnit.MillimeterPerHour: return (_value/3600) * 1e-3d;
-                case SpeedUnit.MillimeterPerMinute: return (_value/60) * 1e-3d;
-                case SpeedUnit.MillimeterPerSecond: return (_value) * 1e-3d;
-                case SpeedUnit.NanometerPerMinute: return (_value/60) * 1e-9d;
-                case SpeedUnit.NanometerPerSecond: return (_value) * 1e-9d;
-                case SpeedUnit.UsSurveyFootPerHour: return (_value*1200/3937)/3600;
-                case SpeedUnit.UsSurveyFootPerMinute: return (_value*1200/3937)/60;
-                case SpeedUnit.UsSurveyFootPerSecond: return _value*1200/3937;
-                case SpeedUnit.YardPerHour: return _value*0.9144/3600;
-                case SpeedUnit.YardPerMinute: return _value*0.9144/60;
-                case SpeedUnit.YardPerSecond: return _value*0.9144;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal Speed ToBaseUnit()
-        {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new Speed(baseUnitValue, BaseUnit);
-        }
 
         private double GetValueAs(SpeedUnit unit)
         {
-            if(Unit == unit)
-                return _value;
-
-            var baseUnitValue = GetValueInBaseUnit();
-
-            switch(unit)
-            {
-                case SpeedUnit.CentimeterPerHour: return (baseUnitValue*3600) / 1e-2d;
-                case SpeedUnit.CentimeterPerMinute: return (baseUnitValue*60) / 1e-2d;
-                case SpeedUnit.CentimeterPerSecond: return (baseUnitValue) / 1e-2d;
-                case SpeedUnit.DecimeterPerMinute: return (baseUnitValue*60) / 1e-1d;
-                case SpeedUnit.DecimeterPerSecond: return (baseUnitValue) / 1e-1d;
-                case SpeedUnit.FootPerHour: return baseUnitValue/0.3048*3600;
-                case SpeedUnit.FootPerMinute: return baseUnitValue/0.3048*60;
-                case SpeedUnit.FootPerSecond: return baseUnitValue/0.3048;
-                case SpeedUnit.InchPerHour: return (baseUnitValue/2.54e-2)*3600;
-                case SpeedUnit.InchPerMinute: return (baseUnitValue/2.54e-2)*60;
-                case SpeedUnit.InchPerSecond: return baseUnitValue/2.54e-2;
-                case SpeedUnit.KilometerPerHour: return (baseUnitValue*3600) / 1e3d;
-                case SpeedUnit.KilometerPerMinute: return (baseUnitValue*60) / 1e3d;
-                case SpeedUnit.KilometerPerSecond: return (baseUnitValue) / 1e3d;
-                case SpeedUnit.Knot: return baseUnitValue/0.514444;
-                case SpeedUnit.MeterPerHour: return baseUnitValue*3600;
-                case SpeedUnit.MeterPerMinute: return baseUnitValue*60;
-                case SpeedUnit.MeterPerSecond: return baseUnitValue;
-                case SpeedUnit.MicrometerPerMinute: return (baseUnitValue*60) / 1e-6d;
-                case SpeedUnit.MicrometerPerSecond: return (baseUnitValue) / 1e-6d;
-                case SpeedUnit.MilePerHour: return baseUnitValue/0.44704;
-                case SpeedUnit.MillimeterPerHour: return (baseUnitValue*3600) / 1e-3d;
-                case SpeedUnit.MillimeterPerMinute: return (baseUnitValue*60) / 1e-3d;
-                case SpeedUnit.MillimeterPerSecond: return (baseUnitValue) / 1e-3d;
-                case SpeedUnit.NanometerPerMinute: return (baseUnitValue*60) / 1e-9d;
-                case SpeedUnit.NanometerPerSecond: return (baseUnitValue) / 1e-9d;
-                case SpeedUnit.UsSurveyFootPerHour: return (baseUnitValue*3937/1200)*3600;
-                case SpeedUnit.UsSurveyFootPerMinute: return (baseUnitValue*3937/1200)*60;
-                case SpeedUnit.UsSurveyFootPerSecond: return baseUnitValue*3937/1200;
-                case SpeedUnit.YardPerHour: return baseUnitValue/0.9144*3600;
-                case SpeedUnit.YardPerMinute: return baseUnitValue/0.9144*60;
-                case SpeedUnit.YardPerSecond: return baseUnitValue/0.9144;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         #endregion
