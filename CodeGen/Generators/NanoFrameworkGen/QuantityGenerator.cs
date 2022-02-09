@@ -208,19 +208,18 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private {_quantity.BaseType} GetValueInBaseUnit()
         {{
-            switch(Unit)
+            return Unit switch
             {{");
             foreach (var unit in _quantity.Units)
             {
                 var func = unit.FromUnitToBaseFunc.Replace("{x}", "_value");
                 Writer.WL($@"
-                case {_unitEnumName}.{unit.SingularName}: return {func};");
+                {_unitEnumName}.{unit.SingularName} => {func},");
             }
 
             Writer.WL($@"
-                default:
-                    throw new NotImplementedException($""Can not convert {{Unit}} to base units."");
-            }}
+                _ => throw new NotImplementedException($""Can not convert {{Unit}} to base units."")
+            }};
         }}
 
         private {_quantity.BaseType} GetValueAs({_unitEnumName} unit)
@@ -230,19 +229,18 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {{");
             foreach (var unit in _quantity.Units)
             {
                 var func = unit.FromBaseToUnitFunc.Replace("{x}", "baseUnitValue");
                 Writer.WL($@"
-                case {_unitEnumName}.{unit.SingularName}: return {func};");
+                {_unitEnumName}.{unit.SingularName} => {func},");
             }
 
             Writer.WL(@"
-                default:
-                    throw new NotImplementedException($""Can not convert {Unit} to {unit}."");
-            }
+                _ => throw new NotImplementedException($""Can not convert {Unit} to {unit}."")
+            };
         }
 
         #endregion

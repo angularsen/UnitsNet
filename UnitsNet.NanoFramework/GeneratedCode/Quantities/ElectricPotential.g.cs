@@ -175,16 +175,15 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case ElectricPotentialUnit.Kilovolt: return (_value) * 1e3d;
-                case ElectricPotentialUnit.Megavolt: return (_value) * 1e6d;
-                case ElectricPotentialUnit.Microvolt: return (_value) * 1e-6d;
-                case ElectricPotentialUnit.Millivolt: return (_value) * 1e-3d;
-                case ElectricPotentialUnit.Volt: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                ElectricPotentialUnit.Kilovolt => (_value) * 1e3d,
+                ElectricPotentialUnit.Megavolt => (_value) * 1e6d,
+                ElectricPotentialUnit.Microvolt => (_value) * 1e-6d,
+                ElectricPotentialUnit.Millivolt => (_value) * 1e-3d,
+                ElectricPotentialUnit.Volt => _value,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(ElectricPotentialUnit unit)
@@ -194,16 +193,15 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case ElectricPotentialUnit.Kilovolt: return (baseUnitValue) / 1e3d;
-                case ElectricPotentialUnit.Megavolt: return (baseUnitValue) / 1e6d;
-                case ElectricPotentialUnit.Microvolt: return (baseUnitValue) / 1e-6d;
-                case ElectricPotentialUnit.Millivolt: return (baseUnitValue) / 1e-3d;
-                case ElectricPotentialUnit.Volt: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                ElectricPotentialUnit.Kilovolt => (baseUnitValue) / 1e3d,
+                ElectricPotentialUnit.Megavolt => (baseUnitValue) / 1e6d,
+                ElectricPotentialUnit.Microvolt => (baseUnitValue) / 1e-6d,
+                ElectricPotentialUnit.Millivolt => (baseUnitValue) / 1e-3d,
+                ElectricPotentialUnit.Volt => baseUnitValue,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

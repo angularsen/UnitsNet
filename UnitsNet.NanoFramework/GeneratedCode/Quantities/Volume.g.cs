@@ -681,62 +681,61 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case VolumeUnit.AcreFoot: return _value/0.000810714;
-                case VolumeUnit.AuTablespoon: return _value*2e-5;
-                case VolumeUnit.BoardFoot: return _value*2.3597372158e-3;
-                case VolumeUnit.Centiliter: return (_value/1e3) * 1e-2d;
-                case VolumeUnit.CubicCentimeter: return _value/1e6;
-                case VolumeUnit.CubicDecimeter: return _value/1e3;
-                case VolumeUnit.CubicFoot: return _value * 2.8316846592e-2;
-                case VolumeUnit.CubicHectometer: return _value*1e6;
-                case VolumeUnit.CubicInch: return _value*1.6387*1e-5;
-                case VolumeUnit.CubicKilometer: return _value*1e9;
-                case VolumeUnit.CubicMeter: return _value;
-                case VolumeUnit.CubicMicrometer: return _value/1e18;
-                case VolumeUnit.CubicMile: return _value*4.16818182544058e9;
-                case VolumeUnit.CubicMillimeter: return _value/1e9;
-                case VolumeUnit.CubicYard: return _value*0.764554858;
-                case VolumeUnit.DecausGallon: return (_value*0.00378541) * 1e1d;
-                case VolumeUnit.Deciliter: return (_value/1e3) * 1e-1d;
-                case VolumeUnit.DeciusGallon: return (_value*0.00378541) * 1e-1d;
-                case VolumeUnit.HectocubicFoot: return (_value * 2.8316846592e-2) * 1e2d;
-                case VolumeUnit.HectocubicMeter: return (_value) * 1e2d;
-                case VolumeUnit.Hectoliter: return (_value/1e3) * 1e2d;
-                case VolumeUnit.HectousGallon: return (_value*0.00378541) * 1e2d;
-                case VolumeUnit.ImperialBeerBarrel: return _value*0.16365924;
-                case VolumeUnit.ImperialGallon: return _value*0.00454609000000181429905810072407;
-                case VolumeUnit.ImperialOunce: return _value*2.8413062499962901241875439064617e-5;
-                case VolumeUnit.ImperialPint: return _value * 5.6826125e-4;
-                case VolumeUnit.KilocubicFoot: return (_value * 2.8316846592e-2) * 1e3d;
-                case VolumeUnit.KilocubicMeter: return (_value) * 1e3d;
-                case VolumeUnit.KiloimperialGallon: return (_value*0.00454609000000181429905810072407) * 1e3d;
-                case VolumeUnit.Kiloliter: return (_value/1e3) * 1e3d;
-                case VolumeUnit.KilousGallon: return (_value*0.00378541) * 1e3d;
-                case VolumeUnit.Liter: return _value/1e3;
-                case VolumeUnit.MegacubicFoot: return (_value * 2.8316846592e-2) * 1e6d;
-                case VolumeUnit.MegaimperialGallon: return (_value*0.00454609000000181429905810072407) * 1e6d;
-                case VolumeUnit.Megaliter: return (_value/1e3) * 1e6d;
-                case VolumeUnit.MegausGallon: return (_value*0.00378541) * 1e6d;
-                case VolumeUnit.MetricCup: return _value*0.00025;
-                case VolumeUnit.MetricTeaspoon: return _value*0.5e-5;
-                case VolumeUnit.Microliter: return (_value/1e3) * 1e-6d;
-                case VolumeUnit.Milliliter: return (_value/1e3) * 1e-3d;
-                case VolumeUnit.OilBarrel: return _value*0.158987294928;
-                case VolumeUnit.UkTablespoon: return _value*1.5e-5;
-                case VolumeUnit.UsBeerBarrel: return _value*0.1173477658;
-                case VolumeUnit.UsCustomaryCup: return _value*0.0002365882365;
-                case VolumeUnit.UsGallon: return _value*0.00378541;
-                case VolumeUnit.UsLegalCup: return _value*0.00024;
-                case VolumeUnit.UsOunce: return _value*2.957352956253760505068307980135e-5;
-                case VolumeUnit.UsPint: return _value*4.73176473e-4;
-                case VolumeUnit.UsQuart: return _value*9.46352946e-4;
-                case VolumeUnit.UsTablespoon: return _value*1.478676478125e-5;
-                case VolumeUnit.UsTeaspoon: return _value*4.92892159375e-6;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                VolumeUnit.AcreFoot => _value/0.000810714,
+                VolumeUnit.AuTablespoon => _value*2e-5,
+                VolumeUnit.BoardFoot => _value*2.3597372158e-3,
+                VolumeUnit.Centiliter => (_value/1e3) * 1e-2d,
+                VolumeUnit.CubicCentimeter => _value/1e6,
+                VolumeUnit.CubicDecimeter => _value/1e3,
+                VolumeUnit.CubicFoot => _value * 2.8316846592e-2,
+                VolumeUnit.CubicHectometer => _value*1e6,
+                VolumeUnit.CubicInch => _value*1.6387*1e-5,
+                VolumeUnit.CubicKilometer => _value*1e9,
+                VolumeUnit.CubicMeter => _value,
+                VolumeUnit.CubicMicrometer => _value/1e18,
+                VolumeUnit.CubicMile => _value*4.16818182544058e9,
+                VolumeUnit.CubicMillimeter => _value/1e9,
+                VolumeUnit.CubicYard => _value*0.764554858,
+                VolumeUnit.DecausGallon => (_value*0.00378541) * 1e1d,
+                VolumeUnit.Deciliter => (_value/1e3) * 1e-1d,
+                VolumeUnit.DeciusGallon => (_value*0.00378541) * 1e-1d,
+                VolumeUnit.HectocubicFoot => (_value * 2.8316846592e-2) * 1e2d,
+                VolumeUnit.HectocubicMeter => (_value) * 1e2d,
+                VolumeUnit.Hectoliter => (_value/1e3) * 1e2d,
+                VolumeUnit.HectousGallon => (_value*0.00378541) * 1e2d,
+                VolumeUnit.ImperialBeerBarrel => _value*0.16365924,
+                VolumeUnit.ImperialGallon => _value*0.00454609000000181429905810072407,
+                VolumeUnit.ImperialOunce => _value*2.8413062499962901241875439064617e-5,
+                VolumeUnit.ImperialPint => _value * 5.6826125e-4,
+                VolumeUnit.KilocubicFoot => (_value * 2.8316846592e-2) * 1e3d,
+                VolumeUnit.KilocubicMeter => (_value) * 1e3d,
+                VolumeUnit.KiloimperialGallon => (_value*0.00454609000000181429905810072407) * 1e3d,
+                VolumeUnit.Kiloliter => (_value/1e3) * 1e3d,
+                VolumeUnit.KilousGallon => (_value*0.00378541) * 1e3d,
+                VolumeUnit.Liter => _value/1e3,
+                VolumeUnit.MegacubicFoot => (_value * 2.8316846592e-2) * 1e6d,
+                VolumeUnit.MegaimperialGallon => (_value*0.00454609000000181429905810072407) * 1e6d,
+                VolumeUnit.Megaliter => (_value/1e3) * 1e6d,
+                VolumeUnit.MegausGallon => (_value*0.00378541) * 1e6d,
+                VolumeUnit.MetricCup => _value*0.00025,
+                VolumeUnit.MetricTeaspoon => _value*0.5e-5,
+                VolumeUnit.Microliter => (_value/1e3) * 1e-6d,
+                VolumeUnit.Milliliter => (_value/1e3) * 1e-3d,
+                VolumeUnit.OilBarrel => _value*0.158987294928,
+                VolumeUnit.UkTablespoon => _value*1.5e-5,
+                VolumeUnit.UsBeerBarrel => _value*0.1173477658,
+                VolumeUnit.UsCustomaryCup => _value*0.0002365882365,
+                VolumeUnit.UsGallon => _value*0.00378541,
+                VolumeUnit.UsLegalCup => _value*0.00024,
+                VolumeUnit.UsOunce => _value*2.957352956253760505068307980135e-5,
+                VolumeUnit.UsPint => _value*4.73176473e-4,
+                VolumeUnit.UsQuart => _value*9.46352946e-4,
+                VolumeUnit.UsTablespoon => _value*1.478676478125e-5,
+                VolumeUnit.UsTeaspoon => _value*4.92892159375e-6,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(VolumeUnit unit)
@@ -746,62 +745,61 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case VolumeUnit.AcreFoot: return baseUnitValue*0.000810714;
-                case VolumeUnit.AuTablespoon: return baseUnitValue/2e-5;
-                case VolumeUnit.BoardFoot: return baseUnitValue/2.3597372158e-3;
-                case VolumeUnit.Centiliter: return (baseUnitValue*1e3) / 1e-2d;
-                case VolumeUnit.CubicCentimeter: return baseUnitValue*1e6;
-                case VolumeUnit.CubicDecimeter: return baseUnitValue*1e3;
-                case VolumeUnit.CubicFoot: return baseUnitValue / 2.8316846592e-2;
-                case VolumeUnit.CubicHectometer: return baseUnitValue/1e6;
-                case VolumeUnit.CubicInch: return baseUnitValue/(1.6387*1e-5);
-                case VolumeUnit.CubicKilometer: return baseUnitValue/1e9;
-                case VolumeUnit.CubicMeter: return baseUnitValue;
-                case VolumeUnit.CubicMicrometer: return baseUnitValue*1e18;
-                case VolumeUnit.CubicMile: return baseUnitValue/4.16818182544058e9;
-                case VolumeUnit.CubicMillimeter: return baseUnitValue*1e9;
-                case VolumeUnit.CubicYard: return baseUnitValue/0.764554858;
-                case VolumeUnit.DecausGallon: return (baseUnitValue/0.00378541) / 1e1d;
-                case VolumeUnit.Deciliter: return (baseUnitValue*1e3) / 1e-1d;
-                case VolumeUnit.DeciusGallon: return (baseUnitValue/0.00378541) / 1e-1d;
-                case VolumeUnit.HectocubicFoot: return (baseUnitValue / 2.8316846592e-2) / 1e2d;
-                case VolumeUnit.HectocubicMeter: return (baseUnitValue) / 1e2d;
-                case VolumeUnit.Hectoliter: return (baseUnitValue*1e3) / 1e2d;
-                case VolumeUnit.HectousGallon: return (baseUnitValue/0.00378541) / 1e2d;
-                case VolumeUnit.ImperialBeerBarrel: return baseUnitValue/0.16365924;
-                case VolumeUnit.ImperialGallon: return baseUnitValue/0.00454609000000181429905810072407;
-                case VolumeUnit.ImperialOunce: return baseUnitValue/2.8413062499962901241875439064617e-5;
-                case VolumeUnit.ImperialPint: return baseUnitValue / 5.6826125e-4;
-                case VolumeUnit.KilocubicFoot: return (baseUnitValue / 2.8316846592e-2) / 1e3d;
-                case VolumeUnit.KilocubicMeter: return (baseUnitValue) / 1e3d;
-                case VolumeUnit.KiloimperialGallon: return (baseUnitValue/0.00454609000000181429905810072407) / 1e3d;
-                case VolumeUnit.Kiloliter: return (baseUnitValue*1e3) / 1e3d;
-                case VolumeUnit.KilousGallon: return (baseUnitValue/0.00378541) / 1e3d;
-                case VolumeUnit.Liter: return baseUnitValue*1e3;
-                case VolumeUnit.MegacubicFoot: return (baseUnitValue / 2.8316846592e-2) / 1e6d;
-                case VolumeUnit.MegaimperialGallon: return (baseUnitValue/0.00454609000000181429905810072407) / 1e6d;
-                case VolumeUnit.Megaliter: return (baseUnitValue*1e3) / 1e6d;
-                case VolumeUnit.MegausGallon: return (baseUnitValue/0.00378541) / 1e6d;
-                case VolumeUnit.MetricCup: return baseUnitValue/0.00025;
-                case VolumeUnit.MetricTeaspoon: return baseUnitValue/0.5e-5;
-                case VolumeUnit.Microliter: return (baseUnitValue*1e3) / 1e-6d;
-                case VolumeUnit.Milliliter: return (baseUnitValue*1e3) / 1e-3d;
-                case VolumeUnit.OilBarrel: return baseUnitValue/0.158987294928;
-                case VolumeUnit.UkTablespoon: return baseUnitValue/1.5e-5;
-                case VolumeUnit.UsBeerBarrel: return baseUnitValue/0.1173477658;
-                case VolumeUnit.UsCustomaryCup: return baseUnitValue/0.0002365882365;
-                case VolumeUnit.UsGallon: return baseUnitValue/0.00378541;
-                case VolumeUnit.UsLegalCup: return baseUnitValue/0.00024;
-                case VolumeUnit.UsOunce: return baseUnitValue/2.957352956253760505068307980135e-5;
-                case VolumeUnit.UsPint: return baseUnitValue/4.73176473e-4;
-                case VolumeUnit.UsQuart: return baseUnitValue/9.46352946e-4;
-                case VolumeUnit.UsTablespoon: return baseUnitValue/1.478676478125e-5;
-                case VolumeUnit.UsTeaspoon: return baseUnitValue/4.92892159375e-6;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                VolumeUnit.AcreFoot => baseUnitValue*0.000810714,
+                VolumeUnit.AuTablespoon => baseUnitValue/2e-5,
+                VolumeUnit.BoardFoot => baseUnitValue/2.3597372158e-3,
+                VolumeUnit.Centiliter => (baseUnitValue*1e3) / 1e-2d,
+                VolumeUnit.CubicCentimeter => baseUnitValue*1e6,
+                VolumeUnit.CubicDecimeter => baseUnitValue*1e3,
+                VolumeUnit.CubicFoot => baseUnitValue / 2.8316846592e-2,
+                VolumeUnit.CubicHectometer => baseUnitValue/1e6,
+                VolumeUnit.CubicInch => baseUnitValue/(1.6387*1e-5),
+                VolumeUnit.CubicKilometer => baseUnitValue/1e9,
+                VolumeUnit.CubicMeter => baseUnitValue,
+                VolumeUnit.CubicMicrometer => baseUnitValue*1e18,
+                VolumeUnit.CubicMile => baseUnitValue/4.16818182544058e9,
+                VolumeUnit.CubicMillimeter => baseUnitValue*1e9,
+                VolumeUnit.CubicYard => baseUnitValue/0.764554858,
+                VolumeUnit.DecausGallon => (baseUnitValue/0.00378541) / 1e1d,
+                VolumeUnit.Deciliter => (baseUnitValue*1e3) / 1e-1d,
+                VolumeUnit.DeciusGallon => (baseUnitValue/0.00378541) / 1e-1d,
+                VolumeUnit.HectocubicFoot => (baseUnitValue / 2.8316846592e-2) / 1e2d,
+                VolumeUnit.HectocubicMeter => (baseUnitValue) / 1e2d,
+                VolumeUnit.Hectoliter => (baseUnitValue*1e3) / 1e2d,
+                VolumeUnit.HectousGallon => (baseUnitValue/0.00378541) / 1e2d,
+                VolumeUnit.ImperialBeerBarrel => baseUnitValue/0.16365924,
+                VolumeUnit.ImperialGallon => baseUnitValue/0.00454609000000181429905810072407,
+                VolumeUnit.ImperialOunce => baseUnitValue/2.8413062499962901241875439064617e-5,
+                VolumeUnit.ImperialPint => baseUnitValue / 5.6826125e-4,
+                VolumeUnit.KilocubicFoot => (baseUnitValue / 2.8316846592e-2) / 1e3d,
+                VolumeUnit.KilocubicMeter => (baseUnitValue) / 1e3d,
+                VolumeUnit.KiloimperialGallon => (baseUnitValue/0.00454609000000181429905810072407) / 1e3d,
+                VolumeUnit.Kiloliter => (baseUnitValue*1e3) / 1e3d,
+                VolumeUnit.KilousGallon => (baseUnitValue/0.00378541) / 1e3d,
+                VolumeUnit.Liter => baseUnitValue*1e3,
+                VolumeUnit.MegacubicFoot => (baseUnitValue / 2.8316846592e-2) / 1e6d,
+                VolumeUnit.MegaimperialGallon => (baseUnitValue/0.00454609000000181429905810072407) / 1e6d,
+                VolumeUnit.Megaliter => (baseUnitValue*1e3) / 1e6d,
+                VolumeUnit.MegausGallon => (baseUnitValue/0.00378541) / 1e6d,
+                VolumeUnit.MetricCup => baseUnitValue/0.00025,
+                VolumeUnit.MetricTeaspoon => baseUnitValue/0.5e-5,
+                VolumeUnit.Microliter => (baseUnitValue*1e3) / 1e-6d,
+                VolumeUnit.Milliliter => (baseUnitValue*1e3) / 1e-3d,
+                VolumeUnit.OilBarrel => baseUnitValue/0.158987294928,
+                VolumeUnit.UkTablespoon => baseUnitValue/1.5e-5,
+                VolumeUnit.UsBeerBarrel => baseUnitValue/0.1173477658,
+                VolumeUnit.UsCustomaryCup => baseUnitValue/0.0002365882365,
+                VolumeUnit.UsGallon => baseUnitValue/0.00378541,
+                VolumeUnit.UsLegalCup => baseUnitValue/0.00024,
+                VolumeUnit.UsOunce => baseUnitValue/2.957352956253760505068307980135e-5,
+                VolumeUnit.UsPint => baseUnitValue/4.73176473e-4,
+                VolumeUnit.UsQuart => baseUnitValue/9.46352946e-4,
+                VolumeUnit.UsTablespoon => baseUnitValue/1.478676478125e-5,
+                VolumeUnit.UsTeaspoon => baseUnitValue/4.92892159375e-6,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

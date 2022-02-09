@@ -153,14 +153,13 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case SpecificVolumeUnit.CubicFootPerPound: return _value/16.01846353;
-                case SpecificVolumeUnit.CubicMeterPerKilogram: return _value;
-                case SpecificVolumeUnit.MillicubicMeterPerKilogram: return (_value) * 1e-3d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                SpecificVolumeUnit.CubicFootPerPound => _value/16.01846353,
+                SpecificVolumeUnit.CubicMeterPerKilogram => _value,
+                SpecificVolumeUnit.MillicubicMeterPerKilogram => (_value) * 1e-3d,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(SpecificVolumeUnit unit)
@@ -170,14 +169,13 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case SpecificVolumeUnit.CubicFootPerPound: return baseUnitValue*16.01846353;
-                case SpecificVolumeUnit.CubicMeterPerKilogram: return baseUnitValue;
-                case SpecificVolumeUnit.MillicubicMeterPerKilogram: return (baseUnitValue) / 1e-3d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                SpecificVolumeUnit.CubicFootPerPound => baseUnitValue*16.01846353,
+                SpecificVolumeUnit.CubicMeterPerKilogram => baseUnitValue,
+                SpecificVolumeUnit.MillicubicMeterPerKilogram => (baseUnitValue) / 1e-3d,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

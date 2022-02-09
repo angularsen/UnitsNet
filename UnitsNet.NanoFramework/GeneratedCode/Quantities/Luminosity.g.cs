@@ -277,25 +277,24 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case LuminosityUnit.Decawatt: return (_value) * 1e1d;
-                case LuminosityUnit.Deciwatt: return (_value) * 1e-1d;
-                case LuminosityUnit.Femtowatt: return (_value) * 1e-15d;
-                case LuminosityUnit.Gigawatt: return (_value) * 1e9d;
-                case LuminosityUnit.Kilowatt: return (_value) * 1e3d;
-                case LuminosityUnit.Megawatt: return (_value) * 1e6d;
-                case LuminosityUnit.Microwatt: return (_value) * 1e-6d;
-                case LuminosityUnit.Milliwatt: return (_value) * 1e-3d;
-                case LuminosityUnit.Nanowatt: return (_value) * 1e-9d;
-                case LuminosityUnit.Petawatt: return (_value) * 1e15d;
-                case LuminosityUnit.Picowatt: return (_value) * 1e-12d;
-                case LuminosityUnit.SolarLuminosity: return _value * 3.846e26;
-                case LuminosityUnit.Terawatt: return (_value) * 1e12d;
-                case LuminosityUnit.Watt: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                LuminosityUnit.Decawatt => (_value) * 1e1d,
+                LuminosityUnit.Deciwatt => (_value) * 1e-1d,
+                LuminosityUnit.Femtowatt => (_value) * 1e-15d,
+                LuminosityUnit.Gigawatt => (_value) * 1e9d,
+                LuminosityUnit.Kilowatt => (_value) * 1e3d,
+                LuminosityUnit.Megawatt => (_value) * 1e6d,
+                LuminosityUnit.Microwatt => (_value) * 1e-6d,
+                LuminosityUnit.Milliwatt => (_value) * 1e-3d,
+                LuminosityUnit.Nanowatt => (_value) * 1e-9d,
+                LuminosityUnit.Petawatt => (_value) * 1e15d,
+                LuminosityUnit.Picowatt => (_value) * 1e-12d,
+                LuminosityUnit.SolarLuminosity => _value * 3.846e26,
+                LuminosityUnit.Terawatt => (_value) * 1e12d,
+                LuminosityUnit.Watt => _value,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(LuminosityUnit unit)
@@ -305,25 +304,24 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case LuminosityUnit.Decawatt: return (baseUnitValue) / 1e1d;
-                case LuminosityUnit.Deciwatt: return (baseUnitValue) / 1e-1d;
-                case LuminosityUnit.Femtowatt: return (baseUnitValue) / 1e-15d;
-                case LuminosityUnit.Gigawatt: return (baseUnitValue) / 1e9d;
-                case LuminosityUnit.Kilowatt: return (baseUnitValue) / 1e3d;
-                case LuminosityUnit.Megawatt: return (baseUnitValue) / 1e6d;
-                case LuminosityUnit.Microwatt: return (baseUnitValue) / 1e-6d;
-                case LuminosityUnit.Milliwatt: return (baseUnitValue) / 1e-3d;
-                case LuminosityUnit.Nanowatt: return (baseUnitValue) / 1e-9d;
-                case LuminosityUnit.Petawatt: return (baseUnitValue) / 1e15d;
-                case LuminosityUnit.Picowatt: return (baseUnitValue) / 1e-12d;
-                case LuminosityUnit.SolarLuminosity: return baseUnitValue / 3.846e26;
-                case LuminosityUnit.Terawatt: return (baseUnitValue) / 1e12d;
-                case LuminosityUnit.Watt: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                LuminosityUnit.Decawatt => (baseUnitValue) / 1e1d,
+                LuminosityUnit.Deciwatt => (baseUnitValue) / 1e-1d,
+                LuminosityUnit.Femtowatt => (baseUnitValue) / 1e-15d,
+                LuminosityUnit.Gigawatt => (baseUnitValue) / 1e9d,
+                LuminosityUnit.Kilowatt => (baseUnitValue) / 1e3d,
+                LuminosityUnit.Megawatt => (baseUnitValue) / 1e6d,
+                LuminosityUnit.Microwatt => (baseUnitValue) / 1e-6d,
+                LuminosityUnit.Milliwatt => (baseUnitValue) / 1e-3d,
+                LuminosityUnit.Nanowatt => (baseUnitValue) / 1e-9d,
+                LuminosityUnit.Petawatt => (baseUnitValue) / 1e15d,
+                LuminosityUnit.Picowatt => (baseUnitValue) / 1e-12d,
+                LuminosityUnit.SolarLuminosity => baseUnitValue / 3.846e26,
+                LuminosityUnit.Terawatt => (baseUnitValue) / 1e12d,
+                LuminosityUnit.Watt => baseUnitValue,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

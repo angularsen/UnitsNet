@@ -186,17 +186,16 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case ElectricResistanceUnit.Gigaohm: return (_value) * 1e9d;
-                case ElectricResistanceUnit.Kiloohm: return (_value) * 1e3d;
-                case ElectricResistanceUnit.Megaohm: return (_value) * 1e6d;
-                case ElectricResistanceUnit.Microohm: return (_value) * 1e-6d;
-                case ElectricResistanceUnit.Milliohm: return (_value) * 1e-3d;
-                case ElectricResistanceUnit.Ohm: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                ElectricResistanceUnit.Gigaohm => (_value) * 1e9d,
+                ElectricResistanceUnit.Kiloohm => (_value) * 1e3d,
+                ElectricResistanceUnit.Megaohm => (_value) * 1e6d,
+                ElectricResistanceUnit.Microohm => (_value) * 1e-6d,
+                ElectricResistanceUnit.Milliohm => (_value) * 1e-3d,
+                ElectricResistanceUnit.Ohm => _value,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(ElectricResistanceUnit unit)
@@ -206,17 +205,16 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case ElectricResistanceUnit.Gigaohm: return (baseUnitValue) / 1e9d;
-                case ElectricResistanceUnit.Kiloohm: return (baseUnitValue) / 1e3d;
-                case ElectricResistanceUnit.Megaohm: return (baseUnitValue) / 1e6d;
-                case ElectricResistanceUnit.Microohm: return (baseUnitValue) / 1e-6d;
-                case ElectricResistanceUnit.Milliohm: return (baseUnitValue) / 1e-3d;
-                case ElectricResistanceUnit.Ohm: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                ElectricResistanceUnit.Gigaohm => (baseUnitValue) / 1e9d,
+                ElectricResistanceUnit.Kiloohm => (baseUnitValue) / 1e3d,
+                ElectricResistanceUnit.Megaohm => (baseUnitValue) / 1e6d,
+                ElectricResistanceUnit.Microohm => (baseUnitValue) / 1e-6d,
+                ElectricResistanceUnit.Milliohm => (baseUnitValue) / 1e-3d,
+                ElectricResistanceUnit.Ohm => baseUnitValue,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

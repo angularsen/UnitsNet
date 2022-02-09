@@ -164,15 +164,14 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case ReactivePowerUnit.GigavoltampereReactive: return (_value) * 1e9d;
-                case ReactivePowerUnit.KilovoltampereReactive: return (_value) * 1e3d;
-                case ReactivePowerUnit.MegavoltampereReactive: return (_value) * 1e6d;
-                case ReactivePowerUnit.VoltampereReactive: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                ReactivePowerUnit.GigavoltampereReactive => (_value) * 1e9d,
+                ReactivePowerUnit.KilovoltampereReactive => (_value) * 1e3d,
+                ReactivePowerUnit.MegavoltampereReactive => (_value) * 1e6d,
+                ReactivePowerUnit.VoltampereReactive => _value,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(ReactivePowerUnit unit)
@@ -182,15 +181,14 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case ReactivePowerUnit.GigavoltampereReactive: return (baseUnitValue) / 1e9d;
-                case ReactivePowerUnit.KilovoltampereReactive: return (baseUnitValue) / 1e3d;
-                case ReactivePowerUnit.MegavoltampereReactive: return (baseUnitValue) / 1e6d;
-                case ReactivePowerUnit.VoltampereReactive: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                ReactivePowerUnit.GigavoltampereReactive => (baseUnitValue) / 1e9d,
+                ReactivePowerUnit.KilovoltampereReactive => (baseUnitValue) / 1e3d,
+                ReactivePowerUnit.MegavoltampereReactive => (baseUnitValue) / 1e6d,
+                ReactivePowerUnit.VoltampereReactive => baseUnitValue,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

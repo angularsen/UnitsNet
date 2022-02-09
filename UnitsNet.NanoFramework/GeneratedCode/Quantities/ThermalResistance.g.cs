@@ -186,17 +186,16 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu: return _value*176.1121482159839;
-                case ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie: return _value*0.0859779507590433;
-                case ThermalResistanceUnit.SquareCentimeterKelvinPerWatt: return _value*0.0999964777570357;
-                case ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt: return _value*1000.088056074108;
-                case ThermalResistanceUnit.SquareMeterKelvinPerKilowatt: return _value;
-                case ThermalResistanceUnit.SquareMeterKelvinPerWatt: return _value*1000;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu => _value*176.1121482159839,
+                ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie => _value*0.0859779507590433,
+                ThermalResistanceUnit.SquareCentimeterKelvinPerWatt => _value*0.0999964777570357,
+                ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt => _value*1000.088056074108,
+                ThermalResistanceUnit.SquareMeterKelvinPerKilowatt => _value,
+                ThermalResistanceUnit.SquareMeterKelvinPerWatt => _value*1000,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(ThermalResistanceUnit unit)
@@ -206,17 +205,16 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu: return baseUnitValue/176.1121482159839;
-                case ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie: return baseUnitValue/0.0859779507590433;
-                case ThermalResistanceUnit.SquareCentimeterKelvinPerWatt: return baseUnitValue/0.0999964777570357;
-                case ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt: return baseUnitValue/1000.088056074108;
-                case ThermalResistanceUnit.SquareMeterKelvinPerKilowatt: return baseUnitValue;
-                case ThermalResistanceUnit.SquareMeterKelvinPerWatt: return baseUnitValue/1000;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu => baseUnitValue/176.1121482159839,
+                ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie => baseUnitValue/0.0859779507590433,
+                ThermalResistanceUnit.SquareCentimeterKelvinPerWatt => baseUnitValue/0.0999964777570357,
+                ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt => baseUnitValue/1000.088056074108,
+                ThermalResistanceUnit.SquareMeterKelvinPerKilowatt => baseUnitValue,
+                ThermalResistanceUnit.SquareMeterKelvinPerWatt => baseUnitValue/1000,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

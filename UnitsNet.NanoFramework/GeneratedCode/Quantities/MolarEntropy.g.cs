@@ -153,14 +153,13 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case MolarEntropyUnit.JoulePerMoleKelvin: return _value;
-                case MolarEntropyUnit.KilojoulePerMoleKelvin: return (_value) * 1e3d;
-                case MolarEntropyUnit.MegajoulePerMoleKelvin: return (_value) * 1e6d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                MolarEntropyUnit.JoulePerMoleKelvin => _value,
+                MolarEntropyUnit.KilojoulePerMoleKelvin => (_value) * 1e3d,
+                MolarEntropyUnit.MegajoulePerMoleKelvin => (_value) * 1e6d,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(MolarEntropyUnit unit)
@@ -170,14 +169,13 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case MolarEntropyUnit.JoulePerMoleKelvin: return baseUnitValue;
-                case MolarEntropyUnit.KilojoulePerMoleKelvin: return (baseUnitValue) / 1e3d;
-                case MolarEntropyUnit.MegajoulePerMoleKelvin: return (baseUnitValue) / 1e6d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                MolarEntropyUnit.JoulePerMoleKelvin => baseUnitValue,
+                MolarEntropyUnit.KilojoulePerMoleKelvin => (baseUnitValue) / 1e3d,
+                MolarEntropyUnit.MegajoulePerMoleKelvin => (baseUnitValue) / 1e6d,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

@@ -395,36 +395,35 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case TorqueUnit.GramForceCentimeter: return _value*9.80665e-5;
-                case TorqueUnit.GramForceMeter: return _value*9.80665e-3;
-                case TorqueUnit.GramForceMillimeter: return _value*9.80665e-6;
-                case TorqueUnit.KilogramForceCentimeter: return _value*9.80665e-2;
-                case TorqueUnit.KilogramForceMeter: return _value*9.80665;
-                case TorqueUnit.KilogramForceMillimeter: return _value*9.80665e-3;
-                case TorqueUnit.KilonewtonCentimeter: return (_value*0.01) * 1e3d;
-                case TorqueUnit.KilonewtonMeter: return (_value) * 1e3d;
-                case TorqueUnit.KilonewtonMillimeter: return (_value*0.001) * 1e3d;
-                case TorqueUnit.KilopoundForceFoot: return (_value*1.3558179483314) * 1e3d;
-                case TorqueUnit.KilopoundForceInch: return (_value*1.129848290276167e-1) * 1e3d;
-                case TorqueUnit.MeganewtonCentimeter: return (_value*0.01) * 1e6d;
-                case TorqueUnit.MeganewtonMeter: return (_value) * 1e6d;
-                case TorqueUnit.MeganewtonMillimeter: return (_value*0.001) * 1e6d;
-                case TorqueUnit.MegapoundForceFoot: return (_value*1.3558179483314) * 1e6d;
-                case TorqueUnit.MegapoundForceInch: return (_value*1.129848290276167e-1) * 1e6d;
-                case TorqueUnit.NewtonCentimeter: return _value*0.01;
-                case TorqueUnit.NewtonMeter: return _value;
-                case TorqueUnit.NewtonMillimeter: return _value*0.001;
-                case TorqueUnit.PoundalFoot: return _value*4.21401100938048e-2;
-                case TorqueUnit.PoundForceFoot: return _value*1.3558179483314;
-                case TorqueUnit.PoundForceInch: return _value*1.129848290276167e-1;
-                case TorqueUnit.TonneForceCentimeter: return _value*9.80665e1;
-                case TorqueUnit.TonneForceMeter: return _value*9.80665e3;
-                case TorqueUnit.TonneForceMillimeter: return _value*9.80665;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                TorqueUnit.GramForceCentimeter => _value*9.80665e-5,
+                TorqueUnit.GramForceMeter => _value*9.80665e-3,
+                TorqueUnit.GramForceMillimeter => _value*9.80665e-6,
+                TorqueUnit.KilogramForceCentimeter => _value*9.80665e-2,
+                TorqueUnit.KilogramForceMeter => _value*9.80665,
+                TorqueUnit.KilogramForceMillimeter => _value*9.80665e-3,
+                TorqueUnit.KilonewtonCentimeter => (_value*0.01) * 1e3d,
+                TorqueUnit.KilonewtonMeter => (_value) * 1e3d,
+                TorqueUnit.KilonewtonMillimeter => (_value*0.001) * 1e3d,
+                TorqueUnit.KilopoundForceFoot => (_value*1.3558179483314) * 1e3d,
+                TorqueUnit.KilopoundForceInch => (_value*1.129848290276167e-1) * 1e3d,
+                TorqueUnit.MeganewtonCentimeter => (_value*0.01) * 1e6d,
+                TorqueUnit.MeganewtonMeter => (_value) * 1e6d,
+                TorqueUnit.MeganewtonMillimeter => (_value*0.001) * 1e6d,
+                TorqueUnit.MegapoundForceFoot => (_value*1.3558179483314) * 1e6d,
+                TorqueUnit.MegapoundForceInch => (_value*1.129848290276167e-1) * 1e6d,
+                TorqueUnit.NewtonCentimeter => _value*0.01,
+                TorqueUnit.NewtonMeter => _value,
+                TorqueUnit.NewtonMillimeter => _value*0.001,
+                TorqueUnit.PoundalFoot => _value*4.21401100938048e-2,
+                TorqueUnit.PoundForceFoot => _value*1.3558179483314,
+                TorqueUnit.PoundForceInch => _value*1.129848290276167e-1,
+                TorqueUnit.TonneForceCentimeter => _value*9.80665e1,
+                TorqueUnit.TonneForceMeter => _value*9.80665e3,
+                TorqueUnit.TonneForceMillimeter => _value*9.80665,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(TorqueUnit unit)
@@ -434,36 +433,35 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case TorqueUnit.GramForceCentimeter: return baseUnitValue/9.80665e-5;
-                case TorqueUnit.GramForceMeter: return baseUnitValue/9.80665e-3;
-                case TorqueUnit.GramForceMillimeter: return baseUnitValue/9.80665e-6;
-                case TorqueUnit.KilogramForceCentimeter: return baseUnitValue/9.80665e-2;
-                case TorqueUnit.KilogramForceMeter: return baseUnitValue/9.80665;
-                case TorqueUnit.KilogramForceMillimeter: return baseUnitValue/9.80665e-3;
-                case TorqueUnit.KilonewtonCentimeter: return (baseUnitValue*100) / 1e3d;
-                case TorqueUnit.KilonewtonMeter: return (baseUnitValue) / 1e3d;
-                case TorqueUnit.KilonewtonMillimeter: return (baseUnitValue*1000) / 1e3d;
-                case TorqueUnit.KilopoundForceFoot: return (baseUnitValue/1.3558179483314) / 1e3d;
-                case TorqueUnit.KilopoundForceInch: return (baseUnitValue/1.129848290276167e-1) / 1e3d;
-                case TorqueUnit.MeganewtonCentimeter: return (baseUnitValue*100) / 1e6d;
-                case TorqueUnit.MeganewtonMeter: return (baseUnitValue) / 1e6d;
-                case TorqueUnit.MeganewtonMillimeter: return (baseUnitValue*1000) / 1e6d;
-                case TorqueUnit.MegapoundForceFoot: return (baseUnitValue/1.3558179483314) / 1e6d;
-                case TorqueUnit.MegapoundForceInch: return (baseUnitValue/1.129848290276167e-1) / 1e6d;
-                case TorqueUnit.NewtonCentimeter: return baseUnitValue*100;
-                case TorqueUnit.NewtonMeter: return baseUnitValue;
-                case TorqueUnit.NewtonMillimeter: return baseUnitValue*1000;
-                case TorqueUnit.PoundalFoot: return baseUnitValue/4.21401100938048e-2;
-                case TorqueUnit.PoundForceFoot: return baseUnitValue/1.3558179483314;
-                case TorqueUnit.PoundForceInch: return baseUnitValue/1.129848290276167e-1;
-                case TorqueUnit.TonneForceCentimeter: return baseUnitValue/9.80665e1;
-                case TorqueUnit.TonneForceMeter: return baseUnitValue/9.80665e3;
-                case TorqueUnit.TonneForceMillimeter: return baseUnitValue/9.80665;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                TorqueUnit.GramForceCentimeter => baseUnitValue/9.80665e-5,
+                TorqueUnit.GramForceMeter => baseUnitValue/9.80665e-3,
+                TorqueUnit.GramForceMillimeter => baseUnitValue/9.80665e-6,
+                TorqueUnit.KilogramForceCentimeter => baseUnitValue/9.80665e-2,
+                TorqueUnit.KilogramForceMeter => baseUnitValue/9.80665,
+                TorqueUnit.KilogramForceMillimeter => baseUnitValue/9.80665e-3,
+                TorqueUnit.KilonewtonCentimeter => (baseUnitValue*100) / 1e3d,
+                TorqueUnit.KilonewtonMeter => (baseUnitValue) / 1e3d,
+                TorqueUnit.KilonewtonMillimeter => (baseUnitValue*1000) / 1e3d,
+                TorqueUnit.KilopoundForceFoot => (baseUnitValue/1.3558179483314) / 1e3d,
+                TorqueUnit.KilopoundForceInch => (baseUnitValue/1.129848290276167e-1) / 1e3d,
+                TorqueUnit.MeganewtonCentimeter => (baseUnitValue*100) / 1e6d,
+                TorqueUnit.MeganewtonMeter => (baseUnitValue) / 1e6d,
+                TorqueUnit.MeganewtonMillimeter => (baseUnitValue*1000) / 1e6d,
+                TorqueUnit.MegapoundForceFoot => (baseUnitValue/1.3558179483314) / 1e6d,
+                TorqueUnit.MegapoundForceInch => (baseUnitValue/1.129848290276167e-1) / 1e6d,
+                TorqueUnit.NewtonCentimeter => baseUnitValue*100,
+                TorqueUnit.NewtonMeter => baseUnitValue,
+                TorqueUnit.NewtonMillimeter => baseUnitValue*1000,
+                TorqueUnit.PoundalFoot => baseUnitValue/4.21401100938048e-2,
+                TorqueUnit.PoundForceFoot => baseUnitValue/1.3558179483314,
+                TorqueUnit.PoundForceInch => baseUnitValue/1.129848290276167e-1,
+                TorqueUnit.TonneForceCentimeter => baseUnitValue/9.80665e1,
+                TorqueUnit.TonneForceMeter => baseUnitValue/9.80665e3,
+                TorqueUnit.TonneForceMillimeter => baseUnitValue/9.80665,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

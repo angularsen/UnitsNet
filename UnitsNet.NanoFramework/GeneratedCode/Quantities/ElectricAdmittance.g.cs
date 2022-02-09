@@ -164,15 +164,14 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case ElectricAdmittanceUnit.Microsiemens: return (_value) * 1e-6d;
-                case ElectricAdmittanceUnit.Millisiemens: return (_value) * 1e-3d;
-                case ElectricAdmittanceUnit.Nanosiemens: return (_value) * 1e-9d;
-                case ElectricAdmittanceUnit.Siemens: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                ElectricAdmittanceUnit.Microsiemens => (_value) * 1e-6d,
+                ElectricAdmittanceUnit.Millisiemens => (_value) * 1e-3d,
+                ElectricAdmittanceUnit.Nanosiemens => (_value) * 1e-9d,
+                ElectricAdmittanceUnit.Siemens => _value,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(ElectricAdmittanceUnit unit)
@@ -182,15 +181,14 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case ElectricAdmittanceUnit.Microsiemens: return (baseUnitValue) / 1e-6d;
-                case ElectricAdmittanceUnit.Millisiemens: return (baseUnitValue) / 1e-3d;
-                case ElectricAdmittanceUnit.Nanosiemens: return (baseUnitValue) / 1e-9d;
-                case ElectricAdmittanceUnit.Siemens: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                ElectricAdmittanceUnit.Microsiemens => (baseUnitValue) / 1e-6d,
+                ElectricAdmittanceUnit.Millisiemens => (baseUnitValue) / 1e-3d,
+                ElectricAdmittanceUnit.Nanosiemens => (baseUnitValue) / 1e-9d,
+                ElectricAdmittanceUnit.Siemens => baseUnitValue,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

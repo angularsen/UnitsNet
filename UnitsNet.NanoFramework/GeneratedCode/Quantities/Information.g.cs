@@ -406,37 +406,36 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case InformationUnit.Bit: return _value;
-                case InformationUnit.Byte: return _value*8d;
-                case InformationUnit.Exabit: return (_value) * 1e18d;
-                case InformationUnit.Exabyte: return (_value*8d) * 1e18d;
-                case InformationUnit.Exbibit: return (_value) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024);
-                case InformationUnit.Exbibyte: return (_value*8d) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024);
-                case InformationUnit.Gibibit: return (_value) * (1024d * 1024 * 1024);
-                case InformationUnit.Gibibyte: return (_value*8d) * (1024d * 1024 * 1024);
-                case InformationUnit.Gigabit: return (_value) * 1e9d;
-                case InformationUnit.Gigabyte: return (_value*8d) * 1e9d;
-                case InformationUnit.Kibibit: return (_value) * 1024d;
-                case InformationUnit.Kibibyte: return (_value*8d) * 1024d;
-                case InformationUnit.Kilobit: return (_value) * 1e3d;
-                case InformationUnit.Kilobyte: return (_value*8d) * 1e3d;
-                case InformationUnit.Mebibit: return (_value) * (1024d * 1024);
-                case InformationUnit.Mebibyte: return (_value*8d) * (1024d * 1024);
-                case InformationUnit.Megabit: return (_value) * 1e6d;
-                case InformationUnit.Megabyte: return (_value*8d) * 1e6d;
-                case InformationUnit.Pebibit: return (_value) * (1024d * 1024 * 1024 * 1024 * 1024);
-                case InformationUnit.Pebibyte: return (_value*8d) * (1024d * 1024 * 1024 * 1024 * 1024);
-                case InformationUnit.Petabit: return (_value) * 1e15d;
-                case InformationUnit.Petabyte: return (_value*8d) * 1e15d;
-                case InformationUnit.Tebibit: return (_value) * (1024d * 1024 * 1024 * 1024);
-                case InformationUnit.Tebibyte: return (_value*8d) * (1024d * 1024 * 1024 * 1024);
-                case InformationUnit.Terabit: return (_value) * 1e12d;
-                case InformationUnit.Terabyte: return (_value*8d) * 1e12d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                InformationUnit.Bit => _value,
+                InformationUnit.Byte => _value*8d,
+                InformationUnit.Exabit => (_value) * 1e18d,
+                InformationUnit.Exabyte => (_value*8d) * 1e18d,
+                InformationUnit.Exbibit => (_value) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024),
+                InformationUnit.Exbibyte => (_value*8d) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024),
+                InformationUnit.Gibibit => (_value) * (1024d * 1024 * 1024),
+                InformationUnit.Gibibyte => (_value*8d) * (1024d * 1024 * 1024),
+                InformationUnit.Gigabit => (_value) * 1e9d,
+                InformationUnit.Gigabyte => (_value*8d) * 1e9d,
+                InformationUnit.Kibibit => (_value) * 1024d,
+                InformationUnit.Kibibyte => (_value*8d) * 1024d,
+                InformationUnit.Kilobit => (_value) * 1e3d,
+                InformationUnit.Kilobyte => (_value*8d) * 1e3d,
+                InformationUnit.Mebibit => (_value) * (1024d * 1024),
+                InformationUnit.Mebibyte => (_value*8d) * (1024d * 1024),
+                InformationUnit.Megabit => (_value) * 1e6d,
+                InformationUnit.Megabyte => (_value*8d) * 1e6d,
+                InformationUnit.Pebibit => (_value) * (1024d * 1024 * 1024 * 1024 * 1024),
+                InformationUnit.Pebibyte => (_value*8d) * (1024d * 1024 * 1024 * 1024 * 1024),
+                InformationUnit.Petabit => (_value) * 1e15d,
+                InformationUnit.Petabyte => (_value*8d) * 1e15d,
+                InformationUnit.Tebibit => (_value) * (1024d * 1024 * 1024 * 1024),
+                InformationUnit.Tebibyte => (_value*8d) * (1024d * 1024 * 1024 * 1024),
+                InformationUnit.Terabit => (_value) * 1e12d,
+                InformationUnit.Terabyte => (_value*8d) * 1e12d,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(InformationUnit unit)
@@ -446,37 +445,36 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case InformationUnit.Bit: return baseUnitValue;
-                case InformationUnit.Byte: return baseUnitValue/8d;
-                case InformationUnit.Exabit: return (baseUnitValue) / 1e18d;
-                case InformationUnit.Exabyte: return (baseUnitValue/8d) / 1e18d;
-                case InformationUnit.Exbibit: return (baseUnitValue) / (1024d * 1024 * 1024 * 1024 * 1024 * 1024);
-                case InformationUnit.Exbibyte: return (baseUnitValue/8d) / (1024d * 1024 * 1024 * 1024 * 1024 * 1024);
-                case InformationUnit.Gibibit: return (baseUnitValue) / (1024d * 1024 * 1024);
-                case InformationUnit.Gibibyte: return (baseUnitValue/8d) / (1024d * 1024 * 1024);
-                case InformationUnit.Gigabit: return (baseUnitValue) / 1e9d;
-                case InformationUnit.Gigabyte: return (baseUnitValue/8d) / 1e9d;
-                case InformationUnit.Kibibit: return (baseUnitValue) / 1024d;
-                case InformationUnit.Kibibyte: return (baseUnitValue/8d) / 1024d;
-                case InformationUnit.Kilobit: return (baseUnitValue) / 1e3d;
-                case InformationUnit.Kilobyte: return (baseUnitValue/8d) / 1e3d;
-                case InformationUnit.Mebibit: return (baseUnitValue) / (1024d * 1024);
-                case InformationUnit.Mebibyte: return (baseUnitValue/8d) / (1024d * 1024);
-                case InformationUnit.Megabit: return (baseUnitValue) / 1e6d;
-                case InformationUnit.Megabyte: return (baseUnitValue/8d) / 1e6d;
-                case InformationUnit.Pebibit: return (baseUnitValue) / (1024d * 1024 * 1024 * 1024 * 1024);
-                case InformationUnit.Pebibyte: return (baseUnitValue/8d) / (1024d * 1024 * 1024 * 1024 * 1024);
-                case InformationUnit.Petabit: return (baseUnitValue) / 1e15d;
-                case InformationUnit.Petabyte: return (baseUnitValue/8d) / 1e15d;
-                case InformationUnit.Tebibit: return (baseUnitValue) / (1024d * 1024 * 1024 * 1024);
-                case InformationUnit.Tebibyte: return (baseUnitValue/8d) / (1024d * 1024 * 1024 * 1024);
-                case InformationUnit.Terabit: return (baseUnitValue) / 1e12d;
-                case InformationUnit.Terabyte: return (baseUnitValue/8d) / 1e12d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                InformationUnit.Bit => baseUnitValue,
+                InformationUnit.Byte => baseUnitValue/8d,
+                InformationUnit.Exabit => (baseUnitValue) / 1e18d,
+                InformationUnit.Exabyte => (baseUnitValue/8d) / 1e18d,
+                InformationUnit.Exbibit => (baseUnitValue) / (1024d * 1024 * 1024 * 1024 * 1024 * 1024),
+                InformationUnit.Exbibyte => (baseUnitValue/8d) / (1024d * 1024 * 1024 * 1024 * 1024 * 1024),
+                InformationUnit.Gibibit => (baseUnitValue) / (1024d * 1024 * 1024),
+                InformationUnit.Gibibyte => (baseUnitValue/8d) / (1024d * 1024 * 1024),
+                InformationUnit.Gigabit => (baseUnitValue) / 1e9d,
+                InformationUnit.Gigabyte => (baseUnitValue/8d) / 1e9d,
+                InformationUnit.Kibibit => (baseUnitValue) / 1024d,
+                InformationUnit.Kibibyte => (baseUnitValue/8d) / 1024d,
+                InformationUnit.Kilobit => (baseUnitValue) / 1e3d,
+                InformationUnit.Kilobyte => (baseUnitValue/8d) / 1e3d,
+                InformationUnit.Mebibit => (baseUnitValue) / (1024d * 1024),
+                InformationUnit.Mebibyte => (baseUnitValue/8d) / (1024d * 1024),
+                InformationUnit.Megabit => (baseUnitValue) / 1e6d,
+                InformationUnit.Megabyte => (baseUnitValue/8d) / 1e6d,
+                InformationUnit.Pebibit => (baseUnitValue) / (1024d * 1024 * 1024 * 1024 * 1024),
+                InformationUnit.Pebibyte => (baseUnitValue/8d) / (1024d * 1024 * 1024 * 1024 * 1024),
+                InformationUnit.Petabit => (baseUnitValue) / 1e15d,
+                InformationUnit.Petabyte => (baseUnitValue/8d) / 1e15d,
+                InformationUnit.Tebibit => (baseUnitValue) / (1024d * 1024 * 1024 * 1024),
+                InformationUnit.Tebibyte => (baseUnitValue/8d) / (1024d * 1024 * 1024 * 1024),
+                InformationUnit.Terabit => (baseUnitValue) / 1e12d,
+                InformationUnit.Terabyte => (baseUnitValue/8d) / 1e12d,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

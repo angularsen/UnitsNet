@@ -516,47 +516,46 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case EnergyUnit.BritishThermalUnit: return _value*1055.05585262;
-                case EnergyUnit.Calorie: return _value*4.184;
-                case EnergyUnit.DecathermEc: return (_value*1.05505585262e8) * 1e1d;
-                case EnergyUnit.DecathermImperial: return (_value*1.05505585257348e8) * 1e1d;
-                case EnergyUnit.DecathermUs: return (_value*1.054804e8) * 1e1d;
-                case EnergyUnit.ElectronVolt: return _value*1.602176565e-19;
-                case EnergyUnit.Erg: return _value*1e-7;
-                case EnergyUnit.FootPound: return _value*1.355817948;
-                case EnergyUnit.GigabritishThermalUnit: return (_value*1055.05585262) * 1e9d;
-                case EnergyUnit.GigaelectronVolt: return (_value*1.602176565e-19) * 1e9d;
-                case EnergyUnit.Gigajoule: return (_value) * 1e9d;
-                case EnergyUnit.GigawattDay: return (_value*24*3600d) * 1e9d;
-                case EnergyUnit.GigawattHour: return (_value*3600d) * 1e9d;
-                case EnergyUnit.HorsepowerHour: return _value*2.6845195377e6;
-                case EnergyUnit.Joule: return _value;
-                case EnergyUnit.KilobritishThermalUnit: return (_value*1055.05585262) * 1e3d;
-                case EnergyUnit.Kilocalorie: return (_value*4.184) * 1e3d;
-                case EnergyUnit.KiloelectronVolt: return (_value*1.602176565e-19) * 1e3d;
-                case EnergyUnit.Kilojoule: return (_value) * 1e3d;
-                case EnergyUnit.KilowattDay: return (_value*24*3600d) * 1e3d;
-                case EnergyUnit.KilowattHour: return (_value*3600d) * 1e3d;
-                case EnergyUnit.MegabritishThermalUnit: return (_value*1055.05585262) * 1e6d;
-                case EnergyUnit.Megacalorie: return (_value*4.184) * 1e6d;
-                case EnergyUnit.MegaelectronVolt: return (_value*1.602176565e-19) * 1e6d;
-                case EnergyUnit.Megajoule: return (_value) * 1e6d;
-                case EnergyUnit.MegawattDay: return (_value*24*3600d) * 1e6d;
-                case EnergyUnit.MegawattHour: return (_value*3600d) * 1e6d;
-                case EnergyUnit.Millijoule: return (_value) * 1e-3d;
-                case EnergyUnit.TeraelectronVolt: return (_value*1.602176565e-19) * 1e12d;
-                case EnergyUnit.TerawattDay: return (_value*24*3600d) * 1e12d;
-                case EnergyUnit.TerawattHour: return (_value*3600d) * 1e12d;
-                case EnergyUnit.ThermEc: return _value*1.05505585262e8;
-                case EnergyUnit.ThermImperial: return _value*1.05505585257348e8;
-                case EnergyUnit.ThermUs: return _value*1.054804e8;
-                case EnergyUnit.WattDay: return _value*24*3600d;
-                case EnergyUnit.WattHour: return _value*3600d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                EnergyUnit.BritishThermalUnit => _value*1055.05585262,
+                EnergyUnit.Calorie => _value*4.184,
+                EnergyUnit.DecathermEc => (_value*1.05505585262e8) * 1e1d,
+                EnergyUnit.DecathermImperial => (_value*1.05505585257348e8) * 1e1d,
+                EnergyUnit.DecathermUs => (_value*1.054804e8) * 1e1d,
+                EnergyUnit.ElectronVolt => _value*1.602176565e-19,
+                EnergyUnit.Erg => _value*1e-7,
+                EnergyUnit.FootPound => _value*1.355817948,
+                EnergyUnit.GigabritishThermalUnit => (_value*1055.05585262) * 1e9d,
+                EnergyUnit.GigaelectronVolt => (_value*1.602176565e-19) * 1e9d,
+                EnergyUnit.Gigajoule => (_value) * 1e9d,
+                EnergyUnit.GigawattDay => (_value*24*3600d) * 1e9d,
+                EnergyUnit.GigawattHour => (_value*3600d) * 1e9d,
+                EnergyUnit.HorsepowerHour => _value*2.6845195377e6,
+                EnergyUnit.Joule => _value,
+                EnergyUnit.KilobritishThermalUnit => (_value*1055.05585262) * 1e3d,
+                EnergyUnit.Kilocalorie => (_value*4.184) * 1e3d,
+                EnergyUnit.KiloelectronVolt => (_value*1.602176565e-19) * 1e3d,
+                EnergyUnit.Kilojoule => (_value) * 1e3d,
+                EnergyUnit.KilowattDay => (_value*24*3600d) * 1e3d,
+                EnergyUnit.KilowattHour => (_value*3600d) * 1e3d,
+                EnergyUnit.MegabritishThermalUnit => (_value*1055.05585262) * 1e6d,
+                EnergyUnit.Megacalorie => (_value*4.184) * 1e6d,
+                EnergyUnit.MegaelectronVolt => (_value*1.602176565e-19) * 1e6d,
+                EnergyUnit.Megajoule => (_value) * 1e6d,
+                EnergyUnit.MegawattDay => (_value*24*3600d) * 1e6d,
+                EnergyUnit.MegawattHour => (_value*3600d) * 1e6d,
+                EnergyUnit.Millijoule => (_value) * 1e-3d,
+                EnergyUnit.TeraelectronVolt => (_value*1.602176565e-19) * 1e12d,
+                EnergyUnit.TerawattDay => (_value*24*3600d) * 1e12d,
+                EnergyUnit.TerawattHour => (_value*3600d) * 1e12d,
+                EnergyUnit.ThermEc => _value*1.05505585262e8,
+                EnergyUnit.ThermImperial => _value*1.05505585257348e8,
+                EnergyUnit.ThermUs => _value*1.054804e8,
+                EnergyUnit.WattDay => _value*24*3600d,
+                EnergyUnit.WattHour => _value*3600d,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(EnergyUnit unit)
@@ -566,47 +565,46 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case EnergyUnit.BritishThermalUnit: return baseUnitValue/1055.05585262;
-                case EnergyUnit.Calorie: return baseUnitValue/4.184;
-                case EnergyUnit.DecathermEc: return (baseUnitValue/1.05505585262e8) / 1e1d;
-                case EnergyUnit.DecathermImperial: return (baseUnitValue/1.05505585257348e8) / 1e1d;
-                case EnergyUnit.DecathermUs: return (baseUnitValue/1.054804e8) / 1e1d;
-                case EnergyUnit.ElectronVolt: return baseUnitValue/1.602176565e-19;
-                case EnergyUnit.Erg: return baseUnitValue/1e-7;
-                case EnergyUnit.FootPound: return baseUnitValue/1.355817948;
-                case EnergyUnit.GigabritishThermalUnit: return (baseUnitValue/1055.05585262) / 1e9d;
-                case EnergyUnit.GigaelectronVolt: return (baseUnitValue/1.602176565e-19) / 1e9d;
-                case EnergyUnit.Gigajoule: return (baseUnitValue) / 1e9d;
-                case EnergyUnit.GigawattDay: return (baseUnitValue/(24*3600d)) / 1e9d;
-                case EnergyUnit.GigawattHour: return (baseUnitValue/3600d) / 1e9d;
-                case EnergyUnit.HorsepowerHour: return baseUnitValue/2.6845195377e6;
-                case EnergyUnit.Joule: return baseUnitValue;
-                case EnergyUnit.KilobritishThermalUnit: return (baseUnitValue/1055.05585262) / 1e3d;
-                case EnergyUnit.Kilocalorie: return (baseUnitValue/4.184) / 1e3d;
-                case EnergyUnit.KiloelectronVolt: return (baseUnitValue/1.602176565e-19) / 1e3d;
-                case EnergyUnit.Kilojoule: return (baseUnitValue) / 1e3d;
-                case EnergyUnit.KilowattDay: return (baseUnitValue/(24*3600d)) / 1e3d;
-                case EnergyUnit.KilowattHour: return (baseUnitValue/3600d) / 1e3d;
-                case EnergyUnit.MegabritishThermalUnit: return (baseUnitValue/1055.05585262) / 1e6d;
-                case EnergyUnit.Megacalorie: return (baseUnitValue/4.184) / 1e6d;
-                case EnergyUnit.MegaelectronVolt: return (baseUnitValue/1.602176565e-19) / 1e6d;
-                case EnergyUnit.Megajoule: return (baseUnitValue) / 1e6d;
-                case EnergyUnit.MegawattDay: return (baseUnitValue/(24*3600d)) / 1e6d;
-                case EnergyUnit.MegawattHour: return (baseUnitValue/3600d) / 1e6d;
-                case EnergyUnit.Millijoule: return (baseUnitValue) / 1e-3d;
-                case EnergyUnit.TeraelectronVolt: return (baseUnitValue/1.602176565e-19) / 1e12d;
-                case EnergyUnit.TerawattDay: return (baseUnitValue/(24*3600d)) / 1e12d;
-                case EnergyUnit.TerawattHour: return (baseUnitValue/3600d) / 1e12d;
-                case EnergyUnit.ThermEc: return baseUnitValue/1.05505585262e8;
-                case EnergyUnit.ThermImperial: return baseUnitValue/1.05505585257348e8;
-                case EnergyUnit.ThermUs: return baseUnitValue/1.054804e8;
-                case EnergyUnit.WattDay: return baseUnitValue/(24*3600d);
-                case EnergyUnit.WattHour: return baseUnitValue/3600d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                EnergyUnit.BritishThermalUnit => baseUnitValue/1055.05585262,
+                EnergyUnit.Calorie => baseUnitValue/4.184,
+                EnergyUnit.DecathermEc => (baseUnitValue/1.05505585262e8) / 1e1d,
+                EnergyUnit.DecathermImperial => (baseUnitValue/1.05505585257348e8) / 1e1d,
+                EnergyUnit.DecathermUs => (baseUnitValue/1.054804e8) / 1e1d,
+                EnergyUnit.ElectronVolt => baseUnitValue/1.602176565e-19,
+                EnergyUnit.Erg => baseUnitValue/1e-7,
+                EnergyUnit.FootPound => baseUnitValue/1.355817948,
+                EnergyUnit.GigabritishThermalUnit => (baseUnitValue/1055.05585262) / 1e9d,
+                EnergyUnit.GigaelectronVolt => (baseUnitValue/1.602176565e-19) / 1e9d,
+                EnergyUnit.Gigajoule => (baseUnitValue) / 1e9d,
+                EnergyUnit.GigawattDay => (baseUnitValue/(24*3600d)) / 1e9d,
+                EnergyUnit.GigawattHour => (baseUnitValue/3600d) / 1e9d,
+                EnergyUnit.HorsepowerHour => baseUnitValue/2.6845195377e6,
+                EnergyUnit.Joule => baseUnitValue,
+                EnergyUnit.KilobritishThermalUnit => (baseUnitValue/1055.05585262) / 1e3d,
+                EnergyUnit.Kilocalorie => (baseUnitValue/4.184) / 1e3d,
+                EnergyUnit.KiloelectronVolt => (baseUnitValue/1.602176565e-19) / 1e3d,
+                EnergyUnit.Kilojoule => (baseUnitValue) / 1e3d,
+                EnergyUnit.KilowattDay => (baseUnitValue/(24*3600d)) / 1e3d,
+                EnergyUnit.KilowattHour => (baseUnitValue/3600d) / 1e3d,
+                EnergyUnit.MegabritishThermalUnit => (baseUnitValue/1055.05585262) / 1e6d,
+                EnergyUnit.Megacalorie => (baseUnitValue/4.184) / 1e6d,
+                EnergyUnit.MegaelectronVolt => (baseUnitValue/1.602176565e-19) / 1e6d,
+                EnergyUnit.Megajoule => (baseUnitValue) / 1e6d,
+                EnergyUnit.MegawattDay => (baseUnitValue/(24*3600d)) / 1e6d,
+                EnergyUnit.MegawattHour => (baseUnitValue/3600d) / 1e6d,
+                EnergyUnit.Millijoule => (baseUnitValue) / 1e-3d,
+                EnergyUnit.TeraelectronVolt => (baseUnitValue/1.602176565e-19) / 1e12d,
+                EnergyUnit.TerawattDay => (baseUnitValue/(24*3600d)) / 1e12d,
+                EnergyUnit.TerawattHour => (baseUnitValue/3600d) / 1e12d,
+                EnergyUnit.ThermEc => baseUnitValue/1.05505585262e8,
+                EnergyUnit.ThermImperial => baseUnitValue/1.05505585257348e8,
+                EnergyUnit.ThermUs => baseUnitValue/1.054804e8,
+                EnergyUnit.WattDay => baseUnitValue/(24*3600d),
+                EnergyUnit.WattHour => baseUnitValue/3600d,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

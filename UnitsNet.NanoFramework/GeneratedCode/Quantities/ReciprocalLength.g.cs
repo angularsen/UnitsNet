@@ -233,21 +233,20 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case ReciprocalLengthUnit.InverseCentimeter: return _value*1e2;
-                case ReciprocalLengthUnit.InverseFoot: return _value/0.3048;
-                case ReciprocalLengthUnit.InverseInch: return _value/2.54e-2;
-                case ReciprocalLengthUnit.InverseMeter: return _value;
-                case ReciprocalLengthUnit.InverseMicroinch: return _value/2.54e-8;
-                case ReciprocalLengthUnit.InverseMil: return _value/2.54e-5;
-                case ReciprocalLengthUnit.InverseMile: return _value/1609.34;
-                case ReciprocalLengthUnit.InverseMillimeter: return _value*1e3;
-                case ReciprocalLengthUnit.InverseUsSurveyFoot: return _value*3937/1200;
-                case ReciprocalLengthUnit.InverseYard: return _value/0.9144;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                ReciprocalLengthUnit.InverseCentimeter => _value*1e2,
+                ReciprocalLengthUnit.InverseFoot => _value/0.3048,
+                ReciprocalLengthUnit.InverseInch => _value/2.54e-2,
+                ReciprocalLengthUnit.InverseMeter => _value,
+                ReciprocalLengthUnit.InverseMicroinch => _value/2.54e-8,
+                ReciprocalLengthUnit.InverseMil => _value/2.54e-5,
+                ReciprocalLengthUnit.InverseMile => _value/1609.34,
+                ReciprocalLengthUnit.InverseMillimeter => _value*1e3,
+                ReciprocalLengthUnit.InverseUsSurveyFoot => _value*3937/1200,
+                ReciprocalLengthUnit.InverseYard => _value/0.9144,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(ReciprocalLengthUnit unit)
@@ -257,21 +256,20 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case ReciprocalLengthUnit.InverseCentimeter: return baseUnitValue/1e2;
-                case ReciprocalLengthUnit.InverseFoot: return baseUnitValue*0.3048;
-                case ReciprocalLengthUnit.InverseInch: return baseUnitValue*2.54e-2;
-                case ReciprocalLengthUnit.InverseMeter: return baseUnitValue;
-                case ReciprocalLengthUnit.InverseMicroinch: return baseUnitValue*2.54e-8;
-                case ReciprocalLengthUnit.InverseMil: return baseUnitValue*2.54e-5;
-                case ReciprocalLengthUnit.InverseMile: return baseUnitValue*1609.34;
-                case ReciprocalLengthUnit.InverseMillimeter: return baseUnitValue/1e3;
-                case ReciprocalLengthUnit.InverseUsSurveyFoot: return baseUnitValue*1200/3937;
-                case ReciprocalLengthUnit.InverseYard: return baseUnitValue*0.9144;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                ReciprocalLengthUnit.InverseCentimeter => baseUnitValue/1e2,
+                ReciprocalLengthUnit.InverseFoot => baseUnitValue*0.3048,
+                ReciprocalLengthUnit.InverseInch => baseUnitValue*2.54e-2,
+                ReciprocalLengthUnit.InverseMeter => baseUnitValue,
+                ReciprocalLengthUnit.InverseMicroinch => baseUnitValue*2.54e-8,
+                ReciprocalLengthUnit.InverseMil => baseUnitValue*2.54e-5,
+                ReciprocalLengthUnit.InverseMile => baseUnitValue*1609.34,
+                ReciprocalLengthUnit.InverseMillimeter => baseUnitValue/1e3,
+                ReciprocalLengthUnit.InverseUsSurveyFoot => baseUnitValue*1200/3937,
+                ReciprocalLengthUnit.InverseYard => baseUnitValue*0.9144,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

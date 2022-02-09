@@ -263,24 +263,23 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case RotationalSpeedUnit.CentiradianPerSecond: return (_value) * 1e-2d;
-                case RotationalSpeedUnit.DeciradianPerSecond: return (_value) * 1e-1d;
-                case RotationalSpeedUnit.DegreePerMinute: return (3.1415926535897931/(180*60))*_value;
-                case RotationalSpeedUnit.DegreePerSecond: return (3.1415926535897931/180)*_value;
-                case RotationalSpeedUnit.MicrodegreePerSecond: return ((3.1415926535897931/180)*_value) * 1e-6d;
-                case RotationalSpeedUnit.MicroradianPerSecond: return (_value) * 1e-6d;
-                case RotationalSpeedUnit.MillidegreePerSecond: return ((3.1415926535897931/180)*_value) * 1e-3d;
-                case RotationalSpeedUnit.MilliradianPerSecond: return (_value) * 1e-3d;
-                case RotationalSpeedUnit.NanodegreePerSecond: return ((3.1415926535897931/180)*_value) * 1e-9d;
-                case RotationalSpeedUnit.NanoradianPerSecond: return (_value) * 1e-9d;
-                case RotationalSpeedUnit.RadianPerSecond: return _value;
-                case RotationalSpeedUnit.RevolutionPerMinute: return (_value*6.2831853072)/60;
-                case RotationalSpeedUnit.RevolutionPerSecond: return _value*6.2831853072;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                RotationalSpeedUnit.CentiradianPerSecond => (_value) * 1e-2d,
+                RotationalSpeedUnit.DeciradianPerSecond => (_value) * 1e-1d,
+                RotationalSpeedUnit.DegreePerMinute => (3.1415926535897931/(180*60))*_value,
+                RotationalSpeedUnit.DegreePerSecond => (3.1415926535897931/180)*_value,
+                RotationalSpeedUnit.MicrodegreePerSecond => ((3.1415926535897931/180)*_value) * 1e-6d,
+                RotationalSpeedUnit.MicroradianPerSecond => (_value) * 1e-6d,
+                RotationalSpeedUnit.MillidegreePerSecond => ((3.1415926535897931/180)*_value) * 1e-3d,
+                RotationalSpeedUnit.MilliradianPerSecond => (_value) * 1e-3d,
+                RotationalSpeedUnit.NanodegreePerSecond => ((3.1415926535897931/180)*_value) * 1e-9d,
+                RotationalSpeedUnit.NanoradianPerSecond => (_value) * 1e-9d,
+                RotationalSpeedUnit.RadianPerSecond => _value,
+                RotationalSpeedUnit.RevolutionPerMinute => (_value*6.2831853072)/60,
+                RotationalSpeedUnit.RevolutionPerSecond => _value*6.2831853072,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(RotationalSpeedUnit unit)
@@ -290,24 +289,23 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case RotationalSpeedUnit.CentiradianPerSecond: return (baseUnitValue) / 1e-2d;
-                case RotationalSpeedUnit.DeciradianPerSecond: return (baseUnitValue) / 1e-1d;
-                case RotationalSpeedUnit.DegreePerMinute: return (180*60/3.1415926535897931)*baseUnitValue;
-                case RotationalSpeedUnit.DegreePerSecond: return (180/3.1415926535897931)*baseUnitValue;
-                case RotationalSpeedUnit.MicrodegreePerSecond: return ((180/3.1415926535897931)*baseUnitValue) / 1e-6d;
-                case RotationalSpeedUnit.MicroradianPerSecond: return (baseUnitValue) / 1e-6d;
-                case RotationalSpeedUnit.MillidegreePerSecond: return ((180/3.1415926535897931)*baseUnitValue) / 1e-3d;
-                case RotationalSpeedUnit.MilliradianPerSecond: return (baseUnitValue) / 1e-3d;
-                case RotationalSpeedUnit.NanodegreePerSecond: return ((180/3.1415926535897931)*baseUnitValue) / 1e-9d;
-                case RotationalSpeedUnit.NanoradianPerSecond: return (baseUnitValue) / 1e-9d;
-                case RotationalSpeedUnit.RadianPerSecond: return baseUnitValue;
-                case RotationalSpeedUnit.RevolutionPerMinute: return (baseUnitValue/6.2831853072)*60;
-                case RotationalSpeedUnit.RevolutionPerSecond: return baseUnitValue/6.2831853072;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                RotationalSpeedUnit.CentiradianPerSecond => (baseUnitValue) / 1e-2d,
+                RotationalSpeedUnit.DeciradianPerSecond => (baseUnitValue) / 1e-1d,
+                RotationalSpeedUnit.DegreePerMinute => (180*60/3.1415926535897931)*baseUnitValue,
+                RotationalSpeedUnit.DegreePerSecond => (180/3.1415926535897931)*baseUnitValue,
+                RotationalSpeedUnit.MicrodegreePerSecond => ((180/3.1415926535897931)*baseUnitValue) / 1e-6d,
+                RotationalSpeedUnit.MicroradianPerSecond => (baseUnitValue) / 1e-6d,
+                RotationalSpeedUnit.MillidegreePerSecond => ((180/3.1415926535897931)*baseUnitValue) / 1e-3d,
+                RotationalSpeedUnit.MilliradianPerSecond => (baseUnitValue) / 1e-3d,
+                RotationalSpeedUnit.NanodegreePerSecond => ((180/3.1415926535897931)*baseUnitValue) / 1e-9d,
+                RotationalSpeedUnit.NanoradianPerSecond => (baseUnitValue) / 1e-9d,
+                RotationalSpeedUnit.RadianPerSecond => baseUnitValue,
+                RotationalSpeedUnit.RevolutionPerMinute => (baseUnitValue/6.2831853072)*60,
+                RotationalSpeedUnit.RevolutionPerSecond => baseUnitValue/6.2831853072,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

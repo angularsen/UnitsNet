@@ -186,17 +186,16 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case RatioUnit.DecimalFraction: return _value;
-                case RatioUnit.PartPerBillion: return _value/1e9;
-                case RatioUnit.PartPerMillion: return _value/1e6;
-                case RatioUnit.PartPerThousand: return _value/1e3;
-                case RatioUnit.PartPerTrillion: return _value/1e12;
-                case RatioUnit.Percent: return _value/1e2;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                RatioUnit.DecimalFraction => _value,
+                RatioUnit.PartPerBillion => _value/1e9,
+                RatioUnit.PartPerMillion => _value/1e6,
+                RatioUnit.PartPerThousand => _value/1e3,
+                RatioUnit.PartPerTrillion => _value/1e12,
+                RatioUnit.Percent => _value/1e2,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(RatioUnit unit)
@@ -206,17 +205,16 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case RatioUnit.DecimalFraction: return baseUnitValue;
-                case RatioUnit.PartPerBillion: return baseUnitValue*1e9;
-                case RatioUnit.PartPerMillion: return baseUnitValue*1e6;
-                case RatioUnit.PartPerThousand: return baseUnitValue*1e3;
-                case RatioUnit.PartPerTrillion: return baseUnitValue*1e12;
-                case RatioUnit.Percent: return baseUnitValue*1e2;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                RatioUnit.DecimalFraction => baseUnitValue,
+                RatioUnit.PartPerBillion => baseUnitValue*1e9,
+                RatioUnit.PartPerMillion => baseUnitValue*1e6,
+                RatioUnit.PartPerThousand => baseUnitValue*1e3,
+                RatioUnit.PartPerTrillion => baseUnitValue*1e12,
+                RatioUnit.Percent => baseUnitValue*1e2,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

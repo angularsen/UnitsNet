@@ -230,21 +230,20 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case TemperatureUnit.DegreeCelsius: return _value + 273.15;
-                case TemperatureUnit.DegreeDelisle: return _value*-2/3 + 373.15;
-                case TemperatureUnit.DegreeFahrenheit: return _value*5/9 + 459.67*5/9;
-                case TemperatureUnit.DegreeNewton: return _value*100/33 + 273.15;
-                case TemperatureUnit.DegreeRankine: return _value*5/9;
-                case TemperatureUnit.DegreeReaumur: return _value*5/4 + 273.15;
-                case TemperatureUnit.DegreeRoemer: return _value*40/21 + 273.15 - 7.5*40d/21;
-                case TemperatureUnit.Kelvin: return _value;
-                case TemperatureUnit.MillidegreeCelsius: return _value / 1000 + 273.15;
-                case TemperatureUnit.SolarTemperature: return _value * 5778;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                TemperatureUnit.DegreeCelsius => _value + 273.15,
+                TemperatureUnit.DegreeDelisle => _value*-2/3 + 373.15,
+                TemperatureUnit.DegreeFahrenheit => _value*5/9 + 459.67*5/9,
+                TemperatureUnit.DegreeNewton => _value*100/33 + 273.15,
+                TemperatureUnit.DegreeRankine => _value*5/9,
+                TemperatureUnit.DegreeReaumur => _value*5/4 + 273.15,
+                TemperatureUnit.DegreeRoemer => _value*40/21 + 273.15 - 7.5*40d/21,
+                TemperatureUnit.Kelvin => _value,
+                TemperatureUnit.MillidegreeCelsius => _value / 1000 + 273.15,
+                TemperatureUnit.SolarTemperature => _value * 5778,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(TemperatureUnit unit)
@@ -254,21 +253,20 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case TemperatureUnit.DegreeCelsius: return baseUnitValue - 273.15;
-                case TemperatureUnit.DegreeDelisle: return (baseUnitValue - 373.15)*-3/2;
-                case TemperatureUnit.DegreeFahrenheit: return (baseUnitValue - 459.67*5/9)*9/5;
-                case TemperatureUnit.DegreeNewton: return (baseUnitValue - 273.15)*33/100;
-                case TemperatureUnit.DegreeRankine: return baseUnitValue*9/5;
-                case TemperatureUnit.DegreeReaumur: return (baseUnitValue - 273.15)*4/5;
-                case TemperatureUnit.DegreeRoemer: return (baseUnitValue - (273.15 - 7.5*40d/21))*21/40;
-                case TemperatureUnit.Kelvin: return baseUnitValue;
-                case TemperatureUnit.MillidegreeCelsius: return (baseUnitValue - 273.15) * 1000;
-                case TemperatureUnit.SolarTemperature: return baseUnitValue / 5778;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                TemperatureUnit.DegreeCelsius => baseUnitValue - 273.15,
+                TemperatureUnit.DegreeDelisle => (baseUnitValue - 373.15)*-3/2,
+                TemperatureUnit.DegreeFahrenheit => (baseUnitValue - 459.67*5/9)*9/5,
+                TemperatureUnit.DegreeNewton => (baseUnitValue - 273.15)*33/100,
+                TemperatureUnit.DegreeRankine => baseUnitValue*9/5,
+                TemperatureUnit.DegreeReaumur => (baseUnitValue - 273.15)*4/5,
+                TemperatureUnit.DegreeRoemer => (baseUnitValue - (273.15 - 7.5*40d/21))*21/40,
+                TemperatureUnit.Kelvin => baseUnitValue,
+                TemperatureUnit.MillidegreeCelsius => (baseUnitValue - 273.15) * 1000,
+                TemperatureUnit.SolarTemperature => baseUnitValue / 5778,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

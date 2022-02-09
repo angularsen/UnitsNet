@@ -186,17 +186,16 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case AreaMomentOfInertiaUnit.CentimeterToTheFourth: return _value/1e8;
-                case AreaMomentOfInertiaUnit.DecimeterToTheFourth: return _value/1e4;
-                case AreaMomentOfInertiaUnit.FootToTheFourth: return _value*0.0086309748412416;
-                case AreaMomentOfInertiaUnit.InchToTheFourth: return _value*0.0000004162314256;
-                case AreaMomentOfInertiaUnit.MeterToTheFourth: return _value;
-                case AreaMomentOfInertiaUnit.MillimeterToTheFourth: return _value/1e12;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                AreaMomentOfInertiaUnit.CentimeterToTheFourth => _value/1e8,
+                AreaMomentOfInertiaUnit.DecimeterToTheFourth => _value/1e4,
+                AreaMomentOfInertiaUnit.FootToTheFourth => _value*0.0086309748412416,
+                AreaMomentOfInertiaUnit.InchToTheFourth => _value*0.0000004162314256,
+                AreaMomentOfInertiaUnit.MeterToTheFourth => _value,
+                AreaMomentOfInertiaUnit.MillimeterToTheFourth => _value/1e12,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(AreaMomentOfInertiaUnit unit)
@@ -206,17 +205,16 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case AreaMomentOfInertiaUnit.CentimeterToTheFourth: return baseUnitValue*1e8;
-                case AreaMomentOfInertiaUnit.DecimeterToTheFourth: return baseUnitValue*1e4;
-                case AreaMomentOfInertiaUnit.FootToTheFourth: return baseUnitValue/0.0086309748412416;
-                case AreaMomentOfInertiaUnit.InchToTheFourth: return baseUnitValue/0.0000004162314256;
-                case AreaMomentOfInertiaUnit.MeterToTheFourth: return baseUnitValue;
-                case AreaMomentOfInertiaUnit.MillimeterToTheFourth: return baseUnitValue*1e12;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                AreaMomentOfInertiaUnit.CentimeterToTheFourth => baseUnitValue*1e8,
+                AreaMomentOfInertiaUnit.DecimeterToTheFourth => baseUnitValue*1e4,
+                AreaMomentOfInertiaUnit.FootToTheFourth => baseUnitValue/0.0086309748412416,
+                AreaMomentOfInertiaUnit.InchToTheFourth => baseUnitValue/0.0000004162314256,
+                AreaMomentOfInertiaUnit.MeterToTheFourth => baseUnitValue,
+                AreaMomentOfInertiaUnit.MillimeterToTheFourth => baseUnitValue*1e12,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

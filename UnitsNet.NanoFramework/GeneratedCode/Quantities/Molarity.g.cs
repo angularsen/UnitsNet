@@ -211,27 +211,26 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case MolarityUnit.CentimolePerLiter: return (_value / 1e-3) * 1e-2d;
-                case MolarityUnit.CentimolesPerLiter: return (_value / 1e-3) * 1e-2d;
-                case MolarityUnit.DecimolePerLiter: return (_value / 1e-3) * 1e-1d;
-                case MolarityUnit.DecimolesPerLiter: return (_value / 1e-3) * 1e-1d;
-                case MolarityUnit.MicromolePerLiter: return (_value / 1e-3) * 1e-6d;
-                case MolarityUnit.MicromolesPerLiter: return (_value / 1e-3) * 1e-6d;
-                case MolarityUnit.MillimolePerLiter: return (_value / 1e-3) * 1e-3d;
-                case MolarityUnit.MillimolesPerLiter: return (_value / 1e-3) * 1e-3d;
-                case MolarityUnit.MolePerCubicMeter: return _value;
-                case MolarityUnit.MolePerLiter: return _value / 1e-3;
-                case MolarityUnit.MolesPerCubicMeter: return _value;
-                case MolarityUnit.MolesPerLiter: return _value / 1e-3;
-                case MolarityUnit.NanomolePerLiter: return (_value / 1e-3) * 1e-9d;
-                case MolarityUnit.NanomolesPerLiter: return (_value / 1e-3) * 1e-9d;
-                case MolarityUnit.PicomolePerLiter: return (_value / 1e-3) * 1e-12d;
-                case MolarityUnit.PicomolesPerLiter: return (_value / 1e-3) * 1e-12d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                MolarityUnit.CentimolePerLiter => (_value / 1e-3) * 1e-2d,
+                MolarityUnit.CentimolesPerLiter => (_value / 1e-3) * 1e-2d,
+                MolarityUnit.DecimolePerLiter => (_value / 1e-3) * 1e-1d,
+                MolarityUnit.DecimolesPerLiter => (_value / 1e-3) * 1e-1d,
+                MolarityUnit.MicromolePerLiter => (_value / 1e-3) * 1e-6d,
+                MolarityUnit.MicromolesPerLiter => (_value / 1e-3) * 1e-6d,
+                MolarityUnit.MillimolePerLiter => (_value / 1e-3) * 1e-3d,
+                MolarityUnit.MillimolesPerLiter => (_value / 1e-3) * 1e-3d,
+                MolarityUnit.MolePerCubicMeter => _value,
+                MolarityUnit.MolePerLiter => _value / 1e-3,
+                MolarityUnit.MolesPerCubicMeter => _value,
+                MolarityUnit.MolesPerLiter => _value / 1e-3,
+                MolarityUnit.NanomolePerLiter => (_value / 1e-3) * 1e-9d,
+                MolarityUnit.NanomolesPerLiter => (_value / 1e-3) * 1e-9d,
+                MolarityUnit.PicomolePerLiter => (_value / 1e-3) * 1e-12d,
+                MolarityUnit.PicomolesPerLiter => (_value / 1e-3) * 1e-12d,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(MolarityUnit unit)
@@ -241,27 +240,26 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case MolarityUnit.CentimolePerLiter: return (baseUnitValue * 1e-3) / 1e-2d;
-                case MolarityUnit.CentimolesPerLiter: return (baseUnitValue * 1e-3) / 1e-2d;
-                case MolarityUnit.DecimolePerLiter: return (baseUnitValue * 1e-3) / 1e-1d;
-                case MolarityUnit.DecimolesPerLiter: return (baseUnitValue * 1e-3) / 1e-1d;
-                case MolarityUnit.MicromolePerLiter: return (baseUnitValue * 1e-3) / 1e-6d;
-                case MolarityUnit.MicromolesPerLiter: return (baseUnitValue * 1e-3) / 1e-6d;
-                case MolarityUnit.MillimolePerLiter: return (baseUnitValue * 1e-3) / 1e-3d;
-                case MolarityUnit.MillimolesPerLiter: return (baseUnitValue * 1e-3) / 1e-3d;
-                case MolarityUnit.MolePerCubicMeter: return baseUnitValue;
-                case MolarityUnit.MolePerLiter: return baseUnitValue * 1e-3;
-                case MolarityUnit.MolesPerCubicMeter: return baseUnitValue;
-                case MolarityUnit.MolesPerLiter: return baseUnitValue * 1e-3;
-                case MolarityUnit.NanomolePerLiter: return (baseUnitValue * 1e-3) / 1e-9d;
-                case MolarityUnit.NanomolesPerLiter: return (baseUnitValue * 1e-3) / 1e-9d;
-                case MolarityUnit.PicomolePerLiter: return (baseUnitValue * 1e-3) / 1e-12d;
-                case MolarityUnit.PicomolesPerLiter: return (baseUnitValue * 1e-3) / 1e-12d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                MolarityUnit.CentimolePerLiter => (baseUnitValue * 1e-3) / 1e-2d,
+                MolarityUnit.CentimolesPerLiter => (baseUnitValue * 1e-3) / 1e-2d,
+                MolarityUnit.DecimolePerLiter => (baseUnitValue * 1e-3) / 1e-1d,
+                MolarityUnit.DecimolesPerLiter => (baseUnitValue * 1e-3) / 1e-1d,
+                MolarityUnit.MicromolePerLiter => (baseUnitValue * 1e-3) / 1e-6d,
+                MolarityUnit.MicromolesPerLiter => (baseUnitValue * 1e-3) / 1e-6d,
+                MolarityUnit.MillimolePerLiter => (baseUnitValue * 1e-3) / 1e-3d,
+                MolarityUnit.MillimolesPerLiter => (baseUnitValue * 1e-3) / 1e-3d,
+                MolarityUnit.MolePerCubicMeter => baseUnitValue,
+                MolarityUnit.MolePerLiter => baseUnitValue * 1e-3,
+                MolarityUnit.MolesPerCubicMeter => baseUnitValue,
+                MolarityUnit.MolesPerLiter => baseUnitValue * 1e-3,
+                MolarityUnit.NanomolePerLiter => (baseUnitValue * 1e-3) / 1e-9d,
+                MolarityUnit.NanomolesPerLiter => (baseUnitValue * 1e-3) / 1e-9d,
+                MolarityUnit.PicomolePerLiter => (baseUnitValue * 1e-3) / 1e-12d,
+                MolarityUnit.PicomolesPerLiter => (baseUnitValue * 1e-3) / 1e-12d,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

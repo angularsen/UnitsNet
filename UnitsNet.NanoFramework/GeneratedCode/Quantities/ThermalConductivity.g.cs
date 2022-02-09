@@ -145,13 +145,12 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case ThermalConductivityUnit.BtuPerHourFootFahrenheit: return _value*1.73073467;
-                case ThermalConductivityUnit.WattPerMeterKelvin: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                ThermalConductivityUnit.BtuPerHourFootFahrenheit => _value*1.73073467,
+                ThermalConductivityUnit.WattPerMeterKelvin => _value,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(ThermalConductivityUnit unit)
@@ -161,13 +160,12 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case ThermalConductivityUnit.BtuPerHourFootFahrenheit: return baseUnitValue/1.73073467;
-                case ThermalConductivityUnit.WattPerMeterKelvin: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                ThermalConductivityUnit.BtuPerHourFootFahrenheit => baseUnitValue/1.73073467,
+                ThermalConductivityUnit.WattPerMeterKelvin => baseUnitValue,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

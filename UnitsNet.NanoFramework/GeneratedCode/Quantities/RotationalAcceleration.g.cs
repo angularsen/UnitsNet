@@ -164,15 +164,14 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case RotationalAccelerationUnit.DegreePerSecondSquared: return (3.1415926535897931/180)*_value;
-                case RotationalAccelerationUnit.RadianPerSecondSquared: return _value;
-                case RotationalAccelerationUnit.RevolutionPerMinutePerSecond: return ((2*3.1415926535897931)/60)*_value;
-                case RotationalAccelerationUnit.RevolutionPerSecondSquared: return (2*3.1415926535897931)*_value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                RotationalAccelerationUnit.DegreePerSecondSquared => (3.1415926535897931/180)*_value,
+                RotationalAccelerationUnit.RadianPerSecondSquared => _value,
+                RotationalAccelerationUnit.RevolutionPerMinutePerSecond => ((2*3.1415926535897931)/60)*_value,
+                RotationalAccelerationUnit.RevolutionPerSecondSquared => (2*3.1415926535897931)*_value,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(RotationalAccelerationUnit unit)
@@ -182,15 +181,14 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case RotationalAccelerationUnit.DegreePerSecondSquared: return (180/3.1415926535897931)*baseUnitValue;
-                case RotationalAccelerationUnit.RadianPerSecondSquared: return baseUnitValue;
-                case RotationalAccelerationUnit.RevolutionPerMinutePerSecond: return (60/(2*3.1415926535897931))*baseUnitValue;
-                case RotationalAccelerationUnit.RevolutionPerSecondSquared: return (1/(2*3.1415926535897931))*baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                RotationalAccelerationUnit.DegreePerSecondSquared => (180/3.1415926535897931)*baseUnitValue,
+                RotationalAccelerationUnit.RadianPerSecondSquared => baseUnitValue,
+                RotationalAccelerationUnit.RevolutionPerMinutePerSecond => (60/(2*3.1415926535897931))*baseUnitValue,
+                RotationalAccelerationUnit.RevolutionPerSecondSquared => (1/(2*3.1415926535897931))*baseUnitValue,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

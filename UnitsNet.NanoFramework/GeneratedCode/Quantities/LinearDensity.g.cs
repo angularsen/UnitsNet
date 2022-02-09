@@ -277,25 +277,24 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case LinearDensityUnit.GramPerCentimeter: return _value*1e-1;
-                case LinearDensityUnit.GramPerMeter: return _value*1e-3;
-                case LinearDensityUnit.GramPerMillimeter: return _value;
-                case LinearDensityUnit.KilogramPerCentimeter: return (_value*1e-1) * 1e3d;
-                case LinearDensityUnit.KilogramPerMeter: return (_value*1e-3) * 1e3d;
-                case LinearDensityUnit.KilogramPerMillimeter: return (_value) * 1e3d;
-                case LinearDensityUnit.MicrogramPerCentimeter: return (_value*1e-1) * 1e-6d;
-                case LinearDensityUnit.MicrogramPerMeter: return (_value*1e-3) * 1e-6d;
-                case LinearDensityUnit.MicrogramPerMillimeter: return (_value) * 1e-6d;
-                case LinearDensityUnit.MilligramPerCentimeter: return (_value*1e-1) * 1e-3d;
-                case LinearDensityUnit.MilligramPerMeter: return (_value*1e-3) * 1e-3d;
-                case LinearDensityUnit.MilligramPerMillimeter: return (_value) * 1e-3d;
-                case LinearDensityUnit.PoundPerFoot: return _value*1.48816394;
-                case LinearDensityUnit.PoundPerInch: return _value/5.5997415e-2;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                LinearDensityUnit.GramPerCentimeter => _value*1e-1,
+                LinearDensityUnit.GramPerMeter => _value*1e-3,
+                LinearDensityUnit.GramPerMillimeter => _value,
+                LinearDensityUnit.KilogramPerCentimeter => (_value*1e-1) * 1e3d,
+                LinearDensityUnit.KilogramPerMeter => (_value*1e-3) * 1e3d,
+                LinearDensityUnit.KilogramPerMillimeter => (_value) * 1e3d,
+                LinearDensityUnit.MicrogramPerCentimeter => (_value*1e-1) * 1e-6d,
+                LinearDensityUnit.MicrogramPerMeter => (_value*1e-3) * 1e-6d,
+                LinearDensityUnit.MicrogramPerMillimeter => (_value) * 1e-6d,
+                LinearDensityUnit.MilligramPerCentimeter => (_value*1e-1) * 1e-3d,
+                LinearDensityUnit.MilligramPerMeter => (_value*1e-3) * 1e-3d,
+                LinearDensityUnit.MilligramPerMillimeter => (_value) * 1e-3d,
+                LinearDensityUnit.PoundPerFoot => _value*1.48816394,
+                LinearDensityUnit.PoundPerInch => _value/5.5997415e-2,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(LinearDensityUnit unit)
@@ -305,25 +304,24 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case LinearDensityUnit.GramPerCentimeter: return baseUnitValue/1e-1;
-                case LinearDensityUnit.GramPerMeter: return baseUnitValue/1e-3;
-                case LinearDensityUnit.GramPerMillimeter: return baseUnitValue;
-                case LinearDensityUnit.KilogramPerCentimeter: return (baseUnitValue/1e-1) / 1e3d;
-                case LinearDensityUnit.KilogramPerMeter: return (baseUnitValue/1e-3) / 1e3d;
-                case LinearDensityUnit.KilogramPerMillimeter: return (baseUnitValue) / 1e3d;
-                case LinearDensityUnit.MicrogramPerCentimeter: return (baseUnitValue/1e-1) / 1e-6d;
-                case LinearDensityUnit.MicrogramPerMeter: return (baseUnitValue/1e-3) / 1e-6d;
-                case LinearDensityUnit.MicrogramPerMillimeter: return (baseUnitValue) / 1e-6d;
-                case LinearDensityUnit.MilligramPerCentimeter: return (baseUnitValue/1e-1) / 1e-3d;
-                case LinearDensityUnit.MilligramPerMeter: return (baseUnitValue/1e-3) / 1e-3d;
-                case LinearDensityUnit.MilligramPerMillimeter: return (baseUnitValue) / 1e-3d;
-                case LinearDensityUnit.PoundPerFoot: return baseUnitValue/1.48816394;
-                case LinearDensityUnit.PoundPerInch: return baseUnitValue*5.5997415e-2;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                LinearDensityUnit.GramPerCentimeter => baseUnitValue/1e-1,
+                LinearDensityUnit.GramPerMeter => baseUnitValue/1e-3,
+                LinearDensityUnit.GramPerMillimeter => baseUnitValue,
+                LinearDensityUnit.KilogramPerCentimeter => (baseUnitValue/1e-1) / 1e3d,
+                LinearDensityUnit.KilogramPerMeter => (baseUnitValue/1e-3) / 1e3d,
+                LinearDensityUnit.KilogramPerMillimeter => (baseUnitValue) / 1e3d,
+                LinearDensityUnit.MicrogramPerCentimeter => (baseUnitValue/1e-1) / 1e-6d,
+                LinearDensityUnit.MicrogramPerMeter => (baseUnitValue/1e-3) / 1e-6d,
+                LinearDensityUnit.MicrogramPerMillimeter => (baseUnitValue) / 1e-6d,
+                LinearDensityUnit.MilligramPerCentimeter => (baseUnitValue/1e-1) / 1e-3d,
+                LinearDensityUnit.MilligramPerMeter => (baseUnitValue/1e-3) / 1e-3d,
+                LinearDensityUnit.MilligramPerMillimeter => (baseUnitValue) / 1e-3d,
+                LinearDensityUnit.PoundPerFoot => baseUnitValue/1.48816394,
+                LinearDensityUnit.PoundPerInch => baseUnitValue*5.5997415e-2,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

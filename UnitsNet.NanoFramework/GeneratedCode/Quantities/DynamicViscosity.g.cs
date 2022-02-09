@@ -233,21 +233,20 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case DynamicViscosityUnit.Centipoise: return (_value/10) * 1e-2d;
-                case DynamicViscosityUnit.MicropascalSecond: return (_value) * 1e-6d;
-                case DynamicViscosityUnit.MillipascalSecond: return (_value) * 1e-3d;
-                case DynamicViscosityUnit.NewtonSecondPerMeterSquared: return _value;
-                case DynamicViscosityUnit.PascalSecond: return _value;
-                case DynamicViscosityUnit.Poise: return _value/10;
-                case DynamicViscosityUnit.PoundForceSecondPerSquareFoot: return _value * 4.7880258980335843e1;
-                case DynamicViscosityUnit.PoundForceSecondPerSquareInch: return _value * 6.8947572931683613e3;
-                case DynamicViscosityUnit.PoundPerFootSecond: return _value * 1.4881639;
-                case DynamicViscosityUnit.Reyn: return _value * 6.8947572931683613e3;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                DynamicViscosityUnit.Centipoise => (_value/10) * 1e-2d,
+                DynamicViscosityUnit.MicropascalSecond => (_value) * 1e-6d,
+                DynamicViscosityUnit.MillipascalSecond => (_value) * 1e-3d,
+                DynamicViscosityUnit.NewtonSecondPerMeterSquared => _value,
+                DynamicViscosityUnit.PascalSecond => _value,
+                DynamicViscosityUnit.Poise => _value/10,
+                DynamicViscosityUnit.PoundForceSecondPerSquareFoot => _value * 4.7880258980335843e1,
+                DynamicViscosityUnit.PoundForceSecondPerSquareInch => _value * 6.8947572931683613e3,
+                DynamicViscosityUnit.PoundPerFootSecond => _value * 1.4881639,
+                DynamicViscosityUnit.Reyn => _value * 6.8947572931683613e3,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(DynamicViscosityUnit unit)
@@ -257,21 +256,20 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case DynamicViscosityUnit.Centipoise: return (baseUnitValue*10) / 1e-2d;
-                case DynamicViscosityUnit.MicropascalSecond: return (baseUnitValue) / 1e-6d;
-                case DynamicViscosityUnit.MillipascalSecond: return (baseUnitValue) / 1e-3d;
-                case DynamicViscosityUnit.NewtonSecondPerMeterSquared: return baseUnitValue;
-                case DynamicViscosityUnit.PascalSecond: return baseUnitValue;
-                case DynamicViscosityUnit.Poise: return baseUnitValue*10;
-                case DynamicViscosityUnit.PoundForceSecondPerSquareFoot: return baseUnitValue / 4.7880258980335843e1;
-                case DynamicViscosityUnit.PoundForceSecondPerSquareInch: return baseUnitValue / 6.8947572931683613e3;
-                case DynamicViscosityUnit.PoundPerFootSecond: return baseUnitValue / 1.4881639;
-                case DynamicViscosityUnit.Reyn: return baseUnitValue / 6.8947572931683613e3;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                DynamicViscosityUnit.Centipoise => (baseUnitValue*10) / 1e-2d,
+                DynamicViscosityUnit.MicropascalSecond => (baseUnitValue) / 1e-6d,
+                DynamicViscosityUnit.MillipascalSecond => (baseUnitValue) / 1e-3d,
+                DynamicViscosityUnit.NewtonSecondPerMeterSquared => baseUnitValue,
+                DynamicViscosityUnit.PascalSecond => baseUnitValue,
+                DynamicViscosityUnit.Poise => baseUnitValue*10,
+                DynamicViscosityUnit.PoundForceSecondPerSquareFoot => baseUnitValue / 4.7880258980335843e1,
+                DynamicViscosityUnit.PoundForceSecondPerSquareInch => baseUnitValue / 6.8947572931683613e3,
+                DynamicViscosityUnit.PoundPerFootSecond => baseUnitValue / 1.4881639,
+                DynamicViscosityUnit.Reyn => baseUnitValue / 6.8947572931683613e3,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion
