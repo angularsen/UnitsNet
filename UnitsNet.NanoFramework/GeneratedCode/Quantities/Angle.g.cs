@@ -296,27 +296,26 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case AngleUnit.Arcminute: return _value/60;
-                case AngleUnit.Arcsecond: return _value/3600;
-                case AngleUnit.Centiradian: return (_value*180/3.1415926535897931) * 1e-2d;
-                case AngleUnit.Deciradian: return (_value*180/3.1415926535897931) * 1e-1d;
-                case AngleUnit.Degree: return _value;
-                case AngleUnit.Gradian: return _value*0.9;
-                case AngleUnit.Microdegree: return (_value) * 1e-6d;
-                case AngleUnit.Microradian: return (_value*180/3.1415926535897931) * 1e-6d;
-                case AngleUnit.Millidegree: return (_value) * 1e-3d;
-                case AngleUnit.Milliradian: return (_value*180/3.1415926535897931) * 1e-3d;
-                case AngleUnit.Nanodegree: return (_value) * 1e-9d;
-                case AngleUnit.Nanoradian: return (_value*180/3.1415926535897931) * 1e-9d;
-                case AngleUnit.NatoMil: return _value*9/160;
-                case AngleUnit.Radian: return _value*180/3.1415926535897931;
-                case AngleUnit.Revolution: return _value*360;
-                case AngleUnit.Tilt: return Math.Asin(_value)*180/3.1415926535897931;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                AngleUnit.Arcminute => _value/60,
+                AngleUnit.Arcsecond => _value/3600,
+                AngleUnit.Centiradian => (_value*180/3.1415926535897931) * 1e-2d,
+                AngleUnit.Deciradian => (_value*180/3.1415926535897931) * 1e-1d,
+                AngleUnit.Degree => _value,
+                AngleUnit.Gradian => _value*0.9,
+                AngleUnit.Microdegree => (_value) * 1e-6d,
+                AngleUnit.Microradian => (_value*180/3.1415926535897931) * 1e-6d,
+                AngleUnit.Millidegree => (_value) * 1e-3d,
+                AngleUnit.Milliradian => (_value*180/3.1415926535897931) * 1e-3d,
+                AngleUnit.Nanodegree => (_value) * 1e-9d,
+                AngleUnit.Nanoradian => (_value*180/3.1415926535897931) * 1e-9d,
+                AngleUnit.NatoMil => _value*9/160,
+                AngleUnit.Radian => _value*180/3.1415926535897931,
+                AngleUnit.Revolution => _value*360,
+                AngleUnit.Tilt => Math.Asin(_value)*180/3.1415926535897931,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(AngleUnit unit)
@@ -326,27 +325,26 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case AngleUnit.Arcminute: return baseUnitValue*60;
-                case AngleUnit.Arcsecond: return baseUnitValue*3600;
-                case AngleUnit.Centiradian: return (baseUnitValue/180*3.1415926535897931) / 1e-2d;
-                case AngleUnit.Deciradian: return (baseUnitValue/180*3.1415926535897931) / 1e-1d;
-                case AngleUnit.Degree: return baseUnitValue;
-                case AngleUnit.Gradian: return baseUnitValue/0.9;
-                case AngleUnit.Microdegree: return (baseUnitValue) / 1e-6d;
-                case AngleUnit.Microradian: return (baseUnitValue/180*3.1415926535897931) / 1e-6d;
-                case AngleUnit.Millidegree: return (baseUnitValue) / 1e-3d;
-                case AngleUnit.Milliradian: return (baseUnitValue/180*3.1415926535897931) / 1e-3d;
-                case AngleUnit.Nanodegree: return (baseUnitValue) / 1e-9d;
-                case AngleUnit.Nanoradian: return (baseUnitValue/180*3.1415926535897931) / 1e-9d;
-                case AngleUnit.NatoMil: return baseUnitValue*160/9;
-                case AngleUnit.Radian: return baseUnitValue/180*3.1415926535897931;
-                case AngleUnit.Revolution: return baseUnitValue/360;
-                case AngleUnit.Tilt: return Math.Sin(baseUnitValue/180*3.1415926535897931);
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                AngleUnit.Arcminute => baseUnitValue*60,
+                AngleUnit.Arcsecond => baseUnitValue*3600,
+                AngleUnit.Centiradian => (baseUnitValue/180*3.1415926535897931) / 1e-2d,
+                AngleUnit.Deciradian => (baseUnitValue/180*3.1415926535897931) / 1e-1d,
+                AngleUnit.Degree => baseUnitValue,
+                AngleUnit.Gradian => baseUnitValue/0.9,
+                AngleUnit.Microdegree => (baseUnitValue) / 1e-6d,
+                AngleUnit.Microradian => (baseUnitValue/180*3.1415926535897931) / 1e-6d,
+                AngleUnit.Millidegree => (baseUnitValue) / 1e-3d,
+                AngleUnit.Milliradian => (baseUnitValue/180*3.1415926535897931) / 1e-3d,
+                AngleUnit.Nanodegree => (baseUnitValue) / 1e-9d,
+                AngleUnit.Nanoradian => (baseUnitValue/180*3.1415926535897931) / 1e-9d,
+                AngleUnit.NatoMil => baseUnitValue*160/9,
+                AngleUnit.Radian => baseUnitValue/180*3.1415926535897931,
+                AngleUnit.Revolution => baseUnitValue/360,
+                AngleUnit.Tilt => Math.Sin(baseUnitValue/180*3.1415926535897931),
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

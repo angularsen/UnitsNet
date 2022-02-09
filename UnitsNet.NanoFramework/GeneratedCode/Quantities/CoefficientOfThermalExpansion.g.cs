@@ -153,14 +153,13 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case CoefficientOfThermalExpansionUnit.InverseDegreeCelsius: return _value;
-                case CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit: return _value*9/5;
-                case CoefficientOfThermalExpansionUnit.InverseKelvin: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                CoefficientOfThermalExpansionUnit.InverseDegreeCelsius => _value,
+                CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit => _value*9/5,
+                CoefficientOfThermalExpansionUnit.InverseKelvin => _value,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(CoefficientOfThermalExpansionUnit unit)
@@ -170,14 +169,13 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case CoefficientOfThermalExpansionUnit.InverseDegreeCelsius: return baseUnitValue;
-                case CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit: return baseUnitValue*5/9;
-                case CoefficientOfThermalExpansionUnit.InverseKelvin: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                CoefficientOfThermalExpansionUnit.InverseDegreeCelsius => baseUnitValue,
+                CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit => baseUnitValue*5/9,
+                CoefficientOfThermalExpansionUnit.InverseKelvin => baseUnitValue,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

@@ -164,15 +164,14 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case AmplitudeRatioUnit.DecibelMicrovolt: return _value - 120;
-                case AmplitudeRatioUnit.DecibelMillivolt: return _value - 60;
-                case AmplitudeRatioUnit.DecibelUnloaded: return _value - 2.218487499;
-                case AmplitudeRatioUnit.DecibelVolt: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                AmplitudeRatioUnit.DecibelMicrovolt => _value - 120,
+                AmplitudeRatioUnit.DecibelMillivolt => _value - 60,
+                AmplitudeRatioUnit.DecibelUnloaded => _value - 2.218487499,
+                AmplitudeRatioUnit.DecibelVolt => _value,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(AmplitudeRatioUnit unit)
@@ -182,15 +181,14 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case AmplitudeRatioUnit.DecibelMicrovolt: return baseUnitValue + 120;
-                case AmplitudeRatioUnit.DecibelMillivolt: return baseUnitValue + 60;
-                case AmplitudeRatioUnit.DecibelUnloaded: return baseUnitValue + 2.218487499;
-                case AmplitudeRatioUnit.DecibelVolt: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                AmplitudeRatioUnit.DecibelMicrovolt => baseUnitValue + 120,
+                AmplitudeRatioUnit.DecibelMillivolt => baseUnitValue + 60,
+                AmplitudeRatioUnit.DecibelUnloaded => baseUnitValue + 2.218487499,
+                AmplitudeRatioUnit.DecibelVolt => baseUnitValue,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

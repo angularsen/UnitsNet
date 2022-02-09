@@ -153,14 +153,13 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour: return _value/3.6e9;
-                case BrakeSpecificFuelConsumptionUnit.KilogramPerJoule: return _value;
-                case BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour: return _value*1.689659410672e-7;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour => _value/3.6e9,
+                BrakeSpecificFuelConsumptionUnit.KilogramPerJoule => _value,
+                BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour => _value*1.689659410672e-7,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(BrakeSpecificFuelConsumptionUnit unit)
@@ -170,14 +169,13 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour: return baseUnitValue*3.6e9;
-                case BrakeSpecificFuelConsumptionUnit.KilogramPerJoule: return baseUnitValue;
-                case BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour: return baseUnitValue/1.689659410672e-7;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour => baseUnitValue*3.6e9,
+                BrakeSpecificFuelConsumptionUnit.KilogramPerJoule => baseUnitValue,
+                BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour => baseUnitValue/1.689659410672e-7,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

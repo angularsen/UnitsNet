@@ -189,17 +189,16 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case MagneticFieldUnit.Gauss: return _value/1e4;
-                case MagneticFieldUnit.Microtesla: return (_value) * 1e-6d;
-                case MagneticFieldUnit.Milligauss: return (_value/1e4) * 1e-3d;
-                case MagneticFieldUnit.Millitesla: return (_value) * 1e-3d;
-                case MagneticFieldUnit.Nanotesla: return (_value) * 1e-9d;
-                case MagneticFieldUnit.Tesla: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                MagneticFieldUnit.Gauss => _value/1e4,
+                MagneticFieldUnit.Microtesla => (_value) * 1e-6d,
+                MagneticFieldUnit.Milligauss => (_value/1e4) * 1e-3d,
+                MagneticFieldUnit.Millitesla => (_value) * 1e-3d,
+                MagneticFieldUnit.Nanotesla => (_value) * 1e-9d,
+                MagneticFieldUnit.Tesla => _value,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(MagneticFieldUnit unit)
@@ -209,17 +208,16 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case MagneticFieldUnit.Gauss: return baseUnitValue*1e4;
-                case MagneticFieldUnit.Microtesla: return (baseUnitValue) / 1e-6d;
-                case MagneticFieldUnit.Milligauss: return (baseUnitValue*1e4) / 1e-3d;
-                case MagneticFieldUnit.Millitesla: return (baseUnitValue) / 1e-3d;
-                case MagneticFieldUnit.Nanotesla: return (baseUnitValue) / 1e-9d;
-                case MagneticFieldUnit.Tesla: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                MagneticFieldUnit.Gauss => baseUnitValue*1e4,
+                MagneticFieldUnit.Microtesla => (baseUnitValue) / 1e-6d,
+                MagneticFieldUnit.Milligauss => (baseUnitValue*1e4) / 1e-3d,
+                MagneticFieldUnit.Millitesla => (baseUnitValue) / 1e-3d,
+                MagneticFieldUnit.Nanotesla => (baseUnitValue) / 1e-9d,
+                MagneticFieldUnit.Tesla => baseUnitValue,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

@@ -178,16 +178,15 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case ElectricChargeUnit.AmpereHour: return _value/2.77777777777e-4;
-                case ElectricChargeUnit.Coulomb: return _value;
-                case ElectricChargeUnit.KiloampereHour: return (_value/2.77777777777e-4) * 1e3d;
-                case ElectricChargeUnit.MegaampereHour: return (_value/2.77777777777e-4) * 1e6d;
-                case ElectricChargeUnit.MilliampereHour: return (_value/2.77777777777e-4) * 1e-3d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                ElectricChargeUnit.AmpereHour => _value/2.77777777777e-4,
+                ElectricChargeUnit.Coulomb => _value,
+                ElectricChargeUnit.KiloampereHour => (_value/2.77777777777e-4) * 1e3d,
+                ElectricChargeUnit.MegaampereHour => (_value/2.77777777777e-4) * 1e6d,
+                ElectricChargeUnit.MilliampereHour => (_value/2.77777777777e-4) * 1e-3d,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(ElectricChargeUnit unit)
@@ -197,16 +196,15 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case ElectricChargeUnit.AmpereHour: return baseUnitValue*2.77777777777e-4;
-                case ElectricChargeUnit.Coulomb: return baseUnitValue;
-                case ElectricChargeUnit.KiloampereHour: return (baseUnitValue*2.77777777777e-4) / 1e3d;
-                case ElectricChargeUnit.MegaampereHour: return (baseUnitValue*2.77777777777e-4) / 1e6d;
-                case ElectricChargeUnit.MilliampereHour: return (baseUnitValue*2.77777777777e-4) / 1e-3d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                ElectricChargeUnit.AmpereHour => baseUnitValue*2.77777777777e-4,
+                ElectricChargeUnit.Coulomb => baseUnitValue,
+                ElectricChargeUnit.KiloampereHour => (baseUnitValue*2.77777777777e-4) / 1e3d,
+                ElectricChargeUnit.MegaampereHour => (baseUnitValue*2.77777777777e-4) / 1e6d,
+                ElectricChargeUnit.MilliampereHour => (baseUnitValue*2.77777777777e-4) / 1e-3d,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

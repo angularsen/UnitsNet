@@ -164,15 +164,14 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case ElectricCurrentGradientUnit.AmperePerMicrosecond: return _value*1E6;
-                case ElectricCurrentGradientUnit.AmperePerMillisecond: return _value*1E3;
-                case ElectricCurrentGradientUnit.AmperePerNanosecond: return _value*1E9;
-                case ElectricCurrentGradientUnit.AmperePerSecond: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                ElectricCurrentGradientUnit.AmperePerMicrosecond => _value*1E6,
+                ElectricCurrentGradientUnit.AmperePerMillisecond => _value*1E3,
+                ElectricCurrentGradientUnit.AmperePerNanosecond => _value*1E9,
+                ElectricCurrentGradientUnit.AmperePerSecond => _value,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(ElectricCurrentGradientUnit unit)
@@ -182,15 +181,14 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case ElectricCurrentGradientUnit.AmperePerMicrosecond: return baseUnitValue/1E6;
-                case ElectricCurrentGradientUnit.AmperePerMillisecond: return baseUnitValue/1E3;
-                case ElectricCurrentGradientUnit.AmperePerNanosecond: return baseUnitValue/1E9;
-                case ElectricCurrentGradientUnit.AmperePerSecond: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                ElectricCurrentGradientUnit.AmperePerMicrosecond => baseUnitValue/1E6,
+                ElectricCurrentGradientUnit.AmperePerMillisecond => baseUnitValue/1E3,
+                ElectricCurrentGradientUnit.AmperePerNanosecond => baseUnitValue/1E9,
+                ElectricCurrentGradientUnit.AmperePerSecond => baseUnitValue,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

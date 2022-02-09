@@ -208,19 +208,18 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case ElectricCurrentUnit.Ampere: return _value;
-                case ElectricCurrentUnit.Centiampere: return (_value) * 1e-2d;
-                case ElectricCurrentUnit.Kiloampere: return (_value) * 1e3d;
-                case ElectricCurrentUnit.Megaampere: return (_value) * 1e6d;
-                case ElectricCurrentUnit.Microampere: return (_value) * 1e-6d;
-                case ElectricCurrentUnit.Milliampere: return (_value) * 1e-3d;
-                case ElectricCurrentUnit.Nanoampere: return (_value) * 1e-9d;
-                case ElectricCurrentUnit.Picoampere: return (_value) * 1e-12d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                ElectricCurrentUnit.Ampere => _value,
+                ElectricCurrentUnit.Centiampere => (_value) * 1e-2d,
+                ElectricCurrentUnit.Kiloampere => (_value) * 1e3d,
+                ElectricCurrentUnit.Megaampere => (_value) * 1e6d,
+                ElectricCurrentUnit.Microampere => (_value) * 1e-6d,
+                ElectricCurrentUnit.Milliampere => (_value) * 1e-3d,
+                ElectricCurrentUnit.Nanoampere => (_value) * 1e-9d,
+                ElectricCurrentUnit.Picoampere => (_value) * 1e-12d,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(ElectricCurrentUnit unit)
@@ -230,19 +229,18 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case ElectricCurrentUnit.Ampere: return baseUnitValue;
-                case ElectricCurrentUnit.Centiampere: return (baseUnitValue) / 1e-2d;
-                case ElectricCurrentUnit.Kiloampere: return (baseUnitValue) / 1e3d;
-                case ElectricCurrentUnit.Megaampere: return (baseUnitValue) / 1e6d;
-                case ElectricCurrentUnit.Microampere: return (baseUnitValue) / 1e-6d;
-                case ElectricCurrentUnit.Milliampere: return (baseUnitValue) / 1e-3d;
-                case ElectricCurrentUnit.Nanoampere: return (baseUnitValue) / 1e-9d;
-                case ElectricCurrentUnit.Picoampere: return (baseUnitValue) / 1e-12d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                ElectricCurrentUnit.Ampere => baseUnitValue,
+                ElectricCurrentUnit.Centiampere => (baseUnitValue) / 1e-2d,
+                ElectricCurrentUnit.Kiloampere => (baseUnitValue) / 1e3d,
+                ElectricCurrentUnit.Megaampere => (baseUnitValue) / 1e6d,
+                ElectricCurrentUnit.Microampere => (baseUnitValue) / 1e-6d,
+                ElectricCurrentUnit.Milliampere => (baseUnitValue) / 1e-3d,
+                ElectricCurrentUnit.Nanoampere => (baseUnitValue) / 1e-9d,
+                ElectricCurrentUnit.Picoampere => (baseUnitValue) / 1e-12d,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

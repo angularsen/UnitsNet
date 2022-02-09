@@ -241,22 +241,21 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case FrequencyUnit.BeatPerMinute: return _value/60;
-                case FrequencyUnit.BUnit: return Math.Sqrt(_value * 1e3);
-                case FrequencyUnit.CyclePerHour: return _value/3600;
-                case FrequencyUnit.CyclePerMinute: return _value/60;
-                case FrequencyUnit.Gigahertz: return (_value) * 1e9d;
-                case FrequencyUnit.Hertz: return _value;
-                case FrequencyUnit.Kilohertz: return (_value) * 1e3d;
-                case FrequencyUnit.Megahertz: return (_value) * 1e6d;
-                case FrequencyUnit.PerSecond: return _value;
-                case FrequencyUnit.RadianPerSecond: return _value/6.2831853072;
-                case FrequencyUnit.Terahertz: return (_value) * 1e12d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                FrequencyUnit.BeatPerMinute => _value/60,
+                FrequencyUnit.BUnit => Math.Sqrt(_value * 1e3),
+                FrequencyUnit.CyclePerHour => _value/3600,
+                FrequencyUnit.CyclePerMinute => _value/60,
+                FrequencyUnit.Gigahertz => (_value) * 1e9d,
+                FrequencyUnit.Hertz => _value,
+                FrequencyUnit.Kilohertz => (_value) * 1e3d,
+                FrequencyUnit.Megahertz => (_value) * 1e6d,
+                FrequencyUnit.PerSecond => _value,
+                FrequencyUnit.RadianPerSecond => _value/6.2831853072,
+                FrequencyUnit.Terahertz => (_value) * 1e12d,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(FrequencyUnit unit)
@@ -266,22 +265,21 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case FrequencyUnit.BeatPerMinute: return baseUnitValue*60;
-                case FrequencyUnit.BUnit: return baseUnitValue * baseUnitValue * 1e-3;
-                case FrequencyUnit.CyclePerHour: return baseUnitValue*3600;
-                case FrequencyUnit.CyclePerMinute: return baseUnitValue*60;
-                case FrequencyUnit.Gigahertz: return (baseUnitValue) / 1e9d;
-                case FrequencyUnit.Hertz: return baseUnitValue;
-                case FrequencyUnit.Kilohertz: return (baseUnitValue) / 1e3d;
-                case FrequencyUnit.Megahertz: return (baseUnitValue) / 1e6d;
-                case FrequencyUnit.PerSecond: return baseUnitValue;
-                case FrequencyUnit.RadianPerSecond: return baseUnitValue*6.2831853072;
-                case FrequencyUnit.Terahertz: return (baseUnitValue) / 1e12d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                FrequencyUnit.BeatPerMinute => baseUnitValue*60,
+                FrequencyUnit.BUnit => baseUnitValue * baseUnitValue * 1e-3,
+                FrequencyUnit.CyclePerHour => baseUnitValue*3600,
+                FrequencyUnit.CyclePerMinute => baseUnitValue*60,
+                FrequencyUnit.Gigahertz => (baseUnitValue) / 1e9d,
+                FrequencyUnit.Hertz => baseUnitValue,
+                FrequencyUnit.Kilohertz => (baseUnitValue) / 1e3d,
+                FrequencyUnit.Megahertz => (baseUnitValue) / 1e6d,
+                FrequencyUnit.PerSecond => baseUnitValue,
+                FrequencyUnit.RadianPerSecond => baseUnitValue*6.2831853072,
+                FrequencyUnit.Terahertz => (baseUnitValue) / 1e12d,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

@@ -219,20 +219,19 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case TemperatureDeltaUnit.DegreeCelsius: return _value;
-                case TemperatureDeltaUnit.DegreeDelisle: return _value*-2/3;
-                case TemperatureDeltaUnit.DegreeFahrenheit: return _value*5/9;
-                case TemperatureDeltaUnit.DegreeNewton: return _value*100/33;
-                case TemperatureDeltaUnit.DegreeRankine: return _value*5/9;
-                case TemperatureDeltaUnit.DegreeReaumur: return _value*5/4;
-                case TemperatureDeltaUnit.DegreeRoemer: return _value*40/21;
-                case TemperatureDeltaUnit.Kelvin: return _value;
-                case TemperatureDeltaUnit.MillidegreeCelsius: return (_value) * 1e-3d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                TemperatureDeltaUnit.DegreeCelsius => _value,
+                TemperatureDeltaUnit.DegreeDelisle => _value*-2/3,
+                TemperatureDeltaUnit.DegreeFahrenheit => _value*5/9,
+                TemperatureDeltaUnit.DegreeNewton => _value*100/33,
+                TemperatureDeltaUnit.DegreeRankine => _value*5/9,
+                TemperatureDeltaUnit.DegreeReaumur => _value*5/4,
+                TemperatureDeltaUnit.DegreeRoemer => _value*40/21,
+                TemperatureDeltaUnit.Kelvin => _value,
+                TemperatureDeltaUnit.MillidegreeCelsius => (_value) * 1e-3d,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(TemperatureDeltaUnit unit)
@@ -242,20 +241,19 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case TemperatureDeltaUnit.DegreeCelsius: return baseUnitValue;
-                case TemperatureDeltaUnit.DegreeDelisle: return baseUnitValue*-3/2;
-                case TemperatureDeltaUnit.DegreeFahrenheit: return baseUnitValue*9/5;
-                case TemperatureDeltaUnit.DegreeNewton: return baseUnitValue*33/100;
-                case TemperatureDeltaUnit.DegreeRankine: return baseUnitValue*9/5;
-                case TemperatureDeltaUnit.DegreeReaumur: return baseUnitValue*4/5;
-                case TemperatureDeltaUnit.DegreeRoemer: return baseUnitValue*21/40;
-                case TemperatureDeltaUnit.Kelvin: return baseUnitValue;
-                case TemperatureDeltaUnit.MillidegreeCelsius: return (baseUnitValue) / 1e-3d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                TemperatureDeltaUnit.DegreeCelsius => baseUnitValue,
+                TemperatureDeltaUnit.DegreeDelisle => baseUnitValue*-3/2,
+                TemperatureDeltaUnit.DegreeFahrenheit => baseUnitValue*9/5,
+                TemperatureDeltaUnit.DegreeNewton => baseUnitValue*33/100,
+                TemperatureDeltaUnit.DegreeRankine => baseUnitValue*9/5,
+                TemperatureDeltaUnit.DegreeReaumur => baseUnitValue*4/5,
+                TemperatureDeltaUnit.DegreeRoemer => baseUnitValue*21/40,
+                TemperatureDeltaUnit.Kelvin => baseUnitValue,
+                TemperatureDeltaUnit.MillidegreeCelsius => (baseUnitValue) / 1e-3d,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

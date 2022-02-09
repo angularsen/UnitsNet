@@ -395,36 +395,35 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case MassUnit.Centigram: return (_value/1e3) * 1e-2d;
-                case MassUnit.Decagram: return (_value/1e3) * 1e1d;
-                case MassUnit.Decigram: return (_value/1e3) * 1e-1d;
-                case MassUnit.EarthMass: return _value * 5.9722E+24;
-                case MassUnit.Grain: return _value/15432.358352941431;
-                case MassUnit.Gram: return _value/1e3;
-                case MassUnit.Hectogram: return (_value/1e3) * 1e2d;
-                case MassUnit.Kilogram: return (_value/1e3) * 1e3d;
-                case MassUnit.Kilopound: return (_value*0.45359237) * 1e3d;
-                case MassUnit.Kilotonne: return (_value*1e3) * 1e3d;
-                case MassUnit.LongHundredweight: return _value/0.01968413055222121;
-                case MassUnit.LongTon: return _value*1.0160469088e3;
-                case MassUnit.Megapound: return (_value*0.45359237) * 1e6d;
-                case MassUnit.Megatonne: return (_value*1e3) * 1e6d;
-                case MassUnit.Microgram: return (_value/1e3) * 1e-6d;
-                case MassUnit.Milligram: return (_value/1e3) * 1e-3d;
-                case MassUnit.Nanogram: return (_value/1e3) * 1e-9d;
-                case MassUnit.Ounce: return _value/35.2739619;
-                case MassUnit.Pound: return _value*0.45359237;
-                case MassUnit.ShortHundredweight: return _value/0.022046226218487758;
-                case MassUnit.ShortTon: return _value*9.0718474e2;
-                case MassUnit.Slug: return _value/6.852176556196105e-2;
-                case MassUnit.SolarMass: return _value * 1.98947e30;
-                case MassUnit.Stone: return _value/0.1574731728702698;
-                case MassUnit.Tonne: return _value*1e3;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                MassUnit.Centigram => (_value/1e3) * 1e-2d,
+                MassUnit.Decagram => (_value/1e3) * 1e1d,
+                MassUnit.Decigram => (_value/1e3) * 1e-1d,
+                MassUnit.EarthMass => _value * 5.9722E+24,
+                MassUnit.Grain => _value/15432.358352941431,
+                MassUnit.Gram => _value/1e3,
+                MassUnit.Hectogram => (_value/1e3) * 1e2d,
+                MassUnit.Kilogram => (_value/1e3) * 1e3d,
+                MassUnit.Kilopound => (_value*0.45359237) * 1e3d,
+                MassUnit.Kilotonne => (_value*1e3) * 1e3d,
+                MassUnit.LongHundredweight => _value/0.01968413055222121,
+                MassUnit.LongTon => _value*1.0160469088e3,
+                MassUnit.Megapound => (_value*0.45359237) * 1e6d,
+                MassUnit.Megatonne => (_value*1e3) * 1e6d,
+                MassUnit.Microgram => (_value/1e3) * 1e-6d,
+                MassUnit.Milligram => (_value/1e3) * 1e-3d,
+                MassUnit.Nanogram => (_value/1e3) * 1e-9d,
+                MassUnit.Ounce => _value/35.2739619,
+                MassUnit.Pound => _value*0.45359237,
+                MassUnit.ShortHundredweight => _value/0.022046226218487758,
+                MassUnit.ShortTon => _value*9.0718474e2,
+                MassUnit.Slug => _value/6.852176556196105e-2,
+                MassUnit.SolarMass => _value * 1.98947e30,
+                MassUnit.Stone => _value/0.1574731728702698,
+                MassUnit.Tonne => _value*1e3,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(MassUnit unit)
@@ -434,36 +433,35 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case MassUnit.Centigram: return (baseUnitValue*1e3) / 1e-2d;
-                case MassUnit.Decagram: return (baseUnitValue*1e3) / 1e1d;
-                case MassUnit.Decigram: return (baseUnitValue*1e3) / 1e-1d;
-                case MassUnit.EarthMass: return baseUnitValue / 5.9722E+24;
-                case MassUnit.Grain: return baseUnitValue*15432.358352941431;
-                case MassUnit.Gram: return baseUnitValue*1e3;
-                case MassUnit.Hectogram: return (baseUnitValue*1e3) / 1e2d;
-                case MassUnit.Kilogram: return (baseUnitValue*1e3) / 1e3d;
-                case MassUnit.Kilopound: return (baseUnitValue/0.45359237) / 1e3d;
-                case MassUnit.Kilotonne: return (baseUnitValue/1e3) / 1e3d;
-                case MassUnit.LongHundredweight: return baseUnitValue*0.01968413055222121;
-                case MassUnit.LongTon: return baseUnitValue/1.0160469088e3;
-                case MassUnit.Megapound: return (baseUnitValue/0.45359237) / 1e6d;
-                case MassUnit.Megatonne: return (baseUnitValue/1e3) / 1e6d;
-                case MassUnit.Microgram: return (baseUnitValue*1e3) / 1e-6d;
-                case MassUnit.Milligram: return (baseUnitValue*1e3) / 1e-3d;
-                case MassUnit.Nanogram: return (baseUnitValue*1e3) / 1e-9d;
-                case MassUnit.Ounce: return baseUnitValue*35.2739619;
-                case MassUnit.Pound: return baseUnitValue/0.45359237;
-                case MassUnit.ShortHundredweight: return baseUnitValue*0.022046226218487758;
-                case MassUnit.ShortTon: return baseUnitValue/9.0718474e2;
-                case MassUnit.Slug: return baseUnitValue*6.852176556196105e-2;
-                case MassUnit.SolarMass: return baseUnitValue / 1.98947e30;
-                case MassUnit.Stone: return baseUnitValue*0.1574731728702698;
-                case MassUnit.Tonne: return baseUnitValue/1e3;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                MassUnit.Centigram => (baseUnitValue*1e3) / 1e-2d,
+                MassUnit.Decagram => (baseUnitValue*1e3) / 1e1d,
+                MassUnit.Decigram => (baseUnitValue*1e3) / 1e-1d,
+                MassUnit.EarthMass => baseUnitValue / 5.9722E+24,
+                MassUnit.Grain => baseUnitValue*15432.358352941431,
+                MassUnit.Gram => baseUnitValue*1e3,
+                MassUnit.Hectogram => (baseUnitValue*1e3) / 1e2d,
+                MassUnit.Kilogram => (baseUnitValue*1e3) / 1e3d,
+                MassUnit.Kilopound => (baseUnitValue/0.45359237) / 1e3d,
+                MassUnit.Kilotonne => (baseUnitValue/1e3) / 1e3d,
+                MassUnit.LongHundredweight => baseUnitValue*0.01968413055222121,
+                MassUnit.LongTon => baseUnitValue/1.0160469088e3,
+                MassUnit.Megapound => (baseUnitValue/0.45359237) / 1e6d,
+                MassUnit.Megatonne => (baseUnitValue/1e3) / 1e6d,
+                MassUnit.Microgram => (baseUnitValue*1e3) / 1e-6d,
+                MassUnit.Milligram => (baseUnitValue*1e3) / 1e-3d,
+                MassUnit.Nanogram => (baseUnitValue*1e3) / 1e-9d,
+                MassUnit.Ounce => baseUnitValue*35.2739619,
+                MassUnit.Pound => baseUnitValue/0.45359237,
+                MassUnit.ShortHundredweight => baseUnitValue*0.022046226218487758,
+                MassUnit.ShortTon => baseUnitValue/9.0718474e2,
+                MassUnit.Slug => baseUnitValue*6.852176556196105e-2,
+                MassUnit.SolarMass => baseUnitValue / 1.98947e30,
+                MassUnit.Stone => baseUnitValue*0.1574731728702698,
+                MassUnit.Tonne => baseUnitValue/1e3,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

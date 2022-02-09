@@ -219,20 +219,19 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case SpecificEntropyUnit.BtuPerPoundFahrenheit: return _value * 4.1868e3;
-                case SpecificEntropyUnit.CaloriePerGramKelvin: return _value*4.184e3;
-                case SpecificEntropyUnit.JoulePerKilogramDegreeCelsius: return _value;
-                case SpecificEntropyUnit.JoulePerKilogramKelvin: return _value;
-                case SpecificEntropyUnit.KilocaloriePerGramKelvin: return (_value*4.184e3) * 1e3d;
-                case SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius: return (_value) * 1e3d;
-                case SpecificEntropyUnit.KilojoulePerKilogramKelvin: return (_value) * 1e3d;
-                case SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius: return (_value) * 1e6d;
-                case SpecificEntropyUnit.MegajoulePerKilogramKelvin: return (_value) * 1e6d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                SpecificEntropyUnit.BtuPerPoundFahrenheit => _value * 4.1868e3,
+                SpecificEntropyUnit.CaloriePerGramKelvin => _value*4.184e3,
+                SpecificEntropyUnit.JoulePerKilogramDegreeCelsius => _value,
+                SpecificEntropyUnit.JoulePerKilogramKelvin => _value,
+                SpecificEntropyUnit.KilocaloriePerGramKelvin => (_value*4.184e3) * 1e3d,
+                SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius => (_value) * 1e3d,
+                SpecificEntropyUnit.KilojoulePerKilogramKelvin => (_value) * 1e3d,
+                SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius => (_value) * 1e6d,
+                SpecificEntropyUnit.MegajoulePerKilogramKelvin => (_value) * 1e6d,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(SpecificEntropyUnit unit)
@@ -242,20 +241,19 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case SpecificEntropyUnit.BtuPerPoundFahrenheit: return baseUnitValue / 4.1868e3;
-                case SpecificEntropyUnit.CaloriePerGramKelvin: return baseUnitValue/4.184e3;
-                case SpecificEntropyUnit.JoulePerKilogramDegreeCelsius: return baseUnitValue;
-                case SpecificEntropyUnit.JoulePerKilogramKelvin: return baseUnitValue;
-                case SpecificEntropyUnit.KilocaloriePerGramKelvin: return (baseUnitValue/4.184e3) / 1e3d;
-                case SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius: return (baseUnitValue) / 1e3d;
-                case SpecificEntropyUnit.KilojoulePerKilogramKelvin: return (baseUnitValue) / 1e3d;
-                case SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius: return (baseUnitValue) / 1e6d;
-                case SpecificEntropyUnit.MegajoulePerKilogramKelvin: return (baseUnitValue) / 1e6d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                SpecificEntropyUnit.BtuPerPoundFahrenheit => baseUnitValue / 4.1868e3,
+                SpecificEntropyUnit.CaloriePerGramKelvin => baseUnitValue/4.184e3,
+                SpecificEntropyUnit.JoulePerKilogramDegreeCelsius => baseUnitValue,
+                SpecificEntropyUnit.JoulePerKilogramKelvin => baseUnitValue,
+                SpecificEntropyUnit.KilocaloriePerGramKelvin => (baseUnitValue/4.184e3) / 1e3d,
+                SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius => (baseUnitValue) / 1e3d,
+                SpecificEntropyUnit.KilojoulePerKilogramKelvin => (baseUnitValue) / 1e3d,
+                SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius => (baseUnitValue) / 1e6d,
+                SpecificEntropyUnit.MegajoulePerKilogramKelvin => (baseUnitValue) / 1e6d,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

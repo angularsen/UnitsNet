@@ -241,22 +241,21 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case DurationUnit.Day: return _value*24*3600;
-                case DurationUnit.Hour: return _value*3600;
-                case DurationUnit.JulianYear: return _value*365.25*24*3600;
-                case DurationUnit.Microsecond: return (_value) * 1e-6d;
-                case DurationUnit.Millisecond: return (_value) * 1e-3d;
-                case DurationUnit.Minute: return _value*60;
-                case DurationUnit.Month30: return _value*30*24*3600;
-                case DurationUnit.Nanosecond: return (_value) * 1e-9d;
-                case DurationUnit.Second: return _value;
-                case DurationUnit.Week: return _value*7*24*3600;
-                case DurationUnit.Year365: return _value*365*24*3600;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                DurationUnit.Day => _value*24*3600,
+                DurationUnit.Hour => _value*3600,
+                DurationUnit.JulianYear => _value*365.25*24*3600,
+                DurationUnit.Microsecond => (_value) * 1e-6d,
+                DurationUnit.Millisecond => (_value) * 1e-3d,
+                DurationUnit.Minute => _value*60,
+                DurationUnit.Month30 => _value*30*24*3600,
+                DurationUnit.Nanosecond => (_value) * 1e-9d,
+                DurationUnit.Second => _value,
+                DurationUnit.Week => _value*7*24*3600,
+                DurationUnit.Year365 => _value*365*24*3600,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(DurationUnit unit)
@@ -266,22 +265,21 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case DurationUnit.Day: return baseUnitValue/(24*3600);
-                case DurationUnit.Hour: return baseUnitValue/3600;
-                case DurationUnit.JulianYear: return baseUnitValue/(365.25*24*3600);
-                case DurationUnit.Microsecond: return (baseUnitValue) / 1e-6d;
-                case DurationUnit.Millisecond: return (baseUnitValue) / 1e-3d;
-                case DurationUnit.Minute: return baseUnitValue/60;
-                case DurationUnit.Month30: return baseUnitValue/(30*24*3600);
-                case DurationUnit.Nanosecond: return (baseUnitValue) / 1e-9d;
-                case DurationUnit.Second: return baseUnitValue;
-                case DurationUnit.Week: return baseUnitValue/(7*24*3600);
-                case DurationUnit.Year365: return baseUnitValue/(365*24*3600);
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                DurationUnit.Day => baseUnitValue/(24*3600),
+                DurationUnit.Hour => baseUnitValue/3600,
+                DurationUnit.JulianYear => baseUnitValue/(365.25*24*3600),
+                DurationUnit.Microsecond => (baseUnitValue) / 1e-6d,
+                DurationUnit.Millisecond => (baseUnitValue) / 1e-3d,
+                DurationUnit.Minute => baseUnitValue/60,
+                DurationUnit.Month30 => baseUnitValue/(30*24*3600),
+                DurationUnit.Nanosecond => (baseUnitValue) / 1e-9d,
+                DurationUnit.Second => baseUnitValue,
+                DurationUnit.Week => baseUnitValue/(7*24*3600),
+                DurationUnit.Year365 => baseUnitValue/(365*24*3600),
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

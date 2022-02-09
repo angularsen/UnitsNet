@@ -310,28 +310,27 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case SpecificWeightUnit.KilogramForcePerCubicCentimeter: return _value*9.80665e6;
-                case SpecificWeightUnit.KilogramForcePerCubicMeter: return _value*9.80665;
-                case SpecificWeightUnit.KilogramForcePerCubicMillimeter: return _value*9.80665e9;
-                case SpecificWeightUnit.KilonewtonPerCubicCentimeter: return (_value*1000000) * 1e3d;
-                case SpecificWeightUnit.KilonewtonPerCubicMeter: return (_value) * 1e3d;
-                case SpecificWeightUnit.KilonewtonPerCubicMillimeter: return (_value*1000000000) * 1e3d;
-                case SpecificWeightUnit.KilopoundForcePerCubicFoot: return (_value*1.570874638462462e2) * 1e3d;
-                case SpecificWeightUnit.KilopoundForcePerCubicInch: return (_value*2.714471375263134e5) * 1e3d;
-                case SpecificWeightUnit.MeganewtonPerCubicMeter: return (_value) * 1e6d;
-                case SpecificWeightUnit.NewtonPerCubicCentimeter: return _value*1000000;
-                case SpecificWeightUnit.NewtonPerCubicMeter: return _value;
-                case SpecificWeightUnit.NewtonPerCubicMillimeter: return _value*1000000000;
-                case SpecificWeightUnit.PoundForcePerCubicFoot: return _value*1.570874638462462e2;
-                case SpecificWeightUnit.PoundForcePerCubicInch: return _value*2.714471375263134e5;
-                case SpecificWeightUnit.TonneForcePerCubicCentimeter: return _value*9.80665e9;
-                case SpecificWeightUnit.TonneForcePerCubicMeter: return _value*9.80665e3;
-                case SpecificWeightUnit.TonneForcePerCubicMillimeter: return _value*9.80665e12;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                SpecificWeightUnit.KilogramForcePerCubicCentimeter => _value*9.80665e6,
+                SpecificWeightUnit.KilogramForcePerCubicMeter => _value*9.80665,
+                SpecificWeightUnit.KilogramForcePerCubicMillimeter => _value*9.80665e9,
+                SpecificWeightUnit.KilonewtonPerCubicCentimeter => (_value*1000000) * 1e3d,
+                SpecificWeightUnit.KilonewtonPerCubicMeter => (_value) * 1e3d,
+                SpecificWeightUnit.KilonewtonPerCubicMillimeter => (_value*1000000000) * 1e3d,
+                SpecificWeightUnit.KilopoundForcePerCubicFoot => (_value*1.570874638462462e2) * 1e3d,
+                SpecificWeightUnit.KilopoundForcePerCubicInch => (_value*2.714471375263134e5) * 1e3d,
+                SpecificWeightUnit.MeganewtonPerCubicMeter => (_value) * 1e6d,
+                SpecificWeightUnit.NewtonPerCubicCentimeter => _value*1000000,
+                SpecificWeightUnit.NewtonPerCubicMeter => _value,
+                SpecificWeightUnit.NewtonPerCubicMillimeter => _value*1000000000,
+                SpecificWeightUnit.PoundForcePerCubicFoot => _value*1.570874638462462e2,
+                SpecificWeightUnit.PoundForcePerCubicInch => _value*2.714471375263134e5,
+                SpecificWeightUnit.TonneForcePerCubicCentimeter => _value*9.80665e9,
+                SpecificWeightUnit.TonneForcePerCubicMeter => _value*9.80665e3,
+                SpecificWeightUnit.TonneForcePerCubicMillimeter => _value*9.80665e12,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(SpecificWeightUnit unit)
@@ -341,28 +340,27 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case SpecificWeightUnit.KilogramForcePerCubicCentimeter: return baseUnitValue/9.80665e6;
-                case SpecificWeightUnit.KilogramForcePerCubicMeter: return baseUnitValue/9.80665;
-                case SpecificWeightUnit.KilogramForcePerCubicMillimeter: return baseUnitValue/9.80665e9;
-                case SpecificWeightUnit.KilonewtonPerCubicCentimeter: return (baseUnitValue*0.000001) / 1e3d;
-                case SpecificWeightUnit.KilonewtonPerCubicMeter: return (baseUnitValue) / 1e3d;
-                case SpecificWeightUnit.KilonewtonPerCubicMillimeter: return (baseUnitValue*0.000000001) / 1e3d;
-                case SpecificWeightUnit.KilopoundForcePerCubicFoot: return (baseUnitValue/1.570874638462462e2) / 1e3d;
-                case SpecificWeightUnit.KilopoundForcePerCubicInch: return (baseUnitValue/2.714471375263134e5) / 1e3d;
-                case SpecificWeightUnit.MeganewtonPerCubicMeter: return (baseUnitValue) / 1e6d;
-                case SpecificWeightUnit.NewtonPerCubicCentimeter: return baseUnitValue*0.000001;
-                case SpecificWeightUnit.NewtonPerCubicMeter: return baseUnitValue;
-                case SpecificWeightUnit.NewtonPerCubicMillimeter: return baseUnitValue*0.000000001;
-                case SpecificWeightUnit.PoundForcePerCubicFoot: return baseUnitValue/1.570874638462462e2;
-                case SpecificWeightUnit.PoundForcePerCubicInch: return baseUnitValue/2.714471375263134e5;
-                case SpecificWeightUnit.TonneForcePerCubicCentimeter: return baseUnitValue/9.80665e9;
-                case SpecificWeightUnit.TonneForcePerCubicMeter: return baseUnitValue/9.80665e3;
-                case SpecificWeightUnit.TonneForcePerCubicMillimeter: return baseUnitValue/9.80665e12;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                SpecificWeightUnit.KilogramForcePerCubicCentimeter => baseUnitValue/9.80665e6,
+                SpecificWeightUnit.KilogramForcePerCubicMeter => baseUnitValue/9.80665,
+                SpecificWeightUnit.KilogramForcePerCubicMillimeter => baseUnitValue/9.80665e9,
+                SpecificWeightUnit.KilonewtonPerCubicCentimeter => (baseUnitValue*0.000001) / 1e3d,
+                SpecificWeightUnit.KilonewtonPerCubicMeter => (baseUnitValue) / 1e3d,
+                SpecificWeightUnit.KilonewtonPerCubicMillimeter => (baseUnitValue*0.000000001) / 1e3d,
+                SpecificWeightUnit.KilopoundForcePerCubicFoot => (baseUnitValue/1.570874638462462e2) / 1e3d,
+                SpecificWeightUnit.KilopoundForcePerCubicInch => (baseUnitValue/2.714471375263134e5) / 1e3d,
+                SpecificWeightUnit.MeganewtonPerCubicMeter => (baseUnitValue) / 1e6d,
+                SpecificWeightUnit.NewtonPerCubicCentimeter => baseUnitValue*0.000001,
+                SpecificWeightUnit.NewtonPerCubicMeter => baseUnitValue,
+                SpecificWeightUnit.NewtonPerCubicMillimeter => baseUnitValue*0.000000001,
+                SpecificWeightUnit.PoundForcePerCubicFoot => baseUnitValue/1.570874638462462e2,
+                SpecificWeightUnit.PoundForcePerCubicInch => baseUnitValue/2.714471375263134e5,
+                SpecificWeightUnit.TonneForcePerCubicCentimeter => baseUnitValue/9.80665e9,
+                SpecificWeightUnit.TonneForcePerCubicMeter => baseUnitValue/9.80665e3,
+                SpecificWeightUnit.TonneForcePerCubicMillimeter => baseUnitValue/9.80665e12,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

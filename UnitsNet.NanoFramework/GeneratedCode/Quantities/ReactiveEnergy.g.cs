@@ -153,14 +153,13 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case ReactiveEnergyUnit.KilovoltampereReactiveHour: return (_value) * 1e3d;
-                case ReactiveEnergyUnit.MegavoltampereReactiveHour: return (_value) * 1e6d;
-                case ReactiveEnergyUnit.VoltampereReactiveHour: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                ReactiveEnergyUnit.KilovoltampereReactiveHour => (_value) * 1e3d,
+                ReactiveEnergyUnit.MegavoltampereReactiveHour => (_value) * 1e6d,
+                ReactiveEnergyUnit.VoltampereReactiveHour => _value,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(ReactiveEnergyUnit unit)
@@ -170,14 +169,13 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case ReactiveEnergyUnit.KilovoltampereReactiveHour: return (baseUnitValue) / 1e3d;
-                case ReactiveEnergyUnit.MegavoltampereReactiveHour: return (baseUnitValue) / 1e6d;
-                case ReactiveEnergyUnit.VoltampereReactiveHour: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                ReactiveEnergyUnit.KilovoltampereReactiveHour => (baseUnitValue) / 1e3d,
+                ReactiveEnergyUnit.MegavoltampereReactiveHour => (baseUnitValue) / 1e6d,
+                ReactiveEnergyUnit.VoltampereReactiveHour => baseUnitValue,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion
