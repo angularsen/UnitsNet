@@ -239,6 +239,11 @@ namespace UnitsNet
         public double CubicYards => As(VolumeUnit.CubicYard);
 
         /// <summary>
+        ///     Get Volume in Decaliters.
+        /// </summary>
+        public double Decaliters => As(VolumeUnit.Decaliter);
+
+        /// <summary>
         ///     Get Volume in DecausGallons.
         /// </summary>
         public double DecausGallons => As(VolumeUnit.DecausGallon);
@@ -454,6 +459,8 @@ namespace UnitsNet
             unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.CubicMillimeter, new CultureInfo("ru-RU"), false, true, new string[]{"мм³"});
             unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.CubicYard, new CultureInfo("en-US"), false, true, new string[]{"yd³"});
             unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.CubicYard, new CultureInfo("ru-RU"), false, true, new string[]{"ярд³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.Decaliter, new CultureInfo("en-US"), false, true, new string[]{"dal"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.Decaliter, new CultureInfo("ru-RU"), false, true, new string[]{"дал"});
             unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.DecausGallon, new CultureInfo("en-US"), false, true, new string[]{"dagal (U.S.)"});
             unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.DecausGallon, new CultureInfo("ru-RU"), false, true, new string[]{"даАмериканский галлон"});
             unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.Deciliter, new CultureInfo("en-US"), false, true, new string[]{"dl"});
@@ -698,6 +705,16 @@ namespace UnitsNet
         {
             double value = (double) cubicyards;
             return new Volume(value, VolumeUnit.CubicYard);
+        }
+        /// <summary>
+        ///     Get Volume from Decaliters.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Volume FromDecaliters(double decaliters)
+        {
+            double value = (double) decaliters;
+            return new Volume(value, VolumeUnit.Decaliter);
         }
         /// <summary>
         ///     Get Volume from DecausGallons.
@@ -1353,7 +1370,7 @@ namespace UnitsNet
                 case VolumeUnit.AcreFoot: return _value/0.000810714;
                 case VolumeUnit.AuTablespoon: return _value*2e-5;
                 case VolumeUnit.BoardFoot: return _value*2.3597372158e-3;
-                case VolumeUnit.Centiliter: return (_value/1e3) * 1e-2d;
+                case VolumeUnit.Centiliter: return (_value / 1e3) * 1e-2d;
                 case VolumeUnit.CubicCentimeter: return _value/1e6;
                 case VolumeUnit.CubicDecimeter: return _value/1e3;
                 case VolumeUnit.CubicFoot: return _value * 2.8316846592e-2;
@@ -1365,12 +1382,13 @@ namespace UnitsNet
                 case VolumeUnit.CubicMile: return _value*4.16818182544058e9;
                 case VolumeUnit.CubicMillimeter: return _value/1e9;
                 case VolumeUnit.CubicYard: return _value*0.764554858;
+                case VolumeUnit.Decaliter: return (_value / 1e3) * 1e1d;
                 case VolumeUnit.DecausGallon: return (_value*0.00378541) * 1e1d;
-                case VolumeUnit.Deciliter: return (_value/1e3) * 1e-1d;
+                case VolumeUnit.Deciliter: return (_value / 1e3) * 1e-1d;
                 case VolumeUnit.DeciusGallon: return (_value*0.00378541) * 1e-1d;
                 case VolumeUnit.HectocubicFoot: return (_value * 2.8316846592e-2) * 1e2d;
                 case VolumeUnit.HectocubicMeter: return (_value) * 1e2d;
-                case VolumeUnit.Hectoliter: return (_value/1e3) * 1e2d;
+                case VolumeUnit.Hectoliter: return (_value / 1e3) * 1e2d;
                 case VolumeUnit.HectousGallon: return (_value*0.00378541) * 1e2d;
                 case VolumeUnit.ImperialBeerBarrel: return _value*0.16365924;
                 case VolumeUnit.ImperialGallon: return _value*0.00454609000000181429905810072407;
@@ -1379,17 +1397,17 @@ namespace UnitsNet
                 case VolumeUnit.KilocubicFoot: return (_value * 2.8316846592e-2) * 1e3d;
                 case VolumeUnit.KilocubicMeter: return (_value) * 1e3d;
                 case VolumeUnit.KiloimperialGallon: return (_value*0.00454609000000181429905810072407) * 1e3d;
-                case VolumeUnit.Kiloliter: return (_value/1e3) * 1e3d;
+                case VolumeUnit.Kiloliter: return (_value / 1e3) * 1e3d;
                 case VolumeUnit.KilousGallon: return (_value*0.00378541) * 1e3d;
-                case VolumeUnit.Liter: return _value/1e3;
+                case VolumeUnit.Liter: return _value / 1e3;
                 case VolumeUnit.MegacubicFoot: return (_value * 2.8316846592e-2) * 1e6d;
                 case VolumeUnit.MegaimperialGallon: return (_value*0.00454609000000181429905810072407) * 1e6d;
-                case VolumeUnit.Megaliter: return (_value/1e3) * 1e6d;
+                case VolumeUnit.Megaliter: return (_value / 1e3) * 1e6d;
                 case VolumeUnit.MegausGallon: return (_value*0.00378541) * 1e6d;
                 case VolumeUnit.MetricCup: return _value*0.00025;
                 case VolumeUnit.MetricTeaspoon: return _value*0.5e-5;
-                case VolumeUnit.Microliter: return (_value/1e3) * 1e-6d;
-                case VolumeUnit.Milliliter: return (_value/1e3) * 1e-3d;
+                case VolumeUnit.Microliter: return (_value / 1e3) * 1e-6d;
+                case VolumeUnit.Milliliter: return (_value / 1e3) * 1e-3d;
                 case VolumeUnit.OilBarrel: return _value*0.158987294928;
                 case VolumeUnit.UkTablespoon: return _value*1.5e-5;
                 case VolumeUnit.UsBeerBarrel: return _value*0.1173477658;
@@ -1418,7 +1436,7 @@ namespace UnitsNet
                 case VolumeUnit.AcreFoot: return baseUnitValue*0.000810714;
                 case VolumeUnit.AuTablespoon: return baseUnitValue/2e-5;
                 case VolumeUnit.BoardFoot: return baseUnitValue/2.3597372158e-3;
-                case VolumeUnit.Centiliter: return (baseUnitValue*1e3) / 1e-2d;
+                case VolumeUnit.Centiliter: return (baseUnitValue * 1e3) / 1e-2d;
                 case VolumeUnit.CubicCentimeter: return baseUnitValue*1e6;
                 case VolumeUnit.CubicDecimeter: return baseUnitValue*1e3;
                 case VolumeUnit.CubicFoot: return baseUnitValue / 2.8316846592e-2;
@@ -1430,12 +1448,13 @@ namespace UnitsNet
                 case VolumeUnit.CubicMile: return baseUnitValue/4.16818182544058e9;
                 case VolumeUnit.CubicMillimeter: return baseUnitValue*1e9;
                 case VolumeUnit.CubicYard: return baseUnitValue/0.764554858;
+                case VolumeUnit.Decaliter: return (baseUnitValue * 1e3) / 1e1d;
                 case VolumeUnit.DecausGallon: return (baseUnitValue/0.00378541) / 1e1d;
-                case VolumeUnit.Deciliter: return (baseUnitValue*1e3) / 1e-1d;
+                case VolumeUnit.Deciliter: return (baseUnitValue * 1e3) / 1e-1d;
                 case VolumeUnit.DeciusGallon: return (baseUnitValue/0.00378541) / 1e-1d;
                 case VolumeUnit.HectocubicFoot: return (baseUnitValue / 2.8316846592e-2) / 1e2d;
                 case VolumeUnit.HectocubicMeter: return (baseUnitValue) / 1e2d;
-                case VolumeUnit.Hectoliter: return (baseUnitValue*1e3) / 1e2d;
+                case VolumeUnit.Hectoliter: return (baseUnitValue * 1e3) / 1e2d;
                 case VolumeUnit.HectousGallon: return (baseUnitValue/0.00378541) / 1e2d;
                 case VolumeUnit.ImperialBeerBarrel: return baseUnitValue/0.16365924;
                 case VolumeUnit.ImperialGallon: return baseUnitValue/0.00454609000000181429905810072407;
@@ -1444,17 +1463,17 @@ namespace UnitsNet
                 case VolumeUnit.KilocubicFoot: return (baseUnitValue / 2.8316846592e-2) / 1e3d;
                 case VolumeUnit.KilocubicMeter: return (baseUnitValue) / 1e3d;
                 case VolumeUnit.KiloimperialGallon: return (baseUnitValue/0.00454609000000181429905810072407) / 1e3d;
-                case VolumeUnit.Kiloliter: return (baseUnitValue*1e3) / 1e3d;
+                case VolumeUnit.Kiloliter: return (baseUnitValue * 1e3) / 1e3d;
                 case VolumeUnit.KilousGallon: return (baseUnitValue/0.00378541) / 1e3d;
-                case VolumeUnit.Liter: return baseUnitValue*1e3;
+                case VolumeUnit.Liter: return baseUnitValue * 1e3;
                 case VolumeUnit.MegacubicFoot: return (baseUnitValue / 2.8316846592e-2) / 1e6d;
                 case VolumeUnit.MegaimperialGallon: return (baseUnitValue/0.00454609000000181429905810072407) / 1e6d;
-                case VolumeUnit.Megaliter: return (baseUnitValue*1e3) / 1e6d;
+                case VolumeUnit.Megaliter: return (baseUnitValue * 1e3) / 1e6d;
                 case VolumeUnit.MegausGallon: return (baseUnitValue/0.00378541) / 1e6d;
                 case VolumeUnit.MetricCup: return baseUnitValue/0.00025;
                 case VolumeUnit.MetricTeaspoon: return baseUnitValue/0.5e-5;
-                case VolumeUnit.Microliter: return (baseUnitValue*1e3) / 1e-6d;
-                case VolumeUnit.Milliliter: return (baseUnitValue*1e3) / 1e-3d;
+                case VolumeUnit.Microliter: return (baseUnitValue * 1e3) / 1e-6d;
+                case VolumeUnit.Milliliter: return (baseUnitValue * 1e3) / 1e-3d;
                 case VolumeUnit.OilBarrel: return baseUnitValue/0.158987294928;
                 case VolumeUnit.UkTablespoon: return baseUnitValue/1.5e-5;
                 case VolumeUnit.UsBeerBarrel: return baseUnitValue/0.1173477658;

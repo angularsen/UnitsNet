@@ -102,6 +102,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double BoardFeetInOneCubicMeter => 423.7760007;
 
+        protected override double DecalitersInOneCubicMeter => 1e2;
+
         [Fact]
         public void VolumeDividedByAreaEqualsLength()
         {
