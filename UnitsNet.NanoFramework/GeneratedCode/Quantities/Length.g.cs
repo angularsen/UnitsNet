@@ -93,6 +93,11 @@ namespace UnitsNet
         public double Chains => As(LengthUnit.Chain);
 
         /// <summary>
+        ///     Get Length in Decameters.
+        /// </summary>
+        public double Decameters => As(LengthUnit.Decameter);
+
+        /// <summary>
         ///     Get Length in Decimeters.
         /// </summary>
         public double Decimeters => As(LengthUnit.Decimeter);
@@ -263,6 +268,12 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromChains(double chains) => new Length(chains, LengthUnit.Chain);
+
+        /// <summary>
+        ///     Get Length from Decameters.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromDecameters(double decameters) => new Length(decameters, LengthUnit.Decameter);
 
         /// <summary>
         ///     Get Length from Decimeters.
@@ -488,6 +499,7 @@ namespace UnitsNet
                 case LengthUnit.AstronomicalUnit: return _value * 1.4959787070e11;
                 case LengthUnit.Centimeter: return (_value) * 1e-2d;
                 case LengthUnit.Chain: return _value*20.1168;
+                case LengthUnit.Decameter: return (_value) * 1e1d;
                 case LengthUnit.Decimeter: return (_value) * 1e-1d;
                 case LengthUnit.DtpPica: return _value/236.220472441;
                 case LengthUnit.DtpPoint: return (_value/72)*2.54e-2;
@@ -535,6 +547,7 @@ namespace UnitsNet
                 case LengthUnit.AstronomicalUnit: return baseUnitValue / 1.4959787070e11;
                 case LengthUnit.Centimeter: return (baseUnitValue) / 1e-2d;
                 case LengthUnit.Chain: return baseUnitValue/20.1168;
+                case LengthUnit.Decameter: return (baseUnitValue) / 1e1d;
                 case LengthUnit.Decimeter: return (baseUnitValue) / 1e-1d;
                 case LengthUnit.DtpPica: return baseUnitValue*236.220472441;
                 case LengthUnit.DtpPoint: return (baseUnitValue/2.54e-2)*72;
