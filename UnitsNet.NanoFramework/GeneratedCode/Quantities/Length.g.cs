@@ -93,6 +93,11 @@ namespace UnitsNet
         public double Chains => As(LengthUnit.Chain);
 
         /// <summary>
+        ///     Get Length in Decameters.
+        /// </summary>
+        public double Decameters => As(LengthUnit.Decameter);
+
+        /// <summary>
         ///     Get Length in Decimeters.
         /// </summary>
         public double Decimeters => As(LengthUnit.Decimeter);
@@ -263,6 +268,12 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromChains(double chains) => new Length(chains, LengthUnit.Chain);
+
+        /// <summary>
+        ///     Get Length from Decameters.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromDecameters(double decameters) => new Length(decameters, LengthUnit.Decameter);
 
         /// <summary>
         ///     Get Length from Decimeters.
@@ -488,6 +499,7 @@ namespace UnitsNet
                 LengthUnit.AstronomicalUnit => _value * 1.4959787070e11,
                 LengthUnit.Centimeter => (_value) * 1e-2d,
                 LengthUnit.Chain => _value*20.1168,
+                LengthUnit.Decameter => (_value) * 1e1d,
                 LengthUnit.Decimeter => (_value) * 1e-1d,
                 LengthUnit.DtpPica => _value/236.220472441,
                 LengthUnit.DtpPoint => (_value/72)*2.54e-2,
@@ -534,6 +546,7 @@ namespace UnitsNet
                 LengthUnit.AstronomicalUnit => baseUnitValue / 1.4959787070e11,
                 LengthUnit.Centimeter => (baseUnitValue) / 1e-2d,
                 LengthUnit.Chain => baseUnitValue/20.1168,
+                LengthUnit.Decameter => (baseUnitValue) / 1e1d,
                 LengthUnit.Decimeter => (baseUnitValue) / 1e-1d,
                 LengthUnit.DtpPica => baseUnitValue*236.220472441,
                 LengthUnit.DtpPoint => (baseUnitValue/2.54e-2)*72,

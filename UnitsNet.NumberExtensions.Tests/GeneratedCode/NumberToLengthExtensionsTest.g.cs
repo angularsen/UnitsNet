@@ -37,6 +37,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Length.FromChains(2), 2.Chains());
 
         [Fact]
+        public void NumberToDecametersTest() =>
+            Assert.Equal(Length.FromDecameters(2), 2.Decameters());
+
+        [Fact]
         public void NumberToDecimetersTest() =>
             Assert.Equal(Length.FromDecimeters(2), 2.Decimeters());
 
