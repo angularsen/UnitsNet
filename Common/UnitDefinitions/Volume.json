@@ -9,9 +9,9 @@
     {
       "SingularName": "Liter",
       "PluralName": "Liters",
-      "FromUnitToBaseFunc": "{x}/1e3",
-      "FromBaseToUnitFunc": "{x}*1e3",
-      "Prefixes": [ "Micro", "Milli", "Centi", "Deci", "Hecto", "Kilo", "Mega" ],
+      "FromUnitToBaseFunc": "{x} / 1e3",
+      "FromBaseToUnitFunc": "{x} * 1e3",
+      "Prefixes": [ "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
