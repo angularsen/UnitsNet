@@ -51,6 +51,7 @@ namespace UnitsNet
             { "BrakeSpecificFuelConsumption", BrakeSpecificFuelConsumption.Info },
             { "Capacitance", Capacitance.Info },
             { "CoefficientOfThermalExpansion", CoefficientOfThermalExpansion.Info },
+            { "Compressibility", Compressibility.Info },
             { "Density", Density.Info },
             { "Duration", Duration.Info },
             { "DynamicViscosity", DynamicViscosity.Info },
@@ -189,6 +190,8 @@ namespace UnitsNet
                     return Capacitance.From(value, Capacitance.BaseUnit);
                 case QuantityType.CoefficientOfThermalExpansion:
                     return CoefficientOfThermalExpansion.From(value, CoefficientOfThermalExpansion.BaseUnit);
+                case QuantityType.Compressibility:
+                    return Compressibility.From(value, Compressibility.BaseUnit);
                 case QuantityType.Density:
                     return Density.From(value, Density.BaseUnit);
                 case QuantityType.Duration:
@@ -428,6 +431,8 @@ namespace UnitsNet
                     return Capacitance.From(value, Capacitance.BaseUnit);
                 case "CoefficientOfThermalExpansion":
                     return CoefficientOfThermalExpansion.From(value, CoefficientOfThermalExpansion.BaseUnit);
+                case "Compressibility":
+                    return Compressibility.From(value, Compressibility.BaseUnit);
                 case "Density":
                     return Density.From(value, Density.BaseUnit);
                 case "Duration":
@@ -680,6 +685,9 @@ namespace UnitsNet
                     return true;
                 case CoefficientOfThermalExpansionUnit coefficientOfThermalExpansionUnit:
                     quantity = CoefficientOfThermalExpansion.From(value, coefficientOfThermalExpansionUnit);
+                    return true;
+                case CompressibilityUnit compressibilityUnit:
+                    quantity = Compressibility.From(value, compressibilityUnit);
                     return true;
                 case DensityUnit densityUnit:
                     quantity = Density.From(value, densityUnit);
@@ -1031,6 +1039,8 @@ namespace UnitsNet
                     return parser.TryParse<Capacitance, CapacitanceUnit>(quantityString, formatProvider, Capacitance.From, out quantity);
                 case Type _ when quantityType == typeof(CoefficientOfThermalExpansion):
                     return parser.TryParse<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit>(quantityString, formatProvider, CoefficientOfThermalExpansion.From, out quantity);
+                case Type _ when quantityType == typeof(Compressibility):
+                    return parser.TryParse<Compressibility, CompressibilityUnit>(quantityString, formatProvider, Compressibility.From, out quantity);
                 case Type _ when quantityType == typeof(Density):
                     return parser.TryParse<Density, DensityUnit>(quantityString, formatProvider, Density.From, out quantity);
                 case Type _ when quantityType == typeof(Duration):
@@ -1249,6 +1259,7 @@ namespace UnitsNet
             yield return typeof(BrakeSpecificFuelConsumption);
             yield return typeof(Capacitance);
             yield return typeof(CoefficientOfThermalExpansion);
+            yield return typeof(Compressibility);
             yield return typeof(Density);
             yield return typeof(Duration);
             yield return typeof(DynamicViscosity);

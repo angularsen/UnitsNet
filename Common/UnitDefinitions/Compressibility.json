@@ -1,0 +1,29 @@
+{
+  "Name": "Compressibility",
+  "BaseUnit": "InversePascal",
+  "XmlDoc": "Compressibility is the measure of the relative volume change of a fluid or solid in response to pressure changes.",
+  "BaseDimensions": {
+    "L": 1,
+    "M": -1,
+    "T": 2
+  },
+  "Units": [
+    {
+      "SingularName": "InversePascal",
+      "PluralName": "InversePascals",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Pa⁻¹", "1/Pa" ]
+        }
+      ]
+    }
+  ]
+}
