@@ -167,127 +167,127 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get SpecificEnergy in BtuPerPound.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.BtuPerPound"/>
         /// </summary>
         public double BtuPerPound => As(SpecificEnergyUnit.BtuPerPound);
 
         /// <summary>
-        ///     Get SpecificEnergy in CaloriesPerGram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.CaloriePerGram"/>
         /// </summary>
         public double CaloriesPerGram => As(SpecificEnergyUnit.CaloriePerGram);
 
         /// <summary>
-        ///     Get SpecificEnergy in GigawattDaysPerKilogram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.GigawattDayPerKilogram"/>
         /// </summary>
         public double GigawattDaysPerKilogram => As(SpecificEnergyUnit.GigawattDayPerKilogram);
 
         /// <summary>
-        ///     Get SpecificEnergy in GigawattDaysPerShortTon.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.GigawattDayPerShortTon"/>
         /// </summary>
         public double GigawattDaysPerShortTon => As(SpecificEnergyUnit.GigawattDayPerShortTon);
 
         /// <summary>
-        ///     Get SpecificEnergy in GigawattDaysPerTonne.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.GigawattDayPerTonne"/>
         /// </summary>
         public double GigawattDaysPerTonne => As(SpecificEnergyUnit.GigawattDayPerTonne);
 
         /// <summary>
-        ///     Get SpecificEnergy in GigawattHoursPerKilogram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.GigawattHourPerKilogram"/>
         /// </summary>
         public double GigawattHoursPerKilogram => As(SpecificEnergyUnit.GigawattHourPerKilogram);
 
         /// <summary>
-        ///     Get SpecificEnergy in JoulesPerKilogram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.JoulePerKilogram"/>
         /// </summary>
         public double JoulesPerKilogram => As(SpecificEnergyUnit.JoulePerKilogram);
 
         /// <summary>
-        ///     Get SpecificEnergy in KilocaloriesPerGram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.KilocaloriePerGram"/>
         /// </summary>
         public double KilocaloriesPerGram => As(SpecificEnergyUnit.KilocaloriePerGram);
 
         /// <summary>
-        ///     Get SpecificEnergy in KilojoulesPerKilogram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.KilojoulePerKilogram"/>
         /// </summary>
         public double KilojoulesPerKilogram => As(SpecificEnergyUnit.KilojoulePerKilogram);
 
         /// <summary>
-        ///     Get SpecificEnergy in KilowattDaysPerKilogram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.KilowattDayPerKilogram"/>
         /// </summary>
         public double KilowattDaysPerKilogram => As(SpecificEnergyUnit.KilowattDayPerKilogram);
 
         /// <summary>
-        ///     Get SpecificEnergy in KilowattDaysPerShortTon.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.KilowattDayPerShortTon"/>
         /// </summary>
         public double KilowattDaysPerShortTon => As(SpecificEnergyUnit.KilowattDayPerShortTon);
 
         /// <summary>
-        ///     Get SpecificEnergy in KilowattDaysPerTonne.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.KilowattDayPerTonne"/>
         /// </summary>
         public double KilowattDaysPerTonne => As(SpecificEnergyUnit.KilowattDayPerTonne);
 
         /// <summary>
-        ///     Get SpecificEnergy in KilowattHoursPerKilogram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.KilowattHourPerKilogram"/>
         /// </summary>
         public double KilowattHoursPerKilogram => As(SpecificEnergyUnit.KilowattHourPerKilogram);
 
         /// <summary>
-        ///     Get SpecificEnergy in MegajoulesPerKilogram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegajoulePerKilogram"/>
         /// </summary>
         public double MegajoulesPerKilogram => As(SpecificEnergyUnit.MegajoulePerKilogram);
 
         /// <summary>
-        ///     Get SpecificEnergy in MegawattDaysPerKilogram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegawattDayPerKilogram"/>
         /// </summary>
         public double MegawattDaysPerKilogram => As(SpecificEnergyUnit.MegawattDayPerKilogram);
 
         /// <summary>
-        ///     Get SpecificEnergy in MegawattDaysPerShortTon.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegawattDayPerShortTon"/>
         /// </summary>
         public double MegawattDaysPerShortTon => As(SpecificEnergyUnit.MegawattDayPerShortTon);
 
         /// <summary>
-        ///     Get SpecificEnergy in MegawattDaysPerTonne.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegawattDayPerTonne"/>
         /// </summary>
         public double MegawattDaysPerTonne => As(SpecificEnergyUnit.MegawattDayPerTonne);
 
         /// <summary>
-        ///     Get SpecificEnergy in MegawattHoursPerKilogram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegawattHourPerKilogram"/>
         /// </summary>
         public double MegawattHoursPerKilogram => As(SpecificEnergyUnit.MegawattHourPerKilogram);
 
         /// <summary>
-        ///     Get SpecificEnergy in TerawattDaysPerKilogram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.TerawattDayPerKilogram"/>
         /// </summary>
         public double TerawattDaysPerKilogram => As(SpecificEnergyUnit.TerawattDayPerKilogram);
 
         /// <summary>
-        ///     Get SpecificEnergy in TerawattDaysPerShortTon.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.TerawattDayPerShortTon"/>
         /// </summary>
         public double TerawattDaysPerShortTon => As(SpecificEnergyUnit.TerawattDayPerShortTon);
 
         /// <summary>
-        ///     Get SpecificEnergy in TerawattDaysPerTonne.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.TerawattDayPerTonne"/>
         /// </summary>
         public double TerawattDaysPerTonne => As(SpecificEnergyUnit.TerawattDayPerTonne);
 
         /// <summary>
-        ///     Get SpecificEnergy in WattDaysPerKilogram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.WattDayPerKilogram"/>
         /// </summary>
         public double WattDaysPerKilogram => As(SpecificEnergyUnit.WattDayPerKilogram);
 
         /// <summary>
-        ///     Get SpecificEnergy in WattDaysPerShortTon.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.WattDayPerShortTon"/>
         /// </summary>
         public double WattDaysPerShortTon => As(SpecificEnergyUnit.WattDayPerShortTon);
 
         /// <summary>
-        ///     Get SpecificEnergy in WattDaysPerTonne.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.WattDayPerTonne"/>
         /// </summary>
         public double WattDaysPerTonne => As(SpecificEnergyUnit.WattDayPerTonne);
 
         /// <summary>
-        ///     Get SpecificEnergy in WattHoursPerKilogram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.WattHourPerKilogram"/>
         /// </summary>
         public double WattHoursPerKilogram => As(SpecificEnergyUnit.WattHourPerKilogram);
 
@@ -351,7 +351,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get SpecificEnergy from BtuPerPound.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.BtuPerPound"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -361,7 +361,7 @@ namespace UnitsNet
             return new SpecificEnergy(value, SpecificEnergyUnit.BtuPerPound);
         }
         /// <summary>
-        ///     Get SpecificEnergy from CaloriesPerGram.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.CaloriePerGram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -371,7 +371,7 @@ namespace UnitsNet
             return new SpecificEnergy(value, SpecificEnergyUnit.CaloriePerGram);
         }
         /// <summary>
-        ///     Get SpecificEnergy from GigawattDaysPerKilogram.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.GigawattDayPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -381,7 +381,7 @@ namespace UnitsNet
             return new SpecificEnergy(value, SpecificEnergyUnit.GigawattDayPerKilogram);
         }
         /// <summary>
-        ///     Get SpecificEnergy from GigawattDaysPerShortTon.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.GigawattDayPerShortTon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -391,7 +391,7 @@ namespace UnitsNet
             return new SpecificEnergy(value, SpecificEnergyUnit.GigawattDayPerShortTon);
         }
         /// <summary>
-        ///     Get SpecificEnergy from GigawattDaysPerTonne.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.GigawattDayPerTonne"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -401,7 +401,7 @@ namespace UnitsNet
             return new SpecificEnergy(value, SpecificEnergyUnit.GigawattDayPerTonne);
         }
         /// <summary>
-        ///     Get SpecificEnergy from GigawattHoursPerKilogram.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.GigawattHourPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -411,7 +411,7 @@ namespace UnitsNet
             return new SpecificEnergy(value, SpecificEnergyUnit.GigawattHourPerKilogram);
         }
         /// <summary>
-        ///     Get SpecificEnergy from JoulesPerKilogram.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.JoulePerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -421,7 +421,7 @@ namespace UnitsNet
             return new SpecificEnergy(value, SpecificEnergyUnit.JoulePerKilogram);
         }
         /// <summary>
-        ///     Get SpecificEnergy from KilocaloriesPerGram.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.KilocaloriePerGram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -431,7 +431,7 @@ namespace UnitsNet
             return new SpecificEnergy(value, SpecificEnergyUnit.KilocaloriePerGram);
         }
         /// <summary>
-        ///     Get SpecificEnergy from KilojoulesPerKilogram.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.KilojoulePerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -441,7 +441,7 @@ namespace UnitsNet
             return new SpecificEnergy(value, SpecificEnergyUnit.KilojoulePerKilogram);
         }
         /// <summary>
-        ///     Get SpecificEnergy from KilowattDaysPerKilogram.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.KilowattDayPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -451,7 +451,7 @@ namespace UnitsNet
             return new SpecificEnergy(value, SpecificEnergyUnit.KilowattDayPerKilogram);
         }
         /// <summary>
-        ///     Get SpecificEnergy from KilowattDaysPerShortTon.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.KilowattDayPerShortTon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -461,7 +461,7 @@ namespace UnitsNet
             return new SpecificEnergy(value, SpecificEnergyUnit.KilowattDayPerShortTon);
         }
         /// <summary>
-        ///     Get SpecificEnergy from KilowattDaysPerTonne.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.KilowattDayPerTonne"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -471,7 +471,7 @@ namespace UnitsNet
             return new SpecificEnergy(value, SpecificEnergyUnit.KilowattDayPerTonne);
         }
         /// <summary>
-        ///     Get SpecificEnergy from KilowattHoursPerKilogram.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.KilowattHourPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -481,7 +481,7 @@ namespace UnitsNet
             return new SpecificEnergy(value, SpecificEnergyUnit.KilowattHourPerKilogram);
         }
         /// <summary>
-        ///     Get SpecificEnergy from MegajoulesPerKilogram.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegajoulePerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -491,7 +491,7 @@ namespace UnitsNet
             return new SpecificEnergy(value, SpecificEnergyUnit.MegajoulePerKilogram);
         }
         /// <summary>
-        ///     Get SpecificEnergy from MegawattDaysPerKilogram.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegawattDayPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -501,7 +501,7 @@ namespace UnitsNet
             return new SpecificEnergy(value, SpecificEnergyUnit.MegawattDayPerKilogram);
         }
         /// <summary>
-        ///     Get SpecificEnergy from MegawattDaysPerShortTon.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegawattDayPerShortTon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -511,7 +511,7 @@ namespace UnitsNet
             return new SpecificEnergy(value, SpecificEnergyUnit.MegawattDayPerShortTon);
         }
         /// <summary>
-        ///     Get SpecificEnergy from MegawattDaysPerTonne.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegawattDayPerTonne"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -521,7 +521,7 @@ namespace UnitsNet
             return new SpecificEnergy(value, SpecificEnergyUnit.MegawattDayPerTonne);
         }
         /// <summary>
-        ///     Get SpecificEnergy from MegawattHoursPerKilogram.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegawattHourPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -531,7 +531,7 @@ namespace UnitsNet
             return new SpecificEnergy(value, SpecificEnergyUnit.MegawattHourPerKilogram);
         }
         /// <summary>
-        ///     Get SpecificEnergy from TerawattDaysPerKilogram.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.TerawattDayPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -541,7 +541,7 @@ namespace UnitsNet
             return new SpecificEnergy(value, SpecificEnergyUnit.TerawattDayPerKilogram);
         }
         /// <summary>
-        ///     Get SpecificEnergy from TerawattDaysPerShortTon.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.TerawattDayPerShortTon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -551,7 +551,7 @@ namespace UnitsNet
             return new SpecificEnergy(value, SpecificEnergyUnit.TerawattDayPerShortTon);
         }
         /// <summary>
-        ///     Get SpecificEnergy from TerawattDaysPerTonne.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.TerawattDayPerTonne"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -561,7 +561,7 @@ namespace UnitsNet
             return new SpecificEnergy(value, SpecificEnergyUnit.TerawattDayPerTonne);
         }
         /// <summary>
-        ///     Get SpecificEnergy from WattDaysPerKilogram.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.WattDayPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -571,7 +571,7 @@ namespace UnitsNet
             return new SpecificEnergy(value, SpecificEnergyUnit.WattDayPerKilogram);
         }
         /// <summary>
-        ///     Get SpecificEnergy from WattDaysPerShortTon.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.WattDayPerShortTon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -581,7 +581,7 @@ namespace UnitsNet
             return new SpecificEnergy(value, SpecificEnergyUnit.WattDayPerShortTon);
         }
         /// <summary>
-        ///     Get SpecificEnergy from WattDaysPerTonne.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.WattDayPerTonne"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -591,7 +591,7 @@ namespace UnitsNet
             return new SpecificEnergy(value, SpecificEnergyUnit.WattDayPerTonne);
         }
         /// <summary>
-        ///     Get SpecificEnergy from WattHoursPerKilogram.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.WattHourPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]

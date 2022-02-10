@@ -78,12 +78,12 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get RatioChangeRate in DecimalFractionsPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RatioChangeRateUnit.DecimalFractionPerSecond"/>
         /// </summary>
         public double DecimalFractionsPerSecond => As(RatioChangeRateUnit.DecimalFractionPerSecond);
 
         /// <summary>
-        ///     Get RatioChangeRate in PercentsPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RatioChangeRateUnit.PercentPerSecond"/>
         /// </summary>
         public double PercentsPerSecond => As(RatioChangeRateUnit.PercentPerSecond);
 
@@ -92,13 +92,13 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get RatioChangeRate from DecimalFractionsPerSecond.
+        ///     Creates a <see cref="RatioChangeRate"/> from <see cref="RatioChangeRateUnit.DecimalFractionPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RatioChangeRate FromDecimalFractionsPerSecond(double decimalfractionspersecond) => new RatioChangeRate(decimalfractionspersecond, RatioChangeRateUnit.DecimalFractionPerSecond);
 
         /// <summary>
-        ///     Get RatioChangeRate from PercentsPerSecond.
+        ///     Creates a <see cref="RatioChangeRate"/> from <see cref="RatioChangeRateUnit.PercentPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RatioChangeRate FromPercentsPerSecond(double percentspersecond) => new RatioChangeRate(percentspersecond, RatioChangeRateUnit.PercentPerSecond);

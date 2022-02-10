@@ -78,72 +78,72 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Acceleration in CentimetersPerSecondSquared.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.CentimeterPerSecondSquared"/>
         /// </summary>
         public double CentimetersPerSecondSquared => As(AccelerationUnit.CentimeterPerSecondSquared);
 
         /// <summary>
-        ///     Get Acceleration in DecimetersPerSecondSquared.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.DecimeterPerSecondSquared"/>
         /// </summary>
         public double DecimetersPerSecondSquared => As(AccelerationUnit.DecimeterPerSecondSquared);
 
         /// <summary>
-        ///     Get Acceleration in FeetPerSecondSquared.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.FootPerSecondSquared"/>
         /// </summary>
         public double FeetPerSecondSquared => As(AccelerationUnit.FootPerSecondSquared);
 
         /// <summary>
-        ///     Get Acceleration in InchesPerSecondSquared.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.InchPerSecondSquared"/>
         /// </summary>
         public double InchesPerSecondSquared => As(AccelerationUnit.InchPerSecondSquared);
 
         /// <summary>
-        ///     Get Acceleration in KilometersPerSecondSquared.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.KilometerPerSecondSquared"/>
         /// </summary>
         public double KilometersPerSecondSquared => As(AccelerationUnit.KilometerPerSecondSquared);
 
         /// <summary>
-        ///     Get Acceleration in KnotsPerHour.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.KnotPerHour"/>
         /// </summary>
         public double KnotsPerHour => As(AccelerationUnit.KnotPerHour);
 
         /// <summary>
-        ///     Get Acceleration in KnotsPerMinute.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.KnotPerMinute"/>
         /// </summary>
         public double KnotsPerMinute => As(AccelerationUnit.KnotPerMinute);
 
         /// <summary>
-        ///     Get Acceleration in KnotsPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.KnotPerSecond"/>
         /// </summary>
         public double KnotsPerSecond => As(AccelerationUnit.KnotPerSecond);
 
         /// <summary>
-        ///     Get Acceleration in MetersPerSecondSquared.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.MeterPerSecondSquared"/>
         /// </summary>
         public double MetersPerSecondSquared => As(AccelerationUnit.MeterPerSecondSquared);
 
         /// <summary>
-        ///     Get Acceleration in MicrometersPerSecondSquared.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.MicrometerPerSecondSquared"/>
         /// </summary>
         public double MicrometersPerSecondSquared => As(AccelerationUnit.MicrometerPerSecondSquared);
 
         /// <summary>
-        ///     Get Acceleration in MillimetersPerSecondSquared.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.MillimeterPerSecondSquared"/>
         /// </summary>
         public double MillimetersPerSecondSquared => As(AccelerationUnit.MillimeterPerSecondSquared);
 
         /// <summary>
-        ///     Get Acceleration in MillistandardGravity.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.MillistandardGravity"/>
         /// </summary>
         public double MillistandardGravity => As(AccelerationUnit.MillistandardGravity);
 
         /// <summary>
-        ///     Get Acceleration in NanometersPerSecondSquared.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.NanometerPerSecondSquared"/>
         /// </summary>
         public double NanometersPerSecondSquared => As(AccelerationUnit.NanometerPerSecondSquared);
 
         /// <summary>
-        ///     Get Acceleration in StandardGravity.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.StandardGravity"/>
         /// </summary>
         public double StandardGravity => As(AccelerationUnit.StandardGravity);
 
@@ -152,85 +152,85 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Acceleration from CentimetersPerSecondSquared.
+        ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.CentimeterPerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Acceleration FromCentimetersPerSecondSquared(double centimeterspersecondsquared) => new Acceleration(centimeterspersecondsquared, AccelerationUnit.CentimeterPerSecondSquared);
 
         /// <summary>
-        ///     Get Acceleration from DecimetersPerSecondSquared.
+        ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.DecimeterPerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Acceleration FromDecimetersPerSecondSquared(double decimeterspersecondsquared) => new Acceleration(decimeterspersecondsquared, AccelerationUnit.DecimeterPerSecondSquared);
 
         /// <summary>
-        ///     Get Acceleration from FeetPerSecondSquared.
+        ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.FootPerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Acceleration FromFeetPerSecondSquared(double feetpersecondsquared) => new Acceleration(feetpersecondsquared, AccelerationUnit.FootPerSecondSquared);
 
         /// <summary>
-        ///     Get Acceleration from InchesPerSecondSquared.
+        ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.InchPerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Acceleration FromInchesPerSecondSquared(double inchespersecondsquared) => new Acceleration(inchespersecondsquared, AccelerationUnit.InchPerSecondSquared);
 
         /// <summary>
-        ///     Get Acceleration from KilometersPerSecondSquared.
+        ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.KilometerPerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Acceleration FromKilometersPerSecondSquared(double kilometerspersecondsquared) => new Acceleration(kilometerspersecondsquared, AccelerationUnit.KilometerPerSecondSquared);
 
         /// <summary>
-        ///     Get Acceleration from KnotsPerHour.
+        ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.KnotPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Acceleration FromKnotsPerHour(double knotsperhour) => new Acceleration(knotsperhour, AccelerationUnit.KnotPerHour);
 
         /// <summary>
-        ///     Get Acceleration from KnotsPerMinute.
+        ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.KnotPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Acceleration FromKnotsPerMinute(double knotsperminute) => new Acceleration(knotsperminute, AccelerationUnit.KnotPerMinute);
 
         /// <summary>
-        ///     Get Acceleration from KnotsPerSecond.
+        ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.KnotPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Acceleration FromKnotsPerSecond(double knotspersecond) => new Acceleration(knotspersecond, AccelerationUnit.KnotPerSecond);
 
         /// <summary>
-        ///     Get Acceleration from MetersPerSecondSquared.
+        ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.MeterPerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Acceleration FromMetersPerSecondSquared(double meterspersecondsquared) => new Acceleration(meterspersecondsquared, AccelerationUnit.MeterPerSecondSquared);
 
         /// <summary>
-        ///     Get Acceleration from MicrometersPerSecondSquared.
+        ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.MicrometerPerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Acceleration FromMicrometersPerSecondSquared(double micrometerspersecondsquared) => new Acceleration(micrometerspersecondsquared, AccelerationUnit.MicrometerPerSecondSquared);
 
         /// <summary>
-        ///     Get Acceleration from MillimetersPerSecondSquared.
+        ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.MillimeterPerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Acceleration FromMillimetersPerSecondSquared(double millimeterspersecondsquared) => new Acceleration(millimeterspersecondsquared, AccelerationUnit.MillimeterPerSecondSquared);
 
         /// <summary>
-        ///     Get Acceleration from MillistandardGravity.
+        ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.MillistandardGravity"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Acceleration FromMillistandardGravity(double millistandardgravity) => new Acceleration(millistandardgravity, AccelerationUnit.MillistandardGravity);
 
         /// <summary>
-        ///     Get Acceleration from NanometersPerSecondSquared.
+        ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.NanometerPerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Acceleration FromNanometersPerSecondSquared(double nanometerspersecondsquared) => new Acceleration(nanometerspersecondsquared, AccelerationUnit.NanometerPerSecondSquared);
 
         /// <summary>
-        ///     Get Acceleration from StandardGravity.
+        ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.StandardGravity"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Acceleration FromStandardGravity(double standardgravity) => new Acceleration(standardgravity, AccelerationUnit.StandardGravity);

@@ -78,27 +78,27 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricPotential in Kilovolts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialUnit.Kilovolt"/>
         /// </summary>
         public double Kilovolts => As(ElectricPotentialUnit.Kilovolt);
 
         /// <summary>
-        ///     Get ElectricPotential in Megavolts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialUnit.Megavolt"/>
         /// </summary>
         public double Megavolts => As(ElectricPotentialUnit.Megavolt);
 
         /// <summary>
-        ///     Get ElectricPotential in Microvolts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialUnit.Microvolt"/>
         /// </summary>
         public double Microvolts => As(ElectricPotentialUnit.Microvolt);
 
         /// <summary>
-        ///     Get ElectricPotential in Millivolts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialUnit.Millivolt"/>
         /// </summary>
         public double Millivolts => As(ElectricPotentialUnit.Millivolt);
 
         /// <summary>
-        ///     Get ElectricPotential in Volts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialUnit.Volt"/>
         /// </summary>
         public double Volts => As(ElectricPotentialUnit.Volt);
 
@@ -107,31 +107,31 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricPotential from Kilovolts.
+        ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Kilovolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotential FromKilovolts(double kilovolts) => new ElectricPotential(kilovolts, ElectricPotentialUnit.Kilovolt);
 
         /// <summary>
-        ///     Get ElectricPotential from Megavolts.
+        ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Megavolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotential FromMegavolts(double megavolts) => new ElectricPotential(megavolts, ElectricPotentialUnit.Megavolt);
 
         /// <summary>
-        ///     Get ElectricPotential from Microvolts.
+        ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Microvolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotential FromMicrovolts(double microvolts) => new ElectricPotential(microvolts, ElectricPotentialUnit.Microvolt);
 
         /// <summary>
-        ///     Get ElectricPotential from Millivolts.
+        ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Millivolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotential FromMillivolts(double millivolts) => new ElectricPotential(millivolts, ElectricPotentialUnit.Millivolt);
 
         /// <summary>
-        ///     Get ElectricPotential from Volts.
+        ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Volt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotential FromVolts(double volts) => new ElectricPotential(volts, ElectricPotentialUnit.Volt);

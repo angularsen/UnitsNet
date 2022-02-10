@@ -167,52 +167,52 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get DynamicViscosity in Centipoise.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DynamicViscosityUnit.Centipoise"/>
         /// </summary>
         public double Centipoise => As(DynamicViscosityUnit.Centipoise);
 
         /// <summary>
-        ///     Get DynamicViscosity in MicropascalSeconds.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DynamicViscosityUnit.MicropascalSecond"/>
         /// </summary>
         public double MicropascalSeconds => As(DynamicViscosityUnit.MicropascalSecond);
 
         /// <summary>
-        ///     Get DynamicViscosity in MillipascalSeconds.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DynamicViscosityUnit.MillipascalSecond"/>
         /// </summary>
         public double MillipascalSeconds => As(DynamicViscosityUnit.MillipascalSecond);
 
         /// <summary>
-        ///     Get DynamicViscosity in NewtonSecondsPerMeterSquared.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DynamicViscosityUnit.NewtonSecondPerMeterSquared"/>
         /// </summary>
         public double NewtonSecondsPerMeterSquared => As(DynamicViscosityUnit.NewtonSecondPerMeterSquared);
 
         /// <summary>
-        ///     Get DynamicViscosity in PascalSeconds.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DynamicViscosityUnit.PascalSecond"/>
         /// </summary>
         public double PascalSeconds => As(DynamicViscosityUnit.PascalSecond);
 
         /// <summary>
-        ///     Get DynamicViscosity in Poise.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DynamicViscosityUnit.Poise"/>
         /// </summary>
         public double Poise => As(DynamicViscosityUnit.Poise);
 
         /// <summary>
-        ///     Get DynamicViscosity in PoundsForceSecondPerSquareFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DynamicViscosityUnit.PoundForceSecondPerSquareFoot"/>
         /// </summary>
         public double PoundsForceSecondPerSquareFoot => As(DynamicViscosityUnit.PoundForceSecondPerSquareFoot);
 
         /// <summary>
-        ///     Get DynamicViscosity in PoundsForceSecondPerSquareInch.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DynamicViscosityUnit.PoundForceSecondPerSquareInch"/>
         /// </summary>
         public double PoundsForceSecondPerSquareInch => As(DynamicViscosityUnit.PoundForceSecondPerSquareInch);
 
         /// <summary>
-        ///     Get DynamicViscosity in PoundsPerFootSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DynamicViscosityUnit.PoundPerFootSecond"/>
         /// </summary>
         public double PoundsPerFootSecond => As(DynamicViscosityUnit.PoundPerFootSecond);
 
         /// <summary>
-        ///     Get DynamicViscosity in Reyns.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DynamicViscosityUnit.Reyn"/>
         /// </summary>
         public double Reyns => As(DynamicViscosityUnit.Reyn);
 
@@ -261,7 +261,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get DynamicViscosity from Centipoise.
+        ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.Centipoise"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -271,7 +271,7 @@ namespace UnitsNet
             return new DynamicViscosity(value, DynamicViscosityUnit.Centipoise);
         }
         /// <summary>
-        ///     Get DynamicViscosity from MicropascalSeconds.
+        ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.MicropascalSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -281,7 +281,7 @@ namespace UnitsNet
             return new DynamicViscosity(value, DynamicViscosityUnit.MicropascalSecond);
         }
         /// <summary>
-        ///     Get DynamicViscosity from MillipascalSeconds.
+        ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.MillipascalSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -291,7 +291,7 @@ namespace UnitsNet
             return new DynamicViscosity(value, DynamicViscosityUnit.MillipascalSecond);
         }
         /// <summary>
-        ///     Get DynamicViscosity from NewtonSecondsPerMeterSquared.
+        ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.NewtonSecondPerMeterSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -301,7 +301,7 @@ namespace UnitsNet
             return new DynamicViscosity(value, DynamicViscosityUnit.NewtonSecondPerMeterSquared);
         }
         /// <summary>
-        ///     Get DynamicViscosity from PascalSeconds.
+        ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.PascalSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -311,7 +311,7 @@ namespace UnitsNet
             return new DynamicViscosity(value, DynamicViscosityUnit.PascalSecond);
         }
         /// <summary>
-        ///     Get DynamicViscosity from Poise.
+        ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.Poise"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -321,7 +321,7 @@ namespace UnitsNet
             return new DynamicViscosity(value, DynamicViscosityUnit.Poise);
         }
         /// <summary>
-        ///     Get DynamicViscosity from PoundsForceSecondPerSquareFoot.
+        ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.PoundForceSecondPerSquareFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -331,7 +331,7 @@ namespace UnitsNet
             return new DynamicViscosity(value, DynamicViscosityUnit.PoundForceSecondPerSquareFoot);
         }
         /// <summary>
-        ///     Get DynamicViscosity from PoundsForceSecondPerSquareInch.
+        ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.PoundForceSecondPerSquareInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -341,7 +341,7 @@ namespace UnitsNet
             return new DynamicViscosity(value, DynamicViscosityUnit.PoundForceSecondPerSquareInch);
         }
         /// <summary>
-        ///     Get DynamicViscosity from PoundsPerFootSecond.
+        ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.PoundPerFootSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -351,7 +351,7 @@ namespace UnitsNet
             return new DynamicViscosity(value, DynamicViscosityUnit.PoundPerFootSecond);
         }
         /// <summary>
-        ///     Get DynamicViscosity from Reyns.
+        ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.Reyn"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]

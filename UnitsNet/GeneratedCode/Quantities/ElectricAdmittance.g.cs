@@ -192,22 +192,22 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricAdmittance in Microsiemens.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Microsiemens"/>
         /// </summary>
         public double Microsiemens => As(ElectricAdmittanceUnit.Microsiemens);
 
         /// <summary>
-        ///     Get ElectricAdmittance in Millisiemens.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Millisiemens"/>
         /// </summary>
         public double Millisiemens => As(ElectricAdmittanceUnit.Millisiemens);
 
         /// <summary>
-        ///     Get ElectricAdmittance in Nanosiemens.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Nanosiemens"/>
         /// </summary>
         public double Nanosiemens => As(ElectricAdmittanceUnit.Nanosiemens);
 
         /// <summary>
-        ///     Get ElectricAdmittance in Siemens.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Siemens"/>
         /// </summary>
         public double Siemens => As(ElectricAdmittanceUnit.Siemens);
 
@@ -268,7 +268,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricAdmittance from Microsiemens.
+        ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Microsiemens"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricAdmittance FromMicrosiemens(QuantityValue microsiemens)
@@ -277,7 +277,7 @@ namespace UnitsNet
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Microsiemens);
         }
         /// <summary>
-        ///     Get ElectricAdmittance from Millisiemens.
+        ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Millisiemens"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricAdmittance FromMillisiemens(QuantityValue millisiemens)
@@ -286,7 +286,7 @@ namespace UnitsNet
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Millisiemens);
         }
         /// <summary>
-        ///     Get ElectricAdmittance from Nanosiemens.
+        ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Nanosiemens"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricAdmittance FromNanosiemens(QuantityValue nanosiemens)
@@ -295,7 +295,7 @@ namespace UnitsNet
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Nanosiemens);
         }
         /// <summary>
-        ///     Get ElectricAdmittance from Siemens.
+        ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Siemens"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricAdmittance FromSiemens(QuantityValue siemens)

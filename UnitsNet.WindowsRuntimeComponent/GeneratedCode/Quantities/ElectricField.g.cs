@@ -167,7 +167,7 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricField in VoltsPerMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricFieldUnit.VoltPerMeter"/>
         /// </summary>
         public double VoltsPerMeter => As(ElectricFieldUnit.VoltPerMeter);
 
@@ -207,7 +207,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricField from VoltsPerMeter.
+        ///     Creates a <see cref="ElectricField"/> from <see cref="ElectricFieldUnit.VoltPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]

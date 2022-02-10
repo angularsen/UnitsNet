@@ -164,7 +164,7 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Scalar in Amount.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ScalarUnit.Amount"/>
         /// </summary>
         public double Amount => As(ScalarUnit.Amount);
 
@@ -204,7 +204,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Scalar from Amount.
+        ///     Creates a <see cref="Scalar"/> from <see cref="ScalarUnit.Amount"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]

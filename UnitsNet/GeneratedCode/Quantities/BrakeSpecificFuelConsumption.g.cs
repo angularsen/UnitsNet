@@ -191,17 +191,17 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get BrakeSpecificFuelConsumption in GramsPerKiloWattHour.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour"/>
         /// </summary>
         public double GramsPerKiloWattHour => As(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour);
 
         /// <summary>
-        ///     Get BrakeSpecificFuelConsumption in KilogramsPerJoule.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BrakeSpecificFuelConsumptionUnit.KilogramPerJoule"/>
         /// </summary>
         public double KilogramsPerJoule => As(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule);
 
         /// <summary>
-        ///     Get BrakeSpecificFuelConsumption in PoundsPerMechanicalHorsepowerHour.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour"/>
         /// </summary>
         public double PoundsPerMechanicalHorsepowerHour => As(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour);
 
@@ -259,7 +259,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get BrakeSpecificFuelConsumption from GramsPerKiloWattHour.
+        ///     Creates a <see cref="BrakeSpecificFuelConsumption"/> from <see cref="BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BrakeSpecificFuelConsumption FromGramsPerKiloWattHour(QuantityValue gramsperkilowatthour)
@@ -268,7 +268,7 @@ namespace UnitsNet
             return new BrakeSpecificFuelConsumption(value, BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour);
         }
         /// <summary>
-        ///     Get BrakeSpecificFuelConsumption from KilogramsPerJoule.
+        ///     Creates a <see cref="BrakeSpecificFuelConsumption"/> from <see cref="BrakeSpecificFuelConsumptionUnit.KilogramPerJoule"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BrakeSpecificFuelConsumption FromKilogramsPerJoule(QuantityValue kilogramsperjoule)
@@ -277,7 +277,7 @@ namespace UnitsNet
             return new BrakeSpecificFuelConsumption(value, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule);
         }
         /// <summary>
-        ///     Get BrakeSpecificFuelConsumption from PoundsPerMechanicalHorsepowerHour.
+        ///     Creates a <see cref="BrakeSpecificFuelConsumption"/> from <see cref="BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BrakeSpecificFuelConsumption FromPoundsPerMechanicalHorsepowerHour(QuantityValue poundspermechanicalhorsepowerhour)

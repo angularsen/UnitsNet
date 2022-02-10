@@ -195,22 +195,22 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get SpecificFuelConsumption in GramsPerKiloNewtonSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond"/>
         /// </summary>
         public double GramsPerKiloNewtonSecond => As(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond);
 
         /// <summary>
-        ///     Get SpecificFuelConsumption in KilogramsPerKilogramForceHour.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour"/>
         /// </summary>
         public double KilogramsPerKilogramForceHour => As(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour);
 
         /// <summary>
-        ///     Get SpecificFuelConsumption in KilogramsPerKiloNewtonSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond"/>
         /// </summary>
         public double KilogramsPerKiloNewtonSecond => As(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond);
 
         /// <summary>
-        ///     Get SpecificFuelConsumption in PoundsMassPerPoundForceHour.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour"/>
         /// </summary>
         public double PoundsMassPerPoundForceHour => As(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour);
 
@@ -271,7 +271,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get SpecificFuelConsumption from GramsPerKiloNewtonSecond.
+        ///     Creates a <see cref="SpecificFuelConsumption"/> from <see cref="SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificFuelConsumption FromGramsPerKiloNewtonSecond(QuantityValue gramsperkilonewtonsecond)
@@ -280,7 +280,7 @@ namespace UnitsNet
             return new SpecificFuelConsumption(value, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond);
         }
         /// <summary>
-        ///     Get SpecificFuelConsumption from KilogramsPerKilogramForceHour.
+        ///     Creates a <see cref="SpecificFuelConsumption"/> from <see cref="SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificFuelConsumption FromKilogramsPerKilogramForceHour(QuantityValue kilogramsperkilogramforcehour)
@@ -289,7 +289,7 @@ namespace UnitsNet
             return new SpecificFuelConsumption(value, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour);
         }
         /// <summary>
-        ///     Get SpecificFuelConsumption from KilogramsPerKiloNewtonSecond.
+        ///     Creates a <see cref="SpecificFuelConsumption"/> from <see cref="SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificFuelConsumption FromKilogramsPerKiloNewtonSecond(QuantityValue kilogramsperkilonewtonsecond)
@@ -298,7 +298,7 @@ namespace UnitsNet
             return new SpecificFuelConsumption(value, SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond);
         }
         /// <summary>
-        ///     Get SpecificFuelConsumption from PoundsMassPerPoundForceHour.
+        ///     Creates a <see cref="SpecificFuelConsumption"/> from <see cref="SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificFuelConsumption FromPoundsMassPerPoundForceHour(QuantityValue poundsmassperpoundforcehour)

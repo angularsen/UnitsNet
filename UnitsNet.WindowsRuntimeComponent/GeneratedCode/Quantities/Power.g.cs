@@ -164,127 +164,127 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Power in BoilerHorsepower.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.BoilerHorsepower"/>
         /// </summary>
         public double BoilerHorsepower => As(PowerUnit.BoilerHorsepower);
 
         /// <summary>
-        ///     Get Power in BritishThermalUnitsPerHour.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.BritishThermalUnitPerHour"/>
         /// </summary>
         public double BritishThermalUnitsPerHour => As(PowerUnit.BritishThermalUnitPerHour);
 
         /// <summary>
-        ///     Get Power in Decawatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.Decawatt"/>
         /// </summary>
         public double Decawatts => As(PowerUnit.Decawatt);
 
         /// <summary>
-        ///     Get Power in Deciwatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.Deciwatt"/>
         /// </summary>
         public double Deciwatts => As(PowerUnit.Deciwatt);
 
         /// <summary>
-        ///     Get Power in ElectricalHorsepower.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.ElectricalHorsepower"/>
         /// </summary>
         public double ElectricalHorsepower => As(PowerUnit.ElectricalHorsepower);
 
         /// <summary>
-        ///     Get Power in Femtowatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.Femtowatt"/>
         /// </summary>
         public double Femtowatts => As(PowerUnit.Femtowatt);
 
         /// <summary>
-        ///     Get Power in GigajoulesPerHour.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.GigajoulePerHour"/>
         /// </summary>
         public double GigajoulesPerHour => As(PowerUnit.GigajoulePerHour);
 
         /// <summary>
-        ///     Get Power in Gigawatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.Gigawatt"/>
         /// </summary>
         public double Gigawatts => As(PowerUnit.Gigawatt);
 
         /// <summary>
-        ///     Get Power in HydraulicHorsepower.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.HydraulicHorsepower"/>
         /// </summary>
         public double HydraulicHorsepower => As(PowerUnit.HydraulicHorsepower);
 
         /// <summary>
-        ///     Get Power in JoulesPerHour.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.JoulePerHour"/>
         /// </summary>
         public double JoulesPerHour => As(PowerUnit.JoulePerHour);
 
         /// <summary>
-        ///     Get Power in KilobritishThermalUnitsPerHour.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.KilobritishThermalUnitPerHour"/>
         /// </summary>
         public double KilobritishThermalUnitsPerHour => As(PowerUnit.KilobritishThermalUnitPerHour);
 
         /// <summary>
-        ///     Get Power in KilojoulesPerHour.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.KilojoulePerHour"/>
         /// </summary>
         public double KilojoulesPerHour => As(PowerUnit.KilojoulePerHour);
 
         /// <summary>
-        ///     Get Power in Kilowatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.Kilowatt"/>
         /// </summary>
         public double Kilowatts => As(PowerUnit.Kilowatt);
 
         /// <summary>
-        ///     Get Power in MechanicalHorsepower.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.MechanicalHorsepower"/>
         /// </summary>
         public double MechanicalHorsepower => As(PowerUnit.MechanicalHorsepower);
 
         /// <summary>
-        ///     Get Power in MegajoulesPerHour.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.MegajoulePerHour"/>
         /// </summary>
         public double MegajoulesPerHour => As(PowerUnit.MegajoulePerHour);
 
         /// <summary>
-        ///     Get Power in Megawatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.Megawatt"/>
         /// </summary>
         public double Megawatts => As(PowerUnit.Megawatt);
 
         /// <summary>
-        ///     Get Power in MetricHorsepower.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.MetricHorsepower"/>
         /// </summary>
         public double MetricHorsepower => As(PowerUnit.MetricHorsepower);
 
         /// <summary>
-        ///     Get Power in Microwatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.Microwatt"/>
         /// </summary>
         public double Microwatts => As(PowerUnit.Microwatt);
 
         /// <summary>
-        ///     Get Power in MillijoulesPerHour.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.MillijoulePerHour"/>
         /// </summary>
         public double MillijoulesPerHour => As(PowerUnit.MillijoulePerHour);
 
         /// <summary>
-        ///     Get Power in Milliwatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.Milliwatt"/>
         /// </summary>
         public double Milliwatts => As(PowerUnit.Milliwatt);
 
         /// <summary>
-        ///     Get Power in Nanowatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.Nanowatt"/>
         /// </summary>
         public double Nanowatts => As(PowerUnit.Nanowatt);
 
         /// <summary>
-        ///     Get Power in Petawatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.Petawatt"/>
         /// </summary>
         public double Petawatts => As(PowerUnit.Petawatt);
 
         /// <summary>
-        ///     Get Power in Picowatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.Picowatt"/>
         /// </summary>
         public double Picowatts => As(PowerUnit.Picowatt);
 
         /// <summary>
-        ///     Get Power in Terawatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.Terawatt"/>
         /// </summary>
         public double Terawatts => As(PowerUnit.Terawatt);
 
         /// <summary>
-        ///     Get Power in Watts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.Watt"/>
         /// </summary>
         public double Watts => As(PowerUnit.Watt);
 
@@ -348,7 +348,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Power from BoilerHorsepower.
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.BoilerHorsepower"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -358,7 +358,7 @@ namespace UnitsNet
             return new Power(value, PowerUnit.BoilerHorsepower);
         }
         /// <summary>
-        ///     Get Power from BritishThermalUnitsPerHour.
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.BritishThermalUnitPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -368,7 +368,7 @@ namespace UnitsNet
             return new Power(value, PowerUnit.BritishThermalUnitPerHour);
         }
         /// <summary>
-        ///     Get Power from Decawatts.
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Decawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -378,7 +378,7 @@ namespace UnitsNet
             return new Power(value, PowerUnit.Decawatt);
         }
         /// <summary>
-        ///     Get Power from Deciwatts.
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Deciwatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -388,7 +388,7 @@ namespace UnitsNet
             return new Power(value, PowerUnit.Deciwatt);
         }
         /// <summary>
-        ///     Get Power from ElectricalHorsepower.
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.ElectricalHorsepower"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -398,7 +398,7 @@ namespace UnitsNet
             return new Power(value, PowerUnit.ElectricalHorsepower);
         }
         /// <summary>
-        ///     Get Power from Femtowatts.
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Femtowatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -408,7 +408,7 @@ namespace UnitsNet
             return new Power(value, PowerUnit.Femtowatt);
         }
         /// <summary>
-        ///     Get Power from GigajoulesPerHour.
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.GigajoulePerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -418,7 +418,7 @@ namespace UnitsNet
             return new Power(value, PowerUnit.GigajoulePerHour);
         }
         /// <summary>
-        ///     Get Power from Gigawatts.
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Gigawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -428,7 +428,7 @@ namespace UnitsNet
             return new Power(value, PowerUnit.Gigawatt);
         }
         /// <summary>
-        ///     Get Power from HydraulicHorsepower.
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.HydraulicHorsepower"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -438,7 +438,7 @@ namespace UnitsNet
             return new Power(value, PowerUnit.HydraulicHorsepower);
         }
         /// <summary>
-        ///     Get Power from JoulesPerHour.
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.JoulePerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -448,7 +448,7 @@ namespace UnitsNet
             return new Power(value, PowerUnit.JoulePerHour);
         }
         /// <summary>
-        ///     Get Power from KilobritishThermalUnitsPerHour.
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.KilobritishThermalUnitPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -458,7 +458,7 @@ namespace UnitsNet
             return new Power(value, PowerUnit.KilobritishThermalUnitPerHour);
         }
         /// <summary>
-        ///     Get Power from KilojoulesPerHour.
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.KilojoulePerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -468,7 +468,7 @@ namespace UnitsNet
             return new Power(value, PowerUnit.KilojoulePerHour);
         }
         /// <summary>
-        ///     Get Power from Kilowatts.
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Kilowatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -478,7 +478,7 @@ namespace UnitsNet
             return new Power(value, PowerUnit.Kilowatt);
         }
         /// <summary>
-        ///     Get Power from MechanicalHorsepower.
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.MechanicalHorsepower"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -488,7 +488,7 @@ namespace UnitsNet
             return new Power(value, PowerUnit.MechanicalHorsepower);
         }
         /// <summary>
-        ///     Get Power from MegajoulesPerHour.
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.MegajoulePerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -498,7 +498,7 @@ namespace UnitsNet
             return new Power(value, PowerUnit.MegajoulePerHour);
         }
         /// <summary>
-        ///     Get Power from Megawatts.
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Megawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -508,7 +508,7 @@ namespace UnitsNet
             return new Power(value, PowerUnit.Megawatt);
         }
         /// <summary>
-        ///     Get Power from MetricHorsepower.
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.MetricHorsepower"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -518,7 +518,7 @@ namespace UnitsNet
             return new Power(value, PowerUnit.MetricHorsepower);
         }
         /// <summary>
-        ///     Get Power from Microwatts.
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Microwatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -528,7 +528,7 @@ namespace UnitsNet
             return new Power(value, PowerUnit.Microwatt);
         }
         /// <summary>
-        ///     Get Power from MillijoulesPerHour.
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.MillijoulePerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -538,7 +538,7 @@ namespace UnitsNet
             return new Power(value, PowerUnit.MillijoulePerHour);
         }
         /// <summary>
-        ///     Get Power from Milliwatts.
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Milliwatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -548,7 +548,7 @@ namespace UnitsNet
             return new Power(value, PowerUnit.Milliwatt);
         }
         /// <summary>
-        ///     Get Power from Nanowatts.
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Nanowatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -558,7 +558,7 @@ namespace UnitsNet
             return new Power(value, PowerUnit.Nanowatt);
         }
         /// <summary>
-        ///     Get Power from Petawatts.
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Petawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -568,7 +568,7 @@ namespace UnitsNet
             return new Power(value, PowerUnit.Petawatt);
         }
         /// <summary>
-        ///     Get Power from Picowatts.
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Picowatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -578,7 +578,7 @@ namespace UnitsNet
             return new Power(value, PowerUnit.Picowatt);
         }
         /// <summary>
-        ///     Get Power from Terawatts.
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Terawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -588,7 +588,7 @@ namespace UnitsNet
             return new Power(value, PowerUnit.Terawatt);
         }
         /// <summary>
-        ///     Get Power from Watts.
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Watt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]

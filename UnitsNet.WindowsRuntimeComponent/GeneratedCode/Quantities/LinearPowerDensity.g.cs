@@ -167,127 +167,127 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get LinearPowerDensity in GigawattsPerCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.GigawattPerCentimeter"/>
         /// </summary>
         public double GigawattsPerCentimeter => As(LinearPowerDensityUnit.GigawattPerCentimeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity in GigawattsPerFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.GigawattPerFoot"/>
         /// </summary>
         public double GigawattsPerFoot => As(LinearPowerDensityUnit.GigawattPerFoot);
 
         /// <summary>
-        ///     Get LinearPowerDensity in GigawattsPerInch.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.GigawattPerInch"/>
         /// </summary>
         public double GigawattsPerInch => As(LinearPowerDensityUnit.GigawattPerInch);
 
         /// <summary>
-        ///     Get LinearPowerDensity in GigawattsPerMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.GigawattPerMeter"/>
         /// </summary>
         public double GigawattsPerMeter => As(LinearPowerDensityUnit.GigawattPerMeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity in GigawattsPerMillimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.GigawattPerMillimeter"/>
         /// </summary>
         public double GigawattsPerMillimeter => As(LinearPowerDensityUnit.GigawattPerMillimeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity in KilowattsPerCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.KilowattPerCentimeter"/>
         /// </summary>
         public double KilowattsPerCentimeter => As(LinearPowerDensityUnit.KilowattPerCentimeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity in KilowattsPerFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.KilowattPerFoot"/>
         /// </summary>
         public double KilowattsPerFoot => As(LinearPowerDensityUnit.KilowattPerFoot);
 
         /// <summary>
-        ///     Get LinearPowerDensity in KilowattsPerInch.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.KilowattPerInch"/>
         /// </summary>
         public double KilowattsPerInch => As(LinearPowerDensityUnit.KilowattPerInch);
 
         /// <summary>
-        ///     Get LinearPowerDensity in KilowattsPerMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.KilowattPerMeter"/>
         /// </summary>
         public double KilowattsPerMeter => As(LinearPowerDensityUnit.KilowattPerMeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity in KilowattsPerMillimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.KilowattPerMillimeter"/>
         /// </summary>
         public double KilowattsPerMillimeter => As(LinearPowerDensityUnit.KilowattPerMillimeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity in MegawattsPerCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.MegawattPerCentimeter"/>
         /// </summary>
         public double MegawattsPerCentimeter => As(LinearPowerDensityUnit.MegawattPerCentimeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity in MegawattsPerFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.MegawattPerFoot"/>
         /// </summary>
         public double MegawattsPerFoot => As(LinearPowerDensityUnit.MegawattPerFoot);
 
         /// <summary>
-        ///     Get LinearPowerDensity in MegawattsPerInch.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.MegawattPerInch"/>
         /// </summary>
         public double MegawattsPerInch => As(LinearPowerDensityUnit.MegawattPerInch);
 
         /// <summary>
-        ///     Get LinearPowerDensity in MegawattsPerMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.MegawattPerMeter"/>
         /// </summary>
         public double MegawattsPerMeter => As(LinearPowerDensityUnit.MegawattPerMeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity in MegawattsPerMillimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.MegawattPerMillimeter"/>
         /// </summary>
         public double MegawattsPerMillimeter => As(LinearPowerDensityUnit.MegawattPerMillimeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity in MilliwattsPerCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.MilliwattPerCentimeter"/>
         /// </summary>
         public double MilliwattsPerCentimeter => As(LinearPowerDensityUnit.MilliwattPerCentimeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity in MilliwattsPerFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.MilliwattPerFoot"/>
         /// </summary>
         public double MilliwattsPerFoot => As(LinearPowerDensityUnit.MilliwattPerFoot);
 
         /// <summary>
-        ///     Get LinearPowerDensity in MilliwattsPerInch.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.MilliwattPerInch"/>
         /// </summary>
         public double MilliwattsPerInch => As(LinearPowerDensityUnit.MilliwattPerInch);
 
         /// <summary>
-        ///     Get LinearPowerDensity in MilliwattsPerMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.MilliwattPerMeter"/>
         /// </summary>
         public double MilliwattsPerMeter => As(LinearPowerDensityUnit.MilliwattPerMeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity in MilliwattsPerMillimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.MilliwattPerMillimeter"/>
         /// </summary>
         public double MilliwattsPerMillimeter => As(LinearPowerDensityUnit.MilliwattPerMillimeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity in WattsPerCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.WattPerCentimeter"/>
         /// </summary>
         public double WattsPerCentimeter => As(LinearPowerDensityUnit.WattPerCentimeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity in WattsPerFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.WattPerFoot"/>
         /// </summary>
         public double WattsPerFoot => As(LinearPowerDensityUnit.WattPerFoot);
 
         /// <summary>
-        ///     Get LinearPowerDensity in WattsPerInch.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.WattPerInch"/>
         /// </summary>
         public double WattsPerInch => As(LinearPowerDensityUnit.WattPerInch);
 
         /// <summary>
-        ///     Get LinearPowerDensity in WattsPerMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.WattPerMeter"/>
         /// </summary>
         public double WattsPerMeter => As(LinearPowerDensityUnit.WattPerMeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity in WattsPerMillimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.WattPerMillimeter"/>
         /// </summary>
         public double WattsPerMillimeter => As(LinearPowerDensityUnit.WattPerMillimeter);
 
@@ -351,7 +351,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get LinearPowerDensity from GigawattsPerCentimeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.GigawattPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -361,7 +361,7 @@ namespace UnitsNet
             return new LinearPowerDensity(value, LinearPowerDensityUnit.GigawattPerCentimeter);
         }
         /// <summary>
-        ///     Get LinearPowerDensity from GigawattsPerFoot.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.GigawattPerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -371,7 +371,7 @@ namespace UnitsNet
             return new LinearPowerDensity(value, LinearPowerDensityUnit.GigawattPerFoot);
         }
         /// <summary>
-        ///     Get LinearPowerDensity from GigawattsPerInch.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.GigawattPerInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -381,7 +381,7 @@ namespace UnitsNet
             return new LinearPowerDensity(value, LinearPowerDensityUnit.GigawattPerInch);
         }
         /// <summary>
-        ///     Get LinearPowerDensity from GigawattsPerMeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.GigawattPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -391,7 +391,7 @@ namespace UnitsNet
             return new LinearPowerDensity(value, LinearPowerDensityUnit.GigawattPerMeter);
         }
         /// <summary>
-        ///     Get LinearPowerDensity from GigawattsPerMillimeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.GigawattPerMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -401,7 +401,7 @@ namespace UnitsNet
             return new LinearPowerDensity(value, LinearPowerDensityUnit.GigawattPerMillimeter);
         }
         /// <summary>
-        ///     Get LinearPowerDensity from KilowattsPerCentimeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.KilowattPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -411,7 +411,7 @@ namespace UnitsNet
             return new LinearPowerDensity(value, LinearPowerDensityUnit.KilowattPerCentimeter);
         }
         /// <summary>
-        ///     Get LinearPowerDensity from KilowattsPerFoot.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.KilowattPerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -421,7 +421,7 @@ namespace UnitsNet
             return new LinearPowerDensity(value, LinearPowerDensityUnit.KilowattPerFoot);
         }
         /// <summary>
-        ///     Get LinearPowerDensity from KilowattsPerInch.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.KilowattPerInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -431,7 +431,7 @@ namespace UnitsNet
             return new LinearPowerDensity(value, LinearPowerDensityUnit.KilowattPerInch);
         }
         /// <summary>
-        ///     Get LinearPowerDensity from KilowattsPerMeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.KilowattPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -441,7 +441,7 @@ namespace UnitsNet
             return new LinearPowerDensity(value, LinearPowerDensityUnit.KilowattPerMeter);
         }
         /// <summary>
-        ///     Get LinearPowerDensity from KilowattsPerMillimeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.KilowattPerMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -451,7 +451,7 @@ namespace UnitsNet
             return new LinearPowerDensity(value, LinearPowerDensityUnit.KilowattPerMillimeter);
         }
         /// <summary>
-        ///     Get LinearPowerDensity from MegawattsPerCentimeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MegawattPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -461,7 +461,7 @@ namespace UnitsNet
             return new LinearPowerDensity(value, LinearPowerDensityUnit.MegawattPerCentimeter);
         }
         /// <summary>
-        ///     Get LinearPowerDensity from MegawattsPerFoot.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MegawattPerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -471,7 +471,7 @@ namespace UnitsNet
             return new LinearPowerDensity(value, LinearPowerDensityUnit.MegawattPerFoot);
         }
         /// <summary>
-        ///     Get LinearPowerDensity from MegawattsPerInch.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MegawattPerInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -481,7 +481,7 @@ namespace UnitsNet
             return new LinearPowerDensity(value, LinearPowerDensityUnit.MegawattPerInch);
         }
         /// <summary>
-        ///     Get LinearPowerDensity from MegawattsPerMeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MegawattPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -491,7 +491,7 @@ namespace UnitsNet
             return new LinearPowerDensity(value, LinearPowerDensityUnit.MegawattPerMeter);
         }
         /// <summary>
-        ///     Get LinearPowerDensity from MegawattsPerMillimeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MegawattPerMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -501,7 +501,7 @@ namespace UnitsNet
             return new LinearPowerDensity(value, LinearPowerDensityUnit.MegawattPerMillimeter);
         }
         /// <summary>
-        ///     Get LinearPowerDensity from MilliwattsPerCentimeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MilliwattPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -511,7 +511,7 @@ namespace UnitsNet
             return new LinearPowerDensity(value, LinearPowerDensityUnit.MilliwattPerCentimeter);
         }
         /// <summary>
-        ///     Get LinearPowerDensity from MilliwattsPerFoot.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MilliwattPerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -521,7 +521,7 @@ namespace UnitsNet
             return new LinearPowerDensity(value, LinearPowerDensityUnit.MilliwattPerFoot);
         }
         /// <summary>
-        ///     Get LinearPowerDensity from MilliwattsPerInch.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MilliwattPerInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -531,7 +531,7 @@ namespace UnitsNet
             return new LinearPowerDensity(value, LinearPowerDensityUnit.MilliwattPerInch);
         }
         /// <summary>
-        ///     Get LinearPowerDensity from MilliwattsPerMeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MilliwattPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -541,7 +541,7 @@ namespace UnitsNet
             return new LinearPowerDensity(value, LinearPowerDensityUnit.MilliwattPerMeter);
         }
         /// <summary>
-        ///     Get LinearPowerDensity from MilliwattsPerMillimeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MilliwattPerMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -551,7 +551,7 @@ namespace UnitsNet
             return new LinearPowerDensity(value, LinearPowerDensityUnit.MilliwattPerMillimeter);
         }
         /// <summary>
-        ///     Get LinearPowerDensity from WattsPerCentimeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.WattPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -561,7 +561,7 @@ namespace UnitsNet
             return new LinearPowerDensity(value, LinearPowerDensityUnit.WattPerCentimeter);
         }
         /// <summary>
-        ///     Get LinearPowerDensity from WattsPerFoot.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.WattPerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -571,7 +571,7 @@ namespace UnitsNet
             return new LinearPowerDensity(value, LinearPowerDensityUnit.WattPerFoot);
         }
         /// <summary>
-        ///     Get LinearPowerDensity from WattsPerInch.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.WattPerInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -581,7 +581,7 @@ namespace UnitsNet
             return new LinearPowerDensity(value, LinearPowerDensityUnit.WattPerInch);
         }
         /// <summary>
-        ///     Get LinearPowerDensity from WattsPerMeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.WattPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -591,7 +591,7 @@ namespace UnitsNet
             return new LinearPowerDensity(value, LinearPowerDensityUnit.WattPerMeter);
         }
         /// <summary>
-        ///     Get LinearPowerDensity from WattsPerMillimeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.WattPerMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]

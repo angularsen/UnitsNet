@@ -189,7 +189,7 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get AreaDensity in KilogramsPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaDensityUnit.KilogramPerSquareMeter"/>
         /// </summary>
         public double KilogramsPerSquareMeter => As(AreaDensityUnit.KilogramPerSquareMeter);
 
@@ -241,7 +241,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get AreaDensity from KilogramsPerSquareMeter.
+        ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.KilogramPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AreaDensity FromKilogramsPerSquareMeter(QuantityValue kilogramspersquaremeter)

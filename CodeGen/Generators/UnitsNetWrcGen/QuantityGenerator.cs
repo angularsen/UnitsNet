@@ -264,7 +264,7 @@ namespace UnitsNet
 
                 Writer.WL($@"
         /// <summary>
-        ///     Get {_quantity.Name} in {unit.PluralName}.
+        ///     Gets a <see cref=""double""/> value of this quantity converted into <see cref=""{_unitEnumName}.{unit.SingularName}""/>
         /// </summary>");
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
                 Writer.WL($@"
@@ -342,7 +342,7 @@ namespace UnitsNet
                 var valueParamName = unit.PluralName.ToLowerInvariant();
                 Writer.WL($@"
         /// <summary>
-        ///     Get {_quantity.Name} from {unit.PluralName}.
+        ///     Creates a <see cref=""{_quantity.Name}""/> from <see cref=""{_unitEnumName}.{unit.SingularName}""/>.
         /// </summary>
         /// <exception cref=""ArgumentException"">If value is NaN or Infinity.</exception>");
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));

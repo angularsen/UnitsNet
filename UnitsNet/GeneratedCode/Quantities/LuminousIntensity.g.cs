@@ -192,7 +192,7 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get LuminousIntensity in Candela.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminousIntensityUnit.Candela"/>
         /// </summary>
         public double Candela => As(LuminousIntensityUnit.Candela);
 
@@ -244,7 +244,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get LuminousIntensity from Candela.
+        ///     Creates a <see cref="LuminousIntensity"/> from <see cref="LuminousIntensityUnit.Candela"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LuminousIntensity FromCandela(QuantityValue candela)

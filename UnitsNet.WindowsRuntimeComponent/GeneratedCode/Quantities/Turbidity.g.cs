@@ -167,7 +167,7 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Turbidity in NTU.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TurbidityUnit.NTU"/>
         /// </summary>
         public double NTU => As(TurbidityUnit.NTU);
 
@@ -207,7 +207,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Turbidity from NTU.
+        ///     Creates a <see cref="Turbidity"/> from <see cref="TurbidityUnit.NTU"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]

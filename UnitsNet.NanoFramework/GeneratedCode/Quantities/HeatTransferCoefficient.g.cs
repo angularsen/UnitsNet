@@ -78,17 +78,17 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get HeatTransferCoefficient in BtusPerSquareFootDegreeFahrenheit.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit"/>
         /// </summary>
         public double BtusPerSquareFootDegreeFahrenheit => As(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit);
 
         /// <summary>
-        ///     Get HeatTransferCoefficient in WattsPerSquareMeterCelsius.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatTransferCoefficientUnit.WattPerSquareMeterCelsius"/>
         /// </summary>
         public double WattsPerSquareMeterCelsius => As(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius);
 
         /// <summary>
-        ///     Get HeatTransferCoefficient in WattsPerSquareMeterKelvin.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatTransferCoefficientUnit.WattPerSquareMeterKelvin"/>
         /// </summary>
         public double WattsPerSquareMeterKelvin => As(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin);
 
@@ -97,19 +97,19 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get HeatTransferCoefficient from BtusPerSquareFootDegreeFahrenheit.
+        ///     Creates a <see cref="HeatTransferCoefficient"/> from <see cref="HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatTransferCoefficient FromBtusPerSquareFootDegreeFahrenheit(double btuspersquarefootdegreefahrenheit) => new HeatTransferCoefficient(btuspersquarefootdegreefahrenheit, HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit);
 
         /// <summary>
-        ///     Get HeatTransferCoefficient from WattsPerSquareMeterCelsius.
+        ///     Creates a <see cref="HeatTransferCoefficient"/> from <see cref="HeatTransferCoefficientUnit.WattPerSquareMeterCelsius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatTransferCoefficient FromWattsPerSquareMeterCelsius(double wattspersquaremetercelsius) => new HeatTransferCoefficient(wattspersquaremetercelsius, HeatTransferCoefficientUnit.WattPerSquareMeterCelsius);
 
         /// <summary>
-        ///     Get HeatTransferCoefficient from WattsPerSquareMeterKelvin.
+        ///     Creates a <see cref="HeatTransferCoefficient"/> from <see cref="HeatTransferCoefficientUnit.WattPerSquareMeterKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatTransferCoefficient FromWattsPerSquareMeterKelvin(double wattspersquaremeterkelvin) => new HeatTransferCoefficient(wattspersquaremeterkelvin, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin);

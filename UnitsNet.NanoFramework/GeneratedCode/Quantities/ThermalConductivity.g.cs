@@ -81,12 +81,12 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ThermalConductivity in BtusPerHourFootFahrenheit.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalConductivityUnit.BtuPerHourFootFahrenheit"/>
         /// </summary>
         public double BtusPerHourFootFahrenheit => As(ThermalConductivityUnit.BtuPerHourFootFahrenheit);
 
         /// <summary>
-        ///     Get ThermalConductivity in WattsPerMeterKelvin.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalConductivityUnit.WattPerMeterKelvin"/>
         /// </summary>
         public double WattsPerMeterKelvin => As(ThermalConductivityUnit.WattPerMeterKelvin);
 
@@ -95,13 +95,13 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ThermalConductivity from BtusPerHourFootFahrenheit.
+        ///     Creates a <see cref="ThermalConductivity"/> from <see cref="ThermalConductivityUnit.BtuPerHourFootFahrenheit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ThermalConductivity FromBtusPerHourFootFahrenheit(double btusperhourfootfahrenheit) => new ThermalConductivity(btusperhourfootfahrenheit, ThermalConductivityUnit.BtuPerHourFootFahrenheit);
 
         /// <summary>
-        ///     Get ThermalConductivity from WattsPerMeterKelvin.
+        ///     Creates a <see cref="ThermalConductivity"/> from <see cref="ThermalConductivityUnit.WattPerMeterKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ThermalConductivity FromWattsPerMeterKelvin(double wattspermeterkelvin) => new ThermalConductivity(wattspermeterkelvin, ThermalConductivityUnit.WattPerMeterKelvin);

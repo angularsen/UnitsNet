@@ -191,17 +191,17 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get CoefficientOfThermalExpansion in InverseDegreeCelsius.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.InverseDegreeCelsius"/>
         /// </summary>
         public double InverseDegreeCelsius => As(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius);
 
         /// <summary>
-        ///     Get CoefficientOfThermalExpansion in InverseDegreeFahrenheit.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit"/>
         /// </summary>
         public double InverseDegreeFahrenheit => As(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit);
 
         /// <summary>
-        ///     Get CoefficientOfThermalExpansion in InverseKelvin.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.InverseKelvin"/>
         /// </summary>
         public double InverseKelvin => As(CoefficientOfThermalExpansionUnit.InverseKelvin);
 
@@ -259,7 +259,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get CoefficientOfThermalExpansion from InverseDegreeCelsius.
+        ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.InverseDegreeCelsius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static CoefficientOfThermalExpansion FromInverseDegreeCelsius(QuantityValue inversedegreecelsius)
@@ -268,7 +268,7 @@ namespace UnitsNet
             return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius);
         }
         /// <summary>
-        ///     Get CoefficientOfThermalExpansion from InverseDegreeFahrenheit.
+        ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static CoefficientOfThermalExpansion FromInverseDegreeFahrenheit(QuantityValue inversedegreefahrenheit)
@@ -277,7 +277,7 @@ namespace UnitsNet
             return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit);
         }
         /// <summary>
-        ///     Get CoefficientOfThermalExpansion from InverseKelvin.
+        ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.InverseKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static CoefficientOfThermalExpansion FromInverseKelvin(QuantityValue inversekelvin)

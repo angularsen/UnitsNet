@@ -164,27 +164,27 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricPotentialDc in KilovoltsDc.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialDcUnit.KilovoltDc"/>
         /// </summary>
         public double KilovoltsDc => As(ElectricPotentialDcUnit.KilovoltDc);
 
         /// <summary>
-        ///     Get ElectricPotentialDc in MegavoltsDc.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialDcUnit.MegavoltDc"/>
         /// </summary>
         public double MegavoltsDc => As(ElectricPotentialDcUnit.MegavoltDc);
 
         /// <summary>
-        ///     Get ElectricPotentialDc in MicrovoltsDc.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialDcUnit.MicrovoltDc"/>
         /// </summary>
         public double MicrovoltsDc => As(ElectricPotentialDcUnit.MicrovoltDc);
 
         /// <summary>
-        ///     Get ElectricPotentialDc in MillivoltsDc.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialDcUnit.MillivoltDc"/>
         /// </summary>
         public double MillivoltsDc => As(ElectricPotentialDcUnit.MillivoltDc);
 
         /// <summary>
-        ///     Get ElectricPotentialDc in VoltsDc.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialDcUnit.VoltDc"/>
         /// </summary>
         public double VoltsDc => As(ElectricPotentialDcUnit.VoltDc);
 
@@ -228,7 +228,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricPotentialDc from KilovoltsDc.
+        ///     Creates a <see cref="ElectricPotentialDc"/> from <see cref="ElectricPotentialDcUnit.KilovoltDc"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -238,7 +238,7 @@ namespace UnitsNet
             return new ElectricPotentialDc(value, ElectricPotentialDcUnit.KilovoltDc);
         }
         /// <summary>
-        ///     Get ElectricPotentialDc from MegavoltsDc.
+        ///     Creates a <see cref="ElectricPotentialDc"/> from <see cref="ElectricPotentialDcUnit.MegavoltDc"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -248,7 +248,7 @@ namespace UnitsNet
             return new ElectricPotentialDc(value, ElectricPotentialDcUnit.MegavoltDc);
         }
         /// <summary>
-        ///     Get ElectricPotentialDc from MicrovoltsDc.
+        ///     Creates a <see cref="ElectricPotentialDc"/> from <see cref="ElectricPotentialDcUnit.MicrovoltDc"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -258,7 +258,7 @@ namespace UnitsNet
             return new ElectricPotentialDc(value, ElectricPotentialDcUnit.MicrovoltDc);
         }
         /// <summary>
-        ///     Get ElectricPotentialDc from MillivoltsDc.
+        ///     Creates a <see cref="ElectricPotentialDc"/> from <see cref="ElectricPotentialDcUnit.MillivoltDc"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -268,7 +268,7 @@ namespace UnitsNet
             return new ElectricPotentialDc(value, ElectricPotentialDcUnit.MillivoltDc);
         }
         /// <summary>
-        ///     Get ElectricPotentialDc from VoltsDc.
+        ///     Creates a <see cref="ElectricPotentialDc"/> from <see cref="ElectricPotentialDcUnit.VoltDc"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]

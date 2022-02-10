@@ -164,47 +164,47 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get TemperatureDelta in DegreesCelsius.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureDeltaUnit.DegreeCelsius"/>
         /// </summary>
         public double DegreesCelsius => As(TemperatureDeltaUnit.DegreeCelsius);
 
         /// <summary>
-        ///     Get TemperatureDelta in DegreesDelisle.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureDeltaUnit.DegreeDelisle"/>
         /// </summary>
         public double DegreesDelisle => As(TemperatureDeltaUnit.DegreeDelisle);
 
         /// <summary>
-        ///     Get TemperatureDelta in DegreesFahrenheit.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureDeltaUnit.DegreeFahrenheit"/>
         /// </summary>
         public double DegreesFahrenheit => As(TemperatureDeltaUnit.DegreeFahrenheit);
 
         /// <summary>
-        ///     Get TemperatureDelta in DegreesNewton.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureDeltaUnit.DegreeNewton"/>
         /// </summary>
         public double DegreesNewton => As(TemperatureDeltaUnit.DegreeNewton);
 
         /// <summary>
-        ///     Get TemperatureDelta in DegreesRankine.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureDeltaUnit.DegreeRankine"/>
         /// </summary>
         public double DegreesRankine => As(TemperatureDeltaUnit.DegreeRankine);
 
         /// <summary>
-        ///     Get TemperatureDelta in DegreesReaumur.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureDeltaUnit.DegreeReaumur"/>
         /// </summary>
         public double DegreesReaumur => As(TemperatureDeltaUnit.DegreeReaumur);
 
         /// <summary>
-        ///     Get TemperatureDelta in DegreesRoemer.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureDeltaUnit.DegreeRoemer"/>
         /// </summary>
         public double DegreesRoemer => As(TemperatureDeltaUnit.DegreeRoemer);
 
         /// <summary>
-        ///     Get TemperatureDelta in Kelvins.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureDeltaUnit.Kelvin"/>
         /// </summary>
         public double Kelvins => As(TemperatureDeltaUnit.Kelvin);
 
         /// <summary>
-        ///     Get TemperatureDelta in MillidegreesCelsius.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureDeltaUnit.MillidegreeCelsius"/>
         /// </summary>
         public double MillidegreesCelsius => As(TemperatureDeltaUnit.MillidegreeCelsius);
 
@@ -252,7 +252,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get TemperatureDelta from DegreesCelsius.
+        ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.DegreeCelsius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -262,7 +262,7 @@ namespace UnitsNet
             return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeCelsius);
         }
         /// <summary>
-        ///     Get TemperatureDelta from DegreesDelisle.
+        ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.DegreeDelisle"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -272,7 +272,7 @@ namespace UnitsNet
             return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeDelisle);
         }
         /// <summary>
-        ///     Get TemperatureDelta from DegreesFahrenheit.
+        ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.DegreeFahrenheit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -282,7 +282,7 @@ namespace UnitsNet
             return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeFahrenheit);
         }
         /// <summary>
-        ///     Get TemperatureDelta from DegreesNewton.
+        ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.DegreeNewton"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -292,7 +292,7 @@ namespace UnitsNet
             return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeNewton);
         }
         /// <summary>
-        ///     Get TemperatureDelta from DegreesRankine.
+        ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.DegreeRankine"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -302,7 +302,7 @@ namespace UnitsNet
             return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeRankine);
         }
         /// <summary>
-        ///     Get TemperatureDelta from DegreesReaumur.
+        ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.DegreeReaumur"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -312,7 +312,7 @@ namespace UnitsNet
             return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeReaumur);
         }
         /// <summary>
-        ///     Get TemperatureDelta from DegreesRoemer.
+        ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.DegreeRoemer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -322,7 +322,7 @@ namespace UnitsNet
             return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeRoemer);
         }
         /// <summary>
-        ///     Get TemperatureDelta from Kelvins.
+        ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.Kelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -332,7 +332,7 @@ namespace UnitsNet
             return new TemperatureDelta(value, TemperatureDeltaUnit.Kelvin);
         }
         /// <summary>
-        ///     Get TemperatureDelta from MillidegreesCelsius.
+        ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.MillidegreeCelsius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]

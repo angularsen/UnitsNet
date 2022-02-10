@@ -167,42 +167,42 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Molarity in CentimolesPerLiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.CentimolePerLiter"/>
         /// </summary>
         public double CentimolesPerLiter => As(MolarityUnit.CentimolePerLiter);
 
         /// <summary>
-        ///     Get Molarity in DecimolesPerLiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.DecimolePerLiter"/>
         /// </summary>
         public double DecimolesPerLiter => As(MolarityUnit.DecimolePerLiter);
 
         /// <summary>
-        ///     Get Molarity in MicromolesPerLiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.MicromolePerLiter"/>
         /// </summary>
         public double MicromolesPerLiter => As(MolarityUnit.MicromolePerLiter);
 
         /// <summary>
-        ///     Get Molarity in MillimolesPerLiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.MillimolePerLiter"/>
         /// </summary>
         public double MillimolesPerLiter => As(MolarityUnit.MillimolePerLiter);
 
         /// <summary>
-        ///     Get Molarity in MolesPerCubicMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.MolePerCubicMeter"/>
         /// </summary>
         public double MolesPerCubicMeter => As(MolarityUnit.MolePerCubicMeter);
 
         /// <summary>
-        ///     Get Molarity in MolesPerLiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.MolePerLiter"/>
         /// </summary>
         public double MolesPerLiter => As(MolarityUnit.MolePerLiter);
 
         /// <summary>
-        ///     Get Molarity in NanomolesPerLiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.NanomolePerLiter"/>
         /// </summary>
         public double NanomolesPerLiter => As(MolarityUnit.NanomolePerLiter);
 
         /// <summary>
-        ///     Get Molarity in PicomolesPerLiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.PicomolePerLiter"/>
         /// </summary>
         public double PicomolesPerLiter => As(MolarityUnit.PicomolePerLiter);
 
@@ -257,7 +257,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Molarity from CentimolesPerLiter.
+        ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.CentimolePerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -267,7 +267,7 @@ namespace UnitsNet
             return new Molarity(value, MolarityUnit.CentimolePerLiter);
         }
         /// <summary>
-        ///     Get Molarity from DecimolesPerLiter.
+        ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.DecimolePerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -277,7 +277,7 @@ namespace UnitsNet
             return new Molarity(value, MolarityUnit.DecimolePerLiter);
         }
         /// <summary>
-        ///     Get Molarity from MicromolesPerLiter.
+        ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.MicromolePerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -287,7 +287,7 @@ namespace UnitsNet
             return new Molarity(value, MolarityUnit.MicromolePerLiter);
         }
         /// <summary>
-        ///     Get Molarity from MillimolesPerLiter.
+        ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.MillimolePerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -297,7 +297,7 @@ namespace UnitsNet
             return new Molarity(value, MolarityUnit.MillimolePerLiter);
         }
         /// <summary>
-        ///     Get Molarity from MolesPerCubicMeter.
+        ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.MolePerCubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -307,7 +307,7 @@ namespace UnitsNet
             return new Molarity(value, MolarityUnit.MolePerCubicMeter);
         }
         /// <summary>
-        ///     Get Molarity from MolesPerLiter.
+        ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.MolePerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -317,7 +317,7 @@ namespace UnitsNet
             return new Molarity(value, MolarityUnit.MolePerLiter);
         }
         /// <summary>
-        ///     Get Molarity from NanomolesPerLiter.
+        ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.NanomolePerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -327,7 +327,7 @@ namespace UnitsNet
             return new Molarity(value, MolarityUnit.NanomolePerLiter);
         }
         /// <summary>
-        ///     Get Molarity from PicomolesPerLiter.
+        ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.PicomolePerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]

@@ -78,72 +78,72 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Area in Acres.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.Acre"/>
         /// </summary>
         public double Acres => As(AreaUnit.Acre);
 
         /// <summary>
-        ///     Get Area in Hectares.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.Hectare"/>
         /// </summary>
         public double Hectares => As(AreaUnit.Hectare);
 
         /// <summary>
-        ///     Get Area in SquareCentimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareCentimeter"/>
         /// </summary>
         public double SquareCentimeters => As(AreaUnit.SquareCentimeter);
 
         /// <summary>
-        ///     Get Area in SquareDecimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareDecimeter"/>
         /// </summary>
         public double SquareDecimeters => As(AreaUnit.SquareDecimeter);
 
         /// <summary>
-        ///     Get Area in SquareFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareFoot"/>
         /// </summary>
         public double SquareFeet => As(AreaUnit.SquareFoot);
 
         /// <summary>
-        ///     Get Area in SquareInches.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareInch"/>
         /// </summary>
         public double SquareInches => As(AreaUnit.SquareInch);
 
         /// <summary>
-        ///     Get Area in SquareKilometers.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareKilometer"/>
         /// </summary>
         public double SquareKilometers => As(AreaUnit.SquareKilometer);
 
         /// <summary>
-        ///     Get Area in SquareMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareMeter"/>
         /// </summary>
         public double SquareMeters => As(AreaUnit.SquareMeter);
 
         /// <summary>
-        ///     Get Area in SquareMicrometers.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareMicrometer"/>
         /// </summary>
         public double SquareMicrometers => As(AreaUnit.SquareMicrometer);
 
         /// <summary>
-        ///     Get Area in SquareMiles.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareMile"/>
         /// </summary>
         public double SquareMiles => As(AreaUnit.SquareMile);
 
         /// <summary>
-        ///     Get Area in SquareMillimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareMillimeter"/>
         /// </summary>
         public double SquareMillimeters => As(AreaUnit.SquareMillimeter);
 
         /// <summary>
-        ///     Get Area in SquareNauticalMiles.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareNauticalMile"/>
         /// </summary>
         public double SquareNauticalMiles => As(AreaUnit.SquareNauticalMile);
 
         /// <summary>
-        ///     Get Area in SquareYards.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareYard"/>
         /// </summary>
         public double SquareYards => As(AreaUnit.SquareYard);
 
         /// <summary>
-        ///     Get Area in UsSurveySquareFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.UsSurveySquareFoot"/>
         /// </summary>
         public double UsSurveySquareFeet => As(AreaUnit.UsSurveySquareFoot);
 
@@ -152,85 +152,85 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Area from Acres.
+        ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.Acre"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Area FromAcres(double acres) => new Area(acres, AreaUnit.Acre);
 
         /// <summary>
-        ///     Get Area from Hectares.
+        ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.Hectare"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Area FromHectares(double hectares) => new Area(hectares, AreaUnit.Hectare);
 
         /// <summary>
-        ///     Get Area from SquareCentimeters.
+        ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Area FromSquareCentimeters(double squarecentimeters) => new Area(squarecentimeters, AreaUnit.SquareCentimeter);
 
         /// <summary>
-        ///     Get Area from SquareDecimeters.
+        ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareDecimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Area FromSquareDecimeters(double squaredecimeters) => new Area(squaredecimeters, AreaUnit.SquareDecimeter);
 
         /// <summary>
-        ///     Get Area from SquareFeet.
+        ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Area FromSquareFeet(double squarefeet) => new Area(squarefeet, AreaUnit.SquareFoot);
 
         /// <summary>
-        ///     Get Area from SquareInches.
+        ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Area FromSquareInches(double squareinches) => new Area(squareinches, AreaUnit.SquareInch);
 
         /// <summary>
-        ///     Get Area from SquareKilometers.
+        ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareKilometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Area FromSquareKilometers(double squarekilometers) => new Area(squarekilometers, AreaUnit.SquareKilometer);
 
         /// <summary>
-        ///     Get Area from SquareMeters.
+        ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Area FromSquareMeters(double squaremeters) => new Area(squaremeters, AreaUnit.SquareMeter);
 
         /// <summary>
-        ///     Get Area from SquareMicrometers.
+        ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareMicrometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Area FromSquareMicrometers(double squaremicrometers) => new Area(squaremicrometers, AreaUnit.SquareMicrometer);
 
         /// <summary>
-        ///     Get Area from SquareMiles.
+        ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareMile"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Area FromSquareMiles(double squaremiles) => new Area(squaremiles, AreaUnit.SquareMile);
 
         /// <summary>
-        ///     Get Area from SquareMillimeters.
+        ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Area FromSquareMillimeters(double squaremillimeters) => new Area(squaremillimeters, AreaUnit.SquareMillimeter);
 
         /// <summary>
-        ///     Get Area from SquareNauticalMiles.
+        ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareNauticalMile"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Area FromSquareNauticalMiles(double squarenauticalmiles) => new Area(squarenauticalmiles, AreaUnit.SquareNauticalMile);
 
         /// <summary>
-        ///     Get Area from SquareYards.
+        ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareYard"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Area FromSquareYards(double squareyards) => new Area(squareyards, AreaUnit.SquareYard);
 
         /// <summary>
-        ///     Get Area from UsSurveySquareFeet.
+        ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.UsSurveySquareFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Area FromUsSurveySquareFeet(double ussurveysquarefeet) => new Area(ussurveysquarefeet, AreaUnit.UsSurveySquareFoot);

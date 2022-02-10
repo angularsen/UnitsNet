@@ -195,22 +195,22 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricInductance in Henries.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Henry"/>
         /// </summary>
         public double Henries => As(ElectricInductanceUnit.Henry);
 
         /// <summary>
-        ///     Get ElectricInductance in Microhenries.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Microhenry"/>
         /// </summary>
         public double Microhenries => As(ElectricInductanceUnit.Microhenry);
 
         /// <summary>
-        ///     Get ElectricInductance in Millihenries.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Millihenry"/>
         /// </summary>
         public double Millihenries => As(ElectricInductanceUnit.Millihenry);
 
         /// <summary>
-        ///     Get ElectricInductance in Nanohenries.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Nanohenry"/>
         /// </summary>
         public double Nanohenries => As(ElectricInductanceUnit.Nanohenry);
 
@@ -271,7 +271,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricInductance from Henries.
+        ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Henry"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricInductance FromHenries(QuantityValue henries)
@@ -280,7 +280,7 @@ namespace UnitsNet
             return new ElectricInductance(value, ElectricInductanceUnit.Henry);
         }
         /// <summary>
-        ///     Get ElectricInductance from Microhenries.
+        ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Microhenry"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricInductance FromMicrohenries(QuantityValue microhenries)
@@ -289,7 +289,7 @@ namespace UnitsNet
             return new ElectricInductance(value, ElectricInductanceUnit.Microhenry);
         }
         /// <summary>
-        ///     Get ElectricInductance from Millihenries.
+        ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Millihenry"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricInductance FromMillihenries(QuantityValue millihenries)
@@ -298,7 +298,7 @@ namespace UnitsNet
             return new ElectricInductance(value, ElectricInductanceUnit.Millihenry);
         }
         /// <summary>
-        ///     Get ElectricInductance from Nanohenries.
+        ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Nanohenry"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricInductance FromNanohenries(QuantityValue nanohenries)

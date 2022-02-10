@@ -164,77 +164,77 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Force in Decanewtons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Decanewton"/>
         /// </summary>
         public double Decanewtons => As(ForceUnit.Decanewton);
 
         /// <summary>
-        ///     Get Force in Dyne.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Dyn"/>
         /// </summary>
         public double Dyne => As(ForceUnit.Dyn);
 
         /// <summary>
-        ///     Get Force in KilogramsForce.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.KilogramForce"/>
         /// </summary>
         public double KilogramsForce => As(ForceUnit.KilogramForce);
 
         /// <summary>
-        ///     Get Force in Kilonewtons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Kilonewton"/>
         /// </summary>
         public double Kilonewtons => As(ForceUnit.Kilonewton);
 
         /// <summary>
-        ///     Get Force in KiloPonds.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.KiloPond"/>
         /// </summary>
         public double KiloPonds => As(ForceUnit.KiloPond);
 
         /// <summary>
-        ///     Get Force in KilopoundsForce.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.KilopoundForce"/>
         /// </summary>
         public double KilopoundsForce => As(ForceUnit.KilopoundForce);
 
         /// <summary>
-        ///     Get Force in Meganewtons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Meganewton"/>
         /// </summary>
         public double Meganewtons => As(ForceUnit.Meganewton);
 
         /// <summary>
-        ///     Get Force in Micronewtons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Micronewton"/>
         /// </summary>
         public double Micronewtons => As(ForceUnit.Micronewton);
 
         /// <summary>
-        ///     Get Force in Millinewtons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Millinewton"/>
         /// </summary>
         public double Millinewtons => As(ForceUnit.Millinewton);
 
         /// <summary>
-        ///     Get Force in Newtons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Newton"/>
         /// </summary>
         public double Newtons => As(ForceUnit.Newton);
 
         /// <summary>
-        ///     Get Force in OunceForce.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.OunceForce"/>
         /// </summary>
         public double OunceForce => As(ForceUnit.OunceForce);
 
         /// <summary>
-        ///     Get Force in Poundals.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Poundal"/>
         /// </summary>
         public double Poundals => As(ForceUnit.Poundal);
 
         /// <summary>
-        ///     Get Force in PoundsForce.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.PoundForce"/>
         /// </summary>
         public double PoundsForce => As(ForceUnit.PoundForce);
 
         /// <summary>
-        ///     Get Force in ShortTonsForce.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.ShortTonForce"/>
         /// </summary>
         public double ShortTonsForce => As(ForceUnit.ShortTonForce);
 
         /// <summary>
-        ///     Get Force in TonnesForce.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.TonneForce"/>
         /// </summary>
         public double TonnesForce => As(ForceUnit.TonneForce);
 
@@ -301,7 +301,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Force from Decanewtons.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Decanewton"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -311,7 +311,7 @@ namespace UnitsNet
             return new Force(value, ForceUnit.Decanewton);
         }
         /// <summary>
-        ///     Get Force from Dyne.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Dyn"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -321,7 +321,7 @@ namespace UnitsNet
             return new Force(value, ForceUnit.Dyn);
         }
         /// <summary>
-        ///     Get Force from KilogramsForce.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.KilogramForce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -331,7 +331,7 @@ namespace UnitsNet
             return new Force(value, ForceUnit.KilogramForce);
         }
         /// <summary>
-        ///     Get Force from Kilonewtons.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Kilonewton"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -341,7 +341,7 @@ namespace UnitsNet
             return new Force(value, ForceUnit.Kilonewton);
         }
         /// <summary>
-        ///     Get Force from KiloPonds.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.KiloPond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -351,7 +351,7 @@ namespace UnitsNet
             return new Force(value, ForceUnit.KiloPond);
         }
         /// <summary>
-        ///     Get Force from KilopoundsForce.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.KilopoundForce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -361,7 +361,7 @@ namespace UnitsNet
             return new Force(value, ForceUnit.KilopoundForce);
         }
         /// <summary>
-        ///     Get Force from Meganewtons.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Meganewton"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -371,7 +371,7 @@ namespace UnitsNet
             return new Force(value, ForceUnit.Meganewton);
         }
         /// <summary>
-        ///     Get Force from Micronewtons.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Micronewton"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -381,7 +381,7 @@ namespace UnitsNet
             return new Force(value, ForceUnit.Micronewton);
         }
         /// <summary>
-        ///     Get Force from Millinewtons.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Millinewton"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -391,7 +391,7 @@ namespace UnitsNet
             return new Force(value, ForceUnit.Millinewton);
         }
         /// <summary>
-        ///     Get Force from Newtons.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Newton"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -401,7 +401,7 @@ namespace UnitsNet
             return new Force(value, ForceUnit.Newton);
         }
         /// <summary>
-        ///     Get Force from OunceForce.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.OunceForce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -411,7 +411,7 @@ namespace UnitsNet
             return new Force(value, ForceUnit.OunceForce);
         }
         /// <summary>
-        ///     Get Force from Poundals.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Poundal"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -421,7 +421,7 @@ namespace UnitsNet
             return new Force(value, ForceUnit.Poundal);
         }
         /// <summary>
-        ///     Get Force from PoundsForce.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.PoundForce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -431,7 +431,7 @@ namespace UnitsNet
             return new Force(value, ForceUnit.PoundForce);
         }
         /// <summary>
-        ///     Get Force from ShortTonsForce.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.ShortTonForce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -441,7 +441,7 @@ namespace UnitsNet
             return new Force(value, ForceUnit.ShortTonForce);
         }
         /// <summary>
-        ///     Get Force from TonnesForce.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.TonneForce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]

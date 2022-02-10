@@ -219,132 +219,132 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Information in Bits.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Bit"/>
         /// </summary>
         public double Bits => As(InformationUnit.Bit);
 
         /// <summary>
-        ///     Get Information in Bytes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Byte"/>
         /// </summary>
         public double Bytes => As(InformationUnit.Byte);
 
         /// <summary>
-        ///     Get Information in Exabits.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Exabit"/>
         /// </summary>
         public double Exabits => As(InformationUnit.Exabit);
 
         /// <summary>
-        ///     Get Information in Exabytes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Exabyte"/>
         /// </summary>
         public double Exabytes => As(InformationUnit.Exabyte);
 
         /// <summary>
-        ///     Get Information in Exbibits.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Exbibit"/>
         /// </summary>
         public double Exbibits => As(InformationUnit.Exbibit);
 
         /// <summary>
-        ///     Get Information in Exbibytes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Exbibyte"/>
         /// </summary>
         public double Exbibytes => As(InformationUnit.Exbibyte);
 
         /// <summary>
-        ///     Get Information in Gibibits.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Gibibit"/>
         /// </summary>
         public double Gibibits => As(InformationUnit.Gibibit);
 
         /// <summary>
-        ///     Get Information in Gibibytes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Gibibyte"/>
         /// </summary>
         public double Gibibytes => As(InformationUnit.Gibibyte);
 
         /// <summary>
-        ///     Get Information in Gigabits.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Gigabit"/>
         /// </summary>
         public double Gigabits => As(InformationUnit.Gigabit);
 
         /// <summary>
-        ///     Get Information in Gigabytes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Gigabyte"/>
         /// </summary>
         public double Gigabytes => As(InformationUnit.Gigabyte);
 
         /// <summary>
-        ///     Get Information in Kibibits.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Kibibit"/>
         /// </summary>
         public double Kibibits => As(InformationUnit.Kibibit);
 
         /// <summary>
-        ///     Get Information in Kibibytes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Kibibyte"/>
         /// </summary>
         public double Kibibytes => As(InformationUnit.Kibibyte);
 
         /// <summary>
-        ///     Get Information in Kilobits.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Kilobit"/>
         /// </summary>
         public double Kilobits => As(InformationUnit.Kilobit);
 
         /// <summary>
-        ///     Get Information in Kilobytes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Kilobyte"/>
         /// </summary>
         public double Kilobytes => As(InformationUnit.Kilobyte);
 
         /// <summary>
-        ///     Get Information in Mebibits.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Mebibit"/>
         /// </summary>
         public double Mebibits => As(InformationUnit.Mebibit);
 
         /// <summary>
-        ///     Get Information in Mebibytes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Mebibyte"/>
         /// </summary>
         public double Mebibytes => As(InformationUnit.Mebibyte);
 
         /// <summary>
-        ///     Get Information in Megabits.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Megabit"/>
         /// </summary>
         public double Megabits => As(InformationUnit.Megabit);
 
         /// <summary>
-        ///     Get Information in Megabytes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Megabyte"/>
         /// </summary>
         public double Megabytes => As(InformationUnit.Megabyte);
 
         /// <summary>
-        ///     Get Information in Pebibits.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Pebibit"/>
         /// </summary>
         public double Pebibits => As(InformationUnit.Pebibit);
 
         /// <summary>
-        ///     Get Information in Pebibytes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Pebibyte"/>
         /// </summary>
         public double Pebibytes => As(InformationUnit.Pebibyte);
 
         /// <summary>
-        ///     Get Information in Petabits.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Petabit"/>
         /// </summary>
         public double Petabits => As(InformationUnit.Petabit);
 
         /// <summary>
-        ///     Get Information in Petabytes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Petabyte"/>
         /// </summary>
         public double Petabytes => As(InformationUnit.Petabyte);
 
         /// <summary>
-        ///     Get Information in Tebibits.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Tebibit"/>
         /// </summary>
         public double Tebibits => As(InformationUnit.Tebibit);
 
         /// <summary>
-        ///     Get Information in Tebibytes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Tebibyte"/>
         /// </summary>
         public double Tebibytes => As(InformationUnit.Tebibyte);
 
         /// <summary>
-        ///     Get Information in Terabits.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Terabit"/>
         /// </summary>
         public double Terabits => As(InformationUnit.Terabit);
 
         /// <summary>
-        ///     Get Information in Terabytes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Terabyte"/>
         /// </summary>
         public double Terabytes => As(InformationUnit.Terabyte);
 
@@ -471,7 +471,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Information from Bits.
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Bit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromBits(QuantityValue bits)
@@ -480,7 +480,7 @@ namespace UnitsNet
             return new Information(value, InformationUnit.Bit);
         }
         /// <summary>
-        ///     Get Information from Bytes.
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Byte"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromBytes(QuantityValue bytes)
@@ -489,7 +489,7 @@ namespace UnitsNet
             return new Information(value, InformationUnit.Byte);
         }
         /// <summary>
-        ///     Get Information from Exabits.
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Exabit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromExabits(QuantityValue exabits)
@@ -498,7 +498,7 @@ namespace UnitsNet
             return new Information(value, InformationUnit.Exabit);
         }
         /// <summary>
-        ///     Get Information from Exabytes.
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Exabyte"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromExabytes(QuantityValue exabytes)
@@ -507,7 +507,7 @@ namespace UnitsNet
             return new Information(value, InformationUnit.Exabyte);
         }
         /// <summary>
-        ///     Get Information from Exbibits.
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Exbibit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromExbibits(QuantityValue exbibits)
@@ -516,7 +516,7 @@ namespace UnitsNet
             return new Information(value, InformationUnit.Exbibit);
         }
         /// <summary>
-        ///     Get Information from Exbibytes.
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Exbibyte"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromExbibytes(QuantityValue exbibytes)
@@ -525,7 +525,7 @@ namespace UnitsNet
             return new Information(value, InformationUnit.Exbibyte);
         }
         /// <summary>
-        ///     Get Information from Gibibits.
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Gibibit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromGibibits(QuantityValue gibibits)
@@ -534,7 +534,7 @@ namespace UnitsNet
             return new Information(value, InformationUnit.Gibibit);
         }
         /// <summary>
-        ///     Get Information from Gibibytes.
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Gibibyte"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromGibibytes(QuantityValue gibibytes)
@@ -543,7 +543,7 @@ namespace UnitsNet
             return new Information(value, InformationUnit.Gibibyte);
         }
         /// <summary>
-        ///     Get Information from Gigabits.
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Gigabit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromGigabits(QuantityValue gigabits)
@@ -552,7 +552,7 @@ namespace UnitsNet
             return new Information(value, InformationUnit.Gigabit);
         }
         /// <summary>
-        ///     Get Information from Gigabytes.
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Gigabyte"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromGigabytes(QuantityValue gigabytes)
@@ -561,7 +561,7 @@ namespace UnitsNet
             return new Information(value, InformationUnit.Gigabyte);
         }
         /// <summary>
-        ///     Get Information from Kibibits.
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Kibibit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromKibibits(QuantityValue kibibits)
@@ -570,7 +570,7 @@ namespace UnitsNet
             return new Information(value, InformationUnit.Kibibit);
         }
         /// <summary>
-        ///     Get Information from Kibibytes.
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Kibibyte"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromKibibytes(QuantityValue kibibytes)
@@ -579,7 +579,7 @@ namespace UnitsNet
             return new Information(value, InformationUnit.Kibibyte);
         }
         /// <summary>
-        ///     Get Information from Kilobits.
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Kilobit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromKilobits(QuantityValue kilobits)
@@ -588,7 +588,7 @@ namespace UnitsNet
             return new Information(value, InformationUnit.Kilobit);
         }
         /// <summary>
-        ///     Get Information from Kilobytes.
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Kilobyte"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromKilobytes(QuantityValue kilobytes)
@@ -597,7 +597,7 @@ namespace UnitsNet
             return new Information(value, InformationUnit.Kilobyte);
         }
         /// <summary>
-        ///     Get Information from Mebibits.
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Mebibit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromMebibits(QuantityValue mebibits)
@@ -606,7 +606,7 @@ namespace UnitsNet
             return new Information(value, InformationUnit.Mebibit);
         }
         /// <summary>
-        ///     Get Information from Mebibytes.
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Mebibyte"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromMebibytes(QuantityValue mebibytes)
@@ -615,7 +615,7 @@ namespace UnitsNet
             return new Information(value, InformationUnit.Mebibyte);
         }
         /// <summary>
-        ///     Get Information from Megabits.
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Megabit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromMegabits(QuantityValue megabits)
@@ -624,7 +624,7 @@ namespace UnitsNet
             return new Information(value, InformationUnit.Megabit);
         }
         /// <summary>
-        ///     Get Information from Megabytes.
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Megabyte"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromMegabytes(QuantityValue megabytes)
@@ -633,7 +633,7 @@ namespace UnitsNet
             return new Information(value, InformationUnit.Megabyte);
         }
         /// <summary>
-        ///     Get Information from Pebibits.
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Pebibit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromPebibits(QuantityValue pebibits)
@@ -642,7 +642,7 @@ namespace UnitsNet
             return new Information(value, InformationUnit.Pebibit);
         }
         /// <summary>
-        ///     Get Information from Pebibytes.
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Pebibyte"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromPebibytes(QuantityValue pebibytes)
@@ -651,7 +651,7 @@ namespace UnitsNet
             return new Information(value, InformationUnit.Pebibyte);
         }
         /// <summary>
-        ///     Get Information from Petabits.
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Petabit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromPetabits(QuantityValue petabits)
@@ -660,7 +660,7 @@ namespace UnitsNet
             return new Information(value, InformationUnit.Petabit);
         }
         /// <summary>
-        ///     Get Information from Petabytes.
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Petabyte"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromPetabytes(QuantityValue petabytes)
@@ -669,7 +669,7 @@ namespace UnitsNet
             return new Information(value, InformationUnit.Petabyte);
         }
         /// <summary>
-        ///     Get Information from Tebibits.
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Tebibit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromTebibits(QuantityValue tebibits)
@@ -678,7 +678,7 @@ namespace UnitsNet
             return new Information(value, InformationUnit.Tebibit);
         }
         /// <summary>
-        ///     Get Information from Tebibytes.
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Tebibyte"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromTebibytes(QuantityValue tebibytes)
@@ -687,7 +687,7 @@ namespace UnitsNet
             return new Information(value, InformationUnit.Tebibyte);
         }
         /// <summary>
-        ///     Get Information from Terabits.
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Terabit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromTerabits(QuantityValue terabits)
@@ -696,7 +696,7 @@ namespace UnitsNet
             return new Information(value, InformationUnit.Terabit);
         }
         /// <summary>
-        ///     Get Information from Terabytes.
+        ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Terabyte"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromTerabytes(QuantityValue terabytes)

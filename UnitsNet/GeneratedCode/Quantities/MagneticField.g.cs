@@ -197,32 +197,32 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get MagneticField in Gausses.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MagneticFieldUnit.Gauss"/>
         /// </summary>
         public double Gausses => As(MagneticFieldUnit.Gauss);
 
         /// <summary>
-        ///     Get MagneticField in Microteslas.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MagneticFieldUnit.Microtesla"/>
         /// </summary>
         public double Microteslas => As(MagneticFieldUnit.Microtesla);
 
         /// <summary>
-        ///     Get MagneticField in Milligausses.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MagneticFieldUnit.Milligauss"/>
         /// </summary>
         public double Milligausses => As(MagneticFieldUnit.Milligauss);
 
         /// <summary>
-        ///     Get MagneticField in Milliteslas.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MagneticFieldUnit.Millitesla"/>
         /// </summary>
         public double Milliteslas => As(MagneticFieldUnit.Millitesla);
 
         /// <summary>
-        ///     Get MagneticField in Nanoteslas.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MagneticFieldUnit.Nanotesla"/>
         /// </summary>
         public double Nanoteslas => As(MagneticFieldUnit.Nanotesla);
 
         /// <summary>
-        ///     Get MagneticField in Teslas.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MagneticFieldUnit.Tesla"/>
         /// </summary>
         public double Teslas => As(MagneticFieldUnit.Tesla);
 
@@ -289,7 +289,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get MagneticField from Gausses.
+        ///     Creates a <see cref="MagneticField"/> from <see cref="MagneticFieldUnit.Gauss"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MagneticField FromGausses(QuantityValue gausses)
@@ -298,7 +298,7 @@ namespace UnitsNet
             return new MagneticField(value, MagneticFieldUnit.Gauss);
         }
         /// <summary>
-        ///     Get MagneticField from Microteslas.
+        ///     Creates a <see cref="MagneticField"/> from <see cref="MagneticFieldUnit.Microtesla"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MagneticField FromMicroteslas(QuantityValue microteslas)
@@ -307,7 +307,7 @@ namespace UnitsNet
             return new MagneticField(value, MagneticFieldUnit.Microtesla);
         }
         /// <summary>
-        ///     Get MagneticField from Milligausses.
+        ///     Creates a <see cref="MagneticField"/> from <see cref="MagneticFieldUnit.Milligauss"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MagneticField FromMilligausses(QuantityValue milligausses)
@@ -316,7 +316,7 @@ namespace UnitsNet
             return new MagneticField(value, MagneticFieldUnit.Milligauss);
         }
         /// <summary>
-        ///     Get MagneticField from Milliteslas.
+        ///     Creates a <see cref="MagneticField"/> from <see cref="MagneticFieldUnit.Millitesla"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MagneticField FromMilliteslas(QuantityValue milliteslas)
@@ -325,7 +325,7 @@ namespace UnitsNet
             return new MagneticField(value, MagneticFieldUnit.Millitesla);
         }
         /// <summary>
-        ///     Get MagneticField from Nanoteslas.
+        ///     Creates a <see cref="MagneticField"/> from <see cref="MagneticFieldUnit.Nanotesla"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MagneticField FromNanoteslas(QuantityValue nanoteslas)
@@ -334,7 +334,7 @@ namespace UnitsNet
             return new MagneticField(value, MagneticFieldUnit.Nanotesla);
         }
         /// <summary>
-        ///     Get MagneticField from Teslas.
+        ///     Creates a <see cref="MagneticField"/> from <see cref="MagneticFieldUnit.Tesla"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MagneticField FromTeslas(QuantityValue teslas)

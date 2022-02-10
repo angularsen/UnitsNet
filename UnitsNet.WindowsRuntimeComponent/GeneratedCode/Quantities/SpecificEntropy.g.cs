@@ -164,47 +164,47 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get SpecificEntropy in BtusPerPoundFahrenheit.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEntropyUnit.BtuPerPoundFahrenheit"/>
         /// </summary>
         public double BtusPerPoundFahrenheit => As(SpecificEntropyUnit.BtuPerPoundFahrenheit);
 
         /// <summary>
-        ///     Get SpecificEntropy in CaloriesPerGramKelvin.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEntropyUnit.CaloriePerGramKelvin"/>
         /// </summary>
         public double CaloriesPerGramKelvin => As(SpecificEntropyUnit.CaloriePerGramKelvin);
 
         /// <summary>
-        ///     Get SpecificEntropy in JoulesPerKilogramDegreeCelsius.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEntropyUnit.JoulePerKilogramDegreeCelsius"/>
         /// </summary>
         public double JoulesPerKilogramDegreeCelsius => As(SpecificEntropyUnit.JoulePerKilogramDegreeCelsius);
 
         /// <summary>
-        ///     Get SpecificEntropy in JoulesPerKilogramKelvin.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEntropyUnit.JoulePerKilogramKelvin"/>
         /// </summary>
         public double JoulesPerKilogramKelvin => As(SpecificEntropyUnit.JoulePerKilogramKelvin);
 
         /// <summary>
-        ///     Get SpecificEntropy in KilocaloriesPerGramKelvin.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEntropyUnit.KilocaloriePerGramKelvin"/>
         /// </summary>
         public double KilocaloriesPerGramKelvin => As(SpecificEntropyUnit.KilocaloriePerGramKelvin);
 
         /// <summary>
-        ///     Get SpecificEntropy in KilojoulesPerKilogramDegreeCelsius.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius"/>
         /// </summary>
         public double KilojoulesPerKilogramDegreeCelsius => As(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius);
 
         /// <summary>
-        ///     Get SpecificEntropy in KilojoulesPerKilogramKelvin.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEntropyUnit.KilojoulePerKilogramKelvin"/>
         /// </summary>
         public double KilojoulesPerKilogramKelvin => As(SpecificEntropyUnit.KilojoulePerKilogramKelvin);
 
         /// <summary>
-        ///     Get SpecificEntropy in MegajoulesPerKilogramDegreeCelsius.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius"/>
         /// </summary>
         public double MegajoulesPerKilogramDegreeCelsius => As(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius);
 
         /// <summary>
-        ///     Get SpecificEntropy in MegajoulesPerKilogramKelvin.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEntropyUnit.MegajoulePerKilogramKelvin"/>
         /// </summary>
         public double MegajoulesPerKilogramKelvin => As(SpecificEntropyUnit.MegajoulePerKilogramKelvin);
 
@@ -252,7 +252,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get SpecificEntropy from BtusPerPoundFahrenheit.
+        ///     Creates a <see cref="SpecificEntropy"/> from <see cref="SpecificEntropyUnit.BtuPerPoundFahrenheit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -262,7 +262,7 @@ namespace UnitsNet
             return new SpecificEntropy(value, SpecificEntropyUnit.BtuPerPoundFahrenheit);
         }
         /// <summary>
-        ///     Get SpecificEntropy from CaloriesPerGramKelvin.
+        ///     Creates a <see cref="SpecificEntropy"/> from <see cref="SpecificEntropyUnit.CaloriePerGramKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -272,7 +272,7 @@ namespace UnitsNet
             return new SpecificEntropy(value, SpecificEntropyUnit.CaloriePerGramKelvin);
         }
         /// <summary>
-        ///     Get SpecificEntropy from JoulesPerKilogramDegreeCelsius.
+        ///     Creates a <see cref="SpecificEntropy"/> from <see cref="SpecificEntropyUnit.JoulePerKilogramDegreeCelsius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -282,7 +282,7 @@ namespace UnitsNet
             return new SpecificEntropy(value, SpecificEntropyUnit.JoulePerKilogramDegreeCelsius);
         }
         /// <summary>
-        ///     Get SpecificEntropy from JoulesPerKilogramKelvin.
+        ///     Creates a <see cref="SpecificEntropy"/> from <see cref="SpecificEntropyUnit.JoulePerKilogramKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -292,7 +292,7 @@ namespace UnitsNet
             return new SpecificEntropy(value, SpecificEntropyUnit.JoulePerKilogramKelvin);
         }
         /// <summary>
-        ///     Get SpecificEntropy from KilocaloriesPerGramKelvin.
+        ///     Creates a <see cref="SpecificEntropy"/> from <see cref="SpecificEntropyUnit.KilocaloriePerGramKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -302,7 +302,7 @@ namespace UnitsNet
             return new SpecificEntropy(value, SpecificEntropyUnit.KilocaloriePerGramKelvin);
         }
         /// <summary>
-        ///     Get SpecificEntropy from KilojoulesPerKilogramDegreeCelsius.
+        ///     Creates a <see cref="SpecificEntropy"/> from <see cref="SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -312,7 +312,7 @@ namespace UnitsNet
             return new SpecificEntropy(value, SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius);
         }
         /// <summary>
-        ///     Get SpecificEntropy from KilojoulesPerKilogramKelvin.
+        ///     Creates a <see cref="SpecificEntropy"/> from <see cref="SpecificEntropyUnit.KilojoulePerKilogramKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -322,7 +322,7 @@ namespace UnitsNet
             return new SpecificEntropy(value, SpecificEntropyUnit.KilojoulePerKilogramKelvin);
         }
         /// <summary>
-        ///     Get SpecificEntropy from MegajoulesPerKilogramDegreeCelsius.
+        ///     Creates a <see cref="SpecificEntropy"/> from <see cref="SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -332,7 +332,7 @@ namespace UnitsNet
             return new SpecificEntropy(value, SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius);
         }
         /// <summary>
-        ///     Get SpecificEntropy from MegajoulesPerKilogramKelvin.
+        ///     Creates a <see cref="SpecificEntropy"/> from <see cref="SpecificEntropyUnit.MegajoulePerKilogramKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]

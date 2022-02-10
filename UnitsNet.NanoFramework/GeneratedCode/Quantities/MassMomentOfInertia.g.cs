@@ -78,142 +78,142 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get MassMomentOfInertia in GramSquareCentimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassMomentOfInertiaUnit.GramSquareCentimeter"/>
         /// </summary>
         public double GramSquareCentimeters => As(MassMomentOfInertiaUnit.GramSquareCentimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia in GramSquareDecimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassMomentOfInertiaUnit.GramSquareDecimeter"/>
         /// </summary>
         public double GramSquareDecimeters => As(MassMomentOfInertiaUnit.GramSquareDecimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia in GramSquareMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassMomentOfInertiaUnit.GramSquareMeter"/>
         /// </summary>
         public double GramSquareMeters => As(MassMomentOfInertiaUnit.GramSquareMeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia in GramSquareMillimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassMomentOfInertiaUnit.GramSquareMillimeter"/>
         /// </summary>
         public double GramSquareMillimeters => As(MassMomentOfInertiaUnit.GramSquareMillimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia in KilogramSquareCentimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassMomentOfInertiaUnit.KilogramSquareCentimeter"/>
         /// </summary>
         public double KilogramSquareCentimeters => As(MassMomentOfInertiaUnit.KilogramSquareCentimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia in KilogramSquareDecimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassMomentOfInertiaUnit.KilogramSquareDecimeter"/>
         /// </summary>
         public double KilogramSquareDecimeters => As(MassMomentOfInertiaUnit.KilogramSquareDecimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia in KilogramSquareMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassMomentOfInertiaUnit.KilogramSquareMeter"/>
         /// </summary>
         public double KilogramSquareMeters => As(MassMomentOfInertiaUnit.KilogramSquareMeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia in KilogramSquareMillimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassMomentOfInertiaUnit.KilogramSquareMillimeter"/>
         /// </summary>
         public double KilogramSquareMillimeters => As(MassMomentOfInertiaUnit.KilogramSquareMillimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia in KilotonneSquareCentimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassMomentOfInertiaUnit.KilotonneSquareCentimeter"/>
         /// </summary>
         public double KilotonneSquareCentimeters => As(MassMomentOfInertiaUnit.KilotonneSquareCentimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia in KilotonneSquareDecimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassMomentOfInertiaUnit.KilotonneSquareDecimeter"/>
         /// </summary>
         public double KilotonneSquareDecimeters => As(MassMomentOfInertiaUnit.KilotonneSquareDecimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia in KilotonneSquareMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassMomentOfInertiaUnit.KilotonneSquareMeter"/>
         /// </summary>
         public double KilotonneSquareMeters => As(MassMomentOfInertiaUnit.KilotonneSquareMeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia in KilotonneSquareMilimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassMomentOfInertiaUnit.KilotonneSquareMilimeter"/>
         /// </summary>
         public double KilotonneSquareMilimeters => As(MassMomentOfInertiaUnit.KilotonneSquareMilimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia in MegatonneSquareCentimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassMomentOfInertiaUnit.MegatonneSquareCentimeter"/>
         /// </summary>
         public double MegatonneSquareCentimeters => As(MassMomentOfInertiaUnit.MegatonneSquareCentimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia in MegatonneSquareDecimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassMomentOfInertiaUnit.MegatonneSquareDecimeter"/>
         /// </summary>
         public double MegatonneSquareDecimeters => As(MassMomentOfInertiaUnit.MegatonneSquareDecimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia in MegatonneSquareMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassMomentOfInertiaUnit.MegatonneSquareMeter"/>
         /// </summary>
         public double MegatonneSquareMeters => As(MassMomentOfInertiaUnit.MegatonneSquareMeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia in MegatonneSquareMilimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassMomentOfInertiaUnit.MegatonneSquareMilimeter"/>
         /// </summary>
         public double MegatonneSquareMilimeters => As(MassMomentOfInertiaUnit.MegatonneSquareMilimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia in MilligramSquareCentimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassMomentOfInertiaUnit.MilligramSquareCentimeter"/>
         /// </summary>
         public double MilligramSquareCentimeters => As(MassMomentOfInertiaUnit.MilligramSquareCentimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia in MilligramSquareDecimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassMomentOfInertiaUnit.MilligramSquareDecimeter"/>
         /// </summary>
         public double MilligramSquareDecimeters => As(MassMomentOfInertiaUnit.MilligramSquareDecimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia in MilligramSquareMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassMomentOfInertiaUnit.MilligramSquareMeter"/>
         /// </summary>
         public double MilligramSquareMeters => As(MassMomentOfInertiaUnit.MilligramSquareMeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia in MilligramSquareMillimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassMomentOfInertiaUnit.MilligramSquareMillimeter"/>
         /// </summary>
         public double MilligramSquareMillimeters => As(MassMomentOfInertiaUnit.MilligramSquareMillimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia in PoundSquareFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassMomentOfInertiaUnit.PoundSquareFoot"/>
         /// </summary>
         public double PoundSquareFeet => As(MassMomentOfInertiaUnit.PoundSquareFoot);
 
         /// <summary>
-        ///     Get MassMomentOfInertia in PoundSquareInches.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassMomentOfInertiaUnit.PoundSquareInch"/>
         /// </summary>
         public double PoundSquareInches => As(MassMomentOfInertiaUnit.PoundSquareInch);
 
         /// <summary>
-        ///     Get MassMomentOfInertia in SlugSquareFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassMomentOfInertiaUnit.SlugSquareFoot"/>
         /// </summary>
         public double SlugSquareFeet => As(MassMomentOfInertiaUnit.SlugSquareFoot);
 
         /// <summary>
-        ///     Get MassMomentOfInertia in SlugSquareInches.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassMomentOfInertiaUnit.SlugSquareInch"/>
         /// </summary>
         public double SlugSquareInches => As(MassMomentOfInertiaUnit.SlugSquareInch);
 
         /// <summary>
-        ///     Get MassMomentOfInertia in TonneSquareCentimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassMomentOfInertiaUnit.TonneSquareCentimeter"/>
         /// </summary>
         public double TonneSquareCentimeters => As(MassMomentOfInertiaUnit.TonneSquareCentimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia in TonneSquareDecimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassMomentOfInertiaUnit.TonneSquareDecimeter"/>
         /// </summary>
         public double TonneSquareDecimeters => As(MassMomentOfInertiaUnit.TonneSquareDecimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia in TonneSquareMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassMomentOfInertiaUnit.TonneSquareMeter"/>
         /// </summary>
         public double TonneSquareMeters => As(MassMomentOfInertiaUnit.TonneSquareMeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia in TonneSquareMilimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassMomentOfInertiaUnit.TonneSquareMilimeter"/>
         /// </summary>
         public double TonneSquareMilimeters => As(MassMomentOfInertiaUnit.TonneSquareMilimeter);
 
@@ -222,169 +222,169 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get MassMomentOfInertia from GramSquareCentimeters.
+        ///     Creates a <see cref="MassMomentOfInertia"/> from <see cref="MassMomentOfInertiaUnit.GramSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassMomentOfInertia FromGramSquareCentimeters(double gramsquarecentimeters) => new MassMomentOfInertia(gramsquarecentimeters, MassMomentOfInertiaUnit.GramSquareCentimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia from GramSquareDecimeters.
+        ///     Creates a <see cref="MassMomentOfInertia"/> from <see cref="MassMomentOfInertiaUnit.GramSquareDecimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassMomentOfInertia FromGramSquareDecimeters(double gramsquaredecimeters) => new MassMomentOfInertia(gramsquaredecimeters, MassMomentOfInertiaUnit.GramSquareDecimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia from GramSquareMeters.
+        ///     Creates a <see cref="MassMomentOfInertia"/> from <see cref="MassMomentOfInertiaUnit.GramSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassMomentOfInertia FromGramSquareMeters(double gramsquaremeters) => new MassMomentOfInertia(gramsquaremeters, MassMomentOfInertiaUnit.GramSquareMeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia from GramSquareMillimeters.
+        ///     Creates a <see cref="MassMomentOfInertia"/> from <see cref="MassMomentOfInertiaUnit.GramSquareMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassMomentOfInertia FromGramSquareMillimeters(double gramsquaremillimeters) => new MassMomentOfInertia(gramsquaremillimeters, MassMomentOfInertiaUnit.GramSquareMillimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia from KilogramSquareCentimeters.
+        ///     Creates a <see cref="MassMomentOfInertia"/> from <see cref="MassMomentOfInertiaUnit.KilogramSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassMomentOfInertia FromKilogramSquareCentimeters(double kilogramsquarecentimeters) => new MassMomentOfInertia(kilogramsquarecentimeters, MassMomentOfInertiaUnit.KilogramSquareCentimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia from KilogramSquareDecimeters.
+        ///     Creates a <see cref="MassMomentOfInertia"/> from <see cref="MassMomentOfInertiaUnit.KilogramSquareDecimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassMomentOfInertia FromKilogramSquareDecimeters(double kilogramsquaredecimeters) => new MassMomentOfInertia(kilogramsquaredecimeters, MassMomentOfInertiaUnit.KilogramSquareDecimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia from KilogramSquareMeters.
+        ///     Creates a <see cref="MassMomentOfInertia"/> from <see cref="MassMomentOfInertiaUnit.KilogramSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassMomentOfInertia FromKilogramSquareMeters(double kilogramsquaremeters) => new MassMomentOfInertia(kilogramsquaremeters, MassMomentOfInertiaUnit.KilogramSquareMeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia from KilogramSquareMillimeters.
+        ///     Creates a <see cref="MassMomentOfInertia"/> from <see cref="MassMomentOfInertiaUnit.KilogramSquareMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassMomentOfInertia FromKilogramSquareMillimeters(double kilogramsquaremillimeters) => new MassMomentOfInertia(kilogramsquaremillimeters, MassMomentOfInertiaUnit.KilogramSquareMillimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia from KilotonneSquareCentimeters.
+        ///     Creates a <see cref="MassMomentOfInertia"/> from <see cref="MassMomentOfInertiaUnit.KilotonneSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassMomentOfInertia FromKilotonneSquareCentimeters(double kilotonnesquarecentimeters) => new MassMomentOfInertia(kilotonnesquarecentimeters, MassMomentOfInertiaUnit.KilotonneSquareCentimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia from KilotonneSquareDecimeters.
+        ///     Creates a <see cref="MassMomentOfInertia"/> from <see cref="MassMomentOfInertiaUnit.KilotonneSquareDecimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassMomentOfInertia FromKilotonneSquareDecimeters(double kilotonnesquaredecimeters) => new MassMomentOfInertia(kilotonnesquaredecimeters, MassMomentOfInertiaUnit.KilotonneSquareDecimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia from KilotonneSquareMeters.
+        ///     Creates a <see cref="MassMomentOfInertia"/> from <see cref="MassMomentOfInertiaUnit.KilotonneSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassMomentOfInertia FromKilotonneSquareMeters(double kilotonnesquaremeters) => new MassMomentOfInertia(kilotonnesquaremeters, MassMomentOfInertiaUnit.KilotonneSquareMeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia from KilotonneSquareMilimeters.
+        ///     Creates a <see cref="MassMomentOfInertia"/> from <see cref="MassMomentOfInertiaUnit.KilotonneSquareMilimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassMomentOfInertia FromKilotonneSquareMilimeters(double kilotonnesquaremilimeters) => new MassMomentOfInertia(kilotonnesquaremilimeters, MassMomentOfInertiaUnit.KilotonneSquareMilimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia from MegatonneSquareCentimeters.
+        ///     Creates a <see cref="MassMomentOfInertia"/> from <see cref="MassMomentOfInertiaUnit.MegatonneSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassMomentOfInertia FromMegatonneSquareCentimeters(double megatonnesquarecentimeters) => new MassMomentOfInertia(megatonnesquarecentimeters, MassMomentOfInertiaUnit.MegatonneSquareCentimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia from MegatonneSquareDecimeters.
+        ///     Creates a <see cref="MassMomentOfInertia"/> from <see cref="MassMomentOfInertiaUnit.MegatonneSquareDecimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassMomentOfInertia FromMegatonneSquareDecimeters(double megatonnesquaredecimeters) => new MassMomentOfInertia(megatonnesquaredecimeters, MassMomentOfInertiaUnit.MegatonneSquareDecimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia from MegatonneSquareMeters.
+        ///     Creates a <see cref="MassMomentOfInertia"/> from <see cref="MassMomentOfInertiaUnit.MegatonneSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassMomentOfInertia FromMegatonneSquareMeters(double megatonnesquaremeters) => new MassMomentOfInertia(megatonnesquaremeters, MassMomentOfInertiaUnit.MegatonneSquareMeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia from MegatonneSquareMilimeters.
+        ///     Creates a <see cref="MassMomentOfInertia"/> from <see cref="MassMomentOfInertiaUnit.MegatonneSquareMilimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassMomentOfInertia FromMegatonneSquareMilimeters(double megatonnesquaremilimeters) => new MassMomentOfInertia(megatonnesquaremilimeters, MassMomentOfInertiaUnit.MegatonneSquareMilimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia from MilligramSquareCentimeters.
+        ///     Creates a <see cref="MassMomentOfInertia"/> from <see cref="MassMomentOfInertiaUnit.MilligramSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassMomentOfInertia FromMilligramSquareCentimeters(double milligramsquarecentimeters) => new MassMomentOfInertia(milligramsquarecentimeters, MassMomentOfInertiaUnit.MilligramSquareCentimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia from MilligramSquareDecimeters.
+        ///     Creates a <see cref="MassMomentOfInertia"/> from <see cref="MassMomentOfInertiaUnit.MilligramSquareDecimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassMomentOfInertia FromMilligramSquareDecimeters(double milligramsquaredecimeters) => new MassMomentOfInertia(milligramsquaredecimeters, MassMomentOfInertiaUnit.MilligramSquareDecimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia from MilligramSquareMeters.
+        ///     Creates a <see cref="MassMomentOfInertia"/> from <see cref="MassMomentOfInertiaUnit.MilligramSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassMomentOfInertia FromMilligramSquareMeters(double milligramsquaremeters) => new MassMomentOfInertia(milligramsquaremeters, MassMomentOfInertiaUnit.MilligramSquareMeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia from MilligramSquareMillimeters.
+        ///     Creates a <see cref="MassMomentOfInertia"/> from <see cref="MassMomentOfInertiaUnit.MilligramSquareMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassMomentOfInertia FromMilligramSquareMillimeters(double milligramsquaremillimeters) => new MassMomentOfInertia(milligramsquaremillimeters, MassMomentOfInertiaUnit.MilligramSquareMillimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia from PoundSquareFeet.
+        ///     Creates a <see cref="MassMomentOfInertia"/> from <see cref="MassMomentOfInertiaUnit.PoundSquareFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassMomentOfInertia FromPoundSquareFeet(double poundsquarefeet) => new MassMomentOfInertia(poundsquarefeet, MassMomentOfInertiaUnit.PoundSquareFoot);
 
         /// <summary>
-        ///     Get MassMomentOfInertia from PoundSquareInches.
+        ///     Creates a <see cref="MassMomentOfInertia"/> from <see cref="MassMomentOfInertiaUnit.PoundSquareInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassMomentOfInertia FromPoundSquareInches(double poundsquareinches) => new MassMomentOfInertia(poundsquareinches, MassMomentOfInertiaUnit.PoundSquareInch);
 
         /// <summary>
-        ///     Get MassMomentOfInertia from SlugSquareFeet.
+        ///     Creates a <see cref="MassMomentOfInertia"/> from <see cref="MassMomentOfInertiaUnit.SlugSquareFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassMomentOfInertia FromSlugSquareFeet(double slugsquarefeet) => new MassMomentOfInertia(slugsquarefeet, MassMomentOfInertiaUnit.SlugSquareFoot);
 
         /// <summary>
-        ///     Get MassMomentOfInertia from SlugSquareInches.
+        ///     Creates a <see cref="MassMomentOfInertia"/> from <see cref="MassMomentOfInertiaUnit.SlugSquareInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassMomentOfInertia FromSlugSquareInches(double slugsquareinches) => new MassMomentOfInertia(slugsquareinches, MassMomentOfInertiaUnit.SlugSquareInch);
 
         /// <summary>
-        ///     Get MassMomentOfInertia from TonneSquareCentimeters.
+        ///     Creates a <see cref="MassMomentOfInertia"/> from <see cref="MassMomentOfInertiaUnit.TonneSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassMomentOfInertia FromTonneSquareCentimeters(double tonnesquarecentimeters) => new MassMomentOfInertia(tonnesquarecentimeters, MassMomentOfInertiaUnit.TonneSquareCentimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia from TonneSquareDecimeters.
+        ///     Creates a <see cref="MassMomentOfInertia"/> from <see cref="MassMomentOfInertiaUnit.TonneSquareDecimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassMomentOfInertia FromTonneSquareDecimeters(double tonnesquaredecimeters) => new MassMomentOfInertia(tonnesquaredecimeters, MassMomentOfInertiaUnit.TonneSquareDecimeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia from TonneSquareMeters.
+        ///     Creates a <see cref="MassMomentOfInertia"/> from <see cref="MassMomentOfInertiaUnit.TonneSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassMomentOfInertia FromTonneSquareMeters(double tonnesquaremeters) => new MassMomentOfInertia(tonnesquaremeters, MassMomentOfInertiaUnit.TonneSquareMeter);
 
         /// <summary>
-        ///     Get MassMomentOfInertia from TonneSquareMilimeters.
+        ///     Creates a <see cref="MassMomentOfInertia"/> from <see cref="MassMomentOfInertiaUnit.TonneSquareMilimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassMomentOfInertia FromTonneSquareMilimeters(double tonnesquaremilimeters) => new MassMomentOfInertia(tonnesquaremilimeters, MassMomentOfInertiaUnit.TonneSquareMilimeter);

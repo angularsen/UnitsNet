@@ -81,37 +81,37 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Capacitance in Farads.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CapacitanceUnit.Farad"/>
         /// </summary>
         public double Farads => As(CapacitanceUnit.Farad);
 
         /// <summary>
-        ///     Get Capacitance in Kilofarads.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CapacitanceUnit.Kilofarad"/>
         /// </summary>
         public double Kilofarads => As(CapacitanceUnit.Kilofarad);
 
         /// <summary>
-        ///     Get Capacitance in Megafarads.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CapacitanceUnit.Megafarad"/>
         /// </summary>
         public double Megafarads => As(CapacitanceUnit.Megafarad);
 
         /// <summary>
-        ///     Get Capacitance in Microfarads.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CapacitanceUnit.Microfarad"/>
         /// </summary>
         public double Microfarads => As(CapacitanceUnit.Microfarad);
 
         /// <summary>
-        ///     Get Capacitance in Millifarads.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CapacitanceUnit.Millifarad"/>
         /// </summary>
         public double Millifarads => As(CapacitanceUnit.Millifarad);
 
         /// <summary>
-        ///     Get Capacitance in Nanofarads.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CapacitanceUnit.Nanofarad"/>
         /// </summary>
         public double Nanofarads => As(CapacitanceUnit.Nanofarad);
 
         /// <summary>
-        ///     Get Capacitance in Picofarads.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CapacitanceUnit.Picofarad"/>
         /// </summary>
         public double Picofarads => As(CapacitanceUnit.Picofarad);
 
@@ -120,43 +120,43 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Capacitance from Farads.
+        ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Farad"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Capacitance FromFarads(double farads) => new Capacitance(farads, CapacitanceUnit.Farad);
 
         /// <summary>
-        ///     Get Capacitance from Kilofarads.
+        ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Kilofarad"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Capacitance FromKilofarads(double kilofarads) => new Capacitance(kilofarads, CapacitanceUnit.Kilofarad);
 
         /// <summary>
-        ///     Get Capacitance from Megafarads.
+        ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Megafarad"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Capacitance FromMegafarads(double megafarads) => new Capacitance(megafarads, CapacitanceUnit.Megafarad);
 
         /// <summary>
-        ///     Get Capacitance from Microfarads.
+        ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Microfarad"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Capacitance FromMicrofarads(double microfarads) => new Capacitance(microfarads, CapacitanceUnit.Microfarad);
 
         /// <summary>
-        ///     Get Capacitance from Millifarads.
+        ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Millifarad"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Capacitance FromMillifarads(double millifarads) => new Capacitance(millifarads, CapacitanceUnit.Millifarad);
 
         /// <summary>
-        ///     Get Capacitance from Nanofarads.
+        ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Nanofarad"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Capacitance FromNanofarads(double nanofarads) => new Capacitance(nanofarads, CapacitanceUnit.Nanofarad);
 
         /// <summary>
-        ///     Get Capacitance from Picofarads.
+        ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Picofarad"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Capacitance FromPicofarads(double picofarads) => new Capacitance(picofarads, CapacitanceUnit.Picofarad);
