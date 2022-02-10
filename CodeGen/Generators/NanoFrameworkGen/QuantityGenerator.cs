@@ -131,6 +131,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get {_quantity.Name} in {unit.PluralName}.
         /// </summary>");
+                Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
                 Writer.WL($@"
         public {_quantity.BaseType} {unit.PluralName} => As({_unitEnumName}.{unit.SingularName});
 ");
@@ -158,6 +159,7 @@ namespace UnitsNet
         ///     Get {_quantity.Name} from {unit.PluralName}.
         /// </summary>
         /// <exception cref=""ArgumentException"">If value is NaN or Infinity.</exception>");
+                Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
                 Writer.WL($@"
         public static {_quantity.Name} From{unit.PluralName}({_quantity.BaseType} {valueParamName}) => new {_quantity.Name}({valueParamName}, {_unitEnumName}.{unit.SingularName});
 ");
@@ -247,5 +249,18 @@ namespace UnitsNet
 ");
         }
 
+        /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)"/>
+        internal static string? GetObsoleteAttributeOrNull(Quantity quantity) => GetObsoleteAttributeOrNull(quantity.ObsoleteText);
+
+        /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)"/>
+        internal static string? GetObsoleteAttributeOrNull(Unit unit) => GetObsoleteAttributeOrNull(unit.ObsoleteText);
+
+        /// <summary>
+        /// Returns the Obsolete attribute if ObsoleteText has been defined on the JSON input - otherwise returns empty string
+        /// It is up to the consumer to wrap any padding/new lines in order to keep to correct indentation formats
+        /// </summary>
+        private static string? GetObsoleteAttributeOrNull(string obsoleteText) => string.IsNullOrWhiteSpace(obsoleteText)
+            ? null
+            : $"[Obsolete(\"{obsoleteText}\")]";
     }
 }
