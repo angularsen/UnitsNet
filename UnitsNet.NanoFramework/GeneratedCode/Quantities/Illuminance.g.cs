@@ -81,22 +81,22 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Illuminance in Kilolux.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IlluminanceUnit.Kilolux"/>
         /// </summary>
         public double Kilolux => As(IlluminanceUnit.Kilolux);
 
         /// <summary>
-        ///     Get Illuminance in Lux.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IlluminanceUnit.Lux"/>
         /// </summary>
         public double Lux => As(IlluminanceUnit.Lux);
 
         /// <summary>
-        ///     Get Illuminance in Megalux.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IlluminanceUnit.Megalux"/>
         /// </summary>
         public double Megalux => As(IlluminanceUnit.Megalux);
 
         /// <summary>
-        ///     Get Illuminance in Millilux.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IlluminanceUnit.Millilux"/>
         /// </summary>
         public double Millilux => As(IlluminanceUnit.Millilux);
 
@@ -105,25 +105,25 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Illuminance from Kilolux.
+        ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Kilolux"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Illuminance FromKilolux(double kilolux) => new Illuminance(kilolux, IlluminanceUnit.Kilolux);
 
         /// <summary>
-        ///     Get Illuminance from Lux.
+        ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Lux"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Illuminance FromLux(double lux) => new Illuminance(lux, IlluminanceUnit.Lux);
 
         /// <summary>
-        ///     Get Illuminance from Megalux.
+        ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Megalux"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Illuminance FromMegalux(double megalux) => new Illuminance(megalux, IlluminanceUnit.Megalux);
 
         /// <summary>
-        ///     Get Illuminance from Millilux.
+        ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Millilux"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Illuminance FromMillilux(double millilux) => new Illuminance(millilux, IlluminanceUnit.Millilux);

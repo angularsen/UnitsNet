@@ -192,22 +192,22 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ReactivePower in GigavoltamperesReactive.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReactivePowerUnit.GigavoltampereReactive"/>
         /// </summary>
         public double GigavoltamperesReactive => As(ReactivePowerUnit.GigavoltampereReactive);
 
         /// <summary>
-        ///     Get ReactivePower in KilovoltamperesReactive.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReactivePowerUnit.KilovoltampereReactive"/>
         /// </summary>
         public double KilovoltamperesReactive => As(ReactivePowerUnit.KilovoltampereReactive);
 
         /// <summary>
-        ///     Get ReactivePower in MegavoltamperesReactive.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReactivePowerUnit.MegavoltampereReactive"/>
         /// </summary>
         public double MegavoltamperesReactive => As(ReactivePowerUnit.MegavoltampereReactive);
 
         /// <summary>
-        ///     Get ReactivePower in VoltamperesReactive.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReactivePowerUnit.VoltampereReactive"/>
         /// </summary>
         public double VoltamperesReactive => As(ReactivePowerUnit.VoltampereReactive);
 
@@ -268,7 +268,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ReactivePower from GigavoltamperesReactive.
+        ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.GigavoltampereReactive"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReactivePower FromGigavoltamperesReactive(QuantityValue gigavoltamperesreactive)
@@ -277,7 +277,7 @@ namespace UnitsNet
             return new ReactivePower(value, ReactivePowerUnit.GigavoltampereReactive);
         }
         /// <summary>
-        ///     Get ReactivePower from KilovoltamperesReactive.
+        ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.KilovoltampereReactive"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReactivePower FromKilovoltamperesReactive(QuantityValue kilovoltamperesreactive)
@@ -286,7 +286,7 @@ namespace UnitsNet
             return new ReactivePower(value, ReactivePowerUnit.KilovoltampereReactive);
         }
         /// <summary>
-        ///     Get ReactivePower from MegavoltamperesReactive.
+        ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.MegavoltampereReactive"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReactivePower FromMegavoltamperesReactive(QuantityValue megavoltamperesreactive)
@@ -295,7 +295,7 @@ namespace UnitsNet
             return new ReactivePower(value, ReactivePowerUnit.MegavoltampereReactive);
         }
         /// <summary>
-        ///     Get ReactivePower from VoltamperesReactive.
+        ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.VoltampereReactive"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReactivePower FromVoltamperesReactive(QuantityValue voltamperesreactive)

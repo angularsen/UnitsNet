@@ -167,7 +167,7 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Permittivity in FaradsPerMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PermittivityUnit.FaradPerMeter"/>
         /// </summary>
         public double FaradsPerMeter => As(PermittivityUnit.FaradPerMeter);
 
@@ -207,7 +207,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Permittivity from FaradsPerMeter.
+        ///     Creates a <see cref="Permittivity"/> from <see cref="PermittivityUnit.FaradPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]

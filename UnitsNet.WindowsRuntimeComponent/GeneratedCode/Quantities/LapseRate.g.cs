@@ -165,7 +165,7 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get LapseRate in DegreesCelciusPerKilometer.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LapseRateUnit.DegreeCelsiusPerKilometer"/>
         /// </summary>
         public double DegreesCelciusPerKilometer => As(LapseRateUnit.DegreeCelsiusPerKilometer);
 
@@ -205,7 +205,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get LapseRate from DegreesCelciusPerKilometer.
+        ///     Creates a <see cref="LapseRate"/> from <see cref="LapseRateUnit.DegreeCelsiusPerKilometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]

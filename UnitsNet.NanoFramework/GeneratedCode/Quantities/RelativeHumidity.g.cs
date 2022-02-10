@@ -78,7 +78,7 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get RelativeHumidity in Percent.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RelativeHumidityUnit.Percent"/>
         /// </summary>
         public double Percent => As(RelativeHumidityUnit.Percent);
 
@@ -87,7 +87,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get RelativeHumidity from Percent.
+        ///     Creates a <see cref="RelativeHumidity"/> from <see cref="RelativeHumidityUnit.Percent"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RelativeHumidity FromPercent(double percent) => new RelativeHumidity(percent, RelativeHumidityUnit.Percent);

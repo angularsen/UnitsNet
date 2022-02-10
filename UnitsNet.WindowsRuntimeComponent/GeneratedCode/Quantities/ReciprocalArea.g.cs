@@ -167,57 +167,57 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ReciprocalArea in InverseSquareCentimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareCentimeter"/>
         /// </summary>
         public double InverseSquareCentimeters => As(ReciprocalAreaUnit.InverseSquareCentimeter);
 
         /// <summary>
-        ///     Get ReciprocalArea in InverseSquareDecimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareDecimeter"/>
         /// </summary>
         public double InverseSquareDecimeters => As(ReciprocalAreaUnit.InverseSquareDecimeter);
 
         /// <summary>
-        ///     Get ReciprocalArea in InverseSquareFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareFoot"/>
         /// </summary>
         public double InverseSquareFeet => As(ReciprocalAreaUnit.InverseSquareFoot);
 
         /// <summary>
-        ///     Get ReciprocalArea in InverseSquareInches.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareInch"/>
         /// </summary>
         public double InverseSquareInches => As(ReciprocalAreaUnit.InverseSquareInch);
 
         /// <summary>
-        ///     Get ReciprocalArea in InverseSquareKilometers.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareKilometer"/>
         /// </summary>
         public double InverseSquareKilometers => As(ReciprocalAreaUnit.InverseSquareKilometer);
 
         /// <summary>
-        ///     Get ReciprocalArea in InverseSquareMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareMeter"/>
         /// </summary>
         public double InverseSquareMeters => As(ReciprocalAreaUnit.InverseSquareMeter);
 
         /// <summary>
-        ///     Get ReciprocalArea in InverseSquareMicrometers.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareMicrometer"/>
         /// </summary>
         public double InverseSquareMicrometers => As(ReciprocalAreaUnit.InverseSquareMicrometer);
 
         /// <summary>
-        ///     Get ReciprocalArea in InverseSquareMiles.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareMile"/>
         /// </summary>
         public double InverseSquareMiles => As(ReciprocalAreaUnit.InverseSquareMile);
 
         /// <summary>
-        ///     Get ReciprocalArea in InverseSquareMillimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareMillimeter"/>
         /// </summary>
         public double InverseSquareMillimeters => As(ReciprocalAreaUnit.InverseSquareMillimeter);
 
         /// <summary>
-        ///     Get ReciprocalArea in InverseSquareYards.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareYard"/>
         /// </summary>
         public double InverseSquareYards => As(ReciprocalAreaUnit.InverseSquareYard);
 
         /// <summary>
-        ///     Get ReciprocalArea in InverseUsSurveySquareFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseUsSurveySquareFoot"/>
         /// </summary>
         public double InverseUsSurveySquareFeet => As(ReciprocalAreaUnit.InverseUsSurveySquareFoot);
 
@@ -267,7 +267,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ReciprocalArea from InverseSquareCentimeters.
+        ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -277,7 +277,7 @@ namespace UnitsNet
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareCentimeter);
         }
         /// <summary>
-        ///     Get ReciprocalArea from InverseSquareDecimeters.
+        ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareDecimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -287,7 +287,7 @@ namespace UnitsNet
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareDecimeter);
         }
         /// <summary>
-        ///     Get ReciprocalArea from InverseSquareFeet.
+        ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -297,7 +297,7 @@ namespace UnitsNet
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareFoot);
         }
         /// <summary>
-        ///     Get ReciprocalArea from InverseSquareInches.
+        ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -307,7 +307,7 @@ namespace UnitsNet
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareInch);
         }
         /// <summary>
-        ///     Get ReciprocalArea from InverseSquareKilometers.
+        ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareKilometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -317,7 +317,7 @@ namespace UnitsNet
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareKilometer);
         }
         /// <summary>
-        ///     Get ReciprocalArea from InverseSquareMeters.
+        ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -327,7 +327,7 @@ namespace UnitsNet
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareMeter);
         }
         /// <summary>
-        ///     Get ReciprocalArea from InverseSquareMicrometers.
+        ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareMicrometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -337,7 +337,7 @@ namespace UnitsNet
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareMicrometer);
         }
         /// <summary>
-        ///     Get ReciprocalArea from InverseSquareMiles.
+        ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareMile"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -347,7 +347,7 @@ namespace UnitsNet
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareMile);
         }
         /// <summary>
-        ///     Get ReciprocalArea from InverseSquareMillimeters.
+        ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -357,7 +357,7 @@ namespace UnitsNet
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareMillimeter);
         }
         /// <summary>
-        ///     Get ReciprocalArea from InverseSquareYards.
+        ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareYard"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -367,7 +367,7 @@ namespace UnitsNet
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareYard);
         }
         /// <summary>
-        ///     Get ReciprocalArea from InverseUsSurveySquareFeet.
+        ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseUsSurveySquareFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]

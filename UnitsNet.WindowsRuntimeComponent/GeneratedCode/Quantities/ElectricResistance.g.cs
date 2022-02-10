@@ -164,32 +164,32 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricResistance in Gigaohms.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Gigaohm"/>
         /// </summary>
         public double Gigaohms => As(ElectricResistanceUnit.Gigaohm);
 
         /// <summary>
-        ///     Get ElectricResistance in Kiloohms.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Kiloohm"/>
         /// </summary>
         public double Kiloohms => As(ElectricResistanceUnit.Kiloohm);
 
         /// <summary>
-        ///     Get ElectricResistance in Megaohms.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Megaohm"/>
         /// </summary>
         public double Megaohms => As(ElectricResistanceUnit.Megaohm);
 
         /// <summary>
-        ///     Get ElectricResistance in Microohms.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Microohm"/>
         /// </summary>
         public double Microohms => As(ElectricResistanceUnit.Microohm);
 
         /// <summary>
-        ///     Get ElectricResistance in Milliohms.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Milliohm"/>
         /// </summary>
         public double Milliohms => As(ElectricResistanceUnit.Milliohm);
 
         /// <summary>
-        ///     Get ElectricResistance in Ohms.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Ohm"/>
         /// </summary>
         public double Ohms => As(ElectricResistanceUnit.Ohm);
 
@@ -234,7 +234,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricResistance from Gigaohms.
+        ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Gigaohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -244,7 +244,7 @@ namespace UnitsNet
             return new ElectricResistance(value, ElectricResistanceUnit.Gigaohm);
         }
         /// <summary>
-        ///     Get ElectricResistance from Kiloohms.
+        ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Kiloohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -254,7 +254,7 @@ namespace UnitsNet
             return new ElectricResistance(value, ElectricResistanceUnit.Kiloohm);
         }
         /// <summary>
-        ///     Get ElectricResistance from Megaohms.
+        ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Megaohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -264,7 +264,7 @@ namespace UnitsNet
             return new ElectricResistance(value, ElectricResistanceUnit.Megaohm);
         }
         /// <summary>
-        ///     Get ElectricResistance from Microohms.
+        ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Microohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -274,7 +274,7 @@ namespace UnitsNet
             return new ElectricResistance(value, ElectricResistanceUnit.Microohm);
         }
         /// <summary>
-        ///     Get ElectricResistance from Milliohms.
+        ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Milliohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -284,7 +284,7 @@ namespace UnitsNet
             return new ElectricResistance(value, ElectricResistanceUnit.Milliohm);
         }
         /// <summary>
-        ///     Get ElectricResistance from Ohms.
+        ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Ohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]

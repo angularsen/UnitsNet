@@ -78,32 +78,32 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get AreaMomentOfInertia in CentimetersToTheFourth.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaMomentOfInertiaUnit.CentimeterToTheFourth"/>
         /// </summary>
         public double CentimetersToTheFourth => As(AreaMomentOfInertiaUnit.CentimeterToTheFourth);
 
         /// <summary>
-        ///     Get AreaMomentOfInertia in DecimetersToTheFourth.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaMomentOfInertiaUnit.DecimeterToTheFourth"/>
         /// </summary>
         public double DecimetersToTheFourth => As(AreaMomentOfInertiaUnit.DecimeterToTheFourth);
 
         /// <summary>
-        ///     Get AreaMomentOfInertia in FeetToTheFourth.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaMomentOfInertiaUnit.FootToTheFourth"/>
         /// </summary>
         public double FeetToTheFourth => As(AreaMomentOfInertiaUnit.FootToTheFourth);
 
         /// <summary>
-        ///     Get AreaMomentOfInertia in InchesToTheFourth.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaMomentOfInertiaUnit.InchToTheFourth"/>
         /// </summary>
         public double InchesToTheFourth => As(AreaMomentOfInertiaUnit.InchToTheFourth);
 
         /// <summary>
-        ///     Get AreaMomentOfInertia in MetersToTheFourth.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaMomentOfInertiaUnit.MeterToTheFourth"/>
         /// </summary>
         public double MetersToTheFourth => As(AreaMomentOfInertiaUnit.MeterToTheFourth);
 
         /// <summary>
-        ///     Get AreaMomentOfInertia in MillimetersToTheFourth.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaMomentOfInertiaUnit.MillimeterToTheFourth"/>
         /// </summary>
         public double MillimetersToTheFourth => As(AreaMomentOfInertiaUnit.MillimeterToTheFourth);
 
@@ -112,37 +112,37 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get AreaMomentOfInertia from CentimetersToTheFourth.
+        ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.CentimeterToTheFourth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AreaMomentOfInertia FromCentimetersToTheFourth(double centimeterstothefourth) => new AreaMomentOfInertia(centimeterstothefourth, AreaMomentOfInertiaUnit.CentimeterToTheFourth);
 
         /// <summary>
-        ///     Get AreaMomentOfInertia from DecimetersToTheFourth.
+        ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.DecimeterToTheFourth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AreaMomentOfInertia FromDecimetersToTheFourth(double decimeterstothefourth) => new AreaMomentOfInertia(decimeterstothefourth, AreaMomentOfInertiaUnit.DecimeterToTheFourth);
 
         /// <summary>
-        ///     Get AreaMomentOfInertia from FeetToTheFourth.
+        ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.FootToTheFourth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AreaMomentOfInertia FromFeetToTheFourth(double feettothefourth) => new AreaMomentOfInertia(feettothefourth, AreaMomentOfInertiaUnit.FootToTheFourth);
 
         /// <summary>
-        ///     Get AreaMomentOfInertia from InchesToTheFourth.
+        ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.InchToTheFourth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AreaMomentOfInertia FromInchesToTheFourth(double inchestothefourth) => new AreaMomentOfInertia(inchestothefourth, AreaMomentOfInertiaUnit.InchToTheFourth);
 
         /// <summary>
-        ///     Get AreaMomentOfInertia from MetersToTheFourth.
+        ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.MeterToTheFourth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AreaMomentOfInertia FromMetersToTheFourth(double meterstothefourth) => new AreaMomentOfInertia(meterstothefourth, AreaMomentOfInertiaUnit.MeterToTheFourth);
 
         /// <summary>
-        ///     Get AreaMomentOfInertia from MillimetersToTheFourth.
+        ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.MillimeterToTheFourth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AreaMomentOfInertia FromMillimetersToTheFourth(double millimeterstothefourth) => new AreaMomentOfInertia(millimeterstothefourth, AreaMomentOfInertiaUnit.MillimeterToTheFourth);

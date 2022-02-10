@@ -192,7 +192,7 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get SolidAngle in Steradians.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SolidAngleUnit.Steradian"/>
         /// </summary>
         public double Steradians => As(SolidAngleUnit.Steradian);
 
@@ -244,7 +244,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get SolidAngle from Steradians.
+        ///     Creates a <see cref="SolidAngle"/> from <see cref="SolidAngleUnit.Steradian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SolidAngle FromSteradians(QuantityValue steradians)

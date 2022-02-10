@@ -194,17 +194,17 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricSurfaceChargeDensity in CoulombsPerSquareCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter"/>
         /// </summary>
         public double CoulombsPerSquareCentimeter => As(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter);
 
         /// <summary>
-        ///     Get ElectricSurfaceChargeDensity in CoulombsPerSquareInch.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch"/>
         /// </summary>
         public double CoulombsPerSquareInch => As(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch);
 
         /// <summary>
-        ///     Get ElectricSurfaceChargeDensity in CoulombsPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter"/>
         /// </summary>
         public double CoulombsPerSquareMeter => As(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter);
 
@@ -262,7 +262,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricSurfaceChargeDensity from CoulombsPerSquareCentimeter.
+        ///     Creates a <see cref="ElectricSurfaceChargeDensity"/> from <see cref="ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricSurfaceChargeDensity FromCoulombsPerSquareCentimeter(QuantityValue coulombspersquarecentimeter)
@@ -271,7 +271,7 @@ namespace UnitsNet
             return new ElectricSurfaceChargeDensity(value, ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter);
         }
         /// <summary>
-        ///     Get ElectricSurfaceChargeDensity from CoulombsPerSquareInch.
+        ///     Creates a <see cref="ElectricSurfaceChargeDensity"/> from <see cref="ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricSurfaceChargeDensity FromCoulombsPerSquareInch(QuantityValue coulombspersquareinch)
@@ -280,7 +280,7 @@ namespace UnitsNet
             return new ElectricSurfaceChargeDensity(value, ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch);
         }
         /// <summary>
-        ///     Get ElectricSurfaceChargeDensity from CoulombsPerSquareMeter.
+        ///     Creates a <see cref="ElectricSurfaceChargeDensity"/> from <see cref="ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricSurfaceChargeDensity FromCoulombsPerSquareMeter(QuantityValue coulombspersquaremeter)

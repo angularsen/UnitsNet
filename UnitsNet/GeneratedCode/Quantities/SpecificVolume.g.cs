@@ -191,17 +191,17 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get SpecificVolume in CubicFeetPerPound.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificVolumeUnit.CubicFootPerPound"/>
         /// </summary>
         public double CubicFeetPerPound => As(SpecificVolumeUnit.CubicFootPerPound);
 
         /// <summary>
-        ///     Get SpecificVolume in CubicMetersPerKilogram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificVolumeUnit.CubicMeterPerKilogram"/>
         /// </summary>
         public double CubicMetersPerKilogram => As(SpecificVolumeUnit.CubicMeterPerKilogram);
 
         /// <summary>
-        ///     Get SpecificVolume in MillicubicMetersPerKilogram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificVolumeUnit.MillicubicMeterPerKilogram"/>
         /// </summary>
         public double MillicubicMetersPerKilogram => As(SpecificVolumeUnit.MillicubicMeterPerKilogram);
 
@@ -259,7 +259,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get SpecificVolume from CubicFeetPerPound.
+        ///     Creates a <see cref="SpecificVolume"/> from <see cref="SpecificVolumeUnit.CubicFootPerPound"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificVolume FromCubicFeetPerPound(QuantityValue cubicfeetperpound)
@@ -268,7 +268,7 @@ namespace UnitsNet
             return new SpecificVolume(value, SpecificVolumeUnit.CubicFootPerPound);
         }
         /// <summary>
-        ///     Get SpecificVolume from CubicMetersPerKilogram.
+        ///     Creates a <see cref="SpecificVolume"/> from <see cref="SpecificVolumeUnit.CubicMeterPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificVolume FromCubicMetersPerKilogram(QuantityValue cubicmetersperkilogram)
@@ -277,7 +277,7 @@ namespace UnitsNet
             return new SpecificVolume(value, SpecificVolumeUnit.CubicMeterPerKilogram);
         }
         /// <summary>
-        ///     Get SpecificVolume from MillicubicMetersPerKilogram.
+        ///     Creates a <see cref="SpecificVolume"/> from <see cref="SpecificVolumeUnit.MillicubicMeterPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificVolume FromMillicubicMetersPerKilogram(QuantityValue millicubicmetersperkilogram)

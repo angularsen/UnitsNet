@@ -194,32 +194,32 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get WarpingMomentOfInertia in CentimetersToTheSixth.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="WarpingMomentOfInertiaUnit.CentimeterToTheSixth"/>
         /// </summary>
         public double CentimetersToTheSixth => As(WarpingMomentOfInertiaUnit.CentimeterToTheSixth);
 
         /// <summary>
-        ///     Get WarpingMomentOfInertia in DecimetersToTheSixth.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="WarpingMomentOfInertiaUnit.DecimeterToTheSixth"/>
         /// </summary>
         public double DecimetersToTheSixth => As(WarpingMomentOfInertiaUnit.DecimeterToTheSixth);
 
         /// <summary>
-        ///     Get WarpingMomentOfInertia in FeetToTheSixth.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="WarpingMomentOfInertiaUnit.FootToTheSixth"/>
         /// </summary>
         public double FeetToTheSixth => As(WarpingMomentOfInertiaUnit.FootToTheSixth);
 
         /// <summary>
-        ///     Get WarpingMomentOfInertia in InchesToTheSixth.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="WarpingMomentOfInertiaUnit.InchToTheSixth"/>
         /// </summary>
         public double InchesToTheSixth => As(WarpingMomentOfInertiaUnit.InchToTheSixth);
 
         /// <summary>
-        ///     Get WarpingMomentOfInertia in MetersToTheSixth.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="WarpingMomentOfInertiaUnit.MeterToTheSixth"/>
         /// </summary>
         public double MetersToTheSixth => As(WarpingMomentOfInertiaUnit.MeterToTheSixth);
 
         /// <summary>
-        ///     Get WarpingMomentOfInertia in MillimetersToTheSixth.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="WarpingMomentOfInertiaUnit.MillimeterToTheSixth"/>
         /// </summary>
         public double MillimetersToTheSixth => As(WarpingMomentOfInertiaUnit.MillimeterToTheSixth);
 
@@ -286,7 +286,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get WarpingMomentOfInertia from CentimetersToTheSixth.
+        ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.CentimeterToTheSixth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static WarpingMomentOfInertia FromCentimetersToTheSixth(QuantityValue centimeterstothesixth)
@@ -295,7 +295,7 @@ namespace UnitsNet
             return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.CentimeterToTheSixth);
         }
         /// <summary>
-        ///     Get WarpingMomentOfInertia from DecimetersToTheSixth.
+        ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.DecimeterToTheSixth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static WarpingMomentOfInertia FromDecimetersToTheSixth(QuantityValue decimeterstothesixth)
@@ -304,7 +304,7 @@ namespace UnitsNet
             return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.DecimeterToTheSixth);
         }
         /// <summary>
-        ///     Get WarpingMomentOfInertia from FeetToTheSixth.
+        ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.FootToTheSixth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static WarpingMomentOfInertia FromFeetToTheSixth(QuantityValue feettothesixth)
@@ -313,7 +313,7 @@ namespace UnitsNet
             return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.FootToTheSixth);
         }
         /// <summary>
-        ///     Get WarpingMomentOfInertia from InchesToTheSixth.
+        ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.InchToTheSixth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static WarpingMomentOfInertia FromInchesToTheSixth(QuantityValue inchestothesixth)
@@ -322,7 +322,7 @@ namespace UnitsNet
             return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.InchToTheSixth);
         }
         /// <summary>
-        ///     Get WarpingMomentOfInertia from MetersToTheSixth.
+        ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.MeterToTheSixth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static WarpingMomentOfInertia FromMetersToTheSixth(QuantityValue meterstothesixth)
@@ -331,7 +331,7 @@ namespace UnitsNet
             return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.MeterToTheSixth);
         }
         /// <summary>
-        ///     Get WarpingMomentOfInertia from MillimetersToTheSixth.
+        ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.MillimeterToTheSixth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static WarpingMomentOfInertia FromMillimetersToTheSixth(QuantityValue millimeterstothesixth)

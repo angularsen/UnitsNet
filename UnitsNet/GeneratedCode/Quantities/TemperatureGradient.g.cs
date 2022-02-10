@@ -192,22 +192,22 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get TemperatureGradient in DegreesCelciusPerKilometer.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureGradientUnit.DegreeCelsiusPerKilometer"/>
         /// </summary>
         public double DegreesCelciusPerKilometer => As(TemperatureGradientUnit.DegreeCelsiusPerKilometer);
 
         /// <summary>
-        ///     Get TemperatureGradient in DegreesCelciusPerMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureGradientUnit.DegreeCelsiusPerMeter"/>
         /// </summary>
         public double DegreesCelciusPerMeter => As(TemperatureGradientUnit.DegreeCelsiusPerMeter);
 
         /// <summary>
-        ///     Get TemperatureGradient in DegreesFahrenheitPerFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureGradientUnit.DegreeFahrenheitPerFoot"/>
         /// </summary>
         public double DegreesFahrenheitPerFoot => As(TemperatureGradientUnit.DegreeFahrenheitPerFoot);
 
         /// <summary>
-        ///     Get TemperatureGradient in KelvinsPerMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureGradientUnit.KelvinPerMeter"/>
         /// </summary>
         public double KelvinsPerMeter => As(TemperatureGradientUnit.KelvinPerMeter);
 
@@ -268,7 +268,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get TemperatureGradient from DegreesCelciusPerKilometer.
+        ///     Creates a <see cref="TemperatureGradient"/> from <see cref="TemperatureGradientUnit.DegreeCelsiusPerKilometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureGradient FromDegreesCelciusPerKilometer(QuantityValue degreescelciusperkilometer)
@@ -277,7 +277,7 @@ namespace UnitsNet
             return new TemperatureGradient(value, TemperatureGradientUnit.DegreeCelsiusPerKilometer);
         }
         /// <summary>
-        ///     Get TemperatureGradient from DegreesCelciusPerMeter.
+        ///     Creates a <see cref="TemperatureGradient"/> from <see cref="TemperatureGradientUnit.DegreeCelsiusPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureGradient FromDegreesCelciusPerMeter(QuantityValue degreescelciuspermeter)
@@ -286,7 +286,7 @@ namespace UnitsNet
             return new TemperatureGradient(value, TemperatureGradientUnit.DegreeCelsiusPerMeter);
         }
         /// <summary>
-        ///     Get TemperatureGradient from DegreesFahrenheitPerFoot.
+        ///     Creates a <see cref="TemperatureGradient"/> from <see cref="TemperatureGradientUnit.DegreeFahrenheitPerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureGradient FromDegreesFahrenheitPerFoot(QuantityValue degreesfahrenheitperfoot)
@@ -295,7 +295,7 @@ namespace UnitsNet
             return new TemperatureGradient(value, TemperatureGradientUnit.DegreeFahrenheitPerFoot);
         }
         /// <summary>
-        ///     Get TemperatureGradient from KelvinsPerMeter.
+        ///     Creates a <see cref="TemperatureGradient"/> from <see cref="TemperatureGradientUnit.KelvinPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureGradient FromKelvinsPerMeter(QuantityValue kelvinspermeter)

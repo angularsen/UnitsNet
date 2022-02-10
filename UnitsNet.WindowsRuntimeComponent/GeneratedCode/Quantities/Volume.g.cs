@@ -164,262 +164,262 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Volume in AcreFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.AcreFoot"/>
         /// </summary>
         public double AcreFeet => As(VolumeUnit.AcreFoot);
 
         /// <summary>
-        ///     Get Volume in AuTablespoons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.AuTablespoon"/>
         /// </summary>
         public double AuTablespoons => As(VolumeUnit.AuTablespoon);
 
         /// <summary>
-        ///     Get Volume in BoardFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.BoardFoot"/>
         /// </summary>
         public double BoardFeet => As(VolumeUnit.BoardFoot);
 
         /// <summary>
-        ///     Get Volume in Centiliters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Centiliter"/>
         /// </summary>
         public double Centiliters => As(VolumeUnit.Centiliter);
 
         /// <summary>
-        ///     Get Volume in CubicCentimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicCentimeter"/>
         /// </summary>
         public double CubicCentimeters => As(VolumeUnit.CubicCentimeter);
 
         /// <summary>
-        ///     Get Volume in CubicDecimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicDecimeter"/>
         /// </summary>
         public double CubicDecimeters => As(VolumeUnit.CubicDecimeter);
 
         /// <summary>
-        ///     Get Volume in CubicFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicFoot"/>
         /// </summary>
         public double CubicFeet => As(VolumeUnit.CubicFoot);
 
         /// <summary>
-        ///     Get Volume in CubicHectometers.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicHectometer"/>
         /// </summary>
         public double CubicHectometers => As(VolumeUnit.CubicHectometer);
 
         /// <summary>
-        ///     Get Volume in CubicInches.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicInch"/>
         /// </summary>
         public double CubicInches => As(VolumeUnit.CubicInch);
 
         /// <summary>
-        ///     Get Volume in CubicKilometers.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicKilometer"/>
         /// </summary>
         public double CubicKilometers => As(VolumeUnit.CubicKilometer);
 
         /// <summary>
-        ///     Get Volume in CubicMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicMeter"/>
         /// </summary>
         public double CubicMeters => As(VolumeUnit.CubicMeter);
 
         /// <summary>
-        ///     Get Volume in CubicMicrometers.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicMicrometer"/>
         /// </summary>
         public double CubicMicrometers => As(VolumeUnit.CubicMicrometer);
 
         /// <summary>
-        ///     Get Volume in CubicMiles.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicMile"/>
         /// </summary>
         public double CubicMiles => As(VolumeUnit.CubicMile);
 
         /// <summary>
-        ///     Get Volume in CubicMillimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicMillimeter"/>
         /// </summary>
         public double CubicMillimeters => As(VolumeUnit.CubicMillimeter);
 
         /// <summary>
-        ///     Get Volume in CubicYards.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicYard"/>
         /// </summary>
         public double CubicYards => As(VolumeUnit.CubicYard);
 
         /// <summary>
-        ///     Get Volume in Decaliters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Decaliter"/>
         /// </summary>
         public double Decaliters => As(VolumeUnit.Decaliter);
 
         /// <summary>
-        ///     Get Volume in DecausGallons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.DecausGallon"/>
         /// </summary>
         public double DecausGallons => As(VolumeUnit.DecausGallon);
 
         /// <summary>
-        ///     Get Volume in Deciliters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Deciliter"/>
         /// </summary>
         public double Deciliters => As(VolumeUnit.Deciliter);
 
         /// <summary>
-        ///     Get Volume in DeciusGallons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.DeciusGallon"/>
         /// </summary>
         public double DeciusGallons => As(VolumeUnit.DeciusGallon);
 
         /// <summary>
-        ///     Get Volume in HectocubicFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.HectocubicFoot"/>
         /// </summary>
         public double HectocubicFeet => As(VolumeUnit.HectocubicFoot);
 
         /// <summary>
-        ///     Get Volume in HectocubicMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.HectocubicMeter"/>
         /// </summary>
         public double HectocubicMeters => As(VolumeUnit.HectocubicMeter);
 
         /// <summary>
-        ///     Get Volume in Hectoliters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Hectoliter"/>
         /// </summary>
         public double Hectoliters => As(VolumeUnit.Hectoliter);
 
         /// <summary>
-        ///     Get Volume in HectousGallons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.HectousGallon"/>
         /// </summary>
         public double HectousGallons => As(VolumeUnit.HectousGallon);
 
         /// <summary>
-        ///     Get Volume in ImperialBeerBarrels.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.ImperialBeerBarrel"/>
         /// </summary>
         public double ImperialBeerBarrels => As(VolumeUnit.ImperialBeerBarrel);
 
         /// <summary>
-        ///     Get Volume in ImperialGallons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.ImperialGallon"/>
         /// </summary>
         public double ImperialGallons => As(VolumeUnit.ImperialGallon);
 
         /// <summary>
-        ///     Get Volume in ImperialOunces.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.ImperialOunce"/>
         /// </summary>
         public double ImperialOunces => As(VolumeUnit.ImperialOunce);
 
         /// <summary>
-        ///     Get Volume in ImperialPints.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.ImperialPint"/>
         /// </summary>
         public double ImperialPints => As(VolumeUnit.ImperialPint);
 
         /// <summary>
-        ///     Get Volume in KilocubicFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.KilocubicFoot"/>
         /// </summary>
         public double KilocubicFeet => As(VolumeUnit.KilocubicFoot);
 
         /// <summary>
-        ///     Get Volume in KilocubicMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.KilocubicMeter"/>
         /// </summary>
         public double KilocubicMeters => As(VolumeUnit.KilocubicMeter);
 
         /// <summary>
-        ///     Get Volume in KiloimperialGallons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.KiloimperialGallon"/>
         /// </summary>
         public double KiloimperialGallons => As(VolumeUnit.KiloimperialGallon);
 
         /// <summary>
-        ///     Get Volume in Kiloliters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Kiloliter"/>
         /// </summary>
         public double Kiloliters => As(VolumeUnit.Kiloliter);
 
         /// <summary>
-        ///     Get Volume in KilousGallons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.KilousGallon"/>
         /// </summary>
         public double KilousGallons => As(VolumeUnit.KilousGallon);
 
         /// <summary>
-        ///     Get Volume in Liters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Liter"/>
         /// </summary>
         public double Liters => As(VolumeUnit.Liter);
 
         /// <summary>
-        ///     Get Volume in MegacubicFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.MegacubicFoot"/>
         /// </summary>
         public double MegacubicFeet => As(VolumeUnit.MegacubicFoot);
 
         /// <summary>
-        ///     Get Volume in MegaimperialGallons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.MegaimperialGallon"/>
         /// </summary>
         public double MegaimperialGallons => As(VolumeUnit.MegaimperialGallon);
 
         /// <summary>
-        ///     Get Volume in Megaliters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Megaliter"/>
         /// </summary>
         public double Megaliters => As(VolumeUnit.Megaliter);
 
         /// <summary>
-        ///     Get Volume in MegausGallons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.MegausGallon"/>
         /// </summary>
         public double MegausGallons => As(VolumeUnit.MegausGallon);
 
         /// <summary>
-        ///     Get Volume in MetricCups.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.MetricCup"/>
         /// </summary>
         public double MetricCups => As(VolumeUnit.MetricCup);
 
         /// <summary>
-        ///     Get Volume in MetricTeaspoons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.MetricTeaspoon"/>
         /// </summary>
         public double MetricTeaspoons => As(VolumeUnit.MetricTeaspoon);
 
         /// <summary>
-        ///     Get Volume in Microliters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Microliter"/>
         /// </summary>
         public double Microliters => As(VolumeUnit.Microliter);
 
         /// <summary>
-        ///     Get Volume in Milliliters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Milliliter"/>
         /// </summary>
         public double Milliliters => As(VolumeUnit.Milliliter);
 
         /// <summary>
-        ///     Get Volume in OilBarrels.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.OilBarrel"/>
         /// </summary>
         public double OilBarrels => As(VolumeUnit.OilBarrel);
 
         /// <summary>
-        ///     Get Volume in UkTablespoons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UkTablespoon"/>
         /// </summary>
         public double UkTablespoons => As(VolumeUnit.UkTablespoon);
 
         /// <summary>
-        ///     Get Volume in UsBeerBarrels.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsBeerBarrel"/>
         /// </summary>
         public double UsBeerBarrels => As(VolumeUnit.UsBeerBarrel);
 
         /// <summary>
-        ///     Get Volume in UsCustomaryCups.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsCustomaryCup"/>
         /// </summary>
         public double UsCustomaryCups => As(VolumeUnit.UsCustomaryCup);
 
         /// <summary>
-        ///     Get Volume in UsGallons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsGallon"/>
         /// </summary>
         public double UsGallons => As(VolumeUnit.UsGallon);
 
         /// <summary>
-        ///     Get Volume in UsLegalCups.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsLegalCup"/>
         /// </summary>
         public double UsLegalCups => As(VolumeUnit.UsLegalCup);
 
         /// <summary>
-        ///     Get Volume in UsOunces.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsOunce"/>
         /// </summary>
         public double UsOunces => As(VolumeUnit.UsOunce);
 
         /// <summary>
-        ///     Get Volume in UsPints.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsPint"/>
         /// </summary>
         public double UsPints => As(VolumeUnit.UsPint);
 
         /// <summary>
-        ///     Get Volume in UsQuarts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsQuart"/>
         /// </summary>
         public double UsQuarts => As(VolumeUnit.UsQuart);
 
         /// <summary>
-        ///     Get Volume in UsTablespoons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsTablespoon"/>
         /// </summary>
         public double UsTablespoons => As(VolumeUnit.UsTablespoon);
 
         /// <summary>
-        ///     Get Volume in UsTeaspoons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsTeaspoon"/>
         /// </summary>
         public double UsTeaspoons => As(VolumeUnit.UsTeaspoon);
 
@@ -557,7 +557,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Volume from AcreFeet.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.AcreFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -567,7 +567,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.AcreFoot);
         }
         /// <summary>
-        ///     Get Volume from AuTablespoons.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.AuTablespoon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -577,7 +577,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.AuTablespoon);
         }
         /// <summary>
-        ///     Get Volume from BoardFeet.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.BoardFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -587,7 +587,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.BoardFoot);
         }
         /// <summary>
-        ///     Get Volume from Centiliters.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Centiliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -597,7 +597,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.Centiliter);
         }
         /// <summary>
-        ///     Get Volume from CubicCentimeters.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -607,7 +607,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.CubicCentimeter);
         }
         /// <summary>
-        ///     Get Volume from CubicDecimeters.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicDecimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -617,7 +617,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.CubicDecimeter);
         }
         /// <summary>
-        ///     Get Volume from CubicFeet.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -627,7 +627,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.CubicFoot);
         }
         /// <summary>
-        ///     Get Volume from CubicHectometers.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicHectometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -637,7 +637,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.CubicHectometer);
         }
         /// <summary>
-        ///     Get Volume from CubicInches.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -647,7 +647,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.CubicInch);
         }
         /// <summary>
-        ///     Get Volume from CubicKilometers.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicKilometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -657,7 +657,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.CubicKilometer);
         }
         /// <summary>
-        ///     Get Volume from CubicMeters.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -667,7 +667,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.CubicMeter);
         }
         /// <summary>
-        ///     Get Volume from CubicMicrometers.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicMicrometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -677,7 +677,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.CubicMicrometer);
         }
         /// <summary>
-        ///     Get Volume from CubicMiles.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicMile"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -687,7 +687,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.CubicMile);
         }
         /// <summary>
-        ///     Get Volume from CubicMillimeters.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -697,7 +697,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.CubicMillimeter);
         }
         /// <summary>
-        ///     Get Volume from CubicYards.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicYard"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -707,7 +707,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.CubicYard);
         }
         /// <summary>
-        ///     Get Volume from Decaliters.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Decaliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -717,7 +717,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.Decaliter);
         }
         /// <summary>
-        ///     Get Volume from DecausGallons.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.DecausGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -727,7 +727,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.DecausGallon);
         }
         /// <summary>
-        ///     Get Volume from Deciliters.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Deciliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -737,7 +737,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.Deciliter);
         }
         /// <summary>
-        ///     Get Volume from DeciusGallons.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.DeciusGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -747,7 +747,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.DeciusGallon);
         }
         /// <summary>
-        ///     Get Volume from HectocubicFeet.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.HectocubicFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -757,7 +757,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.HectocubicFoot);
         }
         /// <summary>
-        ///     Get Volume from HectocubicMeters.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.HectocubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -767,7 +767,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.HectocubicMeter);
         }
         /// <summary>
-        ///     Get Volume from Hectoliters.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Hectoliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -777,7 +777,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.Hectoliter);
         }
         /// <summary>
-        ///     Get Volume from HectousGallons.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.HectousGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -787,7 +787,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.HectousGallon);
         }
         /// <summary>
-        ///     Get Volume from ImperialBeerBarrels.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.ImperialBeerBarrel"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -797,7 +797,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.ImperialBeerBarrel);
         }
         /// <summary>
-        ///     Get Volume from ImperialGallons.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.ImperialGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -807,7 +807,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.ImperialGallon);
         }
         /// <summary>
-        ///     Get Volume from ImperialOunces.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.ImperialOunce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -817,7 +817,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.ImperialOunce);
         }
         /// <summary>
-        ///     Get Volume from ImperialPints.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.ImperialPint"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -827,7 +827,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.ImperialPint);
         }
         /// <summary>
-        ///     Get Volume from KilocubicFeet.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.KilocubicFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -837,7 +837,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.KilocubicFoot);
         }
         /// <summary>
-        ///     Get Volume from KilocubicMeters.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.KilocubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -847,7 +847,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.KilocubicMeter);
         }
         /// <summary>
-        ///     Get Volume from KiloimperialGallons.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.KiloimperialGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -857,7 +857,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.KiloimperialGallon);
         }
         /// <summary>
-        ///     Get Volume from Kiloliters.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Kiloliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -867,7 +867,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.Kiloliter);
         }
         /// <summary>
-        ///     Get Volume from KilousGallons.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.KilousGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -877,7 +877,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.KilousGallon);
         }
         /// <summary>
-        ///     Get Volume from Liters.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Liter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -887,7 +887,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.Liter);
         }
         /// <summary>
-        ///     Get Volume from MegacubicFeet.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MegacubicFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -897,7 +897,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.MegacubicFoot);
         }
         /// <summary>
-        ///     Get Volume from MegaimperialGallons.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MegaimperialGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -907,7 +907,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.MegaimperialGallon);
         }
         /// <summary>
-        ///     Get Volume from Megaliters.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Megaliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -917,7 +917,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.Megaliter);
         }
         /// <summary>
-        ///     Get Volume from MegausGallons.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MegausGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -927,7 +927,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.MegausGallon);
         }
         /// <summary>
-        ///     Get Volume from MetricCups.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MetricCup"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -937,7 +937,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.MetricCup);
         }
         /// <summary>
-        ///     Get Volume from MetricTeaspoons.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MetricTeaspoon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -947,7 +947,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.MetricTeaspoon);
         }
         /// <summary>
-        ///     Get Volume from Microliters.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Microliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -957,7 +957,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.Microliter);
         }
         /// <summary>
-        ///     Get Volume from Milliliters.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Milliliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -967,7 +967,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.Milliliter);
         }
         /// <summary>
-        ///     Get Volume from OilBarrels.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.OilBarrel"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -977,7 +977,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.OilBarrel);
         }
         /// <summary>
-        ///     Get Volume from UkTablespoons.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UkTablespoon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -987,7 +987,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.UkTablespoon);
         }
         /// <summary>
-        ///     Get Volume from UsBeerBarrels.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsBeerBarrel"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -997,7 +997,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.UsBeerBarrel);
         }
         /// <summary>
-        ///     Get Volume from UsCustomaryCups.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsCustomaryCup"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -1007,7 +1007,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.UsCustomaryCup);
         }
         /// <summary>
-        ///     Get Volume from UsGallons.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -1017,7 +1017,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.UsGallon);
         }
         /// <summary>
-        ///     Get Volume from UsLegalCups.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsLegalCup"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -1027,7 +1027,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.UsLegalCup);
         }
         /// <summary>
-        ///     Get Volume from UsOunces.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsOunce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -1037,7 +1037,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.UsOunce);
         }
         /// <summary>
-        ///     Get Volume from UsPints.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsPint"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -1047,7 +1047,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.UsPint);
         }
         /// <summary>
-        ///     Get Volume from UsQuarts.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsQuart"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -1057,7 +1057,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.UsQuart);
         }
         /// <summary>
-        ///     Get Volume from UsTablespoons.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsTablespoon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -1067,7 +1067,7 @@ namespace UnitsNet
             return new Volume(value, VolumeUnit.UsTablespoon);
         }
         /// <summary>
-        ///     Get Volume from UsTeaspoons.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsTeaspoon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]

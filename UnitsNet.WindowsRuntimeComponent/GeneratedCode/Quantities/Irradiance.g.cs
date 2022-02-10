@@ -164,72 +164,72 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Irradiance in KilowattsPerSquareCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.KilowattPerSquareCentimeter"/>
         /// </summary>
         public double KilowattsPerSquareCentimeter => As(IrradianceUnit.KilowattPerSquareCentimeter);
 
         /// <summary>
-        ///     Get Irradiance in KilowattsPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.KilowattPerSquareMeter"/>
         /// </summary>
         public double KilowattsPerSquareMeter => As(IrradianceUnit.KilowattPerSquareMeter);
 
         /// <summary>
-        ///     Get Irradiance in MegawattsPerSquareCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.MegawattPerSquareCentimeter"/>
         /// </summary>
         public double MegawattsPerSquareCentimeter => As(IrradianceUnit.MegawattPerSquareCentimeter);
 
         /// <summary>
-        ///     Get Irradiance in MegawattsPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.MegawattPerSquareMeter"/>
         /// </summary>
         public double MegawattsPerSquareMeter => As(IrradianceUnit.MegawattPerSquareMeter);
 
         /// <summary>
-        ///     Get Irradiance in MicrowattsPerSquareCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.MicrowattPerSquareCentimeter"/>
         /// </summary>
         public double MicrowattsPerSquareCentimeter => As(IrradianceUnit.MicrowattPerSquareCentimeter);
 
         /// <summary>
-        ///     Get Irradiance in MicrowattsPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.MicrowattPerSquareMeter"/>
         /// </summary>
         public double MicrowattsPerSquareMeter => As(IrradianceUnit.MicrowattPerSquareMeter);
 
         /// <summary>
-        ///     Get Irradiance in MilliwattsPerSquareCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.MilliwattPerSquareCentimeter"/>
         /// </summary>
         public double MilliwattsPerSquareCentimeter => As(IrradianceUnit.MilliwattPerSquareCentimeter);
 
         /// <summary>
-        ///     Get Irradiance in MilliwattsPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.MilliwattPerSquareMeter"/>
         /// </summary>
         public double MilliwattsPerSquareMeter => As(IrradianceUnit.MilliwattPerSquareMeter);
 
         /// <summary>
-        ///     Get Irradiance in NanowattsPerSquareCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.NanowattPerSquareCentimeter"/>
         /// </summary>
         public double NanowattsPerSquareCentimeter => As(IrradianceUnit.NanowattPerSquareCentimeter);
 
         /// <summary>
-        ///     Get Irradiance in NanowattsPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.NanowattPerSquareMeter"/>
         /// </summary>
         public double NanowattsPerSquareMeter => As(IrradianceUnit.NanowattPerSquareMeter);
 
         /// <summary>
-        ///     Get Irradiance in PicowattsPerSquareCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.PicowattPerSquareCentimeter"/>
         /// </summary>
         public double PicowattsPerSquareCentimeter => As(IrradianceUnit.PicowattPerSquareCentimeter);
 
         /// <summary>
-        ///     Get Irradiance in PicowattsPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.PicowattPerSquareMeter"/>
         /// </summary>
         public double PicowattsPerSquareMeter => As(IrradianceUnit.PicowattPerSquareMeter);
 
         /// <summary>
-        ///     Get Irradiance in WattsPerSquareCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.WattPerSquareCentimeter"/>
         /// </summary>
         public double WattsPerSquareCentimeter => As(IrradianceUnit.WattPerSquareCentimeter);
 
         /// <summary>
-        ///     Get Irradiance in WattsPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.WattPerSquareMeter"/>
         /// </summary>
         public double WattsPerSquareMeter => As(IrradianceUnit.WattPerSquareMeter);
 
@@ -282,7 +282,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Irradiance from KilowattsPerSquareCentimeter.
+        ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.KilowattPerSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -292,7 +292,7 @@ namespace UnitsNet
             return new Irradiance(value, IrradianceUnit.KilowattPerSquareCentimeter);
         }
         /// <summary>
-        ///     Get Irradiance from KilowattsPerSquareMeter.
+        ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.KilowattPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -302,7 +302,7 @@ namespace UnitsNet
             return new Irradiance(value, IrradianceUnit.KilowattPerSquareMeter);
         }
         /// <summary>
-        ///     Get Irradiance from MegawattsPerSquareCentimeter.
+        ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.MegawattPerSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -312,7 +312,7 @@ namespace UnitsNet
             return new Irradiance(value, IrradianceUnit.MegawattPerSquareCentimeter);
         }
         /// <summary>
-        ///     Get Irradiance from MegawattsPerSquareMeter.
+        ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.MegawattPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -322,7 +322,7 @@ namespace UnitsNet
             return new Irradiance(value, IrradianceUnit.MegawattPerSquareMeter);
         }
         /// <summary>
-        ///     Get Irradiance from MicrowattsPerSquareCentimeter.
+        ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.MicrowattPerSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -332,7 +332,7 @@ namespace UnitsNet
             return new Irradiance(value, IrradianceUnit.MicrowattPerSquareCentimeter);
         }
         /// <summary>
-        ///     Get Irradiance from MicrowattsPerSquareMeter.
+        ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.MicrowattPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -342,7 +342,7 @@ namespace UnitsNet
             return new Irradiance(value, IrradianceUnit.MicrowattPerSquareMeter);
         }
         /// <summary>
-        ///     Get Irradiance from MilliwattsPerSquareCentimeter.
+        ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.MilliwattPerSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -352,7 +352,7 @@ namespace UnitsNet
             return new Irradiance(value, IrradianceUnit.MilliwattPerSquareCentimeter);
         }
         /// <summary>
-        ///     Get Irradiance from MilliwattsPerSquareMeter.
+        ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.MilliwattPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -362,7 +362,7 @@ namespace UnitsNet
             return new Irradiance(value, IrradianceUnit.MilliwattPerSquareMeter);
         }
         /// <summary>
-        ///     Get Irradiance from NanowattsPerSquareCentimeter.
+        ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.NanowattPerSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -372,7 +372,7 @@ namespace UnitsNet
             return new Irradiance(value, IrradianceUnit.NanowattPerSquareCentimeter);
         }
         /// <summary>
-        ///     Get Irradiance from NanowattsPerSquareMeter.
+        ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.NanowattPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -382,7 +382,7 @@ namespace UnitsNet
             return new Irradiance(value, IrradianceUnit.NanowattPerSquareMeter);
         }
         /// <summary>
-        ///     Get Irradiance from PicowattsPerSquareCentimeter.
+        ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.PicowattPerSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -392,7 +392,7 @@ namespace UnitsNet
             return new Irradiance(value, IrradianceUnit.PicowattPerSquareCentimeter);
         }
         /// <summary>
-        ///     Get Irradiance from PicowattsPerSquareMeter.
+        ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.PicowattPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -402,7 +402,7 @@ namespace UnitsNet
             return new Irradiance(value, IrradianceUnit.PicowattPerSquareMeter);
         }
         /// <summary>
-        ///     Get Irradiance from WattsPerSquareCentimeter.
+        ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.WattPerSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -412,7 +412,7 @@ namespace UnitsNet
             return new Irradiance(value, IrradianceUnit.WattPerSquareCentimeter);
         }
         /// <summary>
-        ///     Get Irradiance from WattsPerSquareMeter.
+        ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.WattPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]

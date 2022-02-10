@@ -200,47 +200,47 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get VolumetricHeatCapacity in BtusPerCubicFootDegreeFahrenheit.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit"/>
         /// </summary>
         public double BtusPerCubicFootDegreeFahrenheit => As(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit);
 
         /// <summary>
-        ///     Get VolumetricHeatCapacity in CaloriesPerCubicCentimeterDegreeCelsius.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius"/>
         /// </summary>
         public double CaloriesPerCubicCentimeterDegreeCelsius => As(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius);
 
         /// <summary>
-        ///     Get VolumetricHeatCapacity in JoulesPerCubicMeterDegreeCelsius.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius"/>
         /// </summary>
         public double JoulesPerCubicMeterDegreeCelsius => As(VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius);
 
         /// <summary>
-        ///     Get VolumetricHeatCapacity in JoulesPerCubicMeterKelvin.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin"/>
         /// </summary>
         public double JoulesPerCubicMeterKelvin => As(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin);
 
         /// <summary>
-        ///     Get VolumetricHeatCapacity in KilocaloriesPerCubicCentimeterDegreeCelsius.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius"/>
         /// </summary>
         public double KilocaloriesPerCubicCentimeterDegreeCelsius => As(VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius);
 
         /// <summary>
-        ///     Get VolumetricHeatCapacity in KilojoulesPerCubicMeterDegreeCelsius.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius"/>
         /// </summary>
         public double KilojoulesPerCubicMeterDegreeCelsius => As(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius);
 
         /// <summary>
-        ///     Get VolumetricHeatCapacity in KilojoulesPerCubicMeterKelvin.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin"/>
         /// </summary>
         public double KilojoulesPerCubicMeterKelvin => As(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin);
 
         /// <summary>
-        ///     Get VolumetricHeatCapacity in MegajoulesPerCubicMeterDegreeCelsius.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius"/>
         /// </summary>
         public double MegajoulesPerCubicMeterDegreeCelsius => As(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius);
 
         /// <summary>
-        ///     Get VolumetricHeatCapacity in MegajoulesPerCubicMeterKelvin.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin"/>
         /// </summary>
         public double MegajoulesPerCubicMeterKelvin => As(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin);
 
@@ -316,7 +316,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get VolumetricHeatCapacity from BtusPerCubicFootDegreeFahrenheit.
+        ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumetricHeatCapacity FromBtusPerCubicFootDegreeFahrenheit(QuantityValue btuspercubicfootdegreefahrenheit)
@@ -325,7 +325,7 @@ namespace UnitsNet
             return new VolumetricHeatCapacity(value, VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit);
         }
         /// <summary>
-        ///     Get VolumetricHeatCapacity from CaloriesPerCubicCentimeterDegreeCelsius.
+        ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumetricHeatCapacity FromCaloriesPerCubicCentimeterDegreeCelsius(QuantityValue caloriespercubiccentimeterdegreecelsius)
@@ -334,7 +334,7 @@ namespace UnitsNet
             return new VolumetricHeatCapacity(value, VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius);
         }
         /// <summary>
-        ///     Get VolumetricHeatCapacity from JoulesPerCubicMeterDegreeCelsius.
+        ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumetricHeatCapacity FromJoulesPerCubicMeterDegreeCelsius(QuantityValue joulespercubicmeterdegreecelsius)
@@ -343,7 +343,7 @@ namespace UnitsNet
             return new VolumetricHeatCapacity(value, VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius);
         }
         /// <summary>
-        ///     Get VolumetricHeatCapacity from JoulesPerCubicMeterKelvin.
+        ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumetricHeatCapacity FromJoulesPerCubicMeterKelvin(QuantityValue joulespercubicmeterkelvin)
@@ -352,7 +352,7 @@ namespace UnitsNet
             return new VolumetricHeatCapacity(value, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin);
         }
         /// <summary>
-        ///     Get VolumetricHeatCapacity from KilocaloriesPerCubicCentimeterDegreeCelsius.
+        ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumetricHeatCapacity FromKilocaloriesPerCubicCentimeterDegreeCelsius(QuantityValue kilocaloriespercubiccentimeterdegreecelsius)
@@ -361,7 +361,7 @@ namespace UnitsNet
             return new VolumetricHeatCapacity(value, VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius);
         }
         /// <summary>
-        ///     Get VolumetricHeatCapacity from KilojoulesPerCubicMeterDegreeCelsius.
+        ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumetricHeatCapacity FromKilojoulesPerCubicMeterDegreeCelsius(QuantityValue kilojoulespercubicmeterdegreecelsius)
@@ -370,7 +370,7 @@ namespace UnitsNet
             return new VolumetricHeatCapacity(value, VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius);
         }
         /// <summary>
-        ///     Get VolumetricHeatCapacity from KilojoulesPerCubicMeterKelvin.
+        ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumetricHeatCapacity FromKilojoulesPerCubicMeterKelvin(QuantityValue kilojoulespercubicmeterkelvin)
@@ -379,7 +379,7 @@ namespace UnitsNet
             return new VolumetricHeatCapacity(value, VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin);
         }
         /// <summary>
-        ///     Get VolumetricHeatCapacity from MegajoulesPerCubicMeterDegreeCelsius.
+        ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumetricHeatCapacity FromMegajoulesPerCubicMeterDegreeCelsius(QuantityValue megajoulespercubicmeterdegreecelsius)
@@ -388,7 +388,7 @@ namespace UnitsNet
             return new VolumetricHeatCapacity(value, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius);
         }
         /// <summary>
-        ///     Get VolumetricHeatCapacity from MegajoulesPerCubicMeterKelvin.
+        ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumetricHeatCapacity FromMegajoulesPerCubicMeterKelvin(QuantityValue megajoulespercubicmeterkelvin)

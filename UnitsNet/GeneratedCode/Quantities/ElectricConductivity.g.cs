@@ -194,17 +194,17 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricConductivity in SiemensPerFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductivityUnit.SiemensPerFoot"/>
         /// </summary>
         public double SiemensPerFoot => As(ElectricConductivityUnit.SiemensPerFoot);
 
         /// <summary>
-        ///     Get ElectricConductivity in SiemensPerInch.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductivityUnit.SiemensPerInch"/>
         /// </summary>
         public double SiemensPerInch => As(ElectricConductivityUnit.SiemensPerInch);
 
         /// <summary>
-        ///     Get ElectricConductivity in SiemensPerMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductivityUnit.SiemensPerMeter"/>
         /// </summary>
         public double SiemensPerMeter => As(ElectricConductivityUnit.SiemensPerMeter);
 
@@ -262,7 +262,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricConductivity from SiemensPerFoot.
+        ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductivity FromSiemensPerFoot(QuantityValue siemensperfoot)
@@ -271,7 +271,7 @@ namespace UnitsNet
             return new ElectricConductivity(value, ElectricConductivityUnit.SiemensPerFoot);
         }
         /// <summary>
-        ///     Get ElectricConductivity from SiemensPerInch.
+        ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductivity FromSiemensPerInch(QuantityValue siemensperinch)
@@ -280,7 +280,7 @@ namespace UnitsNet
             return new ElectricConductivity(value, ElectricConductivityUnit.SiemensPerInch);
         }
         /// <summary>
-        ///     Get ElectricConductivity from SiemensPerMeter.
+        ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductivity FromSiemensPerMeter(QuantityValue siemenspermeter)

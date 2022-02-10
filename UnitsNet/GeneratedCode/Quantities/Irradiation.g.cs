@@ -198,37 +198,37 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Irradiation in JoulesPerSquareCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.JoulePerSquareCentimeter"/>
         /// </summary>
         public double JoulesPerSquareCentimeter => As(IrradiationUnit.JoulePerSquareCentimeter);
 
         /// <summary>
-        ///     Get Irradiation in JoulesPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.JoulePerSquareMeter"/>
         /// </summary>
         public double JoulesPerSquareMeter => As(IrradiationUnit.JoulePerSquareMeter);
 
         /// <summary>
-        ///     Get Irradiation in JoulesPerSquareMillimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.JoulePerSquareMillimeter"/>
         /// </summary>
         public double JoulesPerSquareMillimeter => As(IrradiationUnit.JoulePerSquareMillimeter);
 
         /// <summary>
-        ///     Get Irradiation in KilojoulesPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.KilojoulePerSquareMeter"/>
         /// </summary>
         public double KilojoulesPerSquareMeter => As(IrradiationUnit.KilojoulePerSquareMeter);
 
         /// <summary>
-        ///     Get Irradiation in KilowattHoursPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.KilowattHourPerSquareMeter"/>
         /// </summary>
         public double KilowattHoursPerSquareMeter => As(IrradiationUnit.KilowattHourPerSquareMeter);
 
         /// <summary>
-        ///     Get Irradiation in MillijoulesPerSquareCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.MillijoulePerSquareCentimeter"/>
         /// </summary>
         public double MillijoulesPerSquareCentimeter => As(IrradiationUnit.MillijoulePerSquareCentimeter);
 
         /// <summary>
-        ///     Get Irradiation in WattHoursPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.WattHourPerSquareMeter"/>
         /// </summary>
         public double WattHoursPerSquareMeter => As(IrradiationUnit.WattHourPerSquareMeter);
 
@@ -298,7 +298,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Irradiation from JoulesPerSquareCentimeter.
+        ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.JoulePerSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Irradiation FromJoulesPerSquareCentimeter(QuantityValue joulespersquarecentimeter)
@@ -307,7 +307,7 @@ namespace UnitsNet
             return new Irradiation(value, IrradiationUnit.JoulePerSquareCentimeter);
         }
         /// <summary>
-        ///     Get Irradiation from JoulesPerSquareMeter.
+        ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.JoulePerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Irradiation FromJoulesPerSquareMeter(QuantityValue joulespersquaremeter)
@@ -316,7 +316,7 @@ namespace UnitsNet
             return new Irradiation(value, IrradiationUnit.JoulePerSquareMeter);
         }
         /// <summary>
-        ///     Get Irradiation from JoulesPerSquareMillimeter.
+        ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.JoulePerSquareMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Irradiation FromJoulesPerSquareMillimeter(QuantityValue joulespersquaremillimeter)
@@ -325,7 +325,7 @@ namespace UnitsNet
             return new Irradiation(value, IrradiationUnit.JoulePerSquareMillimeter);
         }
         /// <summary>
-        ///     Get Irradiation from KilojoulesPerSquareMeter.
+        ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.KilojoulePerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Irradiation FromKilojoulesPerSquareMeter(QuantityValue kilojoulespersquaremeter)
@@ -334,7 +334,7 @@ namespace UnitsNet
             return new Irradiation(value, IrradiationUnit.KilojoulePerSquareMeter);
         }
         /// <summary>
-        ///     Get Irradiation from KilowattHoursPerSquareMeter.
+        ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.KilowattHourPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Irradiation FromKilowattHoursPerSquareMeter(QuantityValue kilowatthourspersquaremeter)
@@ -343,7 +343,7 @@ namespace UnitsNet
             return new Irradiation(value, IrradiationUnit.KilowattHourPerSquareMeter);
         }
         /// <summary>
-        ///     Get Irradiation from MillijoulesPerSquareCentimeter.
+        ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.MillijoulePerSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Irradiation FromMillijoulesPerSquareCentimeter(QuantityValue millijoulespersquarecentimeter)
@@ -352,7 +352,7 @@ namespace UnitsNet
             return new Irradiation(value, IrradiationUnit.MillijoulePerSquareCentimeter);
         }
         /// <summary>
-        ///     Get Irradiation from WattHoursPerSquareMeter.
+        ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.WattHourPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Irradiation FromWattHoursPerSquareMeter(QuantityValue watthourspersquaremeter)

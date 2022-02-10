@@ -164,47 +164,47 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get StandardVolumeFlow in StandardCubicCentimetersPerMinute.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute"/>
         /// </summary>
         public double StandardCubicCentimetersPerMinute => As(StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute);
 
         /// <summary>
-        ///     Get StandardVolumeFlow in StandardCubicFeetPerHour.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="StandardVolumeFlowUnit.StandardCubicFootPerHour"/>
         /// </summary>
         public double StandardCubicFeetPerHour => As(StandardVolumeFlowUnit.StandardCubicFootPerHour);
 
         /// <summary>
-        ///     Get StandardVolumeFlow in StandardCubicFeetPerMinute.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="StandardVolumeFlowUnit.StandardCubicFootPerMinute"/>
         /// </summary>
         public double StandardCubicFeetPerMinute => As(StandardVolumeFlowUnit.StandardCubicFootPerMinute);
 
         /// <summary>
-        ///     Get StandardVolumeFlow in StandardCubicFeetPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="StandardVolumeFlowUnit.StandardCubicFootPerSecond"/>
         /// </summary>
         public double StandardCubicFeetPerSecond => As(StandardVolumeFlowUnit.StandardCubicFootPerSecond);
 
         /// <summary>
-        ///     Get StandardVolumeFlow in StandardCubicMetersPerDay.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerDay"/>
         /// </summary>
         public double StandardCubicMetersPerDay => As(StandardVolumeFlowUnit.StandardCubicMeterPerDay);
 
         /// <summary>
-        ///     Get StandardVolumeFlow in StandardCubicMetersPerHour.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerHour"/>
         /// </summary>
         public double StandardCubicMetersPerHour => As(StandardVolumeFlowUnit.StandardCubicMeterPerHour);
 
         /// <summary>
-        ///     Get StandardVolumeFlow in StandardCubicMetersPerMinute.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerMinute"/>
         /// </summary>
         public double StandardCubicMetersPerMinute => As(StandardVolumeFlowUnit.StandardCubicMeterPerMinute);
 
         /// <summary>
-        ///     Get StandardVolumeFlow in StandardCubicMetersPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerSecond"/>
         /// </summary>
         public double StandardCubicMetersPerSecond => As(StandardVolumeFlowUnit.StandardCubicMeterPerSecond);
 
         /// <summary>
-        ///     Get StandardVolumeFlow in StandardLitersPerMinute.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="StandardVolumeFlowUnit.StandardLiterPerMinute"/>
         /// </summary>
         public double StandardLitersPerMinute => As(StandardVolumeFlowUnit.StandardLiterPerMinute);
 
@@ -252,7 +252,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get StandardVolumeFlow from StandardCubicCentimetersPerMinute.
+        ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -262,7 +262,7 @@ namespace UnitsNet
             return new StandardVolumeFlow(value, StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute);
         }
         /// <summary>
-        ///     Get StandardVolumeFlow from StandardCubicFeetPerHour.
+        ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicFootPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -272,7 +272,7 @@ namespace UnitsNet
             return new StandardVolumeFlow(value, StandardVolumeFlowUnit.StandardCubicFootPerHour);
         }
         /// <summary>
-        ///     Get StandardVolumeFlow from StandardCubicFeetPerMinute.
+        ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicFootPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -282,7 +282,7 @@ namespace UnitsNet
             return new StandardVolumeFlow(value, StandardVolumeFlowUnit.StandardCubicFootPerMinute);
         }
         /// <summary>
-        ///     Get StandardVolumeFlow from StandardCubicFeetPerSecond.
+        ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicFootPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -292,7 +292,7 @@ namespace UnitsNet
             return new StandardVolumeFlow(value, StandardVolumeFlowUnit.StandardCubicFootPerSecond);
         }
         /// <summary>
-        ///     Get StandardVolumeFlow from StandardCubicMetersPerDay.
+        ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -302,7 +302,7 @@ namespace UnitsNet
             return new StandardVolumeFlow(value, StandardVolumeFlowUnit.StandardCubicMeterPerDay);
         }
         /// <summary>
-        ///     Get StandardVolumeFlow from StandardCubicMetersPerHour.
+        ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -312,7 +312,7 @@ namespace UnitsNet
             return new StandardVolumeFlow(value, StandardVolumeFlowUnit.StandardCubicMeterPerHour);
         }
         /// <summary>
-        ///     Get StandardVolumeFlow from StandardCubicMetersPerMinute.
+        ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -322,7 +322,7 @@ namespace UnitsNet
             return new StandardVolumeFlow(value, StandardVolumeFlowUnit.StandardCubicMeterPerMinute);
         }
         /// <summary>
-        ///     Get StandardVolumeFlow from StandardCubicMetersPerSecond.
+        ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -332,7 +332,7 @@ namespace UnitsNet
             return new StandardVolumeFlow(value, StandardVolumeFlowUnit.StandardCubicMeterPerSecond);
         }
         /// <summary>
-        ///     Get StandardVolumeFlow from StandardLitersPerMinute.
+        ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardLiterPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]

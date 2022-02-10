@@ -192,22 +192,22 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get AmplitudeRatio in DecibelMicrovolts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelMicrovolt"/>
         /// </summary>
         public double DecibelMicrovolts => As(AmplitudeRatioUnit.DecibelMicrovolt);
 
         /// <summary>
-        ///     Get AmplitudeRatio in DecibelMillivolts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelMillivolt"/>
         /// </summary>
         public double DecibelMillivolts => As(AmplitudeRatioUnit.DecibelMillivolt);
 
         /// <summary>
-        ///     Get AmplitudeRatio in DecibelsUnloaded.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelUnloaded"/>
         /// </summary>
         public double DecibelsUnloaded => As(AmplitudeRatioUnit.DecibelUnloaded);
 
         /// <summary>
-        ///     Get AmplitudeRatio in DecibelVolts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelVolt"/>
         /// </summary>
         public double DecibelVolts => As(AmplitudeRatioUnit.DecibelVolt);
 
@@ -268,7 +268,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get AmplitudeRatio from DecibelMicrovolts.
+        ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelMicrovolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AmplitudeRatio FromDecibelMicrovolts(QuantityValue decibelmicrovolts)
@@ -277,7 +277,7 @@ namespace UnitsNet
             return new AmplitudeRatio(value, AmplitudeRatioUnit.DecibelMicrovolt);
         }
         /// <summary>
-        ///     Get AmplitudeRatio from DecibelMillivolts.
+        ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelMillivolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AmplitudeRatio FromDecibelMillivolts(QuantityValue decibelmillivolts)
@@ -286,7 +286,7 @@ namespace UnitsNet
             return new AmplitudeRatio(value, AmplitudeRatioUnit.DecibelMillivolt);
         }
         /// <summary>
-        ///     Get AmplitudeRatio from DecibelsUnloaded.
+        ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelUnloaded"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AmplitudeRatio FromDecibelsUnloaded(QuantityValue decibelsunloaded)
@@ -295,7 +295,7 @@ namespace UnitsNet
             return new AmplitudeRatio(value, AmplitudeRatioUnit.DecibelUnloaded);
         }
         /// <summary>
-        ///     Get AmplitudeRatio from DecibelVolts.
+        ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelVolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AmplitudeRatio FromDecibelVolts(QuantityValue decibelvolts)

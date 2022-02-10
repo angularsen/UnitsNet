@@ -78,7 +78,7 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get VitaminA in InternationalUnits.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VitaminAUnit.InternationalUnit"/>
         /// </summary>
         public double InternationalUnits => As(VitaminAUnit.InternationalUnit);
 
@@ -87,7 +87,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get VitaminA from InternationalUnits.
+        ///     Creates a <see cref="VitaminA"/> from <see cref="VitaminAUnit.InternationalUnit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VitaminA FromInternationalUnits(double internationalunits) => new VitaminA(internationalunits, VitaminAUnit.InternationalUnit);

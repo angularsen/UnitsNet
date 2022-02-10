@@ -194,32 +194,32 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ThermalResistance in HourSquareFeetDegreesFahrenheitPerBtu.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu"/>
         /// </summary>
         public double HourSquareFeetDegreesFahrenheitPerBtu => As(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu);
 
         /// <summary>
-        ///     Get ThermalResistance in SquareCentimeterHourDegreesCelsiusPerKilocalorie.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie"/>
         /// </summary>
         public double SquareCentimeterHourDegreesCelsiusPerKilocalorie => As(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie);
 
         /// <summary>
-        ///     Get ThermalResistance in SquareCentimeterKelvinsPerWatt.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalResistanceUnit.SquareCentimeterKelvinPerWatt"/>
         /// </summary>
         public double SquareCentimeterKelvinsPerWatt => As(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt);
 
         /// <summary>
-        ///     Get ThermalResistance in SquareMeterDegreesCelsiusPerWatt.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt"/>
         /// </summary>
         public double SquareMeterDegreesCelsiusPerWatt => As(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt);
 
         /// <summary>
-        ///     Get ThermalResistance in SquareMeterKelvinsPerKilowatt.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalResistanceUnit.SquareMeterKelvinPerKilowatt"/>
         /// </summary>
         public double SquareMeterKelvinsPerKilowatt => As(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt);
 
         /// <summary>
-        ///     Get ThermalResistance in SquareMeterKelvinsPerWatt.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalResistanceUnit.SquareMeterKelvinPerWatt"/>
         /// </summary>
         public double SquareMeterKelvinsPerWatt => As(ThermalResistanceUnit.SquareMeterKelvinPerWatt);
 
@@ -286,7 +286,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ThermalResistance from HourSquareFeetDegreesFahrenheitPerBtu.
+        ///     Creates a <see cref="ThermalResistance"/> from <see cref="ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ThermalResistance FromHourSquareFeetDegreesFahrenheitPerBtu(QuantityValue hoursquarefeetdegreesfahrenheitperbtu)
@@ -295,7 +295,7 @@ namespace UnitsNet
             return new ThermalResistance(value, ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu);
         }
         /// <summary>
-        ///     Get ThermalResistance from SquareCentimeterHourDegreesCelsiusPerKilocalorie.
+        ///     Creates a <see cref="ThermalResistance"/> from <see cref="ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ThermalResistance FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(QuantityValue squarecentimeterhourdegreescelsiusperkilocalorie)
@@ -304,7 +304,7 @@ namespace UnitsNet
             return new ThermalResistance(value, ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie);
         }
         /// <summary>
-        ///     Get ThermalResistance from SquareCentimeterKelvinsPerWatt.
+        ///     Creates a <see cref="ThermalResistance"/> from <see cref="ThermalResistanceUnit.SquareCentimeterKelvinPerWatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ThermalResistance FromSquareCentimeterKelvinsPerWatt(QuantityValue squarecentimeterkelvinsperwatt)
@@ -313,7 +313,7 @@ namespace UnitsNet
             return new ThermalResistance(value, ThermalResistanceUnit.SquareCentimeterKelvinPerWatt);
         }
         /// <summary>
-        ///     Get ThermalResistance from SquareMeterDegreesCelsiusPerWatt.
+        ///     Creates a <see cref="ThermalResistance"/> from <see cref="ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ThermalResistance FromSquareMeterDegreesCelsiusPerWatt(QuantityValue squaremeterdegreescelsiusperwatt)
@@ -322,7 +322,7 @@ namespace UnitsNet
             return new ThermalResistance(value, ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt);
         }
         /// <summary>
-        ///     Get ThermalResistance from SquareMeterKelvinsPerKilowatt.
+        ///     Creates a <see cref="ThermalResistance"/> from <see cref="ThermalResistanceUnit.SquareMeterKelvinPerKilowatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ThermalResistance FromSquareMeterKelvinsPerKilowatt(QuantityValue squaremeterkelvinsperkilowatt)
@@ -331,7 +331,7 @@ namespace UnitsNet
             return new ThermalResistance(value, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt);
         }
         /// <summary>
-        ///     Get ThermalResistance from SquareMeterKelvinsPerWatt.
+        ///     Creates a <see cref="ThermalResistance"/> from <see cref="ThermalResistanceUnit.SquareMeterKelvinPerWatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ThermalResistance FromSquareMeterKelvinsPerWatt(QuantityValue squaremeterkelvinsperwatt)

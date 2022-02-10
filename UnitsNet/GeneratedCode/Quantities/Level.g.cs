@@ -190,12 +190,12 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Level in Decibels.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LevelUnit.Decibel"/>
         /// </summary>
         public double Decibels => As(LevelUnit.Decibel);
 
         /// <summary>
-        ///     Get Level in Nepers.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LevelUnit.Neper"/>
         /// </summary>
         public double Nepers => As(LevelUnit.Neper);
 
@@ -250,7 +250,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Level from Decibels.
+        ///     Creates a <see cref="Level"/> from <see cref="LevelUnit.Decibel"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Level FromDecibels(QuantityValue decibels)
@@ -259,7 +259,7 @@ namespace UnitsNet
             return new Level(value, LevelUnit.Decibel);
         }
         /// <summary>
-        ///     Get Level from Nepers.
+        ///     Creates a <see cref="Level"/> from <see cref="LevelUnit.Neper"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Level FromNepers(QuantityValue nepers)

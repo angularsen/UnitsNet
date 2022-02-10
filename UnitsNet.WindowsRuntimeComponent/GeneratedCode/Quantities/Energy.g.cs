@@ -164,182 +164,182 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Energy in BritishThermalUnits.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.BritishThermalUnit"/>
         /// </summary>
         public double BritishThermalUnits => As(EnergyUnit.BritishThermalUnit);
 
         /// <summary>
-        ///     Get Energy in Calories.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Calorie"/>
         /// </summary>
         public double Calories => As(EnergyUnit.Calorie);
 
         /// <summary>
-        ///     Get Energy in DecathermsEc.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.DecathermEc"/>
         /// </summary>
         public double DecathermsEc => As(EnergyUnit.DecathermEc);
 
         /// <summary>
-        ///     Get Energy in DecathermsImperial.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.DecathermImperial"/>
         /// </summary>
         public double DecathermsImperial => As(EnergyUnit.DecathermImperial);
 
         /// <summary>
-        ///     Get Energy in DecathermsUs.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.DecathermUs"/>
         /// </summary>
         public double DecathermsUs => As(EnergyUnit.DecathermUs);
 
         /// <summary>
-        ///     Get Energy in ElectronVolts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.ElectronVolt"/>
         /// </summary>
         public double ElectronVolts => As(EnergyUnit.ElectronVolt);
 
         /// <summary>
-        ///     Get Energy in Ergs.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Erg"/>
         /// </summary>
         public double Ergs => As(EnergyUnit.Erg);
 
         /// <summary>
-        ///     Get Energy in FootPounds.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.FootPound"/>
         /// </summary>
         public double FootPounds => As(EnergyUnit.FootPound);
 
         /// <summary>
-        ///     Get Energy in GigabritishThermalUnits.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.GigabritishThermalUnit"/>
         /// </summary>
         public double GigabritishThermalUnits => As(EnergyUnit.GigabritishThermalUnit);
 
         /// <summary>
-        ///     Get Energy in GigaelectronVolts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.GigaelectronVolt"/>
         /// </summary>
         public double GigaelectronVolts => As(EnergyUnit.GigaelectronVolt);
 
         /// <summary>
-        ///     Get Energy in Gigajoules.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Gigajoule"/>
         /// </summary>
         public double Gigajoules => As(EnergyUnit.Gigajoule);
 
         /// <summary>
-        ///     Get Energy in GigawattDays.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.GigawattDay"/>
         /// </summary>
         public double GigawattDays => As(EnergyUnit.GigawattDay);
 
         /// <summary>
-        ///     Get Energy in GigawattHours.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.GigawattHour"/>
         /// </summary>
         public double GigawattHours => As(EnergyUnit.GigawattHour);
 
         /// <summary>
-        ///     Get Energy in HorsepowerHours.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.HorsepowerHour"/>
         /// </summary>
         public double HorsepowerHours => As(EnergyUnit.HorsepowerHour);
 
         /// <summary>
-        ///     Get Energy in Joules.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Joule"/>
         /// </summary>
         public double Joules => As(EnergyUnit.Joule);
 
         /// <summary>
-        ///     Get Energy in KilobritishThermalUnits.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.KilobritishThermalUnit"/>
         /// </summary>
         public double KilobritishThermalUnits => As(EnergyUnit.KilobritishThermalUnit);
 
         /// <summary>
-        ///     Get Energy in Kilocalories.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Kilocalorie"/>
         /// </summary>
         public double Kilocalories => As(EnergyUnit.Kilocalorie);
 
         /// <summary>
-        ///     Get Energy in KiloelectronVolts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.KiloelectronVolt"/>
         /// </summary>
         public double KiloelectronVolts => As(EnergyUnit.KiloelectronVolt);
 
         /// <summary>
-        ///     Get Energy in Kilojoules.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Kilojoule"/>
         /// </summary>
         public double Kilojoules => As(EnergyUnit.Kilojoule);
 
         /// <summary>
-        ///     Get Energy in KilowattDays.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.KilowattDay"/>
         /// </summary>
         public double KilowattDays => As(EnergyUnit.KilowattDay);
 
         /// <summary>
-        ///     Get Energy in KilowattHours.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.KilowattHour"/>
         /// </summary>
         public double KilowattHours => As(EnergyUnit.KilowattHour);
 
         /// <summary>
-        ///     Get Energy in MegabritishThermalUnits.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.MegabritishThermalUnit"/>
         /// </summary>
         public double MegabritishThermalUnits => As(EnergyUnit.MegabritishThermalUnit);
 
         /// <summary>
-        ///     Get Energy in Megacalories.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Megacalorie"/>
         /// </summary>
         public double Megacalories => As(EnergyUnit.Megacalorie);
 
         /// <summary>
-        ///     Get Energy in MegaelectronVolts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.MegaelectronVolt"/>
         /// </summary>
         public double MegaelectronVolts => As(EnergyUnit.MegaelectronVolt);
 
         /// <summary>
-        ///     Get Energy in Megajoules.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Megajoule"/>
         /// </summary>
         public double Megajoules => As(EnergyUnit.Megajoule);
 
         /// <summary>
-        ///     Get Energy in MegawattDays.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.MegawattDay"/>
         /// </summary>
         public double MegawattDays => As(EnergyUnit.MegawattDay);
 
         /// <summary>
-        ///     Get Energy in MegawattHours.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.MegawattHour"/>
         /// </summary>
         public double MegawattHours => As(EnergyUnit.MegawattHour);
 
         /// <summary>
-        ///     Get Energy in Millijoules.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Millijoule"/>
         /// </summary>
         public double Millijoules => As(EnergyUnit.Millijoule);
 
         /// <summary>
-        ///     Get Energy in TeraelectronVolts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.TeraelectronVolt"/>
         /// </summary>
         public double TeraelectronVolts => As(EnergyUnit.TeraelectronVolt);
 
         /// <summary>
-        ///     Get Energy in TerawattDays.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.TerawattDay"/>
         /// </summary>
         public double TerawattDays => As(EnergyUnit.TerawattDay);
 
         /// <summary>
-        ///     Get Energy in TerawattHours.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.TerawattHour"/>
         /// </summary>
         public double TerawattHours => As(EnergyUnit.TerawattHour);
 
         /// <summary>
-        ///     Get Energy in ThermsEc.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.ThermEc"/>
         /// </summary>
         public double ThermsEc => As(EnergyUnit.ThermEc);
 
         /// <summary>
-        ///     Get Energy in ThermsImperial.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.ThermImperial"/>
         /// </summary>
         public double ThermsImperial => As(EnergyUnit.ThermImperial);
 
         /// <summary>
-        ///     Get Energy in ThermsUs.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.ThermUs"/>
         /// </summary>
         public double ThermsUs => As(EnergyUnit.ThermUs);
 
         /// <summary>
-        ///     Get Energy in WattDays.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.WattDay"/>
         /// </summary>
         public double WattDays => As(EnergyUnit.WattDay);
 
         /// <summary>
-        ///     Get Energy in WattHours.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.WattHour"/>
         /// </summary>
         public double WattHours => As(EnergyUnit.WattHour);
 
@@ -435,7 +435,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Energy from BritishThermalUnits.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.BritishThermalUnit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -445,7 +445,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.BritishThermalUnit);
         }
         /// <summary>
-        ///     Get Energy from Calories.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Calorie"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -455,7 +455,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.Calorie);
         }
         /// <summary>
-        ///     Get Energy from DecathermsEc.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.DecathermEc"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -465,7 +465,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.DecathermEc);
         }
         /// <summary>
-        ///     Get Energy from DecathermsImperial.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.DecathermImperial"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -475,7 +475,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.DecathermImperial);
         }
         /// <summary>
-        ///     Get Energy from DecathermsUs.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.DecathermUs"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -485,7 +485,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.DecathermUs);
         }
         /// <summary>
-        ///     Get Energy from ElectronVolts.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.ElectronVolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -495,7 +495,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.ElectronVolt);
         }
         /// <summary>
-        ///     Get Energy from Ergs.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Erg"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -505,7 +505,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.Erg);
         }
         /// <summary>
-        ///     Get Energy from FootPounds.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.FootPound"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -515,7 +515,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.FootPound);
         }
         /// <summary>
-        ///     Get Energy from GigabritishThermalUnits.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.GigabritishThermalUnit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -525,7 +525,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.GigabritishThermalUnit);
         }
         /// <summary>
-        ///     Get Energy from GigaelectronVolts.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.GigaelectronVolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -535,7 +535,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.GigaelectronVolt);
         }
         /// <summary>
-        ///     Get Energy from Gigajoules.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Gigajoule"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -545,7 +545,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.Gigajoule);
         }
         /// <summary>
-        ///     Get Energy from GigawattDays.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.GigawattDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -555,7 +555,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.GigawattDay);
         }
         /// <summary>
-        ///     Get Energy from GigawattHours.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.GigawattHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -565,7 +565,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.GigawattHour);
         }
         /// <summary>
-        ///     Get Energy from HorsepowerHours.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.HorsepowerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -575,7 +575,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.HorsepowerHour);
         }
         /// <summary>
-        ///     Get Energy from Joules.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Joule"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -585,7 +585,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.Joule);
         }
         /// <summary>
-        ///     Get Energy from KilobritishThermalUnits.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.KilobritishThermalUnit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -595,7 +595,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.KilobritishThermalUnit);
         }
         /// <summary>
-        ///     Get Energy from Kilocalories.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Kilocalorie"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -605,7 +605,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.Kilocalorie);
         }
         /// <summary>
-        ///     Get Energy from KiloelectronVolts.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.KiloelectronVolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -615,7 +615,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.KiloelectronVolt);
         }
         /// <summary>
-        ///     Get Energy from Kilojoules.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Kilojoule"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -625,7 +625,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.Kilojoule);
         }
         /// <summary>
-        ///     Get Energy from KilowattDays.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.KilowattDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -635,7 +635,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.KilowattDay);
         }
         /// <summary>
-        ///     Get Energy from KilowattHours.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.KilowattHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -645,7 +645,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.KilowattHour);
         }
         /// <summary>
-        ///     Get Energy from MegabritishThermalUnits.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.MegabritishThermalUnit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -655,7 +655,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.MegabritishThermalUnit);
         }
         /// <summary>
-        ///     Get Energy from Megacalories.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Megacalorie"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -665,7 +665,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.Megacalorie);
         }
         /// <summary>
-        ///     Get Energy from MegaelectronVolts.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.MegaelectronVolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -675,7 +675,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.MegaelectronVolt);
         }
         /// <summary>
-        ///     Get Energy from Megajoules.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Megajoule"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -685,7 +685,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.Megajoule);
         }
         /// <summary>
-        ///     Get Energy from MegawattDays.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.MegawattDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -695,7 +695,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.MegawattDay);
         }
         /// <summary>
-        ///     Get Energy from MegawattHours.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.MegawattHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -705,7 +705,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.MegawattHour);
         }
         /// <summary>
-        ///     Get Energy from Millijoules.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Millijoule"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -715,7 +715,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.Millijoule);
         }
         /// <summary>
-        ///     Get Energy from TeraelectronVolts.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.TeraelectronVolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -725,7 +725,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.TeraelectronVolt);
         }
         /// <summary>
-        ///     Get Energy from TerawattDays.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.TerawattDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -735,7 +735,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.TerawattDay);
         }
         /// <summary>
-        ///     Get Energy from TerawattHours.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.TerawattHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -745,7 +745,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.TerawattHour);
         }
         /// <summary>
-        ///     Get Energy from ThermsEc.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.ThermEc"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -755,7 +755,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.ThermEc);
         }
         /// <summary>
-        ///     Get Energy from ThermsImperial.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.ThermImperial"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -765,7 +765,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.ThermImperial);
         }
         /// <summary>
-        ///     Get Energy from ThermsUs.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.ThermUs"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -775,7 +775,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.ThermUs);
         }
         /// <summary>
-        ///     Get Energy from WattDays.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.WattDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -785,7 +785,7 @@ namespace UnitsNet
             return new Energy(value, EnergyUnit.WattDay);
         }
         /// <summary>
-        ///     Get Energy from WattHours.
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.WattHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]

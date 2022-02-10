@@ -164,17 +164,17 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get MolarEnergy in JoulesPerMole.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarEnergyUnit.JoulePerMole"/>
         /// </summary>
         public double JoulesPerMole => As(MolarEnergyUnit.JoulePerMole);
 
         /// <summary>
-        ///     Get MolarEnergy in KilojoulesPerMole.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarEnergyUnit.KilojoulePerMole"/>
         /// </summary>
         public double KilojoulesPerMole => As(MolarEnergyUnit.KilojoulePerMole);
 
         /// <summary>
-        ///     Get MolarEnergy in MegajoulesPerMole.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarEnergyUnit.MegajoulePerMole"/>
         /// </summary>
         public double MegajoulesPerMole => As(MolarEnergyUnit.MegajoulePerMole);
 
@@ -216,7 +216,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get MolarEnergy from JoulesPerMole.
+        ///     Creates a <see cref="MolarEnergy"/> from <see cref="MolarEnergyUnit.JoulePerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -226,7 +226,7 @@ namespace UnitsNet
             return new MolarEnergy(value, MolarEnergyUnit.JoulePerMole);
         }
         /// <summary>
-        ///     Get MolarEnergy from KilojoulesPerMole.
+        ///     Creates a <see cref="MolarEnergy"/> from <see cref="MolarEnergyUnit.KilojoulePerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -236,7 +236,7 @@ namespace UnitsNet
             return new MolarEnergy(value, MolarEnergyUnit.KilojoulePerMole);
         }
         /// <summary>
-        ///     Get MolarEnergy from MegajoulesPerMole.
+        ///     Creates a <see cref="MolarEnergy"/> from <see cref="MolarEnergyUnit.MegajoulePerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]

@@ -81,7 +81,7 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get LuminousFlux in Lumens.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminousFluxUnit.Lumen"/>
         /// </summary>
         public double Lumens => As(LuminousFluxUnit.Lumen);
 
@@ -90,7 +90,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get LuminousFlux from Lumens.
+        ///     Creates a <see cref="LuminousFlux"/> from <see cref="LuminousFluxUnit.Lumen"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LuminousFlux FromLumens(double lumens) => new LuminousFlux(lumens, LuminousFluxUnit.Lumen);

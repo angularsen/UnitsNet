@@ -222,132 +222,132 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get BitRate in BitsPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.BitPerSecond"/>
         /// </summary>
         public double BitsPerSecond => As(BitRateUnit.BitPerSecond);
 
         /// <summary>
-        ///     Get BitRate in BytesPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.BytePerSecond"/>
         /// </summary>
         public double BytesPerSecond => As(BitRateUnit.BytePerSecond);
 
         /// <summary>
-        ///     Get BitRate in ExabitsPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.ExabitPerSecond"/>
         /// </summary>
         public double ExabitsPerSecond => As(BitRateUnit.ExabitPerSecond);
 
         /// <summary>
-        ///     Get BitRate in ExabytesPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.ExabytePerSecond"/>
         /// </summary>
         public double ExabytesPerSecond => As(BitRateUnit.ExabytePerSecond);
 
         /// <summary>
-        ///     Get BitRate in ExbibitsPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.ExbibitPerSecond"/>
         /// </summary>
         public double ExbibitsPerSecond => As(BitRateUnit.ExbibitPerSecond);
 
         /// <summary>
-        ///     Get BitRate in ExbibytesPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.ExbibytePerSecond"/>
         /// </summary>
         public double ExbibytesPerSecond => As(BitRateUnit.ExbibytePerSecond);
 
         /// <summary>
-        ///     Get BitRate in GibibitsPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.GibibitPerSecond"/>
         /// </summary>
         public double GibibitsPerSecond => As(BitRateUnit.GibibitPerSecond);
 
         /// <summary>
-        ///     Get BitRate in GibibytesPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.GibibytePerSecond"/>
         /// </summary>
         public double GibibytesPerSecond => As(BitRateUnit.GibibytePerSecond);
 
         /// <summary>
-        ///     Get BitRate in GigabitsPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.GigabitPerSecond"/>
         /// </summary>
         public double GigabitsPerSecond => As(BitRateUnit.GigabitPerSecond);
 
         /// <summary>
-        ///     Get BitRate in GigabytesPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.GigabytePerSecond"/>
         /// </summary>
         public double GigabytesPerSecond => As(BitRateUnit.GigabytePerSecond);
 
         /// <summary>
-        ///     Get BitRate in KibibitsPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.KibibitPerSecond"/>
         /// </summary>
         public double KibibitsPerSecond => As(BitRateUnit.KibibitPerSecond);
 
         /// <summary>
-        ///     Get BitRate in KibibytesPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.KibibytePerSecond"/>
         /// </summary>
         public double KibibytesPerSecond => As(BitRateUnit.KibibytePerSecond);
 
         /// <summary>
-        ///     Get BitRate in KilobitsPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.KilobitPerSecond"/>
         /// </summary>
         public double KilobitsPerSecond => As(BitRateUnit.KilobitPerSecond);
 
         /// <summary>
-        ///     Get BitRate in KilobytesPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.KilobytePerSecond"/>
         /// </summary>
         public double KilobytesPerSecond => As(BitRateUnit.KilobytePerSecond);
 
         /// <summary>
-        ///     Get BitRate in MebibitsPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.MebibitPerSecond"/>
         /// </summary>
         public double MebibitsPerSecond => As(BitRateUnit.MebibitPerSecond);
 
         /// <summary>
-        ///     Get BitRate in MebibytesPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.MebibytePerSecond"/>
         /// </summary>
         public double MebibytesPerSecond => As(BitRateUnit.MebibytePerSecond);
 
         /// <summary>
-        ///     Get BitRate in MegabitsPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.MegabitPerSecond"/>
         /// </summary>
         public double MegabitsPerSecond => As(BitRateUnit.MegabitPerSecond);
 
         /// <summary>
-        ///     Get BitRate in MegabytesPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.MegabytePerSecond"/>
         /// </summary>
         public double MegabytesPerSecond => As(BitRateUnit.MegabytePerSecond);
 
         /// <summary>
-        ///     Get BitRate in PebibitsPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.PebibitPerSecond"/>
         /// </summary>
         public double PebibitsPerSecond => As(BitRateUnit.PebibitPerSecond);
 
         /// <summary>
-        ///     Get BitRate in PebibytesPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.PebibytePerSecond"/>
         /// </summary>
         public double PebibytesPerSecond => As(BitRateUnit.PebibytePerSecond);
 
         /// <summary>
-        ///     Get BitRate in PetabitsPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.PetabitPerSecond"/>
         /// </summary>
         public double PetabitsPerSecond => As(BitRateUnit.PetabitPerSecond);
 
         /// <summary>
-        ///     Get BitRate in PetabytesPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.PetabytePerSecond"/>
         /// </summary>
         public double PetabytesPerSecond => As(BitRateUnit.PetabytePerSecond);
 
         /// <summary>
-        ///     Get BitRate in TebibitsPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.TebibitPerSecond"/>
         /// </summary>
         public double TebibitsPerSecond => As(BitRateUnit.TebibitPerSecond);
 
         /// <summary>
-        ///     Get BitRate in TebibytesPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.TebibytePerSecond"/>
         /// </summary>
         public double TebibytesPerSecond => As(BitRateUnit.TebibytePerSecond);
 
         /// <summary>
-        ///     Get BitRate in TerabitsPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.TerabitPerSecond"/>
         /// </summary>
         public double TerabitsPerSecond => As(BitRateUnit.TerabitPerSecond);
 
         /// <summary>
-        ///     Get BitRate in TerabytesPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.TerabytePerSecond"/>
         /// </summary>
         public double TerabytesPerSecond => As(BitRateUnit.TerabytePerSecond);
 
@@ -474,7 +474,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get BitRate from BitsPerSecond.
+        ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.BitPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BitRate FromBitsPerSecond(QuantityValue bitspersecond)
@@ -483,7 +483,7 @@ namespace UnitsNet
             return new BitRate(value, BitRateUnit.BitPerSecond);
         }
         /// <summary>
-        ///     Get BitRate from BytesPerSecond.
+        ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.BytePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BitRate FromBytesPerSecond(QuantityValue bytespersecond)
@@ -492,7 +492,7 @@ namespace UnitsNet
             return new BitRate(value, BitRateUnit.BytePerSecond);
         }
         /// <summary>
-        ///     Get BitRate from ExabitsPerSecond.
+        ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.ExabitPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BitRate FromExabitsPerSecond(QuantityValue exabitspersecond)
@@ -501,7 +501,7 @@ namespace UnitsNet
             return new BitRate(value, BitRateUnit.ExabitPerSecond);
         }
         /// <summary>
-        ///     Get BitRate from ExabytesPerSecond.
+        ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.ExabytePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BitRate FromExabytesPerSecond(QuantityValue exabytespersecond)
@@ -510,7 +510,7 @@ namespace UnitsNet
             return new BitRate(value, BitRateUnit.ExabytePerSecond);
         }
         /// <summary>
-        ///     Get BitRate from ExbibitsPerSecond.
+        ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.ExbibitPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BitRate FromExbibitsPerSecond(QuantityValue exbibitspersecond)
@@ -519,7 +519,7 @@ namespace UnitsNet
             return new BitRate(value, BitRateUnit.ExbibitPerSecond);
         }
         /// <summary>
-        ///     Get BitRate from ExbibytesPerSecond.
+        ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.ExbibytePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BitRate FromExbibytesPerSecond(QuantityValue exbibytespersecond)
@@ -528,7 +528,7 @@ namespace UnitsNet
             return new BitRate(value, BitRateUnit.ExbibytePerSecond);
         }
         /// <summary>
-        ///     Get BitRate from GibibitsPerSecond.
+        ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.GibibitPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BitRate FromGibibitsPerSecond(QuantityValue gibibitspersecond)
@@ -537,7 +537,7 @@ namespace UnitsNet
             return new BitRate(value, BitRateUnit.GibibitPerSecond);
         }
         /// <summary>
-        ///     Get BitRate from GibibytesPerSecond.
+        ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.GibibytePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BitRate FromGibibytesPerSecond(QuantityValue gibibytespersecond)
@@ -546,7 +546,7 @@ namespace UnitsNet
             return new BitRate(value, BitRateUnit.GibibytePerSecond);
         }
         /// <summary>
-        ///     Get BitRate from GigabitsPerSecond.
+        ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.GigabitPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BitRate FromGigabitsPerSecond(QuantityValue gigabitspersecond)
@@ -555,7 +555,7 @@ namespace UnitsNet
             return new BitRate(value, BitRateUnit.GigabitPerSecond);
         }
         /// <summary>
-        ///     Get BitRate from GigabytesPerSecond.
+        ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.GigabytePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BitRate FromGigabytesPerSecond(QuantityValue gigabytespersecond)
@@ -564,7 +564,7 @@ namespace UnitsNet
             return new BitRate(value, BitRateUnit.GigabytePerSecond);
         }
         /// <summary>
-        ///     Get BitRate from KibibitsPerSecond.
+        ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.KibibitPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BitRate FromKibibitsPerSecond(QuantityValue kibibitspersecond)
@@ -573,7 +573,7 @@ namespace UnitsNet
             return new BitRate(value, BitRateUnit.KibibitPerSecond);
         }
         /// <summary>
-        ///     Get BitRate from KibibytesPerSecond.
+        ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.KibibytePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BitRate FromKibibytesPerSecond(QuantityValue kibibytespersecond)
@@ -582,7 +582,7 @@ namespace UnitsNet
             return new BitRate(value, BitRateUnit.KibibytePerSecond);
         }
         /// <summary>
-        ///     Get BitRate from KilobitsPerSecond.
+        ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.KilobitPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BitRate FromKilobitsPerSecond(QuantityValue kilobitspersecond)
@@ -591,7 +591,7 @@ namespace UnitsNet
             return new BitRate(value, BitRateUnit.KilobitPerSecond);
         }
         /// <summary>
-        ///     Get BitRate from KilobytesPerSecond.
+        ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.KilobytePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BitRate FromKilobytesPerSecond(QuantityValue kilobytespersecond)
@@ -600,7 +600,7 @@ namespace UnitsNet
             return new BitRate(value, BitRateUnit.KilobytePerSecond);
         }
         /// <summary>
-        ///     Get BitRate from MebibitsPerSecond.
+        ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.MebibitPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BitRate FromMebibitsPerSecond(QuantityValue mebibitspersecond)
@@ -609,7 +609,7 @@ namespace UnitsNet
             return new BitRate(value, BitRateUnit.MebibitPerSecond);
         }
         /// <summary>
-        ///     Get BitRate from MebibytesPerSecond.
+        ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.MebibytePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BitRate FromMebibytesPerSecond(QuantityValue mebibytespersecond)
@@ -618,7 +618,7 @@ namespace UnitsNet
             return new BitRate(value, BitRateUnit.MebibytePerSecond);
         }
         /// <summary>
-        ///     Get BitRate from MegabitsPerSecond.
+        ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.MegabitPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BitRate FromMegabitsPerSecond(QuantityValue megabitspersecond)
@@ -627,7 +627,7 @@ namespace UnitsNet
             return new BitRate(value, BitRateUnit.MegabitPerSecond);
         }
         /// <summary>
-        ///     Get BitRate from MegabytesPerSecond.
+        ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.MegabytePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BitRate FromMegabytesPerSecond(QuantityValue megabytespersecond)
@@ -636,7 +636,7 @@ namespace UnitsNet
             return new BitRate(value, BitRateUnit.MegabytePerSecond);
         }
         /// <summary>
-        ///     Get BitRate from PebibitsPerSecond.
+        ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.PebibitPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BitRate FromPebibitsPerSecond(QuantityValue pebibitspersecond)
@@ -645,7 +645,7 @@ namespace UnitsNet
             return new BitRate(value, BitRateUnit.PebibitPerSecond);
         }
         /// <summary>
-        ///     Get BitRate from PebibytesPerSecond.
+        ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.PebibytePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BitRate FromPebibytesPerSecond(QuantityValue pebibytespersecond)
@@ -654,7 +654,7 @@ namespace UnitsNet
             return new BitRate(value, BitRateUnit.PebibytePerSecond);
         }
         /// <summary>
-        ///     Get BitRate from PetabitsPerSecond.
+        ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.PetabitPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BitRate FromPetabitsPerSecond(QuantityValue petabitspersecond)
@@ -663,7 +663,7 @@ namespace UnitsNet
             return new BitRate(value, BitRateUnit.PetabitPerSecond);
         }
         /// <summary>
-        ///     Get BitRate from PetabytesPerSecond.
+        ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.PetabytePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BitRate FromPetabytesPerSecond(QuantityValue petabytespersecond)
@@ -672,7 +672,7 @@ namespace UnitsNet
             return new BitRate(value, BitRateUnit.PetabytePerSecond);
         }
         /// <summary>
-        ///     Get BitRate from TebibitsPerSecond.
+        ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.TebibitPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BitRate FromTebibitsPerSecond(QuantityValue tebibitspersecond)
@@ -681,7 +681,7 @@ namespace UnitsNet
             return new BitRate(value, BitRateUnit.TebibitPerSecond);
         }
         /// <summary>
-        ///     Get BitRate from TebibytesPerSecond.
+        ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.TebibytePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BitRate FromTebibytesPerSecond(QuantityValue tebibytespersecond)
@@ -690,7 +690,7 @@ namespace UnitsNet
             return new BitRate(value, BitRateUnit.TebibytePerSecond);
         }
         /// <summary>
-        ///     Get BitRate from TerabitsPerSecond.
+        ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.TerabitPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BitRate FromTerabitsPerSecond(QuantityValue terabitspersecond)
@@ -699,7 +699,7 @@ namespace UnitsNet
             return new BitRate(value, BitRateUnit.TerabitPerSecond);
         }
         /// <summary>
-        ///     Get BitRate from TerabytesPerSecond.
+        ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.TerabytePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BitRate FromTerabytesPerSecond(QuantityValue terabytespersecond)

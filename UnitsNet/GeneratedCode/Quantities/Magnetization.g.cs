@@ -192,7 +192,7 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Magnetization in AmperesPerMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MagnetizationUnit.AmperePerMeter"/>
         /// </summary>
         public double AmperesPerMeter => As(MagnetizationUnit.AmperePerMeter);
 
@@ -244,7 +244,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Magnetization from AmperesPerMeter.
+        ///     Creates a <see cref="Magnetization"/> from <see cref="MagnetizationUnit.AmperePerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Magnetization FromAmperesPerMeter(QuantityValue amperespermeter)

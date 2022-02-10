@@ -78,17 +78,17 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ApparentEnergy in KilovoltampereHours.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentEnergyUnit.KilovoltampereHour"/>
         /// </summary>
         public double KilovoltampereHours => As(ApparentEnergyUnit.KilovoltampereHour);
 
         /// <summary>
-        ///     Get ApparentEnergy in MegavoltampereHours.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentEnergyUnit.MegavoltampereHour"/>
         /// </summary>
         public double MegavoltampereHours => As(ApparentEnergyUnit.MegavoltampereHour);
 
         /// <summary>
-        ///     Get ApparentEnergy in VoltampereHours.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentEnergyUnit.VoltampereHour"/>
         /// </summary>
         public double VoltampereHours => As(ApparentEnergyUnit.VoltampereHour);
 
@@ -97,19 +97,19 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ApparentEnergy from KilovoltampereHours.
+        ///     Creates a <see cref="ApparentEnergy"/> from <see cref="ApparentEnergyUnit.KilovoltampereHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ApparentEnergy FromKilovoltampereHours(double kilovoltamperehours) => new ApparentEnergy(kilovoltamperehours, ApparentEnergyUnit.KilovoltampereHour);
 
         /// <summary>
-        ///     Get ApparentEnergy from MegavoltampereHours.
+        ///     Creates a <see cref="ApparentEnergy"/> from <see cref="ApparentEnergyUnit.MegavoltampereHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ApparentEnergy FromMegavoltampereHours(double megavoltamperehours) => new ApparentEnergy(megavoltamperehours, ApparentEnergyUnit.MegavoltampereHour);
 
         /// <summary>
-        ///     Get ApparentEnergy from VoltampereHours.
+        ///     Creates a <see cref="ApparentEnergy"/> from <see cref="ApparentEnergyUnit.VoltampereHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ApparentEnergy FromVoltampereHours(double voltamperehours) => new ApparentEnergy(voltamperehours, ApparentEnergyUnit.VoltampereHour);

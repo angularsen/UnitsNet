@@ -164,172 +164,172 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Length in AstronomicalUnits.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.AstronomicalUnit"/>
         /// </summary>
         public double AstronomicalUnits => As(LengthUnit.AstronomicalUnit);
 
         /// <summary>
-        ///     Get Length in Centimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Centimeter"/>
         /// </summary>
         public double Centimeters => As(LengthUnit.Centimeter);
 
         /// <summary>
-        ///     Get Length in Chains.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Chain"/>
         /// </summary>
         public double Chains => As(LengthUnit.Chain);
 
         /// <summary>
-        ///     Get Length in Decameters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Decameter"/>
         /// </summary>
         public double Decameters => As(LengthUnit.Decameter);
 
         /// <summary>
-        ///     Get Length in Decimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Decimeter"/>
         /// </summary>
         public double Decimeters => As(LengthUnit.Decimeter);
 
         /// <summary>
-        ///     Get Length in DtpPicas.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.DtpPica"/>
         /// </summary>
         public double DtpPicas => As(LengthUnit.DtpPica);
 
         /// <summary>
-        ///     Get Length in DtpPoints.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.DtpPoint"/>
         /// </summary>
         public double DtpPoints => As(LengthUnit.DtpPoint);
 
         /// <summary>
-        ///     Get Length in Fathoms.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Fathom"/>
         /// </summary>
         public double Fathoms => As(LengthUnit.Fathom);
 
         /// <summary>
-        ///     Get Length in Feet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Foot"/>
         /// </summary>
         public double Feet => As(LengthUnit.Foot);
 
         /// <summary>
-        ///     Get Length in Hands.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Hand"/>
         /// </summary>
         public double Hands => As(LengthUnit.Hand);
 
         /// <summary>
-        ///     Get Length in Hectometers.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Hectometer"/>
         /// </summary>
         public double Hectometers => As(LengthUnit.Hectometer);
 
         /// <summary>
-        ///     Get Length in Inches.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Inch"/>
         /// </summary>
         public double Inches => As(LengthUnit.Inch);
 
         /// <summary>
-        ///     Get Length in KilolightYears.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.KilolightYear"/>
         /// </summary>
         public double KilolightYears => As(LengthUnit.KilolightYear);
 
         /// <summary>
-        ///     Get Length in Kilometers.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Kilometer"/>
         /// </summary>
         public double Kilometers => As(LengthUnit.Kilometer);
 
         /// <summary>
-        ///     Get Length in Kiloparsecs.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Kiloparsec"/>
         /// </summary>
         public double Kiloparsecs => As(LengthUnit.Kiloparsec);
 
         /// <summary>
-        ///     Get Length in LightYears.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.LightYear"/>
         /// </summary>
         public double LightYears => As(LengthUnit.LightYear);
 
         /// <summary>
-        ///     Get Length in MegalightYears.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.MegalightYear"/>
         /// </summary>
         public double MegalightYears => As(LengthUnit.MegalightYear);
 
         /// <summary>
-        ///     Get Length in Megaparsecs.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Megaparsec"/>
         /// </summary>
         public double Megaparsecs => As(LengthUnit.Megaparsec);
 
         /// <summary>
-        ///     Get Length in Meters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Meter"/>
         /// </summary>
         public double Meters => As(LengthUnit.Meter);
 
         /// <summary>
-        ///     Get Length in Microinches.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Microinch"/>
         /// </summary>
         public double Microinches => As(LengthUnit.Microinch);
 
         /// <summary>
-        ///     Get Length in Micrometers.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Micrometer"/>
         /// </summary>
         public double Micrometers => As(LengthUnit.Micrometer);
 
         /// <summary>
-        ///     Get Length in Mils.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Mil"/>
         /// </summary>
         public double Mils => As(LengthUnit.Mil);
 
         /// <summary>
-        ///     Get Length in Miles.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Mile"/>
         /// </summary>
         public double Miles => As(LengthUnit.Mile);
 
         /// <summary>
-        ///     Get Length in Millimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Millimeter"/>
         /// </summary>
         public double Millimeters => As(LengthUnit.Millimeter);
 
         /// <summary>
-        ///     Get Length in Nanometers.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Nanometer"/>
         /// </summary>
         public double Nanometers => As(LengthUnit.Nanometer);
 
         /// <summary>
-        ///     Get Length in NauticalMiles.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.NauticalMile"/>
         /// </summary>
         public double NauticalMiles => As(LengthUnit.NauticalMile);
 
         /// <summary>
-        ///     Get Length in Parsecs.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Parsec"/>
         /// </summary>
         public double Parsecs => As(LengthUnit.Parsec);
 
         /// <summary>
-        ///     Get Length in PrinterPicas.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.PrinterPica"/>
         /// </summary>
         public double PrinterPicas => As(LengthUnit.PrinterPica);
 
         /// <summary>
-        ///     Get Length in PrinterPoints.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.PrinterPoint"/>
         /// </summary>
         public double PrinterPoints => As(LengthUnit.PrinterPoint);
 
         /// <summary>
-        ///     Get Length in Shackles.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Shackle"/>
         /// </summary>
         public double Shackles => As(LengthUnit.Shackle);
 
         /// <summary>
-        ///     Get Length in SolarRadiuses.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.SolarRadius"/>
         /// </summary>
         public double SolarRadiuses => As(LengthUnit.SolarRadius);
 
         /// <summary>
-        ///     Get Length in Twips.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Twip"/>
         /// </summary>
         public double Twips => As(LengthUnit.Twip);
 
         /// <summary>
-        ///     Get Length in UsSurveyFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.UsSurveyFoot"/>
         /// </summary>
         public double UsSurveyFeet => As(LengthUnit.UsSurveyFoot);
 
         /// <summary>
-        ///     Get Length in Yards.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Yard"/>
         /// </summary>
         public double Yards => As(LengthUnit.Yard);
 
@@ -434,7 +434,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Length from AstronomicalUnits.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.AstronomicalUnit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -444,7 +444,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.AstronomicalUnit);
         }
         /// <summary>
-        ///     Get Length from Centimeters.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Centimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -454,7 +454,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.Centimeter);
         }
         /// <summary>
-        ///     Get Length from Chains.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Chain"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -464,7 +464,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.Chain);
         }
         /// <summary>
-        ///     Get Length from Decameters.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Decameter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -474,7 +474,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.Decameter);
         }
         /// <summary>
-        ///     Get Length from Decimeters.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Decimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -484,7 +484,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.Decimeter);
         }
         /// <summary>
-        ///     Get Length from DtpPicas.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.DtpPica"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -494,7 +494,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.DtpPica);
         }
         /// <summary>
-        ///     Get Length from DtpPoints.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.DtpPoint"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -504,7 +504,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.DtpPoint);
         }
         /// <summary>
-        ///     Get Length from Fathoms.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Fathom"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -514,7 +514,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.Fathom);
         }
         /// <summary>
-        ///     Get Length from Feet.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Foot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -524,7 +524,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.Foot);
         }
         /// <summary>
-        ///     Get Length from Hands.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Hand"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -534,7 +534,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.Hand);
         }
         /// <summary>
-        ///     Get Length from Hectometers.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Hectometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -544,7 +544,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.Hectometer);
         }
         /// <summary>
-        ///     Get Length from Inches.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Inch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -554,7 +554,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.Inch);
         }
         /// <summary>
-        ///     Get Length from KilolightYears.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.KilolightYear"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -564,7 +564,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.KilolightYear);
         }
         /// <summary>
-        ///     Get Length from Kilometers.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Kilometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -574,7 +574,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.Kilometer);
         }
         /// <summary>
-        ///     Get Length from Kiloparsecs.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Kiloparsec"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -584,7 +584,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.Kiloparsec);
         }
         /// <summary>
-        ///     Get Length from LightYears.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.LightYear"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -594,7 +594,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.LightYear);
         }
         /// <summary>
-        ///     Get Length from MegalightYears.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.MegalightYear"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -604,7 +604,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.MegalightYear);
         }
         /// <summary>
-        ///     Get Length from Megaparsecs.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Megaparsec"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -614,7 +614,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.Megaparsec);
         }
         /// <summary>
-        ///     Get Length from Meters.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Meter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -624,7 +624,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.Meter);
         }
         /// <summary>
-        ///     Get Length from Microinches.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Microinch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -634,7 +634,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.Microinch);
         }
         /// <summary>
-        ///     Get Length from Micrometers.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Micrometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -644,7 +644,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.Micrometer);
         }
         /// <summary>
-        ///     Get Length from Mils.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Mil"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -654,7 +654,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.Mil);
         }
         /// <summary>
-        ///     Get Length from Miles.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Mile"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -664,7 +664,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.Mile);
         }
         /// <summary>
-        ///     Get Length from Millimeters.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Millimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -674,7 +674,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.Millimeter);
         }
         /// <summary>
-        ///     Get Length from Nanometers.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Nanometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -684,7 +684,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.Nanometer);
         }
         /// <summary>
-        ///     Get Length from NauticalMiles.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.NauticalMile"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -694,7 +694,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.NauticalMile);
         }
         /// <summary>
-        ///     Get Length from Parsecs.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Parsec"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -704,7 +704,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.Parsec);
         }
         /// <summary>
-        ///     Get Length from PrinterPicas.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.PrinterPica"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -714,7 +714,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.PrinterPica);
         }
         /// <summary>
-        ///     Get Length from PrinterPoints.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.PrinterPoint"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -724,7 +724,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.PrinterPoint);
         }
         /// <summary>
-        ///     Get Length from Shackles.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Shackle"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -734,7 +734,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.Shackle);
         }
         /// <summary>
-        ///     Get Length from SolarRadiuses.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.SolarRadius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -744,7 +744,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.SolarRadius);
         }
         /// <summary>
-        ///     Get Length from Twips.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Twip"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -754,7 +754,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.Twip);
         }
         /// <summary>
-        ///     Get Length from UsSurveyFeet.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.UsSurveyFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -764,7 +764,7 @@ namespace UnitsNet
             return new Length(value, LengthUnit.UsSurveyFoot);
         }
         /// <summary>
-        ///     Get Length from Yards.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Yard"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]

@@ -164,82 +164,82 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Angle in Arcminutes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Arcminute"/>
         /// </summary>
         public double Arcminutes => As(AngleUnit.Arcminute);
 
         /// <summary>
-        ///     Get Angle in Arcseconds.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Arcsecond"/>
         /// </summary>
         public double Arcseconds => As(AngleUnit.Arcsecond);
 
         /// <summary>
-        ///     Get Angle in Centiradians.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Centiradian"/>
         /// </summary>
         public double Centiradians => As(AngleUnit.Centiradian);
 
         /// <summary>
-        ///     Get Angle in Deciradians.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Deciradian"/>
         /// </summary>
         public double Deciradians => As(AngleUnit.Deciradian);
 
         /// <summary>
-        ///     Get Angle in Degrees.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Degree"/>
         /// </summary>
         public double Degrees => As(AngleUnit.Degree);
 
         /// <summary>
-        ///     Get Angle in Gradians.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Gradian"/>
         /// </summary>
         public double Gradians => As(AngleUnit.Gradian);
 
         /// <summary>
-        ///     Get Angle in Microdegrees.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Microdegree"/>
         /// </summary>
         public double Microdegrees => As(AngleUnit.Microdegree);
 
         /// <summary>
-        ///     Get Angle in Microradians.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Microradian"/>
         /// </summary>
         public double Microradians => As(AngleUnit.Microradian);
 
         /// <summary>
-        ///     Get Angle in Millidegrees.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Millidegree"/>
         /// </summary>
         public double Millidegrees => As(AngleUnit.Millidegree);
 
         /// <summary>
-        ///     Get Angle in Milliradians.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Milliradian"/>
         /// </summary>
         public double Milliradians => As(AngleUnit.Milliradian);
 
         /// <summary>
-        ///     Get Angle in Nanodegrees.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Nanodegree"/>
         /// </summary>
         public double Nanodegrees => As(AngleUnit.Nanodegree);
 
         /// <summary>
-        ///     Get Angle in Nanoradians.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Nanoradian"/>
         /// </summary>
         public double Nanoradians => As(AngleUnit.Nanoradian);
 
         /// <summary>
-        ///     Get Angle in NatoMils.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.NatoMil"/>
         /// </summary>
         public double NatoMils => As(AngleUnit.NatoMil);
 
         /// <summary>
-        ///     Get Angle in Radians.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Radian"/>
         /// </summary>
         public double Radians => As(AngleUnit.Radian);
 
         /// <summary>
-        ///     Get Angle in Revolutions.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Revolution"/>
         /// </summary>
         public double Revolutions => As(AngleUnit.Revolution);
 
         /// <summary>
-        ///     Get Angle in Tilt.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Tilt"/>
         /// </summary>
         public double Tilt => As(AngleUnit.Tilt);
 
@@ -306,7 +306,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Angle from Arcminutes.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Arcminute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -316,7 +316,7 @@ namespace UnitsNet
             return new Angle(value, AngleUnit.Arcminute);
         }
         /// <summary>
-        ///     Get Angle from Arcseconds.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Arcsecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -326,7 +326,7 @@ namespace UnitsNet
             return new Angle(value, AngleUnit.Arcsecond);
         }
         /// <summary>
-        ///     Get Angle from Centiradians.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Centiradian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -336,7 +336,7 @@ namespace UnitsNet
             return new Angle(value, AngleUnit.Centiradian);
         }
         /// <summary>
-        ///     Get Angle from Deciradians.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Deciradian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -346,7 +346,7 @@ namespace UnitsNet
             return new Angle(value, AngleUnit.Deciradian);
         }
         /// <summary>
-        ///     Get Angle from Degrees.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Degree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -356,7 +356,7 @@ namespace UnitsNet
             return new Angle(value, AngleUnit.Degree);
         }
         /// <summary>
-        ///     Get Angle from Gradians.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Gradian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -366,7 +366,7 @@ namespace UnitsNet
             return new Angle(value, AngleUnit.Gradian);
         }
         /// <summary>
-        ///     Get Angle from Microdegrees.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Microdegree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -376,7 +376,7 @@ namespace UnitsNet
             return new Angle(value, AngleUnit.Microdegree);
         }
         /// <summary>
-        ///     Get Angle from Microradians.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Microradian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -386,7 +386,7 @@ namespace UnitsNet
             return new Angle(value, AngleUnit.Microradian);
         }
         /// <summary>
-        ///     Get Angle from Millidegrees.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Millidegree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -396,7 +396,7 @@ namespace UnitsNet
             return new Angle(value, AngleUnit.Millidegree);
         }
         /// <summary>
-        ///     Get Angle from Milliradians.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Milliradian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -406,7 +406,7 @@ namespace UnitsNet
             return new Angle(value, AngleUnit.Milliradian);
         }
         /// <summary>
-        ///     Get Angle from Nanodegrees.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Nanodegree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -416,7 +416,7 @@ namespace UnitsNet
             return new Angle(value, AngleUnit.Nanodegree);
         }
         /// <summary>
-        ///     Get Angle from Nanoradians.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Nanoradian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -426,7 +426,7 @@ namespace UnitsNet
             return new Angle(value, AngleUnit.Nanoradian);
         }
         /// <summary>
-        ///     Get Angle from NatoMils.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.NatoMil"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -436,7 +436,7 @@ namespace UnitsNet
             return new Angle(value, AngleUnit.NatoMil);
         }
         /// <summary>
-        ///     Get Angle from Radians.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Radian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -446,7 +446,7 @@ namespace UnitsNet
             return new Angle(value, AngleUnit.Radian);
         }
         /// <summary>
-        ///     Get Angle from Revolutions.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Revolution"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -456,7 +456,7 @@ namespace UnitsNet
             return new Angle(value, AngleUnit.Revolution);
         }
         /// <summary>
-        ///     Get Angle from Tilt.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Tilt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]

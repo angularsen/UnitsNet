@@ -164,17 +164,17 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get MolarEntropy in JoulesPerMoleKelvin.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarEntropyUnit.JoulePerMoleKelvin"/>
         /// </summary>
         public double JoulesPerMoleKelvin => As(MolarEntropyUnit.JoulePerMoleKelvin);
 
         /// <summary>
-        ///     Get MolarEntropy in KilojoulesPerMoleKelvin.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarEntropyUnit.KilojoulePerMoleKelvin"/>
         /// </summary>
         public double KilojoulesPerMoleKelvin => As(MolarEntropyUnit.KilojoulePerMoleKelvin);
 
         /// <summary>
-        ///     Get MolarEntropy in MegajoulesPerMoleKelvin.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarEntropyUnit.MegajoulePerMoleKelvin"/>
         /// </summary>
         public double MegajoulesPerMoleKelvin => As(MolarEntropyUnit.MegajoulePerMoleKelvin);
 
@@ -216,7 +216,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get MolarEntropy from JoulesPerMoleKelvin.
+        ///     Creates a <see cref="MolarEntropy"/> from <see cref="MolarEntropyUnit.JoulePerMoleKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -226,7 +226,7 @@ namespace UnitsNet
             return new MolarEntropy(value, MolarEntropyUnit.JoulePerMoleKelvin);
         }
         /// <summary>
-        ///     Get MolarEntropy from KilojoulesPerMoleKelvin.
+        ///     Creates a <see cref="MolarEntropy"/> from <see cref="MolarEntropyUnit.KilojoulePerMoleKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -236,7 +236,7 @@ namespace UnitsNet
             return new MolarEntropy(value, MolarEntropyUnit.KilojoulePerMoleKelvin);
         }
         /// <summary>
-        ///     Get MolarEntropy from MegajoulesPerMoleKelvin.
+        ///     Creates a <see cref="MolarEntropy"/> from <see cref="MolarEntropyUnit.MegajoulePerMoleKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
