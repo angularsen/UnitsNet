@@ -554,7 +554,7 @@ namespace UnitsNet
             {
                 case TemperatureGradientUnit.DegreeCelsiusPerKilometer: return _value / 1e3;
                 case TemperatureGradientUnit.DegreeCelsiusPerMeter: return _value;
-                case TemperatureGradientUnit.DegreeFahrenheitPerFoot: return (_value / 0.3048) * 5/9;
+                case TemperatureGradientUnit.DegreeFahrenheitPerFoot: return (_value / 0.3048) * 5 / 9;
                 case TemperatureGradientUnit.KelvinPerMeter: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -572,7 +572,7 @@ namespace UnitsNet
             {
                 case TemperatureGradientUnit.DegreeCelsiusPerKilometer: return baseUnitValue * 1e3;
                 case TemperatureGradientUnit.DegreeCelsiusPerMeter: return baseUnitValue;
-                case TemperatureGradientUnit.DegreeFahrenheitPerFoot: return (baseUnitValue * 0.3048) * 9/5;
+                case TemperatureGradientUnit.DegreeFahrenheitPerFoot: return (baseUnitValue * 0.3048) * 9 / 5;
                 case TemperatureGradientUnit.KelvinPerMeter: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");

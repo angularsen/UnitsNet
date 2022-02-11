@@ -145,7 +145,7 @@ namespace UnitsNet
             return Unit switch
             {
                 LevelUnit.Decibel => _value,
-                LevelUnit.Neper => (1/0.115129254) * _value,
+                LevelUnit.Neper => (1 / 0.115129254) * _value,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
         }

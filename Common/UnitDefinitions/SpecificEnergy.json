@@ -50,8 +50,8 @@
     {
       "SingularName": "WattDayPerKilogram",
       "PluralName": "WattDaysPerKilogram",
-      "FromUnitToBaseFunc": "{x} * (24*3.6e3)",
-      "FromBaseToUnitFunc": "{x} / (24*3.6e3)",
+      "FromUnitToBaseFunc": "{x} * (24 * 3.6e3)",
+      "FromBaseToUnitFunc": "{x} / (24 * 3.6e3)",
       "Prefixes": [ "Kilo", "Mega", "Giga", "Tera" ],
       "Localization": [
         {
@@ -63,8 +63,8 @@
     {
       "SingularName": "WattDayPerTonne",
       "PluralName": "WattDaysPerTonne",
-      "FromUnitToBaseFunc": "{x} * ((24*3.6e3)/1e3)",
-      "FromBaseToUnitFunc": "{x} / ((24*3.6e3)/1e3)",
+      "FromUnitToBaseFunc": "{x} * ((24 * 3.6e3) / 1e3)",
+      "FromBaseToUnitFunc": "{x} / ((24 * 3.6e3) / 1e3)",
       "Prefixes": [ "Kilo", "Mega", "Giga", "Tera" ],
       "Localization": [
         {
@@ -76,8 +76,8 @@
     {
       "SingularName": "WattDayPerShortTon",
       "PluralName": "WattDaysPerShortTon",
-      "FromUnitToBaseFunc": "{x} * ((24*3.6e3)/9.0718474e2)",
-      "FromBaseToUnitFunc": "{x} / ((24*3.6e3)/9.0718474e2)",
+      "FromUnitToBaseFunc": "{x} * ((24 * 3.6e3) / 9.0718474e2)",
+      "FromBaseToUnitFunc": "{x} / ((24 * 3.6e3) / 9.0718474e2)",
       "Prefixes": [ "Kilo", "Mega", "Giga", "Tera" ],
       "Localization": [
         {

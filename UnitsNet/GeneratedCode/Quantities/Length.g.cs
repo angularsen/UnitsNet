@@ -408,7 +408,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Decameter, quantity => new Length((quantity.Value) / 1e1d, LengthUnit.Decameter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Decimeter, quantity => new Length((quantity.Value) / 1e-1d, LengthUnit.Decimeter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.DtpPica, quantity => new Length(quantity.Value * 236.220472441, LengthUnit.DtpPica));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.DtpPoint, quantity => new Length((quantity.Value / 2.54e-2)*72, LengthUnit.DtpPoint));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.DtpPoint, quantity => new Length((quantity.Value / 2.54e-2) * 72, LengthUnit.DtpPoint));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Fathom, quantity => new Length(quantity.Value / 1.8288, LengthUnit.Fathom));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Foot, quantity => new Length(quantity.Value / 0.3048, LengthUnit.Foot));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Hand, quantity => new Length(quantity.Value / 1.016e-1, LengthUnit.Hand));
@@ -429,11 +429,11 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.NauticalMile, quantity => new Length(quantity.Value / 1852, LengthUnit.NauticalMile));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Parsec, quantity => new Length(quantity.Value / 3.08567758128e16, LengthUnit.Parsec));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.PrinterPica, quantity => new Length(quantity.Value * 237.106301584, LengthUnit.PrinterPica));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.PrinterPoint, quantity => new Length((quantity.Value / 2.54e-2)*72.27, LengthUnit.PrinterPoint));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.PrinterPoint, quantity => new Length((quantity.Value / 2.54e-2) * 72.27, LengthUnit.PrinterPoint));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Shackle, quantity => new Length(quantity.Value / 27.432, LengthUnit.Shackle));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.SolarRadius, quantity => new Length(quantity.Value / 6.95510000E+08, LengthUnit.SolarRadius));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Twip, quantity => new Length(quantity.Value * 56692.913385826, LengthUnit.Twip));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.UsSurveyFoot, quantity => new Length(quantity.Value * 3937/1200, LengthUnit.UsSurveyFoot));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.UsSurveyFoot, quantity => new Length(quantity.Value * 3937 / 1200, LengthUnit.UsSurveyFoot));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Yard, quantity => new Length(quantity.Value / 0.9144, LengthUnit.Yard));
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Meter, quantity => quantity);
@@ -445,7 +445,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Length>(LengthUnit.Decameter, LengthUnit.Meter, quantity => new Length((quantity.Value) * 1e1d, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Decimeter, LengthUnit.Meter, quantity => new Length((quantity.Value) * 1e-1d, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.DtpPica, LengthUnit.Meter, quantity => new Length(quantity.Value / 236.220472441, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.DtpPoint, LengthUnit.Meter, quantity => new Length((quantity.Value / 72)*2.54e-2, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.DtpPoint, LengthUnit.Meter, quantity => new Length((quantity.Value / 72) * 2.54e-2, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Fathom, LengthUnit.Meter, quantity => new Length(quantity.Value * 1.8288, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Foot, LengthUnit.Meter, quantity => new Length(quantity.Value * 0.3048, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Hand, LengthUnit.Meter, quantity => new Length(quantity.Value * 1.016e-1, LengthUnit.Meter));
@@ -466,11 +466,11 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Length>(LengthUnit.NauticalMile, LengthUnit.Meter, quantity => new Length(quantity.Value * 1852, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Parsec, LengthUnit.Meter, quantity => new Length(quantity.Value * 3.08567758128e16, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.PrinterPica, LengthUnit.Meter, quantity => new Length(quantity.Value / 237.106301584, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.PrinterPoint, LengthUnit.Meter, quantity => new Length((quantity.Value / 72.27)*2.54e-2, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.PrinterPoint, LengthUnit.Meter, quantity => new Length((quantity.Value / 72.27) * 2.54e-2, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Shackle, LengthUnit.Meter, quantity => new Length(quantity.Value * 27.432, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.SolarRadius, LengthUnit.Meter, quantity => new Length(quantity.Value * 6.95510000E+08, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Twip, LengthUnit.Meter, quantity => new Length(quantity.Value / 56692.913385826, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.UsSurveyFoot, LengthUnit.Meter, quantity => new Length(quantity.Value * 1200/3937, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.UsSurveyFoot, LengthUnit.Meter, quantity => new Length(quantity.Value * 1200 / 3937, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Yard, LengthUnit.Meter, quantity => new Length(quantity.Value * 0.9144, LengthUnit.Meter));
         }
 

@@ -731,8 +731,8 @@ namespace UnitsNet
                 case AccelerationUnit.FootPerSecondSquared: return _value * 0.304800;
                 case AccelerationUnit.InchPerSecondSquared: return _value * 0.0254;
                 case AccelerationUnit.KilometerPerSecondSquared: return (_value) * 1e3d;
-                case AccelerationUnit.KnotPerHour: return _value * 0.5144444444444/3600;
-                case AccelerationUnit.KnotPerMinute: return _value * 0.5144444444444/60;
+                case AccelerationUnit.KnotPerHour: return _value * 0.5144444444444 / 3600;
+                case AccelerationUnit.KnotPerMinute: return _value * 0.5144444444444 / 60;
                 case AccelerationUnit.KnotPerSecond: return _value * 0.5144444444444;
                 case AccelerationUnit.MeterPerSecondSquared: return _value;
                 case AccelerationUnit.MicrometerPerSecondSquared: return (_value) * 1e-6d;
@@ -759,8 +759,8 @@ namespace UnitsNet
                 case AccelerationUnit.FootPerSecondSquared: return baseUnitValue / 0.304800;
                 case AccelerationUnit.InchPerSecondSquared: return baseUnitValue / 0.0254;
                 case AccelerationUnit.KilometerPerSecondSquared: return (baseUnitValue) / 1e3d;
-                case AccelerationUnit.KnotPerHour: return baseUnitValue / 0.5144444444444*3600;
-                case AccelerationUnit.KnotPerMinute: return baseUnitValue / 0.5144444444444*60;
+                case AccelerationUnit.KnotPerHour: return baseUnitValue / 0.5144444444444 * 3600;
+                case AccelerationUnit.KnotPerMinute: return baseUnitValue / 0.5144444444444 * 60;
                 case AccelerationUnit.KnotPerSecond: return baseUnitValue / 0.5144444444444;
                 case AccelerationUnit.MeterPerSecondSquared: return baseUnitValue;
                 case AccelerationUnit.MicrometerPerSecondSquared: return (baseUnitValue) / 1e-6d;

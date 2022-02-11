@@ -1375,7 +1375,7 @@ namespace UnitsNet
                 case VolumeUnit.CubicDecimeter: return _value / 1e3;
                 case VolumeUnit.CubicFoot: return _value * 2.8316846592e-2;
                 case VolumeUnit.CubicHectometer: return _value * 1e6;
-                case VolumeUnit.CubicInch: return _value * 1.6387*1e-5;
+                case VolumeUnit.CubicInch: return _value * 1.6387 * 1e-5;
                 case VolumeUnit.CubicKilometer: return _value * 1e9;
                 case VolumeUnit.CubicMeter: return _value;
                 case VolumeUnit.CubicMicrometer: return _value / 1e18;
@@ -1441,7 +1441,7 @@ namespace UnitsNet
                 case VolumeUnit.CubicDecimeter: return baseUnitValue * 1e3;
                 case VolumeUnit.CubicFoot: return baseUnitValue / 2.8316846592e-2;
                 case VolumeUnit.CubicHectometer: return baseUnitValue / 1e6;
-                case VolumeUnit.CubicInch: return baseUnitValue / (1.6387*1e-5);
+                case VolumeUnit.CubicInch: return baseUnitValue / (1.6387 * 1e-5);
                 case VolumeUnit.CubicKilometer: return baseUnitValue / 1e9;
                 case VolumeUnit.CubicMeter: return baseUnitValue;
                 case VolumeUnit.CubicMicrometer: return baseUnitValue * 1e18;

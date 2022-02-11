@@ -6,8 +6,8 @@
     {
       "SingularName": "Radian",
       "PluralName": "Radians",
-      "FromUnitToBaseFunc": "{x} * 180/Math.PI",
-      "FromBaseToUnitFunc": "{x} / 180*Math.PI",
+      "FromUnitToBaseFunc": "{x} * 180 / Math.PI",
+      "FromBaseToUnitFunc": "{x} / 180 * Math.PI",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci" ],
       "Localization": [
         {
@@ -80,8 +80,8 @@
     {
       "SingularName": "NatoMil",
       "PluralName": "NatoMils",
-      "FromUnitToBaseFunc": "{x} * 9/160",
-      "FromBaseToUnitFunc": "{x} * 160/9",
+      "FromUnitToBaseFunc": "{x} * 9 / 160",
+      "FromBaseToUnitFunc": "{x} * 160 / 9",
       "Localization": [
         {
           "Culture": "en-US",
@@ -108,8 +108,8 @@
     {
       "SingularName": "Tilt",
       "PluralName": "Tilt",
-      "FromUnitToBaseFunc": "Math.Asin({x})*180/Math.PI",
-      "FromBaseToUnitFunc": "Math.Sin({x} / 180*Math.PI)",
+      "FromUnitToBaseFunc": "Math.Asin({x}) * 180 / Math.PI",
+      "FromBaseToUnitFunc": "Math.Sin({x} / 180 * Math.PI)",
       "Localization": [
         {
           "Culture": "en-US",

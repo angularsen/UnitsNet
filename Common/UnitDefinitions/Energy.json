@@ -118,8 +118,8 @@
     {
       "SingularName": "WattDay",
       "PluralName": "WattDays",
-      "FromUnitToBaseFunc": "{x} * 24*3600d",
-      "FromBaseToUnitFunc": "{x} / (24*3600d)",
+      "FromUnitToBaseFunc": "{x} * 24 * 3600d",
+      "FromBaseToUnitFunc": "{x} / (24 * 3600d)",
       "Prefixes": [ "Kilo", "Mega", "Giga", "Tera" ],
       "Localization": [
         {

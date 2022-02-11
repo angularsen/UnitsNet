@@ -33,8 +33,8 @@
     {
       "SingularName": "Atmosphere",
       "PluralName": "Atmospheres",
-      "FromUnitToBaseFunc": "{x} * 1.01325*1e5",
-      "FromBaseToUnitFunc": "{x} / (1.01325*1e5)",
+      "FromUnitToBaseFunc": "{x} * 1.01325 * 1e5",
+      "FromBaseToUnitFunc": "{x} / (1.01325 * 1e5)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -165,8 +165,8 @@
     {
       "SingularName": "TechnicalAtmosphere",
       "PluralName": "TechnicalAtmospheres",
-      "FromUnitToBaseFunc": "{x} * 9.80680592331*1e4",
-      "FromBaseToUnitFunc": "{x} / (9.80680592331*1e4)",
+      "FromUnitToBaseFunc": "{x} * 9.80680592331 * 1e4",
+      "FromBaseToUnitFunc": "{x} / (9.80680592331 * 1e4)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -181,8 +181,8 @@
     {
       "SingularName": "Torr",
       "PluralName": "Torrs",
-      "FromUnitToBaseFunc": "{x} * 1.3332266752*1e2",
-      "FromBaseToUnitFunc": "{x} / (1.3332266752*1e2)",
+      "FromUnitToBaseFunc": "{x} * 1.3332266752 * 1e2",
+      "FromBaseToUnitFunc": "{x} / (1.3332266752 * 1e2)",
       "Localization": [
         {
           "Culture": "en-US",

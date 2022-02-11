@@ -95,8 +95,8 @@
         "L": "NauticalMile",
         "T": "Minute"
       },
-      "FromUnitToBaseFunc": "{x} * 0.5144444444444/60",
-      "FromBaseToUnitFunc": "{x} / 0.5144444444444*60",
+      "FromUnitToBaseFunc": "{x} * 0.5144444444444 / 60",
+      "FromBaseToUnitFunc": "{x} / 0.5144444444444 * 60",
       "Localization": [
         {
           "Culture": "en-US",
@@ -115,8 +115,8 @@
         "L": "NauticalMile",
         "T": "Hour"
       },
-      "FromUnitToBaseFunc": "{x} * 0.5144444444444/3600",
-      "FromBaseToUnitFunc": "{x} / 0.5144444444444*3600",
+      "FromUnitToBaseFunc": "{x} * 0.5144444444444 / 3600",
+      "FromBaseToUnitFunc": "{x} / 0.5144444444444 * 3600",
       "Localization": [
         {
           "Culture": "en-US",

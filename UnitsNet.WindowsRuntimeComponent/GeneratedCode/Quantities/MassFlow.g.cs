@@ -1097,7 +1097,7 @@ namespace UnitsNet
                 case MassFlowUnit.PoundPerSecond: return baseUnitValue / 453.59237;
                 case MassFlowUnit.ShortTonPerHour: return baseUnitValue / 251.9957611;
                 case MassFlowUnit.TonnePerDay: return baseUnitValue * 0.0864000;
-                case MassFlowUnit.TonnePerHour: return baseUnitValue * 3.6/1000;
+                case MassFlowUnit.TonnePerHour: return baseUnitValue * 3.6 / 1000;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

@@ -82,8 +82,8 @@
     {
       "SingularName": "InverseUsSurveyFoot",
       "PluralName": "InverseUsSurveyFeet",
-      "FromUnitToBaseFunc": "{x} * 3937/1200",
-      "FromBaseToUnitFunc": "{x} * 1200/3937",
+      "FromUnitToBaseFunc": "{x} * 3937 / 1200",
+      "FromBaseToUnitFunc": "{x} * 1200 / 3937",
       "Localization": [
         {
           "Culture": "en-US",

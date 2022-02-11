@@ -61,8 +61,8 @@
     {
       "SingularName": "AtmospherePerSecond",
       "PluralName": "AtmospheresPerSecond",
-      "FromUnitToBaseFunc": "{x} * 1.01325*1e5",
-      "FromBaseToUnitFunc": "{x} / (1.01325*1e5)",
+      "FromUnitToBaseFunc": "{x} * 1.01325 * 1e5",
+      "FromBaseToUnitFunc": "{x} / (1.01325 * 1e5)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -96,8 +96,8 @@
     {
       "SingularName": "PoundForcePerSquareInchPerMinute",
       "PluralName": "PoundsForcePerSquareInchPerMinute",
-      "FromUnitToBaseFunc": "{x} * 6.894757293168361e3/60",
-      "FromBaseToUnitFunc": "{x} / 6.894757293168361e3*60",
+      "FromUnitToBaseFunc": "{x} * 6.894757293168361e3 / 60",
+      "FromBaseToUnitFunc": "{x} / 6.894757293168361e3 * 60",
       "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {

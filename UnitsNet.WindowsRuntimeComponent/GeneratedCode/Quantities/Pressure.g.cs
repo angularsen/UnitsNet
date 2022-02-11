@@ -1239,7 +1239,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case PressureUnit.Atmosphere: return _value * 1.01325*1e5;
+                case PressureUnit.Atmosphere: return _value * 1.01325 * 1e5;
                 case PressureUnit.Bar: return _value * 1e5;
                 case PressureUnit.Centibar: return (_value * 1e5) * 1e-2d;
                 case PressureUnit.Decapascal: return (_value) * 1e1d;
@@ -1279,11 +1279,11 @@ namespace UnitsNet
                 case PressureUnit.PoundForcePerSquareFoot: return _value * 4.788025898033584e1;
                 case PressureUnit.PoundForcePerSquareInch: return _value * 6.894757293168361e3;
                 case PressureUnit.PoundPerInchSecondSquared: return _value * 1.785796732283465e1;
-                case PressureUnit.TechnicalAtmosphere: return _value * 9.80680592331*1e4;
+                case PressureUnit.TechnicalAtmosphere: return _value * 9.80680592331 * 1e4;
                 case PressureUnit.TonneForcePerSquareCentimeter: return _value * 9.80665e7;
                 case PressureUnit.TonneForcePerSquareMeter: return _value * 9.80665e3;
                 case PressureUnit.TonneForcePerSquareMillimeter: return _value * 9.80665e9;
-                case PressureUnit.Torr: return _value * 1.3332266752*1e2;
+                case PressureUnit.Torr: return _value * 1.3332266752 * 1e2;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -1298,7 +1298,7 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case PressureUnit.Atmosphere: return baseUnitValue / (1.01325*1e5);
+                case PressureUnit.Atmosphere: return baseUnitValue / (1.01325 * 1e5);
                 case PressureUnit.Bar: return baseUnitValue / 1e5;
                 case PressureUnit.Centibar: return (baseUnitValue / 1e5) / 1e-2d;
                 case PressureUnit.Decapascal: return (baseUnitValue) / 1e1d;
@@ -1338,11 +1338,11 @@ namespace UnitsNet
                 case PressureUnit.PoundForcePerSquareFoot: return baseUnitValue / 4.788025898033584e1;
                 case PressureUnit.PoundForcePerSquareInch: return baseUnitValue / 6.894757293168361e3;
                 case PressureUnit.PoundPerInchSecondSquared: return baseUnitValue / 1.785796732283465e1;
-                case PressureUnit.TechnicalAtmosphere: return baseUnitValue / (9.80680592331*1e4);
+                case PressureUnit.TechnicalAtmosphere: return baseUnitValue / (9.80680592331 * 1e4);
                 case PressureUnit.TonneForcePerSquareCentimeter: return baseUnitValue / 9.80665e7;
                 case PressureUnit.TonneForcePerSquareMeter: return baseUnitValue / 9.80665e3;
                 case PressureUnit.TonneForcePerSquareMillimeter: return baseUnitValue / 9.80665e9;
-                case PressureUnit.Torr: return baseUnitValue / (1.3332266752*1e2);
+                case PressureUnit.Torr: return baseUnitValue / (1.3332266752 * 1e2);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

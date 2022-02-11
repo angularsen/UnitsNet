@@ -48,8 +48,8 @@
     {
       "SingularName": "NewtonMillimeterPerDegree",
       "PluralName": "NewtonMillimetersPerDegree",
-      "FromUnitToBaseFunc": "{x} * 180/Math.PI*0.001",
-      "FromBaseToUnitFunc": "{x} / 180*Math.PI*1000",
+      "FromUnitToBaseFunc": "{x} * 180 / Math.PI * 0.001",
+      "FromBaseToUnitFunc": "{x} / 180 * Math.PI * 1000",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo", "Mega" ],
       "Localization": [
         {
@@ -61,8 +61,8 @@
     {
       "SingularName": "NewtonMeterPerDegree",
       "PluralName": "NewtonMetersPerDegree",
-      "FromUnitToBaseFunc": "{x} * (180/Math.PI)",
-      "FromBaseToUnitFunc": "{x} / (180/Math.PI)",
+      "FromUnitToBaseFunc": "{x} * (180 / Math.PI)",
+      "FromBaseToUnitFunc": "{x} / (180 / Math.PI)",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo", "Mega" ],
       "Localization": [
         {

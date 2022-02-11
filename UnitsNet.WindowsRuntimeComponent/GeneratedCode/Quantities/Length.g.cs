@@ -1070,7 +1070,7 @@ namespace UnitsNet
                 case LengthUnit.Decameter: return (_value) * 1e1d;
                 case LengthUnit.Decimeter: return (_value) * 1e-1d;
                 case LengthUnit.DtpPica: return _value / 236.220472441;
-                case LengthUnit.DtpPoint: return (_value / 72)*2.54e-2;
+                case LengthUnit.DtpPoint: return (_value / 72) * 2.54e-2;
                 case LengthUnit.Fathom: return _value * 1.8288;
                 case LengthUnit.Foot: return _value * 0.3048;
                 case LengthUnit.Hand: return _value * 1.016e-1;
@@ -1092,11 +1092,11 @@ namespace UnitsNet
                 case LengthUnit.NauticalMile: return _value * 1852;
                 case LengthUnit.Parsec: return _value * 3.08567758128e16;
                 case LengthUnit.PrinterPica: return _value / 237.106301584;
-                case LengthUnit.PrinterPoint: return (_value / 72.27)*2.54e-2;
+                case LengthUnit.PrinterPoint: return (_value / 72.27) * 2.54e-2;
                 case LengthUnit.Shackle: return _value * 27.432;
                 case LengthUnit.SolarRadius: return _value * 6.95510000E+08;
                 case LengthUnit.Twip: return _value / 56692.913385826;
-                case LengthUnit.UsSurveyFoot: return _value * 1200/3937;
+                case LengthUnit.UsSurveyFoot: return _value * 1200 / 3937;
                 case LengthUnit.Yard: return _value * 0.9144;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -1118,7 +1118,7 @@ namespace UnitsNet
                 case LengthUnit.Decameter: return (baseUnitValue) / 1e1d;
                 case LengthUnit.Decimeter: return (baseUnitValue) / 1e-1d;
                 case LengthUnit.DtpPica: return baseUnitValue * 236.220472441;
-                case LengthUnit.DtpPoint: return (baseUnitValue / 2.54e-2)*72;
+                case LengthUnit.DtpPoint: return (baseUnitValue / 2.54e-2) * 72;
                 case LengthUnit.Fathom: return baseUnitValue / 1.8288;
                 case LengthUnit.Foot: return baseUnitValue / 0.3048;
                 case LengthUnit.Hand: return baseUnitValue / 1.016e-1;
@@ -1140,11 +1140,11 @@ namespace UnitsNet
                 case LengthUnit.NauticalMile: return baseUnitValue / 1852;
                 case LengthUnit.Parsec: return baseUnitValue / 3.08567758128e16;
                 case LengthUnit.PrinterPica: return baseUnitValue * 237.106301584;
-                case LengthUnit.PrinterPoint: return (baseUnitValue / 2.54e-2)*72.27;
+                case LengthUnit.PrinterPoint: return (baseUnitValue / 2.54e-2) * 72.27;
                 case LengthUnit.Shackle: return baseUnitValue / 27.432;
                 case LengthUnit.SolarRadius: return baseUnitValue / 6.95510000E+08;
                 case LengthUnit.Twip: return baseUnitValue * 56692.913385826;
-                case LengthUnit.UsSurveyFoot: return baseUnitValue * 3937/1200;
+                case LengthUnit.UsSurveyFoot: return baseUnitValue * 3937 / 1200;
                 case LengthUnit.Yard: return baseUnitValue / 0.9144;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");

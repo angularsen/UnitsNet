@@ -468,7 +468,7 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> PressureUnit
-            unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.Atmosphere, quantity => new Pressure(quantity.Value / (1.01325*1e5), PressureUnit.Atmosphere));
+            unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.Atmosphere, quantity => new Pressure(quantity.Value / (1.01325 * 1e5), PressureUnit.Atmosphere));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.Bar, quantity => new Pressure(quantity.Value / 1e5, PressureUnit.Bar));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.Centibar, quantity => new Pressure((quantity.Value / 1e5) / 1e-2d, PressureUnit.Centibar));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.Decapascal, quantity => new Pressure((quantity.Value) / 1e1d, PressureUnit.Decapascal));
@@ -507,16 +507,16 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.PoundForcePerSquareFoot, quantity => new Pressure(quantity.Value / 4.788025898033584e1, PressureUnit.PoundForcePerSquareFoot));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.PoundForcePerSquareInch, quantity => new Pressure(quantity.Value / 6.894757293168361e3, PressureUnit.PoundForcePerSquareInch));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.PoundPerInchSecondSquared, quantity => new Pressure(quantity.Value / 1.785796732283465e1, PressureUnit.PoundPerInchSecondSquared));
-            unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.TechnicalAtmosphere, quantity => new Pressure(quantity.Value / (9.80680592331*1e4), PressureUnit.TechnicalAtmosphere));
+            unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.TechnicalAtmosphere, quantity => new Pressure(quantity.Value / (9.80680592331 * 1e4), PressureUnit.TechnicalAtmosphere));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.TonneForcePerSquareCentimeter, quantity => new Pressure(quantity.Value / 9.80665e7, PressureUnit.TonneForcePerSquareCentimeter));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.TonneForcePerSquareMeter, quantity => new Pressure(quantity.Value / 9.80665e3, PressureUnit.TonneForcePerSquareMeter));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.TonneForcePerSquareMillimeter, quantity => new Pressure(quantity.Value / 9.80665e9, PressureUnit.TonneForcePerSquareMillimeter));
-            unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.Torr, quantity => new Pressure(quantity.Value / (1.3332266752*1e2), PressureUnit.Torr));
+            unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.Torr, quantity => new Pressure(quantity.Value / (1.3332266752 * 1e2), PressureUnit.Torr));
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.Pascal, quantity => quantity);
 
             // Register in unit converter: PressureUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Pressure>(PressureUnit.Atmosphere, PressureUnit.Pascal, quantity => new Pressure(quantity.Value * 1.01325*1e5, PressureUnit.Pascal));
+            unitConverter.SetConversionFunction<Pressure>(PressureUnit.Atmosphere, PressureUnit.Pascal, quantity => new Pressure(quantity.Value * 1.01325 * 1e5, PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Bar, PressureUnit.Pascal, quantity => new Pressure(quantity.Value * 1e5, PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Centibar, PressureUnit.Pascal, quantity => new Pressure((quantity.Value * 1e5) * 1e-2d, PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Decapascal, PressureUnit.Pascal, quantity => new Pressure((quantity.Value) * 1e1d, PressureUnit.Pascal));
@@ -555,11 +555,11 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.PoundForcePerSquareFoot, PressureUnit.Pascal, quantity => new Pressure(quantity.Value * 4.788025898033584e1, PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.PoundForcePerSquareInch, PressureUnit.Pascal, quantity => new Pressure(quantity.Value * 6.894757293168361e3, PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.PoundPerInchSecondSquared, PressureUnit.Pascal, quantity => new Pressure(quantity.Value * 1.785796732283465e1, PressureUnit.Pascal));
-            unitConverter.SetConversionFunction<Pressure>(PressureUnit.TechnicalAtmosphere, PressureUnit.Pascal, quantity => new Pressure(quantity.Value * 9.80680592331*1e4, PressureUnit.Pascal));
+            unitConverter.SetConversionFunction<Pressure>(PressureUnit.TechnicalAtmosphere, PressureUnit.Pascal, quantity => new Pressure(quantity.Value * 9.80680592331 * 1e4, PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.TonneForcePerSquareCentimeter, PressureUnit.Pascal, quantity => new Pressure(quantity.Value * 9.80665e7, PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.TonneForcePerSquareMeter, PressureUnit.Pascal, quantity => new Pressure(quantity.Value * 9.80665e3, PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.TonneForcePerSquareMillimeter, PressureUnit.Pascal, quantity => new Pressure(quantity.Value * 9.80665e9, PressureUnit.Pascal));
-            unitConverter.SetConversionFunction<Pressure>(PressureUnit.Torr, PressureUnit.Pascal, quantity => new Pressure(quantity.Value * 1.3332266752*1e2, PressureUnit.Pascal));
+            unitConverter.SetConversionFunction<Pressure>(PressureUnit.Torr, PressureUnit.Pascal, quantity => new Pressure(quantity.Value * 1.3332266752 * 1e2, PressureUnit.Pascal));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)

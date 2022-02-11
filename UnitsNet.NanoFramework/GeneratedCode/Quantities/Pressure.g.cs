@@ -617,7 +617,7 @@ namespace UnitsNet
         {
             return Unit switch
             {
-                PressureUnit.Atmosphere => _value * 1.01325*1e5,
+                PressureUnit.Atmosphere => _value * 1.01325 * 1e5,
                 PressureUnit.Bar => _value * 1e5,
                 PressureUnit.Centibar => (_value * 1e5) * 1e-2d,
                 PressureUnit.Decapascal => (_value) * 1e1d,
@@ -657,11 +657,11 @@ namespace UnitsNet
                 PressureUnit.PoundForcePerSquareFoot => _value * 4.788025898033584e1,
                 PressureUnit.PoundForcePerSquareInch => _value * 6.894757293168361e3,
                 PressureUnit.PoundPerInchSecondSquared => _value * 1.785796732283465e1,
-                PressureUnit.TechnicalAtmosphere => _value * 9.80680592331*1e4,
+                PressureUnit.TechnicalAtmosphere => _value * 9.80680592331 * 1e4,
                 PressureUnit.TonneForcePerSquareCentimeter => _value * 9.80665e7,
                 PressureUnit.TonneForcePerSquareMeter => _value * 9.80665e3,
                 PressureUnit.TonneForcePerSquareMillimeter => _value * 9.80665e9,
-                PressureUnit.Torr => _value * 1.3332266752*1e2,
+                PressureUnit.Torr => _value * 1.3332266752 * 1e2,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
         }
@@ -675,7 +675,7 @@ namespace UnitsNet
 
             return unit switch
             {
-                PressureUnit.Atmosphere => baseUnitValue / (1.01325*1e5),
+                PressureUnit.Atmosphere => baseUnitValue / (1.01325 * 1e5),
                 PressureUnit.Bar => baseUnitValue / 1e5,
                 PressureUnit.Centibar => (baseUnitValue / 1e5) / 1e-2d,
                 PressureUnit.Decapascal => (baseUnitValue) / 1e1d,
@@ -715,11 +715,11 @@ namespace UnitsNet
                 PressureUnit.PoundForcePerSquareFoot => baseUnitValue / 4.788025898033584e1,
                 PressureUnit.PoundForcePerSquareInch => baseUnitValue / 6.894757293168361e3,
                 PressureUnit.PoundPerInchSecondSquared => baseUnitValue / 1.785796732283465e1,
-                PressureUnit.TechnicalAtmosphere => baseUnitValue / (9.80680592331*1e4),
+                PressureUnit.TechnicalAtmosphere => baseUnitValue / (9.80680592331 * 1e4),
                 PressureUnit.TonneForcePerSquareCentimeter => baseUnitValue / 9.80665e7,
                 PressureUnit.TonneForcePerSquareMeter => baseUnitValue / 9.80665e3,
                 PressureUnit.TonneForcePerSquareMillimeter => baseUnitValue / 9.80665e9,
-                PressureUnit.Torr => baseUnitValue / (1.3332266752*1e2),
+                PressureUnit.Torr => baseUnitValue / (1.3332266752 * 1e2),
                 _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
             };
         }

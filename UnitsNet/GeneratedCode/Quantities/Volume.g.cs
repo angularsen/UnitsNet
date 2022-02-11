@@ -518,7 +518,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicDecimeter, quantity => new Volume(quantity.Value * 1e3, VolumeUnit.CubicDecimeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicFoot, quantity => new Volume(quantity.Value / 2.8316846592e-2, VolumeUnit.CubicFoot));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicHectometer, quantity => new Volume(quantity.Value / 1e6, VolumeUnit.CubicHectometer));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicInch, quantity => new Volume(quantity.Value / (1.6387*1e-5), VolumeUnit.CubicInch));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicInch, quantity => new Volume(quantity.Value / (1.6387 * 1e-5), VolumeUnit.CubicInch));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicKilometer, quantity => new Volume(quantity.Value / 1e9, VolumeUnit.CubicKilometer));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicMicrometer, quantity => new Volume(quantity.Value * 1e18, VolumeUnit.CubicMicrometer));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicMile, quantity => new Volume(quantity.Value / 4.16818182544058e9, VolumeUnit.CubicMile));
@@ -573,7 +573,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicDecimeter, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value / 1e3, VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicFoot, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 2.8316846592e-2, VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicHectometer, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 1e6, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicInch, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 1.6387*1e-5, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicInch, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 1.6387 * 1e-5, VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicKilometer, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 1e9, VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMicrometer, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value / 1e18, VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMile, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 4.16818182544058e9, VolumeUnit.CubicMeter));
